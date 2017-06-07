@@ -218,6 +218,15 @@
 - NEEDS_OVERLOADING_BOOL(commentSupportsTrackables)
 - NEEDS_OVERLOADING_BOOL(waypointSupportsPersonalNotes)
 - NEEDS_OVERLOADING_NSRANGE(commentSupportsRatingRange)
+- NEEDS_OVERLOADING_BOOL(supportsUserStatistics)
+- NEEDS_OVERLOADING_BOOL(supportsLoadWaypoint)
+- NEEDS_OVERLOADING_BOOL(supportsLoadWaypointsByCenter)
+- NEEDS_OVERLOADING_BOOL(supportsLoadWaypointsByCodes)
+- NEEDS_OVERLOADING_BOOL(supportsLoadWaypointsByBoundaryBox)
+- NEEDS_OVERLOADING_BOOL(supportsListQueries)
+- NEEDS_OVERLOADING_BOOL(supportsRetrieveQueries)
+- NEEDS_OVERLOADING_BOOL(supportsTrackables)
+- NEEDS_OVERLOADING_BOOL(supportsLogging)
 
 // ----------------------------------------
 

@@ -205,13 +205,21 @@ enum {
     if (__r__.location == NSNotFound) \
         goto __bail__;
 
+- (NSString *)viewState:(NSInteger)i
+{
+    if (i == 0)
+        return @"__VIEWSTATE";
+    return [NSString stringWithFormat:@"__VIEWSTATE%ld", (long)i];
+}
+
 // ------------------------------------------------
 
-- (GCDictionaryGGCW *)my_default:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+// Needed to get the publicGuid
+- (GCDictionaryGGCW *)account_dashboard:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
 
-    NSString *urlString = [self prepareURLString:@"/my/default.aspx" params:params];
+    NSString *urlString = [self prepareURLString:@"/account/dashboard" params:params];
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
@@ -221,60 +229,6 @@ enum {
 
     //
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
-
-    // Find the data for the "Found" field.
-    /*
-     <div id="uxCacheFind" class="statbox">
-
-     <strong>
-     Finds
-     </strong>
-     <span class="statcount">
-     976
-     </span>
-
-     </div>
-     */
-
-    NSInteger iHidden = 0;
-    NSInteger iFound = 0;
-    TFHppleElement *e;
-    NSString *s;
-
-    NSString *re = @"//div[@id='uxCacheFind']/span[@class='statcount']";
-    NSArray<TFHppleElement *> *nodes = [parser searchWithXPathQuery:re];
-    CHECK_ARRAY(nodes, 1, bail1);
-    e = [nodes objectAtIndex:0];
-    CHECK_ARRAY(e.children, 1, bail1);
-    e = [e.children objectAtIndex:0];
-    s = e.content;
-    s = [s stringByTrimmingCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]];
-    iFound = [s integerValue];
-bail1:
-
-    // Find the data for the "Hidden" field.
-    /*
-     <div id="uxCacheHide" class="statbox">
-
-     <strong>
-     Hides
-     </strong>
-     <span class="statcount">
-     37
-     </span>
-
-     </div>
-     */
-    re = @"//div[@id='uxCacheHide']/span[@class='statcount']";
-    nodes = [parser searchWithXPathQuery:re];
-    CHECK_ARRAY(nodes, 1, bail2);
-    e = [nodes objectAtIndex:0];
-    CHECK_ARRAY(e.children, 1, bail2);
-    e = [e.children objectAtIndex:0];
-    s = e.content;
-    s = [s stringByTrimmingCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]];
-    iHidden = [s integerValue];
-bail2:
 
     // Find the data for thea publicGuid
     /*
@@ -292,8 +246,8 @@ bail2:
         }
     }
      */
-    re = @"//script";
-    nodes = [parser searchWithXPathQuery:re];
+    NSString *re = @"//script";
+    NSArray<TFHppleElement *> *nodes = [parser searchWithXPathQuery:re];
     [nodes enumerateObjectsUsingBlock:^(TFHppleElement *e, NSUInteger idx, BOOL *stop) {
         NSRange r = [e.content rangeOfString:@"publicGuid: \""];
         if (r.location == NSNotFound)
@@ -309,12 +263,48 @@ bail2:
         return;
     }];
 
-    NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:4];
-    [d setObject:[NSNumber numberWithInteger:iFound] forKey:@"caches_found"];
-    [d setObject:[NSNumber numberWithInteger:iHidden] forKey:@"caches_hidden"];
-    [d setObject:uid forKey:@"uid"];
+    return nil;
+}
 
-    GCDictionaryGGCW *dict = [[GCDictionaryGGCW alloc] initWithDictionary:d];
+- (GCDictionaryGGCW *)my_statistics:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+
+    NSString *urlString = [self prepareURLString:@"/my/statistics.aspx" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    NSData *data = [self performURLRequest:req infoViewer:iv iiDownload:iid];
+    if (data == nil)
+        return nil;
+
+    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+    NSMutableDictionary *ds = [NSMutableDictionary dictionaryWithCapacity:4];
+
+    NSString *re = @"//div[@class='StatisticsWrapper']/div[@id='BasicFinds']";
+    NSArray<TFHppleElement *> *nodes = [parser searchWithXPathQuery:re];
+    TFHppleElement *e;
+    NSString *found;
+
+    CHECK_ARRAY(nodes, 1, bail);
+    e = [nodes objectAtIndex:0];
+
+    CHECK_ARRAY(e.children, 1, bail);
+    e = [e.children objectAtIndex:1];
+    found = e.content;
+    NSRange r = [found rangeOfString:@"found "];
+    CHECK_RANGE(r, bail);
+
+    found = [found substringFromIndex:r.location + r.length];
+    r = [found rangeOfString:@" "];
+    CHECK_RANGE(r, bail);
+    found = [found substringToIndex:r.location];
+
+    [ds setObject:[NSNumber numberWithInteger:[found integerValue]] forKey:@"caches_found"];
+
+bail:
+    NSLog(@"");
+    GCDictionaryGGCW *dict = [[GCDictionaryGGCW alloc] initWithDictionary:ds];
     return dict;
 }
 
@@ -407,7 +397,7 @@ bail2:
         [d setValue:count forKey:@"count"];
         [ds setObject:d forKey:name];
 bail:
-        NSLog(@"foo");
+        NSLog(@"");
     }];
 
     GCDictionaryGGCW *dict = [[GCDictionaryGGCW alloc] initWithDictionary:ds];
@@ -487,9 +477,10 @@ bail:
     NSString *eventtarget = nil;
     NSString *eventargument = nil;
     NSString *viewstatefieldcount = nil;
-    NSString *viewstate = nil;
-    NSString *viewstate1 = nil;
+    NSMutableArray<NSString *> *viewstates = [NSMutableArray arrayWithCapacity:3];
     NSString *viewstategenerator = nil;
+    NSString *scrollpositionx = nil;
+    NSString *scrollpositiony = nil;
 
     NSString *re;
     NSArray<TFHppleElement *> *nodes;
@@ -497,9 +488,14 @@ bail:
     GETVALUE(@"__EVENTTARGET", eventtarget);
     GETVALUE(@"__EVENTARGUMENT", eventargument);
     GETVALUE(@"__VIEWSTATEFIELDCOUNT", viewstatefieldcount);
-    GETVALUE(@"__VIEWSTATE", viewstate);
-    GETVALUE(@"__VIEWSTATE1", viewstate1);
+    for (NSInteger i = 0; i < [viewstatefieldcount integerValue]; i++) {
+        NSString *viewstate = nil;
+        GETVALUE([self viewState:i], viewstate);
+        [viewstates addObject:viewstate];
+    }
     GETVALUE(@"__VIEWSTATEGENERATOR", viewstategenerator);
+    GETVALUE(@"__SCROLLPOSITIONX", scrollpositionx);
+    GETVALUE(@"__SCROLLPOSITIONY", scrollpositiony);
 bail1:
     NSLog(@"");
 
@@ -560,9 +556,15 @@ bail2:
     [dict setObject:eventtarget forKey:@"__EVENTTARGET"];
     [dict setObject:eventargument forKey:@"__EVENTARGUMENT"];
     [dict setObject:viewstatefieldcount forKey:@"__VIEWSTATEFIELDCOUNT"];
-    [dict setObject:viewstate forKey:@"__VIEWSTATE"];
-    [dict setObject:viewstate1 forKey:@"__VIEWSTATE1"];
-    [dict setObject:viewstategenerator forKey:@"__VIEWSTATEGENERATOR"];
+    for (NSInteger i = 0; i < [viewstatefieldcount integerValue]; i++) {
+        [dict setObject:[viewstates objectAtIndex:i] forKey:[self viewState:i]];
+    }
+    if (viewstategenerator != nil)
+        [dict setObject:viewstategenerator forKey:@"__VIEWSTATEGENERATOR"];
+    if (scrollpositionx != nil)
+        [dict setObject:scrollpositionx forKey:@"__SCROLLPOSITIONX"];
+    if (scrollpositiony != nil)
+        [dict setObject:scrollpositiony forKey:@"__SCROLLPOSITIONY"];
     [dict setObject:location forKey:@"location"];
     [dict setObject:usertoken forKey:@"usertoken"];
     [dict setObject:gc_id forKey:@"gc_id"];
@@ -589,9 +591,15 @@ bail2:
     [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__EVENTTARGET"], [MyTools urlEncode:[gc objectForKey:@"__EVENTTARGET"]]];
     [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__EVENTARGUMENT"], [MyTools urlEncode:[gc objectForKey:@"__EVENTARGUMENT"]]];
     [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATEFIELDCOUNT"], [MyTools urlEncode:[gc objectForKey:@"__VIEWSTATEFIELDCOUNT"]]];
-    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATE"], [MyTools urlEncode:[gc objectForKey:@"__VIEWSTATE"]]];
-    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATE1"], [MyTools urlEncode:[gc objectForKey:@"__VIEWSTATE1"]]];
-    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATEGENERATOR"], [MyTools urlEncode:[gc objectForKey:@"__VIEWSTATEGENERATOR"]]];
+    for (NSInteger i = 0; i < [[gc objectForKey:@"__VIEWSTATEFIELDCOUNT"] integerValue]; i++) {
+        [ps appendFormat:@"&%@=%@", [self viewState:i], [MyTools urlEncode:[gc objectForKey:[self viewState:i]]]];
+    }
+    if ([gc objectForKey:@"__VIEWSTATEGENERATOR"] != nil)
+        [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATEGENERATOR"], [MyTools urlEncode:[gc objectForKey:@"__VIEWSTATEGENERATOR"]]];
+    if ([gc objectForKey:@"__SCROLLPOSITIONX"] != nil)
+        [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__SCROLLPOSITIONX"], [MyTools urlEncode:[gc objectForKey:@"__SCROLLPOSITIONX"]]];
+    if ([gc objectForKey:@"__SCROLLPOSITIONY"] != nil)
+        [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__SCROLLPOSITIONY"], [MyTools urlEncode:[gc objectForKey:@"__SCROLLPOSITIONY"]]];
     req.HTTPBody = [ps dataUsingEncoding:NSUTF8StringEncoding];
 
     NSData *data = [self performURLRequest:req infoViewer:iv iiDownload:iid];
@@ -1120,7 +1128,7 @@ bail:
 - (NSArray<NSDictionary *> *)track_search:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     if (uid == nil)
-        [self my_default:iv iiDownload:iid];
+        [self account_dashboard:iv iiDownload:iid];
 
     NSLog(@"track_search:%@", uid);
     /*
@@ -1278,19 +1286,9 @@ bail:
     return retjson;
 }
 
-- (NSDictionary *)seek_log__form:(NSString *)gc_id infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (NSDictionary *)api_proxy_web_v1_geocache:(NSString *)gccode infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    NSLog(@"seek_log__form:%@", gc_id);
-
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
-    [params setObject:@"1" forKey:@"lcn"];
-    [params setObject:gc_id forKey:@"ID"];
-
-    /*
-     *  https://www.geocaching.com/seek/log.aspx?ID=4658218&lcn=1
-     */
-
-    NSString *urlString = [self prepareURLString:@"/seek/log.aspx" params:params];
+    NSString *urlString = [self prepareURLString:[NSString stringWithFormat:@"/api/proxy/web/v1/geocache/%@", [gccode lowercaseString]] params:nil];
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
@@ -1299,110 +1297,106 @@ bail:
     if (data == nil)
         return nil;
 
-    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
-
-#define GETVALUE(__string__, __varname__) \
-    re = [NSString stringWithFormat:@"//input[@name='%@']", __string__]; \
-    nodes = [parser searchWithXPathQuery:re]; \
-    CHECK_ARRAY(nodes, 1, bail1); \
-    e = [nodes objectAtIndex:0]; \
-    __varname__ = [e.attributes objectForKey:@"value"];
-
-    // Grab the form data
-    // <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
-    /*
-     __EVENTTARGET:
-     __EVENTARGUMENT:
-     __LASTFOCUS
-     __VIEWSTATEFIELDCOUNT:
-     __VIEWSTATE: /
-     __VIEWSTATE1
-     __VIEWSTATEGENERATOR:
-     ctl00$ContentBody$btnGPXDL:
-     */
-    NSString *eventtarget = nil;
-    NSString *eventargument = nil;
-    NSString *viewstatefieldcount = nil;
-    NSString *viewstate = nil;
-    NSString *viewstate1 = nil;
-    NSString *lastfocus = nil;
-    NSString *viewstategenerator = nil;
-    NSMutableDictionary *dict;
-    NSString *re;
-    NSArray<TFHppleElement *> *nodes;
-    TFHppleElement *e;
-
-    GETVALUE(@"__EVENTTARGET", eventtarget);
-    GETVALUE(@"__EVENTARGUMENT", eventargument);
-    GETVALUE(@"__LASTFOCUS", lastfocus);
-    GETVALUE(@"__VIEWSTATEFIELDCOUNT", viewstatefieldcount);
-    GETVALUE(@"__VIEWSTATE", viewstate);
-    GETVALUE(@"__VIEWSTATE1", viewstate1);
-    GETVALUE(@"__VIEWSTATEGENERATOR", viewstategenerator);
-
-    dict = [NSMutableDictionary dictionaryWithCapacity:6];
-    [dict setObject:eventtarget forKey:@"__EVENTTARGET"];
-    [dict setObject:eventargument forKey:@"__EVENTARGUMENT"];
-    [dict setObject:lastfocus forKey:@"__LASTFOCUS"];
-    [dict setObject:viewstatefieldcount forKey:@"__VIEWSTATEFIELDCOUNT"];
-    [dict setObject:viewstate forKey:@"__VIEWSTATE"];
-    [dict setObject:viewstate1 forKey:@"__VIEWSTATE1"];
-    [dict setObject:viewstategenerator forKey:@"__VIEWSTATEGENERATOR"];
-bail1:
-    NSLog(@"");
+    NSError *error = nil;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if (error != nil)
+        return nil;
 
     /*
-    <select id="ctl00_ContentBody_LogBookPanel1_uxTrackables_repTravelBugs_ctl01_ddlAction"><option value="3801141">-
-    No Action -</option><option value="3801141_DroppedOff">Dropped Off</option><option
-    value="3801141_Visited">Visited</option></select></td>&#13;
+     {
+         callerSpecific =     {
+             favorited = 0;
+         };
+         geocacheType =     {
+             id = 2;
+             name = "Traditional Cache";
+         };
+         id = 5864006;
+         owner =     {
+             id = 8305738;
+             referenceCode = PR9DJJZ;
+         };
+         postedCoordinates =     {
+             latitude = "-34.0425";
+             longitude = "151.1220166666667";
+         };
+         referenceCode = GC6RKRD;
+     }
      */
-
-    NSMutableArray<NSDictionary *> *tbs = [NSMutableArray arrayWithCapacity:10];
-    NSUInteger idx = 1;
-    while (1) {
-        NSString *re = [NSString stringWithFormat:@"//select[@name='ctl00$ContentBody$LogBookPanel1$uxTrackables$repTravelBugs$ctl%02ld$ddlAction']", (unsigned long)idx];
-        NSArray<TFHppleElement *> *nodes = [parser searchWithXPathQuery:re];
-        if ([nodes count] == 0)
-            break;
-
-        TFHppleElement *e = [nodes objectAtIndex:0];
-        NSString *name = [e.attributes objectForKey:@"name"];
-
-        __block NSString *gc_id = nil;
-        [e.children enumerateObjectsUsingBlock:^(TFHppleElement *e, NSUInteger idx, BOOL *stop) {
-            if ([e.tagName isEqualToString:@"option"] == NO)
-                return;
-            gc_id = [e.attributes objectForKey:@"value"];
-            if (gc_id == nil)
-                return;
-
-            NSRange r = [gc_id rangeOfString:@"_"];
-            if (r.location != NSNotFound)
-                gc_id = [gc_id substringToIndex:r.location - 1];
-            *stop = YES;
-        }];
-
-        NSMutableDictionary *tb = [NSMutableDictionary dictionaryWithCapacity:2];
-        [tb setObject:name forKey:@"name"];
-        [tb setObject:gc_id forKey:@"gc_id"];
-
-        [tbs addObject:tb];
-        idx++;
-    }
-    [dict setObject:tbs forKey:@"tbs"];
-
-    return dict;
+    return json;
 }
 
-- (NSString *)seek_log__submit:(NSString *)gc_id dict:(NSDictionary *)dict logstring:(NSString *)logstring_type dateLogged:(NSString *)dateLogged note:(NSString *)note favpoint:(BOOL)favpoint trackables:(NSDictionary *)trackables infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (NSDictionary *)play_geocache_log__form:(NSString *)gccode infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    NSLog(@"seek_log__submit:%@", gc_id);
+    NSDictionary *dict = [self api_proxy_web_v1_geocache:gccode infoViewer:iv iiDownload:iid];
 
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:2];
-    [params setObject:gc_id forKey:@"ID"];
-    [params setObject:@"1" forKey:@"lcn"];
+    NSString *s;
+    NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:20];
+    DICT_NSSTRING_PATH(dict, s, @"callerSpecific.favorited");
+    [d setObject:s forKey:@"geocache[callerSpecific][favorited]"];
+    DICT_NSSTRING_PATH(dict, s, @"postedCoordinates.latitude");
+    [d setObject:s forKey:@"geocache[postedCoordinates][latitude]"];
+    DICT_NSSTRING_PATH(dict, s, @"postedCoordinates.longitude");
+    [d setObject:s forKey:@"geocache[postedCoordinates][longitude]"];
+    DICT_NSSTRING_PATH(dict, s, @"owner.id");
+    [d setObject:s forKey:@"geocache[owner][id]"];
+    DICT_NSSTRING_PATH(dict, s, @"owner.referenceCode");
+    [d setObject:s forKey:@"geocache[owner][referenceCode]"];
+    DICT_NSSTRING_PATH(dict, s, @"geocacheType.id");
+    [d setObject:s forKey:@"geocache[geocacheType][id]"];
+    DICT_NSSTRING_PATH(dict, s, @"geocacheType.name");
+    [d setObject:s forKey:@"geocache[geocacheType][name]"];
+    DICT_NSSTRING_PATH(dict, s, @"id");
+    [d setObject:s forKey:@"geocache[[id]"];
+    DICT_NSSTRING_PATH(dict, s, @"referenceCode");
+    [d setObject:s forKey:@"geocache[referenceCode]"];
 
-    NSString *urlString = [self prepareURLString:@"/seek/log.aspx" params:params];
+    /*
++   logTextMaxLength:               4000
++   maxImages:                      1
++   ownerIsViewing:                 true
++   isWaiting:                      true
+     
+|   geocache[id]:                   6140457
+|   geocache[referenceCode]:        GC72XE6
+|   geocache[postedCoordinates][latitude]:-34.017967
+|   geocache[postedCoordinates][longitude]:151.125933
+|   geocache[callerSpecific][favorited]:false
+|   geocache[owner][id]:            8305738
+|   geocache[owner][referenceCode]: PR9DJJZ
+|   geocache[geocacheType][id]:     2
+|   geocache[geocacheType][name]:   Traditional Cache
+    geocache[isEvent]:              false
+
+    logTypes[0][value]:             46
+    logTypes[0][name]:              Owner maintenance
+    logTypes[0][selected]:          true
+    logTypes[1][value]:             4
+    logTypes[1][name]:              Write note
+    logTypes[1][selected]:          false
+    logTypes[2][value]:             22
+    logTypes[2][name]:              Disable
+    logTypes[2][selected]:          false
+    logTypes[3][value]:             5
+    logTypes[3][name]:              Archive
+    logTypes[3][selected]:          false
+    logTypes[4][value]:             47
+    logTypes[4][name]:              Update coordinates
+    logTypes[4][selected]:          false
+
++   logType:                        46
++   logDate:                        2017-06-05
++   logText:                        test
+     */
+
+//  https://www.geocaching.com/play/geocache/gc72xe6/log
+//  https://www.geocaching.com/api/proxy/web/v1/geocache/gc72xe6
+    return d;
+}
+
+- (NSString *)play_geocache_log__submit:(NSString *)gccode dict:(NSDictionary *)dict logstring:(NSString *)logstring_type dateLogged:(NSString *)dateLogged note:(NSString *)note favpoint:(BOOL)favpoint infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+{
+    NSString *urlString = [self prepareURLString:[NSString stringWithFormat:@"/api/proxy/web/v1/geocache/%@/GeocacheLog", gccode] params:nil];
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
     [req setHTTPMethod:@"POST"];
@@ -1411,73 +1405,56 @@ bail1:
     note = [note stringByReplacingOccurrencesOfString:@"\x0a" withString:@"\x0d\x0a"];
 
     /*
-     __EVENTTARGET:
-     __EVENTARGUMENT:
-     __LASTFOCUS:
-     __VIEWSTATEFIELDCOUNT:          2
-     __VIEWSTATE:
-     __VIEWSTATE1
-     __VIEWSTATEGENERATOR:           67865CB8
-     ctl00$ContentBody$LogBookPanel1$uxLogCreationSource:New
-     ctl00$ContentBody$LogBookPanel1$LogContainsHtml:
-     ctl00$ContentBody$LogBookPanel1$LogContainsUbb:
-     ctl00$ContentBody$LogBookPanel1$uxRawLogText:
-     ctl00$ContentBody$LogBookPanel1$IsEditLog:False
-     ctl00$ContentBody$LogBookPanel1$ddLogType:2
-     ctl00$ContentBody$LogBookPanel1$uxDateVisited:2016-11-13
-     ctl00$ContentBody$LogBookPanel1$uxLogInfo:foo?bar
-     ctl00$ContentBody$LogBookPanel1$uxTrackables$repTravelBugs$ctl01$ddlAction:3801141
-     ctl00$ContentBody$LogBookPanel1$uxTrackables$repTravelBugs$ctl02$ddlAction:6332346
-     ctl00$ContentBody$LogBookPanel1$uxTrackables$repTravelBugs$ctl03$ddlAction:5442234
-     ctl00$ContentBody$LogBookPanel1$uxTrackables$repTravelBugs$ctl04$ddlAction:6253802_Visited
-     ctl00$ContentBody$LogBookPanel1$uxTrackables$repTravelBugs$ctl05$ddlAction:169626
-     ctl00$ContentBody$LogBookPanel1$uxTrackables$repTravelBugs$ctl06$ddlAction:6103275
-     ctl00$ContentBody$LogBookPanel1$uxTrackables$repTravelBugs$ctl07$ddlAction:6140957
-     ctl00$ContentBody$LogBookPanel1$uxTrackables$hdnSelectedActions:6253802_Visited,
-     ctl00$ContentBody$LogBookPanel1$uxTrackables$hdnCurrentFilter:
-     ctl00$ContentBody$LogBookPanel1$btnSubmitLog:Submit Log Entry
-     ctl00$ContentBody$uxVistOtherListingGC:
+    https://www.geocaching.com/api/proxy/web/v1/Geocache/GC72XE6/GeocacheLog
+
+    logTextMaxLength:               4000
+    maxImages:                      1
+    geocache[id]:                   6140457
+    geocache[referenceCode]:        GC72XE6
+    geocache[postedCoordinates][latitude]:-34.017967
+    geocache[postedCoordinates][longitude]:151.125933
+    geocache[callerSpecific][favorited]:false
+    geocache[owner][id]:            8305738
+    geocache[owner][referenceCode]: PR9DJJZ
+    geocache[geocacheType][id]:     2
+    geocache[geocacheType][name]:   Traditional Cache
+    geocache[isEvent]:              false
+    logTypes[0][value]:             46
+    logTypes[0][name]:              Owner maintenance
+    logTypes[0][selected]:          true
+    logTypes[1][value]:             4
+    logTypes[1][name]:              Write note
+    logTypes[1][selected]:          false
+    logTypes[2][value]:             22
+    logTypes[2][name]:              Disable
+    logTypes[2][selected]:          false
+    logTypes[3][value]:             5
+    logTypes[3][name]:              Archive
+    logTypes[3][selected]:          false
+    logTypes[4][value]:             47
+    logTypes[4][name]:              Update coordinates
+    logTypes[4][selected]:          false
+    logType:                        46
+    ownerIsViewing:                 true
+    logDate:                        2017-06-05
+    logText:                        test
+    isWaiting:                      true
      */
+
+    dateLogged = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:[MyTools secondsSinceEpochFromISO8601:dateLogged]];
+
     NSMutableString *s = [NSMutableString stringWithString:@""];
-    [s appendFormat:@"%@=%@", @"__EVENTTARGET", [MyTools urlEncode:[dict objectForKey:@"__EVENTTARGET"]]];
-    [s appendFormat:@"&%@=%@", @"__EVENTARGUMENT", [MyTools urlEncode:[dict objectForKey:@"__EVENTARGUMENT"]]];
-    [s appendFormat:@"&%@=%@", @"__LASTFOCUS", [MyTools urlEncode:[dict objectForKey:@"__LASTFOCUS"]]];
-    [s appendFormat:@"&%@=%@", @"__VIEWSTATEFIELDCOUNT", [MyTools urlEncode:[dict objectForKey:@"__VIEWSTATEFIELDCOUNT"]]];
-    [s appendFormat:@"&%@=%@", @"__VIEWSTATE", [MyTools urlEncode:[dict objectForKey:@"__VIEWSTATE"]]];
-    [s appendFormat:@"&%@=%@", @"__VIEWSTATE1", [MyTools urlEncode:[dict objectForKey:@"__VIEWSTATE1"]]];
-    [s appendFormat:@"&%@=%@", @"__VIEWSTATEGENERATOR", [MyTools urlEncode:[dict objectForKey:@"__VIEWSTATEGENERATOR"]]];
-    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$uxLogCreationSource", @"New"];
-    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$LogContainsHtml", @""];
-    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$LogContainsUbb", @""];
-    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$uxRawLogText", @""];
-    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$IsEditLog", @"False"];
-    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$ddLogType", logstring_type];
-    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$uxDateVisited", [MyTools urlEncode:dateLogged]];
-    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$uxLogInfo", [MyTools urlEncode:note]];
-    if (favpoint == YES)
-        [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$chkAddToFavorites", @"on"];
-
-    NSArray<NSDictionary *> *tbs = [dict objectForKey:@"tbs"];
-    NSMutableString *actions = [NSMutableString stringWithString:@""];
-    [tbs enumerateObjectsUsingBlock:^(NSDictionary *tb, NSUInteger idx, BOOL *stop) {
-        NSString *gc_id = [tb objectForKey:@"gc_id"];
-        NSString *name = [tb objectForKey:@"name"];
-
-        NSString *logstate = [trackables objectForKey:[NSNumber numberWithInteger:[gc_id integerValue]]];
-        if (logstate == nil) {
-            [s appendFormat:@"&%@=%@", name, gc_id];
-        } else {
-            [s appendFormat:@"&%@=%@_%@", name, gc_id, logstate];
-            [actions appendFormat:@",%@_%@", gc_id, logstate];
-        }
-        NSLog(@"foo");
+    [s appendFormat:@"%@=%@", @"logTextMaxLength", [MyTools urlEncode:@"4000"]];
+    [s appendFormat:@"&%@=%@", @"maxImages", [MyTools urlEncode:@"1"]];
+    [s appendFormat:@"&%@=%@", @"ownerIsViewing", [MyTools urlEncode:@"false"]];
+    [s appendFormat:@"&%@=%@", @"logDate", [MyTools urlEncode:dateLogged]];
+    [s appendFormat:@"&%@=%@", @"logText", [MyTools urlEncode:note]];
+    [s appendFormat:@"&%@=%@", @"isWaiting", [MyTools urlEncode:@"true"]];
+    [s appendFormat:@"&%@=%@", @"logType", [MyTools urlEncode:logstring_type]];
+    [dict enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull value, BOOL * _Nonnull stop) {
+        [s appendFormat:@"&%@=%@", key, [MyTools urlEncode:value]];
     }];
-    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$uxTrackables$hdnSelectedActions", actions];
-
-    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$uxTrackables$hdnCurrentFilter", @""];
-    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$LogBookPanel1$btnSubmitLog", [MyTools urlEncode:@"Submit Log Entry"]];
-    [s appendFormat:@"&%@=%@", @"ctl00$ContentBody$uxVistOtherListingGC", @""];
-
+    
     req.HTTPBody = [s dataUsingEncoding:NSUTF8StringEncoding];
     NSData *data = [self performURLRequest:req infoViewer:iv iiDownload:iid];
     if (data == nil)
@@ -1488,6 +1465,97 @@ bail1:
         return nil;
 
     return ss;
+}
+
+- (NSDictionary *)api_proxy_trackable_activities:(NSString *)gccode trackables:(NSArray<dbTrackable *> *)tbs dateLogged:(NSString *)dateLogged infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+{
+    NSString *urlString = [self prepareURLString:@"/api/proxy/trackable/activities" params:nil];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+    [req setHTTPMethod:@"POST"];
+    [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+
+    dateLogged = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:[MyTools secondsSinceEpochFromISO8601:dateLogged]];
+
+    /*
+    [
+     {
+         "date": "2017-06-05",
+         "geocache": {
+             "gcCode": "GC72CQY"
+         },
+         "logType": {
+             "id": "75"
+         },
+         "referenceCode": "TB6C0CY"
+     },
+     {
+         "date": "2017-06-05",
+         "geocache": {
+             "gcCode": "GC72CQY"
+         },
+         "logType": {
+             "id": "75"
+         },
+         "referenceCode": "TB71MQR"
+     }
+     ]
+    */
+
+    NSMutableArray *json = [NSMutableArray arrayWithCapacity:10];
+    [tbs enumerateObjectsUsingBlock:^(dbTrackable * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (tb.logtype == TRACKABLE_LOG_NONE)
+            return;
+        NSInteger dflt = 0;
+        NSInteger logtype = LOGSTRING_LOGTYPE_UNKNOWN;
+        NSString *note = nil;
+        switch (tb.logtype) {
+            case TRACKABLE_LOG_VISIT:
+                dflt = LOGSTRING_DEFAULT_VISIT;
+                logtype = LOGSTRING_LOGTYPE_TRACKABLEPERSON;
+                note = [NSString stringWithFormat:@"Visited '%@'", gccode];
+                break;
+            case TRACKABLE_LOG_DROPOFF:
+                dflt = LOGSTRING_DEFAULT_DROPOFF;
+                note = [NSString stringWithFormat:@"Dropped off at '%@'", gccode];
+                logtype = LOGSTRING_LOGTYPE_TRACKABLEPERSON;
+                break;
+            case TRACKABLE_LOG_PICKUP:
+                dflt = LOGSTRING_DEFAULT_PICKUP;
+                note = [NSString stringWithFormat:@"Picked up from '%@'", gccode];
+                logtype = LOGSTRING_LOGTYPE_TRACKABLEWAYPOINT;
+                break;
+            case TRACKABLE_LOG_DISCOVER:
+                dflt = LOGSTRING_DEFAULT_DISCOVER;
+                note = [NSString stringWithFormat:@"Discovered in '%@'", gccode];
+                logtype = LOGSTRING_LOGTYPE_TRACKABLEWAYPOINT;
+                break;
+            default:
+                NSAssert(NO, @"Unknown tb.logtype");
+        }
+        dbLogString *ls = [dbLogString dbGetByProtocolLogtypeDefault:remoteAPI.account.protocol logtype:logtype default:dflt];
+
+        NSMutableDictionary *tbjson = [NSMutableDictionary dictionaryWithCapacity:10];
+        NSMutableDictionary *j = [NSMutableDictionary dictionaryWithCapacity:10];
+        [j setObject:gccode forKey:@"gcCode"];
+        [tbjson setObject:j forKey:@"geocache"];
+        [j removeAllObjects];
+        [j setObject:ls forKey:@"id"];
+        [tbjson setObject:j forKey:@"geocache"];
+        [tbjson setObject:tb.ref forKey:@"referenceCode"];
+        [tbjson setObject:dateLogged forKey:@"date"];
+        [json addObject:tbjson];
+    }];
+
+    NSError *error = nil;
+    NSData *body = [NSJSONSerialization dataWithJSONObject:json options:kNilOptions error:&error];
+
+    req.HTTPBody = body;
+    NSData *data = [self performURLRequest:req infoViewer:iv iiDownload:iid];
+    if (data == nil)
+        return nil;
+
+    return nil;
 }
 
 @end

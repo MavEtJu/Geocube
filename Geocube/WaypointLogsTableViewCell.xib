@@ -25,6 +25,12 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lja-xK-CZ8" customClass="GCImageView">
+                        <rect key="frame" x="345" y="7" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="32n-T2-9nv"/>
+                        </constraints>
+                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ue7-15-W89" customClass="GCImageView">
                         <rect key="frame" x="315" y="7" width="30" height="30"/>
                         <constraints>
@@ -53,12 +59,6 @@
                         <rect key="frame" x="195" y="7" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="LwC-Mv-akB"/>
-                        </constraints>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lja-xK-CZ8" customClass="GCImageView">
-                        <rect key="frame" x="345" y="7" width="30" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="30" id="32n-T2-9nv"/>
                         </constraints>
                     </imageView>
                 </subviews>

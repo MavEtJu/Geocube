@@ -28,30 +28,21 @@
 #define IMPORTMSG_GPX   @"Geocaching.com GPX Garmin data (queued)"
 #define IMPORTMSG_PQ    @"Geocaching.com Pocket Query data (queued)"
 
-- (BOOL)commentSupportsFavouritePoint
-{
-    return YES;
-}
-- (BOOL)commentSupportsPhotos
-{
-    return NO;
-}
-- (BOOL)commentSupportsRating
-{
-    return NO;
-}
-- (NSRange)commentSupportsRatingRange
-{
-    return NSMakeRange(0, 0);
-}
-- (BOOL)commentSupportsTrackables
-{
-    return YES;
-}
-- (BOOL)waypointSupportsPersonalNotes
-{
-    return YES;
-}
+- (BOOL)commentSupportsFavouritePoint { return YES; }
+- (BOOL)commentSupportsPhotos { return NO; }
+- (BOOL)commentSupportsRating { return NO; }
+- (NSRange)commentSupportsRatingRange { return NSMakeRange(0, 0); }
+- (BOOL)commentSupportsTrackables { return YES; }
+- (BOOL)waypointSupportsPersonalNotes { return NO; }
+- (BOOL)supportsUserStatistics { return YES; }
+- (BOOL)supportsLoadWaypoint { return YES; }
+- (BOOL)supportsLoadWaypointsByCenter { return YES; }
+- (BOOL)supportsLoadWaypointsByCodes { return NO; }
+- (BOOL)supportsLoadWaypointsByBoundaryBox { return NO; }
+- (BOOL)supportsListQueries { return YES; }
+- (BOOL)supportsRetrieveQueries { return YES; }
+- (BOOL)supportsTrackables { return NO; }
+- (BOOL)supportsLogging { return NO; }
 
 #define GGCW_CHECK_STATUS(__json__, __logsection__, __failure__) { \
         }
@@ -81,11 +72,10 @@
     [iv setChunksTotal:iid total:1];
     [iv setChunksCount:iid count:1];
 
-    GCDictionaryGGCW *dict = [ggcw my_default:iv iiDownload:iid];
-    GGCW_CHECK_STATUS(dict, @"my_defaults", REMOTEAPI_USERSTATISTICS_LOADFAILED);
+    GCDictionaryGGCW *dict = [ggcw my_statistics:iv iiDownload:iid];
+    GGCW_CHECK_STATUS(dict, @"my_statistics", REMOTEAPI_USERSTATISTICS_LOADFAILED);
 
     [self getNumber:ret from:dict outKey:@"waypoints_found" inKey:@"caches_found"];
-    [self getNumber:ret from:dict outKey:@"waypoints_hidden" inKey:@"caches_hidden"];
 
     *retDict = ret;
     return REMOTEAPI_OK;
@@ -118,10 +108,12 @@
         [tbs setObject:note forKey:[NSNumber numberWithLongLong:tb.gc_id]];
     }];
 
-    NSDictionary *dict = [ggcw geocache:waypoint.wpt_name infoViewer:iv iiDownload:iid];
-    NSString *gc_id = [dict objectForKey:@"gc_id"];
-    dict = [ggcw seek_log__form:gc_id infoViewer:iv iiDownload:iid];
-    [ggcw seek_log__submit:gc_id dict:dict logstring:logstring.type dateLogged:dateLogged note:note favpoint:favourite trackables:tbs infoViewer:iv iiDownload:iid];
+//    NSDictionary *dict = [ggcw geocache:waypoint.wpt_name infoViewer:iv iiDownload:iid];
+//    NSString *gc_id = [dict objectForKey:@"gc_id"];
+    NSDictionary *dict = [ggcw play_geocache_log__form:waypoint.wpt_name infoViewer:iv iiDownload:iid];
+    [ggcw play_geocache_log__submit:waypoint.wpt_name dict:dict logstring:logstring.type dateLogged:dateLogged note:note favpoint:favourite infoViewer:iv iiDownload:iid];
+    if ([trackables count] > 0)
+        [ggcw api_proxy_trackable_activities:waypoint.wpt_name trackables:trackables dateLogged:dateLogged infoViewer:iv iiDownload:iid];
 
     return REMOTEAPI_OK;
 }

@@ -106,7 +106,10 @@
     self.wpt_lat_int = self.wpt_lat_float * 1000000;
     self.wpt_lon_int = self.wpt_lon_float * 1000000;
 
-    self.wpt_date_placed_epoch = [MyTools secondsSinceEpochFromISO8601:self.wpt_date_placed];
+    if (self.wpt_date_placed_epoch == 0)
+        self.wpt_date_placed_epoch = [MyTools secondsSinceEpochFromISO8601:self.wpt_date_placed];
+    if (self.wpt_date_placed == nil)
+        self.wpt_date_placed = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:self.wpt_date_placed_epoch];
 
     self.coordinates = CLLocationCoordinate2DMake([self.wpt_lat floatValue], [self.wpt_lon floatValue]);
 

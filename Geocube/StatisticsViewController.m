@@ -123,6 +123,8 @@ enum {
     [self showInfoView];
 
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([a.remoteAPI supportsUserStatistics] == NO)
+            return;
         if ([a canDoRemoteStuff] == NO)
             return;
 
