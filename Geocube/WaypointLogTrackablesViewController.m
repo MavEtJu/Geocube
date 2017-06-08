@@ -270,7 +270,7 @@ enum {
                              __block dbTrackable *tb = [dbTrackable dbGetByCode:code];
                              if (tb == nil) {
                                  [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-                                     if (a.protocol_id == PROTOCOL_LIVEAPI) {
+                                     if (a.remoteAPI.supportsTrackables == YES) {
                                          [a.remoteAPI trackableFind:code trackable:&tb infoViewer:nil iiDownload:0];
                                          *stop = YES;
                                      }
@@ -323,7 +323,7 @@ enum {
                              __block dbTrackable *tb = [dbTrackable dbGetByCode:code];
                              if (tb == nil) {
                                  [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-                                     if ((a.protocol_id == PROTOCOL_LIVEAPI || a.protocol_id == PROTOCOL_GGCW) && [a canDoRemoteStuff] == YES) {
+                                     if (a.remoteAPI.supportsTrackables && a.canDoRemoteStuff == YES) {
                                          [a.remoteAPI trackableFind:code trackable:&tb infoViewer:nil iiDownload:0];
                                          *stop = YES;
                                      }

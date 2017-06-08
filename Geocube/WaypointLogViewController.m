@@ -75,7 +75,7 @@ enum {
 
     waypoint = _waypoint;
     fp = NO;
-    upload = YES;
+    upload = waypoint.account.remoteAPI.supportsLogging;
     image = nil;
     ratingSelected = 0;
     self.delegateWaypoint = nil;
@@ -281,7 +281,7 @@ enum {
                 case SECTION_SUBMIT_UPLOAD: {
                     GCTableViewCellSwitch *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_SWITCH];
                     c.textLabel.text = @"Upload";
-                    if (waypoint.account.canDoRemoteStuff == YES) {
+                    if (waypoint.account.remoteAPI.supportsLogging == YES && waypoint.account.canDoRemoteStuff == YES) {
                         c.optionSwitch.on = upload;
                         [c.optionSwitch addTarget:self action:@selector(updateUploadSwitch:) forControlEvents:UIControlEventTouchUpInside];
                         c.userInteractionEnabled = YES;
