@@ -235,6 +235,7 @@
 #import "FiltersViewController.h"
 
 #import "HelpAboutViewController.h"
+#import "HelpAboutTableViewCell.h"
 #import "HelpDatabaseViewController.h"
 #import "HelpHelpViewController.h"
 #import "HelpImagesViewController.h"

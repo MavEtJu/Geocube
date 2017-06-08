@@ -94,6 +94,7 @@
 @class GCWaypointAnnotation;
 @class GroupsViewController;
 @class HelpAboutViewController;
+@class HelpAboutTableViewCell;
 @class HelpDatabaseViewController;
 @class HelpHelpViewController;
 @class HelpImagesViewController;

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="JCw-K8-qiB" customClass="HelpAboutTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="465" height="67"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JCw-K8-qiB" id="TBS-Tu-hwe">
+                <rect key="frame" x="0.0" y="0.0" width="465" height="66.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OEM-6N-5Lm" customClass="GCLabel">
+                        <rect key="frame" x="8" y="0.0" width="449" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G2n-kc-wPo" customClass="GCLabel">
+                        <rect key="frame" x="8" y="21" width="449" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sx9-s5-yFn" customClass="GCLabel">
+                        <rect key="frame" x="8" y="51" width="449" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bn2-pu-j7A" customClass="GCLabel">
+                        <rect key="frame" x="8" y="36" width="449" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Bn2-pu-j7A" firstAttribute="trailing" secondItem="OEM-6N-5Lm" secondAttribute="trailing" id="4ZD-ly-pf1"/>
+                    <constraint firstItem="G2n-kc-wPo" firstAttribute="top" secondItem="OEM-6N-5Lm" secondAttribute="bottom" id="5m6-VH-yiG"/>
+                    <constraint firstItem="OEM-6N-5Lm" firstAttribute="top" secondItem="TBS-Tu-hwe" secondAttribute="top" id="7sM-4j-9Vu"/>
+                    <constraint firstAttribute="bottom" secondItem="sx9-s5-yFn" secondAttribute="bottom" id="C17-Pt-WwO"/>
+                    <constraint firstItem="OEM-6N-5Lm" firstAttribute="leading" secondItem="TBS-Tu-hwe" secondAttribute="leading" constant="8" id="QbC-lL-1wG"/>
+                    <constraint firstItem="Bn2-pu-j7A" firstAttribute="leading" secondItem="OEM-6N-5Lm" secondAttribute="leading" id="ajR-I6-eGV"/>
+                    <constraint firstAttribute="trailing" secondItem="OEM-6N-5Lm" secondAttribute="trailing" constant="8" id="lEy-5e-LGN"/>
+                    <constraint firstItem="G2n-kc-wPo" firstAttribute="trailing" secondItem="OEM-6N-5Lm" secondAttribute="trailing" id="m4c-dx-HkD"/>
+                    <constraint firstItem="sx9-s5-yFn" firstAttribute="top" secondItem="Bn2-pu-j7A" secondAttribute="bottom" id="o05-Ac-hWI"/>
+                    <constraint firstItem="sx9-s5-yFn" firstAttribute="leading" secondItem="OEM-6N-5Lm" secondAttribute="leading" id="qED-sX-Bsb"/>
+                    <constraint firstItem="Bn2-pu-j7A" firstAttribute="top" secondItem="G2n-kc-wPo" secondAttribute="bottom" id="ub2-eH-1o9"/>
+                    <constraint firstItem="G2n-kc-wPo" firstAttribute="leading" secondItem="OEM-6N-5Lm" secondAttribute="leading" id="xHG-uj-l2p"/>
+                    <constraint firstItem="sx9-s5-yFn" firstAttribute="trailing" secondItem="OEM-6N-5Lm" secondAttribute="trailing" id="xoS-eW-8DF"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="copyright" destination="Bn2-pu-j7A" id="qeI-E9-UXA"/>
+                <outlet property="license" destination="sx9-s5-yFn" id="T3N-ym-g8x"/>
+                <outlet property="name" destination="OEM-6N-5Lm" id="7M8-xa-Gde"/>
+                <outlet property="url" destination="G2n-kc-wPo" id="AO8-Cd-tbW"/>
+            </connections>
+            <point key="canvasLocation" x="63.5" y="-36"/>
+        </tableViewCell>
+    </objects>
+</document>

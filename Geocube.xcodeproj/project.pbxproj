@@ -333,6 +333,9 @@
 		E85760151B85E08400F34483 /* ThemeTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E85760141B85E08400F34483 /* ThemeTemplate.m */; };
 		E85DAFDA1B453D4D00C738A8 /* SideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFD91B453D4D00C738A8 /* SideMenu.m */; };
 		E85DAFDD1B45429500C738A8 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DAFDC1B45429500C738A8 /* StatisticsViewController.m */; };
+		E85F2D9E1EEA0602006E464D /* HelpAboutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85F2D9D1EEA0602006E464D /* HelpAboutTableViewCell.xib */; };
+		E85F2DA11EEA074D006E464D /* HelpAboutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E85F2DA01EEA074D006E464D /* HelpAboutTableViewCell.m */; };
+		E85F2DA31EEA1626006E464D /* HelpAboutTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85F2DA21EEA1626006E464D /* HelpAboutTableViewCell~ipad.xib */; };
 		E85FCA731CAC6EF3005D7AE1 /* GCDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E85FCA721CAC6EF3005D7AE1 /* GCDictionary.m */; };
 		E8611A891B87407500B9D7C3 /* GCTableViewCellRightImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A881B87407500B9D7C3 /* GCTableViewCellRightImage.m */; };
 		E8611A911B8899A700B9D7C3 /* GCWaypointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A901B8899A700B9D7C3 /* GCWaypointAnnotation.m */; };
@@ -1106,6 +1109,10 @@
 		E85DAFD91B453D4D00C738A8 /* SideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenu.m; sourceTree = "<group>"; };
 		E85DAFDB1B45429500C738A8 /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
 		E85DAFDC1B45429500C738A8 /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
+		E85F2D9D1EEA0602006E464D /* HelpAboutTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpAboutTableViewCell.xib; sourceTree = "<group>"; };
+		E85F2D9F1EEA074D006E464D /* HelpAboutTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpAboutTableViewCell.h; sourceTree = "<group>"; };
+		E85F2DA01EEA074D006E464D /* HelpAboutTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpAboutTableViewCell.m; sourceTree = "<group>"; };
+		E85F2DA21EEA1626006E464D /* HelpAboutTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HelpAboutTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E85FCA711CAC6EF3005D7AE1 /* GCDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDictionary.h; sourceTree = "<group>"; };
 		E85FCA721CAC6EF3005D7AE1 /* GCDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDictionary.m; sourceTree = "<group>"; };
 		E8611A871B87407500B9D7C3 /* GCTableViewCellRightImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellRightImage.h; sourceTree = "<group>"; };
@@ -2650,6 +2657,10 @@
 			children = (
 				E8A7FA9D1B78408A003F4132 /* HelpAboutViewController.h */,
 				E8A7FA9E1B78408A003F4132 /* HelpAboutViewController.m */,
+				E85F2D9F1EEA074D006E464D /* HelpAboutTableViewCell.h */,
+				E85F2DA01EEA074D006E464D /* HelpAboutTableViewCell.m */,
+				E85F2D9D1EEA0602006E464D /* HelpAboutTableViewCell.xib */,
+				E85F2DA21EEA1626006E464D /* HelpAboutTableViewCell~ipad.xib */,
 				E8611A921B89D1AF00B9D7C3 /* HelpDatabaseViewController.h */,
 				E8611A931B89D1AF00B9D7C3 /* HelpDatabaseViewController.m */,
 				E89051791C96BA0200220986 /* HelpHelpViewController.h */,
@@ -3523,6 +3534,7 @@
 				E8C8C8CC1EE2CCDF00E2438D /* QueriesTableViewCell~ipad.xib in Resources */,
 				E82E672E1DA07D0200CFBDED /* attributes - 03.png in Resources */,
 				E82E65C51DA0797E00CFBDED /* ratings - favourites 20x30.png in Resources */,
+				E85F2DA31EEA1626006E464D /* HelpAboutTableViewCell~ipad.xib in Resources */,
 				E8FEDE581DA77F9D007C756B /* container size - other - 35x11@3x.png in Resources */,
 				E82E66D01DA07CBE00CFBDED /* cache - night - 30x30@2x.png in Resources */,
 				E82E67501DA07D0200CFBDED /* attributes - 38.png in Resources */,
@@ -3741,6 +3753,7 @@
 				E82E66D81DA07CBE00CFBDED /* cache - trigpoint - 30x30.png in Resources */,
 				E82E674E1DA07D0200CFBDED /* attributes - 36.png in Resources */,
 				E82E667B1DA07C6F00CFBDED /* compass - airplane - airplane.png in Resources */,
+				E85F2D9E1EEA0602006E464D /* HelpAboutTableViewCell.xib in Resources */,
 				E82E66E41DA07CBE00CFBDED /* cache - waymark - 30x30@3x.png in Resources */,
 				E82E675C1DA07D0200CFBDED /* attributes - 50.png in Resources */,
 				E82E66371DA07A8700CFBDED /* icons - sad - 30x30.png in Resources */,
@@ -3939,6 +3952,7 @@
 				E8611A941B89D1AF00B9D7C3 /* HelpDatabaseViewController.m in Sources */,
 				E82302491DCD525E0032C5C6 /* XPathQuery.m in Sources */,
 				E8B771D71DD9DA4E008B2F9E /* RemoteAPIOKAPI.m in Sources */,
+				E85F2DA11EEA074D006E464D /* HelpAboutTableViewCell.m in Sources */,
 				E813040B1B5D9B5E006DF300 /* dbTrackable.m in Sources */,
 				E8D569FC1B54A108001A0F8E /* SWActionSheet.m in Sources */,
 				E8E8D0291B6720D500CC741A /* FilterTextTableViewCell.m in Sources */,
