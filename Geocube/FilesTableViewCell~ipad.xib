@@ -12,58 +12,52 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="57" id="KGk-i7-Jjw" customClass="FilesTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="340" height="57"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="FilesTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="340" height="82.5"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="340" height="56.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="340" height="82"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label - Filename" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHL-hD-Qy5" customClass="GCLabel">
-                        <rect key="frame" x="48" y="0.0" width="252" height="21"/>
+                        <rect key="frame" x="48" y="8" width="239" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label - Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsV-f2-EK7" customClass="GCLabel">
-                        <rect key="frame" x="48" y="21" width="67" height="12"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="12" id="nYi-aQ-gvQ"/>
-                        </constraints>
+                        <rect key="frame" x="48" y="29" width="239" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label - Date Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7f-dx-wUb" customClass="GCLabel">
-                        <rect key="frame" x="48" y="33" width="101" height="12"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="12" id="Yfg-JB-1lx"/>
-                        </constraints>
+                        <rect key="frame" x="48" y="44" width="239" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label - Last Import" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wiN-LZ-bfF" customClass="GCLabel">
-                        <rect key="frame" x="48" y="45" width="108" height="12"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="12" id="zEC-hK-jrg"/>
-                        </constraints>
+                        <rect key="frame" x="48" y="59" width="239" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="wiN-LZ-bfF" firstAttribute="leading" secondItem="eHL-hD-Qy5" secondAttribute="leading" id="7P4-Ly-iB0"/>
-                    <constraint firstAttribute="trailing" secondItem="eHL-hD-Qy5" secondAttribute="trailing" constant="40" id="8Qc-7f-JTr"/>
-                    <constraint firstItem="eHL-hD-Qy5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="40" id="Cqx-D7-70p"/>
-                    <constraint firstItem="gsV-f2-EK7" firstAttribute="top" secondItem="eHL-hD-Qy5" secondAttribute="bottom" id="KZh-zT-msC"/>
-                    <constraint firstItem="eHL-hD-Qy5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="QvM-nN-xC0"/>
-                    <constraint firstItem="wiN-LZ-bfF" firstAttribute="top" secondItem="A7f-dx-wUb" secondAttribute="bottom" id="XaY-vD-g2j"/>
-                    <constraint firstItem="A7f-dx-wUb" firstAttribute="leading" secondItem="eHL-hD-Qy5" secondAttribute="leading" id="Zum-2Y-oj4"/>
-                    <constraint firstItem="gsV-f2-EK7" firstAttribute="leading" secondItem="eHL-hD-Qy5" secondAttribute="leading" id="bzM-Uw-w7a"/>
-                    <constraint firstItem="A7f-dx-wUb" firstAttribute="top" secondItem="gsV-f2-EK7" secondAttribute="bottom" id="esy-cQ-jEs"/>
-                    <constraint firstAttribute="bottom" secondItem="wiN-LZ-bfF" secondAttribute="bottom" id="gQm-OE-la0"/>
+                    <constraint firstItem="wiN-LZ-bfF" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="1SS-dJ-8UL"/>
+                    <constraint firstItem="A7f-dx-wUb" firstAttribute="trailing" secondItem="eHL-hD-Qy5" secondAttribute="trailing" id="4TA-R6-JtQ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="eHL-hD-Qy5" secondAttribute="trailing" constant="45" id="5zg-sO-3ha"/>
+                    <constraint firstItem="eHL-hD-Qy5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="BiP-fW-hYX"/>
+                    <constraint firstItem="gsV-f2-EK7" firstAttribute="top" secondItem="eHL-hD-Qy5" secondAttribute="bottom" id="DHi-nN-jrf"/>
+                    <constraint firstItem="A7f-dx-wUb" firstAttribute="leading" secondItem="eHL-hD-Qy5" secondAttribute="leading" id="Gi9-Nl-unP"/>
+                    <constraint firstItem="wiN-LZ-bfF" firstAttribute="trailing" secondItem="eHL-hD-Qy5" secondAttribute="trailing" id="JB9-Pf-uo7"/>
+                    <constraint firstItem="wiN-LZ-bfF" firstAttribute="top" secondItem="A7f-dx-wUb" secondAttribute="bottom" id="XCb-um-uPA"/>
+                    <constraint firstItem="A7f-dx-wUb" firstAttribute="top" secondItem="gsV-f2-EK7" secondAttribute="bottom" id="gZt-W5-DfU"/>
+                    <constraint firstItem="gsV-f2-EK7" firstAttribute="trailing" secondItem="eHL-hD-Qy5" secondAttribute="trailing" id="jbO-6q-aN7"/>
+                    <constraint firstItem="eHL-hD-Qy5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="40" id="nMr-bN-fim"/>
+                    <constraint firstItem="gsV-f2-EK7" firstAttribute="leading" secondItem="eHL-hD-Qy5" secondAttribute="leading" id="oIt-tp-MqY"/>
+                    <constraint firstItem="wiN-LZ-bfF" firstAttribute="leading" secondItem="eHL-hD-Qy5" secondAttribute="leading" id="xPS-jM-GmV"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -72,7 +66,7 @@
                 <outlet property="labelLastImport" destination="wiN-LZ-bfF" id="F3C-fL-Bta"/>
                 <outlet property="labelSize" destination="gsV-f2-EK7" id="gmw-y2-VPn"/>
             </connections>
-            <point key="canvasLocation" x="32" y="81.5"/>
+            <point key="canvasLocation" x="32" y="94"/>
         </tableViewCell>
     </objects>
 </document>
