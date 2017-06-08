@@ -61,6 +61,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    // Make sure that the table cells size properly
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 20;
+
     [self changeTheme];
     if (self.hasCloseButton == YES) {
         UISwipeGestureRecognizer *swipeToRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(closePage:)];
