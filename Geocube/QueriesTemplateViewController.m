@@ -85,17 +85,18 @@ enum {
 
     __block BOOL failure = NO;
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (a.protocol_id == protocol) {
+        if (a.protocol_id == protocol && a.remoteAPI.supportsListQueries == YES) {
             account = a;
-            if (a.canDoRemoteStuff == YES) {
-                NSArray<NSDictionary *> *queries = nil;
-                RemoteAPIResult rv = [a.remoteAPI listQueries:&queries infoViewer:nil iiDownload:0];
-                if (rv != REMOTEAPI_OK)
-                    failure = YES;
-                qs = queries;
-            } else {
-                failure = YES;
+            if (a.canDoRemoteStuff == NO) {
+                *stop = YES;
+                return;
             }
+
+            NSArray<NSDictionary *> *queries = nil;
+            RemoteAPIResult rv = [a.remoteAPI listQueries:&queries infoViewer:nil iiDownload:0];
+            if (rv != REMOTEAPI_OK)
+                failure = YES;
+            qs = queries;
             *stop = YES;
         }
     }];
@@ -110,6 +111,10 @@ enum {
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    // Alert if this option isn't available.
+    if (account.canDoRemoteStuff == NO)
+        return @"This account cannot be polled right now.";
+
     if (qs == nil)
         return @"";
     NSInteger c = [qs count];
@@ -124,6 +129,8 @@ enum {
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
+    if (account.canDoRemoteStuff == NO)
+        return 0;
     return [qs count];
 }
 
