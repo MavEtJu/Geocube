@@ -127,9 +127,6 @@ enum {
     UINib *sectionHeaderNib = [UINib nibWithNibName:XIB_WAYPOINTHEADERHEADERVIEW bundle:nil];
     [self.tableView registerNib:sectionHeaderNib forHeaderFooterViewReuseIdentifier:THISHEADER_HEADER];
 
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 20;
-
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_DATA];
 }
 

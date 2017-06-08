@@ -58,9 +58,6 @@ enum {
 
     [self.tableView registerNib:[UINib nibWithNibName:XIB_QUERIESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:THISCELL];
 
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 20;
-
     [self makeInfoView];
 
     qs = nil;
