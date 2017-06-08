@@ -19,6 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface TrackablesInventoryViewController : TrackablesTemplateViewController
+@interface TrackablesTemplateViewController : GCTableViewController
+
+@property (nonatomic, retain) NSArray<dbTrackable *> *tbs;
+
+- (void)remoteAPILoadTrackables:(dbAccount *)a infoView:(InfoViewer *)iv infoItemID:(InfoItemID)iid;
+- (void)loadTrackables;
 
 @end

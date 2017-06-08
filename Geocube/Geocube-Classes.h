@@ -176,9 +176,11 @@
 @class ThemeTemplate;
 @class ToolsGPSViewController;
 @class ToolsRot13ViewController;
+@class TrackableTableViewCell;
 @class TrackablesInventoryViewController;
 @class TrackablesListViewController;
 @class TrackablesMineViewController;
+@class TrackablesTemplateViewController;
 @class WaypointAddViewController;
 @class WaypointAttributesViewController;
 @class WaypointDescriptionViewController;

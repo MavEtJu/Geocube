@@ -20,112 +20,19 @@
  */
 
 @interface TrackablesInventoryViewController ()
-{
-    NSArray<dbTrackable *> *tbs;
-}
 
 @end
 
 @implementation TrackablesInventoryViewController
 
-#define THISCELL @"TrackablesInventoryViewControllerCell"
-
-enum {
-      menuUpdate = 0,
-      menuMax,
-};
-
-- (void)viewDidLoad
+- (void)loadTrackables
 {
-    [super viewDidLoad];
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
-
-    tbs = [dbTrackable dbAllInventory];
-    [self makeInfoView];
-
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuUpdate label:@"Update"];
+    self.tbs = [dbTrackable dbAllInventory];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)remoteAPILoadTrackables:(dbAccount *)a infoView:(InfoViewer *)iv infoItemID:(InfoItemID)iid
 {
-    [super viewWillAppear:animated];
-
-    [self.tableView reloadData];
-}
-
-#pragma mark - TableViewController related functions
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
-{
-    return 1;
-}
-
-// Rows per section
-- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
-{
-    return [tbs count];
-}
-
-// Return a cell for the index path
-- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
-
-    dbTrackable *tb = [tbs objectAtIndex:indexPath.row];
-
-    NSString *text;
-    if (tb.owner != nil)
-        text = tb.owner_str;
-    else
-        text = tb.waypoint_name;
-
-        cell.textLabel.text = tb.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%@)", tb.ref, text];
-    cell.userInteractionEnabled = NO;
-
-    return cell;
-}
-
-#pragma mark - Local menu related functions
-
-- (void)menuUpdate
-{
-    [self showInfoView];
-    InfoItemID iid = [infoView addDownload];
-    [infoView setDescription:iid description:@"Update trackables"];
-
-    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (a.remoteAPI.supportsTrackables == YES && a.canDoRemoteStuff == YES) {
-            // Get rid of any old data
-            [tbs enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
-                tb.carrier = nil;
-                tb.carrier_id = 0;
-                tb.carrier_str = @"";
-                tb.waypoint_name = nil;
-                [tb dbUpdate];
-            }];
-
-            [a.remoteAPI trackablesInventory:infoView iiDownload:iid];
-            tbs = [dbTrackable dbAllInventory];
-            [self reloadDataMainQueue];
-            *stop = YES; }
-    }];
-
-    [infoView removeItem:iid];
-    [self hideInfoView];
-}
-
-- (void)performLocalMenuAction:(NSInteger)index
-{
-    switch (index) {
-        case menuUpdate:
-            [self performSelectorInBackground:@selector(menuUpdate) withObject:nil];
-            return;
-    }
-
-    [super performLocalMenuAction:index];
+    [a.remoteAPI trackablesInventory:iv iiDownload:iid];
 }
 
 @end

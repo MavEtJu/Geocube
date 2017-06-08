@@ -19,6 +19,14 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface TrackablesInventoryViewController : TrackablesTemplateViewController
+@interface TrackableTableViewCell : GCTableViewCell
+
+#define XIB_TRACKABLETABLEVIEWCELL  @"TrackableTableViewCell"
+
+@property (weak, nonatomic) IBOutlet GCLabel *name;
+@property (weak, nonatomic) IBOutlet GCLabel *code;
+@property (weak, nonatomic) IBOutlet GCLabel *carrier;
+@property (weak, nonatomic) IBOutlet GCLabel *owner;
+@property (weak, nonatomic) IBOutlet GCLabel *waypoint;
 
 @end

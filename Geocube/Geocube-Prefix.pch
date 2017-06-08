@@ -250,6 +250,8 @@
 #import "FileObjectView.h"
 #import "FileBrowserViewController.h"
 
+#import "TrackableTableViewCell.h"
+#import "TrackablesTemplateViewController.h"
 #import "TrackablesListViewController.h"
 #import "TrackablesMineViewController.h"
 #import "TrackablesInventoryViewController.h"

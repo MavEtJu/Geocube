@@ -20,59 +20,25 @@
  */
 
 @interface TrackablesListViewController ()
-{
-    NSArray<dbTrackable *> *tbs;
-}
 
 @end
 
 @implementation TrackablesListViewController
 
-#define THISCELL @"TrackablesListViewControllerCell"
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
-
     lmi = nil;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)loadTrackables
 {
-    [super viewWillAppear:animated];
-    tbs = [dbTrackable dbAll];
-    [self.tableView reloadData];
+    self.tbs = [dbTrackable dbAll];
 }
 
-#pragma mark - TableViewController related functions
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
+- (void)remoteAPILoadTrackables:(dbAccount *)a infoView:(InfoViewer *)iv infoItemID:(InfoItemID)iid
 {
-    return 1;
+    return;
 }
-
-// Rows per section
-- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
-{
-    return [tbs count];
-}
-
-// Return a cell for the index path
-- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
-
-    dbTrackable *tb = [tbs objectAtIndex:indexPath.row];
-
-    cell.textLabel.text = tb.name;
-    cell.detailTextLabel.text = tb.ref;
-    cell.userInteractionEnabled = NO;
-
-    return cell;
-}
-
-#pragma mark - Local menu related functions
 
 @end
