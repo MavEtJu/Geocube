@@ -78,11 +78,6 @@ enum {
     cell.carrier.text = nil;
     cell.waypoint.text = nil;
     cell.owner.text = nil;
-    cell.name.text = @"1";
-    cell.owner.text = @"2";
-    cell.code.text = @"3";
-    cell.carrier.text = @"4";
-    cell.waypoint.text = @"5";
 
     cell.name.text = tb.name;
     if (tb.ref != nil && tb.code != nil)
@@ -97,11 +92,6 @@ enum {
         cell.waypoint.text = [NSString stringWithFormat:@"Stored in %@", tb.waypoint_name];
     if (tb.owner != nil)
         cell.owner.text = [NSString stringWithFormat:@"Owned by %@", tb.owner_str];
-    cell.name.text = @"1";
-    cell.code.text = @"2";
-    cell.carrier.text = @"3";
-    cell.waypoint.text = @"4";
-    cell.owner.text = @"5";
 
     cell.userInteractionEnabled = NO;
 

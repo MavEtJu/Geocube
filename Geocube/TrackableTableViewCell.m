@@ -25,4 +25,20 @@
 
 @implementation TrackableTableViewCell
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self changeTheme];
+}
+
+- (void)changeTheme
+{
+    [super changeTheme];
+    [self.name changeTheme];
+    [self.code changeTheme];
+    [self.carrier changeTheme];
+    [self.owner changeTheme];
+    [self.waypoint changeTheme];
+}
+
 @end

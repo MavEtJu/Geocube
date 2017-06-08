@@ -472,7 +472,8 @@
 		E8D2DEDE1EE8FBA3006B89F7 /* StatisticsSingleView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8D2DEDD1EE8FBA3006B89F7 /* StatisticsSingleView~ipad.xib */; };
 		E8D2DEE11EE8FE5F006B89F7 /* TrackablesTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D2DEE01EE8FE5F006B89F7 /* TrackablesTemplateViewController.m */; };
 		E8D2DEE41EE909EB006B89F7 /* TrackableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D2DEE31EE909EB006B89F7 /* TrackableTableViewCell.m */; };
-		E8D2DEE61EE90A45006B89F7 /* TrackableTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8D2DEE51EE90A45006B89F7 /* TrackableTableViewCell~ipad.xib */; };
+		E8D2DEE81EE9603F006B89F7 /* TrackableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8D2DEE71EE9603F006B89F7 /* TrackableTableViewCell.xib */; };
+		E8D2DEEA1EE9665F006B89F7 /* TrackableTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8D2DEE91EE9665F006B89F7 /* TrackableTableViewCell~ipad.xib */; };
 		E8D569F51B54A108001A0F8E /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */; };
 		E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E61B54A108001A0F8E /* ActionSheetCustomPicker.m */; };
 		E8D569F71B54A108001A0F8E /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E91B54A108001A0F8E /* ActionSheetDatePicker.m */; };
@@ -1344,7 +1345,8 @@
 		E8D2DEE01EE8FE5F006B89F7 /* TrackablesTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackablesTemplateViewController.m; sourceTree = "<group>"; };
 		E8D2DEE21EE909EB006B89F7 /* TrackableTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackableTableViewCell.h; sourceTree = "<group>"; };
 		E8D2DEE31EE909EB006B89F7 /* TrackableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackableTableViewCell.m; sourceTree = "<group>"; };
-		E8D2DEE51EE90A45006B89F7 /* TrackableTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TrackableTableViewCell~ipad.xib"; sourceTree = "<group>"; };
+		E8D2DEE71EE9603F006B89F7 /* TrackableTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrackableTableViewCell.xib; sourceTree = "<group>"; };
+		E8D2DEE91EE9665F006B89F7 /* TrackableTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TrackableTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E8D569E31B54A108001A0F8E /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractActionSheetPicker.h; path = ActionSheetPicker/AbstractActionSheetPicker.h; sourceTree = "<group>"; };
 		E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractActionSheetPicker.m; path = ActionSheetPicker/AbstractActionSheetPicker.m; sourceTree = "<group>"; };
 		E8D569E51B54A108001A0F8E /* ActionSheetCustomPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPicker.h; path = ActionSheetPicker/ActionSheetCustomPicker.h; sourceTree = "<group>"; };
@@ -1995,7 +1997,8 @@
 				E820F2051B7DA451009FB999 /* TrackablesListViewController.m */,
 				E8D2DEE21EE909EB006B89F7 /* TrackableTableViewCell.h */,
 				E8D2DEE31EE909EB006B89F7 /* TrackableTableViewCell.m */,
-				E8D2DEE51EE90A45006B89F7 /* TrackableTableViewCell~ipad.xib */,
+				E8D2DEE71EE9603F006B89F7 /* TrackableTableViewCell.xib */,
+				E8D2DEE91EE9665F006B89F7 /* TrackableTableViewCell~ipad.xib */,
 			);
 			name = Trackables;
 			sourceTree = "<group>";
@@ -3450,6 +3453,7 @@
 				E86C4AAB1E30D250004526E2 /* PersonalNoteTableViewCell.xib in Resources */,
 				E82E67601DA07D0200CFBDED /* attributes - 54.png in Resources */,
 				E82E66CB1DA07CBE00CFBDED /* cache - multi - 30x30@3x.png in Resources */,
+				E8D2DEEA1EE9665F006B89F7 /* TrackableTableViewCell~ipad.xib in Resources */,
 				E83C20521E2DAADC006C523E /* WaypointHeaderTableViewCell.xib in Resources */,
 				E8FEDEE61DA8EEE9007C756B /* cache - unknowntype - 30x30@2x.png in Resources */,
 				E8FEDE841DA7AD67007C756B /* map - disabled - 15x15@2x.png in Resources */,
@@ -3472,6 +3476,7 @@
 				E82E66CD1DA07CBE00CFBDED /* cache - mystery - 30x30@2x.png in Resources */,
 				E8FEDEB81DA887A7007C756B /* image - nil - 1x1@2x.png in Resources */,
 				E8FEDE5E1DA77F9D007C756B /* container size - small - 35x11@3x.png in Resources */,
+				E8D2DEE81EE9603F006B89F7 /* TrackableTableViewCell.xib in Resources */,
 				E82E65C71DA0797E00CFBDED /* ratings - star half 18x18.png in Resources */,
 				E82E66021DA079E500CFBDED /* log - needsmaintenance - 30x30.png in Resources */,
 				E8A3B0B81CD33BC600170D61 /* MHTabBarActiveTab.png in Resources */,
@@ -3605,7 +3610,6 @@
 				E8E8D01D1B66E75900CC741A /* fillrange.png in Resources */,
 				E82E67401DA07D0200CFBDED /* attributes - 22.png in Resources */,
 				E82E66C81DA07CBE00CFBDED /* cache - moveable - 30x30@3x.png in Resources */,
-				E8D2DEE61EE90A45006B89F7 /* TrackableTableViewCell~ipad.xib in Resources */,
 				E8FEDEE31DA8EEE9007C756B /* cache - maze - 30x30@3x.png in Resources */,
 				E8FEDE7E1DA7AD67007C756B /* map - archived - 15x15@2x.png in Resources */,
 				E8FEDE541DA77F9D007C756B /* container size - notchosen - 35x11@2x.png in Resources */,
