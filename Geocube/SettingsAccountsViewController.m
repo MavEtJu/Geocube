@@ -177,6 +177,8 @@ enum {
                              if (account.protocol_id == PROTOCOL_GCA2) {
                                  tf = [alert.textFields objectAtIndex:1];
                                  authenticatename = tf.text;
+                                 if ([authenticatename isEqualToString:@""] == YES)
+                                     authenticatename = geocachingname;
                                  tf = [alert.textFields objectAtIndex:2];
                                  authenticatepassword = tf.text;
                              }
@@ -240,7 +242,7 @@ enum {
     if (account.protocol_id == PROTOCOL_GCA2) {
         [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
             textField.text = account.authentictation_name;
-            textField.placeholder = @"Authentication Name";
+            textField.placeholder = @"Authentication Name (if different)";
         }];
         [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
             textField.text = account.authentictation_password;
