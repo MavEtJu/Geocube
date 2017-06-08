@@ -101,6 +101,7 @@ enum {
     [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLRIGHTIMAGE bundle:nil] forCellReuseIdentifier:THISCELL_PHOTO];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLSWITCH bundle:nil] forCellReuseIdentifier:THISCELL_SWITCH];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLKEYVALUE bundle:nil] forCellReuseIdentifier:THISCELL_KEYVALUE];
+
     self.hasCloseButton = YES;
     lmi = nil;
 

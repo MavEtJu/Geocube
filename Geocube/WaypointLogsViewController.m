@@ -50,8 +50,6 @@ enum {
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [self.tableView registerNib:[UINib nibWithNibName:XIB_LOGTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:THISCELL];
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 20;
 
     logs = [dbLog dbAllByWaypoint:waypoint._id];
 

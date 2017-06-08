@@ -43,8 +43,6 @@ enum {
     [lmi addItem:menuAddATrack label:@"Start new track"];
 
     [self.tableView registerNib:[UINib nibWithNibName:XIB_KEEPTRACKSTRACKTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:THISCELL];
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 20;
 
     return self;
 }

@@ -45,9 +45,6 @@ enum {
 
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:THISCELL];
 
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 20;
-
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self refreshFileData];
 
