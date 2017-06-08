@@ -45,10 +45,15 @@
                         [MyTools OldImagesDir]: [MyTools ImagesDir],
                         [MyTools OldMapCacheDir]: [MyTools MapCacheDir]
                         };
+    if ([fileManager fileExistsAtPath:[MyTools ApplicationSupportRoot]] == NO)
+        [fileManager createDirectoryAtPath:[MyTools ApplicationSupportRoot] withIntermediateDirectories:YES attributes:nil error:nil];
     [d enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull old, NSString * _Nonnull new, BOOL * _Nonnull stop) {
         if ([fileManager fileExistsAtPath:old] == YES) {
             NSLog(@"Rename %@ to %@", old, new);
-            [fileManager moveItemAtPath:old toPath:new error:nil];
+            NSError *e = nil;
+            [fileManager moveItemAtPath:old toPath:new error:&e];
+            if (e != nil)
+                NSLog(@"Rename error %@", e);
         }
     }];
 
