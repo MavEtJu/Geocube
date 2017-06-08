@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="ipad9_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StatisticsSingleView">
+            <connections>
+                <outlet property="recommendationsGiven" destination="QX5-nP-Tag" id="5lQ-nr-Kcy"/>
+                <outlet property="recommendationsReceived" destination="gdf-b3-bkq" id="u0R-Bj-903"/>
+                <outlet property="site" destination="5M6-Lr-ZsP" id="eca-tT-eZP"/>
+                <outlet property="status" destination="eRq-lw-76G" id="mZU-mq-SdU"/>
+                <outlet property="wpsDNF" destination="bgZ-79-PI5" id="kru-75-Jmt"/>
+                <outlet property="wpsFound" destination="pwf-4K-umM" id="Vqu-ci-urv"/>
+                <outlet property="wpsHidden" destination="l6v-3j-EZ2" id="ThW-5d-o6a"/>
+                <outlet property="xxx" destination="LHF-Hv-dTM" id="7Vp-6V-Jtw"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="GCView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="101"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label - Site" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5M6-Lr-ZsP" customClass="GCLabel">
+                    <rect key="frame" x="40" y="0.0" width="335" height="17"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label - status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRq-lw-76G" customClass="GCLabel">
+                    <rect key="frame" x="60" y="17" width="315" height="12"/>
+                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="10"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label - wps Found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwf-4K-umM" customClass="GCLabel">
+                    <rect key="frame" x="60" y="29" width="315" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label - wps dnf" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgZ-79-PI5" customClass="GCLabel">
+                    <rect key="frame" x="60" y="41" width="315" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label - wps hidden" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6v-3j-EZ2" customClass="GCLabel">
+                    <rect key="frame" x="60" y="53" width="315" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label - recommendations given" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QX5-nP-Tag" customClass="GCLabel">
+                    <rect key="frame" x="60" y="65" width="315" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label - recommendations received" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdf-b3-bkq" customClass="GCLabel">
+                    <rect key="frame" x="60" y="77" width="315" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xxx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHF-Hv-dTM" customClass="GCLabel">
+                    <rect key="frame" x="60" y="89" width="315" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="eRq-lw-76G" firstAttribute="top" secondItem="5M6-Lr-ZsP" secondAttribute="bottom" id="1Ii-vT-qbg"/>
+                <constraint firstAttribute="trailing" secondItem="bgZ-79-PI5" secondAttribute="trailing" id="30d-QA-MDz"/>
+                <constraint firstItem="eRq-lw-76G" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="3im-Rs-sda"/>
+                <constraint firstItem="5M6-Lr-ZsP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="Inx-Bj-OZm"/>
+                <constraint firstAttribute="trailing" secondItem="eRq-lw-76G" secondAttribute="trailing" id="KTh-SH-UJW"/>
+                <constraint firstItem="QX5-nP-Tag" firstAttribute="top" secondItem="l6v-3j-EZ2" secondAttribute="bottom" id="Kak-4v-1on"/>
+                <constraint firstAttribute="trailing" secondItem="5M6-Lr-ZsP" secondAttribute="trailing" id="Kss-ae-0mg"/>
+                <constraint firstItem="gdf-b3-bkq" firstAttribute="top" secondItem="QX5-nP-Tag" secondAttribute="bottom" id="MKh-DB-2ie"/>
+                <constraint firstItem="gdf-b3-bkq" firstAttribute="leading" secondItem="eRq-lw-76G" secondAttribute="leading" id="VfU-6A-I9X"/>
+                <constraint firstItem="LHF-Hv-dTM" firstAttribute="top" secondItem="gdf-b3-bkq" secondAttribute="bottom" id="XrN-hl-Pfs"/>
+                <constraint firstAttribute="bottom" secondItem="LHF-Hv-dTM" secondAttribute="bottom" id="aPs-I1-Q1n"/>
+                <constraint firstItem="pwf-4K-umM" firstAttribute="top" secondItem="eRq-lw-76G" secondAttribute="bottom" id="c2w-dO-g20"/>
+                <constraint firstItem="l6v-3j-EZ2" firstAttribute="leading" secondItem="eRq-lw-76G" secondAttribute="leading" id="cwx-ed-BE8"/>
+                <constraint firstItem="bgZ-79-PI5" firstAttribute="top" secondItem="pwf-4K-umM" secondAttribute="bottom" id="d1a-1d-auc"/>
+                <constraint firstItem="5M6-Lr-ZsP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="j7r-8C-35E"/>
+                <constraint firstAttribute="trailing" secondItem="LHF-Hv-dTM" secondAttribute="trailing" id="kIB-85-rpP"/>
+                <constraint firstItem="QX5-nP-Tag" firstAttribute="leading" secondItem="eRq-lw-76G" secondAttribute="leading" id="lbP-cX-Pm1"/>
+                <constraint firstItem="l6v-3j-EZ2" firstAttribute="top" secondItem="bgZ-79-PI5" secondAttribute="bottom" id="meA-5Q-Pbn"/>
+                <constraint firstAttribute="trailing" secondItem="gdf-b3-bkq" secondAttribute="trailing" id="ogI-q2-C3c"/>
+                <constraint firstItem="LHF-Hv-dTM" firstAttribute="leading" secondItem="eRq-lw-76G" secondAttribute="leading" id="pia-XR-esn"/>
+                <constraint firstAttribute="trailing" secondItem="pwf-4K-umM" secondAttribute="trailing" id="rq3-9k-lQb"/>
+                <constraint firstAttribute="trailing" secondItem="QX5-nP-Tag" secondAttribute="trailing" id="t46-H3-jma"/>
+                <constraint firstItem="pwf-4K-umM" firstAttribute="leading" secondItem="eRq-lw-76G" secondAttribute="leading" id="w2h-WK-DCj"/>
+                <constraint firstItem="bgZ-79-PI5" firstAttribute="leading" secondItem="eRq-lw-76G" secondAttribute="leading" id="wkQ-qO-5sD"/>
+                <constraint firstAttribute="trailing" secondItem="l6v-3j-EZ2" secondAttribute="trailing" id="x36-v3-Czo"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="32.5" y="262"/>
+        </view>
+    </objects>
+</document>

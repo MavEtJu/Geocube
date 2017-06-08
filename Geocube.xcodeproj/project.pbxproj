@@ -469,6 +469,7 @@
 		E8C8C8CE1EE2CE6300E2438D /* FilesTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8CD1EE2CE6300E2438D /* FilesTableViewCell~ipad.xib */; };
 		E8C8C8D01EE2D18100E2438D /* GCTableViewCellSubtitleRightImage~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8CF1EE2D18100E2438D /* GCTableViewCellSubtitleRightImage~ipad.xib */; };
 		E8C8C8D41EE2D9DB00E2438D /* GCTableViewCellSubtitleRightImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8D31EE2D9DB00E2438D /* GCTableViewCellSubtitleRightImage.xib */; };
+		E8D2DEDE1EE8FBA3006B89F7 /* StatisticsSingleView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8D2DEDD1EE8FBA3006B89F7 /* StatisticsSingleView~ipad.xib */; };
 		E8D569F51B54A108001A0F8E /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */; };
 		E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E61B54A108001A0F8E /* ActionSheetCustomPicker.m */; };
 		E8D569F71B54A108001A0F8E /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D569E91B54A108001A0F8E /* ActionSheetDatePicker.m */; };
@@ -1335,6 +1336,7 @@
 		E8C8C8CD1EE2CE6300E2438D /* FilesTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FilesTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E8C8C8CF1EE2D18100E2438D /* GCTableViewCellSubtitleRightImage~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GCTableViewCellSubtitleRightImage~ipad.xib"; sourceTree = "<group>"; };
 		E8C8C8D31EE2D9DB00E2438D /* GCTableViewCellSubtitleRightImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GCTableViewCellSubtitleRightImage.xib; sourceTree = "<group>"; };
+		E8D2DEDD1EE8FBA3006B89F7 /* StatisticsSingleView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StatisticsSingleView~ipad.xib"; sourceTree = "<group>"; };
 		E8D569E31B54A108001A0F8E /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractActionSheetPicker.h; path = ActionSheetPicker/AbstractActionSheetPicker.h; sourceTree = "<group>"; };
 		E8D569E41B54A108001A0F8E /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractActionSheetPicker.m; path = ActionSheetPicker/AbstractActionSheetPicker.m; sourceTree = "<group>"; };
 		E8D569E51B54A108001A0F8E /* ActionSheetCustomPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPicker.h; path = ActionSheetPicker/ActionSheetCustomPicker.h; sourceTree = "<group>"; };
@@ -1993,6 +1995,7 @@
 				E8A3BEDE1EC0A1C100726ABF /* StatisticsSingleView.h */,
 				E8A3BEDF1EC0A1C100726ABF /* StatisticsSingleView.m */,
 				E8A3BEE01EC0A1C100726ABF /* StatisticsSingleView.xib */,
+				E8D2DEDD1EE8FBA3006B89F7 /* StatisticsSingleView~ipad.xib */,
 			);
 			name = Statistics;
 			sourceTree = "<group>";
@@ -3426,6 +3429,7 @@
 				E82E66E51DA07CBE00CFBDED /* cache - webcam - 30x30.png in Resources */,
 				E84725CF1DF7558F00CFF99B /* MHTabBarIndicator@3x.png in Resources */,
 				E84725E31DF774E200CFF99B /* menu icon - global@2x - night.png in Resources */,
+				E8D2DEDE1EE8FBA3006B89F7 /* StatisticsSingleView~ipad.xib in Resources */,
 				E82E66E81DA07CBE00CFBDED /* cache - whereigo - 30x30@3x.png in Resources */,
 				E82E667D1DA07C6F00CFBDED /* compass - red arrow on black.png in Resources */,
 				E82E66D51DA07CBE00CFBDED /* cache - traditional - 30x30.png in Resources */,
