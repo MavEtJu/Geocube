@@ -105,7 +105,12 @@ enum {
 {
     waypoint = _wp;
     headerCell = nil;
-    headerCellHeight = 60;
+
+    // You'd expect this to be done programatically....
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        headerCellHeight = 82;
+    else
+        headerCellHeight = 60;
 
     [self reloadDataMainQueue];
 }
