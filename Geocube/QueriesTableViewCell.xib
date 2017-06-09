@@ -20,53 +20,53 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label - Query" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGS-rs-5Iz" customClass="GCLabel">
-                        <rect key="frame" x="8" y="8" width="304" height="21"/>
+                        <rect key="frame" x="16" y="8" width="304" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label - Waypoints" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UWs-q0-afM" customClass="GCLabel">
-                        <rect key="frame" x="8" y="29" width="304" height="15"/>
+                        <rect key="frame" x="16" y="29" width="304" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label - Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDs-Ed-1CP" customClass="GCLabel">
-                        <rect key="frame" x="8" y="44" width="304" height="15"/>
+                        <rect key="frame" x="16" y="44" width="304" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label - Date time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gz-SZ-4nB" customClass="GCLabel">
-                        <rect key="frame" x="8" y="59" width="304" height="15"/>
+                        <rect key="frame" x="16" y="59" width="304" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label - Last import" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X8D-HP-k5Y" customClass="GCLabel">
-                        <rect key="frame" x="8" y="74" width="304" height="15"/>
+                        <rect key="frame" x="16" y="74" width="304" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="X8D-HP-k5Y" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="3Rk-fK-tZb"/>
+                    <constraint firstItem="8gz-SZ-4nB" firstAttribute="leading" secondItem="qGS-rs-5Iz" secondAttribute="leading" id="55C-3q-BTI"/>
+                    <constraint firstItem="UWs-q0-afM" firstAttribute="trailing" secondItem="qGS-rs-5Iz" secondAttribute="trailing" id="5qe-6z-Zjn"/>
                     <constraint firstAttribute="bottomMargin" secondItem="X8D-HP-k5Y" secondAttribute="bottom" constant="1" id="8G2-0d-rH4"/>
-                    <constraint firstItem="8gz-SZ-4nB" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Kba-2c-Cyq"/>
+                    <constraint firstItem="CDs-Ed-1CP" firstAttribute="leading" secondItem="qGS-rs-5Iz" secondAttribute="leading" id="BUh-40-vHQ"/>
+                    <constraint firstItem="X8D-HP-k5Y" firstAttribute="trailing" secondItem="qGS-rs-5Iz" secondAttribute="trailing" id="NfO-ls-7Sh"/>
                     <constraint firstItem="8gz-SZ-4nB" firstAttribute="top" secondItem="CDs-Ed-1CP" secondAttribute="bottom" id="OOd-f6-pSR"/>
-                    <constraint firstItem="UWs-q0-afM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Pff-gN-6L7"/>
+                    <constraint firstItem="qGS-rs-5Iz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Raa-Xw-Ejg"/>
+                    <constraint firstItem="8gz-SZ-4nB" firstAttribute="trailing" secondItem="qGS-rs-5Iz" secondAttribute="trailing" id="TSj-tX-zhn"/>
                     <constraint firstItem="qGS-rs-5Iz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Xbe-5H-Ld2"/>
+                    <constraint firstItem="X8D-HP-k5Y" firstAttribute="leading" secondItem="qGS-rs-5Iz" secondAttribute="leading" id="Z2S-A0-pb2"/>
                     <constraint firstItem="UWs-q0-afM" firstAttribute="top" secondItem="qGS-rs-5Iz" secondAttribute="bottom" id="a88-NK-bBt"/>
                     <constraint firstItem="X8D-HP-k5Y" firstAttribute="top" secondItem="8gz-SZ-4nB" secondAttribute="bottom" id="cIf-V0-tNh"/>
-                    <constraint firstItem="qGS-rs-5Iz" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="mQE-gP-H6P"/>
-                    <constraint firstItem="UWs-q0-afM" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="niQ-4e-Y3L"/>
-                    <constraint firstItem="CDs-Ed-1CP" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="o2E-L2-K8s"/>
-                    <constraint firstItem="8gz-SZ-4nB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="tcS-nN-qSI"/>
-                    <constraint firstItem="qGS-rs-5Iz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="thf-WO-Noh"/>
-                    <constraint firstItem="CDs-Ed-1CP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="veh-yB-Eao"/>
+                    <constraint firstItem="CDs-Ed-1CP" firstAttribute="trailing" secondItem="qGS-rs-5Iz" secondAttribute="trailing" id="lbD-lX-qPg"/>
+                    <constraint firstItem="qGS-rs-5Iz" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="8" id="mQE-gP-H6P"/>
+                    <constraint firstItem="UWs-q0-afM" firstAttribute="leading" secondItem="qGS-rs-5Iz" secondAttribute="leading" id="taU-wX-UA2"/>
                     <constraint firstItem="CDs-Ed-1CP" firstAttribute="top" secondItem="UWs-q0-afM" secondAttribute="bottom" id="wAc-C4-rOl"/>
-                    <constraint firstItem="X8D-HP-k5Y" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="zas-Ff-MoE"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
