@@ -79,7 +79,7 @@
     [texts addObject:@{
         @"name": @"OpenStreetMap maps",
         @"copyright": @"© OpenStreetMap contributors",
-        @"url": @"http://openstreetmap.org)",
+        @"url": @"http://openstreetmap.org",
         @"license": @"The data used for the OpenStreetMap map is available under the Open Database License. For the map tiles, the cartography is licensed as CC BY-SA. See http://openstreetmap.org/copyright for more details.",
      }];
 
@@ -106,7 +106,7 @@
     [texts addObject:@{
         @"name": @"DOPNavbarMenu",
         @"copyright": @"Copyright (c) 2015 Weizhou",
-        @"url": @"https://github.com/dopcn/DOPNavbarMenu)",
+        @"url": @"https://github.com/dopcn/DOPNavbarMenu",
         @"license":
             @"The MIT License (MIT)\n"
             "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n"
