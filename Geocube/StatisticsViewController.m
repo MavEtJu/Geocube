@@ -22,8 +22,7 @@
 @interface StatisticsViewController ()
 {
     UIScrollView *contentView;
-    NSMutableArray<StatisticsSingleView *> *accountViews;
-    NSMutableArray<NSMutableDictionary *> *accountDictionaries;
+    NSMutableArray<NSMutableDictionary *> *accounts;
     NSMutableDictionary *totalDictionary;
 
     BOOL hasbeenstarted;
@@ -32,6 +31,8 @@
 @end
 
 @implementation StatisticsViewController
+
+#define THISCELL @"StatisticsTableViewCell"
 
 enum {
     menuReload,
@@ -45,8 +46,10 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuReload label:@"Reload"];
 
-    accountViews = nil;
+    accounts = [NSMutableArray arrayWithCapacity:[dbc.Accounts count]];
     hasbeenstarted = NO;
+
+    [self makeInfoView];
 
     return self;
 }
@@ -56,11 +59,9 @@ enum {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
-    contentView = [[GCScrollView alloc] initWithFrame:applicationFrame];
-    self.view = contentView;
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_STATISTICSTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:THISCELL];
 
-    [self createViews];
+    [self createStatistics];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -72,41 +73,97 @@ enum {
     }
 }
 
-- (void)createViews
-{
-    accountDictionaries = [NSMutableArray arrayWithCapacity:[[dbc Accounts] count]];
-    accountViews = [NSMutableArray arrayWithCapacity:[[dbc Accounts] count]];
+#pragma mark - TableViewController related functions
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
+{
+    return 2;
+}
+
+- (NSString *)tableView:(UITableView *)aTableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 0)
+        return @"Accounts";
+    else
+        return @"Total";
+}
+
+// Rows per section
+- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
+{
+    if (section == 1)
+        return 1;
+    else
+        return [accounts count];
+}
+
+// Return a cell for the index path
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    StatisticsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+
+#define CELL(__field__, __prefix__, __dict__, __key__) { \
+        NSObject *o = [__dict__ objectForKey:__key__]; \
+        if (o != nil) { \
+            if (__prefix__ == nil) \
+                cell.__field__.text = [NSString stringWithFormat:@"%@", o]; \
+            else \
+                cell.__field__.text = [NSString stringWithFormat:@"%@: %@", __prefix__, o]; \
+        } else \
+            cell.__field__.text = @""; \
+    }
+
+    if (indexPath.section == 1) {
+        CELL(site, nil, totalDictionary, @"site")
+        CELL(status, @"Status", totalDictionary, @"status")
+        CELL(wpsFound, @"Waypoints found", totalDictionary, @"waypoints_found")
+        CELL(wpsHidden, @"Waypoints hidden", totalDictionary, @"waypoints_hidden")
+        CELL(wpsDNF, @"Waypoints DNF", totalDictionary, @"waypoints_notfound")
+        CELL(recommendationsGiven, @"Recommendations given", totalDictionary, @"recommendations_given")
+        CELL(recommendationsReceived, @"Recommendations received", totalDictionary, @"recommendations_received")
+    }
+
+    if (indexPath.section == 0) {
+        NSDictionary *d = [accounts objectAtIndex:indexPath.row];
+        CELL(site, nil, d, @"site")
+        CELL(status, @"Status", d, @"status")
+        CELL(wpsFound, @"Waypoints found", d, @"waypoints_found")
+        CELL(wpsHidden, @"Waypoints hidden", d, @"waypoints_hidden")
+        CELL(wpsDNF, @"Waypoints DNF", d, @"waypoints_notfound")
+        CELL(recommendationsGiven, @"Recommendations given", d, @"recommendations_given")
+        CELL(recommendationsReceived, @"Recommendations received", d, @"recommendations_received")
+    }
+
+    [cell setUserInteractionEnabled:NO];
+
+    return cell;
+}
+
+///////////////
+
+- (void)createStatistics
+{
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSMutableDictionary *d = [NSMutableDictionary dictionary];
+
+        if (a.accountname_string == nil || [a.accountname_string isEqualToString:@""] == YES)
+            return;
+
+        NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
         [d setObject:@"Not yet polled" forKey:@"status"];
         [d setObject:a.site forKey:@"site"];
         [d setObject:a forKey:@"account"];
-        [accountDictionaries addObject:d];
+        [accounts addObject:d];
 
-        if (a.enabled == NO)
+        if (a.remoteAPI.supportsUserStatistics == NO)
+            [d setObject:@"Remote API doesn't support user statistics" forKey:@"status"];
+        else if (a.enabled == NO)
             [d setObject:@"No remote API available" forKey:@"status"];
-
-        StatisticsSingleView *sv = [[StatisticsSingleView alloc] initWithFrame:CGRectZero];
-        sv.site.text = a.site;
-        [self.view addSubview:sv];
-        [accountViews addObject:sv];
-        [d setObject:sv forKey:@"view"];
     }];
 
     totalDictionary = [NSMutableDictionary dictionary];
     [totalDictionary setObject:@"Total" forKey:@"site"];
     [totalDictionary setObject:@"Not yet computed" forKey:@"status"];
     [self clearTotal];
-    [accountDictionaries addObject:totalDictionary];
-
-    StatisticsSingleView *sv = [[StatisticsSingleView alloc] initWithFrame:CGRectZero];
-    [totalDictionary setObject:sv forKey:@"view"];
-    [self.view addSubview:sv];
-
-    [self makeInfoView];
-
-    [self showViews];
 }
 
 - (void)clearTotal
@@ -121,14 +178,11 @@ enum {
 - (void)loadStatistics
 {
     [self showInfoView];
+    [self clearTotal];
 
-    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([a.remoteAPI supportsUserStatistics] == NO)
-            return;
-        if ([a canDoRemoteStuff] == NO)
-            return;
+    [accounts enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull d, NSUInteger idx, BOOL * _Nonnull stop) {
+        dbAccount *a = [d objectForKey:@"account"];
 
-        NSMutableDictionary *d = [accountDictionaries objectAtIndex:idx];
         [d removeObjectForKey:@"waypoints_found"];
         [d removeObjectForKey:@"waypoints_notfound"];
         [d removeObjectForKey:@"waypoints_hidden"];
@@ -149,71 +203,7 @@ enum {
         [d setObject:@"Polling..." forKey:@"status"];
     }];
 
-    [self showViews];
-}
-
-- (void)resizeViews
-{
-    __block NSInteger y = 0;
-    [accountDictionaries enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull ad, NSUInteger idx, BOOL * _Nonnull stop) {
-        StatisticsSingleView *sv = [ad objectForKey:@"view"];
-        sv.frame = CGRectMake(0, y, sv.frame.size.width, sv.frame.size.height);
-        y += sv.frame.size.height;
-    }];
-
-    CGRect bounds = [[UIScreen mainScreen] bounds];
-    NSInteger width = bounds.size.width;
-    contentView.contentSize = CGSizeMake(width, y);
-}
-
-- (void)showViews
-{
-    [self clearTotal];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [accountDictionaries enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull ad, NSUInteger idx, BOOL * _Nonnull stop) {
-            [self showView:ad];
-            if (ad != totalDictionary)
-                [self updateTotals:ad];
-        }];
-        [self resizeViews];
-    }];
-}
-
-- (void)showView:(NSMutableDictionary *)ad
-{
-    CGRect bounds = [[UIScreen mainScreen] bounds];
-    NSInteger width = bounds.size.width;
-
-    NSInteger y = 0;
-
-    StatisticsSingleView *sv = [ad objectForKey:@"view"];
-    dbAccount *a = [ad objectForKey:@"account"];
-
-    if (a != nil && a.accountname == nil) {
-        sv.frame = CGRectZero;
-        return;
-    }
-
-#define ADD(__key__, __field__, __prefix__) \
-    o = [ad objectForKey:__key__]; \
-    if (o != nil) { \
-        sv.__field__.text = [NSString stringWithFormat:@"%@%@", __prefix__, o]; \
-        [sv.__field__ sizeToFit]; \
-        y += sv.__field__.frame.size.height; \
-    } else \
-        sv.__field__.text = @"";
-
-    NSObject *o;
-
-    ADD(@"site", site, @"");
-    ADD(@"status", status, @"");
-    ADD(@"waypoints_found", wpsFound, @"Waypoints found: ");
-    ADD(@"waypoints_notfound", wpsDNF, @"Waypoints not found: ");
-    ADD(@"waypoints_hidden", wpsHidden, @"Waypoints hidden: ");
-    ADD(@"recommendations_given", recommendationsGiven, @"Recommendations given: ");
-    ADD(@"recommendations_received", recommendationsReceived, @"Recommendations received: ");
-
-    sv.frame = CGRectMake(0, 0, width, y);
+    [self reloadDataMainQueue];
 }
 
 - (void)updateTotals:(NSDictionary *)ad
@@ -268,11 +258,12 @@ enum {
     }];
 
     [ad removeObjectForKey:@"status"];
+    [self updateTotals:ad];
 
     [infoView removeItem:iid];
     if ([infoView hasItems] == NO)
         [self hideInfoView];
-    [self showViews];
+    [self reloadDataMainQueue];
 }
 
 #pragma mark - Local menu related functions

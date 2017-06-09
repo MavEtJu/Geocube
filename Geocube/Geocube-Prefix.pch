@@ -262,7 +262,7 @@
 #import "CompassViewController.h"
 #import "GroupsViewController.h"
 
-#import "StatisticsSingleView.h"
+#import "StatisticsTableViewCell.h"
 #import "StatisticsViewController.h"
 
 #import "GCBoundingBox.h"
