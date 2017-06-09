@@ -93,8 +93,8 @@
 @class GCViewController;
 @class GCWaypointAnnotation;
 @class GroupsViewController;
-@class HelpAboutViewController;
 @class HelpAboutTableViewCell;
+@class HelpAboutViewController;
 @class HelpDatabaseViewController;
 @class HelpHelpViewController;
 @class HelpImagesViewController;

@@ -1356,7 +1356,7 @@ bail:
 +   maxImages:                      1
 +   ownerIsViewing:                 true
 +   isWaiting:                      true
-     
+
 |   geocache[id]:                   6140457
 |   geocache[referenceCode]:        GC72XE6
 |   geocache[postedCoordinates][latitude]:-34.017967
@@ -1454,7 +1454,7 @@ bail:
     [dict enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull value, BOOL * _Nonnull stop) {
         [s appendFormat:@"&%@=%@", key, [MyTools urlEncode:value]];
     }];
-    
+
     req.HTTPBody = [s dataUsingEncoding:NSUTF8StringEncoding];
     NSData *data = [self performURLRequest:req infoViewer:iv iiDownload:iid];
     if (data == nil)
@@ -1502,7 +1502,7 @@ bail:
      ]
     */
 
-    NSMutableArray *json = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray<NSDictionary *> *json = [NSMutableArray arrayWithCapacity:10];
     [tbs enumerateObjectsUsingBlock:^(dbTrackable * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {
         if (tb.logtype == TRACKABLE_LOG_NONE)
             return;

@@ -45,7 +45,6 @@
 - (BOOL)supportsListQueries { return YES; }
 - (BOOL)supportsRetrieveQueries { return YES; }
 
-
 #define GCA2_CHECK_STATUS(__json__, __logsection__, __failure__) { \
             if (__json__ == nil) { \
                 return [self lastErrorCode]; \

@@ -19,7 +19,9 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "HelpAboutTableViewCell.h"
+@interface HelpAboutTableViewCell ()
+
+@end
 
 @implementation HelpAboutTableViewCell
 
