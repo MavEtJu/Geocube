@@ -39,7 +39,6 @@
 - (NSRange)supportsLoggingRatingRange { return NSMakeRange(0, 0); }
 
 - (BOOL)supportsLoadWaypoint { return YES; }
-- (BOOL)supportsLoadWaypointsByCenter { return NO; }
 - (BOOL)supportsLoadWaypointsByCodes { return NO; }
 - (BOOL)supportsLoadWaypointsByBoundaryBox { return NO; }
 
@@ -135,86 +134,6 @@
     [callback remoteAPI_objectReadyToImport:identifier iiImport:iii object:gpx group:g account:a];
 
     [callback remoteAPI_finishedDownloads:identifier numberOfChunks:1];
-    return REMOTEAPI_OK;
-}
-
-- (RemoteAPIResult)loadWaypointsByCenter:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
-{
-    NSInteger chunks = 0;
-    loadWaypointsLogs = 0;
-    loadWaypointsWaypoints = 0;
-
-    GCDictionaryGGCW *d = [ggcw map:iv iiDownload:iid];
-    self.account.ggcw_username = [d objectForKey:@"usersession.username"];
-    self.account.ggcw_sessiontoken = [d objectForKey:@"usersession.sessionToken"];
-    if (self.account.ggcw_username == nil || self.account.ggcw_sessiontoken == nil) {
-        [self setAPIError:@"Unknown to obtain username or session token" error:REMOTEAPI_APIFAILED];
-        [callback remoteAPI_failed:identifier];
-        return REMOTEAPI_APIFAILED;
-    }
-
-    CLLocationCoordinate2D ct = [Coordinates location:center bearing:0 * M_PI/2 distance:configManager.mapSearchMaximumDistanceGS];
-    CLLocationCoordinate2D cr = [Coordinates location:center bearing:1 * M_PI/2 distance:configManager.mapSearchMaximumDistanceGS];
-    CLLocationCoordinate2D cb = [Coordinates location:center bearing:2 * M_PI/2 distance:configManager.mapSearchMaximumDistanceGS];
-    CLLocationCoordinate2D cl = [Coordinates location:center bearing:3 * M_PI/2 distance:configManager.mapSearchMaximumDistanceGS];
-
-#define ZOOM    14
-    NSInteger xmin = [Coordinates longitudeToTile:cl.longitude zoom:ZOOM];
-    NSInteger ymax = [Coordinates latitudeToTile:cb.latitude zoom:ZOOM];
-    NSInteger xmax = [Coordinates longitudeToTile:cr.longitude zoom:ZOOM];
-    NSInteger ymin = [Coordinates latitudeToTile:ct.latitude zoom:ZOOM];
-
-    /*
-     // cx is the number of degrees in a single pixel of the 64 parts of a map tile.
-     CLLocationCoordinate2D cdiff = CLLocationCoordinate2DMake(
-     (ct.latitude - cb.latitude) / ((ymax - ymin + 1) * 64),
-     (cr.longitude - cl.longitude) / ((xmax - xmin + 1) * 64)
-     );
-     */
-
-    [iv removeItem:iid];
-
-    NSMutableDictionary *wpcodesall = [NSMutableDictionary dictionaryWithCapacity:100];
-    [iv setChunksTotal:iid total:(ymax - ymin + 1) * (xmax - xmin + 1)];
-    for (NSInteger y = ymin; y <= ymax; y++) {
-        for (NSInteger x = xmin; x <= xmax; x++) {
-            NSMutableDictionary *wpcodes = [NSMutableDictionary dictionaryWithCapacity:100];
-
-            InfoItemID iid = [iv addDownload];
-            [iv setDescription:iid description:[NSString stringWithFormat:@"Tile (%ld, %ld)", (long)x, (long)y]];
-            [iv setChunksTotal:iid total:0];
-            [iv setChunksCount:iid count:1];
-            [iv resetBytes:iid];
-            // Without requesting the map tile image the map.info returns sometimes a 204. No idea why.
-            [ggcw map_png:x y:y z:ZOOM infoViewer:iv iiDownload:iid];
-            // Now we can (safely?) request the map info details.
-            GCDictionaryGGCW *d = [ggcw map_info:x y:y z:ZOOM infoViewer:iv iiDownload:iid];
-
-            NSDictionary *alldata = [d objectForKey:@"data"];
-            [alldata enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSArray<NSDictionary *> *wps, BOOL *stop) {
-                NSDictionary *wpdata = [wps objectAtIndex:0];
-                // Don't look at the same object twice
-                NSString *wpdatai = [wpdata objectForKey:@"i"];
-                if ([wpcodesall objectForKey:wpdatai] != nil) {
-                    [callback remoteAPI_failed:identifier];
-                    return;
-                }
-
-                [wpcodes setObject:wpdata forKey:wpdatai];
-                [wpcodesall setObject:@"0" forKey:wpdatai];
-            }];
-
-            [wpcodes setObject:group forKey:@"group"];
-            [wpcodes setObject:iv forKey:@"iv"];
-            [wpcodes setObject:[NSNumber numberWithInteger:iid] forKey:@"iid"];
-            [wpcodes setObject:callback forKey:@"callback"];
-            [wpcodes setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
-            [self performSelectorInBackground:@selector(loadWaypoints_GGCWBackground:) withObject:wpcodes];
-            chunks++;
-        }
-    }
-
-    [callback remoteAPI_finishedDownloads:identifier numberOfChunks:chunks];
     return REMOTEAPI_OK;
 }
 

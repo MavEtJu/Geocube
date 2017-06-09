@@ -46,7 +46,6 @@
 - NEEDS_OVERLOADING_BOOL(supportsLoggingRating)
 - NEEDS_OVERLOADING_NSRANGE(supportsLoggingRatingRange)
 - NEEDS_OVERLOADING_BOOL(supportsLoadWaypoint)
-- NEEDS_OVERLOADING_BOOL(supportsLoadWaypointsByCenter)
 - NEEDS_OVERLOADING_BOOL(supportsLoadWaypointsByCodes)
 - NEEDS_OVERLOADING_BOOL(supportsLoadWaypointsByBoundaryBox)
 - NEEDS_OVERLOADING_BOOL(supportsListQueries)
@@ -340,12 +339,6 @@
 }
 
 - (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
-{
-    [self setAPIError:@"Not implemented" error:REMOTEAPI_NOTPROCESSED];
-    return REMOTEAPI_NOTPROCESSED;
-}
-
-- (RemoteAPIResult)loadWaypointsByCenter:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     [self setAPIError:@"Not implemented" error:REMOTEAPI_NOTPROCESSED];
     return REMOTEAPI_NOTPROCESSED;

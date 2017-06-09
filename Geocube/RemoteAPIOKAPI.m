@@ -38,7 +38,6 @@
 - (NSRange)supportsLoggingRatingRange { return NSMakeRange(0, 0); }
 
 - (BOOL)supportsLoadWaypoint { return YES; }
-- (BOOL)supportsLoadWaypointsByCenter { return YES; }
 - (BOOL)supportsLoadWaypointsByCodes { return YES; }
 - (BOOL)supportsLoadWaypointsByBoundaryBox { return YES; }
 
@@ -161,61 +160,6 @@
     InfoItemID iii = [iv addImport:NO];
     [iv setDescription:iii description:IMPORTMSG];
     [callback remoteAPI_objectReadyToImport:identifier iiImport:iii object:d2 group:g account:a];
-
-    [callback remoteAPI_finishedDownloads:identifier numberOfChunks:1];
-    return REMOTEAPI_OK;
-}
-
-- (RemoteAPIResult)loadWaypointsByCenter:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
-{
-    loadWaypointsLogs = 0;
-    loadWaypointsWaypoints = 0;
-
-    if ([self.account canDoRemoteStuff] == NO) {
-        [self setAPIError:@"[OKAPI] loadWaypoints: remote API is disabled" error:REMOTEAPI_APIDISABLED];
-        [callback remoteAPI_failed:identifier];
-        return REMOTEAPI_APIDISABLED;
-    }
-
-    [iv setChunksTotal:iid total:0];
-    [iv setChunksCount:iid count:1];
-    NSInteger offset = 0;
-    BOOL more = NO;
-    NSMutableArray<NSString *> *wpcodes = [NSMutableArray arrayWithCapacity:20];
-    do {
-        GCDictionaryOKAPI *json = [okapi services_caches_search_nearest:center offset:offset infoViewer:iv iiDownload:iid];
-        OKAPI_CHECK_STATUS_CB(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
-
-        more = [[json objectForKey:@"more"] boolValue];
-        NSArray<NSString *> *rets = nil;
-        NSObject *vs = [json objectForKey:@"results"];
-        if ([vs isKindOfClass:[NSString class]] == YES)
-            rets = @[vs];
-        else if ([vs isKindOfClass:[NSArray class]] == YES)
-            rets = (NSArray *)vs;
-        [rets enumerateObjectsUsingBlock:^(NSString *v, NSUInteger idx, BOOL * _Nonnull stop) {
-            [wpcodes addObject:v];
-        }];
-        offset += [rets count];
-    } while (more == YES);
-
-    if ([wpcodes count] == 0)
-        return REMOTEAPI_OK;
-    GCDictionaryOKAPI *json = [okapi services_caches_geocaches:wpcodes infoViewer:iv iiDownload:iid];
-    OKAPI_CHECK_STATUS_CB(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
-
-    NSMutableArray<NSDictionary *> *wps = [[NSMutableArray alloc] initWithCapacity:[wpcodes count]];
-    [wpcodes enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSDictionary *wpjson = [json objectForKey:wpcode];
-        if (wpjson != nil)
-            [wps addObject:wpjson];
-    }];
-
-    InfoItemID iii = [iv addImport:NO];
-    [iv showTrackables:iii yesno:NO];
-    [iv setDescription:iii description:IMPORTMSG];
-    GCDictionaryOKAPI *rv = [[GCDictionaryOKAPI alloc] initWithDictionary:[NSDictionary dictionaryWithObject:wps forKey:@"waypoints"]];
-    [callback remoteAPI_objectReadyToImport:identifier iiImport:iii object:rv group:group account:self.account];
 
     [callback remoteAPI_finishedDownloads:identifier numberOfChunks:1];
     return REMOTEAPI_OK;

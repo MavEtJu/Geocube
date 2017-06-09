@@ -38,7 +38,6 @@
 - (NSRange)supportsLoggingRatingRange { return NSMakeRange(0, 0); }
 
 - (BOOL)supportsLoadWaypoint { return YES; }
-- (BOOL)supportsLoadWaypointsByCenter { return YES; }
 - (BOOL)supportsLoadWaypointsByCodes { return YES; }
 - (BOOL)supportsLoadWaypointsByBoundaryBox { return YES; }
 
@@ -243,55 +242,6 @@
     [callback remoteAPI_objectReadyToImport:identifier iiImport:iii object:json group:group account:self.account];
 
     [callback remoteAPI_finishedDownloads:identifier numberOfChunks:[wpcodes count]];
-    return REMOTEAPI_OK;
-}
-
-- (RemoteAPIResult)loadWaypointsByCenter:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
-{
-    NSInteger chunks = 0;
-    loadWaypointsLogs = 0;
-    loadWaypointsWaypoints = 0;
-
-    if ([self.account canDoRemoteStuff] == NO) {
-        [self setAPIError:@"[LiveAPI] loadWaypointsByCenter: remote API is disabled" error:REMOTEAPI_APIDISABLED];
-        [callback remoteAPI_failed:identifier];
-        return REMOTEAPI_APIDISABLED;
-    }
-
-    [iv setChunksTotal:iid total:1];
-    [iv setChunksCount:iid count:1];
-    GCDictionaryLiveAPI *json = [liveAPI SearchForGeocaches_pointradius:center infoViewer:iv iiDownload:iid];
-    LIVEAPI_CHECK_STATUS_CB(json, @"loadWaypointsByCenter", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
-
-    LIVEAPI_GET_VALUE_CB(json, NSNumber, ptotal, @"TotalMatchingCaches", @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
-    NSInteger total = [ptotal integerValue];
-    NSInteger done = 0;
-    [iv setChunksTotal:iid total:(total / 20) + 1];
-    if (total != 0) {
-        GCDictionaryLiveAPI *livejson = json;
-        LIVEAPI_CHECK_STATUS_CB(livejson, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
-        InfoItemID iii = [iv addImport:NO];
-        [iv setDescription:iii description:IMPORTMSG];
-        [callback remoteAPI_objectReadyToImport:identifier iiImport:iii object:livejson group:group account:self.account];
-        chunks++;
-        do {
-            [iv setChunksCount:iid count:(done / 20) + 1];
-            done += 20;
-
-            json = [liveAPI GetMoreGeocaches:done infoViewer:iv iiDownload:iid];
-            LIVEAPI_CHECK_STATUS_CB(json, @"loadWaypointsByCenter", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
-
-            if ([json objectForKey:@"Geocaches"] != nil) {
-                GCDictionaryLiveAPI *livejson = json;
-                InfoItemID iii = [iv addImport:NO];
-                [iv setDescription:iii description:IMPORTMSG];
-                [callback remoteAPI_objectReadyToImport:identifier iiImport:iii object:livejson group:group account:self.account];
-                chunks++;
-            }
-        } while (done < total);
-    }
-
-    [callback remoteAPI_finishedDownloads:identifier numberOfChunks:chunks];
     return REMOTEAPI_OK;
 }
 
