@@ -97,7 +97,7 @@ enum {
                doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                    dbLogTemplate *lt = [lts objectAtIndex:selectedIndex];
                    NSMutableString *s = [NSMutableString stringWithString:tv.text];
-                   [s insertString:lt.text atIndex:tv.selectedRange.location];
+                   [s insertString:[self replaceMacros:lt.text ] atIndex:tv.selectedRange.location];
                    tv.text = s;
                }
                cancelBlock:^(ActionSheetStringPicker *picker) {
@@ -120,7 +120,7 @@ enum {
         initialSelection:0
                doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                    dbLogTemplate *lt = [lts objectAtIndex:selectedIndex];
-                   tv.text = lt.text;
+                   tv.text = [self replaceMacros:lt.text];
                }
                cancelBlock:^(ActionSheetStringPicker *picker) {
                }
@@ -135,7 +135,30 @@ enum {
 
 - (void)useTemporary
 {
-    tv.text = configManager.logTemporaryText;
+    tv.text = [self replaceMacros:configManager.logTemporaryText];
+}
+
+- (NSString *)replaceMacros:(NSString *)text
+{
+    NSMutableString *s = [NSMutableString stringWithString:text];
+
+#define REPLACE(__macro__, __text__) \
+    [s replaceOccurrencesOfString:[NSString stringWithFormat:@"%%%@%%", __macro__] withString:[NSString stringWithFormat:@"%@", __text__] options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+
+    REPLACE(@"waypoint.name", self.waypoint.wpt_urlname);
+    REPLACE(@"waypoint.code", self.waypoint.wpt_name);
+
+    dbListData *ld = [dbListData dbGetByWaypoint:self.waypoint flag:FLAGS_MARKEDFOUND];
+    REPLACE(@"waypoint.foundtime", [MyTools dateTimeString_hh_mm_ss:ld.datetime]);
+    REPLACE(@"waypoint.founddate", [MyTools dateTimeString_YYYY_MM_DD:ld.datetime]);
+    REPLACE(@"waypoint.founddatetime", [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:ld.datetime]);
+
+    REPLACE(@"cacher.name", self.waypoint.account.accountname_string);
+
+    REPLACE(@"list.found", [NSNumber numberWithInteger:[[dbListData dbAllByType:FLAGS_MARKEDFOUND ascending:NO] count]]);
+    REPLACE(@"list.dnf", [NSNumber numberWithInteger:[[dbListData dbAllByType:FLAGS_MARKEDDNF ascending:NO] count]]);
+
+    return s;
 }
 
 #pragma mark - Local menu related functions

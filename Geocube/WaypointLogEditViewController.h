@@ -28,6 +28,7 @@
 @interface WaypointLogEditViewController : GCViewController <YIPopupTextViewDelegate>
 
 @property (nonatomic, retain) NSString *text;
+@property (nonatomic, retain) dbWaypoint *waypoint;
 @property (nonatomic) id<WaypointLogEditDelegate> delegate;
 
 @end

@@ -438,6 +438,7 @@ enum {
     newController.edgesForExtendedLayout = UIRectEdgeNone;
     newController.delegate = self;
     newController.text = note;
+    newController.waypoint = waypoint;
     [self.navigationController pushViewController:newController animated:YES];
 }
 
