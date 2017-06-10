@@ -192,6 +192,7 @@
 #import "SettingsAccountsViewController.h"
 #import "SettingsColoursViewController.h"
 #import "SettingsColourViewController.h"
+#import "SettingsLogTemplatesViewController.h"
 #import "SettingsMainViewController.h"
 #import "SettingsMainColorPickerViewController.h"
 

@@ -166,6 +166,7 @@
 @class SettingsAccountsViewController;
 @class SettingsColourViewController;
 @class SettingsColoursViewController;
+@class SettingsLogTemplatesViewController;
 @class SettingsMainColorPickerViewController;
 @class SettingsMainViewController;
 @class SideMenu;

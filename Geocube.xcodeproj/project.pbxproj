@@ -340,6 +340,7 @@
 		E85F2DA81EEA70EC006E464D /* StatisticsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85F2DA71EEA70EC006E464D /* StatisticsTableViewCell.xib */; };
 		E85F2DAA1EEAD8DB006E464D /* StatisticsTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85F2DA91EEAD8DB006E464D /* StatisticsTableViewCell~ipad.xib */; };
 		E85F2DAD1EEB6833006E464D /* dbLogTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E85F2DAC1EEB6833006E464D /* dbLogTemplate.m */; };
+		E85F2DB01EEB7E94006E464D /* SettingsLogTemplatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85F2DAF1EEB7E94006E464D /* SettingsLogTemplatesViewController.m */; };
 		E85FCA731CAC6EF3005D7AE1 /* GCDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E85FCA721CAC6EF3005D7AE1 /* GCDictionary.m */; };
 		E8611A891B87407500B9D7C3 /* GCTableViewCellRightImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A881B87407500B9D7C3 /* GCTableViewCellRightImage.m */; };
 		E8611A911B8899A700B9D7C3 /* GCWaypointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A901B8899A700B9D7C3 /* GCWaypointAnnotation.m */; };
@@ -1120,6 +1121,8 @@
 		E85F2DA91EEAD8DB006E464D /* StatisticsTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StatisticsTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E85F2DAB1EEB6833006E464D /* dbLogTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbLogTemplate.h; sourceTree = "<group>"; };
 		E85F2DAC1EEB6833006E464D /* dbLogTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbLogTemplate.m; sourceTree = "<group>"; };
+		E85F2DAE1EEB7E94006E464D /* SettingsLogTemplatesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsLogTemplatesViewController.h; sourceTree = "<group>"; };
+		E85F2DAF1EEB7E94006E464D /* SettingsLogTemplatesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsLogTemplatesViewController.m; sourceTree = "<group>"; };
 		E85FCA711CAC6EF3005D7AE1 /* GCDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDictionary.h; sourceTree = "<group>"; };
 		E85FCA721CAC6EF3005D7AE1 /* GCDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDictionary.m; sourceTree = "<group>"; };
 		E8611A871B87407500B9D7C3 /* GCTableViewCellRightImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellRightImage.h; sourceTree = "<group>"; };
@@ -2859,6 +2862,8 @@
 				E807A8561BBB88F500AE3C1B /* SettingsColoursViewController.m */,
 				E807A85C1BBBBB1500AE3C1B /* SettingsColourViewController.h */,
 				E807A85D1BBBBB1500AE3C1B /* SettingsColourViewController.m */,
+				E85F2DAE1EEB7E94006E464D /* SettingsLogTemplatesViewController.h */,
+				E85F2DAF1EEB7E94006E464D /* SettingsLogTemplatesViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -3915,6 +3920,7 @@
 				E82840F51B510AE10055EE59 /* dbContainer.m in Sources */,
 				E8FD96BD1EC867BC00AFA7FA /* NVHFile.m in Sources */,
 				E8AA149A1ED30A1E0023000A /* dbListData.m in Sources */,
+				E85F2DB01EEB7E94006E464D /* SettingsLogTemplatesViewController.m in Sources */,
 				E8E88D921BF06D9500E90F8D /* LocationManager.m in Sources */,
 				E8A4BEF21BD4B91000BCA5A5 /* KeepTrackCar.m in Sources */,
 				E8D7BA4E1BC67CDC001B0805 /* CCHMapClusterControllerUtils.m in Sources */,

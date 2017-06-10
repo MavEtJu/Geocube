@@ -225,6 +225,7 @@
                 VC(SettingsAccountsViewController, @"Accounts");
                 VC(SettingsMainViewController, @"Settings");
                 VC(SettingsColourViewController, @"Colours");
+                VC(SettingsLogTemplatesViewController, @"Log");
 
                 TABBARCONTROLLER(RC_SETTINGS, controllers)
                 break;
