@@ -8,7 +8,8 @@ Version 1.3(xx)
     can download Pocket Queries, "Refresh Waypoint", Trackables.
   - In the Tools -> GPS section, be able to create a waypoint on
     the average coordinates.
-  - Statistics screen is now a proper table.
+  - Added log templates.
+  - The logs can be prepopulated with templates.
 
   Fixed:
   - iPad: The query table cells are now properly resized.
@@ -17,6 +18,7 @@ Version 1.3(xx)
   - Queries: A better way to display that there is nothing.
   - Improved fonts, indents on views on the iPad.
   - Made Geocaching Australia authentication more obvious.
+  - Statistics screen is now a proper table.
 
 Version 1.2(20)
 
