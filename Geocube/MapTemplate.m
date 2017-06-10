@@ -150,7 +150,8 @@ EMPTY_METHOD(mapViewDidLoad)
         [tb setSelectedIndex:VC_WAYPOINTS_LIST animated:YES];
 
         // And then push the CacheViewController on top of it
-        WaypointViewController *newController = [[WaypointViewController alloc] initWithStyle:UITableViewStyleGrouped canBeClosed:YES];
+        WaypointViewController *newController = [[WaypointViewController alloc] init];
+        newController.hasCloseButton = YES;
         [newController showWaypoint:wp];
         newController.edgesForExtendedLayout = UIRectEdgeNone;
         newController.title = wp.wpt_name;

@@ -187,7 +187,8 @@ enum {
     dbWaypoint *wp = [waypoints objectAtIndex:indexPath.row];
     NSString *newTitle = wp.description;
 
-    WaypointViewController *newController = [[WaypointViewController alloc] initWithStyle:UITableViewStyleGrouped canBeClosed:YES];
+    WaypointViewController *newController = [[WaypointViewController alloc] init];
+    newController.hasCloseButton = YES;
     [newController showWaypoint:wp];
     newController.edgesForExtendedLayout = UIRectEdgeNone;
     newController.title = newTitle;
