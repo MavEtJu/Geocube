@@ -30,6 +30,7 @@
 
 - (void)dbEmpty;
 + (NSArray<dbGroup *> *)dbAllByWaypoint:(NSId)wp_id;
++ (NSArray<dbGroup *> *)dbAllByUserGroup:(BOOL)isUser;
 + (NSMutableArray<dbGroup *> *)dbAll;
 + (dbGroup *)dbGet:(NSId)_id;
 + (dbGroup *)dbGetByName:(NSString *)name;

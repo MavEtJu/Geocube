@@ -137,6 +137,28 @@
     return cgs;
 }
 
++ (NSArray<dbGroup *> *)dbAllByUserGroup:(BOOL)isUser
+{
+    NSMutableArray<dbGroup *> *cgs = [[NSMutableArray alloc] initWithCapacity:20];
+
+    @synchronized(db) {
+        DB_PREPARE(@"select id, name, usergroup, deletable from groups where usergroup = ?");
+
+        SET_VAR_INT(1, isUser);
+
+        DB_WHILE_STEP {
+            dbGroup *cg = [[dbGroup alloc] init];
+            INT_FETCH (0, cg._id);
+            TEXT_FETCH(1, cg.name);
+            BOOL_FETCH(2, cg.usergroup);
+            BOOL_FETCH(3, cg.deletable);
+            [cgs addObject:cg];
+        }
+        DB_FINISH;
+    }
+    return cgs;
+}
+
 - (NSInteger)dbCountWaypoints
 {
     NSInteger count = 0;
