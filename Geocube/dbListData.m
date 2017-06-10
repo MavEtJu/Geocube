@@ -88,7 +88,7 @@
     dbListData *ld = nil;
 
     @synchronized (db) {
-        DB_PREPARE(@"select id, waypoint_id, type, datetime from listdata where type = ? and id = ?");
+        DB_PREPARE(@"select id, waypoint_id, type, datetime from listdata where type = ? and waypoint_id = ?");
         SET_VAR_INT(1, flag);
         SET_VAR_INT(2, wp._id);
 
