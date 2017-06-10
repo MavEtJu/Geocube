@@ -145,8 +145,8 @@
 @class MyTools;
 @class NotesFieldnotesViewController;
 @class NotesImagesViewController;
-@class NotesNotSubmittedViewController;
 @class NotesPersonalNotesViewController;
+@class NotesSavedViewController;
 @class NoticeTableViewCell;
 @class NoticesViewController;
 @class PersonalNoteTableViewCell;

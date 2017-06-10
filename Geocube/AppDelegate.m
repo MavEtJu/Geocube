@@ -157,7 +157,7 @@
             case RC_NOTESANDLOGS:
                 controllers = [NSMutableArray array];
 
-                VC(NotesNotSubmittedViewController, @"Not submitted");
+                VC(NotesSavedViewController, @"Saved");
                 VC(NotesPersonalNotesViewController, @"Personal");
                 VC(NotesFieldnotesViewController, @"Field");
                 VC(NotesImagesViewController, @"Images");

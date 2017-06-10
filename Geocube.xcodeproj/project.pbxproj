@@ -50,7 +50,7 @@
 		E82341791EEBC9EC00D2CDFD /* dbLogMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341781EEBC9EC00D2CDFD /* dbLogMacro.m */; };
 		E823417C1EEBEF8600D2CDFD /* GroupsUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E823417B1EEBEF8600D2CDFD /* GroupsUserViewController.m */; };
 		E823417F1EEBEF9900D2CDFD /* GroupsSystemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E823417E1EEBEF9900D2CDFD /* GroupsSystemViewController.m */; };
-		E82341821EEBFBAC00D2CDFD /* NotesNotSubmittedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341811EEBFBAC00D2CDFD /* NotesNotSubmittedViewController.m */; };
+		E82341851EEC034C00D2CDFD /* NotesSavedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341841EEC034C00D2CDFD /* NotesSavedViewController.m */; };
 		E8257F281EE41B8A0089C106 /* log - disabled - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8257F271EE41B8A0089C106 /* log - disabled - 30x30.png */; };
 		E825A2F71E39FDF4004D9538 /* MapWaypointInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E825A2F51E39FDF4004D9538 /* MapWaypointInfoView.m */; };
 		E825A2F81E39FDF4004D9538 /* MapWaypointInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E825A2F61E39FDF4004D9538 /* MapWaypointInfoView.xib */; };
@@ -781,8 +781,8 @@
 		E823417B1EEBEF8600D2CDFD /* GroupsUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsUserViewController.m; sourceTree = "<group>"; };
 		E823417D1EEBEF9900D2CDFD /* GroupsSystemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsSystemViewController.h; sourceTree = "<group>"; };
 		E823417E1EEBEF9900D2CDFD /* GroupsSystemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsSystemViewController.m; sourceTree = "<group>"; };
-		E82341801EEBFBAC00D2CDFD /* NotesNotSubmittedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesNotSubmittedViewController.h; sourceTree = "<group>"; };
-		E82341811EEBFBAC00D2CDFD /* NotesNotSubmittedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesNotSubmittedViewController.m; sourceTree = "<group>"; };
+		E82341831EEC034C00D2CDFD /* NotesSavedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesSavedViewController.h; sourceTree = "<group>"; };
+		E82341841EEC034C00D2CDFD /* NotesSavedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesSavedViewController.m; sourceTree = "<group>"; };
 		E8257F271EE41B8A0089C106 /* log - disabled - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - disabled - 30x30.png"; path = "images/logs/log - disabled - 30x30.png"; sourceTree = "<group>"; };
 		E825A2F41E39FDF4004D9538 /* MapWaypointInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapWaypointInfoView.h; sourceTree = "<group>"; };
 		E825A2F51E39FDF4004D9538 /* MapWaypointInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapWaypointInfoView.m; sourceTree = "<group>"; };
@@ -1767,10 +1767,10 @@
 				E82002281B7B1C04009AE50F /* NotesImagesViewController.m */,
 				E87E474B1B82D6B3005606A2 /* NotesFieldnotesViewController.h */,
 				E87E474C1B82D6B3005606A2 /* NotesFieldnotesViewController.m */,
-				E82341801EEBFBAC00D2CDFD /* NotesNotSubmittedViewController.h */,
-				E82341811EEBFBAC00D2CDFD /* NotesNotSubmittedViewController.m */,
 				E85760001B84A8E200F34483 /* NotesPersonalNotesViewController.h */,
 				E85760011B84A8E200F34483 /* NotesPersonalNotesViewController.m */,
+				E82341831EEC034C00D2CDFD /* NotesSavedViewController.h */,
+				E82341841EEC034C00D2CDFD /* NotesSavedViewController.m */,
 				E86C4AA71E30D250004526E2 /* PersonalNoteTableViewCell.h */,
 				E86C4AA81E30D250004526E2 /* PersonalNoteTableViewCell.m */,
 				E86C4AA91E30D250004526E2 /* PersonalNoteTableViewCell.xib */,
@@ -4060,7 +4060,6 @@
 				E84D6FD61C58268E0000A6A0 /* QueriesGCAViewController.m in Sources */,
 				E8C5BB7A1C719EB1006222D5 /* WaypointsListViewController.m in Sources */,
 				E85760151B85E08400F34483 /* ThemeTemplate.m in Sources */,
-				E82341821EEBFBAC00D2CDFD /* NotesNotSubmittedViewController.m in Sources */,
 				E8A7FA981B77F7F7003F4132 /* BrowserUserViewController.m in Sources */,
 				E891D27E1D2D2DDE00A17B17 /* ImportOKAPIJSON.m in Sources */,
 				E8A7FAA81B78CE36003F4132 /* MyTools.m in Sources */,
@@ -4096,6 +4095,7 @@
 				E8A7FA9F1B78408A003F4132 /* HelpAboutViewController.m in Sources */,
 				E8D7BA511BC67CDC001B0805 /* CCHMapTreeUtils.m in Sources */,
 				E8FD96C01EC867D900AFA7FA /* NSFileManager+NVHFileSize.m in Sources */,
+				E82341851EEC034C00D2CDFD /* NotesSavedViewController.m in Sources */,
 				E807A5F81B8BC9CF00EBA187 /* ProtocolOKAPI.m in Sources */,
 				E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */,
 				E89C398E1E28A01400BB60CA /* QueriesTableViewCell.m in Sources */,

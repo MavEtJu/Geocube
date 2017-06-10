@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface NotesNotSubmittedViewController ()
+@interface NotesSavedViewController ()
 {
     NSArray<dbWaypoint *> *waypointsWithLogs;
     NSMutableArray<dbLog *> *logs;
@@ -27,9 +27,9 @@
 
 @end
 
-@implementation NotesNotSubmittedViewController
+@implementation NotesSavedViewController
 
-#define THISCELL @"NotesNotSubmittedViewController"
+#define THISCELL @"NotesSavedTableViewCell"
 
 - (void)viewDidLoad
 {
