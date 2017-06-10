@@ -83,6 +83,29 @@
     return lds;
 }
 
++ (dbListData *)dbGetByWaypoint:(dbWaypoint *)wp flag:(Flag)flag
+{
+    dbListData *ld = nil;
+
+    @synchronized (db) {
+        DB_PREPARE(@"select id, waypoint_id, type, datetime from listdata where type = ? and id = ?");
+        SET_VAR_INT(1, flag);
+        SET_VAR_INT(2, wp._id);
+
+        DB_IF_STEP {
+            ld = [[dbListData alloc] init];
+            INT_FETCH(0, ld._id);
+            INT_FETCH(1, ld.waypoint_id);
+            INT_FETCH(2, ld.type);
+            INT_FETCH(3, ld.datetime);
+            [ld finish];
+        }
+        DB_FINISH;
+    }
+
+    return ld;
+}
+
 + (NSInteger)dbCount
 {
     return [dbGroup dbCount:@"listdata"];
