@@ -92,7 +92,9 @@
 @class GCView;
 @class GCViewController;
 @class GCWaypointAnnotation;
-@class GroupsViewController;
+@class GroupsSystemViewController;
+@class GroupsTemplateViewController;
+@class GroupsUserViewController;
 @class HelpAboutTableViewCell;
 @class HelpAboutViewController;
 @class HelpDatabaseViewController;

@@ -19,40 +19,19 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GroupsViewController ()
-{
-    NSInteger cgCount;
-    NSArray<dbGroup *> *cgs;
-    BOOL showUsers;
-}
+@interface GroupsTemplateViewController ()
 
 @end
 
-#define THISCELL @"GroupsViewControllerCell"
+#define THISCELL @"GroupsTemplateViewControllerCell"
 
-@implementation GroupsViewController
+@implementation GroupsTemplateViewController
 
-enum {
-    menuEmptyGroups = 0,
-    menuAddAGroup,
-    menuMax
-};
-
-- (instancetype)init:(BOOL)_showUsers
+- (instancetype)init
 {
     self = [super init];
-    showUsers = _showUsers;
 
     [self refreshGroupData];
-
-    // Local menu
-    if (showUsers == YES) {
-        lmi = [[LocalMenuItems alloc] init:menuMax];
-        [lmi addItem:menuEmptyGroups label:@"Empty groups"];
-        [lmi addItem:menuAddAGroup label:@"Add a group"];
-    } else
-        lmi = nil;
-
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
 
     return self;
@@ -65,17 +44,7 @@ enum {
     [self.tableView reloadData];
 }
 
-- (void)refreshGroupData
-{
-    NSMutableArray<dbGroup *> *ws = [[NSMutableArray alloc] initWithCapacity:20];
-
-    [dbc.Groups enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
-        if (cg.usergroup == showUsers)
-            [ws addObject:cg];
-    }];
-    cgs = ws;
-    cgCount = [cgs count];
-}
+- NEEDS_OVERLOADING_VOID(refreshGroupData)
 
 - (void)viewDidLoad
 {
@@ -94,7 +63,7 @@ enum {
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return cgCount;
+    return [self.cgs count];
 }
 
 // Return a cell for the index path
@@ -102,22 +71,23 @@ enum {
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
 
-    dbGroup *cg = [cgs objectAtIndex:indexPath.row];
+    dbGroup *cg = [self.cgs objectAtIndex:indexPath.row];
     cell.textLabel.text = cg.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld waypoints", (long)[cg dbCountWaypoints]];
+    cell.userInteractionEnabled = (self.showUsers == YES);
 
     return cell;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    dbGroup *cg = [cgs objectAtIndex:indexPath.row];
+    dbGroup *cg = [self.cgs objectAtIndex:indexPath.row];
     return cg.deletable;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbGroup *cg = [cgs objectAtIndex:indexPath.row];
+    dbGroup *cg = [self.cgs objectAtIndex:indexPath.row];
     if (editingStyle == UITableViewCellEditingStyleDelete && cg.deletable == YES) {
         [self groupDelete:cg forceReload:NO];
         [self refreshGroupData];
@@ -127,12 +97,7 @@ enum {
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (showUsers == NO) {
-        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-        return;
-    }
-
-    dbGroup *cg = [cgs objectAtIndex:indexPath.row];
+    dbGroup *cg = [self.cgs objectAtIndex:indexPath.row];
 
     UIAlertController *view = [UIAlertController
                                alertControllerWithTitle:cg.name
@@ -199,7 +164,7 @@ enum {
 
 - (void)emptyGroups
 {
-    [cgs enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
+    [self.cgs enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
         [self groupEmpty:cg reload:NO];
     }];
     [self refreshGroupData];
@@ -265,28 +230,6 @@ enum {
 }
 
 #pragma mark - Local menu related functions
-
-- (void)performLocalMenuAction:(NSInteger)index
-{
-    // Add a group
-    if (showUsers == YES) {
-        switch (index) {
-            case menuEmptyGroups:
-                [self emptyGroups];
-                return;
-            case menuAddAGroup:
-                [self newGroup];
-                return;
-        }
-    } else {
-        if (index == 0) {
-            [self emptyGroups];
-            return;
-        }
-    }
-
-    [super performLocalMenuAction:index];
-}
 
 - (void)newGroup
 {

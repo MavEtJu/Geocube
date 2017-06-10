@@ -177,17 +177,8 @@
             case RC_GROUPS:
                 controllers = [NSMutableArray array];
 
-                vc = [[GroupsViewController alloc] init:YES];
-                vc.title = @"User Groups";
-                nav = [[UINavigationController alloc] initWithRootViewController:vc];
-                nav.navigationBarHidden = YES;
-                [controllers addObject:nav];
-
-                vc = [[GroupsViewController alloc] init:NO];
-                vc.title = @"System Groups";
-                nav = [[UINavigationController alloc] initWithRootViewController:vc];
-                nav.navigationBarHidden = YES;
-                [controllers addObject:nav];
+                VC(GroupsUserViewController, @"User Groups");
+                VC(GroupsSystemViewController, @"System Groups");
 
                 TABBARCONTROLLER(RC_GROUPS, controllers)
                 break;

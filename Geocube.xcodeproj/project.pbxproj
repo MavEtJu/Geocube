@@ -48,6 +48,8 @@
 		E82302511DCD6C5C0032C5C6 /* QueriesGGCWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82302501DCD6C5C0032C5C6 /* QueriesGGCWViewController.m */; };
 		E82302561DCD8B3C0032C5C6 /* GCDataObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E82302551DCD8B3C0032C5C6 /* GCDataObjects.m */; };
 		E82341791EEBC9EC00D2CDFD /* dbLogMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341781EEBC9EC00D2CDFD /* dbLogMacro.m */; };
+		E823417C1EEBEF8600D2CDFD /* GroupsUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E823417B1EEBEF8600D2CDFD /* GroupsUserViewController.m */; };
+		E823417F1EEBEF9900D2CDFD /* GroupsSystemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E823417E1EEBEF9900D2CDFD /* GroupsSystemViewController.m */; };
 		E8257F281EE41B8A0089C106 /* log - disabled - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8257F271EE41B8A0089C106 /* log - disabled - 30x30.png */; };
 		E825A2F71E39FDF4004D9538 /* MapWaypointInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E825A2F51E39FDF4004D9538 /* MapWaypointInfoView.m */; };
 		E825A2F81E39FDF4004D9538 /* MapWaypointInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E825A2F61E39FDF4004D9538 /* MapWaypointInfoView.xib */; };
@@ -502,7 +504,7 @@
 		E8D7BA511BC67CDC001B0805 /* CCHMapTreeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA441BC67CDC001B0805 /* CCHMapTreeUtils.m */; };
 		E8D7BA521BC67CDC001B0805 /* CCHMapViewDelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA461BC67CDC001B0805 /* CCHMapViewDelegateProxy.m */; };
 		E8D7BA531BC67CDC001B0805 /* CCHNearCenterMapClusterer.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D7BA481BC67CDC001B0805 /* CCHNearCenterMapClusterer.m */; };
-		E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */; };
+		E8DA95CC1B4261B1003E46A4 /* GroupsTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CB1B4261B1003E46A4 /* GroupsTemplateViewController.m */; };
 		E8DA95CF1B426B71003E46A4 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DA95CE1B426B71003E46A4 /* FilesViewController.m */; };
 		E8DD39531C40AFB500407705 /* MapAppleCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E8DD39521C40AFB500407705 /* MapAppleCache.m */; };
 		E8E2F5571D02C4C8009170E3 /* LocalMenuItems.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E2F5561D02C4C8009170E3 /* LocalMenuItems.m */; };
@@ -774,6 +776,10 @@
 		E82302551DCD8B3C0032C5C6 /* GCDataObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDataObjects.m; sourceTree = "<group>"; };
 		E82341771EEBC9EC00D2CDFD /* dbLogMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbLogMacro.h; sourceTree = "<group>"; };
 		E82341781EEBC9EC00D2CDFD /* dbLogMacro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbLogMacro.m; sourceTree = "<group>"; };
+		E823417A1EEBEF8600D2CDFD /* GroupsUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsUserViewController.h; sourceTree = "<group>"; };
+		E823417B1EEBEF8600D2CDFD /* GroupsUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsUserViewController.m; sourceTree = "<group>"; };
+		E823417D1EEBEF9900D2CDFD /* GroupsSystemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsSystemViewController.h; sourceTree = "<group>"; };
+		E823417E1EEBEF9900D2CDFD /* GroupsSystemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsSystemViewController.m; sourceTree = "<group>"; };
 		E8257F271EE41B8A0089C106 /* log - disabled - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - disabled - 30x30.png"; path = "images/logs/log - disabled - 30x30.png"; sourceTree = "<group>"; };
 		E825A2F41E39FDF4004D9538 /* MapWaypointInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapWaypointInfoView.h; sourceTree = "<group>"; };
 		E825A2F51E39FDF4004D9538 /* MapWaypointInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapWaypointInfoView.m; sourceTree = "<group>"; };
@@ -1413,8 +1419,8 @@
 		E8D7BA461BC67CDC001B0805 /* CCHMapViewDelegateProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHMapViewDelegateProxy.m; path = CCHMapClusterController/CCHMapViewDelegateProxy.m; sourceTree = "<group>"; };
 		E8D7BA471BC67CDC001B0805 /* CCHNearCenterMapClusterer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHNearCenterMapClusterer.h; path = CCHMapClusterController/CCHNearCenterMapClusterer.h; sourceTree = "<group>"; };
 		E8D7BA481BC67CDC001B0805 /* CCHNearCenterMapClusterer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHNearCenterMapClusterer.m; path = CCHMapClusterController/CCHNearCenterMapClusterer.m; sourceTree = "<group>"; };
-		E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
-		E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
+		E8DA95CA1B4261B1003E46A4 /* GroupsTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsTemplateViewController.h; sourceTree = "<group>"; };
+		E8DA95CB1B4261B1003E46A4 /* GroupsTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsTemplateViewController.m; sourceTree = "<group>"; };
 		E8DA95CD1B426B71003E46A4 /* FilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesViewController.h; sourceTree = "<group>"; };
 		E8DA95CE1B426B71003E46A4 /* FilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewController.m; sourceTree = "<group>"; };
 		E8DD39511C40AFB500407705 /* MapAppleCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAppleCache.h; sourceTree = "<group>"; };
@@ -1999,8 +2005,12 @@
 		E857078A1CA1E67200467CE0 /* Groups */ = {
 			isa = PBXGroup;
 			children = (
-				E8DA95CA1B4261B1003E46A4 /* GroupsViewController.h */,
-				E8DA95CB1B4261B1003E46A4 /* GroupsViewController.m */,
+				E8DA95CA1B4261B1003E46A4 /* GroupsTemplateViewController.h */,
+				E8DA95CB1B4261B1003E46A4 /* GroupsTemplateViewController.m */,
+				E823417A1EEBEF8600D2CDFD /* GroupsUserViewController.h */,
+				E823417B1EEBEF8600D2CDFD /* GroupsUserViewController.m */,
+				E823417D1EEBEF9900D2CDFD /* GroupsSystemViewController.h */,
+				E823417E1EEBEF9900D2CDFD /* GroupsSystemViewController.m */,
 			);
 			name = Groups;
 			sourceTree = "<group>";
@@ -3928,11 +3938,13 @@
 				E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */,
 				E8371D511D10202B00C2F174 /* THLabel.m in Sources */,
 				E82840F51B510AE10055EE59 /* dbContainer.m in Sources */,
+				E823417C1EEBEF8600D2CDFD /* GroupsUserViewController.m in Sources */,
 				E8FD96BD1EC867BC00AFA7FA /* NVHFile.m in Sources */,
 				E8AA149A1ED30A1E0023000A /* dbListData.m in Sources */,
 				E85F2DB01EEB7E94006E464D /* SettingsLogTemplatesViewController.m in Sources */,
 				E8E88D921BF06D9500E90F8D /* LocationManager.m in Sources */,
 				E8A4BEF21BD4B91000BCA5A5 /* KeepTrackCar.m in Sources */,
+				E823417F1EEBEF9900D2CDFD /* GroupsSystemViewController.m in Sources */,
 				E8D7BA4E1BC67CDC001B0805 /* CCHMapClusterControllerUtils.m in Sources */,
 				E8E8D02F1B67210800CC741A /* FilterCategoryTableViewCell.m in Sources */,
 				E8D569F71B54A108001A0F8E /* ActionSheetDatePicker.m in Sources */,
@@ -4106,7 +4118,7 @@
 				E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */,
 				E895801B1C643AD500282177 /* ProtocolTemplate.m in Sources */,
 				E89051701C8A46D800220986 /* dbExternalMap.m in Sources */,
-				E8DA95CC1B4261B1003E46A4 /* GroupsViewController.m in Sources */,
+				E8DA95CC1B4261B1003E46A4 /* GroupsTemplateViewController.m in Sources */,
 				E8D569FA1B54A108001A0F8E /* ActionSheetStringPicker.m in Sources */,
 				E8F570A41B3F7F6A003F020C /* mztools.c in Sources */,
 				E8575FFC1B8466D900F34483 /* YISSTextView.m in Sources */,

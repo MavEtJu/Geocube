@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GroupsViewController : GCTableViewController
-
-- (instancetype)init:(BOOL)showUsers;
+@interface GroupsSystemViewController : GroupsTemplateViewController
 
 @end

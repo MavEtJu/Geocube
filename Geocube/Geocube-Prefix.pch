@@ -264,7 +264,10 @@
 #import "WaypointsListViewController.h"
 #import "NoticesViewController.h"
 #import "CompassViewController.h"
-#import "GroupsViewController.h"
+
+#import "GroupsTemplateViewController.h"
+#import "GroupsUserViewController.h"
+#import "GroupsSystemViewController.h"
 
 #import "StatisticsTableViewCell.h"
 #import "StatisticsViewController.h"
