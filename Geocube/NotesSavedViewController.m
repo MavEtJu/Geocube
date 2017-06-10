@@ -35,6 +35,8 @@
 enum {
     menuDelete = 0,
     menuSubmit,
+    menuDeleteAll,
+    menuSubmitAll,
     menuMax,
 };
 
@@ -45,8 +47,11 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuDelete label:@"Remove"];
     [lmi addItem:menuSubmit label:@"Submit"];
+    [lmi addItem:menuDeleteAll label:@"Remove all"];
+    [lmi addItem:menuSubmitAll label:@"Submit all"];
     [lmi disableItem:menuDelete];
     [lmi disableItem:menuSubmit];
+    [lmi disableItem:menuSubmitAll];
 
     selected = nil;
 
@@ -153,7 +158,6 @@ enum {
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     UITableViewRowAction *remove =
         [UITableViewRowAction
             rowActionWithStyle:UITableViewRowActionStyleDefault
@@ -185,6 +189,17 @@ enum {
 
 #pragma mark - Local menu related functions
 
+- (void)menuDeleteAll
+{
+    [waypointsWithLogs enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
+        [[dbLog dbAllByWaypointUnsubmitted:wp._id] enumerateObjectsUsingBlock:^(dbLog * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
+            [log dbDelete];
+        }];
+    }];
+    [self reloadLogs];
+    [self reloadDataMainQueue];
+}
+
 - (void)menuDelete
 {
     if (selected != nil)
@@ -198,6 +213,17 @@ enum {
 
     l.needstobelogged = NO;
     [l dbUpdate];
+    [self reloadLogs];
+    [self reloadDataMainQueue];
+}
+
+- (void)menuSubmitAll
+{
+    [waypointsWithLogs enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
+        [[dbLog dbAllByWaypointUnsubmitted:wp._id] enumerateObjectsUsingBlock:^(dbLog * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
+            // Something
+        }];
+    }];
     [self reloadLogs];
     [self reloadDataMainQueue];
 }
@@ -235,6 +261,12 @@ enum {
             return;
         case menuSubmit:
             [self menuSubmit];
+            return;
+        case menuDeleteAll:
+            [self menuDeleteAll];
+            return;
+        case menuSubmitAll:
+            [self menuSubmitAll];
             return;
     }
 
