@@ -66,15 +66,14 @@
     return s;
 }
 
-+ (NSId)dbCreate:(dbLogTemplate *)lt
++ (NSId)dbCreate:(NSString *)name
 {
     NSId _id;
 
     @synchronized(db) {
-        DB_PREPARE(@"insert into log_templates(name, text) values(?, ?)");
+        DB_PREPARE(@"insert into log_templates(name) values(?)");
 
-        SET_VAR_TEXT(1, lt.name);
-        SET_VAR_TEXT(2, lt.text);
+        SET_VAR_TEXT(1, name);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
