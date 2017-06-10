@@ -41,6 +41,10 @@ echo "Copyright:"
 grep -c "2015, 2016, 2017" $(ls -1 *.m | grep -v PSPDFUIKitMainThreadGuard.m) | sed -e 's/:/ /' | grep -v " 1$"
 
 echo
+echo "Tabs:"
+grep -n "[	]$" *.m *.h
+
+echo
 echo "Spaces at the end:"
 grep -n "[	 ]$" *.m *.h
 

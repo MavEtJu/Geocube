@@ -720,7 +720,7 @@
 - (NSString *)translateURLType:(dbExternalMapURL *)url
 {
     /*
-     *	Types:
+     * Types:
      * 0: Handled internally.
      * 1: Do not provide any coordinates.
      * 2: Do provide coordinates for current location.

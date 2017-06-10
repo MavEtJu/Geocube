@@ -27,11 +27,11 @@ AudioFeedback *audioFeedback;
 /* Obtained from http://www.cocoawithlove.com/2010/10/ios-tone-generator-introduction-to.html */
 OSStatus RenderTone(
                     void *inRefCon,
-                    AudioUnitRenderActionFlags 	*ioActionFlags,
-                    const AudioTimeStamp 		*inTimeStamp,
-                    UInt32 						inBusNumber,
-                    UInt32 						inNumberFrames,
-                    AudioBufferList 			*ioData)
+                    AudioUnitRenderActionFlags *ioActionFlags,
+                    const AudioTimeStamp       *inTimeStamp,
+                    UInt32                      inBusNumber,
+                    UInt32                      inNumberFrames,
+                    AudioBufferList            *ioData)
 
 {
     // Fixed amplitude is good enough for our purposes

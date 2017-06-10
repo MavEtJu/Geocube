@@ -118,7 +118,7 @@ enum {
         [dbTrackElement dbDeleteByTrack:t._id];
         [t dbDelete];
         [tracks removeObjectAtIndex:indexPath.row];
-		[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     }
 }
 
