@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@interface KeyManager ()
+
+@end
+
 @implementation KeyManager
 
 - (instancetype)init
@@ -29,7 +33,7 @@
     NSDictionary *contentDict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
 
     self.gca_api = [contentDict objectForKey:@"gca-api"];
-    self.googlemaps = [contentDict objectForKey:@"gms"];
+    self.googlemaps = [contentDict objectForKey:@"googlemaps"];
     self.mapbox = [contentDict objectForKey:@"mapbox"];
     self.sharedsecret = [contentDict objectForKey:@"sharedsecret"];
 
