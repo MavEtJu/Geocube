@@ -110,6 +110,7 @@
 #import "LocalMenuItems.h"
 #import "ImageLibrary.h"
 #import "ImagesDownloadManager.h"
+#import "KeyManager.h"
 #import "ConfigManager.h"
 #import "AudioFeedback.h"
 #import "WaypointSorter.h"

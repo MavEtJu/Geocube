@@ -32,10 +32,6 @@
 @property (nonatomic) NSInteger lastImportGroup;
 @property (nonatomic) NSInteger lastAddedGroup;
 
-@property (nonatomic) NSString *keyGMS;
-@property (nonatomic) NSString *keyMapbox;
-@property (nonatomic) NSString *keyGCAAPI;
-
 // User settings
 @property (nonatomic) BOOL distanceMetric;
 @property (nonatomic) BOOL sendTweets;
@@ -119,10 +115,6 @@
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown
 // UIInterfaceOrientationMaskLandscapeLeft, UIInterfaceOrientationMaskLandscapeRight
 @property (nonatomic) NSInteger orientationsAllowed;
-
-- (void)keyGMSUpdate:(NSString *)value;
-- (void)keyMapboxUpdate:(NSString *)value;
-- (void)keyGCAAPIUpdate:(NSString *)value;
 
 - (void)distanceMetricUpdate:(BOOL)value;
 - (void)sendTweetsUpdate:(BOOL)value;

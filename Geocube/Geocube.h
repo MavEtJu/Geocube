@@ -65,6 +65,9 @@ extern MapTrackViewController *keepTrackMapViewController;
 extern DownloadManager *downloadManager;
 extern ImportManager *importManager;
 
+// Keymanager
+extern KeyManager *keyManager;
+
 //
 extern AppDelegate *_AppDelegate;
 

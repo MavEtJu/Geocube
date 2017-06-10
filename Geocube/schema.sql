@@ -12,13 +12,12 @@ insert into config(key, value) values("url_externalmaps", "https://geocube.mavet
 insert into config(key, value) values("url_countries", "https://geocube.mavetju.org/geocube_countries.3.geocube");
 insert into config(key, value) values("url_states", "https://geocube.mavetju.org/geocube_states.3.geocube");
 insert into config(key, value) values("url_attributes", "https://geocube.mavetju.org/geocube_attributes.3.geocube");
-insert into config(key, value) values("url_keys", "https://geocube.mavetju.org/geocube_keys.3.geocube");
 insert into config(key, value) values("url_types", "https://geocube.mavetju.org/geocube_types.3.geocube");
 insert into config(key, value) values("url_pins", "https://geocube.mavetju.org/geocube_pins.3.geocube");
 insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.org/geocube_bookmarks.3.geocube");
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.3.geocube");
 insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.3.geocube");
-insert into config(key, value) values("version", "44");
+insert into config(key, value) values("version", "45");
 
 create table filters (
     id integer primary key,

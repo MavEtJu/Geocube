@@ -62,6 +62,9 @@ MapTrackViewController *keepTrackMapViewController = nil;
 DownloadManager *downloadManager = nil;
 ImportManager *importManager = nil;
 
+// Keymanager
+KeyManager *keyManager = nil;
+
 //
 AppDelegate *_AppDelegate;
 

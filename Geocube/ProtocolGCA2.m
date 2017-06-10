@@ -38,7 +38,7 @@
 
     prefix = @"http://geocaching.com.au/api/services";
     hostpart = @"http://geocaching.com.au";
-    key = configManager.keyGCAAPI;
+    key = keyManager.gca_api;
 
     remoteAPI = _remoteAPI;
     if (remoteAPI.account.gca_cookie_value != nil) {
@@ -248,7 +248,7 @@
 - (NSString *)prepareURLString:(NSString *)suffix params:(NSDictionary *)params
 {
     if (key == nil || [key isEqualToString:@""] == YES)
-        key = configManager.keyGCAAPI;
+        key = keyManager.gca_api;
     NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@?consumer_key=%@", prefix, suffix, key];
     if (params != nil && [params count] != 0) {
         NSString *ps = [MyTools urlParameterJoin:params];
@@ -348,7 +348,7 @@
 
     NSMutableString *ps = [NSMutableString stringWithFormat:@""];
     if (key == nil || [key isEqualToString:@""] == YES)
-        key = configManager.keyGCAAPI;
+        key = keyManager.gca_api;
     [ps appendFormat:@"consumer_key=%@", [MyTools urlEncode:key]];
     [ps appendFormat:@"&cache_code=%@", [MyTools urlEncode:wp.wpt_name]];
     [ps appendFormat:@"&logtype=%@", [MyTools urlEncode:logtype]];
@@ -381,7 +381,7 @@
 
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:20];
     if (key == nil || [key isEqualToString:@""] == YES)
-        key = configManager.keyGCAAPI;
+        key = keyManager.gca_api;
     [params setObject:key forKey:@"consumer_key"];
     [params setObject:logid forKey:@"log_uuid"];
     [params setObject:imageCaption forKey:@"caption"];

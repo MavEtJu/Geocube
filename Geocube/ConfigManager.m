@@ -62,10 +62,6 @@
     CHECK(@"lastadded_group", @"0");
     CHECK(@"lastimport_source", @"0");
 
-    CHECK(@"key_gms", @"");
-    CHECK(@"key_mapbox", @"");
-    CHECK(@"key_gca-api", @"");
-
     CHECK(@"map_external", @"1");
     CHECK(@"map_branddefault", @"apple");
     CHECK(@"map_track_colour", @"00F0F0");
@@ -182,9 +178,6 @@
     self.mapcacheEnable = [[dbConfig dbGetByKey:@"mapcache_enable"].value boolValue];
     self.mapcacheMaxAge = [[dbConfig dbGetByKey:@"mapcache_maxage"].value integerValue];
     self.mapcacheMaxSize = [[dbConfig dbGetByKey:@"mapcache_maxsize"].value integerValue];
-    self.keyGMS = [dbConfig dbGetByKey:@"key_gms"].value;
-    self.keyMapbox = [dbConfig dbGetByKey:@"key_mapbox"].value;
-    self.keyGCAAPI = [dbConfig dbGetByKey:@"key_gca-api"].value;
     self.downloadImagesLogs = [[dbConfig dbGetByKey:@"download_images_logs"].value boolValue];
     self.downloadImagesWaypoints = [[dbConfig dbGetByKey:@"download_images_waypoints"].value boolValue];
     self.downloadImagesMobile = [[dbConfig dbGetByKey:@"download_images_mobile"].value boolValue];
@@ -465,22 +458,6 @@
 {
     self.mapcacheMaxAge = value;
     [self NSIntegerUpdate:@"mapcache_maxage" value:value];
-}
-
-- (void)keyGMSUpdate:(NSString *)value
-{
-    self.keyGMS = value;
-    [self NSStringUpdate:@"key_gms" value:value];
-}
-- (void)keyMapboxUpdate:(NSString *)value
-{
-    self.keyMapbox = value;
-    [self NSStringUpdate:@"key_mapbox" value:value];
-}
-- (void)keyGCAAPIUpdate:(NSString *)value
-{
-    self.keyGCAAPI = value;
-    [self NSStringUpdate:@"key_gca-api" value:value];
 }
 
 - (void)downloadImagesLogsUpdate:(BOOL)value

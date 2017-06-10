@@ -56,8 +56,6 @@
         xmlDictionary = d;
     if ((d = [xmlDictionary objectForKey:@"sites"]) != nil)
         okay &= [self parseSites:d];
-    if ((d = [xmlDictionary objectForKey:@"keys"]) != nil)
-        okay &= [self parseKeys:d];
     if ((d = [xmlDictionary objectForKey:@"externalmaps"]) != nil)
         okay &= [self parseExternalMaps:d];
     if ((d = [xmlDictionary objectForKey:@"attributes"]) != nil)
@@ -228,30 +226,6 @@
             a.distance_minimum = [distance integerValue];
             [a dbUpdate];
         }
-    }];
-
-    return YES;
-}
-
-- (BOOL)parseKeys:(NSDictionary *)dict
-{
-    if ([self checkVersion:dict version:KEY_VERSION_KEYS revisionKey:KEY_REVISION_KEYS] == NO)
-        return NO;
-
-    NSArray<NSDictionary *> *keys = [dict objectForKey:@"key"];
-    [infoViewer setLineObjectTotal:iiImport total:[keys count] isLines:NO];
-    [keys enumerateObjectsUsingBlock:^(NSDictionary *key, NSUInteger idx, BOOL * _Nonnull stop) {
-        [infoViewer setLineObjectCount:iiImport count:idx + 1];
-        NSString *site = [key objectForKey:@"site"];
-        NSString *text = [key objectForKey:@"text"];
-        text = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
-        if ([site isEqualToString:@"googlemaps"] == YES)
-            [configManager keyGMSUpdate:text];
-        if ([site isEqualToString:@"mapbox"] == YES)
-            [configManager keyMapboxUpdate:text];
-        if ([site isEqualToString:@"gca-api"] == YES)
-            [configManager keyGCAAPIUpdate:text];
     }];
 
     return YES;

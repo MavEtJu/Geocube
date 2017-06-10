@@ -83,7 +83,7 @@
 
     // Disable GoogleMaps if there is no key
     hasGMS = YES;
-    if (configManager.keyGMS == nil || [configManager.keyGMS isEqualToString:@""] == YES)
+    if (keyManager.googlemaps == nil || [keyManager.googlemaps isEqualToString:@""] == YES)
         hasGMS = NO;
     if ([self.currentMapBrand.key isEqualToString:MAPBRAND_GOOGLEMAPS] == YES && hasGMS == NO)
         self.currentMapBrand = [mapBrands objectForKey:@"applemaps"];
@@ -139,7 +139,7 @@
     else
         [lmi disableItem:MVCmenuUseGPS];
 
-    if (configManager.keyGMS == nil || [configManager.keyGMS isEqualToString:@""] == YES)
+    if (keyManager.googlemaps == nil || [keyManager.googlemaps isEqualToString:@""] == YES)
         [lmi disableItem:MVCmenuBrandGoogle];
 
     self.waypointsArray = nil;
@@ -190,10 +190,10 @@
 
     // Appear GoogleMaps if it came back
     if (hasGMS == NO) {
-        if (configManager.keyGMS != nil && [configManager.keyGMS isEqualToString:@""] == NO) {
+        if (keyManager.googlemaps != nil && [keyManager.googlemaps isEqualToString:@""] == NO) {
             hasGMS = YES;
             [lmi enableItem:MVCmenuBrandGoogle];
-            [GMSServices provideAPIKey:configManager.keyGMS];
+            [GMSServices provideAPIKey:keyManager.googlemaps];
         }
     }
 
@@ -642,7 +642,7 @@
         [lmi enableItem:MVCmenuMapTerrain];
 
     // Just check if we can do this...
-    if (configManager.keyGMS == nil || [configManager.keyGMS isEqualToString:@""] == YES)
+    if (keyManager.googlemaps == nil || [keyManager.googlemaps isEqualToString:@""] == YES)
         [lmi disableItem:MVCmenuBrandGoogle];
 
     [self.map initMap];

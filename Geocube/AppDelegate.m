@@ -37,6 +37,9 @@
     // File manager
     fileManager = [[NSFileManager alloc] init];
 
+    // File manager
+    keyManager = [[KeyManager alloc] init];
+
     /* Create files directory */
     [fileManager createDirectoryAtPath:[MyTools FilesDir] withIntermediateDirectories:NO attributes:nil error:nil];
 
@@ -76,8 +79,8 @@
     LM = [[LocationManager alloc] init];
     [LM startDelegation:nil isNavigating:NO];
 
-    // Initialize Google Maps -- after db, configurationManager
-    [GMSServices provideAPIKey:configManager.keyGMS];
+    // Initialize Google Maps -- after keyManager
+    [GMSServices provideAPIKey:keyManager.googlemaps];
 
     // Clean the map cache - after configurationManager
     [MapAppleCache cleanupCache];

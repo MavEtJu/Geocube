@@ -118,6 +118,7 @@
 @class KeepTrackCar;
 @class KeepTrackTracks;
 @class KeepTracksTrackTableViewCell;
+@class KeyManager;
 @class KeyboardCoordinateView;
 @class ListDNFViewController;
 @class ListFoundViewController;

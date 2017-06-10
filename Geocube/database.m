@@ -579,6 +579,16 @@
     @"create index log_macros_idx on log_macros(id)",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 45
+    a = @[
+    @"delete from config where key = 'url_keys'",
+    @"delete from config where key = 'key_gms'",
+    @"delete from config where key = 'key_mapbox'",
+    @"delete from config where key = 'key_gca-api'",
+    ];
+    [upgradeSteps addObject:a];
+
 }
 
 - (void)singleStatement:(NSString *)sql
