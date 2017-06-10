@@ -1,4 +1,5 @@
 Geocube/files/*.zip
 Geocube/files/*.gpx
 Geocube/files/licenses.txt
+Geocube/EncryptionKeys.plist
 Pods

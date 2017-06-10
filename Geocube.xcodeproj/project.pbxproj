@@ -51,6 +51,7 @@
 		E823417C1EEBEF8600D2CDFD /* GroupsUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E823417B1EEBEF8600D2CDFD /* GroupsUserViewController.m */; };
 		E823417F1EEBEF9900D2CDFD /* GroupsSystemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E823417E1EEBEF9900D2CDFD /* GroupsSystemViewController.m */; };
 		E82341851EEC034C00D2CDFD /* NotesSavedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341841EEC034C00D2CDFD /* NotesSavedViewController.m */; };
+		E82341871EECA19300D2CDFD /* EncryptionKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E82341861EECA19300D2CDFD /* EncryptionKeys.plist */; };
 		E8257F281EE41B8A0089C106 /* log - disabled - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8257F271EE41B8A0089C106 /* log - disabled - 30x30.png */; };
 		E825A2F71E39FDF4004D9538 /* MapWaypointInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E825A2F51E39FDF4004D9538 /* MapWaypointInfoView.m */; };
 		E825A2F81E39FDF4004D9538 /* MapWaypointInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E825A2F61E39FDF4004D9538 /* MapWaypointInfoView.xib */; };
@@ -783,6 +784,7 @@
 		E823417E1EEBEF9900D2CDFD /* GroupsSystemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsSystemViewController.m; sourceTree = "<group>"; };
 		E82341831EEC034C00D2CDFD /* NotesSavedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesSavedViewController.h; sourceTree = "<group>"; };
 		E82341841EEC034C00D2CDFD /* NotesSavedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesSavedViewController.m; sourceTree = "<group>"; };
+		E82341861EECA19300D2CDFD /* EncryptionKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EncryptionKeys.plist; sourceTree = "<group>"; };
 		E8257F271EE41B8A0089C106 /* log - disabled - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - disabled - 30x30.png"; path = "images/logs/log - disabled - 30x30.png"; sourceTree = "<group>"; };
 		E825A2F41E39FDF4004D9538 /* MapWaypointInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapWaypointInfoView.h; sourceTree = "<group>"; };
 		E825A2F51E39FDF4004D9538 /* MapWaypointInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapWaypointInfoView.m; sourceTree = "<group>"; };
@@ -3004,6 +3006,7 @@
 		E8F570561B3F7255003F020C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E82341861EECA19300D2CDFD /* EncryptionKeys.plist */,
 				E879F9CB1B7B527200220EA7 /* Geocube.entitlements */,
 				E8F570571B3F7255003F020C /* Info.plist */,
 				E8F570B71B3FF4AA003F020C /* Settings.bundle */,
@@ -3533,6 +3536,7 @@
 				E82E66251DA07A5500CFBDED /* menu icon - see target.png in Resources */,
 				E8C8C8AF1EE11F3400E2438D /* WaypointLogsTableViewCell~ipad.xib in Resources */,
 				E82E661A1DA07A5500CFBDED /* menu icon - close@2x.png in Resources */,
+				E82341871EECA19300D2CDFD /* EncryptionKeys.plist in Resources */,
 				E82E66B71DA07CBE00CFBDED /* cache - benchmark - 30x30.png in Resources */,
 				E8FEDE821DA7AD67007C756B /* map - cross dnf - 9x9@2x.png in Resources */,
 				E82E673F1DA07D0200CFBDED /* attributes - 21.png in Resources */,
