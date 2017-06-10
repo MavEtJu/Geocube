@@ -29,6 +29,7 @@
 @interface WaypointLogViewController : GCTableViewController <WaypointLogEditDelegate, WaypointLogImagesDelegate, WaypointLogTrackablesDelegate>
 
 - (instancetype)init:(dbWaypoint *)waypoint;
+- (void)importLog:(dbLog *)log;
 
 @property (nonatomic, retain) id<WaypointLogDelegate> delegateWaypoint;
 

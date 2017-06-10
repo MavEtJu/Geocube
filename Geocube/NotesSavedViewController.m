@@ -23,6 +23,7 @@
 {
     NSArray<dbWaypoint *> *waypointsWithLogs;
     NSMutableArray<dbLog *> *logs;
+    NSIndexPath *selected;
 }
 
 @end
@@ -31,16 +32,33 @@
 
 #define THISCELL @"NotesSavedTableViewCell"
 
+enum {
+    menuDelete = 0,
+    menuSubmit,
+    menuMax,
+};
+
+- (instancetype)init
+{
+    self = [super init];
+
+    lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuDelete label:@"Remove"];
+    [lmi addItem:menuSubmit label:@"Submit"];
+    [lmi disableItem:menuDelete];
+    [lmi disableItem:menuSubmit];
+
+    selected = nil;
+
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [self.tableView registerNib:[UINib nibWithNibName:XIB_LOGTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:THISCELL];
-
-    lmi = nil;
-
-    waypointsWithLogs = [dbWaypoint waypointsWithLogsUnsubmitted];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -58,8 +76,17 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    waypointsWithLogs = [dbWaypoint waypointsWithLogsUnsubmitted];
+    [self reloadLogs];
     [self.tableView reloadData];
+
+    selected = nil;
+    [lmi disableItem:menuDelete];
+    [lmi disableItem:menuSubmit];
+}
+
+- (void)reloadLogs
+{
+    waypointsWithLogs = [dbWaypoint waypointsWithLogsUnsubmitted];
 }
 
 #pragma mark - TableViewController related functions
@@ -97,6 +124,121 @@
     [logs addObject:l];
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    selected = indexPath;
+
+    dbWaypoint *wp = [waypointsWithLogs objectAtIndex:indexPath.section];
+    if (wp.account.remoteAPI.supportsLogging == YES &&
+        wp.account.canDoRemoteStuff == YES)
+        [lmi enableItem:menuSubmit];
+
+    [lmi enableItem:menuDelete];
+}
+
+- (void)tableView:(UITableView *)aTableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    selected = nil;
+    [lmi disableItem:menuDelete];
+    [lmi disableItem:menuSubmit];
+}
+
+
+- (BOOL)tableView:(UITableView *)aTableView canEditRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    UITableViewRowAction *remove =
+        [UITableViewRowAction
+            rowActionWithStyle:UITableViewRowActionStyleDefault
+            title:@"Remove"
+            handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+                [self menuDelete:indexPath];
+            }
+         ];
+    remove.backgroundColor = [UIColor redColor];
+
+    UITableViewRowAction *submit =
+        [UITableViewRowAction
+            rowActionWithStyle:UITableViewRowActionStyleDefault
+            title:@"Submit"
+            handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+                [self menuDelete:indexPath];
+            }
+         ];
+    submit.backgroundColor = [UIColor greenColor];
+
+    dbWaypoint *wp = [waypointsWithLogs objectAtIndex:indexPath.section];
+    if (wp.account.remoteAPI.supportsLogging == YES &&
+        wp.account.canDoRemoteStuff == YES) {
+        return @[submit, remove];
+    } else {
+        return @[remove];
+    }
+}
+
+#pragma mark - Local menu related functions
+
+- (void)menuDelete
+{
+    if (selected != nil)
+        [self menuDelete:selected];
+}
+
+- (void)menuDelete:(NSIndexPath *)indexPath
+{
+    dbWaypoint *wp = [waypointsWithLogs objectAtIndex:indexPath.section];
+    dbLog *l = [[dbLog dbAllByWaypointUnsubmitted:wp._id] objectAtIndex:indexPath.row];
+
+    l.needstobelogged = NO;
+    [l dbUpdate];
+    [self reloadLogs];
+    [self reloadDataMainQueue];
+}
+
+- (void)menuSubmit
+{
+    if (selected != nil)
+        [self menuSubmit:selected];
+}
+
+- (void)menuSubmit:(NSIndexPath *)indexPath
+{
+    dbWaypoint *wp = [waypointsWithLogs objectAtIndex:indexPath.section];
+    dbLog *l = [[dbLog dbAllByWaypointUnsubmitted:wp._id] objectAtIndex:indexPath.row];
+
+    WaypointViewController *wpvc = [[WaypointViewController alloc] init];
+    wpvc.hasCloseButton = YES;
+    [wpvc showWaypoint:wp];
+    wpvc.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.navigationController pushViewController:wpvc animated:YES];
+
+    WaypointLogViewController *lvc = [[WaypointLogViewController alloc] init:wp];
+    lvc.edgesForExtendedLayout = UIRectEdgeNone;
+    lvc.delegateWaypoint = wpvc;
+    [lvc importLog:l];
+    [self.navigationController pushViewController:lvc animated:YES];
+}
+
+- (void)performLocalMenuAction:(NSInteger)index
+{
+    // Import a photo
+    switch (index) {
+        case menuDelete:
+            [self menuDelete];
+            return;
+        case menuSubmit:
+            [self menuSubmit];
+            return;
+    }
+
+    [super performLocalMenuAction:index];
 }
 
 @end

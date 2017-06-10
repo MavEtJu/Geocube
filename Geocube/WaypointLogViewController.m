@@ -108,6 +108,14 @@ enum {
     return self;
 }
 
+- (void)importLog:(dbLog *)log
+{
+    note = log.log;
+    date = log.datetime;
+    logstring = log.logstring;
+    [self reloadDataMainQueue];
+}
+
 - (void)viewDidLoad
 {
     self.hasCloseButton = YES;
@@ -474,6 +482,8 @@ enum {
         [as addObject:[NSString stringWithFormat:@"%ld out of %lu", (long)i, (unsigned long)r.length]];
     }
 
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_EXTRADETAILS_RATING inSection:SECTION_EXTRADETAILS]];
+
     [ActionSheetStringPicker
      showPickerWithTitle:@"Select a Rating"
      rows:as
@@ -484,7 +494,7 @@ enum {
      }
      cancelBlock:^(ActionSheetStringPicker *picker) {
      }
-     origin:self.view
+     origin:cell.contentView
      ];
 }
 
