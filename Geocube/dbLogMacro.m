@@ -19,21 +19,21 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbLogTemplate ()
+@interface dbLogMacro ()
 
 @end
 
-@implementation dbLogTemplate
+@implementation dbLogMacro
 
-+ (NSArray<dbLogTemplate *> *)dbAll
++ (NSArray<dbLogMacro *> *)dbAll
 {
-    NSMutableArray<dbLogTemplate *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbLogMacro *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
-        DB_PREPARE(@"select id, name, text from log_templates order by name");
+        DB_PREPARE(@"select id, name, text from log_macros order by name");
 
         DB_WHILE_STEP {
-            dbLogTemplate *s = [[dbLogTemplate alloc] init];
+            dbLogMacro *s = [[dbLogMacro alloc] init];
             INT_FETCH (0, s._id);
             TEXT_FETCH(1, s.name);
             TEXT_FETCH(2, s.text);
@@ -45,17 +45,17 @@
     return ss;
 }
 
-+ (dbLogTemplate *)dbGet:(NSId)_id
++ (dbLogMacro *)dbGet:(NSId)_id
 {
-    dbLogTemplate *s;
+    dbLogMacro *s;
 
     @synchronized(db) {
-        DB_PREPARE(@"select id, name, code, account_id from log_templates where id = ?");
+        DB_PREPARE(@"select id, name, text from log_macros where id = ?");
 
         SET_VAR_INT(1, _id);
 
         DB_IF_STEP {
-            s = [[dbLogTemplate alloc] init];
+            s = [[dbLogMacro alloc] init];
             INT_FETCH (0, s._id);
             TEXT_FETCH(1, s.name);
             TEXT_FETCH(2, s.text);
@@ -66,14 +66,15 @@
     return s;
 }
 
-+ (NSId)dbCreate:(NSString *)name
++ (NSId)dbCreate:(NSString *)name text:(NSString *)text
 {
     NSId _id;
 
     @synchronized(db) {
-        DB_PREPARE(@"insert into log_templates(name) values(?)");
+        DB_PREPARE(@"insert into log_macros(name, text) values(?, ?)");
 
         SET_VAR_TEXT(1, name);
+        SET_VAR_TEXT(2, text);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -86,7 +87,7 @@
 - (void)dbUpdate
 {
     @synchronized(db) {
-        DB_PREPARE(@"update log_templates set name = ?, text = ? where id = ?");
+        DB_PREPARE(@"update log_macros set name = ?, text = ? where id = ?");
 
         SET_VAR_TEXT(1, self.name);
         SET_VAR_TEXT(2, self.text);
@@ -100,7 +101,7 @@
 - (void)dbDelete
 {
     @synchronized(db) {
-        DB_PREPARE(@"delete from log_templates where id = ?");
+        DB_PREPARE(@"delete from log_macros where id = ?");
 
         SET_VAR_INT(1, self._id);
 
@@ -111,7 +112,7 @@
 
 - (NSInteger)dbCount
 {
-    return [dbLogTemplate dbCount:@"log_templates"];
+    return [dbLogTemplate dbCount:@"log_macros"];
 }
 
 @end

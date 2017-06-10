@@ -47,6 +47,7 @@
 		E823024E1DCD54520032C5C6 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E823024D1DCD54520032C5C6 /* libxml2.tbd */; };
 		E82302511DCD6C5C0032C5C6 /* QueriesGGCWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82302501DCD6C5C0032C5C6 /* QueriesGGCWViewController.m */; };
 		E82302561DCD8B3C0032C5C6 /* GCDataObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E82302551DCD8B3C0032C5C6 /* GCDataObjects.m */; };
+		E82341791EEBC9EC00D2CDFD /* dbLogMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341781EEBC9EC00D2CDFD /* dbLogMacro.m */; };
 		E8257F281EE41B8A0089C106 /* log - disabled - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8257F271EE41B8A0089C106 /* log - disabled - 30x30.png */; };
 		E825A2F71E39FDF4004D9538 /* MapWaypointInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E825A2F51E39FDF4004D9538 /* MapWaypointInfoView.m */; };
 		E825A2F81E39FDF4004D9538 /* MapWaypointInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E825A2F61E39FDF4004D9538 /* MapWaypointInfoView.xib */; };
@@ -771,6 +772,8 @@
 		E82302501DCD6C5C0032C5C6 /* QueriesGGCWViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueriesGGCWViewController.m; sourceTree = "<group>"; };
 		E82302541DCD8B3C0032C5C6 /* GCDataObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDataObjects.h; sourceTree = "<group>"; };
 		E82302551DCD8B3C0032C5C6 /* GCDataObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDataObjects.m; sourceTree = "<group>"; };
+		E82341771EEBC9EC00D2CDFD /* dbLogMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbLogMacro.h; sourceTree = "<group>"; };
+		E82341781EEBC9EC00D2CDFD /* dbLogMacro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbLogMacro.m; sourceTree = "<group>"; };
 		E8257F271EE41B8A0089C106 /* log - disabled - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - disabled - 30x30.png"; path = "images/logs/log - disabled - 30x30.png"; sourceTree = "<group>"; };
 		E825A2F41E39FDF4004D9538 /* MapWaypointInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapWaypointInfoView.h; sourceTree = "<group>"; };
 		E825A2F51E39FDF4004D9538 /* MapWaypointInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapWaypointInfoView.m; sourceTree = "<group>"; };
@@ -3093,6 +3096,8 @@
 				E8F7FF141D6518FF00AC7EE6 /* dbLocale.m */,
 				E8740FDD1B4F87D2002527DA /* dbLog.h */,
 				E8740FDE1B4F87D2002527DA /* dbLog.m */,
+				E82341771EEBC9EC00D2CDFD /* dbLogMacro.h */,
+				E82341781EEBC9EC00D2CDFD /* dbLogMacro.m */,
 				E80250E81D17CADA00F05772 /* dbLogString.h */,
 				E80250E91D17CADA00F05772 /* dbLogString.m */,
 				E85F2DAB1EEB6833006E464D /* dbLogTemplate.h */,
@@ -3979,6 +3984,7 @@
 				E87DF7821D7EDFE000F16B5A /* SVProgressAnimatedView.m in Sources */,
 				E80732BD1B5FB4CF007FDC29 /* dbName.m in Sources */,
 				E8D569F91B54A108001A0F8E /* ActionSheetLocalePicker.m in Sources */,
+				E82341791EEBC9EC00D2CDFD /* dbLogMacro.m in Sources */,
 				E8D7BA4D1BC67CDC001B0805 /* CCHMapClusterControllerDebugPolygon.m in Sources */,
 				E857600B1B85DC7B00F34483 /* GCTableViewCellWithSubtitle.m in Sources */,
 				E8045B861B68E9D100DD44CC /* dbFilter.m in Sources */,

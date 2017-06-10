@@ -224,6 +224,7 @@
 @class dbListData;
 @class dbLocale;
 @class dbLog;
+@class dbLogMacro;
 @class dbLogString;
 @class dbLogTemplate;
 @class dbName;

@@ -569,7 +569,14 @@
     // Version 43
     a = @[
     @"create table log_templates (id integer primary key, name text, text text)",
-    @"create index log_templates_idx  on log_templates(id)",
+    @"create index log_templates_idx on log_templates(id)",
+    ];
+    [upgradeSteps addObject:a];
+
+    // Version 44
+    a = @[
+    @"create table log_macros (id integer primary key, name text, text text)",
+    @"create index log_macros_idx on log_macros(id)",
     ];
     [upgradeSteps addObject:a];
 }

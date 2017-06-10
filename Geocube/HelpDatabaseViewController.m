@@ -100,6 +100,8 @@ enum {
     [vs addObject:[[NSNumber numberWithInteger:[dbLocale dbCount]] stringValue]];
     [fs addObject:@"Logs"];
     [vs addObject:[[NSNumber numberWithInteger:[dbLog dbCount]] stringValue]];
+    [fs addObject:@"LogMacros"];
+    [vs addObject:[[NSNumber numberWithInteger:[dbLogMacro dbCount]] stringValue]];
     [fs addObject:@"LogStrings"];
     [vs addObject:[[NSNumber numberWithInteger:[dbLogString dbCount]] stringValue]];
     [fs addObject:@"LogTemplates"];

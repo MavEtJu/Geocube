@@ -81,6 +81,7 @@
 #import "dbListData.h"
 #import "dbLocale.h"
 #import "dbLog.h"
+#import "dbLogMacro.h"
 #import "dbLogString.h"
 #import "dbLogTemplate.h"
 #import "dbName.h"

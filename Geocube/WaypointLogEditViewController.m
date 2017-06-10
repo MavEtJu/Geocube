@@ -147,16 +147,27 @@ enum {
 
     REPLACE(@"waypoint.name", self.waypoint.wpt_urlname);
     REPLACE(@"waypoint.code", self.waypoint.wpt_name);
+    REPLACE(@"waypoint.owner", self.waypoint.gs_owner_str);
+    REPLACE(@"waypoint.ratingD", [NSNumber numberWithInteger:self.waypoint.gs_rating_difficulty]);
+    REPLACE(@"waypoint.ratingT", [NSNumber numberWithInteger:self.waypoint.gs_rating_terrain]);
 
     dbListData *ld = [dbListData dbGetByWaypoint:self.waypoint flag:FLAGS_MARKEDFOUND];
     REPLACE(@"waypoint.foundtime", [MyTools dateTimeString_hh_mm_ss:ld.datetime]);
     REPLACE(@"waypoint.founddate", [MyTools dateTimeString_YYYY_MM_DD:ld.datetime]);
     REPLACE(@"waypoint.founddatetime", [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:ld.datetime]);
 
+    REPLACE(@"now.foundtime", [MyTools dateTimeString_hh_mm_ss]);
+    REPLACE(@"now.founddate", [MyTools dateTimeString_YYYY_MM_DD]);
+    REPLACE(@"now.founddatetime", [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss]);
+
     REPLACE(@"cacher.name", self.waypoint.account.accountname_string);
 
     REPLACE(@"list.found", [NSNumber numberWithInteger:[[dbListData dbAllByType:FLAGS_MARKEDFOUND ascending:NO] count]]);
     REPLACE(@"list.dnf", [NSNumber numberWithInteger:[[dbListData dbAllByType:FLAGS_MARKEDDNF ascending:NO] count]]);
+
+    [[dbLogMacro dbAll] enumerateObjectsUsingBlock:^(dbLogMacro * _Nonnull macro, NSUInteger idx, BOOL * _Nonnull stop) {
+        REPLACE(macro.name, macro.text);
+    }];
 
     return s;
 }
