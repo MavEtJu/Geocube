@@ -188,6 +188,6 @@
 - (void)gpsAdjustmentLongitudeUpdate:(NSInteger)value;
 - (void)gpsAdjustmentLatitudeUpdate:(NSInteger)value;
 - (void)introSeenUpdate:(BOOL)value;
-- (void)logTemporaryTextUpdate:(SString *)value;
+- (void)logTemporaryTextUpdate:(NSString *)value;
 
 @end
