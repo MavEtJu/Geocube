@@ -150,7 +150,6 @@ enum {
     [lmi disableItem:menuSubmit];
 }
 
-
 - (BOOL)tableView:(UITableView *)aTableView canEditRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     return YES;
