@@ -138,6 +138,8 @@
     CHECK(@"gpsadjustment_longitude", @"0");
 
     CHECK(@"intro_seen", @"0");
+
+    CHECK(@"log_temporary_text", @"");
 }
 
 - (void)loadValues
@@ -209,6 +211,7 @@
     self.gpsAdjustmentLongitude = [[dbConfig dbGetByKey:@"gpsadjustment_longitude"].value integerValue];
     self.gpsAdjustmentLatitude = [[dbConfig dbGetByKey:@"gpsadjustment_latitude"].value integerValue];
     self.introSeen = [[dbConfig dbGetByKey:@"intro_seen"].value boolValue];
+    self.logTemporaryText = [dbConfig dbGetByKey:@"log_temporary_text"].value;
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -621,6 +624,12 @@
 {
     self.introSeen = value;
     [self BOOLUpdate:@"intro_seen" value:value];
+}
+
+- (void)logTemporaryTextUpdate:(NSString *)value
+{
+    self.logTemporaryText = value;
+    [self NSStringUpdate:@"log_temporary_text" value:value];
 }
 
 @end

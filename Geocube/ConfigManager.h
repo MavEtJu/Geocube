@@ -113,6 +113,8 @@
 
 @property (nonatomic) BOOL introSeen;
 
+@property (nonatomic, retain) NSString *logTemporaryText;
+
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown
 // UIInterfaceOrientationMaskLandscapeLeft, UIInterfaceOrientationMaskLandscapeRight
@@ -186,5 +188,6 @@
 - (void)gpsAdjustmentLongitudeUpdate:(NSInteger)value;
 - (void)gpsAdjustmentLatitudeUpdate:(NSInteger)value;
 - (void)introSeenUpdate:(BOOL)value;
+- (void)logTemporaryTextUpdate:(SString *)value;
 
 @end
