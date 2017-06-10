@@ -50,15 +50,23 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not submitted" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2mm-Vh-miS" customClass="GCLabel">
+                        <rect key="frame" x="278" y="8" width="74" height="12"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ay2-ff-bct" firstAttribute="top" secondItem="qNh-nK-oIr" secondAttribute="topMargin" id="31E-Nn-1oY"/>
                     <constraint firstItem="if4-uz-SEu" firstAttribute="top" secondItem="qNh-nK-oIr" secondAttribute="topMargin" id="32o-Tf-4Yr"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="2mm-Vh-miS" secondAttribute="trailing" constant="45" id="GYZ-W0-yUl"/>
                     <constraint firstItem="8Gj-nb-FRE" firstAttribute="leading" secondItem="if4-uz-SEu" secondAttribute="trailing" constant="5" id="SKI-WO-Wx9"/>
                     <constraint firstAttribute="trailing" secondItem="4Jn-02-ceg" secondAttribute="trailing" constant="45" id="Wv5-C2-qvX"/>
                     <constraint firstItem="4Jn-02-ceg" firstAttribute="top" secondItem="if4-uz-SEu" secondAttribute="bottom" id="ZJb-33-gpp"/>
                     <constraint firstItem="4Jn-02-ceg" firstAttribute="leading" secondItem="if4-uz-SEu" secondAttribute="leading" id="cjZ-bU-9ec"/>
                     <constraint firstItem="MTF-rT-2ef" firstAttribute="top" secondItem="8Gj-nb-FRE" secondAttribute="bottom" id="hDB-MQ-8Hn"/>
+                    <constraint firstItem="2mm-Vh-miS" firstAttribute="top" secondItem="qNh-nK-oIr" secondAttribute="topMargin" id="qKv-Dw-GZQ"/>
                     <constraint firstItem="if4-uz-SEu" firstAttribute="leading" secondItem="qNh-nK-oIr" secondAttribute="leadingMargin" constant="40" id="r3C-fi-zIL"/>
                     <constraint firstItem="8Gj-nb-FRE" firstAttribute="top" secondItem="qNh-nK-oIr" secondAttribute="topMargin" id="sUv-wE-8EU"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ay2-ff-bct" secondAttribute="trailing" constant="45" id="u2w-hf-xKW"/>
@@ -72,6 +80,7 @@
                 <outlet property="labelLocalLog" destination="ay2-ff-bct" id="PXE-hB-XRn"/>
                 <outlet property="labelLog" destination="4Jn-02-ceg" id="ilp-zh-sLr"/>
                 <outlet property="labelLogger" destination="MTF-rT-2ef" id="cYc-Ok-6QF"/>
+                <outlet property="labelNotSubmitted" destination="2mm-Vh-miS" id="BSd-La-7ve"/>
             </connections>
             <point key="canvasLocation" x="-119.5" y="198.5"/>
         </tableViewCell>
