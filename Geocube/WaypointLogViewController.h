@@ -26,7 +26,7 @@
 
 @end
 
-@interface WaypointLogViewController : GCTableViewController <YIPopupTextViewDelegate, WaypointLogImagesDelegate, WaypointLogTrackablesDelegate>
+@interface WaypointLogViewController : GCTableViewController <WaypointLogEditDelegate, WaypointLogImagesDelegate, WaypointLogTrackablesDelegate>
 
 - (instancetype)init:(dbWaypoint *)waypoint;
 

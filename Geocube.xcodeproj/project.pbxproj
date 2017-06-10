@@ -275,6 +275,7 @@
 		E8371D4D1D06C63300C2F174 /* TrackablesInventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8371D4C1D06C63300C2F174 /* TrackablesInventoryViewController.m */; };
 		E8371D511D10202B00C2F174 /* THLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8371D501D10202B00C2F174 /* THLabel.m */; };
 		E83B77841DD3C4540059793C /* GCArray.m in Sources */ = {isa = PBXBuildFile; fileRef = E83B77831DD3C4540059793C /* GCArray.m */; };
+		E83B9E881EEB992B00CE16F6 /* WaypointLogEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E83B9E871EEB992B00CE16F6 /* WaypointLogEditViewController.m */; };
 		E83C20491E2C8DF7006C523E /* WaypointTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C20471E2C8DF7006C523E /* WaypointTableViewCell.m */; };
 		E83C204A1E2C8DF7006C523E /* WaypointTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C20481E2C8DF7006C523E /* WaypointTableViewCell.xib */; };
 		E83C20511E2DAADC006C523E /* WaypointHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C204F1E2DAADC006C523E /* WaypointHeaderTableViewCell.m */; };
@@ -1011,6 +1012,8 @@
 		E8371D501D10202B00C2F174 /* THLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THLabel.m; path = THLabel/THLabel.m; sourceTree = "<group>"; };
 		E83B77821DD3C4540059793C /* GCArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCArray.h; sourceTree = "<group>"; };
 		E83B77831DD3C4540059793C /* GCArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCArray.m; sourceTree = "<group>"; };
+		E83B9E861EEB992B00CE16F6 /* WaypointLogEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointLogEditViewController.h; sourceTree = "<group>"; };
+		E83B9E871EEB992B00CE16F6 /* WaypointLogEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointLogEditViewController.m; sourceTree = "<group>"; };
 		E83C20461E2C8DF7006C523E /* WaypointTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointTableViewCell.h; sourceTree = "<group>"; };
 		E83C20471E2C8DF7006C523E /* WaypointTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointTableViewCell.m; sourceTree = "<group>"; };
 		E83C20481E2C8DF7006C523E /* WaypointTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaypointTableViewCell.xib; sourceTree = "<group>"; };
@@ -2537,6 +2540,8 @@
 				E89051721C8ACEFA00220986 /* WaypointLogImagesViewController.m */,
 				E80250E51D160EF300F05772 /* WaypointLogTrackablesViewController.h */,
 				E80250E61D160EF300F05772 /* WaypointLogTrackablesViewController.m */,
+				E83B9E861EEB992B00CE16F6 /* WaypointLogEditViewController.h */,
+				E83B9E871EEB992B00CE16F6 /* WaypointLogEditViewController.m */,
 			);
 			name = Logging;
 			sourceTree = "<group>";
@@ -3983,6 +3988,7 @@
 				E8D2DEE41EE909EB006B89F7 /* TrackableTableViewCell.m in Sources */,
 				E8E8D0041B65F77B00CC741A /* FilterGroupsTableViewCell.m in Sources */,
 				E847A58D1BA0425100BEFE83 /* GCLabel.m in Sources */,
+				E83B9E881EEB992B00CE16F6 /* WaypointLogEditViewController.m in Sources */,
 				E8D7BA4B1BC67CDC001B0805 /* CCHMapClusterAnnotation.m in Sources */,
 				E820F2061B7DA451009FB999 /* TrackablesListViewController.m in Sources */,
 				E80AEEB11BA5983A00106F7F /* ThemeNight.m in Sources */,

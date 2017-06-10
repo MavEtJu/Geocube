@@ -19,6 +19,15 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface SettingsLogTemplatesViewController : GCTableViewController <YIPopupTextViewDelegate>
+@protocol  WaypointLogEditDelegate
+
+- (void)didFinishEditing:(NSString *)text;
+
+@end
+
+@interface WaypointLogEditViewController : GCViewController <YIPopupTextViewDelegate>
+
+@property (nonatomic, retain) NSString *text;
+@property (nonatomic) id<WaypointLogEditDelegate> delegate;
 
 @end

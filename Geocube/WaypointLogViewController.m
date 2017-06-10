@@ -434,22 +434,17 @@ enum {
 
 - (void)changeNote
 {
-    YIPopupTextView *tv = [[YIPopupTextView alloc] initWithPlaceHolder:@"Enter your log here" maxCount:20000 buttonStyle:YIPopupTextViewButtonStyleRightCancelAndDone];
-
-    tv.delegate = self;
-    tv.caretShiftGestureEnabled = YES;
-    tv.maxCount = 4000;
-    tv.text = note;
-
-    [tv showInViewController:self];
+    WaypointLogEditViewController *newController = [[WaypointLogEditViewController alloc] init];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    newController.delegate = self;
+    newController.text = note;
+    [self.navigationController pushViewController:newController animated:YES];
 }
 
-- (void)popupTextView:(YIPopupTextView *)textView didDismissWithText:(NSString *)text cancelled:(BOOL)cancelled
+- (void)didFinishEditing:(NSString *)text
 {
-    if (cancelled == YES)
-        return;
     note = text;
-    [self.tableView reloadData];
+    [self reloadDataMainQueue];
 }
 
 - (void)imageSelected:(dbImage *)img caption:(NSString *)caption longtext:(NSString *)longtext;

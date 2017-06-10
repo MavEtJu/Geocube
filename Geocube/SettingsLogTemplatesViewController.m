@@ -22,6 +22,7 @@
 @interface SettingsLogTemplatesViewController ()
 {
     NSArray<dbLogTemplate *> *logtemplates;
+    dbLogTemplate *currentLT;
 }
 
 @end
@@ -77,7 +78,25 @@ enum {
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbLogTemplate *lt = [logtemplates objectAtIndex:indexPath.row];
+    currentLT = [logtemplates objectAtIndex:indexPath.row];
+
+    YIPopupTextView *tv = [[YIPopupTextView alloc] initWithPlaceHolder:@"Enter your log template here" maxCount:20000 buttonStyle:YIPopupTextViewButtonStyleRightCancelAndDone];
+
+    tv.delegate = self;
+    tv.caretShiftGestureEnabled = YES;
+    tv.maxCount = 4000;
+    tv.text = currentLT.text;
+
+    [tv showInViewController:self];
+}
+
+- (void)popupTextView:(YIPopupTextView *)textView didDismissWithText:(NSString *)text cancelled:(BOOL)cancelled
+{
+    if (cancelled == YES)
+        return;
+    currentLT.text = text;
+    [currentLT dbUpdate];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Local menu related functions
