@@ -22,6 +22,15 @@ for class in $(grep implementation db*.m | awk '{ print $2 }' | grep -v dbObject
 done
 
 echo
+echo "db*.m - dbCount:"
+for f in db*.m; do
+	c=$(grep -wc "dbCount" $f)
+	if [ $c != 2 -a $c != 4 ]; then
+		echo "Missing dbCount: $f"
+	fi
+done
+
+echo
 echo "Classes:"
 grep -h @implementation *.m | sed -e 's/implementation/class/' -e 's/$/;/'| sort > /tmp/a
 grep @class Geocube-Classes.h > /tmp/b

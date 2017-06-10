@@ -113,15 +113,7 @@
 
 + (NSInteger)dbCount
 {
-    NSInteger c = 0;
-    @synchronized(db) {
-        DB_PREPARE(@"select count(*) from notices");
-        DB_IF_STEP {
-            INT_FETCH(0, c);
-        }
-        DB_FINISH;
-    }
-    return c;
+    return [dbNotice dbCount:@"notices"];
 }
 
 + (NSInteger)countUnread
