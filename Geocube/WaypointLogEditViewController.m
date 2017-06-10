@@ -97,7 +97,7 @@ enum {
                doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                    dbLogTemplate *lt = [lts objectAtIndex:selectedIndex];
                    NSMutableString *s = [NSMutableString stringWithString:tv.text];
-                   [s insertString:[self replaceMacros:lt.text ] atIndex:tv.selectedRange.location];
+                   [s insertString:[self replaceMacros:lt.text] atIndex:tv.selectedRange.location];
                    tv.text = s;
                }
                cancelBlock:^(ActionSheetStringPicker *picker) {
