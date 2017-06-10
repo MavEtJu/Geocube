@@ -97,6 +97,18 @@
     }
 }
 
+- (void)dbDelete
+{
+    @synchronized(db) {
+        DB_PREPARE(@"delete from log_templates where id = ?");
+
+        SET_VAR_INT(1, self._id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 - (NSInteger)dbCount
 {
     return [dbLogTemplate dbCount:@"log_templates"];
