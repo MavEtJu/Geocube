@@ -47,8 +47,6 @@ enum {
 {
     self = [super init];
 
-    NSLog(@"GGCW:%p", (__bridge void *)self);
-
     prefix = @"https://www.geocaching.com";
     prefixTiles = @"https://tiles%02d.geocaching.com%@";
 
