@@ -812,6 +812,12 @@
     return wps;
 }
 
++ (NSArray<dbWaypoint *> *)waypointsWithLogsUnsubmitted
+{
+    NSArray<dbWaypoint *> *wps = [dbWaypoint dbAllXXX:@"where id in (select waypoint_id from logs where needstobelogged = 1)"];
+    return wps;
+}
+
 + (NSArray<dbWaypoint *> *)waypointsWithMyLogs
 {
     NSArray<dbWaypoint *> *wps = [dbWaypoint dbAllXXX:@"where id in (select waypoint_id from logs where logger_id in (select id from names where name in (select accountname from accounts where accountname != '')))"];

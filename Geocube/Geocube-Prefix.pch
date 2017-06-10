@@ -200,6 +200,7 @@
 #import "NotesFieldnotesViewController.h"
 #import "NotesImagesViewController.h"
 #import "NotesPersonalNotesViewController.h"
+#import "NotesNotSubmittedViewController.h"
 
 #import "WaypointWaypointsViewController.h"
 #import "WaypointWaypointsTableViewCell.h"

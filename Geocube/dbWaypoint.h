@@ -125,6 +125,7 @@ typedef NS_ENUM(NSInteger, LogStatus) {
 + (NSString *)makeName:(NSString *)suffix;
 + (NSArray<dbWaypoint *> *)waypointsWithImages;
 + (NSArray<dbWaypoint *> *)waypointsWithLogs;
++ (NSArray<dbWaypoint *> *)waypointsWithLogsUnsubmitted;
 + (NSArray<dbWaypoint *> *)waypointsWithMyLogs;
 + (NSArray<dbWaypoint *> *)dbAllByFlag:(Flag)flag;
 + (NSArray<dbWaypoint *> *)dbAllInRect:(CLLocationCoordinate2D)lt RT:(CLLocationCoordinate2D)rt;

@@ -48,6 +48,7 @@
 + (NSInteger)dbCountByWaypoint:(NSId)wp_id;
 + (NSArray<dbLog *> *)dbAllByWaypoint:(NSId)wp_id;
 + (NSArray<dbLog *> *)dbAllByWaypointLogged:(NSId)wp_id;
++ (NSArray<dbLog *> *)dbAllByWaypointUnsubmitted:(NSId)wp_id;
 + (NSArray<dbLog *> *)dbLast7ByWaypoint:(NSId)wp_id;
 + (NSArray<dbLog *> *)dbLast7ByWaypointLogged:(NSId)wp_id;
 + (NSId)dbCreate:(dbLog *)log;

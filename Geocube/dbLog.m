@@ -235,14 +235,16 @@
     return count;
 }
 
-+ (NSArray<dbLog *> *)dbAllByWaypoint:(NSId)_wp_id
++ (NSArray<dbLog *> *)dbAllByXXX:(NSString *)where limit:(NSInteger)limit
 {
     NSMutableArray<dbLog *> *ls = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db) {
-        DB_PREPARE(@"select id, gc_id, waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, needstobelogged, locallog from logs where waypoint_id = ? order by datetime_epoch desc");
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"select id, gc_id, waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, needstobelogged, locallog from logs where %@ order by datetime_epoch desc", where];
+    if (limit != -1)
+        [sql appendFormat:@" limit %ld", limit];
 
-        SET_VAR_INT(1, _wp_id);
+    @synchronized(db) {
+        DB_PREPARE(sql);
 
         DB_WHILE_STEP {
             dbLog *l = [[dbLog alloc] init];
@@ -264,91 +266,29 @@
     return ls;
 }
 
-+ (NSArray<dbLog *> *)dbLast7ByWaypoint:(NSId)_wp_id
++ (NSArray<dbLog *> *)dbAllByWaypoint:(NSId)wp_id
 {
-    NSMutableArray<dbLog *> *ls = [[NSMutableArray alloc] initWithCapacity:20];
+    return [self dbAllByXXX:[NSString stringWithFormat:@"waypoint_id = %ld", (long)wp_id] limit:-1];
+}
 
-    @synchronized(db) {
-        DB_PREPARE(@"select id, gc_id, waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, needstobelogged, locallog from logs where waypoint_id = ? order by datetime_epoch desc limit 7");
-
-        SET_VAR_INT(1, _wp_id);
-
-        DB_WHILE_STEP {
-            dbLog *l = [[dbLog alloc] init];
-            INT_FETCH (0, l._id);
-            INT_FETCH (1, l.gc_id);
-            INT_FETCH (2, l.waypoint_id);
-            INT_FETCH (3, l.logstring_id);
-            TEXT_FETCH(4, l.datetime);
-            INT_FETCH (5, l.datetime_epoch);
-            INT_FETCH (6, l.logger_id);
-            TEXT_FETCH(7, l.log);
-            BOOL_FETCH(8, l.needstobelogged);
-            BOOL_FETCH(9, l.localLog);
-            [l finish];
-            [ls addObject:l];
-        }
-        DB_FINISH;
-    }
-    return ls;
++ (NSArray<dbLog *> *)dbLast7ByWaypoint:(NSId)wp_id
+{
+    return [self dbAllByXXX:[NSString stringWithFormat:@"waypoint_id = %ld", (long)wp_id] limit:7];
 }
 
 + (NSArray<dbLog *> *)dbAllByWaypointLogged:(NSId)wp_id
 {
-    NSMutableArray<dbLog *> *ls = [[NSMutableArray alloc] initWithCapacity:20];
+    return [self dbAllByXXX:[NSString stringWithFormat:@"waypoint_id = %ld and logger_id in (select id from names where name in (select accountname from accounts where accountname != ''))", (long)wp_id] limit:-1];
+}
 
-    @synchronized(db) {
-        DB_PREPARE(@"select id, gc_id, waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, needstobelogged, locallog from logs where waypoint_id = ? and logger_id in (select id from names where name in (select accountname from accounts where accountname != '')) order by datetime_epoch desc");
-
-        SET_VAR_INT(1, wp_id);
-
-        DB_WHILE_STEP {
-            dbLog *l = [[dbLog alloc] init];
-            INT_FETCH (0, l._id);
-            INT_FETCH (1, l.gc_id);
-            INT_FETCH (2, l.waypoint_id);
-            INT_FETCH (3, l.logstring_id);
-            TEXT_FETCH(4, l.datetime);
-            INT_FETCH (5, l.datetime_epoch);
-            INT_FETCH (6, l.logger_id);
-            TEXT_FETCH(7, l.log);
-            BOOL_FETCH(8, l.needstobelogged);
-            BOOL_FETCH(9, l.localLog);
-            [l finish];
-            [ls addObject:l];
-        }
-        DB_FINISH;
-    }
-    return ls;
++ (NSArray<dbLog *> *)dbAllByWaypointUnsubmitted:(NSId)wp_id
+{
+    return [self dbAllByXXX:[NSString stringWithFormat:@"waypoint_id = %ld and needstobelogged = 1 and logger_id in (select id from names where name in (select accountname from accounts where accountname != ''))", (long)wp_id] limit:-1];
 }
 
 + (NSArray<dbLog *> *)dbLast7ByWaypointLogged:(NSId)wp_id
 {
-    NSMutableArray<dbLog *> *ls = [[NSMutableArray alloc] initWithCapacity:20];
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, gc_id, waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, needstobelogged, locallog from logs where waypoint_id = ? and logger_id in (select id from names where name in (select accountname from accounts where accountname != '')) order by datetime_epoch desc limit 7");
-
-        SET_VAR_INT(1, wp_id);
-
-        DB_WHILE_STEP {
-            dbLog *l = [[dbLog alloc] init];
-            INT_FETCH (0, l._id);
-            INT_FETCH (1, l.gc_id);
-            INT_FETCH (2, l.waypoint_id);
-            INT_FETCH (3, l.logstring_id);
-            TEXT_FETCH(4, l.datetime);
-            INT_FETCH (5, l.datetime_epoch);
-            INT_FETCH (6, l.logger_id);
-            TEXT_FETCH(7, l.log);
-            BOOL_FETCH(8, l.needstobelogged);
-            BOOL_FETCH(9, l.localLog);
-            [l finish];
-            [ls addObject:l];
-        }
-        DB_FINISH;
-    }
-    return ls;
+    return [self dbAllByXXX:[NSString stringWithFormat:@"waypoint_id = %ld and logger_id in (select id from names where name in (select accountname from accounts where accountname != ''))", (long)wp_id] limit:7];
 }
 
 + (NSInteger)dbCountByWaypointLogString:(dbWaypoint *)wp LogString:(NSString *)string
