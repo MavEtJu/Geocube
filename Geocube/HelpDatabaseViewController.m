@@ -102,6 +102,8 @@ enum {
     [vs addObject:[[NSNumber numberWithInteger:[dbLog dbCount]] stringValue]];
     [fs addObject:@"LogStrings"];
     [vs addObject:[[NSNumber numberWithInteger:[dbLogString dbCount]] stringValue]];
+    [fs addObject:@"LogTemplates"];
+    [vs addObject:[[NSNumber numberWithInteger:[dbLogTemplate dbCount]] stringValue]];
     [fs addObject:@"Names"];
     [vs addObject:[[NSNumber numberWithInteger:[dbName dbCount]] stringValue]];
     [fs addObject:@"Notices"];

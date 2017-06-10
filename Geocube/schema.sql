@@ -18,7 +18,7 @@ insert into config(key, value) values("url_pins", "https://geocube.mavetju.org/g
 insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.org/geocube_bookmarks.3.geocube");
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.3.geocube");
 insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.3.geocube");
-insert into config(key, value) values("version", "42");
+insert into config(key, value) values("version", "43");
 
 create table filters (
     id integer primary key,
@@ -393,3 +393,10 @@ create table listdata (
     datetime integer
 );
 create index listdata_idx_id  on listdata(id);
+
+create table log_templates (
+    id integer primary key,
+    name text,
+    text text
+);
+create index log_templates_idx  on log_templates(id);

@@ -339,6 +339,7 @@
 		E85F2DA61EEA70DA006E464D /* StatisticsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E85F2DA51EEA70DA006E464D /* StatisticsTableViewCell.m */; };
 		E85F2DA81EEA70EC006E464D /* StatisticsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85F2DA71EEA70EC006E464D /* StatisticsTableViewCell.xib */; };
 		E85F2DAA1EEAD8DB006E464D /* StatisticsTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85F2DA91EEAD8DB006E464D /* StatisticsTableViewCell~ipad.xib */; };
+		E85F2DAD1EEB6833006E464D /* dbLogTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E85F2DAC1EEB6833006E464D /* dbLogTemplate.m */; };
 		E85FCA731CAC6EF3005D7AE1 /* GCDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E85FCA721CAC6EF3005D7AE1 /* GCDictionary.m */; };
 		E8611A891B87407500B9D7C3 /* GCTableViewCellRightImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A881B87407500B9D7C3 /* GCTableViewCellRightImage.m */; };
 		E8611A911B8899A700B9D7C3 /* GCWaypointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E8611A901B8899A700B9D7C3 /* GCWaypointAnnotation.m */; };
@@ -1117,6 +1118,8 @@
 		E85F2DA51EEA70DA006E464D /* StatisticsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsTableViewCell.m; sourceTree = "<group>"; };
 		E85F2DA71EEA70EC006E464D /* StatisticsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatisticsTableViewCell.xib; sourceTree = "<group>"; };
 		E85F2DA91EEAD8DB006E464D /* StatisticsTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StatisticsTableViewCell~ipad.xib"; sourceTree = "<group>"; };
+		E85F2DAB1EEB6833006E464D /* dbLogTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbLogTemplate.h; sourceTree = "<group>"; };
+		E85F2DAC1EEB6833006E464D /* dbLogTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbLogTemplate.m; sourceTree = "<group>"; };
 		E85FCA711CAC6EF3005D7AE1 /* GCDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDictionary.h; sourceTree = "<group>"; };
 		E85FCA721CAC6EF3005D7AE1 /* GCDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDictionary.m; sourceTree = "<group>"; };
 		E8611A871B87407500B9D7C3 /* GCTableViewCellRightImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellRightImage.h; sourceTree = "<group>"; };
@@ -3082,6 +3085,8 @@
 				E8740FDE1B4F87D2002527DA /* dbLog.m */,
 				E80250E81D17CADA00F05772 /* dbLogString.h */,
 				E80250E91D17CADA00F05772 /* dbLogString.m */,
+				E85F2DAB1EEB6833006E464D /* dbLogTemplate.h */,
+				E85F2DAC1EEB6833006E464D /* dbLogTemplate.m */,
 				E80732BB1B5FB4CF007FDC29 /* dbName.h */,
 				E80732BC1B5FB4CF007FDC29 /* dbName.m */,
 				E88037A01B946D1F0053AD01 /* dbNotice.h */,
@@ -3897,6 +3902,7 @@
 				E8FEDEEC1DAAE5E1007C756B /* GCCircle.m in Sources */,
 				E88037A51B94FA7B0053AD01 /* NoticeTableViewCell.m in Sources */,
 				E86C4AAF1E321822004526E2 /* CompassViewController.m in Sources */,
+				E85F2DAD1EEB6833006E464D /* dbLogTemplate.m in Sources */,
 				E83C20511E2DAADC006C523E /* WaypointHeaderTableViewCell.m in Sources */,
 				E807A5FB1B8BC9EB00EBA187 /* ProtocolLiveAPI.m in Sources */,
 				E8D56A001B54E35D001A0F8E /* MapTemplate.m in Sources */,

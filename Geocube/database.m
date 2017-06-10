@@ -565,6 +565,13 @@
     @"update config set value = 'https://geocube.mavetju.org/geocube_logstrings.3.geocube' where key = 'url_logstrings'",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 43
+    a = @[
+    @"create table log_templates (id integer primary key, name text, text text)",
+    @"create index log_templates_idx  on log_templates(id)",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

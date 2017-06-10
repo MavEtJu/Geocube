@@ -223,6 +223,7 @@
 @class dbLocale;
 @class dbLog;
 @class dbLogString;
+@class dbLogTemplate;
 @class dbName;
 @class dbNotice;
 @class dbObject;
