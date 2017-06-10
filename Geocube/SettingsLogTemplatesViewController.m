@@ -21,7 +21,7 @@
 
 @interface SettingsLogTemplatesViewController ()
 {
-    NSArray<dbLogTemplate *> *logtemplates;
+    NSMutableArray<dbLogTemplate *> *logtemplates;
     dbLogTemplate *currentLT;
 }
 
@@ -39,8 +39,7 @@ enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    logtemplates = [dbLogTemplate dbAll];
-    [self.tableView reloadData];
+    [self reloadLogTemplates];
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
@@ -48,6 +47,12 @@ enum {
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuAdd label:@"Add Template"];
+}
+
+- (void)reloadLogTemplates
+{
+    logtemplates = [NSMutableArray arrayWithArray:[dbLogTemplate dbAll]];
+    [self.tableView reloadData];
 }
 
 #pragma mark - TableViewController related functions
@@ -90,6 +95,23 @@ enum {
     [tv showInViewController:self];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)
+indexPath
+{
+    return @"Remove";
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        dbLogTemplate *lt = [logtemplates objectAtIndex:indexPath.row];
+        [lt dbDelete];
+        [logtemplates removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        [self.tableView reloadData];
+    }
+}
+
 - (void)popupTextView:(YIPopupTextView *)textView didDismissWithText:(NSString *)text cancelled:(BOOL)cancelled
 {
     if (cancelled == YES)
@@ -118,8 +140,7 @@ enum {
 
                              NSLog(@"Creating new log template '%@'", name);
                              [dbLogTemplate dbCreate:name];
-                             logtemplates = [dbLogTemplate dbAll];
-                             [self.tableView reloadData];
+                             [self reloadLogTemplates];
                          }];
     UIAlertAction *cancel = [UIAlertAction
                              actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
