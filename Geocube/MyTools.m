@@ -216,6 +216,7 @@ TIME(dateTimeString_YYYY_MM_DD, @"yyyy-MM-dd")
 TIME(dateTimeString_YYYYMMDD, @"yyyyMMdd")
 TIME(dateTimeString_YYYYMMDD_hhmmss, @"yyyyMMdd-HHmmss")
 TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
+TIME(dateTimeString_dow, @"EEEE")
 
 ///////////////////////////////////////////
 

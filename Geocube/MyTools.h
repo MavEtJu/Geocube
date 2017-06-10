@@ -56,6 +56,8 @@ typedef NS_ENUM(NSInteger, PlaySound) {
 + (NSString *)dateTimeString_YYYYMMDD;
 + (NSString *)dateTimeString_hh_mm_ss:(NSInteger)seconds;
 + (NSString *)dateTimeString_hh_mm_ss;
++ (NSString *)dateTimeString_dow:(NSInteger)seconds;
++ (NSString *)dateTimeString_dow;
 
 + (NSString *)stripHTML:(NSString *)s;
 + (NSString *)simpleHTML:(NSString *)plainText;
