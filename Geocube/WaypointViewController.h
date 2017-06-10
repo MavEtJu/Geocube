@@ -22,6 +22,5 @@
 @interface WaypointViewController : GCTableViewController <WaypointLogDelegate, WaypointImagesDelegate, WaypointPersonalNoteDelegate, WaypointWaypointsDelegate, WaypointLogsDelegate, RemoteAPIDownloadDelegate>
 
 - (void)showWaypoint:(dbWaypoint *)wp;
-- (instancetype)initWithStyle:(UITableViewStyle)style canBeClosed:(BOOL)canBeClosed;
 
 @end

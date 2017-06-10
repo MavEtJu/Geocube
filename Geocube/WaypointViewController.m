@@ -79,9 +79,9 @@ enum {
     menuMax
 };
 
-- (instancetype)initWithStyle:(UITableViewStyle)style canBeClosed:(BOOL)canBeClosed
+- (instancetype)init
 {
-    self = [super initWithStyle:style];
+    self = [super initWithStyle:UITableViewStyleGrouped];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuMarkAs label:@"Mark as..."];
@@ -94,7 +94,7 @@ enum {
     [lmi addItem:menuExportGPX label:@"Export GPX"];
     [lmi addItem:menuDeleteWaypoint label:@"Delete waypoint"];
 
-    self.hasCloseButton = canBeClosed;
+    self.hasCloseButton = NO;
 
     headerCell = nil;
 
