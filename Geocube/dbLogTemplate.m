@@ -30,7 +30,7 @@
     NSMutableArray<dbLogTemplate *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
-        DB_PREPARE(@"select id, name, text from log_templates");
+        DB_PREPARE(@"select id, name, text from log_templates order by name");
 
         DB_WHILE_STEP {
             dbLogTemplate *s = [[dbLogTemplate alloc] init];
