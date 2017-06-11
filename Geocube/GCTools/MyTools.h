@@ -106,6 +106,9 @@ typedef NS_ENUM(NSInteger, PlaySound) {
 
 typedef sqlite3_int64 NSId;
 
+#define IS_EMPTY(__s__) \
+    (__s__ == nil || [__s__ length] == 0)
+
 #define NEEDS_OVERLOADING_ASSERT \
     NSAssert(0, @"%s should be overloaded for %@", __FUNCTION__, [self class])
 #define NEEDS_OVERLOADING_VOID(__name__) \
