@@ -123,6 +123,9 @@
 #define KEY(__dict__, __var__, __key__) \
     NSString *__var__ = [[__dict__ objectForKey:__key__] objectForKey:@"text"]; \
     __var__ = [__var__ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+#define KEYATTR(__dict__, __var__, __key__, __attr__) \
+    NSString *__var__ = [[__dict__ objectForKey:__key__] objectForKey:__attr__]; \
+    __var__ = [__var__ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
         KEY(notice, note, @"note");
         KEY(notice, sender, @"sender");
@@ -172,10 +175,17 @@
         KEY(site, gca_cookie, @"gca_cookie");
 
         KEY(site, oauth_key_private, @"oauth_key_private");
+        KEYATTR(site, oauth_key_private_ss, @"oauth_key_private", @"sharedsecret");
         KEY(site, oauth_key_public, @"oauth_key_public");
+        KEYATTR(site, oauth_key_public_ss, @"oauth_key_public", @"sharedsecret");
         KEY(site, oauth_url_access, @"oauth_url_access");
         KEY(site, oauth_url_authorize, @"oauth_url_authorize");
         KEY(site, oauth_url_request, @"oauth_url_request");
+
+        if (oauth_key_private_ss != nil)
+            oauth_key_private = [keyManager decrypt:oauth_key_private_ss data:oauth_key_private];
+        if (oauth_key_public_ss != nil)
+            oauth_key_public = [keyManager decrypt:oauth_key_public_ss data:oauth_key_public];
 
         KEY(site, protocol_string, @"protocol");
         KEY(site, url_queries, @"queries");
