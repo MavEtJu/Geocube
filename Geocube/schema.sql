@@ -17,7 +17,7 @@ insert into config(key, value) values("url_pins", "https://geocube.mavetju.org/g
 insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.org/geocube_bookmarks.3.geocube");
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.3.geocube");
 insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.3.geocube");
-insert into config(key, value) values("version", "45");
+insert into config(key, value) values("version", "46");
 
 create table filters (
     id integer primary key,
@@ -291,7 +291,9 @@ create table accounts (
     gca_callback_url text,
 
     oauth_consumer_public text,
+    oauth_consumer_public_sharedsecret text,
     oauth_consumer_private text,
+    oauth_consumer_private_sharedsecret text,
     oauth_request_url text,
     oauth_access_url text,
     oauth_authorize_url text,

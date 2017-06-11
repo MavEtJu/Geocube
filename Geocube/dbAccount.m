@@ -39,6 +39,11 @@
         self.protocol_string = self.protocol.name;
     }
 
+    if (self.oauth_consumer_private_sharedsecret != nil && [self.oauth_consumer_private_sharedsecret isEqualToString:@""] == NO)
+        self.oauth_consumer_private = [keyManager decrypt:self.oauth_consumer_private_sharedsecret data:self.oauth_consumer_private];
+    if (self.oauth_consumer_public_sharedsecret != nil && [self.oauth_consumer_public_sharedsecret isEqualToString:@""] == NO)
+        self.oauth_consumer_public = [keyManager decrypt:self.oauth_consumer_public_sharedsecret data:self.oauth_consumer_public];
+
     self.remoteAPI = nil;
     switch ((ProtocolId)self.protocol._id) {
         case PROTOCOL_GCA:
@@ -129,7 +134,7 @@
     dbAccount *a = nil;
 
     @synchronized(db) {
-        DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol_id, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum, authentication_name, authentication_password from accounts where id = ?");
+        DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol_id, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum, authentication_name, authentication_password, oauth_consumer_public_sharedsecret, oauth_consumer_private_sharedsecret from accounts where id = ?");
         SET_VAR_INT(1, _id);
 
         DB_IF_STEP {
@@ -157,7 +162,9 @@
             BOOL_FETCH(20, a.enabled);
             INT_FETCH (21, a.distance_minimum);
             TEXT_FETCH(22, a.authentictation_name);
-            TEXT_FETCH(23, a.authentictation_password);
+            TEXT_FETCH(23, a.oauth_consumer_public_sharedsecret);
+            TEXT_FETCH(24, a.oauth_consumer_private_sharedsecret);
+            TEXT_FETCH(25, a.authentictation_password);
             [a finish];
         }
         DB_FINISH;
@@ -170,7 +177,7 @@
     NSMutableArray<dbAccount *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
-        DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol_id, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum, authentication_name, authentication_password from accounts");
+        DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol_id, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum, authentication_name, authentication_password, oauth_consumer_public_sharedsecret, oauth_consumer_private_sharedsecret from accounts");
 
         DB_WHILE_STEP {
             dbAccount *a = [[dbAccount alloc] init];
@@ -198,6 +205,8 @@
             INT_FETCH (21, a.distance_minimum);
             TEXT_FETCH(22, a.authentictation_name);
             TEXT_FETCH(23, a.authentictation_password);
+            TEXT_FETCH(24, a.oauth_consumer_public_sharedsecret);
+            TEXT_FETCH(25, a.oauth_consumer_private_sharedsecret);
             [a finish];
             [ss addObject:a];
         }
@@ -216,7 +225,7 @@
     NSId __id;
 
     @synchronized(db) {
-        DB_PREPARE(@"insert into accounts(site, url_site, url_queries, accountname, protocol_id, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum, authentication_name, authentication_password) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into accounts(site, url_site, url_queries, accountname, protocol_id, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum, authentication_name, authentication_password, oauth_consumer_public_sharedsecret, oauth_consumer_private_sharedsecret) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT( 1, self.site);
         SET_VAR_TEXT( 2, self.url_site);
@@ -245,6 +254,8 @@
         SET_VAR_TEXT(23, @"");
         if (configManager.accountsSaveAuthenticationPassword == YES)
             SET_VAR_TEXT(23, self.authentictation_password);
+        SET_VAR_TEXT(24, self.oauth_consumer_public_sharedsecret);
+        SET_VAR_TEXT(25, self.oauth_consumer_private_sharedsecret);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(__id);
@@ -257,7 +268,7 @@
 - (void)dbUpdate
 {
     @synchronized(db) {
-        DB_PREPARE(@"update accounts set site = ?, url_site = ?, url_queries = ?, accountname = ?, protocol_id = ?, oauth_consumer_public = ?, oauth_consumer_private = ?, oauth_token = ?, oauth_token_secret = ?, oauth_request_url = ?, oauth_authorize_url = ?, oauth_access_url = ?, gca_cookie_name = ?, gca_authenticate_url = ?, gca_callback_url = ?, geocube_id = ?, revision = ?, gca_cookie_value = ?, name_id = ?, enabled = ?, distance_minimum = ?, authentication_name = ?, authentication_password = ? where id = ?");
+        DB_PREPARE(@"update accounts set site = ?, url_site = ?, url_queries = ?, accountname = ?, protocol_id = ?, oauth_consumer_public = ?, oauth_consumer_private = ?, oauth_token = ?, oauth_token_secret = ?, oauth_request_url = ?, oauth_authorize_url = ?, oauth_access_url = ?, gca_cookie_name = ?, gca_authenticate_url = ?, gca_callback_url = ?, geocube_id = ?, revision = ?, gca_cookie_value = ?, name_id = ?, enabled = ?, distance_minimum = ?, authentication_name = ?, authentication_password = ?, oauth_consumer_public_sharedsecret = ?, oauth_consumer_private_sharedsecret = ? where id = ?");
 
         SET_VAR_TEXT( 1, self.site);
         SET_VAR_TEXT( 2, self.url_site);
@@ -286,7 +297,9 @@
         SET_VAR_TEXT(23, @"");
         if (configManager.accountsSaveAuthenticationPassword == YES)
             SET_VAR_TEXT(23, self.authentictation_password);
-        SET_VAR_INT (24, self._id);
+        SET_VAR_TEXT(24, self.oauth_consumer_public_sharedsecret);
+        SET_VAR_TEXT(25, self.oauth_consumer_private_sharedsecret);
+        SET_VAR_INT (26, self._id);
 
         DB_CHECK_OKAY;
 
@@ -317,14 +330,16 @@
 - (void)dbUpdateOAuthConsumer
 {
     @synchronized(db) {
-        DB_PREPARE(@"update accounts set oauth_consumer_public = ?, oauth_consumer_private = ?, oauth_request_url = ?, oauth_authorize_url = ?, oauth_access_url = ? where id = ?");
+        DB_PREPARE(@"update accounts set oauth_consumer_public = ?, oauth_consumer_private = ?, oauth_request_url = ?, oauth_authorize_url = ?, oauth_access_url = ?, oauth_consumer_public_sharedsecret = ?, oauth_consumer_private_sharedsecret = ? where id = ?");
 
         SET_VAR_TEXT(1, self.oauth_consumer_public);
         SET_VAR_TEXT(2, self.oauth_consumer_private);
         SET_VAR_TEXT(3, self.oauth_request_url);
         SET_VAR_TEXT(4, self.oauth_authorize_url);
         SET_VAR_TEXT(5, self.oauth_access_url);
-        SET_VAR_INT (6, self._id);
+        SET_VAR_TEXT(6, self.oauth_consumer_public_sharedsecret);
+        SET_VAR_TEXT(7, self.oauth_consumer_private_sharedsecret);
+        SET_VAR_INT (8, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -365,7 +380,7 @@
     dbAccount *a = nil;
 
     @synchronized(db) {
-        DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol_id, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum, authentication_name, authentication_password from accounts where site = ?");
+        DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol_id, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum, authentication_name, authentication_password, oauth_consumer_public_sharedsecret, oauth_consumer_private_sharedsecret from accounts where site = ?");
         SET_VAR_TEXT(1, site);
 
         DB_IF_STEP {
@@ -394,6 +409,8 @@
             INT_FETCH (21, a.distance_minimum);
             TEXT_FETCH(22, a.authentictation_name);
             TEXT_FETCH(23, a.authentictation_password);
+            TEXT_FETCH(24, a.oauth_consumer_public_sharedsecret);
+            TEXT_FETCH(25, a.oauth_consumer_private_sharedsecret);
             [a finish];
         }
         DB_FINISH;

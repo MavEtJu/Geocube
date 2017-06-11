@@ -589,6 +589,14 @@
     ];
     [upgradeSteps addObject:a];
 
+    // Version 46
+    a = @[
+    @"alter table accounts add column oauth_consumer_public_sharedsecret text",
+    @"alter table accounts add column oauth_consumer_private_sharedsecret text",
+    @"update accounts set oauth_consumer_public_sharedsecret = ''",
+    @"update accounts set oauth_consumer_private_sharedsecret = ''",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

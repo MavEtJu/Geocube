@@ -35,7 +35,9 @@
 @property (nonatomic) BOOL enabled;
 
 @property (nonatomic, retain) NSString *oauth_consumer_public;
+@property (nonatomic, retain) NSString *oauth_consumer_public_sharedsecret;
 @property (nonatomic, retain) NSString *oauth_consumer_private;
+@property (nonatomic, retain) NSString *oauth_consumer_private_sharedsecret;
 @property (nonatomic, retain) NSString *oauth_token;
 @property (nonatomic, retain) NSString *oauth_token_secret;
 @property (nonatomic, retain) NSString *oauth_access_url;
