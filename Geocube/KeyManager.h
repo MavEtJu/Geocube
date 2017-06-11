@@ -24,6 +24,8 @@
 @property (nonatomic, retain) NSString *gca_api;
 @property (nonatomic, retain) NSString *googlemaps;
 @property (nonatomic, retain) NSString *mapbox;
-@property (nonatomic, retain) NSString *sharedsecret;
+
+- (NSString *)decrypt:(NSString *)key data:(NSString *)encryptedString;
+- (NSString *)encrypt:(NSString *)key data:(NSString *)plainText;
 
 @end

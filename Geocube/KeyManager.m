@@ -20,6 +20,9 @@
  */
 
 @interface KeyManager ()
+{
+    NSDictionary *contentDict;
+}
 
 @end
 
@@ -30,14 +33,38 @@
     self = [super init];
 
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"EncryptionKeys" ofType:@"plist"];
-    NSDictionary *contentDict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    contentDict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
 
     self.gca_api = [contentDict objectForKey:@"gca-api"];
     self.googlemaps = [contentDict objectForKey:@"googlemaps"];
     self.mapbox = [contentDict objectForKey:@"mapbox"];
-    self.sharedsecret = [contentDict objectForKey:@"sharedsecret"];
 
     return self;
+}
+
+- (NSString *)sharedSecret:(NSString *)key
+{
+    return [contentDict objectForKey:[NSString stringWithFormat:@"sharedsecret_%@", key]];
+}
+
+- (NSString *)decrypt:(NSString *)key data:(NSString *)encryptedString
+{
+    NSString *password = [keyManager sharedSecret:key];
+    NSError *error = nil;
+    NSData *encryptedData = [[NSData alloc] initWithBase64EncodedString:encryptedString options:0];
+    NSData *decryptedData = [RNDecryptor decryptData:encryptedData withPassword:password error:&error];
+    NSAssert(error == nil, [error description]);
+    return [[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding];
+}
+
+- (NSString *)encrypt:(NSString *)key data:(NSString *)plainText
+{
+    NSString *password = [keyManager sharedSecret:key];
+    NSError *error = nil;
+    NSData *plainData = [plainText dataUsingEncoding:NSASCIIStringEncoding];
+    NSData *encryptedData = [RNEncryptor encryptData:plainData withSettings:kRNCryptorAES256Settings password:password error:&error];
+    NSAssert(error == nil, [error description]);
+    return [encryptedData base64EncodedStringWithOptions:0];
 }
 
 @end
