@@ -1,11 +1,11 @@
 #!/bin/sh
 
 echo "Licenses:"
-grep -c GNU $(ls -1 *.[mh] | grep -v PSPDFUIKitMainThreadGuard.m) | grep -v 3$
+grep -c GNU $(ls -1 *.[mh] */*.[mh] | grep -v PSPDFUIKitMainThreadGuard.m) | grep -v 3$
 
 echo
 echo "DB_PREPARE / DB_FINISH:"
-for fn in db*.m; do
+for fn in database/db*.m; do
 	p=$(grep -c DB_PREPARE $fn)
 	f=$(grep -c DB_FINISH $fn)
 	if [ "$p" != "$f" ]; then
@@ -15,15 +15,15 @@ done
 
 echo
 echo "HelpDatabaseViewController:"
-for class in $(grep implementation db*.m | awk '{ print $2 }' | grep -v dbObject); do
-	if [ $(grep -c "$class dbCount" HelpDatabaseViewController.m) == 0 ]; then
+for class in $(grep implementation database/db*.m | awk '{ print $2 }' | grep -v dbObject); do
+	if [ $(grep -c "$class dbCount" Help/HelpDatabaseViewController.m) == 0 ]; then
 		echo "Not found: $class"
 	fi
 done
 
 echo
 echo "db*.m - dbCount:"
-for f in db*.m; do
+for f in database/db*.m; do
 	c=$(grep -wc "dbCount" $f)
 	if [ $c != 2 -a $c != 4 ]; then
 		echo "Missing dbCount: $f"
@@ -32,97 +32,97 @@ done
 
 echo
 echo "Classes:"
-grep -h @implementation *.m | sed -e 's/implementation/class/' -e 's/$/;/'| sort > /tmp/a
+grep -h @implementation *.m */*.m | sed -e 's/implementation/class/' -e 's/$/;/'| sort > /tmp/a
 grep @class Geocube-Classes.h > /tmp/b
 diff /tmp/[ab]
 
 echo
 echo "Copyright:"
-grep -c "2015, 2016, 2017" $(ls -1 *.m | grep -v PSPDFUIKitMainThreadGuard.m) | sed -e 's/:/ /' | grep -v " 1$"
+grep -c "2015, 2016, 2017" $(ls -1 *.m */*.m | grep -v PSPDFUIKitMainThreadGuard.m) | sed -e 's/:/ /' | grep -v " 1$"
 
 echo
 echo "Tabs:"
-grep -n "[	]$" *.m *.h
+grep -n "[	]$" *.[mh] */*.[mh]
 
 echo
 echo "Spaces at the end:"
-grep -n "[	 ]$" *.m *.h
+grep -n "[	 ]$" *.[mh] */*.[mh]
 
 echo
 echo "Spaces before ]:"
-grep -n "[^ ] ]" *.m
+grep -n "[^ ] ]" *.m */*.m
 
 echo
 echo "Empty lines at the end:"
-for i in *.m *.h; do if [ -z "$(tail -1 $i)" ]; then echo $i; fi; done
+for i in *.[mh] */*.[mh]; do if [ -z "$(tail -1 $i)" ]; then echo $i; fi; done
 
 echo
 echo "No space between parent class and delegates:"
-grep "@interface.*\w<" *.h 
+grep "@interface.*\w<" *.h */*.h
 
 echo
 echo "Subclassing space-colon-space:"
-grep @interface *.h | grep -v "\w\s:\s\w"
+grep @interface *.h */*.h | grep -v "\w\s:\s\w"
 
 echo
 echo "Missing interface()"
 for i in $(grep '@class' Geocube-Classes.h | awk '{ print $2 }' | sed -e 's/;$//'); do
-	if [ -z "$(grep @interface\ $i\  *.h)" ]; then
+	if [ -z "$(grep @interface\ $i\  *.h */*.h)" ]; then
 		echo "Missing @interface for $i in .h"
 	fi
-	if [ -z "$(grep @interface\ $i\  *.m)" ]; then
+	if [ -z "$(grep @interface\ $i\  *.m */*.m)" ]; then
 		echo "Missing @interface for $i in .m"
 	fi
-	if [ -z "$(grep @implementation\ $i\$ *.m)" ]; then
+	if [ -z "$(grep @implementation\ $i\$ *.m */*.m)" ]; then
 		echo "Missing @implementation for $i in .m"
 	fi
 done
 
 echo
 echo "No { after @interface:"
-grep @interface *.[mh] | grep \{
+grep @interface *.[mh] */*.[mh] | grep \{
 
 echo
 echo "Method definitions should have the { on the next line:"
-grep "^[-+].*{\s*$" *.m
+grep "^[-+].*{\s*$" *.m */*.m
 
 echo
 echo "Method definitions should have a space between [-+] and name:"
-grep "^[-+]\S" *.m
+grep "^[-+]\S" *.m */*.m
 
 echo
 echo "Make sure that NSArray knows which class it represent:"
-grep 'NSArray ' $(ls -1 *.h | grep -v GCArray.h)
-grep 'NSMutableArray ' $(ls -1 *.h | grep -v GCArray.h)
-grep -n "^[-+].*NSArray " $(ls -1 *.m | grep -v GCArray.m)
-grep -n "^[-+].*NSMutableArray " $(ls -1 *.m | grep -v GCArray.m)
-grep -n " NSMutableArray " $(ls -1 *.m | grep -v GCArray.m)
-grep -n " NSArray " $(ls -1 *.m | grep -v GCArray.m)
+grep 'NSArray ' $(ls -1 *.h */*.h | grep -v GCArray.h)
+grep 'NSMutableArray ' $(ls -1 *.h */*.h | grep -v GCArray.h)
+grep -n "^[-+].*NSArray " $(ls -1 *.m */*.m | grep -v GCArray.m)
+grep -n "^[-+].*NSMutableArray " $(ls -1 *.m */*.m | grep -v GCArray.m)
+grep -n " NSMutableArray " $(ls -1 *.m */*.m | grep -v GCArray.m)
+grep -n " NSArray " $(ls -1 *.m */*.m | grep -v GCArray.m)
 
 echo
 echo "Empty lines after beginning of a function:"
-grep -n -A 1 ^{ *.m  | grep -v '^--$' | grep -- -$
+grep -n -A 1 ^{ *.m */*.m | grep -v '^--$' | grep -- -$
 
 echo
 echo "Double empty lines:"
-for i in *.h *.m; do perl -e '$f=$ARGV[0];@a=<>;chomp(@a);$i=-1;$c=0;foreach $l (@a) { $c++; if ($l eq "") { print "$f:$c\n" if ($i==$c-1); $i=$c; }}' $i; done
+for i in *.[hm] */*.[hm]; do perl -e '$f=$ARGV[0];@a=<>;chomp(@a);$i=-1;$c=0;foreach $l (@a) { $c++; if ($l eq "") { print "$f:$c\n" if ($i==$c-1); $i=$c; }}' $i; done
 
 echo
 echo "Double ;;'s:"
-grep ";;" *.m *.h
+grep ";;" *.[hm] */*.[hm]
 
 echo
 echo "ConfigManager:"
-a=$(grep -c 'CHECK.@' ConfigManager.m)
-b=$(grep -c 'self .*Update:.*value:value' ConfigManager.m)
-c=$(grep -c 'dbConfig dbGetByKey:@"' ConfigManager.m)
+a=$(grep -c 'CHECK.@' */ConfigManager.m)
+b=$(grep -c 'self .*Update:.*value:value' */ConfigManager.m)
+c=$(grep -c 'dbConfig dbGetByKey:@"' */ConfigManager.m)
 if [ $a -ne $b -o $b -ne $c ]; then
 	echo "CHECK: $a"
 	echo "dbConfig dbGetByKey: $c"
 	echo "self .*Update:.*value:value: $b"
 fi
-for w in $(grep 'CHECK.@' ConfigManager.m | sed -e 's/",.*//' -e 's/.*"//'); do
-	if [ $(grep -cw $w ConfigManager.m) -ne 3 ]; then
+for w in $(grep 'CHECK.@' */ConfigManager.m | sed -e 's/",.*//' -e 's/.*"//'); do
+	if [ $(grep -cw $w */ConfigManager.m) -ne 3 ]; then
 		echo "Incomplete: $w"
 	fi
 done
