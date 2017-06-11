@@ -68,11 +68,33 @@ KeyManager *keyManager = nil;
 //
 AppDelegate *_AppDelegate;
 
+void encryptionstuff(void);
 int main(int argc, char * argv[])
 {
     srand((unsigned int)time(NULL));
 
+    // This is only needed when generating shared secret encrypted keys
+    // encryptionstuff();
+
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
+}
+
+void encryptionstuff(void)
+{
+    keyManager = [[KeyManager alloc] init];
+
+    NSString *key = @"sites_1";
+    NSArray<NSString *> *plains = @[
+        @"Foo bar quux",
+        // Your plain text goes here.
+        ];
+
+    [plains enumerateObjectsUsingBlock:^(NSString * _Nonnull plain, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSLog(@"%@", [keyManager decrypt:key data:[keyManager encrypt:key data:plain]]);
+        NSLog(@"%@", [keyManager encrypt:key data:plain]);
+    }];
+
+    exit(0);
 }
