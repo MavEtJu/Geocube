@@ -1993,20 +1993,20 @@
 		E84725EB1DFE6ED900CFF99B /* Map sources */ = {
 			isa = PBXGroup;
 			children = (
+				E82343951EECDBCE00D2CDFD /* MapTemplate.h */,
+				E82343961EECDBCE00D2CDFD /* MapTemplate.m */,
+				E82343911EECDBCE00D2CDFD /* MapGoogle.h */,
+				E82343921EECDBCE00D2CDFD /* MapGoogle.m */,
 				E82343891EECDBCE00D2CDFD /* MapApple.h */,
 				E823438A1EECDBCE00D2CDFD /* MapApple.m */,
 				E823438B1EECDBCE00D2CDFD /* MapAppleCache.h */,
 				E823438C1EECDBCE00D2CDFD /* MapAppleCache.m */,
 				E823438D1EECDBCE00D2CDFD /* MapAppleTemplate.h */,
 				E823438E1EECDBCE00D2CDFD /* MapAppleTemplate.m */,
-				E823438F1EECDBCE00D2CDFD /* MapESRIWorldTopo.h */,
-				E82343901EECDBCE00D2CDFD /* MapESRIWorldTopo.m */,
-				E82343911EECDBCE00D2CDFD /* MapGoogle.h */,
-				E82343921EECDBCE00D2CDFD /* MapGoogle.m */,
 				E82343931EECDBCE00D2CDFD /* MapOSM.h */,
 				E82343941EECDBCE00D2CDFD /* MapOSM.m */,
-				E82343951EECDBCE00D2CDFD /* MapTemplate.h */,
-				E82343961EECDBCE00D2CDFD /* MapTemplate.m */,
+				E823438F1EECDBCE00D2CDFD /* MapESRIWorldTopo.h */,
+				E82343901EECDBCE00D2CDFD /* MapESRIWorldTopo.m */,
 			);
 			name = "Map sources";
 			sourceTree = "<group>";
@@ -2014,16 +2014,16 @@
 		E84725EC1DFE6EE100CFF99B /* MapViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E823437A1EECDB9B00D2CDFD /* MapAllWPViewController.h */,
-				E823437B1EECDB9B00D2CDFD /* MapAllWPViewController.m */,
-				E823437C1EECDB9B00D2CDFD /* MapBrand.h */,
-				E823437D1EECDB9B00D2CDFD /* MapBrand.m */,
-				E823437E1EECDB9B00D2CDFD /* MapOneWPViewController.h */,
-				E823437F1EECDB9B00D2CDFD /* MapOneWPViewController.m */,
 				E82343801EECDB9B00D2CDFD /* MapTemplateViewController.h */,
 				E82343811EECDB9B00D2CDFD /* MapTemplateViewController.m */,
+				E823437A1EECDB9B00D2CDFD /* MapAllWPViewController.h */,
+				E823437B1EECDB9B00D2CDFD /* MapAllWPViewController.m */,
+				E823437E1EECDB9B00D2CDFD /* MapOneWPViewController.h */,
+				E823437F1EECDB9B00D2CDFD /* MapOneWPViewController.m */,
 				E82343821EECDB9B00D2CDFD /* MapTrackViewController.h */,
 				E82343831EECDB9B00D2CDFD /* MapTrackViewController.m */,
+				E823437C1EECDB9B00D2CDFD /* MapBrand.h */,
+				E823437D1EECDB9B00D2CDFD /* MapBrand.m */,
 			);
 			name = MapViewControllers;
 			sourceTree = "<group>";
