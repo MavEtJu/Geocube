@@ -20,6 +20,7 @@ Version 1.3(xx)
   - Improved fonts, indents on views on the iPad.
   - Made Geocaching Australia authentication more obvious.
   - Statistics screen is now a proper table.
+  - Waypoint Info view under the map for the iPad now looks better.
 
 Version 1.2(20)
 
