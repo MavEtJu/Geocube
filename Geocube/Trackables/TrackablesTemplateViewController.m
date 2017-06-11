@@ -80,15 +80,15 @@ enum {
     cell.owner.text = nil;
 
     cell.name.text = tb.name;
-    if (tb.ref != nil && tb.code != nil)
+    if (!IS_EMPTY(tb.ref) && !IS_EMPTY(tb.code))
         cell.code.text = [NSString stringWithFormat:@"Code: %@ / %@", tb.ref, tb.code];
-    if (tb.ref == nil && tb.code != nil)
+    if ( IS_EMPTY(tb.ref) && !IS_EMPTY(tb.code))
         cell.code.text = [NSString stringWithFormat:@"Code: %@", tb.code];
-    if (tb.ref != nil && tb.code == nil)
+    if (!IS_EMPTY(tb.ref) &&  IS_EMPTY(tb.code))
         cell.code.text = [NSString stringWithFormat:@"Code: %@", tb.ref];
     if (tb.carrier != nil)
         cell.carrier.text = [NSString stringWithFormat:@"Carried by %@", tb.carrier_str];
-    if (tb.waypoint_name != nil)
+    if (!IS_EMPTY(tb.waypoint_name))
         cell.waypoint.text = [NSString stringWithFormat:@"Stored in %@", tb.waypoint_name];
     if (tb.owner != nil)
         cell.owner.text = [NSString stringWithFormat:@"Owned by %@", tb.owner_str];

@@ -2063,14 +2063,14 @@
 		E857078C1CA1E68F00467CE0 /* Trackables */ = {
 			isa = PBXGroup;
 			children = (
-				E82344571EECE06E00D2CDFD /* TrackablesInventoryViewController.h */,
-				E82344581EECE06E00D2CDFD /* TrackablesInventoryViewController.m */,
-				E82344591EECE06E00D2CDFD /* TrackablesListViewController.h */,
-				E823445A1EECE06E00D2CDFD /* TrackablesListViewController.m */,
-				E823445B1EECE06E00D2CDFD /* TrackablesMineViewController.h */,
-				E823445C1EECE06E00D2CDFD /* TrackablesMineViewController.m */,
 				E823445D1EECE06E00D2CDFD /* TrackablesTemplateViewController.h */,
 				E823445E1EECE06E00D2CDFD /* TrackablesTemplateViewController.m */,
+				E82344571EECE06E00D2CDFD /* TrackablesInventoryViewController.h */,
+				E82344581EECE06E00D2CDFD /* TrackablesInventoryViewController.m */,
+				E823445B1EECE06E00D2CDFD /* TrackablesMineViewController.h */,
+				E823445C1EECE06E00D2CDFD /* TrackablesMineViewController.m */,
+				E82344591EECE06E00D2CDFD /* TrackablesListViewController.h */,
+				E823445A1EECE06E00D2CDFD /* TrackablesListViewController.m */,
 				E823445F1EECE06E00D2CDFD /* TrackableTableViewCell.h */,
 				E82344601EECE06E00D2CDFD /* TrackableTableViewCell.m */,
 				E82344611EECE06E00D2CDFD /* TrackableTableViewCell.xib */,
