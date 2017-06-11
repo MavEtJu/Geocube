@@ -241,7 +241,7 @@
 
     NSMutableString *sql = [NSMutableString stringWithFormat:@"select id, gc_id, waypoint_id, log_string_id, datetime, datetime_epoch, logger_id, log, needstobelogged, locallog from logs where %@ order by datetime_epoch desc", where];
     if (limit != -1)
-        [sql appendFormat:@" limit %ld", limit];
+        [sql appendFormat:@" limit %ld", (long)limit];
 
     @synchronized(db) {
         DB_PREPARE(sql);
