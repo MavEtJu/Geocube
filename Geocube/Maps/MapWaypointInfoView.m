@@ -180,7 +180,10 @@
 
 + (NSInteger)viewHeight
 {
-    return 77;
+    if (IS_IPAD)
+        return 97;
+    else
+        return 77;
 }
 
 #pragma -- WaypointManagerDelegate

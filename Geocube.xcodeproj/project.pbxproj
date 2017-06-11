@@ -537,6 +537,7 @@
 		E83C6F051EECE67100E303F5 /* FilesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C6EFC1EECE67100E303F5 /* FilesTableViewCell.xib */; };
 		E83C6F061EECE67100E303F5 /* FilesTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C6EFD1EECE67100E303F5 /* FilesTableViewCell~ipad.xib */; };
 		E83C6F071EECE67100E303F5 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C6EFF1EECE67100E303F5 /* FilesViewController.m */; };
+		E83C6F101EED19DF00E303F5 /* MapWaypointInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C6F0F1EED19DF00E303F5 /* MapWaypointInfoView~ipad.xib */; };
 		E841E15A1D88FC950050D4B4 /* InfoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E841E1591D88FC950050D4B4 /* InfoItem.m */; };
 		E84725D61DF770DA00CFF99B /* menu icon - global - default.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725D01DF770DA00CFF99B /* menu icon - global - default.png */; };
 		E84725D71DF770DA00CFF99B /* menu icon - global@2x - default.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725D11DF770DA00CFF99B /* menu icon - global@2x - default.png */; };
@@ -1510,6 +1511,7 @@
 		E83C6EFD1EECE67100E303F5 /* FilesTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "FilesTableViewCell~ipad.xib"; path = "Files/FilesTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E83C6EFE1EECE67100E303F5 /* FilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilesViewController.h; path = Files/FilesViewController.h; sourceTree = "<group>"; };
 		E83C6EFF1EECE67100E303F5 /* FilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilesViewController.m; path = Files/FilesViewController.m; sourceTree = "<group>"; };
+		E83C6F0F1EED19DF00E303F5 /* MapWaypointInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "MapWaypointInfoView~ipad.xib"; path = "Maps/MapWaypointInfoView~ipad.xib"; sourceTree = "<group>"; };
 		E841E1581D88FC950050D4B4 /* InfoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoItem.h; sourceTree = "<group>"; };
 		E841E1591D88FC950050D4B4 /* InfoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoItem.m; sourceTree = "<group>"; };
 		E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Prefix.pch"; sourceTree = "<group>"; };
@@ -2097,6 +2099,8 @@
 			children = (
 				E82344041EECDF9C00D2CDFD /* WaypointsListViewController.h */,
 				E82344051EECDF9C00D2CDFD /* WaypointsListViewController.m */,
+				E823441D1EECDFB300D2CDFD /* FiltersViewController.h */,
+				E823441E1EECDFB300D2CDFD /* FiltersViewController.m */,
 				E8E8CFFB1B658C3300CC741A /* Filter Viewing */,
 			);
 			name = Waypoints;
@@ -2256,6 +2260,7 @@
 				E82343A61EECDDD400D2CDFD /* MapWaypointInfoView.h */,
 				E82343A71EECDDD400D2CDFD /* MapWaypointInfoView.m */,
 				E82343A81EECDDD400D2CDFD /* MapWaypointInfoView.xib */,
+				E83C6F0F1EED19DF00E303F5 /* MapWaypointInfoView~ipad.xib */,
 			);
 			name = Maps;
 			sourceTree = "<group>";
@@ -2934,8 +2939,6 @@
 		E8E8CFFB1B658C3300CC741A /* Filter Viewing */ = {
 			isa = PBXGroup;
 			children = (
-				E823441D1EECDFB300D2CDFD /* FiltersViewController.h */,
-				E823441E1EECDFB300D2CDFD /* FiltersViewController.m */,
 				E82344171EECDFB300D2CDFD /* FilterObject.h */,
 				E82344181EECDFB300D2CDFD /* FilterObject.m */,
 				E823441F1EECDFB300D2CDFD /* FilterTableViewCell.h */,
@@ -3688,6 +3691,7 @@
 				E82E65FE1DA079E500CFBDED /* log - enabled - 30x30.png in Resources */,
 				E8FEDEB91DA887A7007C756B /* image - nil - 1x1@3x.png in Resources */,
 				E82E674C1DA07D0200CFBDED /* attributes - 34.png in Resources */,
+				E83C6F101EED19DF00E303F5 /* MapWaypointInfoView~ipad.xib in Resources */,
 				E82E67611DA07D0200CFBDED /* attributes - 55.png in Resources */,
 				E82E67531DA07D0200CFBDED /* attributes - 41.png in Resources */,
 				E82E66C11DA07CBE00CFBDED /* cache - letterbox - 30x30.png in Resources */,
