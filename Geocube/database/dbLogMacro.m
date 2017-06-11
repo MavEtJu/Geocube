@@ -110,7 +110,7 @@
     }
 }
 
-- (NSInteger)dbCount
++ (NSInteger)dbCount
 {
     return [dbLogTemplate dbCount:@"log_macros"];
 }
