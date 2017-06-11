@@ -53,6 +53,11 @@
 		E82341851EEC034C00D2CDFD /* NotesSavedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341841EEC034C00D2CDFD /* NotesSavedViewController.m */; };
 		E82341871EECA19300D2CDFD /* EncryptionKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E82341861EECA19300D2CDFD /* EncryptionKeys.plist */; };
 		E823418A1EECA4FA00D2CDFD /* KeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341891EECA4FA00D2CDFD /* KeyManager.m */; };
+		E82341961EECABA200D2CDFD /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = E823418E1EECABA200D2CDFD /* RNCryptor.m */; };
+		E82341971EECABA200D2CDFD /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341911EECABA200D2CDFD /* RNCryptorEngine.m */; };
+		E82341981EECABA200D2CDFD /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341931EECABA200D2CDFD /* RNDecryptor.m */; };
+		E82341991EECABA200D2CDFD /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341951EECABA200D2CDFD /* RNEncryptor.m */; };
+		E823419B1EECAF4F00D2CDFD /* EncryptionKeysExample.plist in Resources */ = {isa = PBXBuildFile; fileRef = E823419A1EECAF4F00D2CDFD /* EncryptionKeysExample.plist */; };
 		E8257F281EE41B8A0089C106 /* log - disabled - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8257F271EE41B8A0089C106 /* log - disabled - 30x30.png */; };
 		E825A2F71E39FDF4004D9538 /* MapWaypointInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E825A2F51E39FDF4004D9538 /* MapWaypointInfoView.m */; };
 		E825A2F81E39FDF4004D9538 /* MapWaypointInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E825A2F61E39FDF4004D9538 /* MapWaypointInfoView.xib */; };
@@ -788,6 +793,17 @@
 		E82341861EECA19300D2CDFD /* EncryptionKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EncryptionKeys.plist; sourceTree = "<group>"; };
 		E82341881EECA4FA00D2CDFD /* KeyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyManager.h; sourceTree = "<group>"; };
 		E82341891EECA4FA00D2CDFD /* KeyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyManager.m; sourceTree = "<group>"; };
+		E823418C1EECABA200D2CDFD /* RNCryptor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RNCryptor-Prefix.pch"; path = "RNCryptor/RNCryptor-Prefix.pch"; sourceTree = "<group>"; };
+		E823418D1EECABA200D2CDFD /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNCryptor.h; path = RNCryptor/RNCryptor.h; sourceTree = "<group>"; };
+		E823418E1EECABA200D2CDFD /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RNCryptor.m; path = RNCryptor/RNCryptor.m; sourceTree = "<group>"; };
+		E823418F1EECABA200D2CDFD /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RNCryptor+Private.h"; path = "RNCryptor/RNCryptor+Private.h"; sourceTree = "<group>"; };
+		E82341901EECABA200D2CDFD /* RNCryptorEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNCryptorEngine.h; path = RNCryptor/RNCryptorEngine.h; sourceTree = "<group>"; };
+		E82341911EECABA200D2CDFD /* RNCryptorEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RNCryptorEngine.m; path = RNCryptor/RNCryptorEngine.m; sourceTree = "<group>"; };
+		E82341921EECABA200D2CDFD /* RNDecryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNDecryptor.h; path = RNCryptor/RNDecryptor.h; sourceTree = "<group>"; };
+		E82341931EECABA200D2CDFD /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RNDecryptor.m; path = RNCryptor/RNDecryptor.m; sourceTree = "<group>"; };
+		E82341941EECABA200D2CDFD /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNEncryptor.h; path = RNCryptor/RNEncryptor.h; sourceTree = "<group>"; };
+		E82341951EECABA200D2CDFD /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RNEncryptor.m; path = RNCryptor/RNEncryptor.m; sourceTree = "<group>"; };
+		E823419A1EECAF4F00D2CDFD /* EncryptionKeysExample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EncryptionKeysExample.plist; sourceTree = "<group>"; };
 		E8257F271EE41B8A0089C106 /* log - disabled - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - disabled - 30x30.png"; path = "images/logs/log - disabled - 30x30.png"; sourceTree = "<group>"; };
 		E825A2F41E39FDF4004D9538 /* MapWaypointInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapWaypointInfoView.h; sourceTree = "<group>"; };
 		E825A2F51E39FDF4004D9538 /* MapWaypointInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapWaypointInfoView.m; sourceTree = "<group>"; };
@@ -1795,6 +1811,23 @@
 				E82302461DCD525E0032C5C6 /* XPathQuery.m */,
 			);
 			name = TFHpple;
+			sourceTree = "<group>";
+		};
+		E823418B1EECAB8E00D2CDFD /* RNCryptor */ = {
+			isa = PBXGroup;
+			children = (
+				E823418C1EECABA200D2CDFD /* RNCryptor-Prefix.pch */,
+				E823418D1EECABA200D2CDFD /* RNCryptor.h */,
+				E823418E1EECABA200D2CDFD /* RNCryptor.m */,
+				E823418F1EECABA200D2CDFD /* RNCryptor+Private.h */,
+				E82341901EECABA200D2CDFD /* RNCryptorEngine.h */,
+				E82341911EECABA200D2CDFD /* RNCryptorEngine.m */,
+				E82341921EECABA200D2CDFD /* RNDecryptor.h */,
+				E82341931EECABA200D2CDFD /* RNDecryptor.m */,
+				E82341941EECABA200D2CDFD /* RNEncryptor.h */,
+				E82341951EECABA200D2CDFD /* RNEncryptor.m */,
+			);
+			name = RNCryptor;
 			sourceTree = "<group>";
 		};
 		E82990471C87AF9000504421 /* XMLReader */ = {
@@ -3012,6 +3045,7 @@
 			isa = PBXGroup;
 			children = (
 				E82341861EECA19300D2CDFD /* EncryptionKeys.plist */,
+				E823419A1EECAF4F00D2CDFD /* EncryptionKeysExample.plist */,
 				E879F9CB1B7B527200220EA7 /* Geocube.entitlements */,
 				E8F570571B3F7255003F020C /* Info.plist */,
 				E8F570B71B3FF4AA003F020C /* Settings.bundle */,
@@ -3033,6 +3067,7 @@
 		E8F570931B3F7EE1003F020C /* External modules */ = {
 			isa = PBXGroup;
 			children = (
+				E823418B1EECAB8E00D2CDFD /* RNCryptor */,
 				E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */,
 				E8D569E21B54A0ED001A0F8E /* ActionSheetPicker */,
 				E8D7BA2F1BC67CA3001B0805 /* CCHMapClusterController */,
@@ -3740,6 +3775,7 @@
 				E84725DB1DF770DA00CFF99B /* menu icon - local@3x - default.png in Resources */,
 				E82E66DF1DA07CBE00CFBDED /* cache - virtual - 30x30.png in Resources */,
 				E82E67321DA07D0200CFBDED /* attributes - 07.png in Resources */,
+				E823419B1EECAF4F00D2CDFD /* EncryptionKeysExample.plist in Resources */,
 				E8FEDE851DA7AD67007C756B /* map - disabled - 15x15@3x.png in Resources */,
 				E82E67621DA07D0200CFBDED /* attributes - 56.png in Resources */,
 				E8FEDE651DA7A051007C756B /* ratings - favourites 20x30@3x.png in Resources */,
@@ -3950,10 +3986,12 @@
 				E812CF561D01A09400C4E777 /* VKSideMenu.m in Sources */,
 				E88974BC1B6EBF9500703E80 /* ConfigManager.m in Sources */,
 				E867E83B1B539F6C00CB126A /* dbAttribute.m in Sources */,
+				E82341971EECABA200D2CDFD /* RNCryptorEngine.m in Sources */,
 				E8371D511D10202B00C2F174 /* THLabel.m in Sources */,
 				E82840F51B510AE10055EE59 /* dbContainer.m in Sources */,
 				E823417C1EEBEF8600D2CDFD /* GroupsUserViewController.m in Sources */,
 				E8FD96BD1EC867BC00AFA7FA /* NVHFile.m in Sources */,
+				E82341961EECABA200D2CDFD /* RNCryptor.m in Sources */,
 				E8AA149A1ED30A1E0023000A /* dbListData.m in Sources */,
 				E85F2DB01EEB7E94006E464D /* SettingsLogTemplatesViewController.m in Sources */,
 				E8E88D921BF06D9500E90F8D /* LocationManager.m in Sources */,
@@ -3977,6 +4015,7 @@
 				E8F7FF241D744E9800AC7EE6 /* GCImageView.m in Sources */,
 				E8E2F5571D02C4C8009170E3 /* LocalMenuItems.m in Sources */,
 				E8C5BB6E1C719EB1006222D5 /* WaypointAddViewController.m in Sources */,
+				E82341991EECABA200D2CDFD /* RNEncryptor.m in Sources */,
 				E84725EA1DF9269100CFF99B /* GCBoundingBox.m in Sources */,
 				E87821171EA5927300FC155A /* MapBrand.m in Sources */,
 				E80732B61B5FA352007FDC29 /* dbWaypoint.m in Sources */,
@@ -3993,6 +4032,7 @@
 				E8E8D00D1B6651D200CC741A /* FilterTerrainTableViewCell.m in Sources */,
 				E88037AE1B96D05A0053AD01 /* GCTableViewCellKeyValue.m in Sources */,
 				E8F6BE761BB8C78F009EA037 /* LXMapScaleView.m in Sources */,
+				E82341981EECABA200D2CDFD /* RNDecryptor.m in Sources */,
 				E82302471DCD525E0032C5C6 /* TFHpple.m in Sources */,
 				E80250E71D160EF300F05772 /* WaypointLogTrackablesViewController.m in Sources */,
 				E8D569F61B54A108001A0F8E /* ActionSheetCustomPicker.m in Sources */,
