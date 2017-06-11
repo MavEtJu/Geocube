@@ -3031,7 +3031,7 @@
 				E8F570A81B3FE522003F020C /* Database */,
 				E8F570931B3F7EE1003F020C /* External modules */,
 				E8E4400B1D88A6D800BECB49 /* GUI - base */,
-				E8F570B61B3FF266003F020C /* GUI */,
+				E8F570B61B3FF266003F020C /* GUI - pages */,
 				E8F570601B3F7255003F020C /* Main.storyboard */,
 				E8F570631B3F7255003F020C /* Images.xcassets */,
 				E8F5707C1B3F75D1003F020C /* Data files */,
@@ -3226,7 +3226,7 @@
 			name = Tools;
 			sourceTree = "<group>";
 		};
-		E8F570B61B3FF266003F020C /* GUI */ = {
+		E8F570B61B3FF266003F020C /* GUI - pages */ = {
 			isa = PBXGroup;
 			children = (
 				E857078F1CA1E77B00467CE0 /* Navigate */,
@@ -3244,7 +3244,7 @@
 				E8E8CFE91B639A0400CC741A /* Settings */,
 				E8A7FA9C1B784065003F4132 /* Help */,
 			);
-			name = GUI;
+			name = "GUI - pages";
 			sourceTree = "<group>";
 		};
 		E8F570B91B3FF668003F020C /* System Libraries */ = {
