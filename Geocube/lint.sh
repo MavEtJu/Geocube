@@ -127,5 +127,19 @@ for w in $(grep 'CHECK.@' */ConfigManager.m | sed -e 's/",.*//' -e 's/.*"//'); d
 	fi
 done
 
+echo
+echo "XIB for iPhone/iPad"
+a=$(find . -name '*.xib' | grep -v ~ipad)
+for f in $a; do
+	if [ ! -f $(echo $f | sed -e 's/.xib/~ipad.xib/') ]; then
+		echo "iPad XIB not found for $f"
+	fi
+done
+a=$(find . -name '*.xib' | grep ~ipad)
+for f in $a; do
+	if [ ! -f $(echo $f | sed -e 's/~ipad.xib/.xib/') ]; then
+		echo "iPhone XIB not found for $f"
+	fi
+done
 
 echo
