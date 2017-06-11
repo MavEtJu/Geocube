@@ -74,7 +74,7 @@ const uint8_t kRNCryptorFileVersion = 3;
 - (NSData *)_RNConsumeToIndex:(NSUInteger)index
 {
   NSData *removed = [self subdataWithRange:NSMakeRange(0, index)];
-  [self replaceBytesInRange:NSMakeRange(0, self.length - index) withBytes:([self mutableBytes] + index)];
+  [self replaceBytesInRange:NSMakeRange(0, self.length - index) withBytes:((char *)[self mutableBytes] + index)];
   [self setLength:self.length - index];
   return removed;
 }
