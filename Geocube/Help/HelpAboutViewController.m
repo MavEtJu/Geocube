@@ -272,11 +272,15 @@
     }
 
     if (indexPath.section == 1) {
+        NSString *s = nil;
         NSDictionary *d = [texts objectAtIndex:indexPath.row];
         cell.name.text = [d objectForKey:@"name"];
-        cell.url.text = [d objectForKey:@"url"];
-        cell.copyright.text = [d objectForKey:@"copyright"];
-        cell.license.text = [d objectForKey:@"license"];
+        if ((s = [d objectForKey:@"url"]) != nil)
+            cell.url.text = [NSString stringWithFormat:@"URL: %@", s];
+        if ((s = [d objectForKey:@"copyright"]) != nil)
+            cell.copyright.text = [NSString stringWithFormat:@"Copyright: %@", s];
+        if ((s = [d objectForKey:@"license"]) != nil)
+            cell.license.text = [NSString stringWithFormat:@"License:\n%@", s];
     }
 
     [cell setUserInteractionEnabled:NO];
