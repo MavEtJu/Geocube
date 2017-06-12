@@ -39,6 +39,7 @@ enum {
 enum {
       menuAddTemplate = 0,
       menuAddMacro,
+      menuBackup,
       menuMax,
 };
 
@@ -55,6 +56,7 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuAddTemplate label:@"Add Template"];
     [lmi addItem:menuAddMacro label:@"Add Macro"];
+    [lmi addItem:menuBackup label:@"Backup"];
 }
 
 - (void)reloadLogXxx
@@ -303,6 +305,51 @@ indexPath
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
+- (void)backup
+{
+    NSMutableArray<NSString *> *lines = [NSMutableArray arrayWithCapacity:100];
+
+    [lines addObject:@"; Backup of the Log Templates and Macros."];
+    [lines addObject:@"; Lines starting with a ; are considered comments."];
+    [lines addObject:@"; The format is: First comes the text 'Macro' or 'Template'."];
+    [lines addObject:@"; Then comes a separator, the text of the macro or template and another separator"];
+    [lines addObject:@";"];
+    [lines addObject:@"; Do not remove"];
+    [lines addObject:@"Version: 1"];
+    [lines addObject:@""];
+
+    [[dbLogTemplate dbAll] enumerateObjectsUsingBlock:^(dbLogTemplate * _Nonnull lt, NSUInteger idx, BOOL * _Nonnull stop) {
+        [lines addObject:[NSString stringWithFormat:@"; %@", lt.name]];
+        [lines addObject:[NSString stringWithFormat:@"Template '%@'", lt.name]];
+        [lines addObject:@"-------------"];
+        [lines addObject:lt.text];
+        [lines addObject:@"-------------"];
+    }];
+
+    [[dbLogMacro dbAll] enumerateObjectsUsingBlock:^(dbLogMacro * _Nonnull lm, NSUInteger idx, BOOL * _Nonnull stop) {
+        [lines addObject:[NSString stringWithFormat:@"; %@", lm.name]];
+        [lines addObject:[NSString stringWithFormat:@"Macro '%@'", lm.name]];
+        [lines addObject:@"-------------"];
+        [lines addObject:lm.text];
+        [lines addObject:@"-------------"];
+    }];
+
+    NSString *filename = @"Log Templates and Macros.geocube";
+
+    NSString *fn = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename];
+    NSLog(@"Exporting to %@", fn);
+
+    NSMutableString *line = [NSMutableString string];
+    [lines enumerateObjectsUsingBlock:^(NSString *l, NSUInteger idx, BOOL * _Nonnull stop) {
+        [line appendString:l];
+        [line appendString:@"\n"];
+    }];
+
+    [line writeToFile:fn atomically:NO encoding:NSUTF8StringEncoding error:nil];
+
+    [MyTools messageBox:self header:@"Backup complete" text:[NSString stringWithFormat:@"You can find the backup in the Files tab as '%@'", filename]];
+}
+
 - (void)performLocalMenuAction:(NSInteger)index
 {
     switch (index) {
@@ -311,6 +358,9 @@ indexPath
             return;
         case menuAddMacro:
             [self addLogMacro];
+            return;
+        case menuBackup:
+            [self backup];
             return;
     }
 
