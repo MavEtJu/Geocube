@@ -127,7 +127,7 @@ enum {
 
     [self.tableView registerNib:[UINib nibWithNibName:XIB_WAYPOINTHEADERTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:THISCELL_HEADER];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_WAYPOINTLOGSTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:THISCELL_LOGS];
-    [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLRIGHTIMAGE bundle:nil] forCellReuseIdentifier:THISCELL_RIGHTIMAGE];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLRIGHTIMAGEDISCLOSURE bundle:nil] forCellReuseIdentifier:THISCELL_RIGHTIMAGE];
 
     UINib *sectionHeaderNib = [UINib nibWithNibName:XIB_WAYPOINTHEADERHEADERVIEW bundle:nil];
     [self.tableView registerNib:sectionHeaderNib forHeaderFooterViewReuseIdentifier:THISHEADER_HEADER];

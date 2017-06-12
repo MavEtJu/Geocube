@@ -82,7 +82,9 @@
 @class GCTableViewCell;
 @class GCTableViewCellKeyValue;
 @class GCTableViewCellRightImage;
+@class GCTableViewCellRightImageDisclosure;
 @class GCTableViewCellSubtitleRightImage;
+@class GCTableViewCellSubtitleRightImageDisclosure;
 @class GCTableViewCellSwitch;
 @class GCTableViewCellWithSubtitle;
 @class GCTableViewController;
