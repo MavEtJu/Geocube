@@ -21,13 +21,14 @@
 
 @interface NoticeTableViewCell : GCTableViewCell
 
-@property (nonatomic, retain) GCTextblock *noteLabel;
-@property (nonatomic, retain) GCSmallLabel *senderLabel;
-@property (nonatomic, retain) GCSmallLabel *dateLabel;
-@property (nonatomic, retain) dbNotice *notice;
+#define XIB_HELPNOTICESTABLEVIEWCELL @"NoticeTableViewCell"
+
+@property (nonatomic, weak) IBOutlet GCLabel *note;
+@property (nonatomic, weak) IBOutlet GCLabel *sender;
+@property (nonatomic, weak) IBOutlet GCLabel *date;
+@property (nonatomic, retain) NSString *url;
 @property (nonatomic) BOOL seen;
 
-- (void)setNote:(NSString *)noteString;
-- (void)setURL:(NSString *)urlString;
+- (void)addURL:(NSString *)urlString;
 
 @end

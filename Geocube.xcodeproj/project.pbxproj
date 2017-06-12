@@ -538,6 +538,8 @@
 		E83C6F061EECE67100E303F5 /* FilesTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C6EFD1EECE67100E303F5 /* FilesTableViewCell~ipad.xib */; };
 		E83C6F071EECE67100E303F5 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C6EFF1EECE67100E303F5 /* FilesViewController.m */; };
 		E83C6F101EED19DF00E303F5 /* MapWaypointInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C6F0F1EED19DF00E303F5 /* MapWaypointInfoView~ipad.xib */; };
+		E83C6F151EEE8B6C00E303F5 /* NoticeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C6F131EEE8B6C00E303F5 /* NoticeTableViewCell.xib */; };
+		E83C6F161EEE8B6C00E303F5 /* NoticeTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C6F141EEE8B6C00E303F5 /* NoticeTableViewCell~ipad.xib */; };
 		E841E15A1D88FC950050D4B4 /* InfoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E841E1591D88FC950050D4B4 /* InfoItem.m */; };
 		E84725D61DF770DA00CFF99B /* menu icon - global - default.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725D01DF770DA00CFF99B /* menu icon - global - default.png */; };
 		E84725D71DF770DA00CFF99B /* menu icon - global@2x - default.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725D11DF770DA00CFF99B /* menu icon - global@2x - default.png */; };
@@ -1512,6 +1514,8 @@
 		E83C6EFE1EECE67100E303F5 /* FilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilesViewController.h; path = Files/FilesViewController.h; sourceTree = "<group>"; };
 		E83C6EFF1EECE67100E303F5 /* FilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilesViewController.m; path = Files/FilesViewController.m; sourceTree = "<group>"; };
 		E83C6F0F1EED19DF00E303F5 /* MapWaypointInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "MapWaypointInfoView~ipad.xib"; path = "Maps/MapWaypointInfoView~ipad.xib"; sourceTree = "<group>"; };
+		E83C6F131EEE8B6C00E303F5 /* NoticeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoticeTableViewCell.xib; path = Help/NoticeTableViewCell.xib; sourceTree = "<group>"; };
+		E83C6F141EEE8B6C00E303F5 /* NoticeTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "NoticeTableViewCell~ipad.xib"; path = "Help/NoticeTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E841E1581D88FC950050D4B4 /* InfoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoItem.h; sourceTree = "<group>"; };
 		E841E1591D88FC950050D4B4 /* InfoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoItem.m; sourceTree = "<group>"; };
 		E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Prefix.pch"; sourceTree = "<group>"; };
@@ -2729,12 +2733,12 @@
 		E8A7FA9C1B784065003F4132 /* Help */ = {
 			isa = PBXGroup;
 			children = (
+				E82345101EECE14A00D2CDFD /* HelpAboutViewController.h */,
+				E82345111EECE14A00D2CDFD /* HelpAboutViewController.m */,
 				E823450C1EECE14A00D2CDFD /* HelpAboutTableViewCell.h */,
 				E823450D1EECE14A00D2CDFD /* HelpAboutTableViewCell.m */,
 				E823450E1EECE14A00D2CDFD /* HelpAboutTableViewCell.xib */,
 				E823450F1EECE14A00D2CDFD /* HelpAboutTableViewCell~ipad.xib */,
-				E82345101EECE14A00D2CDFD /* HelpAboutViewController.h */,
-				E82345111EECE14A00D2CDFD /* HelpAboutViewController.m */,
 				E82345121EECE14A00D2CDFD /* HelpDatabaseViewController.h */,
 				E82345131EECE14A00D2CDFD /* HelpDatabaseViewController.m */,
 				E82345141EECE14A00D2CDFD /* HelpHelpViewController.h */,
@@ -2747,6 +2751,8 @@
 				E823451B1EECE14A00D2CDFD /* NoticesViewController.m */,
 				E823451C1EECE14A00D2CDFD /* NoticeTableViewCell.h */,
 				E823451D1EECE14A00D2CDFD /* NoticeTableViewCell.m */,
+				E83C6F131EEE8B6C00E303F5 /* NoticeTableViewCell.xib */,
+				E83C6F141EEE8B6C00E303F5 /* NoticeTableViewCell~ipad.xib */,
 			);
 			name = Help;
 			sourceTree = "<group>";
@@ -3762,6 +3768,7 @@
 				E82E65DE1DA079AE00CFBDED /* map - found stick - 35x42.png in Resources */,
 				E8FEDE5A1DA77F9D007C756B /* container size - regular - 35x11@2x.png in Resources */,
 				E8FEDE641DA7A051007C756B /* ratings - favourites 20x30@2x.png in Resources */,
+				E83C6F161EEE8B6C00E303F5 /* NoticeTableViewCell~ipad.xib in Resources */,
 				E82E65BD1DA0794600CFBDED /* waypoint - question - 30x30.png in Resources */,
 				E82E65DC1DA079AE00CFBDED /* map - disabled - 15x15.png in Resources */,
 				E82E675A1DA07D0200CFBDED /* attributes - 48.png in Resources */,
@@ -3837,6 +3844,7 @@
 				E82E66D81DA07CBE00CFBDED /* cache - trigpoint - 30x30.png in Resources */,
 				E82E674E1DA07D0200CFBDED /* attributes - 36.png in Resources */,
 				E82E667B1DA07C6F00CFBDED /* compass - airplane - airplane.png in Resources */,
+				E83C6F151EEE8B6C00E303F5 /* NoticeTableViewCell.xib in Resources */,
 				E82E66E41DA07CBE00CFBDED /* cache - waymark - 30x30@3x.png in Resources */,
 				E82E675C1DA07D0200CFBDED /* attributes - 50.png in Resources */,
 				E82E66371DA07A8700CFBDED /* icons - sad - 30x30.png in Resources */,

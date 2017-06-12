@@ -20,103 +20,30 @@
  */
 
 @interface NoticeTableViewCell ()
-{
-    CGRect rectNote;
-    CGRect rectSender;
-    CGRect rectDate;
-}
 
 @end
 
 @implementation NoticeTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (void)awakeFromNib
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-
-    [self calculateRects];
-
-    // Sender
-    self.senderLabel = [[GCSmallLabel alloc] initWithFrame:rectSender];
-    [self.senderLabel bold:YES];
-    [self.contentView addSubview:self.senderLabel];
-
-    // Date
-    self.dateLabel = [[GCSmallLabel alloc] initWithFrame:rectDate];
-    [self.dateLabel bold:YES];
-    [self.contentView addSubview:self.dateLabel];
-
-    // Note
-    self.noteLabel = [[GCTextblock alloc] initWithFrame:rectNote];
-    self.noteLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    [self.contentView addSubview:self.noteLabel];
-
-    self.userInteractionEnabled = YES;
-
-    return self;
+    [super awakeFromNib];
+    [self changeTheme];
 }
 
-- (void)calculateRects
+- (void)addURL:(NSString *)urlString
 {
-    CGRect bounds = [[UIScreen mainScreen] bounds];
-    NSInteger width = bounds.size.width;
-
-    /*
-     +---------------------+------+
-     | Sender              | Date |
-     +---------------------+------|
-     | Note                       |
-     |                            |
-     +----------------------------+
-     */
-#define BORDER 10
-#define WIDTH_DATE 60
-
-    NSInteger height_name = configManager.GCSmallFont.lineHeight;
-    rectSender = CGRectMake(BORDER, BORDER, width - 2 * BORDER - WIDTH_DATE, height_name);
-    rectDate = CGRectMake(width - WIDTH_DATE - BORDER, BORDER, WIDTH_DATE, height_name);
-    rectNote = CGRectMake(BORDER, BORDER + height_name, width - 2 * BORDER, 0);
-}
-
-- (void)calculateCellHeight
-{
-    self.notice.cellHeight = self.noteLabel.frame.size.height + self.senderLabel.frame.size.height + 10;
-}
-
-- (void)viewWillTransitionToSize
-{
-    [self calculateRects];
-    self.dateLabel.frame = rectDate;
-    self.senderLabel.frame = rectSender;
-    self.noteLabel.frame = rectNote;
-    [self.noteLabel sizeToFit];
-    [self calculateCellHeight];
-}
-
-- (void)setNote:(NSString *)noteString
-{
-    self.noteLabel.frame = rectNote;
-    self.noteLabel.text = noteString;
-    [self.noteLabel sizeToFit];
-}
-
-- (void)setURL:(NSString *)urlString
-{
-    self.noteLabel.frame = rectNote;
-    NSMutableString *s = [NSMutableString stringWithString:self.noteLabel.text];
+    NSMutableString *s = [NSMutableString stringWithString:self.note.text];
     [s appendFormat:@"\n\n--> Press to open link <--"];
-    self.noteLabel.text = s;
-    [self.noteLabel sizeToFit];
+    self.note.text = s;
 }
 
 - (void)changeTheme
 {
-    [self.senderLabel changeTheme];
-    [self.dateLabel changeTheme];
-    [self.noteLabel changeTheme];
-
-    [themeManager changeThemeArray:[self.contentView subviews]];
     [super changeTheme];
+    [self.sender changeTheme];
+    [self.date changeTheme];
+    [self.note changeTheme];
 }
 
 @end

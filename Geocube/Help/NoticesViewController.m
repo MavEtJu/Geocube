@@ -42,9 +42,14 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuDownloadNotices label:@"Download notices"];
 
-    [self.tableView registerClass:[NoticeTableViewCell class] forCellReuseIdentifier:THISCELL];
-
     return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_HELPNOTICESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:THISCELL];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -103,28 +108,16 @@ enum {
     NoticeTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
 
     dbNotice *n = [notices objectAtIndex:indexPath.row];
-    cell.senderLabel.text = n.sender;
-    cell.dateLabel.text = n.date;
+    cell.sender.text = n.sender;
+    cell.date.text = n.date;
     cell.seen = n.seen;
 
-    [cell setNote:n.note];
-    if (n.url != nil && [n.url isEqualToString:@""] == NO)
-        [cell setURL:n.url];
-    [cell.noteLabel bold:(n.seen == NO)];
-
-    cell.notice = n;
-
-    [cell viewWillTransitionToSize];
+    cell.note.text = n.note;
+    if (!IS_EMPTY(n.url))
+        [cell addURL:n.url];
+    [cell.note bold:(cell.seen == NO)];
 
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    dbNotice *n = [notices objectAtIndex:indexPath.row];
-    if (n.cellHeight == 0)
-        return 40;
-    return n.cellHeight;
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
