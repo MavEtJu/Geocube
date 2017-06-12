@@ -29,8 +29,6 @@
 
 @end
 
-#define THISCELL @"WaypointWaypointsViewController"
-
 @implementation WaypointWaypointsViewController
 
 enum {
@@ -52,7 +50,7 @@ enum {
 
     self.delegateWaypoint = nil;
 
-    [self.tableView registerClass:[WaypointWaypointsTableViewCell class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[WaypointWaypointsTableViewCell class] forCellReuseIdentifier:XIB_WAYPOINTSWAYPOINTSTABLEVIEWCELL];
 
     return self;
 }
@@ -86,7 +84,7 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    WaypointWaypointsTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    WaypointWaypointsTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_WAYPOINTSWAYPOINTSTABLEVIEWCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     dbWaypoint *wp = [wps objectAtIndex:indexPath.row];

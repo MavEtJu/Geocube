@@ -23,8 +23,6 @@
 
 @end
 
-#define THISCELL @"GroupsTemplateViewControllerCell"
-
 @implementation GroupsTemplateViewController
 
 - (instancetype)init
@@ -32,7 +30,7 @@
     self = [super init];
 
     [self refreshGroupData];
-    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
 
     return self;
 }
@@ -50,7 +48,7 @@
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
 }
 
 #pragma mark - TableViewController related functions
@@ -69,7 +67,7 @@
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
     dbGroup *cg = [self.cgs objectAtIndex:indexPath.row];
     cell.textLabel.text = cg.name;

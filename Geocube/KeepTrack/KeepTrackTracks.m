@@ -28,8 +28,6 @@
 
 @implementation KeepTrackTracks
 
-#define THISCELL @"KeepTracksTrackTableViewCell"
-
 enum {
     menuAddATrack,
     menuMax
@@ -42,7 +40,7 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuAddATrack label:@"Start new track"];
 
-    [self.tableView registerNib:[UINib nibWithNibName:XIB_KEEPTRACKSTRACKTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_KEEPTRACKSTRACKTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_KEEPTRACKSTRACKTABLEVIEWCELL];
 
     return self;
 }
@@ -80,7 +78,7 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    KeepTracksTrackTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    KeepTracksTrackTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_KEEPTRACKSTRACKTABLEVIEWCELL forIndexPath:indexPath];
 
     dbTrack *t = [tracks objectAtIndex:indexPath.row];
 

@@ -30,8 +30,6 @@
 
 @implementation WaypointAddViewController
 
-#define THISCELL @"WaypointAddTableViewCell"
-
 enum {
     cellCode = 0,
     cellName,
@@ -66,7 +64,7 @@ enum {
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
 }
 
 #pragma mark - TableViewController related functions
@@ -90,7 +88,7 @@ enum {
 // Return a cell for the index path
 - (GCTableViewCellWithSubtitle *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    GCTableViewCellWithSubtitle *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    GCTableViewCellWithSubtitle *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
 
     cell.accessoryType = UITableViewCellAccessoryNone;
     switch (indexPath.row) {

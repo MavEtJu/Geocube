@@ -32,8 +32,6 @@
 
 @implementation StatisticsViewController
 
-#define THISCELL @"StatisticsTableViewCell"
-
 enum {
     menuReload,
     menuMax
@@ -59,7 +57,7 @@ enum {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    [self.tableView registerNib:[UINib nibWithNibName:XIB_STATISTICSTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_STATISTICSTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_STATISTICSTABLEVIEWCELL];
 
     [self createStatistics];
 }
@@ -100,7 +98,7 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    StatisticsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    StatisticsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_STATISTICSTABLEVIEWCELL forIndexPath:indexPath];
 
 #define CELL(__field__, __prefix__, __dict__, __key__) { \
         NSObject *o = [__dict__ objectForKey:__key__]; \

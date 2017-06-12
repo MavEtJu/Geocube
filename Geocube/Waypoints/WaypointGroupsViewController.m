@@ -27,8 +27,6 @@
 
 @end
 
-#define THISCELL @"WaypointjGroupsViewControllerCell"
-
 @implementation WaypointGroupsViewController
 
 - (instancetype)init:(dbWaypoint *)_wp
@@ -47,7 +45,7 @@
     }];
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
 
     lmi = nil;
 
@@ -84,7 +82,7 @@
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     NSEnumerator *e;

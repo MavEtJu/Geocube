@@ -26,8 +26,6 @@
 
 @end
 
-#define THISCELL @"BookmarksUserTableViewCell"
-
 @implementation BrowserUserViewController
 
 enum {
@@ -42,7 +40,7 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuAddBookmark label:@"Add bookmark"];
 
-    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
 
     return self;
 }
@@ -70,7 +68,7 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
     dbBookmark *a = [bms objectAtIndex:indexPath.row];
     cell.textLabel.text = a.name;

@@ -29,8 +29,6 @@
 
 @end
 
-#define THISCELL @"HelpImagesCells"
-
 enum {
     IMAGES_TYPES_ONE = 0,
     IMAGES_PINS_ONE,
@@ -81,7 +79,7 @@ enum {
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELL];
 }
 
 #pragma mark - TableViewController related functions
@@ -129,7 +127,7 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
 
     if (indexPath.section == IMAGES_PINS_ONE) {
         NSArray<dbPin *> *pins = [dbc Pins];

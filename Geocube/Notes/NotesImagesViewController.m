@@ -28,14 +28,12 @@
 
 @implementation NotesImagesViewController
 
-#define THISCELL @"NotesImagesViewcell"
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELL];
     lmi = nil;
 }
 
@@ -69,7 +67,7 @@
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     dbWaypoint *wp = [waypointsWithImages objectAtIndex:indexPath.section];

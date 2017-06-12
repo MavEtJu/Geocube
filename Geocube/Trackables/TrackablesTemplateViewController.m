@@ -25,8 +25,6 @@
 
 @implementation TrackablesTemplateViewController
 
-#define THISCELL @"TrackablesTableViewCell"
-
 enum {
     menuUpdate = 0,
     menuMax,
@@ -40,7 +38,7 @@ enum {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    [self.tableView registerNib:[UINib nibWithNibName:XIB_TRACKABLETABLEVIEWCELL bundle:nil] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_TRACKABLETABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_TRACKABLETABLEVIEWCELL];
 
     [self loadTrackables];
 
@@ -69,7 +67,7 @@ enum {
 
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TrackableTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    TrackableTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_TRACKABLETABLEVIEWCELL forIndexPath:indexPath];
 
     dbTrackable *tb = [self.tbs objectAtIndex:indexPath.row];
 

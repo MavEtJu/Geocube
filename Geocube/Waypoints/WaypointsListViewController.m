@@ -33,8 +33,6 @@
 
 @end
 
-#define THISCELL @"WaypointTableViewCell"
-
 @implementation WaypointsListViewController
 
 enum {
@@ -70,7 +68,7 @@ enum {
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    [self.tableView registerNib:[UINib nibWithNibName:XIB_WAYPOINTTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_WAYPOINTTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_WAYPOINTTABLEVIEWCELL];
 
     [self makeInfoView];
 
@@ -175,7 +173,7 @@ enum {
 // Return a cell for the index path
 - (WaypointTableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    WaypointTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    WaypointTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_WAYPOINTTABLEVIEWCELL];
     dbWaypoint *wp = [waypoints objectAtIndex:indexPath.row];
     [cell setWaypoint:wp];
 

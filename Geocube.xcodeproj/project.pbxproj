@@ -1804,18 +1804,13 @@
 		E82002261B7B1B8F009AE50F /* Notes and logs */ = {
 			isa = PBXGroup;
 			children = (
-				E82344501EECE05E00D2CDFD /* PersonalNoteTableViewCell.h */,
-				E82344511EECE05E00D2CDFD /* PersonalNoteTableViewCell.m */,
-				E82344521EECE05E00D2CDFD /* PersonalNoteTableViewCell.xib */,
-				E82344531EECE05E00D2CDFD /* PersonalNoteTableViewCell~ipad.xib */,
+				E823444A1EECE04B00D2CDFD /* NotesSavedViewController.h */,
+				E823444B1EECE04B00D2CDFD /* NotesSavedViewController.m */,
 				E82344441EECE04B00D2CDFD /* NotesFieldnotesViewController.h */,
 				E82344451EECE04B00D2CDFD /* NotesFieldnotesViewController.m */,
 				E82344461EECE04B00D2CDFD /* NotesImagesViewController.h */,
 				E82344471EECE04B00D2CDFD /* NotesImagesViewController.m */,
-				E82344481EECE04B00D2CDFD /* NotesPersonalNotesViewController.h */,
-				E82344491EECE04B00D2CDFD /* NotesPersonalNotesViewController.m */,
-				E823444A1EECE04B00D2CDFD /* NotesSavedViewController.h */,
-				E823444B1EECE04B00D2CDFD /* NotesSavedViewController.m */,
+				E83C6F271EEEAA7400E303F5 /* Personal Notes */,
 			);
 			name = "Notes and logs";
 			sourceTree = "<group>";
@@ -1923,18 +1918,18 @@
 		E833B72F1C522E8D00B9FB45 /* Lists */ = {
 			isa = PBXGroup;
 			children = (
-				E82344731EECE09C00D2CDFD /* ListDNFViewController.h */,
-				E82344741EECE09C00D2CDFD /* ListDNFViewController.m */,
-				E82344751EECE09C00D2CDFD /* ListFoundViewController.h */,
-				E82344761EECE09C00D2CDFD /* ListFoundViewController.m */,
-				E82344771EECE09C00D2CDFD /* ListHighlightViewController.h */,
-				E82344781EECE09C00D2CDFD /* ListHighlightViewController.m */,
-				E82344791EECE09C00D2CDFD /* ListIgnoredViewController.h */,
-				E823447A1EECE09C00D2CDFD /* ListIgnoredViewController.m */,
-				E823447B1EECE09C00D2CDFD /* ListInProgressViewController.h */,
-				E823447C1EECE09C00D2CDFD /* ListInProgressViewController.m */,
 				E823447D1EECE09C00D2CDFD /* ListTemplateViewController.h */,
 				E823447E1EECE09C00D2CDFD /* ListTemplateViewController.m */,
+				E82344771EECE09C00D2CDFD /* ListHighlightViewController.h */,
+				E82344781EECE09C00D2CDFD /* ListHighlightViewController.m */,
+				E82344751EECE09C00D2CDFD /* ListFoundViewController.h */,
+				E82344761EECE09C00D2CDFD /* ListFoundViewController.m */,
+				E82344731EECE09C00D2CDFD /* ListDNFViewController.h */,
+				E82344741EECE09C00D2CDFD /* ListDNFViewController.m */,
+				E823447B1EECE09C00D2CDFD /* ListInProgressViewController.h */,
+				E823447C1EECE09C00D2CDFD /* ListInProgressViewController.m */,
+				E82344791EECE09C00D2CDFD /* ListIgnoredViewController.h */,
+				E823447A1EECE09C00D2CDFD /* ListIgnoredViewController.m */,
 			);
 			name = Lists;
 			sourceTree = "<group>";
@@ -1984,12 +1979,162 @@
 				E82343EC1EECDF4400D2CDFD /* WaypointRawViewController.m */,
 				E82343ED1EECDF4400D2CDFD /* WaypointTrackablesViewController.h */,
 				E82343EE1EECDF4400D2CDFD /* WaypointTrackablesViewController.m */,
-				E82343EF1EECDF4400D2CDFD /* WaypointWaypointsTableViewCell.h */,
-				E82343F01EECDF4400D2CDFD /* WaypointWaypointsTableViewCell.m */,
-				E82343F11EECDF4400D2CDFD /* WaypointWaypointsViewController.h */,
-				E82343F21EECDF4400D2CDFD /* WaypointWaypointsViewController.m */,
+				E83C6F2E1EEEB01F00E303F5 /* Waypoints */,
 			);
 			name = "Waypoint Subviews";
+			sourceTree = "<group>";
+		};
+		E83C6F251EEEA89100E303F5 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				E82345101EECE14A00D2CDFD /* HelpAboutViewController.h */,
+				E82345111EECE14A00D2CDFD /* HelpAboutViewController.m */,
+				E823450C1EECE14A00D2CDFD /* HelpAboutTableViewCell.h */,
+				E823450D1EECE14A00D2CDFD /* HelpAboutTableViewCell.m */,
+				E823450E1EECE14A00D2CDFD /* HelpAboutTableViewCell.xib */,
+				E823450F1EECE14A00D2CDFD /* HelpAboutTableViewCell~ipad.xib */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
+		E83C6F261EEEA8A200E303F5 /* Notices */ = {
+			isa = PBXGroup;
+			children = (
+				E823451A1EECE14A00D2CDFD /* NoticesViewController.h */,
+				E823451B1EECE14A00D2CDFD /* NoticesViewController.m */,
+				E823451C1EECE14A00D2CDFD /* NoticeTableViewCell.h */,
+				E823451D1EECE14A00D2CDFD /* NoticeTableViewCell.m */,
+				E83C6F131EEE8B6C00E303F5 /* NoticeTableViewCell.xib */,
+				E83C6F141EEE8B6C00E303F5 /* NoticeTableViewCell~ipad.xib */,
+			);
+			name = Notices;
+			sourceTree = "<group>";
+		};
+		E83C6F271EEEAA7400E303F5 /* Personal Notes */ = {
+			isa = PBXGroup;
+			children = (
+				E82344481EECE04B00D2CDFD /* NotesPersonalNotesViewController.h */,
+				E82344491EECE04B00D2CDFD /* NotesPersonalNotesViewController.m */,
+				E82344501EECE05E00D2CDFD /* PersonalNoteTableViewCell.h */,
+				E82344511EECE05E00D2CDFD /* PersonalNoteTableViewCell.m */,
+				E82344521EECE05E00D2CDFD /* PersonalNoteTableViewCell.xib */,
+				E82344531EECE05E00D2CDFD /* PersonalNoteTableViewCell~ipad.xib */,
+			);
+			name = "Personal Notes";
+			sourceTree = "<group>";
+		};
+		E83C6F281EEEAB0800E303F5 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				E82344BB1EECE0E800D2CDFD /* SettingsMainViewController.h */,
+				E82344BC1EECE0E800D2CDFD /* SettingsMainViewController.m */,
+				E82344B91EECE0E800D2CDFD /* SettingsMainColorPickerViewController.h */,
+				E82344BA1EECE0E800D2CDFD /* SettingsMainColorPickerViewController.m */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		E83C6F291EEEAD8100E303F5 /* Local Files */ = {
+			isa = PBXGroup;
+			children = (
+				E83C6EFE1EECE67100E303F5 /* FilesViewController.h */,
+				E83C6EFF1EECE67100E303F5 /* FilesViewController.m */,
+				E83C6EFA1EECE67100E303F5 /* FilesTableViewCell.h */,
+				E83C6EFB1EECE67100E303F5 /* FilesTableViewCell.m */,
+				E83C6EFC1EECE67100E303F5 /* FilesTableViewCell.xib */,
+				E83C6EFD1EECE67100E303F5 /* FilesTableViewCell~ipad.xib */,
+			);
+			name = "Local Files";
+			sourceTree = "<group>";
+		};
+		E83C6F2A1EEEAD9900E303F5 /* File Browser */ = {
+			isa = PBXGroup;
+			children = (
+				E83C6EF31EECE67100E303F5 /* FileBrowserViewController.h */,
+				E83C6EF41EECE67100E303F5 /* FileBrowserViewController.m */,
+				E83C6EF51EECE67100E303F5 /* FileObject.h */,
+				E83C6EF61EECE67100E303F5 /* FileObject.m */,
+				E83C6EF71EECE67100E303F5 /* FileObjectView.h */,
+				E83C6EF81EECE67100E303F5 /* FileObjectView.m */,
+				E83C6EF91EECE67100E303F5 /* FileObjectView.xib */,
+			);
+			name = "File Browser";
+			sourceTree = "<group>";
+		};
+		E83C6F2B1EEEAE1400E303F5 /* Tracks */ = {
+			isa = PBXGroup;
+			children = (
+				E823443D1EECE01500D2CDFD /* KeepTrackTracks.h */,
+				E823443E1EECE01500D2CDFD /* KeepTrackTracks.m */,
+				E82344391EECE01500D2CDFD /* KeepTracksTrackTableViewCell.h */,
+				E823443A1EECE01500D2CDFD /* KeepTracksTrackTableViewCell.m */,
+				E823443B1EECE01500D2CDFD /* KeepTracksTrackTableViewCell.xib */,
+				E823443C1EECE01500D2CDFD /* KeepTracksTrackTableViewCell~ipad.xib */,
+			);
+			name = Tracks;
+			sourceTree = "<group>";
+		};
+		E83C6F2C1EEEAE9E00E303F5 /* Template */ = {
+			isa = PBXGroup;
+			children = (
+				E823448F1EECE0AC00D2CDFD /* QueriesTemplateViewController.h */,
+				E82344901EECE0AC00D2CDFD /* QueriesTemplateViewController.m */,
+				E823448B1EECE0AC00D2CDFD /* QueriesTableViewCell.h */,
+				E823448C1EECE0AC00D2CDFD /* QueriesTableViewCell.m */,
+				E823448D1EECE0AC00D2CDFD /* QueriesTableViewCell.xib */,
+				E823448E1EECE0AC00D2CDFD /* QueriesTableViewCell~ipad.xib */,
+			);
+			name = Template;
+			sourceTree = "<group>";
+		};
+		E83C6F2D1EEEAF5000E303F5 /* Template */ = {
+			isa = PBXGroup;
+			children = (
+				E823445D1EECE06E00D2CDFD /* TrackablesTemplateViewController.h */,
+				E823445E1EECE06E00D2CDFD /* TrackablesTemplateViewController.m */,
+				E823445F1EECE06E00D2CDFD /* TrackableTableViewCell.h */,
+				E82344601EECE06E00D2CDFD /* TrackableTableViewCell.m */,
+				E82344611EECE06E00D2CDFD /* TrackableTableViewCell.xib */,
+				E82344621EECE06E00D2CDFD /* TrackableTableViewCell~ipad.xib */,
+			);
+			name = Template;
+			sourceTree = "<group>";
+		};
+		E83C6F2E1EEEB01F00E303F5 /* Waypoints */ = {
+			isa = PBXGroup;
+			children = (
+				E82343F11EECDF4400D2CDFD /* WaypointWaypointsViewController.h */,
+				E82343F21EECDF4400D2CDFD /* WaypointWaypointsViewController.m */,
+				E82343EF1EECDF4400D2CDFD /* WaypointWaypointsTableViewCell.h */,
+				E82343F01EECDF4400D2CDFD /* WaypointWaypointsTableViewCell.m */,
+			);
+			name = Waypoints;
+			sourceTree = "<group>";
+		};
+		E83C6F2F1EEEB19D00E303F5 /* Logs */ = {
+			isa = PBXGroup;
+			children = (
+				E82343CF1EECDEE200D2CDFD /* WaypointLogsTableViewCell.h */,
+				E82343D01EECDEE200D2CDFD /* WaypointLogsTableViewCell.m */,
+				E82343D11EECDEE200D2CDFD /* WaypointLogsTableViewCell.xib */,
+				E82343D21EECDEE200D2CDFD /* WaypointLogsTableViewCell~ipad.xib */,
+			);
+			name = Logs;
+			sourceTree = "<group>";
+		};
+		E83C6F301EEEB1AD00E303F5 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				E82343C71EECDEE200D2CDFD /* WaypointHeaderHeaderView.h */,
+				E82343C81EECDEE200D2CDFD /* WaypointHeaderHeaderView.m */,
+				E82343C91EECDEE200D2CDFD /* WaypointHeaderHeaderView.xib */,
+				E82343CA1EECDEE200D2CDFD /* WaypointHeaderHeaderView~ipad.xib */,
+				E82343CB1EECDEE200D2CDFD /* WaypointHeaderTableViewCell.h */,
+				E82343CC1EECDEE200D2CDFD /* WaypointHeaderTableViewCell.m */,
+				E82343CD1EECDEE200D2CDFD /* WaypointHeaderTableViewCell.xib */,
+				E82343CE1EECDEE200D2CDFD /* WaypointHeaderTableViewCell~ipad.xib */,
+			);
+			name = Header;
 			sourceTree = "<group>";
 		};
 		E843A4E31BAD3F7800C58F1F /* logos */ = {
@@ -2051,18 +2196,13 @@
 		E84D6FD01C5826140000A6A0 /* Queries */ = {
 			isa = PBXGroup;
 			children = (
-				E82344851EECE0AC00D2CDFD /* QueriesGCAViewController.h */,
-				E82344861EECE0AC00D2CDFD /* QueriesGCAViewController.m */,
-				E82344871EECE0AC00D2CDFD /* QueriesGGCWViewController.h */,
-				E82344881EECE0AC00D2CDFD /* QueriesGGCWViewController.m */,
+				E83C6F2C1EEEAE9E00E303F5 /* Template */,
 				E82344891EECE0AC00D2CDFD /* QueriesGroundspeakViewController.h */,
 				E823448A1EECE0AC00D2CDFD /* QueriesGroundspeakViewController.m */,
-				E823448B1EECE0AC00D2CDFD /* QueriesTableViewCell.h */,
-				E823448C1EECE0AC00D2CDFD /* QueriesTableViewCell.m */,
-				E823448D1EECE0AC00D2CDFD /* QueriesTableViewCell.xib */,
-				E823448E1EECE0AC00D2CDFD /* QueriesTableViewCell~ipad.xib */,
-				E823448F1EECE0AC00D2CDFD /* QueriesTemplateViewController.h */,
-				E82344901EECE0AC00D2CDFD /* QueriesTemplateViewController.m */,
+				E82344871EECE0AC00D2CDFD /* QueriesGGCWViewController.h */,
+				E82344881EECE0AC00D2CDFD /* QueriesGGCWViewController.m */,
+				E82344851EECE0AC00D2CDFD /* QueriesGCAViewController.h */,
+				E82344861EECE0AC00D2CDFD /* QueriesGCAViewController.m */,
 			);
 			name = Queries;
 			sourceTree = "<group>";
@@ -2070,12 +2210,12 @@
 		E857078A1CA1E67200467CE0 /* Groups */ = {
 			isa = PBXGroup;
 			children = (
-				E823446A1EECE08A00D2CDFD /* GroupsSystemViewController.h */,
-				E823446B1EECE08A00D2CDFD /* GroupsSystemViewController.m */,
 				E823446C1EECE08A00D2CDFD /* GroupsTemplateViewController.h */,
 				E823446D1EECE08A00D2CDFD /* GroupsTemplateViewController.m */,
 				E823446E1EECE08A00D2CDFD /* GroupsUserViewController.h */,
 				E823446F1EECE08A00D2CDFD /* GroupsUserViewController.m */,
+				E823446A1EECE08A00D2CDFD /* GroupsSystemViewController.h */,
+				E823446B1EECE08A00D2CDFD /* GroupsSystemViewController.m */,
 			);
 			name = Groups;
 			sourceTree = "<group>";
@@ -2083,18 +2223,13 @@
 		E857078C1CA1E68F00467CE0 /* Trackables */ = {
 			isa = PBXGroup;
 			children = (
-				E823445D1EECE06E00D2CDFD /* TrackablesTemplateViewController.h */,
-				E823445E1EECE06E00D2CDFD /* TrackablesTemplateViewController.m */,
+				E83C6F2D1EEEAF5000E303F5 /* Template */,
 				E82344571EECE06E00D2CDFD /* TrackablesInventoryViewController.h */,
 				E82344581EECE06E00D2CDFD /* TrackablesInventoryViewController.m */,
 				E823445B1EECE06E00D2CDFD /* TrackablesMineViewController.h */,
 				E823445C1EECE06E00D2CDFD /* TrackablesMineViewController.m */,
 				E82344591EECE06E00D2CDFD /* TrackablesListViewController.h */,
 				E823445A1EECE06E00D2CDFD /* TrackablesListViewController.m */,
-				E823445F1EECE06E00D2CDFD /* TrackableTableViewCell.h */,
-				E82344601EECE06E00D2CDFD /* TrackableTableViewCell.m */,
-				E82344611EECE06E00D2CDFD /* TrackableTableViewCell.xib */,
-				E82344621EECE06E00D2CDFD /* TrackableTableViewCell~ipad.xib */,
 			);
 			name = Trackables;
 			sourceTree = "<group>";
@@ -2102,12 +2237,12 @@
 		E857078D1CA1E6A200467CE0 /* Statistics */ = {
 			isa = PBXGroup;
 			children = (
+				E823449C1EECE0BD00D2CDFD /* StatisticsViewController.h */,
+				E823449D1EECE0BD00D2CDFD /* StatisticsViewController.m */,
 				E82344981EECE0BD00D2CDFD /* StatisticsTableViewCell.h */,
 				E82344991EECE0BD00D2CDFD /* StatisticsTableViewCell.m */,
 				E823449A1EECE0BD00D2CDFD /* StatisticsTableViewCell.xib */,
 				E823449B1EECE0BD00D2CDFD /* StatisticsTableViewCell~ipad.xib */,
-				E823449C1EECE0BD00D2CDFD /* StatisticsViewController.h */,
-				E823449D1EECE0BD00D2CDFD /* StatisticsViewController.m */,
 			);
 			name = Statistics;
 			sourceTree = "<group>";
@@ -2148,20 +2283,10 @@
 		E85707911CA1E7CE00467CE0 /* Single Waypoint */ = {
 			isa = PBXGroup;
 			children = (
-				E82343C71EECDEE200D2CDFD /* WaypointHeaderHeaderView.h */,
-				E82343C81EECDEE200D2CDFD /* WaypointHeaderHeaderView.m */,
-				E82343C91EECDEE200D2CDFD /* WaypointHeaderHeaderView.xib */,
-				E82343CA1EECDEE200D2CDFD /* WaypointHeaderHeaderView~ipad.xib */,
-				E82343CB1EECDEE200D2CDFD /* WaypointHeaderTableViewCell.h */,
-				E82343CC1EECDEE200D2CDFD /* WaypointHeaderTableViewCell.m */,
-				E82343CD1EECDEE200D2CDFD /* WaypointHeaderTableViewCell.xib */,
-				E82343CE1EECDEE200D2CDFD /* WaypointHeaderTableViewCell~ipad.xib */,
-				E82343CF1EECDEE200D2CDFD /* WaypointLogsTableViewCell.h */,
-				E82343D01EECDEE200D2CDFD /* WaypointLogsTableViewCell.m */,
-				E82343D11EECDEE200D2CDFD /* WaypointLogsTableViewCell.xib */,
-				E82343D21EECDEE200D2CDFD /* WaypointLogsTableViewCell~ipad.xib */,
 				E82343D31EECDEE200D2CDFD /* WaypointViewController.h */,
 				E82343D41EECDEE200D2CDFD /* WaypointViewController.m */,
+				E83C6F301EEEB1AD00E303F5 /* Header */,
+				E83C6F2F1EEEB19D00E303F5 /* Logs */,
 				E85707901CA1E7AC00467CE0 /* Waypoint Add */,
 				E83C204B1E2D84DD006C523E /* Waypoint Subviews */,
 			);
@@ -2623,14 +2748,14 @@
 		E89051751C8AE1B600220986 /* Logging */ = {
 			isa = PBXGroup;
 			children = (
+				E82343B81EECDE6C00D2CDFD /* WaypointLogViewController.h */,
+				E82343B91EECDE6C00D2CDFD /* WaypointLogViewController.m */,
 				E82343B21EECDE6C00D2CDFD /* WaypointLogEditViewController.h */,
 				E82343B31EECDE6C00D2CDFD /* WaypointLogEditViewController.m */,
 				E82343B41EECDE6C00D2CDFD /* WaypointLogImagesViewController.h */,
 				E82343B51EECDE6C00D2CDFD /* WaypointLogImagesViewController.m */,
 				E82343B61EECDE6C00D2CDFD /* WaypointLogTrackablesViewController.h */,
 				E82343B71EECDE6C00D2CDFD /* WaypointLogTrackablesViewController.m */,
-				E82343B81EECDE6C00D2CDFD /* WaypointLogViewController.h */,
-				E82343B91EECDE6C00D2CDFD /* WaypointLogViewController.m */,
 			);
 			name = Logging;
 			sourceTree = "<group>";
@@ -2729,12 +2854,7 @@
 			children = (
 				E82344371EECE01500D2CDFD /* KeepTrackCar.h */,
 				E82344381EECE01500D2CDFD /* KeepTrackCar.m */,
-				E82344391EECE01500D2CDFD /* KeepTracksTrackTableViewCell.h */,
-				E823443A1EECE01500D2CDFD /* KeepTracksTrackTableViewCell.m */,
-				E823443B1EECE01500D2CDFD /* KeepTracksTrackTableViewCell.xib */,
-				E823443C1EECE01500D2CDFD /* KeepTracksTrackTableViewCell~ipad.xib */,
-				E823443D1EECE01500D2CDFD /* KeepTrackTracks.h */,
-				E823443E1EECE01500D2CDFD /* KeepTrackTracks.m */,
+				E83C6F2B1EEEAE1400E303F5 /* Tracks */,
 			);
 			name = "Keep Track";
 			sourceTree = "<group>";
@@ -2755,12 +2875,7 @@
 		E8A7FA9C1B784065003F4132 /* Help */ = {
 			isa = PBXGroup;
 			children = (
-				E82345101EECE14A00D2CDFD /* HelpAboutViewController.h */,
-				E82345111EECE14A00D2CDFD /* HelpAboutViewController.m */,
-				E823450C1EECE14A00D2CDFD /* HelpAboutTableViewCell.h */,
-				E823450D1EECE14A00D2CDFD /* HelpAboutTableViewCell.m */,
-				E823450E1EECE14A00D2CDFD /* HelpAboutTableViewCell.xib */,
-				E823450F1EECE14A00D2CDFD /* HelpAboutTableViewCell~ipad.xib */,
+				E83C6F251EEEA89100E303F5 /* About */,
 				E82345121EECE14A00D2CDFD /* HelpDatabaseViewController.h */,
 				E82345131EECE14A00D2CDFD /* HelpDatabaseViewController.m */,
 				E82345141EECE14A00D2CDFD /* HelpHelpViewController.h */,
@@ -2769,12 +2884,7 @@
 				E82345171EECE14A00D2CDFD /* HelpImagesViewController.m */,
 				E82345181EECE14A00D2CDFD /* HelpIntroduction.h */,
 				E82345191EECE14A00D2CDFD /* HelpIntroduction.m */,
-				E823451A1EECE14A00D2CDFD /* NoticesViewController.h */,
-				E823451B1EECE14A00D2CDFD /* NoticesViewController.m */,
-				E823451C1EECE14A00D2CDFD /* NoticeTableViewCell.h */,
-				E823451D1EECE14A00D2CDFD /* NoticeTableViewCell.m */,
-				E83C6F131EEE8B6C00E303F5 /* NoticeTableViewCell.xib */,
-				E83C6F141EEE8B6C00E303F5 /* NoticeTableViewCell~ipad.xib */,
+				E83C6F261EEEA8A200E303F5 /* Notices */,
 			);
 			name = Help;
 			sourceTree = "<group>";
@@ -2950,16 +3060,13 @@
 			children = (
 				E82344B11EECE0E800D2CDFD /* SettingsAccountsViewController.h */,
 				E82344B21EECE0E800D2CDFD /* SettingsAccountsViewController.m */,
+				E83C6F281EEEAB0800E303F5 /* Main */,
 				E82344B31EECE0E800D2CDFD /* SettingsColoursViewController.h */,
 				E82344B41EECE0E800D2CDFD /* SettingsColoursViewController.m */,
 				E82344B51EECE0E800D2CDFD /* SettingsColourViewController.h */,
 				E82344B61EECE0E800D2CDFD /* SettingsColourViewController.m */,
 				E82344B71EECE0E800D2CDFD /* SettingsLogTemplatesViewController.h */,
 				E82344B81EECE0E800D2CDFD /* SettingsLogTemplatesViewController.m */,
-				E82344B91EECE0E800D2CDFD /* SettingsMainColorPickerViewController.h */,
-				E82344BA1EECE0E800D2CDFD /* SettingsMainColorPickerViewController.m */,
-				E82344BB1EECE0E800D2CDFD /* SettingsMainViewController.h */,
-				E82344BC1EECE0E800D2CDFD /* SettingsMainViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -3324,19 +3431,8 @@
 		E8FD610D1BE8C46100859A58 /* Files */ = {
 			isa = PBXGroup;
 			children = (
-				E83C6EF31EECE67100E303F5 /* FileBrowserViewController.h */,
-				E83C6EF41EECE67100E303F5 /* FileBrowserViewController.m */,
-				E83C6EF51EECE67100E303F5 /* FileObject.h */,
-				E83C6EF61EECE67100E303F5 /* FileObject.m */,
-				E83C6EF71EECE67100E303F5 /* FileObjectView.h */,
-				E83C6EF81EECE67100E303F5 /* FileObjectView.m */,
-				E83C6EF91EECE67100E303F5 /* FileObjectView.xib */,
-				E83C6EFA1EECE67100E303F5 /* FilesTableViewCell.h */,
-				E83C6EFB1EECE67100E303F5 /* FilesTableViewCell.m */,
-				E83C6EFC1EECE67100E303F5 /* FilesTableViewCell.xib */,
-				E83C6EFD1EECE67100E303F5 /* FilesTableViewCell~ipad.xib */,
-				E83C6EFE1EECE67100E303F5 /* FilesViewController.h */,
-				E83C6EFF1EECE67100E303F5 /* FilesViewController.m */,
+				E83C6F2A1EEEAD9900E303F5 /* File Browser */,
+				E83C6F291EEEAD8100E303F5 /* Local Files */,
 			);
 			name = Files;
 			sourceTree = "<group>";

@@ -29,14 +29,12 @@
 
 @implementation NotesPersonalNotesViewController
 
-#define THISCELL @"PersonalNoteTableViewCell"
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    [self.tableView registerNib:[UINib nibWithNibName:XIB_PERSONALNOTETABLEVIEWCELL bundle:nil] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_PERSONALNOTETABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_PERSONALNOTETABLEVIEWCELL];
 
     lmi = nil;
 
@@ -78,7 +76,7 @@
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PersonalNoteTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    PersonalNoteTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_PERSONALNOTETABLEVIEWCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     dbPersonalNote *pn = [pns objectAtIndex:indexPath.row];

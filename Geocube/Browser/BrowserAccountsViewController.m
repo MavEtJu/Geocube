@@ -28,8 +28,6 @@
 
 @implementation BrowserAccountsViewController
 
-#define THISCELL    @"BookmarksAccountsTableViewCell"
-
 - (instancetype)init
 {
     self = [super init];
@@ -43,7 +41,7 @@
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -74,7 +72,7 @@
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
     dbAccount *a = [accounts objectAtIndex:indexPath.row];
     cell.textLabel.text = a.site;

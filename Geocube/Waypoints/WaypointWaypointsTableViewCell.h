@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define XIB_WAYPOINTSWAYPOINTSTABLEVIEWCELL @"WaypointWaypointsTableViewCell"
+
 @interface WaypointWaypointsTableViewCell : GCTableViewCell
 
 @property (nonatomic, retain) GCLabel *nameLabel;

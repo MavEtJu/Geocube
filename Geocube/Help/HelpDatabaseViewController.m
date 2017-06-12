@@ -32,8 +32,6 @@
 
 @implementation HelpDatabaseViewController
 
-#define THISCELL @"HelpDatabaseViewController"
-
 enum {
     SECTION_SIZES = 0,
     SECTION_DBCOUNT,
@@ -52,7 +50,7 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuDumpDatabase label:@"Dump database"];
 
-    [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLKEYVALUE bundle:nil] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLKEYVALUE bundle:nil] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLKEYVALUE];
 
     return self;
 }
@@ -219,7 +217,7 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    GCTableViewCellKeyValue *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    GCTableViewCellKeyValue *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLKEYVALUE forIndexPath:indexPath];
 
     switch (indexPath.section) {
         case SECTION_SIZES: {

@@ -30,9 +30,6 @@
 
 @implementation SettingsLogTemplatesViewController
 
-#define THISCELL_TEMPLATE @"SettingsLogTemplateTableViewCell"
-#define THISCELL_MACRO @"SettingsLogMacroTableViewCell"
-
 enum {
     SECTION_LOGTEMPLATES = 0,
     SECTION_LOGMACROS,
@@ -52,8 +49,8 @@ enum {
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_TEMPLATE];
-    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL_MACRO];
+    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELL];
+    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuAddTemplate label:@"Add Template"];
@@ -106,13 +103,13 @@ enum {
 
     switch (indexPath.section) {
         case SECTION_LOGTEMPLATES: {
-            cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_TEMPLATE forIndexPath:indexPath];
+            cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
             dbLogTemplate *lt = [logtemplates objectAtIndex:indexPath.row];
             cell.textLabel.text = lt.name;
             break;
         }
         case SECTION_LOGMACROS: {
-            cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_MACRO forIndexPath:indexPath];
+            cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
             dbLogMacro *lm = [logmacros objectAtIndex:indexPath.row];
             cell.textLabel.text = lm.name;
             cell.detailTextLabel.text = lm.text;

@@ -29,8 +29,6 @@
 
 @implementation WaypointAttributesViewController
 
-#define THISCELL @"WaypointAttributesViewController"
-
 - (instancetype)init:(dbWaypoint *)_wp
 {
     self = [super init];
@@ -44,7 +42,7 @@
     }];
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELL];
 
     lmi = nil;
 
@@ -77,7 +75,7 @@
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    GCTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    GCTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     dbAttribute *a = [attrs objectAtIndex:indexPath.row];

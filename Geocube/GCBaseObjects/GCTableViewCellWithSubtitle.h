@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define XIB_GCTABLEVIEWCELLWITHSUBTITLE @"GCTableViewCellWithSubtitle"
+
 @interface GCTableViewCellWithSubtitle : GCTableViewCell
 
 @end

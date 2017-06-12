@@ -30,8 +30,6 @@
 
 @implementation WaypointLogTrackablesViewController
 
-#define THISCELL @"WaypointLogTrackablesCell"
-
 enum {
     menuPickup,
     menuDiscover,
@@ -57,7 +55,7 @@ enum {
     self.hasCloseButton = YES;
     _delegate = nil;
 
-    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
 
     return self;
 }
@@ -99,7 +97,7 @@ enum {
 
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    GCTableViewCellWithSubtitle *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    GCTableViewCellWithSubtitle *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
 
     dbTrackable *tb = [tbs objectAtIndex:indexPath.row];
     NSInteger logtype = [[logtypes objectAtIndex:indexPath.row] integerValue];

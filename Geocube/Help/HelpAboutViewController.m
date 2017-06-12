@@ -27,8 +27,6 @@
 
 @end
 
-#define THISCELL @"HelpAboutCells"
-
 @implementation HelpAboutViewController
 
 - (instancetype)init
@@ -59,7 +57,7 @@
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerNib:[UINib nibWithNibName:XIB_HELPABOUTTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_HELPABOUTTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_HELPABOUTTABLEVIEWCELL];
     [self loadTexts];
 }
 
@@ -258,7 +256,7 @@
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HelpAboutTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    HelpAboutTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_HELPABOUTTABLEVIEWCELL forIndexPath:indexPath];
 
     if (indexPath.section == 0) {
         NSString *s = [NSString stringWithFormat:@"Geocube Version %@(%@)\nBuild on %s %s",

@@ -36,8 +36,6 @@ enum {
     menuMax
 };
 
-#define THISCELL @"QueriesTableViewCells"
-
 - (instancetype)init
 {
     self = [super init];
@@ -56,7 +54,7 @@ enum {
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    [self.tableView registerNib:[UINib nibWithNibName:XIB_QUERIESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_QUERIESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_QUERIESTABLEVIEWCELL];
 
     [self makeInfoView];
 
@@ -134,7 +132,7 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    QueriesTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    QueriesTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_QUERIESTABLEVIEWCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     NSDictionary *pq = [qs objectAtIndex:indexPath.row];

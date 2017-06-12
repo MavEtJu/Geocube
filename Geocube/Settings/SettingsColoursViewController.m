@@ -28,8 +28,6 @@
 
 @implementation SettingsColoursViewController
 
-#define THISCELL @"SettingsColoursViewControllerCell"
-
 enum {
     menuReset,
     menuMax
@@ -40,7 +38,7 @@ enum {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELL];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuReset label:@"Reset"];
@@ -67,7 +65,7 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    GCTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    GCTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
 
     dbPin *p = [pins objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@", p.desc];

@@ -41,8 +41,6 @@ enum {
     SECTION_MAX
 };
 
-#define THISCELL @"CacheImagesViewController"
-
 enum {
     menuImportPhoto,
     menuMakePhoto,
@@ -69,7 +67,7 @@ enum {
     self.hasCloseButton = YES;
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELL];
 
     waypoint = wp;
     userImages = [dbImage dbAllByWaypoint:wp._id type:IMAGECATEGORY_USER];
@@ -251,7 +249,7 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    GCTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    GCTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     dbImage *img;

@@ -29,14 +29,12 @@
 
 @implementation NotesFieldnotesViewController
 
-#define THISCELL @"LogTableViewCell"
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    [self.tableView registerNib:[UINib nibWithNibName:XIB_LOGTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_LOGTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_LOGTABLEVIEWCELL];
 
     lmi = nil;
 
@@ -85,7 +83,7 @@
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LogTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    LogTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_LOGTABLEVIEWCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     dbWaypoint *wp = [waypointsWithLogs objectAtIndex:indexPath.section];

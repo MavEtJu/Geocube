@@ -63,12 +63,6 @@ enum {
     SECTION_SUBMIT_MAX,
 };
 
-#define THISCELL_ALL @"CacheLogViewControllerCell_"
-#define THISCELL_PHOTO @"CacheLogViewControllerCell_Photo"
-#define THISCELL_SUBTITLE @"CacheLogViewControllerCell_Subtitle"
-#define THISCELL_SWITCH @"CacheLogViewControllerCell_Switch"
-#define THISCELL_KEYVALUE @"CacheLogViewControllerCell_KeyValue"
-
 - (instancetype)init:(dbWaypoint *)_waypoint
 {
     self = [super init];
@@ -96,11 +90,11 @@ enum {
     [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
     date = [dateFormatter stringFromDate:d];
 
-    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL_SUBTITLE];
-    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_ALL];
-    [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLRIGHTIMAGE bundle:nil] forCellReuseIdentifier:THISCELL_PHOTO];
-    [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLSWITCH bundle:nil] forCellReuseIdentifier:THISCELL_SWITCH];
-    [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLKEYVALUE bundle:nil] forCellReuseIdentifier:THISCELL_KEYVALUE];
+    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
+    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLRIGHTIMAGE bundle:nil] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLRIGHTIMAGE];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLSWITCH bundle:nil] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLSWITCH];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLKEYVALUE bundle:nil] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLKEYVALUE];
 
     self.hasCloseButton = YES;
     lmi = nil;
@@ -155,7 +149,7 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    GCTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL_ALL];
+    GCTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL];
     cell.accessoryType = UITableViewCellStyleDefault;
     cell.accessoryView = nil;
     cell.userInteractionEnabled = YES;
@@ -164,7 +158,7 @@ enum {
         case SECTION_LOGDETAILS: {
             switch (indexPath.row) {
                 case SECTION_LOGDETAILS_TYPE: {
-                    GCTableViewCellKeyValue *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_KEYVALUE];
+                    GCTableViewCellKeyValue *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLKEYVALUE];
                     c.keyLabel.text = @"Type";
                     c.valueLabel.text = logstring.text;
                     cell = c;
@@ -172,7 +166,7 @@ enum {
                 }
 
                 case SECTION_LOGDETAILS_DATE: {
-                    GCTableViewCellKeyValue *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_KEYVALUE];
+                    GCTableViewCellKeyValue *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLKEYVALUE];
                     c.keyLabel.text = @"Date";
                     c.valueLabel.text = date;
                     cell = c;
@@ -180,7 +174,7 @@ enum {
                 }
 
                 case SECTION_LOGDETAILS_COMMENT: {
-                    GCTableViewCellWithSubtitle *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE];
+                    GCTableViewCellWithSubtitle *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
                     c.textLabel.text = @"Comment";
                     c.detailTextLabel.text = note;
                     cell = c;
@@ -193,7 +187,7 @@ enum {
         case SECTION_EXTRADETAILS: {
             switch (indexPath.row) {
                 case SECTION_EXTRADETAILS_PHOTO: {
-                    GCTableViewCellRightImage *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_PHOTO];
+                    GCTableViewCellRightImage *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLRIGHTIMAGE];
                     c.textLabel.text = @"Photo";
                     if (image != nil)
                         c.imageView.image = image.imageGet;
@@ -208,7 +202,7 @@ enum {
                 }
 
                 case SECTION_EXTRADETAILS_FAVOURITE: {
-                    GCTableViewCellSwitch *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_SWITCH];
+                    GCTableViewCellSwitch *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH];
                     c.textLabel.text = @"Favourite Point";
                     c.optionSwitch.on = fp;
                     if ([waypoint.account.remoteAPI supportsLoggingFavouritePoint] == NO) {
@@ -222,7 +216,7 @@ enum {
                 }
 
                 case SECTION_EXTRADETAILS_RATING: {
-                    GCTableViewCellKeyValue *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_KEYVALUE];
+                    GCTableViewCellKeyValue *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLKEYVALUE];
                     c.keyLabel.text = @"Rating";
                     if ([waypoint.account.remoteAPI supportsLoggingRating] == NO) {
                         c.userInteractionEnabled = NO;
@@ -241,7 +235,7 @@ enum {
 
                 case SECTION_EXTRADETAILS_TRACKABLE:
                     cell = nil;
-                    GCTableViewCellWithSubtitle *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE];
+                    GCTableViewCellWithSubtitle *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
                     c.textLabel.text = @"Trackables";
                     if ([waypoint.account.remoteAPI supportsTrackables] == NO) {
                         c.userInteractionEnabled = NO;
@@ -288,7 +282,7 @@ enum {
         case SECTION_SUBMIT: {
             switch (indexPath.row) {
                 case SECTION_SUBMIT_UPLOAD: {
-                    GCTableViewCellSwitch *c = [aTableView dequeueReusableCellWithIdentifier:THISCELL_SWITCH];
+                    GCTableViewCellSwitch *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH];
                     c.textLabel.text = @"Upload";
                     if (waypoint.account.remoteAPI.supportsLogging == YES && waypoint.account.canDoRemoteStuff == YES) {
                         c.optionSwitch.on = upload;

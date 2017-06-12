@@ -28,8 +28,6 @@
 
 @implementation NoticesViewController
 
-#define THISCELL @"NoticesViewControllerCell"
-
 enum {
     menuDownloadNotices,
     menuMax
@@ -49,7 +47,7 @@ enum {
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerNib:[UINib nibWithNibName:XIB_HELPNOTICESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_HELPNOTICESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_HELPNOTICESTABLEVIEWCELL];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -105,7 +103,7 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NoticeTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    NoticeTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_HELPNOTICESTABLEVIEWCELL forIndexPath:indexPath];
 
     dbNotice *n = [notices objectAtIndex:indexPath.row];
     cell.sender.text = n.sender;

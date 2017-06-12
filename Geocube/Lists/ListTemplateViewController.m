@@ -37,8 +37,6 @@ enum {
     menuMax
 };
 
-#define THISCELL @"WaypointTableViewCell"
-
 - NEEDS_OVERLOADING_VOID(clearFlags)
 - NEEDS_OVERLOADING_VOID(removeMark:(NSInteger)idx)
 
@@ -63,7 +61,7 @@ enum {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    [self.tableView registerNib:[UINib nibWithNibName:XIB_WAYPOINTTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_WAYPOINTTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_WAYPOINTTABLEVIEWCELL];
 
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 20;
@@ -107,7 +105,7 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    WaypointTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    WaypointTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_WAYPOINTTABLEVIEWCELL];
 
     dbWaypoint *wp = [waypoints objectAtIndex:indexPath.row];
     [cell setWaypoint:wp];

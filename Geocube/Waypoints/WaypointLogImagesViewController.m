@@ -32,8 +32,6 @@
 
 @implementation WaypointLogImagesViewController
 
-#define THISCELL @"WaypointLogImagesCell"
-
 enum {
     menuImportPhoto,
     menuMakePhoto,
@@ -58,7 +56,7 @@ enum {
     _delegate = nil;
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELL];
 
     waypoint = wp;
     images = [dbImage dbAllByWaypoint:wp._id type:IMAGECATEGORY_USER];
@@ -80,7 +78,7 @@ enum {
 
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:THISCELL];
+    UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     dbImage *img = [images objectAtIndex:indexPath.row];

@@ -27,8 +27,6 @@
 
 @end
 
-#define THISCELL @"SettingsAccountsViewControllerCell"
-
 @implementation SettingsAccountsViewController
 
 enum {
@@ -41,7 +39,7 @@ enum {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLSUBTITLERIGHTIMAGE bundle:nil] forCellReuseIdentifier:THISCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLSUBTITLERIGHTIMAGE bundle:nil] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLSUBTITLERIGHTIMAGE];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuUpdate label:@"Update config"];
@@ -133,7 +131,7 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    GCTableViewCellSubtitleRightImage *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL forIndexPath:indexPath];
+    GCTableViewCellSubtitleRightImage *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSUBTITLERIGHTIMAGE forIndexPath:indexPath];
 
     dbAccount *a = [accounts objectAtIndex:indexPath.row];
     cell.textLabel.text = a.site;

@@ -58,12 +58,6 @@ enum {
     WAYPOINT_ACTIONS_MAX,
 };
 
-#define THISHEADER_HEADER @"Waypointheader_header"
-#define THISCELL_HEADER @"Waypointtablecell_header"
-#define THISCELL_DATA @"Waypointtablecell_data"
-#define THISCELL_RIGHTIMAGE @"Waypointtablecell_rightimage"
-#define THISCELL_LOGS @"Waypointtablecell_logs"
-
 @implementation WaypointViewController
 
 enum {
@@ -125,14 +119,14 @@ enum {
         [self showWaypoint:waypointManager.currentWaypoint];
     [self makeInfoView];
 
-    [self.tableView registerNib:[UINib nibWithNibName:XIB_WAYPOINTHEADERTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:THISCELL_HEADER];
-    [self.tableView registerNib:[UINib nibWithNibName:XIB_WAYPOINTLOGSTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:THISCELL_LOGS];
-    [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLRIGHTIMAGEDISCLOSURE bundle:nil] forCellReuseIdentifier:THISCELL_RIGHTIMAGE];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_WAYPOINTHEADERTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_WAYPOINTHEADERTABLEVIEWCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_WAYPOINTLOGSTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_WAYPOINTLOGSTABLEVIEWCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLRIGHTIMAGEDISCLOSURE bundle:nil] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLRIGHTIMAGEDISCLOSURE];
 
     UINib *sectionHeaderNib = [UINib nibWithNibName:XIB_WAYPOINTHEADERHEADERVIEW bundle:nil];
-    [self.tableView registerNib:sectionHeaderNib forHeaderFooterViewReuseIdentifier:THISHEADER_HEADER];
+    [self.tableView registerNib:sectionHeaderNib forHeaderFooterViewReuseIdentifier:XIB_WAYPOINTHEADERHEADERVIEW];
 
-    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_DATA];
+    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELL];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -242,7 +236,7 @@ enum {
     if (section != WAYPOINT_HEADER)
         return [super tableView:tableView viewForHeaderInSection:section];
 
-    WaypointHeaderHeaderView *hv = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:THISHEADER_HEADER];
+    WaypointHeaderHeaderView *hv = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:XIB_WAYPOINTHEADERHEADERVIEW];
     [hv setWaypoint:waypoint];
     return hv;
 }
@@ -258,7 +252,7 @@ enum {
 {
     switch (indexPath.section) {
         case WAYPOINT_HEADER: {
-            headerCell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_HEADER];
+            headerCell = [self.tableView dequeueReusableCellWithIdentifier:XIB_WAYPOINTHEADERTABLEVIEWCELL];
 
             headerCell.accessoryType = UITableViewCellAccessoryNone;
             [headerCell setWaypoint:waypoint];
@@ -268,7 +262,7 @@ enum {
         }
 
         case WAYPOINT_DATA: {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_DATA forIndexPath:indexPath];
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.userInteractionEnabled = YES;
 
@@ -303,7 +297,7 @@ enum {
         cell.image ## __idx__.image = [imageLibrary get:log.logstring.icon]; \
     }
                 case WAYPOINT_DATA_FIELDNOTES: {
-                    WaypointLogsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_LOGS forIndexPath:indexPath];
+                    WaypointLogsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:XIB_WAYPOINTLOGSTABLEVIEWCELL forIndexPath:indexPath];
                     cell.logs.text = @"Fields Notes";
                     cell.userInteractionEnabled = YES;
                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -336,7 +330,7 @@ enum {
                 }
 
                 case WAYPOINT_DATA_LOGS: {
-                    WaypointLogsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_LOGS forIndexPath:indexPath];
+                    WaypointLogsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:XIB_WAYPOINTLOGSTABLEVIEWCELL forIndexPath:indexPath];
                     cell.logs.text = @"Logs";
                     cell.userInteractionEnabled = YES;
                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -429,7 +423,7 @@ enum {
         case WAYPOINT_ACTIONS:
             switch (indexPath.row) {
                 case WAYPOINT_ACTIONS_SETASTARGET: {
-                    GCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_RIGHTIMAGE forIndexPath:indexPath];
+                    GCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLRIGHTIMAGEDISCLOSURE forIndexPath:indexPath];
                     cell.userInteractionEnabled = YES;
                     cell.imageView.image = [imageLibrary get:ImageIcon_Target];
                     if (waypoint == waypointManager.currentWaypoint) {
@@ -441,7 +435,7 @@ enum {
                 }
 
                 case WAYPOINT_ACTIONS_LOGTHISWAYPOINT: {
-                    GCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_RIGHTIMAGE forIndexPath:indexPath];
+                    GCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLRIGHTIMAGEDISCLOSURE forIndexPath:indexPath];
                     cell.userInteractionEnabled = YES;
                     cell.imageView.image = [imageLibrary get:ImageIcon_Smiley];
                     cell.textLabel.text = @"Log this waypoint";
@@ -449,7 +443,7 @@ enum {
                 }
 
                 case WAYPOINT_ACTIONS_OPENINBROWSER: {
-                    GCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THISCELL_DATA forIndexPath:indexPath];
+                    GCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
                     cell.accessoryType = UITableViewCellAccessoryNone;
                     cell.userInteractionEnabled = YES;
 

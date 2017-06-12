@@ -85,10 +85,6 @@
 
 @end
 
-#define THISCELL_SUBTITLE @"SettingsMainViewControllerCellSubtitle"
-#define THISCELL_DEFAULT @"SettingsMainViewControllerCellDefault"
-#define THISCELL_IMAGE @"SettingsMainViewControllerCellImage"
-
 @implementation SettingsMainViewController
 
 enum {
@@ -101,9 +97,9 @@ enum {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_DEFAULT];
-    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:THISCELL_SUBTITLE];
-    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:THISCELL_IMAGE];
+    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELL];
+    [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLRIGHTIMAGE bundle:nil] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLRIGHTIMAGE];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuResetToDefault label:@"Reset to default"];
@@ -450,7 +446,7 @@ enum sections {
 {
     switch (indexPath.section) {
         case SECTION_DISTANCE: {   // Distance
-            UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+            UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
 
             switch (indexPath.row) {
                 case SECTION_DISTANCE_METRIC: {   // Metric
@@ -470,7 +466,7 @@ enum sections {
         case SECTION_APPS: {
             switch (indexPath.row) {
                 case SECTION_APPS_EXTERNALMAP: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"External Maps";
 
@@ -485,7 +481,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_APPS_TWITTER: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = @"Offer to send tweets";
 
                     sendTweets = [[GCSwitch alloc] initWithFrame:CGRectZero];
@@ -501,21 +497,21 @@ enum sections {
         case SECTION_THEME: {   // Theme
             switch (indexPath.row) {
                 case SECTION_THEME_THEME: {   // Theme
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Theme";
                     cell.detailTextLabel.text = [[themeManager themeNames] objectAtIndex:configManager.themeType];
                     return cell;
                 }
                 case SECTION_THEME_COMPASS: {   // Compass type
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Compass type";
                     cell.detailTextLabel.text = [compassTypes objectAtIndex:configManager.compassType];
                     return cell;
                 }
                 case SECTION_THEME_ORIENTATIONS: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     NSMutableString *s = [NSMutableString stringWithString:@""];
                     if ((configManager.orientationsAllowed & UIInterfaceOrientationMaskPortrait) != 0) {
@@ -549,7 +545,7 @@ enum sections {
         }
 
         case SECTION_SOUNDS: {   // Sounds
-            UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+            UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
 
             switch (indexPath.row) {
                 case SECTION_SOUNDS_DIRECTION: {   // soundDirection
@@ -579,7 +575,7 @@ enum sections {
         case SECTION_MAPCOLOURS: {
             switch (indexPath.row) {
                 case SECTION_MAPCOLOURS_DESTINATION: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_IMAGE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLRIGHTIMAGE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Destination line";
                     cell.imageView.image = [ImageLibrary circleWithColour:configManager.mapDestinationColour];
@@ -587,7 +583,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_MAPCOLOURS_TRACK: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_IMAGE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLRIGHTIMAGE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Track line";
                     cell.imageView.image = [ImageLibrary circleWithColour:configManager.mapTrackColour];
@@ -601,7 +597,7 @@ enum sections {
         case SECTION_MAPS: {   // Maps
             switch (indexPath.row) {
                 case SECTION_MAPS_DEFAULTBRAND: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Default map";
                     __block NSString *value = nil;
@@ -617,7 +613,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_MAPS_ROTATE_TO_BEARING: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Rotate to bearing";
 
@@ -635,28 +631,28 @@ enum sections {
         case SECTION_MAPSEARCHMAXIMUM: {
             switch (indexPath.row) {
                 case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GS: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Distance in GroundSpeak geocaching.com search radius";
                     cell.detailTextLabel.text = [MyTools niceDistance:configManager.mapSearchMaximumDistanceGS];
                     return cell;
                 }
                 case SECTION_MAPSEARCHMAXIMUM_DISTANCE_OKAPI: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Distance in OKAPI search radius";
                     cell.detailTextLabel.text = [MyTools niceDistance:configManager.mapSearchMaximumDistanceOKAPI];
                     return cell;
                 }
                 case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GCA: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Distance in GCA search radius";
                     cell.detailTextLabel.text = [MyTools niceDistance:configManager.mapSearchMaximumDistanceGCA];
                     return cell;
                 }
                 case SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Number of waypoints in Geocaching Australia search";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld waypoints", (long)configManager.mapSearchMaximumNumberGCA];
@@ -669,7 +665,7 @@ enum sections {
         case SECTION_DYNAMICMAP: {
             switch (indexPath.row) {
                 case SECTION_DYNAMICMAP_ENABLED: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Enable dynamic maps";
 
@@ -681,7 +677,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_DYNAMICMAP_SPEED_WALKING: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Maximum walking speed";
                     cell.detailTextLabel.text = [MyTools niceSpeed:configManager.dynamicmapWalkingSpeed];
@@ -689,7 +685,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_DYNAMICMAP_SPEED_CYCLING: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Maximum cycling speed";
                     cell.detailTextLabel.text = [MyTools niceSpeed:configManager.dynamicmapCyclingSpeed];
@@ -697,7 +693,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_DYNAMICMAP_SPEED_DRIVING: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Maximum driving speed";
                     cell.detailTextLabel.text = [MyTools niceSpeed:configManager.dynamicmapDrivingSpeed];
@@ -705,7 +701,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_DYNAMICMAP_DISTANCE_WALKING: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Walking zoom-out distance";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"Always %@", [MyTools niceDistance:configManager.dynamicmapWalkingDistance]];
@@ -713,7 +709,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_DYNAMICMAP_DISTANCE_CYCLING: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Cycling zoom-out distance";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"Between %@ and %@", [MyTools niceDistance:configManager.dynamicmapWalkingDistance], [MyTools niceDistance:configManager.dynamicmapCyclingDistance]];
@@ -721,7 +717,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_DYNAMICMAP_DISTANCE_DRIVING: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Driving zoom-out distance";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"Between %@ and %@", [MyTools niceDistance:configManager.dynamicmapCyclingDistance], [MyTools niceDistance:configManager.dynamicmapDrivingDistance]];
@@ -736,7 +732,7 @@ enum sections {
 
             switch (indexPath.row) {
                 case SECTION_KEEPTRACK_AUTOROTATE: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Autorotate every day";
 
@@ -748,7 +744,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_KEEPTRACK_TIMEDELTA_MIN: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Time difference for a new track point";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.1f seconds", configManager.keeptrackTimeDeltaMin];
@@ -756,7 +752,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_KEEPTRACK_TIMEDELTA_MAX: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Time difference for a new track";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.1f seconds", configManager.keeptrackTimeDeltaMax];
@@ -764,7 +760,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_KEEPTRACK_DISTANCEDELTA_MIN: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Distance difference for a new track point";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [MyTools niceDistance:configManager.keeptrackDistanceDeltaMin]];
@@ -772,7 +768,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_KEEPTRACK_DISTANCEDELTA_MAX: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Distance difference for a new track";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [MyTools niceDistance:configManager.keeptrackDistanceDeltaMax]];
@@ -780,7 +776,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_KEEPTRACK_PURGEAGE: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Autopurge age for old tracks";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld days", (long)configManager.keeptrackPurgeAge];
@@ -788,7 +784,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_KEEPTRACK_SYNC: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Sync track data";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"Every %ld seconds", (long)configManager.keeptrackSync];
@@ -802,7 +798,7 @@ enum sections {
         case SECTION_MAPCACHE: {
             switch (indexPath.row) {
                 case SECTION_MAPCACHE_ENABLED: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Enable map cache";
 
@@ -814,7 +810,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_MAPCACHE_MAXAGE: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Maximum age for objects in cache";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld days", (long)configManager.mapcacheMaxAge];
@@ -822,7 +818,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_MAPCACHE_MAXSIZE: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Maximum size for the cache";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Mb", (long)configManager.mapcacheMaxSize];
@@ -836,7 +832,7 @@ enum sections {
         case SECTION_IMPORTS: {
             switch (indexPath.row) {
                 case SECTION_IMPORTS_TIMEOUT_SIMPLE: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Timeout for simple HTTP requests";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld seconds", (long)configManager.downloadTimeoutSimple];
@@ -844,7 +840,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_IMPORTS_TIMEOUT_QUERY: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Timeout for big HTTP requests";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld seconds", (long)configManager.downloadTimeoutQuery];
@@ -852,7 +848,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_IMPORTS_IMAGES_WAYPOINT: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
                     cell.textLabel.text = @"Download waypoint images";
 
                     downloadImagesWaypoints = [[GCSwitch alloc] initWithFrame:CGRectZero];
@@ -863,7 +859,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_IMPORTS_IMAGES_LOGS: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
                     cell.textLabel.text = @"Download log images";
 
                     downloadImagesLogs = [[GCSwitch alloc] initWithFrame:CGRectZero];
@@ -874,7 +870,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_IMPORTS_LOG_IMAGES_MOBILE: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
                     cell.textLabel.text = @"Download logged images over mobile data";
 
                     downloadImagesMobile = [[GCSwitch alloc] initWithFrame:CGRectZero];
@@ -885,7 +881,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_IMPORTS_QUERIES_MOBILE: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
                     cell.textLabel.text = @"Download batch queries over mobile data";
 
                     downloadQueriesMobile = [[GCSwitch alloc] initWithFrame:CGRectZero];
@@ -902,7 +898,7 @@ enum sections {
         case SECTION_MARKAS: {
             switch (indexPath.row) {
                 case SECTION_MARKAS_FOUNDDNFCLEARSTARGET: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
                     cell.textLabel.text = @"Remove target when marking as found/DNF";
 
                     markasFoundDNFClearsTarget = [[GCSwitch alloc] initWithFrame:CGRectZero];
@@ -913,7 +909,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_MARKAS_FOUNDMARKSALLWAYPOINTS: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
                     cell.textLabel.text = @"Mark all related waypoints when marked as found";
 
                     markasFoundMarksAllWaypoints = [[GCSwitch alloc] initWithFrame:CGRectZero];
@@ -924,7 +920,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_LOG_REMOVEMARKASFOUNDDNF: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
                     cell.textLabel.text = @"Remove Marked as Found/DNF when logging";
 
                     loggingRemovesMarkedAsFoundDNF = [[GCSwitch alloc] initWithFrame:CGRectZero];
@@ -941,7 +937,7 @@ enum sections {
         case SECTION_COMPASS: {
             switch (indexPath.row) {
                 case SECTION_COMPASS_ALWAYSPORTRAIT: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
                     cell.textLabel.text = @"Compass is always in portrait mode";
 
                     compassAlwaysInPortraitMode = [[GCSwitch alloc] initWithFrame:CGRectZero];
@@ -958,7 +954,7 @@ enum sections {
         case SECTION_WAYPOINTS: {
             switch (indexPath.row) {
                 case SECTION_WAYPOINTS_SORTBY: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Sort waypoints default by...";
                     NSArray<NSString *> *order = [WaypointSorter waypointsSortOrders];
@@ -968,7 +964,7 @@ enum sections {
                 }
 
                 case SECTION_WAYPOINTS_REFRESHAFTERLOG: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
                     cell.textLabel.text = @"Refresh after log";
 
                     refreshWaypointAfterLog = [[GCSwitch alloc] initWithFrame:CGRectZero];
@@ -980,7 +976,7 @@ enum sections {
                 }
 
                 case SECTION_WAYPOINTS_SHOWCOUNTRYASABBREVATION: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
                     cell.textLabel.text = @"Show country as abbrevation";
 
                     showCountryAsAbbrevation = [[GCSwitch alloc] initWithFrame:CGRectZero];
@@ -992,7 +988,7 @@ enum sections {
                 }
 
                 case SECTION_WAYPOINTS_SHOWSTATEASABBREVATION: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
                     cell.textLabel.text = @"Show state as abbrevation";
 
                     showStateAsAbbrevation = [[GCSwitch alloc] initWithFrame:CGRectZero];
@@ -1004,7 +1000,7 @@ enum sections {
                 }
 
                 case SECTION_WAYPOINTS_SHOWSTATEASABBREVATIONWITHLOCALE: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
                     cell.textLabel.text = @"Show state as abbrevation if locale exist";
 
                     showStateAsAbbrevationIfLocaleExists = [[GCSwitch alloc] initWithFrame:CGRectZero];
@@ -1021,7 +1017,7 @@ enum sections {
         case SECTION_LISTS: {
             switch (indexPath.row) {
                 case SECTION_LISTS_SORTBY: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"Sort lists default by...";
                     NSArray<NSString *> *order = [WaypointSorter listSortOrders];
@@ -1036,7 +1032,7 @@ enum sections {
         case SECTION_ACCOUNTS: {
             switch (indexPath.row) {
                 case SECTION_ACCOUNTS_AUTHENTICATEKEEPUSERNAME: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
                     cell.textLabel.text = @"Save authentication username";
 
                     AccountKeepUsername = [[GCSwitch alloc] initWithFrame:CGRectZero];
@@ -1047,7 +1043,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_ACCOUNTS_AUTHENTICATEKEEPPASSWORD: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
                     cell.textLabel.text = @"Save authentication password";
 
                     AccountKeepPassword = [[GCSwitch alloc] initWithFrame:CGRectZero];
@@ -1063,7 +1059,7 @@ enum sections {
         case SECTION_GPSADJUSTMENT: {
             switch (indexPath.row) {
                 case SECTION_GPSADJUSTMENT_ENABLE: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_DEFAULT forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
                     cell.textLabel.text = @"GPS Adjustment enable";
 
                     GPSAdjustmentEnable = [[GCSwitch alloc] initWithFrame:CGRectZero];
@@ -1074,7 +1070,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_GPSADJUSTMENT_LATITUDE: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"GPS Adjustment for latitude";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld mm", (long)configManager.gpsAdjustmentLatitude];
@@ -1082,7 +1078,7 @@ enum sections {
                     return cell;
                 }
                 case SECTION_GPSADJUSTMENT_LONGITUDE: {
-                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:THISCELL_SUBTITLE forIndexPath:indexPath];
+                    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
                     cell.textLabel.text = @"GPS Adjustment for longitude";
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld mm", (long)configManager.gpsAdjustmentLongitude];
