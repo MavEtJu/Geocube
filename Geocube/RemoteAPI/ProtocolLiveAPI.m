@@ -102,7 +102,15 @@
     if ([n isEqualToNumber:[NSNumber numberWithInteger:0]] == NO) {
         NSString *reason = [NSString stringWithFormat:@"StatusCode %@: %@", [dict objectForKey:@"StatusCode"], [dict objectForKey:@"StatusMessage"]];
         [remoteAPI setAPIError:reason error:REMOTEAPI_APIFAILED];
-        [remoteAPI.account disableRemoteAccess:reason];
+        switch ([n integerValue]) {
+            case  15:   // The DateTime provided must be between 2000-01-01 12:00:00 and 2017-06-14 11:23:45.
+            case  40:   // This log requires the person to hold the trackable item first
+            case 161:   // Owners cannot log (FoundIt|DidntFindIt) on geocaches they own
+                break;
+            default:
+                [remoteAPI.account disableRemoteAccess:reason];
+                break;
+        }
         return NO;
     }
 
@@ -639,15 +647,18 @@
      }*/
 
     NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
-    [dateF setDateFormat:@"YYYY-MM-dd"];
+    if ([dateLogged length] == 10)
+        [dateF setDateFormat:@"YYYY-MM-dd"];
+    else
+        [dateF setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
     NSDate *todayDate = [dateF dateFromString:dateLogged];
-    time_t date = [todayDate timeIntervalSince1970];
+    NSTimeInterval date = [todayDate timeIntervalSince1970];
 
     [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
     [_dict setValue:wp.wpt_name forKey:@"CacheCode"];
     [_dict setValue:tb.code forKey:@"TrackingNumber"];
     [_dict setValue:tb.ref forKey:@"TravelBugCode"];
-    [_dict setValue:[NSString stringWithFormat:@"/Date(%ld)/", (long)(1000 * date)] forKey:@"UTCDateLogged"];
+    [_dict setValue:[NSString stringWithFormat:@"/Date(%lld)/", (long long)(1000 * date)] forKey:@"UTCDateLogged"];
     [_dict setValue:logtype forKey:@"LogType"];
     [_dict setValue:note forKey:@"Note"];
 
