@@ -23,7 +23,7 @@
 {
     BOOL mineOnly;
     dbWaypoint *waypoint;
-    NSArray<dbLog *> *logs;
+    NSMutableArray<dbLog *> *logs;
 
     dbLog *selectedLog;
 }
@@ -49,7 +49,7 @@ enum {
 
     [self.tableView registerNib:[UINib nibWithNibName:XIB_LOGTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_LOGTABLEVIEWCELL];
 
-    logs = [dbLog dbAllByWaypoint:waypoint._id];
+    logs = [NSMutableArray arrayWithArray:[dbLog dbAllByWaypoint:waypoint._id]];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuScanForWaypoints label:@"Extract Waypoints"];
@@ -67,7 +67,7 @@ enum {
     self = [self init:_wp];
 
     mineOnly = YES;
-    logs = [dbLog dbAllByWaypointLogged:waypoint._id];
+    logs = [NSMutableArray arrayWithArray:[dbLog dbAllByWaypointLogged:waypoint._id]];
 
     return self;
 }
@@ -124,6 +124,30 @@ enum {
     [lmi disableItem:menuDeleteLog];
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    dbLog *l = [logs objectAtIndex:indexPath.row];
+    if (l.localLog == YES)
+        return YES;
+    return NO;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        dbLog *l = [logs objectAtIndex:indexPath.row];
+        if (l.localLog == NO)
+            return;
+
+        [l dbDelete];
+        [logs removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        [self.delegateWaypoint WaypointLogs_refreshTable];
+        [self.tableView reloadData];
+    }
+}
+
+
 #pragma mark - Local menu related functions
 
 - (void)performLocalMenuAction:(NSInteger)index
@@ -169,7 +193,7 @@ enum {
         return;
 
     [selectedLog dbDelete];
-    logs = [dbLog dbAllByWaypoint:waypoint._id];
+    logs = [NSMutableArray arrayWithArray:[dbLog dbAllByWaypoint:waypoint._id]];
     [self reloadDataMainQueue];
 
     if (self.delegateWaypoint != nil)

@@ -1971,8 +1971,6 @@
 				E82343E41EECDF4400D2CDFD /* WaypointGroupsViewController.m */,
 				E82343E51EECDF4400D2CDFD /* WaypointHintViewController.h */,
 				E82343E61EECDF4400D2CDFD /* WaypointHintViewController.m */,
-				E82343E71EECDF4400D2CDFD /* WaypointLogsViewController.h */,
-				E82343E81EECDF4400D2CDFD /* WaypointLogsViewController.m */,
 				E82343E91EECDF4400D2CDFD /* WaypointPersonalNoteViewController.h */,
 				E82343EA1EECDF4400D2CDFD /* WaypointPersonalNoteViewController.m */,
 				E82343EB1EECDF4400D2CDFD /* WaypointRawViewController.h */,
@@ -2114,6 +2112,8 @@
 		E83C6F2F1EEEB19D00E303F5 /* Logs */ = {
 			isa = PBXGroup;
 			children = (
+				E82343E71EECDF4400D2CDFD /* WaypointLogsViewController.h */,
+				E82343E81EECDF4400D2CDFD /* WaypointLogsViewController.m */,
 				E82343CF1EECDEE200D2CDFD /* WaypointLogsTableViewCell.h */,
 				E82343D01EECDEE200D2CDFD /* WaypointLogsTableViewCell.m */,
 				E82343D11EECDEE200D2CDFD /* WaypointLogsTableViewCell.xib */,
