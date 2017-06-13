@@ -72,6 +72,43 @@
             } \
         }
 
+#define LIVEAPI_CHECK_STATUS_ENUM(__json__, __logsection__, __failure__) { \
+            if (__json__ == nil) { \
+                errorCode = [self lastErrorCode]; \
+                *stop = YES; \
+                return; \
+            } \
+            NSDictionary *status = [__json__ objectForKey:@"Status"]; \
+            if (status == nil) \
+                if ([__json__ objectForKey:@"StatusCode"] != nil) \
+                    status = [__json__ _dict]; \
+            if (status == nil) { \
+                NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: No 'Status' field returned", __logsection__]; \
+                NSLog(@"%@", s); \
+                [self setDataError:s error:__failure__]; \
+                errorCode = REMOTEAPI_APIFAILED; \
+                *stop = YES; \
+                return; \
+            } \
+            NSNumber *num = [status objectForKey:@"StatusCode"]; \
+            if (num == nil) { \
+                NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: No 'StatusCode' field returned", __logsection__]; \
+                NSLog(@"%@", s); \
+                [self setDataError:s error:__failure__]; \
+                errorCode = REMOTEAPI_APIFAILED; \
+                *stop = YES; \
+                return; \
+            } \
+            if ([num integerValue] != 0) { \
+                NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: 'actionstatus' was not 0 (%@)", __logsection__, num]; \
+                NSLog(@"%@", s); \
+                [self setDataError:s error:__failure__]; \
+                errorCode = __failure__; \
+                *stop = YES; \
+                return; \
+            } \
+        }
+
 #define LIVEAPI_GET_VALUE(__json__, __type__, __varname__, __field__, __logsection__, __failure__) \
             __type__ *__varname__ = [__json__ objectForKey:__field__]; \
             if (__varname__ == nil) { \
@@ -175,6 +212,7 @@
     GCDictionaryLiveAPI *json = [liveAPI CreateFieldNoteAndPublish:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite imageCaption:imageCaption imageDescription:imageDescription imageData:imgdata imageFilename:image.datafile infoViewer:iv iiDownload:iid];
     LIVEAPI_CHECK_STATUS(json, @"CreateLogNote", REMOTEAPI_CREATELOG_LOGFAILED);
 
+    __block NSInteger errorCode = REMOTEAPI_OK;
     [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
         if (tb.logtype == TRACKABLE_LOG_NONE)
             return;
@@ -206,9 +244,10 @@
                 NSAssert(NO, @"Unknown tb.logtype");
         }
         dbLogString *ls = [dbLogString dbGetByProtocolLogtypeDefault:self.account.protocol logtype:logtype default:dflt];
-        [liveAPI CreateTrackableLog:waypoint logtype:ls.type trackable:tb note:note dateLogged:dateLogged infoViewer:iv iiDownload:iid];
+        GCDictionaryLiveAPI *json = [liveAPI CreateTrackableLog:waypoint logtype:ls.type trackable:tb note:note dateLogged:dateLogged infoViewer:iv iiDownload:iid];
+        LIVEAPI_CHECK_STATUS_ENUM(json, @"CreateTrackableLog", REMOTEAPI_CREATELOG_LOGFAILED);
     }];
-    return REMOTEAPI_OK;
+    return errorCode;
 }
 
 - (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
