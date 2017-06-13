@@ -253,14 +253,17 @@
     }
 
     NSDateFormatter *dateF = [[NSDateFormatter alloc] init];
-    [dateF setDateFormat:@"YYYY-MM-dd"];
+    if ([dateLogged length] == 10)
+        [dateF setDateFormat:@"YYYY-MM-dd"];
+    else
+        [dateF setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
     NSDate *todayDate = [dateF dateFromString:dateLogged];
     date = [todayDate timeIntervalSince1970];
 
     [dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
     [dict setValue:waypointName forKey:@"CacheCode"];
     [dict setValue:[NSNumber numberWithLong:[logtype integerValue]] forKey:@"WptLogTypeId"];
-    [dict setValue:[NSString stringWithFormat:@"/Date(%ld)/", (long)(1000 * date)] forKey:@"UTCDateLogged"];
+    [dict setValue:[NSString stringWithFormat:@"/Date(%lld)/", (long long)(1000 * date)] forKey:@"UTCDateLogged"];
     [dict setValue:[MyTools JSONEscape:note] forKey:@"Note"];
     [dict setValue:((favourite == YES) ? @"true" : @"false") forKey:@"FavoriteThisCache"];
     [dict setValue:[NSNumber numberWithBool:NO] forKey:@"EncryptLogText"];
