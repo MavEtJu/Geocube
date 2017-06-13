@@ -115,7 +115,7 @@ enum {
                 [tb dbUpdate];
             }];
             [self remoteAPILoadTrackables:a infoView:infoView infoItemID:iid];
-            self.tbs = [dbTrackable dbAllMine];
+            [self loadTrackables];
             [self reloadDataMainQueue];
             *stop = YES;
         }
