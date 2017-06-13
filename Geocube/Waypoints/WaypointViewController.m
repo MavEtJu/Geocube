@@ -78,7 +78,7 @@ enum {
     self = [super initWithStyle:UITableViewStyleGrouped];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuMarkAs label:@"Mark as..."];
+    [lmi addItem:menuMarkAs label:@"Mark as ..."];
     [lmi addItem:menuRefreshWaypoint label:@"Refresh waypoint"];
     [lmi addItem:menuAddToGroup label:@"Add to group"];
     [lmi addItem:menuViewRaw label:@"Raw data"];
