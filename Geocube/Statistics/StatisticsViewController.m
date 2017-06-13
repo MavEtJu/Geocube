@@ -159,7 +159,7 @@ enum {
     }];
 
     totalDictionary = [NSMutableDictionary dictionary];
-    [totalDictionary setObject:@"Total" forKey:@"site"];
+    [totalDictionary setObject:@"" forKey:@"site"];
     [totalDictionary setObject:@"Not yet computed" forKey:@"status"];
     [self clearTotal];
 }
