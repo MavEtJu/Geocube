@@ -147,7 +147,6 @@ enum {
     }
 }
 
-
 #pragma mark - Local menu related functions
 
 - (void)performLocalMenuAction:(NSInteger)index
