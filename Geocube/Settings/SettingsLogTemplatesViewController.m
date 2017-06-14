@@ -312,9 +312,10 @@ indexPath
     [lines addObject:@"; Backup of the Log Templates and Macros."];
     [lines addObject:@"; Lines starting with a ; are considered comments."];
     [lines addObject:@"; The format is: First comes the text 'Macro' or 'Template'."];
-    [lines addObject:@"; Then comes a separator, the text of the macro or template and another separator"];
+    [lines addObject:@"; Then comes a separator, the text of the macro or template and another separator."];
     [lines addObject:@";"];
     [lines addObject:@"; Do not remove"];
+    [lines addObject:@"Type: Log Templates and Macros"];
     [lines addObject:@"Version: 1"];
     [lines addObject:@""];
 
