@@ -27,5 +27,6 @@
 + (NSArray<dbLogTemplate *> *)dbAll;
 + (dbLogTemplate *)dbGet:(NSId)_id;
 + (NSId)dbCreate:(NSString *)name;
++ (void)dbDeleteAll;
 
 @end

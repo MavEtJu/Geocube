@@ -83,6 +83,13 @@
     return _id;
 }
 
+- (NSId)dbCreate
+{
+    NSId _id = [dbLogTemplate dbCreate:self.name];
+    [self dbUpdate];
+    return _id;
+}
+
 - (void)dbUpdate
 {
     @synchronized(db) {
@@ -103,6 +110,16 @@
         DB_PREPARE(@"delete from log_templates where id = ?");
 
         SET_VAR_INT(1, self._id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
++ (void)dbDeleteAll
+{
+    @synchronized(db) {
+        DB_PREPARE(@"delete from log_templates");
 
         DB_CHECK_OKAY;
         DB_FINISH;

@@ -84,6 +84,11 @@
     return _id;
 }
 
+- (NSId)dbCreate
+{
+    return [dbLogMacro dbCreate:self.name text:self.text];
+}
+
 - (void)dbUpdate
 {
     @synchronized(db) {
@@ -104,6 +109,16 @@
         DB_PREPARE(@"delete from log_macros where id = ?");
 
         SET_VAR_INT(1, self._id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
++ (void)dbDeleteAll
+{
+    @synchronized(db) {
+        DB_PREPARE(@"delete from log_macros");
 
         DB_CHECK_OKAY;
         DB_FINISH;
