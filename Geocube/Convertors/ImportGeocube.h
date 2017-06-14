@@ -53,5 +53,7 @@
 
 + (BOOL)parse:(NSData *)data infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii;
 + (BOOL)parse:(NSData *)data;
++ (NSString *)blockSeparator;
++ (NSString *)type_LogTemplatesAndMacros;
 
 @end

@@ -25,6 +25,11 @@
 
 @implementation ImportGeocube
 
+typedef NS_ENUM(NSInteger, Type) {
+    TYPE_UNKNOWN = 0,
+    TYPE_LOGTEMPLATESANDMACROS,
+};
+
 + (BOOL)parse:(NSData *)data
 {
     return [self parse:data infoViewer:nil iiImport:0];
@@ -32,8 +37,140 @@
 
 + (BOOL)parse:(NSData *)data infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii
 {
-    ImportGeocube *ig = [[ImportGeocube alloc] init];
-    return [ig parse:data infoViewer:iv iiImport:iii];
+    NSString *d = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(0, 1)] encoding:NSASCIIStringEncoding];
+
+    if ([d isEqualToString:@"<"] == YES) {
+        // Assume XML
+        ImportGeocube *ig = [[ImportGeocube alloc] init];
+        return [ig parse:data infoViewer:iv iiImport:iii];
+    }
+
+    return [self parseFlatFile:data infoViewer:iv iiImport:iii];
+}
+
++ (BOOL)parseFlatFile:(NSData *)data infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii
+{
+    NSString *d = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+    NSArray<NSString *> *lines = [d componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    __block BOOL inBlock = NO;
+    __block NSMutableString *block = nil;
+
+    __block Type filetype = TYPE_UNKNOWN;
+
+    __block dbLogTemplate *lt = nil;
+    __block dbLogMacro *lm = nil;
+
+    NSMutableArray<dbLogTemplate *> *lts = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray<dbLogMacro *> *lms = [NSMutableArray arrayWithCapacity:10];
+
+    [lines enumerateObjectsUsingBlock:^(NSString * _Nonnull line, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([line length] > 0 && [[line substringToIndex:1] isEqualToString:@";"] == YES)
+            return;
+
+        NSArray<NSString *> *words = [line componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        if ([words count] == 1 && [[words objectAtIndex:0] isEqualToString:[self blockSeparator]] == YES) {
+            if (inBlock == NO) {
+                inBlock = YES;
+                block = [NSMutableString stringWithString:@""];
+                return;
+            }
+
+            if (filetype == TYPE_LOGTEMPLATESANDMACROS) {
+                if (lm != nil) {
+                    lm.text = block;
+                    [lm finish];
+                    [lms addObject:lm];
+                    lm = nil;
+                }
+                if (lt != nil) {
+                    lt.text = block;
+                    [lt finish];
+                    [lts addObject:lt];
+                    lt = nil;
+                }
+            }
+
+            inBlock = NO;
+            block = nil;
+            return;
+        }
+
+        if (inBlock == YES) {
+            [block appendString:line];
+            [block appendString:@"\n"];
+            return;
+        }
+
+        if ([words count] == 0)
+            return;
+
+        NSString *key = [words objectAtIndex:0];
+        if ([key isEqualToString:@"Version:"] == YES) {
+            // All is fine for now.
+            return;
+        }
+
+        if ([key isEqualToString:@"Type:"] == YES) {
+            NSString *type = [words objectAtIndex:1];
+            if ([type isEqualToString:@"LogTemplatesAndMacros"] == YES) {
+                filetype = TYPE_LOGTEMPLATESANDMACROS;
+                return;
+            }
+
+            // Happily ignore the rest
+            filetype = TYPE_UNKNOWN;
+            return;
+        }
+
+        if (filetype == TYPE_LOGTEMPLATESANDMACROS) {
+            if ([key isEqualToString:@"Template"] == YES) {
+                NSString *title = [[words subarrayWithRange:NSMakeRange(1, [words count] - 1)] componentsJoinedByString:@" "];
+                words = [title componentsSeparatedByString:@"'"];
+                if ([words count] >= 1)
+                    title = [words objectAtIndex:1];
+                lt = [[dbLogTemplate alloc] init];
+                lt.name = title;
+                return;
+            }
+
+            if ([key isEqualToString:@"Macro"] == YES) {
+                NSString *title = [[words subarrayWithRange:NSMakeRange(1, [words count] - 1)] componentsJoinedByString:@" "];
+                words = [title componentsSeparatedByString:@"'"];
+                if ([words count] >= 1)
+                    title = [words objectAtIndex:1];
+                lm = [[dbLogMacro alloc] init];
+                lm.name = title;
+                return;
+            }
+        }
+    }];
+
+    if (filetype == TYPE_LOGTEMPLATESANDMACROS) {
+        if ([lts count] != 0) {
+            [dbLogTemplate dbDeleteAll];
+            [lts enumerateObjectsUsingBlock:^(dbLogTemplate * _Nonnull lt, NSUInteger idx, BOOL * _Nonnull stop) {
+                [lt dbCreate];
+            }];
+        }
+        if ([lms count] != 0) {
+            [dbLogMacro dbDeleteAll];
+            [lms enumerateObjectsUsingBlock:^(dbLogMacro * _Nonnull lm, NSUInteger idx, BOOL * _Nonnull stop) {
+                [lm dbCreate];
+            }];
+        }
+    }
+
+    return TRUE;
+}
+
++ (NSString *)blockSeparator
+{
+    return @"-------------";
+}
+
++ (NSString *)type_LogTemplatesAndMacros
+{
+    return @"LogTemplatesAndMacros";
 }
 
 - (BOOL)parse:(NSData *)XMLdata infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii
