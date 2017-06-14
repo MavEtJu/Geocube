@@ -213,6 +213,7 @@ enum {
 
 - (void)waitForDownloadsToFinish
 {
+    [NSThread sleepForTimeInterval:0.5];
     while ([processing hasIdentifiers] == YES) {
         [NSThread sleepForTimeInterval:0.1];
     }

@@ -853,6 +853,7 @@ enum {
 
 - (void)remoteAPI_finishedDownloads:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
 {
+    [NSThread sleepForTimeInterval:0.5];
     while (chunksProcessed != -1 && chunksProcessed != numberOfChunks) {
         [NSThread sleepForTimeInterval:0.1];
     }
