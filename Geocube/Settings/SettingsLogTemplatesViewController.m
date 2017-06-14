@@ -246,7 +246,7 @@ indexPath
                              NSString *name = tf.text;
 
                              NSLog(@"Creating new log template '%@'", name);
-                             [dbLogTemplate dbCreate:name];
+                             [dbLogTemplate dbCreate:name text:@""];
                              [self reloadLogXxx];
                          }];
     UIAlertAction *cancel = [UIAlertAction
@@ -315,24 +315,24 @@ indexPath
     [lines addObject:@"; Then comes a separator, the text of the macro or template and another separator."];
     [lines addObject:@";"];
     [lines addObject:@"; Do not remove"];
-    [lines addObject:@"Type: Log Templates and Macros"];
+    [lines addObject:[NSString stringWithFormat:@"Type: %@", [ImportGeocube type_LogTemplatesAndMacros]]];
     [lines addObject:@"Version: 1"];
     [lines addObject:@""];
 
     [[dbLogTemplate dbAll] enumerateObjectsUsingBlock:^(dbLogTemplate * _Nonnull lt, NSUInteger idx, BOOL * _Nonnull stop) {
         [lines addObject:[NSString stringWithFormat:@"; %@", lt.name]];
         [lines addObject:[NSString stringWithFormat:@"Template '%@'", lt.name]];
-        [lines addObject:@"-------------"];
+        [lines addObject:[ImportGeocube blockSeparator]];
         [lines addObject:lt.text];
-        [lines addObject:@"-------------"];
+        [lines addObject:[ImportGeocube blockSeparator]];
     }];
 
     [[dbLogMacro dbAll] enumerateObjectsUsingBlock:^(dbLogMacro * _Nonnull lm, NSUInteger idx, BOOL * _Nonnull stop) {
         [lines addObject:[NSString stringWithFormat:@"; %@", lm.name]];
         [lines addObject:[NSString stringWithFormat:@"Macro '%@'", lm.name]];
-        [lines addObject:@"-------------"];
+        [lines addObject:[ImportGeocube blockSeparator]];
         [lines addObject:lm.text];
-        [lines addObject:@"-------------"];
+        [lines addObject:[ImportGeocube blockSeparator]];
     }];
 
     NSString *filename = @"Log Templates and Macros.geocube";
