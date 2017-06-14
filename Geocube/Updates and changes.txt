@@ -21,6 +21,8 @@ Version 1.3(xx)
   - Made Geocaching Australia authentication more obvious.
   - Statistics screen is now a proper table.
   - Waypoint Info view under the map for the iPad now looks better.
+  - When downloading a lot the InfoViewer at the bottom now should
+    show up properly even if there is a lot of delay.
 
 Version 1.2(20)
 
