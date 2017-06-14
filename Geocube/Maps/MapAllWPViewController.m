@@ -117,6 +117,8 @@ enum {
     NSArray<dbAccount *> *accounts = [dbc Accounts];
     __block NSInteger accountsFound = 0;
     [accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([account.remoteAPI supportsLoadWaypointsByBoundaryBox ] == NO)
+            return;
         if ([account canDoRemoteStuff] == NO)
             return;
         accountsFound++;
