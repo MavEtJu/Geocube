@@ -175,6 +175,7 @@ enum {
 
     NSArray<NSString *> *lines = [selectedLog.log componentsSeparatedByString:@"\n"];
     [Coordinates scanForWaypoints:lines waypoint:waypoint view:self];
+    [self.delegateWaypoint WaypointLogs_refreshTable];
 }
 
 - (void)menuCopyLog
