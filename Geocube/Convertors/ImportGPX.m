@@ -549,6 +549,7 @@ bye:
 {
     NSString *errorString = [NSString stringWithFormat:@"%@ error (Error code %ld)", [self class], (long)[parseError code]];
     NSLog(@"Error parsing XML: %@ (%@)", errorString, parseError);
+    [MyTools messageBox:[MyTools topMostController] header:@"Error parsing XML code" text:@"An error occured while importing the GPX file. This is most likely a corruption in the XML data. Please check the last part of the GPX file, if it looks okay please contact Geocube support." error:[parseError.userInfo description]];
 }
 
 @end
