@@ -71,10 +71,12 @@
     NSLog(@"Using %@ as the database.", dbname);
     dbempty = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], DB_EMPTY];
 
+#if TARGET_OS_SIMULATOR
     // Keep a symlink to /Users/edwin/db to the database for easy access
     NSError *e;
     [fileManager removeItemAtPath:@"/Users/edwin/db" error:nil];
     [fileManager createSymbolicLinkAtPath:@"/Users/edwin/db" withDestinationPath:dbname error:&e];
+#endif
 
     // If the database doesn't exist, create it
     [self checkAndCreateDatabase];
