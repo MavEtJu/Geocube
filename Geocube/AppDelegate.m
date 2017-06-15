@@ -37,11 +37,12 @@
     // File manager
     fileManager = [[NSFileManager alloc] init];
 
-    // File manager
+    // PKI manager
     keyManager = [[KeyManager alloc] init];
 
-    /* Create files directory */
+    /* Create working directories */
     [fileManager createDirectoryAtPath:[MyTools FilesDir] withIntermediateDirectories:NO attributes:nil error:nil];
+    [fileManager createDirectoryAtPath:[MyTools ApplicationSupportRoot] withIntermediateDirectories:NO attributes:nil error:nil];
 
     // Do some directory juggling
     NSDictionary *d = @{
