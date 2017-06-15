@@ -11,6 +11,8 @@ Version 1.3(xx)
   - Added log templates and log macros.
   - The logs can be prepopulated with templates.
   - Saved logs can be seen in the Saved Logs overview under Notes.
+  - Groundspeak geocaching.com: Corrected Coordinates are now imported
+    properly.
 
   Fixed:
   - iPad: The query table cells are now properly resized.

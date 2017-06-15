@@ -165,8 +165,21 @@
          UTCPlaceDate = "/Date(1446274800000-0700)/";
          UpgradeMessage = "<null>";
          Url = "http://coord.info/GC664B5";
-         UserWaypoints =     (
-         );
+         "UserWaypoints": [
+             {
+                 "AssociatedAdditionalWaypoint": null,
+                 "CacheCode": "GC24P7X",
+                 "Description": null,
+                 "ID": 27115469,
+                 "IsCorrectedCoordinate": true,
+                 "IsUserCompleted": false,
+                 "Latitude": -12.576116666666667,
+                 "Longitude": 12.576116666666667,
+                 "UTCDate": "/Date(1497591719360-0700)/",
+                 "UserID": 8305738
+             }
+         ]
+
      }
      */
 
@@ -205,7 +218,6 @@
     wp.account_id = account._id;
 
     // Groundspeak object
-//  wp.gs_hasdata = YES;
     DICT_FLOAT_KEY(dict, wp.gs_rating_difficulty, @"Difficulty");
     DICT_FLOAT_KEY(dict, wp.gs_rating_terrain, @"Terrain");
     DICT_FLOAT_KEY(dict, wp.gs_favourites, @"FavoritePoints");
@@ -285,6 +297,7 @@
 
     [self parseLogs:[dict objectForKey:@"GeocacheLogs"] waypoint:wp];
     [self parseAttributes:[dict objectForKey:@"Attributes"] waypoint:wp];
+    [self parseUserWaypoints:[dict objectForKey:@"UserWaypoints"] waypoint:wp];
     [self parseAdditionalWaypoints:[dict objectForKey:@"AdditionalWaypoints"] waypoint:wp];
     [self parseTrackables:[dict objectForKey:@"Trackables"] waypoint:wp];
     [self parseImages:[dict objectForKey:@"Images"] waypoint:wp imageSource:IMAGECATEGORY_CACHE];
@@ -493,6 +506,85 @@
     BOOL yesNo;
     DICT_BOOL_KEY(dict, yesNo, @"IsOn");
     [a dbLinkToWaypoint:wp._id YesNo:yesNo];
+}
+
+- (void)parseUserWaypoints:(NSArray<NSDictionary *> *)wps waypoint:(dbWaypoint *)wp
+{
+    [wps enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
+        [self parseUserWaypoint:d waypoint:wp];
+        totalWaypointsCount++;
+        [infoViewer setWaypointsTotal:iiImport total:totalWaypointsCount];
+    }];
+}
+
+- (void)parseUserWaypoint:(NSDictionary *)dict waypoint:(dbWaypoint *)wp
+{
+    /*
+     {
+         "AssociatedAdditionalWaypoint": null,
+         "CacheCode": "GC24P7X",
+         "Description": null,
+         "ID": 27115469,
+         "IsCorrectedCoordinate": true,
+         "IsUserCompleted": false,
+         "Latitude": -12.576116666666667,
+         "Longitude": 12.576116666666667,
+         "UTCDate": "/Date(1497591719360-0700)/",
+         "UserID": 8305738
+     }
+    */
+
+    dbWaypoint *awp = [[dbWaypoint alloc] init];
+
+    // Waypoint object
+    awp.wpt_name = [NSString stringWithFormat:@"CC%@", [wp.wpt_name substringFromIndex:2]];
+    awp.wpt_description = [NSString stringWithFormat:@"Correct Coordinates for %@", wp.wpt_name];
+    awp.wpt_urlname = [NSString stringWithFormat:@"%@ Correct Coordinates", wp.wpt_name];
+
+    if ([[dict objectForKey:@"Latitude"] isKindOfClass:[NSNumber class]] == NO) {
+        awp.wpt_lat_float = 0;
+        awp.wpt_lat_int = 0;
+        awp.wpt_lat = @"0";
+    } else {
+        DICT_FLOAT_KEY(dict, awp.wpt_lat_float, @"Latitude");
+        awp.wpt_lat_int = awp.wpt_lat_float * 1000000;
+        awp.wpt_lat = [NSString stringWithFormat:@"%f", awp.wpt_lat_float];
+    }
+
+    if ([[dict objectForKey:@"Longitude"] isKindOfClass:[NSNumber class]] == NO) {
+        awp.wpt_lon_float = 0;
+        awp.wpt_lon_int = 0;
+        awp.wpt_lon = @"0";
+    } else {
+        DICT_FLOAT_KEY(dict, awp.wpt_lon_float, @"Longitude");
+        awp.wpt_lon_int = awp.wpt_lon_float * 1000000;
+        awp.wpt_lon = [NSString stringWithFormat:@"%f", awp.wpt_lon_float];
+    }
+
+    NSString *dummy;
+    DICT_NSSTRING_KEY(dict, dummy, @"UTCDate");
+    awp.wpt_date_placed_epoch = [MyTools secondsSinceEpochFromWindows:dummy];
+    awp.wpt_date_placed = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:awp.wpt_date_placed_epoch];
+
+    awp.wpt_type_id = [dbc Type_ManuallyEntered]._id;
+
+    awp.account_id = account._id;
+    awp.related_id = wp._id;
+    [awp finish];
+
+    NSId wpid = [dbWaypoint dbGetByName:awp.wpt_name];
+    if (wpid == 0) {
+        [dbWaypoint dbCreate:awp];
+        [group dbAddWaypoint:awp._id];
+        newWaypointsCount++;
+        [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
+    } else {
+        dbWaypoint *wpold = [dbWaypoint dbGet:wpid];
+        awp._id = wpold._id;
+        [awp dbUpdate];
+    }
+
+    [self.delegate Import_WaypointProcessed:awp];
 }
 
 - (void)parseAdditionalWaypoints:(NSArray<NSDictionary *> *)wps waypoint:(dbWaypoint *)wp
