@@ -25,6 +25,12 @@ Version 1.3(xx)
     show up properly even if there is a lot of delay.
   - When a GPX import fails, be noisy about it instead of going
     from "yeah all is fine".
+  - During the very first run, the Application Support directory
+    doesn't exist on the sandbox on a hardware device, despite it
+    being a system directory. This would cause the initial
+    download of the configuration to fail as there was no database
+    yet. During a second run it did exist because of a file cache
+    was created in the Application Support directory.
 
 Version 1.2(20)
 
