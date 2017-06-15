@@ -82,6 +82,7 @@
     [self checkAndCreateDatabase];
 
     // Determine version of the distribution database
+    NSLog(@"Determine version of the distribution database");
     sqlite3 *tdb;
     sqlite3_open([dbempty UTF8String], &tdb);
     self.db = tdb;
@@ -97,6 +98,7 @@
     }
 
     // Determine version of the active database
+    NSLog(@"Determine version of the active database");
     sqlite3_open([dbname UTF8String], &tdb);
     self.db = tdb;
     dbConfig *c_real = [dbConfig dbGetByKey:KEY_VERSION_DB];
@@ -105,6 +107,7 @@
     tdb = nil;
 
     // If the active version is different from the distribution version, then reinitialize.
+    NSLog(@"If the active version is different from the distribution version, then reinitialize.");
     NSLog(@"Database version %@, distribution is %@.", c_real.value, c_empty.value);
     if ([c_real.value isEqualToString:c_empty.value] == NO) {
         NSLog(@"Empty database is newer, upgrading");
@@ -123,6 +126,7 @@
         tdb = nil;
     }
 
+    NSLog(@"Opening database name");
     sqlite3_open([dbname UTF8String], &tdb);
     self.db = tdb;
 }
@@ -130,17 +134,24 @@
 - (void)checkAndCreateDatabase
 {
     BOOL success;
+    NSError *error = nil;
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_cleardatabase"] == TRUE) {
         NSLog(@"Erasing database on user request.");
         [[NSUserDefaults standardUserDefaults] setBool:FALSE forKey:@"option_cleardatabase"];
-        [fileManager removeItemAtPath:dbname error:NULL];
+        error = nil;
+        [fileManager removeItemAtPath:dbname error:&error];
+        if (error != nil)
+            NSLog(@"Error: %@", error);
     }
 
     success = [fileManager fileExistsAtPath:dbname];
     if (success == NO) {
-        [fileManager copyItemAtPath:dbempty toPath:dbname error:nil];
         NSLog(@"Initializing database from %@ to %@.", dbempty, dbname);
+        error = nil;
+        [fileManager copyItemAtPath:dbempty toPath:dbname error:&error];
+        if (error != nil)
+            NSLog(@"Error: %@", error);
     }
 }
 
@@ -152,9 +163,12 @@
 - (NSInteger)getDatabaseSize
 {
     NSError *e = nil;
+    NSLog(@"getDatabaseSize");
     NSDictionary *as = [fileManager attributesOfItemAtPath:dbname error:&e];
-    if (e != nil)
+    if (e != nil) {
+        NSLog(@"Error: %@", e);
         return -1;
+    }
     NSNumber *n = [as valueForKey:@"NSFileSize"];
     return [n integerValue];
 }
