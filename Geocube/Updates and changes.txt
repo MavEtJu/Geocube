@@ -23,6 +23,8 @@ Version 1.3(xx)
   - Waypoint Info view under the map for the iPad now looks better.
   - When downloading a lot the InfoViewer at the bottom now should
     show up properly even if there is a lot of delay.
+  - When a GPX import fails, be noisy about it instead of going
+    from "yeah all is fine".
 
 Version 1.2(20)
 
