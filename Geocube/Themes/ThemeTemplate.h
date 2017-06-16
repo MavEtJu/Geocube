@@ -27,6 +27,9 @@
 @property (nonatomic, retain) UIColor *labelTextColor;
 @property (nonatomic, retain) UIColor *labelTextColorDisabled;
 
+@property (nonatomic, retain) UIColor *tableHeaderBackground;
+@property (nonatomic, retain) UIColor *tableHeaderTextColor;
+
 @property (nonatomic, retain) UIColor *imageBackgroundColor;
 
 @property (nonatomic, retain) UIColor *tabBarBackgroundColor;

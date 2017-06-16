@@ -202,6 +202,14 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    header.contentView.backgroundColor = currentTheme.tableHeaderBackground;
+    header.textLabel.textColor = currentTheme.tableHeaderTextColor;
+    header.textLabel.backgroundColor = currentTheme.tableHeaderBackground;
+}
+
 #pragma -- Local menu related functions
 
 - (void)performLocalMenuAction:(NSInteger)index

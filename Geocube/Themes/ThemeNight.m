@@ -31,11 +31,15 @@
 
     UIColor *blackColor = [UIColor blackColor];
     UIColor *lightTextColor = [UIColor lightTextColor];
+    UIColor *darkGrayColor = [UIColor darkGrayColor];
 
     self.viewControllerBackgroundColor = blackColor;
 
     self.labelTextColor = lightTextColor;
-    self.labelTextColorDisabled = [UIColor darkGrayColor];
+    self.labelTextColorDisabled = darkGrayColor;
+
+    self.tableHeaderBackground = darkGrayColor;
+    self.tableHeaderTextColor = lightTextColor; //[UIColor greenColor]; //thfv.textLabel.backgroundColor;
 
     self.imageBackgroundColor = lightTextColor;
 

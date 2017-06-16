@@ -41,7 +41,9 @@
 
 - (void)changeTheme
 {
-    [themeManager changeThemeArray:self.subviews];
+    self.contentView.backgroundColor = currentTheme.tableHeaderBackground;
+    self.textLabel.textColor = currentTheme.tableHeaderTextColor;
+    self.textLabel.backgroundColor = currentTheme.tableHeaderBackground;
 }
 
 @end

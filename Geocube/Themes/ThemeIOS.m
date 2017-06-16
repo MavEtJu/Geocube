@@ -39,6 +39,10 @@
     self.labelTextColor = blackColor;
     self.labelTextColorDisabled = [UIColor lightGrayColor];
 
+    UITableViewHeaderFooterView *thfv = [[UITableViewHeaderFooterView alloc] init];
+    self.tableHeaderBackground = thfv.textLabel.backgroundColor;
+    self.tableHeaderTextColor = thfv.textLabel.textColor;
+
     self.imageBackgroundColor = whiteColor;
 
     self.labelHighlightBackgroundColor = [UIColor yellowColor];
