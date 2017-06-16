@@ -36,6 +36,7 @@ Version 1.3(xx)
   - File Browser now works with the Application Support Directory.
   - Download and import infoviewer now starts properly at bottom
     of screen.
+  - Themes: Properly deal tableview headers.
 
 Version 1.2(20)
 
