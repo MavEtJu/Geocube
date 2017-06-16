@@ -64,25 +64,37 @@
 
 - (void)loadContents:(FileObject *)rootFO
 {
-//  NSLog(@"loadContents: %@", rootFO.cwd);
-    NSArray<NSString *> *fes = [fileManager contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools DocumentRoot], rootFO.cwd] error:nil];
+    [self loadContentsOfDir:rootFO start:[MyTools FilesDir]];
+    [self loadContentsOfDir:rootFO start:[MyTools ApplicationSupportRoot]];
+}
+
+- (void)loadContentsOfDir:(FileObject *)rootFO start:(NSString *)startdir
+{
+    NSArray<NSString *> *fes = [fileManager contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/%@", startdir, rootFO.cwd] error:nil];
     NSMutableArray<FileObject *> *fos = [NSMutableArray arrayWithCapacity:20];
 
     [fes enumerateObjectsUsingBlock:^(NSString * _Nonnull fn, NSUInteger idx, BOOL * _Nonnull stop) {
         FileObject *fo = [[FileObject alloc] init];
-
-        NSString *fullFilename = [NSString stringWithFormat:@"%@/%@%@", [MyTools DocumentRoot], rootFO.cwd, fn];
-
-        BOOL isDir = NO;
-        NSDictionary<NSFileAttributeKey, id> *attrs = [fileManager attributesOfItemAtPath:fullFilename error:nil];
-        if ([[attrs objectForKey:NSFileType] isEqualToString:NSFileTypeDirectory] == YES)
-            isDir = YES;
-
         fo.filename = fn;
-        fo.isDir = isDir;
-        if (isDir == YES) {
+
+        fo.fullFilename = [NSString stringWithFormat:@"%@/%@%@", startdir, rootFO.cwd, fn];
+
+        NSDictionary<NSFileAttributeKey, id> *attrs = [fileManager attributesOfItemAtPath:fo.fullFilename error:nil];
+        if ([[attrs objectForKey:NSFileType] isEqualToString:NSFileTypeDirectory] == YES)
+            fo.isDir = YES;
+        else if ([[attrs objectForKey:NSFileType] isEqualToString:NSFileTypeSymbolicLink] == YES) {
+            NSDictionary<NSFileAttributeKey, id> *as = [fileManager attributesOfItemAtPath:[fileManager destinationOfSymbolicLinkAtPath:fo.fullFilename error:nil] error:nil];
+            if ([[as objectForKey:NSFileType] isEqualToString:NSFileTypeDirectory] == YES)
+                fo.isLinkToDir = YES;
+            else if ([[as objectForKey:NSFileType] isEqualToString:NSFileTypeSymbolicLink] == YES)
+                fo.isLinkToLink = YES;
+            else
+                fo.isLinkToFile = YES;
+        }
+
+        if (fo.isDir == YES) {
             fo.cwd = [NSString stringWithFormat:@"%@%@/", rootFO.cwd, fn];
-            [self loadContents:fo];
+            [self loadContentsOfDir:fo start:startdir];
             __block NSInteger totalSize = 0;
             [fo.contents enumerateObjectsUsingBlock:^(FileObject * _Nonnull fo, NSUInteger idx, BOOL * _Nonnull stop) {
                 totalSize += fo.filesize;
@@ -141,7 +153,15 @@
         FileObjectView *fov = [[FileObjectView alloc] initWithFrame:CGRectMake(0, self.y, width, 20)];
         fov.filename.text = fo.filename;
         fov.filesize.text = [MyTools niceFileSize:fo.filesize];
-        fov.filetype.text = fo.isDir == YES ? @"(d)" : @"(f)";
+        fov.filetype.text = @"(f)";
+        if (fo.isDir == YES)
+            fov.filetype.text = @"(d)";
+        if (fo.isLinkToLink == YES)
+            fov.filetype.text = @"(ll)";
+        if (fo.isLinkToDir == YES)
+            fov.filetype.text = @"(ld)";
+        if (fo.isLinkToFile == YES)
+            fov.filetype.text = @"(lf)";
         fov.fo = fo;
         self.y += fov.frame.size.height;
 
@@ -215,7 +235,7 @@
                              style:UIAlertActionStyleDestructive
                              handler:^(UIAlertAction * action) {
                                  NSError *e = nil;
-                                 [fileManager removeItemAtPath:[NSString stringWithFormat:@"%@/%@/%@", [MyTools DocumentRoot], [self determineFullPath], fo.filename] error:&e];
+                                 [fileManager removeItemAtPath:fo.fullFilename error:&e];
                                  if (e != nil)
                                      [MyTools messageBox:self header:@"Deleting" text:[e description]];
 
@@ -233,8 +253,8 @@
                           actionWithTitle:@"Tar"
                           style:UIAlertActionStyleDefault
                           handler:^(UIAlertAction * action) {
-                              NSString *targz = [NSString stringWithFormat:@"%@/%@.tgz", [MyTools DocumentRoot], fo.filename];
-                              NSString *source = [NSString stringWithFormat:@"%@/%@/%@", [MyTools DocumentRoot], [self determineFullPath], fo.filename];
+                              NSString *targz = [NSString stringWithFormat:@"%@.tgz", fo.fullFilename];
+                              NSString *source = fo.fullFilename;
                               [[NVHTarGzip sharedInstance] tarFileAtPath:source toPath:targz completion:^(NSError* tarError) {
                                   if (tarError != nil)
                                       [MyTools messageBox:self header:@"Tar" text:[tarError description]];
@@ -254,8 +274,7 @@
                                     actionWithTitle:@"Upload with Airdrop"
                                     style:UIAlertActionStyleDefault
                                     handler:^(UIAlertAction * action) {
-                                        NSString *fn = [NSString stringWithFormat:@"%@%@/%@", [MyTools DocumentRoot], [self determineFullPath], fo.filename];
-                                        [self uploadAirdrop:fn];
+                                        [self uploadAirdrop:fo.fullFilename];
                                         [view dismissViewControllerAnimated:YES completion:nil];
                                     }];
 
@@ -263,8 +282,7 @@
                                    actionWithTitle:@"Upload to iCloud"
                                    style:UIAlertActionStyleDefault
                                    handler:^(UIAlertAction * action) {
-                                       NSString *fn = [NSString stringWithFormat:@"%@%@/%@", [MyTools DocumentRoot], [self determineFullPath], fo.filename];
-                                       [self uploadICloud:fn];
+                                       [self uploadICloud:fo.fullFilename];
                                        [view dismissViewControllerAnimated:YES completion:nil];
                                    }];
 

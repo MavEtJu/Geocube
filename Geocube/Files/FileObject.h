@@ -21,9 +21,13 @@
 
 @interface FileObject : NSObject
 
+@property (nonatomic, retain) NSString *fullFilename;
 @property (nonatomic, retain) NSString *filename;
 @property (nonatomic) NSInteger filesize;
 @property (nonatomic) BOOL isDir;
+@property (nonatomic) BOOL isLinkToDir;
+@property (nonatomic) BOOL isLinkToFile;
+@property (nonatomic) BOOL isLinkToLink;
 @property (nonatomic, retain) NSString *cwd;
 @property (nonatomic, retain) NSArray<FileObject *> *contents;
 

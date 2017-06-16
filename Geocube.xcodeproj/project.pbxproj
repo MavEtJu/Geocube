@@ -3431,8 +3431,8 @@
 		E8FD610D1BE8C46100859A58 /* Files */ = {
 			isa = PBXGroup;
 			children = (
-				E83C6F2A1EEEAD9900E303F5 /* File Browser */,
 				E83C6F291EEEAD8100E303F5 /* Local Files */,
+				E83C6F2A1EEEAD9900E303F5 /* File Browser */,
 			);
 			name = Files;
 			sourceTree = "<group>";
