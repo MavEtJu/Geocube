@@ -29,6 +29,7 @@
     GCLabel *importHeader;
     InfoItemID maxid;
     BOOL stopUpdating;
+    NSInteger contentOffset;
 }
 
 @end
@@ -67,9 +68,10 @@
     return self;
 }
 
-- (void)show:(NSInteger)contentOffset
+- (void)show:(NSInteger)_contentOffset
 {
     stopUpdating = NO;
+    contentOffset = _contentOffset;
     [self performSelectorInBackground:@selector(refreshItems) withObject:nil];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^(void) {
         CGRect frame = self.frame;
@@ -268,7 +270,7 @@
     height += [self calculateRects:downloadItems header:downloadHeader height:height];
     height += [self calculateRects:importItems header:importHeader height:height];
 
-    self.frame = CGRectMake(0, self.superview.frame.size.height - height, width, height);
+    self.frame = CGRectMake(0, contentOffset + self.superview.frame.size.height - height, width, height);
 }
 
 - (NSInteger)calculateRects:(NSArray<InfoItem *> *)items header:(GCLabel *)header height:(NSInteger)heightOffset
