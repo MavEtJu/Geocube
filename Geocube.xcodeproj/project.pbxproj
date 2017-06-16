@@ -570,6 +570,7 @@
 		E8845CA91EF3628900A47F5D /* FileObjectView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8845CA81EF3628900A47F5D /* FileObjectView~ipad.xib */; };
 		E8845CAE1EF409BF00A47F5D /* WaypointWaypointsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8845CAC1EF409BF00A47F5D /* WaypointWaypointsTableViewCell.xib */; };
 		E8845CAF1EF409BF00A47F5D /* WaypointWaypointsTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8845CAD1EF409BF00A47F5D /* WaypointWaypointsTableViewCell~ipad.xib */; };
+		E8845CB21EF493B200A47F5D /* FilterAccountsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8845CB11EF493B200A47F5D /* FilterAccountsTableViewCell.m */; };
 		E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */; };
 		E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
@@ -1563,6 +1564,8 @@
 		E8845CA81EF3628900A47F5D /* FileObjectView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "FileObjectView~ipad.xib"; path = "Files/FileObjectView~ipad.xib"; sourceTree = "<group>"; };
 		E8845CAC1EF409BF00A47F5D /* WaypointWaypointsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WaypointWaypointsTableViewCell.xib; path = Waypoints/WaypointWaypointsTableViewCell.xib; sourceTree = "<group>"; };
 		E8845CAD1EF409BF00A47F5D /* WaypointWaypointsTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "WaypointWaypointsTableViewCell~ipad.xib"; path = "Waypoints/WaypointWaypointsTableViewCell~ipad.xib"; sourceTree = "<group>"; };
+		E8845CB01EF493B200A47F5D /* FilterAccountsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterAccountsTableViewCell.h; path = Filters/FilterAccountsTableViewCell.h; sourceTree = "<group>"; };
+		E8845CB11EF493B200A47F5D /* FilterAccountsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterAccountsTableViewCell.m; path = Filters/FilterAccountsTableViewCell.m; sourceTree = "<group>"; };
 		E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - empty - 30x30.png"; path = "images/logs/log - empty - 30x30.png"; sourceTree = "<group>"; };
 		E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFUIKitMainThreadGuard.m; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
@@ -3113,6 +3116,8 @@
 				E82344241EECDFB300D2CDFD /* FilterTextTableViewCell.m */,
 				E82344251EECDFB300D2CDFD /* FilterTypesTableViewCell.h */,
 				E82344261EECDFB300D2CDFD /* FilterTypesTableViewCell.m */,
+				E8845CB01EF493B200A47F5D /* FilterAccountsTableViewCell.h */,
+				E8845CB11EF493B200A47F5D /* FilterAccountsTableViewCell.m */,
 			);
 			name = "Filter Viewing";
 			sourceTree = "<group>";
@@ -4262,6 +4267,7 @@
 				E82344721EECE08A00D2CDFD /* GroupsUserViewController.m in Sources */,
 				E82344271EECDFB300D2CDFD /* FilterCategoryTableViewCell.m in Sources */,
 				E82344BF1EECE0E800D2CDFD /* SettingsColourViewController.m in Sources */,
+				E8845CB21EF493B200A47F5D /* FilterAccountsTableViewCell.m in Sources */,
 				E82344C11EECE0E800D2CDFD /* SettingsMainColorPickerViewController.m in Sources */,
 				E82341FC1EECCECE00D2CDFD /* KxIntroViewPage.m in Sources */,
 				E82342B61EECD0B100D2CDFD /* dbFileImport.m in Sources */,

@@ -191,7 +191,28 @@
             [clock clockShowAndReset:@"dbAll"];
         }
 
-        NSLog(@"%@: Number of waypoints before filtering: %ld", [self class], (unsigned long)[waypoints count]);
+        /* Filter out accounts
+         */
+        after = [NSMutableArray arrayWithCapacity:200];
+        [clock clockShowAndReset:@"accounts"];
+        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
+
+        __block NSString *c = [self configGet:@"accounts_enabled"];
+        if (c != nil && [c boolValue] == YES) {
+            NSLog(@"%@ - Filtering acounts", [self class]);
+
+            [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL *stop) {
+                NSString *c = [self configGet:[NSString stringWithFormat:@"accounts_account_%ld", (long)account._id]];
+                if (c == nil || [c boolValue] == NO)
+                    return;
+                [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if (wp.account_id == account._id)
+                        [after addObject:wp];
+                }];
+            }];
+
+            waypoints = after;
+        }
 
         /* Filter out cache types:
          * The filter selects out the waypoints which are of a certain type.
@@ -200,8 +221,9 @@
 
         after = [NSMutableArray arrayWithCapacity:200];
         [clock clockShowAndReset:@"types"];
+        NSLog(@"%@: Number of waypoints before filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
-        __block NSString *c = [self configGet:@"types_enabled"];
+        c = [self configGet:@"types_enabled"];
         if (c != nil && [c boolValue] == YES) {
             NSLog(@"%@ - Filtering types", [self class]);
             [[dbc Types] enumerateObjectsUsingBlock:^(dbType *type, NSUInteger idx, BOOL *stop) {

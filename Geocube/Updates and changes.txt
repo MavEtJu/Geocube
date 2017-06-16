@@ -1,5 +1,13 @@
 Interesting additions and changes to Geocube
 
+Version 1.4(x)
+
+  Features:
+  - Waypoint filters can filter on account.
+
+  Fixed:
+  -
+
 Version 1.3(25)
 
   Features:

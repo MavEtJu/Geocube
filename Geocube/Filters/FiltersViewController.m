@@ -47,6 +47,7 @@ enum {
     filterText,
     filterDates,
     filterFlags,
+    filterAccounts,
     filterMax
 };
 
@@ -79,6 +80,7 @@ enum {
             MATCH(filterText, @"Text");
             MATCH(filterDates, @"Date");
             MATCH(filterFlags, @"Flags");
+            MATCH(filterAccounts, @"Accounts");
             default:
                 NSAssert1(FALSE, @"Unknown filter %ld", (long)i);
         }
@@ -136,6 +138,7 @@ enum {
         FILTER(filterText, FilterTextTableViewCell)
         FILTER(filterDates, FilterDateTableViewCell)
         FILTER(filterFlags, FilterFlagsTableViewCell)
+        FILTER(filterAccounts, FilterAccountsTableViewCell)
         default:
             NSAssert1(FALSE, @"Unknown filter: %ld", (long)indexPath.row);
 
@@ -193,6 +196,7 @@ enum {
     SAVE(FilterTextTableViewCell)
     SAVE(FilterDateTableViewCell)
     SAVE(FilterFlagsTableViewCell)
+    SAVE(FilterAccountsTableViewCell)
 }
 
 - (void)menuSaveFilter
@@ -251,6 +255,7 @@ enum {
     LOAD(FilterTextTableViewCell)
     LOAD(FilterDateTableViewCell)
     LOAD(FilterFlagsTableViewCell)
+    LOAD(FilterAccountsTableViewCell)
     [self.tableView reloadData];
 }
 

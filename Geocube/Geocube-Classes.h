@@ -36,6 +36,7 @@
 @class FileObjectView;
 @class FilesTableViewCell;
 @class FilesViewController;
+@class FilterAccountsTableViewCell;
 @class FilterCategoryTableViewCell;
 @class FilterDateTableViewCell;
 @class FilterDifficultyTableViewCell;

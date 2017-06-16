@@ -230,6 +230,7 @@
 
 #import "FilterObject.h"
 #import "FilterTableViewCell.h"
+#import "FilterAccountsTableViewCell.h"
 #import "FilterCategoryTableViewCell.h"
 #import "FilterDateTableViewCell.h"
 #import "FilterDifficultyTableViewCell.h"
