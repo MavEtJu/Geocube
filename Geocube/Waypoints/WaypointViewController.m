@@ -266,7 +266,7 @@ enum {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.userInteractionEnabled = YES;
 
-            UIColor *tc = currentTheme.textColor;
+            UIColor *tc = currentTheme.labelTextColor;
             switch (indexPath.row) {
 
                case WAYPOINT_DATA_DESCRIPTION:

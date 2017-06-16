@@ -21,20 +21,13 @@
 
 @interface ThemeTemplate : NSObject
 
-@property (nonatomic, retain) UIColor *backgroundColor;
-@property (nonatomic, retain) UIColor *textColor;
+@property (nonatomic, retain) UIColor *viewControllerBackgroundColor;
 
 @property (nonatomic, retain) UIColor *labelHighlightBackgroundColor;
-@property (nonatomic, retain) UIColor *labelBackgroundColor;
 @property (nonatomic, retain) UIColor *labelTextColor;
 @property (nonatomic, retain) UIColor *labelTextColorDisabled;
 
-@property (nonatomic, retain) UIColor *viewBackgroundColor;
-@property (nonatomic, retain) UIColor *viewControllerBackgroundColour;
-
-@property (nonatomic, retain) UIColor *tableViewBackgroundColor;
-
-@property (nonatomic, retain) UIColor *tableViewCellBackgroundColor;
+@property (nonatomic, retain) UIColor *imageBackgroundColor;
 
 @property (nonatomic, retain) UIColor *tabBarBackgroundColor;
 @property (nonatomic, retain) UIColor *tabBarForegroundColor;

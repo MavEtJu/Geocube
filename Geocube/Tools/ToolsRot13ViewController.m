@@ -50,7 +50,6 @@
 
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     UIView *contentView = [[UIView alloc] initWithFrame:applicationFrame];
-    contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = contentView;
     [self.view sizeToFit];
 
@@ -76,6 +75,8 @@
     [buttonClear addTarget:self action:@selector(clear:) forControlEvents:UIControlEventTouchDown];
     buttonClear.userInteractionEnabled = YES;
     [self.view addSubview:buttonClear];
+
+    [self changeTheme];
 }
 
 - (void)calculateRects

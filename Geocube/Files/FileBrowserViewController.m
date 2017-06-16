@@ -40,9 +40,10 @@
 
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     contentView = [[GCScrollView alloc] initWithFrame:applicationFrame];
-    contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     contentView.delegate = self;
     self.view = contentView;
+
+    [self changeTheme];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -64,8 +65,30 @@
 
 - (void)loadContents:(FileObject *)rootFO
 {
-    [self loadContentsOfDir:rootFO start:[MyTools FilesDir]];
-    [self loadContentsOfDir:rootFO start:[MyTools ApplicationSupportRoot]];
+    NSMutableArray<FileObject *> *fos = [NSMutableArray arrayWithCapacity:20];
+
+    FileObject *fo = [[FileObject alloc] init];
+    fo.filename = @"Files";
+    fo.isDir = YES;
+    fo.cwd = @"";
+    [self loadContentsOfDir:fo start:[MyTools FilesDir]];
+    [fos addObject:fo];
+
+    fo = [[FileObject alloc] init];
+    fo.filename = @"Application Support";
+    fo.isDir = YES;
+    fo.cwd = @"";
+    [self loadContentsOfDir:fo start:[MyTools ApplicationSupportRoot]];
+    [fos addObject:fo];
+
+    rootFO.contents = fos;
+
+    if ([rootFO.cwd isEqualToString:@""] == YES) {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [bezelManager removeBezel];
+            [self refreshContentsView];
+        }];
+    }
 }
 
 - (void)loadContentsOfDir:(FileObject *)rootFO start:(NSString *)startdir
@@ -106,13 +129,6 @@
 
         [fos addObject:fo];
     }];
-
-    if ([rootFO.cwd isEqualToString:@""] == YES) {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [bezelManager removeBezel];
-            [self refreshContentsView];
-        }];
-    }
 
     rootFO.contents = fos;
 }
@@ -170,6 +186,8 @@
         [fov addGestureRecognizer:tapGesture];
         UILongPressGestureRecognizer *tap2Gesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(fileMenu:)];
         [fov addGestureRecognizer:tap2Gesture];
+
+        [fov changeTheme];
 
         [contentView addSubview:fov];
     }];

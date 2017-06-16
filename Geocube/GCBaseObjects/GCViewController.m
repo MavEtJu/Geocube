@@ -77,9 +77,12 @@
 
 - (void)changeTheme
 {
-    self.view.backgroundColor = currentTheme.viewControllerBackgroundColour;
+    self.view.backgroundColor = currentTheme.viewControllerBackgroundColor;
 
-    [themeManager changeThemeView:self.view];
+    for (UIView *v in self.view.subviews) {
+        if ([v respondsToSelector:@selector(changeTheme)] == YES)
+            [v performSelector:@selector(changeTheme)];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -108,8 +111,6 @@
         [b addTarget:self action:@selector(closePage:) forControlEvents:UIControlEventTouchDown];
         closeButton = b;
     }
-
-    self.view.backgroundColor = currentTheme.viewBackgroundColor;
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator

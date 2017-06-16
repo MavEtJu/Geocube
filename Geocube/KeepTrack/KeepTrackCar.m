@@ -70,7 +70,6 @@ enum {
 
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     UIView *contentView = [[UIView alloc] initWithFrame:applicationFrame];
-    contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = contentView;
     [self.view sizeToFit];
 
@@ -119,6 +118,8 @@ enum {
     }
 
     [self updateLocationManagerLocation];
+
+    [self changeTheme];
 }
 
 - (void)calculateRects

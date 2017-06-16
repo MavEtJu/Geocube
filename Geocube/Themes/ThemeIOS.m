@@ -31,28 +31,20 @@
 
     UISwitch *switch_ = [[UISwitch alloc] init];
 
-    UIColor *bgColor = [UIColor whiteColor];
-    UIColor *fgColor = [UIColor blackColor];
-    UIColor *clearColor = [UIColor clearColor];
+    UIColor *whiteColor = [UIColor whiteColor];
+    UIColor *blackColor = [UIColor blackColor];
 
-    self.labelTextColor = fgColor;
+    self.viewControllerBackgroundColor = whiteColor;
+
+    self.labelTextColor = blackColor;
     self.labelTextColorDisabled = [UIColor lightGrayColor];
-    self.labelBackgroundColor = clearColor;
+
+    self.imageBackgroundColor = whiteColor;
 
     self.labelHighlightBackgroundColor = [UIColor yellowColor];
 
-    self.backgroundColor = bgColor;
-    self.textColor = fgColor;
-
-    self.tableViewCellBackgroundColor = bgColor;
-    self.tableViewBackgroundColor = bgColor;
-
-    // Use label here instead of an UIView because that UIView is always black for the background colour.
-    self.viewBackgroundColor = bgColor;
-    self.viewControllerBackgroundColour = bgColor;
-
     self.tabBarBackgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
-    self.tabBarForegroundColor = fgColor;
+    self.tabBarForegroundColor = blackColor;
 
     self.svProgressHUDStyle = SVProgressHUDStyleDark;
 

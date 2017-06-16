@@ -37,10 +37,7 @@
 
 - (void)changeTheme
 {
-    self.backgroundColor = currentTheme.labelBackgroundColor;
     self.textColor = currentTheme.labelTextColor;
-
-    // [themeManager changeTheme:self.subviews];
 }
 
 - (void)bold:(BOOL)onoff

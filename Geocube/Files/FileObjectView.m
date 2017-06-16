@@ -38,4 +38,11 @@
     return self;
 }
 
+- (void)changeTheme
+{
+    [super changeTheme];
+    GCView *v = [self.subviews firstObject];
+    v.backgroundColor = [UIColor clearColor];
+}
+
 @end

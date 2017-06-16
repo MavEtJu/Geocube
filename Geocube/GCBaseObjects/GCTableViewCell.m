@@ -41,32 +41,26 @@
 
 - (void)changeTheme
 {
-    self.backgroundColor = currentTheme.tableViewCellBackgroundColor;
-
     self.textLabel.textColor = currentTheme.labelTextColor;
-    self.textLabel.backgroundColor = currentTheme.labelBackgroundColor;
     self.detailTextLabel.textColor = currentTheme.labelTextColor;
-    self.detailTextLabel.backgroundColor = currentTheme.labelBackgroundColor;
+    self.backgroundColor = [UIColor clearColor];
 
     [themeManager changeThemeArray:self.subviews];
 }
 
 - (void)calculateRects
 {
-    /* Redraw the rectangles (again) based on the [UIScreen mainApplication] */
+    /* NOP */
 }
 
 - (void)calculateCellHeight
 {
-    /* Add the size of all views together */
+    /* NOP */
 }
 
 - (void)viewWillTransitionToSize
 {
-    /*
-    [self calculateRects:size];
-    [self calculateCellHeight];
-     */
+    /* NOP */
 }
 
 @end

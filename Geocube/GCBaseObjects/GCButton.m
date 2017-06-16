@@ -38,8 +38,6 @@
 
 - (void)changeTheme
 {
-    self.backgroundColor = currentTheme.viewBackgroundColor;
-
     [themeManager changeThemeArray:self.subviews];
 }
 

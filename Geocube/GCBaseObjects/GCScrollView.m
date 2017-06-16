@@ -27,8 +27,6 @@
 
 - (void)changeTheme
 {
-    self.backgroundColor = currentTheme.tableViewBackgroundColor;
-
     [themeManager changeThemeArray:[self subviews]];
 }
 

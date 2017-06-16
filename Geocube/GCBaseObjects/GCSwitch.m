@@ -36,7 +36,6 @@
 
 - (void)changeTheme
 {
-    self.backgroundColor = currentTheme.viewBackgroundColor;
     self.onTintColor = currentTheme.switchOnTintColor;
     self.tintColor = currentTheme.switchTintColor;
     self.thumbTintColor = currentTheme.switchThumbTintColor;

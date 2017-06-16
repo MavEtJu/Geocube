@@ -29,27 +29,20 @@
 {
     self = [super init];
 
-    UIColor *bgColor = [UIColor blackColor];
-    UIColor *fgColor = [UIColor lightTextColor];
-    UIColor *clearColor = [UIColor clearColor];
+    UIColor *blackColor = [UIColor blackColor];
+    UIColor *lightTextColor = [UIColor lightTextColor];
 
-    self.labelTextColor = fgColor;
+    self.viewControllerBackgroundColor = blackColor;
+
+    self.labelTextColor = lightTextColor;
     self.labelTextColorDisabled = [UIColor darkGrayColor];
-    self.labelBackgroundColor = clearColor;
+
+    self.imageBackgroundColor = lightTextColor;
 
     self.labelHighlightBackgroundColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.0 alpha:1];
 
-    self.backgroundColor = bgColor;
-    self.textColor = fgColor;
-
-    self.tableViewBackgroundColor = bgColor;
-    self.tableViewCellBackgroundColor = bgColor;
-
-    self.viewBackgroundColor = bgColor;
-    self.viewControllerBackgroundColour = bgColor;
-
     self.tabBarBackgroundColor = [UIColor colorWithRed:0.10 green:0.10 blue:0.10 alpha:1];
-    self.tabBarForegroundColor = fgColor;
+    self.tabBarForegroundColor = lightTextColor;
 
     self.svProgressHUDStyle = SVProgressHUDStyleLight;
 

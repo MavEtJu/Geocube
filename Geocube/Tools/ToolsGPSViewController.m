@@ -24,7 +24,7 @@
     NSMutableArray<GCLocationCoordinate2D *> *coords;
     CLLocationCoordinate2D coordsLast, coordsAverage;
 
-    UIImageView *ivGpsMap;
+    GCImageView *ivGpsMap;
 
     GCSmallLabel *labelCoordsMinX;
     GCSmallLabel *labelCoordsMinY;
@@ -80,8 +80,7 @@ enum {
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
-    UIView *contentView = [[UIView alloc] initWithFrame:applicationFrame];
-    contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    GCView *contentView = [[GCView alloc] initWithFrame:applicationFrame];
     self.view = contentView;
     [self.view sizeToFit];
 
@@ -90,7 +89,7 @@ enum {
 
     coords = [NSMutableArray arrayWithCapacity:100];
 
-    ivGpsMap = [[UIImageView alloc] initWithFrame:rectGpsMap];
+    ivGpsMap = [[GCImageView alloc] initWithFrame:rectGpsMap];
     ivGpsMap.image = [self createGPSMap];
     [self.view addSubview:ivGpsMap];
 
@@ -134,6 +133,7 @@ enum {
     [self.view addSubview:labelDistance];
 
     [self viewWilltransitionToSize];
+    [self changeTheme];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -224,6 +224,7 @@ enum {
 
     // White background
     CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
+    CGContextSetFillColorWithColor(context, [currentTheme.imageBackgroundColor CGColor]);
     CGContextFillRect(context, CGRectMake(5, 5, X - 10, Y - 10));
 
 #define MARGIN 10
