@@ -51,6 +51,7 @@ enum {
     self.delegateWaypoint = nil;
 
     [self.tableView registerClass:[WaypointWaypointsTableViewCell class] forCellReuseIdentifier:XIB_WAYPOINTSWAYPOINTSTABLEVIEWCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_WAYPOINTSWAYPOINTSTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_WAYPOINTSWAYPOINTSTABLEVIEWCELL];
 
     return self;
 }

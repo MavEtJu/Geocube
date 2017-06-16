@@ -568,6 +568,8 @@
 		E88258351E9FA03700FCF9B2 /* Close Window - 640x430.png in Resources */ = {isa = PBXBuildFile; fileRef = E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */; };
 		E88258371E9FA15F00FCF9B2 /* Map icons - 362x86.png in Resources */ = {isa = PBXBuildFile; fileRef = E88258361E9FA15F00FCF9B2 /* Map icons - 362x86.png */; };
 		E8845CA91EF3628900A47F5D /* FileObjectView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8845CA81EF3628900A47F5D /* FileObjectView~ipad.xib */; };
+		E8845CAE1EF409BF00A47F5D /* WaypointWaypointsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8845CAC1EF409BF00A47F5D /* WaypointWaypointsTableViewCell.xib */; };
+		E8845CAF1EF409BF00A47F5D /* WaypointWaypointsTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8845CAD1EF409BF00A47F5D /* WaypointWaypointsTableViewCell~ipad.xib */; };
 		E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */; };
 		E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
@@ -1559,6 +1561,8 @@
 		E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Close Window - 640x430.png"; path = "images/introduction/Close Window - 640x430.png"; sourceTree = "<group>"; };
 		E88258361E9FA15F00FCF9B2 /* Map icons - 362x86.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Map icons - 362x86.png"; path = "images/introduction/Map icons - 362x86.png"; sourceTree = "<group>"; };
 		E8845CA81EF3628900A47F5D /* FileObjectView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "FileObjectView~ipad.xib"; path = "Files/FileObjectView~ipad.xib"; sourceTree = "<group>"; };
+		E8845CAC1EF409BF00A47F5D /* WaypointWaypointsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WaypointWaypointsTableViewCell.xib; path = Waypoints/WaypointWaypointsTableViewCell.xib; sourceTree = "<group>"; };
+		E8845CAD1EF409BF00A47F5D /* WaypointWaypointsTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "WaypointWaypointsTableViewCell~ipad.xib"; path = "Waypoints/WaypointWaypointsTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - empty - 30x30.png"; path = "images/logs/log - empty - 30x30.png"; sourceTree = "<group>"; };
 		E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFUIKitMainThreadGuard.m; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
@@ -2108,6 +2112,8 @@
 				E82343F21EECDF4400D2CDFD /* WaypointWaypointsViewController.m */,
 				E82343EF1EECDF4400D2CDFD /* WaypointWaypointsTableViewCell.h */,
 				E82343F01EECDF4400D2CDFD /* WaypointWaypointsTableViewCell.m */,
+				E8845CAC1EF409BF00A47F5D /* WaypointWaypointsTableViewCell.xib */,
+				E8845CAD1EF409BF00A47F5D /* WaypointWaypointsTableViewCell~ipad.xib */,
 			);
 			name = Waypoints;
 			sourceTree = "<group>";
@@ -3740,6 +3746,7 @@
 				E82E66DD1DA07CBE00CFBDED /* cache - unknown - 30x30@3x.png in Resources */,
 				E82343D71EECDEE200D2CDFD /* WaypointHeaderHeaderView~ipad.xib in Resources */,
 				E8FEDEA61DA7C08A007C756B /* waypoint - question - 30x30@2x.png in Resources */,
+				E8845CAF1EF409BF00A47F5D /* WaypointWaypointsTableViewCell~ipad.xib in Resources */,
 				E82E672E1DA07D0200CFBDED /* attributes - 03.png in Resources */,
 				E82E65C51DA0797E00CFBDED /* ratings - favourites 20x30.png in Resources */,
 				E82344021EECDF6C00D2CDFD /* WaypointTableViewCell.xib in Resources */,
@@ -3777,6 +3784,7 @@
 				E82E67311DA07D0200CFBDED /* attributes - 06.png in Resources */,
 				E8FEDE941DA7AD67007C756B /* map - tick found - 9x9@2x.png in Resources */,
 				E82E65C81DA0797E00CFBDED /* ratings - star off 18x18.png in Resources */,
+				E8845CAE1EF409BF00A47F5D /* WaypointWaypointsTableViewCell.xib in Resources */,
 				E82E66801DA07C6F00CFBDED /* compass - white arrow on black.png in Resources */,
 				E8F570BE1B400137003F020C /* empty.db in Resources */,
 				E8FEDEE41DA8EEE9007C756B /* cache - mega - 30x30@2x.png in Resources */,

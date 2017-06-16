@@ -23,11 +23,9 @@
 
 @interface WaypointWaypointsTableViewCell : GCTableViewCell
 
-@property (nonatomic, retain) GCLabel *nameLabel;
-@property (nonatomic, retain) GCLabel *codeLabel;
-@property (nonatomic, retain) GCLabel *coordinatesLabel;
-@property (nonatomic, retain) GCImageView *iconImage;
-
-- (NSInteger)cellHeight;
+@property (nonatomic, weak) IBOutlet GCLabel *nameLabel;
+@property (nonatomic, weak) IBOutlet GCLabel *codeLabel;
+@property (nonatomic, weak) IBOutlet GCLabel *coordinatesLabel;
+@property (nonatomic, weak) IBOutlet GCImageView *iconImage;
 
 @end

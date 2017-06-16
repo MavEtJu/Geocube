@@ -20,91 +20,24 @@
  */
 
 @interface WaypointWaypointsTableViewCell ()
-{
-    CGRect rectName;
-    CGRect rectCode;
-    CGRect rectCoordinates;
-    CGRect rectIconImage;
-}
 
 @end
 
 @implementation WaypointWaypointsTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (void)awakeFromNib
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-
-    self.accessoryType = UITableViewCellAccessoryNone;
-
-    // Name
-    self.iconImage = [[GCImageView alloc] initWithFrame:CGRectZero];
-    [self.contentView addSubview:self.iconImage];
-
-    // Name
-    self.nameLabel = [[GCLabel alloc] initWithFrame:CGRectZero];
-    self.nameLabel.font = [UIFont boldSystemFontOfSize:14.0];
-    [self.contentView addSubview:self.nameLabel];
-
-    // GCCode
-    self.codeLabel = [[GCLabel alloc] initWithFrame:CGRectZero];
-    self.codeLabel.font = [UIFont systemFontOfSize:10.0];
-    [self.contentView addSubview:self.codeLabel];
-
-    // Coordinates
-    self.coordinatesLabel = [[GCLabel alloc] initWithFrame:CGRectZero];
-    self.coordinatesLabel.font = [UIFont systemFontOfSize:10.0];
-    [self.contentView addSubview:self.coordinatesLabel];
-
-    [self viewWillTransitionToSize];
+    [super awakeFromNib];
     [self changeTheme];
-
-    return self;
-}
-
-- (void)calculateRects
-{
-    CGRect bounds = [[UIScreen mainScreen] bounds];
-    NSInteger width = bounds.size.width;
-
-#define BORDER 1
-
-    NSInteger labelWidth = width - self.imageView.image.size.width;
-
-    rectIconImage = CGRectMake(BORDER, BORDER, self.iconImage.image.size.width, self.iconImage.image.size.height);
-    NSInteger labelOffset = rectIconImage.origin.x + rectIconImage.size.width;
-    NSLog(@"labeloffset: %ld", (long)labelOffset);
-
-    NSInteger y = 0 + 1;
-    rectName = CGRectMake(labelOffset, y, labelWidth, self.nameLabel.font.lineHeight);
-    y += self.nameLabel.font.lineHeight + 1;
-    rectCode = CGRectMake(labelOffset, y, labelWidth, self.codeLabel.font.lineHeight);
-    y += self.codeLabel.font.lineHeight + 1;
-    rectCoordinates = CGRectMake(labelOffset, y, labelWidth, self.coordinatesLabel.font.lineHeight);
-    y += self.coordinatesLabel.font.lineHeight + 1;
-}
-
-- (void)viewWillTransitionToSize
-{
-    [self calculateRects];
-    self.nameLabel.frame = rectName;
-    self.codeLabel.frame = rectCode;
-    self.coordinatesLabel.frame = rectCoordinates;
-    self.iconImage.frame = rectIconImage;
 }
 
 - (void)changeTheme
 {
+    [super changeTheme];
     [self.nameLabel changeTheme];
     [self.codeLabel changeTheme];
     [self.coordinatesLabel changeTheme];
-
-    [super changeTheme];
-}
-
-- (NSInteger)cellHeight
-{
-    return self.nameLabel.frame.size.height + self.codeLabel.frame.size.height + self.coordinatesLabel.frame.size.height;
+    [self.iconImage changeTheme];
 }
 
 @end
