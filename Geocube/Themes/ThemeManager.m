@@ -78,51 +78,8 @@ ThemeManager *themeManager;
 - (void)changeTheme_:(UIView *)v
 {
     //NSLog(@"%@", [v class]);
-    if ([v isKindOfClass:[GCTableViewController class]] == YES) {
-        GCTableViewController *v_ = (GCTableViewController *)v;
-        [v_ changeTheme];
-        return;
-    }
-
-    if ([v isKindOfClass:[GCLabel class]] == YES) {
-        GCLabel *v_ = (GCLabel *)v;
-        [v_ changeTheme];
-        return;
-    }
-
-    if ([v isKindOfClass:[GCSmallLabel class]] == YES) {
-        GCSmallLabel *v_ = (GCSmallLabel *)v;
-        [v_ changeTheme];
-        return;
-    }
-
-    if ([v isKindOfClass:[GCScrollView class]] == YES) {
-        GCScrollView *v_ = (GCScrollView *)v;
-        [v_ changeTheme];
-        return;
-    }
-
-    if ([v isKindOfClass:[GCTextblock class]] == YES) {
-        GCTextblock *v_ = (GCTextblock *)v;
-        [v_ changeTheme];
-        return;
-    }
-
-    if ([v isKindOfClass:[GCTableViewCell class]] == YES) {
-        GCTableViewCell *v_ = (GCTableViewCell *)v;
-        [v_ changeTheme];
-        return;
-    }
-
-    if ([v isKindOfClass:[GCView class]] == YES) {
-        GCView *v_ = (GCView *)v;
-        [v_ changeTheme];
-        return;
-    }
-
-    if ([v isKindOfClass:[GCSwitch class]] == YES) {
-        GCSwitch *v_ = (GCSwitch *)v;
-        [v_ changeTheme];
+    if ([v respondsToSelector:@selector(changeTheme)] == YES) {
+        [v performSelector:@selector(changeTheme)];
         return;
     }
 
