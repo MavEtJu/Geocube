@@ -64,6 +64,7 @@
 @property (nonatomic, readonly) BOOL canDoRemoteStuff;
 @property (nonatomic, retain) RemoteAPITemplate *remoteAPI;
 @property (nonatomic, retain) NSString *remoteAccessFailureReason;
+@property (nonatomic) BOOL selected;
 
 + (NSArray<dbAccount *> *)dbAll;
 + (dbAccount *)dbGet:(NSId)_id;
