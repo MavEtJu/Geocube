@@ -2310,14 +2310,14 @@
 		E857600C1B85DF5600F34483 /* Themes */ = {
 			isa = PBXGroup;
 			children = (
-				E823436E1EECDB4500D2CDFD /* ThemeIOS.h */,
-				E823436F1EECDB4500D2CDFD /* ThemeIOS.m */,
 				E82343701EECDB4500D2CDFD /* ThemeManager.h */,
 				E82343711EECDB4500D2CDFD /* ThemeManager.m */,
-				E82343721EECDB4500D2CDFD /* ThemeNight.h */,
-				E82343731EECDB4500D2CDFD /* ThemeNight.m */,
 				E82343741EECDB4500D2CDFD /* ThemeTemplate.h */,
 				E82343751EECDB4500D2CDFD /* ThemeTemplate.m */,
+				E823436E1EECDB4500D2CDFD /* ThemeIOS.h */,
+				E823436F1EECDB4500D2CDFD /* ThemeIOS.m */,
+				E82343721EECDB4500D2CDFD /* ThemeNight.h */,
+				E82343731EECDB4500D2CDFD /* ThemeNight.m */,
 			);
 			name = Themes;
 			sourceTree = "<group>";
