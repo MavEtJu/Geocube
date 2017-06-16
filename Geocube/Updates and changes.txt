@@ -33,6 +33,7 @@ Version 1.3(xx)
     download of the configuration to fail as there was no database
     yet. During a second run it did exist because of a file cache
     was created in the Application Support directory.
+  - File Browser now works with the Application Support Directory.
 
 Version 1.2(20)
 
