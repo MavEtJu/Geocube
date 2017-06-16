@@ -1,6 +1,6 @@
 Interesting additions and changes to Geocube
 
-Version 1.3(xx)
+Version 1.3(25)
 
   Features:
   - Geocaching.com website account type. While it doesn't support
