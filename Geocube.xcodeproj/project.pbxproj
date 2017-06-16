@@ -567,6 +567,7 @@
 		E87DF78E1D8564A800F16B5A /* InfoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF78D1D8564A800F16B5A /* InfoViewer.m */; };
 		E88258351E9FA03700FCF9B2 /* Close Window - 640x430.png in Resources */ = {isa = PBXBuildFile; fileRef = E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */; };
 		E88258371E9FA15F00FCF9B2 /* Map icons - 362x86.png in Resources */ = {isa = PBXBuildFile; fileRef = E88258361E9FA15F00FCF9B2 /* Map icons - 362x86.png */; };
+		E8845CA91EF3628900A47F5D /* FileObjectView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8845CA81EF3628900A47F5D /* FileObjectView~ipad.xib */; };
 		E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */; };
 		E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
@@ -1557,6 +1558,7 @@
 		E87DF78D1D8564A800F16B5A /* InfoViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewer.m; sourceTree = "<group>"; };
 		E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Close Window - 640x430.png"; path = "images/introduction/Close Window - 640x430.png"; sourceTree = "<group>"; };
 		E88258361E9FA15F00FCF9B2 /* Map icons - 362x86.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Map icons - 362x86.png"; path = "images/introduction/Map icons - 362x86.png"; sourceTree = "<group>"; };
+		E8845CA81EF3628900A47F5D /* FileObjectView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "FileObjectView~ipad.xib"; path = "Files/FileObjectView~ipad.xib"; sourceTree = "<group>"; };
 		E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - empty - 30x30.png"; path = "images/logs/log - empty - 30x30.png"; sourceTree = "<group>"; };
 		E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFUIKitMainThreadGuard.m; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
@@ -2055,6 +2057,7 @@
 				E83C6EF71EECE67100E303F5 /* FileObjectView.h */,
 				E83C6EF81EECE67100E303F5 /* FileObjectView.m */,
 				E83C6EF91EECE67100E303F5 /* FileObjectView.xib */,
+				E8845CA81EF3628900A47F5D /* FileObjectView~ipad.xib */,
 			);
 			name = "File Browser";
 			sourceTree = "<group>";
@@ -3858,6 +3861,7 @@
 				E8FEDEA71DA7C08A007C756B /* waypoint - question - 30x30@3x.png in Resources */,
 				E82E67561DA07D0200CFBDED /* attributes - 44.png in Resources */,
 				E8FEDED21DA8EEE9007C756B /* cache - beacon - 30x30@2x.png in Resources */,
+				E8845CA91EF3628900A47F5D /* FileObjectView~ipad.xib in Resources */,
 				E82E677E1DA0D79A00CFBDED /* menu icon - find target@3x.png in Resources */,
 				E8FEDEB41DA88474007C756B /* waypoint - multi - 30x30@2x.png in Resources */,
 				E82E66DA1DA07CBE00CFBDED /* cache - trigpoint - 30x30@3x.png in Resources */,

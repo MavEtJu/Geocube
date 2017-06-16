@@ -34,9 +34,6 @@
     UIView *firstViewUIView = [[[NSBundle mainBundle] loadNibNamed:@"FileObjectView" owner:self options:nil] firstObject];
     [self addSubview:firstViewUIView];
 
-//    [self.buttonOverlay addTarget:self action:@selector(actionShowWaypoint:) forControlEvents:UIControlEventTouchDown];
-//    [self.buttonSetAsTarget addTarget:self action:@selector(actionSetAsTarget:) forControlEvents:UIControlEventTouchDown];
-
     [self changeTheme];
     return self;
 }
