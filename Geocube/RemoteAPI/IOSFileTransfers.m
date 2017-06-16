@@ -55,6 +55,8 @@ enum {
     NSArray<NSURL *> *objectsToShare = @[url];
 
     UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
+    controller.popoverPresentationController.sourceView = vc.view;
+    controller.popoverPresentationController.sourceRect = vc.view.bounds;
 
     // Exclude all activities except AirDrop.
     NSArray<UIActivityType> *excludedActivities = @[UIActivityTypePostToTwitter, UIActivityTypePostToFacebook,
@@ -121,6 +123,8 @@ enum {
     NSURL *url = [[NSURL alloc] initFileURLWithPath:path isDirectory:NO];
     UIDocumentMenuViewController *exportICloudMenu = [[UIDocumentMenuViewController alloc] initWithURL:url inMode:UIDocumentPickerModeExportToService];
     exportICloudMenu.delegate = self;
+    exportICloudMenu.popoverPresentationController.sourceView = vc.view;
+    exportICloudMenu.popoverPresentationController.sourceRect = vc.view.bounds;
     currentICloud = iCloudUpload;
     ICloudVC = vc;
     [ALERT_VC_RVC(vc) presentViewController:exportICloudMenu animated:YES completion:nil];
@@ -130,9 +134,12 @@ enum {
 {
     UIDocumentMenuViewController *importICloudMenu = [[UIDocumentMenuViewController alloc] initWithDocumentTypes:@[@"public.item"] inMode:UIDocumentPickerModeImport];
     importICloudMenu.delegate = self;
+    importICloudMenu.popoverPresentationController.sourceView = vc.view;
+    importICloudMenu.popoverPresentationController.sourceRect = vc.view.bounds;
     currentICloud = iCloudDownload;
     ICloudVC = vc;
-    [ALERT_VC_RVC(vc) presentViewController:importICloudMenu animated:YES completion:nil];
+    UIViewController *tmc = [MyTools topMostController];
+    [ALERT_VC_RVC(tmc) presentViewController:importICloudMenu animated:YES completion:nil];
 }
 
 - (void)documentMenu:(UIDocumentMenuViewController *)documentMenu didPickDocumentPicker:(UIDocumentPickerViewController *)documentPicker
