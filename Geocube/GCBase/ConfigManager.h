@@ -111,6 +111,9 @@
 
 @property (nonatomic, retain) NSString *logTemporaryText;
 
+@property (nonatomic) BOOL locationlessShowFound;
+@property (nonatomic) NSInteger locationlessListSortBy;
+
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown
 // UIInterfaceOrientationMaskLandscapeLeft, UIInterfaceOrientationMaskLandscapeRight
@@ -181,5 +184,7 @@
 - (void)gpsAdjustmentLatitudeUpdate:(NSInteger)value;
 - (void)introSeenUpdate:(BOOL)value;
 - (void)logTemporaryTextUpdate:(NSString *)value;
+- (void)locationlessShowFoundUpdate:(BOOL)value;
+- (void)locationlessListSortByUpdate:(NSInteger)value;
 
 @end

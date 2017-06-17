@@ -240,6 +240,7 @@ enum sections {
     SECTION_WAYPOINTS,
     SECTION_LISTS,
     SECTION_ACCOUNTS,
+    SECTION_LOCATIONLESS,
     SECTION_GPSADJUSTMENT,
     SECTION_MAX,
 
@@ -326,6 +327,10 @@ enum sections {
     SECTION_ACCOUNTS_AUTHENTICATEKEEPPASSWORD,
     SECTION_ACCOUNTS_MAX,
 
+    SECTION_LOCATIONLESS_SORTBY = 0,
+    SECTION_LOCATIONLESS_SHOWFOUND,
+    SECTION_LOCATIONLESS_MAX,
+
     SECTION_GPSADJUSTMENT_ENABLE = 0,
     SECTION_GPSADJUSTMENT_LATITUDE,
     SECTION_GPSADJUSTMENT_LONGITUDE,
@@ -360,6 +365,7 @@ enum sections {
         SECTION_MAX(WAYPOINTS);
         SECTION_MAX(LISTS);
         SECTION_MAX(ACCOUNTS);
+        SECTION_MAX(LOCATIONLESS);
         SECTION_MAX(GPSADJUSTMENT);
         default:
             NSAssert1(0, @"Unknown section %ld", (long)section);
@@ -404,6 +410,8 @@ enum sections {
             return @"Lists";
         case SECTION_ACCOUNTS:
             return @"Accounts";
+        case SECTION_LOCATIONLESS:
+            return @"Locationless";
         case SECTION_GPSADJUSTMENT:
             return @"GPS Adjustments";
         default:
@@ -423,6 +431,7 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"Use metric units";
                     cell.optionSwitch.on = configManager.distanceMetric;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateDistanceMetric:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
@@ -449,6 +458,7 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"Offer to send tweets";
                     cell.optionSwitch.on = configManager.sendTweets;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateSendTweets:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
@@ -507,6 +517,7 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"Enable sounds for direction";
                     cell.optionSwitch.on = configManager.soundDirection;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateSoundDirection:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
@@ -514,6 +525,7 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"Enable sounds for distance";
                     cell.optionSwitch.on = configManager.soundDistance;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateSoundDistance:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
@@ -559,6 +571,7 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"Rotate to bearing";
                     cell.optionSwitch.on = configManager.mapRotateToBearing;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateMapRotateToBearing:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
@@ -602,6 +615,7 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"Enable dynamic maps";
                     cell.optionSwitch.on = configManager.dynamicmapEnable;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateDynamicmapEnable:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
@@ -651,6 +665,7 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"Autorotate every day";
                     cell.optionSwitch.on = configManager.keeptrackAutoRotate;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateKeeptrackAutoRotate:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
@@ -700,6 +715,7 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"Enable map cache";
                     cell.optionSwitch.on = configManager.mapcacheEnable;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateMapcacheEnable:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
@@ -737,6 +753,7 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"Download waypoint images";
                     cell.optionSwitch.on = configManager.downloadImagesWaypoints;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateDownloadImagesWaypoints:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
@@ -744,6 +761,7 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"Download log images";
                     cell.optionSwitch.on = configManager.downloadImagesLogs;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateDownloadImagesLogs:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
@@ -751,6 +769,7 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"Download logged images over mobile data";
                     cell.optionSwitch.on = configManager.downloadImagesMobile;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateDownloadImagesMobile:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
@@ -758,6 +777,7 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"Download batch queries over mobile data";
                     cell.optionSwitch.on = configManager.downloadQueriesMobile;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateDownloadQueriesMobile:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
@@ -771,6 +791,7 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"Remove target when marking as found/DNF";
                     cell.optionSwitch.on = configManager.markasFoundDNFClearsTarget;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateMarkasFoundDNFClearsTarget:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
@@ -778,6 +799,7 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"Mark all related waypoints when marked as found";
                     cell.optionSwitch.on = configManager.markasFoundMarksAllWaypoints;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateMarkasFoundMarksAllWaypoints:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
@@ -785,6 +807,7 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"Remove Marked as Found/DNF when logging";
                     cell.optionSwitch.on = configManager.loggingRemovesMarkedAsFoundDNF;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateLoggingRemovesMarkedAsFoundDNF:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
@@ -798,6 +821,7 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"Compass is always in portrait mode";
                     cell.optionSwitch.on = configManager.compassAlwaysInPortraitMode;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateCompassAlwaysInPortraitMode:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
@@ -818,6 +842,7 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"Refresh after log";
                     cell.optionSwitch.on = configManager.refreshWaypointAfterLog;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateRefreshWaypointAfterLog:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
@@ -825,6 +850,7 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"Show country as abbrevation";
                     cell.optionSwitch.on = configManager.showCountryAsAbbrevation;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateShowCountryAsAbbrevation:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
@@ -832,6 +858,7 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"Show state as abbrevation";
                     cell.optionSwitch.on = configManager.showStateAsAbbrevation;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateShowStateAsAbbrevation:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
@@ -839,6 +866,7 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"Show state as abbrevation if locale exist";
                     cell.optionSwitch.on = configManager.showStateAsAbbrevationIfLocaleExists;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateShowStateAsAbbrevationWithLocale:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
@@ -865,6 +893,7 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"Save authentication username";
                     cell.optionSwitch.on = configManager.accountsSaveAuthenticationName;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateAccountKeepUsername:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
@@ -872,7 +901,28 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"Save authentication password";
                     cell.optionSwitch.on = configManager.accountsSaveAuthenticationPassword;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateAccountKeepPassword:) forControlEvents:UIControlEventTouchUpInside];
+                    return cell;
+                }
+            }
+        }
+
+        case SECTION_LOCATIONLESS: {
+            switch (indexPath.row) {
+                case SECTION_LOCATIONLESS_SHOWFOUND: {
+                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
+                    cell.textLabel.text = @"Show found in list";
+                    cell.optionSwitch.on = configManager.locationlessShowFound;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+                    [cell.optionSwitch addTarget:self action:@selector(updateLocationlessShowFound:) forControlEvents:UIControlEventTouchUpInside];
+                    return cell;
+                }
+                case SECTION_LOCATIONLESS_SORTBY: {
+                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
+                    cell.textLabel.text = @"Sort by";
+                    NSArray<NSString *> *order = [WaypointSorter locationlessSortOrders];
+                    cell.detailTextLabel.text = [order objectAtIndex:configManager.locationlessListSortBy];
                     return cell;
                 }
             }
@@ -884,6 +934,7 @@ enum sections {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = @"GPS Adjustment enable";
                     cell.optionSwitch.on = configManager.gpsAdjustmentEnable;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateGPSAdjustmentEnable:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
@@ -1134,6 +1185,14 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_LISTS_SORTBY:
                     [self changeListSortBy];
+                    break;
+            }
+            return;
+
+        case SECTION_LOCATIONLESS:
+            switch (indexPath.row) {
+                case SECTION_LOCATIONLESS_SORTBY:
+                    [self changeLocationlessSortOrder];
                     break;
             }
             return;
@@ -1812,6 +1871,34 @@ enum sections {
 - (void)updateListSortBy:(NSNumber *)selectedIndex element:(id)element
 {
     [configManager listSortByUpdate:selectedIndex.integerValue];
+    [self.tableView reloadData];
+}
+
+/* ********************************************************************************* */
+
+- (void)changeLocationlessSortOrder
+{
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_LOCATIONLESS_SORTBY inSection:SECTION_LOCATIONLESS]];
+
+    [ActionSheetStringPicker showPickerWithTitle:@"Sort locationless by"
+                                            rows:[WaypointSorter locationlessSortOrders]
+                                initialSelection:configManager.locationlessListSortBy
+                                          target:self
+                                   successAction:@selector(updateLocationlessSortBy:element:)
+                                    cancelAction:@selector(updateCancel:)
+                                          origin:cell.contentView
+     ];
+}
+
+- (void)updateLocationlessSortBy:(NSNumber *)selectedIndex element:(id)element
+{
+    [configManager locationlessListSortByUpdate:selectedIndex.integerValue];
+    [self.tableView reloadData];
+}
+
+- (void)updateLocationlessShowFound:(GCSwitch *)b
+{
+    [configManager locationlessShowFoundUpdate:b.on];
     [self.tableView reloadData];
 }
 
