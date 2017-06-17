@@ -82,7 +82,7 @@
 
 + (NSInteger)dbCount
 {
-    return [dbImage dbCount:@"file_imports"];
+    return [dbFileImport dbCount:@"file_imports"];
 }
 
 @end

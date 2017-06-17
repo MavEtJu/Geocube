@@ -113,7 +113,7 @@
 
 + (NSInteger)dbCount
 {
-    return [dbContainer dbCount:@"externalmaps"];
+    return [dbExternalMap dbCount:@"externalmaps"];
 }
 
 @end
@@ -199,7 +199,7 @@
 
 + (NSInteger)dbCount
 {
-    return [dbContainer dbCount:@"externalmap_urls"];
+    return [dbExternalMapURL dbCount:@"externalmap_urls"];
 }
 
 @end
