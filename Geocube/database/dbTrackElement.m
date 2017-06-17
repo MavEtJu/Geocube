@@ -94,7 +94,7 @@
 
 + (NSInteger)dbCount
 {
-    return [dbWaypoint dbCount:@"trackelements"];
+    return [dbTrackElement dbCount:@"trackelements"];
 }
 
 + (void)dbDeleteByTrack:(NSId)trackId

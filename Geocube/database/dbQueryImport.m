@@ -92,7 +92,7 @@
 
 + (NSInteger)dbCount
 {
-    return [dbImage dbCount:@"query_imports"];
+    return [dbQueryImport dbCount:@"query_imports"];
 }
 
 @end

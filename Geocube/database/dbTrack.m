@@ -100,7 +100,7 @@
 
 + (NSInteger)dbCount
 {
-    return [dbWaypoint dbCount:@"tracks"];
+    return [dbTrack dbCount:@"tracks"];
 }
 
 - (void)dbDelete

@@ -127,7 +127,7 @@
 
 + (NSInteger)dbCount
 {
-    return [dbLogTemplate dbCount:@"log_macros"];
+    return [dbLogMacro dbCount:@"log_macros"];
 }
 
 @end
