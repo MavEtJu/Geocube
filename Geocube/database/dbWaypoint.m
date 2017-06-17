@@ -848,6 +848,16 @@
     return wps;
 }
 
++ (NSArray<dbWaypoint *> *)dbAllInCountry:(NSString *)country
+{
+    return [dbWaypoint dbAllXXX:[NSString stringWithFormat:@"where gs_country_id = (select id from countries where name = '%@') order by wpt_name", country]];
+}
+
++ (NSArray<dbWaypoint *> *)dbAllInCountryNotFound:(NSString *)country
+{
+    return [dbWaypoint dbAllXXX:[NSString stringWithFormat:@"where gs_country_id = (select id from countries where name = '%@') and log_status != 2 and markedfound != 1 order by wpt_name", country]];
+}
+
 - (BOOL)hasGSData
 {
     // If the difficulty or terrain is not zero, then pretend the Groundspeak specific data is available

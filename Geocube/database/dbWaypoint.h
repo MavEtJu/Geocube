@@ -111,6 +111,8 @@ typedef NS_ENUM(NSInteger, LogStatus) {
 + (NSArray<dbWaypoint *> *)dbAllNotFound;
 + (NSArray<dbWaypoint *> *)dbAllIgnored;
 + (NSArray<dbWaypoint *> *)dbAllInGroups:(NSArray<dbGroup *> *)groups;
++ (NSArray<dbWaypoint *> *)dbAllInCountry:(NSString *)country;
++ (NSArray<dbWaypoint *> *)dbAllInCountryNotFound:(NSString *)country;
 + (dbWaypoint *)dbGet:(NSId)id;
 
 + (void)dbUpdateLogStatus;
