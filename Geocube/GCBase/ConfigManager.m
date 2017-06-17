@@ -136,6 +136,9 @@
     CHECK(@"intro_seen", @"0");
 
     CHECK(@"log_temporary_text", @"");
+
+    CHECK(@"locationless_showfound", @"1");
+    CHECK(@"locationless_sortby", @"0");
 }
 
 - (void)loadValues
@@ -205,6 +208,8 @@
     self.gpsAdjustmentLatitude = [[dbConfig dbGetByKey:@"gpsadjustment_latitude"].value integerValue];
     self.introSeen = [[dbConfig dbGetByKey:@"intro_seen"].value boolValue];
     self.logTemporaryText = [dbConfig dbGetByKey:@"log_temporary_text"].value;
+    self.locationlessShowFound = [[dbConfig dbGetByKey:@"locationless_showfound"].value boolValue];
+    self.locationlessListSortBy = [[dbConfig dbGetByKey:@"locationless_sortby"].value integerValue];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -607,6 +612,17 @@
 {
     self.logTemporaryText = value;
     [self NSStringUpdate:@"log_temporary_text" value:value];
+}
+
+- (void)locationlessShowFoundUpdate:(BOOL)value
+{
+    self.locationlessShowFound = value;
+    [self BOOLUpdate:@"locationless_showfound" value:value];
+}
+- (void)locationlessListSortByUpdate:(NSInteger)value
+{
+    self.locationlessListSortBy = value;
+    [self NSIntegerUpdate:@"locationless_sortby" value:value];
 }
 
 @end
