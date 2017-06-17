@@ -81,6 +81,50 @@
     return wps;
 }
 
++ (NSArray<dbWaypoint *> *)resortWaypoints:(NSArray<dbWaypoint *> *)wps locationlessSortOrder:(SortOrderLocationless)newSortOrder
+{
+    [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+        wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:LM.coords];
+        wp.calculatedBearing = [Coordinates coordinates2bearing:wp.coordinates to:LM.coords];
+    }];
+
+#define NCMP(I, O1, O2, W) \
+    case I: \
+        wps = [NSMutableArray arrayWithArray:[wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) { \
+            if (O1 W O2) \
+                return (NSComparisonResult)NSOrderedDescending; \
+            if (O1 W O2) \
+                return (NSComparisonResult)NSOrderedAscending; \
+            return (NSComparisonResult)NSOrderedSame; \
+        }]]; \
+    break;
+#define SCMP(I, O1, O2, W) \
+    case I: \
+        wps = [NSMutableArray arrayWithArray:[wps sortedArrayUsingComparator: ^(dbWaypoint *obj1, dbWaypoint *obj2) { \
+            if (W == NSOrderedAscending) \
+                return (NSComparisonResult)[O1 compare:O2 options:NSCaseInsensitiveSearch]; \
+            else \
+                return (NSComparisonResult)(-[O1 compare:O2 options:NSCaseInsensitiveSearch]); \
+            }]]; \
+        break;
+    switch (newSortOrder) {
+        SCMP(SORTORDERLOCATIONLESS_CODE_ASC, obj1.wpt_name, obj2.wpt_name, NSOrderedAscending)
+        SCMP(SORTORDERLOCATIONLESS_CODE_DESC, obj1.wpt_name, obj2.wpt_name, NSOrderedDescending)
+        SCMP(SORTORDERLOCATIONLESS_NAME_ASC, obj1.wpt_urlname, obj2.wpt_urlname, NSOrderedAscending)
+        SCMP(SORTORDERLOCATIONLESS_NAME_DESC, obj1.wpt_urlname, obj2.wpt_urlname, NSOrderedDescending)
+        NCMP(SORTORDERLOCATIONLESS_DATE_HIDDEN_OLDESTFIRST, obj1.wpt_date_placed_epoch, obj2.wpt_date_placed_epoch, >)
+        NCMP(SORTORDERLOCATIONLESS_DATE_HIDDEN_NEWESTFIRST, obj1.wpt_date_placed_epoch, obj2.wpt_date_placed_epoch, <)
+        NCMP(SORTORDERLOCATIONLESS_DATE_FOUND_OLDESTFIRST, obj1.gs_date_found, obj2.gs_date_found, >)
+        NCMP(SORTORDERLOCATIONLESS_DATE_FOUND_NEWESTFIRST, obj1.gs_date_found, obj2.gs_date_found, <)
+        NCMP(SORTORDERLOCATIONLESS_DATE_LASTLOG_OLDESTFIRST, obj1.date_lastlog_epoch, obj2.date_lastlog_epoch, >)
+        NCMP(SORTORDERLOCATIONLESS_DATE_LASTLOG_NEWESTFIRST, obj1.date_lastlog_epoch, obj2.date_lastlog_epoch, <)
+        default:
+            NSAssert(NO, @"Unknown sort order");
+    }
+
+    return wps;
+}
+
 + (NSArray<dbWaypoint *> *)resortWaypoints:(NSArray<dbWaypoint *> *)wps listSortOrder:(SortOrderList)newSortOrder flag:(Flag)flag
 {
     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -187,6 +231,32 @@
             CASE(SORTORDERWP_DATE_HIDDEN_NEWESTFIRST, @"Hidden date (newest first)")
             CASE(SORTORDERWP_DATE_FOUND_OLDESTFIRST, @"Found date (oldest first)")
             CASE(SORTORDERWP_DATE_FOUND_NEWESTFIRST, @"Found date (newest first)")
+            default:
+                NSAssert(NO, @"Unknown sort order");
+        }
+    }
+    return orders;
+}
+
++ (NSArray<NSString *> *)locationlessSortOrders
+{
+    NSMutableArray<NSString *> *orders = [NSMutableArray arrayWithCapacity:SORTORDERWP_MAX];
+    for (SortOrderLocationless i = 0; i < SORTORDERLOCATIONLESS_MAX; i++) {
+#define CASE(__order__, __title__) \
+    case __order__: \
+        [orders addObject:__title__]; \
+        break;
+        switch (i) {
+            CASE(SORTORDERLOCATIONLESS_NAME_ASC, @"Name (ascending)")
+            CASE(SORTORDERLOCATIONLESS_NAME_DESC, @"Name (descending)")
+            CASE(SORTORDERLOCATIONLESS_CODE_ASC, @"Code (ascending)")
+            CASE(SORTORDERLOCATIONLESS_CODE_DESC, @"Code (descending)")
+            CASE(SORTORDERLOCATIONLESS_DATE_LASTLOG_OLDESTFIRST, @"Last log date (oldest first)")
+            CASE(SORTORDERLOCATIONLESS_DATE_LASTLOG_NEWESTFIRST, @"Last log date (newest first)")
+            CASE(SORTORDERLOCATIONLESS_DATE_HIDDEN_OLDESTFIRST, @"Hidden date (oldest first)")
+            CASE(SORTORDERLOCATIONLESS_DATE_HIDDEN_NEWESTFIRST, @"Hidden date (newest first)")
+            CASE(SORTORDERLOCATIONLESS_DATE_FOUND_OLDESTFIRST, @"Found date (oldest first)")
+            CASE(SORTORDERLOCATIONLESS_DATE_FOUND_NEWESTFIRST, @"Found date (newest first)")
             default:
                 NSAssert(NO, @"Unknown sort order");
         }

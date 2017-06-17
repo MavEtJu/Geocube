@@ -45,6 +45,20 @@ typedef NS_ENUM(NSInteger, SortOrderWaypoints) {
     SORTORDERWP_MAX,
 };
 
+typedef NS_ENUM(NSInteger, SortOrderLocationless) {
+    SORTORDERLOCATIONLESS_NAME_ASC = 0,
+    SORTORDERLOCATIONLESS_NAME_DESC,
+    SORTORDERLOCATIONLESS_CODE_ASC,
+    SORTORDERLOCATIONLESS_CODE_DESC,
+    SORTORDERLOCATIONLESS_DATE_FOUND_OLDESTFIRST,
+    SORTORDERLOCATIONLESS_DATE_FOUND_NEWESTFIRST,
+    SORTORDERLOCATIONLESS_DATE_LASTLOG_OLDESTFIRST,
+    SORTORDERLOCATIONLESS_DATE_LASTLOG_NEWESTFIRST,
+    SORTORDERLOCATIONLESS_DATE_HIDDEN_OLDESTFIRST,
+    SORTORDERLOCATIONLESS_DATE_HIDDEN_NEWESTFIRST,
+    SORTORDERLOCATIONLESS_MAX,
+};
+
 typedef NS_ENUM(NSInteger, SortOrderList) {
     SORTORDERLIST_TIMEADDED_ASC = 0,
     SORTORDERLIST_TIMEADDED_DESC,
@@ -77,7 +91,9 @@ typedef NS_ENUM(NSInteger, SortOrderList) {
 
 + (NSArray<dbWaypoint *> *)resortWaypoints:(NSArray<dbWaypoint *> *)wps waypointsSortOrder:(SortOrderWaypoints)newSortOrder;
 + (NSArray<dbWaypoint *> *)resortWaypoints:(NSArray<dbWaypoint *> *)wps listSortOrder:(SortOrderList)newSortOrder flag:(Flag)flag;
++ (NSArray<dbWaypoint *> *)resortWaypoints:(NSArray<dbWaypoint *> *)wps locationlessSortOrder:(SortOrderLocationless)newSortOrder;
 + (NSArray<NSString *> *)waypointsSortOrders;
 + (NSArray<NSString *> *)listSortOrders;
++ (NSArray<NSString *> *)locationlessSortOrders;
 
 @end
