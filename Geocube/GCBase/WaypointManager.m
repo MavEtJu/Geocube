@@ -444,7 +444,7 @@
         c = [self configGet:@"text_enabled"];
         if (c != nil && [c boolValue] == YES) {
             NSLog(@"%@ - Filtering text", [self class]);
-            NSString *cachename = [self configGet:@"text_cachename"];
+            NSString *cachename = [self configGet:@"text_waypointname"];
             NSString *owner = [self configGet:@"text_owner"];
             NSString *locale = [self configGet:@"text_locale"];
             NSString *state = [self configGet:@"text_state"];
