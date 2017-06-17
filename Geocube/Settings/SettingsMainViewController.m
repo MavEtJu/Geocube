@@ -240,7 +240,6 @@ enum sections {
     SECTION_WAYPOINTS,
     SECTION_LISTS,
     SECTION_ACCOUNTS,
-    SECTION_LOCATIONLESS,
     SECTION_GPSADJUSTMENT,
     SECTION_MAX,
 
@@ -327,10 +326,6 @@ enum sections {
     SECTION_ACCOUNTS_AUTHENTICATEKEEPPASSWORD,
     SECTION_ACCOUNTS_MAX,
 
-    SECTION_LOCATIONLESS_SORTBY = 0,
-    SECTION_LOCATIONLESS_SHOWFOUND,
-    SECTION_LOCATIONLESS_MAX,
-
     SECTION_GPSADJUSTMENT_ENABLE = 0,
     SECTION_GPSADJUSTMENT_LATITUDE,
     SECTION_GPSADJUSTMENT_LONGITUDE,
@@ -365,7 +360,6 @@ enum sections {
         SECTION_MAX(WAYPOINTS);
         SECTION_MAX(LISTS);
         SECTION_MAX(ACCOUNTS);
-        SECTION_MAX(LOCATIONLESS);
         SECTION_MAX(GPSADJUSTMENT);
         default:
             NSAssert1(0, @"Unknown section %ld", (long)section);
@@ -410,8 +404,6 @@ enum sections {
             return @"Lists";
         case SECTION_ACCOUNTS:
             return @"Accounts";
-        case SECTION_LOCATIONLESS:
-            return @"Locationless";
         case SECTION_GPSADJUSTMENT:
             return @"GPS Adjustments";
         default:
@@ -908,26 +900,6 @@ enum sections {
             }
         }
 
-        case SECTION_LOCATIONLESS: {
-            switch (indexPath.row) {
-                case SECTION_LOCATIONLESS_SHOWFOUND: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Show found in list";
-                    cell.optionSwitch.on = configManager.locationlessShowFound;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateLocationlessShowFound:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
-                case SECTION_LOCATIONLESS_SORTBY: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Sort by";
-                    NSArray<NSString *> *order = [WaypointSorter locationlessSortOrders];
-                    cell.detailTextLabel.text = [order objectAtIndex:configManager.locationlessListSortBy];
-                    return cell;
-                }
-            }
-        }
-
         case SECTION_GPSADJUSTMENT: {
             switch (indexPath.row) {
                 case SECTION_GPSADJUSTMENT_ENABLE: {
@@ -1185,14 +1157,6 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_LISTS_SORTBY:
                     [self changeListSortBy];
-                    break;
-            }
-            return;
-
-        case SECTION_LOCATIONLESS:
-            switch (indexPath.row) {
-                case SECTION_LOCATIONLESS_SORTBY:
-                    [self changeLocationlessSortOrder];
                     break;
             }
             return;
@@ -1871,34 +1835,6 @@ enum sections {
 - (void)updateListSortBy:(NSNumber *)selectedIndex element:(id)element
 {
     [configManager listSortByUpdate:selectedIndex.integerValue];
-    [self.tableView reloadData];
-}
-
-/* ********************************************************************************* */
-
-- (void)changeLocationlessSortOrder
-{
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_LOCATIONLESS_SORTBY inSection:SECTION_LOCATIONLESS]];
-
-    [ActionSheetStringPicker showPickerWithTitle:@"Sort locationless by"
-                                            rows:[WaypointSorter locationlessSortOrders]
-                                initialSelection:configManager.locationlessListSortBy
-                                          target:self
-                                   successAction:@selector(updateLocationlessSortBy:element:)
-                                    cancelAction:@selector(updateCancel:)
-                                          origin:cell.contentView
-     ];
-}
-
-- (void)updateLocationlessSortBy:(NSNumber *)selectedIndex element:(id)element
-{
-    [configManager locationlessListSortByUpdate:selectedIndex.integerValue];
-    [self.tableView reloadData];
-}
-
-- (void)updateLocationlessShowFound:(GCSwitch *)b
-{
-    [configManager locationlessShowFoundUpdate:b.on];
     [self.tableView reloadData];
 }
 
