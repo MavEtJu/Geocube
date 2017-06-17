@@ -86,6 +86,7 @@
             MATCH(RC_LISTS, @"Lists");
             MATCH(RC_QUERIES, @"Queries");
             MATCH(RC_TOOLS, @"Tools");
+            MATCH(RC_LOCATIONSLESS, @"Locationless");
             default:
                 NSAssert1(FALSE, @"Menu not matched: %ld", (long)i);
         }

@@ -291,6 +291,7 @@
 #import "MapAllWPViewController.h"
 #import "MapOneWPViewController.h"
 #import "MapTrackViewController.h"
+#import "MapLocationlessViewController.h"
 #import "MapTemplate.h"
 #import "MapApple.h"
 #import "MapGoogle.h"
@@ -298,6 +299,12 @@
 #import "MapAppleTemplate.h"
 #import "MapOSM.h"
 #import "MapESRIWorldTopo.h"
+
+#import "LocationlessTemplateViewController.h"
+#import "LocationlessListViewController.h"
+#import "MapLocationlessViewController.h"
+#import "LocationlessPlannedViewController.h"
+#import "LocationlessTableViewCell.h"
 
 #import "ToolsRot13ViewController.h"
 #import "ToolsGPSViewController.h"

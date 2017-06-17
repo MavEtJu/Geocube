@@ -269,6 +269,16 @@
                 TABBARCONTROLLER(RC_QUERIES, controllers)
                 break;
 
+            case RC_LOCATIONSLESS:
+                controllers = [NSMutableArray array];
+
+                VC(LocationlessListViewController, @"All");
+                VC(LocationlessPlannedViewController, @"Planned");
+                VC(MapLocationlessViewController, @"Map");
+
+                TABBARCONTROLLER(RC_QUERIES, controllers)
+                break;
+
             default:
                 NSAssert1(FALSE, @"Tabbar missing item %ld", (long)i);
 
