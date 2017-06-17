@@ -217,6 +217,11 @@
 
         imgtag = [imgtag substringToIndex:r.location];
 
+        if ([imgtag length] < 5) {
+            NSLog(@"%@/parse: Not long enough %@", [self class], quote);
+            continue;
+        }
+
         if ([[imgtag substringToIndex:5] isEqualToString:@"file:"] == YES) {
             NSLog(@"%@/parse: file:// URL", [self class]);
             continue;
