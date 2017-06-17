@@ -108,7 +108,7 @@
 
 + (NSInteger)dbCount
 {
-    return [dbGroup dbCount:@"listdata"];
+    return [dbListData dbCount:@"listdata"];
 }
 
 @end

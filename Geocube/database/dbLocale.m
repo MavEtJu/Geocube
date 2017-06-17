@@ -54,7 +54,7 @@
 
 + (NSInteger)dbCount
 {
-    return [dbImage dbCount:@"locales"];
+    return [dbLocale dbCount:@"locales"];
 }
 
 + (dbLocale *)dbGet:(NSId)_id
