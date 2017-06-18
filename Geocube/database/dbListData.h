@@ -27,6 +27,7 @@ typedef NS_ENUM(NSInteger, Flag) {
     FLAGS_MARKEDFOUND,
     FLAGS_INPROGRESS,
     FLAGS_MARKEDDNF,
+    FLAGS_PLANNED,
 };
 
 @property (nonatomic) NSId waypoint_id;
