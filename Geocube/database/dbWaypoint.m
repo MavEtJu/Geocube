@@ -884,9 +884,19 @@
     return [dbWaypoint dbAllXXX:[NSString stringWithFormat:@"where gs_country_id = (select id from countries where name = '%@') and log_status != 2 and markedfound != 1", country]];
 }
 
-+ (NSArray<dbWaypoint *> *)dbAllPlanned;
++ (NSArray<dbWaypoint *> *)dbAllLocationless;
 {
-    return [dbWaypoint dbAllXXX:[NSString stringWithFormat:@"where planned = 1"]];
+    return [dbWaypoint dbAllXXX:@"where gs_country_id = (select id from countries where name = 'Locationless') and ignore = 0"];
+}
+
++ (NSArray<dbWaypoint *> *)dbAllLocationlessNotFound;
+{
+    return [dbWaypoint dbAllXXX:@"where gs_country_id = (select id from countries where name = 'Locationless') and log_status != 2 and markedfound != 1 and ignore = 0"];
+}
+
++ (NSArray<dbWaypoint *> *)dbAllLocationlessPlanned;
+{
+    return [dbWaypoint dbAllXXX:@"where gs_country_id = (select id from countries where name = 'Locationless') and planned = 1 and ignore = 0"];
 }
 
 - (BOOL)hasGSData
