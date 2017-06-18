@@ -630,6 +630,15 @@
     ];
     [upgradeSteps addObject:a];
 
+    // Version 49
+    a = @[
+    @"alter table logs add column lat text",
+    @"alter table logs add column lon text",
+    @"alter table logs add column lat_int integer",
+    @"alter table logs add column lon_int integer",
+    @"update logs set lat = '', lon = '', lat_int = 0, lon_int = 0",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

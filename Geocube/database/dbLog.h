@@ -36,6 +36,12 @@
 @property (nonatomic, retain) NSString *log;
 @property (nonatomic) BOOL needstobelogged;
 @property (nonatomic) BOOL localLog;
+@property (nonatomic, retain) NSString *lat;
+@property (nonatomic, retain) NSString *lon;
+@property (nonatomic) NSInteger lat_int;
+@property (nonatomic) NSInteger lon_int;
+@property (nonatomic) float lat_float;
+@property (nonatomic) float lon_float;
 
 // Internal values
 @property (nonatomic) NSInteger cellHeight;
