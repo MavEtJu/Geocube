@@ -89,6 +89,7 @@ enum {
     [lmi addItem:menuDeleteWaypoint label:@"Delete waypoint"];
 
     self.hasCloseButton = NO;
+    self.isLocationless = NO;
 
     headerCell = nil;
 
@@ -766,6 +767,21 @@ enum {
                                     [waypointManager needsRefreshUpdate:waypoint];
                                     [self.tableView reloadData];
                                 }];
+    UIAlertAction *planned = nil;
+
+    if (self.isLocationless == YES) {
+        planned = [UIAlertAction
+                   actionWithTitle:(waypoint.flag_planned == YES) ? @"Remove mark as planned" : @"Mark as Planned"
+                   style:UIAlertActionStyleDefault
+                   handler:^(UIAlertAction *action) {
+                       if (waypoint.flag_planned == YES)
+                           [self addLog:@"Unmarked as Planned"];
+                       else
+                           [self addLog:@"Marked as Planned"];
+                       waypoint.flag_planned = !waypoint.flag_planned;
+                       [waypoint dbUpdatePlanned];
+                   }];
+    }
 
     UIAlertAction *cancel = [UIAlertAction
                              actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
@@ -773,6 +789,8 @@ enum {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
 
+    if (self.isLocationless == YES)
+        [alert addAction:planned];
     [alert addAction:found];
     [alert addAction:dnf];
     [alert addAction:ignore];

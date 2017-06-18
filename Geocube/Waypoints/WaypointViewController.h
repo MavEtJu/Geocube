@@ -23,4 +23,6 @@
 
 - (void)showWaypoint:(dbWaypoint *)wp;
 
+@property (nonatomic) BOOL isLocationless;
+
 @end
