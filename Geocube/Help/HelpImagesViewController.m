@@ -185,44 +185,44 @@ enum {
 
         switch (indexPath.row) {
             case 0:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
                 cell.textLabel.text = @"Type - Not Logged";
                 break;
             case 1:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
                 cell.textLabel.text = @"Type - Found";
                 break;
             case 2:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
                 cell.textLabel.text = @"Type - Not Found";
                 break;
 
             case 3:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
                 cell.textLabel.text = @"Type - Disabled";
                 break;
             case 4:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
                 cell.textLabel.text = @"Type Archived";
                 break;
             case 5:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:YES owner:NO markedFound:NO inProgress:NO markedDNF:NO];
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:YES owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
                 cell.textLabel.text = @"Type - Highlight";
                 break;
             case 6:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO];
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO planned:NO];
                 cell.textLabel.text = @"Type - Marked Found";
                 break;
             case 7:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:YES inProgress:NO markedDNF:NO];
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:YES inProgress:NO markedDNF:NO planned:NO];
                 cell.textLabel.text = @"Type - Marked Found";
                 break;
             case 8:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:YES markedDNF:NO];
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:YES markedDNF:NO planned:NO];
                 cell.textLabel.text = @"Type - Marked In Progress";
                 break;
             case 9:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:YES];
+                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:YES planned:NO];
                 cell.textLabel.text = @"Type - Marked DNF";
                 break;
         }
@@ -243,7 +243,7 @@ enum {
         NSArray<dbType *> *types = [dbc Types];
         dbType *type = [types objectAtIndex:indexPath.row];
 
-        cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
+        cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
         cell.textLabel.text = @"Type";
         return cell;
     }

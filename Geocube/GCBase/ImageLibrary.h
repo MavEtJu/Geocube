@@ -186,6 +186,7 @@ typedef NS_ENUM(NSInteger, ImageNumber) {
     ImageContainerFlag_outlineDisabled,
     ImageContainerFlag_outlineArchived,
     ImageContainerFlag_owner,
+    ImageContainerFlag_planned,
 
     ImageCacheView_ratingBase,
     ImageCacheView_ratingOff,
@@ -229,7 +230,7 @@ typedef NS_ENUM(NSInteger, ImageNumber) {
 - (UIImage *)getType:(dbWaypoint *)wp;
 
 - (UIImage *)getPin:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF;
-- (UIImage *)getType:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF;
+- (UIImage *)getType:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF planned:(BOOL)planned;
 
 - (UIImage *)getSquareWithNumber:(NSInteger)num;
 
