@@ -27,6 +27,7 @@
 @property (nonatomic, retain) IBOutlet GCLabel *labelLog;
 @property (nonatomic, retain) IBOutlet GCLabel *labelLocalLog;
 @property (nonatomic, retain) IBOutlet GCLabel *labelNotSubmitted;
+@property (nonatomic, retain) IBOutlet GCLabel *labelCoordinates;
 
 @end
 
@@ -46,6 +47,7 @@
     [self.labelDateTime changeTheme];
     [self.labelLocalLog changeTheme];
     [self.labelNotSubmitted changeTheme];
+    [self.labelCoordinates changeTheme];
 }
 
 - (void)setLog:(dbLog *)log
@@ -56,6 +58,10 @@
     self.labelLog.text = log.log;
     self.labelLocalLog.hidden = (log.localLog == NO);
     self.labelNotSubmitted.hidden = (log.needstobelogged == NO);
+    if (log.lat_int != 0 && log.lon_int != 0)
+        self.labelCoordinates.text = [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(log.lat_float, log.lon_float)];
+    else
+        self.labelCoordinates.text = @"";
 }
 
 @end
