@@ -53,6 +53,7 @@ typedef NS_ENUM(NSInteger, LogStatus) {
 @property (nonatomic) BOOL flag_markedfound;
 @property (nonatomic) BOOL flag_inprogress;
 @property (nonatomic) BOOL flag_dnf;
+@property (nonatomic) BOOL flag_planned;
 @property (nonatomic) NSId account_id;
 @property (nonatomic, retain) dbAccount *account;
 @property (nonatomic) NSId related_id;
@@ -110,6 +111,7 @@ typedef NS_ENUM(NSInteger, LogStatus) {
 + (NSArray<dbWaypoint *> *)dbAllFound;
 + (NSArray<dbWaypoint *> *)dbAllNotFound;
 + (NSArray<dbWaypoint *> *)dbAllIgnored;
++ (NSArray<dbWaypoint *> *)dbAllPlanned;
 + (NSArray<dbWaypoint *> *)dbAllInGroups:(NSArray<dbGroup *> *)groups;
 + (NSArray<dbWaypoint *> *)dbAllInCountry:(NSString *)country;
 + (NSArray<dbWaypoint *> *)dbAllInCountryNotFound:(NSString *)country;
@@ -122,6 +124,7 @@ typedef NS_ENUM(NSInteger, LogStatus) {
 - (void)dbUpdateMarkedFound;
 - (void)dbUpdateInProgress;
 - (void)dbUpdateMarkedDNF;
+- (void)dbUpdatePlanned;
 
 - (NSString *)makeLocaleStateCountry;
 + (NSString *)makeName:(NSString *)suffix;

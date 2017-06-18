@@ -613,6 +613,23 @@
     @"update accounts set oauth_consumer_private_sharedsecret = ''",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 47
+    a = @[
+    @"create table locationless (id integer primary key, waypoint_id integer, planned bool)",
+    @"create index locationless_idx_waypoint  on locationless(waypoint_id)",
+    @"create index locationless_idx_id on locationless(id)",
+    ];
+    [upgradeSteps addObject:a];
+
+    // Version 48
+    a = @[
+    @"drop table locationless",
+    @"alter table waypoints add column planned integer",
+    @"update waypoints set planned = 0",
+    ];
+    [upgradeSteps addObject:a];
+
 }
 
 - (void)singleStatement:(NSString *)sql
