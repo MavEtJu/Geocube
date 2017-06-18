@@ -360,7 +360,9 @@
     NSString *loggername;
     NSString *loggerid;
     NSString *comment;
+    NSString *location;
     dbName *name;
+
     DICT_NSSTRING_KEY(dict, type, @"type");
     dbLogString *logstring = [dbc LogString_get_bytype:wp.account logtype:wp.logstring_logtype type:type];
     DICT_NSSTRING_KEY(dict, date, @"date");
@@ -368,6 +370,7 @@
     DICT_NSSTRING_PATH(dict, loggername, @"user.username");
     DICT_NSSTRING_PATH(dict, loggerid, @"user.uuid");
     DICT_NSSTRING_PATH(dict, comment, @"comment");
+    DICT_NSSTRING_PATH(dict, location, @"location");
     [dbName makeNameExist:loggername code:loggerid account:account];
 
     name = [dbName dbGetByName:loggername account:account];
@@ -390,6 +393,13 @@
         return;
 
     dbLog *l = [[dbLog alloc] init:0 gc_id:0 waypoint_id:wp._id logstring_id:logstring._id datetime:date logger_id:name._id log:comment needstobelogged:NO locallog:NO];
+    if ([location isKindOfClass:[NSString class]] == YES) {
+        NSArray<NSString *> *cs = [location componentsSeparatedByString:@"|"];
+        l.lat = [cs objectAtIndex:0];
+        l.lon = [cs objectAtIndex:1];
+    }
+    [l finish];
+
     [l dbCreate];
     newLogsCount++;
     [infoViewer setLogsNew:iiImport new:newLogsCount];

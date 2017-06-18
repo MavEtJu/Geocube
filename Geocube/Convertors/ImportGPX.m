@@ -149,6 +149,14 @@
             return;
         }
 
+        if ([currentElement isEqualToString:@"groundspeak:log_wpt"] == YES) {
+            currentLog.lat = [attributeDict objectForKey:@"lat"];
+            currentLog.lon = [attributeDict objectForKey:@"lon"];
+
+            inLog = YES;
+            return;
+        }
+
         if ([currentElement isEqualToString:@"groundspeak:finder"] == YES) {
             logFinderNameId = [attributeDict objectForKey:@"id"];
             [currentLog setLogger_gsid:logFinderNameId];
