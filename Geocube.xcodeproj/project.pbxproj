@@ -570,6 +570,9 @@
 		E86C4AB01E321822004526E2 /* CompassView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86C4AAE1E321822004526E2 /* CompassView.xib */; };
 		E86D42751EF5484E00E4509F /* LocationlessTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86D42731EF5484E00E4509F /* LocationlessTableViewCell.xib */; };
 		E86D42761EF5484E00E4509F /* LocationlessTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86D42741EF5484E00E4509F /* LocationlessTableViewCell~ipad.xib */; };
+		E86D427D1EF68CC800E4509F /* container flag - planned - 24x21.png in Resources */ = {isa = PBXBuildFile; fileRef = E86D427A1EF68CC800E4509F /* container flag - planned - 24x21.png */; };
+		E86D427E1EF68CC800E4509F /* container flag - planned - 24x21@2.png in Resources */ = {isa = PBXBuildFile; fileRef = E86D427B1EF68CC800E4509F /* container flag - planned - 24x21@2.png */; };
+		E86D427F1EF68CC800E4509F /* container flag - planned - 24x21@3.png in Resources */ = {isa = PBXBuildFile; fileRef = E86D427C1EF68CC800E4509F /* container flag - planned - 24x21@3.png */; };
 		E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FEB1B509575002527DA /* LogTableViewCell.m */; };
 		E87DF78E1D8564A800F16B5A /* InfoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF78D1D8564A800F16B5A /* InfoViewer.m */; };
 		E88258351E9FA03700FCF9B2 /* Close Window - 640x430.png in Resources */ = {isa = PBXBuildFile; fileRef = E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */; };
@@ -1573,6 +1576,9 @@
 		E86C4AAE1E321822004526E2 /* CompassView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompassView.xib; sourceTree = "<group>"; };
 		E86D42731EF5484E00E4509F /* LocationlessTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocationlessTableViewCell.xib; path = Locationless/LocationlessTableViewCell.xib; sourceTree = "<group>"; };
 		E86D42741EF5484E00E4509F /* LocationlessTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LocationlessTableViewCell~ipad.xib"; path = "Locationless/LocationlessTableViewCell~ipad.xib"; sourceTree = "<group>"; };
+		E86D427A1EF68CC800E4509F /* container flag - planned - 24x21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container flag - planned - 24x21.png"; path = "images/containers/container flag - planned - 24x21.png"; sourceTree = "<group>"; };
+		E86D427B1EF68CC800E4509F /* container flag - planned - 24x21@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container flag - planned - 24x21@2.png"; path = "images/containers/container flag - planned - 24x21@2.png"; sourceTree = "<group>"; };
+		E86D427C1EF68CC800E4509F /* container flag - planned - 24x21@3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container flag - planned - 24x21@3.png"; path = "images/containers/container flag - planned - 24x21@3.png"; sourceTree = "<group>"; };
 		E8740FEA1B509575002527DA /* LogTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogTableViewCell.h; sourceTree = "<group>"; };
 		E8740FEB1B509575002527DA /* LogTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogTableViewCell.m; sourceTree = "<group>"; };
 		E879F9CB1B7B527200220EA7 /* Geocube.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Geocube.entitlements; sourceTree = "<group>"; };
@@ -2696,6 +2702,9 @@
 		E8740FCE1B4E9D49002527DA /* containers */ = {
 			isa = PBXGroup;
 			children = (
+				E86D427A1EF68CC800E4509F /* container flag - planned - 24x21.png */,
+				E86D427B1EF68CC800E4509F /* container flag - planned - 24x21@2.png */,
+				E86D427C1EF68CC800E4509F /* container flag - planned - 24x21@3.png */,
 				E8FEDE381DA77F9D007C756B /* container size - large - 35x11.png */,
 				E8FEDE391DA77F9D007C756B /* container size - large - 35x11@2x.png */,
 				E8FEDE3A1DA77F9D007C756B /* container size - large - 35x11@3x.png */,
@@ -3846,6 +3855,7 @@
 				E8F570621B3F7255003F020C /* Main.storyboard in Resources */,
 				E8F403EC1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png in Resources */,
 				E8AA149C1ED7988A0023000A /* Updates and changes.txt in Resources */,
+				E86D427E1EF68CC800E4509F /* container flag - planned - 24x21@2.png in Resources */,
 				E82E663A1DA07A8700CFBDED /* icons - smiley - 15x15.png in Resources */,
 				E82E67681DA07D0200CFBDED /* attributes - 62.png in Resources */,
 				E8F403EB1DAFA23600318CC6 /* cache - reverse - 30x30@2x.png in Resources */,
@@ -3884,6 +3894,8 @@
 				E8FEDE861DA7AD67007C756B /* map - dnf stick - 35x42@2x.png in Resources */,
 				E82E67401DA07D0200CFBDED /* attributes - 22.png in Resources */,
 				E82E66C81DA07CBE00CFBDED /* cache - moveable - 30x30@3x.png in Resources */,
+				E86D427D1EF68CC800E4509F /* container flag - planned - 24x21.png in Resources */,
+				E86D427F1EF68CC800E4509F /* container flag - planned - 24x21@3.png in Resources */,
 				E83C6EF21EECE28100E303F5 /* SVProgressHUD.bundle in Resources */,
 				E8FEDEE31DA8EEE9007C756B /* cache - maze - 30x30@3x.png in Resources */,
 				E8FEDE7E1DA7AD67007C756B /* map - archived - 15x15@2x.png in Resources */,

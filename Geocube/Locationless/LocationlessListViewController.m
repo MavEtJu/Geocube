@@ -28,9 +28,9 @@
 - (void)refreshWaypoints
 {
     if (configManager.locationlessShowFound == YES)
-        self.waypoints = [dbWaypoint dbAllInCountry:@"Locationless"];
+        self.waypoints = [dbWaypoint dbAllLocationless];
     else
-        self.waypoints = [dbWaypoint dbAllInCountryNotFound:@"Locationless"];
+        self.waypoints = [dbWaypoint dbAllLocationlessNotFound];
 }
 
 @end

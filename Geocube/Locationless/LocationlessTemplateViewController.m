@@ -106,6 +106,7 @@ enum {
     [newController showWaypoint:wp];
     newController.edgesForExtendedLayout = UIRectEdgeNone;
     newController.title = newTitle;
+    newController.isLocationless = YES;
     [self.navigationController pushViewController:newController animated:YES];
 }
 

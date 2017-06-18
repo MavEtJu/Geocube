@@ -27,7 +27,7 @@
 
 - (void)refreshWaypoints
 {
-    self.waypoints = [NSArray array];
+    self.waypoints = [dbWaypoint dbAllLocationlessPlanned];
 }
 
 @end
