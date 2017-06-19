@@ -395,8 +395,10 @@
     dbLog *l = [[dbLog alloc] init:0 gc_id:0 waypoint_id:wp._id logstring_id:logstring._id datetime:date logger_id:name._id log:comment needstobelogged:NO locallog:NO];
     if ([location isKindOfClass:[NSString class]] == YES) {
         NSArray<NSString *> *cs = [location componentsSeparatedByString:@"|"];
-        l.lat = [cs objectAtIndex:0];
-        l.lon = [cs objectAtIndex:1];
+        if ([cs count] == 2) {
+            l.lat = [cs objectAtIndex:0];
+            l.lon = [cs objectAtIndex:1];
+        }
     }
     [l finish];
 
