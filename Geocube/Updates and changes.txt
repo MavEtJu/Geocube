@@ -7,7 +7,7 @@ Version 1.4(x)
   - Add support for locationless caches: You can see them and
     tag them for planning.
 
-  Fixed:
+  Fixes:
   - 
 
 Version 1.3(26)
@@ -24,7 +24,7 @@ Version 1.3(26)
   - Groundspeak geocaching.com: Corrected Coordinates are now imported
     properly.
 
-  Fixed:
+  Fixes:
   - iPad: The query table cells are now properly resized.
   - iPad: The picker dialog box are now working properly.
   - "Waypoint disabled" log image is now 30x30.
