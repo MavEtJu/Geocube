@@ -266,6 +266,7 @@
                          @"MY", // Geocube internal
                          @"TP", // Geocaching Australia Trigpoint
                          @"GC", // Groundspeak Geocaching.com
+                         @"CC", // Groundspeak Geocaching.com - correct coordinates
                          @"VI", // Geocaching.su virtual
                          @"TR", // Geocaching.su traditional
                          @"MS", // Geocaching.su multistep
