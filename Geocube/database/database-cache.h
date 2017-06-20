@@ -46,6 +46,7 @@
 // Types
 @property (nonatomic, retain) dbType *Type_Unknown;
 @property (nonatomic, retain) dbType *Type_ManuallyEntered;
+@property (nonatomic, retain) dbType *Type_Log;
 
 // Pins
 @property (nonatomic, retain) dbPin *Pin_Unknown;

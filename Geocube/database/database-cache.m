@@ -63,6 +63,8 @@
     self.Group_LastImport = nil;
     self.Group_LastImportAdded = nil;
     self.Type_Unknown = nil;
+    self.Type_ManuallyEntered = nil;
+    self.Type_Log = nil;
     self.Container_Unknown = nil;
 
     [self.Groups enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
@@ -127,9 +129,12 @@
             self.Type_Unknown = ct;
         if ([ct.type_major isEqualToString:@"Waypoint"] == YES && [ct.type_minor isEqualToString:@"Manually entered"] == YES)
             self.Type_ManuallyEntered = ct;
+        if ([ct.type_major isEqualToString:@"Geocache"] == YES && [ct.type_minor isEqualToString:@"Reverse"] == YES)
+            self.Type_Log = ct;
     }];
     if ([self.Types count] != 0) {
         NSAssert(self.Type_Unknown != nil, @"Type_Unknown");
+        NSAssert(self.Type_Log != nil, @"Type_Log");
         if (self.Type_ManuallyEntered == nil)
             self.Type_ManuallyEntered = self.Type_Unknown;
     }
