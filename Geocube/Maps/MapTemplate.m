@@ -266,4 +266,26 @@ EMPTY_METHOD(mapViewDidLoad)
     [self hideWaypointInfo];
 }
 
+- (void)moveCameraToAll
+{
+    __block CLLocationDegrees left, right, top, bottom;
+    left = 180;
+    right = -180;
+    top = -180;
+    bottom = 180;
+
+    [self.mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (wp.coordinates.latitude != 0) {
+            bottom = MIN(bottom, wp.coordinates.latitude);
+            top = MAX(top, wp.coordinates.latitude);
+        }
+        if (wp.coordinates.longitude != 0) {
+            right = MAX(right, wp.coordinates.longitude);
+            left = MIN(left, wp.coordinates.longitude);
+        }
+    }];
+
+    [self moveCameraTo:CLLocationCoordinate2DMake(bottom, left) c2:CLLocationCoordinate2DMake(top, right)];
+}
+
 @end

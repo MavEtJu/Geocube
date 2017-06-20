@@ -57,6 +57,7 @@
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord zoom:(BOOL)zoom;
 - (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2;
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord zoomLevel:(double)zoomLevel;
+- (void)moveCameraToAll;
 
 - (void)updateMyPosition:(CLLocationCoordinate2D)c; /* Does not affect camera */
 - (void)updateMyBearing:(CLLocationDirection)bearing;
