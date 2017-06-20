@@ -103,10 +103,22 @@
 - (void)finish
 {
     // Conversions from the data retrieved
-    self.wpt_lat_float = [self.wpt_lat floatValue];
-    self.wpt_lon_float = [self.wpt_lon floatValue];
-    self.wpt_lat_int = self.wpt_lat_float * 1000000;
-    self.wpt_lon_int = self.wpt_lon_float * 1000000;
+    if (self.wpt_lat != nil) {
+        self.wpt_lat_float = [self.wpt_lat floatValue];
+        self.wpt_lat_int = self.wpt_lat_float * 1000000;
+    }
+    if (self.wpt_lon != nil) {
+        self.wpt_lon_float = [self.wpt_lon floatValue];
+        self.wpt_lon_int = self.wpt_lon_float * 1000000;
+    }
+    if (self.wpt_lat_float != 0) {
+        self.wpt_lat_int = self.wpt_lat_float * 1000000;
+        self.wpt_lat = [NSString stringWithFormat:@"%f", self.wpt_lat_float];
+    }
+    if (self.wpt_lon_float != 0) {
+        self.wpt_lon_int = self.wpt_lon_float * 1000000;
+        self.wpt_lon = [NSString stringWithFormat:@"%f", self.wpt_lon_float];
+    }
 
     if (self.wpt_date_placed_epoch == 0)
         self.wpt_date_placed_epoch = [MyTools secondsSinceEpochFromISO8601:self.wpt_date_placed];
