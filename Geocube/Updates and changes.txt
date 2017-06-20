@@ -15,6 +15,8 @@ Version 1.4(x)
   Fixes:
   - Made the UI for a waypoint more sane with regards to "what is
     disabled and what is not".
+  - Checkers for input of coordinates don't complain about trailing
+    's anymore.
 
 Version 1.3(26)
 
