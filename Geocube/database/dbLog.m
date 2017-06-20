@@ -33,7 +33,7 @@
     return self;
 }
 
-- (instancetype)init:(NSId)_id gc_id:(NSInteger)gc_id waypoint_id:(NSId)wpid logstring_id:(NSId)lsid datetime:(NSString *)datetime logger_id:(NSId)logger_id log:(NSString *)log needstobelogged:(BOOL)needstobelogged locallog:(BOOL)locallog
+- (instancetype)init:(NSId)_id gc_id:(NSInteger)gc_id waypoint_id:(NSId)wpid logstring_id:(NSId)lsid datetime:(NSString *)datetime logger_id:(NSId)logger_id log:(NSString *)log needstobelogged:(BOOL)needstobelogged locallog:(BOOL)locallog coordinates:(CLLocationCoordinate2D)coordinates
 {
     self = [super init];
     self._id = _id;
@@ -45,10 +45,10 @@
     self.log = log;
     self.needstobelogged = needstobelogged;
     self.localLog = locallog;
-    self.lat = nil;
-    self.lon = nil;
-    self.lat_int = 0;
-    self.lon_int = 0;
+    self.lat = [Coordinates NiceLatitude:coordinates.latitude];
+    self.lon = [Coordinates NiceLongitude:coordinates.longitude];
+    self.lat_int = coordinates.latitude * 1000000;
+    self.lon_int = coordinates.longitude * 1000000;
 
     [self finish];
 
@@ -60,10 +60,14 @@
 - (void)finish
 {
     // Conversions from the data retrieved
-    self.lat_float = [self.lat floatValue];
-    self.lon_float = [self.lon floatValue];
-    self.lat_int = self.lat_float * 1000000;
-    self.lon_int = self.lon_float * 1000000;
+    if (self.lat != nil)
+        self.lat_float = [self.lat floatValue];
+    if (self.lon != nil)
+        self.lon_float = [self.lon floatValue];
+    if (self.lat_float != 0)
+        self.lat_int = self.lat_float * 1000000;
+    if (self.lon_float != 0)
+        self.lon_int = self.lon_float * 1000000;
 
     self.waypoint = [dbWaypoint dbGet:self.waypoint_id]; // This can be nil when an import is happening
     if (self.datetime_epoch == 0)
@@ -337,7 +341,7 @@
     return [dbLog dbCount:@"logs"];
 }
 
-+ (dbLog *)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)date note:(NSString *)note needstobelogged:(BOOL)needstobelogged locallog:(BOOL)locallog
++ (dbLog *)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)date note:(NSString *)note needstobelogged:(BOOL)needstobelogged locallog:(BOOL)locallog coordinates:(CLLocationCoordinate2D)coordinates
 {
     dbLog *log = [[dbLog alloc] init];
 
@@ -358,6 +362,9 @@
     log.logger_id = name._id;
     log.logger_gsid = name.code;
     log.logger_str = name.name;
+
+    log.lat_float = coordinates.latitude;
+    log.lon_float = coordinates.longitude;
 
     [log finish];
 

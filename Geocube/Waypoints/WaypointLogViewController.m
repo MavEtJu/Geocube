@@ -603,7 +603,7 @@ enum {
 {
     // Do not upload, save it locally for later
     if (upload == NO) {
-        [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note needstobelogged:YES locallog:NO];
+        [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note needstobelogged:YES locallog:NO coordinates:coordinates];
         waypoint.logStatus = LOGSTATUS_FOUND;
         [waypoint dbUpdateLogStatus];
         [self.navigationController popViewControllerAnimated:YES];
@@ -627,7 +627,7 @@ enum {
     [bezelManager showBezel:self];
     [bezelManager setText:@"Uploading log"];
 
-    NSInteger retValue = [waypoint.account.remoteAPI CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note favourite:fp image:image imageCaption:imageCaption imageDescription:imageLongText rating:ratingSelected trackables:trackables infoViewer:nil iiDownload:0];
+    NSInteger retValue = [waypoint.account.remoteAPI CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note favourite:fp image:image imageCaption:imageCaption imageDescription:imageLongText rating:ratingSelected trackables:trackables coordinates:coordinates infoViewer:nil iiDownload:0];
 
     [bezelManager removeBezel];
 
@@ -655,7 +655,7 @@ enum {
     [MHTabBarController enableMenus:YES controllerFrom:self];
 
     if (retValue == REMOTEAPI_OK) {
-        dbLog *log = [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note needstobelogged:NO locallog:YES];
+        dbLog *log = [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note needstobelogged:NO locallog:YES coordinates:coordinates];
         [log dbUpdate];
 
         if (configManager.loggingRemovesMarkedAsFoundDNF == YES) {

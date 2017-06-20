@@ -846,7 +846,7 @@
     [lmi disableItem:MVCmenuUseGPS];
 
     useGPS = YES;
-    [LM useGPS:YES coordinates:CLLocationCoordinate2DMake(0, 0)];
+    [LM useGPS:YES coordinates:CLLocationCoordinate2DZero];
 
     meLocation = [self.map currentCenter];
     self.followWhom = SHOW_NEITHER;

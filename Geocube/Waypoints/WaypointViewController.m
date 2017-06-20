@@ -809,7 +809,7 @@ enum {
     NSInteger logtype = [dbLogString wptTypeToLogType:waypoint.wpt_type.type_full];
     dbLogString *logstring = [dbLogString dbGetByProtocolLogtypeDefault:waypoint.account.protocol logtype:logtype default:LOGSTRING_DEFAULT_NOTE];
 
-    [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:text needstobelogged:NO locallog:YES];
+    [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:text needstobelogged:NO locallog:YES coordinates:LM.coords];
 }
 
 - (void)addToGroup

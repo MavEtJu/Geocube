@@ -21,6 +21,8 @@
 
 @interface Coordinates : NSObject
 
+#define CLLocationCoordinate2DZero  CLLocationCoordinate2DMake(0, 0)
+
 - (instancetype)init:(CLLocationDegrees)lat lon:(CLLocationDegrees)log; // -34.02787 151.07357
 - (instancetype)init:(CLLocationCoordinate2D)coor;                      // { -34.02787, 151.07357 }
 - (instancetype)initString:(NSString *)lat lon:(NSString *)lon;         // S 34 1.672, E 151 4.414

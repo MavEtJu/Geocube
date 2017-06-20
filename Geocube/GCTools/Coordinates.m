@@ -28,7 +28,7 @@
 
 @implementation Coordinates
 
-#define COORDS_REGEXP @" +\\d{1,3}[º°]? ?\\d{1,2}\\.\\d{1,3}'?"
+#define COORDS_REGEXP @" *\\d{1,3}[º°]? ?\\d{1,2}\\.\\d{1,3}'?"
 
 /// Initialize a Coordinates object with a lat and a lon value
 - (instancetype)init:(CLLocationDegrees)_lat lon:(CLLocationDegrees)_lon       // -34.02787 151.07357

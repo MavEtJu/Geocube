@@ -134,7 +134,7 @@ typedef sqlite3_int64 NSId;
 #define NEEDS_OVERLOADING_NSRANGE(__name__) \
     (NSRange) __name__ { NEEDS_OVERLOADING_ASSERT; return NSMakeRange(0, 0); }
 #define NEEDS_OVERLOADING_CLLOCATIONCOORDINATE2D(__name__) \
-    (CLLocationCoordinate2D) __name__ { NEEDS_OVERLOADING_ASSERT; return CLLocationCoordinate2DMake(0, 0); }
+    (CLLocationCoordinate2D) __name__ { NEEDS_OVERLOADING_ASSERT; return CLLocationCoordinate2DZero; }
 #define NEEDS_OVERLOADING_NSINTEGER(__name__) \
     (NSInteger) __name__ { NEEDS_OVERLOADING_ASSERT; return 0; }
 #define NEEDS_OVERLOADING_GCMAPTYPE(__name__) \

@@ -29,7 +29,7 @@
 - (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray<NSString *> *)wps logs:(NSInteger)numlogs infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (GCDictionaryGCA2 *)api_services_caches_search_nearest:(CLLocationCoordinate2D)coords infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (GCDictionaryGCA2 *)api_services_search_bbox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
-- (GCDictionaryGCA2 *)api_services_logs_submit:(dbWaypoint *)wp logtype:(NSString *)logtype comment:(NSString *)comment when:(NSString *)dateLogged rating:(NSInteger)rating recommended:(BOOL)recommended infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
+- (GCDictionaryGCA2 *)api_services_logs_submit:(dbWaypoint *)wp logtype:(NSString *)logtype comment:(NSString *)comment when:(NSString *)dateLogged rating:(NSInteger)rating recommended:(BOOL)recommended coordinates:(CLLocationCoordinate2D)coordinates infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (GCDictionaryGCA2 *)api_services_logs_images_add:(NSNumber *)logid data:(NSData *)imgdata caption:(NSString *)imageCaption description:(NSString *)imageDescription infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (GCDictionaryGCA2 *)api_services_caches_query_list:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (GCDictionaryGCA2 *)api_services_caches_query_geocaches:(NSString *)queryId infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;

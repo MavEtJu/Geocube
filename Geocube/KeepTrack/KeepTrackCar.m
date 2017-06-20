@@ -110,7 +110,7 @@ enum {
 
     NSId wpid = [dbWaypoint dbGetByName:@"MYCAR"];
     if (wpid == 0)
-        coordsRecordedLocation = CLLocationCoordinate2DMake(0, 0);
+        coordsRecordedLocation = CLLocationCoordinate2DZero;
     else {
         dbWaypoint *waypoint = [dbWaypoint dbGet:wpid];
         coordsRecordedLocation = waypoint.coordinates;
@@ -266,7 +266,7 @@ enum {
             [self remember];
             return;
         case menuClearCoordinates:
-            coordsRecordedLocation = CLLocationCoordinate2DMake(0, 0);
+            coordsRecordedLocation = CLLocationCoordinate2DZero;
             [self updateLocationManagerLocation];
             NSId wpid = [dbWaypoint dbGetByName:@"MYCAR"];
             dbWaypoint *wp = [dbWaypoint dbGet:wpid];

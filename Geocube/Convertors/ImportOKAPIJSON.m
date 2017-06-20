@@ -362,7 +362,7 @@
     if (found == YES)
         return;
 
-    dbLog *l = [[dbLog alloc] init:0 gc_id:0 waypoint_id:wp._id logstring_id:ls._id datetime:date logger_id:name._id log:comment needstobelogged:NO locallog:NO];
+    dbLog *l = [[dbLog alloc] init:0 gc_id:0 waypoint_id:wp._id logstring_id:ls._id datetime:date logger_id:name._id log:comment needstobelogged:NO locallog:NO coordinates:CLLocationCoordinate2DZero];
     [l dbCreate];
     newLogsCount++;
     [infoViewer setLogsNew:iiImport new:newLogsCount];

@@ -342,7 +342,7 @@
     return [self performURLRequest:req infoViewer:iv iiDownload:iid];
 }
 
-- (GCDictionaryGCA2 *)api_services_logs_submit:(dbWaypoint *)wp logtype:(NSString *)logtype comment:(NSString *)comment when:(NSString *)dateLogged rating:(NSInteger)rating recommended:(BOOL)recommended infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (GCDictionaryGCA2 *)api_services_logs_submit:(dbWaypoint *)wp logtype:(NSString *)logtype comment:(NSString *)comment when:(NSString *)dateLogged rating:(NSInteger)rating recommended:(BOOL)recommended coordinates:(CLLocationCoordinate2D)coordinates infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     NSLog(@"api_services_logs_submit:%@", wp.wpt_name);
 
@@ -354,6 +354,8 @@
     [ps appendFormat:@"&logtype=%@", [MyTools urlEncode:logtype]];
     [ps appendFormat:@"&comment=%@", [MyTools urlEncode:comment]];
     [ps appendFormat:@"&when=%@", [MyTools urlEncode:dateLogged]];
+    if (coordinates.latitude != 0 && coordinates.longitude != 0)
+        [ps appendFormat:@"&coordinates=%@", [MyTools urlEncode:[NSString stringWithFormat:@"%f %f", coordinates.latitude, coordinates.latitude]]];
 
     NSString *urlString = [self prepareURLString:@"/logs/submit" params:nil];
     NSURL *url = [NSURL URLWithString:urlString];

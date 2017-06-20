@@ -41,7 +41,7 @@
     self.currentWaypoints = nil;
     self.currentWaypoint = nil;
     needsRefresh = NO;
-    lastCoordinates = CLLocationCoordinate2DMake(0, 0);
+    lastCoordinates = CLLocationCoordinate2DZero;
 
     if ([configManager.currentWaypoint isEqualToString:@""] == NO)
         self.currentWaypoint = [dbWaypoint dbGet:[dbWaypoint dbGetByName:configManager.currentWaypoint]];
