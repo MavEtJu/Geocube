@@ -639,6 +639,12 @@
     @"update logs set lat = '', lon = '', lat_int = 0, lon_int = 0",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 50
+    a = @[
+    @"insert into config(key, value) values('url_versions', 'https://geocube.mavetju.org/geocube_versions.geocube')"
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

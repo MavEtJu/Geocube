@@ -17,7 +17,8 @@ insert into config(key, value) values("url_pins", "https://geocube.mavetju.org/g
 insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.org/geocube_bookmarks.3.geocube");
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.3.geocube");
 insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.3.geocube");
-insert into config(key, value) values("version", "49");
+insert into config(key, value) values("url_versions", "https://geocube.mavetju.org/geocube_versions.geocube");
+insert into config(key, value) values("version", "50");
 
 create table filters (
     id integer primary key,

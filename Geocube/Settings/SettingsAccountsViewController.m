@@ -300,16 +300,20 @@ enum {
     [bezelManager showBezel:self];
     BOOL needsFullReload = ([[dbc Accounts] count] == 0);
 
-    [self downloadFile:@"url_sites" header:@"site information" revision:KEY_REVISION_SITES];
-    [self downloadFile:@"url_externalmaps" header:@"external maps" revision:KEY_REVISION_EXTERNALMAPS];
-    [self downloadFile:@"url_attributes" header:@"attributes" revision:KEY_REVISION_ATTRIBUTES];
-    [self downloadFile:@"url_countries" header:@"countries" revision:KEY_REVISION_COUNTRIES];
-    [self downloadFile:@"url_states" header:@"states" revision:KEY_REVISION_STATES];
-    [self downloadFile:@"url_types" header:@"types" revision:KEY_REVISION_TYPES];
-    [self downloadFile:@"url_pins" header:@"pins" revision:KEY_REVISION_PINS];
-    [self downloadFile:@"url_bookmarks" header:@"bookmarks" revision:KEY_REVISION_BOOKMARKS];
-    [self downloadFile:@"url_containers" header:@"containers" revision:KEY_REVISION_CONTAINERS];
-    [self downloadFile:@"url_logstrings" header:@"log strings" revision:KEY_REVISION_LOGSTRINGS];
+    NSMutableDictionary *versions = [NSMutableDictionary dictionaryWithCapacity:20];
+    [self downloadVersions:versions];
+    if ([versions count] != 0) {
+        [self downloadFile:versions url:@"url_sites" header:@"site information" revision:KEY_REVISION_SITES];
+        [self downloadFile:versions url:@"url_externalmaps" header:@"external maps" revision:KEY_REVISION_EXTERNALMAPS];
+        [self downloadFile:versions url:@"url_attributes" header:@"attributes" revision:KEY_REVISION_ATTRIBUTES];
+        [self downloadFile:versions url:@"url_countries" header:@"countries" revision:KEY_REVISION_COUNTRIES];
+        [self downloadFile:versions url:@"url_states" header:@"states" revision:KEY_REVISION_STATES];
+        [self downloadFile:versions url:@"url_types" header:@"types" revision:KEY_REVISION_TYPES];
+        [self downloadFile:versions url:@"url_pins" header:@"pins" revision:KEY_REVISION_PINS];
+        [self downloadFile:versions url:@"url_bookmarks" header:@"bookmarks" revision:KEY_REVISION_BOOKMARKS];
+        [self downloadFile:versions url:@"url_containers" header:@"containers" revision:KEY_REVISION_CONTAINERS];
+        [self downloadFile:versions url:@"url_logstrings" header:@"log strings" revision:KEY_REVISION_LOGSTRINGS];
+    }
 
     [bezelManager removeBezel];
 
@@ -323,8 +327,55 @@ enum {
     [MHTabBarController enableMenus:YES controllerFrom:self];
 }
 
-- (void)downloadFile:(NSString *)key_url header:(NSString *)header revision:(NSString *)key_revision
+- (void)downloadVersions:(NSMutableDictionary *)versions
 {
+    [bezelManager setText:@"Downloading versions"];
+
+    NSURL *url = [NSURL URLWithString:[[dbConfig dbGetByKey:@"url_versions"] value]];
+
+    GCURLRequest *urlRequest = [GCURLRequest requestWithURL:url];
+    NSHTTPURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error infoViewer:nil iiDownload:0];
+
+    if (error == nil && response.statusCode == 200) {
+        NSLog(@"%@: Downloaded %@ (%ld bytes)", [self class], url, (unsigned long)[data length]);
+        NSDictionary *xml = [XMLReader dictionaryForXMLData:data error:&error];
+        [[xml objectForKey:@"geocube_versions"] enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSDictionary * _Nonnull obj, BOOL * _Nonnull stop) {
+            if ([obj isKindOfClass:[NSDictionary class]] == NO)
+                return;
+            NSString *revision = [obj objectForKey:@"revision"];
+            [versions setObject:revision forKey:key];
+        }];
+    } else {
+        NSLog(@"%@: Failed! %@", [self class], error);
+
+        NSString *err;
+        if (error != nil) {
+            err = error.description;
+        } else {
+            err = [NSString stringWithFormat:@"HTTP status %ld", (long)response.statusCode];
+        }
+
+        [MyTools messageBox:self header:@"Versions" text:[NSString stringWithFormat:@"Failed to download: %@", err]];
+    }
+}
+
+- (void)downloadFile:(NSDictionary *)versions url:(NSString *)key_url header:(NSString *)header revision:(NSString *)key_revision
+{
+    __block NSInteger versionFound = 0;
+    dbConfig *c = [dbConfig dbGetByKey:key_url];
+    [versions enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull value, BOOL * _Nonnull stop) {
+        if ([c.value containsString:key] == YES) {
+            versionFound = [value integerValue];
+            *stop = YES;
+        }
+    }];
+
+    c = [dbConfig dbGetByKey:key_revision];
+    if (c != nil && [[c value] integerValue] == versionFound)
+        return;
+
     [bezelManager setText:[NSString stringWithFormat:@"Downloading %@", header]];
 
     NSURL *url = [NSURL URLWithString:[[dbConfig dbGetByKey:key_url] value]];
