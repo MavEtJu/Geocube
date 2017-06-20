@@ -9,6 +9,8 @@ Version 1.4(x)
   - Logs with coordinates can now be mapped. This is most likely
     only for moveables and locationless caches.
   - GCA: Logs now can contain coordinates.
+  - When downloading configuration only the changed parts are
+    downloaded instead of everything.
 
   Fixes:
   - Made the UI for a waypoint more sane with regards to "what is
