@@ -83,6 +83,7 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
 - (BOOL)supportsLogging;
 - (BOOL)supportsLoggingFavouritePoint;
 - (BOOL)supportsLoggingPhotos;
+- (BOOL)supportsLoggingCoordinates;
 - (BOOL)supportsLoggingRating;
 - (NSRange)supportsLoggingRatingRange;
 
