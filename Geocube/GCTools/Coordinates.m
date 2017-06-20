@@ -399,10 +399,10 @@
     top = MAX(c1.longitude, c2.longitude);
     bottom = MIN(c1.longitude, c2.longitude);
 
-    d1->latitude = left - (right - left) * boundaryPercentage / 100.0;
-    d2->latitude = right + (right - left) * boundaryPercentage / 100.0;
-    d1->longitude = top + (top - bottom) * boundaryPercentage / 100.0;
-    d2->longitude = bottom - (top - bottom) * boundaryPercentage / 100.0;
+    d1->latitude =  MIN( 180, left - (right - left) * boundaryPercentage / 100.0);
+    d2->latitude =  MAX(-180, right + (right - left) * boundaryPercentage / 100.0);
+    d1->longitude = MIN( 180, top + (top - bottom) * boundaryPercentage / 100.0);
+    d2->longitude = MAX(-180, bottom - (top - bottom) * boundaryPercentage / 100.0);
 }
 
 /// Search for something which looks like a coordinate string
