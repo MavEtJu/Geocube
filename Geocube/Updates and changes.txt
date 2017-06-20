@@ -17,6 +17,8 @@ Version 1.4(x)
     disabled and what is not".
   - Checkers for input of coordinates don't complain about trailing
     's anymore.
+  - Fix waypoint info vertical position after having submitted the
+    logs of a waypoint.
 
 Version 1.3(26)
 

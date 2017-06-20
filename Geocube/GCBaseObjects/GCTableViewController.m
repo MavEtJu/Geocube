@@ -118,6 +118,7 @@
         [b addTarget:self action:@selector(closePage:) forControlEvents:UIControlEventTouchDown];
         closeButton = b;
     }
+    [infoView show:verticalContentOffset];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
@@ -134,8 +135,7 @@
 
 - (void)viewWillTransitionToSize
 {
-    if (infoView != nil)
-        [infoView viewWillTransitionToSize];
+    [infoView viewWillTransitionToSize];
     // Dummy for this class
 }
 
@@ -191,15 +191,7 @@
         [self.view bringSubviewToFront:closeButton];
     }
 
-    if (infoView != nil) {
-        CGRect frame = infoView.frame;
-        CGRect bounds = self.view.superview.frame;
-
-        frame.origin.y = scrollView.contentOffset.y + bounds.size.height - frame.size.height;
-        infoView.frame = frame;
-
-        [self.view bringSubviewToFront:infoView];
-    }
+    [infoView show:verticalContentOffset];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
