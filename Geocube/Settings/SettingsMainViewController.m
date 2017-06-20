@@ -241,7 +241,6 @@ enum sections {
     SECTION_LISTS,
     SECTION_ACCOUNTS,
     SECTION_LOCATIONLESS,
-    SECTION_GPSADJUSTMENT,
     SECTION_MAX,
 
     SECTION_DISTANCE_METRIC = 0,
@@ -330,11 +329,6 @@ enum sections {
     SECTION_LOCATIONLESS_SORTBY = 0,
     SECTION_LOCATIONLESS_SHOWFOUND,
     SECTION_LOCATIONLESS_MAX,
-
-    SECTION_GPSADJUSTMENT_ENABLE = 0,
-    SECTION_GPSADJUSTMENT_LATITUDE,
-    SECTION_GPSADJUSTMENT_LONGITUDE,
-    SECTION_GPSADJUSTMENT_MAX,
 };
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -366,7 +360,6 @@ enum sections {
         SECTION_MAX(LISTS);
         SECTION_MAX(ACCOUNTS);
         SECTION_MAX(LOCATIONLESS);
-        SECTION_MAX(GPSADJUSTMENT);
         default:
             NSAssert1(0, @"Unknown section %ld", (long)section);
     }
@@ -412,8 +405,6 @@ enum sections {
             return @"Accounts";
         case SECTION_LOCATIONLESS:
             return @"Locationless";
-        case SECTION_GPSADJUSTMENT:
-            return @"GPS Adjustments";
         default:
             NSAssert1(0, @"Unknown section %ld", (long)section);
     }
@@ -928,41 +919,10 @@ enum sections {
             }
         }
 
-        case SECTION_GPSADJUSTMENT: {
-            switch (indexPath.row) {
-                case SECTION_GPSADJUSTMENT_ENABLE: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"GPS Adjustment enable";
-                    cell.optionSwitch.on = configManager.gpsAdjustmentEnable;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateGPSAdjustmentEnable:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
-                case SECTION_GPSADJUSTMENT_LATITUDE: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"GPS Adjustment for latitude";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld mm", (long)configManager.gpsAdjustmentLatitude];
-                    return cell;
-                }
-                case SECTION_GPSADJUSTMENT_LONGITUDE: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"GPS Adjustment for longitude";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld mm", (long)configManager.gpsAdjustmentLongitude];
-                    return cell;
-                }
-            }
-            break;
-        }
-
     }
 
     // Not reached
     abort();
-}
-
-- (void)updateGPSAdjustmentEnable:(GCSwitch *)s
-{
-    [configManager gpsAdjustmentEnableUpdate:s.on];
 }
 
 - (void)updateAccountKeepUsername:(GCSwitch *)s
@@ -1196,65 +1156,7 @@ enum sections {
                     break;
             }
             return;
-
-        case SECTION_GPSADJUSTMENT:
-            switch (indexPath.row) {
-                case SECTION_GPSADJUSTMENT_LATITUDE:
-                    [self changeGPSAdjustmentLatLon:YES];
-                    break;
-
-                case SECTION_GPSADJUSTMENT_LONGITUDE:
-                    [self changeGPSAdjustmentLatLon:NO];
-                    break;
-            }
-            return;
     }
-}
-
-/* ********************************************************************************* */
-
-- (void)changeGPSAdjustmentLatLon:(BOOL)isLatitude
-{
-    NSString *message;
-
-    if (isLatitude == YES)
-        message = @"Adjust latitude by";
-    else
-        message = @"Adjust longitude by";
-    UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:message
-                                message:@"Please enter the adjustment in millimeters"
-                                preferredStyle:UIAlertControllerStyleAlert];
-
-    UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction *action) {
-                             //Do Some action
-                             UITextField *tf = [alert.textFields objectAtIndex:0];
-                             NSString *value = tf.text;
-                             if (isLatitude == YES)
-                                 [configManager gpsAdjustmentLatitudeUpdate:[value integerValue]];
-                             else
-                                 [configManager gpsAdjustmentLongitudeUpdate:[value integerValue]];
-                             [self.tableView reloadData];
-                         }];
-
-    UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action) {
-                                 [alert dismissViewControllerAnimated:YES completion:nil];
-                             }];
-
-    [alert addAction:ok];
-    [alert addAction:cancel];
-
-    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = [NSString stringWithFormat:@"%ld", (long)(isLatitude == YES ? configManager.gpsAdjustmentLatitude : configManager.gpsAdjustmentLongitude)];
-        textField.placeholder = @"Distance in mm";
-    }];
-
-    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 /* ********************************************************************************* */

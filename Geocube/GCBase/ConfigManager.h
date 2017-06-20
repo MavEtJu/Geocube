@@ -179,9 +179,6 @@
 - (void)listSortByUpdate:(NSInteger)value;
 - (void)accountsSaveAuthenticationNameUpdate:(BOOL)value;
 - (void)accountsSaveAuthenticationPasswordUpdate:(BOOL)value;
-- (void)gpsAdjustmentEnableUpdate:(BOOL)value;
-- (void)gpsAdjustmentLongitudeUpdate:(NSInteger)value;
-- (void)gpsAdjustmentLatitudeUpdate:(NSInteger)value;
 - (void)introSeenUpdate:(BOOL)value;
 - (void)logTemporaryTextUpdate:(NSString *)value;
 - (void)locationlessShowFoundUpdate:(BOOL)value;

@@ -94,7 +94,6 @@ typedef NS_ENUM(NSInteger, LogStatus) {
 @property (nonatomic) NSInteger calculatedDistance;
 @property (nonatomic) NSInteger calculatedBearing;
 @property (nonatomic) CLLocationCoordinate2D coordinates;
-@property (nonatomic) CLLocationCoordinate2D coordinatesUncorrected;
 
 - (instancetype)init:(NSId)_id;
 - (NSInteger)hasFieldNotes;

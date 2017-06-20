@@ -129,10 +129,6 @@
     CHECK(@"accounts_save_authenticationname", @"1");
     CHECK(@"accounts_save_authenticationpassword", @"0");
 
-    CHECK(@"gpsadjustment_enable", @"0");
-    CHECK(@"gpsadjustment_latitude", @"0");
-    CHECK(@"gpsadjustment_longitude", @"0");
-
     CHECK(@"intro_seen", @"0");
 
     CHECK(@"log_temporary_text", @"");
@@ -203,9 +199,6 @@
     self.listSortBy = [[dbConfig dbGetByKey:@"list_sortby"].value integerValue];
     self.accountsSaveAuthenticationName = [[dbConfig dbGetByKey:@"accounts_save_authenticationname"].value boolValue];
     self.accountsSaveAuthenticationPassword = [[dbConfig dbGetByKey:@"accounts_save_authenticationpassword"].value boolValue];
-    self.gpsAdjustmentEnable = [[dbConfig dbGetByKey:@"gpsadjustment_enable"].value boolValue];
-    self.gpsAdjustmentLongitude = [[dbConfig dbGetByKey:@"gpsadjustment_longitude"].value integerValue];
-    self.gpsAdjustmentLatitude = [[dbConfig dbGetByKey:@"gpsadjustment_latitude"].value integerValue];
     self.introSeen = [[dbConfig dbGetByKey:@"intro_seen"].value boolValue];
     self.logTemporaryText = [dbConfig dbGetByKey:@"log_temporary_text"].value;
     self.locationlessShowFound = [[dbConfig dbGetByKey:@"locationless_showfound"].value boolValue];
@@ -584,22 +577,6 @@
 {
     self.accountsSaveAuthenticationPassword = value;
     [self BOOLUpdate:@"accounts_save_authenticationpassword" value:value];
-}
-
-- (void)gpsAdjustmentEnableUpdate:(BOOL)value
-{
-    self.gpsAdjustmentEnable = value;
-    [self BOOLUpdate:@"gpsadjustment_enable" value:value];
-}
-- (void)gpsAdjustmentLongitudeUpdate:(NSInteger)value
-{
-    self.gpsAdjustmentLongitude = value;
-    [self NSIntegerUpdate:@"gpsadjustment_longitude" value:value];
-}
-- (void)gpsAdjustmentLatitudeUpdate:(NSInteger)value
-{
-    self.gpsAdjustmentLatitude = value;
-    [self NSIntegerUpdate:@"gpsadjustment_latitude" value:value];
 }
 
 - (void)introSeenUpdate:(BOOL)value

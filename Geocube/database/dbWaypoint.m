@@ -81,7 +81,6 @@
     self.gca_locale_str = nil;
 
     self.coordinates = CLLocationCoordinate2DZero;
-    self.coordinatesUncorrected = CLLocationCoordinate2DZero;
     self.calculatedDistance = 0;
     self.logStatus = LOGSTATUS_NOTLOGGED;
     self.account_id = 0;
