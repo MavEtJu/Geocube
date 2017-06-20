@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapLocationlessViewController : MapTemplateViewController
+@interface MapLogsViewController : MapTemplateViewController
+
+- (void)showLogLocations:(dbWaypoint *)wp;
 
 @end

@@ -33,6 +33,7 @@
 @implementation WaypointLogsViewController
 
 enum {
+    menuMapLogs,
     menuScanForWaypoints,
     menuCopyLog,
     menuDeleteLog,
@@ -50,14 +51,24 @@ enum {
     [self.tableView registerNib:[UINib nibWithNibName:XIB_LOGTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_LOGTABLEVIEWCELL];
 
     logs = [NSMutableArray arrayWithArray:[dbLog dbAllByWaypoint:waypoint._id]];
+    __block BOOL foundAnyCoordinates = NO;
+    [logs enumerateObjectsUsingBlock:^(dbLog * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (log.lat_int != 0 && log.lon_int != 0) {
+            *stop = YES;
+            foundAnyCoordinates = YES;
+        }
+    }];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
+    [lmi addItem:menuMapLogs label:@"Map Logs"];
     [lmi addItem:menuScanForWaypoints label:@"Extract Waypoints"];
     [lmi addItem:menuCopyLog label:@"Copy log to clipboard"];
     [lmi addItem:menuDeleteLog label:@"Delete log"];
     [lmi disableItem:menuScanForWaypoints];
     [lmi disableItem:menuCopyLog];
     [lmi disableItem:menuDeleteLog];
+    if (foundAnyCoordinates == NO)
+        [lmi disableItem:menuMapLogs];
 
     return self;
 }
@@ -153,6 +164,9 @@ enum {
 {
     // Import a photo
     switch (index) {
+        case menuMapLogs:
+            [self mapLogs];
+            return;
         case menuScanForWaypoints:
             [self scanForWaypoints];
             return;
@@ -165,6 +179,14 @@ enum {
     }
 
     [super performLocalMenuAction:index];
+}
+
+- (void)mapLogs
+{
+    [_AppDelegate switchController:RC_LOCATIONSLESS];
+    [locationlessMapTabController setSelectedIndex:VC_LOCATIONLESS_MAP animated:YES];
+    [locationlessMapViewController showLogLocations:waypoint];
+    return;
 }
 
 - (void)scanForWaypoints

@@ -58,6 +58,10 @@ BrowserBrowserViewController *browserViewController = nil;
 MHTabBarController *keepTrackTabController = nil;
 MapTrackViewController *keepTrackMapViewController = nil;
 
+// Locationless Map
+MHTabBarController *locationlessMapTabController;
+MapLogsViewController *locationlessMapViewController;
+
 // Download manager
 DownloadManager *downloadManager = nil;
 ImportManager *importManager = nil;

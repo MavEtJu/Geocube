@@ -274,7 +274,7 @@
 
                 VC(LocationlessListViewController, @"All");
                 VC(LocationlessPlannedViewController, @"Planned");
-                VC(MapLocationlessViewController, @"Map");
+                VC(MapLogsViewController, @"Map");
 
                 TABBARCONTROLLER(RC_QUERIES, controllers)
                 break;
@@ -305,6 +305,11 @@
     keepTrackTabController = [_AppDelegate.tabBars objectAtIndex:RC_KEEPTRACK];
     nvc = [keepTrackTabController.viewControllers objectAtIndex:VC_KEEPTRACK_MAP];
     keepTrackMapViewController = [nvc.viewControllers objectAtIndex:0];
+
+    // Locationless Map
+    locationlessMapTabController = [_AppDelegate.tabBars objectAtIndex:RC_LOCATIONSLESS];
+    nvc = [locationlessMapTabController.viewControllers objectAtIndex:VC_LOCATIONLESS_MAP];
+    locationlessMapViewController = [nvc.viewControllers objectAtIndex:0];
 
     // Download View Controller and Manager
     downloadManager = [[DownloadManager alloc] init];

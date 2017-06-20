@@ -19,11 +19,14 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapLocationlessViewController ()
+@interface MapLogsViewController ()
+{
+    dbWaypoint *waypoint;
+}
 
 @end
 
-@implementation MapLocationlessViewController
+@implementation MapLogsViewController
 
 - (instancetype)init
 {
@@ -46,14 +49,24 @@
     return self;
 }
 
-- (void)showTrack:(dbTrack *)track
+- (void)showLogLocations:(dbWaypoint *)_wp
 {
-    [self.map showTrack:track];
-}
+    waypoint = _wp;
+    NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:waypoint._id];
+    self.waypointsArray = [NSMutableArray arrayWithCapacity:[logs count]];
+    [logs enumerateObjectsUsingBlock:^(dbLog * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
+        dbWaypoint *wp = [[dbWaypoint alloc] init];
+        wp.wpt_name = [NSString stringWithFormat:@"LOG%ld", (long)log._id];
+        wp.wpt_urlname = [NSString stringWithFormat:@"%@ on %@", log.logger, log.datetime];
+        wp.coordinates = CLLocationCoordinate2DMake(log.lat_float, log.lon_float);;
+        [self.waypointsArray addObject:wp];
+    }];
 
-- (void)showTrack
-{
-    [self.map showTrack];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.map removeMarkers];
+        [self.map placeMarkers];
+        [self.map moveCameraToAll];
+    }];
 }
 
 - (void)refreshWaypointsData
@@ -64,6 +77,7 @@
 - (void)menuChangeMapbrand:(MapBrand *)mapBrand
 {
     [super menuChangeMapbrand:mapBrand];
+    [self showLogLocations:waypoint];
 }
 
 @end

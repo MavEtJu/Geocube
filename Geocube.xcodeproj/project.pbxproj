@@ -524,7 +524,7 @@
 		E83B10961EF4FC6000F2C5FA /* LocationlessListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E83B10951EF4FC6000F2C5FA /* LocationlessListViewController.m */; };
 		E83B109C1EF4FC9500F2C5FA /* LocationlessPlannedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E83B109B1EF4FC9500F2C5FA /* LocationlessPlannedViewController.m */; };
 		E83B109F1EF4FCCC00F2C5FA /* LocationlessTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E83B109E1EF4FCCC00F2C5FA /* LocationlessTableViewCell.m */; };
-		E83B10A21EF4FDDD00F2C5FA /* MapLocationlessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E83B10A11EF4FDDD00F2C5FA /* MapLocationlessViewController.m */; };
+		E83B10A21EF4FDDD00F2C5FA /* MapLogsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E83B10A11EF4FDDD00F2C5FA /* MapLogsViewController.m */; };
 		E83B10A51EF4FDFA00F2C5FA /* LocationlessTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E83B10A41EF4FDFA00F2C5FA /* LocationlessTemplateViewController.m */; };
 		E83C205C1E2F0695006C523E /* LogTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C205B1E2F0695006C523E /* LogTableViewCell.xib */; };
 		E83C6EEB1EECE1CB00E303F5 /* BezelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C6EE01EECE1CB00E303F5 /* BezelManager.m */; };
@@ -1512,8 +1512,8 @@
 		E83B109B1EF4FC9500F2C5FA /* LocationlessPlannedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationlessPlannedViewController.m; path = Locationless/LocationlessPlannedViewController.m; sourceTree = "<group>"; };
 		E83B109D1EF4FCCC00F2C5FA /* LocationlessTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationlessTableViewCell.h; path = Locationless/LocationlessTableViewCell.h; sourceTree = "<group>"; };
 		E83B109E1EF4FCCC00F2C5FA /* LocationlessTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationlessTableViewCell.m; path = Locationless/LocationlessTableViewCell.m; sourceTree = "<group>"; };
-		E83B10A01EF4FDDD00F2C5FA /* MapLocationlessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapLocationlessViewController.h; path = Locationless/MapLocationlessViewController.h; sourceTree = "<group>"; };
-		E83B10A11EF4FDDD00F2C5FA /* MapLocationlessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapLocationlessViewController.m; path = Locationless/MapLocationlessViewController.m; sourceTree = "<group>"; };
+		E83B10A01EF4FDDD00F2C5FA /* MapLogsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapLogsViewController.h; path = Locationless/MapLogsViewController.h; sourceTree = "<group>"; };
+		E83B10A11EF4FDDD00F2C5FA /* MapLogsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapLogsViewController.m; path = Locationless/MapLogsViewController.m; sourceTree = "<group>"; };
 		E83B10A31EF4FDFA00F2C5FA /* LocationlessTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationlessTemplateViewController.h; path = Locationless/LocationlessTemplateViewController.h; sourceTree = "<group>"; };
 		E83B10A41EF4FDFA00F2C5FA /* LocationlessTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationlessTemplateViewController.m; path = Locationless/LocationlessTemplateViewController.m; sourceTree = "<group>"; };
 		E83C205B1E2F0695006C523E /* LogTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogTableViewCell.xib; sourceTree = "<group>"; };
@@ -1990,8 +1990,6 @@
 				E83B109E1EF4FCCC00F2C5FA /* LocationlessTableViewCell.m */,
 				E86D42731EF5484E00E4509F /* LocationlessTableViewCell.xib */,
 				E86D42741EF5484E00E4509F /* LocationlessTableViewCell~ipad.xib */,
-				E83B10A01EF4FDDD00F2C5FA /* MapLocationlessViewController.h */,
-				E83B10A11EF4FDDD00F2C5FA /* MapLocationlessViewController.m */,
 			);
 			name = Locationless;
 			sourceTree = "<group>";
@@ -2243,6 +2241,8 @@
 				E823437F1EECDB9B00D2CDFD /* MapOneWPViewController.m */,
 				E82343821EECDB9B00D2CDFD /* MapTrackViewController.h */,
 				E82343831EECDB9B00D2CDFD /* MapTrackViewController.m */,
+				E83B10A01EF4FDDD00F2C5FA /* MapLogsViewController.h */,
+				E83B10A11EF4FDDD00F2C5FA /* MapLogsViewController.m */,
 				E823437C1EECDB9B00D2CDFD /* MapBrand.h */,
 				E823437D1EECDB9B00D2CDFD /* MapBrand.m */,
 			);
@@ -4334,7 +4334,7 @@
 				E82343AB1EECDDD400D2CDFD /* GCGMSCircle.m in Sources */,
 				E82341E01EECCE9C00D2CDFD /* CCHCenterOfMassMapClusterer.m in Sources */,
 				E82343881EECDB9B00D2CDFD /* MapTrackViewController.m in Sources */,
-				E83B10A21EF4FDDD00F2C5FA /* MapLocationlessViewController.m in Sources */,
+				E83B10A21EF4FDDD00F2C5FA /* MapLogsViewController.m in Sources */,
 				E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */,
 				E82342AF1EECD0B100D2CDFD /* dbAccount.m in Sources */,
 				E82343991EECDBCF00D2CDFD /* MapAppleTemplate.m in Sources */,

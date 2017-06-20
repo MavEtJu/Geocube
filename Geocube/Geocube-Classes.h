@@ -144,6 +144,7 @@
 @class MapESRIWorldTopo;
 @class MapGoogle;
 @class MapLocationlessViewController;
+@class MapLogsViewController;
 @class MapOSM;
 @class MapOneWPViewController;
 @class MapTemplate;

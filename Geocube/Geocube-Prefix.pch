@@ -291,7 +291,7 @@
 #import "MapAllWPViewController.h"
 #import "MapOneWPViewController.h"
 #import "MapTrackViewController.h"
-#import "MapLocationlessViewController.h"
+#import "MapLogsViewController.h"
 #import "MapTemplate.h"
 #import "MapApple.h"
 #import "MapGoogle.h"
@@ -302,7 +302,7 @@
 
 #import "LocationlessTemplateViewController.h"
 #import "LocationlessListViewController.h"
-#import "MapLocationlessViewController.h"
+#import "MapLogsViewController.h"
 #import "LocationlessPlannedViewController.h"
 #import "LocationlessTableViewCell.h"
 

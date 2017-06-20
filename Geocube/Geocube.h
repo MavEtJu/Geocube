@@ -61,6 +61,10 @@ extern BrowserBrowserViewController *browserViewController;
 extern MHTabBarController *keepTrackTabController;
 extern MapTrackViewController *keepTrackMapViewController;
 
+// Locationless Map
+extern MHTabBarController *locationlessMapTabController;
+extern MapLogsViewController *locationlessMapViewController;
+
 // Download and Import manager
 extern DownloadManager *downloadManager;
 extern ImportManager *importManager;
