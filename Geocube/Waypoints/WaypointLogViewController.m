@@ -32,7 +32,10 @@
     NSString *imageLongText;
 
     NSMutableArray<dbTrackable *> *trackables;
+    UIAlertAction *coordsOkButton;
+    UITextField *coordsLatitude, *coordsLongitude;
 
+    CLLocationCoordinate2D coordinates;
     NSInteger ratingSelected;
     BOOL fp, upload;
 }
@@ -56,6 +59,7 @@ enum {
     SECTION_EXTRADETAILS_FAVOURITE,
     SECTION_EXTRADETAILS_RATING,
     SECTION_EXTRADETAILS_TRACKABLE,
+    SECTION_EXTRADETAILS_COORDINATES,
     SECTION_EXTRADETAILS_MAX,
 
     SECTION_SUBMIT_UPLOAD = 0,
@@ -233,8 +237,7 @@ enum {
                     break;
                 }
 
-                case SECTION_EXTRADETAILS_TRACKABLE:
-                    cell = nil;
+                case SECTION_EXTRADETAILS_TRACKABLE: {
                     GCTableViewCellWithSubtitle *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
                     c.textLabel.text = @"Trackables";
                     if ([waypoint.account.remoteAPI supportsTrackables] == NO) {
@@ -275,6 +278,25 @@ enum {
                     }
                     cell = c;
                     break;
+                }
+
+                case SECTION_EXTRADETAILS_COORDINATES: {
+                    GCTableViewCellWithSubtitle *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
+                    c.textLabel.text = @"Coordinates";
+                    if ([waypoint.account.remoteAPI supportsLoggingCoordinates] == NO) {
+                        c.userInteractionEnabled = NO;
+                        c.textLabel.textColor = currentTheme.labelTextColorDisabled;
+                    } else {
+                        if (coordinates.latitude == 0 && coordinates.longitude == 0)
+                            c.detailTextLabel.text = @"(None set)";
+                        else
+                            c.detailTextLabel.text = [Coordinates NiceCoordinates:coordinates];
+                    }
+
+                    cell = c;
+                    break;
+                }
+
             }
             break;
         }
@@ -355,6 +377,9 @@ enum {
                 case SECTION_EXTRADETAILS_RATING:
                     [self changeRating];
                     break;
+                case SECTION_EXTRADETAILS_COORDINATES:
+                    [self changeCoordinates];
+                    break;
             }
             break;
         }
@@ -398,6 +423,78 @@ enum {
         origin:cell.contentView
     ];
 }
+
+- (void)changeCoordinates
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Update coordinates"
+                                message:@"Please enter the coordinates"
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    coordsOkButton = [UIAlertAction
+                      actionWithTitle:@"OK"
+                      style:UIAlertActionStyleDefault
+                      handler:^(UIAlertAction *action) {
+                          //Do Some action
+                          UITextField *tf = [alert.textFields objectAtIndex:0];
+                          NSString *lat = tf.text;
+                          NSLog(@"Latitude '%@'", lat);
+
+                          tf = [alert.textFields objectAtIndex:1];
+                          NSString *lon = tf.text;
+                          NSLog(@"Longitude '%@'", lon);
+
+                          Coordinates *c;
+                          c = [[Coordinates alloc] initString:lat lon:lon];
+                          coordinates.latitude = c.lat;
+                          coordinates.longitude = c.lon;
+
+                          [self.tableView reloadData];
+                      }];
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:coordsOkButton];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = [Coordinates NiceLatitudeForEditing:coordinates.latitude];
+        textField.placeholder = @"Latitude (like S 12 34.567)";
+        textField.keyboardType = UIKeyboardTypeDecimalPad;
+        textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:YES];
+        [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+        coordsLatitude = textField;
+    }];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = [Coordinates NiceLongitudeForEditing:coordinates.longitude];
+        textField.placeholder = @"Longitude (like E 23 45.678)";
+        textField.keyboardType = UIKeyboardTypeDecimalPad;
+        textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:NO];
+        [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+        coordsLongitude = textField;
+    }];
+
+    if ([Coordinates checkCoordinate:coordsLatitude.text] == YES &&
+        [Coordinates checkCoordinate:coordsLongitude.text] == YES)
+        coordsOkButton.enabled = YES;
+    else
+        coordsOkButton.enabled = NO;
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)alertControllerTextFieldDidChange:(UITextField *)sender
+{
+    if ([Coordinates checkCoordinate:coordsLatitude.text] == YES &&
+        [Coordinates checkCoordinate:coordsLongitude.text] == YES)
+        coordsOkButton.enabled = YES;
+    else
+        coordsOkButton.enabled = NO;
+}
+
 
 - (void)changeDate
 {
