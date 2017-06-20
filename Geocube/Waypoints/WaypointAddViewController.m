@@ -24,6 +24,9 @@
     NSString *code;
     NSString *name;
     CLLocationCoordinate2D coords;
+    UIAlertAction *coordsOkButton;
+    UITextField *coordsLatitude;
+    UITextField *coordsLongitude;
 }
 
 @end
@@ -209,33 +212,33 @@ enum {
                                 message:@"Please enter the coordinates"
                                 preferredStyle:UIAlertControllerStyleAlert];
 
-    UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction *action) {
-                             //Do Some action
-                             UITextField *tf = [alert.textFields objectAtIndex:0];
-                             NSString *lat = tf.text;
-                             NSLog(@"Latitude '%@'", lat);
+    coordsOkButton = [UIAlertAction
+                      actionWithTitle:@"OK"
+                      style:UIAlertActionStyleDefault
+                      handler:^(UIAlertAction *action) {
+                          //Do Some action
+                          UITextField *tf = [alert.textFields objectAtIndex:0];
+                          NSString *lat = tf.text;
+                          NSLog(@"Latitude '%@'", lat);
 
-                             tf = [alert.textFields objectAtIndex:1];
-                             NSString *lon = tf.text;
-                             NSLog(@"Longitude '%@'", lon);
+                          tf = [alert.textFields objectAtIndex:1];
+                          NSString *lon = tf.text;
+                          NSLog(@"Longitude '%@'", lon);
 
-                             Coordinates *c;
-                             c = [[Coordinates alloc] initString:lat lon:lon];
-                             coords.latitude = c.lat;
-                             coords.longitude = c.lon;
+                          Coordinates *c;
+                          c = [[Coordinates alloc] initString:lat lon:lon];
+                          coords.latitude = c.lat;
+                          coords.longitude = c.lon;
 
-                             [self.tableView reloadData];
-                         }];
+                          [self.tableView reloadData];
+                      }];
     UIAlertAction *cancel = [UIAlertAction
                              actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
 
-    [alert addAction:ok];
+    [alert addAction:coordsOkButton];
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
@@ -243,19 +246,28 @@ enum {
         textField.placeholder = @"Latitude (like S 12 34.567)";
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:YES];
+        [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+        coordsLatitude = textField;
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.text = [Coordinates NiceLongitudeForEditing:coords.longitude];
         textField.placeholder = @"Longitude (like E 23 45.678)";
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:NO];
+        [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+        coordsLongitude = textField;
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)editingChanged:(UITextField *)tf
+- (void)alertControllerTextFieldDidChange:(UITextField *)tf
 {
+    if ([Coordinates checkCoordinate:coordsLatitude.text] == YES &&
+        [Coordinates checkCoordinate:coordsLongitude.text] == YES)
+        coordsOkButton.enabled = YES;
+    else
+        coordsOkButton.enabled = NO;
 }
 
 - (void)updateSubmit
