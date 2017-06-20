@@ -28,6 +28,8 @@
 
 @implementation Coordinates
 
+#define COORDS_REGEXP @" +\\d{1,3}[º°]? ?\\d{1,2}\\.\\d{1,3}'?"
+
 /// Initialize a Coordinates object with a lat and a lon value
 - (instancetype)init:(CLLocationDegrees)_lat lon:(CLLocationDegrees)_lon       // -34.02787 151.07357
 {
@@ -410,14 +412,30 @@
     if (d2->longitude >  180) d2->longitude =  180;
 }
 
+/// Check if a string matches a set of coordinates like ^[NESW] \d{1,3}º? ?\d{1,2}\.\d{1,3
++ (BOOL)checkCoordinate:(NSString *)text
+{
+    // As long as it matches any of these, it is fine:
+    // ^[NESW] \d{1,3}º? ?\d{1,2}\.\d{1,3}
+
+    NSError *e = nil;
+    NSRegularExpression *r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"^[NESW]%@$", COORDS_REGEXP] options:0 error:&e];
+
+    NSRange range;
+    range = [r5 rangeOfFirstMatchInString:text options:0 range:NSMakeRange(0, [text length])];
+    if (range.location == 0) return YES;
+
+    return NO;
+}
+
 /// Search for something which looks like a coordinate string
 + (NSInteger)scanForWaypoints:(NSArray<NSString *> *)lines waypoint:(dbWaypoint *)waypoint view:(UIViewController *)vc
 {
     NSError *e = nil;
     __block NSInteger found = 0;
 
-    NSRegularExpression *rns = [NSRegularExpression regularExpressionWithPattern:@"([NSns] +\\d{1,3}[º°]? ?\\d{1,2}\\.\\d{1,3})" options:0 error:&e];
-    NSRegularExpression *rew = [NSRegularExpression regularExpressionWithPattern:@"([EWew] +\\d{1,3}[º°]? ?\\d{1,2}\\.\\d{1,3})" options:0 error:&e];
+    NSRegularExpression *rns = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([NSns]%@)", COORDS_REGEXP] options:0 error:&e];
+    NSRegularExpression *rew = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([EWew]%@)", COORDS_REGEXP] options:0 error:&e];
 
     [lines enumerateObjectsUsingBlock:^(NSString *line, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *NS = nil;

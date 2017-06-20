@@ -292,7 +292,7 @@ enum {
                         cell.textLabel.text = @"Personal Note (none yet)";
                     else {
                         NSArray<NSString *> *words = [pn.note componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                        cell.textLabel.text = [NSString stringWithFormat:@"Personal Note (%ld word%@)", [words count], [words count] == 1 ? @"" : @"s"];
+                        cell.textLabel.text = [NSString stringWithFormat:@"Personal Note (%ld word%@)", (long)[words count], [words count] == 1 ? @"" : @"s"];
                     }
                     break;
                 }

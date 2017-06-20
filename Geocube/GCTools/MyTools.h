@@ -84,7 +84,6 @@ typedef NS_ENUM(NSInteger, PlaySound) {
 + (NSString *)HTMLUnescape:(NSString *)in;
 + (NSString *)removeJSONWrapper:(NSString *)s jsonWrapper:(NSString *)jQueryCallback;
 
-+ (BOOL)checkCoordinate:(NSString *)text;
 + (NSString *)makeNewWaypoint:(NSString *)prefix;
 
 + (BOOL)hasWifiNetwork;

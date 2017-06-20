@@ -251,7 +251,6 @@ enum {
                     if (self.delegateWaypoint != nil)
                         [self.delegateWaypoint WaypointWaypoints_refreshTable];
                 }];
-    [okButton setEnabled:NO];
     UIAlertAction *cancel = [UIAlertAction
                              actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
@@ -278,13 +277,19 @@ enum {
         tfLongitude = textField;
     }];
 
+    if ([Coordinates checkCoordinate:tfLatitude.text] == YES &&
+        [Coordinates checkCoordinate:tfLongitude.text] == YES)
+        okButton.enabled = YES;
+    else
+        okButton.enabled = NO;
+
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)alertControllerTextFieldDidChange:(UITextField *)sender
 {
-    if ([MyTools checkCoordinate:tfLatitude.text] == YES &&
-        [MyTools checkCoordinate:tfLongitude.text] == YES)
+    if ([Coordinates checkCoordinate:tfLatitude.text] == YES &&
+        [Coordinates checkCoordinate:tfLongitude.text] == YES)
         okButton.enabled = YES;
     else
         okButton.enabled = NO;
