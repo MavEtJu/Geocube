@@ -286,11 +286,16 @@ enum {
                     }
                     break;
 
-                case WAYPOINT_DATA_PERSONALNOTE:
-                    cell.textLabel.text = @"Personal Note";
-                    if ([dbPersonalNote dbGetByWaypointName:waypoint.wpt_name] == nil)
-                        tc = currentTheme.labelTextColorDisabled;
+                case WAYPOINT_DATA_PERSONALNOTE: {
+                    dbPersonalNote *pn = [dbPersonalNote dbGetByWaypointName:waypoint.wpt_name];
+                    if (pn == 0)
+                        cell.textLabel.text = @"Personal Note (none yet)";
+                    else {
+                        NSArray<NSString *> *words = [pn.note componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                        cell.textLabel.text = [NSString stringWithFormat:@"Personal Note (%ld word%@)", [words count], [words count] == 1 ? @"" : @"s"];
+                    }
                     break;
+                }
 
 #define IMAGE(__idx__) \
     if ([logs count] > __idx__) { \
@@ -383,9 +388,7 @@ enum {
                     cell.textLabel.text = @"Additional Waypoints";
 
                     NSArray<dbWaypoint *> *wps = [waypoint hasWaypoints];
-                    if ([wps count] <= 1)
-                        tc = currentTheme.labelTextColorDisabled;
-                    else
+                    if ([wps count] > 1)
                         cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", cell.textLabel.text, (long)([wps count] - 1)];
                     break;
                 }
@@ -402,10 +405,9 @@ enum {
                 }
 
                 case WAYPOINT_DATA_IMAGES: {
-                    cell.textLabel.text = @"Images";
                     NSInteger c = [waypoint hasImages];
                     if (c == 0)
-                        tc = currentTheme.labelTextColorDisabled;
+                        cell.textLabel.text = @"Images (none)";
                     else
                         cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)",cell.textLabel.text, (long)c];
                     break;
