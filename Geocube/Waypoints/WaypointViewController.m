@@ -409,7 +409,7 @@ enum {
                     if (c == 0)
                         cell.textLabel.text = @"Images (none)";
                     else
-                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)",cell.textLabel.text, (long)c];
+                        cell.textLabel.text = [NSString stringWithFormat:@"Images (%ld)", (long)c];
                     break;
                 }
 
