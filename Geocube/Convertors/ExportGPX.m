@@ -183,6 +183,8 @@
                 LINE_S(@"groundspeak:type", log.logstring_string);
                 LINE_S(@"groundspeak:finder", log.logger_str);
                 LINE_S(@"groundspeak:text", [MyTools HTMLEscape:log.log]);
+                if (log.lat_float != 0 && log.lon_float != 0)
+                    [lines addObject:[NSString stringWithFormat:@"<groundspeak:log_wpt lat=\"%f\" lon=\"%f\" />", log.lat_float, log.lat_float]];
                 [lines addObject:@"</groundspeak:log>"];
             }];
             [lines addObject:@"</groundspeak:logs>"];
