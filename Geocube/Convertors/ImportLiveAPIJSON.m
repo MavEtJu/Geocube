@@ -200,12 +200,10 @@
     DICT_NSSTRING_KEY(dict, wp.wpt_urlname, @"Name");
 
     DICT_FLOAT_KEY(dict, wp.wpt_lat_float, @"Latitude");
-    wp.wpt_lat_int = wp.wpt_lat_float * 1000000;
-    wp.wpt_lat = [NSString stringWithFormat:@"%f", wp.wpt_lat_float];
+    wp.wpt_lat_str = [NSString stringWithFormat:@"%f", wp.wpt_lat_float];
 
     DICT_FLOAT_KEY(dict, wp.wpt_lon_float, @"Longitude");
-    wp.wpt_lon_int = wp.wpt_lon_float * 1000000;
-    wp.wpt_lon = [NSString stringWithFormat:@"%f", wp.wpt_lon_float];
+    wp.wpt_lon_str = [NSString stringWithFormat:@"%f", wp.wpt_lon_float];
 
     NSString *dummy;
     DICT_NSSTRING_PATH(dict, dummy, @"UTCPlaceDate");
@@ -543,22 +541,18 @@
 
     if ([[dict objectForKey:@"Latitude"] isKindOfClass:[NSNumber class]] == NO) {
         awp.wpt_lat_float = 0;
-        awp.wpt_lat_int = 0;
-        awp.wpt_lat = @"0";
+        awp.wpt_lat_str = @"0";
     } else {
         DICT_FLOAT_KEY(dict, awp.wpt_lat_float, @"Latitude");
-        awp.wpt_lat_int = awp.wpt_lat_float * 1000000;
-        awp.wpt_lat = [NSString stringWithFormat:@"%f", awp.wpt_lat_float];
+        awp.wpt_lat_str = [NSString stringWithFormat:@"%f", awp.wpt_lat_float];
     }
 
     if ([[dict objectForKey:@"Longitude"] isKindOfClass:[NSNumber class]] == NO) {
         awp.wpt_lon_float = 0;
-        awp.wpt_lon_int = 0;
-        awp.wpt_lon = @"0";
+        awp.wpt_lon_str = @"0";
     } else {
         DICT_FLOAT_KEY(dict, awp.wpt_lon_float, @"Longitude");
-        awp.wpt_lon_int = awp.wpt_lon_float * 1000000;
-        awp.wpt_lon = [NSString stringWithFormat:@"%f", awp.wpt_lon_float];
+        awp.wpt_lon_str = [NSString stringWithFormat:@"%f", awp.wpt_lon_float];
     }
 
     NSString *dummy;
@@ -626,22 +620,18 @@
 
     if ([[dict objectForKey:@"Latitude"] isKindOfClass:[NSNumber class]] == NO) {
         awp.wpt_lat_float = 0;
-        awp.wpt_lat_int = 0;
-        awp.wpt_lat = @"0";
+        awp.wpt_lat_str = @"0";
     } else {
         DICT_FLOAT_KEY(dict, awp.wpt_lat_float, @"Latitude");
-        awp.wpt_lat_int = awp.wpt_lat_float * 1000000;
-        awp.wpt_lat = [NSString stringWithFormat:@"%f", awp.wpt_lat_float];
+        awp.wpt_lat_str = [NSString stringWithFormat:@"%f", awp.wpt_lat_float];
     }
 
     if ([[dict objectForKey:@"Longitude"] isKindOfClass:[NSNumber class]] == NO) {
         awp.wpt_lon_float = 0;
-        awp.wpt_lon_int = 0;
-        awp.wpt_lon = @"0";
+        awp.wpt_lon_str = @"0";
     } else {
         DICT_FLOAT_KEY(dict, awp.wpt_lon_float, @"Longitude");
-        awp.wpt_lon_int = awp.wpt_lon_float * 1000000;
-        awp.wpt_lon = [NSString stringWithFormat:@"%f", awp.wpt_lon_float];
+        awp.wpt_lon_str = [NSString stringWithFormat:@"%f", awp.wpt_lon_float];
     }
 
     NSString *dummy;

@@ -106,8 +106,8 @@
 
         if ([currentElement isEqualToString:@"wpt"] == YES) {
             currentWP = [[dbWaypointMutable alloc] init];
-            currentWP.wpt_lat = [attributeDict objectForKey:@"lat"];
-            currentWP.wpt_lon = [attributeDict objectForKey:@"lon"];
+            currentWP.wpt_lat_str = [attributeDict objectForKey:@"lat"];
+            currentWP.wpt_lon_str = [attributeDict objectForKey:@"lon"];
 
             currentWP.account = account;
             currentWP.account_id = account._id;

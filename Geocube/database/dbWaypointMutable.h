@@ -21,10 +21,8 @@
 
 @interface dbWaypointMutable : dbWaypoint
 
-@property (nonatomic, retain) NSString *wpt_lat;
-@property (nonatomic, retain) NSString *wpt_lon;
-@property (nonatomic) NSInteger wpt_lat_int;
-@property (nonatomic) NSInteger wpt_lon_int;
+@property (nonatomic, retain) NSString *wpt_lat_str;
+@property (nonatomic, retain) NSString *wpt_lon_str;
 @property (nonatomic, retain) NSString *wpt_date_placed;
 @property (nonatomic) NSId wpt_symbol_id;
 @property (nonatomic, retain) NSString *wpt_symbol_str;

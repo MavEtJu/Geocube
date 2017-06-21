@@ -45,21 +45,17 @@ CONVERT_TO(dbWaypoint)
 - (void)finish
 {
     // Conversions from the data retrieved
-    if (self.wpt_lat != nil) {
-        self.wpt_lat_float = [self.wpt_lat floatValue];
-        self.wpt_lat_int = self.wpt_lat_float * 1000000;
+    if (self.wpt_lat_str != nil) {
+        self.wpt_lat_float = [self.wpt_lat_str floatValue];
     }
-    if (self.wpt_lon != nil) {
-        self.wpt_lon_float = [self.wpt_lon floatValue];
-        self.wpt_lon_int = self.wpt_lon_float * 1000000;
+    if (self.wpt_lon_str != nil) {
+        self.wpt_lon_float = [self.wpt_lon_str floatValue];
     }
     if (self.wpt_lat_float != 0) {
-        self.wpt_lat_int = self.wpt_lat_float * 1000000;
-        self.wpt_lat = [NSString stringWithFormat:@"%f", self.wpt_lat_float];
+        self.wpt_lat_str = [NSString stringWithFormat:@"%f", self.wpt_lat_float];
     }
     if (self.wpt_lon_float != 0) {
-        self.wpt_lon_int = self.wpt_lon_float * 1000000;
-        self.wpt_lon = [NSString stringWithFormat:@"%f", self.wpt_lon_float];
+        self.wpt_lon_str = [NSString stringWithFormat:@"%f", self.wpt_lon_float];
     }
 
     if (self.wpt_date_placed_epoch == 0)
@@ -67,7 +63,7 @@ CONVERT_TO(dbWaypoint)
     if (self.wpt_date_placed == nil)
         self.wpt_date_placed = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:self.wpt_date_placed_epoch];
 
-    self.coordinates = CLLocationCoordinate2DMake([self.wpt_lat floatValue], [self.wpt_lon floatValue]);
+    self.coordinates = CLLocationCoordinate2DMake(self.wpt_lat_float, self.wpt_lon_float);
 
     // Adjust cache types
     if (self.wpt_type == nil) {
@@ -184,8 +180,8 @@ CONVERT_TO(dbWaypoint)
 
         SET_VAR_TEXT  ( 1, self.wpt_name);
         SET_VAR_TEXT  ( 2, self.wpt_description);
-        SET_VAR_TEXT  ( 3, self.wpt_lat);
-        SET_VAR_TEXT  ( 4, self.wpt_lon);
+        SET_VAR_DOUBLE( 3, self.wpt_lat_float);
+        SET_VAR_DOUBLE( 4, self.wpt_lon_float);
         SET_VAR_INT   ( 5, self.wpt_date_placed_epoch);
         SET_VAR_TEXT  ( 6, self.wpt_url);
         SET_VAR_INT   ( 7, self.wpt_type_id);

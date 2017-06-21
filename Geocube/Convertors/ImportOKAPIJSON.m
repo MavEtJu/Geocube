@@ -198,8 +198,8 @@
     NSString *location;
     DICT_NSSTRING_KEY(dict, location, @"location");
     NSArray<NSString *> *cs = [location componentsSeparatedByString:@"|"];
-    wp.wpt_lat = [cs objectAtIndex:0];
-    wp.wpt_lon = [cs objectAtIndex:1];
+    wp.wpt_lat_str = [cs objectAtIndex:0];
+    wp.wpt_lon_str = [cs objectAtIndex:1];
 
     wp.account = account;
     [wp finish];
