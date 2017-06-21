@@ -104,11 +104,11 @@
     DICT_NSSTRING_KEY(dict, wpt_name, @"gc");
 
     NSId wpid = [dbWaypoint dbGetByName:wpt_name];
-    dbWaypoint *wp;
+    dbWaypointMutable *wp;
     if (wpid == 0)
-        wp = [[dbWaypoint alloc] init];
+        wp = [[dbWaypointMutable alloc] init];
     else
-        wp = [dbWaypoint dbGet:wpid];
+        wp = [dbWaypointMutable dbGet:wpid];
     wp.wpt_name = wpt_name;
 
     DICT_INTEGER_KEY(dict, wp.gs_archived, @"archived");
@@ -130,7 +130,7 @@
 
     if (wp._id == 0) {
         NSLog(@"Created waypoint %@", wp.wpt_name);
-        [dbWaypoint dbCreate:wp];
+        [wp dbCreate];
         newWaypointsCount++;
         [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
     } else {

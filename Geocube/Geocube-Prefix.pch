@@ -65,6 +65,7 @@
 #import "Coordinates.h"
 #import "MyClock.h"
 #import "MyTools.h"
+#import "PropertyUtil.h"
 #import "KeyboardCoordinateView.h"
 
 #import "database.h"
@@ -100,6 +101,7 @@
 #import "dbTrackElement.h"
 #import "dbTrackable.h"
 #import "dbWaypoint.h"
+#import "dbWaypointMutable.h"
 
 #import "ThemeTemplate.h"
 #import "ThemeIOS.h"

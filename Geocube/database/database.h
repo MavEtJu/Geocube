@@ -137,3 +137,26 @@
     } \
 
 #endif
+
+
+
+#define CONVERT_TO(__class__) \
+    - (__class__ *)__class__ \
+    { \
+        __class__ *o = [[__class__ alloc] init]; \
+        NSDictionary *d = [PropertyUtil classPropsFor:[__class__ class]]; \
+        [d enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull value, BOOL * _Nonnull stop) { \
+            NSString *cap = [NSString stringWithFormat:@"%@%@", [[key substringToIndex:1] uppercaseString], [key substringFromIndex:1]]; \
+            NSString *set = [NSString stringWithFormat:@"set%@:", cap]; \
+            SEL sset = NSSelectorFromString(set); \
+            SEL skey = NSSelectorFromString(key); \
+            if ([o respondsToSelector:sset] == NO) \
+                return; \
+            if ([self respondsToSelector:skey] == NO) \
+                return; \
+            [o performSelector:sset withObject:[self performSelector:skey]]; \
+        }]; \
+        o._id = self._id; \
+        [o finish]; \
+        return o; \
+    }

@@ -147,7 +147,7 @@ enum {
 
     REPLACE(@"waypoint.name", self.waypoint.wpt_urlname)
     REPLACE(@"waypoint.code", self.waypoint.wpt_name)
-    REPLACE(@"waypoint.owner", self.waypoint.gs_owner_str)
+    REPLACE(@"waypoint.owner", self.waypoint.gs_owner.name)
     REPLACE(@"waypoint.ratingD", [NSNumber numberWithInteger:self.waypoint.gs_rating_difficulty])
     REPLACE(@"waypoint.ratingT", [NSNumber numberWithInteger:self.waypoint.gs_rating_terrain])
 

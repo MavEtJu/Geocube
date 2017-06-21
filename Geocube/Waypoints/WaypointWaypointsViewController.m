@@ -167,8 +167,8 @@ enum {
     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp1, NSUInteger idx1, BOOL *stop1) {
         __block BOOL found = NO;
         [nwps enumerateObjectsUsingBlock:^(dbWaypoint *wp2, NSUInteger idx2, BOOL *stop2) {
-            if (wp1.wpt_lat_int == wp2.wpt_lat_int &&
-                wp1.wpt_lon_int == wp2.wpt_lon_int) {
+            if (wp1.wpt_lat_float == wp2.wpt_lat_float &&
+                wp1.wpt_lon_float == wp2.wpt_lon_float) {
                 found = YES;
                 *stop2 = YES;
             }
@@ -224,7 +224,7 @@ enum {
                     Coordinates *c;
                     c = [[Coordinates alloc] initString:lat lon:lon];
 
-                    dbWaypoint *wp = [[dbWaypoint alloc] init:0];
+                    dbWaypointMutable *wp = [[dbWaypointMutable alloc] init:0];
                     wp.wpt_lat = [c lat_decimalDegreesSigned];
                     wp.wpt_lon = [c lon_decimalDegreesSigned];
                     wp.wpt_lat_int = [c lat] * 1000000;
@@ -238,9 +238,9 @@ enum {
                     wp.wpt_symbol_id = 1;
                     wp.wpt_type_id = [dbc Type_ManuallyEntered]._id;
                     wp.related_id = waypoint._id;
-                    wp.account_id = waypoint.account_id;
+                    wp.account_id = waypoint.account._id;
                     [wp finish];
-                    [dbWaypoint dbCreate:wp];
+                    [wp dbCreate];
 
                     [dbc.Group_AllWaypoints_ManuallyAdded dbAddWaypoint:wp._id];
                     [dbc.Group_AllWaypoints dbAddWaypoint:wp._id];

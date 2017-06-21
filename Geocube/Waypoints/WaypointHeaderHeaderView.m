@@ -55,9 +55,9 @@
     self.labelName.backgroundColor = bgColor;
 
     NSMutableString *s = [NSMutableString stringWithString:@""];
-    if (waypoint.gs_owner_str != nil && [waypoint.gs_owner_str isEqualToString:@""] == NO)
-        [s appendFormat:@"by %@", waypoint.gs_owner_str];
-    if ([waypoint.wpt_date_placed isEqualToString:@""] == NO)
+    if (waypoint.gs_owner.name != nil && [waypoint.gs_owner.name isEqualToString:@""] == NO)
+        [s appendFormat:@"by %@", waypoint.gs_owner.name];
+    if (waypoint.wpt_date_placed_epoch != 0)
         [s appendFormat:@" on %@", [MyTools dateTimeString_YYYY_MM_DD:waypoint.wpt_date_placed_epoch]];
     self.labelWhoWhen.text = s;
     self.labelWhoWhen.backgroundColor = bgColor;

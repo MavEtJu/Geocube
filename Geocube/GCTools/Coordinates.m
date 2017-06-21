@@ -28,7 +28,7 @@
 
 @implementation Coordinates
 
-#define COORDS_REGEXP @" *\\d{1,3}[º°]? ?\\d{1,2}\\.\\d{1,3}'?"
+#define COORDS_REGEXP @" +\\d{1,3}[º°]? ?\\d{1,2}\\.\\d{1,3}'?"
 
 /// Initialize a Coordinates object with a lat and a lon value
 - (instancetype)init:(CLLocationDegrees)_lat lon:(CLLocationDegrees)_lon       // -34.02787 151.07357
@@ -457,23 +457,20 @@
             NSLog(@"%@ - %@", NS, EW);
             Coordinates *c = [[Coordinates alloc] initString:NS lon:EW];
 
-            dbWaypoint *wp = [[dbWaypoint alloc] init:0];
-            wp.wpt_lat = [c lat_decimalDegreesSigned];
-            wp.wpt_lon = [c lon_decimalDegreesSigned];
-            wp.wpt_lat_int = [c lat] * 1000000;
-            wp.wpt_lon_int = [c lon] * 1000000;
+            dbWaypointMutable *wp = [[dbWaypointMutable alloc] init:0];
+            wp.wpt_lat_float = c.lat;
+            wp.wpt_lon_float = c.lon;
             wp.wpt_name = [dbWaypoint makeName:[waypoint.wpt_name substringFromIndex:2]];
             wp.wpt_description = wp.wpt_name;
             wp.wpt_date_placed_epoch = time(NULL);
-            wp.wpt_date_placed = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:wp.wpt_date_placed_epoch];
             wp.wpt_url = nil;
             wp.wpt_urlname = wp.wpt_name;
-            wp.wpt_symbol_id = 1;
-            wp.wpt_type_id = [dbc Type_ManuallyEntered]._id;
+            wp.wpt_symbol = dbc.Symbol_VirtualStage;
+            wp.wpt_type = [dbc Type_ManuallyEntered];
             wp.related_id = waypoint._id;
-            wp.account_id = waypoint.account_id;
+            wp.account = waypoint.account;
             [wp finish];
-            [dbWaypoint dbCreate:wp];
+            [wp dbCreate];
 
             [dbc.Group_AllWaypoints_ManuallyAdded dbAddWaypoint:wp._id];
             [dbc.Group_AllWaypoints dbAddWaypoint:wp._id];

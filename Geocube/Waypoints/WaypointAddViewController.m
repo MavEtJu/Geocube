@@ -272,7 +272,7 @@ enum {
 
 - (void)updateSubmit
 {
-    dbWaypoint *wp = [[dbWaypoint alloc] init:0];
+    dbWaypointMutable *wp = [[dbWaypointMutable alloc] init:0];
     Coordinates *c = [[Coordinates alloc] init:coords];
 
     wp.wpt_lat = [c lat_decimalDegreesSigned];
@@ -282,14 +282,13 @@ enum {
     wp.wpt_name = code;
     wp.wpt_description = name;
     wp.wpt_date_placed_epoch = time(NULL);
-    wp.wpt_date_placed = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:wp.wpt_date_placed_epoch];
     wp.wpt_url = nil;
     wp.wpt_urlname = [NSString stringWithFormat:@"%@ - %@", code, name];
-    wp.wpt_symbol_id = 1;
-    wp.wpt_type_id = [dbc Type_ManuallyEntered]._id;
+    wp.wpt_symbol = [dbc Symbol_VirtualStage];
+    wp.wpt_type = [dbc Type_ManuallyEntered];
     wp.related_id = 0;  // This is a new parent
     [wp finish];
-    [dbWaypoint dbCreate:wp];
+    [wp dbCreate];
 
     [dbc.Group_AllWaypoints_ManuallyAdded dbAddWaypoint:wp._id];
     [dbc.Group_AllWaypoints dbAddWaypoint:wp._id];

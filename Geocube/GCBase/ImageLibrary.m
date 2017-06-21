@@ -471,7 +471,7 @@
 {
     __block BOOL owner = NO;
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (a._id == wp.account_id && a.accountname_id == wp.gs_owner_id) {
+        if (a._id == wp.account._id && a.accountname._id == wp.gs_owner._id) {
             *stop = YES;
             owner = YES;
         }

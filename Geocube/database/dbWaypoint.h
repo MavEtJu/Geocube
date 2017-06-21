@@ -31,19 +31,10 @@ typedef NS_ENUM(NSInteger, LogStatus) {
 @property (nonatomic, retain) NSString *wpt_description;
 @property (nonatomic, retain) NSString *wpt_url;
 @property (nonatomic, retain) NSString *wpt_urlname;
-@property (nonatomic, retain) NSString *wpt_lat;
-@property (nonatomic, retain) NSString *wpt_lon;
-@property (nonatomic) NSInteger wpt_lat_int;
-@property (nonatomic) NSInteger wpt_lon_int;
 @property (nonatomic) float wpt_lat_float;
 @property (nonatomic) float wpt_lon_float;
-@property (nonatomic, retain) NSString *wpt_date_placed;
 @property (nonatomic) NSInteger wpt_date_placed_epoch;
-@property (nonatomic) NSId wpt_symbol_id;
-@property (nonatomic, retain) NSString *wpt_symbol_str;
 @property (nonatomic, retain) dbSymbol *wpt_symbol;
-@property (nonatomic) NSId wpt_type_id;
-@property (nonatomic, retain) NSString *wpt_type_str;
 @property (nonatomic, retain) dbType *wpt_type;
 
 @property (nonatomic) LogStringLogType logstring_logtype;
@@ -54,48 +45,39 @@ typedef NS_ENUM(NSInteger, LogStatus) {
 @property (nonatomic) BOOL flag_inprogress;
 @property (nonatomic) BOOL flag_dnf;
 @property (nonatomic) BOOL flag_planned;
-@property (nonatomic) NSId account_id;
 @property (nonatomic, retain) dbAccount *account;
 @property (nonatomic) NSId related_id;
 
 @property (nonatomic) float gs_rating_difficulty;
 @property (nonatomic) float gs_rating_terrain;
 @property (nonatomic) NSInteger gs_favourites;
-@property (nonatomic) NSId gs_country_id;
-@property (nonatomic, retain) NSString *gs_country_str;
 @property (nonatomic, retain) dbCountry *gs_country;
-@property (nonatomic) NSId gs_state_id;
-@property (nonatomic, retain) NSString *gs_state_str;
 @property (nonatomic, retain) dbState *gs_state;
 @property (nonatomic) BOOL gs_short_desc_html;
 @property (nonatomic, retain) NSString *gs_short_desc;
 @property (nonatomic) BOOL gs_long_desc_html;
 @property (nonatomic, retain) NSString *gs_long_desc;
 @property (nonatomic, retain) NSString *gs_hint;
-@property (nonatomic) NSId gs_container_id;
-@property (nonatomic, retain) NSString *gs_container_str;
 @property (nonatomic, retain) dbContainer *gs_container;
 @property (nonatomic) BOOL gs_archived;
 @property (nonatomic) BOOL gs_available;
 @property (nonatomic, retain) NSString *gs_placed_by;
-@property (nonatomic, retain) NSString *gs_owner_str;
 @property (nonatomic, retain) NSString *gs_owner_gsid;
-@property (nonatomic) NSId gs_owner_id;
 @property (nonatomic, retain) dbName *gs_owner;
 @property (nonatomic) NSInteger gs_date_found;
 
 @property (nonatomic) NSInteger date_lastlog_epoch;
 @property (nonatomic) NSInteger date_lastimport_epoch;
 
-@property (nonatomic) NSId gca_locale_id;
 @property (nonatomic) dbLocale *gca_locale;
-@property (nonatomic) NSString *gca_locale_str;
 
 @property (nonatomic) NSInteger calculatedDistance;
 @property (nonatomic) NSInteger calculatedBearing;
 @property (nonatomic) CLLocationCoordinate2D coordinates;
 
 - (instancetype)init:(NSId)_id;
+- (dbWaypointMutable *)dbWaypointMutable;
+
 - (NSInteger)hasFieldNotes;
 - (NSInteger)hasLogs;
 - (NSInteger)hasAttributes;
@@ -104,7 +86,6 @@ typedef NS_ENUM(NSInteger, LogStatus) {
 - (NSInteger)hasImages;
 
 + (NSId)dbGetByName:(NSString *)name;
-+ (void)dbCreate:(dbWaypoint *)wp;
 - (void)dbUpdate;
 + (NSArray<dbWaypoint *> *)dbAll;
 + (NSArray<dbWaypoint *> *)dbAllFound;

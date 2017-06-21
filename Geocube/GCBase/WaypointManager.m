@@ -206,7 +206,7 @@
                 if (c == nil || [c boolValue] == NO)
                     return;
                 [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
-                    if (wp.account_id == account._id)
+                    if (wp.account._id == account._id)
                         [after addObject:wp];
                 }];
             }];
@@ -231,7 +231,7 @@
                 if (c == nil || [c boolValue] == NO)
                     return;
                 [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                    if (wp.wpt_type_id == type._id)
+                    if (wp.wpt_type._id == type._id)
                         [after addObject:wp];
                 }];
             }];
@@ -295,7 +295,7 @@
                 if (c == nil || [c boolValue] == NO)
                     return;
                 [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                    if (wp.gs_container_id == container._id)
+                    if (wp.gs_container._id == container._id)
                         [after addObject:wp];
                 }];
             }];
@@ -510,7 +510,7 @@
                 if (locales != nil) {
                     __block BOOL matched = NO;
                     [locales enumerateObjectsUsingBlock:^(dbLocale *s, NSUInteger idx, BOOL *stop) {
-                        if (s._id == wp.gca_locale_id) {
+                        if (s._id == wp.gca_locale._id) {
                             matched = YES;
                             *stop = YES;
                         }
@@ -522,7 +522,7 @@
                 if (states != nil) {
                     __block BOOL matched = NO;
                     [states enumerateObjectsUsingBlock:^(dbState *s, NSUInteger idx, BOOL *stop) {
-                        if (s._id == wp.gs_state_id) {
+                        if (s._id == wp.gs_state._id) {
                             matched = YES;
                             *stop = YES;
                         }
@@ -534,7 +534,7 @@
                 if (countries != nil) {
                     __block BOOL matched = NO;
                     [countries enumerateObjectsUsingBlock:^(dbCountry *c, NSUInteger idx, BOOL *stop) {
-                        if (c._id == wp.gs_country_id) {
+                        if (c._id == wp.gs_country._id) {
                             matched = YES;
                             *stop = YES;
                         }
@@ -546,7 +546,7 @@
                 if (owners != nil) {
                     __block BOOL matched = NO;
                     [owners enumerateObjectsUsingBlock:^(dbName *o, NSUInteger idx, BOOL *stop) {
-                        if (o._id == wp.gs_owner_id) {
+                        if (o._id == wp.gs_owner._id) {
                             matched = YES;
                             *stop = YES;
                         }
@@ -599,7 +599,7 @@
                 if (keep == YES && flagMarkedDNF != FILTER_FLAGS_NOTCHECKED)
                     keep = (wp.flag_dnf == NO && flagMarkedDNF == FILTER_FLAGS_NOTSET) || (wp.flag_dnf == YES && flagMarkedDNF == FILTER_FLAGS_SET);
                 if (keep == YES && flagMine != FILTER_FLAGS_NOTCHECKED)
-                    keep = (wp.account.accountname_id != wp.gs_owner_id && flagMine == FILTER_FLAGS_NOTSET) || (wp.account.accountname_id == wp.gs_owner_id && flagMine == FILTER_FLAGS_SET);
+                    keep = (wp.account.accountname_id != wp.gs_owner._id && flagMine == FILTER_FLAGS_NOTSET) || (wp.account.accountname_id == wp.gs_owner._id && flagMine == FILTER_FLAGS_SET);
                 if (keep == YES && flagLoggedAsFound != LOGSTATUS_NOTLOGGED)
                     keep = (wp.logStatus == LOGSTATUS_FOUND && flagLoggedAsFound == FILTER_FLAGS_SET) || (wp.logStatus != LOGSTATUS_FOUND && flagLoggedAsFound == FILTER_FLAGS_NOTSET);
                 if (keep == YES && flagLoggedAsDNF != LOGSTATUS_NOTLOGGED)

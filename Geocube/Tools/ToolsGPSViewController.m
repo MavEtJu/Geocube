@@ -363,7 +363,7 @@ enum {
     NSString *code = [MyTools makeNewWaypoint:@"MY"];
     NSString *name = [NSString stringWithFormat:@"Waypoint averaged on %@", [Coordinates NiceCoordinates:coord]];
 
-    dbWaypoint *wp = [[dbWaypoint alloc] init:0];
+    dbWaypointMutable *wp = [[dbWaypointMutable alloc] init:0];
     Coordinates *c = [[Coordinates alloc] init:coord];
 
     wp.wpt_lat = [c lat_decimalDegreesSigned];
@@ -380,7 +380,7 @@ enum {
     wp.wpt_type_id = [dbc Type_ManuallyEntered]._id;
     wp.related_id = 0;  // This is a new parent
     [wp finish];
-    [dbWaypoint dbCreate:wp];
+    [wp dbCreate];
 
     [waypointManager needsRefreshAdd:wp];
 

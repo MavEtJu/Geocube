@@ -33,7 +33,7 @@
     NSMutableString *currentText;
     NSString *currentElement;
     NSString *gsOwnerNameId, *logFinderNameId;
-    dbWaypoint *currentWP;
+    dbWaypointMutable *currentWP;
     dbLog *currentLog;
     dbTrackable *currentTB;
     dbImage *currentImage;
@@ -105,9 +105,9 @@
         index++;
 
         if ([currentElement isEqualToString:@"wpt"] == YES) {
-            currentWP = [[dbWaypoint alloc] init];
-            [currentWP setWpt_lat:[attributeDict objectForKey:@"lat"]];
-            [currentWP setWpt_lon:[attributeDict objectForKey:@"lon"]];
+            currentWP = [[dbWaypointMutable alloc] init];
+            currentWP.wpt_lat = [attributeDict objectForKey:@"lat"];
+            currentWP.wpt_lon = [attributeDict objectForKey:@"lon"];
 
             currentWP.account = account;
             currentWP.account_id = account._id;
@@ -211,7 +211,7 @@
             [infoViewer setWaypointsTotal:iiImport total:totalWaypointsCount];
             if (runOption_LogsOnly == NO) {
                 if (currentWP._id == 0) {
-                    [dbWaypoint dbCreate:currentWP];
+                    [currentWP dbCreate];
                     newWaypointsCount++;
                     [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
 

@@ -186,12 +186,12 @@
     NSString *wpt_name = nil;
     DICT_NSSTRING_KEY(dict, wpt_name, @"Code");
 
-    dbWaypoint *wp = nil;
+    dbWaypointMutable *wp = nil;
     NSId _id = [dbWaypoint dbGetByName:wpt_name];
     if (_id != 0)
-        wp = [dbWaypoint dbGet:_id];
+        wp = [dbWaypointMutable dbGet:_id];
     else
-        wp = [[dbWaypoint alloc] init];
+        wp = [[dbWaypointMutable alloc] init];
 
     // Waypoint object
     DICT_NSSTRING_KEY(dict, wp.wpt_name, @"Code");
@@ -257,7 +257,7 @@
 
     if (wp._id == 0) {
         GCLog(@"Creating %@", wp.wpt_name);
-        [dbWaypoint dbCreate:wp];
+        [wp dbCreate];
         newWaypointsCount++;
         [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
     } else {
@@ -534,7 +534,7 @@
      }
     */
 
-    dbWaypoint *awp = [[dbWaypoint alloc] init];
+    dbWaypointMutable *awp = [[dbWaypointMutable alloc] init];
 
     // Waypoint object
     awp.wpt_name = [NSString stringWithFormat:@"CC%@", [wp.wpt_name substringFromIndex:2]];
@@ -574,7 +574,7 @@
 
     NSId wpid = [dbWaypoint dbGetByName:awp.wpt_name];
     if (wpid == 0) {
-        [dbWaypoint dbCreate:awp];
+        [awp dbCreate];
         [group dbAddWaypoint:awp._id];
         newWaypointsCount++;
         [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
@@ -616,7 +616,7 @@
      }
     */
 
-    dbWaypoint *awp = [[dbWaypoint alloc] init];
+    dbWaypointMutable *awp = [[dbWaypointMutable alloc] init];
 
     // Waypoint object
     DICT_NSSTRING_KEY(dict, awp.wpt_name, @"Code");
@@ -658,7 +658,7 @@
 
     NSId wpid = [dbWaypoint dbGetByName:awp.wpt_name];
     if (wpid == 0) {
-        [dbWaypoint dbCreate:awp];
+        [awp dbCreate];
         [group dbAddWaypoint:awp._id];
         newWaypointsCount++;
         [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
@@ -671,7 +671,7 @@
     [self.delegate Import_WaypointProcessed:awp];
 }
 
-- (void)parseLogs:(NSArray<NSDictionary *> *)logs waypoint:(dbWaypoint *)wp
+- (void)parseLogs:(NSArray<NSDictionary *> *)logs waypoint:(dbWaypointMutable *)wp
 {
     [logs enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseLog:d waypoint:wp];
@@ -680,7 +680,7 @@
     }];
 }
 
-- (void)parseLog:(NSDictionary *)dict waypoint:(dbWaypoint *)wp
+- (void)parseLog:(NSDictionary *)dict waypoint:(dbWaypointMutable *)wp
 {
     /*
      {

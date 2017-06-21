@@ -18,7 +18,7 @@ insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.3.geocube");
 insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.3.geocube");
 insert into config(key, value) values("url_versions", "https://geocube.mavetju.org/geocube_versions.geocube");
-insert into config(key, value) values("version", "50");
+insert into config(key, value) values("version", "51");
 
 create table filters (
     id integer primary key,
@@ -59,13 +59,10 @@ create table waypoints (
     id integer primary key,
     related_id integer,
 
-    wpt_lat text,
-    wpt_lon text,
-    wpt_lat_int integer,		-- lat times 1000 000 for now
-    wpt_lon_int integer,		-- lon times 1000 000 for now
+    wpt_lat float,
+    wpt_lon float,
     wpt_name text,
     wpt_description text,
-    wpt_date_placed string,
     wpt_date_placed_epoch integer,
     wpt_url text,
     wpt_urlname text,

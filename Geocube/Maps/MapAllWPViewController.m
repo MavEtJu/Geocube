@@ -181,7 +181,7 @@ enum {
 
             NSMutableArray<dbWaypoint *> *wps = [NSMutableArray arrayWithCapacity:[waypoints count]];
             [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                if (wp.account_id == account._id)
+                if (wp.account._id == account._id)
                     [wps addObject:wp];
             }];
 

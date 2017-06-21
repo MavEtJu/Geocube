@@ -187,11 +187,11 @@
         return;
 
     NSId wpid = [dbWaypoint dbGetByName:wpt_name];
-    dbWaypoint *wp;
+    dbWaypointMutable *wp;
     if (wpid == 0)
-        wp = [[dbWaypoint alloc] init];
+        wp = [[dbWaypointMutable alloc] init];
     else
-        wp = [dbWaypoint dbGet:wpid];
+        wp = [dbWaypointMutable dbGet:wpid];
     wp.wpt_name = wpt_name;
 
     DICT_NSSTRING_KEY(dict, wp.gs_state_str, @"state");
@@ -255,7 +255,7 @@
 
     if (wp._id == 0) {
         NSLog(@"Created waypoint %@", wp.wpt_name);
-        [dbWaypoint dbCreate:wp];
+        [wp dbCreate];
         newWaypointsCount++;
         [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
     } else {
@@ -283,7 +283,7 @@
         [self parseData_logs:logs waypoint:wp];
 }
 
-- (void)parseData_images:(NSArray<NSDictionary *> *)images waypoint:(dbWaypoint *)wp type:(ImageCategory)imagetype
+- (void)parseData_images:(NSArray<NSDictionary *> *)images waypoint:(dbWaypointMutable *)wp type:(ImageCategory)imagetype
 {
     NSLog(@"Image number 0-%lu", (unsigned long)([images count] - 1));
     [images enumerateObjectsUsingBlock:^(NSDictionary *image, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -292,7 +292,7 @@
     }];
 }
 
-- (void)parseData_image:(NSDictionary *)dict waypoint:(dbWaypoint *)wp type:(ImageCategory)imagetype
+- (void)parseData_image:(NSDictionary *)dict waypoint:(dbWaypointMutable *)wp type:(ImageCategory)imagetype
 {
     /*
      {
@@ -326,7 +326,7 @@
     [ImagesDownloadManager addToQueue:image imageType:imagetype];
 }
 
-- (void)parseData_logs:(NSArray<NSDictionary *> *)logs waypoint:(dbWaypoint *)wp
+- (void)parseData_logs:(NSArray<NSDictionary *> *)logs waypoint:(dbWaypointMutable *)wp
 {
     NSArray<dbLog *> *alllogs = [dbLog dbAllByWaypoint:wp._id];
     [infoViewer setLogsTotal:iiImport total:[alllogs count]];
@@ -337,7 +337,7 @@
     }];
 }
 
-- (void)parseData_log:(NSDictionary *)dict waypoint:(dbWaypoint *)wp logs:(NSArray<dbLog *> *)logs
+- (void)parseData_log:(NSDictionary *)dict waypoint:(dbWaypointMutable *)wp logs:(NSArray<dbLog *> *)logs
 {
 /*
  {
@@ -407,7 +407,7 @@
     [infoViewer setLogsNew:iiImport new:newLogsCount];
 }
 
-- (void)parseData_trackables:(NSArray<NSDictionary *> *)trackables waypoint:(dbWaypoint *)wp
+- (void)parseData_trackables:(NSArray<NSDictionary *> *)trackables waypoint:(dbWaypointMutable *)wp
 {
     [infoViewer setTrackablesTotal:iiImport total:[trackables count]];
     [trackables enumerateObjectsUsingBlock:^(NSDictionary *trackable, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -417,7 +417,7 @@
     }];
 }
 
-- (void)parseData_trackable:(NSDictionary *)dict waypoint:(dbWaypoint *)wp
+- (void)parseData_trackable:(NSDictionary *)dict waypoint:(dbWaypointMutable *)wp
 {
     // No idea yet as I haven't found a single waypoint with trackables yet.
 }
