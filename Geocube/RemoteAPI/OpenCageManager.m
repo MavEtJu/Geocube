@@ -117,6 +117,11 @@
             wp.gca_locale = [dbc Locale_get_byName:locale];
             [wp dbUpdateLocale];
         }
+    } else {
+        NSLog(@"%@ - Error %@, bailing", [self class], [error description]);
+        @synchronized (self) {
+            [queue removeAllObjects];
+        }
     }
 }
 
