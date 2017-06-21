@@ -149,13 +149,15 @@
         NSAssert(self.Pin_Unknown != nil, @"Pin_Unknown");
 
     [Symbols enumerateObjectsUsingBlock:^(dbSymbol *s, NSUInteger idx, BOOL *stop) {
-        if ([s.symbol isEqualToString:@"*"] == YES) {
+        if ([s.symbol isEqualToString:@"*"] == YES)
             self.Symbol_Unknown = s;
-            *stop = YES;
-        }
+        if ([s.symbol isEqualToString:@"Virtual Stage"] == YES)
+            self.Symbol_VirtualStage = s;
     }];
-    if ([Symbols count] != 0)
+    if ([Symbols count] != 0) {
         NSAssert(self.Symbol_Unknown != nil, @"Symbol_Unknown");
+        NSAssert(self.Symbol_VirtualStage != nil, @"Symbol_VirtualStage");
+    }
 
     [Attributes enumerateObjectsUsingBlock:^(dbAttribute *a, NSUInteger idx, BOOL *stop) {
         if ([a.label isEqualToString:@"Unknown"] == YES) {

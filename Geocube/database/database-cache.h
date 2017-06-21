@@ -53,6 +53,7 @@
 
 // Symbols
 @property (nonatomic, retain) dbSymbol *Symbol_Unknown;
+@property (nonatomic, retain) dbSymbol *Symbol_VirtualStage;
 
 // ContainerSize
 @property (nonatomic, retain) dbContainer *Container_Unknown;
