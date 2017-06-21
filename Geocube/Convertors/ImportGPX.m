@@ -107,7 +107,7 @@
         if ([currentElement isEqualToString:@"wpt"] == YES) {
             currentWP = [[dbWaypoint alloc] init];
             [currentWP set_wpt_lat_str:[attributeDict objectForKey:@"lat"]];
-            [currentWP set_wpt_lon_str:[attributeDict objectForKey:@"lon"] ];
+            [currentWP set_wpt_lon_str:[attributeDict objectForKey:@"lon"]];
 
             currentWP.account = account;
 
@@ -439,12 +439,6 @@
                 }
                 if ([elementName isEqualToString:@"type"] == YES) {
                     [currentWP set_wpt_type_str:cleanText];
-//                    NSArray<NSString *> *as = [cleanText componentsSeparatedByString:@"|"];
-//                    if ([as count] == 1)
-//                        [currentWP setWpt_type:[dbc Type_get_byminor:[as objectAtIndex:0]]];
-//                    else
-//                        [currentWP setWpt_type:[dbc Type_get_byname:[as objectAtIndex:0] minor:[as objectAtIndex:1]]];
-//                    [currentWP set_wpt_type_id:currentWP.wpt_type._id];
                     goto bye;
                 }
                 goto bye;

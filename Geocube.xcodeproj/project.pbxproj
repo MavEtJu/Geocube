@@ -584,7 +584,7 @@
 		E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */; };
 		E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
-		E89D0D2C1EFA10E80019A411 /* PropertyUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E89D0D2B1EFA10E80019A411 /* PropertyUtil.m */; };
+		E89D0D301EFA5ADD0019A411 /* PropertyUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E89D0D2F1EFA5ADD0019A411 /* PropertyUtil.m */; };
 		E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */; };
 		E8AA149C1ED7988A0023000A /* Updates and changes.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8AA149B1ED7988A0023000A /* Updates and changes.txt */; };
 		E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */; };
@@ -1595,8 +1595,8 @@
 		E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - empty - 30x30.png"; path = "images/logs/log - empty - 30x30.png"; sourceTree = "<group>"; };
 		E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFUIKitMainThreadGuard.m; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
-		E89D0D2A1EFA10E80019A411 /* PropertyUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PropertyUtil.h; path = GCTools/PropertyUtil.h; sourceTree = "<group>"; };
-		E89D0D2B1EFA10E80019A411 /* PropertyUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PropertyUtil.m; path = GCTools/PropertyUtil.m; sourceTree = "<group>"; };
+		E89D0D2E1EFA5ADD0019A411 /* PropertyUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PropertyUtil.h; path = contrib/PropertyUtil/PropertyUtil.h; sourceTree = "<group>"; };
+		E89D0D2F1EFA5ADD0019A411 /* PropertyUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PropertyUtil.m; path = contrib/PropertyUtil/PropertyUtil.m; sourceTree = "<group>"; };
 		E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesDownloadManager.h; sourceTree = "<group>"; };
 		E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesDownloadManager.m; sourceTree = "<group>"; };
 		E8AA149B1ED7988A0023000A /* Updates and changes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Updates and changes.txt"; sourceTree = "<group>"; };
@@ -2831,6 +2831,15 @@
 			name = Reachability;
 			sourceTree = "<group>";
 		};
+		E89D0D2D1EFA5A930019A411 /* PropertyUtil */ = {
+			isa = PBXGroup;
+			children = (
+				E89D0D2E1EFA5ADD0019A411 /* PropertyUtil.h */,
+				E89D0D2F1EFA5ADD0019A411 /* PropertyUtil.m */,
+			);
+			name = PropertyUtil;
+			sourceTree = "<group>";
+		};
 		E89D15681DE55F4F00ED14B3 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -3278,6 +3287,7 @@
 				E8A3B0AF1CD33BA500170D61 /* MHTabBarController */,
 				E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */,
 				E8FD96B11EC8668600AFA7FA /* NVHTarGzip */,
+				E89D0D2D1EFA5A930019A411 /* PropertyUtil */,
 				E895801F1C66E39500282177 /* Reachability */,
 				E823418B1EECAB8E00D2CDFD /* RNCryptor */,
 				E8F570961B3F7F6A003F020C /* SSZipArchive */,
@@ -3416,8 +3426,6 @@
 		E8F570B21B3FECDF003F020C /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				E89D0D2A1EFA10E80019A411 /* PropertyUtil.h */,
-				E89D0D2B1EFA10E80019A411 /* PropertyUtil.m */,
 				E82343061EECD97400D2CDFD /* Coordinates.h */,
 				E82343071EECD97400D2CDFD /* Coordinates.m */,
 				E82343081EECD97400D2CDFD /* GCURLRequest.h */,
@@ -4236,7 +4244,7 @@
 				E82344C01EECE0E800D2CDFD /* SettingsLogTemplatesViewController.m in Sources */,
 				E82342CC1EECD0B100D2CDFD /* dbType.m in Sources */,
 				E82342BD1EECD0B100D2CDFD /* dbLogMacro.m in Sources */,
-				E89D0D2C1EFA10E80019A411 /* PropertyUtil.m in Sources */,
+				E89D0D301EFA5ADD0019A411 /* PropertyUtil.m in Sources */,
 				E82342291EECCF3400D2CDFD /* NVHFile.m in Sources */,
 				E82344911EECE0AC00D2CDFD /* QueriesGCAViewController.m in Sources */,
 				E82341E91EECCE9C00D2CDFD /* CCHMapViewDelegateProxy.m in Sources */,

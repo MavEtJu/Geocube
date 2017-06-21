@@ -495,7 +495,6 @@ enum {
         coordsOkButton.enabled = NO;
 }
 
-
 - (void)changeDate
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];

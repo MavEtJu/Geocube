@@ -130,11 +130,11 @@
 @class ListInProgressViewController;
 @class ListTemplateViewController;
 @class LocalMenuItems;
+@class LocationManager;
 @class LocationlessListViewController;
 @class LocationlessPlannedViewController;
-@class LocationlessTemplateViewController;
 @class LocationlessTableViewCell;
-@class LocationManager;
+@class LocationlessTemplateViewController;
 @class LogTableViewCell;
 @class MapAllWPViewController;
 @class MapApple;
@@ -143,7 +143,6 @@
 @class MapBrand;
 @class MapESRIWorldTopo;
 @class MapGoogle;
-@class MapLocationlessViewController;
 @class MapLogsViewController;
 @class MapOSM;
 @class MapOneWPViewController;
