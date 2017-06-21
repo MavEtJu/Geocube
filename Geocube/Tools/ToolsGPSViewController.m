@@ -363,7 +363,7 @@ enum {
     NSString *code = [MyTools makeNewWaypoint:@"MY"];
     NSString *name = [NSString stringWithFormat:@"Waypoint averaged on %@", [Coordinates NiceCoordinates:coord]];
 
-    dbWaypointMutable *wp = [[dbWaypointMutable alloc] init:0];
+    dbWaypointMutable *wp = [[dbWaypointMutable alloc] init];
     Coordinates *c = [[Coordinates alloc] init:coord];
 
     wp.wpt_lat_str = [c lat_decimalDegreesSigned];

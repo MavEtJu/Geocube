@@ -43,7 +43,6 @@
 @property (nonatomic) NSId gca_locale_id;
 @property (nonatomic) NSString *gca_locale_str;
 
-- (instancetype)init:(NSId)_id;
 - (dbWaypoint *)dbWaypoint;
 
 - (NSId)dbCreate;

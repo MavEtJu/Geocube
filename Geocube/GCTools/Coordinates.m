@@ -457,7 +457,7 @@
             NSLog(@"%@ - %@", NS, EW);
             Coordinates *c = [[Coordinates alloc] initString:NS lon:EW];
 
-            dbWaypointMutable *wp = [[dbWaypointMutable alloc] init:0];
+            dbWaypointMutable *wp = [[dbWaypointMutable alloc] init];
             wp.wpt_lat = c.lat;
             wp.wpt_lon = c.lon;
             wp.wpt_name = [dbWaypoint makeName:[waypoint.wpt_name substringFromIndex:2]];

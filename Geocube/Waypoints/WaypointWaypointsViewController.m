@@ -224,7 +224,7 @@ enum {
                     Coordinates *c;
                     c = [[Coordinates alloc] initString:lat lon:lon];
 
-                    dbWaypointMutable *wp = [[dbWaypointMutable alloc] init:0];
+                    dbWaypointMutable *wp = [[dbWaypointMutable alloc] init];
                     wp.wpt_lat_str = [c lat_decimalDegreesSigned];
                     wp.wpt_lon_str = [c lon_decimalDegreesSigned];
                     wp.wpt_name = [dbWaypoint makeName:[waypoint.wpt_name substringFromIndex:2]];

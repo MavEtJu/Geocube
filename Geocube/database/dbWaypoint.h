@@ -74,7 +74,6 @@ typedef NS_ENUM(NSInteger, LogStatus) {
 @property (nonatomic) NSInteger calculatedBearing;
 @property (nonatomic) CLLocationCoordinate2D coordinates;
 
-- (instancetype)init:(NSId)_id;
 - (dbWaypointMutable *)dbWaypointMutable;
 
 - (NSInteger)hasFieldNotes;

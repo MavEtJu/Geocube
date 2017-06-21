@@ -272,7 +272,7 @@ enum {
 
 - (void)updateSubmit
 {
-    dbWaypointMutable *wp = [[dbWaypointMutable alloc] init:0];
+    dbWaypointMutable *wp = [[dbWaypointMutable alloc] init];
     Coordinates *c = [[Coordinates alloc] init:coords];
 
     wp.wpt_lat_str = [c lat_decimalDegreesSigned];

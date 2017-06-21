@@ -25,18 +25,6 @@
 
 @implementation dbWaypointMutable
 
-- (instancetype)init:(NSId)__id
-{
-    self = [super init:0];
-    self._id = __id;
-
-    self.gs_available = YES;
-    self.logStatus = LOGSTATUS_NOTLOGGED;
-    self.logstring_logtype = LOGSTRING_LOGTYPE_UNKNOWN;
-
-    return self;
-}
-
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 CONVERT_TO(dbWaypoint)

@@ -27,14 +27,7 @@
 
 - (instancetype)init
 {
-    self = [self init:0];
-    return self;
-}
-
-- (instancetype)init:(NSId)__id
-{
     self = [super init];
-    self._id = __id;
 
     self.gs_available = YES;
     self.logStatus = LOGSTATUS_NOTLOGGED;
@@ -164,7 +157,8 @@ CONVERT_TO(dbWaypointMutable)
 
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN( 0, _id);
-            wpm = [[dbWaypointMutable alloc] init:_id];
+            wpm = [[dbWaypointMutable alloc] init];
+            wpm._id = _id;
 
             TEXT_FETCH  ( 1, wpm.wpt_name);
             TEXT_FETCH  ( 2, wpm.wpt_description);
