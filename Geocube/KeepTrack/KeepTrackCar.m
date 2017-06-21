@@ -201,11 +201,11 @@ enum {
     [self updateLocationManagerLocation];
 
     // Update waypoint
-    dbWaypointMutable *waypoint;
+    dbWaypoint *waypoint;
 
     NSId wpid = [dbWaypoint dbGetByName:@"MYCAR"];
     if (wpid == 0) {
-        waypoint = [[dbWaypointMutable alloc] init];
+        waypoint = [[dbWaypoint alloc] init];
 
         waypoint.wpt_name = @"MYCAR";
         waypoint.wpt_description = @"Remembered location";
@@ -215,7 +215,7 @@ enum {
         [waypoint dbCreate];
         [waypointManager needsRefreshAdd:waypoint];
     } else {
-        waypoint = [dbWaypointMutable dbGet:wpid];
+        waypoint = [dbWaypoint dbGet:wpid];
     }
 
     waypoint.wpt_lon = coordsRecordedLocation.longitude;

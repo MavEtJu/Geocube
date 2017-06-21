@@ -33,7 +33,7 @@
     NSMutableString *currentText;
     NSString *currentElement;
     NSString *gsOwnerNameId, *logFinderNameId;
-    dbWaypointMutable *currentWP;
+    dbWaypoint *currentWP;
     dbLog *currentLog;
     dbTrackable *currentTB;
     dbImage *currentImage;
@@ -105,12 +105,11 @@
         index++;
 
         if ([currentElement isEqualToString:@"wpt"] == YES) {
-            currentWP = [[dbWaypointMutable alloc] init];
-            currentWP.wpt_lat_str = [attributeDict objectForKey:@"lat"];
-            currentWP.wpt_lon_str = [attributeDict objectForKey:@"lon"];
+            currentWP = [[dbWaypoint alloc] init];
+            [currentWP set_wpt_lat_str:[attributeDict objectForKey:@"lat"]];
+            [currentWP set_wpt_lon_str:[attributeDict objectForKey:@"lon"]];
 
             currentWP.account = account;
-            currentWP.account_id = account._id;
 
             logs = [NSMutableArray arrayWithCapacity:20];
             attributesYES = [NSMutableArray arrayWithCapacity:20];
@@ -360,7 +359,7 @@
         if (inItem == YES) {
             if (index == 2 && cleanText != nil) {
                 if ([elementName isEqualToString:@"time"] == YES) {
-                    [currentWP setWpt_date_placed:cleanText];
+                    [currentWP set_wpt_date_placed:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"name"] == YES) {
@@ -385,16 +384,11 @@
                         NSId _id = [dbSymbol dbCreate:cleanText];
                         [dbc Symbols_add:_id symbol:cleanText];
                     }
-                    [currentWP setWpt_symbol_str:cleanText];
+                    [currentWP set_wpt_symbol_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"type"] == YES) {
-                    NSArray<NSString *> *as = [cleanText componentsSeparatedByString:@"|"];
-                    if ([as count] == 1)
-                        [currentWP setWpt_type:[dbc Type_get_byminor:[as objectAtIndex:0]]];
-                    else
-                        [currentWP setWpt_type:[dbc Type_get_byname:[as objectAtIndex:0] minor:[as objectAtIndex:1]]];
-                    [currentWP setWpt_type_id:currentWP.wpt_type._id];
+                    [currentWP set_wpt_type_str:cleanText];
                     goto bye;
                 }
                 goto bye;
@@ -410,16 +404,16 @@
                 }
                 if ([elementName isEqualToString:@"country"] == YES) {
                     [dbCountry makeNameExist:cleanText];
-                    [currentWP setGs_country_str:cleanText];
+                    [currentWP set_gs_country_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"state"] == YES) {
                     [dbState makeNameExist:cleanText];
-                    [currentWP setGs_state_str:cleanText];
+                    [currentWP set_gs_state_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"container"] == YES) {
-                    [currentWP setGs_container_str:cleanText];
+                    [currentWP set_gs_container_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"short_description"] == YES) {
@@ -436,7 +430,7 @@
                 }
                 if ([elementName isEqualToString:@"owner"] == YES) {
                     [dbName makeNameExist:cleanText code:gsOwnerNameId account:account];
-                    [currentWP setGs_owner_str:cleanText];
+                    [currentWP set_gs_owner_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"placed_by"] == YES) {

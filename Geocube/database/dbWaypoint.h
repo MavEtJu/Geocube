@@ -74,7 +74,16 @@ typedef NS_ENUM(NSInteger, LogStatus) {
 @property (nonatomic) NSInteger calculatedBearing;
 @property (nonatomic) CLLocationCoordinate2D coordinates;
 
-- (dbWaypointMutable *)dbWaypointMutable;
+- (void)set_gs_country_str:(NSString *)s;
+- (void)set_gs_state_str:(NSString *)s;
+- (void)set_gca_locale_str:(NSString *)s;
+- (void)set_gs_container_str:(NSString *)s;
+- (void)set_gs_owner_str:(NSString *)s;
+- (void)set_wpt_symbol_str:(NSString *)s;
+- (void)set_wpt_type_str:(NSString *)s;
+- (void)set_wpt_lat_str:(NSString *)s;
+- (void)set_wpt_lon_str:(NSString *)s;
+- (void)set_wpt_date_placed:(NSString *)s;
 
 - (NSInteger)hasFieldNotes;
 - (NSInteger)hasLogs;

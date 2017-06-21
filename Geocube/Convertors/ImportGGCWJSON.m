@@ -104,25 +104,25 @@
     DICT_NSSTRING_KEY(dict, wpt_name, @"gc");
 
     NSId wpid = [dbWaypoint dbGetByName:wpt_name];
-    dbWaypointMutable *wp;
+    dbWaypoint *wp;
     if (wpid == 0)
-        wp = [[dbWaypointMutable alloc] init];
+        wp = [[dbWaypoint alloc] init];
     else
-        wp = [dbWaypointMutable dbGet:wpid];
+        wp = [dbWaypoint dbGet:wpid];
     wp.wpt_name = wpt_name;
+
+    NSString *dummy;
 
     DICT_INTEGER_KEY(dict, wp.gs_archived, @"archived");
     DICT_INTEGER_KEY(dict, wp.gs_available, @"available");
     DICT_INTEGER_PATH(dict, wp.gs_rating_difficulty, @"difficulty.text");
     DICT_INTEGER_PATH(dict, wp.gs_rating_terrain, @"terrain.text");
     DICT_INTEGER_PATH(dict, wp.gs_favourites, @"fp");
-    wp.wpt_type_id = 0;
-    wp.wpt_type = nil;
-    DICT_NSSTRING_PATH(dict, wp.wpt_type_str, @"container.text");
-    wp.gs_owner_id = 0;
-    wp.gs_owner = nil;
-    DICT_NSSTRING_PATH(dict, wp.gs_owner_str, @"owner.text");
-    [dbName makeNameExist:wp.gs_owner_str code:nil account:account];
+    DICT_NSSTRING_PATH(dict, dummy, @"container.text");
+    [wp set_wpt_type_str:dummy];
+    DICT_NSSTRING_PATH(dict, dummy, @"owner.text");
+    [dbName makeNameExist:dummy code:nil account:account];
+    [wp set_gs_owner_str:dummy];
 
     wp.account = account;
     [wp finish];

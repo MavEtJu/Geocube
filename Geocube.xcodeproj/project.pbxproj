@@ -584,7 +584,6 @@
 		E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */; };
 		E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
-		E89D0D291EF9FAFE0019A411 /* dbWaypointMutable.m in Sources */ = {isa = PBXBuildFile; fileRef = E89D0D281EF9FAFE0019A411 /* dbWaypointMutable.m */; };
 		E89D0D2C1EFA10E80019A411 /* PropertyUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E89D0D2B1EFA10E80019A411 /* PropertyUtil.m */; };
 		E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */; };
 		E8AA149C1ED7988A0023000A /* Updates and changes.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8AA149B1ED7988A0023000A /* Updates and changes.txt */; };
@@ -1596,8 +1595,6 @@
 		E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - empty - 30x30.png"; path = "images/logs/log - empty - 30x30.png"; sourceTree = "<group>"; };
 		E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFUIKitMainThreadGuard.m; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
-		E89D0D271EF9FAFE0019A411 /* dbWaypointMutable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbWaypointMutable.h; path = database/dbWaypointMutable.h; sourceTree = "<group>"; };
-		E89D0D281EF9FAFE0019A411 /* dbWaypointMutable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbWaypointMutable.m; path = database/dbWaypointMutable.m; sourceTree = "<group>"; };
 		E89D0D2A1EFA10E80019A411 /* PropertyUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PropertyUtil.h; path = GCTools/PropertyUtil.h; sourceTree = "<group>"; };
 		E89D0D2B1EFA10E80019A411 /* PropertyUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PropertyUtil.m; path = GCTools/PropertyUtil.m; sourceTree = "<group>"; };
 		E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesDownloadManager.h; sourceTree = "<group>"; };
@@ -3390,8 +3387,6 @@
 				E82342AA1EECD0B100D2CDFD /* dbType.m */,
 				E82342AB1EECD0B100D2CDFD /* dbWaypoint.h */,
 				E82342AC1EECD0B100D2CDFD /* dbWaypoint.m */,
-				E89D0D271EF9FAFE0019A411 /* dbWaypointMutable.h */,
-				E89D0D281EF9FAFE0019A411 /* dbWaypointMutable.m */,
 				E8F570BB1B400124003F020C /* schema.sql */,
 			);
 			name = Database;
@@ -4216,7 +4211,6 @@
 				E82344F41EECE12A00D2CDFD /* GCImageView.m in Sources */,
 				E82344801EECE09C00D2CDFD /* ListFoundViewController.m in Sources */,
 				E82344FA1EECE12A00D2CDFD /* GCTableViewCellKeyValue.m in Sources */,
-				E89D0D291EF9FAFE0019A411 /* dbWaypointMutable.m in Sources */,
 				E82343AC1EECDDD400D2CDFD /* GCWaypointAnnotation.m in Sources */,
 				E82343111EECD97400D2CDFD /* MyTools.m in Sources */,
 				E82344F11EECE12A00D2CDFD /* GCBoundingBox.m in Sources */,

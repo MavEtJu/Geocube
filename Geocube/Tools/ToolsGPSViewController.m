@@ -363,19 +363,18 @@ enum {
     NSString *code = [MyTools makeNewWaypoint:@"MY"];
     NSString *name = [NSString stringWithFormat:@"Waypoint averaged on %@", [Coordinates NiceCoordinates:coord]];
 
-    dbWaypointMutable *wp = [[dbWaypointMutable alloc] init];
+    dbWaypoint *wp = [[dbWaypoint alloc] init];
     Coordinates *c = [[Coordinates alloc] init:coord];
 
-    wp.wpt_lat_str = [c lat_decimalDegreesSigned];
-    wp.wpt_lon_str = [c lon_decimalDegreesSigned];
+    wp.wpt_lat = [c lat];
+    wp.wpt_lon = [c lon];
     wp.wpt_name = code;
     wp.wpt_description = name;
     wp.wpt_date_placed_epoch = time(NULL);
-    wp.wpt_date_placed = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:wp.wpt_date_placed_epoch];
     wp.wpt_url = nil;
     wp.wpt_urlname = [NSString stringWithFormat:@"%@ - %@", code, name];
-    wp.wpt_symbol_id = 1;
-    wp.wpt_type_id = [dbc Type_ManuallyEntered]._id;
+    wp.wpt_symbol = [dbc Symbol_VirtualStage];
+    wp.wpt_type = [dbc Type_ManuallyEntered];
     [wp finish];
     [wp dbCreate];
 

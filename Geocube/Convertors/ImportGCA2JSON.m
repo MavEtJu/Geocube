@@ -186,36 +186,36 @@
     if (wpt_name == nil || [wpt_name isEqualToString:@""] == YES)
         return;
 
+    NSString *dummy;
     NSId wpid = [dbWaypoint dbGetByName:wpt_name];
-    dbWaypointMutable *wp;
+    dbWaypoint *wp;
     if (wpid == 0)
-        wp = [[dbWaypointMutable alloc] init];
+        wp = [[dbWaypoint alloc] init];
     else
-        wp = [dbWaypointMutable dbGet:wpid];
+        wp = [dbWaypoint dbGet:wpid];
     wp.wpt_name = wpt_name;
 
-    DICT_NSSTRING_KEY(dict, wp.gs_state_str, @"state");
-    [dbState makeNameExist:wp.gs_state_str];
-    wp.gs_state_id = 0;
-    wp.gs_state = nil;
-    DICT_NSSTRING_KEY(dict, wp.gs_country_str, @"country");
-    [dbCountry makeNameExist:wp.gs_country_str];
-    wp.gs_country_id = 0;
-    wp.gs_country = nil;
-    DICT_NSSTRING_KEY(dict, wp.gca_locale_str, @"locale");
-    [dbLocale makeNameExist:wp.gca_locale_str];
-    wp.gca_locale_id = 0;
-    wp.gca_locale = nil;
+    DICT_NSSTRING_KEY(dict, dummy, @"state");
+    [dbState makeNameExist:dummy];
+    [wp set_gs_state_str:dummy];
+    DICT_NSSTRING_KEY(dict, dummy, @"country");
+    [dbCountry makeNameExist:dummy];
+    [wp set_gs_country_str:dummy];
+    DICT_NSSTRING_KEY(dict, dummy, @"locale");
+    [dbLocale makeNameExist:dummy];
+    [wp set_gca_locale_str:dummy];
     DICT_NSSTRING_KEY(dict, wp.gs_long_desc, @"description");
     wp.gs_long_desc_html = YES;
-    DICT_NSSTRING_KEY(dict, wp.wpt_date_placed, @"date_hidden");
+    DICT_NSSTRING_KEY(dict, dummy, @"date_hidden");
+    [wp set_wpt_date_placed:dummy];
     DICT_FLOAT_KEY(dict, wp.gs_rating_difficulty, @"difficulty");
     DICT_FLOAT_KEY(dict, wp.gs_rating_terrain, @"terrain");
     DICT_NSSTRING_KEY(dict, wp.gs_hint, @"hint2");
     DICT_NSSTRING_KEY(dict, wp.wpt_urlname, @"name");
-    DICT_NSSTRING_PATH(dict, wp.gs_owner_str, @"owner.username");
     DICT_NSSTRING_PATH(dict, wp.gs_owner_gsid, @"owner.uuid");
-    [dbName makeNameExist:wp.gs_owner_str code:wp.gs_owner_gsid account:account];
+    DICT_NSSTRING_PATH(dict, dummy, @"owner.username");
+    [dbName makeNameExist:dummy code:wp.gs_owner_gsid account:account];
+    [wp set_gs_owner_str:dummy];
     DICT_INTEGER_KEY(dict, wp.gs_favourites, @"recommendations");
     DICT_NSSTRING_KEY(dict, wp.gs_short_desc, @"short_description");
     wp.gs_short_desc_html = YES;
@@ -235,19 +235,17 @@
         wp.gs_available = NO;
     }
 
-    DICT_NSSTRING_KEY(dict, wp.gs_container_str, @"size2");
-    wp.gs_container_id = 0;
-    wp.gs_container = nil;
-    DICT_NSSTRING_KEY(dict, wp.wpt_type_str, @"type");
-    wp.wpt_type_id = 0;
-    wp.wpt_type = nil;
+    DICT_NSSTRING_KEY(dict, dummy, @"size2");
+    [wp set_gs_container_str:dummy];
+    DICT_NSSTRING_KEY(dict, dummy, @"type");
+    [wp set_wpt_type_str:dummy];
     DICT_NSSTRING_KEY(dict, wp.wpt_url, @"url");
 
     NSString *location;
     DICT_NSSTRING_KEY(dict, location, @"location");
     NSArray<NSString *> *cs = [location componentsSeparatedByString:@"|"];
-    wp.wpt_lat_str = [cs objectAtIndex:0];
-    wp.wpt_lon_str = [cs objectAtIndex:1];
+    [wp set_wpt_lat_str:[cs objectAtIndex:0]];
+    [wp set_wpt_lon_str:[cs objectAtIndex:1]];
 
     wp.account = account;
     [wp finish];
@@ -283,7 +281,7 @@
         [self parseData_logs:logs waypoint:wp];
 }
 
-- (void)parseData_images:(NSArray<NSDictionary *> *)images waypoint:(dbWaypointMutable *)wp type:(ImageCategory)imagetype
+- (void)parseData_images:(NSArray<NSDictionary *> *)images waypoint:(dbWaypoint *)wp type:(ImageCategory)imagetype
 {
     NSLog(@"Image number 0-%lu", (unsigned long)([images count] - 1));
     [images enumerateObjectsUsingBlock:^(NSDictionary *image, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -292,7 +290,7 @@
     }];
 }
 
-- (void)parseData_image:(NSDictionary *)dict waypoint:(dbWaypointMutable *)wp type:(ImageCategory)imagetype
+- (void)parseData_image:(NSDictionary *)dict waypoint:(dbWaypoint *)wp type:(ImageCategory)imagetype
 {
     /*
      {
@@ -326,7 +324,7 @@
     [ImagesDownloadManager addToQueue:image imageType:imagetype];
 }
 
-- (void)parseData_logs:(NSArray<NSDictionary *> *)logs waypoint:(dbWaypointMutable *)wp
+- (void)parseData_logs:(NSArray<NSDictionary *> *)logs waypoint:(dbWaypoint *)wp
 {
     NSArray<dbLog *> *alllogs = [dbLog dbAllByWaypoint:wp._id];
     [infoViewer setLogsTotal:iiImport total:[alllogs count]];
@@ -337,7 +335,7 @@
     }];
 }
 
-- (void)parseData_log:(NSDictionary *)dict waypoint:(dbWaypointMutable *)wp logs:(NSArray<dbLog *> *)logs
+- (void)parseData_log:(NSDictionary *)dict waypoint:(dbWaypoint *)wp logs:(NSArray<dbLog *> *)logs
 {
 /*
  {
@@ -407,7 +405,7 @@
     [infoViewer setLogsNew:iiImport new:newLogsCount];
 }
 
-- (void)parseData_trackables:(NSArray<NSDictionary *> *)trackables waypoint:(dbWaypointMutable *)wp
+- (void)parseData_trackables:(NSArray<NSDictionary *> *)trackables waypoint:(dbWaypoint *)wp
 {
     [infoViewer setTrackablesTotal:iiImport total:[trackables count]];
     [trackables enumerateObjectsUsingBlock:^(NSDictionary *trackable, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -417,7 +415,7 @@
     }];
 }
 
-- (void)parseData_trackable:(NSDictionary *)dict waypoint:(dbWaypointMutable *)wp
+- (void)parseData_trackable:(NSDictionary *)dict waypoint:(dbWaypoint *)wp
 {
     // No idea yet as I haven't found a single waypoint with trackables yet.
 }

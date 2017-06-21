@@ -254,4 +254,3 @@
 @class dbTrackable;
 @class dbType;
 @class dbWaypoint;
-@class dbWaypointMutable;

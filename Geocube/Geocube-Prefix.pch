@@ -101,7 +101,6 @@
 #import "dbTrackElement.h"
 #import "dbTrackable.h"
 #import "dbWaypoint.h"
-#import "dbWaypointMutable.h"
 
 #import "ThemeTemplate.h"
 #import "ThemeIOS.h"

@@ -21,6 +21,10 @@
 
 @interface dbWaypoint ()
 
+@property (nonatomic, retain) NSString *wpt_lat_str;
+@property (nonatomic, retain) NSString *wpt_lon_str;
+@property (nonatomic, retain) NSString *wpt_date_placed;
+
 @end
 
 @implementation dbWaypoint
@@ -36,10 +40,65 @@
     return self;
 }
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-CONVERT_TO(dbWaypointMutable)
-#pragma clang diagnostic pop
+- (void)set_gs_country_str:(NSString *)s
+{
+    self.gs_country = [dbc Country_get_byNameCode:s];
+}
+- (void)set_gs_state_str:(NSString *)s
+{
+    self.gs_state = [dbc State_get_byNameCode:s];
+}
+- (void)set_gca_locale_str:(NSString *)s
+{
+    self.gca_locale = [dbc Locale_get_byName:s];
+}
+- (void)set_gs_container_str:(NSString *)s
+{
+    self.gs_container = [dbc Container_get_bysize:s];
+}
+- (void)set_gs_owner_str:(NSString *)s
+{
+    NSAssert(self.account != nil, @"account = nil");
+    self.gs_owner = [dbName dbGetByName:s account:self.account];
+    if (self.gs_owner_gsid == nil)
+        self.gs_owner = [dbName dbGetByName:s account:self.account];
+    else
+        self.gs_owner = [dbName dbGetByNameCode:s code:self.gs_owner_gsid account:self.account];
+}
+- (void)set_wpt_symbol_str:(NSString *)s
+{
+    self.wpt_symbol = [dbc Symbol_get_bysymbol:s];
+}
+- (void)set_wpt_type_str:(NSString *)s
+{
+    NSArray<NSString *> *as = [s componentsSeparatedByString:@"|"];
+    if ([as count] == 2) {
+        // Geocache|Traditional Cache
+        self.wpt_type = [dbc Type_get_byname:[as objectAtIndex:0] minor:[as objectAtIndex:1]];
+    } else {
+        // Traditional Cache
+        [[dbc Types] enumerateObjectsUsingBlock:^(dbType *t, NSUInteger idx, BOOL *stop) {
+            if ([t.type_minor isEqualToString:s] == YES) {
+                self.wpt_type = t;
+                *stop = YES;
+            }
+        }];
+        if (self.wpt_type == nil)
+            self.wpt_type = [dbc Type_get_byname:@"Geocache" minor:@"*"];
+    }
+}
+- (void)set_wpt_lat_str:(NSString *)s
+{
+    self.wpt_lat = [s floatValue];
+}
+- (void)set_wpt_lon_str:(NSString *)s
+{
+    self.wpt_lon = [s floatValue];
+}
+- (void)set_wpt_date_placed:(NSString *)s
+{
+    self.wpt_date_placed_epoch = [MyTools secondsSinceEpochFromISO8601:s];
+}
 
 - (void)finish
 {
@@ -145,10 +204,64 @@ CONVERT_TO(dbWaypointMutable)
     return wps;
 }
 
+- (NSId)dbCreate
+{
+    NSId _id = 0;
+    @synchronized(db) {
+        DB_PREPARE(@"insert into waypoints(wpt_name, wpt_description, wpt_lat, wpt_lon, wpt_date_placed_epoch, wpt_url, wpt_type_id, wpt_symbol_id, wpt_urlname, log_status, highlight, account_id, ignore, gs_country_id, gs_state_id, gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_long_desc_html, gs_long_desc, gs_short_desc_html, gs_short_desc, gs_hint, gs_container_id, gs_archived, gs_available, gs_owner_id, gs_placed_by, markedfound, inprogress, gs_date_found, dnfed, date_lastlog_epoch, gca_locale_id, date_lastimport_epoch, planned) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+        SET_VAR_TEXT  ( 1, self.wpt_name);
+        SET_VAR_TEXT  ( 2, self.wpt_description);
+        SET_VAR_DOUBLE( 3, self.wpt_lat);
+        SET_VAR_DOUBLE( 4, self.wpt_lon);
+        SET_VAR_INT   ( 5, self.wpt_date_placed_epoch);
+        SET_VAR_TEXT  ( 6, self.wpt_url);
+        SET_VAR_INT   ( 7, self.wpt_type._id);
+        SET_VAR_INT   ( 8, self.wpt_symbol._id)
+        SET_VAR_TEXT  ( 9, self.wpt_urlname);
+
+        SET_VAR_INT   (10, self.logStatus);
+        SET_VAR_BOOL  (11, self.flag_highlight);
+        SET_VAR_INT   (12, self.account._id);
+        SET_VAR_BOOL  (13, self.flag_ignore);
+
+        SET_VAR_INT   (14, self.gs_country._id);
+        SET_VAR_INT   (15, self.gs_state._id);
+        SET_VAR_DOUBLE(16, self.gs_rating_difficulty);
+        SET_VAR_DOUBLE(17, self.gs_rating_terrain);
+        SET_VAR_INT   (18, self.gs_favourites);
+        SET_VAR_BOOL  (19, self.gs_long_desc_html);
+        SET_VAR_TEXT  (20, self.gs_long_desc);
+        SET_VAR_BOOL  (21, self.gs_short_desc_html);
+        SET_VAR_TEXT  (22, self.gs_short_desc);
+        SET_VAR_TEXT  (23, self.gs_hint);
+        SET_VAR_INT   (24, self.gs_container._id);
+        SET_VAR_BOOL  (25, self.gs_archived);
+        SET_VAR_BOOL  (26, self.gs_available);
+        SET_VAR_INT   (27, self.gs_owner._id);
+        SET_VAR_TEXT  (28, self.gs_placed_by);
+
+        SET_VAR_BOOL  (29, self.flag_markedfound);
+        SET_VAR_BOOL  (30, self.flag_inprogress);
+        SET_VAR_INT   (31, self.gs_date_found);
+        SET_VAR_BOOL  (32, self.flag_dnf);
+        SET_VAR_INT   (33, self.date_lastlog_epoch);
+        SET_VAR_INT   (34, self.gca_locale._id);
+        SET_VAR_INT   (35, self.date_lastimport_epoch);
+        SET_VAR_INT   (36, self.flag_planned);
+
+        DB_CHECK_OKAY;
+        DB_GET_LAST_ID(_id);
+        DB_FINISH;
+    }
+    self._id = _id;
+    return _id;
+}
+
 + (NSMutableArray<dbWaypoint *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
     NSMutableArray<dbWaypoint *> *wps = [[NSMutableArray alloc] initWithCapacity:20];
-    dbWaypointMutable *wpm;
+    dbWaypoint *wp;
 
     NSMutableString *sql = [NSMutableString stringWithFormat:@"select id, wpt_name, wpt_description, wpt_lat, wpt_lon, wpt_date_placed_epoch, wpt_url, wpt_type_id, wpt_symbol_id, wpt_urlname, log_status, highlight, account_id, ignore, gs_country_id, gs_state_id, gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_long_desc_html, gs_long_desc, gs_short_desc_html, gs_short_desc, gs_hint, gs_container_id, gs_archived, gs_available, gs_owner_id, gs_placed_by, markedfound, inprogress, gs_date_found, dnfed, date_lastlog_epoch, gca_locale_id, date_lastimport_epoch, planned from waypoints wp %@", where];
 
@@ -157,51 +270,59 @@ CONVERT_TO(dbWaypointMutable)
 
         DB_WHILE_STEP {
             INT_FETCH_AND_ASSIGN( 0, _id);
-            wpm = [[dbWaypointMutable alloc] init];
-            wpm._id = _id;
+            wp = [[dbWaypoint alloc] init];
+            wp._id = _id;
 
-            TEXT_FETCH  ( 1, wpm.wpt_name);
-            TEXT_FETCH  ( 2, wpm.wpt_description);
-            DOUBLE_FETCH( 3, wpm.wpt_lat);
-            DOUBLE_FETCH( 4, wpm.wpt_lon);
-            INT_FETCH   ( 5, wpm.wpt_date_placed_epoch);
-            TEXT_FETCH  ( 6, wpm.wpt_url);
-            INT_FETCH   ( 7, wpm.wpt_type_id);
-            INT_FETCH   ( 8, wpm.wpt_symbol_id);
-            TEXT_FETCH  ( 9, wpm.wpt_urlname);
+            NSId i = 0;
+            TEXT_FETCH  ( 1, wp.wpt_name);
+            TEXT_FETCH  ( 2, wp.wpt_description);
+            DOUBLE_FETCH( 3, wp.wpt_lat);
+            DOUBLE_FETCH( 4, wp.wpt_lon);
+            INT_FETCH   ( 5, wp.wpt_date_placed_epoch);
+            TEXT_FETCH  ( 6, wp.wpt_url);
+            INT_FETCH   ( 7, i);
+            wp.wpt_type = [dbc Type_get:i];
+            INT_FETCH   ( 8, i);
+            wp.wpt_symbol = [dbc Symbol_get:i];
+            TEXT_FETCH  ( 9, wp.wpt_urlname);
 
-            INT_FETCH   (10, wpm.logStatus);
-            BOOL_FETCH  (11, wpm.flag_highlight);
-            INT_FETCH   (12, wpm.account_id);
-            BOOL_FETCH  (13, wpm.flag_ignore);
+            INT_FETCH   (10, wp.logStatus);
+            BOOL_FETCH  (11, wp.flag_highlight);
+            INT_FETCH   (12, i);
+            wp.account = [dbc Account_get:i];
+            BOOL_FETCH  (13, wp.flag_ignore);
 
-            INT_FETCH   (14, wpm.gs_country_id);
-            INT_FETCH   (15, wpm.gs_state_id);
-            DOUBLE_FETCH(16, wpm.gs_rating_difficulty);
-            DOUBLE_FETCH(17, wpm.gs_rating_terrain);
-            INT_FETCH   (18, wpm.gs_favourites);
-            BOOL_FETCH  (19, wpm.gs_long_desc_html);
-            TEXT_FETCH  (20, wpm.gs_long_desc);
-            BOOL_FETCH  (21, wpm.gs_short_desc_html);
-            TEXT_FETCH  (22, wpm.gs_short_desc);
-            TEXT_FETCH  (23, wpm.gs_hint);
-            INT_FETCH   (24, wpm.gs_container_id);
-            BOOL_FETCH  (25, wpm.gs_archived);
-            BOOL_FETCH  (26, wpm.gs_available);
-            INT_FETCH   (27, wpm.gs_owner_id);
-            TEXT_FETCH  (28, wpm.gs_placed_by);
+            INT_FETCH   (14, i);
+            wp.gs_country = [dbc Country_get:i];
+            INT_FETCH   (15, i);
+            wp.gs_state = [dbc State_get:i];
+            DOUBLE_FETCH(16, wp.gs_rating_difficulty);
+            DOUBLE_FETCH(17, wp.gs_rating_terrain);
+            INT_FETCH   (18, wp.gs_favourites);
+            BOOL_FETCH  (19, wp.gs_long_desc_html);
+            TEXT_FETCH  (20, wp.gs_long_desc);
+            BOOL_FETCH  (21, wp.gs_short_desc_html);
+            TEXT_FETCH  (22, wp.gs_short_desc);
+            TEXT_FETCH  (23, wp.gs_hint);
+            INT_FETCH   (24, i);
+            wp.gs_container = [dbc Container_get:i];
+            BOOL_FETCH  (25, wp.gs_archived);
+            BOOL_FETCH  (26, wp.gs_available);
+            INT_FETCH   (27, i);
+            wp.gs_owner = [dbc Name_get:i];
+            TEXT_FETCH  (28, wp.gs_placed_by);
 
-            BOOL_FETCH  (29, wpm.flag_markedfound);
-            BOOL_FETCH  (30, wpm.flag_inprogress);
-            INT_FETCH   (31, wpm.gs_date_found);
-            BOOL_FETCH  (32, wpm.flag_dnf);
-            INT_FETCH   (33, wpm.date_lastlog_epoch);
-            INT_FETCH   (34, wpm.gca_locale_id);
-            INT_FETCH   (35, wpm.date_lastimport_epoch);
-            INT_FETCH   (36, wpm.flag_planned);
+            BOOL_FETCH  (29, wp.flag_markedfound);
+            BOOL_FETCH  (30, wp.flag_inprogress);
+            INT_FETCH   (31, wp.gs_date_found);
+            BOOL_FETCH  (32, wp.flag_dnf);
+            INT_FETCH   (33, wp.date_lastlog_epoch);
+            INT_FETCH   (34, i);
+            wp.gca_locale = [dbc Locale_get:i];
+            INT_FETCH   (35, wp.date_lastimport_epoch);
+            INT_FETCH   (36, wp.flag_planned);
 
-            [wpm finish];
-            dbWaypoint *wp = [wpm dbWaypoint];
+            [wp finish];
             [wps addObject:wp];
         }
         DB_FINISH;

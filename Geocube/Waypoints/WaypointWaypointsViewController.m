@@ -224,18 +224,17 @@ enum {
                     Coordinates *c;
                     c = [[Coordinates alloc] initString:lat lon:lon];
 
-                    dbWaypointMutable *wp = [[dbWaypointMutable alloc] init];
-                    wp.wpt_lat_str = [c lat_decimalDegreesSigned];
-                    wp.wpt_lon_str = [c lon_decimalDegreesSigned];
+                    dbWaypoint *wp = [[dbWaypoint alloc] init];
+                    wp.wpt_lat = [c lat];
+                    wp.wpt_lon = [c lon];
                     wp.wpt_name = [dbWaypoint makeName:[waypoint.wpt_name substringFromIndex:2]];
                     wp.wpt_description = wp.wpt_name;
                     wp.wpt_date_placed_epoch = time(NULL);
-                    wp.wpt_date_placed = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:wp.wpt_date_placed_epoch];
                     wp.wpt_url = nil;
                     wp.wpt_urlname = wp.wpt_name;
-                    wp.wpt_symbol_id = 1;
-                    wp.wpt_type_id = [dbc Type_ManuallyEntered]._id;
-                    wp.account_id = waypoint.account._id;
+                    wp.wpt_symbol = [dbc Symbol_VirtualStage];
+                    wp.wpt_type = [dbc Type_ManuallyEntered];
+                    wp.account = waypoint.account;
                     [wp finish];
                     [wp dbCreate];
 
