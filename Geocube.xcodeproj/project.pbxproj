@@ -10,6 +10,7 @@
 		E804139D1E9EFF6D001FD7BF /* GC - logo - 512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = E804139C1E9EFF6D001FD7BF /* GC - logo - 512x512.png */; };
 		E804139F1E9F984E001FD7BF /* Menu - 640x623.png in Resources */ = {isa = PBXBuildFile; fileRef = E804139E1E9F984E001FD7BF /* Menu - 640x623.png */; };
 		E80732FB1B633A74007FDC29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732FA1B633A74007FDC29 /* main.m */; };
+		E80D7EE21EFA705900E25581 /* OpenCageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E80D7EE11EFA705900E25581 /* OpenCageManager.m */; };
 		E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73741B533F4D00F35528 /* MapKit.framework */; };
 		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
 		E8182F4C1C0E41CB004AC534 /* KeyboardCoordinateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8182F4B1C0E41CB004AC534 /* KeyboardCoordinateView.m */; };
@@ -734,6 +735,8 @@
 		E80732F81B633A74007FDC29 /* objects */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = objects; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80732FA1B633A74007FDC29 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E808DC7E1C3A405200B8A572 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
+		E80D7EE01EFA705900E25581 /* OpenCageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenCageManager.h; path = RemoteAPI/OpenCageManager.h; sourceTree = "<group>"; };
+		E80D7EE11EFA705900E25581 /* OpenCageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpenCageManager.m; path = RemoteAPI/OpenCageManager.m; sourceTree = "<group>"; };
 		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E80F73761B53443000F35528 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E8182F4A1C0E41CB004AC534 /* KeyboardCoordinateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardCoordinateView.h; sourceTree = "<group>"; };
@@ -3396,6 +3399,8 @@
 				E82343371EECDA2900D2CDFD /* GCOAuthBlackbox.m */,
 				E82343121EECD9BC00D2CDFD /* IOSFileTransfers.h */,
 				E82343131EECD9BC00D2CDFD /* IOSFileTransfers.m */,
+				E80D7EE01EFA705900E25581 /* OpenCageManager.h */,
+				E80D7EE11EFA705900E25581 /* OpenCageManager.m */,
 				E823431C1EECD9BC00D2CDFD /* ProtocolTemplate.h */,
 				E823431D1EECD9BC00D2CDFD /* ProtocolTemplate.m */,
 				E82343261EECD9BC00D2CDFD /* RemoteAPIProcessingGroup.h */,
@@ -4406,6 +4411,7 @@
 				E82343FC1EECDF4400D2CDFD /* WaypointWaypointsViewController.m in Sources */,
 				E82342B51EECD0B100D2CDFD /* dbExternalMap.m in Sources */,
 				E82344011EECDF6C00D2CDFD /* WaypointTableViewCell.m in Sources */,
+				E80D7EE21EFA705900E25581 /* OpenCageManager.m in Sources */,
 				E823449E1EECE0BD00D2CDFD /* StatisticsTableViewCell.m in Sources */,
 				E82342C21EECD0B100D2CDFD /* dbObject.m in Sources */,
 				E823424F1EECCF9300D2CDFD /* SVRadialGradientLayer.m in Sources */,

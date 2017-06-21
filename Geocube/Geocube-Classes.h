@@ -159,6 +159,7 @@
 @class NotesSavedViewController;
 @class NoticeTableViewCell;
 @class NoticesViewController;
+@class OpenCageManager;
 @class PersonalNoteTableViewCell;
 @class ProtocolGCA2;
 @class ProtocolGGCW;

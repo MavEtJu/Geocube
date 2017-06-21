@@ -76,6 +76,9 @@
     // Initialize the configuration manager - after db
     configManager = [[ConfigManager alloc] init];
 
+    // After configManager
+    opencageManager = [[OpenCageManager alloc] init];
+
     // Initialize the location mamager - after configurationManager
     LM = [[LocationManager alloc] init];
     [LM startDelegation:nil isNavigating:NO];

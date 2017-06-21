@@ -189,6 +189,7 @@
 #import "RemoteAPILiveAPI.h"
 #import "RemoteAPIOKAPI.h"
 #import "IOSFileTransfers.h"
+#import "OpenCageManager.h"
 
 #import "QueriesTableViewCell.h"
 #import "QueriesTemplateViewController.h"

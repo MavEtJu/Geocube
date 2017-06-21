@@ -216,6 +216,9 @@
     }
     [self.delegate Import_WaypointProcessed:wp];
 
+    if (IS_EMPTY(wp.gca_locale.name) == YES)
+        [opencageManager addForProcessing:wp];
+
     if ([group dbContainsWaypoint:wp._id] == NO)
         [group dbAddWaypoint:wp._id];
 

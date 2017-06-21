@@ -69,6 +69,9 @@ ImportManager *importManager = nil;
 // Keymanager
 KeyManager *keyManager = nil;
 
+// OpenCageManager
+OpenCageManager *opencageManager = nil;
+
 //
 AppDelegate *_AppDelegate;
 

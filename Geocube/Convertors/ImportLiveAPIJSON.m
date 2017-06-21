@@ -59,17 +59,19 @@
     }
 }
 
-- (void)parseGeocaches:(NSArray<NSDictionary *> *)as
+- (void)parseGeocaches:(NSArray<NSDictionary *> *)geocaches
 {
-    [infoViewer setLineObjectTotal:iiImport total:[as count] isLines:NO];
-    [as enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
+    if ([geocaches isKindOfClass:[NSNull class]] == YES)
+        return;
+    [infoViewer setLineObjectTotal:iiImport total:[geocaches count] isLines:NO];
+    [geocaches enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseGeocache:d];
         totalWaypointsCount++;
 
         [infoViewer setLineObjectCount:iiImport count:idx];
         [infoViewer setWaypointsTotal:iiImport total:totalWaypointsCount];
     }];
-    [infoViewer setLineObjectCount:iiImport count:[as count]];
+    [infoViewer setLineObjectCount:iiImport count:[geocaches count]];
 }
 - (void)parseGeocache:(NSDictionary *)dict
 {
@@ -269,6 +271,9 @@
     if ([group dbContainsWaypoint:wp._id] == NO)
         [group dbAddWaypoint:wp._id];
 
+    if (IS_EMPTY(wp.gca_locale.name) == YES)
+        [opencageManager addForProcessing:wp];
+
     // Images
     [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_long_desc type:IMAGECATEGORY_CACHE];
     [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_short_desc type:IMAGECATEGORY_CACHE];
@@ -305,6 +310,8 @@
 
 - (void)parseTrackables:(NSArray<NSDictionary *> *)trackables waypoint:(dbWaypoint *)wp
 {
+    if ([trackables isKindOfClass:[NSNull class]] == YES)
+        return;
     if (wp != nil)
         [dbTrackable dbUnlinkAllFromWaypoint:wp._id];
     [trackables enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
@@ -445,9 +452,11 @@
         [tb dbLinkToWaypoint:wp._id];
 }
 
-- (void)parseImages:(NSArray<NSDictionary *> *)attributes waypoint:(dbWaypoint *)wp imageSource:(ImageCategory)imageSource
+- (void)parseImages:(NSArray<NSDictionary *> *)images waypoint:(dbWaypoint *)wp imageSource:(ImageCategory)imageSource
 {
-    [attributes enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
+    if ([images isKindOfClass:[NSNull class]] == YES)
+        return;
+    [images enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseImage:d waypoint:wp imageSource:imageSource];
     }];
 }
@@ -486,6 +495,8 @@
 
 - (void)parseAttributes:(NSArray<NSDictionary *> *)attributes waypoint:(dbWaypoint *)wp
 {
+    if ([attributes isKindOfClass:[NSNull class]] == YES)
+        return;
     [dbAttribute dbUnlinkAllFromWaypoint:wp._id];
     [attributes enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseAttribute:d waypoint:wp];
@@ -510,6 +521,8 @@
 
 - (void)parseUserWaypoints:(NSArray<NSDictionary *> *)wps waypoint:(dbWaypoint *)wp
 {
+    if ([wps isKindOfClass:[NSNull class]] == YES)
+        return;
     [wps enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseUserWaypoint:d waypoint:wp];
         totalWaypointsCount++;
@@ -589,6 +602,8 @@
 
 - (void)parseAdditionalWaypoints:(NSArray<NSDictionary *> *)wps waypoint:(dbWaypoint *)wp
 {
+    if ([wps isKindOfClass:[NSNull class]] == YES)
+        return;
     [wps enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseAdditionalWaypoint:d waypoint:wp];
         totalWaypointsCount++;
@@ -673,6 +688,8 @@
 
 - (void)parseLogs:(NSArray<NSDictionary *> *)logs waypoint:(dbWaypoint *)wp
 {
+    if ([logs isKindOfClass:[NSNull class]] == YES)
+        return;
     [logs enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseLog:d waypoint:wp];
         totalLogsCount++;

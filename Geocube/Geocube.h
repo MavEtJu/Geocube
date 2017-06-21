@@ -72,6 +72,9 @@ extern ImportManager *importManager;
 // Keymanager
 extern KeyManager *keyManager;
 
+// OpenCageManager
+extern OpenCageManager *opencageManager;
+
 //
 extern AppDelegate *_AppDelegate;
 

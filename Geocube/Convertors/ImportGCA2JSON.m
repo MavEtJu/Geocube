@@ -265,6 +265,9 @@
     if ([group dbContainsWaypoint:wp._id] == NO)
         [group dbAddWaypoint:wp._id];
 
+    if (IS_EMPTY(wp.gca_locale.name) == YES)
+        [opencageManager addForProcessing:wp];
+
     [self.delegate Import_WaypointProcessed:wp];
 
     [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_long_desc type:IMAGECATEGORY_CACHE];

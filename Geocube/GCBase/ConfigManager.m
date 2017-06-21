@@ -135,6 +135,8 @@
 
     CHECK(@"locationless_showfound", @"1");
     CHECK(@"locationless_sortby", @"0");
+
+    CHECK(@"opencage_key", @"");
 }
 
 - (void)loadValues
@@ -203,6 +205,7 @@
     self.logTemporaryText = [dbConfig dbGetByKey:@"log_temporary_text"].value;
     self.locationlessShowFound = [[dbConfig dbGetByKey:@"locationless_showfound"].value boolValue];
     self.locationlessListSortBy = [[dbConfig dbGetByKey:@"locationless_sortby"].value integerValue];
+    self.opencageKey = [dbConfig dbGetByKey:@"opencage_key"].value;
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -600,6 +603,12 @@
 {
     self.locationlessListSortBy = value;
     [self NSIntegerUpdate:@"locationless_sortby" value:value];
+}
+
+- (void)opencageKeyUpdate:(NSString *)value
+{
+    self.opencageKey = value;
+    [self NSStringUpdate:@"opencage_key" value:value];
 }
 
 @end

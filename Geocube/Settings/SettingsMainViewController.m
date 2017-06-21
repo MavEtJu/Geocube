@@ -268,6 +268,7 @@ enum sections {
 
     SECTION_APPS_EXTERNALMAP = 0,
     SECTION_APPS_TWITTER,
+    SECTION_APPS_OPENCAGEKEY,
     SECTION_APPS_MAX,
 
     SECTION_MAPCACHE_ENABLED = 0,
@@ -443,6 +444,12 @@ enum sections {
                         }
                     }];
                     cell.detailTextLabel.text = name;
+                    return cell;
+                }
+                case SECTION_APPS_OPENCAGEKEY: {
+                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
+                    cell.textLabel.text = @"OpenCage key";
+                    cell.detailTextLabel.text = configManager.opencageKey;
                     return cell;
                 }
                 case SECTION_APPS_TWITTER: {
@@ -1042,6 +1049,9 @@ enum sections {
                 case SECTION_APPS_EXTERNALMAP:
                     [self changeAppsExternalMap];
                     break;
+                case SECTION_APPS_OPENCAGEKEY:
+                    [self changeOpenCageKey];
+                    break;
             }
             return;
         case SECTION_MAPSEARCHMAXIMUM:
@@ -1157,6 +1167,44 @@ enum sections {
             }
             return;
     }
+}
+
+/* ********************************************************************************* */
+
+- (void)changeOpenCageKey
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"OpenCage key"
+                                message:@"Enter your OpenCage key"
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *value = tf.text;
+                             [configManager opencageKeyUpdate:value];
+                             [self.tableView reloadData];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = configManager.opencageKey;
+        textField.placeholder = @"OpenCage key";
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+
 }
 
 /* ********************************************************************************* */

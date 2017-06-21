@@ -114,6 +114,8 @@
 @property (nonatomic) BOOL locationlessShowFound;
 @property (nonatomic) NSInteger locationlessListSortBy;
 
+@property (nonatomic, retain) NSString *opencageKey;
+
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown
 // UIInterfaceOrientationMaskLandscapeLeft, UIInterfaceOrientationMaskLandscapeRight
@@ -183,5 +185,6 @@
 - (void)logTemporaryTextUpdate:(NSString *)value;
 - (void)locationlessShowFoundUpdate:(BOOL)value;
 - (void)locationlessListSortByUpdate:(NSInteger)value;
+- (void)opencageKeyUpdate:(NSString *)value;
 
 @end
