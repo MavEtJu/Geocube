@@ -228,8 +228,7 @@
                 }
                 [self.delegate Import_WaypointProcessed:currentWP];
 
-                if (IS_EMPTY(currentWP.gca_locale.name) == YES)
-                    [opencageManager addForProcessing:currentWP];
+                [opencageManager addForProcessing:currentWP];
 
                 [dbc.Group_LastImport dbAddWaypoint:currentWP._id];
                 if (currentWP.gs_long_desc != nil)

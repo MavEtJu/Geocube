@@ -271,8 +271,7 @@
     if ([group dbContainsWaypoint:wp._id] == NO)
         [group dbAddWaypoint:wp._id];
 
-    if (IS_EMPTY(wp.gca_locale.name) == YES)
-        [opencageManager addForProcessing:wp];
+    [opencageManager addForProcessing:wp];
 
     // Images
     [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_long_desc type:IMAGECATEGORY_CACHE];
@@ -583,6 +582,7 @@
 
     awp.account_id = account._id;
     awp.related_id = wp._id;
+    awp.date_lastimport_epoch = time(NULL);
     [awp finish];
 
     NSId wpid = [dbWaypoint dbGetByName:awp.wpt_name];
@@ -682,6 +682,7 @@
         awp._id = wpold._id;
         [awp dbUpdate];
     }
+    [opencageManager addForProcessing:awp];
 
     [self.delegate Import_WaypointProcessed:awp];
 }
