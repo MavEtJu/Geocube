@@ -286,7 +286,6 @@ enum {
     wp.wpt_urlname = [NSString stringWithFormat:@"%@ - %@", code, name];
     wp.wpt_symbol = [dbc Symbol_VirtualStage];
     wp.wpt_type = [dbc Type_ManuallyEntered];
-    wp.related_id = 0;  // This is a new parent
     [wp finish];
     [wp dbCreate];
 

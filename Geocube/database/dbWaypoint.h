@@ -46,7 +46,6 @@ typedef NS_ENUM(NSInteger, LogStatus) {
 @property (nonatomic) BOOL flag_dnf;
 @property (nonatomic) BOOL flag_planned;
 @property (nonatomic, retain) dbAccount *account;
-@property (nonatomic) NSId related_id;
 
 @property (nonatomic) float gs_rating_difficulty;
 @property (nonatomic) float gs_rating_terrain;

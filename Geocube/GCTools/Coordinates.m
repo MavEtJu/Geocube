@@ -467,7 +467,6 @@
             wp.wpt_urlname = wp.wpt_name;
             wp.wpt_symbol = dbc.Symbol_VirtualStage;
             wp.wpt_type = [dbc Type_ManuallyEntered];
-            wp.related_id = waypoint._id;
             wp.account = waypoint.account;
             [wp finish];
             [wp dbCreate];

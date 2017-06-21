@@ -57,7 +57,6 @@ create index group2waypoints_idx_waypoint_id on group2waypoints(waypoint_id);
 
 create table waypoints (
     id integer primary key,
-    related_id integer,
 
     wpt_lat float,
     wpt_lon float,

@@ -157,7 +157,7 @@ CONVERT_TO(dbWaypointMutable)
     NSMutableArray<dbWaypoint *> *wps = [[NSMutableArray alloc] initWithCapacity:20];
     dbWaypointMutable *wpm;
 
-    NSMutableString *sql = [NSMutableString stringWithFormat:@"select id, wpt_name, wpt_description, wpt_lat, wpt_lon, wpt_date_placed_epoch, wpt_url, wpt_type_id, wpt_symbol_id, wpt_urlname, log_status, highlight, account_id, ignore, gs_country_id, gs_state_id, gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_long_desc_html, gs_long_desc, gs_short_desc_html, gs_short_desc, gs_hint, gs_container_id, gs_archived, gs_available, gs_owner_id, gs_placed_by, markedfound, inprogress, gs_date_found, dnfed, date_lastlog_epoch, gca_locale_id, date_lastimport_epoch, related_id, planned from waypoints wp %@", where];
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"select id, wpt_name, wpt_description, wpt_lat, wpt_lon, wpt_date_placed_epoch, wpt_url, wpt_type_id, wpt_symbol_id, wpt_urlname, log_status, highlight, account_id, ignore, gs_country_id, gs_state_id, gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_long_desc_html, gs_long_desc, gs_short_desc_html, gs_short_desc, gs_hint, gs_container_id, gs_archived, gs_available, gs_owner_id, gs_placed_by, markedfound, inprogress, gs_date_found, dnfed, date_lastlog_epoch, gca_locale_id, date_lastimport_epoch, planned from waypoints wp %@", where];
 
     @synchronized(db) {
         DB_PREPARE_KEYSVALUES(sql, keys, values);
@@ -204,8 +204,7 @@ CONVERT_TO(dbWaypointMutable)
             INT_FETCH   (33, wpm.date_lastlog_epoch);
             INT_FETCH   (34, wpm.gca_locale_id);
             INT_FETCH   (35, wpm.date_lastimport_epoch);
-            INT_FETCH   (36, wpm.related_id);
-            INT_FETCH   (37, wpm.flag_planned);
+            INT_FETCH   (36, wpm.flag_planned);
 
             [wpm finish];
             dbWaypoint *wp = [wpm dbWaypoint];
@@ -310,7 +309,7 @@ CONVERT_TO(dbWaypointMutable)
 - (void)dbUpdate
 {
     @synchronized(db) {
-        DB_PREPARE(@"update waypoints set wpt_name = ?, wpt_description = ?, wpt_lat = ?, wpt_lon = ?, wpt_date_placed_epoch = ?, wpt_url = ?, wpt_type_id = ?, wpt_symbol_id = ?, wpt_urlname = ?, log_status = ?, highlight = ?, account_id = ?, ignore = ?, gs_country_id = ?, gs_state_id = ?, gs_rating_difficulty = ?, gs_rating_terrain = ?, gs_favourites = ?, gs_long_desc_html = ?, gs_long_desc = ?, gs_short_desc_html = ?, gs_short_desc = ?, gs_hint = ?, gs_container_id = ?, gs_archived = ?, gs_available = ?, gs_owner_id = ?, gs_placed_by = ?, markedfound = ?, inprogress = ?, gs_date_found = ?, dnfed = ?, date_lastlog_epoch = ?, gca_locale_id = ?, date_lastimport_epoch = ?, related_id = ?, planned = ? where id = ?");
+        DB_PREPARE(@"update waypoints set wpt_name = ?, wpt_description = ?, wpt_lat = ?, wpt_lon = ?, wpt_date_placed_epoch = ?, wpt_url = ?, wpt_type_id = ?, wpt_symbol_id = ?, wpt_urlname = ?, log_status = ?, highlight = ?, account_id = ?, ignore = ?, gs_country_id = ?, gs_state_id = ?, gs_rating_difficulty = ?, gs_rating_terrain = ?, gs_favourites = ?, gs_long_desc_html = ?, gs_long_desc = ?, gs_short_desc_html = ?, gs_short_desc = ?, gs_hint = ?, gs_container_id = ?, gs_archived = ?, gs_available = ?, gs_owner_id = ?, gs_placed_by = ?, markedfound = ?, inprogress = ?, gs_date_found = ?, dnfed = ?, date_lastlog_epoch = ?, gca_locale_id = ?, date_lastimport_epoch = ?, planned = ? where id = ?");
 
         SET_VAR_TEXT  ( 1, self.wpt_name);
         SET_VAR_TEXT  ( 2, self.wpt_description);
@@ -350,10 +349,9 @@ CONVERT_TO(dbWaypointMutable)
         SET_VAR_INT   (33, self.date_lastlog_epoch);
         SET_VAR_INT   (34, self.gca_locale._id);
         SET_VAR_INT   (35, self.date_lastimport_epoch);
-        SET_VAR_INT   (36, self.related_id);
-        SET_VAR_INT   (37, self.flag_planned);
+        SET_VAR_INT   (36, self.flag_planned);
 
-        SET_VAR_INT   (38, self._id);
+        SET_VAR_INT   (37, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

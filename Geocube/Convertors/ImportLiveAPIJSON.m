@@ -563,7 +563,6 @@
     awp.wpt_type_id = [dbc Type_ManuallyEntered]._id;
 
     awp.account_id = account._id;
-    awp.related_id = wp._id;
     [awp finish];
 
     NSId wpid = [dbWaypoint dbGetByName:awp.wpt_name];
@@ -643,7 +642,6 @@
     DICT_NSSTRING_KEY(dict, awp.wpt_type_str, @"Type");
 
     awp.account_id = account._id;
-    awp.related_id = wp._id;
     [awp finish];
 
     NSId wpid = [dbWaypoint dbGetByName:awp.wpt_name];
