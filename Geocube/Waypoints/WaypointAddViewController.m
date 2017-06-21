@@ -277,8 +277,8 @@ enum {
 
     wp.wpt_lat_str = [c lat_decimalDegreesSigned];
     wp.wpt_lon_str = [c lon_decimalDegreesSigned];
-    wp.wpt_lat_float = [c lat];
-    wp.wpt_lon_float = [c lon];
+    wp.wpt_lat = [c lat];
+    wp.wpt_lon = [c lon];
     wp.wpt_name = code;
     wp.wpt_description = name;
     wp.wpt_date_placed_epoch = time(NULL);

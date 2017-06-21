@@ -113,7 +113,7 @@ enum {
         coordsRecordedLocation = CLLocationCoordinate2DZero;
     else {
         dbWaypoint *waypoint = [dbWaypoint dbGet:wpid];
-        coordsRecordedLocation = waypoint.coordinates;
+        coordsRecordedLocation = CLLocationCoordinate2DMake(waypoint.wpt_lat, waypoint.wpt_lon);
         buttonSetAsTarget.userInteractionEnabled = YES;
     }
 
@@ -218,9 +218,8 @@ enum {
         waypoint = [dbWaypointMutable dbGet:wpid];
     }
 
-    waypoint.coordinates = coordsRecordedLocation;
-    waypoint.wpt_lon_float = coordsRecordedLocation.longitude;
-    waypoint.wpt_lat_float = coordsRecordedLocation.latitude;
+    waypoint.wpt_lon = coordsRecordedLocation.longitude;
+    waypoint.wpt_lat = coordsRecordedLocation.latitude;
 
     waypoint.wpt_date_placed_epoch = time(NULL);
     [waypointManager needsRefreshUpdate:waypoint];

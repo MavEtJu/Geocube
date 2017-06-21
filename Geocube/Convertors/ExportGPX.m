@@ -120,7 +120,7 @@
 */
     NSMutableString *l = [NSMutableString string];
 
-    [lines addObject:[NSString stringWithFormat:@"<wpt lat=\"%f\" lon=\"%f\">", wp.wpt_lat_float, wp.wpt_lon_float]];
+    [lines addObject:[NSString stringWithFormat:@"<wpt lat=\"%f\" lon=\"%f\">", wp.wpt_lat, wp.wpt_lon]];
     LINE_S(@"time", [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:wp.wpt_date_placed_epoch]);
     LINE_S(@"name", wp.wpt_name);
     LINE_S(@"desc", wp.wpt_description);

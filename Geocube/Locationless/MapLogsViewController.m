@@ -58,8 +58,8 @@
         dbWaypoint *wp = [[dbWaypoint alloc] init];
         wp.wpt_name = [NSString stringWithFormat:@"LOG%ld", (long)log._id];
         wp.wpt_urlname = [NSString stringWithFormat:@"%@ on %@", log.logger_str, [MyTools dateTimeString_YYYY_MM_DD:log.datetime_epoch]];
-        wp.wpt_lat_float = log.lat_float;
-        wp.wpt_lon_float = log.lon_float;
+        wp.wpt_lat = log.lat_float;
+        wp.wpt_lon = log.lon_float;
         wp.wpt_type = [dbc Type_Log];
         [wp finish];
         [self.waypointsArray addObject:wp];

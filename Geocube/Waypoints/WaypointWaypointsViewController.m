@@ -167,8 +167,8 @@ enum {
     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp1, NSUInteger idx1, BOOL *stop1) {
         __block BOOL found = NO;
         [nwps enumerateObjectsUsingBlock:^(dbWaypoint *wp2, NSUInteger idx2, BOOL *stop2) {
-            if (wp1.wpt_lat_float == wp2.wpt_lat_float &&
-                wp1.wpt_lon_float == wp2.wpt_lon_float) {
+            if (wp1.wpt_lat == wp2.wpt_lat &&
+                wp1.wpt_lon == wp2.wpt_lon) {
                 found = YES;
                 *stop2 = YES;
             }
