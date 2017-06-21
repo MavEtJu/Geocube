@@ -21,7 +21,7 @@
 
 @interface OpenCageManager ()
 {
-    NSArray<NSString *> *order;
+    NSArray<NSString *> *locale_order, *state_order, *country_order;
     NSString *urlFormat;
     NSMutableArray<dbWaypoint *> *queue;
     BOOL isRunning;
@@ -35,20 +35,29 @@
 {
     self = [super init];
 
-    order = @[@"village",
-              @"hamlet",
-              @"locality",
-              @"suburb",
-              @"city_district",
-              @"town",
-              @"city",
-              @"county",
-              @"state_district",
-              @"province",
-              @"state",
-              @"region",
-              @"island"
-              ];
+    locale_order = @[@"village",
+                     @"hamlet",
+                     @"locality",
+                     @"suburb",
+                     @"city_district",
+                     @"town",
+                     @"city",
+                     @"county",
+                     @"state_district",
+                     @"province",
+                     @"state",
+                     @"region",
+                     @"island"
+                     ];
+
+    state_order = @[@"province",
+                    @"state",
+                    @"region",
+                    @"island"
+                    ];
+
+    country_order = @[@"country"
+                     ];
 
     urlFormat = @"https://api.opencagedata.com/geocode/v1/json?q=%f,%f&no_annotations=1&key=%@";
     queue = [NSMutableArray arrayWithCapacity:20];
@@ -61,6 +70,10 @@
 {
     if (IS_EMPTY(configManager.opencageKey) == YES)
         return;
+
+    if (wp.gs_country != nil && wp.gs_state != nil && wp.gca_locale != nil)
+        return;
+
     @synchronized (self) {
         [queue addObject:wp];
     }
@@ -106,17 +119,50 @@
         NSArray<NSDictionary *> *results = [json objectForKey:@"results"];
         NSDictionary *annotation = [results objectAtIndex:0];
         NSDictionary *components = [annotation objectForKey:@"components"];
-        __block NSString *locale = nil;
-        [order enumerateObjectsUsingBlock:^(NSString * _Nonnull field, NSUInteger idx, BOOL * _Nonnull stop) {
-            locale = [components objectForKey:field];
-            if (locale != nil)
-                *stop = YES;
-        }];
-        if (locale != nil) {
-            [dbLocale makeNameExist:locale];
-            wp.gca_locale = [dbc Locale_get_byName:locale];
-            [wp dbUpdateLocale];
+
+        BOOL needsUpdate = NO;
+
+        if (wp.gca_locale == nil) {
+            __block NSString *locale = nil;
+            [locale_order enumerateObjectsUsingBlock:^(NSString * _Nonnull field, NSUInteger idx, BOOL * _Nonnull stop) {
+                locale = [components objectForKey:field];
+                if (locale != nil)
+                    *stop = YES;
+            }];
+            if (locale != nil) {
+                [dbLocale makeNameExist:locale];
+                wp.gca_locale = [dbc Locale_get_byName:locale];
+                needsUpdate = YES;
+            }
         }
+        if (wp.gs_state == nil) {
+            __block NSString *state = nil;
+            [state_order enumerateObjectsUsingBlock:^(NSString * _Nonnull field, NSUInteger idx, BOOL * _Nonnull stop) {
+                state = [components objectForKey:field];
+                if (state != nil)
+                    *stop = YES;
+            }];
+            if (state != nil) {
+                [dbState makeNameExist:state];
+                wp.gs_state = [dbc State_get_byNameCode:state];
+                needsUpdate = YES;
+            }
+        }
+        if (wp.gs_country == nil) {
+            __block NSString *country = nil;
+            [country_order enumerateObjectsUsingBlock:^(NSString * _Nonnull field, NSUInteger idx, BOOL * _Nonnull stop) {
+                country = [components objectForKey:field];
+                if (country != nil)
+                    *stop = YES;
+            }];
+            if (country != nil) {
+                [dbCountry makeNameExist:country];
+                wp.gs_country = [dbc Country_get_byNameCode:country];
+                needsUpdate = YES;
+            }
+        }
+
+        [wp dbUpdateCountryStateLocale];
     } else {
         NSLog(@"%@ - Error %@, bailing", [self class], [error description]);
         @synchronized (self) {
