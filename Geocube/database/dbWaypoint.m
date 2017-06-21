@@ -789,13 +789,15 @@
         [dbListData waypointClearFlag:self flag:FLAGS_PLANNED];
 }
 
-- (void)dbUpdateLocale
+- (void)dbUpdateCountryStateLocale
 {
     @synchronized(db) {
-        DB_PREPARE(@"update waypoints set gca_locale_id = ? where id = ?");
+        DB_PREPARE(@"update waypoints set gca_locale_id = ?, gs_country_id = ?, gs_state_id = ? where id = ?");
 
         SET_VAR_INT(1, self.gca_locale._id);
-        SET_VAR_INT(2, self._id);
+        SET_VAR_INT(2, self.gs_country._id);
+        SET_VAR_INT(3, self.gs_state._id);
+        SET_VAR_INT(4, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

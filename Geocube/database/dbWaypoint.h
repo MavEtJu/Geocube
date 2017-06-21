@@ -126,7 +126,7 @@ typedef NS_ENUM(NSInteger, LogStatus) {
 - (void)dbUpdateInProgress;
 - (void)dbUpdateMarkedDNF;
 - (void)dbUpdatePlanned;
-- (void)dbUpdateLocale;
+- (void)dbUpdateCountryStateLocale;
 
 - (NSString *)makeLocaleStateCountry;
 + (NSString *)makeName:(NSString *)suffix;
