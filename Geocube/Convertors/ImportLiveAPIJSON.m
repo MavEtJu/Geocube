@@ -266,6 +266,8 @@
         GCLog(@"Updating %@", wp.wpt_name);
         dbWaypoint *wpold = [dbWaypoint dbGet:wp._id];
         wp._id = wpold._id;
+        if ([group dbContainsWaypoint:wp._id] == NO)
+            [group dbAddWaypoint:wp._id];
         [wp dbUpdate];
     }
     if ([group dbContainsWaypoint:wp._id] == NO)
@@ -629,6 +631,25 @@
         UrlName": "GC5F521 Parking",
         "WptTypeID": 217
      }
+
+     or
+
+     {
+         "Code": "P0",
+         "Comment": "Balls Head Reserve Parking",
+         "Description": null,
+         "GUID": "6fbe1058-fb8c-41bb-b5dc-f1198e6f768e",
+         "GeocacheCode": "GC768WB",
+         "Latitude": -33.846833333333336,
+         "Longitude": 151.19598333333334,
+         "Name": "Parking Area",
+         "Type": "Waypoint|Parking Area",
+         "UTCEnteredDate": "/Date(1495859206590-0700)/",
+         "Url": "http://www.geocaching.com/seek/wpt.aspx?WID=6fbe1058-fb8c-41bb-b5dc-f1198e6f768e",
+         "UrlName": "Balls Head Reserve Parking",
+         "WptTypeID": 0
+     },
+
     */
 
     dbWaypoint *awp = [[dbWaypoint alloc] init];
@@ -638,6 +659,12 @@
     DICT_NSSTRING_KEY(dict, awp.wpt_description, @"Description");
     DICT_NSSTRING_KEY(dict, awp.wpt_url, @"Url");
     DICT_NSSTRING_KEY(dict, awp.wpt_urlname, @"UrlName");
+
+    if ([awp.wpt_name length] == 2) {
+        NSString *s;
+        DICT_NSSTRING_KEY(dict, s, @"GeocacheCode");
+        awp.wpt_name = [NSString stringWithFormat:@"%@%@", awp.wpt_name, [s substringFromIndex:2]];
+    }
 
     if ([[dict objectForKey:@"Latitude"] isKindOfClass:[NSNumber class]] == NO) {
         awp.wpt_lat_float = 0;
@@ -680,6 +707,8 @@
     } else {
         dbWaypoint *wpold = [dbWaypoint dbGet:wpid];
         awp._id = wpold._id;
+        if ([group dbContainsWaypoint:awp._id] == NO)
+            [group dbAddWaypoint:awp._id];
         [awp dbUpdate];
     }
     [opencageManager addForProcessing:awp];
