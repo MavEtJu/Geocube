@@ -109,7 +109,7 @@ enum {
 - (void)importLog:(dbLog *)log
 {
     note = log.log;
-    date = log.datetime;
+    date = [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:log.datetime_epoch];;
     logstring = log.logstring;
     [self reloadDataMainQueue];
 }
@@ -602,7 +602,8 @@ enum {
 {
     // Do not upload, save it locally for later
     if (upload == NO) {
-        [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note needstobelogged:YES locallog:NO coordinates:coordinates];
+        NSInteger date_epoch = [MyTools secondsSinceEpochFromISO8601:date];
+        [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date_epoch note:note needstobelogged:YES locallog:NO coordinates:coordinates];
         waypoint.logStatus = LOGSTATUS_FOUND;
         [waypoint dbUpdateLogStatus];
         [self.navigationController popViewControllerAnimated:YES];
@@ -650,7 +651,8 @@ enum {
     [MHTabBarController enableMenus:YES controllerFrom:self];
 
     if (retValue == REMOTEAPI_OK) {
-        dbLog *log = [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note needstobelogged:NO locallog:YES coordinates:coordinates];
+        NSInteger date_epoch = [MyTools secondsSinceEpochFromISO8601:date];
+        dbLog *log = [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date_epoch note:note needstobelogged:NO locallog:YES coordinates:coordinates];
         [log dbUpdate];
 
         if (configManager.loggingRemovesMarkedAsFoundDNF == YES) {

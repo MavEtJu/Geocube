@@ -246,7 +246,7 @@
             // Link logs to cache
             [logs enumerateObjectsUsingBlock:^(dbLog *l, NSUInteger idx, BOOL *stop) {
                 newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:l.log type:IMAGECATEGORY_LOG];
-                l.waypoint_id = currentWP._id;
+                l.waypoint = currentWP;
                 [l finish];
 
                 __block NSId _id = 0;
@@ -334,16 +334,16 @@
         if (inLog == YES) {
             if (index == 5) {
                 if ([elementName isEqualToString:@"date"] == YES) {
-                    [currentLog setDatetime:cleanText];
+                    currentLog.datetime_epoch = [MyTools secondsSinceEpochFromISO8601:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"type"] == YES) {
-                    currentLog.logstring_string = cleanText;
+                    [currentLog set_logstring_str:cleanText account:account];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"finder"] == YES) {
                     [dbName makeNameExist:cleanText code:logFinderNameId account:account];
-                    [currentLog setLogger_str:cleanText];
+                    currentLog.logger = [dbName dbGetByName:cleanText account:account];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"text"] == YES) {

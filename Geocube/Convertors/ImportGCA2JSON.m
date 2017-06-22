@@ -377,7 +377,7 @@
 
     __block BOOL found = NO;
     [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (name._id == log.logger_id && dateSinceEpoch == log.datetime_epoch) {
+        if (name._id == log.logger._id && dateSinceEpoch == log.datetime_epoch) {
             found = YES;
             *stop = YES;
         }
@@ -390,12 +390,12 @@
     if (found == YES)
         return;
 
-    dbLog *l = [[dbLog alloc] init:0 gc_id:0 waypoint_id:wp._id logstring_id:logstring._id datetime:date logger_id:name._id log:comment needstobelogged:NO locallog:NO coordinates:CLLocationCoordinate2DZero];
+    dbLog *l = [[dbLog alloc] init:0 gc_id:0 waypoint_id:wp._id logstring_id:logstring._id datetime:dateSinceEpoch logger_id:name._id log:comment needstobelogged:NO locallog:NO coordinates:CLLocationCoordinate2DZero];
     if ([location isKindOfClass:[NSString class]] == YES) {
         NSArray<NSString *> *cs = [location componentsSeparatedByString:@"|"];
         if ([cs count] == 2) {
-            l.lat = [cs objectAtIndex:0];
-            l.lon = [cs objectAtIndex:1];
+            l.lat = [[cs objectAtIndex:0] floatValue];
+            l.lon = [[cs objectAtIndex:1] floatValue];
         }
     }
     [l finish];

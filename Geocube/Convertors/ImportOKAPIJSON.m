@@ -352,7 +352,7 @@
 
     __block BOOL found = NO;
     [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (name._id == log.logger_id && dateSinceEpoch == log.datetime_epoch) {
+        if (name._id == log.logger._id && dateSinceEpoch == log.datetime_epoch) {
             found = YES;
             *stop = YES;
         }
@@ -361,7 +361,7 @@
     if (found == YES)
         return;
 
-    dbLog *l = [[dbLog alloc] init:0 gc_id:0 waypoint_id:wp._id logstring_id:ls._id datetime:date logger_id:name._id log:comment needstobelogged:NO locallog:NO coordinates:CLLocationCoordinate2DZero];
+    dbLog *l = [[dbLog alloc] init:0 gc_id:0 waypoint_id:wp._id logstring_id:ls._id datetime:dateSinceEpoch logger_id:name._id log:comment needstobelogged:NO locallog:NO coordinates:CLLocationCoordinate2DZero];
     [l dbCreate];
     newLogsCount++;
     [infoViewer setLogsNew:iiImport new:newLogsCount];

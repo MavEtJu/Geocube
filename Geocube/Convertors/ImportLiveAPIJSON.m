@@ -687,16 +687,17 @@
     },
      */
 
-    dbLog *l = [[dbLog alloc] init];
-    l.waypoint_id = wp._id;
-    DICT_INTEGER_KEY(dict, l.gc_id, @"ID");
     NSString *dummy;
+
+    dbLog *l = [[dbLog alloc] init];
+    l.waypoint = wp;
+    DICT_INTEGER_KEY(dict, l.gc_id, @"ID");
     DICT_NSSTRING_KEY(dict, dummy, @"UTCCreateDate");
     l.datetime_epoch = [MyTools secondsSinceEpochFromWindows:dummy];
-    l.datetime = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:l.datetime_epoch];
     l.needstobelogged = NO;
     DICT_NSSTRING_KEY(dict, l.log, @"LogText");
-    DICT_NSSTRING_PATH(dict, l.logstring_string, @"LogType.WptLogTypeName");
+    DICT_NSSTRING_PATH(dict, dummy, @"LogType.WptLogTypeName");
+    [l set_logstring_str:dummy account:account];
 
     [ImagesDownloadManager findImagesInDescription:wp._id text:l.log type:IMAGECATEGORY_LOG];
 
@@ -711,7 +712,7 @@
     } else {
         [name dbCreate];
     }
-    l.logger_id = name._id;
+    l.logger = name;
     [l finish];
 
     NSId l_id = [dbLog dbGetIdByGC:l.gc_id account:wp.account];

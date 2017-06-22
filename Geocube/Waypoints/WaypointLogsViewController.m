@@ -53,7 +53,7 @@ enum {
     logs = [NSMutableArray arrayWithArray:[dbLog dbAllByWaypoint:waypoint._id]];
     __block BOOL foundAnyCoordinates = NO;
     [logs enumerateObjectsUsingBlock:^(dbLog * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (log.lat_int != 0 && log.lon_int != 0) {
+        if (log.lat != 0 && log.lon != 0) {
             *stop = YES;
             foundAnyCoordinates = YES;
         }
