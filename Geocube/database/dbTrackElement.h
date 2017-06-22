@@ -21,7 +21,6 @@
 
 @interface dbTrackElement : dbObject
 
-@property (nonatomic) NSId track_id;
 @property (nonatomic, retain) dbTrack *track;
 
 @property (nonatomic) CLLocationCoordinate2D coords;

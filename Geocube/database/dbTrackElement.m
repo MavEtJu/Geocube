@@ -46,7 +46,7 @@
         DB_WHILE_STEP {
             dbTrackElement *te = [[dbTrackElement alloc] init];
             INT_FETCH (0, te._id);
-            INT_FETCH (1, te.track_id);
+            INT_FETCH (1, te.track._id);
             INT_FETCH (2, te.lat_int);
             INT_FETCH (3, te.lon_int);
             INT_FETCH (4, te.height);
@@ -65,7 +65,7 @@
     @synchronized(db) {
         DB_PREPARE(@"insert into trackelements(track_id, lat_int, lon_int, height, timestamp, restart) values(?, ?, ?, ?, ?, ?)");
 
-        SET_VAR_INT (1, self.track_id);
+        SET_VAR_INT (1, self.track._id);
         SET_VAR_INT (2, self.lat_int);
         SET_VAR_INT (3, self.lon_int);
         SET_VAR_INT (4, self.height);
@@ -82,7 +82,7 @@
 + (dbTrackElement *)createElement:(CLLocationCoordinate2D)_coords height:(NSInteger)_height restart:(BOOL)_restart
 {
     dbTrackElement *te = [[dbTrackElement alloc] init];
-    te.track_id = configManager.currentTrack;
+    te.track = [dbTrack dbGet:configManager.currentTrack];
     te.height = _height;
     te.lat_int = _coords.latitude * 1000000;
     te.lon_int = _coords.longitude * 1000000;
