@@ -26,6 +26,5 @@
 + (NSArray<dbLocale *> *)dbAll;
 + (void)makeNameExist:(NSString *)name;
 + (dbLocale *)dbGet:(NSId)_id;
-+ (NSId)dbCreate:(NSString *)name;
 
 @end

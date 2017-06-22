@@ -248,8 +248,11 @@
     NSString *datafile = [dbImage createDataFilename:url];
     dbImage *img = [dbImage dbGetByURL:url];
     if (img == nil) {
-        img = [[dbImage alloc] init:url name:name datafile:datafile];
-        [dbImage dbCreate:img];
+        img = [[dbImage alloc] init];
+        img.url = url;
+        img.name = name;
+        img.datafile = datafile;
+        [img dbCreate];
     }
 
     if ([img dbLinkedtoWaypoint:wp_id] == NO)

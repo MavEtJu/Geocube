@@ -99,7 +99,7 @@
         c++;
     }
     cell.textLabel.text = cg.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", (long)[cg dbCountWaypoints]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", (long)[cg countWaypoints]];
     cell.imageView.image = nil;
     cell.userInteractionEnabled = NO;
 

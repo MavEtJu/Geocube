@@ -19,18 +19,15 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbAttribute : dbObject
+@interface dbExternalMapURL : dbObject
 
-@property (nonatomic) NSInteger icon;
-@property (nonatomic) NSId gc_id;
-@property (nonatomic, retain) NSString *label;
-@property (nonatomic) BOOL _YesNo;
+@property (nonatomic) NSId externalMap_id;
+@property (nonatomic, retain) dbExternalMap *externalMap;
+@property (nonatomic, retain) NSString *model;
+@property (nonatomic) NSInteger type;
+@property (nonatomic, retain) NSString *url;
 
-+ (NSArray<dbAttribute *> *)dbAll;
-- (void)dbLinkToWaypoint:(NSId)wp_id YesNo:(BOOL)YesNO;
-+ (void)dbAllLinkToWaypoint:(NSId)wp_id attributes:(NSArray<dbAttribute *> *)attrs YesNo:(BOOL)YesNo;
-+ (void)dbUnlinkAllFromWaypoint:(NSId)wp_id;
-+ (NSInteger)dbCountByWaypoint:(NSId)wp_id;
-+ (NSArray<dbAttribute *> *)dbAllByWaypoint:(NSId)wp_id;
++ (NSArray<dbExternalMapURL *> *)dbAllByExternalMap:(NSId)map_id;
++ (void)dbDeleteByExternalMap:(NSId)map_id;
 
 @end

@@ -27,8 +27,6 @@
 @property (nonatomic) BOOL selected;
 
 + (NSArray<dbContainer *> *)dbAll;
-- (instancetype)init:(NSId)_id gc_id:(NSInteger)gc_id size:(NSString *)size icon:(NSInteger)icon;
 + (dbContainer *)dbGetByGCID:(NSInteger)gc_id;
-+ (NSId)dbCreate:(dbContainer *)c;
 
 @end

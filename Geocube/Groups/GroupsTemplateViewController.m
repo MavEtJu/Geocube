@@ -71,7 +71,7 @@
 
     dbGroup *cg = [self.cgs objectAtIndex:indexPath.row];
     cell.textLabel.text = cg.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld waypoints", (long)[cg dbCountWaypoints]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld waypoints", (long)[cg countWaypoints]];
     cell.userInteractionEnabled = (self.showUsers == YES);
 
     return cell;
@@ -171,7 +171,7 @@
 
 - (void)groupEmpty:(dbGroup *)cg reload:(BOOL)reload
 {
-    [cg dbEmpty];
+    [cg emptyGroup];
     [db cleanupAfterDelete];
     [waypointManager needsRefreshAll];
     if (reload == YES) {
@@ -245,8 +245,11 @@
                              NSString *newgroup = tf.text;
 
                              NSLog(@"Creating new group '%@'", newgroup);
-                             NSId gid = [dbGroup dbCreate:newgroup isUser:YES];
-                             dbGroup *group = [dbGroup dbGet:gid];
+                             dbGroup *group = [[dbGroup alloc] init];
+                             group.name = newgroup;
+                             group.usergroup = YES;
+                             group.deletable = YES;
+                             [group dbCreate];
                              [dbc Group_add:group];
                              [self refreshGroupData];
                              [self.tableView reloadData];

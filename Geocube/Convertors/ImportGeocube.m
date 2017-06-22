@@ -504,8 +504,10 @@ typedef NS_ENUM(NSInteger, Type) {
             c.name = name;
             [c dbUpdate];
         } else {
-            NSId _id = [dbCountry dbCreate:name code:abbr];
-            c = [dbCountry dbGet:_id];
+            c = [[dbCountry alloc] init];
+            c.name = name;
+            c.code = abbr;
+            [c dbCreate];
             [dbc Country_add:c];
         }
     }];
@@ -615,7 +617,7 @@ typedef NS_ENUM(NSInteger, Type) {
             bm.name = description;
             bm.url = url;
             bm.import = [dbFileImport dbGet:import_id];
-            [dbBookmark dbCreate:bm];
+            [bm dbCreate];
         }
     }];
 
@@ -647,7 +649,7 @@ typedef NS_ENUM(NSInteger, Type) {
             c.size = label;
             c.gc_id = gc_id;
             c.icon = icon;
-            [dbContainer dbCreate:c];
+            [c dbCreate];
         }
     }];
 

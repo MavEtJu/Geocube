@@ -25,37 +25,25 @@
 
 @implementation dbAttribute
 
-- (instancetype)init:(NSId)_id gc_id:(NSId)gc_id label:(NSString *)label icon:(NSInteger)icon
++ (NSInteger)dbCount
 {
-    self = [super init];
-
-    self.icon = icon;
-    self.label = label;
-    self.gc_id = gc_id;
-    self._id = _id;
-
-    [self finish];
-    return self;
+    return [dbAttribute dbCount:@"attributes"];
 }
 
-+ (NSArray<dbAttribute *> *)dbAll
+- (NSId)dbCreate
 {
-    NSMutableArray<dbAttribute *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
-
     @synchronized(db) {
-        DB_PREPARE(@"select id, label, gc_id, icon from attributes");
+        DB_PREPARE(@"insert into attributes(label, gc_id, icon) values(?, ?, ?)");
 
-        DB_WHILE_STEP {
-            dbAttribute *a = [[dbAttribute alloc] init];
-            INT_FETCH (0, a._id);
-            TEXT_FETCH(1, a.label);
-            INT_FETCH (2, a.gc_id);
-            INT_FETCH (3, a.icon);
-            [ss addObject:a];
-        }
+        SET_VAR_TEXT(1, self.label);
+        SET_VAR_INT (2, self.gc_id);
+        SET_VAR_INT (3, self.icon);
+
+        DB_CHECK_OKAY;
+        DB_GET_LAST_ID(self._id);
         DB_FINISH;
     }
-    return ss;
+    return self._id;
 }
 
 - (void)dbUpdate
@@ -72,31 +60,59 @@
     }
 }
 
-- (NSId)dbCreate
++ (NSArray<dbAttribute *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
-    NSId _id;
+    NSMutableArray<dbAttribute *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
+
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, label, gc_id, icon from attributes "];
+    if (where != nil)
+        [sql appendString:where];
 
     @synchronized(db) {
-        DB_PREPARE(@"insert into attributes(label, gc_id, icon) values(?, ?, ?)");
+        DB_PREPARE_KEYSVALUES(sql, keys, values);
 
-        SET_VAR_TEXT(1, self.label);
-        SET_VAR_INT (2, self.gc_id);
-        SET_VAR_INT (3, self.icon);
-
-        DB_CHECK_OKAY;
-        DB_GET_LAST_ID(_id);
-        self._id = _id;
+        DB_WHILE_STEP {
+            dbAttribute *a = [[dbAttribute alloc] init];
+            INT_FETCH (0, a._id);
+            TEXT_FETCH(1, a.label);
+            INT_FETCH (2, a.gc_id);
+            INT_FETCH (3, a.icon);
+            [ss addObject:a];
+        }
         DB_FINISH;
     }
-    return self._id;
+    return ss;
 }
 
-+ (NSInteger)dbCount
++ (NSArray<dbAttribute *> *)dbAll
 {
-    return [dbAttribute dbCount:@"attributes"];
+    return [self dbAllXXX:nil keys:nil values:nil];
 }
 
-//
++ (NSArray<dbAttribute *> *)dbAllByWaypoint:(NSId)wp_id
+{
+    NSMutableArray<dbAttribute *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
+
+    @synchronized(db) {
+        DB_PREPARE(@"select a.id, a.label, a.icon, a.gc_id, b.yes from attributes a inner join attribute2waypoints b on a.id = b.attribute_id where b.waypoint_id = ?");
+
+        SET_VAR_INT( 1, wp_id);
+
+        DB_WHILE_STEP {
+            dbAttribute *a = [[dbAttribute alloc] init];
+            INT_FETCH (0, a._id);
+            TEXT_FETCH(1, a.label);
+            INT_FETCH (2, a.icon);
+            INT_FETCH (3, a.gc_id);
+            INT_FETCH (4, a._YesNo);
+            [ss addObject:a];
+        }
+        DB_FINISH;
+    }
+    return ss;
+}
+
+/* Other methods */
 
 + (void)dbUnlinkAllFromWaypoint:(NSId)wp_id
 {
@@ -156,35 +172,13 @@
         SET_VAR_INT(1, wp_id);
 
         DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN(0, c);
-            count = c;
+            INT_FETCH(0, count);
         }
         DB_FINISH;
     }
     return count;
 }
 
-+ (NSArray<dbAttribute *> *)dbAllByWaypoint:(NSId)wp_id
-{
-    NSMutableArray<dbAttribute *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db) {
-        DB_PREPARE(@"select a.id, a.label, a.icon, a.gc_id, b.yes from attributes a inner join attribute2waypoints b on a.id = b.attribute_id where b.waypoint_id = ?");
-
-        SET_VAR_INT( 1, wp_id);
-
-        DB_WHILE_STEP {
-            dbAttribute *a = [[dbAttribute alloc] init];
-            INT_FETCH (0, a._id);
-            TEXT_FETCH(1, a.label);
-            INT_FETCH (2, a.icon);
-            INT_FETCH (3, a.gc_id);
-            INT_FETCH (4, a._YesNo);
-            [ss addObject:a];
-        }
-        DB_FINISH;
-    }
-    return ss;
-}
 
 @end

@@ -287,9 +287,9 @@ enum {
     [wp finish];
     [wp dbCreate];
 
-    [dbc.Group_AllWaypoints_ManuallyAdded dbAddWaypoint:wp._id];
-    [dbc.Group_AllWaypoints dbAddWaypoint:wp._id];
-    [dbc.Group_ManualWaypoints dbAddWaypoint:wp._id];
+    [dbc.Group_AllWaypoints_ManuallyAdded addWaypointToGroup:wp._id];
+    [dbc.Group_AllWaypoints addWaypointToGroup:wp._id];
+    [dbc.Group_ManualWaypoints addWaypointToGroup:wp._id];
 
     [waypointManager needsRefreshAdd:wp];
 

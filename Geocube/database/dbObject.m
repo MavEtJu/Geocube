@@ -25,6 +25,26 @@
 
 @implementation dbObject
 
+/*
+ * Order of methods:
+ *
+ * - (instancetype)init
+ * - (void)finish
+ * + (NSInteger)dbCount
+ * - (NSId)dbCreate
+ * - (void)dbUpdate
+ * - (void)dbUpdate...
+ * + (NSArray *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
+ * + (NSArray *)dbAll
+ * + (NSArray *)dbAll...
+ * + (instancetype)dbGet:(NSId)id
+ * + (instancetype)dbGet...
+ * - (void)dbDelete
+ * - (void)dbDelete...
+ * ... others ...
+ *
+ */
+
 - NEEDS_OVERLOADING_VOID(dbUpdate)
 - NEEDS_OVERLOADING_VOID(dbDelete)
 - NEEDS_OVERLOADING_NSID(dbCreate)

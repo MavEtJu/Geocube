@@ -25,34 +25,25 @@
 
 @implementation dbFilter
 
-- (instancetype)init:(NSId)_id key:(NSString *)key value:(NSString *)value
++ (NSInteger)dbCount
 {
-    self = [super init];
-    self._id = _id;
-    self.key = _key;
-    self.value = _value;
-    [self finish];
-    return self;
+    return [dbFilter dbCount:@"filters"];
 }
 
-+ (dbFilter *)dbGetByKey:(NSString *)_key
+- (NSId)dbCreate
 {
-    dbFilter *c;
-
     @synchronized(db) {
-        DB_PREPARE(@"select id, key, value from filters where key = ?");
+        DB_PREPARE(@"insert into filters(key, value) values(?, ?)");
 
-        SET_VAR_TEXT(1, _key);
+        SET_VAR_TEXT(1, self.key);
+        SET_VAR_TEXT(2, self.value);
 
-        DB_IF_STEP {
-            c = [[dbFilter alloc] init];
-            INT_FETCH (0, c._id);
-            TEXT_FETCH(1, c.key);
-            TEXT_FETCH(2, c.value);
-        }
+        DB_CHECK_OKAY;
+        DB_GET_LAST_ID(self._id)
         DB_FINISH;
     }
-    return c;
+    
+    return self._id;
 }
 
 - (void)dbUpdate
@@ -68,23 +59,35 @@
     }
 }
 
-- (NSId)dbCreate
++ (NSArray<dbFilter *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
-    NSId __id;
+    NSMutableArray<dbFilter *> *fs = [[NSMutableArray alloc] initWithCapacity:20];
+
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, key, value from filters "];
+    if (where != nil)
+        [sql appendString:where];
 
     @synchronized(db) {
-        DB_PREPARE(@"insert into filters(key, value) values(?, ?)");
+        DB_PREPARE_KEYSVALUES(sql, keys, values);
 
-        SET_VAR_TEXT(1, self.key);
-        SET_VAR_TEXT(2, self.value);
-
-        DB_CHECK_OKAY;
-        DB_GET_LAST_ID(__id)
+        DB_WHILE_STEP {
+            dbFilter *f = [[dbFilter alloc] init];
+            INT_FETCH (0, f._id);
+            TEXT_FETCH(1, f.key);
+            TEXT_FETCH(2, f.value);
+            [fs addObject:f];
+        }
         DB_FINISH;
     }
-
-    return __id;
+    return fs;
 }
+
++ (dbFilter *)dbGetByKey:(NSString *)key
+{
+    return [[self dbAllXXX:@"where key = ?" keys:@"s" values:@[key]] firstObject];
+}
+
+/* Other methods */
 
 + (void)dbUpdateOrInsert:(NSString *)key value:(NSString *)value
 {
@@ -117,11 +120,6 @@
             DB_FINISH;
         }
     }
-}
-
-+ (NSInteger)dbCount
-{
-    return [dbFilter dbCount:@"filters"];
 }
 
 + (NSArray<NSString *> *)findFilterNames

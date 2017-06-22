@@ -260,8 +260,8 @@
         NSLog(@"Updated waypoint %@", wp.wpt_name);
         [wp dbUpdate];
     }
-    if ([group dbContainsWaypoint:wp._id] == NO)
-        [group dbAddWaypoint:wp._id];
+    if ([group containsWaypoint:wp._id] == NO)
+        [group addWaypointToGroup:wp._id];
 
     [self.delegate Import_WaypointProcessed:wp];
 
@@ -314,8 +314,11 @@
 
     image = [dbImage dbGetByURL:url];
     if (image == nil) {
-        image = [[dbImage alloc] init:url name:desc datafile:df];
-        [dbImage dbCreate:image];
+        image = [[dbImage alloc] init];
+        image.url = url;
+        image.name = desc;
+        image.datafile = df;
+        [image dbCreate];
     }
 
     if ([image dbLinkedtoWaypoint:wp._id] == NO)

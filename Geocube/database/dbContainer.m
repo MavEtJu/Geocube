@@ -25,15 +25,25 @@
 
 @implementation dbContainer
 
-- (instancetype)init:(NSId)_id gc_id:(NSInteger)gc_id size:(NSString *)size icon:(NSInteger)icon
++ (NSInteger)dbCount
 {
-    self = [super init];
-    self._id = _id;
-    self.gc_id = gc_id;
-    self.size = size;
-    self.icon = icon;
-    [self finish];
-    return self;
+    return [dbContainer dbCount:@"containers"];
+}
+
+- (NSId)dbCreate
+{
+    @synchronized(db) {
+        DB_PREPARE(@"insert into containers(size, icon, gc_id) values(?, ?, ?)");
+
+        SET_VAR_TEXT(1, self.size);
+        SET_VAR_INT (2, self.icon);
+        SET_VAR_INT (3, self.gc_id);
+
+        DB_CHECK_OKAY;
+        DB_GET_LAST_ID(self._id);
+        DB_FINISH;
+    }
+    return self._id;
 }
 
 - (void)dbUpdate
@@ -51,12 +61,16 @@
     }
 }
 
-+ (NSArray<dbContainer *> *)dbAll
++ (NSArray<dbContainer *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
     NSMutableArray<dbContainer *>*ss = [[NSMutableArray alloc] initWithCapacity:20];
 
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, size, icon, gc_id from containers "];
+    if (where != nil)
+        [sql appendString:where];
+
     @synchronized(db) {
-        DB_PREPARE(@"select id, size, icon, gc_id from containers");
+        DB_PREPARE_KEYSVALUES(sql, keys, values);
 
         DB_WHILE_STEP {
             dbContainer *c = [[dbContainer alloc] init];
@@ -71,47 +85,14 @@
     return ss;
 }
 
-+ (NSInteger)dbCount
++ (NSArray<dbContainer *> *)dbAll
 {
-    return [dbContainer dbCount:@"containers"];
+    return [self dbAllXXX:nil keys:nil values:nil];
 }
 
 + (dbContainer *)dbGetByGCID:(NSInteger)gc_id
 {
-    dbContainer *a = nil;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, size, icon, gc_id from containers where gc_id = ?");
-        SET_VAR_INT(1, gc_id);
-
-        DB_IF_STEP {
-            a = [[dbContainer alloc] init];
-            INT_FETCH (0, a._id);
-            TEXT_FETCH(1, a.size);
-            INT_FETCH (2, a.icon);
-            INT_FETCH (3, a.gc_id);
-        }
-        DB_FINISH;
-    }
-    return a;
-}
-
-+ (NSId)dbCreate:(dbContainer *)c
-{
-    NSId _id;
-
-    @synchronized(db) {
-        DB_PREPARE(@"insert into containers(size, icon, gc_id) values(?, ?, ?)");
-
-        SET_VAR_TEXT(1, c.size);
-        SET_VAR_INT (2, c.icon);
-        SET_VAR_INT (3, c.gc_id);
-
-        DB_CHECK_OKAY;
-        DB_GET_LAST_ID(_id);
-        DB_FINISH;
-    }
-    return _id;
+    return [[self dbAllXXX:@"where gc_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:gc_id]]] firstObject];
 }
 
 @end

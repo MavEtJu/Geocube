@@ -264,8 +264,8 @@
         wp._id = wpold._id;
         [wp dbUpdate];
     }
-    if ([group dbContainsWaypoint:wp._id] == NO)
-        [group dbAddWaypoint:wp._id];
+    if ([group containsWaypoint:wp._id] == NO)
+        [group addWaypointToGroup:wp._id];
 
     // Images
     [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_long_desc type:IMAGECATEGORY_CACHE];
@@ -465,8 +465,11 @@
 
     dbImage *img = [dbImage dbGetByURL:url];
     if (img == nil) {
-        img = [[dbImage alloc] init:url name:name datafile:df];
-        [dbImage dbCreate:img];
+        img = [[dbImage alloc] init];
+        img.url = url;
+        img.name = name;
+        img.datafile = df;
+        [img dbCreate];
     }
 
     [ImagesDownloadManager addToQueue:img imageType:imageSource];
@@ -552,7 +555,7 @@
     NSId wpid = [dbWaypoint dbGetByName:awp.wpt_name];
     if (wpid == 0) {
         [awp dbCreate];
-        [group dbAddWaypoint:awp._id];
+        [group addWaypointToGroup:awp._id];
         newWaypointsCount++;
         [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
     } else {
@@ -621,7 +624,7 @@
     NSId wpid = [dbWaypoint dbGetByName:awp.wpt_name];
     if (wpid == 0) {
         [awp dbCreate];
-        [group dbAddWaypoint:awp._id];
+        [group addWaypointToGroup:awp._id];
         newWaypointsCount++;
         [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
     } else {

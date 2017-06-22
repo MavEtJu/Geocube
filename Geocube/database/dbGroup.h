@@ -21,26 +21,22 @@
 
 @interface dbGroup : dbObject
 
-- (instancetype)init:(NSId)_id name:(NSString *)name usergroup:(BOOL)usergroup deletable:(BOOL)deletable;
-
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic) BOOL usergroup;
 @property (nonatomic) BOOL deletable;
 @property (nonatomic) BOOL selected;
 
-- (void)dbEmpty;
++ (NSMutableArray<dbGroup *> *)dbAll;
 + (NSArray<dbGroup *> *)dbAllByWaypoint:(NSId)wp_id;
 + (NSArray<dbGroup *> *)dbAllByUserGroup:(BOOL)isUser;
-+ (NSMutableArray<dbGroup *> *)dbAll;
 + (dbGroup *)dbGet:(NSId)_id;
 + (dbGroup *)dbGetByName:(NSString *)name;
-+ (void)dbDelete:(NSId)__id;
 - (void)dbUpdateName:(NSString *)newname;
-- (void)dbAddWaypoint:(NSId)__id;
-- (void)dbAddWaypoints:(NSArray<dbWaypoint *> *)waypoints;
-- (void)dbRemoveWaypoint:(NSId)__id;
-- (BOOL)dbContainsWaypoint:(NSId)c_id;
-- (NSInteger)dbCountWaypoints;
-+ (NSId)dbCreate:(NSString *)name isUser:(BOOL)isUser;
+- (void)emptyGroup;
+- (void)addWaypointToGroup:(NSId)__id;
+- (void)addWaypointsToGroup:(NSArray<dbWaypoint *> *)waypoints;
+- (void)removeWaypointFromGroup:(NSId)__id;
+- (BOOL)containsWaypoint:(NSId)c_id;
+- (NSInteger)countWaypoints;
 
 @end

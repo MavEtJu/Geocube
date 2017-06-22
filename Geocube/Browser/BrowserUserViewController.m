@@ -232,7 +232,7 @@ enum {
                              bm.name = name;
                              bm.url = url;
 
-                             [dbBookmark dbCreate:bm];
+                             [bm dbCreate];
                              bms = [dbBookmark dbAll];
                              [self.tableView reloadData];
                          }];

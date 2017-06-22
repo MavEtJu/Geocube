@@ -25,71 +25,25 @@
 
 @implementation dbBookmark
 
-+ (dbBookmark *)dbGet:(NSId)_id
-{
-    dbBookmark *a = nil;
-    NSId i;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, name, url, import_id from bookmarks where id = ?");
-        SET_VAR_INT(1, _id);
-
-        DB_IF_STEP {
-            a = [[dbBookmark alloc] init];
-            INT_FETCH (0, a._id);
-            TEXT_FETCH(1, a.name);
-            TEXT_FETCH(2, a.url);
-            INT_FETCH (3, i);
-            a.import = [dbFileImport dbGet:i];
-        }
-        DB_FINISH;
-    }
-    return a;
-}
-
-+ (NSArray<dbBookmark *> *)dbAll
-{
-    NSMutableArray<dbBookmark *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
-    NSId i;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, name, url, import_id from bookmarks");
-
-        DB_WHILE_STEP {
-            dbBookmark *a = [[dbBookmark alloc] init];
-            INT_FETCH (0, a._id);
-            TEXT_FETCH(1, a.name);
-            TEXT_FETCH(2, a.url);
-            INT_FETCH (3, i);
-            a.import = [dbFileImport dbGet:i];
-            [ss addObject:a];
-        }
-        DB_FINISH;
-    }
-    return ss;
-}
-
 + (NSInteger)dbCount
 {
     return [dbBookmark dbCount:@"bookmarks"];
 }
 
-+ (NSId)dbCreate:(dbBookmark *)bm;
+- (NSId)dbCreate
 {
-    NSId _id;
-
     @synchronized(db) {
         DB_PREPARE(@"insert into bookmarks(name, url, import_id) values(?, ?, ?)");
 
-        SET_VAR_TEXT(1, bm.name);
-        SET_VAR_TEXT(2, bm.url);
-        SET_VAR_INT (3, bm.import._id);
+        SET_VAR_TEXT(1, self.name);
+        SET_VAR_TEXT(2, self.url);
+        SET_VAR_INT (3, self.import._id);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(_id);
+        DB_GET_LAST_ID(self._id);
         DB_FINISH;
     }
-    return _id;
+    return self._id;
 }
 
 - (void)dbUpdate
@@ -107,6 +61,47 @@
     }
 }
 
++ (NSArray<dbBookmark *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
+{
+    NSMutableArray<dbBookmark *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSId i;
+
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, name, url, import_id from bookmarks "];
+    if (where != nil)
+        [sql appendString:where];
+
+    @synchronized(db) {
+        DB_PREPARE_KEYSVALUES(sql, keys, values);
+
+        DB_WHILE_STEP {
+            dbBookmark *a = [[dbBookmark alloc] init];
+            INT_FETCH (0, a._id);
+            TEXT_FETCH(1, a.name);
+            TEXT_FETCH(2, a.url);
+            INT_FETCH (3, i);
+            a.import = [dbFileImport dbGet:i];
+            [ss addObject:a];
+        }
+        DB_FINISH;
+    }
+    return ss;
+}
+
++ (NSArray<dbBookmark *> *)dbAll
+{
+    return [self dbAllXXX:nil keys:nil values:nil];
+}
+
++ (dbBookmark *)dbGet:(NSId)_id
+{
+    return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
+}
+
++ (dbBookmark *)dbGetByImport:(NSInteger)import_id
+{
+    return [[self dbAllXXX:@"where import_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:import_id]]] firstObject];
+}
+
 - (void)dbDelete
 {
     @synchronized(db) {
@@ -117,28 +112,6 @@
         DB_CHECK_OKAY;
         DB_FINISH;
     }
-}
-
-+ (dbBookmark *)dbGetByImport:(NSInteger)import_id
-{
-    dbBookmark *a = nil;
-    NSId i;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, name, url, import_id from bookmarks where import_id = ?");
-        SET_VAR_INT(1, import_id);
-
-        DB_IF_STEP {
-            a = [[dbBookmark alloc] init];
-            INT_FETCH (0, a._id);
-            TEXT_FETCH(1, a.name);
-            TEXT_FETCH(2, a.url);
-            INT_FETCH (3, i);
-            a.import = [dbFileImport dbGet:i];
-        }
-        DB_FINISH;
-    }
-    return a;
 }
 
 @end

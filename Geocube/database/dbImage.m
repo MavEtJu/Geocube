@@ -25,73 +25,37 @@
 
 @implementation dbImage
 
-- (instancetype)init:(NSString *)url name:(NSString *)name datafile:(NSString *)datafile
-{
-    self = [super init];
-
-    self.url = url;
-    self.datafile = datafile;
-    self.name = name;
-
-    [self finish];
-
-    return self;
-}
-
-+ (NSId)dbCreate:(dbImage *)img
-{
-    NSId _id = 0;
-
-    @synchronized(db) {
-        DB_PREPARE(@"insert into images(url, datafile, filename) values(?, ?, ?)");
-
-        SET_VAR_TEXT(1, img.url);
-        SET_VAR_TEXT(2, img.datafile);
-        SET_VAR_TEXT(3, img.name);
-
-        DB_CHECK_OKAY;
-        DB_GET_LAST_ID(_id);
-        DB_FINISH;
-    }
-    img._id = _id;
-    return _id;
-}
-
-+ (NSArray<dbImage *> *)dbAll:(NSId)_wp_id
-{
-    NSMutableArray<dbImage *> *is = [[NSMutableArray alloc] initWithCapacity:20];
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, url, datafile, filename from images");
-
-        DB_WHILE_STEP {
-            dbImage *i = [[dbImage alloc] init];
-            INT_FETCH (0, i._id);
-            TEXT_FETCH(1, i.url);
-            TEXT_FETCH(2, i.datafile);
-            TEXT_FETCH(3, i.name);
-            [i finish];
-            [is addObject:i];
-        }
-        DB_FINISH;
-    }
-    return is;
-}
-
 + (NSInteger)dbCount
 {
     return [dbImage dbCount:@"images"];
 }
 
-+ (NSArray<dbImage *> *)dbAllByWaypoint:(NSId)wp_id type:(ImageCategory)type
+- (NSId)dbCreate
+{
+    @synchronized(db) {
+        DB_PREPARE(@"insert into images(url, datafile, filename) values(?, ?, ?)");
+
+        SET_VAR_TEXT(1, self.url);
+        SET_VAR_TEXT(2, self.datafile);
+        SET_VAR_TEXT(3, self.name);
+
+        DB_CHECK_OKAY;
+        DB_GET_LAST_ID(self._id);
+        DB_FINISH;
+    }
+    return self._id;
+}
+
++ (NSArray<dbImage *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
     NSMutableArray<dbImage *> *is = [[NSMutableArray alloc] initWithCapacity:20];
 
-    @synchronized(db) {
-        DB_PREPARE(@"select id, url, datafile, filename from images where id in (select image_id from image2waypoint where waypoint_id = ? and type = ?)");
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, url, datafile, filename from images "];
+    if (where != nil)
+        [sql appendString:where];
 
-        SET_VAR_INT(1, wp_id);
-        SET_VAR_INT(2, type);
+    @synchronized(db) {
+        DB_PREPARE_KEYSVALUES(sql, keys, values)
 
         DB_WHILE_STEP {
             dbImage *i = [[dbImage alloc] init];
@@ -106,6 +70,23 @@
     }
     return is;
 }
+
++ (NSArray<dbImage *> *)dbAll
+{
+    return [self dbAllXXX:nil keys:nil values:nil];
+}
+
++ (NSArray<dbImage *> *)dbAllByWaypoint:(NSId)wp_id type:(ImageCategory)type
+{
+    return [[self dbAllXXX:@"where id in (select image_id from image2waypoint where waypoint_id = ? and type = ?)" keys:@"ii" values:@[[NSNumber numberWithInteger:wp_id], [NSNumber numberWithInteger:type]]] firstObject];
+}
+
++ (dbImage *)dbGetByURL:(NSString *)url
+{
+    return [[self dbAllXXX:@"where url = ?" keys:@"s" values:@[url]] firstObject];
+}
+
+/* Other methods */
 
 + (NSString *)createDataFilename:(NSString *)url
 {
@@ -124,26 +105,6 @@
         [output appendFormat:@"%02x",md5Buffer[i]];
 
     return output;
-}
-
-+ (dbImage *)dbGetByURL:(NSString *)url
-{
-    dbImage *img;
-
-    @synchronized (db) {
-        DB_PREPARE(@"select id, url, datafile, filename from images where url = ?");
-
-        SET_VAR_TEXT(1, url);
-        DB_IF_STEP {
-            img = [[dbImage alloc] init];
-            INT_FETCH (0, img._id);
-            TEXT_FETCH(1, img.url);
-            TEXT_FETCH(2, img.datafile);
-            TEXT_FETCH(3, img.name);
-        }
-        DB_FINISH;
-    }
-    return img;
 }
 
 - (BOOL)dbLinkedtoWaypoint:(NSId)wp_id

@@ -439,7 +439,7 @@ enum {
                 fi.filename = filename;
                 fi.filesize = [filesize integerValue];
                 fi.lastimport = time(NULL);
-                [dbFileImport dbCreate:fi];
+                [fi dbCreate];
             } else {
                 fi.lastimport = time(NULL);
                 [fi dbUpdate];

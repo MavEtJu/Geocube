@@ -25,72 +25,24 @@
 
 @implementation dbLocale
 
-+ (NSArray<dbLocale *> *)dbAll
-{
-    NSMutableArray<dbLocale *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, name from locales");
-
-        DB_WHILE_STEP {
-            dbLocale *l = [[dbLocale alloc] init];
-            INT_FETCH (0, l._id);
-            TEXT_FETCH(1, l.name);
-            [ss addObject:l];
-        }
-        DB_FINISH;
-    }
-    return ss;
-}
-
-+ (void)makeNameExist:(NSString *)name
-{
-    if ([dbc Locale_get_byName:name] == nil) {
-        NSId _id = [dbLocale dbCreate:name];
-        dbLocale *c = [self dbGet:_id];
-        [dbc Locale_add:c];
-    }
-}
-
 + (NSInteger)dbCount
 {
     return [dbLocale dbCount:@"locales"];
 }
 
-+ (dbLocale *)dbGet:(NSId)_id
+- (NSId)dbCreate
 {
-    dbLocale *l;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, name from locales where id = ?");
-
-        SET_VAR_INT(1, _id);
-
-        DB_IF_STEP {
-            l = [[dbLocale alloc] init];
-            INT_FETCH (0, l._id);
-            TEXT_FETCH(1, l.name);
-        }
-        DB_FINISH;
-    }
-    return l;
-}
-
-+ (NSId)dbCreate:(NSString *)name
-{
-    NSId _id;
-
     @synchronized(db) {
         DB_PREPARE(@"insert into locales(name) values(?)");
 
-        SET_VAR_TEXT(1, name);
+        SET_VAR_TEXT(1, self.name);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(_id);
+        DB_GET_LAST_ID(self._id);
         DB_FINISH;
     }
 
-    return _id;
+    return self._id;
 }
 
 - (void)dbUpdate
@@ -103,6 +55,50 @@
 
         DB_CHECK_OKAY;
         DB_FINISH;
+    }
+}
+
++ (NSArray<dbLocale *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
+{
+    NSMutableArray<dbLocale *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
+
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, name from locales "];
+    if (where != nil)
+        [sql appendString:where];
+
+    @synchronized(db) {
+        DB_PREPARE_KEYSVALUES(sql, keys, values)
+
+        DB_WHILE_STEP {
+            dbLocale *l = [[dbLocale alloc] init];
+            INT_FETCH (0, l._id);
+            TEXT_FETCH(1, l.name);
+            [ss addObject:l];
+        }
+        DB_FINISH;
+    }
+    return ss;
+}
+
++ (NSArray<dbLocale *> *)dbAll
+{
+    return [self dbAllXXX:nil keys:nil values:nil];
+}
+
++ (dbLocale *)dbGet:(NSId)_id
+{
+    return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
+}
+
+/* Other methods */
+
++ (void)makeNameExist:(NSString *)name
+{
+    if ([dbc Locale_get_byName:name] == nil) {
+        dbLocale *l = [[dbLocale alloc] init];
+        l.name = name;
+        [l dbCreate];
+        [dbc Locale_add:l];
     }
 }
 

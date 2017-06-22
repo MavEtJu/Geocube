@@ -32,10 +32,8 @@ typedef NS_ENUM(NSInteger, ImageCategory) {
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *datafile;
 
-- (instancetype)init:(NSString *)url name:(NSString *)name datafile:(NSString *)datafile;
 + (NSString *)createDataFilename:(NSString *)url;
 + (dbImage *)dbGetByURL:(NSString *)url;
-+ (NSId)dbCreate:(dbImage *)img;
 - (BOOL)dbLinkedtoWaypoint:(NSId)wp_id;
 - (void)dbLinkToWaypoint:(NSId)wp_id type:(ImageCategory)type;
 + (NSInteger)dbCountByWaypoint:(NSId)wp_id;

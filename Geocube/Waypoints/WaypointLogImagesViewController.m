@@ -192,8 +192,11 @@ enum {
         [UIImageJPEGRepresentation(image, 1.0) writeToFile:[MyTools ImageFile:datafile] atomically:NO];
 
         if (img == nil) {
-            img = [[dbImage alloc] init:imgtag name:[dbImage filename:imgtag] datafile:datafile];
-            [dbImage dbCreate:img];
+            img = [[dbImage alloc] init];
+            img.url = imgtag;
+            img.name = [dbImage filename:imgtag];
+            img.datafile = datafile;
+            [img dbCreate];
         } else {
             NSLog(@"%@/parse: Image already seen", [self class]);
         }
@@ -204,8 +207,11 @@ enum {
         NSString *datecreated = [exif objectForKey:@"DateTimeOriginal"];
         NSString *datafile = [dbImage createDataFilename:datecreated];
         [UIImageJPEGRepresentation(image, 1.0) writeToFile:[MyTools ImageFile:datafile] atomically:NO];
-        img = [[dbImage alloc] init:datecreated name:[dbImage filename:datecreated] datafile:datafile];
-        [dbImage dbCreate:img];
+        img = [[dbImage alloc] init];
+        img.url = datecreated;
+        img.name = [dbImage filename:datecreated];
+        img.datafile = datafile;
+        [img dbCreate];
     }
 
     if ([img dbLinkedtoWaypoint:waypoint._id] == NO)

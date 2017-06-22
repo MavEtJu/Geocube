@@ -36,4 +36,6 @@
 + (NSInteger)dbCount;
 + (NSInteger)dbCount:(NSString *)tablename;
 
++ (NSArray<NSObject *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values;
+
 @end

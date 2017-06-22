@@ -738,9 +738,9 @@ enum {
                                  [self.tableView reloadData];
 
                                  if (waypoint.flag_ignore == YES) {
-                                     [[dbc Group_AllWaypoints_Ignored] dbAddWaypoint:waypoint._id];
+                                     [[dbc Group_AllWaypoints_Ignored] addWaypointToGroup:waypoint._id];
                                  } else {
-                                     [[dbc Group_AllWaypoints_Ignored] dbRemoveWaypoint:waypoint._id];
+                                     [[dbc Group_AllWaypoints_Ignored] removeWaypointFromGroup:waypoint._id];
                                  }
                              }];
     UIAlertAction *inprogress = [UIAlertAction
@@ -830,8 +830,8 @@ enum {
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
             [configManager lastAddedGroupUpdate:selectedIndex];
             dbGroup *group = [groups objectAtIndex:selectedIndex];
-            [group dbRemoveWaypoint:waypoint._id];
-            [group dbAddWaypoint:waypoint._id];
+            [group removeWaypointFromGroup:waypoint._id];
+            [group addWaypointToGroup:waypoint._id];
         }
         cancelBlock:^(ActionSheetStringPicker *picker) {
             NSLog(@"Block Picker Canceled");

@@ -238,8 +238,11 @@ enum {
         }
     }];
     if (group == nil) {
-        NSId _id = [dbGroup dbCreate:name isUser:YES];
-        group = [dbGroup dbGet:_id];
+        group = [[dbGroup alloc] init];
+        group.name = name;
+        group.usergroup = YES;
+        group.deletable = YES;
+        [group dbCreate];
         [dbc Group_add:group];
     }
 

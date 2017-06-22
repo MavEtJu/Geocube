@@ -26,7 +26,6 @@
 @property (nonatomic) dbFileImport *import;
 
 + (NSArray<dbBookmark *> *)dbAll;
-+ (NSId)dbCreate:(dbBookmark *)bm;
 + (dbBookmark *)dbGetByImport:(NSInteger)import_id;
 
 @end

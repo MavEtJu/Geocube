@@ -23,16 +23,15 @@
 
 @end
 
-@interface dbExternalMapURL ()
-
-@end
-
 @implementation dbExternalMap
+
++ (NSInteger)dbCount
+{
+    return [dbExternalMap dbCount:@"externalmaps"];
+}
 
 - (NSId)dbCreate
 {
-    NSId _id;
-
     @synchronized(db) {
         DB_PREPARE(@"insert into externalmaps(geocube_id, enabled, name) values(?, ?, ?)");
 
@@ -41,11 +40,10 @@
         SET_VAR_TEXT(3, self.name);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(_id)
+        DB_GET_LAST_ID(self._id)
         DB_FINISH;
     }
-
-    return _id;
+    return self._id;
 }
 
 - (void)dbUpdate
@@ -63,12 +61,16 @@
     }
 }
 
-+ (NSArray<dbExternalMap *> *)dbAll
++ (NSArray<dbExternalMap *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
     NSMutableArray<dbExternalMap *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, geocube_id, enabled, name from externalmaps "];
+    if (where != nil)
+        [sql appendString:where];
+
     @synchronized(db) {
-        DB_PREPARE(@"select id, geocube_id, enabled, name from externalmaps order by geocube_id");
+        DB_PREPARE_KEYSVALUES(sql, keys, values);
 
         DB_WHILE_STEP {
             dbExternalMap *em = [[dbExternalMap alloc] init];
@@ -83,123 +85,14 @@
     return ss;
 }
 
++ (NSArray<dbExternalMap *> *)dbAll
+{
+    return [self dbAllXXX:@"order by geocube_id" keys:nil values:nil];
+}
+
 + (dbExternalMap *)dbGetByGeocubeID:(NSId)geocube_id
 {
-    dbExternalMap *em;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, geocube_id, enabled, name from externalmaps where geocube_id = ?");
-
-        SET_VAR_INT (1, geocube_id);
-
-        DB_WHILE_STEP {
-            em = [[dbExternalMap alloc] init];
-            INT_FETCH (0, em._id);
-            INT_FETCH (1, em.geocube_id);
-            BOOL_FETCH(2, em.enabled);
-            TEXT_FETCH(3, em.name);
-            break;
-        }
-        DB_FINISH;
-    }
-
-    return em;
-}
-
-- (NSArray<dbExternalMapURL *> *)getURLs
-{
-    return [dbExternalMapURL dbAllByExternalMap:self._id];
-}
-
-+ (NSInteger)dbCount
-{
-    return [dbExternalMap dbCount:@"externalmaps"];
-}
-
-@end
-
-@implementation dbExternalMapURL
-
-- (void)finish
-{
-    [super finish];
-}
-
-- (NSId)dbCreate
-{
-    NSId _id;
-
-    @synchronized(db) {
-        DB_PREPARE(@"insert into externalmap_urls(externalmap_id, model, type, url) values(?, ?, ?, ?)");
-
-        SET_VAR_INT (1, self.externalMap_id);
-        SET_VAR_TEXT(2, self.model);
-        SET_VAR_INT (3, self.type);
-        SET_VAR_TEXT(4, self.url);
-
-        DB_CHECK_OKAY;
-        DB_GET_LAST_ID(_id)
-        DB_FINISH;
-    }
-
-    return _id;
-}
-
-- (void)dbUpdate
-{
-    @synchronized(db) {
-        DB_PREPARE(@"update externalmap_urls set externalmap_id = ?, model = ?, type = ?, url = ? where id = ?");
-
-        SET_VAR_INT (1, self.externalMap_id);
-        SET_VAR_TEXT(2, self.model);
-        SET_VAR_INT (3, self.type);
-        SET_VAR_TEXT(4, self.url);
-        SET_VAR_INT( 5, self._id);
-
-        DB_CHECK_OKAY;
-        DB_FINISH;
-    }
-}
-
-+ (NSArray<dbExternalMapURL *> *)dbAllByExternalMap:(NSId)map_id
-{
-    NSMutableArray<dbExternalMapURL *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, externalmap_id, model, type, url from externalmap_urls where externalmap_id = ?");
-
-        SET_VAR_INT(1, map_id);
-
-        DB_WHILE_STEP {
-            dbExternalMapURL *emu = [[dbExternalMapURL alloc] init];
-            INT_FETCH (0, emu._id);
-            INT_FETCH (1, emu.externalMap_id);
-            TEXT_FETCH(2, emu.model);
-            INT_FETCH (3, emu.type);
-            TEXT_FETCH(4, emu.url);
-            [emu finish];
-            [ss addObject:emu];
-        }
-        DB_FINISH;
-    }
-    return ss;
-}
-
-+ (void)dbDeleteByExternalMap:(NSId)map_id
-{
-    @synchronized(db) {
-        DB_PREPARE(@"delete from externalmap_urls where externalmap_id = ?")
-
-        SET_VAR_INT(1, map_id);
-
-        DB_CHECK_OKAY;
-        DB_FINISH;
-    }
-}
-
-+ (NSInteger)dbCount
-{
-    return [dbExternalMapURL dbCount:@"externalmap_urls"];
+    return [[self dbAllXXX:@"where geocube_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:geocube_id]]] firstObject];
 }
 
 @end
