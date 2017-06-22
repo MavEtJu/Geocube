@@ -173,16 +173,13 @@ create table logs (
     gc_id integer,
     waypoint_id integer,		-- points to waypoints(id)
     log_string_id integer,		-- points to log_strings(id)
-    datetime text,
     datetime_epoch integer,
     logger_id integer,			-- points to names(id)
     needstobelogged bool,
     locallog bool,
     log text,
-    lat text,
-    lon text,
-    lat_int integer,			-- lat times 1000 000 for now
-    lon_int integer			-- lon times 1000 000 for now
+    lat float,
+    lon float
 );
 create index logs_idx_id on logs(id);
 create index logs_idx_gc_id on logs(gc_id);
