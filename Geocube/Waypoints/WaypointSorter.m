@@ -184,7 +184,7 @@
 
             [lds enumerateObjectsUsingBlock:^(dbListData * _Nonnull ld, NSUInteger idx, BOOL * _Nonnull stop) {
                 [old enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
-                    if (wp._id == ld.waypoint_id) {
+                    if (wp._id == ld.waypoint._id) {
                         [new addObject:wp];
                         *stop = YES;
                     }

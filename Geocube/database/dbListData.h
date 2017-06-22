@@ -30,8 +30,8 @@ typedef NS_ENUM(NSInteger, Flag) {
     FLAGS_PLANNED,
 };
 
-@property (nonatomic) NSId waypoint_id;
-@property (nonatomic) NSId type;
+@property (nonatomic, retain) dbWaypoint *waypoint;
+@property (nonatomic) Flag type;
 @property (nonatomic) time_t datetime;
 
 + (void)waypointSetFlag:(dbWaypoint *)wp flag:(Flag)flag;

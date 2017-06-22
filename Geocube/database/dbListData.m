@@ -62,6 +62,8 @@
 + (NSArray<dbListData *> *)dbAllByType:(Flag)type ascending:(BOOL)asc
 {
     NSMutableArray<dbListData *> *lds = [[NSMutableArray alloc] initWithCapacity:20];
+    NSId i;
+
     NSString *sql = [NSString stringWithFormat:@"select id, waypoint_id, type, datetime from listdata where type = ? order by datetime %@", (asc == YES ? @"asc" : @"desc")];
 
     @synchronized (db) {
@@ -71,7 +73,8 @@
         DB_WHILE_STEP {
             dbListData *ld = [[dbListData alloc] init];
             INT_FETCH(0, ld._id);
-            INT_FETCH(1, ld.waypoint_id);
+            INT_FETCH(1, i);
+            ld.waypoint = [dbWaypoint dbGet:i];
             INT_FETCH(2, ld.type);
             INT_FETCH(3, ld.datetime);
             [ld finish];
@@ -86,6 +89,7 @@
 + (dbListData *)dbGetByWaypoint:(dbWaypoint *)wp flag:(Flag)flag
 {
     dbListData *ld = nil;
+    NSId i;
 
     @synchronized (db) {
         DB_PREPARE(@"select id, waypoint_id, type, datetime from listdata where type = ? and waypoint_id = ?");
@@ -95,7 +99,8 @@
         DB_IF_STEP {
             ld = [[dbListData alloc] init];
             INT_FETCH(0, ld._id);
-            INT_FETCH(1, ld.waypoint_id);
+            INT_FETCH(1, i);
+            ld.waypoint = [dbWaypoint dbGet:i];
             INT_FETCH(2, ld.type);
             INT_FETCH(3, ld.datetime);
             [ld finish];
