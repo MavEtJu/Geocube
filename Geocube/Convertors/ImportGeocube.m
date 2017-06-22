@@ -536,7 +536,7 @@ typedef NS_ENUM(NSInteger, Type) {
             t.type_major = major;
             t.type_minor = minor;
             t.icon = icon;
-            t.pin_id = pin;
+            t.pin = [dbc Pin_get:pin];
             t.hasBoundary = hasBoundary;
             [t finish];
             [t dbUpdate];
@@ -545,7 +545,7 @@ typedef NS_ENUM(NSInteger, Type) {
             t.type_major = major;
             t.type_minor = minor;
             t.icon = icon;
-            t.pin_id = pin;
+            t.pin = [dbc Pin_get:pin];
             t.hasBoundary = hasBoundary;
             [t finish];
             [t dbCreate];

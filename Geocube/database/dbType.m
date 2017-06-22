@@ -28,7 +28,6 @@
 - (void)finish
 {
     self.type_full = [NSString stringWithFormat:@"%@|%@", self.type_major, self.type_minor];
-    self.pin = [dbc Pin_get:self.pin_id];
 
     [super finish];
 }
@@ -36,6 +35,8 @@
 + (NSArray<dbType *> *)dbAll
 {
     NSMutableArray<dbType *> *ts = [[NSMutableArray alloc] initWithCapacity:20];
+
+    NSId i;
 
     @synchronized(db) {
         DB_PREPARE(@"select id, type_major, type_minor, icon, pin_id, has_boundary from types");
@@ -46,7 +47,8 @@
             TEXT_FETCH(1, t.type_major);
             TEXT_FETCH(2, t.type_minor);
             INT_FETCH (3, t.icon);
-            INT_FETCH (4, t.pin_id);
+            INT_FETCH (4, i);
+            t.pin = [dbc Pin_get:i];
             BOOL_FETCH(5, t.hasBoundary);
             [t finish];
             [ts addObject:t];
@@ -64,7 +66,7 @@
         SET_VAR_TEXT(1, self.type_major);
         SET_VAR_TEXT(2, self.type_minor);
         SET_VAR_INT (3, self.icon);
-        SET_VAR_INT (4, self.pin_id);
+        SET_VAR_INT (4, self.pin._id);
         SET_VAR_BOOL(5, self.hasBoundary);
 
         DB_CHECK_OKAY;
@@ -83,7 +85,7 @@
         SET_VAR_TEXT(1, self.type_major);
         SET_VAR_TEXT(2, self.type_minor);
         SET_VAR_INT (3, self.icon);
-        SET_VAR_INT (4, self.pin_id);
+        SET_VAR_INT (4, self.pin._id);
         SET_VAR_INT (5, self.hasBoundary);
         SET_VAR_INT (6, self._id);
 
@@ -95,6 +97,7 @@
 + (dbType *)dbGetByMajor:(NSString *)major minor:(NSString *)minor
 {
     dbType *t = nil;
+    NSId i;
 
     @synchronized(db) {
         DB_PREPARE(@"select id, type_major, type_minor, icon, pin_id, has_boundary from types where type_minor = ? and type_major = ?");
@@ -108,7 +111,8 @@
             TEXT_FETCH(1, t.type_major);
             TEXT_FETCH(2, t.type_minor);
             INT_FETCH (3, t.icon);
-            INT_FETCH (4, t.pin_id);
+            INT_FETCH (4, i);
+            t.pin = [dbc Pin_get:i];
             BOOL_FETCH(5, t.hasBoundary);
             [t finish];
         }
