@@ -21,10 +21,6 @@
 
 @interface dbWaypoint ()
 
-@property (nonatomic, retain) NSString *wpt_lat_str;
-@property (nonatomic, retain) NSString *wpt_lon_str;
-@property (nonatomic, retain) NSString *wpt_date_placed;
-
 @end
 
 @implementation dbWaypoint
