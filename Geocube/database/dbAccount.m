@@ -31,14 +31,6 @@
 {
     [super finish];
 
-    if (self.protocol_string != nil) {
-        self.protocol = [dbProtocol dbGetByName:self.protocol_string];
-        self.protocol_id = self.protocol._id;
-    } else {
-        self.protocol = [dbProtocol dbGet:self.protocol_id];
-        self.protocol_string = self.protocol.name;
-    }
-
     if (self.oauth_consumer_private_sharedsecret != nil && [self.oauth_consumer_private_sharedsecret isEqualToString:@""] == NO)
         self.oauth_consumer_private = [keyManager decrypt:self.oauth_consumer_private_sharedsecret data:self.oauth_consumer_private];
     if (self.oauth_consumer_public_sharedsecret != nil && [self.oauth_consumer_public_sharedsecret isEqualToString:@""] == NO)
@@ -132,6 +124,7 @@
 + (dbAccount *)dbGet:(NSId)_id
 {
     dbAccount *a = nil;
+    NSId i;
 
     @synchronized(db) {
         DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol_id, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum, authentication_name, authentication_password, oauth_consumer_public_sharedsecret, oauth_consumer_private_sharedsecret from accounts where id = ?");
@@ -144,7 +137,8 @@
             TEXT_FETCH( 2, a.url_site);
             TEXT_FETCH( 3, a.url_queries);
             TEXT_FETCH( 4, a.accountname_string);
-            INT_FETCH ( 5, a.protocol_id);
+            INT_FETCH ( 5, i);
+            a.protocol = [dbc Protocol_get:i];
             TEXT_FETCH( 6, a.oauth_consumer_public);
             TEXT_FETCH( 7, a.oauth_consumer_private);
             TEXT_FETCH( 8, a.oauth_token);
@@ -175,6 +169,7 @@
 + (NSArray<dbAccount *> *)dbAll
 {
     NSMutableArray<dbAccount *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSId i;
 
     @synchronized(db) {
         DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol_id, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum, authentication_name, authentication_password, oauth_consumer_public_sharedsecret, oauth_consumer_private_sharedsecret from accounts");
@@ -186,7 +181,8 @@
             TEXT_FETCH( 2, a.url_site);
             TEXT_FETCH( 3, a.url_queries);
             TEXT_FETCH( 4, a.accountname_string);
-            INT_FETCH ( 5, a.protocol_id);
+            INT_FETCH ( 5, i);
+            a.protocol = [dbc Protocol_get:i];
             TEXT_FETCH( 6, a.oauth_consumer_public);
             TEXT_FETCH( 7, a.oauth_consumer_private);
             TEXT_FETCH( 8, a.oauth_token);
@@ -231,7 +227,7 @@
         SET_VAR_TEXT( 2, self.url_site);
         SET_VAR_TEXT( 3, self.url_queries);
         SET_VAR_TEXT( 4, self.accountname_string);
-        SET_VAR_INT ( 5, self.protocol_id);
+        SET_VAR_INT ( 5, self.protocol._id);
         SET_VAR_TEXT( 6, self.oauth_consumer_public);
         SET_VAR_TEXT( 7, self.oauth_consumer_private);
         SET_VAR_TEXT( 8, self.oauth_token);
@@ -274,7 +270,7 @@
         SET_VAR_TEXT( 2, self.url_site);
         SET_VAR_TEXT( 3, self.url_queries);
         SET_VAR_TEXT( 4, self.accountname_string);
-        SET_VAR_INT ( 5, self.protocol_id);
+        SET_VAR_INT ( 5, self.protocol._id);
         SET_VAR_TEXT( 6, self.oauth_consumer_public);
         SET_VAR_TEXT( 7, self.oauth_consumer_private);
         SET_VAR_TEXT( 8, self.oauth_token);
@@ -378,6 +374,7 @@
 + (dbAccount *)dbGetBySite:(NSString *)site
 {
     dbAccount *a = nil;
+    NSId i;
 
     @synchronized(db) {
         DB_PREPARE(@"select id, site, url_site, url_queries, accountname, protocol_id, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, name_id, enabled, distance_minimum, authentication_name, authentication_password, oauth_consumer_public_sharedsecret, oauth_consumer_private_sharedsecret from accounts where site = ?");
@@ -390,7 +387,8 @@
             TEXT_FETCH( 2, a.url_site);
             TEXT_FETCH( 3, a.url_queries);
             TEXT_FETCH( 4, a.accountname_string);
-            INT_FETCH ( 5, a.protocol_id);
+            INT_FETCH ( 5, i);
+            a.protocol = [dbc Protocol_get:i];
             TEXT_FETCH( 6, a.oauth_consumer_public);
             TEXT_FETCH( 7, a.oauth_consumer_private);
             TEXT_FETCH( 8, a.oauth_token);

@@ -342,7 +342,7 @@ typedef NS_ENUM(NSInteger, Type) {
             a.enabled = enabledBool;
             a.url_site = url_website;
             a.url_queries = url_queries;
-            a.protocol_id = protocol._id;
+            a.protocol = protocol;
             a.oauth_consumer_public = oauth_key_public;
             a.oauth_consumer_private = oauth_key_private;
             a.oauth_request_url = oauth_url_request;
@@ -359,7 +359,7 @@ typedef NS_ENUM(NSInteger, Type) {
             a.enabled = enabledBool;
             a.url_site = url_website;
             a.url_queries = url_queries;
-            a.protocol_id = protocol._id;
+            a.protocol = protocol;
             a.oauth_consumer_public = oauth_key_public;
             a.oauth_consumer_private = oauth_key_private;
             a.oauth_request_url = oauth_url_request;

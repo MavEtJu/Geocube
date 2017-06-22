@@ -27,9 +27,7 @@
 @property (nonatomic, retain) NSString *accountname_string;
 @property (nonatomic, retain) dbName *accountname;
 @property (nonatomic) NSId accountname_id;
-@property (nonatomic) NSId protocol_id;
 @property (nonatomic) dbProtocol *protocol;
-@property (nonatomic) NSString *protocol_string;
 @property (nonatomic) NSInteger geocube_id;
 @property (nonatomic) NSInteger revision;
 @property (nonatomic) BOOL enabled;

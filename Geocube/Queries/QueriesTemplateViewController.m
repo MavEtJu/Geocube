@@ -80,7 +80,7 @@ enum {
 
     __block BOOL failure = NO;
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (a.protocol_id == protocol && a.remoteAPI.supportsListQueries == YES) {
+        if (a.protocol._id == protocol && a.remoteAPI.supportsListQueries == YES) {
             account = a;
             if (a.canDoRemoteStuff == NO) {
                 *stop = YES;
