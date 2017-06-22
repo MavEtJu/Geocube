@@ -185,15 +185,17 @@
         tb.ref = gccode;
     }
 
+    NSString *dummy;
+
     DICT_INTEGER_KEY(tbdata, tb.gc_id, @"id");
     DICT_NSSTRING_KEY(tbdata, tb.name, @"name");
-    DICT_INTEGER_KEY(tbdata, tb.carrier_id, @"carrier_id");
-    DICT_NSSTRING_KEY(tbdata, tb.carrier_str, @"carrier");
-    if (tb.carrier_str != nil)
-        [dbName makeNameExist:tb.carrier_str code:nil account:account];
-    DICT_NSSTRING_KEY(tbdata, tb.owner_str, @"owner");
-    [dbName makeNameExist:tb.owner_str code:nil account:account];
-    [tb finish:account];
+    DICT_NSSTRING_KEY(tbdata, dummy, @"carrier");
+    [dbName makeNameExist:dummy code:nil account:account];
+    [tb set_carrier_str:dummy account:account];
+    DICT_NSSTRING_KEY(tbdata, dummy, @"owner");
+    [dbName makeNameExist:dummy code:nil account:account];
+    [tb set_owner_str:dummy account:account];
+    [tb finish];
 
     if (tb._id == 0) {
         NSLog(@"Created trackable %@", tb.ref);

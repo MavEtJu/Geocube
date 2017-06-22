@@ -634,16 +634,12 @@ enum {
         [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
             if (tb.logtype == TRACKABLE_LOG_DROPOFF) {
                 tb.logtype = TRACKABLE_LOG_NONE;
-                tb.carrier_id = 0;
                 tb.carrier = nil;
-                tb.carrier_str = @"";
                 tb.waypoint_name = waypoint.wpt_name;
             }
             if (tb.logtype == TRACKABLE_LOG_PICKUP) {
                 tb.logtype = TRACKABLE_LOG_VISIT;
-                tb.carrier_id = waypoint.account.accountname_id;
-                tb.carrier = [dbName dbGet:tb.carrier_id];
-                tb.carrier_str = tb.carrier.name;
+                tb.carrier = [dbName dbGet:tb.carrier._id];
                 tb.waypoint_name = @"";
             }
             [tb dbUpdate];

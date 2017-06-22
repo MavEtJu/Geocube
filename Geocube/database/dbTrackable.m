@@ -25,28 +25,17 @@
 
 @implementation dbTrackable
 
-- (void)finish
+- (void)set_carrier_str:(NSString *)name account:(dbAccount *)account
 {
-    NSAssert(NO, @"Use finish:account");
+    NSAssert(account != nil, @"Account should be set");
+    self.carrier = [dbName dbGetByName:name account:account];
+}
+- (void)set_owner_str:(NSString *)name account:(dbAccount *)account
+{
+    NSAssert(account != nil, @"Account should be set");
+    self.owner = [dbName dbGetByName:name account:account];
 }
 
-- (void)finish:(dbAccount *)account;
-{
-    if (self.carrier_id != 0)
-        self.carrier = [dbName dbGet:self.carrier_id];
-    if (self.carrier_str != nil)
-        self.carrier = [dbName dbGetByName:self.carrier_str account:account];
-    self.carrier_id = self.carrier._id;
-    self.carrier_str = self.carrier.name;
-
-    if (self.owner_id != 0)
-        self.owner = [dbName dbGet:self.owner_id];
-    if (self.owner_str != nil)
-        self.owner = [dbName dbGetByName:self.owner_str account:account];
-    self.owner_id = self.owner._id;
-    self.owner_str = self.owner.name;
-    [super finish];
-}
 
 + (void)dbUnlinkAllFromWaypoint:(NSId)wp_id
 {
@@ -94,6 +83,7 @@
 + (NSArray<dbTrackable *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
     NSMutableArray<dbTrackable *> *tbs = [NSMutableArray arrayWithCapacity:20];
+    NSId i;
 
     NSString *sql = [NSString stringWithFormat:@"select id, name, ref, gc_id, carrier_id, owner_id, waypoint_name, log_type, code from travelbugs %@", where];
 
@@ -106,12 +96,14 @@
             TEXT_FETCH(1, tb.name);
             TEXT_FETCH(2, tb.ref);
             INT_FETCH (3, tb.gc_id);
-            INT_FETCH (4, tb.carrier_id);
-            INT_FETCH (5, tb.owner_id);
+            INT_FETCH (4, i);
+            tb.carrier = [dbName dbGet:i];
+            INT_FETCH (5, i);
+            tb.owner = [dbName dbGet:i];
             TEXT_FETCH(6, tb.waypoint_name);
             INT_FETCH (7, tb.logtype);
             TEXT_FETCH(8, tb.code);
-            [tb finish:nil];    // can be nil because we have the _id's
+            [tb finish];
             [tbs addObject:tb];
         }
         DB_FINISH;
@@ -208,8 +200,8 @@
         SET_VAR_INT (1, tb.gc_id);
         SET_VAR_TEXT(2, tb.ref);
         SET_VAR_TEXT(3, tb.name);
-        SET_VAR_INT (4, tb.carrier_id);
-        SET_VAR_INT (5, tb.owner_id);
+        SET_VAR_INT (4, tb.carrier._id);
+        SET_VAR_INT (5, tb.owner._id);
         SET_VAR_TEXT(6, tb.waypoint_name);
         SET_VAR_INT (7, tb.logtype);
         SET_VAR_TEXT(8, tb.code);
@@ -230,8 +222,8 @@
         SET_VAR_INT (1, self.gc_id);
         SET_VAR_TEXT(2, self.ref);
         SET_VAR_TEXT(3, self.name);
-        SET_VAR_INT (4, self.carrier_id);
-        SET_VAR_INT (5, self.owner_id);
+        SET_VAR_INT (4, self.carrier._id);
+        SET_VAR_INT (5, self.owner._id);
         SET_VAR_TEXT(6, self.waypoint_name);
         SET_VAR_INT (7, self.logtype);
         SET_VAR_TEXT(8, self.code);

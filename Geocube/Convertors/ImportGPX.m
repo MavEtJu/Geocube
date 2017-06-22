@@ -298,7 +298,7 @@
                 [dbTrackable dbUnlinkAllFromWaypoint:currentWP._id];
                 [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL *stop) {
                     NSId _id = [dbTrackable dbGetIdByGC:tb.gc_id];
-                    [tb finish:account];
+                    [tb finish];
                     if (_id == 0) {
                         newTrackablesCount++;
                         [infoViewer setTrackablesNew:iiImport new:newTrackablesCount];

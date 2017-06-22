@@ -399,29 +399,22 @@
      },
      */
 
+    NSString *dummy;
+
     dbTrackable *tb = [[dbTrackable alloc] init];
     DICT_NSSTRING_KEY(dict, tb.name, @"Name");
     DICT_INTEGER_KEY(dict, tb.gc_id, @"Id");
     DICT_NSSTRING_KEY(dict, tb.ref, @"Code");
     DICT_NSSTRING_KEY(dict, tb.waypoint_name, @"CurrentGeocacheCode");
-    DICT_NSSTRING_PATH(dict, tb.owner_str, @"OriginalOwner.UserName");
-    DICT_NSSTRING_PATH(dict, tb.carrier_str, @"CurrentOwner.UserName");
+    DICT_NSSTRING_PATH(dict, dummy, @"OriginalOwner.UserName");
+    [dbName makeNameExist:dummy code:0 account:account];
+    [tb set_owner_str:dummy account:account];
+    DICT_NSSTRING_PATH(dict, dummy, @"CurrentOwner.UserName");
+    [dbName makeNameExist:dummy code:0 account:account];
+    [tb set_carrier_str:dummy account:account];
     DICT_NSSTRING_KEY(dict, tb.code, @"TrackingCode");
 
-    NSString *owner_id, *carrier_id;
-    DICT_NSSTRING_PATH(dict, carrier_id, @"CurrentOwner.Id");
-    DICT_NSSTRING_PATH(dict, owner_id, @"OriginalOwner.Id");
-
-    if ([tb.owner_str isEqualToString:@""] == NO)
-        [dbName makeNameExist:tb.owner_str code:owner_id account:account];
-    else
-        tb.owner_str = nil;
-    if ([tb.carrier_str isEqualToString:@""] == NO)
-        [dbName makeNameExist:tb.carrier_str code:carrier_id account:account];
-    else
-        tb.carrier_str = nil;
-
-    [tb finish:account];
+    [tb finish];
 
     NSId _id = [dbTrackable dbGetIdByGC:tb.gc_id];
     if (_id == 0) {
