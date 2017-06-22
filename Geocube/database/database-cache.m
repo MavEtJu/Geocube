@@ -295,7 +295,7 @@
 {
     __block dbLogString *_ls = nil;
     [LogStrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL *stop) {
-        if (ls.protocol_id == account.protocol._id &&
+        if (ls.protocol._id == account.protocol._id &&
             ls.logtype == logtype &&
             [ls.text compare:type options:NSCaseInsensitiveSearch] == NSOrderedSame) {
             _ls = ls;
@@ -486,6 +486,18 @@
 - (void)Locale_add:(dbLocale *)l
 {
     [self.Locales addObject:l];
+}
+
+- (dbProtocol *)Protocol_get:(NSId)_id
+{
+    __block dbProtocol *_p = nil;
+    [self.Protocols enumerateObjectsUsingBlock:^(dbProtocol *p, NSUInteger idx, BOOL *stop) {
+        if (p._id == _id) {
+            _p = p;
+            *stop = YES;
+        }
+    }];
+    return _p;
 }
 
 - (void)AccountsReload

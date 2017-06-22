@@ -110,4 +110,6 @@
 - (dbName *)Name_get:(NSId)_id;
 - (void)Name_add:(dbName *)name;
 
+- (dbProtocol *)Protocol_get:(NSId)_id;
+
 @end
