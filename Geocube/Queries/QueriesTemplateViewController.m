@@ -160,7 +160,7 @@ enum {
 
     cell.labelLastImport.text = @"";
     [qis enumerateObjectsUsingBlock:^(dbQueryImport *qi, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (qi.account_id == account._id &&
+        if (qi.account._id == account._id &&
             [qi.name isEqualToString:name] == YES &&
             qi.filesize == size) {
             cell.labelLastImport.text = [NSString stringWithFormat:@"Last import: %@", [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:qi.lastimport]];
@@ -188,7 +188,7 @@ enum {
     // Update historical data for this query.
     __block dbQueryImport *foundqi = nil;
     [qis enumerateObjectsUsingBlock:^(dbQueryImport *qi, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (qi.account_id == account._id &&
+        if (qi.account._id == account._id &&
             [qi.name isEqualToString:[pq objectForKey:@"Name"]] == YES &&
             qi.filesize == [[pq objectForKey:@"Size"] integerValue]) {
             foundqi = qi;
@@ -201,7 +201,6 @@ enum {
         qi.filesize = [[pq objectForKey:@"Size"] integerValue];
         qi.name = [pq objectForKey:@"Name"];
         qi.account = account;
-        qi.account_id = account._id;
         qi.lastimport = time(NULL);
         [dbQueryImport dbCreate:qi];
     } else {

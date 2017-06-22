@@ -24,7 +24,6 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic) NSInteger lastimport;
 @property (nonatomic) NSInteger filesize;
-@property (nonatomic) NSId account_id;
 @property (nonatomic, retain) dbAccount *account;
 
 + (NSArray<dbQueryImport *> *)dbAll;
