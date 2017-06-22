@@ -57,19 +57,19 @@ enum {
     NSMutableArray<dbAccount *> *bs = [NSMutableArray arrayWithCapacity:[as count]];
 
     [as enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (a.enabled == YES && (a.accountname_string != nil && [a.accountname_string isEqualToString:@""] == NO))
+        if (a.enabled == YES && IS_EMPTY(a.accountname.name) == NO)
             [bs addObject:a];
     }];
     [as enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (a.enabled == NO && (a.accountname_string != nil && [a.accountname_string isEqualToString:@""] == NO))
+        if (a.enabled == NO && IS_EMPTY(a.accountname.name) == NO)
             [bs addObject:a];
     }];
     [as enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (a.enabled == YES && (a.accountname_string == nil || [a.accountname_string isEqualToString:@""] == YES))
+        if (a.enabled == YES && IS_EMPTY(a.accountname.name) == YES)
             [bs addObject:a];
     }];
     [as enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (a.enabled == NO && (a.accountname_string == nil || [a.accountname_string isEqualToString:@""] == YES))
+        if (a.enabled == NO && IS_EMPTY(a.accountname.name) == YES)
             [bs addObject:a];
     }];
 
@@ -135,12 +135,12 @@ enum {
 
     dbAccount *a = [accounts objectAtIndex:indexPath.row];
     cell.textLabel.text = a.site;
-    cell.detailTextLabel.text = a.accountname_string;
+    cell.detailTextLabel.text = a.accountname.name;
     cell.userInteractionEnabled = YES;
     if (a.enabled == NO) {
         cell.imageView.image = [imageLibrary get:Image_Nil];
     } else {
-        if (a.accountname_string == nil || [a.accountname_string isEqualToString:@""] == YES) {
+        if (IS_EMPTY(a.accountname.name) == YES) {
             cell.imageView.image = [imageLibrary get:ImageIcon_Dead];
         } else {
             if (a.canDoRemoteStuff == YES)
@@ -181,7 +181,6 @@ enum {
                                  authenticatepassword = tf.text;
                              }
 
-                             account.accountname_string = geocachingname;
 
                              dbName *n = [dbName dbGetByName:geocachingname account:account];
                              if (n == nil) {
@@ -190,7 +189,6 @@ enum {
                              }
 
                              account.accountname = n;
-                             account.accountname_id = n._id;
                              account.authentictation_name = authenticatename;
                              account.authentictation_password = authenticatepassword;
                              [account dbUpdateAccount];
@@ -207,12 +205,10 @@ enum {
                          }];
 
     UIAlertAction *forget = nil;
-    if (account.accountname_string != nil && [account.accountname_string length] != 0)
+    if (IS_EMPTY(account.accountname.name) == NO)
         forget = [UIAlertAction
                   actionWithTitle:@"Forget" style:UIAlertActionStyleDefault
                   handler:^(UIAlertAction * action) {
-                      account.accountname_string = nil;
-                      account.accountname_id = 0;
                       account.accountname = nil;
                       account.authentictation_password = nil;
                       account.authentictation_name = nil;
@@ -234,7 +230,7 @@ enum {
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = account.accountname_string;
+        textField.text = account.accountname.name;
         textField.placeholder = @"Geocaching name";
     }];
     if (account.protocol._id == PROTOCOL_GCA2) {

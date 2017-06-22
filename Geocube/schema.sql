@@ -276,8 +276,7 @@ create table accounts (
     site text,
     url_site text,
     url_queries text,
-    accountname text,
-    name_id integer,			-- points to names(id)
+    accountname_id integer,		-- points to names(id)
     protocol_id integer,		-- points to protocols(id)
     distance_minimum integer,
 

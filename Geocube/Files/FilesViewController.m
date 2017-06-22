@@ -398,7 +398,7 @@ enum {
     NSMutableArray<dbAccount *> *accounts = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray<NSString *> *accountNames = [NSMutableArray arrayWithCapacity:10];
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
-        if (a.accountname_string == nil || [a.accountname_string isEqualToString:@""] == YES)
+        if (IS_EMPTY(a.accountname.name) == YES)
             return;
         [accountNames addObject:a.site];
         [accounts addObject:a];

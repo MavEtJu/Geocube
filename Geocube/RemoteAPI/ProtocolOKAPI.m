@@ -125,7 +125,7 @@
     NSArray<NSString *> *fields = @[@"caches_found", @"caches_notfound", @"caches_hidden", @"rcmds_given", @"username", @"profile_url", @"uuid"];
 
     NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
-    [_dict setObject:remoteAPI.account.accountname_string forKey:@"username"];
+    [_dict setObject:remoteAPI.account.accountname.name forKey:@"username"];
     [_dict setObject:[self string_array:fields] forKey:@"fields"];
     NSString *params = [MyTools urlParameterJoin:_dict];
 

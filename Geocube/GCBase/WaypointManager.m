@@ -599,7 +599,7 @@
                 if (keep == YES && flagMarkedDNF != FILTER_FLAGS_NOTCHECKED)
                     keep = (wp.flag_dnf == NO && flagMarkedDNF == FILTER_FLAGS_NOTSET) || (wp.flag_dnf == YES && flagMarkedDNF == FILTER_FLAGS_SET);
                 if (keep == YES && flagMine != FILTER_FLAGS_NOTCHECKED)
-                    keep = (wp.account.accountname_id != wp.gs_owner._id && flagMine == FILTER_FLAGS_NOTSET) || (wp.account.accountname_id == wp.gs_owner._id && flagMine == FILTER_FLAGS_SET);
+                    keep = (wp.account.accountname._id != wp.gs_owner._id && flagMine == FILTER_FLAGS_NOTSET) || (wp.account.accountname._id == wp.gs_owner._id && flagMine == FILTER_FLAGS_SET);
                 if (keep == YES && flagLoggedAsFound != LOGSTATUS_NOTLOGGED)
                     keep = (wp.logStatus == LOGSTATUS_FOUND && flagLoggedAsFound == FILTER_FLAGS_SET) || (wp.logStatus != LOGSTATUS_FOUND && flagLoggedAsFound == FILTER_FLAGS_NOTSET);
                 if (keep == YES && flagLoggedAsDNF != LOGSTATUS_NOTLOGGED)

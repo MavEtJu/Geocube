@@ -169,7 +169,7 @@ enum {
     REPLACE(@"now.founddate", [MyTools dateTimeString_YYYY_MM_DD])
     REPLACE(@"now.founddatetime", [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss])
 
-    REPLACE(@"cacher.name", self.waypoint.account.accountname_string)
+    REPLACE(@"cacher.name", self.waypoint.account.accountname.name)
 
     REPLACE(@"list.found", [NSNumber numberWithInteger:[[dbListData dbAllByType:FLAGS_MARKEDFOUND ascending:NO] count]])
     REPLACE(@"list.dnf", [NSNumber numberWithInteger:[[dbListData dbAllByType:FLAGS_MARKEDDNF ascending:NO] count]])
