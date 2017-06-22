@@ -38,18 +38,10 @@
     return self;
 }
 
-- (void)finish
-{
-    if (self.account == nil)
-        self.account = [dbc Account_get:self.account_id];
-    if (self.account_id == 0)
-        self.account_id = self.account._id;
-    [super finish];
-}
-
 + (NSArray<dbName *> *)dbAll
 {
     NSMutableArray<dbName *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSId i;
 
     @synchronized(db) {
         DB_PREPARE(@"select id, name, code, account_id from names");
@@ -59,7 +51,8 @@
             INT_FETCH (0, s._id);
             TEXT_FETCH(1, s.name);
             TEXT_FETCH(2, s.code);
-            INT_FETCH (3, s.account_id);
+            INT_FETCH (3, i);
+            s.account = [dbc Account_get:i];
             [s finish];
             [ss addObject:s];
         }
@@ -71,6 +64,7 @@
 + (dbName *)dbGet:(NSId)_id
 {
     dbName *s;
+    NSId i;
 
     @synchronized(db) {
         DB_PREPARE(@"select id, name, code, account_id from names where id = ?");
@@ -82,7 +76,8 @@
             INT_FETCH (0, s._id);
             TEXT_FETCH(1, s.name);
             TEXT_FETCH(2, s.code);
-            INT_FETCH (3, s.account_id);
+            INT_FETCH (3, i);
+            s.account = [dbc Account_get:i];
             [s finish];
         }
         DB_FINISH;
@@ -93,6 +88,7 @@
 + (dbName *)dbGetByNameCode:(NSString *)name code:(NSString *)code account:(dbAccount *)account
 {
     dbName *s = nil;
+    NSId i;
 
     @synchronized(db) {
         DB_PREPARE(@"select id, name, code, account_id from names where name = ? and code = ? and account_id = ?");
@@ -106,7 +102,8 @@
             INT_FETCH (0, s._id);
             TEXT_FETCH(1, s.name);
             TEXT_FETCH(2, s.code);
-            INT_FETCH( 3, s.account_id);
+            INT_FETCH( 3, i);
+            s.account = [dbc Account_get:i];
             [s finish];
         }
         DB_FINISH;
@@ -117,6 +114,7 @@
 + (dbName *)dbGetByCode:(NSString *)code account:(dbAccount *)account
 {
     dbName *s = nil;
+    NSId i;
 
     @synchronized(db) {
         DB_PREPARE(@"select id, name, code, account_id from names where code = ? and account_id = ?");
@@ -129,7 +127,8 @@
             INT_FETCH (0, s._id);
             TEXT_FETCH(1, s.name);
             TEXT_FETCH(2, s.code);
-            INT_FETCH (3, s.account_id);
+            INT_FETCH (3, i);
+            s.account = [dbc Account_get:i];
             [s finish];
         }
         DB_FINISH;
@@ -140,6 +139,7 @@
 + (dbName *)dbGetByName:(NSString *)name account:(dbAccount *)account
 {
     dbName *s = nil;
+    NSId i;
 
     @synchronized(db) {
         DB_PREPARE(@"select id, name, code, account_id from names where name = ? and account_id = ?");
@@ -152,7 +152,8 @@
             INT_FETCH (0, s._id);
             TEXT_FETCH(1, s.name);
             TEXT_FETCH(2, s.code);
-            INT_FETCH (3, s.account_id);
+            INT_FETCH (3, i);
+            s.account = [dbc Account_get:i];
             [s finish];
         }
         DB_FINISH;
@@ -197,7 +198,7 @@
 
         SET_VAR_TEXT(1, self.name);
         SET_VAR_TEXT(2, self.code);
-        SET_VAR_INT (3, self.account_id);
+        SET_VAR_INT (3, self.account._id);
         SET_VAR_INT (4, self._id);
 
         DB_CHECK_OKAY;

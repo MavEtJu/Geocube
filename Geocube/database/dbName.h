@@ -23,7 +23,6 @@
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *code;
-@property (nonatomic) NSId account_id;
 @property (nonatomic, retain) dbAccount *account;
 
 + (NSArray<dbName *> *)dbAll;
