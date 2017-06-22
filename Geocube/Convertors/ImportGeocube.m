@@ -727,8 +727,6 @@ typedef NS_ENUM(NSInteger, Type) {
                     ls.type = type;
                     ls.logtype = logtype;
                     ls.protocol = _protocol;
-                    ls.protocol_id = _protocol._id;
-                    ls.protocol_string = _protocol.name;
                     ls.defaultNote = defaultNote;
                     ls.defaultFound = defaultFound;
                     ls.defaultVisit = defaultVisit;

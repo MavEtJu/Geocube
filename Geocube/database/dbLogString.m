@@ -25,24 +25,11 @@
 
 @implementation dbLogString
 
-- (void)finish
-{
-    if (self.protocol_id == 0) {
-        self.protocol = [dbProtocol dbGetByName:self.protocol_string];
-        self.protocol_id = self.protocol._id;
-    }
-    if (self.protocol_string == nil) {
-        self.protocol = [dbProtocol dbGet:self.protocol_id];
-        self.protocol_string = self.protocol.name;
-    }
-
-    [super finish];
-}
-
 + (NSArray<dbLogString *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
     NSMutableArray<dbLogString *> *lss = [[NSMutableArray alloc] initWithCapacity:20];
     NSString *sql = [NSString stringWithFormat:@"select id, text, type, logtype, protocol_id, default_note, default_found, icon, forlogs, found, default_visit, default_dropoff, default_pickup, default_discover from log_strings %@ order by id", where];
+    NSId i;
 
     @synchronized(db) {
         DB_PREPARE_KEYSVALUES(sql, keys, values);
@@ -52,7 +39,8 @@
             TEXT_FETCH( 1, ls.text);
             TEXT_FETCH( 2, ls.type);
             INT_FETCH ( 3, ls.logtype);
-            INT_FETCH ( 4, ls.protocol_id);
+            INT_FETCH ( 4, i);
+            ls.protocol = [dbc Protocol_get:i];
             BOOL_FETCH( 5, ls.defaultNote);
             BOOL_FETCH( 6, ls.defaultFound);
             INT_FETCH ( 7, ls.icon);
@@ -133,7 +121,7 @@
         SET_VAR_TEXT( 1, self.text);
         SET_VAR_TEXT( 2, self.type);
         SET_VAR_INT ( 3, self.logtype);
-        SET_VAR_INT ( 4, self.protocol_id);
+        SET_VAR_INT ( 4, self.protocol._id);
         SET_VAR_BOOL( 5, self.defaultNote);
         SET_VAR_BOOL( 6, self.defaultFound);
         SET_VAR_INT ( 7, self.icon);
@@ -160,7 +148,7 @@
         SET_VAR_TEXT( 1, self.text);
         SET_VAR_TEXT( 2, self.type);
         SET_VAR_INT ( 3, self.logtype);
-        SET_VAR_INT ( 4, self.protocol_id);
+        SET_VAR_INT ( 4, self.protocol._id);
         SET_VAR_BOOL( 5, self.defaultNote);
         SET_VAR_BOOL( 6, self.defaultFound);
         SET_VAR_INT ( 7, self.icon);

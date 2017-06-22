@@ -43,8 +43,6 @@ typedef NS_ENUM(NSInteger, LogStringLogType) {
 @property (nonatomic, retain) NSString *text;
 @property (nonatomic, retain) NSString *type;
 @property (nonatomic) dbProtocol *protocol;
-@property (nonatomic) NSString *protocol_string;
-@property (nonatomic) NSId protocol_id;
 @property (nonatomic) BOOL defaultNote;
 @property (nonatomic) BOOL defaultFound;
 @property (nonatomic) BOOL defaultVisit;
