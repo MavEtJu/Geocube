@@ -137,6 +137,7 @@
     CHECK(@"locationless_sortby", @"0");
 
     CHECK(@"opencage_key", @"");
+    CHECK(@"opencage_wifionly", @"1");
 }
 
 - (void)loadValues
@@ -206,6 +207,7 @@
     self.locationlessShowFound = [[dbConfig dbGetByKey:@"locationless_showfound"].value boolValue];
     self.locationlessListSortBy = [[dbConfig dbGetByKey:@"locationless_sortby"].value integerValue];
     self.opencageKey = [dbConfig dbGetByKey:@"opencage_key"].value;
+    self.opencageWifiOnly = [[dbConfig dbGetByKey:@"opencage_wifionly"].value boolValue];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -609,6 +611,11 @@
 {
     self.opencageKey = value;
     [self NSStringUpdate:@"opencage_key" value:value];
+}
+- (void)opencageWifiOnlyUpdate:(BOOL)value
+{
+    self.opencageWifiOnly = value;
+    [self BOOLUpdate:@"opencage_wifionly" value:value];
 }
 
 @end

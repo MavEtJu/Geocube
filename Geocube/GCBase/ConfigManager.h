@@ -115,6 +115,7 @@
 @property (nonatomic) NSInteger locationlessListSortBy;
 
 @property (nonatomic, retain) NSString *opencageKey;
+@property (nonatomic) BOOL opencageWifiOnly;
 
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown
@@ -186,5 +187,6 @@
 - (void)locationlessShowFoundUpdate:(BOOL)value;
 - (void)locationlessListSortByUpdate:(NSInteger)value;
 - (void)opencageKeyUpdate:(NSString *)value;
+- (void)opencageWifiOnlyUpdate:(BOOL)value;
 
 @end

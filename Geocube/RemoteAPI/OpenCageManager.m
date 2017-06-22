@@ -25,6 +25,7 @@
     NSString *urlFormat;
     NSMutableArray<dbWaypoint *> *queue;
     BOOL isRunning;
+    BOOL disabled;
 }
 
 @end
@@ -62,12 +63,15 @@
     urlFormat = @"https://api.opencagedata.com/geocode/v1/json?q=%f,%f&no_annotations=1&key=%@";
     queue = [NSMutableArray arrayWithCapacity:20];
     isRunning = NO;
+    disabled = NO;
 
     return self;
 }
 
 - (void)addForProcessing:(dbWaypoint *)wp
 {
+    if (disabled == YES)
+        return;
     if (IS_EMPTY(configManager.opencageKey) == YES)
         return;
 
@@ -95,6 +99,8 @@
             [queue removeLastObject];
         }
         if (wp != nil) {
+            if ([MyTools hasWifiNetwork] == NO && configManager.opencageWifiOnly == YES)
+                continue;
             NSLog(@"%@ - running for %@", [self class], wp.wpt_name);
             [self runQueue:wp];
         }
@@ -164,9 +170,19 @@
 
         [wp dbUpdateCountryStateLocale];
     } else {
-        NSLog(@"%@ - Error %@, bailing", [self class], [error description]);
+        disabled = YES;
         @synchronized (self) {
             [queue removeAllObjects];
+        }
+
+        if (error != nil) {
+            NSLog(@"%@ - Error %@, bailing", [self class], [error description]);
+            [MyTools messageBox:[MyTools topMostController] header:@"OpenCage Manager" text:@"The OpenCage interface ran into a problem. It will be disabled until Geocube has been restarted." error:[error description]];
+        } else {
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            NSDictionary *status = [json objectForKey:@"status"];
+            NSLog(@"%@ - Error %@, bailing", [self class], [status objectForKey:@"message"]);
+            [MyTools messageBox:[MyTools topMostController] header:@"OpenCage Manager" text:@"The OpenCage interface ran into a problem. It will be disabled until Geocube has been restarted." error:[status objectForKey:@"message"]];
         }
     }
 }

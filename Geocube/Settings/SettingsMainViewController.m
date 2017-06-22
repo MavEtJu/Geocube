@@ -268,6 +268,7 @@ enum sections {
 
     SECTION_APPS_EXTERNALMAP = 0,
     SECTION_APPS_TWITTER,
+    SECTION_APPS_OPENCAGEOVERWIFIONLY,
     SECTION_APPS_OPENCAGEKEY,
     SECTION_APPS_MAX,
 
@@ -450,6 +451,14 @@ enum sections {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = @"OpenCage key";
                     cell.detailTextLabel.text = configManager.opencageKey;
+                    return cell;
+                }
+                case SECTION_APPS_OPENCAGEOVERWIFIONLY: {
+                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
+                    cell.textLabel.text = @"OpenCage only over Wifi";
+                    cell.optionSwitch.on = configManager.opencageWifiOnly;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+                    [cell.optionSwitch addTarget:self action:@selector(updateOpenCageWifiOnly:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
                 case SECTION_APPS_TWITTER: {
@@ -996,6 +1005,11 @@ enum sections {
     [configManager distanceMetricUpdate:s.on];
     [self calculateDynamicmapSpeedsDistances];
     [self.tableView reloadData];
+}
+
+- (void)updateOpenCageWifiOnly:(GCSwitch *)s
+{
+    [configManager opencageWifiOnlyUpdate:s.on];
 }
 
 - (void)updateSendTweets:(GCSwitch *)s
