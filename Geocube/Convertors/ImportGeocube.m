@@ -607,14 +607,14 @@ typedef NS_ENUM(NSInteger, Type) {
         if (bm != nil) {
             bm.name = description;
             bm.url = url;
-            bm.import_id = import_id;
+            bm.import = [dbFileImport dbGet:import_id];
             [bm finish];
             [bm dbUpdate];
         } else {
             bm = [[dbBookmark alloc] init];
             bm.name = description;
             bm.url = url;
-            bm.import_id = import_id;
+            bm.import = [dbFileImport dbGet:import_id];
             [dbBookmark dbCreate:bm];
         }
     }];

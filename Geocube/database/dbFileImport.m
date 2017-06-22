@@ -80,6 +80,27 @@
     return is;
 }
 
++ (dbFileImport *)dbGet:(NSId)_id
+{
+    dbFileImport *i = [[dbFileImport alloc] init];
+
+    @synchronized(db) {
+        DB_PREPARE(@"select id, filename, filesize, last_import_epoch from file_imports where id = ?");
+
+        SET_VAR_INT(1, _id);
+
+        DB_IF_STEP {
+            INT_FETCH (0, i._id);
+            TEXT_FETCH(1, i.filename);
+            INT_FETCH (2, i.filesize);
+            INT_FETCH (3, i.lastimport);
+            [i finish];
+        }
+        DB_FINISH;
+    }
+    return i;
+}
+
 + (NSInteger)dbCount
 {
     return [dbFileImport dbCount:@"file_imports"];

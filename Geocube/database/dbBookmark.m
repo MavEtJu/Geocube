@@ -25,22 +25,10 @@
 
 @implementation dbBookmark
 
-- (instancetype)init:(NSId)_id name:(NSString *)name url:(NSString *)url import_id:(NSInteger)import_id
-{
-    self = [super init];
-
-    self._id = _id;
-    self.name = name;
-    self.url = url;
-    self.import_id = import_id;
-
-    [self finish];
-    return self;
-}
-
 + (dbBookmark *)dbGet:(NSId)_id
 {
     dbBookmark *a = nil;
+    NSId i;
 
     @synchronized(db) {
         DB_PREPARE(@"select id, name, url, import_id from bookmarks where id = ?");
@@ -51,7 +39,8 @@
             INT_FETCH (0, a._id);
             TEXT_FETCH(1, a.name);
             TEXT_FETCH(2, a.url);
-            INT_FETCH (3, a.import_id);
+            INT_FETCH (3, i);
+            a.import = [dbFileImport dbGet:i];
         }
         DB_FINISH;
     }
@@ -61,6 +50,7 @@
 + (NSArray<dbBookmark *> *)dbAll
 {
     NSMutableArray<dbBookmark *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSId i;
 
     @synchronized(db) {
         DB_PREPARE(@"select id, name, url, import_id from bookmarks");
@@ -70,7 +60,8 @@
             INT_FETCH (0, a._id);
             TEXT_FETCH(1, a.name);
             TEXT_FETCH(2, a.url);
-            INT_FETCH (3, a.import_id);
+            INT_FETCH (3, i);
+            a.import = [dbFileImport dbGet:i];
             [ss addObject:a];
         }
         DB_FINISH;
@@ -92,7 +83,7 @@
 
         SET_VAR_TEXT(1, bm.name);
         SET_VAR_TEXT(2, bm.url);
-        SET_VAR_INT (3, bm.import_id);
+        SET_VAR_INT (3, bm.import._id);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -108,7 +99,7 @@
 
         SET_VAR_TEXT(1, self.name);
         SET_VAR_TEXT(2, self.url);
-        SET_VAR_INT (3, self.import_id);
+        SET_VAR_INT (3, self.import._id);
         SET_VAR_INT (4, self._id);
 
         DB_CHECK_OKAY;
@@ -131,6 +122,7 @@
 + (dbBookmark *)dbGetByImport:(NSInteger)import_id
 {
     dbBookmark *a = nil;
+    NSId i;
 
     @synchronized(db) {
         DB_PREPARE(@"select id, name, url, import_id from bookmarks where import_id = ?");
@@ -141,7 +133,8 @@
             INT_FETCH (0, a._id);
             TEXT_FETCH(1, a.name);
             TEXT_FETCH(2, a.url);
-            INT_FETCH (3, a.import_id);
+            INT_FETCH (3, i);
+            a.import = [dbFileImport dbGet:i];
         }
         DB_FINISH;
     }
