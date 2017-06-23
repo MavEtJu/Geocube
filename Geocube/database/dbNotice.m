@@ -27,6 +27,11 @@
 
 TABLENAME(@"notices")
 
++ (NSInteger)dbCountUnread
+{
+    return [self dbCountXXX:@"where seen = 0" keys:nil values:nil];
+}
+
 - (NSId)dbCreate
 {
     @synchronized(db) {
@@ -103,18 +108,5 @@ TABLENAME(@"notices")
 }
 
 /* Other methods */
-
-+ (NSInteger)countUnread
-{
-    NSInteger c = 0;
-    @synchronized(db) {
-        DB_PREPARE(@"select count(*) from notices set seen = 0");
-        DB_IF_STEP {
-            INT_FETCH(0, c);
-        }
-        DB_FINISH;
-    }
-    return c;
-}
 
 @end

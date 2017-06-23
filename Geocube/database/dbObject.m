@@ -67,13 +67,18 @@
 
 + (NSInteger)dbCount
 {
-    NSInteger c = -1;
+    return [self dbCountXXX:nil keys:nil values:nil];
+}
 
-    NSString *sql = [NSString stringWithFormat:@"select count(id) from %@", [self dbTablename]];
++ (NSInteger)dbCountXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values;
+{
+    NSInteger c = 0;
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"select count(id) from %@ ", [self dbTablename]];
+    if (where != nil)
+        [sql appendString:where];
 
     @synchronized(db) {
-        DB_PREPARE(sql);
-
+        DB_PREPARE_KEYSVALUES(sql, keys, values)
         DB_IF_STEP {
             INT_FETCH(0, c);
         }
@@ -93,7 +98,6 @@
         DB_CHECK_OKAY;
         DB_FINISH;
     }
-
 }
 
 - (void)dbDelete

@@ -38,5 +38,6 @@
 - (void)dbDelete;
 + (void)dbDeleteAll;
 + (NSInteger)dbCount;
++ (NSInteger)dbCountXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values;
 
 @end

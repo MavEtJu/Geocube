@@ -64,6 +64,17 @@ TABLENAME(@"logs")
 //    self.logstring = [dbc LogString_get_bytype:account logtype:self.waypoint.logstring_logtype type:self.logstring_string];
 }
 
++ (NSInteger)dbCountByWaypoint:(NSId)wp_id
+{
+    return [self dbCountXXX:@"where waypoint_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:wp_id]]];
+}
+
++ (NSInteger)dbCountByWaypointLogString:(dbWaypoint *)wp LogString:(NSString *)string
+{
+    NSString *s = [NSString stringWithFormat:@"%%%@%%", string];
+    return [self dbCountXXX:@"where waypoint_id = ? and log like ?" keys:@"is" values:@[[NSNumber numberWithInteger:wp._id], s]];
+}
+
 - (NSId)dbCreate
 {
     @synchronized(db) {
@@ -220,43 +231,6 @@ TABLENAME(@"logs")
 }
 
 /* Other methods */
-
-+ (NSInteger)dbCountByWaypoint:(NSId)wp_id
-{
-    NSInteger count = 0;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select count(id) from logs where waypoint_id = ?");
-
-        SET_VAR_INT(1, wp_id);
-
-        DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN(0, c);
-            count = c;
-        }
-        DB_FINISH;
-    }
-    return count;
-}
-
-+ (NSInteger)dbCountByWaypointLogString:(dbWaypoint *)wp LogString:(NSString *)string
-{
-    NSInteger c = 0;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select count(id) from logs where waypoint_id = ? and log like ?");
-
-        SET_VAR_INT( 1, wp._id);
-        NSString *s = [NSString stringWithFormat:@"%%%@%%", string];
-        SET_VAR_TEXT(2, s);
-
-        DB_IF_STEP {
-            INT_FETCH(0, c);
-        }
-        DB_FINISH;
-    }
-    return c;
-}
 
 + (dbLog *)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSInteger)date note:(NSString *)note needstobelogged:(BOOL)needstobelogged locallog:(BOOL)locallog coordinates:(CLLocationCoordinate2D)coordinates
 {
