@@ -99,7 +99,7 @@ TABLENAME(@"notices")
 
 + (dbNotice *)dbGetByGCId:(NSInteger)geocube_id
 {
-    return [[self dbAllXXX:@"where geocube_id = ? dorder by seen, geocube_id desc" keys:@"i" values:@[[NSNumber numberWithInteger:geocube_id]]] firstObject];
+    return [[self dbAllXXX:@"where geocube_id = ? order by seen, geocube_id desc" keys:@"i" values:@[[NSNumber numberWithInteger:geocube_id]]] firstObject];
 }
 
 /* Other methods */
