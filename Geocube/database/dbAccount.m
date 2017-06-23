@@ -62,7 +62,7 @@ TABLENAME(@"accounts")
     self.canDoRemoteStuff = NO;
 
     /* Even if it is nil.... */
-    self.accountname = [dbName dbGetByName:self.accountname.name account:self];
+//    self.accountname = [dbName dbGetByName:self.accountname.name account:self];
 
     [self checkRemoteAccess];
 }
@@ -70,7 +70,7 @@ TABLENAME(@"accounts")
 - (NSId)dbCreate
 {
     @synchronized(db) {
-        DB_PREPARE(@"insert into accounts(site, url_site, url_queries, protocol_id, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, accountname_id, enabled, distance_minimum, authentication_name, authentication_password, oauth_consumer_public_sharedsecret, oauth_consumer_private_sharedsecret) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into accounts(site, url_site, url_queries, protocol_id, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, accountname_id, enabled, distance_minimum, authentication_name, authentication_password, oauth_consumer_public_sharedsecret, oauth_consumer_private_sharedsecret) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT( 1, self.site);
         SET_VAR_TEXT( 2, self.url_site);
