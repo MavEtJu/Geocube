@@ -22,12 +22,20 @@ for class in $(grep implementation database/db*.m | awk '{ print $2 }' | grep -v
 done
 
 echo
-echo "db*.m - dbCount:"
+echo "db*.m - TABLENAME:"
 for f in database/db*.m; do
-	c=$(grep -wc "dbCount" $f)
-	if [ $c != 2 -a $c != 4 ]; then
-		echo "Missing dbCount: $f"
+	c=$(grep -wc "TABLENAME" $f)
+	if [ $c != 1 ]; then
+		echo "Missing TABLENAME: $f"
 	fi
+done
+
+echo
+echo "db*.m - order:"
+for f in database/db*.m; do
+	for word in init finish dbCount dbCreate dbUpdate dbAll dbGet dbDelete; do
+		true
+	done
 done
 
 echo
