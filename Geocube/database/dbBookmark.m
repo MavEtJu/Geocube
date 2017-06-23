@@ -25,10 +25,7 @@
 
 @implementation dbBookmark
 
-+ (NSInteger)dbCount
-{
-    return [dbBookmark dbCount:@"bookmarks"];
-}
+TABLENAME(@"bookmarks")
 
 - (NSId)dbCreate
 {
@@ -100,18 +97,6 @@
 + (dbBookmark *)dbGetByImport:(NSInteger)import_id
 {
     return [[self dbAllXXX:@"where import_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:import_id]]] firstObject];
-}
-
-- (void)dbDelete
-{
-    @synchronized(db) {
-        DB_PREPARE(@"delete from bookmarks where id = ?");
-
-        SET_VAR_INT(1, self._id);
-
-        DB_CHECK_OKAY;
-        DB_FINISH;
-    }
 }
 
 @end

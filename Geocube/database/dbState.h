@@ -24,10 +24,8 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *code;
 
-- (instancetype)init:(NSId)_id name:(NSString *)name code:(NSString *)code;
 + (NSArray<dbState *> *)dbAll;
 + (void)makeNameExist:(NSString *)name;
 + (dbState *)dbGet:(NSId)_id;
-+ (NSId)dbCreate:(NSString *)name code:(NSString *)code;
 
 @end

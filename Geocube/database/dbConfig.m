@@ -25,10 +25,7 @@
 
 @implementation dbConfig
 
-+ (NSInteger)dbCount
-{
-    return [dbConfig dbCount:@"config"];
-}
+TABLENAME(@"config")
 
 - (NSId)dbCreate
 {

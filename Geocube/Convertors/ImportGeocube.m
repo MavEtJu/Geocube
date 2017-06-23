@@ -477,8 +477,10 @@ typedef NS_ENUM(NSInteger, Type) {
             s.name = name;
             [s dbUpdate];
         } else {
-            NSId _id = [dbState dbCreate:name code:abbr];
-            s = [dbState dbGet:_id];
+            dbState *s = [[dbState alloc] init];
+            s.name = name;
+            s.code = abbr;
+            [s dbCreate];
             [dbc State_add:s];
         }
     }];

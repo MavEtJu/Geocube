@@ -202,7 +202,7 @@ enum {
         qi.name = [pq objectForKey:@"Name"];
         qi.account = account;
         qi.lastimport = time(NULL);
-        [dbQueryImport dbCreate:qi];
+        [qi dbCreate];
     } else {
         foundqi.lastimport = time(NULL);
         [foundqi dbUpdate];

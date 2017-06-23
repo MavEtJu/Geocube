@@ -25,29 +25,23 @@
 
 @implementation dbQueryImport
 
-- (void)finish
-{
-    [super finish];
-}
+TABLENAME(@"query_imports")
 
-+ (NSId)dbCreate:(dbQueryImport *)qi
+- (NSId)dbCreate
 {
-    NSId _id = 0;
-
     @synchronized(db) {
         DB_PREPARE(@"insert into query_imports(account_id, name, filesize, last_import_epoch) values(?, ?, ?, ?)");
 
-        SET_VAR_INT (1, qi.account._id);
-        SET_VAR_TEXT(2, qi.name);
-        SET_VAR_INT (3, qi.filesize);
-        SET_VAR_INT (4, qi.lastimport);
+        SET_VAR_INT (1, self.account._id);
+        SET_VAR_TEXT(2, self.name);
+        SET_VAR_INT (3, self.filesize);
+        SET_VAR_INT (4, self.lastimport);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(_id);
+        DB_GET_LAST_ID(self._id);
         DB_FINISH;
     }
-    qi._id = _id;
-    return _id;
+    return self._id;
 }
 
 - (void)dbUpdate
@@ -88,11 +82,6 @@
         DB_FINISH;
     }
     return qis;
-}
-
-+ (NSInteger)dbCount
-{
-    return [dbQueryImport dbCount:@"query_imports"];
 }
 
 @end

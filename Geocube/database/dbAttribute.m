@@ -25,10 +25,7 @@
 
 @implementation dbAttribute
 
-+ (NSInteger)dbCount
-{
-    return [dbAttribute dbCount:@"attributes"];
-}
+TABLENAME(@"attributes")
 
 - (NSId)dbCreate
 {
@@ -178,7 +175,5 @@
     }
     return count;
 }
-
-
 
 @end

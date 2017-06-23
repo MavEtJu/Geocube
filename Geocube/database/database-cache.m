@@ -285,10 +285,9 @@
     return _lt;
 }
 
-- (void)Symbols_add:(NSId)_id symbol:(NSString *)symbol
+- (void)Symbols_add:(dbSymbol *)s
 {
-    dbSymbol *cs = [[dbSymbol alloc] init:_id symbol:symbol];
-    [Symbols addObject:cs];
+    [Symbols addObject:s];
 }
 
 - (dbLogString *)LogString_get_bytype:(dbAccount *)account logtype:(NSInteger)logtype type:(NSString *)type

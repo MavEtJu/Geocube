@@ -27,6 +27,8 @@
 
 @implementation dbAccount
 
+TABLENAME(@"accounts")
+
 - (void)finish
 {
     [super finish];
@@ -63,11 +65,6 @@
     self.accountname = [dbName dbGetByName:self.accountname.name account:self];
 
     [self checkRemoteAccess];
-}
-
-+ (NSInteger)dbCount
-{
-    return [dbAccount dbCount:@"accounts"];
 }
 
 - (NSId)dbCreate

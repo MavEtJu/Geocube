@@ -25,93 +25,7 @@
 
 @implementation dbLogString
 
-+ (NSArray<dbLogString *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
-{
-    NSMutableArray<dbLogString *> *lss = [[NSMutableArray alloc] initWithCapacity:20];
-    NSString *sql = [NSString stringWithFormat:@"select id, text, type, logtype, protocol_id, default_note, default_found, icon, forlogs, found, default_visit, default_dropoff, default_pickup, default_discover from log_strings %@ order by id", where];
-    NSId i;
-
-    @synchronized(db) {
-        DB_PREPARE_KEYSVALUES(sql, keys, values);
-        DB_WHILE_STEP {
-            dbLogString *ls = [[dbLogString alloc] init];
-            INT_FETCH ( 0, ls._id);
-            TEXT_FETCH( 1, ls.text);
-            TEXT_FETCH( 2, ls.type);
-            INT_FETCH ( 3, ls.logtype);
-            INT_FETCH ( 4, i);
-            ls.protocol = [dbc Protocol_get:i];
-            BOOL_FETCH( 5, ls.defaultNote);
-            BOOL_FETCH( 6, ls.defaultFound);
-            INT_FETCH ( 7, ls.icon);
-            BOOL_FETCH( 8, ls.forLogs);
-            INT_FETCH ( 9, ls.found);
-            BOOL_FETCH(10, ls.defaultVisit);
-            BOOL_FETCH(11, ls.defaultDropoff);
-            BOOL_FETCH(12, ls.defaultPickup);
-            BOOL_FETCH(13, ls.defaultDiscover);
-            [ls finish];
-            [lss addObject:ls];
-        }
-        DB_FINISH;
-    }
-    return lss;
-}
-
-+ (NSArray<dbLogString *> *)dbAllXXX:(NSString *)where
-{
-    return [dbLogString dbAllXXX:where keys:nil values:nil];
-}
-
-+ (NSArray<dbLogString *> *)dbAll
-{
-    return [dbLogString dbAllXXX:@""];
-}
-
-+ (NSArray<dbLogString *> *)dbAllByProtocol:(dbProtocol *)protocol
-{
-    return [dbLogString dbAllXXX:@"where protocol_id = ?"
-                            keys:@"i"
-                          values:@[[NSNumber numberWithLongLong:protocol._id]]];
-}
-
-+ (NSArray<dbLogString *> *)dbAllByProtocolLogtype_All:(dbProtocol *)protocol logtype:(LogStringLogType)logtype
-{
-    return [dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ?"
-                            keys:@"ii"
-                          values:@[[NSNumber numberWithLongLong:protocol._id], [NSNumber numberWithInteger:logtype]]];
-}
-
-+ (dbLogString *)dbGet_byProtocolLogtypeType:(dbProtocol *)protocol logtype:(LogStringLogType)logtype type:(NSString *)type;
-{
-    NSArray<dbLogString *> *lss = [dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and type = ?"
-                                                   keys:@"iis"
-                                                 values:@[[NSNumber numberWithLongLong:protocol._id], [NSNumber numberWithInteger:logtype], type]];
-    if (lss == nil)
-        return nil;
-    if ([lss count] == 0)
-        return nil;
-    return [lss objectAtIndex:0];
-}
-
-+ (NSArray<dbLogString *> *)dbAllByProtocolLogtype_LogOnly:(dbProtocol *)protocol logtype:(LogStringLogType)logtype
-{
-    return [dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and forlogs = 1"
-                            keys:@"ii"
-                          values:@[[NSNumber numberWithLongLong:protocol._id], [NSNumber numberWithInteger:logtype]]];
-}
-
-+ (dbLogString *)dbGetByProtocolEventType:(dbProtocol *)protocol logtype:(LogStringLogType)logtype type:(NSString *)type
-{
-    NSArray<dbLogString *> *as = [dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and type = ?"
-                                                  keys:@"iis"
-                                                values:@[[NSNumber numberWithLongLong:protocol._id], [NSNumber numberWithInteger:logtype], type]];
-    if (as == nil)
-        return nil;
-    if ([as count] == 0)
-        return nil;
-    return [as objectAtIndex:0];
-}
+TABLENAME(@"log_strings")
 
 - (NSId)dbCreate
 {
@@ -165,49 +79,70 @@
     }
 }
 
-+ (void)dbDeleteAll
++ (NSArray<dbLogString *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
-    @synchronized(db) {
-        DB_PREPARE(@"delete from log_strings");
+    NSMutableArray<dbLogString *> *lss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSId i;
 
-        DB_CHECK_OKAY;
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, text, type, logtype, protocol_id, default_note, default_found, icon, forlogs, found, default_visit, default_dropoff, default_pickup, default_discover from log_strings "];
+    if (where != nil)
+        [sql appendString:where];
+
+    @synchronized(db) {
+        DB_PREPARE_KEYSVALUES(sql, keys, values);
+        DB_WHILE_STEP {
+            dbLogString *ls = [[dbLogString alloc] init];
+            INT_FETCH ( 0, ls._id);
+            TEXT_FETCH( 1, ls.text);
+            TEXT_FETCH( 2, ls.type);
+            INT_FETCH ( 3, ls.logtype);
+            INT_FETCH ( 4, i);
+            ls.protocol = [dbc Protocol_get:i];
+            BOOL_FETCH( 5, ls.defaultNote);
+            BOOL_FETCH( 6, ls.defaultFound);
+            INT_FETCH ( 7, ls.icon);
+            BOOL_FETCH( 8, ls.forLogs);
+            INT_FETCH ( 9, ls.found);
+            BOOL_FETCH(10, ls.defaultVisit);
+            BOOL_FETCH(11, ls.defaultDropoff);
+            BOOL_FETCH(12, ls.defaultPickup);
+            BOOL_FETCH(13, ls.defaultDiscover);
+            [ls finish];
+            [lss addObject:ls];
+        }
         DB_FINISH;
     }
-
+    return lss;
 }
 
-+ (NSInteger)dbCount
++ (NSArray<dbLogString *> *)dbAll
 {
-    return [dbLogString dbCount:@"log_strings"];
+    return [dbLogString dbAllXXX:@"order by id" keys:nil values:nil];
 }
 
-+ (NSInteger)stringToLogtype:(NSString *)string
++ (NSArray<dbLogString *> *)dbAllByProtocol:(dbProtocol *)protocol
 {
-    if ([string isEqualToString:@"Event"] == YES)
-        return LOGSTRING_LOGTYPE_EVENT;
-    if ([string isEqualToString:@"Waypoint"] == YES)
-        return LOGSTRING_LOGTYPE_WAYPOINT;
-    if ([string isEqualToString:@"TrackableWaypoint"] == YES)
-        return LOGSTRING_LOGTYPE_TRACKABLEWAYPOINT;
-    if ([string isEqualToString:@"TrackablePerson"] == YES)
-        return LOGSTRING_LOGTYPE_TRACKABLEPERSON;
-    return LOGSTRING_LOGTYPE_UNKNOWN;
+    return [dbLogString dbAllXXX:@"where protocol_id = ? order by id" keys:@"i" values:@[[NSNumber numberWithInteger:protocol._id]]];
 }
 
-+ (NSInteger)wptTypeToLogType:(NSString *)type_full
++ (NSArray<dbLogString *> *)dbAllByProtocolLogtype_All:(dbProtocol *)protocol logtype:(LogStringLogType)logtype
 {
-    if ([type_full isEqualToString:@"Geocache|Event Cache"] == YES ||
-        [type_full isEqualToString:@"Geocache|Event"] == YES ||
-        [type_full isEqualToString:@"Geocache|CITO"] == YES ||
-        [type_full isEqualToString:@"Geocache|Cache In Trash Out Event"] == YES ||
-        [type_full isEqualToString:@"Geocache|Giga"] == YES ||
-        [type_full isEqualToString:@"Geocache|Giga-Event Cache"] == YES ||
-        [type_full isEqualToString:@"Geocache|Mega-Event Cache"] == YES ||
-        [type_full isEqualToString:@"Geocache|Groundspeak Block Party"] == YES ||
-        [type_full isEqualToString:@"Lost and Found Event Caches"] == YES ||
-        [type_full isEqualToString:@"Geocache|Mega"] == YES)
-        return LOGSTRING_LOGTYPE_EVENT;
-    return LOGSTRING_LOGTYPE_WAYPOINT;
+    return [dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? order by id" keys:@"ii" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:logtype]]];
+}
+
++ (NSArray<dbLogString *> *)dbAllByProtocolLogtype_LogOnly:(dbProtocol *)protocol logtype:(LogStringLogType)logtype
+{
+    return [dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and forlogs = 1 order by id" keys:@"ii" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:logtype]]];
+}
+
++ (dbLogString *)dbGet_byProtocolLogtypeType:(dbProtocol *)protocol logtype:(LogStringLogType)logtype type:(NSString *)type;
+{
+    return [[dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and type = ? order by id" keys:@"iis" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:logtype], type]] firstObject];
+}
+
++ (dbLogString *)dbGetByProtocolEventType:(dbProtocol *)protocol logtype:(LogStringLogType)logtype type:(NSString *)type
+{
+    return [[dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and type = ? order by id" keys:@"iis" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:logtype], type]] firstObject];
 }
 
 + (dbLogString *)dbGetByProtocolLogtypeDefault:(dbProtocol *)protocol logtype:(LogStringLogType)logtype default:(NSInteger)dflt
@@ -237,14 +172,41 @@
     }
 
     NSString *where = [NSString stringWithFormat:@"where protocol_id = ? and logtype = ? and default_%@ = 1", what];
-    NSArray<dbLogString *> *as = [dbLogString dbAllXXX:where
-                                                  keys:@"ii"
-                                                values:@[[NSNumber numberWithLongLong:protocol._id], [NSNumber numberWithInteger:logtype]]];
-    if (as == nil)
-        return nil;
-    if ([as count] == 0)
-        return nil;
-    return [as objectAtIndex:0];
+    return [[dbLogString dbAllXXX:where
+                             keys:@"ii"
+                           values:@[[NSNumber numberWithLongLong:protocol._id], [NSNumber numberWithInteger:logtype]]]
+            firstObject];
+}
+
+/* Other methods */
+
++ (NSInteger)stringToLogtype:(NSString *)string
+{
+    if ([string isEqualToString:@"Event"] == YES)
+        return LOGSTRING_LOGTYPE_EVENT;
+    if ([string isEqualToString:@"Waypoint"] == YES)
+        return LOGSTRING_LOGTYPE_WAYPOINT;
+    if ([string isEqualToString:@"TrackableWaypoint"] == YES)
+        return LOGSTRING_LOGTYPE_TRACKABLEWAYPOINT;
+    if ([string isEqualToString:@"TrackablePerson"] == YES)
+        return LOGSTRING_LOGTYPE_TRACKABLEPERSON;
+    return LOGSTRING_LOGTYPE_UNKNOWN;
+}
+
++ (NSInteger)wptTypeToLogType:(NSString *)type_full
+{
+    if ([type_full isEqualToString:@"Geocache|Event Cache"] == YES ||
+        [type_full isEqualToString:@"Geocache|Event"] == YES ||
+        [type_full isEqualToString:@"Geocache|CITO"] == YES ||
+        [type_full isEqualToString:@"Geocache|Cache In Trash Out Event"] == YES ||
+        [type_full isEqualToString:@"Geocache|Giga"] == YES ||
+        [type_full isEqualToString:@"Geocache|Giga-Event Cache"] == YES ||
+        [type_full isEqualToString:@"Geocache|Mega-Event Cache"] == YES ||
+        [type_full isEqualToString:@"Geocache|Groundspeak Block Party"] == YES ||
+        [type_full isEqualToString:@"Lost and Found Event Caches"] == YES ||
+        [type_full isEqualToString:@"Geocache|Mega"] == YES)
+        return LOGSTRING_LOGTYPE_EVENT;
+    return LOGSTRING_LOGTYPE_WAYPOINT;
 }
 
 @end

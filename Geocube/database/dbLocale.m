@@ -25,10 +25,7 @@
 
 @implementation dbLocale
 
-+ (NSInteger)dbCount
-{
-    return [dbLocale dbCount:@"locales"];
-}
+TABLENAME(@"locales")
 
 - (NSId)dbCreate
 {

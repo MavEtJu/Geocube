@@ -25,170 +25,26 @@
 
 @implementation dbName
 
-- (instancetype)init:(NSId)_id name:(NSString *)name code:(NSString *)code account:(dbAccount *)account
+TABLENAME(@"names")
+
+- (NSId)dbCreate
 {
-    self = [super init];
-
-    self._id = _id;
-    self.name = name;
-    self.code = code;
-    self.account = account;
-
-    [self finish];
-    return self;
-}
-
-+ (NSArray<dbName *> *)dbAll
-{
-    NSMutableArray<dbName *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
-    NSId i;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, name, code, account_id from names");
-
-        DB_WHILE_STEP {
-            dbName *s = [[dbName alloc] init];
-            INT_FETCH (0, s._id);
-            TEXT_FETCH(1, s.name);
-            TEXT_FETCH(2, s.code);
-            INT_FETCH (3, i);
-            s.account = [dbc Account_get:i];
-            [s finish];
-            [ss addObject:s];
-        }
-        DB_FINISH;
-    }
-    return ss;
-}
-
-+ (dbName *)dbGet:(NSId)_id
-{
-    dbName *s;
-    NSId i;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, name, code, account_id from names where id = ?");
-
-        SET_VAR_INT(1, _id);
-
-        DB_IF_STEP {
-            s = [[dbName alloc] init];
-            INT_FETCH (0, s._id);
-            TEXT_FETCH(1, s.name);
-            TEXT_FETCH(2, s.code);
-            INT_FETCH (3, i);
-            s.account = [dbc Account_get:i];
-            [s finish];
-        }
-        DB_FINISH;
-    }
-    return s;
-}
-
-+ (dbName *)dbGetByNameCode:(NSString *)name code:(NSString *)code account:(dbAccount *)account
-{
-    dbName *s = nil;
-    NSId i;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, name, code, account_id from names where name = ? and code = ? and account_id = ?");
-
-        SET_VAR_TEXT(1, name);
-        SET_VAR_TEXT(2, code);
-        SET_VAR_INT (3, account._id);
-
-        DB_IF_STEP {
-            s = [[dbName alloc] init];
-            INT_FETCH (0, s._id);
-            TEXT_FETCH(1, s.name);
-            TEXT_FETCH(2, s.code);
-            INT_FETCH( 3, i);
-            s.account = [dbc Account_get:i];
-            [s finish];
-        }
-        DB_FINISH;
-    }
-    return s;
-}
-
-+ (dbName *)dbGetByCode:(NSString *)code account:(dbAccount *)account
-{
-    dbName *s = nil;
-    NSId i;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, name, code, account_id from names where code = ? and account_id = ?");
-
-        SET_VAR_TEXT(1, code);
-        SET_VAR_INT( 2, account._id);
-
-        DB_IF_STEP {
-            s = [[dbName alloc] init];
-            INT_FETCH (0, s._id);
-            TEXT_FETCH(1, s.name);
-            TEXT_FETCH(2, s.code);
-            INT_FETCH (3, i);
-            s.account = [dbc Account_get:i];
-            [s finish];
-        }
-        DB_FINISH;
-    }
-    return s;
-}
-
-+ (dbName *)dbGetByName:(NSString *)name account:(dbAccount *)account
-{
-    dbName *s = nil;
-    NSId i;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, name, code, account_id from names where name = ? and account_id = ?");
-
-        SET_VAR_TEXT(1, name);
-        SET_VAR_INT( 2, account._id);
-
-        DB_IF_STEP {
-            s = [[dbName alloc] init];
-            INT_FETCH (0, s._id);
-            TEXT_FETCH(1, s.name);
-            TEXT_FETCH(2, s.code);
-            INT_FETCH (3, i);
-            s.account = [dbc Account_get:i];
-            [s finish];
-        }
-        DB_FINISH;
-    }
-    return s;
-}
-
-+ (NSId)dbCreate:(NSString *)name code:(NSString *)code account:(dbAccount *)account
-{
-    NSId _id;
-
     @synchronized(db) {
         DB_PREPARE(@"insert into names(name, code, account_id) values(?, ?, ?)");
 
-        SET_VAR_TEXT(1, name);
-        SET_VAR_TEXT(2, code);
-        SET_VAR_INT (3, account._id);
+        SET_VAR_TEXT(1, self.name);
+        SET_VAR_TEXT(2, self.code);
+        SET_VAR_INT (3, self.account._id);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(_id);
+        DB_GET_LAST_ID(self._id);
         DB_FINISH;
     }
 
     // Keep a copy in the cache
-    dbName *n = [[dbName alloc] init:_id name:name code:code account:account];
-    [dbc Name_add:n];
+    [dbc Name_add:self];
 
-    return _id;
-}
-
-- (NSId)dbCreate
-{
-    NSId i = [dbName dbCreate:self.name code:self.code account:self.account];
-    self._id = i;
-    return i;
+    return self._id;
 }
 
 - (void)dbUpdate
@@ -205,6 +61,60 @@
         DB_FINISH;
     }
 }
+
++ (NSArray<dbName *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
+{
+    NSMutableArray<dbName *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSId i;
+
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, name, code, account_id from names "];
+    if (where != nil)
+        [sql appendString:where];
+
+    @synchronized(db) {
+        DB_PREPARE_KEYSVALUES(sql, keys, values)
+
+        DB_WHILE_STEP {
+            dbName *s = [[dbName alloc] init];
+            INT_FETCH (0, s._id);
+            TEXT_FETCH(1, s.name);
+            TEXT_FETCH(2, s.code);
+            INT_FETCH (3, i);
+            s.account = [dbc Account_get:i];
+            [s finish];
+            [ss addObject:s];
+        }
+        DB_FINISH;
+    }
+    return ss;
+}
+
++ (NSArray<dbName *> *)dbAll
+{
+    return [self dbAllXXX:nil keys:nil values:nil];
+}
+
++ (dbName *)dbGet:(NSId)_id
+{
+    return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
+}
+
++ (dbName *)dbGetByNameCode:(NSString *)name code:(NSString *)code account:(dbAccount *)account
+{
+    return [[self dbAllXXX:@"where name = ? and code = ? and account_id = ?" keys:@"ssi" values:@[name, code, [NSNumber numberWithInteger:account._id]]] firstObject];
+}
+
++ (dbName *)dbGetByCode:(NSString *)code account:(dbAccount *)account
+{
+    return [[self dbAllXXX:@"where code = ? and account_id = ?" keys:@"si" values:@[code, [NSNumber numberWithInteger:account._id]]] firstObject];
+}
+
++ (dbName *)dbGetByName:(NSString *)name account:(dbAccount *)account
+{
+    return [[self dbAllXXX:@"where name = ? and account_id = ?" keys:@"si" values:@[name, [NSNumber numberWithInteger:account._id]]] firstObject];
+}
+
+/* Other methods */
 
 + (void)makeNameExist:(NSString *)_name code:(NSString *)_code account:(dbAccount *)account
 {
@@ -238,12 +148,11 @@
         return;
     }
 
-    [dbName dbCreate:_name code:_code account:account];
-}
-
-+ (NSInteger)dbCount
-{
-    return [dbName dbCount:@"names"];
+    name.name = _name;
+    name.code = _code;
+    name.account = account;
+    name._id = 0;
+    [name dbCreate];
 }
 
 @end

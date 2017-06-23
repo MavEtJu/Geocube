@@ -40,7 +40,7 @@
 - (instancetype)init:(NSInteger)gc_id;
 - (void)set_logstring_str:(NSString *)s account:(dbAccount *)account;
 
-+ (NSId)dbGetIdByGC:(NSInteger)gc_id account:(dbAccount *)account;
++ (dbWaypoint *)dbGetIdByGC:(NSInteger)gc_id account:(dbAccount *)account;
 + (NSMutableDictionary *)dbAllIdGCId;
 + (NSInteger)dbCountByWaypoint:(NSId)wp_id;
 + (NSArray<dbLog *> *)dbAllByWaypoint:(NSId)wp_id;
@@ -48,8 +48,6 @@
 + (NSArray<dbLog *> *)dbAllByWaypointUnsubmitted:(NSId)wp_id;
 + (NSArray<dbLog *> *)dbLast7ByWaypoint:(NSId)wp_id;
 + (NSArray<dbLog *> *)dbLast7ByWaypointLogged:(NSId)wp_id;
-+ (NSId)dbCreate:(dbLog *)log;
-- (NSId)dbCreate;
 - (void)dbUpdateWaypoint:(NSId)wp_id;
 - (void)dbUpdateNote;
 + (NSInteger)dbCountByWaypointLogString:(dbWaypoint *)wp LogString:(NSString *)string;

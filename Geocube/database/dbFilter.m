@@ -25,10 +25,7 @@
 
 @implementation dbFilter
 
-+ (NSInteger)dbCount
-{
-    return [dbFilter dbCount:@"filters"];
-}
+TABLENAME(@"filters")
 
 - (NSId)dbCreate
 {
@@ -42,7 +39,7 @@
         DB_GET_LAST_ID(self._id)
         DB_FINISH;
     }
-    
+
     return self._id;
 }
 

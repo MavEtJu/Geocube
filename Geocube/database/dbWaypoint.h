@@ -92,7 +92,7 @@ typedef NS_ENUM(NSInteger, LogStatus) {
 - (NSInteger)hasInventory;
 - (NSInteger)hasImages;
 
-+ (NSId)dbGetByName:(NSString *)name;
++ (dbWaypoint *)dbGetByName:(NSString *)name;
 - (void)dbUpdate;
 + (NSArray<dbWaypoint *> *)dbAll;
 + (NSArray<dbWaypoint *> *)dbAllFound;
@@ -117,10 +117,10 @@ typedef NS_ENUM(NSInteger, LogStatus) {
 
 - (NSString *)makeLocaleStateCountry;
 + (NSString *)makeName:(NSString *)suffix;
-+ (NSArray<dbWaypoint *> *)waypointsWithImages;
-+ (NSArray<dbWaypoint *> *)waypointsWithLogs;
-+ (NSArray<dbWaypoint *> *)waypointsWithLogsUnsubmitted;
-+ (NSArray<dbWaypoint *> *)waypointsWithMyLogs;
++ (NSArray<dbWaypoint *> *)dbAllWaypointsWithImages;
++ (NSArray<dbWaypoint *> *)dbAllWaypointsWithLogs;
++ (NSArray<dbWaypoint *> *)dbAllWaypointsWithLogsUnsubmitted;
++ (NSArray<dbWaypoint *> *)dbAllWaypointsWithMyLogs;
 + (NSArray<dbWaypoint *> *)dbAllByFlag:(Flag)flag;
 + (NSArray<dbWaypoint *> *)dbAllInRect:(CLLocationCoordinate2D)lt RT:(CLLocationCoordinate2D)rt;
 

@@ -25,6 +25,8 @@
 
 @implementation dbPersonalNote
 
+TABLENAME(@"personal_notes")
+
 - (NSId)dbCreate
 {
     @synchronized(db) {
@@ -54,54 +56,16 @@
     }
 }
 
-+ (dbPersonalNote *)dbGetByWaypointID:(NSId)wp_id
-{
-    dbPersonalNote *pn = nil;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, wp_name, note from personal_notes where waypoint_id = ?");
-
-        SET_VAR_INT(1, wp_id);
-
-        DB_IF_STEP {
-            pn = [[dbPersonalNote alloc] init];
-            INT_FETCH (0, pn._id);
-            TEXT_FETCH(1, pn.wp_name);
-            TEXT_FETCH(2, pn.note);
-        }
-        DB_FINISH;
-    }
-
-    return pn;
-}
-
-+ (dbPersonalNote *)dbGetByWaypointName:(NSString *)wpname
-{
-    dbPersonalNote *pn = nil;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, wp_name, note from personal_notes where wp_name = ?");
-
-        SET_VAR_TEXT(1, wpname);
-
-        DB_IF_STEP {
-            pn = [[dbPersonalNote alloc] init];
-            INT_FETCH (0, pn._id);
-            TEXT_FETCH(1, pn.wp_name);
-            TEXT_FETCH(2, pn.note);
-        }
-        DB_FINISH;
-    }
-
-    return pn;
-}
-
-+ (NSArray<dbPersonalNote *> *)dbAll
++ (NSArray<dbPersonalNote *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
     NSMutableArray<dbPersonalNote *>*ss = [[NSMutableArray alloc] initWithCapacity:20];
 
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, wp_name, note from personal_notes "];
+    if (where != nil)
+        [sql appendString:where];
+
     @synchronized(db) {
-        DB_PREPARE(@"select id, wp_name, note from personal_notes");
+        DB_PREPARE_KEYSVALUES(sql, keys, values)
 
         DB_WHILE_STEP {
             dbPersonalNote *pn = [[dbPersonalNote alloc] init];
@@ -116,21 +80,19 @@
     return ss;
 }
 
-- (void)dbDelete
++ (NSArray<dbPersonalNote *> *)dbAll
 {
-    @synchronized(db) {
-        DB_PREPARE(@"delete from personal_notes where id = ?");
-
-        SET_VAR_INT(1, self._id);
-
-        DB_CHECK_OKAY;
-        DB_FINISH;
-    }
+    return [self dbAllXXX:nil keys:nil values:nil];
 }
 
-+ (NSInteger)dbCount
++ (dbPersonalNote *)dbGetByWaypointID:(NSId)wp_id
 {
-    return [dbPersonalNote dbCount:@"personal_notes"];
+    return [[self dbAllXXX:@"where waypoint_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:wp_id]]] firstObject];
+}
+
++ (dbPersonalNote *)dbGetByWaypointName:(NSString *)wpname
+{
+    return [[self dbAllXXX:@"where wp_name = ?" keys:@"s" values:@[wpname]] firstObject];
 }
 
 @end

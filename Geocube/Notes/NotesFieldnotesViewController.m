@@ -38,7 +38,7 @@
 
     lmi = nil;
 
-    waypointsWithLogs = [dbWaypoint waypointsWithMyLogs];
+    waypointsWithLogs = [dbWaypoint dbAllWaypointsWithMyLogs];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -56,7 +56,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    waypointsWithLogs = [dbWaypoint waypointsWithMyLogs];
+    waypointsWithLogs = [dbWaypoint dbAllWaypointsWithMyLogs];
     [self.tableView reloadData];
 }
 

@@ -26,16 +26,17 @@
 
 @property (nonatomic) NSId _id;
 
+#define TABLENAME(__name__) + (NSString *)dbTablename { return __name__; }
+
 - (void)finish;
++ (NSString *)dbTablename;
 
 + (NSArray<dbObject *> *)dbAll;
 + (dbObject *)dbGet:(NSId)_id;
 - (void)dbUpdate;
 - (NSId)dbCreate;
 - (void)dbDelete;
++ (void)dbDeleteAll;
 + (NSInteger)dbCount;
-+ (NSInteger)dbCount:(NSString *)tablename;
-
-+ (NSArray<NSObject *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values;
 
 @end

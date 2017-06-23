@@ -25,10 +25,7 @@
 
 @implementation dbFileImport
 
-+ (NSInteger)dbCount
-{
-    return [dbFileImport dbCount:@"file_imports"];
-}
+TABLENAME(@"file_imports")
 
 - (NSId)dbCreate
 {

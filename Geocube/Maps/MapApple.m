@@ -612,13 +612,13 @@
     __block CLLocationCoordinate2D *coordinateArray = calloc([tes count], sizeof(CLLocationCoordinate2D));
     __block NSInteger counter = 0;
     [tes enumerateObjectsUsingBlock:^(dbTrackElement * _Nonnull te, NSUInteger idx, BOOL * _Nonnull stop) {
-        bottom = MIN(bottom, te.coords.latitude);
-        top = MAX(top, te.coords.latitude);
-        right = MAX(right, te.coords.longitude);
-        left = MIN(left, te.coords.longitude);
+        bottom = MIN(bottom, te.lat);
+        top = MAX(top, te.lat);
+        right = MAX(right, te.lon);
+        left = MIN(left, te.lon);
 
         if (te.restart == NO) {
-            coordinateArray[counter++] = te.coords;
+            coordinateArray[counter++] = CLLocationCoordinate2DMake(te.lat, te.lon);
             return;
         }
 

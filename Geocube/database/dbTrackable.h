@@ -49,8 +49,6 @@ typedef NS_ENUM(NSInteger, TrackableLog) {
 - (void)dbLinkToWaypoint:(NSId)wp_id;
 + (dbTrackable *)dbGet:(NSId)_id;
 + (NSId)dbGetIdByGC:(NSId)_gc_id;
-+ (NSId)dbCreate:(dbTrackable *)tb;
-- (NSId)dbCreate;
 + (dbTrackable *)dbGetByCode:(NSString *)code;
 + (dbTrackable *)dbGetByRef:(NSString *)ref;
 + (NSInteger)dbCountByWaypoint:(NSId)wp_id;

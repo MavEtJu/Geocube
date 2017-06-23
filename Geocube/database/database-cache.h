@@ -77,7 +77,7 @@
 
 - (dbSymbol *)Symbol_get_bysymbol:(NSString *)size;
 - (dbSymbol *)Symbol_get:(NSId)_id;
-- (void)Symbols_add:(NSId)_id symbol:(NSString *)symbol;
+- (void)Symbols_add:(dbSymbol *)s;
 
 - (dbLogString *)LogString_get_bytype:(dbAccount *)account logtype:(NSInteger)logtype type:(NSString *)type;
 - (dbLogString *)LogString_get:(NSId)_id;

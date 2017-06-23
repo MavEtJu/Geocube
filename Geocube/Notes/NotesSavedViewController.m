@@ -89,7 +89,7 @@ enum {
 
 - (void)reloadLogs
 {
-    waypointsWithLogs = [dbWaypoint waypointsWithLogsUnsubmitted];
+    waypointsWithLogs = [dbWaypoint dbAllWaypointsWithLogsUnsubmitted];
 }
 
 #pragma mark - TableViewController related functions

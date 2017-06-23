@@ -108,11 +108,10 @@ enum {
     buttonSetAsTarget.userInteractionEnabled = NO;
     [self.view addSubview:buttonSetAsTarget];
 
-    NSId wpid = [dbWaypoint dbGetByName:@"MYCAR"];
-    if (wpid == 0)
+    dbWaypoint *waypoint = [dbWaypoint dbGetByName:@"MYCAR"];
+    if (waypoint == nil)
         coordsRecordedLocation = CLLocationCoordinate2DZero;
     else {
-        dbWaypoint *waypoint = [dbWaypoint dbGet:wpid];
         coordsRecordedLocation = CLLocationCoordinate2DMake(waypoint.wpt_lat, waypoint.wpt_lon);
         buttonSetAsTarget.userInteractionEnabled = YES;
     }
@@ -201,10 +200,8 @@ enum {
     [self updateLocationManagerLocation];
 
     // Update waypoint
-    dbWaypoint *waypoint;
-
-    NSId wpid = [dbWaypoint dbGetByName:@"MYCAR"];
-    if (wpid == 0) {
+    dbWaypoint *waypoint = [dbWaypoint dbGetByName:@"MYCAR"];
+    if (waypoint == nil) {
         waypoint = [[dbWaypoint alloc] init];
 
         waypoint.wpt_name = @"MYCAR";
@@ -214,8 +211,6 @@ enum {
         waypoint.wpt_symbol = [dbc Symbol_get_bysymbol:@"Final Location"];
         [waypoint dbCreate];
         [waypointManager needsRefreshAdd:waypoint];
-    } else {
-        waypoint = [dbWaypoint dbGet:wpid];
     }
 
     waypoint.wpt_lon = coordsRecordedLocation.longitude;
@@ -233,10 +228,7 @@ enum {
 
 - (void)setastarget:(UIButton *)b
 {
-    dbWaypoint *waypoint;
-    NSId wpid = [dbWaypoint dbGetByName:@"MYCAR"];
-    waypoint = [dbWaypoint dbGet:wpid];
-
+    dbWaypoint *waypoint = [dbWaypoint dbGetByName:@"MYCAR"];
     [waypointManager setTheCurrentWaypoint:waypoint];
 
     MHTabBarController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
@@ -265,8 +257,7 @@ enum {
         case menuClearCoordinates:
             coordsRecordedLocation = CLLocationCoordinate2DZero;
             [self updateLocationManagerLocation];
-            NSId wpid = [dbWaypoint dbGetByName:@"MYCAR"];
-            dbWaypoint *wp = [dbWaypoint dbGet:wpid];
+            dbWaypoint *wp = [dbWaypoint dbGetByName:@"MYCAR"];
             [wp dbDelete];
             return;
     }

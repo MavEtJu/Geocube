@@ -63,7 +63,6 @@
 @property (nonatomic) BOOL selected;
 
 + (NSArray<dbAccount *> *)dbAll;
-+ (dbAccount *)dbGet:(NSId)_id;
 - (void)dbUpdateAccount;
 - (void)dbUpdateOAuthConsumer;
 - (void)dbUpdateOAuthToken;

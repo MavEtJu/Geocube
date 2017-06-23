@@ -33,6 +33,8 @@
     return self;
 }
 
+TABLENAME(@"logs")
+
 - (instancetype)init:(NSId)_id gc_id:(NSInteger)gc_id waypoint_id:(NSId)wpid logstring_id:(NSId)lsid datetime:(NSInteger)datetime logger_id:(NSId)logger_id log:(NSString *)log needstobelogged:(BOOL)needstobelogged locallog:(BOOL)locallog coordinates:(CLLocationCoordinate2D)coordinates
 {
     self = [super init];
@@ -62,71 +64,27 @@
 //    self.logstring = [dbc LogString_get_bytype:account logtype:self.waypoint.logstring_logtype type:self.logstring_string];
 }
 
-+ (NSId)dbGetIdByGC:(NSInteger)_gc_id account:(dbAccount *)account
-{
-    NSId _id = 0;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id from logs where gc_id = ? and waypoint_id in (select id from waypoints where account_id = ?) order by datetime_epoch desc");
-
-        SET_VAR_INT(1, _gc_id);
-        SET_VAR_INT(2, account._id);
-
-        DB_IF_STEP {
-            INT_FETCH(0, _id);
-        }
-        DB_FINISH;
-    }
-    return _id;
-}
-
-+ (NSDictionary *)dbAllIdGCId
-{
-    NSMutableDictionary *ss = [NSMutableDictionary dictionaryWithCapacity:4000];
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, gc_id from logs order by datetime_epoch desc");
-
-        DB_WHILE_STEP {
-            dbLog *l = [[dbLog alloc] init];
-            INT_FETCH(0, l._id);
-            INT_FETCH(1, l.gc_id);
-            [ss setObject:l forKey:[NSString stringWithFormat:@"%ld", (long)l.gc_id]];
-        }
-        DB_FINISH;
-    }
-    return ss;
-}
-
 - (NSId)dbCreate
 {
-    return [dbLog dbCreate:self];
-}
-
-+ (NSId)dbCreate:(dbLog *)log
-{
-    NSId _id = 0;
-
     @synchronized(db) {
         DB_PREPARE(@"insert into logs(waypoint_id, log_string_id, datetime_epoch, logger_id, log, gc_id, needstobelogged, locallog, lat, lon) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-        SET_VAR_INT   ( 1, log.waypoint._id);
-        SET_VAR_INT   ( 2, log.logstring._id);
-        SET_VAR_INT   ( 3, log.datetime_epoch);
-        SET_VAR_INT   ( 4, log.logger._id);
-        SET_VAR_TEXT  ( 5, log.log);
-        SET_VAR_INT   ( 6, log.gc_id);
-        SET_VAR_BOOL  ( 7, log.needstobelogged);
-        SET_VAR_BOOL  ( 8, log.localLog);
-        SET_VAR_DOUBLE( 9, log.lat);
-        SET_VAR_DOUBLE(10, log.lon);
+        SET_VAR_INT   ( 1, self.waypoint._id);
+        SET_VAR_INT   ( 2, self.logstring._id);
+        SET_VAR_INT   ( 3, self.datetime_epoch);
+        SET_VAR_INT   ( 4, self.logger._id);
+        SET_VAR_TEXT  ( 5, self.log);
+        SET_VAR_INT   ( 6, self.gc_id);
+        SET_VAR_BOOL  ( 7, self.needstobelogged);
+        SET_VAR_BOOL  ( 8, self.localLog);
+        SET_VAR_DOUBLE( 9, self.lat);
+        SET_VAR_DOUBLE(10, self.lon);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(_id);
+        DB_GET_LAST_ID(self._id);
         DB_FINISH;
     }
-    log._id = _id;
-    return _id;
+    return self._id;
 }
 
 - (void)dbUpdate
@@ -177,35 +135,17 @@
     }
 }
 
-+ (NSInteger)dbCountByWaypoint:(NSId)wp_id
-{
-    NSInteger count = 0;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select count(id) from logs where waypoint_id = ?");
-
-        SET_VAR_INT(1, wp_id);
-
-        DB_IF_STEP {
-            INT_FETCH_AND_ASSIGN(0, c);
-            count = c;
-        }
-        DB_FINISH;
-    }
-    return count;
-}
-
-+ (NSArray<dbLog *> *)dbAllByXXX:(NSString *)where limit:(NSInteger)limit
++ (NSArray<dbLog *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
     NSMutableArray<dbLog *> *ls = [[NSMutableArray alloc] initWithCapacity:20];
     NSId i;
 
-    NSMutableString *sql = [NSMutableString stringWithFormat:@"select id, gc_id, waypoint_id, log_string_id, datetime_epoch, logger_id, log, needstobelogged, locallog, lat, lon, lat_int, lon_int from logs where %@ order by datetime_epoch desc", where];
-    if (limit != -1)
-        [sql appendFormat:@" limit %ld", (long)limit];
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, gc_id, waypoint_id, log_string_id, datetime_epoch, logger_id, log, needstobelogged, locallog, lat, lon, lat_int, lon_int from logs "];
+    if (where != nil)
+        [sql appendString:where];
 
     @synchronized(db) {
-        DB_PREPARE(sql);
+        DB_PREPARE_KEYSVALUES(sql, keys, values);
 
         DB_WHILE_STEP {
             dbLog *l = [[dbLog alloc] init];
@@ -233,27 +173,70 @@
 
 + (NSArray<dbLog *> *)dbAllByWaypoint:(NSId)wp_id
 {
-    return [self dbAllByXXX:[NSString stringWithFormat:@"waypoint_id = %ld", (long)wp_id] limit:-1];
+    return [self dbAllXXX:@"where waypoint_id = ? order by datetime_epoch desc" keys:@"i" values:@[[NSNumber numberWithInteger:wp_id]]];
 }
 
 + (NSArray<dbLog *> *)dbLast7ByWaypoint:(NSId)wp_id
 {
-    return [self dbAllByXXX:[NSString stringWithFormat:@"waypoint_id = %ld", (long)wp_id] limit:7];
+    return [self dbAllXXX:@"where waypoint_id = ? order by datetime_epoch desc limit 7" keys:@"i" values:@[[NSNumber numberWithInteger:wp_id]]];
 }
 
 + (NSArray<dbLog *> *)dbAllByWaypointLogged:(NSId)wp_id
 {
-    return [self dbAllByXXX:[NSString stringWithFormat:@"waypoint_id = %ld and logger_id in (select id from names where name in (select accountname from accounts where accountname != ''))", (long)wp_id] limit:-1];
+    return [self dbAllXXX:@"where waypoint_id = ? and logger_id in (select id from names where id in (select accountname_id from accounts where accountname_id != 0))" keys:@"i" values:@[[NSNumber numberWithInteger:wp_id]]];
 }
 
 + (NSArray<dbLog *> *)dbAllByWaypointUnsubmitted:(NSId)wp_id
 {
-    return [self dbAllByXXX:[NSString stringWithFormat:@"waypoint_id = %ld and needstobelogged = 1 and logger_id in (select id from names where name in (select accountname from accounts where accountname != ''))", (long)wp_id] limit:-1];
+    return [self dbAllXXX:@"where waypoint_id = ? and needstobelogged = 1 and logger_id in (select id from names where id in (select accountname_id from accounts where accountname_id != 0))" keys:@"i" values:@[[NSNumber numberWithInteger:wp_id]]];
 }
 
 + (NSArray<dbLog *> *)dbLast7ByWaypointLogged:(NSId)wp_id
 {
-    return [self dbAllByXXX:[NSString stringWithFormat:@"waypoint_id = %ld and logger_id in (select id from names where name in (select accountname from accounts where accountname != ''))", (long)wp_id] limit:7];
+    return [self dbAllXXX:@"where waypoint_id = ? and logger_id in (select id from names where id in (select accountname_id from accounts where accountname_id != 0)) limit 7" keys:@"i" values:@[[NSNumber numberWithInteger:wp_id]]];
+}
+
++ (dbLog *)dbGetIdByGC:(NSInteger)gc_id account:(dbAccount *)account
+{
+    return [[self dbAllXXX:@"where gc_id = ? and waypoint_id in (select id from waypoints where account_id = ?) order by datetime_epoch desc" keys:@"ii" values:@[[NSNumber numberWithInteger:gc_id], [NSNumber numberWithInteger:account._id]]] firstObject];
+}
+
++ (NSDictionary *)dbAllIdGCId
+{
+    NSMutableDictionary *ss = [NSMutableDictionary dictionaryWithCapacity:4000];
+
+    @synchronized(db) {
+        DB_PREPARE(@"select id, gc_id from logs order by datetime_epoch desc");
+
+        DB_WHILE_STEP {
+            dbLog *l = [[dbLog alloc] init];
+            INT_FETCH(0, l._id);
+            INT_FETCH(1, l.gc_id);
+            [ss setObject:l forKey:[NSString stringWithFormat:@"%ld", (long)l.gc_id]];
+        }
+        DB_FINISH;
+    }
+    return ss;
+}
+
+/* Other methods */
+
++ (NSInteger)dbCountByWaypoint:(NSId)wp_id
+{
+    NSInteger count = 0;
+
+    @synchronized(db) {
+        DB_PREPARE(@"select count(id) from logs where waypoint_id = ?");
+
+        SET_VAR_INT(1, wp_id);
+
+        DB_IF_STEP {
+            INT_FETCH_AND_ASSIGN(0, c);
+            count = c;
+        }
+        DB_FINISH;
+    }
+    return count;
 }
 
 + (NSInteger)dbCountByWaypointLogString:(dbWaypoint *)wp LogString:(NSString *)string
@@ -273,11 +256,6 @@
         DB_FINISH;
     }
     return c;
-}
-
-+ (NSInteger)dbCount
-{
-    return [dbLog dbCount:@"logs"];
 }
 
 + (dbLog *)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSInteger)date note:(NSString *)note needstobelogged:(BOOL)needstobelogged locallog:(BOOL)locallog coordinates:(CLLocationCoordinate2D)coordinates
@@ -304,18 +282,6 @@
 
     [log dbCreate];
     return log;
-}
-
-- (void)dbDelete
-{
-    @synchronized(db) {
-        DB_PREPARE(@"delete from logs where id = ?");
-
-        SET_VAR_INT(1, self._id);
-
-        DB_CHECK_OKAY;
-        DB_FINISH;
-    }
 }
 
 @end

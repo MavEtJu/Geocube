@@ -183,7 +183,12 @@
         coordsHistoricalLast = ch.coord;
         lastHistory = now;
         if (configManager.currentTrack != 0) {
-            dbTrackElement *te = [dbTrackElement createElement:self.coords height:self.altitude restart:jump];
+            dbTrackElement *te = [[dbTrackElement alloc] init];
+            te.lat = self.coords.latitude;
+            te.lon = self.coords.longitude;
+            te.height = self.altitude;
+            te.restart = jump;
+            [te dbCreate];
             [historyData addObject:te];
             if (lastSync + configManager.keeptrackSync < te.timestamp_epoch) {
                 [historyData enumerateObjectsUsingBlock:^(dbTrackElement *e, NSUInteger idx, BOOL * _Nonnull stop) {

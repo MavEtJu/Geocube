@@ -25,6 +25,8 @@
 
 @implementation dbPin
 
+TABLENAME(@"pins")
+
 - (void)finish
 {
     if (self.rgb == nil || [self.rgb isEqualToString:@""] == YES)
@@ -33,42 +35,6 @@
     self.img = [ImageLibrary newPinHead:self.colour];
 
     [super finish];
-}
-
-- (void)dbUpdateRGB
-{
-    @synchronized(db) {
-        DB_PREPARE(@"update pins set rgb = ? where id = ?");
-
-        SET_VAR_TEXT(1, self.rgb);
-        SET_VAR_INT (2, self._id);
-        DB_CHECK_OKAY;
-        DB_FINISH;
-    }
-
-    self.colour = [ImageLibrary RGBtoColor:self.rgb];
-    self.img = [ImageLibrary newPinHead:self.colour];
-}
-
-+ (NSArray<dbPin *> *)dbAll
-{
-    NSMutableArray<dbPin *> *ps = [[NSMutableArray alloc] initWithCapacity:20];
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, description, rgb, rgb_default from pins");
-
-        DB_WHILE_STEP {
-            dbPin *p = [[dbPin alloc] init];
-            INT_FETCH (0, p._id);
-            TEXT_FETCH(1, p.desc);
-            TEXT_FETCH(2, p.rgb);
-            TEXT_FETCH(3, p.rgb_default);
-            [p finish];
-            [ps addObject:p];
-        }
-        DB_FINISH;
-    }
-    return ps;
 }
 
 - (NSId)dbCreate
@@ -103,9 +69,49 @@
     }
 }
 
-+ (NSInteger)dbCount
++ (NSArray<dbPin *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
-    return [dbPin dbCount:@"pins"];
+    NSMutableArray<dbPin *> *ps = [[NSMutableArray alloc] initWithCapacity:20];
+
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, description, rgb, rgb_default from pins "];
+    if (where != nil)
+        [sql appendString:where];
+
+    @synchronized(db) {
+        DB_PREPARE_KEYSVALUES(sql, keys, values)
+
+        DB_WHILE_STEP {
+            dbPin *p = [[dbPin alloc] init];
+            INT_FETCH (0, p._id);
+            TEXT_FETCH(1, p.desc);
+            TEXT_FETCH(2, p.rgb);
+            TEXT_FETCH(3, p.rgb_default);
+            [p finish];
+            [ps addObject:p];
+        }
+        DB_FINISH;
+    }
+    return ps;
+}
+
++ (NSArray<dbPin *> *)dbAll
+{
+    return [self dbAllXXX:nil keys:nil values:nil];
+}
+
+- (void)dbUpdateRGB
+{
+    @synchronized(db) {
+        DB_PREPARE(@"update pins set rgb = ? where id = ?");
+
+        SET_VAR_TEXT(1, self.rgb);
+        SET_VAR_INT (2, self._id);
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+
+    self.colour = [ImageLibrary RGBtoColor:self.rgb];
+    self.img = [ImageLibrary newPinHead:self.colour];
 }
 
 @end

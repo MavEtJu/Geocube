@@ -25,10 +25,7 @@
 
 @implementation dbImage
 
-+ (NSInteger)dbCount
-{
-    return [dbImage dbCount:@"images"];
-}
+TABLENAME(@"images")
 
 - (NSId)dbCreate
 {
@@ -78,7 +75,7 @@
 
 + (NSArray<dbImage *> *)dbAllByWaypoint:(NSId)wp_id type:(ImageCategory)type
 {
-    return [[self dbAllXXX:@"where id in (select image_id from image2waypoint where waypoint_id = ? and type = ?)" keys:@"ii" values:@[[NSNumber numberWithInteger:wp_id], [NSNumber numberWithInteger:type]]] firstObject];
+    return [self dbAllXXX:@"where id in (select image_id from image2waypoint where waypoint_id = ? and type = ?)" keys:@"ii" values:@[[NSNumber numberWithInteger:wp_id], [NSNumber numberWithInteger:type]]];
 }
 
 + (dbImage *)dbGetByURL:(NSString *)url

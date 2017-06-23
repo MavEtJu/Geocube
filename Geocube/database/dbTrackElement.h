@@ -23,17 +23,13 @@
 
 @property (nonatomic, retain) dbTrack *track;
 
-@property (nonatomic) CLLocationCoordinate2D coords;
-@property (nonatomic) NSInteger lat_int;
 @property (nonatomic) CLLocationDegrees lat;
-@property (nonatomic) NSInteger lon_int;
 @property (nonatomic) CLLocationDegrees lon;
 
 @property (nonatomic) NSInteger height;
 @property (nonatomic) NSInteger timestamp_epoch;
 @property (nonatomic) BOOL restart;
 
-+ (dbTrackElement *)createElement:(CLLocationCoordinate2D)coords height:(NSInteger)altitude restart:(BOOL)restart;
 + (NSArray<dbTrackElement *> *)dbAllByTrack:(NSId)_track_id;
 + (void)dbDeleteByTrack:(NSId)trackId;
 

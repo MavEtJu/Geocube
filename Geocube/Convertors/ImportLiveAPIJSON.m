@@ -186,11 +186,8 @@
     NSString *wpt_name = nil;
     DICT_NSSTRING_KEY(dict, wpt_name, @"Code");
 
-    dbWaypoint *wp = nil;
-    NSId _id = [dbWaypoint dbGetByName:wpt_name];
-    if (_id != 0)
-        wp = [dbWaypoint dbGet:_id];
-    else
+    dbWaypoint *wp = [dbWaypoint dbGetByName:wpt_name];
+    if (wp == nil)
         wp = [[dbWaypoint alloc] init];
 
     // Waypoint object
@@ -418,7 +415,7 @@
 
     NSId _id = [dbTrackable dbGetIdByGC:tb.gc_id];
     if (_id == 0) {
-        [dbTrackable dbCreate:tb];
+        [tb dbCreate];
         newTrackablesCount++;
         [infoViewer setTrackablesNew:iiImport new:newTrackablesCount];
     } else {
@@ -552,14 +549,13 @@
     awp.account = account;
     [awp finish];
 
-    NSId wpid = [dbWaypoint dbGetByName:awp.wpt_name];
-    if (wpid == 0) {
+    dbWaypoint *wpold = [dbWaypoint dbGetByName:awp.wpt_name];
+    if (wpold == nil) {
         [awp dbCreate];
         [group addWaypointToGroup:awp._id];
         newWaypointsCount++;
         [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
     } else {
-        dbWaypoint *wpold = [dbWaypoint dbGet:wpid];
         awp._id = wpold._id;
         [awp dbUpdate];
     }
@@ -621,14 +617,13 @@
     awp.account = account;
     [awp finish];
 
-    NSId wpid = [dbWaypoint dbGetByName:awp.wpt_name];
-    if (wpid == 0) {
+    dbWaypoint *wpold = [dbWaypoint dbGetByName:awp.wpt_name];
+    if (wpold == nil) {
         [awp dbCreate];
         [group addWaypointToGroup:awp._id];
         newWaypointsCount++;
         [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
     } else {
-        dbWaypoint *wpold = [dbWaypoint dbGet:wpid];
         awp._id = wpold._id;
         [awp dbUpdate];
     }
@@ -718,8 +713,8 @@
     l.logger = name;
     [l finish];
 
-    NSId l_id = [dbLog dbGetIdByGC:l.gc_id account:wp.account];
-    if (l_id == 0) {
+    dbWaypoint *ll = [dbLog dbGetIdByGC:l.gc_id account:wp.account];
+    if (ll == nil) {
         [l dbCreate];
         newLogsCount++;
         [infoViewer setLogsNew:iiImport new:newLogsCount];

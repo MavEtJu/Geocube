@@ -25,10 +25,7 @@
 
 @implementation dbCountry
 
-+ (NSInteger)dbCount
-{
-    return [dbCountry dbCount:@"countries"];
-}
+TABLENAME(@"countries")
 
 - (NSId)dbCreate
 {
@@ -92,6 +89,8 @@
 {
     return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
 }
+
+/* Other methods */
 
 + (void)makeNameExist:(NSString *)name
 {

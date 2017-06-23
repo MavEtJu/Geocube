@@ -143,12 +143,9 @@
     if (wpt_name == nil || [wpt_name isEqualToString:@""] == YES)
         return;
 
-    NSId wpid = [dbWaypoint dbGetByName:wpt_name];
-    dbWaypoint *wp;
-    if (wpid == 0)
+    dbWaypoint *wp = [dbWaypoint dbGetByName:wpt_name];
+    if (wp == nil)
         wp = [[dbWaypoint alloc] init];
-    else
-        wp = [dbWaypoint dbGet:wpid];
     wp.wpt_name = wpt_name;
 
     DICT_NSSTRING_KEY(dict, dummy, @"state");

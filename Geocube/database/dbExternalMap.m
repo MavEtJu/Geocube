@@ -25,10 +25,7 @@
 
 @implementation dbExternalMap
 
-+ (NSInteger)dbCount
-{
-    return [dbExternalMap dbCount:@"externalmaps"];
-}
+TABLENAME(@"externalmaps")
 
 - (NSId)dbCreate
 {

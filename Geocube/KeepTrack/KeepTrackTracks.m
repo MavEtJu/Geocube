@@ -90,7 +90,7 @@ enum {
     __block dbTrackElement *te_prev = nil;
     [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
         if (te_prev != nil && te.restart == NO) {
-            distance += [Coordinates coordinates2distance:te_prev.coords to:te.coords];
+            distance += [Coordinates coordinates2distance:CLLocationCoordinate2DMake(te_prev.lat, te_prev.lon) to:CLLocationCoordinate2DMake(te.lat, te.lon)];
         }
         te_prev = te;
     }];

@@ -109,7 +109,7 @@ enum {
 - (void)importLog:(dbLog *)log
 {
     note = log.log;
-    date = [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:log.datetime_epoch];;
+    date = [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:log.datetime_epoch];
     logstring = log.logstring;
     [self reloadDataMainQueue];
 }

@@ -25,10 +25,7 @@
 
 @implementation dbListData
 
-+ (NSInteger)dbCount
-{
-    return [dbListData dbCount:@"listdata"];
-}
+TABLENAME(@"listdata")
 
 + (NSArray<dbListData *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
@@ -96,7 +93,5 @@
         DB_FINISH;
     }
 }
-
-
 
 @end

@@ -344,8 +344,8 @@ create index tracks_idx_id on tracks(id);
 create table trackelements (
     id integer primary key,
     track_id integer,		-- points to tracks(id)
-    lat_int integer,		-- lat times 1000 000 for now
-    lon_int integer, 		-- lon times 1000 000 for now
+    lat float,			-- lat times 1000 000 for now
+    lon float, 			-- lon times 1000 000 for now
     height integer,
     timestamp integer,
     restart bool

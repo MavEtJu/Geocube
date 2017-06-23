@@ -26,7 +26,5 @@
 
 + (NSArray<dbLogMacro *> *)dbAll;
 + (dbLogMacro *)dbGet:(NSId)_id;
-+ (NSId)dbCreate:(NSString *)name text:(NSString *)next;
-+ (void)dbDeleteAll;
 
 @end

@@ -181,10 +181,12 @@ enum {
                                  authenticatepassword = tf.text;
                              }
 
-
                              dbName *n = [dbName dbGetByName:geocachingname account:account];
                              if (n == nil) {
-                                 n = [[dbName alloc] init:0 name:geocachingname code:nil account:account];
+                                 n = [[dbName alloc] init];
+                                 n.name = geocachingname;
+                                 n.code = nil;
+                                 n.account = account;
                                  [n dbCreate];
                              }
 

@@ -40,7 +40,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    waypointsWithImages = [dbWaypoint waypointsWithImages];
+    waypointsWithImages = [dbWaypoint dbAllWaypointsWithImages];
     [self.tableView reloadData];
 }
 

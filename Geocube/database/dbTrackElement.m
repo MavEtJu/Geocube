@@ -25,52 +25,19 @@
 
 @implementation dbTrackElement
 
-- (void)finish
-{
-    self.lat = self.lat_int / 1000000.0;
-    self.lon = self.lon_int / 1000000.0;
-    self.coords = CLLocationCoordinate2DMake(self.lat, self.lon);
-
-    [super finish];
-}
-
-+ (NSArray<dbTrackElement *> *)dbAllByTrack:(NSId)track_id
-{
-    NSMutableArray<dbTrackElement *> *tes = [NSMutableArray arrayWithCapacity:500];
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, track_id, lat_int, lon_int, height, timestamp, restart from trackelements where track_id = ? order by timestamp");
-
-        SET_VAR_INT(1, track_id);
-
-        DB_WHILE_STEP {
-            dbTrackElement *te = [[dbTrackElement alloc] init];
-            INT_FETCH (0, te._id);
-            INT_FETCH (1, te.track._id);
-            INT_FETCH (2, te.lat_int);
-            INT_FETCH (3, te.lon_int);
-            INT_FETCH (4, te.height);
-            INT_FETCH (5, te.timestamp_epoch);
-            BOOL_FETCH(6, te.restart);
-            [te finish];
-            [tes addObject:te];
-        }
-        DB_FINISH;
-    }
-    return tes;
-}
+TABLENAME(@"trackelements")
 
 - (NSId)dbCreate
 {
     @synchronized(db) {
-        DB_PREPARE(@"insert into trackelements(track_id, lat_int, lon_int, height, timestamp, restart) values(?, ?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into trackelements(track_id, lat, lon, height, timestamp, restart) values(?, ?, ?, ?, ?, ?)");
 
-        SET_VAR_INT (1, self.track._id);
-        SET_VAR_INT (2, self.lat_int);
-        SET_VAR_INT (3, self.lon_int);
-        SET_VAR_INT (4, self.height);
-        SET_VAR_INT (5, self.timestamp_epoch);
-        SET_VAR_BOOL(6, self.restart);
+        SET_VAR_INT   (1, self.track._id);
+        SET_VAR_DOUBLE(2, self.lat);
+        SET_VAR_DOUBLE(3, self.lon);
+        SET_VAR_INT   (4, self.height);
+        SET_VAR_INT   (5, self.timestamp_epoch);
+        SET_VAR_BOOL  (6, self.restart);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(self._id);
@@ -79,22 +46,30 @@
     return self._id;
 }
 
-+ (dbTrackElement *)createElement:(CLLocationCoordinate2D)_coords height:(NSInteger)_height restart:(BOOL)_restart
++ (NSArray<dbTrackElement *> *)dbAllByTrack:(NSId)track_id
 {
-    dbTrackElement *te = [[dbTrackElement alloc] init];
-    te.track = [dbTrack dbGet:configManager.currentTrack];
-    te.height = _height;
-    te.lat_int = _coords.latitude * 1000000;
-    te.lon_int = _coords.longitude * 1000000;
-    te.timestamp_epoch = time(NULL);
-    te.restart = _restart;
-    [te finish];
-    return te;
-}
+    NSMutableArray<dbTrackElement *> *tes = [NSMutableArray arrayWithCapacity:500];
 
-+ (NSInteger)dbCount
-{
-    return [dbTrackElement dbCount:@"trackelements"];
+    @synchronized(db) {
+        DB_PREPARE(@"select id, track_id, lat, lon, height, timestamp, restart from trackelements where track_id = ? order by timestamp");
+
+        SET_VAR_INT(1, track_id);
+
+        DB_WHILE_STEP {
+            dbTrackElement *te = [[dbTrackElement alloc] init];
+            INT_FETCH   (0, te._id);
+            INT_FETCH   (1, te.track._id);
+            DOUBLE_FETCH(2, te.lat);
+            DOUBLE_FETCH(3, te.lon);
+            INT_FETCH   (4, te.height);
+            INT_FETCH   (5, te.timestamp_epoch);
+            BOOL_FETCH  (6, te.restart);
+            [te finish];
+            [tes addObject:te];
+        }
+        DB_FINISH;
+    }
+    return tes;
 }
 
 + (void)dbDeleteByTrack:(NSId)trackId
@@ -108,5 +83,7 @@
         DB_FINISH;
     }
 }
+
+/* Other methods */
 
 @end

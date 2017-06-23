@@ -57,7 +57,6 @@ typedef NS_ENUM(NSInteger, LogStringLogType) {
 + (NSArray<dbLogString *> *)dbAll;
 + (NSInteger)stringToLogtype:(NSString *)string;
 + (NSInteger)wptTypeToLogType:(NSString *)type_full;
-+ (void)dbDeleteAll;
 + (NSArray<dbLogString *> *)dbAllByProtocol:(dbProtocol *)protocol;
 + (dbLogString *)dbGet_byProtocolLogtypeType:(dbProtocol *)protocl logtype:(LogStringLogType)logtype type:(NSString *)type;
 + (NSArray<dbLogString *> *)dbAllByProtocolLogtype_All:(dbProtocol *)protocl logtype:(LogStringLogType)logtype;

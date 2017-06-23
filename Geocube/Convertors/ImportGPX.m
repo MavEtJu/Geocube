@@ -225,7 +225,7 @@
             currentWP.date_lastimport_epoch = time(NULL);
 
             // Determine if it is a new waypoint or an existing one
-            currentWP._id = [dbWaypoint dbGetByName:currentWP.wpt_name];
+            currentWP._id = [dbWaypoint dbGetByName:currentWP.wpt_name]._id;
             totalWaypointsCount++;
             [infoViewer setWaypointsTotal:iiImport total:totalWaypointsCount];
             if (runOption_LogsOnly == NO) {
@@ -431,8 +431,10 @@
                 if ([elementName isEqualToString:@"sym"] == YES) {
                     if ([dbc Symbol_get_bysymbol:cleanText] == nil) {
                         NSLog(@"Adding symbol '%@'", cleanText);
-                        NSId _id = [dbSymbol dbCreate:cleanText];
-                        [dbc Symbols_add:_id symbol:cleanText];
+                        dbSymbol *s = [[dbSymbol alloc] init];
+                        s.symbol = cleanText;
+                        [s dbCreate];
+                        [dbc Symbols_add:s];
                     }
                     [currentWP set_wpt_symbol_str:cleanText];
                     goto bye;

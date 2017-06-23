@@ -25,10 +25,7 @@
 
 @implementation dbExternalMapURL
 
-+ (NSInteger)dbCount
-{
-    return [dbExternalMapURL dbCount:@"externalmap_urls"];
-}
+TABLENAME(@"externalmap_urls")
 
 - (NSId)dbCreate
 {

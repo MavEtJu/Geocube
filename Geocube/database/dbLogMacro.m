@@ -25,68 +25,22 @@
 
 @implementation dbLogMacro
 
-+ (NSArray<dbLogMacro *> *)dbAll
-{
-    NSMutableArray<dbLogMacro *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, name, text from log_macros order by name");
-
-        DB_WHILE_STEP {
-            dbLogMacro *s = [[dbLogMacro alloc] init];
-            INT_FETCH (0, s._id);
-            TEXT_FETCH(1, s.name);
-            TEXT_FETCH(2, s.text);
-            [s finish];
-            [ss addObject:s];
-        }
-        DB_FINISH;
-    }
-    return ss;
-}
-
-+ (dbLogMacro *)dbGet:(NSId)_id
-{
-    dbLogMacro *s;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, name, text from log_macros where id = ?");
-
-        SET_VAR_INT(1, _id);
-
-        DB_IF_STEP {
-            s = [[dbLogMacro alloc] init];
-            INT_FETCH (0, s._id);
-            TEXT_FETCH(1, s.name);
-            TEXT_FETCH(2, s.text);
-            [s finish];
-        }
-        DB_FINISH;
-    }
-    return s;
-}
-
-+ (NSId)dbCreate:(NSString *)name text:(NSString *)text
-{
-    NSId _id;
-
-    @synchronized(db) {
-        DB_PREPARE(@"insert into log_macros(name, text) values(?, ?)");
-
-        SET_VAR_TEXT(1, name);
-        SET_VAR_TEXT(2, text);
-
-        DB_CHECK_OKAY;
-        DB_GET_LAST_ID(_id);
-        DB_FINISH;
-    }
-
-    return _id;
-}
+TABLENAME(@"log_macros")
 
 - (NSId)dbCreate
 {
-    return [dbLogMacro dbCreate:self.name text:self.text];
+    @synchronized(db) {
+        DB_PREPARE(@"insert into log_macros(name, text) values(?, ?)");
+
+        SET_VAR_TEXT(1, self.name);
+        SET_VAR_TEXT(2, self.text);
+
+        DB_CHECK_OKAY;
+        DB_GET_LAST_ID(self._id);
+        DB_FINISH;
+    }
+
+    return self._id;
 }
 
 - (void)dbUpdate
@@ -103,31 +57,40 @@
     }
 }
 
-- (void)dbDelete
++ (NSArray<dbLogMacro *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
+    NSMutableArray<dbLogMacro *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
+
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, name, text from log_macros "];
+    if (where != nil)
+        [sql appendString:where];
+
     @synchronized(db) {
-        DB_PREPARE(@"delete from log_macros where id = ?");
+        DB_PREPARE_KEYSVALUES(sql, keys, values);
 
-        SET_VAR_INT(1, self._id);
-
-        DB_CHECK_OKAY;
+        DB_WHILE_STEP {
+            dbLogMacro *s = [[dbLogMacro alloc] init];
+            INT_FETCH (0, s._id);
+            TEXT_FETCH(1, s.name);
+            TEXT_FETCH(2, s.text);
+            [s finish];
+            [ss addObject:s];
+        }
         DB_FINISH;
     }
+    return ss;
 }
 
-+ (void)dbDeleteAll
++ (NSArray<dbLogMacro *> *)dbAll
 {
-    @synchronized(db) {
-        DB_PREPARE(@"delete from log_macros");
-
-        DB_CHECK_OKAY;
-        DB_FINISH;
-    }
+    return [self dbAllXXX:@"order by name" keys:nil values:nil];
 }
 
-+ (NSInteger)dbCount
++ (dbLogMacro *)dbGet:(NSId)_id
 {
-    return [dbLogMacro dbCount:@"log_macros"];
+    return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
 }
+
+/* Other methods */
 
 @end

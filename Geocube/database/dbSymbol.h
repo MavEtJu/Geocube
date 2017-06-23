@@ -23,11 +23,7 @@
 
 @property (nonatomic, retain) NSString *symbol;
 
-- (instancetype)init:(NSId)_id symbol:(NSString *)symbol;
-+ (NSId)dbCreate:(NSString *)symbol;
-
 + (NSArray<dbSymbol *> *)dbAll;
 + (dbObject *)dbGet:(NSId)_id;
-- (NSId)dbCreate;
 
 @end

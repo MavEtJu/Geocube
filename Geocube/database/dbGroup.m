@@ -25,10 +25,7 @@
 
 @implementation dbGroup
 
-+ (NSInteger)dbCount
-{
-    return [dbGroup dbCount:@"groups"];
-}
+TABLENAME(@"groups")
 
 - (NSId)dbCreate
 {
@@ -108,18 +105,6 @@
     return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
 }
 
-- (void)dbDelete
-{
-    @synchronized(db) {
-        DB_PREPARE(@"delete from groups where id = ?");
-
-        SET_VAR_INT(1, self._id);
-
-        DB_CHECK_OKAY;
-        DB_FINISH;
-    }
-}
-
 /* Other methods */
 
 - (void)emptyGroup
@@ -133,8 +118,6 @@
         DB_FINISH;
     }
 }
-
-
 
 - (NSInteger)countWaypoints
 {

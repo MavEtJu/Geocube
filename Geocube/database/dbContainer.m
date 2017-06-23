@@ -25,10 +25,7 @@
 
 @implementation dbContainer
 
-+ (NSInteger)dbCount
-{
-    return [dbContainer dbCount:@"containers"];
-}
+TABLENAME(@"containers")
 
 - (NSId)dbCreate
 {
