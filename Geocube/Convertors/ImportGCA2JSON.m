@@ -394,8 +394,8 @@
     if ([location isKindOfClass:[NSString class]] == YES) {
         NSArray<NSString *> *cs = [location componentsSeparatedByString:@"|"];
         if ([cs count] == 2) {
-            l.lat = [[cs objectAtIndex:0] floatValue];
-            l.lon = [[cs objectAtIndex:1] floatValue];
+            l.latitude = [[cs objectAtIndex:0] floatValue];
+            l.longitude = [[cs objectAtIndex:1] floatValue];
         }
     }
     [l finish];

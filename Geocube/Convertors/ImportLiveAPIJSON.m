@@ -196,8 +196,8 @@
     DICT_NSSTRING_KEY(dict, wp.wpt_url, @"Url");
     DICT_NSSTRING_KEY(dict, wp.wpt_urlname, @"Name");
 
-    DICT_FLOAT_KEY(dict, wp.wpt_lat, @"Latitude");
-    DICT_FLOAT_KEY(dict, wp.wpt_lon, @"Longitude");
+    DICT_FLOAT_KEY(dict, wp.wpt_latitude, @"Latitude");
+    DICT_FLOAT_KEY(dict, wp.wpt_longitude, @"Longitude");
 
     NSString *dummy;
     DICT_NSSTRING_PATH(dict, dummy, @"UTCPlaceDate");
@@ -532,13 +532,13 @@
     awp.wpt_description = [NSString stringWithFormat:@"Correct Coordinates for %@", wp.wpt_name];
     awp.wpt_urlname = [NSString stringWithFormat:@"%@ Correct Coordinates", wp.wpt_name];
 
-    awp.wpt_lat = 0;
+    awp.wpt_latitude = 0;
     if ([[dict objectForKey:@"Latitude"] isKindOfClass:[NSNumber class]] == YES)
-        DICT_FLOAT_KEY(dict, awp.wpt_lat, @"Latitude");
+        DICT_FLOAT_KEY(dict, awp.wpt_latitude, @"Latitude");
 
-    awp.wpt_lon = 0;
+    awp.wpt_longitude = 0;
     if ([[dict objectForKey:@"Longitude"] isKindOfClass:[NSNumber class]] == YES)
-        DICT_FLOAT_KEY(dict, awp.wpt_lon, @"Longitude");
+        DICT_FLOAT_KEY(dict, awp.wpt_longitude, @"Longitude");
 
     NSString *dummy;
     DICT_NSSTRING_KEY(dict, dummy, @"UTCDate");
@@ -601,9 +601,9 @@
     DICT_NSSTRING_KEY(dict, awp.wpt_urlname, @"UrlName");
 
     if ([[dict objectForKey:@"Latitude"] isKindOfClass:[NSNumber class]] == YES)
-        DICT_FLOAT_KEY(dict, awp.wpt_lat, @"Latitude");
+        DICT_FLOAT_KEY(dict, awp.wpt_latitude, @"Latitude");
     if ([[dict objectForKey:@"Longitude"] isKindOfClass:[NSNumber class]] == YES)
-        DICT_FLOAT_KEY(dict, awp.wpt_lon, @"Longitude");
+        DICT_FLOAT_KEY(dict, awp.wpt_longitude, @"Longitude");
 
     NSString *dummy;
     DICT_NSSTRING_KEY(dict, dummy, @"UTCEnteredDate");

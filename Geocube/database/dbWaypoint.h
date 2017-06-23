@@ -31,8 +31,8 @@ typedef NS_ENUM(NSInteger, LogStatus) {
 @property (nonatomic, retain) NSString *wpt_description;
 @property (nonatomic, retain) NSString *wpt_url;
 @property (nonatomic, retain) NSString *wpt_urlname;
-@property (nonatomic) float wpt_lat;
-@property (nonatomic) float wpt_lon;
+@property (nonatomic) CLLocationDegrees wpt_latitude;
+@property (nonatomic) CLLocationDegrees wpt_longitude;
 @property (nonatomic) NSInteger wpt_date_placed_epoch;
 @property (nonatomic, retain) dbSymbol *wpt_symbol;
 @property (nonatomic, retain) dbType *wpt_type;

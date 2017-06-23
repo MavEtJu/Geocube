@@ -58,7 +58,7 @@
 
 - (void)setWaypoint:(dbWaypoint *)wp
 {
-    Coordinates *c = [[Coordinates alloc] init:wp.wpt_lat lon:wp.wpt_lon];
+    Coordinates *c = [[Coordinates alloc] init:wp.wpt_latitude longitude:wp.wpt_longitude];
     self.labelLatLon.text = [NSString stringWithFormat:@"%@ %@", [c lat_degreesDecimalMinutes], [c lon_degreesDecimalMinutes]];
     if (wp.gs_rating_terrain == 0)
         self.labelRatingT.text = @"";

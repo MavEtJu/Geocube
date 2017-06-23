@@ -167,8 +167,8 @@ enum {
     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp1, NSUInteger idx1, BOOL *stop1) {
         __block BOOL found = NO;
         [nwps enumerateObjectsUsingBlock:^(dbWaypoint *wp2, NSUInteger idx2, BOOL *stop2) {
-            if (wp1.wpt_lat == wp2.wpt_lat &&
-                wp1.wpt_lon == wp2.wpt_lon) {
+            if (wp1.wpt_latitude == wp2.wpt_latitude &&
+                wp1.wpt_longitude == wp2.wpt_longitude) {
                 found = YES;
                 *stop2 = YES;
             }
@@ -222,11 +222,11 @@ enum {
                     NSLog(@"Longitude '%@'", lon);
 
                     Coordinates *c;
-                    c = [[Coordinates alloc] initString:lat lon:lon];
+                    c = [[Coordinates alloc] initString:lat longitude:lon];
 
                     dbWaypoint *wp = [[dbWaypoint alloc] init];
-                    wp.wpt_lat = [c lat];
-                    wp.wpt_lon = [c lon];
+                    wp.wpt_latitude = [c latitude];
+                    wp.wpt_longitude = [c longitude];
                     wp.wpt_name = [dbWaypoint makeName:[waypoint.wpt_name substringFromIndex:2]];
                     wp.wpt_description = wp.wpt_name;
                     wp.wpt_date_placed_epoch = time(NULL);

@@ -31,11 +31,11 @@
 #define COORDS_REGEXP @" +\\d{1,3}[º°]? ?\\d{1,2}\\.\\d{1,3}'?"
 
 /// Initialize a Coordinates object with a lat and a lon value
-- (instancetype)init:(CLLocationDegrees)_lat lon:(CLLocationDegrees)_lon       // -34.02787 151.07357
+- (instancetype)init:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude       // -34.02787 151.07357
 {
     self = [super init];
-    coords.latitude = _lat;
-    coords.longitude = _lon;
+    coords.latitude = latitude;
+    coords.longitude = longitude;
     return self;
 }
 /// Initialize a Coordinates object with a lat and a lon value from a set of coordinates
@@ -127,12 +127,12 @@
     return [NSString stringWithFormat:@"%@ %3d° %02d' %02d\"", hemi, degrees, (int)(mins * 60), (int)(secs * 60)];
 }
 /// Returns lat value
-- (CLLocationDegrees)lat
+- (CLLocationDegrees)latitude
 {
     return coords.latitude;
 }
 /// Returns lon value
-- (CLLocationDegrees)lon
+- (CLLocationDegrees)longitude
 {
     return coords.longitude;
 }
@@ -381,12 +381,12 @@
 }
 
 /// init with a S 34 1.672, E 151 4.414 string
-- (instancetype)initString:(NSString *)lat lon:(NSString *)lon    // S 34 1.672, E 151 4.414
+- (instancetype)initString:(NSString *)latitude longitude:(NSString *)longitude // S 34 1.672, E 151 4.414
 {
     self = [super init];
 
-    coords.latitude = [Coordinates degreesDecimalMinutes2degrees:lat];
-    coords.longitude = [Coordinates degreesDecimalMinutes2degrees:lon];
+    coords.latitude = [Coordinates degreesDecimalMinutes2degrees:latitude];
+    coords.longitude = [Coordinates degreesDecimalMinutes2degrees:longitude];
 
     return self;
 }
@@ -455,11 +455,11 @@
 
         if (NS != nil && EW != nil) {
             NSLog(@"%@ - %@", NS, EW);
-            Coordinates *c = [[Coordinates alloc] initString:NS lon:EW];
+            Coordinates *c = [[Coordinates alloc] initString:NS longitude:EW];
 
             dbWaypoint *wp = [[dbWaypoint alloc] init];
-            wp.wpt_lat = c.lat;
-            wp.wpt_lon = c.lon;
+            wp.wpt_latitude = c.latitude;
+            wp.wpt_longitude = c.longitude;
             wp.wpt_name = [dbWaypoint makeName:[waypoint.wpt_name substringFromIndex:2]];
             wp.wpt_description = wp.wpt_name;
             wp.wpt_date_placed_epoch = time(NULL);

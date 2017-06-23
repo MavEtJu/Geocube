@@ -47,8 +47,8 @@ TABLENAME(@"logs")
     self.log = log;
     self.needstobelogged = needstobelogged;
     self.localLog = locallog;
-    self.lat = coordinates.latitude;
-    self.lon = coordinates.longitude;
+    self.latitude = coordinates.latitude;
+    self.longitude = coordinates.longitude;
 
     [self finish];
 
@@ -77,8 +77,8 @@ TABLENAME(@"logs")
         SET_VAR_INT   ( 6, self.gc_id);
         SET_VAR_BOOL  ( 7, self.needstobelogged);
         SET_VAR_BOOL  ( 8, self.localLog);
-        SET_VAR_DOUBLE( 9, self.lat);
-        SET_VAR_DOUBLE(10, self.lon);
+        SET_VAR_DOUBLE( 9, self.latitude);
+        SET_VAR_DOUBLE(10, self.longitude);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(self._id);
@@ -100,8 +100,8 @@ TABLENAME(@"logs")
         SET_VAR_INT   ( 6, self.gc_id);
         SET_VAR_BOOL  ( 7, self.needstobelogged);
         SET_VAR_BOOL  ( 8, self.localLog);
-        SET_VAR_DOUBLE( 9, self.lat);
-        SET_VAR_DOUBLE(10, self.lon);
+        SET_VAR_DOUBLE( 9, self.latitude);
+        SET_VAR_DOUBLE(10, self.longitude);
         SET_VAR_INT   (11, self._id);
 
         DB_CHECK_OKAY;
@@ -161,8 +161,8 @@ TABLENAME(@"logs")
             TEXT_FETCH  ( 6, l.log);
             BOOL_FETCH  ( 7, l.needstobelogged);
             BOOL_FETCH  ( 8, l.localLog);
-            DOUBLE_FETCH( 9, l.lat);
-            DOUBLE_FETCH(10, l.lon);
+            DOUBLE_FETCH( 9, l.latitude);
+            DOUBLE_FETCH(10, l.longitude);
             [l finish];
             [ls addObject:l];
         }
@@ -275,8 +275,8 @@ TABLENAME(@"logs")
     log.logger = name;
     log.logger_gsid = name.code;
 
-    log.lat = coordinates.latitude;
-    log.lon = coordinates.longitude;
+    log.latitude = coordinates.latitude;
+    log.longitude = coordinates.longitude;
 
     [log finish];
 

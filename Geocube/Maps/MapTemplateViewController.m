@@ -742,13 +742,13 @@
             urlString = [NSString stringWithFormat:url.url, LM.coords.latitude, LM.coords.longitude];
             break;
         case 3:
-             urlString = [NSString stringWithFormat:url.url, waypointManager.currentWaypoint.wpt_lat, waypointManager.currentWaypoint.wpt_lon];
+             urlString = [NSString stringWithFormat:url.url, waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude];
             break;
         case 4:
-            urlString = [NSString stringWithFormat:url.url, LM.coords.latitude, LM.coords.longitude, waypointManager.currentWaypoint.wpt_lat, waypointManager.currentWaypoint.wpt_lon];
+            urlString = [NSString stringWithFormat:url.url, LM.coords.latitude, LM.coords.longitude, waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude];
             break;
         case 5:
-            urlString = [NSString stringWithFormat:url.url, waypointManager.currentWaypoint.wpt_lat, waypointManager.currentWaypoint.wpt_lon,  LM.coords.latitude, LM.coords.longitude];
+            urlString = [NSString stringWithFormat:url.url, waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude,  LM.coords.latitude, LM.coords.longitude];
             break;
     }
 
@@ -795,7 +795,7 @@
 
         if (waypointManager.currentWaypoint != nil) {
             if (urlDestination.type == 0) {
-                CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_lat, waypointManager.currentWaypoint.wpt_lon);
+                CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude);
 
                 //create MKMapItem out of coordinates
                 MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil];

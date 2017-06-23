@@ -226,9 +226,9 @@ enum {
                           NSLog(@"Longitude '%@'", lon);
 
                           Coordinates *c;
-                          c = [[Coordinates alloc] initString:lat lon:lon];
-                          coords.latitude = c.lat;
-                          coords.longitude = c.lon;
+                          c = [[Coordinates alloc] initString:lat longitude:lon];
+                          coords.latitude = c.latitude;
+                          coords.longitude = c.longitude;
 
                           [self.tableView reloadData];
                       }];
@@ -275,8 +275,8 @@ enum {
     dbWaypoint *wp = [[dbWaypoint alloc] init];
     Coordinates *c = [[Coordinates alloc] init:coords];
 
-    wp.wpt_lat = [c lat];
-    wp.wpt_lon = [c lon];
+    wp.wpt_latitude = [c latitude];
+    wp.wpt_longitude = [c longitude];
     wp.wpt_name = code;
     wp.wpt_description = name;
     wp.wpt_date_placed_epoch = time(NULL);

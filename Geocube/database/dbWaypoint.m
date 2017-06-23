@@ -93,11 +93,11 @@ TABLENAME(@"waypoints")
 }
 - (void)set_wpt_lat_str:(NSString *)s
 {
-    self.wpt_lat = [s floatValue];
+    self.wpt_latitude = [s floatValue];
 }
 - (void)set_wpt_lon_str:(NSString *)s
 {
-    self.wpt_lon = [s floatValue];
+    self.wpt_longitude = [s floatValue];
 }
 - (void)set_wpt_date_placed:(NSString *)s
 {
@@ -106,7 +106,7 @@ TABLENAME(@"waypoints")
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ - %@ - %@", self.wpt_name, [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(self.wpt_lat, self.wpt_lon)], self.wpt_urlname];
+    return [NSString stringWithFormat:@"%@ - %@ - %@", self.wpt_name, [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(self.wpt_latitude, self.wpt_longitude)], self.wpt_urlname];
 }
 
 - (NSId)dbCreate
@@ -117,8 +117,8 @@ TABLENAME(@"waypoints")
 
         SET_VAR_TEXT  ( 1, self.wpt_name);
         SET_VAR_TEXT  ( 2, self.wpt_description);
-        SET_VAR_DOUBLE( 3, self.wpt_lat);
-        SET_VAR_DOUBLE( 4, self.wpt_lon);
+        SET_VAR_DOUBLE( 3, self.wpt_latitude);
+        SET_VAR_DOUBLE( 4, self.wpt_longitude);
         SET_VAR_INT   ( 5, self.wpt_date_placed_epoch);
         SET_VAR_TEXT  ( 6, self.wpt_url);
         SET_VAR_INT   ( 7, self.wpt_type._id);
@@ -170,8 +170,8 @@ TABLENAME(@"waypoints")
 
         SET_VAR_TEXT  ( 1, self.wpt_name);
         SET_VAR_TEXT  ( 2, self.wpt_description);
-        SET_VAR_DOUBLE( 3, self.wpt_lat);
-        SET_VAR_DOUBLE( 4, self.wpt_lon);
+        SET_VAR_DOUBLE( 3, self.wpt_latitude);
+        SET_VAR_DOUBLE( 4, self.wpt_longitude);
         SET_VAR_INT   ( 5, self.wpt_date_placed_epoch);
         SET_VAR_TEXT  ( 6, self.wpt_url);
         SET_VAR_INT   ( 7, self.wpt_type._id);
@@ -424,8 +424,8 @@ TABLENAME(@"waypoints")
             NSId i = 0;
             TEXT_FETCH  ( 1, wp.wpt_name);
             TEXT_FETCH  ( 2, wp.wpt_description);
-            DOUBLE_FETCH( 3, wp.wpt_lat);
-            DOUBLE_FETCH( 4, wp.wpt_lon);
+            DOUBLE_FETCH( 3, wp.wpt_latitude);
+            DOUBLE_FETCH( 4, wp.wpt_longitude);
             INT_FETCH   ( 5, wp.wpt_date_placed_epoch);
             TEXT_FETCH  ( 6, wp.wpt_url);
             INT_FETCH   ( 7, i);

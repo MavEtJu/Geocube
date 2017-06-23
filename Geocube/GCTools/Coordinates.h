@@ -23,11 +23,11 @@
 
 #define CLLocationCoordinate2DZero  CLLocationCoordinate2DMake(0, 0)
 
-- (instancetype)init:(CLLocationDegrees)lat lon:(CLLocationDegrees)log; // -34.02787 151.07357
+- (instancetype)init:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude; // -34.02787 151.07357
 - (instancetype)init:(CLLocationCoordinate2D)coor;                      // { -34.02787, 151.07357 }
-- (instancetype)initString:(NSString *)lat lon:(NSString *)lon;         // S 34 1.672, E 151 4.414
-- (CLLocationDegrees)lat;
-- (CLLocationDegrees)lon;
+- (instancetype)initString:(NSString *)latitude longitude:(NSString *)longitude;         // S 34 1.672, E 151 4.414
+- (CLLocationDegrees)latitude;
+- (CLLocationDegrees)longitude;
 - (NSString *)lat_decimalDegreesSigned;         // -34.02787
 - (NSString *)lon_decimalDegreesSigned;         // 151.07357
 - (NSString *)lat_decimalDegreesCardinal;       // S 34.02787
@@ -41,8 +41,8 @@
 - (NSInteger)distance:(CLLocationCoordinate2D)c;
 - (NSInteger)bearing:(CLLocationCoordinate2D)c;
 
-+ (NSInteger)latitudeToTile:(CLLocationDegrees)lat zoom:(NSInteger)zoom;
-+ (NSInteger)longitudeToTile:(CLLocationDegrees)lon zoom:(NSInteger)zoom;
++ (NSInteger)latitudeToTile:(CLLocationDegrees)latitude zoom:(NSInteger)zoom;
++ (NSInteger)longitudeToTile:(CLLocationDegrees)longitude zoom:(NSInteger)zoom;
 
 + (NSInteger)coordinates2distance:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2;
 + (NSInteger)coordinates2bearing:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2;

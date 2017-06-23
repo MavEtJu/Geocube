@@ -149,8 +149,8 @@
         }
 
         if ([currentElement isEqualToString:@"groundspeak:log_wpt"] == YES) {
-            currentLog.lat = [[attributeDict objectForKey:@"lat"] floatValue];
-            currentLog.lon = [[attributeDict objectForKey:@"lon"] floatValue];
+            currentLog.latitude = [[attributeDict objectForKey:@"lat"] floatValue];
+            currentLog.longitude = [[attributeDict objectForKey:@"lon"] floatValue];
 
             inLog = YES;
             return;

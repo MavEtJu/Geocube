@@ -112,7 +112,7 @@ enum {
     if (waypoint == nil)
         coordsRecordedLocation = CLLocationCoordinate2DZero;
     else {
-        coordsRecordedLocation = CLLocationCoordinate2DMake(waypoint.wpt_lat, waypoint.wpt_lon);
+        coordsRecordedLocation = CLLocationCoordinate2DMake(waypoint.wpt_latitude, waypoint.wpt_longitude);
         buttonSetAsTarget.userInteractionEnabled = YES;
     }
 
@@ -213,8 +213,8 @@ enum {
         [waypointManager needsRefreshAdd:waypoint];
     }
 
-    waypoint.wpt_lon = coordsRecordedLocation.longitude;
-    waypoint.wpt_lat = coordsRecordedLocation.latitude;
+    waypoint.wpt_longitude = coordsRecordedLocation.longitude;
+    waypoint.wpt_latitude = coordsRecordedLocation.latitude;
 
     waypoint.wpt_date_placed_epoch = time(NULL);
     [waypointManager needsRefreshUpdate:waypoint];

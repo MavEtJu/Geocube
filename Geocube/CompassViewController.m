@@ -75,7 +75,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceDidRotate:) name:UIDeviceOrientationDidChangeNotification object:nil];
 
     /* Initiate the current cache */
-    Coordinates *coords = [[Coordinates alloc] init:waypointManager.currentWaypoint.wpt_lat lon:waypointManager.currentWaypoint.wpt_lon];
+    Coordinates *coords = [[Coordinates alloc] init:waypointManager.currentWaypoint.wpt_latitude longitude:waypointManager.currentWaypoint.wpt_longitude];
 
     if (waypointManager.currentWaypoint == nil) {
         self.ivWPContainer.hidden = YES;

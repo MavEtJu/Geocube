@@ -366,8 +366,8 @@ enum {
     dbWaypoint *wp = [[dbWaypoint alloc] init];
     Coordinates *c = [[Coordinates alloc] init:coord];
 
-    wp.wpt_lat = [c lat];
-    wp.wpt_lon = [c lon];
+    wp.wpt_latitude= [c latitude];
+    wp.wpt_longitude = [c longitude];
     wp.wpt_name = code;
     wp.wpt_description = name;
     wp.wpt_date_placed_epoch = time(NULL);

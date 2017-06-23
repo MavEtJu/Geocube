@@ -58,8 +58,8 @@
     self.labelLog.text = log.log;
     self.labelLocalLog.hidden = (log.localLog == NO);
     self.labelNotSubmitted.hidden = (log.needstobelogged == NO);
-    if (log.lat != 0 && log.lon != 0)
-        self.labelCoordinates.text = [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(log.lat, log.lon)];
+    if (log.latitude != 0 && log.longitude != 0)
+        self.labelCoordinates.text = [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(log.latitude, log.longitude)];
     else
         self.labelCoordinates.text = @"";
 }

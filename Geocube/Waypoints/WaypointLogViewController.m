@@ -445,9 +445,9 @@ enum {
                           NSLog(@"Longitude '%@'", lon);
 
                           Coordinates *c;
-                          c = [[Coordinates alloc] initString:lat lon:lon];
-                          coordinates.latitude = c.lat;
-                          coordinates.longitude = c.lon;
+                          c = [[Coordinates alloc] initString:lat longitude:lon];
+                          coordinates.latitude = c.latitude;
+                          coordinates.longitude = c.longitude;
 
                           [self.tableView reloadData];
                       }];
