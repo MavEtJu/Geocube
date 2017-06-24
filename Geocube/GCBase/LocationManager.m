@@ -184,6 +184,7 @@
         lastHistory = now;
         if (configManager.currentTrack != 0) {
             dbTrackElement *te = [[dbTrackElement alloc] init];
+            te.track = configManager.currentTrack;
             te.lat = self.coords.latitude;
             te.lon = self.coords.longitude;
             te.height = self.altitude;

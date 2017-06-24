@@ -26,7 +26,7 @@
 @property (nonatomic) NSInteger currentPage;
 @property (nonatomic) NSInteger currentPageTab;
 
-@property (nonatomic) NSId currentTrack;
+@property (nonatomic, retain) dbTrack *currentTrack;
 
 @property (nonatomic) NSInteger lastImportSource;
 @property (nonatomic) NSInteger lastImportGroup;
@@ -124,7 +124,7 @@
 - (void)currentWaypointUpdate:(NSString *)name;
 - (void)currentPageUpdate:(NSInteger)value;
 - (void)currentPageTabUpdate:(NSInteger)value;
-- (void)currentTrackUpdate:(NSId)value;
+- (void)currentTrackUpdate:(dbTrack *)value;
 - (void)lastAddedGroupUpdate:(NSInteger)value;
 - (void)lastImportGroupUpdate:(NSInteger)value;
 - (void)lastImportSourceUpdate:(NSInteger)value;
