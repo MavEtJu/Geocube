@@ -25,6 +25,10 @@
 
 @implementation ImportGeocube
 
+/***************************************************
+ * Do not use the database-cache inside this class *
+ ***************************************************/
+
 typedef NS_ENUM(NSInteger, Type) {
     TYPE_UNKNOWN = 0,
     TYPE_LOGTEMPLATESANDMACROS,
@@ -354,6 +358,7 @@ typedef NS_ENUM(NSInteger, Type) {
             a.geocube_id = [_id integerValue];
             a.revision = [revision integerValue];
             a.distance_minimum = [distance integerValue];
+            [a finish];
             [a dbCreate];
         } else {
             a.enabled = enabledBool;
@@ -371,6 +376,7 @@ typedef NS_ENUM(NSInteger, Type) {
             a.geocube_id = [_id integerValue];
             a.revision = [revision integerValue];
             a.distance_minimum = [distance integerValue];
+            [a finish];
             [a dbUpdate];
         }
     }];
@@ -441,7 +447,7 @@ typedef NS_ENUM(NSInteger, Type) {
         NSInteger icon = [[attr objectForKey:@"icon"] integerValue];
         NSString *label = [attr objectForKey:@"label"];
 
-        dbAttribute *a = [dbc Attribute_get_bygcid:gc_id];
+        dbAttribute *a = [dbAttribute dbGetByGCId:gc_id];
         if (a != nil) {
             a.label = label;
             a.icon = icon;
@@ -471,7 +477,7 @@ typedef NS_ENUM(NSInteger, Type) {
         NSString *abbr = [state objectForKey:@"abbr"];
         NSString *name = [state objectForKey:@"name"];
 
-        dbState *s = [dbc State_get_byNameCode:name];
+        dbState *s = [dbState dbGetByNameCode:name];
         if (s != nil) {
             s.code = abbr;
             s.name = name;
@@ -500,7 +506,7 @@ typedef NS_ENUM(NSInteger, Type) {
         NSString *abbr = [country objectForKey:@"abbr"];
         NSString *name = [country objectForKey:@"name"];
 
-        dbCountry *c = [dbc Country_get_byNameCode:name];
+        dbCountry *c = [dbCountry dbGetByCountry:name];
         if (c != nil) {
             c.code = abbr;
             c.name = name;
@@ -540,7 +546,7 @@ typedef NS_ENUM(NSInteger, Type) {
             t.type_major = major;
             t.type_minor = minor;
             t.icon = icon;
-            t.pin = [dbc Pin_get:pin];
+            t.pin = [dbPin dbGet:pin];
             t.hasBoundary = hasBoundary;
             [t finish];
             [t dbUpdate];
@@ -549,7 +555,7 @@ typedef NS_ENUM(NSInteger, Type) {
             t.type_major = major;
             t.type_minor = minor;
             t.icon = icon;
-            t.pin = [dbc Pin_get:pin];
+            t.pin = [dbPin dbGet:pin];
             t.hasBoundary = hasBoundary;
             [t finish];
             [t dbCreate];
@@ -573,7 +579,7 @@ typedef NS_ENUM(NSInteger, Type) {
         NSString *rgb = [pin objectForKey:@"rgb"];
         NSInteger _id = [[pin objectForKey:@"id"] integerValue];
 
-        dbPin *p = [dbc Pin_get_nilokay:_id];
+        dbPin *p = [dbPin dbGet:_id];
         if (p != nil) {
             p.desc = description;
             p._id = _id;
@@ -586,6 +592,7 @@ typedef NS_ENUM(NSInteger, Type) {
             p._id = _id;
             p.rgb_default = rgb;
             p.rgb = @"";
+            [p finish];
             [p dbCreate];
             [dbc Pin_add:p];
         }
