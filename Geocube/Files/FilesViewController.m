@@ -444,6 +444,7 @@ enum {
                 fi.lastimport = time(NULL);
                 [fi dbUpdate];
             }
+            [self refreshFileData];
             [self.tableView reloadData];
         }
         cancelBlock:^(ActionSheetStringPicker *picker) {
