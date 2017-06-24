@@ -306,8 +306,8 @@ enum {
         [self downloadFile:versions url:@"url_attributes" header:@"attributes" revision:KEY_REVISION_ATTRIBUTES];
         [self downloadFile:versions url:@"url_countries" header:@"countries" revision:KEY_REVISION_COUNTRIES];
         [self downloadFile:versions url:@"url_states" header:@"states" revision:KEY_REVISION_STATES];
-        [self downloadFile:versions url:@"url_types" header:@"types" revision:KEY_REVISION_TYPES];
         [self downloadFile:versions url:@"url_pins" header:@"pins" revision:KEY_REVISION_PINS];
+        [self downloadFile:versions url:@"url_types" header:@"types" revision:KEY_REVISION_TYPES];      // after pins
         [self downloadFile:versions url:@"url_bookmarks" header:@"bookmarks" revision:KEY_REVISION_BOOKMARKS];
         [self downloadFile:versions url:@"url_containers" header:@"containers" revision:KEY_REVISION_CONTAINERS];
         [self downloadFile:versions url:@"url_logstrings" header:@"log strings" revision:KEY_REVISION_LOGSTRINGS];
