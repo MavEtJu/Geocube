@@ -30,7 +30,7 @@ TABLENAME(@"groups")
 - (NSId)dbCreate
 {
     @synchronized(db) {
-        DB_PREPARE(@"insert into groups(name, usergroup, deletable) values(?, ?, 1)");
+        DB_PREPARE(@"insert into groups(name, usergroup, deletable) values(?, ?, ?)");
 
         SET_VAR_TEXT(1, self.name);
         SET_VAR_BOOL(2, self.usergroup);
