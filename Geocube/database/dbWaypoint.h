@@ -72,7 +72,6 @@ typedef NS_ENUM(NSInteger, LogStatus) {
 
 @property (nonatomic) NSInteger calculatedDistance;
 @property (nonatomic) NSInteger calculatedBearing;
-@property (nonatomic) CLLocationCoordinate2D coordinates;
 
 - (void)set_gs_country_str:(NSString *)s;
 - (void)set_gs_state_str:(NSString *)s;

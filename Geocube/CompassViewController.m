@@ -201,7 +201,7 @@
 
     self.ivGPSCompassBackground.transform = CGAffineTransformMakeRotation(newCompass);
 
-    NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:waypointManager.currentWaypoint.coordinates] - LM.direction;
+    NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude)] - LM.direction;
     float fBearing = bearing * M_PI / 180.0 + bearingAdjustment;
 
     /* Draw the line */
@@ -211,7 +211,7 @@
         self.ivGPSCompassLine.hidden = NO;
 
         self.ivGPSCompassLine.transform = CGAffineTransformMakeRotation(fBearing);
-        self.labelGPSDistance.text = [MyTools niceDistance:[c distance:waypointManager.currentWaypoint.coordinates]];
+        self.labelGPSDistance.text = [MyTools niceDistance:[c distance:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude)]];
     }
 
     if (configManager.soundDirection == YES) {

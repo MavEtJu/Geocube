@@ -275,13 +275,13 @@ EMPTY_METHOD(mapViewDidLoad)
     bottom = 180;
 
     [self.mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (wp.coordinates.latitude != 0) {
-            bottom = MIN(bottom, wp.coordinates.latitude);
-            top = MAX(top, wp.coordinates.latitude);
+        if (wp.wpt_latitude != 0) {
+            bottom = MIN(bottom, wp.wpt_latitude);
+            top = MAX(top, wp.wpt_latitude);
         }
-        if (wp.coordinates.longitude != 0) {
-            right = MAX(right, wp.coordinates.longitude);
-            left = MIN(left, wp.coordinates.longitude);
+        if (wp.wpt_longitude != 0) {
+            right = MAX(right, wp.wpt_longitude);
+            left = MIN(left, wp.wpt_longitude);
         }
     }];
 

@@ -111,6 +111,7 @@ TABLENAME(@"waypoints")
 
 - (NSId)dbCreate
 {
+    NSAssert(finished == YES, @"Not finished");
     NSId _id = 0;
     @synchronized(db) {
         DB_PREPARE(@"insert into waypoints(wpt_name, wpt_description, wpt_lat, wpt_lon, wpt_date_placed_epoch, wpt_url, wpt_type_id, wpt_symbol_id, wpt_urlname, log_status, highlight, account_id, ignore, gs_country_id, gs_state_id, gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_long_desc_html, gs_long_desc, gs_short_desc_html, gs_short_desc, gs_hint, gs_container_id, gs_archived, gs_available, gs_owner_id, gs_placed_by, markedfound, inprogress, gs_date_found, dnfed, date_lastlog_epoch, gca_locale_id, date_lastimport_epoch, planned) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -165,6 +166,7 @@ TABLENAME(@"waypoints")
 
 - (void)dbUpdate
 {
+    NSAssert(finished == YES, @"Not finished");
     @synchronized(db) {
         DB_PREPARE(@"update waypoints set wpt_name = ?, wpt_description = ?, wpt_lat = ?, wpt_lon = ?, wpt_date_placed_epoch = ?, wpt_url = ?, wpt_type_id = ?, wpt_symbol_id = ?, wpt_urlname = ?, log_status = ?, highlight = ?, account_id = ?, ignore = ?, gs_country_id = ?, gs_state_id = ?, gs_rating_difficulty = ?, gs_rating_terrain = ?, gs_favourites = ?, gs_long_desc_html = ?, gs_long_desc = ?, gs_short_desc_html = ?, gs_short_desc = ?, gs_hint = ?, gs_container_id = ?, gs_archived = ?, gs_available = ?, gs_owner_id = ?, gs_placed_by = ?, markedfound = ?, inprogress = ?, gs_date_found = ?, dnfed = ?, date_lastlog_epoch = ?, gca_locale_id = ?, date_lastimport_epoch = ?, planned = ? where id = ?");
 
@@ -232,7 +234,7 @@ TABLENAME(@"waypoints")
 
     // Find all the logs about non-found caches and mark these caches as not found.
     @synchronized(db) {
-        DB_PREPARE(@"update waypoints set log_status = ? where gs_date_found = 0 and (id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 0) and logger_id in (select name_id from accounts))) and not (gs_date_found != 0 or id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select name_id from accounts)))");
+        DB_PREPARE(@"update waypoints set log_status = ? where gs_date_found = 0 and (id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 0) and logger_id in (select accountname_id from accounts))) and not (gs_date_found != 0 or id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select accountname_id from accounts)))");
         SET_VAR_INT(1, LOGSTATUS_NOTFOUND);
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -241,7 +243,7 @@ TABLENAME(@"waypoints")
 
     // Find all the logs about found caches and mark these caches as found.
     @synchronized(db) {
-        DB_PREPARE(@"update waypoints set log_status = ? where gs_date_found != 0 or id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select name_id from accounts))");
+        DB_PREPARE(@"update waypoints set log_status = ? where gs_date_found != 0 or id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select accountname_id from accounts))");
         SET_VAR_INT(1, LOGSTATUS_FOUND);
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -287,6 +289,7 @@ TABLENAME(@"waypoints")
 
 - (void)dbUpdateLogStatus
 {
+    NSAssert(finished == YES, @"Not finished");
     @synchronized(db) {
         DB_PREPARE(@"update waypoints set log_status = ? where id = ?");
         SET_VAR_INT(1, self.logStatus);
@@ -298,6 +301,7 @@ TABLENAME(@"waypoints")
 
 - (void)dbUpdateHighlight
 {
+    NSAssert(finished == YES, @"Not finished");
     @synchronized(db) {
         DB_PREPARE(@"update waypoints set highlight = ? where id = ?");
 
@@ -316,6 +320,7 @@ TABLENAME(@"waypoints")
 
 - (void)dbUpdateIgnore
 {
+    NSAssert(finished == YES, @"Not finished");
     @synchronized(db) {
         DB_PREPARE(@"update waypoints set ignore = ? where id = ?");
 
@@ -334,6 +339,7 @@ TABLENAME(@"waypoints")
 
 - (void)dbUpdateMarkedFound
 {
+    NSAssert(finished == YES, @"Not finished");
     @synchronized(db) {
         DB_PREPARE(@"update waypoints set markedfound = ? where id = ?");
 
@@ -352,6 +358,7 @@ TABLENAME(@"waypoints")
 
 - (void)dbUpdateMarkedDNF
 {
+    NSAssert(finished == YES, @"Not finished");
     @synchronized(db) {
         DB_PREPARE(@"update waypoints set dnfed = ? where id = ?");
 
@@ -370,6 +377,7 @@ TABLENAME(@"waypoints")
 
 - (void)dbUpdateInProgress
 {
+    NSAssert(finished == YES, @"Not finished");
     @synchronized(db) {
         DB_PREPARE(@"update waypoints set inprogress = ? where id = ?");
 
@@ -388,6 +396,7 @@ TABLENAME(@"waypoints")
 
 - (void)dbUpdatePlanned
 {
+    NSAssert(finished == YES, @"Not finished");
     @synchronized(db) {
         DB_PREPARE(@"update waypoints set planned = ? where id = ?");
 
@@ -485,12 +494,12 @@ TABLENAME(@"waypoints")
 
 + (NSArray<dbWaypoint *> *)dbAllNotFound
 {
-    return [dbWaypoint dbAllXXX:@"where wp.gs_date_found = 0 and (wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 0) and logger_id in (select name_id from accounts))) and not (wp.gs_date_found != 0 or wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select name_id from accounts)))" keys:nil values:nil];
+    return [dbWaypoint dbAllXXX:@"where wp.gs_date_found = 0 and (wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 0) and logger_id in (select accountname_id from accounts))) and not (wp.gs_date_found != 0 or wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select accountname_id from accounts)))" keys:nil values:nil];
 }
 
 + (NSArray<dbWaypoint *> *)dbAllFound
 {
-    return [dbWaypoint dbAllXXX:@"where wp.gs_date_found != 0 or wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select name_id from accounts))" keys:nil values:nil];
+    return [dbWaypoint dbAllXXX:@"where wp.gs_date_found != 0 or wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select accountname_id from accounts))" keys:nil values:nil];
 }
 
 + (NSArray<dbWaypoint *> *)dbAllIgnored
@@ -605,7 +614,7 @@ TABLENAME(@"waypoints")
 
 + (dbWaypoint *)dbGetByName:(NSString *)name
 {
-    return [[self dbAllXXX:@"where wpt_anme = ?" keys:@"s" values:@[name]] firstObject];
+    return [[self dbAllXXX:@"where wpt_name = ?" keys:@"s" values:@[name]] firstObject];
 }
 
 + (dbWaypoint *)dbGet:(NSId)_id
@@ -617,37 +626,44 @@ TABLENAME(@"waypoints")
 
 - (NSInteger)hasLogs
 {
+    NSAssert(finished == YES, @"Not finished");
     return [dbLog dbCountByWaypoint:self._id];
 }
 
 - (NSInteger)hasAttributes
 {
+    NSAssert(finished == YES, @"Not finished");
     return [dbAttribute dbCountByWaypoint:self._id];
 }
 
 - (NSInteger)hasFieldNotes
 {
+    NSAssert(finished == YES, @"Not finished");
     return [[dbLog dbAllByWaypointLogged:self._id] count];
 }
 
 - (NSInteger)hasImages
 {
+    NSAssert(finished == YES, @"Not finished");
     return [dbImage dbCountByWaypoint:self._id];
 }
 
 - (NSInteger)hasPersonalNotes
 {
+    NSAssert(finished == YES, @"Not finished");
     dbPersonalNote *pn = [dbPersonalNote dbGetByWaypointName:self.wpt_name];
     return (pn != nil ? 1 : 0);
 }
 
 - (NSInteger)hasInventory
 {
+    NSAssert(finished == YES, @"Not finished");
     return [dbTrackable dbCountByWaypoint:self._id];
 }
 
 - (NSArray<dbWaypoint *> *)hasWaypoints
 {
+    NSAssert(finished == YES, @"Not finished");
     NSMutableArray<dbWaypoint *> *wps = [NSMutableArray arrayWithCapacity:20];
     NSString *currentSuffix, *currentPrefix, *otherPrefix;
     NSArray<NSString *> *GCCodes = @[
@@ -710,6 +726,7 @@ TABLENAME(@"waypoints")
 
 - (NSString *)makeLocaleStateCountry
 {
+    NSAssert(finished == YES, @"Not finished");
     NSMutableString *s = [NSMutableString stringWithFormat:@""];
     if (self.gca_locale != nil)
         [s appendFormat:@"%@", self.gca_locale.name];

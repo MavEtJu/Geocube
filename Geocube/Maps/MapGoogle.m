@@ -126,7 +126,7 @@
 - (GMSMarker *)makeMarker:(dbWaypoint *)wp
 {
     GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = wp.coordinates;
+    marker.position = CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude);
     marker.title = wp.wpt_name;
     marker.snippet = wp.wpt_urlname;
     marker.map = mapView;
@@ -139,7 +139,7 @@
 
 - (GCGMSCircle *)makeCircle:(dbWaypoint *)wp
 {
-    GCGMSCircle *circle = [GCGMSCircle circleWithPosition:wp.coordinates radius:wp.account.distance_minimum];
+    GCGMSCircle *circle = [GCGMSCircle circleWithPosition:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) radius:wp.account.distance_minimum];
     circle.strokeColor = [UIColor blueColor];
     circle.fillColor = [UIColor colorWithRed:0 green:0 blue:0.35 alpha:0.05];
     circle.map = mapView;
@@ -327,7 +327,7 @@
 - (void)addLineMeToWaypoint
 {
     GMSMutablePath *pathMeToWaypoint = [GMSMutablePath path];
-    [pathMeToWaypoint addCoordinate:waypointManager.currentWaypoint.coordinates];
+    [pathMeToWaypoint addCoordinate:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude)];
     [pathMeToWaypoint addCoordinate:LM.coords];
 
     lineMeToWaypoint = [GMSPolyline polylineWithPath:pathMeToWaypoint];

@@ -151,7 +151,7 @@ TABLENAME(@"logs")
     NSMutableArray<dbLog *> *ls = [[NSMutableArray alloc] initWithCapacity:20];
     NSId i;
 
-    NSMutableString *sql = [NSMutableString stringWithString:@"select id, gc_id, waypoint_id, log_string_id, datetime_epoch, logger_id, log, needstobelogged, locallog, lat, lon, lat_int, lon_int from logs "];
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, gc_id, waypoint_id, log_string_id, datetime_epoch, logger_id, log, needstobelogged, locallog, lat, lon from logs "];
     if (where != nil)
         [sql appendString:where];
 

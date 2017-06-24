@@ -191,6 +191,7 @@
     if (wp == nil)
         wp = [[dbWaypoint alloc] init];
     wp.wpt_name = wpt_name;
+    wp.account = account;
 
     DICT_NSSTRING_KEY(dict, dummy, @"state");
     [dbState makeNameExist:dummy];
@@ -244,9 +245,8 @@
     [wp set_wpt_lat_str:[cs objectAtIndex:0]];
     [wp set_wpt_lon_str:[cs objectAtIndex:1]];
 
-    wp.account = account;
-    [wp finish];
     wp.date_lastimport_epoch = time(NULL);
+    [wp finish];
 
     if (wp._id == 0) {
         NSLog(@"Created waypoint %@", wp.wpt_name);

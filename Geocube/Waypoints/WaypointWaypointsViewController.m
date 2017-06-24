@@ -93,7 +93,7 @@ enum {
     cell.iconImage.image = [imageLibrary getType:wp];
     cell.nameLabel.text = wp.wpt_urlname;
     cell.codeLabel.text = wp.wpt_name;
-    cell.coordinatesLabel.text = [Coordinates NiceCoordinates:wp.coordinates];
+    cell.coordinatesLabel.text = [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude)];
     [cell viewWillTransitionToSize];
 
     if (wp._id == waypoint._id) {
@@ -202,7 +202,7 @@ enum {
 
 - (void)newWaypoint
 {
-    NSString *s = [NSString stringWithFormat:@"Waypoint coordinates:\n%@\nCurrent coordinates:\n%@", [Coordinates NiceCoordinates:waypoint.coordinates], [Coordinates NiceCoordinates:LM.coords]];
+    NSString *s = [NSString stringWithFormat:@"Waypoint coordinates:\n%@\nCurrent coordinates:\n%@", [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(waypoint.wpt_latitude, waypoint.wpt_longitude)], [Coordinates NiceCoordinates:LM.coords]];
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:@"Add a related waypoint"
                                 message:s
@@ -260,7 +260,7 @@ enum {
         textField.placeholder = @"Latitude (like S 12 34.567)";
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:YES];
-        textField.text = [NSString stringWithString:[Coordinates NiceLatitude:waypoint.coordinates.latitude]];
+        textField.text = [NSString stringWithString:[Coordinates NiceLatitude:waypoint.wpt_latitude]];
         [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         tfLatitude = textField;
     }];
@@ -268,7 +268,7 @@ enum {
         textField.placeholder = @"Longitude (like E 23 45.678)";
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:NO];
-        textField.text = [NSString stringWithString:[Coordinates NiceLongitude:waypoint.coordinates.longitude]];
+        textField.text = [NSString stringWithString:[Coordinates NiceLongitude:waypoint.wpt_longitude]];
         [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         tfLongitude = textField;
     }];

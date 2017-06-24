@@ -28,8 +28,8 @@
 + (NSArray<dbWaypoint *> *)resortWaypoints:(NSArray<dbWaypoint *> *)wps waypointsSortOrder:(SortOrderWaypoints)newSortOrder
 {
     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:LM.coords];
-        wp.calculatedBearing = [Coordinates coordinates2bearing:wp.coordinates to:LM.coords];
+        wp.calculatedDistance = [Coordinates coordinates2distance:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) to:LM.coords];
+        wp.calculatedBearing = [Coordinates coordinates2bearing:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) to:LM.coords];
     }];
 
 #define NCMP(I, O1, O2, W) \
@@ -84,8 +84,8 @@
 + (NSArray<dbWaypoint *> *)resortWaypoints:(NSArray<dbWaypoint *> *)wps locationlessSortOrder:(SortOrderLocationless)newSortOrder
 {
     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:LM.coords];
-        wp.calculatedBearing = [Coordinates coordinates2bearing:wp.coordinates to:LM.coords];
+        wp.calculatedDistance = [Coordinates coordinates2distance:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) to:LM.coords];
+        wp.calculatedBearing = [Coordinates coordinates2bearing:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) to:LM.coords];
     }];
 
 #define NCMP(I, O1, O2, W) \
@@ -128,8 +128,8 @@
 + (NSArray<dbWaypoint *> *)resortWaypoints:(NSArray<dbWaypoint *> *)wps listSortOrder:(SortOrderList)newSortOrder flag:(Flag)flag
 {
     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:LM.coords];
-        wp.calculatedBearing = [Coordinates coordinates2bearing:wp.coordinates to:LM.coords];
+        wp.calculatedDistance = [Coordinates coordinates2distance:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) to:LM.coords];
+        wp.calculatedBearing = [Coordinates coordinates2bearing:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) to:LM.coords];
     }];
 
 #define NCMP(I, O1, O2, W) \

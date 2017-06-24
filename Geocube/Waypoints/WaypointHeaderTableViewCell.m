@@ -69,11 +69,11 @@
     else
         self.labelRatingD.text = [NSString stringWithFormat:@"D: %0.1f", wp.gs_rating_difficulty];
 
-    NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:wp.coordinates];
+    NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude)];
     self.labelBearDis.text = [NSString stringWithFormat:@"%ldº (%@) at %@",
-                              (long)[Coordinates coordinates2bearing:LM.coords to:wp.coordinates],
+                              (long)[Coordinates coordinates2bearing:LM.coords to:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude)],
                               [Coordinates bearing2compass:bearing],
-                              [MyTools niceDistance:[Coordinates coordinates2distance:wp.coordinates to:LM.coords]]];
+                              [MyTools niceDistance:[Coordinates coordinates2distance:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) to:LM.coords]]];
     self.labelLocation.text = [wp makeLocaleStateCountry];
 
     self.ivContainer.image = [imageLibrary getType:wp];

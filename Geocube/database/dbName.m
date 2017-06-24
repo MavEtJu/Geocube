@@ -127,7 +127,7 @@ TABLENAME(@"names")
      */
 
     dbName *name;
-    if (_code != nil && [_code isEqualToString:@""] == NO) {
+    if (IS_EMPTY(_code) == NO) {
         name = [dbName dbGetByCode:_code account:account];
         if (name != nil) {
             if ([name.name isEqualToString:_name] == YES)
@@ -148,10 +148,10 @@ TABLENAME(@"names")
         return;
     }
 
+    name = [[dbName alloc] init];
     name.name = _name;
     name.code = _code;
     name.account = account;
-    name._id = 0;
     [name dbCreate];
 }
 

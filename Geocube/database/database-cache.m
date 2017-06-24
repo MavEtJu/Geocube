@@ -41,8 +41,8 @@
 // Load all waypoints and waypoint related data in memory
 - (void)loadCachableData
 {
-    self.Accounts = [NSMutableArray arrayWithArray:[dbAccount dbAll]];
     self.Protocols = [NSMutableArray arrayWithArray:[dbProtocol dbAll]];
+    self.Accounts = [NSMutableArray arrayWithArray:[dbAccount dbAll]];      // after protocols
     self.Groups = [NSMutableArray arrayWithArray:[dbGroup dbAll]];
     self.Pins = [NSMutableArray arrayWithArray:[dbPin dbAll]];
     self.Types = [NSMutableArray arrayWithArray:[dbType dbAll]];
@@ -176,6 +176,7 @@
 
 - (dbType *)Type_get_byname:(NSString *)major minor:(NSString *)minor
 {
+    NSAssert([self.Types count] != 0, @"Types");
     __block dbType *_ct = nil;
     [self.Types enumerateObjectsUsingBlock:^(dbType *ct, NSUInteger idx, BOOL *stop) {
         if ([ct.type_major isEqualToString:major] == YES &&
@@ -191,6 +192,7 @@
 
 - (dbType *)Type_get_byminor:(NSString *)minor
 {
+    NSAssert([self.Types count] != 0, @"Types");
     __block dbType *_ct = nil;
     [self.Types enumerateObjectsUsingBlock:^(dbType *ct, NSUInteger idx, BOOL *stop) {
         if ([ct.type_minor isEqualToString:minor] == YES) {
@@ -205,6 +207,7 @@
 
 - (dbType *)Type_get:(NSId)_id
 {
+    NSAssert([self.Types count] != 0, @"Types");
     __block dbType *_ct = nil;
     [self.Types enumerateObjectsUsingBlock:^(dbType *ct, NSUInteger idx, BOOL *stop) {
         if (ct._id == _id) {
@@ -226,6 +229,7 @@
 
 - (dbPin *)Pin_get:(NSId)_id
 {
+    NSAssert([self.Pins count] != 0, @"Pins");
     __block dbPin *_pt = nil;
     [self.Pins enumerateObjectsUsingBlock:^(dbPin *pt, NSUInteger idx, BOOL *stop) {
         if (pt._id == _id) {
@@ -240,6 +244,7 @@
 
 - (dbPin *)Pin_get_nilokay:(NSId)_id
 {
+    NSAssert([self.Pins count] != 0, @"Pins");
     __block dbPin *_pt = nil;
     [self.Pins enumerateObjectsUsingBlock:^(dbPin *pt, NSUInteger idx, BOOL *stop) {
         if (pt._id == _id) {
@@ -259,6 +264,7 @@
 
 - (dbSymbol *)Symbol_get_bysymbol:(NSString *)symbol
 {
+    NSAssert([Symbols count] != 0, @"Symbol");
     __block dbSymbol *_lt = nil;
     [Symbols enumerateObjectsUsingBlock:^(dbSymbol *lt, NSUInteger idx, BOOL *stop) {
         if ([lt.symbol isEqualToString:symbol] == YES) {
@@ -273,6 +279,7 @@
 
 - (dbSymbol *)Symbol_get:(NSId)_id
 {
+    NSAssert([Symbols count] != 0, @"Symbol");
     __block dbSymbol *_lt = nil;
     [Symbols enumerateObjectsUsingBlock:^(dbSymbol *lt, NSUInteger idx, BOOL *stop) {
         if (lt._id == _id) {
@@ -292,6 +299,7 @@
 
 - (dbLogString *)LogString_get_bytype:(dbAccount *)account logtype:(NSInteger)logtype type:(NSString *)type
 {
+    NSAssert([LogStrings count] != 0, @"LogStrings");
     __block dbLogString *_ls = nil;
     [LogStrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL *stop) {
         if (ls.protocol._id == account.protocol._id &&
@@ -306,6 +314,7 @@
 
 - (dbLogString *)LogString_get:(NSId)_id
 {
+    NSAssert([LogStrings count] != 0, @"LogStrings");
     __block dbLogString *_ls = nil;
     [LogStrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL *stop) {
         if (ls._id == _id) {
@@ -325,6 +334,7 @@
 
 - (dbGroup *)Group_get:(NSId)_id
 {
+    NSAssert([self.Groups count] != 0, @"Groups");
     __block dbGroup *_g = nil;
     [self.Groups enumerateObjectsUsingBlock:^(dbGroup *g, NSUInteger idx, BOOL *stop) {
         if (g._id == _id) {
@@ -347,6 +357,7 @@
 
 - (dbContainer *)Container_get:(NSId)_id
 {
+    NSAssert([self.Containers count] != 0, @"Containers");
     __block dbContainer *_c = nil;
     [self.Containers enumerateObjectsUsingBlock:^(dbContainer *c, NSUInteger idx, BOOL *stop) {
         if (c._id == _id) {
@@ -359,6 +370,7 @@
 
 - (dbContainer *)Container_get_bysize:(NSString *)size
 {
+    NSAssert([self.Containers count] != 0, @"Containers");
     __block dbContainer *_c = nil;
     [self.Containers enumerateObjectsUsingBlock:^(dbContainer *c, NSUInteger idx, BOOL *stop) {
         if ([c.size isEqualToString:size] == YES) {
@@ -371,6 +383,7 @@
 
 - (dbAttribute *)Attribute_get:(NSId)_id
 {
+    NSAssert([Attributes count] != 0, @"Attributes");
     __block dbAttribute *_a = nil;
     [Attributes enumerateObjectsUsingBlock:^(dbAttribute *a, NSUInteger idx, BOOL *stop) {
         if (a._id == _id) {
@@ -383,6 +396,7 @@
 
 - (dbAttribute *)Attribute_get_bygcid:(NSId)gcid
 {
+    NSAssert([Attributes count] != 0, @"Attributes");
     __block dbAttribute *_a = nil;
     [Attributes enumerateObjectsUsingBlock:^(dbAttribute *a, NSUInteger idx, BOOL *stop) {
         if (a.gc_id == gcid) {
@@ -402,6 +416,7 @@
 
 - (dbCountry *)Country_get_byNameCode:(NSString *)name
 {
+    NSAssert([self.Countries count] != 0, @"Countries");
     __block dbCountry *_c = nil;
     [self.Countries enumerateObjectsUsingBlock:^(dbCountry *c, NSUInteger idx, BOOL *stop) {
         if ([c.name isEqualToString:name] == YES || [c.code isEqualToString:name] == YES) {
@@ -414,6 +429,7 @@
 
 - (dbCountry *)Country_get:(NSId)_id
 {
+    NSAssert([self.Countries count] != 0, @"Countries");
     __block dbCountry *_c = nil;
     [self.Countries enumerateObjectsUsingBlock:^(dbCountry *c, NSUInteger idx, BOOL *stop) {
         if (c._id == _id) {
@@ -431,6 +447,7 @@
 
 - (dbState *)State_get_byNameCode:(NSString *)name
 {
+    NSAssert([self.States count] != 0, @"States");
     __block dbState *_s = nil;
     [self.States enumerateObjectsUsingBlock:^(dbState *s, NSUInteger idx, BOOL *stop) {
         if ([s.name isEqualToString:name] == YES || [s.code isEqualToString:name] == YES) {
@@ -443,6 +460,7 @@
 
 - (dbState *)State_get:(NSId)_id
 {
+    NSAssert([self.States count] != 0, @"States");
     __block dbState *_s = nil;
     [self.States enumerateObjectsUsingBlock:^(dbState *s, NSUInteger idx, BOOL *stop) {
         if (s._id == _id) {
@@ -460,6 +478,7 @@
 
 - (dbLocale *)Locale_get_byName:(NSString *)name
 {
+    NSAssert([self.Locales count] != 0, @"Locales");
     __block dbLocale *_l = nil;
     [self.Locales enumerateObjectsUsingBlock:^(dbLocale *l, NSUInteger idx, BOOL *stop) {
         if ([l.name isEqualToString:name] == YES) {
@@ -472,6 +491,7 @@
 
 - (dbLocale *)Locale_get:(NSId)_id
 {
+    NSAssert([self.Locales count] != 0, @"Locales");
     __block dbLocale *_l = nil;
     [self.Locales enumerateObjectsUsingBlock:^(dbLocale *l, NSUInteger idx, BOOL *stop) {
         if (l._id == _id) {
@@ -489,6 +509,7 @@
 
 - (dbProtocol *)Protocol_get:(NSId)_id
 {
+    NSAssert([self.Protocols count] != 0, @"Protocols");
     __block dbProtocol *_p = nil;
     [self.Protocols enumerateObjectsUsingBlock:^(dbProtocol *p, NSUInteger idx, BOOL *stop) {
         if (p._id == _id) {
@@ -565,6 +586,7 @@
 
 - (dbName *)Name_get:(NSId)_id
 {
+    NSAssert([Names count] != 0, @"Names");
     NSNumber *n = [NSNumber numberWithLongLong:_id];
     dbName *name = [Names objectForKey:n];
     return name;

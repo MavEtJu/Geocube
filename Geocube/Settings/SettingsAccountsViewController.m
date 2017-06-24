@@ -140,7 +140,7 @@ enum {
     if (a.enabled == NO) {
         cell.imageView.image = [imageLibrary get:Image_Nil];
     } else {
-        if (IS_EMPTY(a.accountname.name) == YES) {
+        if (a.accountname == nil) {
             cell.imageView.image = [imageLibrary get:ImageIcon_Dead];
         } else {
             if (a.canDoRemoteStuff == YES)

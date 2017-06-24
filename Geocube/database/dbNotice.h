@@ -30,7 +30,7 @@
 @property (nonatomic) NSInteger cellHeight;
 
 + (NSArray<dbNotice *> *)dbAll;
-+ (NSInteger)countUnread;
++ (NSInteger)dbCountUnread;
 + (dbNotice *)dbGetByGCId:(NSInteger)geocube_id;
 
 @end

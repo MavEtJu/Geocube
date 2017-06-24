@@ -98,10 +98,10 @@
 
     [self setRatings:wp.gs_favourites size:wp.gs_container.icon];
 
-    NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:wp.coordinates];
+    NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude)];
     self.labelBearing.text = [NSString stringWithFormat:@"%ld°", (long)bearing];
     self.labelDirection.text = [Coordinates bearing2compass:bearing];
-    self.labelDistance.text = [MyTools niceDistance:[Coordinates coordinates2distance:LM.coords to:wp.coordinates]];
+    self.labelDistance.text = [MyTools niceDistance:[Coordinates coordinates2distance:LM.coords to:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude)]];
     self.labelLocation.text = [wp makeLocaleStateCountry];
 
     self.labelSize.text = wp.wpt_type.type_minor;

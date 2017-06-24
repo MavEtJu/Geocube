@@ -451,7 +451,7 @@
             break;
         case SHOW_SHOWBOTH:
             if (waypointManager.currentWaypoint != nil)
-                [self.map moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
+                [self.map moveCameraTo:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude) c2:meLocation];
             else {
                 [self menuShowWhom:SHOW_FOLLOWME];
                 [self.map moveCameraTo:meLocation zoom:NO];
@@ -466,7 +466,7 @@
         [self.map addLineMeToWaypoint];
 
     if (waypointManager.currentWaypoint != nil) {
-        NSString *distance = [MyTools niceDistance:[Coordinates coordinates2distance:meLocation to:waypointManager.currentWaypoint.coordinates]];
+        NSString *distance = [MyTools niceDistance:[Coordinates coordinates2distance:meLocation to:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude)]];
         distanceLabel.text = distance;
         distanceLabel.layer.shadowColor = [[UIColor redColor] CGColor];
         distanceLabel.layer.shadowRadius = 1;
@@ -529,14 +529,14 @@
         self.followWhom = whom;
         meLocation = [LM coords];
         if (self.staticHistory == NO)
-            [self.map moveCameraTo:waypointManager.currentWaypoint.coordinates zoom:NO];
+            [self.map moveCameraTo:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude) zoom:NO];
         [labelMapSeeTarget setBackgroundColor:[UIColor grayColor]];
     }
     if (whom == SHOW_SHOWBOTH && waypointManager.currentWaypoint != nil) {
         self.followWhom = whom;
         meLocation = [LM coords];
         if (self.staticHistory == NO)
-            [self.map moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
+            [self.map moveCameraTo:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude) c2:meLocation];
         [labelMapShowBoth setBackgroundColor:[UIColor grayColor]];
     }
 }
@@ -556,7 +556,7 @@
     self.followWhom = SHOW_SEETARGET;
     [self labelClearAll];
     [labelMapFindTarget setBackgroundColor:[UIColor grayColor]];
-    [self.map moveCameraTo:waypointManager.currentWaypoint.coordinates zoom:YES];
+    [self.map moveCameraTo:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude) zoom:YES];
 }
 
 #pragma mark - Waypoint manager callbacks
@@ -881,10 +881,10 @@
 
     NSMutableArray<dbWaypoint *> *wps = [NSMutableArray arrayWithCapacity:200];
     [self.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (wp.coordinates.latitude > bottomLeft.latitude &&
-            wp.coordinates.latitude < topRight.latitude &&
-            wp.coordinates.longitude > bottomLeft.longitude &&
-            wp.coordinates.longitude < topRight.longitude) {
+        if (wp.wpt_latitude > bottomLeft.latitude &&
+            wp.wpt_latitude < topRight.latitude &&
+            wp.wpt_longitude > bottomLeft.longitude &&
+            wp.wpt_longitude < topRight.longitude) {
             [wps addObject:wp];
         }
     }];
