@@ -33,7 +33,7 @@ TABLENAME(@"log_templates")
         DB_PREPARE(@"insert into log_templates(name, text) values(?, ?)");
 
         SET_VAR_TEXT(1, self.name);
-        SET_VAR_TEXT(1, self.text);
+        SET_VAR_TEXT(2, self.text);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(self._id);
