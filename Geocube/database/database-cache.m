@@ -45,7 +45,7 @@
     self.Accounts = [NSMutableArray arrayWithArray:[dbAccount dbAll]];      // after protocols
     self.Groups = [NSMutableArray arrayWithArray:[dbGroup dbAll]];
     self.Pins = [NSMutableArray arrayWithArray:[dbPin dbAll]];
-    self.Types = [NSMutableArray arrayWithArray:[dbType dbAll]];
+    self.Types = [NSMutableArray arrayWithArray:[dbType dbAll]];            // after pins
     self.Containers = [NSMutableArray arrayWithArray:[dbContainer dbAll]];
     LogStrings = [NSMutableArray arrayWithArray:[dbLogString dbAll]];
     self.Containers = [NSMutableArray arrayWithArray:[dbContainer dbAll]];
@@ -416,7 +416,6 @@
 
 - (dbCountry *)Country_get_byNameCode:(NSString *)name
 {
-    NSAssert([self.Countries count] != 0, @"Countries");
     __block dbCountry *_c = nil;
     [self.Countries enumerateObjectsUsingBlock:^(dbCountry *c, NSUInteger idx, BOOL *stop) {
         if ([c.name isEqualToString:name] == YES || [c.code isEqualToString:name] == YES) {
@@ -429,7 +428,6 @@
 
 - (dbCountry *)Country_get:(NSId)_id
 {
-    NSAssert([self.Countries count] != 0, @"Countries");
     __block dbCountry *_c = nil;
     [self.Countries enumerateObjectsUsingBlock:^(dbCountry *c, NSUInteger idx, BOOL *stop) {
         if (c._id == _id) {
@@ -447,7 +445,6 @@
 
 - (dbState *)State_get_byNameCode:(NSString *)name
 {
-    NSAssert([self.States count] != 0, @"States");
     __block dbState *_s = nil;
     [self.States enumerateObjectsUsingBlock:^(dbState *s, NSUInteger idx, BOOL *stop) {
         if ([s.name isEqualToString:name] == YES || [s.code isEqualToString:name] == YES) {
@@ -460,7 +457,6 @@
 
 - (dbState *)State_get:(NSId)_id
 {
-    NSAssert([self.States count] != 0, @"States");
     __block dbState *_s = nil;
     [self.States enumerateObjectsUsingBlock:^(dbState *s, NSUInteger idx, BOOL *stop) {
         if (s._id == _id) {
@@ -478,7 +474,6 @@
 
 - (dbLocale *)Locale_get_byName:(NSString *)name
 {
-    NSAssert([self.Locales count] != 0, @"Locales");
     __block dbLocale *_l = nil;
     [self.Locales enumerateObjectsUsingBlock:^(dbLocale *l, NSUInteger idx, BOOL *stop) {
         if ([l.name isEqualToString:name] == YES) {
@@ -491,7 +486,6 @@
 
 - (dbLocale *)Locale_get:(NSId)_id
 {
-    NSAssert([self.Locales count] != 0, @"Locales");
     __block dbLocale *_l = nil;
     [self.Locales enumerateObjectsUsingBlock:^(dbLocale *l, NSUInteger idx, BOOL *stop) {
         if (l._id == _id) {
