@@ -27,5 +27,6 @@
 + (NSArray<dbState *> *)dbAll;
 + (void)makeNameExist:(NSString *)name;
 + (dbState *)dbGet:(NSId)_id;
++ (dbState *)dbGetByNameCode:(NSString *)namecode;
 
 @end

@@ -71,6 +71,22 @@ TABLENAME(@"pins")
     }
 }
 
+- (void)dbUpdateRGB
+{
+    NSAssert(finished == YES, @"Not finished");
+    @synchronized(db) {
+        DB_PREPARE(@"update pins set rgb = ? where id = ?");
+
+        SET_VAR_TEXT(1, self.rgb);
+        SET_VAR_INT (2, self._id);
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+
+    self.colour = [ImageLibrary RGBtoColor:self.rgb];
+    self.img = [ImageLibrary newPinHead:self.colour];
+}
+
 + (NSArray<dbPin *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
     NSMutableArray<dbPin *> *ps = [[NSMutableArray alloc] initWithCapacity:20];
@@ -101,20 +117,9 @@ TABLENAME(@"pins")
     return [self dbAllXXX:nil keys:nil values:nil];
 }
 
-- (void)dbUpdateRGB
++ (dbPin *)dbGet:(NSId)_id;
 {
-    NSAssert(finished == YES, @"Not finished");
-    @synchronized(db) {
-        DB_PREPARE(@"update pins set rgb = ? where id = ?");
-
-        SET_VAR_TEXT(1, self.rgb);
-        SET_VAR_INT (2, self._id);
-        DB_CHECK_OKAY;
-        DB_FINISH;
-    }
-
-    self.colour = [ImageLibrary RGBtoColor:self.rgb];
-    self.img = [ImageLibrary newPinHead:self.colour];
+    return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
 }
 
 @end

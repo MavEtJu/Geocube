@@ -90,6 +90,11 @@ TABLENAME(@"states")
     return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
 }
 
++ (dbState *)dbGetByNameCode:(NSString *)namecode
+{
+    return [[self dbAllXXX:@"where name = ? or code = ?" keys:@"ss" values:@[namecode, namecode]] firstObject];
+}
+
 /* Other methods */
 
 + (void)makeNameExist:(NSString *)name

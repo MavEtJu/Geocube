@@ -109,6 +109,11 @@ TABLENAME(@"attributes")
     return ss;
 }
 
++ (dbAttribute *)dbGetByGCId:(NSInteger)gc_id
+{
+    return [[self dbAllXXX:@"where gc_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:gc_id]]] firstObject];
+}
+
 /* Other methods */
 
 + (void)dbUnlinkAllFromWaypoint:(NSId)wp_id

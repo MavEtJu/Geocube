@@ -26,6 +26,7 @@
 
 + (NSArray<dbCountry *> *)dbAll;
 + (dbCountry *)dbGet:(NSId)_id;
++ (dbCountry *)dbGetByCountry:(NSString *)name;
 
 + (void)makeNameExist:(NSString *)name;
 

@@ -32,5 +32,6 @@
 + (void)dbUnlinkAllFromWaypoint:(NSId)wp_id;
 + (NSInteger)dbCountByWaypoint:(NSId)wp_id;
 + (NSArray<dbAttribute *> *)dbAllByWaypoint:(NSId)wp_id;
++ (dbAttribute *)dbGetByGCId:(NSInteger)gc_id;
 
 @end

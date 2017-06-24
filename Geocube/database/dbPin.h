@@ -29,6 +29,7 @@
 @property (nonatomic, retain) UIImage *img;
 
 + (NSArray<dbPin *> *)dbAll;
++ (dbPin *)dbGet:(NSId)_id;
 - (void)dbUpdateRGB;
 
 @end

@@ -90,6 +90,11 @@ TABLENAME(@"countries")
     return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
 }
 
++ (dbCountry *)dbGetByCountry:(NSString *)name
+{
+    return [[self dbAllXXX:@"where name = ?" keys:@"s" values:@[name]] firstObject];
+}
+
 /* Other methods */
 
 + (void)makeNameExist:(NSString *)name
