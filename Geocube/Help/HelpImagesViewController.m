@@ -235,7 +235,7 @@ enum {
         dbPin *pin = [pins objectAtIndex:indexPath.row];
 
         cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
-        cell.textLabel.text = @"Pin";
+        cell.textLabel.text = pin.desc;
         return cell;
     }
 
@@ -244,7 +244,7 @@ enum {
         dbType *type = [types objectAtIndex:indexPath.row];
 
         cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
-        cell.textLabel.text = @"Type";
+        cell.textLabel.text = type.type_full;
         return cell;
     }
 
