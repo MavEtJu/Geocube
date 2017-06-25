@@ -22,7 +22,7 @@
 @interface dbAttribute : dbObject
 
 @property (nonatomic) NSInteger icon;
-@property (nonatomic) NSId gc_id;
+@property (nonatomic) NSInteger gc_id;
 @property (nonatomic, retain) NSString *label;
 @property (nonatomic) BOOL _YesNo;
 

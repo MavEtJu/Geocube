@@ -765,7 +765,7 @@
 
         NSLog(@"Opening %@ for external navigation", em.name);
 
-        NSArray<dbExternalMapURL *> *urls = [dbExternalMapURL dbAllByExternalMap:em._id];
+        NSArray<dbExternalMapURL *> *urls = [dbExternalMapURL dbAllByExternalMap:em];
         __block dbExternalMapURL *urlCurrent = nil;
         __block dbExternalMapURL *urlDestination = nil;
 

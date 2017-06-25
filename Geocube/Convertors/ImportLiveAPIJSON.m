@@ -261,8 +261,8 @@
         wp._id = wpold._id;
         [wp dbUpdate];
     }
-    if ([group containsWaypoint:wp._id] == NO)
-        [group addWaypointToGroup:wp._id];
+    if ([group containsWaypoint:wp] == NO)
+        [group addWaypointToGroup:wp];
 
     // Images
     [ImagesDownloadManager findImagesInDescription:wp text:wp.gs_long_desc type:IMAGECATEGORY_CACHE];
@@ -552,7 +552,7 @@
     dbWaypoint *wpold = [dbWaypoint dbGetByName:awp.wpt_name];
     if (wpold == nil) {
         [awp dbCreate];
-        [group addWaypointToGroup:awp._id];
+        [group addWaypointToGroup:awp];
         newWaypointsCount++;
         [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
     } else {
@@ -620,7 +620,7 @@
     dbWaypoint *wpold = [dbWaypoint dbGetByName:awp.wpt_name];
     if (wpold == nil) {
         [awp dbCreate];
-        [group addWaypointToGroup:awp._id];
+        [group addWaypointToGroup:awp];
         newWaypointsCount++;
         [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
     } else {

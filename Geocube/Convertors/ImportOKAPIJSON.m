@@ -212,8 +212,8 @@
     }
     [self.delegate Import_WaypointProcessed:wp];
 
-    if ([group containsWaypoint:wp._id] == NO)
-        [group addWaypointToGroup:wp._id];
+    if ([group containsWaypoint:wp] == NO)
+        [group addWaypointToGroup:wp];
 
     [ImagesDownloadManager findImagesInDescription:wp text:wp.gs_long_desc type:IMAGECATEGORY_CACHE];
     [ImagesDownloadManager findImagesInDescription:wp text:wp.gs_short_desc type:IMAGECATEGORY_CACHE];

@@ -235,19 +235,19 @@
                     [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
 
                     // Update the group
-                    [dbc.Group_LastImportAdded addWaypointToGroup:currentWP._id];
-                    [dbc.Group_AllWaypoints addWaypointToGroup:currentWP._id];
-                    [group addWaypointToGroup:currentWP._id];
+                    [dbc.Group_LastImportAdded addWaypointToGroup:currentWP];
+                    [dbc.Group_AllWaypoints addWaypointToGroup:currentWP];
+                    [group addWaypointToGroup:currentWP];
                 } else {
                     [currentWP dbUpdate];
 
                     // Update the group
-                    if ([group containsWaypoint:currentWP._id] == NO)
-                        [group addWaypointToGroup:currentWP._id];
+                    if ([group containsWaypoint:currentWP] == NO)
+                        [group addWaypointToGroup:currentWP];
                 }
                 [self.delegate Import_WaypointProcessed:currentWP];
 
-                [dbc.Group_LastImport addWaypointToGroup:currentWP._id];
+                [dbc.Group_LastImport addWaypointToGroup:currentWP];
                 if (currentWP.gs_long_desc != nil)
                     newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP text:currentWP.gs_long_desc type:IMAGECATEGORY_CACHE];
                 if (currentWP.gs_short_desc != nil)

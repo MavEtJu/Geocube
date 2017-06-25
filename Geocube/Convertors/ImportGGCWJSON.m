@@ -136,8 +136,8 @@
     }
     [self.delegate Import_WaypointProcessed:wp];
 
-    if ([group containsWaypoint:wp._id] == NO)
-        [group addWaypointToGroup:wp._id];
+    if ([group containsWaypoint:wp] == NO)
+        [group addWaypointToGroup:wp];
 }
 
 - (void)parseBefore_trackables

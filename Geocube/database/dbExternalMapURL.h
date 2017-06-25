@@ -26,7 +26,7 @@
 @property (nonatomic) NSInteger type;
 @property (nonatomic, retain) NSString *url;
 
-+ (NSArray<dbExternalMapURL *> *)dbAllByExternalMap:(NSId)map_id;
-+ (void)dbDeleteByExternalMap:(NSId)map_id;
++ (NSArray<dbExternalMapURL *> *)dbAllByExternalMap:(dbExternalMap *)map;
++ (void)dbDeleteByExternalMap:(dbExternalMap *)map;
 
 @end

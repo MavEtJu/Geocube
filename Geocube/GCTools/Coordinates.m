@@ -471,9 +471,9 @@
             [wp finish];
             [wp dbCreate];
 
-            [dbc.Group_AllWaypoints_ManuallyAdded addWaypointToGroup:wp._id];
-            [dbc.Group_AllWaypoints addWaypointToGroup:wp._id];
-            [dbc.Group_ManualWaypoints addWaypointToGroup:wp._id];
+            [dbc.Group_AllWaypoints_ManuallyAdded addWaypointToGroup:wp];
+            [dbc.Group_AllWaypoints addWaypointToGroup:wp];
+            [dbc.Group_ManualWaypoints addWaypointToGroup:wp];
 
             [waypointManager needsRefreshAdd:wp];
             found++;

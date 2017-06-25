@@ -33,10 +33,10 @@
 + (dbGroup *)dbGetByName:(NSString *)name;
 - (void)dbUpdateName:(NSString *)newname;
 - (void)emptyGroup;
-- (void)addWaypointToGroup:(NSId)__id;
+- (void)addWaypointToGroup:(dbWaypoint *)wp;
 - (void)addWaypointsToGroup:(NSArray<dbWaypoint *> *)waypoints;
-- (void)removeWaypointFromGroup:(NSId)__id;
-- (BOOL)containsWaypoint:(NSId)c_id;
+- (void)removeWaypointFromGroup:(dbWaypoint *)wp;
+- (BOOL)containsWaypoint:(dbWaypoint *)wp;
 - (NSInteger)countWaypoints;
 
 @end

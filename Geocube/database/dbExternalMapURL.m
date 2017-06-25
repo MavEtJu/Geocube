@@ -88,17 +88,17 @@ TABLENAME(@"externalmap_urls")
     return ss;
 }
 
-+ (NSArray<dbExternalMapURL *> *)dbAllByExternalMap:(NSId)map_id
++ (NSArray<dbExternalMapURL *> *)dbAllByExternalMap:(dbExternalMap *)map
 {
-    return [self dbAllXXX:@"where externalmap_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:map_id]]];
+    return [self dbAllXXX:@"where externalmap_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:map._id]]];
 }
 
-+ (void)dbDeleteByExternalMap:(NSId)map_id
++ (void)dbDeleteByExternalMap:(dbExternalMap *)map
 {
     @synchronized(db) {
         DB_PREPARE(@"delete from externalmap_urls where externalmap_id = ?")
 
-        SET_VAR_INT(1, map_id);
+        SET_VAR_INT(1, map._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

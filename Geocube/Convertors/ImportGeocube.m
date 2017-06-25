@@ -412,7 +412,7 @@ typedef NS_ENUM(NSInteger, Type) {
             em.enabled = enabled_bool;
             [em dbUpdate];
         }
-        [dbExternalMapURL dbDeleteByExternalMap:em._id];
+        [dbExternalMapURL dbDeleteByExternalMap:em];
 
         NSArray<NSDictionary *> *urls = [key objectForKey:@"url"];
         [urls enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {

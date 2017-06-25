@@ -265,8 +265,8 @@
         NSLog(@"Updated waypoint %@", wp.wpt_name);
         [wp dbUpdate];
     }
-    if ([group containsWaypoint:wp._id] == NO)
-        [group addWaypointToGroup:wp._id];
+    if ([group containsWaypoint:wp] == NO)
+        [group addWaypointToGroup:wp];
 
     [self.delegate Import_WaypointProcessed:wp];
 

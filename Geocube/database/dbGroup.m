@@ -137,26 +137,26 @@ TABLENAME(@"groups")
     return count;
 }
 
-- (void)addWaypointToGroup:(NSId)__id
+- (void)addWaypointToGroup:(dbWaypoint *)wp
 {
     @synchronized(db) {
         DB_PREPARE(@"insert into group2waypoints(group_id, waypoint_id) values(?, ?)");
 
         SET_VAR_INT(1, self._id);
-        SET_VAR_INT(2, __id);
+        SET_VAR_INT(2, wp._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
     }
 }
 
-- (void)removeWaypointFromGroup:(NSId)__id
+- (void)removeWaypointFromGroup:(dbWaypoint *)wp
 {
     @synchronized(db) {
         DB_PREPARE(@"delete from group2waypoints where group_id = ? and waypoint_id = ?");
 
         SET_VAR_INT(1, self._id);
-        SET_VAR_INT(2, __id);
+        SET_VAR_INT(2, wp._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -166,11 +166,11 @@ TABLENAME(@"groups")
 - (void)addWaypointsToGroup:(NSArray<dbWaypoint *> *)waypoints
 {
     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-        [self addWaypointToGroup:wp._id];
+        [self addWaypointToGroup:wp];
     }];
 }
 
-- (BOOL)containsWaypoint:(NSId)c_id
+- (BOOL)containsWaypoint:(dbWaypoint *)wp
 {
     NSInteger count = 0;
 
@@ -178,7 +178,7 @@ TABLENAME(@"groups")
         DB_PREPARE(@"select count(id) from group2waypoints where group_id = ? and waypoint_id = ?");
 
         SET_VAR_INT(1, self._id);
-        SET_VAR_INT(2, c_id);
+        SET_VAR_INT(2, wp._id);
 
         DB_IF_STEP {
             INT_FETCH_AND_ASSIGN(0, c);
