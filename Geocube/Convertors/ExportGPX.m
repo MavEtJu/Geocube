@@ -139,7 +139,7 @@
         LINE_S(@"groundspeak:owner", wp.gs_owner.name);
         LINE_S(@"groundspeak:type", wp.wpt_type.type_minor);
 
-        NSArray<dbAttribute *> *as = [dbAttribute dbAllByWaypoint:wp._id];
+        NSArray<dbAttribute *> *as = [dbAttribute dbAllByWaypoint:wp];
         if ([as count] == 0) {
             [lines addObject:@"<groundspeak:attributes />"];
         } else {

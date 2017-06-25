@@ -290,9 +290,9 @@
 
             if (runOption_LogsOnly == NO) {
                 // Link attributes to cache
-                [dbAttribute dbUnlinkAllFromWaypoint:currentWP._id];
-                [dbAttribute dbAllLinkToWaypoint:currentWP._id attributes:attributesNO YesNo:NO];
-                [dbAttribute dbAllLinkToWaypoint:currentWP._id attributes:attributesYES YesNo:YES];
+                [dbAttribute dbUnlinkAllFromWaypoint:currentWP];
+                [dbAttribute dbAllLinkToWaypoint:currentWP attributes:attributesNO YesNo:NO];
+                [dbAttribute dbAllLinkToWaypoint:currentWP attributes:attributesYES YesNo:YES];
 
                 // Link trackables to cache
                 [dbTrackable dbUnlinkAllFromWaypoint:currentWP];

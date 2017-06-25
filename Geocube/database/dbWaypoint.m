@@ -644,7 +644,7 @@ TABLENAME(@"waypoints")
 - (NSInteger)hasAttributes
 {
     ASSERT_FINISHED;
-    return [dbAttribute dbCountByWaypoint:self._id];
+    return [dbAttribute dbCountByWaypoint:self];
 }
 
 - (NSInteger)hasFieldNotes

@@ -477,7 +477,7 @@
 
 - (void)parseAttributes:(NSArray<NSDictionary *> *)attributes waypoint:(dbWaypoint *)wp
 {
-    [dbAttribute dbUnlinkAllFromWaypoint:wp._id];
+    [dbAttribute dbUnlinkAllFromWaypoint:wp];
     [attributes enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseAttribute:d waypoint:wp];
     }];
@@ -496,7 +496,7 @@
     dbAttribute *a = [dbc Attribute_get_bygcid:gc_id];
     BOOL yesNo;
     DICT_BOOL_KEY(dict, yesNo, @"IsOn");
-    [a dbLinkToWaypoint:wp._id YesNo:yesNo];
+    [a dbLinkToWaypoint:wp YesNo:yesNo];
 }
 
 - (void)parseUserWaypoints:(NSArray<NSDictionary *> *)wps waypoint:(dbWaypoint *)wp

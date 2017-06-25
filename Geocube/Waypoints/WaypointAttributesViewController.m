@@ -36,7 +36,7 @@
 
     attrs = [NSMutableArray arrayWithCapacity:5];
 
-    NSArray<dbAttribute *> *as = [dbAttribute dbAllByWaypoint:waypoint._id];
+    NSArray<dbAttribute *> *as = [dbAttribute dbAllByWaypoint:waypoint];
     [as enumerateObjectsUsingBlock:^(dbAttribute *a, NSUInteger idx, BOOL *stop) {
         [attrs addObject:a];
     }];

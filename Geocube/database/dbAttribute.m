@@ -86,14 +86,14 @@ TABLENAME(@"attributes")
     return [self dbAllXXX:nil keys:nil values:nil];
 }
 
-+ (NSArray<dbAttribute *> *)dbAllByWaypoint:(NSId)wp_id
++ (NSArray<dbAttribute *> *)dbAllByWaypoint:(dbWaypoint *)wp
 {
     NSMutableArray<dbAttribute *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     @synchronized(db) {
         DB_PREPARE(@"select a.id, a.label, a.icon, a.gc_id, b.yes from attributes a inner join attribute2waypoints b on a.id = b.attribute_id where b.waypoint_id = ?");
 
-        SET_VAR_INT( 1, wp_id);
+        SET_VAR_INT( 1, wp._id);
 
         DB_WHILE_STEP {
             dbAttribute *a = [[dbAttribute alloc] init];
@@ -116,14 +116,14 @@ TABLENAME(@"attributes")
 
 /* Other methods */
 
-+ (void)dbUnlinkAllFromWaypoint:(NSId)wp_id
++ (void)dbUnlinkAllFromWaypoint:(dbWaypoint *)wp
 {
     NSId __id = 0;
 
     @synchronized(db) {
         DB_PREPARE(@"delete from attribute2waypoints where waypoint_id = ?");
 
-        SET_VAR_INT(1, wp_id);
+        SET_VAR_INT(1, wp._id);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(__id);
@@ -131,13 +131,13 @@ TABLENAME(@"attributes")
     }
 }
 
-- (void)dbLinkToWaypoint:(NSId)wp_id YesNo:(BOOL)YesNo
+- (void)dbLinkToWaypoint:(dbWaypoint *)wp YesNo:(BOOL)YesNo
 {
     @synchronized(db) {
         DB_PREPARE(@"insert into attribute2waypoints(attribute_id, waypoint_id, yes) values(?, ?, ?)");
 
         SET_VAR_INT (1, self._id);
-        SET_VAR_INT (2, wp_id);
+        SET_VAR_INT (2, wp._id);
         SET_VAR_BOOL(3, YesNo);
 
         DB_CHECK_OKAY;
@@ -145,7 +145,7 @@ TABLENAME(@"attributes")
     }
 }
 
-+ (void)dbAllLinkToWaypoint:(NSId)wp_id attributes:(NSArray<dbAttribute *> *)attrs YesNo:(BOOL)YesNo
++ (void)dbAllLinkToWaypoint:(dbWaypoint *)wp attributes:(NSArray<dbAttribute *> *)attrs YesNo:(BOOL)YesNo
 {
     if ([attrs count] == 0)
         return;
@@ -154,7 +154,7 @@ TABLENAME(@"attributes")
     [attrs enumerateObjectsUsingBlock:^(dbAttribute *attr, NSUInteger idx, BOOL *stop) {
         if (idx != 0)
             [sql appendString:@","];
-        [sql appendFormat:@"(%ld, %ld, %d)", (long)attr._id, (long)wp_id, YesNo];
+        [sql appendFormat:@"(%ld, %ld, %d)", (long)attr._id, (long)wp._id, YesNo];
     }];
     @synchronized(db) {
         DB_PREPARE(sql);
@@ -164,14 +164,14 @@ TABLENAME(@"attributes")
     }
 }
 
-+ (NSInteger)dbCountByWaypoint:(NSId)wp_id
++ (NSInteger)dbCountByWaypoint:(dbWaypoint *)wp
 {
     NSInteger count = 0;
 
     @synchronized(db) {
         DB_PREPARE(@"select count(id) from attribute2waypoints where waypoint_id = ?");
 
-        SET_VAR_INT(1, wp_id);
+        SET_VAR_INT(1, wp._id);
 
         DB_IF_STEP {
             INT_FETCH(0, count);
