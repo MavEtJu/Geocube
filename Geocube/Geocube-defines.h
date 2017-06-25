@@ -26,6 +26,8 @@
     NSAssert(finished == YES, @"Not finished");
 #define ASSERT_SELF_FIELD_EXISTS(__field__) \
     NSAssert(self.__field__ != nil, @"self.__field__")
+#define ASSERT_FIELD_EXISTS(__field__) \
+    NSAssert(__field__ != nil, @"__field__")
 
 #define ASSERT_IMPORT(__expression__, __message__) \
     NSAssert(__expression__, __message__)
