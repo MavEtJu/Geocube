@@ -61,10 +61,11 @@
 #import "YIPopupTextView.h"
 
 #import "Geocube-Classes.h"
+#import "Geocube-defines.h"
 
-#import "Coordinates.h"
-#import "MyClock.h"
 #import "MyTools.h"
+#import "MyClock.h"
+#import "Coordinates.h"
 #import "PropertyUtil.h"
 #import "KeyboardCoordinateView.h"
 
