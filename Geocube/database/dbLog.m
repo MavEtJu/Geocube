@@ -59,7 +59,7 @@ TABLENAME(@"logs")
 
 - (void)set_logstring_str:(NSString *)s account:(dbAccount *)account
 {
-    NSAssert(account != nil, @"account should not be nil");
+    ASSERT_FIELD_EXISTS(account);
     NSAssert(FALSE, @"to be checked");
 //    self.logstring = [dbc LogString_get_bytype:account logtype:self.waypoint.logstring_logtype type:self.logstring_string];
 }
@@ -77,6 +77,9 @@ TABLENAME(@"logs")
 
 - (NSId)dbCreate
 {
+    ASSERT_SELF_FIELD_EXISTS(waypoint);
+    ASSERT_SELF_FIELD_EXISTS(logstring);
+    ASSERT_SELF_FIELD_EXISTS(logger);
     @synchronized(db) {
         DB_PREPARE(@"insert into logs(waypoint_id, log_string_id, datetime_epoch, logger_id, log, gc_id, needstobelogged, locallog, lat, lon) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 

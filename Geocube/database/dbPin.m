@@ -39,7 +39,7 @@ TABLENAME(@"pins")
 
 - (NSId)dbCreate
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     @synchronized(db) {
         DB_PREPARE(@"insert into pins(id, description, rgb, rgb_default) values(?, ?, ?, ?)");
 
@@ -58,7 +58,7 @@ TABLENAME(@"pins")
 
 - (void)dbUpdate
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     @synchronized(db) {
         DB_PREPARE(@"update pins set description = ?, rgb_default = ? where id = ?");
 
@@ -73,7 +73,7 @@ TABLENAME(@"pins")
 
 - (void)dbUpdateRGB
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     @synchronized(db) {
         DB_PREPARE(@"update pins set rgb = ? where id = ?");
 

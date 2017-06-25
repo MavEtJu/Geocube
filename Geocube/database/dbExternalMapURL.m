@@ -29,10 +29,11 @@ TABLENAME(@"externalmap_urls")
 
 - (NSId)dbCreate
 {
+    ASSERT_SELF_FIELD_EXISTS(externalMap);
     @synchronized(db) {
         DB_PREPARE(@"insert into externalmap_urls(externalmap_id, model, type, url) values(?, ?, ?, ?)");
 
-        SET_VAR_INT (1, self.externalMap_id);
+        SET_VAR_INT (1, self.externalMap._id);
         SET_VAR_TEXT(2, self.model);
         SET_VAR_INT (3, self.type);
         SET_VAR_TEXT(4, self.url);
@@ -50,7 +51,7 @@ TABLENAME(@"externalmap_urls")
     @synchronized(db) {
         DB_PREPARE(@"update externalmap_urls set externalmap_id = ?, model = ?, type = ?, url = ? where id = ?");
 
-        SET_VAR_INT (1, self.externalMap_id);
+        SET_VAR_INT (1, self.externalMap._id);
         SET_VAR_TEXT(2, self.model);
         SET_VAR_INT (3, self.type);
         SET_VAR_TEXT(4, self.url);
@@ -75,7 +76,7 @@ TABLENAME(@"externalmap_urls")
         DB_WHILE_STEP {
             dbExternalMapURL *emu = [[dbExternalMapURL alloc] init];
             INT_FETCH (0, emu._id);
-            INT_FETCH (1, emu.externalMap_id);
+            INT_FETCH (1, emu.externalMap._id);
             TEXT_FETCH(2, emu.model);
             INT_FETCH (3, emu.type);
             TEXT_FETCH(4, emu.url);

@@ -29,6 +29,7 @@ TABLENAME(@"names")
 
 - (NSId)dbCreate
 {
+    ASSERT_SELF_FIELD_EXISTS(account);
     @synchronized(db) {
         DB_PREPARE(@"insert into names(name, code, account_id) values(?, ?, ?)");
 

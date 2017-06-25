@@ -29,6 +29,7 @@ TABLENAME(@"bookmarks")
 
 - (NSId)dbCreate
 {
+    // ASSERT_SELF_FIELD_EXISTS(import);        -- Not filled in until the first import
     @synchronized(db) {
         DB_PREPARE(@"insert into bookmarks(name, url, import_id) values(?, ?, ?)");
 

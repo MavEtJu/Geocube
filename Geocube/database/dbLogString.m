@@ -29,6 +29,7 @@ TABLENAME(@"log_strings")
 
 - (NSId)dbCreate
 {
+    ASSERT_SELF_FIELD_EXISTS(protocol);
     @synchronized(db) {
         DB_PREPARE(@"insert into log_strings(text, type, logtype, protocol_id, default_note, default_found, icon, forlogs, found, default_visit, default_dropoff, default_pickup, default_discover) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 

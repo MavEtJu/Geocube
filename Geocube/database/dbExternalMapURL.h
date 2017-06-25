@@ -21,7 +21,6 @@
 
 @interface dbExternalMapURL : dbObject
 
-@property (nonatomic) NSId externalMap_id;
 @property (nonatomic, retain) dbExternalMap *externalMap;
 @property (nonatomic, retain) NSString *model;
 @property (nonatomic) NSInteger type;

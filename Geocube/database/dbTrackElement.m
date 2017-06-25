@@ -29,6 +29,7 @@ TABLENAME(@"trackelements")
 
 - (NSId)dbCreate
 {
+    ASSERT_SELF_FIELD_EXISTS(track);
     @synchronized(db) {
         DB_PREPARE(@"insert into trackelements(track_id, lat, lon, height, timestamp, restart) values(?, ?, ?, ?, ?, ?)");
 

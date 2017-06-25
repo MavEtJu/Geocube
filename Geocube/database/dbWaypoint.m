@@ -62,7 +62,7 @@ TABLENAME(@"waypoints")
 }
 - (void)set_gs_owner_str:(NSString *)s
 {
-    NSAssert(self.account != nil, @"account = nil");
+    ASSERT_SELF_FIELD_EXISTS(account);
     self.gs_owner = [dbName dbGetByName:s account:self.account];
     if (self.gs_owner_gsid == nil)
         self.gs_owner = [dbName dbGetByName:s account:self.account];
@@ -111,7 +111,17 @@ TABLENAME(@"waypoints")
 
 - (NSId)dbCreate
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
+    ASSERT_SELF_FIELD_EXISTS(wpt_type);
+    ASSERT_SELF_FIELD_EXISTS(wpt_type);
+    ASSERT_SELF_FIELD_EXISTS(wpt_symbol);
+    ASSERT_SELF_FIELD_EXISTS(account);
+    ASSERT_SELF_FIELD_EXISTS(gs_state);
+    ASSERT_SELF_FIELD_EXISTS(gs_country);
+    // ASSERT_SELF_FIELD_EXISTS(gca_locale);    -- This is only for GCA by default.
+    ASSERT_SELF_FIELD_EXISTS(account);
+    ASSERT_SELF_FIELD_EXISTS(gs_container);
+    ASSERT_SELF_FIELD_EXISTS(gs_owner);
     NSId _id = 0;
     @synchronized(db) {
         DB_PREPARE(@"insert into waypoints(wpt_name, wpt_description, wpt_lat, wpt_lon, wpt_date_placed_epoch, wpt_url, wpt_type_id, wpt_symbol_id, wpt_urlname, log_status, highlight, account_id, ignore, gs_country_id, gs_state_id, gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_long_desc_html, gs_long_desc, gs_short_desc_html, gs_short_desc, gs_hint, gs_container_id, gs_archived, gs_available, gs_owner_id, gs_placed_by, markedfound, inprogress, gs_date_found, dnfed, date_lastlog_epoch, gca_locale_id, date_lastimport_epoch, planned) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -166,7 +176,7 @@ TABLENAME(@"waypoints")
 
 - (void)dbUpdate
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     @synchronized(db) {
         DB_PREPARE(@"update waypoints set wpt_name = ?, wpt_description = ?, wpt_lat = ?, wpt_lon = ?, wpt_date_placed_epoch = ?, wpt_url = ?, wpt_type_id = ?, wpt_symbol_id = ?, wpt_urlname = ?, log_status = ?, highlight = ?, account_id = ?, ignore = ?, gs_country_id = ?, gs_state_id = ?, gs_rating_difficulty = ?, gs_rating_terrain = ?, gs_favourites = ?, gs_long_desc_html = ?, gs_long_desc = ?, gs_short_desc_html = ?, gs_short_desc = ?, gs_hint = ?, gs_container_id = ?, gs_archived = ?, gs_available = ?, gs_owner_id = ?, gs_placed_by = ?, markedfound = ?, inprogress = ?, gs_date_found = ?, dnfed = ?, date_lastlog_epoch = ?, gca_locale_id = ?, date_lastimport_epoch = ?, planned = ? where id = ?");
 
@@ -290,7 +300,7 @@ TABLENAME(@"waypoints")
 
 - (void)dbUpdateLogStatus
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     @synchronized(db) {
         DB_PREPARE(@"update waypoints set log_status = ? where id = ?");
         SET_VAR_INT(1, self.logStatus);
@@ -302,7 +312,7 @@ TABLENAME(@"waypoints")
 
 - (void)dbUpdateHighlight
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     @synchronized(db) {
         DB_PREPARE(@"update waypoints set highlight = ? where id = ?");
 
@@ -321,7 +331,7 @@ TABLENAME(@"waypoints")
 
 - (void)dbUpdateIgnore
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     @synchronized(db) {
         DB_PREPARE(@"update waypoints set ignore = ? where id = ?");
 
@@ -340,7 +350,7 @@ TABLENAME(@"waypoints")
 
 - (void)dbUpdateMarkedFound
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     @synchronized(db) {
         DB_PREPARE(@"update waypoints set markedfound = ? where id = ?");
 
@@ -359,7 +369,7 @@ TABLENAME(@"waypoints")
 
 - (void)dbUpdateMarkedDNF
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     @synchronized(db) {
         DB_PREPARE(@"update waypoints set dnfed = ? where id = ?");
 
@@ -378,7 +388,7 @@ TABLENAME(@"waypoints")
 
 - (void)dbUpdateInProgress
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     @synchronized(db) {
         DB_PREPARE(@"update waypoints set inprogress = ? where id = ?");
 
@@ -397,7 +407,7 @@ TABLENAME(@"waypoints")
 
 - (void)dbUpdatePlanned
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     @synchronized(db) {
         DB_PREPARE(@"update waypoints set planned = ? where id = ?");
 
@@ -627,44 +637,44 @@ TABLENAME(@"waypoints")
 
 - (NSInteger)hasLogs
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     return [dbLog dbCountByWaypoint:self._id];
 }
 
 - (NSInteger)hasAttributes
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     return [dbAttribute dbCountByWaypoint:self._id];
 }
 
 - (NSInteger)hasFieldNotes
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     return [[dbLog dbAllByWaypointLogged:self._id] count];
 }
 
 - (NSInteger)hasImages
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     return [dbImage dbCountByWaypoint:self._id];
 }
 
 - (NSInteger)hasPersonalNotes
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     dbPersonalNote *pn = [dbPersonalNote dbGetByWaypointName:self.wpt_name];
     return (pn != nil ? 1 : 0);
 }
 
 - (NSInteger)hasInventory
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     return [dbTrackable dbCountByWaypoint:self._id];
 }
 
 - (NSArray<dbWaypoint *> *)hasWaypoints
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     NSMutableArray<dbWaypoint *> *wps = [NSMutableArray arrayWithCapacity:20];
     NSString *currentSuffix, *currentPrefix, *otherPrefix;
     NSArray<NSString *> *GCCodes = @[
@@ -727,7 +737,7 @@ TABLENAME(@"waypoints")
 
 - (NSString *)makeLocaleStateCountry
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     NSMutableString *s = [NSMutableString stringWithFormat:@""];
     if (self.gca_locale != nil)
         [s appendFormat:@"%@", self.gca_locale.name];

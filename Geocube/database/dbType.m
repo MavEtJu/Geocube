@@ -35,7 +35,8 @@ TABLENAME(@"types")
 
 - (NSId)dbCreate
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
+    ASSERT_SELF_FIELD_EXISTS(pin);
     @synchronized(db) {
         DB_PREPARE(@"insert into types(type_major, type_minor, icon, pin_id, has_boundary) values(?, ?, ?, ?, ?)");
 
@@ -55,7 +56,7 @@ TABLENAME(@"types")
 
 - (void)dbUpdate
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     @synchronized(db) {
         DB_PREPARE(@"update types set type_major = ?, type_minor = ?, icon = ?, pin_id = ?, has_boundary = ? where id = ?");
 

@@ -29,17 +29,19 @@ TABLENAME(@"travelbugs")
 
 - (void)set_carrier_str:(NSString *)name account:(dbAccount *)account
 {
-    NSAssert(account != nil, @"Account should be set");
+    ASSERT_FIELD_EXISTS(account);
     self.carrier = [dbName dbGetByName:name account:account];
 }
 - (void)set_owner_str:(NSString *)name account:(dbAccount *)account
 {
-    NSAssert(account != nil, @"Account should be set");
+    ASSERT_FIELD_EXISTS(account);
     self.owner = [dbName dbGetByName:name account:account];
 }
 
 - (NSId)dbCreate
 {
+    ASSERT_SELF_FIELD_EXISTS(carrier);
+    ASSERT_SELF_FIELD_EXISTS(owner);
     @synchronized(db) {
         DB_PREPARE(@"insert into travelbugs(gc_id, ref, name, carrier_id, owner_id, waypoint_name, log_type, code) values(?, ?, ?, ?, ?, ?, ?, ?)");
 

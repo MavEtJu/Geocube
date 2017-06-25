@@ -69,7 +69,9 @@ TABLENAME(@"accounts")
 
 - (NSId)dbCreate
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
+    ASSERT_SELF_FIELD_EXISTS(protocol);
+    // ASSERT_SELF_FIELD_EXISTS(accountname);   -- not known yet until account is configured
     @synchronized(db) {
         DB_PREPARE(@"insert into accounts(site, url_site, url_queries, protocol_id, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, accountname_id, enabled, distance_minimum, authentication_name, authentication_password, oauth_consumer_public_sharedsecret, oauth_consumer_private_sharedsecret) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
@@ -111,7 +113,7 @@ TABLENAME(@"accounts")
 
 - (void)dbUpdate
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     @synchronized(db) {
         DB_PREPARE(@"update accounts set site = ?, url_site = ?, url_queries = ?, protocol_id = ?, oauth_consumer_public = ?, oauth_consumer_private = ?, oauth_token = ?, oauth_token_secret = ?, oauth_request_url = ?, oauth_authorize_url = ?, oauth_access_url = ?, gca_cookie_name = ?, gca_authenticate_url = ?, gca_callback_url = ?, geocube_id = ?, revision = ?, gca_cookie_value = ?, accountname_id = ?, enabled = ?, distance_minimum = ?, authentication_name = ?, authentication_password = ?, oauth_consumer_public_sharedsecret = ?, oauth_consumer_private_sharedsecret = ? where id = ?");
 
@@ -152,7 +154,7 @@ TABLENAME(@"accounts")
 
 - (void)dbUpdateAccount
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     @synchronized(db) {
         DB_PREPARE(@"update accounts set accountname_id = ?, authentication_name = ?, authentication_password = ? where id = ?");
 
@@ -172,7 +174,7 @@ TABLENAME(@"accounts")
 
 - (void)dbUpdateOAuthConsumer
 {
-    NSAssert(finished == YES, @"Finish method not called");
+    ASSERT_FINISHED;
     @synchronized(db) {
         DB_PREPARE(@"update accounts set oauth_consumer_public = ?, oauth_consumer_private = ?, oauth_request_url = ?, oauth_authorize_url = ?, oauth_access_url = ?, oauth_consumer_public_sharedsecret = ?, oauth_consumer_private_sharedsecret = ? where id = ?");
 
@@ -192,7 +194,7 @@ TABLENAME(@"accounts")
 
 - (void)dbUpdateOAuthToken
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     @synchronized(db) {
         DB_PREPARE(@"update accounts set oauth_token = ?, oauth_token_secret = ? where id = ?");
 
@@ -208,7 +210,7 @@ TABLENAME(@"accounts")
 
 - (void)dbUpdateCookieValue
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     @synchronized(db) {
         DB_PREPARE(@"update accounts set gca_cookie_value = ? where id = ?");
 
@@ -289,7 +291,7 @@ TABLENAME(@"accounts")
 
 - (void)checkRemoteAccess
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     if (self.enabled == NO) {
         [self disableRemoteAccess:@"This account is not enabled"];
         return;
@@ -323,21 +325,21 @@ TABLENAME(@"accounts")
 
 - (void)disableRemoteAccess:(NSString *)reason
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     self.canDoRemoteStuff = NO;
     self.remoteAccessFailureReason = reason;
 }
 
 - (void)enableRemoteAccess
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     self.canDoRemoteStuff = YES;
     self.remoteAccessFailureReason = nil;
 }
 
 - (void)dbClearAuthentication
 {
-    NSAssert(finished == YES, @"Not finished");
+    ASSERT_FINISHED;
     self.oauth_token = nil;
     self.oauth_token_secret = nil;
     self.gca_cookie_value = nil;

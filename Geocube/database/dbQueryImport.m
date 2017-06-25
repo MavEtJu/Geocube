@@ -29,6 +29,7 @@ TABLENAME(@"query_imports")
 
 - (NSId)dbCreate
 {
+    ASSERT_SELF_FIELD_EXISTS(account);
     @synchronized(db) {
         DB_PREPARE(@"insert into query_imports(account_id, name, filesize, last_import_epoch) values(?, ?, ?, ?)");
 
