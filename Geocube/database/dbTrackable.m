@@ -147,9 +147,9 @@ TABLENAME(@"travelbugs")
     return [self dbAllXXX:@"where carrier_id in (select id from names where name in (select accountname_id from accounts where accountname_id != 0))" keys:nil values:nil];
 }
 
-+ (NSArray<dbTrackable *> *)dbAllByWaypoint:(NSId)wp_id
++ (NSArray<dbTrackable *> *)dbAllByWaypoint:(dbWaypoint *)wp
 {
-    return [self dbAllXXX:@"where id in (select travelbug_id from travelbug2waypoint where waypoint_id = ?)" keys:@"i" values:@[[NSNumber numberWithLongLong:wp_id]]];
+    return [self dbAllXXX:@"where id in (select travelbug_id from travelbug2waypoint where waypoint_id = ?)" keys:@"i" values:@[[NSNumber numberWithLongLong:wp._id]]];
 }
 
 + (dbTrackable *)dbGet:(NSId)_id
@@ -157,7 +157,7 @@ TABLENAME(@"travelbugs")
     return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithLongLong:_id]]] firstObject];
 }
 
-+ (NSId)dbGetIdByGC:(NSId)gc_id
++ (NSId)dbGetIdByGC:(NSInteger)gc_id
 {
     return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithLongLong:gc_id]]] firstObject]._id;
 }
@@ -174,25 +174,25 @@ TABLENAME(@"travelbugs")
 
 /* Other methods */
 
-+ (void)dbUnlinkAllFromWaypoint:(NSId)wp_id
++ (void)dbUnlinkAllFromWaypoint:(dbWaypoint *)wp
 {
     @synchronized(db) {
         DB_PREPARE(@"delete from travelbug2waypoint where waypoint_id = ?");
 
-        SET_VAR_INT(1, wp_id);
+        SET_VAR_INT(1, wp._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
     }
 }
 
-- (void)dbLinkToWaypoint:(NSId)wp_id
+- (void)dbLinkToWaypoint:(dbWaypoint *)wp
 {
     @synchronized(db) {
         DB_PREPARE(@"insert into travelbug2waypoint(travelbug_id, waypoint_id) values(?, ?)");
 
         SET_VAR_INT(1, self._id);
-        SET_VAR_INT(2, wp_id);
+        SET_VAR_INT(2, wp._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

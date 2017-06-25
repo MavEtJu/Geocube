@@ -275,7 +275,7 @@
                 [dbAttribute dbAllLinkToWaypoint:currentWP._id attributes:attributesYES YesNo:YES];
 
                 // Link trackables to cache
-                [dbTrackable dbUnlinkAllFromWaypoint:currentWP._id];
+                [dbTrackable dbUnlinkAllFromWaypoint:currentWP];
                 [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL *stop) {
                     NSId _id = [dbTrackable dbGetIdByGC:tb.gc_id];
                     [tb finish];
@@ -287,7 +287,7 @@
                         tb._id = _id;
                         [tb dbUpdate];
                     }
-                    [tb dbLinkToWaypoint:currentWP._id];
+                    [tb dbLinkToWaypoint:currentWP];
                     totalTrackablesCount++;
                     [infoViewer setTrackablesTotal:iiImport total:totalTrackablesCount];
                 }];

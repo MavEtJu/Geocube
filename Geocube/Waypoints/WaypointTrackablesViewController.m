@@ -36,7 +36,7 @@
 
     tbs = [NSMutableArray arrayWithCapacity:5];
 
-    [[dbTrackable dbAllByWaypoint:waypoint._id] enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL *stop) {
+    [[dbTrackable dbAllByWaypoint:waypoint] enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL *stop) {
         [tbs addObject:tb];
     }];
 

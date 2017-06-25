@@ -301,7 +301,7 @@
 - (void)parseTrackables:(NSArray<NSDictionary *> *)trackables waypoint:(dbWaypoint *)wp
 {
     if (wp != nil)
-        [dbTrackable dbUnlinkAllFromWaypoint:wp._id];
+        [dbTrackable dbUnlinkAllFromWaypoint:wp];
     [trackables enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
         [self parseTrackable:d waypoint:wp];
         totalTrackablesCount++;
@@ -430,7 +430,7 @@
     }
 
     if (wp != nil)
-        [tb dbLinkToWaypoint:wp._id];
+        [tb dbLinkToWaypoint:wp];
 }
 
 - (void)parseImages:(NSArray<NSDictionary *> *)attributes waypoint:(dbWaypoint *)wp imageSource:(ImageCategory)imageSource
