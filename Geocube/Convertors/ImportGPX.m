@@ -266,7 +266,7 @@
             // Link logs to cache
             [logs enumerateObjectsUsingBlock:^(dbLog *l, NSUInteger idx, BOOL *stop) {
                 newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:l.log type:IMAGECATEGORY_LOG];
-                l.waypoint._id = currentWP._id;
+                l.waypoint = currentWP;
                 [l finish];
 
                 __block NSId _id = 0;
@@ -373,7 +373,10 @@
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:type"] == YES) {
-                    currentLog.logstring.text = cleanText;
+                    NSInteger logtype = [dbLogString wptTypeToLogType:currentWP.wpt_type.type_full];
+                    NSAssert(logtype != 0, @"logtype != 0");
+                    currentLog.logstring = [dbc LogString_get_bytype:account logtype:logtype type:cleanText];
+                    NSAssert(currentLog.logstring != nil, @"currentLog.logstring != nil");
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:finder"] == YES) {
