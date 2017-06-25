@@ -669,7 +669,7 @@ TABLENAME(@"waypoints")
 - (NSInteger)hasInventory
 {
     ASSERT_FINISHED;
-    return [dbTrackable dbCountByWaypoint:self._id];
+    return [dbTrackable dbCountByWaypoint:self];
 }
 
 - (NSArray<dbWaypoint *> *)hasWaypoints

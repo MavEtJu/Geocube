@@ -81,14 +81,14 @@ TABLENAME(@"travelbugs")
     }
 }
 
-+ (NSInteger)dbCountByWaypoint:(NSId)wp_id
++ (NSInteger)dbCountByWaypoint:(dbWaypoint *)wp
 {
     NSInteger count = 0;
 
     @synchronized(db) {
         DB_PREPARE(@"select count(id) from travelbug2waypoint where waypoint_id = ?");
 
-        SET_VAR_INT(1, wp_id);
+        SET_VAR_INT(1, wp._id);
 
         DB_IF_STEP {
             INT_FETCH_AND_ASSIGN(0, c);
