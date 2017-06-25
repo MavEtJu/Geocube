@@ -126,7 +126,7 @@
 - (void)applyFilters:(CLLocationCoordinate2D)coords
 {
     @synchronized(self) {
-        NSLog(@"%@: coordinates %@", [self class], [Coordinates NiceCoordinates:coords]);
+        NSLog(@"%@: coordinates %@", [self class], [Coordinates niceCoordinates:coords]);
 
         /* Do not unnecessary go through this */
         if (needsRefresh != YES)
@@ -631,7 +631,7 @@
         }
 
         /* Calculate the distance and the bearing */
-        NSLog(@"Coordinates: %@", [Coordinates NiceCoordinates:coords]);
+        NSLog(@"Coordinates: %@", [Coordinates niceCoordinates:coords]);
         [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
             wp.calculatedDistance = [Coordinates coordinates2distance:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) to:coords];
             wp.calculatedBearing = [Coordinates coordinates2bearing:coords to:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude)];

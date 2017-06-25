@@ -170,9 +170,9 @@ enum {
 
 - (void)updateLocationManagerLocation
 {
-    labelCurrentLocationCoordinates.text = [Coordinates NiceCoordinates:[LM coords]];
+    labelCurrentLocationCoordinates.text = [Coordinates niceCoordinates:[LM coords]];
     if (coordsRecordedLocation.latitude != 0 && coordsRecordedLocation.longitude != 0) {
-        labelRecordedLocationCoordinates.text = [Coordinates NiceCoordinates:coordsRecordedLocation];
+        labelRecordedLocationCoordinates.text = [Coordinates niceCoordinates:coordsRecordedLocation];
         labelDistance.text = [NSString stringWithFormat:@"Distance: %@", [MyTools niceDistance:[Coordinates coordinates2distance:[LM coords] to:coordsRecordedLocation]]];
         labelDirection.text = [NSString stringWithFormat:@"Direction: %@", [Coordinates bearing2compass:[Coordinates coordinates2bearing:[LM coords] to:coordsRecordedLocation]]];
     } else {

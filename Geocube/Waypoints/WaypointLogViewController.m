@@ -290,7 +290,7 @@ enum {
                         if (coordinates.latitude == 0 && coordinates.longitude == 0)
                             c.detailTextLabel.text = @"(None set)";
                         else
-                            c.detailTextLabel.text = [Coordinates NiceCoordinates:coordinates];
+                            c.detailTextLabel.text = [Coordinates niceCoordinates:coordinates];
                     }
 
                     cell = c;
@@ -461,7 +461,7 @@ enum {
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = [Coordinates NiceLatitudeForEditing:coordinates.latitude];
+        textField.text = [Coordinates niceLatitudeForEditing:coordinates.latitude];
         textField.placeholder = @"Latitude (like S 12 34.567)";
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:YES];
@@ -469,7 +469,7 @@ enum {
         coordsLatitude = textField;
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = [Coordinates NiceLongitudeForEditing:coordinates.longitude];
+        textField.text = [Coordinates niceLongitudeForEditing:coordinates.longitude];
         textField.placeholder = @"Longitude (like E 23 45.678)";
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:NO];

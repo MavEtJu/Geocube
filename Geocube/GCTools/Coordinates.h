@@ -52,12 +52,13 @@
 + (CLLocationCoordinate2D)coordinatesMinusOffset:(CLLocationCoordinate2D)c offset:(CLLocationCoordinate2D)o;
 + (CLLocationCoordinate2D)location:(CLLocationCoordinate2D)origin bearing:(float)bearing distance:(float)distanceMeters;
 
-+ (NSString *)NiceCoordinates:(CLLocationCoordinate2D)c;
-+ (NSString *)NiceCoordinatesForEditing:(CLLocationCoordinate2D)c;
-+ (NSString *)NiceLatitude:(CLLocationDegrees)l;
-+ (NSString *)NiceLongitude:(CLLocationDegrees)l;
-+ (NSString *)NiceLatitudeForEditing:(CLLocationDegrees)l;
-+ (NSString *)NiceLongitudeForEditing:(CLLocationDegrees)l;
++ (NSString *)niceCoordinates:(CLLocationCoordinate2D)c;
++ (NSString *)niceCoordinates:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude;
++ (NSString *)niceCoordinatesForEditing:(CLLocationCoordinate2D)c;
++ (NSString *)niceLatitude:(CLLocationDegrees)l;
++ (NSString *)niceLongitude:(CLLocationDegrees)l;
++ (NSString *)niceLatitudeForEditing:(CLLocationDegrees)l;
++ (NSString *)niceLongitudeForEditing:(CLLocationDegrees)l;
 
 + (CLLocationDegrees)degrees2rad:(CLLocationDegrees)d;
 + (CLLocationDegrees)rad2degrees:(CLLocationDegrees)r;

@@ -309,7 +309,7 @@
 
 - (GCDictionaryGCA2 *)api_services_caches_search_nearest:(CLLocationCoordinate2D)coords infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    NSLog(@"api_services_caches_search_nearest:%@", [Coordinates NiceCoordinates:coords]);
+    NSLog(@"api_services_caches_search_nearest:%@", [Coordinates niceCoordinates:coords]);
 
     float radius = configManager.mapSearchMaximumDistanceGCA / 1000;
 

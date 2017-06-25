@@ -28,8 +28,8 @@
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"(%@)-(%@)",
-            [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(self.bottomLat, self.leftLon)],
-            [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(self.topLat, self.rightLon)]];
+            [Coordinates niceCoordinates:self.bottomLat longitude:self.leftLon],
+            [Coordinates niceCoordinates:self.topLat longitude:self.rightLon]];
 }
 
 @end

@@ -602,7 +602,7 @@
 {
     CLLocationCoordinate2D currentCoords = [self.map currentCenter];
     double currentZoom = [self.map currentZoom];
-    NSLog(@"currentCoords: %@", [Coordinates NiceCoordinates:currentCoords]);
+    NSLog(@"currentCoords: %@", [Coordinates niceCoordinates:currentCoords]);
     NSLog(@"currentZoom: %f", currentZoom);
 
     [self removeDistanceLabel];
@@ -876,8 +876,8 @@
 {
     CLLocationCoordinate2D bottomLeft, topRight;
     [self.map currentRectangle:&bottomLeft topRight:&topRight];
-    NSLog(@"bottomLeft: %@", [Coordinates NiceCoordinates:bottomLeft]);
-    NSLog(@"topRight: %@", [Coordinates NiceCoordinates:topRight]);
+    NSLog(@"bottomLeft: %@", [Coordinates niceCoordinates:bottomLeft]);
+    NSLog(@"topRight: %@", [Coordinates niceCoordinates:topRight]);
 
     NSMutableArray<dbWaypoint *> *wps = [NSMutableArray arrayWithCapacity:200];
     [self.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {

@@ -106,7 +106,7 @@ TABLENAME(@"waypoints")
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ - %@ - %@", self.wpt_name, [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(self.wpt_latitude, self.wpt_longitude)], self.wpt_urlname];
+    return [NSString stringWithFormat:@"%@ - %@ - %@", self.wpt_name, [Coordinates niceCoordinates:self.wpt_latitude longitude:self.wpt_longitude], self.wpt_urlname];
 }
 
 - (NSId)dbCreate

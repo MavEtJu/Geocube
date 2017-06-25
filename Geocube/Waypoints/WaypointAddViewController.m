@@ -105,7 +105,7 @@ enum {
             break;
         case cellCoords:
             cell.textLabel.text = @"Coords";
-            cell.detailTextLabel.text = [Coordinates NiceCoordinates:coords];
+            cell.detailTextLabel.text = [Coordinates niceCoordinates:coords];
             break;
         case cellSubmit:
             cell.textLabel.text = @"Create this waypoint";
@@ -242,7 +242,7 @@ enum {
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = [Coordinates NiceLatitudeForEditing:coords.latitude];
+        textField.text = [Coordinates niceLatitudeForEditing:coords.latitude];
         textField.placeholder = @"Latitude (like S 12 34.567)";
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:YES];
@@ -250,7 +250,7 @@ enum {
         coordsLatitude = textField;
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = [Coordinates NiceLongitudeForEditing:coords.longitude];
+        textField.text = [Coordinates niceLongitudeForEditing:coords.longitude];
         textField.placeholder = @"Longitude (like E 23 45.678)";
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:NO];

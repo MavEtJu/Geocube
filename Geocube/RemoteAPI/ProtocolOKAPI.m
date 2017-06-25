@@ -164,7 +164,7 @@
 
 - (GCDictionaryOKAPI *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    NSLog(@"services_caches_search_nearest: %@ at %ld", [Coordinates NiceCoordinates:center], (long)offset);
+    NSLog(@"services_caches_search_nearest: %@ at %ld", [Coordinates niceCoordinates:center], (long)offset);
 
     float radius = configManager.mapSearchMaximumDistanceOKAPI / 1000;
     NSString *centerString = [NSString stringWithFormat:@"%f|%f", center.latitude, center.longitude];

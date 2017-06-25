@@ -209,10 +209,10 @@ enum {
         y3 = MAX(y3, c.lat);
     }];
 
-    labelCoordsMinX.text = [Coordinates NiceLongitude:x0];
-    labelCoordsMaxX.text = [Coordinates NiceLongitude:x3];
-    labelCoordsMinY.text = [Coordinates NiceLatitude:y0];
-    labelCoordsMaxY.text = [Coordinates NiceLatitude:y3];
+    labelCoordsMinX.text = [Coordinates niceLongitude:x0];
+    labelCoordsMaxX.text = [Coordinates niceLongitude:x3];
+    labelCoordsMinY.text = [Coordinates niceLatitude:y0];
+    labelCoordsMaxY.text = [Coordinates niceLatitude:y3];
 
     x0 -= .0001;
     y0 -= .0001;
@@ -280,8 +280,8 @@ enum {
     CGContextStrokePath(context);
 
     // Update text
-    labelCoordsLast.text = [NSString stringWithFormat:@"Last: %@ ± %@", [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(last.lat, last.lon)], [MyTools niceDistance:last.accuracy]];
-    labelCoordsAvg.text = [NSString stringWithFormat:@"Average: %@", [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(avg.lat, avg.lon)]];
+    labelCoordsLast.text = [NSString stringWithFormat:@"Last: %@ ± %@", [Coordinates niceCoordinates:last.lat longitude:last.lon], [MyTools niceDistance:last.accuracy]];
+    labelCoordsAvg.text = [NSString stringWithFormat:@"Average: %@", [Coordinates niceCoordinates:avg.lat longitude:avg.lon]];
     labelDistance.text = [NSString stringWithFormat:@"Last distance to average: %@", [MyTools niceDistance:[Coordinates coordinates2distance:CLLocationCoordinate2DMake(avg.lat, avg.lon) to:CLLocationCoordinate2DMake(last.lat, last.lon)]]];
 
     // Make an image
@@ -361,7 +361,7 @@ enum {
 - (void)createWaypoint:(CLLocationCoordinate2D)coord
 {
     NSString *code = [MyTools makeNewWaypoint:@"MY"];
-    NSString *name = [NSString stringWithFormat:@"Waypoint averaged on %@", [Coordinates NiceCoordinates:coord]];
+    NSString *name = [NSString stringWithFormat:@"Waypoint averaged on %@", [Coordinates niceCoordinates:coord]];
 
     dbWaypoint *wp = [[dbWaypoint alloc] init];
     Coordinates *c = [[Coordinates alloc] init:coord];
@@ -380,7 +380,7 @@ enum {
 
     [waypointManager needsRefreshAdd:wp];
 
-    [MyTools messageBox:self header:@"Waypoint added" text:[NSString stringWithFormat:@"Waypoint %@ is now created at %@", code, [Coordinates NiceCoordinates:coord]]];
+    [MyTools messageBox:self header:@"Waypoint added" text:[NSString stringWithFormat:@"Waypoint %@ is now created at %@", code, [Coordinates niceCoordinates:coord]]];
 }
 
 - (void)performLocalMenuAction:(NSInteger)index

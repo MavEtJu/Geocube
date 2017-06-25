@@ -52,7 +52,7 @@
     _LM.delegate = self;
 
     self.coords = _LM.location.coordinate;
-    NSLog(@"LocationManager: Starting at %@", [Coordinates NiceCoordinates:self.coords]);
+    NSLog(@"LocationManager: Starting at %@", [Coordinates niceCoordinates:self.coords]);
 
     self.delegates = [NSMutableArray arrayWithCapacity:5];
     self.useGPS = YES;
@@ -201,7 +201,7 @@
         }
     }
 
-    NSLog(@"Coordinates: %@ - Direction: %ld - speed: %0.2lf m/s", [Coordinates NiceCoordinates:self.coords], (long)LM.direction, LM.speed);
+    NSLog(@"Coordinates: %@ - Direction: %ld - speed: %0.2lf m/s", [Coordinates niceCoordinates:self.coords], (long)LM.direction, LM.speed);
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading

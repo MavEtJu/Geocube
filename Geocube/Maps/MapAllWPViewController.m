@@ -104,7 +104,7 @@ enum {
     bb.topLat = tr.latitude;
     bb.bottomLat = bl.latitude;
 
-    NSLog(@"Boundingbox: %@ x %@", [Coordinates NiceCoordinates:bl], [Coordinates NiceCoordinates:tr]);
+    NSLog(@"Boundingbox: %@ x %@", [Coordinates niceCoordinates:bl], [Coordinates niceCoordinates:tr]);
 
     oldWaypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAllInRect:bl RT:tr]];
     newWaypoints = [NSMutableArray arrayWithCapacity:[oldWaypoints count]];

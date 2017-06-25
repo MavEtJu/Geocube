@@ -293,40 +293,46 @@
 }
 
 /// Returns string with coordinates like N 1° 2.3' E 4° 5.6
-+ (NSString *)NiceCoordinates:(CLLocationCoordinate2D)c
++ (NSString *)niceCoordinates:(CLLocationCoordinate2D)c
 {
     Coordinates *co = [[Coordinates alloc] init:c];
     return [NSString stringWithFormat:@"%@ %@", [co lat_degreesDecimalMinutes], [co lon_degreesDecimalMinutes]];
 }
 
++ (NSString *)niceCoordinates:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude
+{
+    Coordinates *co = [[Coordinates alloc] init:latitude longitude:longitude];
+    return [NSString stringWithFormat:@"%@ %@", [co lat_degreesDecimalMinutes], [co lon_degreesDecimalMinutes]];
+}
+
 /// Returns string with coordinates like N 1 2.3 E 4 5.6
-+ (NSString *)NiceCoordinatesForEditing:(CLLocationCoordinate2D)c
++ (NSString *)niceCoordinatesForEditing:(CLLocationCoordinate2D)c
 {
     Coordinates *co = [[Coordinates alloc] init:c];
     return [NSString stringWithFormat:@"%@ %@", [co lat_degreesDecimalMinutesSimple], [co lon_degreesDecimalMinutesSimple]];
 }
 
 /// Returns string with latitude like N 1° 2.3'
-+ (NSString *)NiceLatitude:(CLLocationDegrees)l
++ (NSString *)niceLatitude:(CLLocationDegrees)l
 {
     Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(l, 0)];
     return [co lat_degreesDecimalMinutes];
 }
 /// Returns string with longitude like E 1° 2.3'
-+ (NSString *)NiceLongitude:(CLLocationDegrees)l
++ (NSString *)niceLongitude:(CLLocationDegrees)l
 {
     Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(0, l)];
     return [co lon_degreesDecimalMinutes];
 }
 
 /// Returns string with latitude like N 1 2.3
-+ (NSString *)NiceLatitudeForEditing:(CLLocationDegrees)l
++ (NSString *)niceLatitudeForEditing:(CLLocationDegrees)l
 {
     Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(l, 0)];
     return [co lat_degreesDecimalMinutesSimple];
 }
 /// Returns string with longitude like E 1 2.3
-+ (NSString *)NiceLongitudeForEditing:(CLLocationDegrees)l
++ (NSString *)niceLongitudeForEditing:(CLLocationDegrees)l
 {
     Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(0, l)];
     return [co lon_degreesDecimalMinutesSimple];

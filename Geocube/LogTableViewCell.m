@@ -59,7 +59,7 @@
     self.labelLocalLog.hidden = (log.localLog == NO);
     self.labelNotSubmitted.hidden = (log.needstobelogged == NO);
     if (log.latitude != 0 && log.longitude != 0)
-        self.labelCoordinates.text = [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(log.latitude, log.longitude)];
+        self.labelCoordinates.text = [Coordinates niceCoordinates:log.latitude longitude:log.longitude];
     else
         self.labelCoordinates.text = @"";
 }
