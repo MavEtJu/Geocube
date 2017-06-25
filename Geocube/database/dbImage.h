@@ -34,15 +34,15 @@ typedef NS_ENUM(NSInteger, ImageCategory) {
 
 + (NSString *)createDataFilename:(NSString *)url;
 + (dbImage *)dbGetByURL:(NSString *)url;
-- (BOOL)dbLinkedtoWaypoint:(NSId)wp_id;
-- (void)dbLinkToWaypoint:(NSId)wp_id type:(ImageCategory)type;
-+ (NSInteger)dbCountByWaypoint:(NSId)wp_id;
-+ (NSInteger)dbCountByWaypoint:(NSId)wp_id type:(ImageCategory)type;
-+ (NSArray<dbImage *> *)dbAllByWaypoint:(NSId)wp_id type:(ImageCategory)type;
+- (BOOL)dbLinkedtoWaypoint:(dbWaypoint *)wp;
+- (void)dbLinkToWaypoint:(dbWaypoint *)wp type:(ImageCategory)type;
++ (NSInteger)dbCountByWaypoint:(dbWaypoint *)wpid;
++ (NSInteger)dbCountByWaypoint:(dbWaypoint *)wp type:(ImageCategory)type;
++ (NSArray<dbImage *> *)dbAllByWaypoint:(dbWaypoint *)wp type:(ImageCategory)type;
 - (BOOL)imageHasBeenDowloaded;
 - (UIImage *)imageGet;
 + (NSString *)filename:(NSString *)url;
-- (void)dbUnlinkFromWaypoint:(NSId)wp_id;
-+ (void)dbUnlinkFromWaypoint:(NSId)wp_id;
+- (void)dbUnlinkFromWaypoint:(dbWaypoint *)wp;
++ (void)dbUnlinkFromWaypoint:(dbWaypoint *)wp;
 
 @end

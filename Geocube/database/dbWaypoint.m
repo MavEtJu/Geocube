@@ -656,7 +656,7 @@ TABLENAME(@"waypoints")
 - (NSInteger)hasImages
 {
     ASSERT_FINISHED;
-    return [dbImage dbCountByWaypoint:self._id];
+    return [dbImage dbCountByWaypoint:self];
 }
 
 - (NSInteger)hasPersonalNotes

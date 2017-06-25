@@ -265,8 +265,8 @@
         [group addWaypointToGroup:wp._id];
 
     // Images
-    [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_long_desc type:IMAGECATEGORY_CACHE];
-    [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_short_desc type:IMAGECATEGORY_CACHE];
+    [ImagesDownloadManager findImagesInDescription:wp text:wp.gs_long_desc type:IMAGECATEGORY_CACHE];
+    [ImagesDownloadManager findImagesInDescription:wp text:wp.gs_short_desc type:IMAGECATEGORY_CACHE];
 
     NSString *personal_note;
     DICT_NSSTRING_KEY(dict, personal_note, @"GeocacheNote");
@@ -471,8 +471,8 @@
 
     [ImagesDownloadManager addToQueue:img imageType:imageSource];
 
-    if ([img dbLinkedtoWaypoint:wp._id] == NO)
-        [img dbLinkToWaypoint:wp._id type:imageSource];
+    if ([img dbLinkedtoWaypoint:wp] == NO)
+        [img dbLinkToWaypoint:wp type:imageSource];
 }
 
 - (void)parseAttributes:(NSArray<NSDictionary *> *)attributes waypoint:(dbWaypoint *)wp
@@ -697,7 +697,7 @@
     DICT_NSSTRING_PATH(dict, dummy, @"LogType.WptLogTypeName");
     [l set_logstring_str:dummy account:account];
 
-    [ImagesDownloadManager findImagesInDescription:wp._id text:l.log type:IMAGECATEGORY_LOG];
+    [ImagesDownloadManager findImagesInDescription:wp text:l.log type:IMAGECATEGORY_LOG];
 
     dbName *name = [[dbName alloc] init];
     DICT_NSSTRING_PATH(dict, name.name, @"Finder.UserName");

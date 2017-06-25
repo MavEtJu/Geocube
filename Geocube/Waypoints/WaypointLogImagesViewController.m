@@ -59,7 +59,7 @@ enum {
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELL];
 
     waypoint = wp;
-    images = [dbImage dbAllByWaypoint:wp._id type:IMAGECATEGORY_USER];
+    images = [dbImage dbAllByWaypoint:wp type:IMAGECATEGORY_USER];
 
     return self;
 }
@@ -214,10 +214,10 @@ enum {
         [img dbCreate];
     }
 
-    if ([img dbLinkedtoWaypoint:waypoint._id] == NO)
-        [img dbLinkToWaypoint:waypoint._id type:IMAGECATEGORY_USER];
+    if ([img dbLinkedtoWaypoint:waypoint] == NO)
+        [img dbLinkToWaypoint:waypoint type:IMAGECATEGORY_USER];
 
-    images = [dbImage dbAllByWaypoint:waypoint._id type:IMAGECATEGORY_USER];
+    images = [dbImage dbAllByWaypoint:waypoint type:IMAGECATEGORY_USER];
     [self.tableView reloadData];
     [parentTable reloadData];
 

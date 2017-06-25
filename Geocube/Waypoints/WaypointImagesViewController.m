@@ -70,9 +70,9 @@ enum {
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELL];
 
     waypoint = wp;
-    userImages = [dbImage dbAllByWaypoint:wp._id type:IMAGECATEGORY_USER];
-    cacheImages = [dbImage dbAllByWaypoint:wp._id type:IMAGECATEGORY_CACHE];
-    logImages = [dbImage dbAllByWaypoint:wp._id type:IMAGECATEGORY_LOG];
+    userImages = [dbImage dbAllByWaypoint:wp type:IMAGECATEGORY_USER];
+    cacheImages = [dbImage dbAllByWaypoint:wp type:IMAGECATEGORY_CACHE];
+    logImages = [dbImage dbAllByWaypoint:wp type:IMAGECATEGORY_LOG];
 
     currentIndexPath = [[NSIndexPath alloc] init];
 
@@ -237,9 +237,9 @@ enum {
             return;
         dbImage *img = [userImages objectAtIndex:indexPath.row];
 
-        [img dbUnlinkFromWaypoint:waypoint._id];
+        [img dbUnlinkFromWaypoint:waypoint];
 
-        userImages = [dbImage dbAllByWaypoint:waypoint._id type:IMAGECATEGORY_USER];
+        userImages = [dbImage dbAllByWaypoint:waypoint type:IMAGECATEGORY_USER];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
         if (self.delegateWaypoint != nil)
             [self.delegateWaypoint WaypointImages_refreshTable];
@@ -454,10 +454,10 @@ enum {
         UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
     }
 
-    if ([img dbLinkedtoWaypoint:waypoint._id] == NO)
-        [img dbLinkToWaypoint:waypoint._id type:IMAGECATEGORY_USER];
+    if ([img dbLinkedtoWaypoint:waypoint] == NO)
+        [img dbLinkToWaypoint:waypoint type:IMAGECATEGORY_USER];
 
-    userImages = [dbImage dbAllByWaypoint:waypoint._id type:IMAGECATEGORY_USER];
+    userImages = [dbImage dbAllByWaypoint:waypoint type:IMAGECATEGORY_USER];
     [self.tableView reloadData];
     if (self.delegateWaypoint != nil)
         [self.delegateWaypoint WaypointImages_refreshTable];

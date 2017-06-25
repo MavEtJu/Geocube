@@ -73,9 +73,9 @@ TABLENAME(@"images")
     return [self dbAllXXX:nil keys:nil values:nil];
 }
 
-+ (NSArray<dbImage *> *)dbAllByWaypoint:(NSId)wp_id type:(ImageCategory)type
++ (NSArray<dbImage *> *)dbAllByWaypoint:(dbWaypoint *)wp type:(ImageCategory)type
 {
-    return [self dbAllXXX:@"where id in (select image_id from image2waypoint where waypoint_id = ? and type = ?)" keys:@"ii" values:@[[NSNumber numberWithInteger:wp_id], [NSNumber numberWithInteger:type]]];
+    return [self dbAllXXX:@"where id in (select image_id from image2waypoint where waypoint_id = ? and type = ?)" keys:@"ii" values:@[[NSNumber numberWithInteger:wp._id], [NSNumber numberWithInteger:type]]];
 }
 
 + (dbImage *)dbGetByURL:(NSString *)url
@@ -104,13 +104,13 @@ TABLENAME(@"images")
     return output;
 }
 
-- (BOOL)dbLinkedtoWaypoint:(NSId)wp_id
+- (BOOL)dbLinkedtoWaypoint:(dbWaypoint *)wp
 {
     BOOL linked = NO;
     @synchronized (db) {
         DB_PREPARE(@"select id from image2waypoint where waypoint_id = ? and image_id = ?");
 
-        SET_VAR_INT(1, wp_id);
+        SET_VAR_INT(1, wp._id);
         SET_VAR_INT(2, self._id);
 
         DB_IF_STEP {
@@ -121,13 +121,13 @@ TABLENAME(@"images")
     return linked;
 }
 
-- (void)dbLinkToWaypoint:(NSId)wp_id type:(ImageCategory)type
+- (void)dbLinkToWaypoint:(dbWaypoint *)wp type:(ImageCategory)type
 {
     @synchronized (db) {
         DB_PREPARE(@"insert into image2waypoint(image_id, waypoint_id, type) values(?, ?, ?)");
 
         SET_VAR_INT(1, self._id);
-        SET_VAR_INT(2, wp_id);
+        SET_VAR_INT(2, wp._id);
         SET_VAR_INT(3, type);
 
         DB_CHECK_OKAY;
@@ -135,13 +135,13 @@ TABLENAME(@"images")
     }
 }
 
-+ (NSInteger)dbCountByWaypoint:(NSId)wp_id type:(ImageCategory)type
++ (NSInteger)dbCountByWaypoint:(dbWaypoint *)wp type:(ImageCategory)type
 {
     NSInteger linked = 0;
     @synchronized (db) {
         DB_PREPARE(@"select count(id) from image2waypoint where waypoint_id = ? and type = ?");
 
-        SET_VAR_INT(1, wp_id);
+        SET_VAR_INT(1, wp._id);
         SET_VAR_INT(2, type);
 
         DB_IF_STEP {
@@ -152,13 +152,13 @@ TABLENAME(@"images")
     return linked;
 }
 
-+ (NSInteger)dbCountByWaypoint:(NSId)wp_id
++ (NSInteger)dbCountByWaypoint:(dbWaypoint *)wp
 {
     NSInteger linked = 0;
     @synchronized (db) {
         DB_PREPARE(@"select count(id) from image2waypoint where waypoint_id = ?");
 
-        SET_VAR_INT(1, wp_id);
+        SET_VAR_INT(1, wp._id);
 
         DB_IF_STEP {
             INT_FETCH(0, linked);
@@ -178,12 +178,12 @@ TABLENAME(@"images")
     return [url lastPathComponent];
 }
 
-- (void)dbUnlinkFromWaypoint:(NSId)wp_id
+- (void)dbUnlinkFromWaypoint:(dbWaypoint *)wp
 {
     @synchronized (db) {
         DB_PREPARE(@"delete from image2waypoint where waypoint_id = ? and image_id = ?");
 
-        SET_VAR_INT(1, wp_id);
+        SET_VAR_INT(1, wp._id);
         SET_VAR_INT(2, self._id);
 
         DB_CHECK_OKAY;
@@ -191,12 +191,12 @@ TABLENAME(@"images")
     }
 }
 
-+ (void)dbUnlinkFromWaypoint:(NSId)wp_id
++ (void)dbUnlinkFromWaypoint:(dbWaypoint *)wp
 {
     @synchronized (db) {
         DB_PREPARE(@"delete from image2waypoint where waypoint_id = ?");
 
-        SET_VAR_INT(1, wp_id);
+        SET_VAR_INT(1, wp._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

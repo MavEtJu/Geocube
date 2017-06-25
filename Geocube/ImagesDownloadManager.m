@@ -156,7 +156,7 @@
     }
 }
 
-+ (NSInteger)findImagesInDescription:(NSId)wp_id text:(NSString *)desc type:(NSInteger)type
++ (NSInteger)findImagesInDescription:(dbWaypoint *)wp text:(NSString *)desc type:(NSInteger)type
 {
     NSInteger found = 0;
     NSString *next = desc;
@@ -228,13 +228,13 @@
         }
 
         if ([[imgtag substringToIndex:5] isEqualToString:@"data:"] == YES) {
-            if ([self downloadImage:wp_id url:imgtag name:[dbImage filename:imgtag] type:type] == YES)
+            if ([self downloadImage:wp url:imgtag name:[dbImage filename:imgtag] type:type] == YES)
                 found++;
             NSLog(@"%@/parse: Found image: data:-URL", [self class]);
             continue;
         }
 
-        if ([self downloadImage:wp_id url:imgtag name:[dbImage filename:imgtag] type:type] == YES)
+        if ([self downloadImage:wp url:imgtag name:[dbImage filename:imgtag] type:type] == YES)
             found++;
         NSLog(@"%@/parse: Found image: %@", [self class], imgtag);
 
@@ -243,7 +243,7 @@
     return found;
 }
 
-+ (BOOL)downloadImage:(NSId)wp_id url:(NSString *)url name:(NSString *)name type:(NSInteger)type
++ (BOOL)downloadImage:(dbWaypoint *)wp url:(NSString *)url name:(NSString *)name type:(NSInteger)type
 {
     NSString *datafile = [dbImage createDataFilename:url];
     dbImage *img = [dbImage dbGetByURL:url];
@@ -255,8 +255,8 @@
         [img dbCreate];
     }
 
-    if ([img dbLinkedtoWaypoint:wp_id] == NO)
-        [img dbLinkToWaypoint:wp_id type:type];
+    if ([img dbLinkedtoWaypoint:wp] == NO)
+        [img dbLinkToWaypoint:wp type:type];
 
     if ([img imageHasBeenDowloaded] == NO) {
         // Do nothing for images outside the waypoint data itself if they shouldn't be downloaded.
