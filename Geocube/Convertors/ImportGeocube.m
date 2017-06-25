@@ -423,7 +423,7 @@ typedef NS_ENUM(NSInteger, Type) {
 
             dbExternalMapURL *emu = [[dbExternalMapURL alloc] init];
             emu.model = model;
-            emu.externalMap_id = em._id;
+            emu.externalMap = em;
             emu.url = url;
             emu.type = type;
             [emu dbCreate];
