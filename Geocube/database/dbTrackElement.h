@@ -30,7 +30,7 @@
 @property (nonatomic) NSInteger timestamp_epoch;
 @property (nonatomic) BOOL restart;
 
-+ (NSArray<dbTrackElement *> *)dbAllByTrack:(NSId)_track_id;
-+ (void)dbDeleteByTrack:(NSId)trackId;
++ (NSArray<dbTrackElement *> *)dbAllByTrack:(dbTrack *)track;
++ (void)dbDeleteByTrack:(dbTrack *)track;
 
 @end

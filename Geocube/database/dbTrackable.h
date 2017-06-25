@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger, TrackableLog) {
 @property (nonatomic, retain) NSString *code;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *ref;
-@property (nonatomic) NSId gc_id;
+@property (nonatomic) NSInteger gc_id;
 @property (nonatomic, retain) dbName *carrier;
 @property (nonatomic, retain) dbName *owner;
 @property (nonatomic, retain) NSString *waypoint_name;

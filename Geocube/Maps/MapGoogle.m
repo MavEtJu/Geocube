@@ -438,7 +438,7 @@
     top = -180;
     bottom = 180;
 
-    [[dbTrackElement dbAllByTrack:track._id] enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
+    [[dbTrackElement dbAllByTrack:track] enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
         bottom = MIN(bottom, te.lat);
         top = MAX(top, te.lat);
         right = MAX(right, te.lon);

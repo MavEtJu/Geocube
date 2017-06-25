@@ -607,7 +607,7 @@
     top = -180;
     bottom = 180;
 
-    NSArray<dbTrackElement *> *tes = [dbTrackElement dbAllByTrack:track._id];
+    NSArray<dbTrackElement *> *tes = [dbTrackElement dbAllByTrack:track];
 
     __block CLLocationCoordinate2D *coordinateArray = calloc([tes count], sizeof(CLLocationCoordinate2D));
     __block NSInteger counter = 0;

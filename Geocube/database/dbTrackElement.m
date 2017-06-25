@@ -47,14 +47,14 @@ TABLENAME(@"trackelements")
     return self._id;
 }
 
-+ (NSArray<dbTrackElement *> *)dbAllByTrack:(NSId)track_id
++ (NSArray<dbTrackElement *> *)dbAllByTrack:(dbTrack *)track
 {
     NSMutableArray<dbTrackElement *> *tes = [NSMutableArray arrayWithCapacity:500];
 
     @synchronized(db) {
         DB_PREPARE(@"select id, track_id, lat, lon, height, timestamp, restart from trackelements where track_id = ? order by timestamp");
 
-        SET_VAR_INT(1, track_id);
+        SET_VAR_INT(1, track._id);
 
         DB_WHILE_STEP {
             dbTrackElement *te = [[dbTrackElement alloc] init];
@@ -73,12 +73,12 @@ TABLENAME(@"trackelements")
     return tes;
 }
 
-+ (void)dbDeleteByTrack:(NSId)trackId
++ (void)dbDeleteByTrack:(dbTrack *)track
 {
     @synchronized(db) {
         DB_PREPARE(@"delete from trackelements where track_id = ?");
 
-        SET_VAR_INT(1, trackId);
+        SET_VAR_INT(1, track._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

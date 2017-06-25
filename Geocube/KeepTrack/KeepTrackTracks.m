@@ -85,7 +85,7 @@ enum {
     cell.labelTrackName.text = t.name;
     cell.labelDateTimeStart.text = [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:t.dateStart];
 
-    NSArray<dbTrackElement *> *tes = [dbTrackElement dbAllByTrack:t._id];
+    NSArray<dbTrackElement *> *tes = [dbTrackElement dbAllByTrack:t];
     __block CGFloat distance = 0;
     __block dbTrackElement *te_prev = nil;
     [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -113,7 +113,7 @@ enum {
 {
     dbTrack *t = [tracks objectAtIndex:indexPath.row];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [dbTrackElement dbDeleteByTrack:t._id];
+        [dbTrackElement dbDeleteByTrack:t];
         [t dbDelete];
         [tracks removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
@@ -212,7 +212,7 @@ enum {
     [tracks enumerateObjectsUsingBlock:^(dbTrack *track, NSUInteger idx, BOOL * _Nonnull stop) {
         if (track.dateStart < cutoff) {
             NSLog(@"trackAutoPurge: Purging %@", track.name);
-            [dbTrackElement dbDeleteByTrack:track._id];
+            [dbTrackElement dbDeleteByTrack:track];
             [track dbDelete];
         }
     }];
