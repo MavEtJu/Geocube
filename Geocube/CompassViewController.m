@@ -211,7 +211,7 @@
         self.ivGPSCompassLine.hidden = NO;
 
         self.ivGPSCompassLine.transform = CGAffineTransformMakeRotation(fBearing);
-        self.labelGPSDistance.text = [MyTools niceDistance:[c distance:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude)]];
+        self.labelGPSDistance.text = [MyTools niceDistance:[c distance:waypointManager.currentWaypoint.wpt_latitude longitude:waypointManager.currentWaypoint.wpt_longitude]];
     }
 
     if (configManager.soundDirection == YES) {

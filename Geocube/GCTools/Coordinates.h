@@ -39,7 +39,9 @@
 - (NSString *)lat_degreesMinutesSeconds;        // S 34° 01' 40"
 - (NSString *)lon_degreesMinutesSeconds;        // E 151° 04' 25"
 - (NSInteger)distance:(CLLocationCoordinate2D)c;
+- (NSInteger)distance:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude;
 - (NSInteger)bearing:(CLLocationCoordinate2D)c;
+- (NSInteger)bearing:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude;
 
 + (NSInteger)latitudeToTile:(CLLocationDegrees)latitude zoom:(NSInteger)zoom;
 + (NSInteger)longitudeToTile:(CLLocationDegrees)longitude zoom:(NSInteger)zoom;

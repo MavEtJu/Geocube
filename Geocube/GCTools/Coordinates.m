@@ -142,11 +142,19 @@
 {
     return [Coordinates coordinates2distance:coords to:c];
 }
+- (NSInteger)distance:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude
+{
+    return [Coordinates coordinates2distance:coords to:CLLocationCoordinate2DMake(latitude, longitude)];
+}
 
 /// Returns bearing towards coordinates c
 - (NSInteger)bearing:(CLLocationCoordinate2D)c
 {
     return [Coordinates coordinates2bearing:coords to:c];
+}
+- (NSInteger)bearing:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude
+{
+    return [Coordinates coordinates2bearing:coords to:CLLocationCoordinate2DMake(latitude, longitude)];
 }
 
 /// Returns radians value of a degree value
