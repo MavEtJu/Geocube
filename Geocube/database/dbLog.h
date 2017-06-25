@@ -36,7 +36,7 @@
 // Internal values
 @property (nonatomic) NSInteger cellHeight;
 
-- (instancetype)init:(NSId)__id gc_id:(NSInteger)gc_id waypoint:(dbWaypoint *)wp logstring:(dbLogString *)ls datetime:(NSInteger)_datetime logger:(dbName *)logger log:(NSString *)_log needstobelogged:(BOOL)needstobelogged locallog:(BOOL)locallog coordinates:(CLLocationCoordinate2D)coordinates;
+- (instancetype)init:(NSId)_id gc_id:(NSInteger)gc_id waypoint:(dbWaypoint *)wp logstring:(dbLogString *)ls datetime:(NSInteger)_datetime logger:(dbName *)logger log:(NSString *)_log needstobelogged:(BOOL)needstobelogged locallog:(BOOL)locallog coordinates:(CLLocationCoordinate2D)coordinates;
 - (instancetype)init:(NSInteger)gc_id;
 - (void)set_logstring_str:(NSString *)s account:(dbAccount *)account;
 

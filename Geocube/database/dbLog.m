@@ -35,13 +35,13 @@
 
 TABLENAME(@"logs")
 
-- (instancetype)init:(NSId)__id gc_id:(NSInteger)gc_id waypoint:(dbWaypoint *)wp logstring:(dbLogString *)ls datetime:(NSInteger)datetime logger:(dbName *)logger log:(NSString *)log needstobelogged:(BOOL)needstobelogged locallog:(BOOL)locallog coordinates:(CLLocationCoordinate2D)coordinates;
+- (instancetype)init:(NSId)_id gc_id:(NSInteger)gc_id waypoint:(dbWaypoint *)wp logstring:(dbLogString *)ls datetime:(NSInteger)datetime logger:(dbName *)logger log:(NSString *)log needstobelogged:(BOOL)needstobelogged locallog:(BOOL)locallog coordinates:(CLLocationCoordinate2D)coordinates;
 {
     ASSERT_FIELD_EXISTS(wp);
     ASSERT_FIELD_EXISTS(ls);
     ASSERT_FIELD_EXISTS(logger);
     self = [super init];
-    self._id = __id;
+    self._id = _id;
     self.gc_id = gc_id;
     self.waypoint = wp;
     self.logstring = ls;
