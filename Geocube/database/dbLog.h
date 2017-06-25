@@ -42,13 +42,13 @@
 
 + (dbWaypoint *)dbGetIdByGC:(NSInteger)gc_id account:(dbAccount *)account;
 + (NSMutableDictionary *)dbAllIdGCId;
-+ (NSInteger)dbCountByWaypoint:(NSId)wp_id;
-+ (NSArray<dbLog *> *)dbAllByWaypoint:(NSId)wp_id;
-+ (NSArray<dbLog *> *)dbAllByWaypointLogged:(NSId)wp_id;
-+ (NSArray<dbLog *> *)dbAllByWaypointUnsubmitted:(NSId)wp_id;
-+ (NSArray<dbLog *> *)dbLast7ByWaypoint:(NSId)wp_id;
-+ (NSArray<dbLog *> *)dbLast7ByWaypointLogged:(NSId)wp_id;
-- (void)dbUpdateWaypoint:(NSId)wp_id;
++ (NSInteger)dbCountByWaypoint:(dbWaypoint *)wp;
++ (NSArray<dbLog *> *)dbAllByWaypoint:(dbWaypoint *)wp;
++ (NSArray<dbLog *> *)dbAllByWaypointLogged:(dbWaypoint *)wp;
++ (NSArray<dbLog *> *)dbAllByWaypointUnsubmitted:(dbWaypoint *)wp;
++ (NSArray<dbLog *> *)dbLast7ByWaypoint:(dbWaypoint *)wp;
++ (NSArray<dbLog *> *)dbLast7ByWaypointLogged:(dbWaypoint *)wp;
+- (void)dbUpdateWaypoint:(dbWaypoint *)wp;
 - (void)dbUpdateNote;
 + (NSInteger)dbCountByWaypointLogString:(dbWaypoint *)wp LogString:(NSString *)string;
 + (dbLog *)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSInteger)date note:(NSString *)note needstobelogged:(BOOL)needstobelogged locallog:(BOOL)locallog coordinates:(CLLocationCoordinate2D)coordinates;

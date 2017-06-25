@@ -172,7 +172,7 @@
 
         LINE_S(@"groundspeak:encoded_hints", wp.gs_hint);
 
-        NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp._id];
+        NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp];
         if ([logs count] == 0) {
             [lines addObject:@"<groundspeak:logs />"];
         } else {

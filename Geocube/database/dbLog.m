@@ -64,9 +64,9 @@ TABLENAME(@"logs")
 //    self.logstring = [dbc LogString_get_bytype:account logtype:self.waypoint.logstring_logtype type:self.logstring_string];
 }
 
-+ (NSInteger)dbCountByWaypoint:(NSId)wp_id
++ (NSInteger)dbCountByWaypoint:(dbWaypoint *)wp
 {
-    return [self dbCountXXX:@"where waypoint_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:wp_id]]];
+    return [self dbCountXXX:@"where waypoint_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:wp._id]]];
 }
 
 + (NSInteger)dbCountByWaypointLogString:(dbWaypoint *)wp LogString:(NSString *)string
@@ -123,12 +123,12 @@ TABLENAME(@"logs")
     }
 }
 
-- (void)dbUpdateWaypoint:(NSId)c_id;
+- (void)dbUpdateWaypoint:(dbWaypoint *)wp;
 {
     @synchronized(db) {
         DB_PREPARE(@"update logs set waypoint_id = ? where id = ?");
 
-        SET_VAR_INT(1, c_id);
+        SET_VAR_INT(1, wp._id);
         SET_VAR_INT(2, self._id);
 
         DB_CHECK_OKAY;
@@ -185,29 +185,29 @@ TABLENAME(@"logs")
     return ls;
 }
 
-+ (NSArray<dbLog *> *)dbAllByWaypoint:(NSId)wp_id
++ (NSArray<dbLog *> *)dbAllByWaypoint:(dbWaypoint *)wp
 {
-    return [self dbAllXXX:@"where waypoint_id = ? order by datetime_epoch desc" keys:@"i" values:@[[NSNumber numberWithInteger:wp_id]]];
+    return [self dbAllXXX:@"where waypoint_id = ? order by datetime_epoch desc" keys:@"i" values:@[[NSNumber numberWithInteger:wp._id]]];
 }
 
-+ (NSArray<dbLog *> *)dbLast7ByWaypoint:(NSId)wp_id
++ (NSArray<dbLog *> *)dbLast7ByWaypoint:(dbWaypoint *)wp
 {
-    return [self dbAllXXX:@"where waypoint_id = ? order by datetime_epoch desc limit 7" keys:@"i" values:@[[NSNumber numberWithInteger:wp_id]]];
+    return [self dbAllXXX:@"where waypoint_id = ? order by datetime_epoch desc limit 7" keys:@"i" values:@[[NSNumber numberWithInteger:wp._id]]];
 }
 
-+ (NSArray<dbLog *> *)dbAllByWaypointLogged:(NSId)wp_id
++ (NSArray<dbLog *> *)dbAllByWaypointLogged:(dbWaypoint *)wp
 {
-    return [self dbAllXXX:@"where waypoint_id = ? and logger_id in (select id from names where id in (select accountname_id from accounts where accountname_id != 0))" keys:@"i" values:@[[NSNumber numberWithInteger:wp_id]]];
+    return [self dbAllXXX:@"where waypoint_id = ? and logger_id in (select id from names where id in (select accountname_id from accounts where accountname_id != 0))" keys:@"i" values:@[[NSNumber numberWithInteger:wp._id]]];
 }
 
-+ (NSArray<dbLog *> *)dbAllByWaypointUnsubmitted:(NSId)wp_id
++ (NSArray<dbLog *> *)dbAllByWaypointUnsubmitted:(dbWaypoint *)wp
 {
-    return [self dbAllXXX:@"where waypoint_id = ? and needstobelogged = 1 and logger_id in (select id from names where id in (select accountname_id from accounts where accountname_id != 0))" keys:@"i" values:@[[NSNumber numberWithInteger:wp_id]]];
+    return [self dbAllXXX:@"where waypoint_id = ? and needstobelogged = 1 and logger_id in (select id from names where id in (select accountname_id from accounts where accountname_id != 0))" keys:@"i" values:@[[NSNumber numberWithInteger:wp._id]]];
 }
 
-+ (NSArray<dbLog *> *)dbLast7ByWaypointLogged:(NSId)wp_id
++ (NSArray<dbLog *> *)dbLast7ByWaypointLogged:(dbWaypoint *)wp
 {
-    return [self dbAllXXX:@"where waypoint_id = ? and logger_id in (select id from names where id in (select accountname_id from accounts where accountname_id != 0)) limit 7" keys:@"i" values:@[[NSNumber numberWithInteger:wp_id]]];
+    return [self dbAllXXX:@"where waypoint_id = ? and logger_id in (select id from names where id in (select accountname_id from accounts where accountname_id != 0)) limit 7" keys:@"i" values:@[[NSNumber numberWithInteger:wp._id]]];
 }
 
 + (dbLog *)dbGetIdByGC:(NSInteger)gc_id account:(dbAccount *)account

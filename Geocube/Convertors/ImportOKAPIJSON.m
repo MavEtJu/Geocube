@@ -304,7 +304,7 @@
 
 - (void)parseData_logs:(NSArray<NSDictionary *> *)logs waypoint:(dbWaypoint *)wp
 {
-    NSArray<dbLog *> *alllogs = [dbLog dbAllByWaypoint:wp._id];
+    NSArray<dbLog *> *alllogs = [dbLog dbAllByWaypoint:wp];
     [infoViewer setLogsTotal:iiImport total:[alllogs count]];
     [logs enumerateObjectsUsingBlock:^(NSDictionary *log, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseData_log:log waypoint:wp logs:alllogs];

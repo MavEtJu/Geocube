@@ -386,7 +386,7 @@
             switch (lastLogCompare) {
                 case FILTER_DATE_BEFORE: {
                     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                        NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp._id];
+                        NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp];
                         __block BOOL rv = YES;
                         [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL *stop) {
                             if (log.datetime_epoch > lastLogEpoch) {
@@ -401,7 +401,7 @@
                 }
                 case FILTER_DATE_AFTER: {
                     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                        NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp._id];
+                        NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp];
                         __block BOOL rv = NO;
                         [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL *stop) {
                             if (log.datetime_epoch > lastLogEpoch) {
@@ -416,7 +416,7 @@
                 }
                 case FILTER_DATE_ON: {
                     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                        NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp._id];
+                        NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp];
                         __block BOOL rv = NO;
                         [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL *stop) {
                             if (log.datetime_epoch > lastLogEpoch - 86400 && log.datetime_epoch < lastLogEpoch + 86400) {

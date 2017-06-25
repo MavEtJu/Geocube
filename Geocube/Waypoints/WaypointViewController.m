@@ -321,7 +321,7 @@ enum {
                         cell.userInteractionEnabled = NO;
 
                     } else {
-                        NSArray<dbLog *> *logs = [dbLog dbLast7ByWaypointLogged:waypoint._id];
+                        NSArray<dbLog *> *logs = [dbLog dbLast7ByWaypointLogged:waypoint];
                         IMAGE(0);
                         IMAGE(1);
                         IMAGE(2);
@@ -356,7 +356,7 @@ enum {
                     } else {
                         cell.logs.text = [NSString stringWithFormat:@"%@ (%ld)", cell.logs.text, (long)c];
 
-                        NSArray<dbLog *> *logs = [dbLog dbLast7ByWaypoint:waypoint._id];
+                        NSArray<dbLog *> *logs = [dbLog dbLast7ByWaypoint:waypoint];
 #define IMAGE(__idx__) \
     if ([logs count] > __idx__) { \
         dbLog *log = [logs objectAtIndex:__idx__]; \

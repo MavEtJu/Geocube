@@ -52,7 +52,7 @@
 - (void)showLogLocations:(dbWaypoint *)_wp
 {
     waypoint = _wp;
-    NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:waypoint._id];
+    NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:waypoint];
     self.waypointsArray = [NSMutableArray arrayWithCapacity:[logs count]];
     [logs enumerateObjectsUsingBlock:^(dbLog * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
         dbWaypoint *wp = [[dbWaypoint alloc] init];

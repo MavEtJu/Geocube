@@ -71,7 +71,7 @@
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
     dbWaypoint *wp = [waypointsWithLogs objectAtIndex:section];
-    return [[dbLog dbAllByWaypointLogged:wp._id] count];
+    return [[dbLog dbAllByWaypointLogged:wp] count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -87,7 +87,7 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     dbWaypoint *wp = [waypointsWithLogs objectAtIndex:indexPath.section];
-    dbLog *l = [[dbLog dbAllByWaypointLogged:wp._id] objectAtIndex:indexPath.row];
+    dbLog *l = [[dbLog dbAllByWaypointLogged:wp] objectAtIndex:indexPath.row];
 
     [cell setLog:l];
     [cell setUserInteractionEnabled:NO];
