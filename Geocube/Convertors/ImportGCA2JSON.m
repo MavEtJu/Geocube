@@ -258,6 +258,7 @@
 
     if (wp._id == 0) {
         NSLog(@"Created waypoint %@", wp.wpt_name);
+        [wp set_wpt_symbol_str:@"Geocache"];    // wpt_symbol is normally not set by the GCA API.
         [wp dbCreate];
         newWaypointsCount++;
         [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
