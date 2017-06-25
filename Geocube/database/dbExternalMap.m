@@ -87,7 +87,7 @@ TABLENAME(@"externalmaps")
     return [self dbAllXXX:@"order by geocube_id" keys:nil values:nil];
 }
 
-+ (dbExternalMap *)dbGetByGeocubeID:(NSId)geocube_id
++ (dbExternalMap *)dbGetByGeocubeID:(NSInteger)geocube_id
 {
     return [[self dbAllXXX:@"where geocube_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:geocube_id]]] firstObject];
 }

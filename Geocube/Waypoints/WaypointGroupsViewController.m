@@ -37,7 +37,7 @@
     ugs = [NSMutableArray arrayWithCapacity:5];
     sgs = [NSMutableArray arrayWithCapacity:5];
 
-    [[dbGroup dbAllByWaypoint:waypoint._id] enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
+    [[dbGroup dbAllByWaypoint:waypoint] enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
         if (cg.usergroup == TRUE)
             [ugs addObject:cg];
         else

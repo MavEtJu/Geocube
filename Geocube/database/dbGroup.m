@@ -85,9 +85,9 @@ TABLENAME(@"groups")
     return [self dbAllXXX:nil keys:nil values:nil];
 }
 
-+ (NSArray<dbGroup *> *)dbAllByWaypoint:(NSId)wp_id
++ (NSArray<dbGroup *> *)dbAllByWaypoint:(dbWaypoint *)wp
 {
-    return [self dbAllXXX:@"where id in (select group_id from group2waypoints where waypoint_id = ?)" keys:@"i" values:@[[NSNumber numberWithInteger:wp_id]]];
+    return [self dbAllXXX:@"where id in (select group_id from group2waypoints where waypoint_id = ?)" keys:@"i" values:@[[NSNumber numberWithInteger:wp._id]]];
 }
 
 + (NSArray<dbGroup *> *)dbAllByUserGroup:(BOOL)isUser

@@ -398,7 +398,7 @@
     if (found == YES)
         return;
 
-    dbLog *l = [[dbLog alloc] init:0 gc_id:0 waypoint_id:wp._id logstring_id:logstring._id datetime:dateSinceEpoch logger_id:name._id log:comment needstobelogged:NO locallog:NO coordinates:CLLocationCoordinate2DZero];
+    dbLog *l = [[dbLog alloc] init:0 gc_id:0 waypoint:wp logstring:logstring datetime:dateSinceEpoch logger:name log:comment needstobelogged:NO locallog:NO coordinates:CLLocationCoordinate2DZero];
     if ([location isKindOfClass:[NSString class]] == YES) {
         NSArray<NSString *> *cs = [location componentsSeparatedByString:@"|"];
         if ([cs count] == 2) {

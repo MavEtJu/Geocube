@@ -26,6 +26,6 @@
 @property (nonatomic, retain) NSString *name;
 
 + (NSArray<dbExternalMap *> *)dbAll;
-+ (dbExternalMap *)dbGetByGeocubeID:(NSId)geocube_id;
++ (dbExternalMap *)dbGetByGeocubeID:(NSInteger)geocube_id;
 
 @end
