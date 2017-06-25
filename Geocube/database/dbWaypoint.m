@@ -223,13 +223,14 @@ TABLENAME(@"waypoints")
     [clock clockEnable:YES];
     [clock clockShowAndReset:@"start"];
 
+    // Remove this, it will never get unlogged.
     // Make all not logged
-    @synchronized(db) {
-        DB_PREPARE(@"update waypoints set log_status = ?");
-        SET_VAR_INT(1, LOGSTATUS_NOTLOGGED);
-        DB_CHECK_OKAY;
-        DB_FINISH;
-    }
+//    @synchronized(db) {
+//        DB_PREPARE(@"update waypoints set log_status = ?");
+//        SET_VAR_INT(1, LOGSTATUS_NOTLOGGED);
+//        DB_CHECK_OKAY;
+//        DB_FINISH;
+//    }
     [clock clockShowAndReset:@"1"];
 
     // Find all the logs about non-found caches and mark these caches as not found.

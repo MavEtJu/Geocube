@@ -137,12 +137,12 @@ TABLENAME(@"travelbugs")
 
 + (NSArray<dbTrackable *> *)dbAllMine
 {
-    return [self dbAllXXX:@"where owner_id in (select id from names where name in (select accountname from accounts where accountname != ''))" keys:nil values:nil];
+    return [self dbAllXXX:@"where owner_id in (select id from names where name in (select accountname_id from accounts where accountname_id != 0))" keys:nil values:nil];
 }
 
 + (NSArray<dbTrackable *> *)dbAllInventory
 {
-    return [self dbAllXXX:@"where carrier_id in (select id from names where name in (select accountname from accounts where accountname != ''))" keys:nil values:nil];
+    return [self dbAllXXX:@"where carrier_id in (select id from names where name in (select accountname_id from accounts where accountname_id != 0))" keys:nil values:nil];
 }
 
 + (NSArray<dbTrackable *> *)dbAllByWaypoint:(NSId)wp_id

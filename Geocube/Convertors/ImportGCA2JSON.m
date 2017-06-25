@@ -233,6 +233,14 @@
         wp.gs_available = NO;
     }
 
+    NSInteger is;
+    DICT_INTEGER_KEY(dict, is, @"is_not_found");
+    if (is == YES)
+        wp.logStatus = LOGSTATUS_NOTFOUND;
+    DICT_INTEGER_KEY(dict, is, @"is_found");
+    if (is == YES)
+        wp.logStatus = LOGSTATUS_FOUND;
+
     DICT_NSSTRING_KEY(dict, dummy, @"size2");
     [wp set_gs_container_str:dummy];
     DICT_NSSTRING_KEY(dict, dummy, @"type");
