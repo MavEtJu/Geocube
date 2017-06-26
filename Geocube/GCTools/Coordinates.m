@@ -258,6 +258,16 @@
     return d;
 }
 
++ (NSInteger)coordinates2distance:(CLLocationCoordinate2D)c1 toLatitude:(CLLocationDegrees)c2Latitude toLongitude:(CLLocationDegrees)c2Longitude
+{
+    return [self coordinates2distance:c1 to:CLLocationCoordinate2DMake(c2Latitude, c2Longitude)];
+}
+
++ (NSInteger)coordinates2distance:(CLLocationDegrees)c1Latitude fromLongitude:(CLLocationDegrees)c1Longitude toLatitude:(CLLocationDegrees)c2Latitude toLongitude:(CLLocationDegrees)c2Longitude
+{
+    return [self coordinates2distance:CLLocationCoordinate2DMake(c1Latitude, c1Longitude) to:CLLocationCoordinate2DMake(c2Latitude, c2Longitude)];
+}
+
 /// Returns bearing between coordinates c1 and c2
 + (NSInteger)coordinates2bearing:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2
 {
@@ -271,6 +281,16 @@
     float x = cos(φ1) * sin(φ2) - sin(φ1) * cos(φ2) * cos(Δλ);
     NSInteger brng = [self toDegrees:atan2(y, x)];
     return (brng + 360) % 360;
+}
+
++ (NSInteger)coordinates2bearing:(CLLocationCoordinate2D)c1 toLatitude:(CLLocationDegrees)c2Latitude toLongitude:(CLLocationDegrees)c2Longitude
+{
+    return [self coordinates2bearing:c1 to:CLLocationCoordinate2DMake(c2Latitude, c2Longitude)];
+}
+
++ (NSInteger)coordinates2bearing:(CLLocationDegrees)c1Latitude fromLongitude:(CLLocationDegrees)c1Longitude to:(CLLocationCoordinate2D)c2
+{
+    return [self coordinates2bearing:CLLocationCoordinate2DMake(c1Latitude, c1Longitude) to:c2];
 }
 
 /// Returns compass direction for bearing

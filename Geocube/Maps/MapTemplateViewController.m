@@ -466,7 +466,7 @@
         [self.map addLineMeToWaypoint];
 
     if (waypointManager.currentWaypoint != nil) {
-        NSString *distance = [MyTools niceDistance:[Coordinates coordinates2distance:meLocation to:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude)]];
+        NSString *distance = [MyTools niceDistance:[Coordinates coordinates2distance:meLocation toLatitude:waypointManager.currentWaypoint.wpt_latitude toLongitude:waypointManager.currentWaypoint.wpt_longitude]];
         distanceLabel.text = distance;
         distanceLabel.layer.shadowColor = [[UIColor redColor] CGColor];
         distanceLabel.layer.shadowRadius = 1;

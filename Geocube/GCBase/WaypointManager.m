@@ -633,8 +633,8 @@
         /* Calculate the distance and the bearing */
         NSLog(@"Coordinates: %@", [Coordinates niceCoordinates:coords]);
         [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-            wp.calculatedDistance = [Coordinates coordinates2distance:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) to:coords];
-            wp.calculatedBearing = [Coordinates coordinates2bearing:coords to:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude)];
+            wp.calculatedDistance = [Coordinates coordinates2distance:coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude];
+            wp.calculatedBearing = [Coordinates coordinates2bearing:coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude];
         }];
 
         /* Filter by distance */

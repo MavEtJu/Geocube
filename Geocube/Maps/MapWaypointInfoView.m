@@ -110,8 +110,8 @@
         self.labelRatingDT.text = [NSString stringWithFormat:@"D/T: %0.1f/%0.1f", wp.gs_rating_difficulty, wp.gs_rating_terrain];
     [self setRatings:wp.gs_favourites size:wp.gs_container.icon];
 
-    NSInteger b = [Coordinates coordinates2bearing:LM.coords to:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude)];
-    self.labelBearing.text = [NSString stringWithFormat:@"%ld° (%@) at %@", (long)b, [Coordinates bearing2compass:b], [MyTools niceDistance:[Coordinates coordinates2distance:LM.coords to:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude)]]];
+    NSInteger b = [Coordinates coordinates2bearing:LM.coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude];
+    self.labelBearing.text = [NSString stringWithFormat:@"%ld° (%@) at %@", (long)b, [Coordinates bearing2compass:b], [MyTools niceDistance:[Coordinates coordinates2distance:LM.coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude]]];
 
     self.labelSize.text = wp.wpt_type.type_minor;
     if (wp.gs_container.icon == 0) {
