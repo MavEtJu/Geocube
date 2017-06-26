@@ -696,7 +696,7 @@
     l.needstobelogged = NO;
     DICT_NSSTRING_KEY(dict, l.log, @"LogText");
     DICT_NSSTRING_PATH(dict, dummy, @"LogType.WptLogTypeName");
-    [l set_logstring_str:dummy account:account];
+    l.logstring = [dbc LogString_get_bytype:account logtype:wp.logstring_logtype type:dummy];
 
     [ImagesDownloadManager findImagesInDescription:wp text:l.log type:IMAGECATEGORY_LOG];
 
