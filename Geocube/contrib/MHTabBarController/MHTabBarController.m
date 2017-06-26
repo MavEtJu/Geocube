@@ -50,7 +50,7 @@ static const NSInteger TagOffset = 1000;
 	rect.size.height = self.view.bounds.size.height - self.tabBarHeight;
 	contentContainerView = [[UIView alloc] initWithFrame:rect];
 	contentContainerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    contentContainerView.backgroundColor = [UIColor blueColor];
+    contentContainerView.backgroundColor = [UIColor clearColor];
 	[self.view addSubview:contentContainerView];
 
 	indicatorImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MHTabBarIndicator"]];
