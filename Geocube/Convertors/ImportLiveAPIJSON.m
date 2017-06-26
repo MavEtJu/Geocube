@@ -206,6 +206,7 @@
     dummy = @"Geocache";
     DICT_NSSTRING_PATH(dict, dummy, @"CacheType.GeocacheTypeName");
     [wp set_wpt_type_str:dummy];
+    [wp set_wpt_symbol_str:@"Geocache"];
 
     wp.account = account;
 
