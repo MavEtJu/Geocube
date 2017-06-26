@@ -116,12 +116,14 @@ TABLENAME(@"waypoints")
     ASSERT_SELF_FIELD_EXISTS(wpt_type);
     ASSERT_SELF_FIELD_EXISTS(wpt_symbol);
     ASSERT_SELF_FIELD_EXISTS(account);
-    ASSERT_SELF_FIELD_EXISTS(gs_state);
-    ASSERT_SELF_FIELD_EXISTS(gs_country);
+    if (self.gs_state != nil) {             // Groundspeak extensions, not everybody uses them.
+         ASSERT_SELF_FIELD_EXISTS(gs_state);      // additional waypoints by LiveAPI don't have this
+         ASSERT_SELF_FIELD_EXISTS(gs_country);    // additional waypoints by LiveAPI don't have this
+        ASSERT_SELF_FIELD_EXISTS(gs_container);
+        ASSERT_SELF_FIELD_EXISTS(gs_owner);
+    }
     // ASSERT_SELF_FIELD_EXISTS(gca_locale);    -- This is only for GCA by default.
     ASSERT_SELF_FIELD_EXISTS(account);
-    ASSERT_SELF_FIELD_EXISTS(gs_container);
-    ASSERT_SELF_FIELD_EXISTS(gs_owner);
     NSId _id = 0;
     @synchronized(db) {
         DB_PREPARE(@"insert into waypoints(wpt_name, wpt_description, wpt_lat, wpt_lon, wpt_date_placed_epoch, wpt_url, wpt_type_id, wpt_symbol_id, wpt_urlname, log_status, highlight, account_id, ignore, gs_country_id, gs_state_id, gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_long_desc_html, gs_long_desc, gs_short_desc_html, gs_short_desc, gs_hint, gs_container_id, gs_archived, gs_available, gs_owner_id, gs_placed_by, markedfound, inprogress, gs_date_found, dnfed, date_lastlog_epoch, gca_locale_id, date_lastimport_epoch, planned) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
