@@ -645,6 +645,24 @@
     @"insert into config(key, value) values('url_versions', 'https://geocube.mavetju.org/geocube_versions.geocube')"
     ];
     [upgradeSteps addObject:a];
+
+    // Version 51
+    a = @[
+    @"update config set value = 'https://geocube.mavetju.org/geocube_sites.4.geocube' where key = 'url_sites'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_sites.4.geocube' where key = 'url_sites'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_notices.4.geocube' where key = 'url_notices'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_externalmaps.4.geocube' where key = 'url_externalmaps'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_countries.4.geocube' where key = 'url_countries'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_states.4.geocube' where key = 'url_states'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_attributes.4.geocube' where key = 'url_attributes'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_keys.4.geocube' where key = 'url_keys'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_types.4.geocube' where key = 'url_types'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_pins.4.geocube' where key = 'url_pins'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_bookmarks.4.geocube' where key = 'url_bookmarks'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_containers.4.geocube' where key = 'url_containers'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_logstrings.4.geocube' where key = 'url_logstrings'",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql
