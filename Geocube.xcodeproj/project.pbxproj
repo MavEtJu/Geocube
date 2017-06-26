@@ -593,6 +593,9 @@
 		E8D49D2F1F00F9C1005EB7BE /* container size - nano - 35x11.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */; };
 		E8D49D301F00F9C1005EB7BE /* container size - nano - 35x11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */; };
 		E8D49D311F00F9C1005EB7BE /* container size - nano - 35x11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2E1F00F9C1005EB7BE /* container size - nano - 35x11@3x.png */; };
+		E8D49D351F0124F2005EB7BE /* container size - xlarge - 35x11.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D321F0124F2005EB7BE /* container size - xlarge - 35x11.png */; };
+		E8D49D361F0124F2005EB7BE /* container size - xlarge - 35x11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D331F0124F2005EB7BE /* container size - xlarge - 35x11@2x.png */; };
+		E8D49D371F0124F2005EB7BE /* container size - xlarge - 35x11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D341F0124F2005EB7BE /* container size - xlarge - 35x11@3x.png */; };
 		E8E3DC1C1E167C740066E903 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E3DC1B1E167C740066E903 /* AppDelegate.m */; };
 		E8EC073F1D39D898009B8EB1 /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EC073E1D39D898009B8EB1 /* DownloadManager.m */; };
 		E8EC07421D39E887009B8EB1 /* ImportManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EC07411D39E887009B8EB1 /* ImportManager.m */; };
@@ -1613,6 +1616,9 @@
 		E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11.png"; path = "images/containers/container size - nano - 35x11.png"; sourceTree = "<group>"; };
 		E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11@2x.png"; path = "images/containers/container size - nano - 35x11@2x.png"; sourceTree = "<group>"; };
 		E8D49D2E1F00F9C1005EB7BE /* container size - nano - 35x11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11@3x.png"; path = "images/containers/container size - nano - 35x11@3x.png"; sourceTree = "<group>"; };
+		E8D49D321F0124F2005EB7BE /* container size - xlarge - 35x11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - xlarge - 35x11.png"; path = "images/containers/container size - xlarge - 35x11.png"; sourceTree = "<group>"; };
+		E8D49D331F0124F2005EB7BE /* container size - xlarge - 35x11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - xlarge - 35x11@2x.png"; path = "images/containers/container size - xlarge - 35x11@2x.png"; sourceTree = "<group>"; };
+		E8D49D341F0124F2005EB7BE /* container size - xlarge - 35x11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - xlarge - 35x11@3x.png"; path = "images/containers/container size - xlarge - 35x11@3x.png"; sourceTree = "<group>"; };
 		E8E3DC1B1E167C740066E903 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E8E8CFF11B64FAC900CC741A /* tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tests; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EC073D1D39D898009B8EB1 /* DownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManager.h; sourceTree = "<group>"; };
@@ -2742,6 +2748,9 @@
 				E8FEDE4A1DA77F9D007C756B /* container size - unknown - 35x11.png */,
 				E8FEDE4B1DA77F9D007C756B /* container size - unknown - 35x11@2x.png */,
 				E8FEDE4C1DA77F9D007C756B /* container size - unknown - 35x11@3x.png */,
+				E8D49D321F0124F2005EB7BE /* container size - xlarge - 35x11.png */,
+				E8D49D331F0124F2005EB7BE /* container size - xlarge - 35x11@2x.png */,
+				E8D49D341F0124F2005EB7BE /* container size - xlarge - 35x11@3x.png */,
 				E82E664F1DA07C4900CFBDED /* container flag - archived - 24x24.png */,
 				E82E66501DA07C4900CFBDED /* container flag - cross dnf - 19x19.png */,
 				E82E66511DA07C4900CFBDED /* container flag - disabled - 24x24.png */,
@@ -3840,12 +3849,14 @@
 				E82E674D1DA07D0200CFBDED /* attributes - 35.png in Resources */,
 				E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */,
 				E823451F1EECE14A00D2CDFD /* HelpAboutTableViewCell.xib in Resources */,
+				E8D49D371F0124F2005EB7BE /* container size - xlarge - 35x11@3x.png in Resources */,
 				E82E65BE1DA0794600CFBDED /* waypoint - trailhead - 30x30.png in Resources */,
 				E82E66BC1DA07CBE00CFBDED /* cache - giga - 30x30.png in Resources */,
 				E8FEDEB51DA88474007C756B /* waypoint - multi - 30x30@3x.png in Resources */,
 				E804139D1E9EFF6D001FD7BF /* GC - logo - 512x512.png in Resources */,
 				E8FEDEB01DA87DBB007C756B /* waypoint - finish - 30x30@2x.png in Resources */,
 				E82E66BE1DA07CBE00CFBDED /* cache - history - 30x30.png in Resources */,
+				E8D49D351F0124F2005EB7BE /* container size - xlarge - 35x11.png in Resources */,
 				E82E67521DA07D0200CFBDED /* attributes - 40.png in Resources */,
 				E82E67301DA07D0200CFBDED /* attributes - 05.png in Resources */,
 				E82344961EECE0AD00D2CDFD /* QueriesTableViewCell~ipad.xib in Resources */,
@@ -3950,6 +3961,7 @@
 				E823420F1EECCEEE00D2CDFD /* MHTabBarInactiveTab.png in Resources */,
 				E8F570BC1B400124003F020C /* schema.sql in Resources */,
 				E8FEDE8D1DA7AD67007C756B /* map - in progress - 18x18@3x.png in Resources */,
+				E8D49D361F0124F2005EB7BE /* container size - xlarge - 35x11@2x.png in Resources */,
 				E82345041EECE12B00D2CDFD /* GCTableViewCellSwitch.xib in Resources */,
 				E83C6F231EEEA47900E303F5 /* GCTableViewCellRightImageDisclosure.xib in Resources */,
 				E83C6F051EECE67100E303F5 /* FilesTableViewCell.xib in Resources */,
