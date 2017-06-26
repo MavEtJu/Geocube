@@ -85,13 +85,14 @@ typedef NS_ENUM(NSInteger, ImageNumber) {
     ImageLog_Announcement,          // 418
     ImageLog_Empty,                 // 419
 
-    ImageContainerSize_Large = 450,
-    ImageContainerSize_Micro,
-    ImageContainerSize_NotChosen,
-    ImageContainerSize_Other,
-    ImageContainerSize_Regular,
-    ImageContainerSize_Small,
-    ImageContainerSize_Virtual,
+    ImageContainerSize_Large = 450, // 450
+    ImageContainerSize_Micro,       // 451
+    ImageContainerSize_NotChosen,   // 452
+    ImageContainerSize_Other,       // 453
+    ImageContainerSize_Regular,     // 454
+    ImageContainerSize_Small,       // 455
+    ImageContainerSize_Virtual,     // 456
+    ImageContainerSize_Nano,        // 457
 
     ImageAttribute_Unknown = 500,
     ImageAttribute_DogsAllowed,
