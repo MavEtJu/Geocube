@@ -590,6 +590,9 @@
 		E8AA149C1ED7988A0023000A /* Updates and changes.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8AA149B1ED7988A0023000A /* Updates and changes.txt */; };
 		E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */; };
 		E8C8C8C21EE26AAA00E2438D /* LogTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8C11EE26AAA00E2438D /* LogTableViewCell~ipad.xib */; };
+		E8D49D2F1F00F9C1005EB7BE /* container size - nano - 35x11.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */; };
+		E8D49D301F00F9C1005EB7BE /* container size - nano - 35x11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */; };
+		E8D49D311F00F9C1005EB7BE /* container size - nano - 35x11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2E1F00F9C1005EB7BE /* container size - nano - 35x11@3x.png */; };
 		E8E3DC1C1E167C740066E903 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E3DC1B1E167C740066E903 /* AppDelegate.m */; };
 		E8EC073F1D39D898009B8EB1 /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EC073E1D39D898009B8EB1 /* DownloadManager.m */; };
 		E8EC07421D39E887009B8EB1 /* ImportManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EC07411D39E887009B8EB1 /* ImportManager.m */; };
@@ -1607,6 +1610,9 @@
 		E8BF17E21BAAE0CA008B5862 /* AudioFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFeedback.h; sourceTree = "<group>"; };
 		E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFeedback.m; sourceTree = "<group>"; };
 		E8C8C8C11EE26AAA00E2438D /* LogTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LogTableViewCell~ipad.xib"; sourceTree = "<group>"; };
+		E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11.png"; path = "images/containers/container size - nano - 35x11.png"; sourceTree = "<group>"; };
+		E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11@2x.png"; path = "images/containers/container size - nano - 35x11@2x.png"; sourceTree = "<group>"; };
+		E8D49D2E1F00F9C1005EB7BE /* container size - nano - 35x11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11@3x.png"; path = "images/containers/container size - nano - 35x11@3x.png"; sourceTree = "<group>"; };
 		E8E3DC1B1E167C740066E903 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E8E8CFF11B64FAC900CC741A /* tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tests; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EC073D1D39D898009B8EB1 /* DownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManager.h; sourceTree = "<group>"; };
@@ -2730,6 +2736,9 @@
 				E8FEDE471DA77F9D007C756B /* container size - small - 35x11.png */,
 				E8FEDE481DA77F9D007C756B /* container size - small - 35x11@2x.png */,
 				E8FEDE491DA77F9D007C756B /* container size - small - 35x11@3x.png */,
+				E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */,
+				E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */,
+				E8D49D2E1F00F9C1005EB7BE /* container size - nano - 35x11@3x.png */,
 				E8FEDE4A1DA77F9D007C756B /* container size - unknown - 35x11.png */,
 				E8FEDE4B1DA77F9D007C756B /* container size - unknown - 35x11@2x.png */,
 				E8FEDE4C1DA77F9D007C756B /* container size - unknown - 35x11@3x.png */,
@@ -3706,6 +3715,7 @@
 				E8FEDE951DA7AD67007C756B /* map - tick found - 9x9@3x.png in Resources */,
 				E82E66DE1DA07CBE00CFBDED /* cache - unknowntype - 30x30.png in Resources */,
 				E82E677A1DA0D1E600CFBDED /* menu icon - find me@3x.png in Resources */,
+				E8D49D301F00F9C1005EB7BE /* container size - nano - 35x11@2x.png in Resources */,
 				E82E677D1DA0D79A00CFBDED /* menu icon - find target@2x.png in Resources */,
 				E82E65DF1DA079AE00CFBDED /* map - highlight - 21x21.png in Resources */,
 				E82E65E01DA079AE00CFBDED /* map - in progress - 18x18.png in Resources */,
@@ -3733,6 +3743,7 @@
 				E8FEDE5F1DA77F9D007C756B /* container size - unknown - 35x11.png in Resources */,
 				E82E66381DA07A8700CFBDED /* icons - sad - 30x30@2x.png in Resources */,
 				E82E66E01DA07CBE00CFBDED /* cache - virtual - 30x30@2x.png in Resources */,
+				E8D49D311F00F9C1005EB7BE /* container size - nano - 35x11@3x.png in Resources */,
 				E8FEDE921DA7AD67007C756B /* map - pin stick - 35x42@2x.png in Resources */,
 				E8FEDE4F1DA77F9D007C756B /* container size - large - 35x11@3x.png in Resources */,
 				E82E67631DA07D0200CFBDED /* attributes - 57.png in Resources */,
@@ -3914,6 +3925,7 @@
 				E8FEDE861DA7AD67007C756B /* map - dnf stick - 35x42@2x.png in Resources */,
 				E82E67401DA07D0200CFBDED /* attributes - 22.png in Resources */,
 				E82E66C81DA07CBE00CFBDED /* cache - moveable - 30x30@3x.png in Resources */,
+				E8D49D2F1F00F9C1005EB7BE /* container size - nano - 35x11.png in Resources */,
 				E86D427D1EF68CC800E4509F /* container flag - planned - 24x21.png in Resources */,
 				E86D427F1EF68CC800E4509F /* container flag - planned - 24x21@3.png in Resources */,
 				E83C6EF21EECE28100E303F5 /* SVProgressHUD.bundle in Resources */,

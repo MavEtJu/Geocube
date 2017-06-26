@@ -107,6 +107,7 @@
     [self addToLibrary:@"container size - other - 35x11" index:ImageContainerSize_Other];
     [self addToLibrary:@"container size - regular - 35x11" index:ImageContainerSize_Regular];
     [self addToLibrary:@"container size - small - 35x11" index:ImageContainerSize_Small];
+    [self addToLibrary:@"container size - nano - 35x11" index:ImageContainerSize_Nano];
     [self addToLibrary:@"container size - unknown - 35x11" index:ImageContainerSize_Virtual];
 
     [self addToLibrary:@"ratings - star base 95x18" index:ImageCacheView_ratingBase];
