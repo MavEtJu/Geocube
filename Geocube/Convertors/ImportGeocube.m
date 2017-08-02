@@ -721,6 +721,7 @@ typedef NS_ENUM(NSInteger, Type) {
                 BOOL defaultPickup = ([s isEqualToString:@"pickup"] == YES);
                 BOOL defaultDiscover = ([s isEqualToString:@"discover"] == YES);
                 BOOL forlogs = [[logdict objectForKey:@"forlogs"] boolValue];
+                NSString *wasType = [logdict objectForKey:@"wastype"];
                 NSString *_found = [logdict objectForKey:@"found"];
                 NSInteger found = LOGSTRING_FOUND_NA;
                 if (_found != nil) {
@@ -731,6 +732,13 @@ typedef NS_ENUM(NSInteger, Type) {
                 }
                 NSInteger icon = [[logdict objectForKey:@"icon"] integerValue];
 
+                if (wasType != nil) {
+                    dbLogString *ls = [dbLogString dbGetByProtocolEventType:_protocol logtype:logtype type:wasType];
+                    if (ls != nil) {
+                        ls.type = type;
+                        [ls dbUpdate];
+                    }
+                }
                 dbLogString *ls = [dbLogString dbGetByProtocolEventType:_protocol logtype:logtype type:type];
                 if (ls == nil) {
                     dbLogString *ls = [[dbLogString alloc] init];
