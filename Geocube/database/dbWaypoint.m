@@ -117,8 +117,8 @@ TABLENAME(@"waypoints")
     ASSERT_SELF_FIELD_EXISTS(wpt_symbol);
     ASSERT_SELF_FIELD_EXISTS(account);
     if (self.gs_state != nil) {             // Groundspeak extensions, not everybody uses them.
-         ASSERT_SELF_FIELD_EXISTS(gs_state);      // additional waypoints by LiveAPI don't have this
-         ASSERT_SELF_FIELD_EXISTS(gs_country);    // additional waypoints by LiveAPI don't have this
+        ASSERT_SELF_FIELD_EXISTS(gs_state);      // additional waypoints by LiveAPI don't have this
+        ASSERT_SELF_FIELD_EXISTS(gs_country);    // additional waypoints by LiveAPI don't have this
         ASSERT_SELF_FIELD_EXISTS(gs_container);
         ASSERT_SELF_FIELD_EXISTS(gs_owner);
     }
