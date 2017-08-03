@@ -333,6 +333,8 @@
     // Show the introduction
     if (configManager.introSeen == NO)
         [HelpIntroduction showIntro:self];
+    else
+        [SettingsAccountsViewController needsToDownloadFiles];
 
     return YES;
 }
