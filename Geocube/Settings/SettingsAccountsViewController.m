@@ -290,6 +290,45 @@ enum {
     [super performLocalMenuAction:index];
 }
 
++ (void)needsToDownloadFiles
+{
+    NSString *lastVersion = configManager.configUpdateLastVersion;
+    if ([lastVersion isEqualToString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]] == NO) {
+        [MyTools messageBox:[MyTools topMostController] header:@"Configuration Update" text:@"You haven't updated the configuration since the last code update. Please go to the Settings -> Accounts menu and update the configuration"];
+        return;
+    }
+
+    NSMutableDictionary *versions = [NSMutableDictionary dictionaryWithCapacity:20];
+    [self downloadVersions:versions fail:NO];
+    if ([versions count] == 0)
+        return;
+
+    BOOL needsDownload = NO;
+
+#define COMPARE(__url__, __key__) { \
+        dbConfig *curl = [dbConfig dbGetByKey:__url__]; \
+        NSArray<NSString *> *ws = [curl.value componentsSeparatedByString:@"/"]; \
+        NSString *versionKnown = [versions objectForKey:[ws lastObject]]; \
+        dbConfig *cold = [dbConfig dbGetByKey:__key__]; \
+        if ([cold.value isEqualToString:versionKnown] == NO) \
+            needsDownload = YES; \
+    }
+
+    COMPARE(@"url_sites", KEY_REVISION_SITES);
+    COMPARE(@"url_externalmaps", KEY_REVISION_EXTERNALMAPS);
+    COMPARE(@"url_attributes", KEY_REVISION_ATTRIBUTES);
+    COMPARE(@"url_countries", KEY_REVISION_COUNTRIES);
+    COMPARE(@"url_states", KEY_REVISION_STATES);
+    COMPARE(@"url_pins", KEY_REVISION_PINS);
+    COMPARE(@"url_types", KEY_REVISION_TYPES);
+    COMPARE(@"url_bookmarks", KEY_REVISION_BOOKMARKS);
+    COMPARE(@"url_containers", KEY_REVISION_CONTAINERS);
+    COMPARE(@"url_logstrings", KEY_REVISION_LOGSTRINGS);
+
+    if (needsDownload)
+        [MyTools messageBox:[MyTools topMostController] header:@"Configuration Update" text:@"A configuration update is available. Please go to the Settings -> Accounts menu and update the configuration."];
+}
+
 - (void)downloadFiles
 {
     [menuGlobal enableMenus:NO];
@@ -299,7 +338,8 @@ enum {
     BOOL needsFullReload = ([[dbc Accounts] count] == 0);
 
     NSMutableDictionary *versions = [NSMutableDictionary dictionaryWithCapacity:20];
-    [self downloadVersions:versions];
+    [[self class] downloadVersions:versions fail:YES];
+
     if ([versions count] != 0) {
         [self downloadFile:versions url:@"url_sites" header:@"site information" revision:KEY_REVISION_SITES];
         [self downloadFile:versions url:@"url_externalmaps" header:@"external maps" revision:KEY_REVISION_EXTERNALMAPS];
@@ -313,6 +353,9 @@ enum {
         [self downloadFile:versions url:@"url_logstrings" header:@"log strings" revision:KEY_REVISION_LOGSTRINGS];
     }
 
+    [configManager configUpdateLastTime:time(NULL)];
+    [configManager configUpdateLastVersion:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+
     [bezelManager removeBezel];
 
     if (needsFullReload == YES)
@@ -325,9 +368,10 @@ enum {
     [MHTabBarController enableMenus:YES controllerFrom:self];
 }
 
-- (void)downloadVersions:(NSMutableDictionary *)versions
++ (void)downloadVersions:(NSMutableDictionary *)versions fail:(BOOL)showFail
 {
-    [bezelManager setText:@"Downloading versions"];
+    if (showFail == YES)
+        [bezelManager setText:@"Downloading versions"];
 
     NSURL *url = [NSURL URLWithString:[[dbConfig dbGetByKey:@"url_versions"] value]];
 
@@ -348,14 +392,16 @@ enum {
     } else {
         NSLog(@"%@: Failed! %@", [self class], error);
 
-        NSString *err;
-        if (error != nil) {
-            err = error.description;
-        } else {
-            err = [NSString stringWithFormat:@"HTTP status %ld", (long)response.statusCode];
-        }
+        if (showFail == YES) {
+            NSString *err;
+            if (error != nil) {
+                err = error.description;
+            } else {
+                err = [NSString stringWithFormat:@"HTTP status %ld", (long)response.statusCode];
+            }
 
-        [MyTools messageBox:self header:@"Versions" text:[NSString stringWithFormat:@"Failed to download: %@", err]];
+            [MyTools messageBox:[MyTools topMostController] header:@"Versions" text:[NSString stringWithFormat:@"Failed to download: %@", err]];
+        }
     }
 }
 

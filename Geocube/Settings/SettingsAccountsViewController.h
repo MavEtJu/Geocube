@@ -21,4 +21,6 @@
 
 @interface SettingsAccountsViewController : GCTableViewController <RemoteAPIAuthenticationDelegate>
 
++ (void)needsToDownloadFiles;
+
 @end
