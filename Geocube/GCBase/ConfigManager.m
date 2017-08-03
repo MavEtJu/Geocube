@@ -138,6 +138,10 @@
 
     CHECK(@"opencage_key", @"");
     CHECK(@"opencage_wifionly", @"1");
+
+    CHECK(@"configupdate_lastversion", @"1.3");
+    s = [NSString stringWithFormat:@"%ld", time(NULL)];
+    CHECK(@"configupdate_lasttime", s);
 }
 
 - (void)loadValues
@@ -208,6 +212,8 @@
     self.locationlessListSortBy = [[dbConfig dbGetByKey:@"locationless_sortby"].value integerValue];
     self.opencageKey = [dbConfig dbGetByKey:@"opencage_key"].value;
     self.opencageWifiOnly = [[dbConfig dbGetByKey:@"opencage_wifionly"].value boolValue];
+    self.configUpdateLastVersion = [dbConfig dbGetByKey:@"configupdate_lastversion"].value;
+    self.configUpdateLastTime = [[dbConfig dbGetByKey:@"configupdate_lasttime"].value integerValue];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -616,6 +622,17 @@
 {
     self.opencageWifiOnly = value;
     [self BOOLUpdate:@"opencage_wifionly" value:value];
+}
+
+- (void)configUpdateLastTime:(NSInteger)value
+{
+    self.configUpdateLastTime = value;
+    [self NSIntegerUpdate:@"configupdate_lasttime" value:value];
+}
+- (void)configUpdateLastVersion:(NSString *)value
+{
+    self.configUpdateLastVersion = value;
+    [self NSStringUpdate:@"configupdate_lastversion" value:value];
 }
 
 @end

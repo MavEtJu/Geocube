@@ -117,6 +117,9 @@
 @property (nonatomic, retain) NSString *opencageKey;
 @property (nonatomic) BOOL opencageWifiOnly;
 
+@property (nonatomic) NSInteger configUpdateLastTime;
+@property (nonatomic) NSString *configUpdateLastVersion;
+
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown
 // UIInterfaceOrientationMaskLandscapeLeft, UIInterfaceOrientationMaskLandscapeRight
@@ -188,5 +191,7 @@
 - (void)locationlessListSortByUpdate:(NSInteger)value;
 - (void)opencageKeyUpdate:(NSString *)value;
 - (void)opencageWifiOnlyUpdate:(BOOL)value;
+- (void)configUpdateLastTime:(NSInteger)value;
+- (void)configUpdateLastVersion:(NSString *)value;
 
 @end
