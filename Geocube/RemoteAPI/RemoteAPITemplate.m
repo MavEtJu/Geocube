@@ -69,7 +69,7 @@
     okapi = nil;
     gca2 = nil;
     ggcw = nil;
-    ProtocolId pid = (ProtocolId)self.account.protocol_id;
+    ProtocolId pid = (ProtocolId)self.account.protocol._id;
     switch (pid) {
         case PROTOCOL_LIVEAPI:
             liveAPI = [[ProtocolLiveAPI alloc] init:self];
@@ -100,7 +100,7 @@
 
 - (BOOL)Authenticate
 {
-    ProtocolId pid = (ProtocolId)self.account.protocol_id;
+    ProtocolId pid = (ProtocolId)self.account.protocol._id;
     switch (pid) {
         case PROTOCOL_OKAPI:
         case PROTOCOL_LIVEAPI:{
@@ -317,7 +317,7 @@
 
 - (RemoteAPIResult)UserStatistics:(NSDictionary **)retDict infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    return [self UserStatistics:self.account.accountname_string retDict:retDict infoViewer:iv iiDownload:iid];
+    return [self UserStatistics:self.account.accountname.name retDict:retDict infoViewer:iv iiDownload:iid];
 }
 
 - (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid

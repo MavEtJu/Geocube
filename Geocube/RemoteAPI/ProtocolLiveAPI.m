@@ -368,7 +368,7 @@
 
 - (GCDictionaryLiveAPI *)SearchForGeocaches_pointradius:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    NSLog(@"SearchForGeocaches_pointradius:%@", [Coordinates NiceCoordinates:center]);
+    NSLog(@"SearchForGeocaches_pointradius:%@", [Coordinates niceCoordinates:center]);
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"SearchForGeocaches" method:@"POST"];
     [urlRequest setTimeoutInterval:configManager.downloadTimeoutQuery];

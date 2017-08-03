@@ -37,7 +37,7 @@
     ugs = [NSMutableArray arrayWithCapacity:5];
     sgs = [NSMutableArray arrayWithCapacity:5];
 
-    [[dbGroup dbAllByWaypoint:waypoint._id] enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
+    [[dbGroup dbAllByWaypoint:waypoint] enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
         if (cg.usergroup == TRUE)
             [ugs addObject:cg];
         else
@@ -99,7 +99,7 @@
         c++;
     }
     cell.textLabel.text = cg.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", (long)[cg dbCountWaypoints]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", (long)[cg countWaypoints]];
     cell.imageView.image = nil;
     cell.userInteractionEnabled = NO;
 

@@ -52,14 +52,14 @@
 - (void)showLogLocations:(dbWaypoint *)_wp
 {
     waypoint = _wp;
-    NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:waypoint._id];
+    NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:waypoint];
     self.waypointsArray = [NSMutableArray arrayWithCapacity:[logs count]];
     [logs enumerateObjectsUsingBlock:^(dbLog * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
         dbWaypoint *wp = [[dbWaypoint alloc] init];
         wp.wpt_name = [NSString stringWithFormat:@"LOG%ld", (long)log._id];
-        wp.wpt_urlname = [NSString stringWithFormat:@"%@ on %@", log.logger_str, [MyTools dateTimeString_YYYY_MM_DD:log.datetime_epoch]];
-        wp.wpt_lat_float = log.lat_float;
-        wp.wpt_lon_float = log.lon_float;
+        wp.wpt_urlname = [NSString stringWithFormat:@"%@ on %@", log.logger.name, [MyTools dateTimeString_YYYY_MM_DD:log.datetime_epoch]];
+        wp.wpt_latitude = log.latitude;
+        wp.wpt_longitude = log.longitude;
         wp.wpt_type = [dbc Type_Log];
         [wp finish];
         [self.waypointsArray addObject:wp];

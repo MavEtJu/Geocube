@@ -25,12 +25,28 @@
 
 @implementation dbObject
 
-- NEEDS_OVERLOADING_VOID(dbUpdate)
-- NEEDS_OVERLOADING_VOID(dbDelete)
-- NEEDS_OVERLOADING_NSID(dbCreate)
-+ NEEDS_OVERLOADING_NSARRAY_DBOBJECT(dbAll)
-+ NEEDS_OVERLOADING_DBOBJECT(dbGet:(NSId)_id)
-+ NEEDS_OVERLOADING_NSINTEGER(dbCount)
+/*
+ * Order of methods:
+ *
+ * TABLENAME()
+ *
+ * - (instancetype)init
+ * - (void)finish
+ * - (NSId)dbCreate
+ * - (void)dbUpdate
+ * - (void)dbUpdate...
+ * + (NSArray *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
+ * + (NSArray *)dbAll
+ * + (NSArray *)dbAll...
+ * + (instancetype)dbGet:(NSId)id
+ * + (instancetype)dbGet...
+ * - (void)dbDelete
+ * - (void)dbDelete...
+ * ... others ...
+ *
+ */
+
++ NEEDS_OVERLOADING_NSSTRING(dbTablename)
 
 - (instancetype)init
 {
@@ -40,25 +56,63 @@
     return self;
 }
 
+- NEEDS_OVERLOADING_NSID(dbCreate)
+
 - (void)finish
 {
     finished = YES;
 }
 
-+ (NSInteger)dbCount:(NSString *)table
+- NEEDS_OVERLOADING_VOID(dbUpdate)
+
++ (NSInteger)dbCount
 {
-    NSInteger c = -1;
+    return [self dbCountXXX:nil keys:nil values:nil];
+}
+
++ (NSInteger)dbCountXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values;
+{
+    NSInteger c = 0;
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"select count(id) from %@ ", [self dbTablename]];
+    if (where != nil)
+        [sql appendString:where];
 
     @synchronized(db) {
-        NSString *sql = [NSString stringWithFormat:@"select count(id) from %@", table];
-        DB_PREPARE(sql);
-
+        DB_PREPARE_KEYSVALUES(sql, keys, values)
         DB_IF_STEP {
             INT_FETCH(0, c);
         }
         DB_FINISH;
     }
     return c;
+}
+
++ NEEDS_OVERLOADING_NSARRAY_DBOBJECT(dbAll)
++ NEEDS_OVERLOADING_DBOBJECT(dbGet:(NSId)_id)
+
++ (void)dbDeleteAll
+{
+    @synchronized(db) {
+        NSString *sql = [NSString stringWithFormat:@"delete from %@", [self dbTablename]];
+        DB_PREPARE(sql);
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
+- (void)dbDelete
+{
+    NSString *sql = [NSString stringWithFormat:@"delete from %@ where id = ?", [[self class] dbTablename]];
+
+    @synchronized(db) {
+
+        DB_PREPARE(sql);
+
+        SET_VAR_INT(1, self._id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
 }
 
 - (BOOL)isEqual:(dbObject *)object

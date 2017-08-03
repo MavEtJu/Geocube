@@ -105,7 +105,7 @@ enum {
             break;
         case cellCoords:
             cell.textLabel.text = @"Coords";
-            cell.detailTextLabel.text = [Coordinates NiceCoordinates:coords];
+            cell.detailTextLabel.text = [Coordinates niceCoordinates:coords];
             break;
         case cellSubmit:
             cell.textLabel.text = @"Create this waypoint";
@@ -226,9 +226,9 @@ enum {
                           NSLog(@"Longitude '%@'", lon);
 
                           Coordinates *c;
-                          c = [[Coordinates alloc] initString:lat lon:lon];
-                          coords.latitude = c.lat;
-                          coords.longitude = c.lon;
+                          c = [[Coordinates alloc] initString:lat longitude:lon];
+                          coords.latitude = c.latitude;
+                          coords.longitude = c.longitude;
 
                           [self.tableView reloadData];
                       }];
@@ -242,7 +242,7 @@ enum {
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = [Coordinates NiceLatitudeForEditing:coords.latitude];
+        textField.text = [Coordinates niceLatitudeForEditing:coords.latitude];
         textField.placeholder = @"Latitude (like S 12 34.567)";
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:YES];
@@ -250,7 +250,7 @@ enum {
         coordsLatitude = textField;
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = [Coordinates NiceLongitudeForEditing:coords.longitude];
+        textField.text = [Coordinates niceLongitudeForEditing:coords.longitude];
         textField.placeholder = @"Longitude (like E 23 45.678)";
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:NO];
@@ -272,28 +272,24 @@ enum {
 
 - (void)updateSubmit
 {
-    dbWaypoint *wp = [[dbWaypoint alloc] init:0];
+    dbWaypoint *wp = [[dbWaypoint alloc] init];
     Coordinates *c = [[Coordinates alloc] init:coords];
 
-    wp.wpt_lat = [c lat_decimalDegreesSigned];
-    wp.wpt_lon = [c lon_decimalDegreesSigned];
-    wp.wpt_lat_int = [c lat] * 1000000;
-    wp.wpt_lon_int = [c lon] * 1000000;
+    wp.wpt_latitude = [c latitude];
+    wp.wpt_longitude = [c longitude];
     wp.wpt_name = code;
     wp.wpt_description = name;
     wp.wpt_date_placed_epoch = time(NULL);
-    wp.wpt_date_placed = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:wp.wpt_date_placed_epoch];
     wp.wpt_url = nil;
     wp.wpt_urlname = [NSString stringWithFormat:@"%@ - %@", code, name];
-    wp.wpt_symbol_id = 1;
-    wp.wpt_type_id = [dbc Type_ManuallyEntered]._id;
-    wp.related_id = 0;  // This is a new parent
+    wp.wpt_symbol = [dbc Symbol_VirtualStage];
+    wp.wpt_type = [dbc Type_ManuallyEntered];
     [wp finish];
-    [dbWaypoint dbCreate:wp];
+    [wp dbCreate];
 
-    [dbc.Group_AllWaypoints_ManuallyAdded dbAddWaypoint:wp._id];
-    [dbc.Group_AllWaypoints dbAddWaypoint:wp._id];
-    [dbc.Group_ManualWaypoints dbAddWaypoint:wp._id];
+    [dbc.Group_AllWaypoints_ManuallyAdded addWaypointToGroup:wp];
+    [dbc.Group_AllWaypoints addWaypointToGroup:wp];
+    [dbc.Group_ManualWaypoints addWaypointToGroup:wp];
 
     [waypointManager needsRefreshAdd:wp];
 

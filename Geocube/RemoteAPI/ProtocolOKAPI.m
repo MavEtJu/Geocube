@@ -125,7 +125,7 @@
     NSArray<NSString *> *fields = @[@"caches_found", @"caches_notfound", @"caches_hidden", @"rcmds_given", @"username", @"profile_url", @"uuid"];
 
     NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
-    [_dict setObject:remoteAPI.account.accountname_string forKey:@"username"];
+    [_dict setObject:remoteAPI.account.accountname.name forKey:@"username"];
     [_dict setObject:[self string_array:fields] forKey:@"fields"];
     NSString *params = [MyTools urlParameterJoin:_dict];
 
@@ -164,7 +164,7 @@
 
 - (GCDictionaryOKAPI *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    NSLog(@"services_caches_search_nearest: %@ at %ld", [Coordinates NiceCoordinates:center], (long)offset);
+    NSLog(@"services_caches_search_nearest: %@ at %ld", [Coordinates niceCoordinates:center], (long)offset);
 
     float radius = configManager.mapSearchMaximumDistanceOKAPI / 1000;
     NSString *centerString = [NSString stringWithFormat:@"%f|%f", center.latitude, center.longitude];

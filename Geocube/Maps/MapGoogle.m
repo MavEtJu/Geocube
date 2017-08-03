@@ -126,7 +126,7 @@
 - (GMSMarker *)makeMarker:(dbWaypoint *)wp
 {
     GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = wp.coordinates;
+    marker.position = CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude);
     marker.title = wp.wpt_name;
     marker.snippet = wp.wpt_urlname;
     marker.map = mapView;
@@ -139,7 +139,7 @@
 
 - (GCGMSCircle *)makeCircle:(dbWaypoint *)wp
 {
-    GCGMSCircle *circle = [GCGMSCircle circleWithPosition:wp.coordinates radius:wp.account.distance_minimum];
+    GCGMSCircle *circle = [GCGMSCircle circleWithPosition:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) radius:wp.account.distance_minimum];
     circle.strokeColor = [UIColor blueColor];
     circle.fillColor = [UIColor colorWithRed:0 green:0 blue:0.35 alpha:0.05];
     circle.map = mapView;
@@ -327,7 +327,7 @@
 - (void)addLineMeToWaypoint
 {
     GMSMutablePath *pathMeToWaypoint = [GMSMutablePath path];
-    [pathMeToWaypoint addCoordinate:waypointManager.currentWaypoint.coordinates];
+    [pathMeToWaypoint addCoordinate:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude)];
     [pathMeToWaypoint addCoordinate:LM.coords];
 
     lineMeToWaypoint = [GMSPolyline polylineWithPath:pathMeToWaypoint];
@@ -438,14 +438,14 @@
     top = -180;
     bottom = 180;
 
-    [[dbTrackElement dbAllByTrack:track._id] enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
-        bottom = MIN(bottom, te.coords.latitude);
-        top = MAX(top, te.coords.latitude);
-        right = MAX(right, te.coords.longitude);
-        left = MIN(left, te.coords.longitude);
+    [[dbTrackElement dbAllByTrack:track] enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
+        bottom = MIN(bottom, te.lat);
+        top = MAX(top, te.lat);
+        right = MAX(right, te.lon);
+        left = MIN(left, te.lon);
 
         if (te.restart == NO) {
-            [lastPathHistory addCoordinate:te.coords];
+            [lastPathHistory addCoordinate:CLLocationCoordinate2DMake(te.lat, te.lon)];
             return;
         }
 

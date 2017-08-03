@@ -209,10 +209,10 @@ enum {
         y3 = MAX(y3, c.lat);
     }];
 
-    labelCoordsMinX.text = [Coordinates NiceLongitude:x0];
-    labelCoordsMaxX.text = [Coordinates NiceLongitude:x3];
-    labelCoordsMinY.text = [Coordinates NiceLatitude:y0];
-    labelCoordsMaxY.text = [Coordinates NiceLatitude:y3];
+    labelCoordsMinX.text = [Coordinates niceLongitude:x0];
+    labelCoordsMaxX.text = [Coordinates niceLongitude:x3];
+    labelCoordsMinY.text = [Coordinates niceLatitude:y0];
+    labelCoordsMaxY.text = [Coordinates niceLatitude:y3];
 
     x0 -= .0001;
     y0 -= .0001;
@@ -280,9 +280,9 @@ enum {
     CGContextStrokePath(context);
 
     // Update text
-    labelCoordsLast.text = [NSString stringWithFormat:@"Last: %@ ± %@", [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(last.lat, last.lon)], [MyTools niceDistance:last.accuracy]];
-    labelCoordsAvg.text = [NSString stringWithFormat:@"Average: %@", [Coordinates NiceCoordinates:CLLocationCoordinate2DMake(avg.lat, avg.lon)]];
-    labelDistance.text = [NSString stringWithFormat:@"Last distance to average: %@", [MyTools niceDistance:[Coordinates coordinates2distance:CLLocationCoordinate2DMake(avg.lat, avg.lon) to:CLLocationCoordinate2DMake(last.lat, last.lon)]]];
+    labelCoordsLast.text = [NSString stringWithFormat:@"Last: %@ ± %@", [Coordinates niceCoordinates:last.lat longitude:last.lon], [MyTools niceDistance:last.accuracy]];
+    labelCoordsAvg.text = [NSString stringWithFormat:@"Average: %@", [Coordinates niceCoordinates:avg.lat longitude:avg.lon]];
+    labelDistance.text = [NSString stringWithFormat:@"Last distance to average: %@", [MyTools niceDistance:[Coordinates coordinates2distance:avg.lat fromLongitude:avg.lon toLatitude:last.lat toLongitude:last.lon]]];
 
     // Make an image
     img = UIGraphicsGetImageFromCurrentImageContext();
@@ -361,30 +361,26 @@ enum {
 - (void)createWaypoint:(CLLocationCoordinate2D)coord
 {
     NSString *code = [MyTools makeNewWaypoint:@"MY"];
-    NSString *name = [NSString stringWithFormat:@"Waypoint averaged on %@", [Coordinates NiceCoordinates:coord]];
+    NSString *name = [NSString stringWithFormat:@"Waypoint averaged on %@", [Coordinates niceCoordinates:coord]];
 
-    dbWaypoint *wp = [[dbWaypoint alloc] init:0];
+    dbWaypoint *wp = [[dbWaypoint alloc] init];
     Coordinates *c = [[Coordinates alloc] init:coord];
 
-    wp.wpt_lat = [c lat_decimalDegreesSigned];
-    wp.wpt_lon = [c lon_decimalDegreesSigned];
-    wp.wpt_lat_int = [c lat] * 1000000;
-    wp.wpt_lon_int = [c lon] * 1000000;
+    wp.wpt_latitude= [c latitude];
+    wp.wpt_longitude = [c longitude];
     wp.wpt_name = code;
     wp.wpt_description = name;
     wp.wpt_date_placed_epoch = time(NULL);
-    wp.wpt_date_placed = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:wp.wpt_date_placed_epoch];
     wp.wpt_url = nil;
     wp.wpt_urlname = [NSString stringWithFormat:@"%@ - %@", code, name];
-    wp.wpt_symbol_id = 1;
-    wp.wpt_type_id = [dbc Type_ManuallyEntered]._id;
-    wp.related_id = 0;  // This is a new parent
+    wp.wpt_symbol = [dbc Symbol_VirtualStage];
+    wp.wpt_type = [dbc Type_ManuallyEntered];
     [wp finish];
-    [dbWaypoint dbCreate:wp];
+    [wp dbCreate];
 
     [waypointManager needsRefreshAdd:wp];
 
-    [MyTools messageBox:self header:@"Waypoint added" text:[NSString stringWithFormat:@"Waypoint %@ is now created at %@", code, [Coordinates NiceCoordinates:coord]]];
+    [MyTools messageBox:self header:@"Waypoint added" text:[NSString stringWithFormat:@"Waypoint %@ is now created at %@", code, [Coordinates niceCoordinates:coord]]];
 }
 
 - (void)performLocalMenuAction:(NSInteger)index

@@ -50,10 +50,10 @@ enum {
 
     [self.tableView registerNib:[UINib nibWithNibName:XIB_LOGTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_LOGTABLEVIEWCELL];
 
-    logs = [NSMutableArray arrayWithArray:[dbLog dbAllByWaypoint:waypoint._id]];
+    logs = [NSMutableArray arrayWithArray:[dbLog dbAllByWaypoint:waypoint]];
     __block BOOL foundAnyCoordinates = NO;
     [logs enumerateObjectsUsingBlock:^(dbLog * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (log.lat_int != 0 && log.lon_int != 0) {
+        if (log.latitude != 0 && log.longitude != 0) {
             *stop = YES;
             foundAnyCoordinates = YES;
         }
@@ -78,7 +78,7 @@ enum {
     self = [self init:_wp];
 
     mineOnly = YES;
-    logs = [NSMutableArray arrayWithArray:[dbLog dbAllByWaypointLogged:waypoint._id]];
+    logs = [NSMutableArray arrayWithArray:[dbLog dbAllByWaypointLogged:waypoint]];
 
     return self;
 }
@@ -215,7 +215,7 @@ enum {
         return;
 
     [selectedLog dbDelete];
-    logs = [NSMutableArray arrayWithArray:[dbLog dbAllByWaypoint:waypoint._id]];
+    logs = [NSMutableArray arrayWithArray:[dbLog dbAllByWaypoint:waypoint]];
     [self reloadDataMainQueue];
 
     if (self.delegateWaypoint != nil)

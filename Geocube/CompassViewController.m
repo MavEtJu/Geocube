@@ -75,7 +75,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceDidRotate:) name:UIDeviceOrientationDidChangeNotification object:nil];
 
     /* Initiate the current cache */
-    Coordinates *coords = [[Coordinates alloc] init:waypointManager.currentWaypoint.wpt_lat_float lon:waypointManager.currentWaypoint.wpt_lon_float];
+    Coordinates *coords = [[Coordinates alloc] init:waypointManager.currentWaypoint.wpt_latitude longitude:waypointManager.currentWaypoint.wpt_longitude];
 
     if (waypointManager.currentWaypoint == nil) {
         self.ivWPContainer.hidden = YES;
@@ -201,7 +201,7 @@
 
     self.ivGPSCompassBackground.transform = CGAffineTransformMakeRotation(newCompass);
 
-    NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:waypointManager.currentWaypoint.coordinates] - LM.direction;
+    NSInteger bearing = [Coordinates coordinates2bearing:LM.coords toLatitude:waypointManager.currentWaypoint.wpt_latitude toLongitude:waypointManager.currentWaypoint.wpt_longitude] - LM.direction;
     float fBearing = bearing * M_PI / 180.0 + bearingAdjustment;
 
     /* Draw the line */
@@ -211,7 +211,7 @@
         self.ivGPSCompassLine.hidden = NO;
 
         self.ivGPSCompassLine.transform = CGAffineTransformMakeRotation(fBearing);
-        self.labelGPSDistance.text = [MyTools niceDistance:[c distance:waypointManager.currentWaypoint.coordinates]];
+        self.labelGPSDistance.text = [MyTools niceDistance:[c distance:waypointManager.currentWaypoint.wpt_latitude longitude:waypointManager.currentWaypoint.wpt_longitude]];
     }
 
     if (configManager.soundDirection == YES) {

@@ -112,7 +112,7 @@
 
 - (void)runQueue:(dbWaypoint *)wp
 {
-    NSString *urlString = [NSString stringWithFormat:urlFormat, wp.wpt_lat_float, wp.wpt_lon_float, configManager.opencageKey];
+    NSString *urlString = [NSString stringWithFormat:urlFormat, wp.wpt_latitude, wp.wpt_longitude, configManager.opencageKey];
     NSURL *url = [NSURL URLWithString:urlString];
 
     GCURLRequest *urlRequest = [GCURLRequest requestWithURL:url];
@@ -186,8 +186,5 @@
         }
     }
 }
-
-
-
 
 @end

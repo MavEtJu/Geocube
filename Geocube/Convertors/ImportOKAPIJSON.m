@@ -137,37 +137,36 @@
  }
 */
 
+    NSString *dummy;
     NSString *wpt_name;
     DICT_NSSTRING_KEY(dict, wpt_name, @"code");
     if (wpt_name == nil || [wpt_name isEqualToString:@""] == YES)
         return;
 
-    NSId wpid = [dbWaypoint dbGetByName:wpt_name];
-    dbWaypoint *wp;
-    if (wpid == 0)
+    dbWaypoint *wp = [dbWaypoint dbGetByName:wpt_name];
+    if (wp == nil)
         wp = [[dbWaypoint alloc] init];
-    else
-        wp = [dbWaypoint dbGet:wpid];
     wp.wpt_name = wpt_name;
+    wp.account = account;
 
-    DICT_NSSTRING_KEY(dict, wp.gs_state_str, @"state");
-    [dbState makeNameExist:wp.gs_state_str];
-    wp.gs_state_id = 0;
-    wp.gs_state = nil;
-    DICT_NSSTRING_KEY(dict, wp.gs_country_str, @"country");
-    [dbCountry makeNameExist:wp.gs_country_str];
-    wp.gs_country_id = 0;
-    wp.gs_country = nil;
+    DICT_NSSTRING_KEY(dict, dummy, @"state");
+    [dbState makeNameExist:dummy];
+    [wp set_gs_state_str:dummy];
+    DICT_NSSTRING_KEY(dict, dummy, @"country");
+    [dbCountry makeNameExist:dummy];
+    [wp set_gs_country_str:dummy];
     DICT_NSSTRING_KEY(dict, wp.gs_long_desc, @"description");
     wp.gs_long_desc_html = YES;
-    DICT_NSSTRING_KEY(dict, wp.wpt_date_placed, @"date_hidden");
+    DICT_NSSTRING_KEY(dict, dummy, @"date_hidden");
+    [wp set_wpt_date_placed:dummy];
     DICT_FLOAT_KEY(dict, wp.gs_rating_difficulty, @"difficulty");
     DICT_FLOAT_KEY(dict, wp.gs_rating_terrain, @"terrain");
     DICT_NSSTRING_KEY(dict, wp.gs_hint, @"hint2");
     DICT_NSSTRING_KEY(dict, wp.wpt_urlname, @"name");
-    DICT_NSSTRING_PATH(dict, wp.gs_owner_str, @"owner.username");
     DICT_NSSTRING_PATH(dict, wp.gs_owner_gsid, @"owner.uuid");
-    [dbName makeNameExist:wp.gs_owner_str code:wp.gs_owner_gsid account:account];
+    DICT_NSSTRING_PATH(dict, dummy, @"owner.username");
+    [dbName makeNameExist:dummy code:wp.gs_owner_gsid account:account];
+    [wp set_gs_owner_str:dummy];
     DICT_INTEGER_KEY(dict, wp.gs_favourites, @"recommendations");
     DICT_NSSTRING_KEY(dict, wp.gs_short_desc, @"short_description");
     wp.gs_short_desc_html = YES;
@@ -187,27 +186,25 @@
         wp.gs_available = NO;
     }
 
-    DICT_NSSTRING_KEY(dict, wp.gs_container_str, @"size2");
-    wp.gs_container_id = 0;
-    wp.gs_container = nil;
-    DICT_NSSTRING_KEY(dict, wp.wpt_type_str, @"type");
-    wp.wpt_type_id = 0;
-    wp.wpt_type = nil;
+    DICT_NSSTRING_KEY(dict, dummy, @"size2");
+    [wp set_gs_container_str:dummy];
+    DICT_NSSTRING_KEY(dict, dummy, @"type");
+    [wp set_wpt_type_str:dummy];
     DICT_NSSTRING_KEY(dict, wp.wpt_url, @"url");
 
     NSString *location;
     DICT_NSSTRING_KEY(dict, location, @"location");
     NSArray<NSString *> *cs = [location componentsSeparatedByString:@"|"];
-    wp.wpt_lat = [cs objectAtIndex:0];
-    wp.wpt_lon = [cs objectAtIndex:1];
+    [wp set_wpt_lat_str:[cs objectAtIndex:0]];
+    [wp set_wpt_lon_str:[cs objectAtIndex:1]];
 
-    wp.account = account;
     [wp finish];
     wp.date_lastimport_epoch = time(NULL);
 
     if (wp._id == 0) {
         NSLog(@"Created waypoint %@", wp.wpt_name);
-        [dbWaypoint dbCreate:wp];
+        [wp set_wpt_symbol_str:@"Geocache"];
+        [wp dbCreate];
         newWaypointsCount++;
         [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
     } else {
@@ -218,11 +215,11 @@
 
     [opencageManager addForProcessing:wp];
 
-    if ([group dbContainsWaypoint:wp._id] == NO)
-        [group dbAddWaypoint:wp._id];
+    if ([group containsWaypoint:wp] == NO)
+        [group addWaypointToGroup:wp];
 
-    [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_long_desc type:IMAGECATEGORY_CACHE];
-    [ImagesDownloadManager findImagesInDescription:wp._id text:wp.gs_short_desc type:IMAGECATEGORY_CACHE];
+    [ImagesDownloadManager findImagesInDescription:wp text:wp.gs_long_desc type:IMAGECATEGORY_CACHE];
+    [ImagesDownloadManager findImagesInDescription:wp text:wp.gs_short_desc type:IMAGECATEGORY_CACHE];
 
     NSString *personal_note;
     DICT_NSSTRING_KEY(dict, personal_note, @"my_notes");
@@ -295,19 +292,22 @@
 
     image = [dbImage dbGetByURL:url];
     if (image == nil) {
-        image = [[dbImage alloc] init:url name:desc datafile:df];
-        [dbImage dbCreate:image];
+        image = [[dbImage alloc] init];
+        image.url = url;
+        image.name = desc;
+        image.datafile = df;
+        [image dbCreate];
     }
 
-    if ([image dbLinkedtoWaypoint:wp._id] == NO)
-        [image dbLinkToWaypoint:wp._id type:IMAGECATEGORY_CACHE];
+    if ([image dbLinkedtoWaypoint:wp] == NO)
+        [image dbLinkToWaypoint:wp type:IMAGECATEGORY_CACHE];
 
     [ImagesDownloadManager addToQueue:image imageType:IMAGECATEGORY_CACHE];
 }
 
 - (void)parseData_logs:(NSArray<NSDictionary *> *)logs waypoint:(dbWaypoint *)wp
 {
-    NSArray<dbLog *> *alllogs = [dbLog dbAllByWaypoint:wp._id];
+    NSArray<dbLog *> *alllogs = [dbLog dbAllByWaypoint:wp];
     [infoViewer setLogsTotal:iiImport total:[alllogs count]];
     [logs enumerateObjectsUsingBlock:^(NSDictionary *log, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseData_log:log waypoint:wp logs:alllogs];
@@ -332,7 +332,7 @@
  }
 */
 
-    NSInteger logtype = [dbLogString wptTypeToLogType:wp.wpt_type_str];
+    NSInteger logtype = [dbLogString wptTypeToLogType:wp.wpt_type.type_full];
     NSString *type;
     NSString *date;
     NSInteger dateSinceEpoch;
@@ -351,11 +351,11 @@
 
     name = [dbName dbGetByName:loggername account:account];
 
-    [ImagesDownloadManager findImagesInDescription:wp._id text:comment type:IMAGECATEGORY_LOG];
+    [ImagesDownloadManager findImagesInDescription:wp text:comment type:IMAGECATEGORY_LOG];
 
     __block BOOL found = NO;
     [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (name._id == log.logger_id && dateSinceEpoch == log.datetime_epoch) {
+        if (name._id == log.logger._id && dateSinceEpoch == log.datetime_epoch) {
             found = YES;
             *stop = YES;
         }
@@ -364,7 +364,7 @@
     if (found == YES)
         return;
 
-    dbLog *l = [[dbLog alloc] init:0 gc_id:0 waypoint_id:wp._id logstring_id:ls._id datetime:date logger_id:name._id log:comment needstobelogged:NO locallog:NO coordinates:CLLocationCoordinate2DZero];
+    dbLog *l = [[dbLog alloc] init:0 gc_id:0 waypoint:wp logstring:ls datetime:dateSinceEpoch logger:name log:comment needstobelogged:NO locallog:NO coordinates:CLLocationCoordinate2DZero];
     [l dbCreate];
     newLogsCount++;
     [infoViewer setLogsNew:iiImport new:newLogsCount];

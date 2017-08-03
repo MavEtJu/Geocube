@@ -88,7 +88,7 @@ enum {
     dbWaypoint *wp = [self.waypoints objectAtIndex:indexPath.row];
     cell.icon.image = [imageLibrary getType:wp];
     cell.name.text = wp.wpt_urlname;
-    cell.owner.text = wp.gs_owner_str;
+    cell.owner.text = wp.gs_owner.name;
     cell.code.text = wp.wpt_name;
     dbPersonalNote *pn = [dbPersonalNote dbGetByWaypointName:wp.wpt_name];
     cell.note.text = pn.note;

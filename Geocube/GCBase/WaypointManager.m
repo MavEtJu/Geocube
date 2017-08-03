@@ -43,8 +43,8 @@
     needsRefresh = NO;
     lastCoordinates = CLLocationCoordinate2DZero;
 
-    if ([configManager.currentWaypoint isEqualToString:@""] == NO)
-        self.currentWaypoint = [dbWaypoint dbGet:[dbWaypoint dbGetByName:configManager.currentWaypoint]];
+    if (configManager.currentWaypoint != nil && [configManager.currentWaypoint isEqualToString:@""] == NO)
+        self.currentWaypoint = [dbWaypoint dbGetByName:configManager.currentWaypoint];
 
     [LM startDelegation:self isNavigating:NO];
 
@@ -126,7 +126,7 @@
 - (void)applyFilters:(CLLocationCoordinate2D)coords
 {
     @synchronized(self) {
-        NSLog(@"%@: coordinates %@", [self class], [Coordinates NiceCoordinates:coords]);
+        NSLog(@"%@: coordinates %@", [self class], [Coordinates niceCoordinates:coords]);
 
         /* Do not unnecessary go through this */
         if (needsRefresh != YES)
@@ -206,7 +206,7 @@
                 if (c == nil || [c boolValue] == NO)
                     return;
                 [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
-                    if (wp.account_id == account._id)
+                    if (wp.account._id == account._id)
                         [after addObject:wp];
                 }];
             }];
@@ -231,7 +231,7 @@
                 if (c == nil || [c boolValue] == NO)
                     return;
                 [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                    if (wp.wpt_type_id == type._id)
+                    if (wp.wpt_type._id == type._id)
                         [after addObject:wp];
                 }];
             }];
@@ -295,7 +295,7 @@
                 if (c == nil || [c boolValue] == NO)
                     return;
                 [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                    if (wp.gs_container_id == container._id)
+                    if (wp.gs_container._id == container._id)
                         [after addObject:wp];
                 }];
             }];
@@ -386,7 +386,7 @@
             switch (lastLogCompare) {
                 case FILTER_DATE_BEFORE: {
                     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                        NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp._id];
+                        NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp];
                         __block BOOL rv = YES;
                         [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL *stop) {
                             if (log.datetime_epoch > lastLogEpoch) {
@@ -401,7 +401,7 @@
                 }
                 case FILTER_DATE_AFTER: {
                     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                        NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp._id];
+                        NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp];
                         __block BOOL rv = NO;
                         [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL *stop) {
                             if (log.datetime_epoch > lastLogEpoch) {
@@ -416,7 +416,7 @@
                 }
                 case FILTER_DATE_ON: {
                     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                        NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp._id];
+                        NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp];
                         __block BOOL rv = NO;
                         [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL *stop) {
                             if (log.datetime_epoch > lastLogEpoch - 86400 && log.datetime_epoch < lastLogEpoch + 86400) {
@@ -510,7 +510,7 @@
                 if (locales != nil) {
                     __block BOOL matched = NO;
                     [locales enumerateObjectsUsingBlock:^(dbLocale *s, NSUInteger idx, BOOL *stop) {
-                        if (s._id == wp.gca_locale_id) {
+                        if (s._id == wp.gca_locale._id) {
                             matched = YES;
                             *stop = YES;
                         }
@@ -522,7 +522,7 @@
                 if (states != nil) {
                     __block BOOL matched = NO;
                     [states enumerateObjectsUsingBlock:^(dbState *s, NSUInteger idx, BOOL *stop) {
-                        if (s._id == wp.gs_state_id) {
+                        if (s._id == wp.gs_state._id) {
                             matched = YES;
                             *stop = YES;
                         }
@@ -534,7 +534,7 @@
                 if (countries != nil) {
                     __block BOOL matched = NO;
                     [countries enumerateObjectsUsingBlock:^(dbCountry *c, NSUInteger idx, BOOL *stop) {
-                        if (c._id == wp.gs_country_id) {
+                        if (c._id == wp.gs_country._id) {
                             matched = YES;
                             *stop = YES;
                         }
@@ -546,7 +546,7 @@
                 if (owners != nil) {
                     __block BOOL matched = NO;
                     [owners enumerateObjectsUsingBlock:^(dbName *o, NSUInteger idx, BOOL *stop) {
-                        if (o._id == wp.gs_owner_id) {
+                        if (o._id == wp.gs_owner._id) {
                             matched = YES;
                             *stop = YES;
                         }
@@ -599,7 +599,7 @@
                 if (keep == YES && flagMarkedDNF != FILTER_FLAGS_NOTCHECKED)
                     keep = (wp.flag_dnf == NO && flagMarkedDNF == FILTER_FLAGS_NOTSET) || (wp.flag_dnf == YES && flagMarkedDNF == FILTER_FLAGS_SET);
                 if (keep == YES && flagMine != FILTER_FLAGS_NOTCHECKED)
-                    keep = (wp.account.accountname_id != wp.gs_owner_id && flagMine == FILTER_FLAGS_NOTSET) || (wp.account.accountname_id == wp.gs_owner_id && flagMine == FILTER_FLAGS_SET);
+                    keep = (wp.account.accountname._id != wp.gs_owner._id && flagMine == FILTER_FLAGS_NOTSET) || (wp.account.accountname._id == wp.gs_owner._id && flagMine == FILTER_FLAGS_SET);
                 if (keep == YES && flagLoggedAsFound != LOGSTATUS_NOTLOGGED)
                     keep = (wp.logStatus == LOGSTATUS_FOUND && flagLoggedAsFound == FILTER_FLAGS_SET) || (wp.logStatus != LOGSTATUS_FOUND && flagLoggedAsFound == FILTER_FLAGS_NOTSET);
                 if (keep == YES && flagLoggedAsDNF != LOGSTATUS_NOTLOGGED)
@@ -631,10 +631,10 @@
         }
 
         /* Calculate the distance and the bearing */
-        NSLog(@"Coordinates: %@", [Coordinates NiceCoordinates:coords]);
+        NSLog(@"Coordinates: %@", [Coordinates niceCoordinates:coords]);
         [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-            wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:coords];
-            wp.calculatedBearing = [Coordinates coordinates2bearing:coords to:wp.coordinates];
+            wp.calculatedDistance = [Coordinates coordinates2distance:coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude];
+            wp.calculatedBearing = [Coordinates coordinates2bearing:coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude];
         }];
 
         /* Filter by distance */

@@ -53,6 +53,7 @@
 
 // Symbols
 @property (nonatomic, retain) dbSymbol *Symbol_Unknown;
+@property (nonatomic, retain) dbSymbol *Symbol_VirtualStage;
 
 // ContainerSize
 @property (nonatomic, retain) dbContainer *Container_Unknown;
@@ -76,7 +77,7 @@
 
 - (dbSymbol *)Symbol_get_bysymbol:(NSString *)size;
 - (dbSymbol *)Symbol_get:(NSId)_id;
-- (void)Symbols_add:(NSId)_id symbol:(NSString *)symbol;
+- (void)Symbols_add:(dbSymbol *)s;
 
 - (dbLogString *)LogString_get_bytype:(dbAccount *)account logtype:(NSInteger)logtype type:(NSString *)type;
 - (dbLogString *)LogString_get:(NSId)_id;
@@ -108,5 +109,7 @@
 
 - (dbName *)Name_get:(NSId)_id;
 - (void)Name_add:(dbName *)name;
+
+- (dbProtocol *)Protocol_get:(NSId)_id;
 
 @end

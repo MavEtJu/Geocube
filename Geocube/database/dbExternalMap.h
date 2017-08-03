@@ -26,19 +26,6 @@
 @property (nonatomic, retain) NSString *name;
 
 + (NSArray<dbExternalMap *> *)dbAll;
-+ (dbExternalMap *)dbGetByGeocubeID:(NSId)geocube_id;
-
-@end
-
-@interface dbExternalMapURL : dbObject
-
-@property (nonatomic) NSId externalMap_id;
-@property (nonatomic, retain) dbExternalMap *externalMap;
-@property (nonatomic, retain) NSString *model;
-@property (nonatomic) NSInteger type;
-@property (nonatomic, retain) NSString *url;
-
-+ (NSArray<dbExternalMapURL *> *)dbAllByExternalMap:(NSId)map_id;
-+ (void)dbDeleteByExternalMap:(NSId)map_id;
++ (dbExternalMap *)dbGetByGeocubeID:(NSInteger)geocube_id;
 
 @end

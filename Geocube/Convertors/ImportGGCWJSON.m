@@ -103,26 +103,23 @@
     NSString *wpt_name;
     DICT_NSSTRING_KEY(dict, wpt_name, @"gc");
 
-    NSId wpid = [dbWaypoint dbGetByName:wpt_name];
-    dbWaypoint *wp;
-    if (wpid == 0)
+    dbWaypoint *wp = [dbWaypoint dbGetByName:wpt_name];
+    if (wp == nil)
         wp = [[dbWaypoint alloc] init];
-    else
-        wp = [dbWaypoint dbGet:wpid];
     wp.wpt_name = wpt_name;
+
+    NSString *dummy;
 
     DICT_INTEGER_KEY(dict, wp.gs_archived, @"archived");
     DICT_INTEGER_KEY(dict, wp.gs_available, @"available");
     DICT_INTEGER_PATH(dict, wp.gs_rating_difficulty, @"difficulty.text");
     DICT_INTEGER_PATH(dict, wp.gs_rating_terrain, @"terrain.text");
     DICT_INTEGER_PATH(dict, wp.gs_favourites, @"fp");
-    wp.wpt_type_id = 0;
-    wp.wpt_type = nil;
-    DICT_NSSTRING_PATH(dict, wp.wpt_type_str, @"container.text");
-    wp.gs_owner_id = 0;
-    wp.gs_owner = nil;
-    DICT_NSSTRING_PATH(dict, wp.gs_owner_str, @"owner.text");
-    [dbName makeNameExist:wp.gs_owner_str code:nil account:account];
+    DICT_NSSTRING_PATH(dict, dummy, @"container.text");
+    [wp set_wpt_type_str:dummy];
+    DICT_NSSTRING_PATH(dict, dummy, @"owner.text");
+    [dbName makeNameExist:dummy code:nil account:account];
+    [wp set_gs_owner_str:dummy];
 
     wp.account = account;
     [wp finish];
@@ -130,7 +127,7 @@
 
     if (wp._id == 0) {
         NSLog(@"Created waypoint %@", wp.wpt_name);
-        [dbWaypoint dbCreate:wp];
+        [wp dbCreate];
         newWaypointsCount++;
         [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
     } else {
@@ -141,8 +138,8 @@
 
     [opencageManager addForProcessing:wp];
 
-    if ([group dbContainsWaypoint:wp._id] == NO)
-        [group dbAddWaypoint:wp._id];
+    if ([group containsWaypoint:wp] == NO)
+        [group addWaypointToGroup:wp];
 }
 
 - (void)parseBefore_trackables
@@ -187,15 +184,17 @@
         tb.ref = gccode;
     }
 
+    NSString *dummy;
+
     DICT_INTEGER_KEY(tbdata, tb.gc_id, @"id");
     DICT_NSSTRING_KEY(tbdata, tb.name, @"name");
-    DICT_INTEGER_KEY(tbdata, tb.carrier_id, @"carrier_id");
-    DICT_NSSTRING_KEY(tbdata, tb.carrier_str, @"carrier");
-    if (tb.carrier_str != nil)
-        [dbName makeNameExist:tb.carrier_str code:nil account:account];
-    DICT_NSSTRING_KEY(tbdata, tb.owner_str, @"owner");
-    [dbName makeNameExist:tb.owner_str code:nil account:account];
-    [tb finish:account];
+    DICT_NSSTRING_KEY(tbdata, dummy, @"carrier");
+    [dbName makeNameExist:dummy code:nil account:account];
+    [tb set_carrier_str:dummy account:account];
+    DICT_NSSTRING_KEY(tbdata, dummy, @"owner");
+    [dbName makeNameExist:dummy code:nil account:account];
+    [tb set_owner_str:dummy account:account];
+    [tb finish];
 
     if (tb._id == 0) {
         NSLog(@"Created trackable %@", tb.ref);

@@ -645,6 +645,63 @@
     @"insert into config(key, value) values('url_versions', 'https://geocube.mavetju.org/geocube_versions.geocube')"
     ];
     [upgradeSteps addObject:a];
+
+    // Version 51
+    a = @[
+    @"update config set value = 'https://geocube.mavetju.org/geocube_sites.4.geocube' where key = 'url_sites'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_sites.4.geocube' where key = 'url_sites'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_notices.4.geocube' where key = 'url_notices'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_externalmaps.4.geocube' where key = 'url_externalmaps'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_countries.4.geocube' where key = 'url_countries'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_states.4.geocube' where key = 'url_states'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_attributes.4.geocube' where key = 'url_attributes'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_keys.4.geocube' where key = 'url_keys'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_types.4.geocube' where key = 'url_types'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_pins.4.geocube' where key = 'url_pins'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_bookmarks.4.geocube' where key = 'url_bookmarks'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_containers.4.geocube' where key = 'url_containers'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_logstrings.4.geocube' where key = 'url_logstrings'",
+    ];
+    [upgradeSteps addObject:a];
+
+    // Version 52
+    a = @[
+    @"alter table accounts add column accountname_id integer",
+    @"update accounts set accountname_id = name_id",
+    @"alter table waypoints add column wpt_lat float",
+    @"alter table waypoints add column wpt_lon float",
+    @"alter table trackelements add column lat float",
+    @"alter table trackelements add column lon float",
+    ];
+
+    a = @[
+    // Fix trackelements table
+    @"drop index trackelements_idx_id",
+    @"drop index trackelements_idx_trackid",
+    @"alter table trackelements rename to trackelements_old",
+    @"create table trackelements(id integer primary key, track_id integer, lat float, lon float, height integer, timestamp integer, restart bool)",
+    @"create index trackelements_idx_id on trackelements(id)",
+    @"create index trackelements_idx_trackid on trackelements(track_id)",
+    @"insert into trackelements select id, track_id, lat_int / 1000000.0, lon_int / 1000000.0, height, timestamp, restart from trackelements_old",
+    @"drop table trackelements_old",
+
+    // Fix accounts table
+    @"alter table accounts rename to accounts_old",
+    @"create table accounts(id integer primary key, geocube_id integer, revision integer, enabled bool, site text, url_site text, url_queries text, accountname_id integer, protocol_id integer, distance_minimum integer, authentication_name text, authentication_password text, gca_cookie_name text, gca_cookie_value text, gca_authenticate_url text, gca_callback_url text, oauth_consumer_public text, oauth_consumer_public_sharedsecret text, oauth_consumer_private text, oauth_consumer_private_sharedsecret text, oauth_request_url text, oauth_access_url text, oauth_authorize_url text, oauth_token text, oauth_token_secret text)",
+    @"insert into accounts select id, geocube_id, revision, enabled, site, url_site, url_queries, name_id, protocol_id, distance_minimum, authentication_name, authentication_password, gca_cookie_name, gca_cookie_value, gca_authenticate_url, gca_callback_url, oauth_consumer_public, oauth_consumer_public_sharedsecret, oauth_consumer_private, oauth_consumer_private_sharedsecret, oauth_request_url, oauth_access_url, oauth_authorize_url, oauth_token, oauth_token_secret from accounts_old",
+    @"drop table accounts_old",
+
+    // Fix waypoints table
+    @"drop index waypoint_idx_name",
+    @"drop index waypoint_idx_id",
+    @"alter table waypoints rename to waypoints_old",
+    @"create table waypoints(id integer primary key, wpt_lat float, wpt_lon float, wpt_name text, wpt_description text, wpt_date_placed_epoch integer, wpt_url text, wpt_urlname text, wpt_symbol_id integer, wpt_type_id integer, account_id integer, log_status integer, highlight bool, ignore bool, markedfound bool, inprogress bool, dnfed bool, planned bool, date_lastlog_epoch integer, date_lastimport_epoch integer, gs_enabled bool, gs_archived bool, gs_available bool, gs_country_id integer, gca_locale_id integer, gs_state_id integer, gs_rating_difficulty float, gs_rating_terrain float, gs_date_found integer, gs_favourites integer, gs_long_desc_html bool, gs_long_desc text, gs_short_desc_html bool, gs_short_desc text, gs_hint text, gs_container_id integer, gs_placed_by text, gs_owner_id integer)",
+    @"insert into waypoints select id, wpt_lat_int / 1000000.0, wpt_lon_int / 1000000.0, wpt_name, wpt_description, wpt_date_placed_epoch, wpt_url, wpt_urlname, wpt_symbol_id, wpt_type_id, account_id, log_status, highlight, ignore, markedfound, inprogress, dnfed, planned, date_lastlog_epoch, date_lastimport_epoch, gs_enabled, gs_archived, gs_available, gs_country_id, gca_locale_id, gs_state_id, gs_rating_difficulty, gs_rating_terrain, gs_date_found, gs_favourites, gs_long_desc_html, gs_long_desc, gs_short_desc_html, gs_short_desc, gs_hint, gs_container_id, gs_placed_by, gs_owner_id from waypoints_old",
+    @"create index waypoint_idx_name on waypoints(wpt_name)",
+    @"create index waypoint_idx_id on waypoints(id)",
+    @"drop table waypoints_old",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

@@ -25,12 +25,18 @@
 
 @implementation dbProtocol
 
-+ (NSArray<dbProtocol *> *)dbAll
+TABLENAME(@"protocols")
+
++ (NSArray<dbProtocol *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
     NSMutableArray<dbProtocol *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, name from protocols "];
+    if (where != nil)
+        [sql appendString:where];
+
     @synchronized(db) {
-        DB_PREPARE(@"select id, name from protocols order by id");
+        DB_PREPARE_KEYSVALUES(sql, keys, values)
 
         DB_WHILE_STEP {
             dbProtocol *p = [[dbProtocol alloc] init];
@@ -43,47 +49,19 @@
     return ss;
 }
 
-+ (NSInteger)dbCount
++ (NSArray<dbProtocol *> *)dbAll
 {
-    return [dbProtocol dbCount:@"protocols"];
+    return [self dbAllXXX:@"order by id" keys:nil values:nil];
 }
 
 + (dbProtocol *)dbGet:(NSId)_id
 {
-    dbProtocol *p;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, name from protocols where id = ?");
-
-        SET_VAR_INT(1, _id);
-
-        DB_IF_STEP {
-            p = [[dbProtocol alloc] init];
-            INT_FETCH (0, p._id);
-            TEXT_FETCH(1, p.name);
-        }
-        DB_FINISH;
-    }
-    return p;
+    return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
 }
 
 + (dbProtocol *)dbGetByName:(NSString *)name
 {
-    dbProtocol *p;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, name from protocols where name = ?");
-
-        SET_VAR_TEXT(1, name);
-
-        DB_IF_STEP {
-            p = [[dbProtocol alloc] init];
-            INT_FETCH (0, p._id);
-            TEXT_FETCH(1, p.name);
-        }
-        DB_FINISH;
-    }
-    return p;
+    return [[self dbAllXXX:@"where name = ?" keys:@"s" values:@[name]] firstObject];
 }
 
 @end

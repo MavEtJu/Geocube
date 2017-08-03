@@ -24,11 +24,8 @@
 @property (nonatomic, retain) NSString *key;
 @property (nonatomic, retain) NSString *value;
 
-- (instancetype)init:(NSId)_id key:(NSString *)key value:(NSString *)value;
 + (dbFilter *)dbGetByKey:(NSString *)key;
 + (void)dbUpdateOrInsert:(NSString *)key value:(NSString *)value;
-- (NSId)dbCreate;
-- (void)dbUpdate;
 + (void)dbAllClear:(NSString *)prefix;
 + (NSArray<NSString *> *)findFilterNames;
 

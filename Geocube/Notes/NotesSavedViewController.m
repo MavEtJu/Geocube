@@ -89,7 +89,7 @@ enum {
 
 - (void)reloadLogs
 {
-    waypointsWithLogs = [dbWaypoint waypointsWithLogsUnsubmitted];
+    waypointsWithLogs = [dbWaypoint dbAllWaypointsWithLogsUnsubmitted];
 }
 
 #pragma mark - TableViewController related functions
@@ -103,7 +103,7 @@ enum {
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
     dbWaypoint *wp = [waypointsWithLogs objectAtIndex:section];
-    return [[dbLog dbAllByWaypointUnsubmitted:wp._id] count];
+    return [[dbLog dbAllByWaypointUnsubmitted:wp] count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -119,7 +119,7 @@ enum {
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     dbWaypoint *wp = [waypointsWithLogs objectAtIndex:indexPath.section];
-    dbLog *l = [[dbLog dbAllByWaypointUnsubmitted:wp._id] objectAtIndex:indexPath.row];
+    dbLog *l = [[dbLog dbAllByWaypointUnsubmitted:wp] objectAtIndex:indexPath.row];
 
     [cell setLog:l];
     [cell setUserInteractionEnabled:YES];
@@ -189,7 +189,7 @@ enum {
 - (void)menuDeleteAll
 {
     [waypointsWithLogs enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        [[dbLog dbAllByWaypointUnsubmitted:wp._id] enumerateObjectsUsingBlock:^(dbLog * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
+        [[dbLog dbAllByWaypointUnsubmitted:wp] enumerateObjectsUsingBlock:^(dbLog * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
             [log dbDelete];
         }];
     }];
@@ -206,7 +206,7 @@ enum {
 - (void)menuDelete:(NSIndexPath *)indexPath
 {
     dbWaypoint *wp = [waypointsWithLogs objectAtIndex:indexPath.section];
-    dbLog *l = [[dbLog dbAllByWaypointUnsubmitted:wp._id] objectAtIndex:indexPath.row];
+    dbLog *l = [[dbLog dbAllByWaypointUnsubmitted:wp] objectAtIndex:indexPath.row];
 
     l.needstobelogged = NO;
     [l dbUpdate];
@@ -217,7 +217,7 @@ enum {
 - (void)menuSubmitAll
 {
     [waypointsWithLogs enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        [[dbLog dbAllByWaypointUnsubmitted:wp._id] enumerateObjectsUsingBlock:^(dbLog * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
+        [[dbLog dbAllByWaypointUnsubmitted:wp] enumerateObjectsUsingBlock:^(dbLog * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
             // Something
         }];
     }];
@@ -234,7 +234,7 @@ enum {
 - (void)menuSubmit:(NSIndexPath *)indexPath
 {
     dbWaypoint *wp = [waypointsWithLogs objectAtIndex:indexPath.section];
-    dbLog *l = [[dbLog dbAllByWaypointUnsubmitted:wp._id] objectAtIndex:indexPath.row];
+    dbLog *l = [[dbLog dbAllByWaypointUnsubmitted:wp] objectAtIndex:indexPath.row];
 
     WaypointViewController *wpvc = [[WaypointViewController alloc] init];
     wpvc.hasCloseButton = YES;

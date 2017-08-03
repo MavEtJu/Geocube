@@ -25,80 +25,23 @@
 
 @implementation dbBookmark
 
-- (instancetype)init:(NSId)_id name:(NSString *)name url:(NSString *)url import_id:(NSInteger)import_id
+TABLENAME(@"bookmarks")
+
+- (NSId)dbCreate
 {
-    self = [super init];
-
-    self._id = _id;
-    self.name = name;
-    self.url = url;
-    self.import_id = import_id;
-
-    [self finish];
-    return self;
-}
-
-+ (dbBookmark *)dbGet:(NSId)_id
-{
-    dbBookmark *a = nil;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, name, url, import_id from bookmarks where id = ?");
-        SET_VAR_INT(1, _id);
-
-        DB_IF_STEP {
-            a = [[dbBookmark alloc] init];
-            INT_FETCH (0, a._id);
-            TEXT_FETCH(1, a.name);
-            TEXT_FETCH(2, a.url);
-            INT_FETCH (3, a.import_id);
-        }
-        DB_FINISH;
-    }
-    return a;
-}
-
-+ (NSArray<dbBookmark *> *)dbAll
-{
-    NSMutableArray<dbBookmark *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, name, url, import_id from bookmarks");
-
-        DB_WHILE_STEP {
-            dbBookmark *a = [[dbBookmark alloc] init];
-            INT_FETCH (0, a._id);
-            TEXT_FETCH(1, a.name);
-            TEXT_FETCH(2, a.url);
-            INT_FETCH (3, a.import_id);
-            [ss addObject:a];
-        }
-        DB_FINISH;
-    }
-    return ss;
-}
-
-+ (NSInteger)dbCount
-{
-    return [dbBookmark dbCount:@"bookmarks"];
-}
-
-+ (NSId)dbCreate:(dbBookmark *)bm;
-{
-    NSId _id;
-
+    // ASSERT_SELF_FIELD_EXISTS(import);        -- Not filled in until the first import
     @synchronized(db) {
         DB_PREPARE(@"insert into bookmarks(name, url, import_id) values(?, ?, ?)");
 
-        SET_VAR_TEXT(1, bm.name);
-        SET_VAR_TEXT(2, bm.url);
-        SET_VAR_INT (3, bm.import_id);
+        SET_VAR_TEXT(1, self.name);
+        SET_VAR_TEXT(2, self.url);
+        SET_VAR_INT (3, self.import._id);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(_id);
+        DB_GET_LAST_ID(self._id);
         DB_FINISH;
     }
-    return _id;
+    return self._id;
 }
 
 - (void)dbUpdate
@@ -108,7 +51,7 @@
 
         SET_VAR_TEXT(1, self.name);
         SET_VAR_TEXT(2, self.url);
-        SET_VAR_INT (3, self.import_id);
+        SET_VAR_INT (3, self.import._id);
         SET_VAR_INT (4, self._id);
 
         DB_CHECK_OKAY;
@@ -116,36 +59,45 @@
     }
 }
 
-- (void)dbDelete
++ (NSArray<dbBookmark *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
+    NSMutableArray<dbBookmark *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSId i;
+
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, name, url, import_id from bookmarks "];
+    if (where != nil)
+        [sql appendString:where];
+
     @synchronized(db) {
-        DB_PREPARE(@"delete from bookmarks where id = ?");
+        DB_PREPARE_KEYSVALUES(sql, keys, values);
 
-        SET_VAR_INT(1, self._id);
-
-        DB_CHECK_OKAY;
+        DB_WHILE_STEP {
+            dbBookmark *a = [[dbBookmark alloc] init];
+            INT_FETCH (0, a._id);
+            TEXT_FETCH(1, a.name);
+            TEXT_FETCH(2, a.url);
+            INT_FETCH (3, i);
+            a.import = [dbFileImport dbGet:i];
+            [ss addObject:a];
+        }
         DB_FINISH;
     }
+    return ss;
+}
+
++ (NSArray<dbBookmark *> *)dbAll
+{
+    return [self dbAllXXX:nil keys:nil values:nil];
+}
+
++ (dbBookmark *)dbGet:(NSId)_id
+{
+    return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
 }
 
 + (dbBookmark *)dbGetByImport:(NSInteger)import_id
 {
-    dbBookmark *a = nil;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, name, url, import_id from bookmarks where import_id = ?");
-        SET_VAR_INT(1, import_id);
-
-        DB_IF_STEP {
-            a = [[dbBookmark alloc] init];
-            INT_FETCH (0, a._id);
-            TEXT_FETCH(1, a.name);
-            TEXT_FETCH(2, a.url);
-            INT_FETCH (3, a.import_id);
-        }
-        DB_FINISH;
-    }
-    return a;
+    return [[self dbAllXXX:@"where import_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:import_id]]] firstObject];
 }
 
 @end

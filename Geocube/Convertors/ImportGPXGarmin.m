@@ -106,11 +106,10 @@
 
         if ([currentElement isEqualToString:@"wpt"] == YES) {
             currentWP = [[dbWaypoint alloc] init];
-            [currentWP setWpt_lat:[attributeDict objectForKey:@"lat"]];
-            [currentWP setWpt_lon:[attributeDict objectForKey:@"lon"]];
+            [currentWP set_wpt_lat_str:[attributeDict objectForKey:@"lat"]];
+            [currentWP set_wpt_lon_str:[attributeDict objectForKey:@"lon"]];
 
             currentWP.account = account;
-            currentWP.account_id = account._id;
 
             logs = [NSMutableArray arrayWithCapacity:20];
             attributesYES = [NSMutableArray arrayWithCapacity:20];
@@ -206,50 +205,50 @@
             currentWP.date_lastimport_epoch = time(NULL);
 
             // Determine if it is a new waypoint or an existing one
-            currentWP._id = [dbWaypoint dbGetByName:currentWP.wpt_name];
+            currentWP._id = [dbWaypoint dbGetByName:currentWP.wpt_name]._id;
             totalWaypointsCount++;
             [infoViewer setWaypointsTotal:iiImport total:totalWaypointsCount];
             if (runOption_LogsOnly == NO) {
                 if (currentWP._id == 0) {
-                    [dbWaypoint dbCreate:currentWP];
+                    [currentWP dbCreate];
                     newWaypointsCount++;
                     [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
 
                     // Update the group
-                    [dbc.Group_LastImportAdded dbAddWaypoint:currentWP._id];
-                    [dbc.Group_AllWaypoints dbAddWaypoint:currentWP._id];
-                    [group dbAddWaypoint:currentWP._id];
+                    [dbc.Group_LastImportAdded addWaypointToGroup:currentWP];
+                    [dbc.Group_AllWaypoints addWaypointToGroup:currentWP];
+                    [group addWaypointToGroup:currentWP];
                 } else {
                     [currentWP dbUpdate];
 
                     // Update the group
-                    if ([group dbContainsWaypoint:currentWP._id] == NO)
-                        [group dbAddWaypoint:currentWP._id];
+                    if ([group containsWaypoint:currentWP] == NO)
+                        [group addWaypointToGroup:currentWP];
                 }
                 [self.delegate Import_WaypointProcessed:currentWP];
 
                 [opencageManager addForProcessing:currentWP];
 
-                [dbc.Group_LastImport dbAddWaypoint:currentWP._id];
+                [dbc.Group_LastImport addWaypointToGroup:currentWP];
                 if (currentWP.gs_long_desc != nil)
-                    newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:currentWP.gs_long_desc type:IMAGECATEGORY_CACHE];
+                    newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP text:currentWP.gs_long_desc type:IMAGECATEGORY_CACHE];
                 if (currentWP.gs_short_desc != nil)
-                    newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:currentWP.gs_short_desc type:IMAGECATEGORY_CACHE];
+                    newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP text:currentWP.gs_short_desc type:IMAGECATEGORY_CACHE];
             }
 
             // Link images to cache
             [imagesCache enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL * _Nonnull stop) {
-                newImagesCount += [ImagesDownloadManager downloadImage:currentWP._id url:img.url name:img.name type:IMAGECATEGORY_CACHE];
+                newImagesCount += [ImagesDownloadManager downloadImage:currentWP url:img.url name:img.name type:IMAGECATEGORY_CACHE];
             }];
 
             [imagesLog enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL * _Nonnull stop) {
-                newImagesCount += [ImagesDownloadManager downloadImage:currentWP._id url:img.url name:img.name type:IMAGECATEGORY_LOG];
+                newImagesCount += [ImagesDownloadManager downloadImage:currentWP url:img.url name:img.name type:IMAGECATEGORY_LOG];
             }];
 
             // Link logs to cache
             [logs enumerateObjectsUsingBlock:^(dbLog *l, NSUInteger idx, BOOL *stop) {
-                newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP._id text:l.log type:IMAGECATEGORY_LOG];
-                l.waypoint_id = currentWP._id;
+                newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP text:l.log type:IMAGECATEGORY_LOG];
+                l.waypoint = currentWP;
                 [l finish];
 
                 __block NSId _id = 0;
@@ -273,15 +272,15 @@
 
             if (runOption_LogsOnly == NO) {
                 // Link attributes to cache
-                [dbAttribute dbUnlinkAllFromWaypoint:currentWP._id];
-                [dbAttribute dbAllLinkToWaypoint:currentWP._id attributes:attributesNO YesNo:NO];
-                [dbAttribute dbAllLinkToWaypoint:currentWP._id attributes:attributesYES YesNo:YES];
+                [dbAttribute dbUnlinkAllFromWaypoint:currentWP];
+                [dbAttribute dbAllLinkToWaypoint:currentWP attributes:attributesNO YesNo:NO];
+                [dbAttribute dbAllLinkToWaypoint:currentWP attributes:attributesYES YesNo:YES];
 
                 // Link trackables to cache
-                [dbTrackable dbUnlinkAllFromWaypoint:currentWP._id];
+                [dbTrackable dbUnlinkAllFromWaypoint:currentWP];
                 [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL *stop) {
                     NSId _id = [dbTrackable dbGetIdByGC:tb.gc_id];
-                    [tb finish:account];
+                    [tb finish];
                     if (_id == 0) {
                         newTrackablesCount++;
                         [infoViewer setTrackablesNew:iiImport new:newTrackablesCount];
@@ -290,7 +289,7 @@
                         tb._id = _id;
                         [tb dbUpdate];
                     }
-                    [tb dbLinkToWaypoint:currentWP._id];
+                    [tb dbLinkToWaypoint:currentWP];
                     totalTrackablesCount++;
                     [infoViewer setTrackablesTotal:iiImport total:totalTrackablesCount];
                 }];
@@ -337,16 +336,16 @@
         if (inLog == YES) {
             if (index == 5) {
                 if ([elementName isEqualToString:@"date"] == YES) {
-                    [currentLog setDatetime:cleanText];
+                    currentLog.datetime_epoch = [MyTools secondsSinceEpochFromISO8601:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"type"] == YES) {
-                    currentLog.logstring_string = cleanText;
+                    [currentLog set_logstring_str:cleanText account:account];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"finder"] == YES) {
                     [dbName makeNameExist:cleanText code:logFinderNameId account:account];
-                    [currentLog setLogger_str:cleanText];
+                    currentLog.logger = [dbName dbGetByName:cleanText account:account];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"text"] == YES) {
@@ -362,7 +361,7 @@
         if (inItem == YES) {
             if (index == 2 && cleanText != nil) {
                 if ([elementName isEqualToString:@"time"] == YES) {
-                    [currentWP setWpt_date_placed:cleanText];
+                    [currentWP set_wpt_date_placed:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"name"] == YES) {
@@ -384,19 +383,16 @@
                 if ([elementName isEqualToString:@"sym"] == YES) {
                     if ([dbc Symbol_get_bysymbol:cleanText] == nil) {
                         NSLog(@"Adding symbol '%@'", cleanText);
-                        NSId _id = [dbSymbol dbCreate:cleanText];
-                        [dbc Symbols_add:_id symbol:cleanText];
+                        dbSymbol *s = [[dbSymbol alloc] init];
+                        s.symbol = cleanText;
+                        [s dbCreate];
+                        [dbc Symbols_add:s];
                     }
-                    [currentWP setWpt_symbol_str:cleanText];
+                    [currentWP set_wpt_symbol_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"type"] == YES) {
-                    NSArray<NSString *> *as = [cleanText componentsSeparatedByString:@"|"];
-                    if ([as count] == 1)
-                        [currentWP setWpt_type:[dbc Type_get_byminor:[as objectAtIndex:0]]];
-                    else
-                        [currentWP setWpt_type:[dbc Type_get_byname:[as objectAtIndex:0] minor:[as objectAtIndex:1]]];
-                    [currentWP setWpt_type_id:currentWP.wpt_type._id];
+                    [currentWP set_wpt_type_str:cleanText];
                     goto bye;
                 }
                 goto bye;
@@ -412,16 +408,16 @@
                 }
                 if ([elementName isEqualToString:@"country"] == YES) {
                     [dbCountry makeNameExist:cleanText];
-                    [currentWP setGs_country_str:cleanText];
+                    [currentWP set_gs_country_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"state"] == YES) {
                     [dbState makeNameExist:cleanText];
-                    [currentWP setGs_state_str:cleanText];
+                    [currentWP set_gs_state_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"container"] == YES) {
-                    [currentWP setGs_container_str:cleanText];
+                    [currentWP set_gs_container_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"short_description"] == YES) {
@@ -438,7 +434,7 @@
                 }
                 if ([elementName isEqualToString:@"owner"] == YES) {
                     [dbName makeNameExist:cleanText code:gsOwnerNameId account:account];
-                    [currentWP setGs_owner_str:cleanText];
+                    [currentWP set_gs_owner_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"placed_by"] == YES) {

@@ -107,7 +107,9 @@
     [self addToLibrary:@"container size - other - 35x11" index:ImageContainerSize_Other];
     [self addToLibrary:@"container size - regular - 35x11" index:ImageContainerSize_Regular];
     [self addToLibrary:@"container size - small - 35x11" index:ImageContainerSize_Small];
+    [self addToLibrary:@"container size - nano - 35x11" index:ImageContainerSize_Nano];
     [self addToLibrary:@"container size - unknown - 35x11" index:ImageContainerSize_Virtual];
+    [self addToLibrary:@"container size - xlarge - 35x11" index:ImageContainerSize_XLarge];
 
     [self addToLibrary:@"ratings - star base 95x18" index:ImageCacheView_ratingBase];
     [self addToLibrary:@"ratings - star on 19x18" index:ImageCacheView_ratingOn];
@@ -471,7 +473,7 @@
 {
     __block BOOL owner = NO;
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (a._id == wp.account_id && a.accountname_id == wp.gs_owner_id) {
+        if (a._id == wp.account._id && a.accountname._id == wp.gs_owner._id) {
             *stop = YES;
             owner = YES;
         }

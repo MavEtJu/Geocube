@@ -25,23 +25,22 @@
 
 @implementation dbFileImport
 
-+ (NSId)dbCreate:(dbFileImport *)fi
-{
-    NSId _id = 0;
+TABLENAME(@"file_imports")
 
+- (NSId)dbCreate
+{
     @synchronized(db) {
         DB_PREPARE(@"insert into file_imports(filename, filesize, last_import_epoch) values(?, ?, ?)");
 
-        SET_VAR_TEXT(1, fi.filename);
-        SET_VAR_INT (2, fi.filesize);
-        SET_VAR_INT (3, fi.lastimport);
+        SET_VAR_TEXT(1, self.filename);
+        SET_VAR_INT (2, self.filesize);
+        SET_VAR_INT (3, self.lastimport);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(_id);
+        DB_GET_LAST_ID(self._id);
         DB_FINISH;
     }
-    fi._id = _id;
-    return _id;
+    return self._id;
 }
 
 - (void)dbUpdate
@@ -59,12 +58,16 @@
     }
 }
 
-+ (NSArray<dbFileImport *> *)dbAll
++ (NSArray<dbFileImport *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
     NSMutableArray<dbFileImport *> *is = [[NSMutableArray alloc] initWithCapacity:20];
 
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, filename, filesize, last_import_epoch from file_imports "];
+    if (where != nil)
+        [sql appendString:where];
+
     @synchronized(db) {
-        DB_PREPARE(@"select id, filename, filesize, last_import_epoch from file_imports");
+        DB_PREPARE_KEYSVALUES(sql, keys, values);
 
         DB_WHILE_STEP {
             dbFileImport *i = [[dbFileImport alloc] init];
@@ -80,9 +83,14 @@
     return is;
 }
 
-+ (NSInteger)dbCount
++ (NSArray<dbFileImport *> *)dbAll
 {
-    return [dbFileImport dbCount:@"file_imports"];
+    return [self dbAllXXX:nil keys:nil values:nil];
+}
+
++ (dbFileImport *)dbGet:(NSId)_id
+{
+    return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
 }
 
 @end

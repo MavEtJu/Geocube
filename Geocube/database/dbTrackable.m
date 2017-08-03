@@ -25,62 +25,70 @@
 
 @implementation dbTrackable
 
-- (void)finish
+TABLENAME(@"travelbugs")
+
+- (void)set_carrier_str:(NSString *)name account:(dbAccount *)account
 {
-    NSAssert(NO, @"Use finish:account");
+    ASSERT_FIELD_EXISTS(account);
+    self.carrier = [dbName dbGetByName:name account:account];
+}
+- (void)set_owner_str:(NSString *)name account:(dbAccount *)account
+{
+    ASSERT_FIELD_EXISTS(account);
+    self.owner = [dbName dbGetByName:name account:account];
 }
 
-- (void)finish:(dbAccount *)account;
+- (NSId)dbCreate
 {
-    if (self.carrier_id != 0)
-        self.carrier = [dbName dbGet:self.carrier_id];
-    if (self.carrier_str != nil)
-        self.carrier = [dbName dbGetByName:self.carrier_str account:account];
-    self.carrier_id = self.carrier._id;
-    self.carrier_str = self.carrier.name;
+    ASSERT_SELF_FIELD_EXISTS(carrier);
+    ASSERT_SELF_FIELD_EXISTS(owner);
+    @synchronized(db) {
+        DB_PREPARE(@"insert into travelbugs(gc_id, ref, name, carrier_id, owner_id, waypoint_name, log_type, code) values(?, ?, ?, ?, ?, ?, ?, ?)");
 
-    if (self.owner_id != 0)
-        self.owner = [dbName dbGet:self.owner_id];
-    if (self.owner_str != nil)
-        self.owner = [dbName dbGetByName:self.owner_str account:account];
-    self.owner_id = self.owner._id;
-    self.owner_str = self.owner.name;
-    [super finish];
+        SET_VAR_INT (1, self.gc_id);
+        SET_VAR_TEXT(2, self.ref);
+        SET_VAR_TEXT(3, self.name);
+        SET_VAR_INT (4, self.carrier._id);
+        SET_VAR_INT (5, self.owner._id);
+        SET_VAR_TEXT(6, self.waypoint_name);
+        SET_VAR_INT (7, self.logtype);
+        SET_VAR_TEXT(8, self.code);
+
+        DB_CHECK_OKAY;
+        DB_GET_LAST_ID(self._id);
+        DB_FINISH;
+    }
+    return self._id;
 }
 
-+ (void)dbUnlinkAllFromWaypoint:(NSId)wp_id
+- (void)dbUpdate
 {
     @synchronized(db) {
-        DB_PREPARE(@"delete from travelbug2waypoint where waypoint_id = ?");
+        DB_PREPARE(@"update travelbugs set gc_id = ?, ref = ?, name = ?, carrier_id = ?, owner_id = ?, waypoint_name = ?, log_type = ?, code = ? where id = ?");
 
-        SET_VAR_INT(1, wp_id);
+        SET_VAR_INT (1, self.gc_id);
+        SET_VAR_TEXT(2, self.ref);
+        SET_VAR_TEXT(3, self.name);
+        SET_VAR_INT (4, self.carrier._id);
+        SET_VAR_INT (5, self.owner._id);
+        SET_VAR_TEXT(6, self.waypoint_name);
+        SET_VAR_INT (7, self.logtype);
+        SET_VAR_TEXT(8, self.code);
+        SET_VAR_INT (9, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
     }
 }
 
-- (void)dbLinkToWaypoint:(NSId)wp_id
-{
-    @synchronized(db) {
-        DB_PREPARE(@"insert into travelbug2waypoint(travelbug_id, waypoint_id) values(?, ?)");
-
-        SET_VAR_INT(1, self._id);
-        SET_VAR_INT(2, wp_id);
-
-        DB_CHECK_OKAY;
-        DB_FINISH;
-    }
-}
-
-+ (NSInteger)dbCountByWaypoint:(NSId)wp_id
++ (NSInteger)dbCountByWaypoint:(dbWaypoint *)wp
 {
     NSInteger count = 0;
 
     @synchronized(db) {
         DB_PREPARE(@"select count(id) from travelbug2waypoint where waypoint_id = ?");
 
-        SET_VAR_INT(1, wp_id);
+        SET_VAR_INT(1, wp._id);
 
         DB_IF_STEP {
             INT_FETCH_AND_ASSIGN(0, c);
@@ -94,8 +102,11 @@
 + (NSArray<dbTrackable *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
     NSMutableArray<dbTrackable *> *tbs = [NSMutableArray arrayWithCapacity:20];
+    NSId i;
 
-    NSString *sql = [NSString stringWithFormat:@"select id, name, ref, gc_id, carrier_id, owner_id, waypoint_name, log_type, code from travelbugs %@", where];
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, name, ref, gc_id, carrier_id, owner_id, waypoint_name, log_type, code from travelbugs "];
+    if (where != nil)
+        [sql appendString:where];
 
     @synchronized(db) {
         DB_PREPARE_KEYSVALUES(sql, keys, values);
@@ -106,12 +117,14 @@
             TEXT_FETCH(1, tb.name);
             TEXT_FETCH(2, tb.ref);
             INT_FETCH (3, tb.gc_id);
-            INT_FETCH (4, tb.carrier_id);
-            INT_FETCH (5, tb.owner_id);
+            INT_FETCH (4, i);
+            tb.carrier = [dbName dbGet:i];
+            INT_FETCH (5, i);
+            tb.owner = [dbName dbGet:i];
             TEXT_FETCH(6, tb.waypoint_name);
             INT_FETCH (7, tb.logtype);
             TEXT_FETCH(8, tb.code);
-            [tb finish:nil];    // can be nil because we have the _id's
+            [tb finish];
             [tbs addObject:tb];
         }
         DB_FINISH;
@@ -119,123 +132,67 @@
     return tbs;
 }
 
-+ (NSArray<dbTrackable *> *)dbAllXXX:(NSString *)where
-{
-    return [dbTrackable dbAllXXX:where keys:nil values:nil];
-}
-
 + (NSArray<dbTrackable *> *)dbAll
 {
-    return [self dbAllXXX:@""];
+    return [self dbAllXXX:nil keys:nil values:nil];
 }
 
 + (NSArray<dbTrackable *> *)dbAllMine
 {
-    return [self dbAllXXX:@"where owner_id in (select id from names where name in (select accountname from accounts where accountname != ''))"];
+    return [self dbAllXXX:@"where owner_id in (select id from names where name in (select accountname_id from accounts where accountname_id != 0))" keys:nil values:nil];
 }
 
 + (NSArray<dbTrackable *> *)dbAllInventory
 {
-    return [self dbAllXXX:@"where carrier_id in (select id from names where name in (select accountname from accounts where accountname != ''))"];
+    return [self dbAllXXX:@"where carrier_id in (select id from names where name in (select accountname_id from accounts where accountname_id != 0))" keys:nil values:nil];
+}
+
++ (NSArray<dbTrackable *> *)dbAllByWaypoint:(dbWaypoint *)wp
+{
+    return [self dbAllXXX:@"where id in (select travelbug_id from travelbug2waypoint where waypoint_id = ?)" keys:@"i" values:@[[NSNumber numberWithLongLong:wp._id]]];
 }
 
 + (dbTrackable *)dbGet:(NSId)_id
 {
-    NSArray<dbTrackable *> *as = [self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithLongLong:_id]]];
-    return [as objectAtIndex:0];
+    return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithLongLong:_id]]] firstObject];
 }
 
-+ (NSInteger)dbCount
++ (NSId)dbGetIdByGC:(NSInteger)gc_id
 {
-    return [dbTrackable dbCount:@"travelbugs"];
-}
-
-+ (NSArray<dbTrackable *> *)dbAllByWaypoint:(NSId)wp_id
-{
-    NSString *sql = [NSString stringWithFormat:@"where id in (select travelbug_id from travelbug2waypoint where waypoint_id = ?)"];
-    return [self dbAllXXX:sql keys:@"i" values:@[[NSNumber numberWithLongLong:wp_id]]];
-}
-
-+ (NSId)dbGetIdByGC:(NSId)_gc_id
-{
-    NSId _id = 0;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id from travelbugs where gc_id = ?");
-
-        SET_VAR_INT(1, _gc_id);
-
-        DB_IF_STEP {
-            INT_FETCH(0, _id);
-        }
-        DB_FINISH;
-    }
-    return _id;
+    return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithLongLong:gc_id]]] firstObject]._id;
 }
 
 + (dbTrackable *)dbGetByCode:(NSString *)code
 {
-    NSArray<dbTrackable *> *tbs = [self dbAllXXX:@"where code = ?" keys:@"s" values:@[code]];
-    if (tbs == nil)
-        return nil;
-    if ([tbs count] == 0)
-        return nil;
-    return [tbs objectAtIndex:0];
+    return [[self dbAllXXX:@"where code = ?" keys:@"s" values:@[code]] firstObject];
 }
 
 + (dbTrackable *)dbGetByRef:(NSString *)ref
 {
-    NSArray<dbTrackable *> *tbs = [self dbAllXXX:@"where ref = ?" keys:@"s" values:@[ref]];
-    if (tbs == nil)
-        return nil;
-    if ([tbs count] == 0)
-        return nil;
-    return [tbs objectAtIndex:0];
+    return [[self dbAllXXX:@"where ref = ?" keys:@"s" values:@[ref]] firstObject];
 }
 
-- (NSId)dbCreate
-{
-    return [dbTrackable dbCreate:self];
-}
+/* Other methods */
 
-+ (NSId)dbCreate:(dbTrackable *)tb
++ (void)dbUnlinkAllFromWaypoint:(dbWaypoint *)wp
 {
-    NSId _id = 0;
-
     @synchronized(db) {
-        DB_PREPARE(@"insert into travelbugs(gc_id, ref, name, carrier_id, owner_id, waypoint_name, log_type, code) values(?, ?, ?, ?, ?, ?, ?, ?)");
+        DB_PREPARE(@"delete from travelbug2waypoint where waypoint_id = ?");
 
-        SET_VAR_INT (1, tb.gc_id);
-        SET_VAR_TEXT(2, tb.ref);
-        SET_VAR_TEXT(3, tb.name);
-        SET_VAR_INT (4, tb.carrier_id);
-        SET_VAR_INT (5, tb.owner_id);
-        SET_VAR_TEXT(6, tb.waypoint_name);
-        SET_VAR_INT (7, tb.logtype);
-        SET_VAR_TEXT(8, tb.code);
+        SET_VAR_INT(1, wp._id);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(_id);
         DB_FINISH;
     }
-    tb._id = _id;
-    return _id;
 }
 
-- (void)dbUpdate
+- (void)dbLinkToWaypoint:(dbWaypoint *)wp
 {
     @synchronized(db) {
-        DB_PREPARE(@"update travelbugs set gc_id = ?, ref = ?, name = ?, carrier_id = ?, owner_id = ?, waypoint_name = ?, log_type = ?, code = ? where id = ?");
+        DB_PREPARE(@"insert into travelbug2waypoint(travelbug_id, waypoint_id) values(?, ?)");
 
-        SET_VAR_INT (1, self.gc_id);
-        SET_VAR_TEXT(2, self.ref);
-        SET_VAR_TEXT(3, self.name);
-        SET_VAR_INT (4, self.carrier_id);
-        SET_VAR_INT (5, self.owner_id);
-        SET_VAR_TEXT(6, self.waypoint_name);
-        SET_VAR_INT (7, self.logtype);
-        SET_VAR_TEXT(8, self.code);
-        SET_VAR_INT (9, self._id);
+        SET_VAR_INT(1, self._id);
+        SET_VAR_INT(2, wp._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

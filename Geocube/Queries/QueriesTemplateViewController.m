@@ -80,7 +80,7 @@ enum {
 
     __block BOOL failure = NO;
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (a.protocol_id == protocol && a.remoteAPI.supportsListQueries == YES) {
+        if (a.protocol._id == protocol && a.remoteAPI.supportsListQueries == YES) {
             account = a;
             if (a.canDoRemoteStuff == NO) {
                 *stop = YES;
@@ -160,7 +160,7 @@ enum {
 
     cell.labelLastImport.text = @"";
     [qis enumerateObjectsUsingBlock:^(dbQueryImport *qi, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (qi.account_id == account._id &&
+        if (qi.account._id == account._id &&
             [qi.name isEqualToString:name] == YES &&
             qi.filesize == size) {
             cell.labelLastImport.text = [NSString stringWithFormat:@"Last import: %@", [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:qi.lastimport]];
@@ -188,7 +188,7 @@ enum {
     // Update historical data for this query.
     __block dbQueryImport *foundqi = nil;
     [qis enumerateObjectsUsingBlock:^(dbQueryImport *qi, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (qi.account_id == account._id &&
+        if (qi.account._id == account._id &&
             [qi.name isEqualToString:[pq objectForKey:@"Name"]] == YES &&
             qi.filesize == [[pq objectForKey:@"Size"] integerValue]) {
             foundqi = qi;
@@ -201,9 +201,8 @@ enum {
         qi.filesize = [[pq objectForKey:@"Size"] integerValue];
         qi.name = [pq objectForKey:@"Name"];
         qi.account = account;
-        qi.account_id = account._id;
         qi.lastimport = time(NULL);
-        [dbQueryImport dbCreate:qi];
+        [qi dbCreate];
     } else {
         foundqi.lastimport = time(NULL);
         [foundqi dbUpdate];
@@ -239,8 +238,11 @@ enum {
         }
     }];
     if (group == nil) {
-        NSId _id = [dbGroup dbCreate:name isUser:YES];
-        group = [dbGroup dbGet:_id];
+        group = [[dbGroup alloc] init];
+        group.name = name;
+        group.usergroup = YES;
+        group.deletable = YES;
+        [group dbCreate];
         [dbc Group_add:group];
     }
 

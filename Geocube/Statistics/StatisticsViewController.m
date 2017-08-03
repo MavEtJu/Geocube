@@ -143,7 +143,7 @@ enum {
 {
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
 
-        if (a.accountname_string == nil || [a.accountname_string isEqualToString:@""] == YES)
+        if (IS_EMPTY(a.accountname.name) == YES)
             return;
 
         NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];

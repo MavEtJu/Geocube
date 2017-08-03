@@ -108,12 +108,11 @@ enum {
     buttonSetAsTarget.userInteractionEnabled = NO;
     [self.view addSubview:buttonSetAsTarget];
 
-    NSId wpid = [dbWaypoint dbGetByName:@"MYCAR"];
-    if (wpid == 0)
+    dbWaypoint *waypoint = [dbWaypoint dbGetByName:@"MYCAR"];
+    if (waypoint == nil)
         coordsRecordedLocation = CLLocationCoordinate2DZero;
     else {
-        dbWaypoint *waypoint = [dbWaypoint dbGet:wpid];
-        coordsRecordedLocation = waypoint.coordinates;
+        coordsRecordedLocation = CLLocationCoordinate2DMake(waypoint.wpt_latitude, waypoint.wpt_longitude);
         buttonSetAsTarget.userInteractionEnabled = YES;
     }
 
@@ -171,9 +170,9 @@ enum {
 
 - (void)updateLocationManagerLocation
 {
-    labelCurrentLocationCoordinates.text = [Coordinates NiceCoordinates:[LM coords]];
+    labelCurrentLocationCoordinates.text = [Coordinates niceCoordinates:[LM coords]];
     if (coordsRecordedLocation.latitude != 0 && coordsRecordedLocation.longitude != 0) {
-        labelRecordedLocationCoordinates.text = [Coordinates NiceCoordinates:coordsRecordedLocation];
+        labelRecordedLocationCoordinates.text = [Coordinates niceCoordinates:coordsRecordedLocation];
         labelDistance.text = [NSString stringWithFormat:@"Distance: %@", [MyTools niceDistance:[Coordinates coordinates2distance:[LM coords] to:coordsRecordedLocation]]];
         labelDirection.text = [NSString stringWithFormat:@"Direction: %@", [Coordinates bearing2compass:[Coordinates coordinates2bearing:[LM coords] to:coordsRecordedLocation]]];
     } else {
@@ -201,30 +200,23 @@ enum {
     [self updateLocationManagerLocation];
 
     // Update waypoint
-    dbWaypoint *waypoint;
-
-    NSId wpid = [dbWaypoint dbGetByName:@"MYCAR"];
-    if (wpid == 0) {
+    dbWaypoint *waypoint = [dbWaypoint dbGetByName:@"MYCAR"];
+    if (waypoint == nil) {
         waypoint = [[dbWaypoint alloc] init];
 
         waypoint.wpt_name = @"MYCAR";
         waypoint.wpt_description = @"Remembered location";
         waypoint.wpt_urlname = @"Remembered location";
         waypoint.wpt_type = [dbc Type_get_byname:@"Waypoint" minor:@"Final Location"];
-        waypoint.wpt_type_id = waypoint.wpt_type._id;
         waypoint.wpt_symbol = [dbc Symbol_get_bysymbol:@"Final Location"];
-        waypoint.wpt_symbol_id = waypoint.wpt_symbol._id;
-        [dbWaypoint dbCreate:waypoint];
+        [waypoint dbCreate];
         [waypointManager needsRefreshAdd:waypoint];
-    } else {
-        waypoint = [dbWaypoint dbGet:wpid];
     }
 
-    waypoint.coordinates = coordsRecordedLocation;
-    waypoint.wpt_lon = [NSString stringWithFormat:@"%f", coordsRecordedLocation.longitude];
-    waypoint.wpt_lat = [NSString stringWithFormat:@"%f", coordsRecordedLocation.latitude];
+    waypoint.wpt_longitude = coordsRecordedLocation.longitude;
+    waypoint.wpt_latitude = coordsRecordedLocation.latitude;
 
-    waypoint.wpt_date_placed = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss];
+    waypoint.wpt_date_placed_epoch = time(NULL);
     [waypointManager needsRefreshUpdate:waypoint];
 
     [waypoint finish];
@@ -236,10 +228,7 @@ enum {
 
 - (void)setastarget:(UIButton *)b
 {
-    dbWaypoint *waypoint;
-    NSId wpid = [dbWaypoint dbGetByName:@"MYCAR"];
-    waypoint = [dbWaypoint dbGet:wpid];
-
+    dbWaypoint *waypoint = [dbWaypoint dbGetByName:@"MYCAR"];
     [waypointManager setTheCurrentWaypoint:waypoint];
 
     MHTabBarController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
@@ -268,8 +257,7 @@ enum {
         case menuClearCoordinates:
             coordsRecordedLocation = CLLocationCoordinate2DZero;
             [self updateLocationManagerLocation];
-            NSId wpid = [dbWaypoint dbGetByName:@"MYCAR"];
-            dbWaypoint *wp = [dbWaypoint dbGet:wpid];
+            dbWaypoint *wp = [dbWaypoint dbGetByName:@"MYCAR"];
             [wp dbDelete];
             return;
     }

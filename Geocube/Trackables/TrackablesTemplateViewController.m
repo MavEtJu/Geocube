@@ -85,11 +85,11 @@ enum {
     if (!IS_EMPTY(tb.ref) &&  IS_EMPTY(tb.code))
         cell.code.text = [NSString stringWithFormat:@"Code: %@", tb.ref];
     if (tb.carrier != nil)
-        cell.carrier.text = [NSString stringWithFormat:@"Carried by %@", tb.carrier_str];
+        cell.carrier.text = [NSString stringWithFormat:@"Carried by %@", tb.carrier.name];
     if (!IS_EMPTY(tb.waypoint_name))
         cell.waypoint.text = [NSString stringWithFormat:@"Stored in %@", tb.waypoint_name];
     if (tb.owner != nil)
-        cell.owner.text = [NSString stringWithFormat:@"Owned by %@", tb.owner_str];
+        cell.owner.text = [NSString stringWithFormat:@"Owned by %@", tb.owner.name];
 
     cell.userInteractionEnabled = NO;
 
@@ -109,8 +109,6 @@ enum {
             // Get rid of any old data
             [self.tbs enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
                 tb.carrier = nil;
-                tb.carrier_id = 0;
-                tb.carrier_str = @"";
                 tb.waypoint_name = nil;
                 [tb dbUpdate];
             }];

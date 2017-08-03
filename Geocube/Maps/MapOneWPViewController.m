@@ -51,7 +51,7 @@
     [waypointManager applyFilters:LM.coords];
 
     if (waypointManager.currentWaypoint != nil) {
-        waypointManager.currentWaypoint.calculatedDistance = [Coordinates coordinates2distance:waypointManager.currentWaypoint.coordinates to:LM.coords];
+        waypointManager.currentWaypoint.calculatedDistance = [Coordinates coordinates2distance:LM.coords toLatitude:waypointManager.currentWaypoint.wpt_latitude toLongitude:waypointManager.currentWaypoint.wpt_longitude];
         self.waypointsArray = [NSMutableArray arrayWithArray:@[waypointManager.currentWaypoint]];
     } else {
         self.waypointsArray = nil;

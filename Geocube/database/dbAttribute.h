@@ -22,17 +22,16 @@
 @interface dbAttribute : dbObject
 
 @property (nonatomic) NSInteger icon;
-@property (nonatomic) NSId gc_id;
+@property (nonatomic) NSInteger gc_id;
 @property (nonatomic, retain) NSString *label;
 @property (nonatomic) BOOL _YesNo;
 
-- (instancetype)init:(NSId)_id gc_id:(NSId)gc_id label:(NSString *)label icon:(NSInteger)icon;
-
 + (NSArray<dbAttribute *> *)dbAll;
-- (void)dbLinkToWaypoint:(NSId)wp_id YesNo:(BOOL)YesNO;
-+ (void)dbAllLinkToWaypoint:(NSId)wp_id attributes:(NSArray<dbAttribute *> *)attrs YesNo:(BOOL)YesNo;
-+ (void)dbUnlinkAllFromWaypoint:(NSId)wp_id;
-+ (NSInteger)dbCountByWaypoint:(NSId)wp_id;
-+ (NSArray<dbAttribute *> *)dbAllByWaypoint:(NSId)wp_id;
+- (void)dbLinkToWaypoint:(dbWaypoint *)wp YesNo:(BOOL)YesNO;
++ (void)dbAllLinkToWaypoint:(dbWaypoint *)wp attributes:(NSArray<dbAttribute *> *)attrs YesNo:(BOOL)YesNo;
++ (void)dbUnlinkAllFromWaypoint:(dbWaypoint *)wp;
++ (NSInteger)dbCountByWaypoint:(dbWaypoint *)wp;
++ (NSArray<dbAttribute *> *)dbAllByWaypoint:(dbWaypoint *)wp;
++ (dbAttribute *)dbGetByGCId:(NSInteger)gc_id;
 
 @end

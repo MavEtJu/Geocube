@@ -133,14 +133,14 @@
             dbWaypoint *wp = (dbWaypoint *)o;
             // Place a single pin
             GCWaypointAnnotation *annotation = [[GCWaypointAnnotation alloc] init];
-            CLLocationCoordinate2D coord = wp.coordinates;
+            CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude);
             [annotation setCoordinate:coord];
             annotation.waypoint = wp;
 
             [markers addObject:annotation];
 
             if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
-                GCCircle *circle = [GCCircle circleWithCenterCoordinate:wp.coordinates radius:wp.account.distance_minimum];
+                GCCircle *circle = [GCCircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) radius:wp.account.distance_minimum];
                 circle.waypoint = wp;
                 [circles addObject:circle];
             }
@@ -174,7 +174,7 @@
 
     // Take care of the waypoint
     GCWaypointAnnotation *annotation = [[GCWaypointAnnotation alloc] init];
-    CLLocationCoordinate2D coord = wp.coordinates;
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude);
     [annotation setCoordinate:coord];
     annotation.waypoint = wp;
 
@@ -183,7 +183,7 @@
 
     // Take care of the boundary circles
     if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
-        GCCircle *circle = [GCCircle circleWithCenterCoordinate:wp.coordinates radius:wp.account.distance_minimum];
+        GCCircle *circle = [GCCircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) radius:wp.account.distance_minimum];
         circle.waypoint = wp;
         [circles addObject:circle];
         [mapView addOverlay:circle];
@@ -236,7 +236,7 @@
         return;
 
     GCWaypointAnnotation *newMarker = [[GCWaypointAnnotation alloc] init];
-    CLLocationCoordinate2D coord = wp.coordinates;
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude);
     [newMarker setCoordinate:coord];
     newMarker.waypoint = wp;
 
@@ -253,7 +253,7 @@
                 *stop = YES;
             }
         }];
-        GCCircle *circle = [GCCircle circleWithCenterCoordinate:wp.coordinates radius:wp.account.distance_minimum];
+        GCCircle *circle = [GCCircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) radius:wp.account.distance_minimum];
         circle.waypoint = wp;
         [circles addObject:circle];
         [mapView addOverlay:circle];
@@ -267,7 +267,7 @@
         circles = [NSMutableArray arrayWithCapacity:[self.mapvc.waypointsArray count]];
         [self.mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
             if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
-                GCCircle *circle = [GCCircle circleWithCenterCoordinate:wp.coordinates radius:wp.account.distance_minimum];
+                GCCircle *circle = [GCCircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) radius:wp.account.distance_minimum];
                 circle.waypoint = wp;
                 [circles addObject:circle];
             }
@@ -496,7 +496,7 @@
 {
     CLLocationCoordinate2D coordinateArray[2];
     coordinateArray[0] = LM.coords;
-    coordinateArray[1] = waypointManager.currentWaypoint.coordinates;
+    coordinateArray[1] = CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude);
 
     lineMeToWaypoint = [MKPolyline polylineWithCoordinates:coordinateArray count:2];
     [mapView addOverlay:lineMeToWaypoint];
@@ -607,18 +607,18 @@
     top = -180;
     bottom = 180;
 
-    NSArray<dbTrackElement *> *tes = [dbTrackElement dbAllByTrack:track._id];
+    NSArray<dbTrackElement *> *tes = [dbTrackElement dbAllByTrack:track];
 
     __block CLLocationCoordinate2D *coordinateArray = calloc([tes count], sizeof(CLLocationCoordinate2D));
     __block NSInteger counter = 0;
     [tes enumerateObjectsUsingBlock:^(dbTrackElement * _Nonnull te, NSUInteger idx, BOOL * _Nonnull stop) {
-        bottom = MIN(bottom, te.coords.latitude);
-        top = MAX(top, te.coords.latitude);
-        right = MAX(right, te.coords.longitude);
-        left = MIN(left, te.coords.longitude);
+        bottom = MIN(bottom, te.lat);
+        top = MAX(top, te.lat);
+        right = MAX(right, te.lon);
+        left = MIN(left, te.lon);
 
         if (te.restart == NO) {
-            coordinateArray[counter++] = te.coords;
+            coordinateArray[counter++] = CLLocationCoordinate2DMake(te.lat, te.lon);
             return;
         }
 

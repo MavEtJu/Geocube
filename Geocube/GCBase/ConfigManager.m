@@ -147,7 +147,7 @@
     self.currentWaypoint = [dbConfig dbGetByKey:@"waypoint_current"].value;
     self.currentPage = [[dbConfig dbGetByKey:@"page_current"].value integerValue];
     self.currentPageTab = [[dbConfig dbGetByKey:@"pagetab_current"].value integerValue];
-    self.currentTrack = [[dbConfig dbGetByKey:@"track_current"].value integerValue];
+    self.currentTrack = [dbTrack dbGet:[[dbConfig dbGetByKey:@"track_current"].value integerValue]];
     self.lastImportSource = [[dbConfig dbGetByKey:@"lastimport_source"].value integerValue];
     self.lastImportGroup = [[dbConfig dbGetByKey:@"lastimport_group"].value integerValue];
     self.lastAddedGroup = [[dbConfig dbGetByKey:@"lastadded_group"].value integerValue];
@@ -289,10 +289,10 @@
     [self NSIntegerUpdate:@"pagetab_current" value:value];
 }
 
-- (void)currentTrackUpdate:(NSId)value
+- (void)currentTrackUpdate:(dbTrack *)value
 {
     self.currentTrack = value;
-    [self NSIdUpdate:@"track_current" value:value];
+    [self NSIdUpdate:@"track_current" value:value._id];
 }
 
 - (void)lastImportGroupUpdate:(NSInteger)value

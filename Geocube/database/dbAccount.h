@@ -24,12 +24,8 @@
 @property (nonatomic, retain) NSString *site;
 @property (nonatomic, retain) NSString *url_site;
 @property (nonatomic, retain) NSString *url_queries;
-@property (nonatomic, retain) NSString *accountname_string;
 @property (nonatomic, retain) dbName *accountname;
-@property (nonatomic) NSId accountname_id;
-@property (nonatomic) NSId protocol_id;
-@property (nonatomic) dbProtocol *protocol;
-@property (nonatomic) NSString *protocol_string;
+@property (nonatomic, retain) dbProtocol *protocol;
 @property (nonatomic) NSInteger geocube_id;
 @property (nonatomic) NSInteger revision;
 @property (nonatomic) BOOL enabled;
@@ -67,7 +63,6 @@
 @property (nonatomic) BOOL selected;
 
 + (NSArray<dbAccount *> *)dbAll;
-+ (dbAccount *)dbGet:(NSId)_id;
 - (void)dbUpdateAccount;
 - (void)dbUpdateOAuthConsumer;
 - (void)dbUpdateOAuthToken;

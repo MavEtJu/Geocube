@@ -25,12 +25,47 @@
 
 @implementation dbListData
 
-- (instancetype)init
-{
-    self = [super init];
+TABLENAME(@"listdata")
 
-    return self;
++ (NSArray<dbListData *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
+{
+    NSMutableArray<dbListData *> *lds = [[NSMutableArray alloc] initWithCapacity:20];
+    NSId i;
+
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"select id, waypoint_id, type, datetime from listdata "];
+    if (where != nil)
+        [sql appendString:where];
+
+    @synchronized (db) {
+        DB_PREPARE_KEYSVALUES(sql, keys, values)
+
+        DB_WHILE_STEP {
+            dbListData *ld = [[dbListData alloc] init];
+            INT_FETCH(0, ld._id);
+            INT_FETCH(1, i);
+            ld.waypoint = [dbWaypoint dbGet:i];
+            INT_FETCH(2, ld.type);
+            INT_FETCH(3, ld.datetime);
+            [ld finish];
+            [lds addObject:ld];
+        }
+        DB_FINISH;
+    }
+
+    return lds;
 }
+
++ (NSArray<dbListData *> *)dbAllByType:(Flag)type ascending:(BOOL)asc
+{
+    return [self dbAllXXX:[NSString stringWithFormat:@"where type = ? order by datetime %@", (asc == YES ? @"asc" : @"desc")] keys:@"i" values:@[[NSNumber numberWithInteger:type]]];
+}
+
++ (dbListData *)dbGetByWaypoint:(dbWaypoint *)wp flag:(Flag)flag
+{
+    return [[self dbAllXXX:@"where type = ? and waypoint_id = ?" keys:@"ii" values:@[[NSNumber numberWithInteger:flag], [NSNumber numberWithInteger:wp._id]]] firstObject];
+}
+
+/* Other methods */
 
 + (void)waypointSetFlag:(dbWaypoint *)wp flag:(Flag)flag
 {
@@ -57,58 +92,6 @@
         DB_CHECK_OKAY;
         DB_FINISH;
     }
-}
-
-+ (NSArray<dbListData *> *)dbAllByType:(Flag)type ascending:(BOOL)asc
-{
-    NSMutableArray<dbListData *> *lds = [[NSMutableArray alloc] initWithCapacity:20];
-    NSString *sql = [NSString stringWithFormat:@"select id, waypoint_id, type, datetime from listdata where type = ? order by datetime %@", (asc == YES ? @"asc" : @"desc")];
-
-    @synchronized (db) {
-        DB_PREPARE(sql);
-        SET_VAR_INT(1, type);
-
-        DB_WHILE_STEP {
-            dbListData *ld = [[dbListData alloc] init];
-            INT_FETCH(0, ld._id);
-            INT_FETCH(1, ld.waypoint_id);
-            INT_FETCH(2, ld.type);
-            INT_FETCH(3, ld.datetime);
-            [ld finish];
-            [lds addObject:ld];
-        }
-        DB_FINISH;
-    }
-
-    return lds;
-}
-
-+ (dbListData *)dbGetByWaypoint:(dbWaypoint *)wp flag:(Flag)flag
-{
-    dbListData *ld = nil;
-
-    @synchronized (db) {
-        DB_PREPARE(@"select id, waypoint_id, type, datetime from listdata where type = ? and waypoint_id = ?");
-        SET_VAR_INT(1, flag);
-        SET_VAR_INT(2, wp._id);
-
-        DB_IF_STEP {
-            ld = [[dbListData alloc] init];
-            INT_FETCH(0, ld._id);
-            INT_FETCH(1, ld.waypoint_id);
-            INT_FETCH(2, ld.type);
-            INT_FETCH(3, ld.datetime);
-            [ld finish];
-        }
-        DB_FINISH;
-    }
-
-    return ld;
-}
-
-+ (NSInteger)dbCount
-{
-    return [dbListData dbCount:@"listdata"];
 }
 
 @end

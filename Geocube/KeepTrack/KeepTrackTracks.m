@@ -85,12 +85,12 @@ enum {
     cell.labelTrackName.text = t.name;
     cell.labelDateTimeStart.text = [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:t.dateStart];
 
-    NSArray<dbTrackElement *> *tes = [dbTrackElement dbAllByTrack:t._id];
+    NSArray<dbTrackElement *> *tes = [dbTrackElement dbAllByTrack:t];
     __block CGFloat distance = 0;
     __block dbTrackElement *te_prev = nil;
     [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
         if (te_prev != nil && te.restart == NO) {
-            distance += [Coordinates coordinates2distance:te_prev.coords to:te.coords];
+            distance += [Coordinates coordinates2distance:te_prev.lat fromLongitude:te_prev.lon toLatitude:te.lat toLongitude:te.lon];
         }
         te_prev = te;
     }];
@@ -113,7 +113,7 @@ enum {
 {
     dbTrack *t = [tracks objectAtIndex:indexPath.row];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [dbTrackElement dbDeleteByTrack:t._id];
+        [dbTrackElement dbDeleteByTrack:t];
         [t dbDelete];
         [tracks removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
@@ -183,14 +183,14 @@ enum {
     [t dbCreate];
 
     [tracks addObject:t];
-    [configManager currentTrackUpdate:t._id];
+    [configManager currentTrackUpdate:t];
     return t;
 }
 
 + (void)trackAutoRotate
 {
     NSString *newdate = [MyTools dateTimeString_YYYY_MM_DD];
-    dbTrack *track = [dbTrack dbGet:configManager.currentTrack];
+    dbTrack *track = configManager.currentTrack;
     NSString *olddate = [MyTools dateTimeString_YYYY_MM_DD:track.dateStart];
 
     if ([newdate isEqualToString:olddate] == NO) {
@@ -200,7 +200,7 @@ enum {
         t.dateStop = 0;
         [t dbCreate];
 
-        [configManager currentTrackUpdate:t._id];
+        [configManager currentTrackUpdate:t];
     }
 }
 
@@ -212,7 +212,7 @@ enum {
     [tracks enumerateObjectsUsingBlock:^(dbTrack *track, NSUInteger idx, BOOL * _Nonnull stop) {
         if (track.dateStart < cutoff) {
             NSLog(@"trackAutoPurge: Purging %@", track.name);
-            [dbTrackElement dbDeleteByTrack:track._id];
+            [dbTrackElement dbDeleteByTrack:track];
             [track dbDelete];
         }
     }];

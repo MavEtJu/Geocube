@@ -25,21 +25,32 @@
 
 @implementation dbSymbol
 
-- (instancetype)init:(NSId)_id symbol:(NSString *)symbol
+TABLENAME(@"symbols")
+
+- (NSId)dbCreate
 {
-    self = [super init];
-    self._id = _id;
-    self.symbol = symbol;
-    [self finish];
-    return self;
+    @synchronized(db) {
+        DB_PREPARE(@"insert into symbols(symbol) values(?)");
+
+        SET_VAR_TEXT(1, self.symbol);
+
+        DB_CHECK_OKAY;
+        DB_GET_LAST_ID(self._id);
+        DB_FINISH;
+    }
+    return self._id;
 }
 
-+ (NSArray<dbSymbol *> *)dbAll
++ (NSArray<dbSymbol *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
     NSMutableArray<dbSymbol *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, symbol from symbols "];
+    if (where != nil)
+        [sql appendString:where];
+
     @synchronized(db) {
-        DB_PREPARE(@"select id, symbol from symbols");
+        DB_PREPARE_KEYSVALUES(sql, keys, values)
 
         DB_WHILE_STEP {
             dbSymbol *s = [[dbSymbol alloc] init];
@@ -52,49 +63,14 @@
     return ss;
 }
 
-+ (NSInteger)dbCount
++ (NSArray<dbSymbol *> *)dbAll
 {
-    return [dbSymbol dbCount:@"symbols"];
+    return [self dbAllXXX:nil keys:nil values:nil];
 }
 
 + (dbObject *)dbGet:(NSId)_id;
 {
-    dbSymbol *s;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, symbol from symbols where id = ?");
-
-        SET_VAR_INT(1, _id);
-
-        DB_IF_STEP {
-            s = [[dbSymbol alloc] init];
-            INT_FETCH (0, s._id);
-            TEXT_FETCH(1, s.symbol);
-        }
-        DB_FINISH;
-    }
-    return s;
-}
-
-- (NSId)dbCreate
-{
-    return [dbSymbol dbCreate:self.symbol];
-}
-
-+ (NSId)dbCreate:(NSString *)symbol
-{
-    NSId __id;
-
-    @synchronized(db) {
-        DB_PREPARE(@"insert into symbols(symbol) values(?)");
-
-        SET_VAR_TEXT(1, symbol);
-
-        DB_CHECK_OKAY;
-        DB_GET_LAST_ID(__id);
-        DB_FINISH;
-    }
-    return __id;
+    return [[self dbAllXXX:@"Where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
 }
 
 @end

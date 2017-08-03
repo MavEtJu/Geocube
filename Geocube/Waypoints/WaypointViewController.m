@@ -321,7 +321,7 @@ enum {
                         cell.userInteractionEnabled = NO;
 
                     } else {
-                        NSArray<dbLog *> *logs = [dbLog dbLast7ByWaypointLogged:waypoint._id];
+                        NSArray<dbLog *> *logs = [dbLog dbLast7ByWaypointLogged:waypoint];
                         IMAGE(0);
                         IMAGE(1);
                         IMAGE(2);
@@ -356,7 +356,7 @@ enum {
                     } else {
                         cell.logs.text = [NSString stringWithFormat:@"%@ (%ld)", cell.logs.text, (long)c];
 
-                        NSArray<dbLog *> *logs = [dbLog dbLast7ByWaypoint:waypoint._id];
+                        NSArray<dbLog *> *logs = [dbLog dbLast7ByWaypoint:waypoint];
 #define IMAGE(__idx__) \
     if ([logs count] > __idx__) { \
         dbLog *log = [logs objectAtIndex:__idx__]; \
@@ -738,9 +738,9 @@ enum {
                                  [self.tableView reloadData];
 
                                  if (waypoint.flag_ignore == YES) {
-                                     [[dbc Group_AllWaypoints_Ignored] dbAddWaypoint:waypoint._id];
+                                     [[dbc Group_AllWaypoints_Ignored] addWaypointToGroup:waypoint];
                                  } else {
-                                     [[dbc Group_AllWaypoints_Ignored] dbRemoveWaypoint:waypoint._id];
+                                     [[dbc Group_AllWaypoints_Ignored] removeWaypointFromGroup:waypoint];
                                  }
                              }];
     UIAlertAction *inprogress = [UIAlertAction
@@ -805,11 +805,10 @@ enum {
 
 - (void)addLog:(NSString *)text
 {
-    NSString *date = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss];
     NSInteger logtype = [dbLogString wptTypeToLogType:waypoint.wpt_type.type_full];
     dbLogString *logstring = [dbLogString dbGetByProtocolLogtypeDefault:waypoint.account.protocol logtype:logtype default:LOGSTRING_DEFAULT_NOTE];
 
-    [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:text needstobelogged:NO locallog:YES coordinates:LM.coords];
+    [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:time(NULL) note:text needstobelogged:NO locallog:YES coordinates:LM.coords];
 }
 
 - (void)addToGroup
@@ -831,8 +830,8 @@ enum {
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
             [configManager lastAddedGroupUpdate:selectedIndex];
             dbGroup *group = [groups objectAtIndex:selectedIndex];
-            [group dbRemoveWaypoint:waypoint._id];
-            [group dbAddWaypoint:waypoint._id];
+            [group removeWaypointFromGroup:waypoint];
+            [group addWaypointToGroup:waypoint];
         }
         cancelBlock:^(ActionSheetStringPicker *picker) {
             NSLog(@"Block Picker Canceled");

@@ -28,14 +28,14 @@
 
 @implementation Coordinates
 
-#define COORDS_REGEXP @" *\\d{1,3}[º°]? ?\\d{1,2}\\.\\d{1,3}'?"
+#define COORDS_REGEXP @" +\\d{1,3}[º°]? ?\\d{1,2}\\.\\d{1,3}'?"
 
 /// Initialize a Coordinates object with a lat and a lon value
-- (instancetype)init:(CLLocationDegrees)_lat lon:(CLLocationDegrees)_lon       // -34.02787 151.07357
+- (instancetype)init:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude       // -34.02787 151.07357
 {
     self = [super init];
-    coords.latitude = _lat;
-    coords.longitude = _lon;
+    coords.latitude = latitude;
+    coords.longitude = longitude;
     return self;
 }
 /// Initialize a Coordinates object with a lat and a lon value from a set of coordinates
@@ -127,12 +127,12 @@
     return [NSString stringWithFormat:@"%@ %3d° %02d' %02d\"", hemi, degrees, (int)(mins * 60), (int)(secs * 60)];
 }
 /// Returns lat value
-- (CLLocationDegrees)lat
+- (CLLocationDegrees)latitude
 {
     return coords.latitude;
 }
 /// Returns lon value
-- (CLLocationDegrees)lon
+- (CLLocationDegrees)longitude
 {
     return coords.longitude;
 }
@@ -142,11 +142,19 @@
 {
     return [Coordinates coordinates2distance:coords to:c];
 }
+- (NSInteger)distance:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude
+{
+    return [Coordinates coordinates2distance:coords to:CLLocationCoordinate2DMake(latitude, longitude)];
+}
 
 /// Returns bearing towards coordinates c
 - (NSInteger)bearing:(CLLocationCoordinate2D)c
 {
     return [Coordinates coordinates2bearing:coords to:c];
+}
+- (NSInteger)bearing:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude
+{
+    return [Coordinates coordinates2bearing:coords to:CLLocationCoordinate2DMake(latitude, longitude)];
 }
 
 /// Returns radians value of a degree value
@@ -250,6 +258,16 @@
     return d;
 }
 
++ (NSInteger)coordinates2distance:(CLLocationCoordinate2D)c1 toLatitude:(CLLocationDegrees)c2Latitude toLongitude:(CLLocationDegrees)c2Longitude
+{
+    return [self coordinates2distance:c1 to:CLLocationCoordinate2DMake(c2Latitude, c2Longitude)];
+}
+
++ (NSInteger)coordinates2distance:(CLLocationDegrees)c1Latitude fromLongitude:(CLLocationDegrees)c1Longitude toLatitude:(CLLocationDegrees)c2Latitude toLongitude:(CLLocationDegrees)c2Longitude
+{
+    return [self coordinates2distance:CLLocationCoordinate2DMake(c1Latitude, c1Longitude) to:CLLocationCoordinate2DMake(c2Latitude, c2Longitude)];
+}
+
 /// Returns bearing between coordinates c1 and c2
 + (NSInteger)coordinates2bearing:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2
 {
@@ -263,6 +281,16 @@
     float x = cos(φ1) * sin(φ2) - sin(φ1) * cos(φ2) * cos(Δλ);
     NSInteger brng = [self toDegrees:atan2(y, x)];
     return (brng + 360) % 360;
+}
+
++ (NSInteger)coordinates2bearing:(CLLocationCoordinate2D)c1 toLatitude:(CLLocationDegrees)c2Latitude toLongitude:(CLLocationDegrees)c2Longitude
+{
+    return [self coordinates2bearing:c1 to:CLLocationCoordinate2DMake(c2Latitude, c2Longitude)];
+}
+
++ (NSInteger)coordinates2bearing:(CLLocationDegrees)c1Latitude fromLongitude:(CLLocationDegrees)c1Longitude to:(CLLocationCoordinate2D)c2
+{
+    return [self coordinates2bearing:CLLocationCoordinate2DMake(c1Latitude, c1Longitude) to:c2];
 }
 
 /// Returns compass direction for bearing
@@ -293,40 +321,46 @@
 }
 
 /// Returns string with coordinates like N 1° 2.3' E 4° 5.6
-+ (NSString *)NiceCoordinates:(CLLocationCoordinate2D)c
++ (NSString *)niceCoordinates:(CLLocationCoordinate2D)c
 {
     Coordinates *co = [[Coordinates alloc] init:c];
     return [NSString stringWithFormat:@"%@ %@", [co lat_degreesDecimalMinutes], [co lon_degreesDecimalMinutes]];
 }
 
++ (NSString *)niceCoordinates:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude
+{
+    Coordinates *co = [[Coordinates alloc] init:latitude longitude:longitude];
+    return [NSString stringWithFormat:@"%@ %@", [co lat_degreesDecimalMinutes], [co lon_degreesDecimalMinutes]];
+}
+
 /// Returns string with coordinates like N 1 2.3 E 4 5.6
-+ (NSString *)NiceCoordinatesForEditing:(CLLocationCoordinate2D)c
++ (NSString *)niceCoordinatesForEditing:(CLLocationCoordinate2D)c
 {
     Coordinates *co = [[Coordinates alloc] init:c];
     return [NSString stringWithFormat:@"%@ %@", [co lat_degreesDecimalMinutesSimple], [co lon_degreesDecimalMinutesSimple]];
 }
 
 /// Returns string with latitude like N 1° 2.3'
-+ (NSString *)NiceLatitude:(CLLocationDegrees)l
++ (NSString *)niceLatitude:(CLLocationDegrees)l
 {
     Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(l, 0)];
     return [co lat_degreesDecimalMinutes];
 }
 /// Returns string with longitude like E 1° 2.3'
-+ (NSString *)NiceLongitude:(CLLocationDegrees)l
++ (NSString *)niceLongitude:(CLLocationDegrees)l
 {
     Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(0, l)];
     return [co lon_degreesDecimalMinutes];
 }
 
 /// Returns string with latitude like N 1 2.3
-+ (NSString *)NiceLatitudeForEditing:(CLLocationDegrees)l
++ (NSString *)niceLatitudeForEditing:(CLLocationDegrees)l
 {
     Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(l, 0)];
     return [co lat_degreesDecimalMinutesSimple];
 }
 /// Returns string with longitude like E 1 2.3
-+ (NSString *)NiceLongitudeForEditing:(CLLocationDegrees)l
++ (NSString *)niceLongitudeForEditing:(CLLocationDegrees)l
 {
     Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(0, l)];
     return [co lon_degreesDecimalMinutesSimple];
@@ -381,12 +415,12 @@
 }
 
 /// init with a S 34 1.672, E 151 4.414 string
-- (instancetype)initString:(NSString *)lat lon:(NSString *)lon    // S 34 1.672, E 151 4.414
+- (instancetype)initString:(NSString *)latitude longitude:(NSString *)longitude // S 34 1.672, E 151 4.414
 {
     self = [super init];
 
-    coords.latitude = [Coordinates degreesDecimalMinutes2degrees:lat];
-    coords.longitude = [Coordinates degreesDecimalMinutes2degrees:lon];
+    coords.latitude = [Coordinates degreesDecimalMinutes2degrees:latitude];
+    coords.longitude = [Coordinates degreesDecimalMinutes2degrees:longitude];
 
     return self;
 }
@@ -455,29 +489,25 @@
 
         if (NS != nil && EW != nil) {
             NSLog(@"%@ - %@", NS, EW);
-            Coordinates *c = [[Coordinates alloc] initString:NS lon:EW];
+            Coordinates *c = [[Coordinates alloc] initString:NS longitude:EW];
 
-            dbWaypoint *wp = [[dbWaypoint alloc] init:0];
-            wp.wpt_lat = [c lat_decimalDegreesSigned];
-            wp.wpt_lon = [c lon_decimalDegreesSigned];
-            wp.wpt_lat_int = [c lat] * 1000000;
-            wp.wpt_lon_int = [c lon] * 1000000;
+            dbWaypoint *wp = [[dbWaypoint alloc] init];
+            wp.wpt_latitude = c.latitude;
+            wp.wpt_longitude = c.longitude;
             wp.wpt_name = [dbWaypoint makeName:[waypoint.wpt_name substringFromIndex:2]];
             wp.wpt_description = wp.wpt_name;
             wp.wpt_date_placed_epoch = time(NULL);
-            wp.wpt_date_placed = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:wp.wpt_date_placed_epoch];
             wp.wpt_url = nil;
             wp.wpt_urlname = wp.wpt_name;
-            wp.wpt_symbol_id = 1;
-            wp.wpt_type_id = [dbc Type_ManuallyEntered]._id;
-            wp.related_id = waypoint._id;
-            wp.account_id = waypoint.account_id;
+            wp.wpt_symbol = dbc.Symbol_VirtualStage;
+            wp.wpt_type = [dbc Type_ManuallyEntered];
+            wp.account = waypoint.account;
             [wp finish];
-            [dbWaypoint dbCreate:wp];
+            [wp dbCreate];
 
-            [dbc.Group_AllWaypoints_ManuallyAdded dbAddWaypoint:wp._id];
-            [dbc.Group_AllWaypoints dbAddWaypoint:wp._id];
-            [dbc.Group_ManualWaypoints dbAddWaypoint:wp._id];
+            [dbc.Group_AllWaypoints_ManuallyAdded addWaypointToGroup:wp];
+            [dbc.Group_AllWaypoints addWaypointToGroup:wp];
+            [dbc.Group_ManualWaypoints addWaypointToGroup:wp];
 
             [waypointManager needsRefreshAdd:wp];
             found++;

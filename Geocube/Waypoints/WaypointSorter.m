@@ -28,8 +28,8 @@
 + (NSArray<dbWaypoint *> *)resortWaypoints:(NSArray<dbWaypoint *> *)wps waypointsSortOrder:(SortOrderWaypoints)newSortOrder
 {
     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:LM.coords];
-        wp.calculatedBearing = [Coordinates coordinates2bearing:wp.coordinates to:LM.coords];
+        wp.calculatedDistance = [Coordinates coordinates2distance:LM.coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude];
+        wp.calculatedBearing = [Coordinates coordinates2bearing:wp.wpt_latitude fromLongitude:wp.wpt_longitude to:LM.coords];
     }];
 
 #define NCMP(I, O1, O2, W) \
@@ -56,8 +56,8 @@
         NCMP(SORTORDERWP_DISTANCE_DESC, obj1.calculatedDistance, obj2.calculatedDistance, <)
         NCMP(SORTORDERWP_DIRECTION_ASC, obj1.calculatedBearing, obj2.calculatedBearing, <)
         NCMP(SORTORDERWP_DIRECTION_DESC, obj1.calculatedBearing, obj2.calculatedBearing, >)
-        NCMP(SORTORDERWP_TYPE, obj1.wpt_type_id, obj2.wpt_type_id, >)
-        NCMP(SORTORDERWP_CONTAINER, obj1.gs_container_id, obj2.gs_container_id, >)
+        NCMP(SORTORDERWP_TYPE, obj1.wpt_type._id, obj2.wpt_type._id, >)
+        NCMP(SORTORDERWP_CONTAINER, obj1.gs_container._id, obj2.gs_container._id, >)
         NCMP(SORTORDERWP_FAVOURITES_ASC, obj1.gs_favourites, obj2.gs_favourites, >)
         NCMP(SORTORDERWP_FAVOURITES_DESC, obj1.gs_favourites, obj2.gs_favourites, <)
         NCMP(SORTORDERWP_TERRAIN_ASC, obj1.gs_rating_terrain, obj2.gs_rating_terrain, >)
@@ -84,8 +84,8 @@
 + (NSArray<dbWaypoint *> *)resortWaypoints:(NSArray<dbWaypoint *> *)wps locationlessSortOrder:(SortOrderLocationless)newSortOrder
 {
     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:LM.coords];
-        wp.calculatedBearing = [Coordinates coordinates2bearing:wp.coordinates to:LM.coords];
+        wp.calculatedDistance = [Coordinates coordinates2distance:LM.coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude];
+        wp.calculatedBearing = [Coordinates coordinates2bearing:wp.wpt_latitude fromLongitude:wp.wpt_longitude to:LM.coords];
     }];
 
 #define NCMP(I, O1, O2, W) \
@@ -128,8 +128,8 @@
 + (NSArray<dbWaypoint *> *)resortWaypoints:(NSArray<dbWaypoint *> *)wps listSortOrder:(SortOrderList)newSortOrder flag:(Flag)flag
 {
     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        wp.calculatedDistance = [Coordinates coordinates2distance:wp.coordinates to:LM.coords];
-        wp.calculatedBearing = [Coordinates coordinates2bearing:wp.coordinates to:LM.coords];
+        wp.calculatedDistance = [Coordinates coordinates2distance:LM.coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude];
+        wp.calculatedBearing = [Coordinates coordinates2bearing:wp.wpt_latitude fromLongitude:wp.wpt_longitude to:LM.coords];
     }];
 
 #define NCMP(I, O1, O2, W) \
@@ -156,8 +156,8 @@
         NCMP(SORTORDERLIST_DISTANCE_DESC, obj1.calculatedDistance, obj2.calculatedDistance, <)
         NCMP(SORTORDERLIST_DIRECTION_ASC, obj1.calculatedBearing, obj2.calculatedBearing, <)
         NCMP(SORTORDERLIST_DIRECTION_DESC, obj1.calculatedBearing, obj2.calculatedBearing, >)
-        NCMP(SORTORDERLIST_TYPE, obj1.wpt_type_id, obj2.wpt_type_id, >)
-        NCMP(SORTORDERLIST_CONTAINER, obj1.gs_container_id, obj2.gs_container_id, >)
+        NCMP(SORTORDERLIST_TYPE, obj1.wpt_type._id, obj2.wpt_type._id, >)
+        NCMP(SORTORDERLIST_CONTAINER, obj1.gs_container._id, obj2.gs_container._id, >)
         NCMP(SORTORDERLIST_FAVOURITES_ASC, obj1.gs_favourites, obj2.gs_favourites, >)
         NCMP(SORTORDERLIST_FAVOURITES_DESC, obj1.gs_favourites, obj2.gs_favourites, <)
         NCMP(SORTORDERLIST_TERRAIN_ASC, obj1.gs_rating_terrain, obj2.gs_rating_terrain, >)
@@ -184,7 +184,7 @@
 
             [lds enumerateObjectsUsingBlock:^(dbListData * _Nonnull ld, NSUInteger idx, BOOL * _Nonnull stop) {
                 [old enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
-                    if (wp._id == ld.waypoint_id) {
+                    if (wp._id == ld.waypoint._id) {
                         [new addObject:wp];
                         *stop = YES;
                     }

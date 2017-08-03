@@ -340,7 +340,7 @@ enum {
     [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL *stop) {
         NSMutableArray<NSString *> *wps = [NSMutableArray arrayWithCapacity:[waypoints count]];
         [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (wp.account_id == account._id)
+            if (wp.account._id == account._id)
                 [wps addObject:wp.wpt_name];
         }];
         if ([wps count] == 0)

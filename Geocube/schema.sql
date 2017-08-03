@@ -6,19 +6,19 @@ create table config (
     value text
 );
 create index config_idx_key on config(key);
-insert into config(key, value) values("url_sites", "https://geocube.mavetju.org/geocube_sites.3.geocube");
-insert into config(key, value) values("url_notices", "https://geocube.mavetju.org/geocube_notices.3.geocube");
-insert into config(key, value) values("url_externalmaps", "https://geocube.mavetju.org/geocube_externalmaps.3.geocube");
-insert into config(key, value) values("url_countries", "https://geocube.mavetju.org/geocube_countries.3.geocube");
-insert into config(key, value) values("url_states", "https://geocube.mavetju.org/geocube_states.3.geocube");
-insert into config(key, value) values("url_attributes", "https://geocube.mavetju.org/geocube_attributes.3.geocube");
-insert into config(key, value) values("url_types", "https://geocube.mavetju.org/geocube_types.3.geocube");
-insert into config(key, value) values("url_pins", "https://geocube.mavetju.org/geocube_pins.3.geocube");
-insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.org/geocube_bookmarks.3.geocube");
-insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.3.geocube");
-insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.3.geocube");
+insert into config(key, value) values("url_sites", "https://geocube.mavetju.org/geocube_sites.4.geocube");
+insert into config(key, value) values("url_notices", "https://geocube.mavetju.org/geocube_notices.4.geocube");
+insert into config(key, value) values("url_externalmaps", "https://geocube.mavetju.org/geocube_externalmaps.4.geocube");
+insert into config(key, value) values("url_countries", "https://geocube.mavetju.org/geocube_countries.4.geocube");
+insert into config(key, value) values("url_states", "https://geocube.mavetju.org/geocube_states.4.geocube");
+insert into config(key, value) values("url_attributes", "https://geocube.mavetju.org/geocube_attributes.4.geocube");
+insert into config(key, value) values("url_types", "https://geocube.mavetju.org/geocube_types.4.geocube");
+insert into config(key, value) values("url_pins", "https://geocube.mavetju.org/geocube_pins.4.geocube");
+insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.org/geocube_bookmarks.4.geocube");
+insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.4.geocube");
+insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.4.geocube");
 insert into config(key, value) values("url_versions", "https://geocube.mavetju.org/geocube_versions.geocube");
-insert into config(key, value) values("version", "50");
+insert into config(key, value) values("version", "52");
 
 create table filters (
     id integer primary key,
@@ -57,15 +57,11 @@ create index group2waypoints_idx_waypoint_id on group2waypoints(waypoint_id);
 
 create table waypoints (
     id integer primary key,
-    related_id integer,
 
-    wpt_lat text,
-    wpt_lon text,
-    wpt_lat_int integer,		-- lat times 1000 000 for now
-    wpt_lon_int integer,		-- lon times 1000 000 for now
+    wpt_lat float,
+    wpt_lon float,
     wpt_name text,
     wpt_description text,
-    wpt_date_placed string,
     wpt_date_placed_epoch integer,
     wpt_url text,
     wpt_urlname text,
@@ -177,16 +173,13 @@ create table logs (
     gc_id integer,
     waypoint_id integer,		-- points to waypoints(id)
     log_string_id integer,		-- points to log_strings(id)
-    datetime text,
     datetime_epoch integer,
     logger_id integer,			-- points to names(id)
     needstobelogged bool,
     locallog bool,
     log text,
-    lat text,
-    lon text,
-    lat_int integer,			-- lat times 1000 000 for now
-    lon_int integer			-- lon times 1000 000 for now
+    lat float,
+    lon float
 );
 create index logs_idx_id on logs(id);
 create index logs_idx_gc_id on logs(gc_id);
@@ -283,8 +276,7 @@ create table accounts (
     site text,
     url_site text,
     url_queries text,
-    accountname text,
-    name_id integer,			-- points to names(id)
+    accountname_id integer,		-- points to names(id)
     protocol_id integer,		-- points to protocols(id)
     distance_minimum integer,
 
@@ -352,8 +344,8 @@ create index tracks_idx_id on tracks(id);
 create table trackelements (
     id integer primary key,
     track_id integer,		-- points to tracks(id)
-    lat_int integer,		-- lat times 1000 000 for now
-    lon_int integer, 		-- lon times 1000 000 for now
+    lat float,
+    lon float,
     height integer,
     timestamp integer,
     restart bool

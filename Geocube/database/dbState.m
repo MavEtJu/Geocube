@@ -25,87 +25,22 @@
 
 @implementation dbState
 
-- (instancetype)init:(NSId)_id name:(NSString *)name code:(NSString *)code
+TABLENAME(@"states")
+
+- (NSId)dbCreate
 {
-    self = [super init];
-
-    self._id = _id;
-    self.name = name;
-    self.code = code;
-
-    [self finish];
-    return self;
-}
-
-+ (NSArray<dbState *> *)dbAll
-{
-    NSMutableArray<dbState *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, name, code from states");
-
-        DB_WHILE_STEP {
-            dbState *s = [[dbState alloc] init];
-            INT_FETCH (0, s._id);
-            TEXT_FETCH(1, s.name);
-            TEXT_FETCH(2, s.code);
-            [ss addObject:s];
-        }
-        DB_FINISH;
-    }
-    return ss;
-}
-
-+ (NSInteger)dbCount
-{
-    return [dbState dbCount:@"states"];
-}
-
-+ (dbState *)dbGet:(NSId)_id
-{
-    dbState *s;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, name, code from states where id = ?");
-
-        SET_VAR_INT(1, _id);
-
-        DB_IF_STEP {
-            s = [[dbState alloc] init];
-            INT_FETCH (0, s._id);
-            TEXT_FETCH(1, s.name);
-            TEXT_FETCH(2, s.code);
-        }
-        DB_FINISH;
-    }
-    return s;
-}
-
-+ (NSId)dbCreate:(NSString *)name code:(NSString *)code
-{
-    NSId _id;
-
     @synchronized(db) {
         DB_PREPARE(@"insert into states(name, code) values(?, ?)");
 
-        SET_VAR_TEXT(1, name);
-        SET_VAR_TEXT(2, code);
+        SET_VAR_TEXT(1, self.name);
+        SET_VAR_TEXT(2, self.code);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(_id);
+        DB_GET_LAST_ID(self._id);
         DB_FINISH;
     }
 
-    return _id;
-}
-
-+ (void)makeNameExist:(NSString *)name
-{
-    if ([dbc State_get_byNameCode:name] == nil) {
-        NSId _id = [dbState dbCreate:name code:name];
-        dbState *s = [self dbGet:_id];
-        [dbc State_add:s];
-    }
+    return self._id;
 }
 
 - (void)dbUpdate
@@ -119,6 +54,57 @@
 
         DB_CHECK_OKAY;
         DB_FINISH;
+    }
+}
+
++ (NSArray<dbState *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
+{
+    NSMutableArray<dbState *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
+
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, name, code from states "];
+    if (where != nil)
+        [sql appendString:where];
+
+    @synchronized(db) {
+        DB_PREPARE_KEYSVALUES(sql, keys, values)
+
+        DB_WHILE_STEP {
+            dbState *s = [[dbState alloc] init];
+            INT_FETCH (0, s._id);
+            TEXT_FETCH(1, s.name);
+            TEXT_FETCH(2, s.code);
+            [ss addObject:s];
+        }
+        DB_FINISH;
+    }
+    return ss;
+}
+
++ (NSArray<dbState *> *)dbAll
+{
+    return [self dbAllXXX:nil keys:nil values:nil];
+}
+
++ (dbState *)dbGet:(NSId)_id
+{
+    return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
+}
+
++ (dbState *)dbGetByNameCode:(NSString *)namecode
+{
+    return [[self dbAllXXX:@"where name = ? or code = ?" keys:@"ss" values:@[namecode, namecode]] firstObject];
+}
+
+/* Other methods */
+
++ (void)makeNameExist:(NSString *)name
+{
+    if ([dbc State_get_byNameCode:name] == nil) {
+        dbState *s = [[dbState alloc] init];
+        s.name = name;
+        s.code = name;
+        [s dbCreate];
+        [dbc State_add:s];
     }
 }
 

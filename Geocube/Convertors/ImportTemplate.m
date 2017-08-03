@@ -52,8 +52,8 @@
 {
     NSLog(@"%@: Parsing initializing", [self class]);
 
-    [dbc.Group_LastImport dbEmpty];
-    [dbc.Group_LastImportAdded dbEmpty];
+    [dbc.Group_LastImport emptyGroup];
+    [dbc.Group_LastImportAdded emptyGroup];
     [db cleanupAfterDelete];
 }
 
@@ -61,12 +61,12 @@
 {
     NSLog(@"%@: Parsing done", [self class]);
 
-    [[dbc Group_AllWaypoints_Found] dbEmpty];
-    [[dbc Group_AllWaypoints_Found] dbAddWaypoints:[dbWaypoint dbAllFound]];
-    [[dbc Group_AllWaypoints_NotFound] dbEmpty];
-    [[dbc Group_AllWaypoints_NotFound] dbAddWaypoints:[dbWaypoint dbAllNotFound]];
-    [[dbc Group_AllWaypoints_Ignored] dbEmpty];
-    [[dbc Group_AllWaypoints_Ignored] dbAddWaypoints:[dbWaypoint dbAllIgnored]];
+    [[dbc Group_AllWaypoints_Found] emptyGroup];
+    [[dbc Group_AllWaypoints_Found] addWaypointsToGroup:[dbWaypoint dbAllFound]];
+    [[dbc Group_AllWaypoints_NotFound] emptyGroup];
+    [[dbc Group_AllWaypoints_NotFound] addWaypointsToGroup:[dbWaypoint dbAllNotFound]];
+    [[dbc Group_AllWaypoints_Ignored] emptyGroup];
+    [[dbc Group_AllWaypoints_Ignored] addWaypointsToGroup:[dbWaypoint dbAllIgnored]];
     [db cleanupAfterDelete];
     [dbWaypoint dbUpdateLogStatus];
 }

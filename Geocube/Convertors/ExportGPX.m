@@ -120,8 +120,8 @@
 */
     NSMutableString *l = [NSMutableString string];
 
-    [lines addObject:[NSString stringWithFormat:@"<wpt lat=\"%f\" lon=\"%f\">", wp.wpt_lat_float, wp.wpt_lon_float]];
-    LINE_S(@"time", wp.wpt_date_placed);
+    [lines addObject:[NSString stringWithFormat:@"<wpt lat=\"%f\" lon=\"%f\">", wp.wpt_latitude, wp.wpt_longitude]];
+    LINE_S(@"time", [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:wp.wpt_date_placed_epoch]);
     LINE_S(@"name", wp.wpt_name);
     LINE_S(@"desc", wp.wpt_description);
     if (wp.wpt_url == nil || [wp.wpt_url isEqualToString:@""] == YES)
@@ -129,17 +129,17 @@
     else
         LINE_S(@"url", wp.wpt_url);
     LINE_S(@"urlname", wp.wpt_urlname);
-    LINE_S(@"sym", wp.wpt_symbol_str);
-    LINE_S(@"type", wp.wpt_type_str);
+    LINE_S(@"sym", wp.wpt_symbol.symbol);
+    LINE_S(@"type", wp.wpt_type.type_full);
 
     if (wp.gs_rating_difficulty != 0 && wp.gs_rating_terrain != 0) {
         [lines addObject:[NSString stringWithFormat:@"<groundspeak:cache id=\"%@\" archived=\"%@\" available=\"%@\" xmlns:groundspeak=\"http://www.groundspeak.com/cache/1/0/1\">", [NSNumber numberWithLongLong:wp._id], wp.gs_archived == YES ? @"true" : @"false", wp.gs_available == YES ? @"true" : @"false"]];
         LINE_S(@"groundspeak:name", wp.wpt_urlname);
         LINE_S(@"groundspeak:placed_by", wp.gs_placed_by);
-        LINE_S(@"groundspeak:owner", wp.gs_owner_str);
+        LINE_S(@"groundspeak:owner", wp.gs_owner.name);
         LINE_S(@"groundspeak:type", wp.wpt_type.type_minor);
 
-        NSArray<dbAttribute *> *as = [dbAttribute dbAllByWaypoint:wp._id];
+        NSArray<dbAttribute *> *as = [dbAttribute dbAllByWaypoint:wp];
         if ([as count] == 0) {
             [lines addObject:@"<groundspeak:attributes />"];
         } else {
@@ -153,8 +153,8 @@
 
         LINE_F(@"groundspeak:difficulty", 1, wp.gs_rating_difficulty);
         LINE_F(@"groundspeak:terrain", 1, wp.gs_rating_terrain);
-        LINE_S(@"groundspeak:country", wp.gs_country_str);
-        LINE_S(@"groundspeak:state", wp.gs_state_str);
+        LINE_S(@"groundspeak:country", wp.gs_country.name);
+        LINE_S(@"groundspeak:state", wp.gs_state.name);
 
         [l appendString:@"<groundspeak:short_description html=\""];
         [l appendString:(wp.gs_short_desc_html == YES ? @"true" : @"false")];
@@ -172,7 +172,7 @@
 
         LINE_S(@"groundspeak:encoded_hints", wp.gs_hint);
 
-        NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp._id];
+        NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp];
         if ([logs count] == 0) {
             [lines addObject:@"<groundspeak:logs />"];
         } else {
@@ -180,11 +180,11 @@
             [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL * _Nonnull stop) {
                 [lines addObject:[NSString stringWithFormat:@"<groundspeak:log id=\"%ld\">", (long)log._id]];
                 LINE_S(@"groundspeak:date", [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:log.datetime_epoch]);
-                LINE_S(@"groundspeak:type", log.logstring_string);
-                LINE_S(@"groundspeak:finder", log.logger_str);
+                LINE_S(@"groundspeak:type", log.logstring.type);
+                LINE_S(@"groundspeak:finder", log.logger.name);
                 LINE_S(@"groundspeak:text", [MyTools HTMLEscape:log.log]);
-                if (log.lat_float != 0 && log.lon_float != 0)
-                    [lines addObject:[NSString stringWithFormat:@"<groundspeak:log_wpt lat=\"%f\" lon=\"%f\" />", log.lat_float, log.lat_float]];
+                if (log.latitude != 0 && log.longitude != 0)
+                    [lines addObject:[NSString stringWithFormat:@"<groundspeak:log_wpt lat=\"%f\" lon=\"%f\" />", log.latitude, log.longitude]];
                 [lines addObject:@"</groundspeak:log>"];
             }];
             [lines addObject:@"</groundspeak:logs>"];

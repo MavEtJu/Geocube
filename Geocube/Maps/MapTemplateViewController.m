@@ -451,7 +451,7 @@
             break;
         case SHOW_SHOWBOTH:
             if (waypointManager.currentWaypoint != nil)
-                [self.map moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
+                [self.map moveCameraTo:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude) c2:meLocation];
             else {
                 [self menuShowWhom:SHOW_FOLLOWME];
                 [self.map moveCameraTo:meLocation zoom:NO];
@@ -466,7 +466,7 @@
         [self.map addLineMeToWaypoint];
 
     if (waypointManager.currentWaypoint != nil) {
-        NSString *distance = [MyTools niceDistance:[Coordinates coordinates2distance:meLocation to:waypointManager.currentWaypoint.coordinates]];
+        NSString *distance = [MyTools niceDistance:[Coordinates coordinates2distance:meLocation toLatitude:waypointManager.currentWaypoint.wpt_latitude toLongitude:waypointManager.currentWaypoint.wpt_longitude]];
         distanceLabel.text = distance;
         distanceLabel.layer.shadowColor = [[UIColor redColor] CGColor];
         distanceLabel.layer.shadowRadius = 1;
@@ -529,14 +529,14 @@
         self.followWhom = whom;
         meLocation = [LM coords];
         if (self.staticHistory == NO)
-            [self.map moveCameraTo:waypointManager.currentWaypoint.coordinates zoom:NO];
+            [self.map moveCameraTo:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude) zoom:NO];
         [labelMapSeeTarget setBackgroundColor:[UIColor grayColor]];
     }
     if (whom == SHOW_SHOWBOTH && waypointManager.currentWaypoint != nil) {
         self.followWhom = whom;
         meLocation = [LM coords];
         if (self.staticHistory == NO)
-            [self.map moveCameraTo:waypointManager.currentWaypoint.coordinates c2:meLocation];
+            [self.map moveCameraTo:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude) c2:meLocation];
         [labelMapShowBoth setBackgroundColor:[UIColor grayColor]];
     }
 }
@@ -556,7 +556,7 @@
     self.followWhom = SHOW_SEETARGET;
     [self labelClearAll];
     [labelMapFindTarget setBackgroundColor:[UIColor grayColor]];
-    [self.map moveCameraTo:waypointManager.currentWaypoint.coordinates zoom:YES];
+    [self.map moveCameraTo:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude) zoom:YES];
 }
 
 #pragma mark - Waypoint manager callbacks
@@ -602,7 +602,7 @@
 {
     CLLocationCoordinate2D currentCoords = [self.map currentCenter];
     double currentZoom = [self.map currentZoom];
-    NSLog(@"currentCoords: %@", [Coordinates NiceCoordinates:currentCoords]);
+    NSLog(@"currentCoords: %@", [Coordinates niceCoordinates:currentCoords]);
     NSLog(@"currentZoom: %f", currentZoom);
 
     [self removeDistanceLabel];
@@ -742,13 +742,13 @@
             urlString = [NSString stringWithFormat:url.url, LM.coords.latitude, LM.coords.longitude];
             break;
         case 3:
-             urlString = [NSString stringWithFormat:url.url, waypointManager.currentWaypoint.wpt_lat_float, waypointManager.currentWaypoint.wpt_lon_float];
+             urlString = [NSString stringWithFormat:url.url, waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude];
             break;
         case 4:
-            urlString = [NSString stringWithFormat:url.url, LM.coords.latitude, LM.coords.longitude, waypointManager.currentWaypoint.wpt_lat_float, waypointManager.currentWaypoint.wpt_lon_float];
+            urlString = [NSString stringWithFormat:url.url, LM.coords.latitude, LM.coords.longitude, waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude];
             break;
         case 5:
-            urlString = [NSString stringWithFormat:url.url, waypointManager.currentWaypoint.wpt_lat_float, waypointManager.currentWaypoint.wpt_lon_float,  LM.coords.latitude, LM.coords.longitude];
+            urlString = [NSString stringWithFormat:url.url, waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude,  LM.coords.latitude, LM.coords.longitude];
             break;
     }
 
@@ -765,7 +765,7 @@
 
         NSLog(@"Opening %@ for external navigation", em.name);
 
-        NSArray<dbExternalMapURL *> *urls = [dbExternalMapURL dbAllByExternalMap:em._id];
+        NSArray<dbExternalMapURL *> *urls = [dbExternalMapURL dbAllByExternalMap:em];
         __block dbExternalMapURL *urlCurrent = nil;
         __block dbExternalMapURL *urlDestination = nil;
 
@@ -795,7 +795,7 @@
 
         if (waypointManager.currentWaypoint != nil) {
             if (urlDestination.type == 0) {
-                CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_lat_float, waypointManager.currentWaypoint.wpt_lon_float);
+                CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude);
 
                 //create MKMapItem out of coordinates
                 MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil];
@@ -876,15 +876,15 @@
 {
     CLLocationCoordinate2D bottomLeft, topRight;
     [self.map currentRectangle:&bottomLeft topRight:&topRight];
-    NSLog(@"bottomLeft: %@", [Coordinates NiceCoordinates:bottomLeft]);
-    NSLog(@"topRight: %@", [Coordinates NiceCoordinates:topRight]);
+    NSLog(@"bottomLeft: %@", [Coordinates niceCoordinates:bottomLeft]);
+    NSLog(@"topRight: %@", [Coordinates niceCoordinates:topRight]);
 
     NSMutableArray<dbWaypoint *> *wps = [NSMutableArray arrayWithCapacity:200];
     [self.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (wp.coordinates.latitude > bottomLeft.latitude &&
-            wp.coordinates.latitude < topRight.latitude &&
-            wp.coordinates.longitude > bottomLeft.longitude &&
-            wp.coordinates.longitude < topRight.longitude) {
+        if (wp.wpt_latitude > bottomLeft.latitude &&
+            wp.wpt_latitude < topRight.latitude &&
+            wp.wpt_longitude > bottomLeft.longitude &&
+            wp.wpt_longitude < topRight.longitude) {
             [wps addObject:wp];
         }
     }];

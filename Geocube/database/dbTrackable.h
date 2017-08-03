@@ -33,29 +33,25 @@ typedef NS_ENUM(NSInteger, TrackableLog) {
 @property (nonatomic, retain) NSString *code;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *ref;
-@property (nonatomic) NSId gc_id;
-@property (nonatomic) NSId carrier_id;
-@property (nonatomic, retain) NSString *carrier_str;
+@property (nonatomic) NSInteger gc_id;
 @property (nonatomic, retain) dbName *carrier;
-@property (nonatomic) NSId owner_id;
-@property (nonatomic, retain) NSString *owner_str;
 @property (nonatomic, retain) dbName *owner;
 @property (nonatomic, retain) NSString *waypoint_name;
 @property (nonatomic) TrackableLog logtype;
 
+- (void)set_carrier_str:(NSString *)name account:(dbAccount *)account;
+- (void)set_owner_str:(NSString *)name account:(dbAccount *)account;
+
 + (NSArray<dbTrackable *> *)dbAll;
 + (NSArray<dbTrackable *> *)dbAllMine;
 + (NSArray<dbTrackable *> *)dbAllInventory;
-+ (void)dbUnlinkAllFromWaypoint:(NSId)wp_id;
-- (void)dbLinkToWaypoint:(NSId)wp_id;
++ (void)dbUnlinkAllFromWaypoint:(dbWaypoint *)wp;
+- (void)dbLinkToWaypoint:(dbWaypoint *)wp;
 + (dbTrackable *)dbGet:(NSId)_id;
-+ (NSId)dbGetIdByGC:(NSId)_gc_id;
-+ (NSId)dbCreate:(dbTrackable *)tb;
-- (NSId)dbCreate;
++ (NSId)dbGetIdByGC:(NSInteger)_gc_id;
 + (dbTrackable *)dbGetByCode:(NSString *)code;
 + (dbTrackable *)dbGetByRef:(NSString *)ref;
-+ (NSInteger)dbCountByWaypoint:(NSId)wp_id;
-+ (NSArray<dbTrackable *> *)dbAllByWaypoint:(NSId)wp_id;
-- (void)finish:(dbAccount *)account;
++ (NSInteger)dbCountByWaypoint:(dbWaypoint *)wp_id;
++ (NSArray<dbTrackable *> *)dbAllByWaypoint:(dbWaypoint *)wp;
 
 @end

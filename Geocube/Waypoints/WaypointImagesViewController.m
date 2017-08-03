@@ -70,9 +70,9 @@ enum {
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELL];
 
     waypoint = wp;
-    userImages = [dbImage dbAllByWaypoint:wp._id type:IMAGECATEGORY_USER];
-    cacheImages = [dbImage dbAllByWaypoint:wp._id type:IMAGECATEGORY_CACHE];
-    logImages = [dbImage dbAllByWaypoint:wp._id type:IMAGECATEGORY_LOG];
+    userImages = [dbImage dbAllByWaypoint:wp type:IMAGECATEGORY_USER];
+    cacheImages = [dbImage dbAllByWaypoint:wp type:IMAGECATEGORY_CACHE];
+    logImages = [dbImage dbAllByWaypoint:wp type:IMAGECATEGORY_LOG];
 
     currentIndexPath = [[NSIndexPath alloc] init];
 
@@ -237,9 +237,9 @@ enum {
             return;
         dbImage *img = [userImages objectAtIndex:indexPath.row];
 
-        [img dbUnlinkFromWaypoint:waypoint._id];
+        [img dbUnlinkFromWaypoint:waypoint];
 
-        userImages = [dbImage dbAllByWaypoint:waypoint._id type:IMAGECATEGORY_USER];
+        userImages = [dbImage dbAllByWaypoint:waypoint type:IMAGECATEGORY_USER];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
         if (self.delegateWaypoint != nil)
             [self.delegateWaypoint WaypointImages_refreshTable];
@@ -430,8 +430,11 @@ enum {
         [UIImageJPEGRepresentation(image, 1.0) writeToFile:[MyTools ImageFile:datafile] atomically:NO];
 
         if (img == nil) {
-            img = [[dbImage alloc] init:imgtag name:[dbImage filename:imgtag] datafile:datafile];
-            [dbImage dbCreate:img];
+            img = [[dbImage alloc] init];
+            img.url = imgtag;
+            img.name = [dbImage filename:imgtag];
+            img.datafile = datafile;
+            [img dbCreate];
         } else {
             NSLog(@"%@/parse: Image already seen", [self class]);
         }
@@ -442,16 +445,19 @@ enum {
         NSString *datecreated = [exif objectForKey:@"DateTimeOriginal"];
         NSString *datafile = [dbImage createDataFilename:datecreated];
         [UIImageJPEGRepresentation(image, 1.0) writeToFile:[MyTools ImageFile:datafile] atomically:NO];
-        img = [[dbImage alloc] init:datecreated name:[dbImage filename:datecreated] datafile:datafile];
-        [dbImage dbCreate:img];
+        img = [[dbImage alloc] init];
+        img.url = datecreated;
+        img.name= [dbImage filename:datecreated];
+        img.datafile = datafile;
+        [img dbCreate];
 
         UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
     }
 
-    if ([img dbLinkedtoWaypoint:waypoint._id] == NO)
-        [img dbLinkToWaypoint:waypoint._id type:IMAGECATEGORY_USER];
+    if ([img dbLinkedtoWaypoint:waypoint] == NO)
+        [img dbLinkToWaypoint:waypoint type:IMAGECATEGORY_USER];
 
-    userImages = [dbImage dbAllByWaypoint:waypoint._id type:IMAGECATEGORY_USER];
+    userImages = [dbImage dbAllByWaypoint:waypoint type:IMAGECATEGORY_USER];
     [self.tableView reloadData];
     if (self.delegateWaypoint != nil)
         [self.delegateWaypoint WaypointImages_refreshTable];

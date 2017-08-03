@@ -25,7 +25,6 @@
 @property (nonatomic, retain) NSString *type_major;
 @property (nonatomic, retain) NSString *type_full;
 @property (nonatomic) NSInteger icon;
-@property (nonatomic) NSId pin_id;
 @property (nonatomic) dbPin *pin;
 @property (nonatomic) BOOL hasBoundary;
 @property (nonatomic) BOOL selected;

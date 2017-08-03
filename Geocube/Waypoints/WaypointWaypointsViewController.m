@@ -93,7 +93,7 @@ enum {
     cell.iconImage.image = [imageLibrary getType:wp];
     cell.nameLabel.text = wp.wpt_urlname;
     cell.codeLabel.text = wp.wpt_name;
-    cell.coordinatesLabel.text = [Coordinates NiceCoordinates:wp.coordinates];
+    cell.coordinatesLabel.text = [Coordinates niceCoordinates:wp.wpt_latitude longitude:wp.wpt_longitude];
     [cell viewWillTransitionToSize];
 
     if (wp._id == waypoint._id) {
@@ -167,8 +167,8 @@ enum {
     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp1, NSUInteger idx1, BOOL *stop1) {
         __block BOOL found = NO;
         [nwps enumerateObjectsUsingBlock:^(dbWaypoint *wp2, NSUInteger idx2, BOOL *stop2) {
-            if (wp1.wpt_lat_int == wp2.wpt_lat_int &&
-                wp1.wpt_lon_int == wp2.wpt_lon_int) {
+            if (wp1.wpt_latitude == wp2.wpt_latitude &&
+                wp1.wpt_longitude == wp2.wpt_longitude) {
                 found = YES;
                 *stop2 = YES;
             }
@@ -202,7 +202,7 @@ enum {
 
 - (void)newWaypoint
 {
-    NSString *s = [NSString stringWithFormat:@"Waypoint coordinates:\n%@\nCurrent coordinates:\n%@", [Coordinates NiceCoordinates:waypoint.coordinates], [Coordinates NiceCoordinates:LM.coords]];
+    NSString *s = [NSString stringWithFormat:@"Waypoint coordinates:\n%@\nCurrent coordinates:\n%@", [Coordinates niceCoordinates:waypoint.wpt_latitude longitude:waypoint.wpt_longitude], [Coordinates niceCoordinates:LM.coords]];
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:@"Add a related waypoint"
                                 message:s
@@ -222,28 +222,24 @@ enum {
                     NSLog(@"Longitude '%@'", lon);
 
                     Coordinates *c;
-                    c = [[Coordinates alloc] initString:lat lon:lon];
+                    c = [[Coordinates alloc] initString:lat longitude:lon];
 
-                    dbWaypoint *wp = [[dbWaypoint alloc] init:0];
-                    wp.wpt_lat = [c lat_decimalDegreesSigned];
-                    wp.wpt_lon = [c lon_decimalDegreesSigned];
-                    wp.wpt_lat_int = [c lat] * 1000000;
-                    wp.wpt_lon_int = [c lon] * 1000000;
+                    dbWaypoint *wp = [[dbWaypoint alloc] init];
+                    wp.wpt_latitude = [c latitude];
+                    wp.wpt_longitude = [c longitude];
                     wp.wpt_name = [dbWaypoint makeName:[waypoint.wpt_name substringFromIndex:2]];
                     wp.wpt_description = wp.wpt_name;
                     wp.wpt_date_placed_epoch = time(NULL);
-                    wp.wpt_date_placed = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:wp.wpt_date_placed_epoch];
                     wp.wpt_url = nil;
                     wp.wpt_urlname = wp.wpt_name;
-                    wp.wpt_symbol_id = 1;
-                    wp.wpt_type_id = [dbc Type_ManuallyEntered]._id;
-                    wp.related_id = waypoint._id;
-                    wp.account_id = waypoint.account_id;
+                    wp.wpt_symbol = [dbc Symbol_VirtualStage];
+                    wp.wpt_type = [dbc Type_ManuallyEntered];
+                    wp.account = waypoint.account;
                     [wp finish];
-                    [dbWaypoint dbCreate:wp];
+                    [wp dbCreate];
 
-                    [dbc.Group_AllWaypoints_ManuallyAdded dbAddWaypoint:wp._id];
-                    [dbc.Group_AllWaypoints dbAddWaypoint:wp._id];
+                    [dbc.Group_AllWaypoints_ManuallyAdded addWaypointToGroup:wp];
+                    [dbc.Group_AllWaypoints addWaypointToGroup:wp];
 
                     wps = [waypoint hasWaypoints];
                     [self.tableView reloadData];
@@ -264,7 +260,7 @@ enum {
         textField.placeholder = @"Latitude (like S 12 34.567)";
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:YES];
-        textField.text = [NSString stringWithString:[Coordinates NiceLatitude:waypoint.coordinates.latitude]];
+        textField.text = [NSString stringWithString:[Coordinates niceLatitude:waypoint.wpt_latitude]];
         [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         tfLatitude = textField;
     }];
@@ -272,7 +268,7 @@ enum {
         textField.placeholder = @"Longitude (like E 23 45.678)";
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:NO];
-        textField.text = [NSString stringWithString:[Coordinates NiceLongitude:waypoint.coordinates.longitude]];
+        textField.text = [NSString stringWithString:[Coordinates niceLongitude:waypoint.wpt_longitude]];
         [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         tfLongitude = textField;
     }];

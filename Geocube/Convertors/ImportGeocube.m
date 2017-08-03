@@ -25,6 +25,10 @@
 
 @implementation ImportGeocube
 
+/***************************************************
+ * Do not use the database-cache inside this class *
+ ***************************************************/
+
 typedef NS_ENUM(NSInteger, Type) {
     TYPE_UNKNOWN = 0,
     TYPE_LOGTEMPLATESANDMACROS,
@@ -342,7 +346,7 @@ typedef NS_ENUM(NSInteger, Type) {
             a.enabled = enabledBool;
             a.url_site = url_website;
             a.url_queries = url_queries;
-            a.protocol_id = protocol._id;
+            a.protocol = protocol;
             a.oauth_consumer_public = oauth_key_public;
             a.oauth_consumer_private = oauth_key_private;
             a.oauth_request_url = oauth_url_request;
@@ -354,12 +358,13 @@ typedef NS_ENUM(NSInteger, Type) {
             a.geocube_id = [_id integerValue];
             a.revision = [revision integerValue];
             a.distance_minimum = [distance integerValue];
+            [a finish];
             [a dbCreate];
         } else {
             a.enabled = enabledBool;
             a.url_site = url_website;
             a.url_queries = url_queries;
-            a.protocol_id = protocol._id;
+            a.protocol = protocol;
             a.oauth_consumer_public = oauth_key_public;
             a.oauth_consumer_private = oauth_key_private;
             a.oauth_request_url = oauth_url_request;
@@ -371,6 +376,7 @@ typedef NS_ENUM(NSInteger, Type) {
             a.geocube_id = [_id integerValue];
             a.revision = [revision integerValue];
             a.distance_minimum = [distance integerValue];
+            [a finish];
             [a dbUpdate];
         }
     }];
@@ -406,7 +412,7 @@ typedef NS_ENUM(NSInteger, Type) {
             em.enabled = enabled_bool;
             [em dbUpdate];
         }
-        [dbExternalMapURL dbDeleteByExternalMap:em._id];
+        [dbExternalMapURL dbDeleteByExternalMap:em];
 
         NSArray<NSDictionary *> *urls = [key objectForKey:@"url"];
         [urls enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -417,7 +423,7 @@ typedef NS_ENUM(NSInteger, Type) {
 
             dbExternalMapURL *emu = [[dbExternalMapURL alloc] init];
             emu.model = model;
-            emu.externalMap_id = em._id;
+            emu.externalMap = em;
             emu.url = url;
             emu.type = type;
             [emu dbCreate];
@@ -441,7 +447,7 @@ typedef NS_ENUM(NSInteger, Type) {
         NSInteger icon = [[attr objectForKey:@"icon"] integerValue];
         NSString *label = [attr objectForKey:@"label"];
 
-        dbAttribute *a = [dbc Attribute_get_bygcid:gc_id];
+        dbAttribute *a = [dbAttribute dbGetByGCId:gc_id];
         if (a != nil) {
             a.label = label;
             a.icon = icon;
@@ -471,14 +477,16 @@ typedef NS_ENUM(NSInteger, Type) {
         NSString *abbr = [state objectForKey:@"abbr"];
         NSString *name = [state objectForKey:@"name"];
 
-        dbState *s = [dbc State_get_byNameCode:name];
+        dbState *s = [dbState dbGetByNameCode:name];
         if (s != nil) {
             s.code = abbr;
             s.name = name;
             [s dbUpdate];
         } else {
-            NSId _id = [dbState dbCreate:name code:abbr];
-            s = [dbState dbGet:_id];
+            dbState *s = [[dbState alloc] init];
+            s.name = name;
+            s.code = abbr;
+            [s dbCreate];
             [dbc State_add:s];
         }
     }];
@@ -498,14 +506,16 @@ typedef NS_ENUM(NSInteger, Type) {
         NSString *abbr = [country objectForKey:@"abbr"];
         NSString *name = [country objectForKey:@"name"];
 
-        dbCountry *c = [dbc Country_get_byNameCode:name];
+        dbCountry *c = [dbCountry dbGetByCountry:name];
         if (c != nil) {
             c.code = abbr;
             c.name = name;
             [c dbUpdate];
         } else {
-            NSId _id = [dbCountry dbCreate:name code:abbr];
-            c = [dbCountry dbGet:_id];
+            c = [[dbCountry alloc] init];
+            c.name = name;
+            c.code = abbr;
+            [c dbCreate];
             [dbc Country_add:c];
         }
     }];
@@ -536,7 +546,7 @@ typedef NS_ENUM(NSInteger, Type) {
             t.type_major = major;
             t.type_minor = minor;
             t.icon = icon;
-            t.pin_id = pin;
+            t.pin = [dbPin dbGet:pin];
             t.hasBoundary = hasBoundary;
             [t finish];
             [t dbUpdate];
@@ -545,7 +555,7 @@ typedef NS_ENUM(NSInteger, Type) {
             t.type_major = major;
             t.type_minor = minor;
             t.icon = icon;
-            t.pin_id = pin;
+            t.pin = [dbPin dbGet:pin];
             t.hasBoundary = hasBoundary;
             [t finish];
             [t dbCreate];
@@ -569,7 +579,7 @@ typedef NS_ENUM(NSInteger, Type) {
         NSString *rgb = [pin objectForKey:@"rgb"];
         NSInteger _id = [[pin objectForKey:@"id"] integerValue];
 
-        dbPin *p = [dbc Pin_get_nilokay:_id];
+        dbPin *p = [dbPin dbGet:_id];
         if (p != nil) {
             p.desc = description;
             p._id = _id;
@@ -582,6 +592,7 @@ typedef NS_ENUM(NSInteger, Type) {
             p._id = _id;
             p.rgb_default = rgb;
             p.rgb = @"";
+            [p finish];
             [p dbCreate];
             [dbc Pin_add:p];
         }
@@ -607,15 +618,15 @@ typedef NS_ENUM(NSInteger, Type) {
         if (bm != nil) {
             bm.name = description;
             bm.url = url;
-            bm.import_id = import_id;
+            bm.import = [dbFileImport dbGet:import_id];
             [bm finish];
             [bm dbUpdate];
         } else {
             bm = [[dbBookmark alloc] init];
             bm.name = description;
             bm.url = url;
-            bm.import_id = import_id;
-            [dbBookmark dbCreate:bm];
+            bm.import = [dbFileImport dbGet:import_id];
+            [bm dbCreate];
         }
     }];
 
@@ -647,7 +658,7 @@ typedef NS_ENUM(NSInteger, Type) {
             c.size = label;
             c.gc_id = gc_id;
             c.icon = icon;
-            [dbContainer dbCreate:c];
+            [c dbCreate];
         }
     }];
 
@@ -710,6 +721,7 @@ typedef NS_ENUM(NSInteger, Type) {
                 BOOL defaultPickup = ([s isEqualToString:@"pickup"] == YES);
                 BOOL defaultDiscover = ([s isEqualToString:@"discover"] == YES);
                 BOOL forlogs = [[logdict objectForKey:@"forlogs"] boolValue];
+                NSString *wasType = [logdict objectForKey:@"wastype"];
                 NSString *_found = [logdict objectForKey:@"found"];
                 NSInteger found = LOGSTRING_FOUND_NA;
                 if (_found != nil) {
@@ -720,6 +732,13 @@ typedef NS_ENUM(NSInteger, Type) {
                 }
                 NSInteger icon = [[logdict objectForKey:@"icon"] integerValue];
 
+                if (wasType != nil) {
+                    dbLogString *ls = [dbLogString dbGetByProtocolEventType:_protocol logtype:logtype type:wasType];
+                    if (ls != nil) {
+                        ls.type = type;
+                        [ls dbUpdate];
+                    }
+                }
                 dbLogString *ls = [dbLogString dbGetByProtocolEventType:_protocol logtype:logtype type:type];
                 if (ls == nil) {
                     dbLogString *ls = [[dbLogString alloc] init];
@@ -727,8 +746,6 @@ typedef NS_ENUM(NSInteger, Type) {
                     ls.type = type;
                     ls.logtype = logtype;
                     ls.protocol = _protocol;
-                    ls.protocol_id = _protocol._id;
-                    ls.protocol_string = _protocol.name;
                     ls.defaultNote = defaultNote;
                     ls.defaultFound = defaultFound;
                     ls.defaultVisit = defaultVisit;

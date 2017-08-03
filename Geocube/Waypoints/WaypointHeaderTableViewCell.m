@@ -58,7 +58,7 @@
 
 - (void)setWaypoint:(dbWaypoint *)wp
 {
-    Coordinates *c = [[Coordinates alloc] init:wp.wpt_lat_float lon:wp.wpt_lon_float];
+    Coordinates *c = [[Coordinates alloc] init:wp.wpt_latitude longitude:wp.wpt_longitude];
     self.labelLatLon.text = [NSString stringWithFormat:@"%@ %@", [c lat_degreesDecimalMinutes], [c lon_degreesDecimalMinutes]];
     if (wp.gs_rating_terrain == 0)
         self.labelRatingT.text = @"";
@@ -69,11 +69,11 @@
     else
         self.labelRatingD.text = [NSString stringWithFormat:@"D: %0.1f", wp.gs_rating_difficulty];
 
-    NSInteger bearing = [Coordinates coordinates2bearing:LM.coords to:wp.coordinates];
+    NSInteger bearing = [Coordinates coordinates2bearing:LM.coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude];
     self.labelBearDis.text = [NSString stringWithFormat:@"%ldº (%@) at %@",
-                              (long)[Coordinates coordinates2bearing:LM.coords to:wp.coordinates],
+                              (long)[Coordinates coordinates2bearing:LM.coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude],
                               [Coordinates bearing2compass:bearing],
-                              [MyTools niceDistance:[Coordinates coordinates2distance:wp.coordinates to:LM.coords]]];
+                              [MyTools niceDistance:[Coordinates coordinates2distance:LM.coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude]]];
     self.labelLocation.text = [wp makeLocaleStateCountry];
 
     self.ivContainer.image = [imageLibrary getType:wp];

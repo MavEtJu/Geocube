@@ -52,7 +52,7 @@
     _LM.delegate = self;
 
     self.coords = _LM.location.coordinate;
-    NSLog(@"LocationManager: Starting at %@", [Coordinates NiceCoordinates:self.coords]);
+    NSLog(@"LocationManager: Starting at %@", [Coordinates niceCoordinates:self.coords]);
 
     self.delegates = [NSMutableArray arrayWithCapacity:5];
     self.useGPS = YES;
@@ -183,7 +183,13 @@
         coordsHistoricalLast = ch.coord;
         lastHistory = now;
         if (configManager.currentTrack != 0) {
-            dbTrackElement *te = [dbTrackElement createElement:self.coords height:self.altitude restart:jump];
+            dbTrackElement *te = [[dbTrackElement alloc] init];
+            te.track = configManager.currentTrack;
+            te.lat = self.coords.latitude;
+            te.lon = self.coords.longitude;
+            te.height = self.altitude;
+            te.restart = jump;
+            [te dbCreate];
             [historyData addObject:te];
             if (lastSync + configManager.keeptrackSync < te.timestamp_epoch) {
                 [historyData enumerateObjectsUsingBlock:^(dbTrackElement *e, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -195,7 +201,7 @@
         }
     }
 
-    NSLog(@"Coordinates: %@ - Direction: %ld - speed: %0.2lf m/s", [Coordinates NiceCoordinates:self.coords], (long)LM.direction, LM.speed);
+    NSLog(@"Coordinates: %@ - Direction: %ld - speed: %0.2lf m/s", [Coordinates niceCoordinates:self.coords], (long)LM.direction, LM.speed);
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading

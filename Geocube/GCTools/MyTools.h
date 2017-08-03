@@ -128,6 +128,8 @@ typedef sqlite3_int64 NSId;
     NEEDS_OVERLOADING_NIL(NSArray<NSString *> *, __name__)
 #define NEEDS_OVERLOADING_NSDICTIONARY(__name__) \
     NEEDS_OVERLOADING_NIL(NSDictionary *, __name__)
+#define NEEDS_OVERLOADING_INSTANCETYPE(__name__) \
+    NEEDS_OVERLOADING_NIL(instancetype, __name__)
 
 #define NEEDS_OVERLOADING_BOOL(__name__) \
     (BOOL) __name__ { NEEDS_OVERLOADING_ASSERT; return NO; }

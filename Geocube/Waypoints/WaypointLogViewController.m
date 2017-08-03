@@ -109,7 +109,7 @@ enum {
 - (void)importLog:(dbLog *)log
 {
     note = log.log;
-    date = log.datetime;
+    date = [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:log.datetime_epoch];
     logstring = log.logstring;
     [self reloadDataMainQueue];
 }
@@ -290,7 +290,7 @@ enum {
                         if (coordinates.latitude == 0 && coordinates.longitude == 0)
                             c.detailTextLabel.text = @"(None set)";
                         else
-                            c.detailTextLabel.text = [Coordinates NiceCoordinates:coordinates];
+                            c.detailTextLabel.text = [Coordinates niceCoordinates:coordinates];
                     }
 
                     cell = c;
@@ -445,9 +445,9 @@ enum {
                           NSLog(@"Longitude '%@'", lon);
 
                           Coordinates *c;
-                          c = [[Coordinates alloc] initString:lat lon:lon];
-                          coordinates.latitude = c.lat;
-                          coordinates.longitude = c.lon;
+                          c = [[Coordinates alloc] initString:lat longitude:lon];
+                          coordinates.latitude = c.latitude;
+                          coordinates.longitude = c.longitude;
 
                           [self.tableView reloadData];
                       }];
@@ -461,7 +461,7 @@ enum {
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = [Coordinates NiceLatitudeForEditing:coordinates.latitude];
+        textField.text = [Coordinates niceLatitudeForEditing:coordinates.latitude];
         textField.placeholder = @"Latitude (like S 12 34.567)";
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:YES];
@@ -469,7 +469,7 @@ enum {
         coordsLatitude = textField;
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = [Coordinates NiceLongitudeForEditing:coordinates.longitude];
+        textField.text = [Coordinates niceLongitudeForEditing:coordinates.longitude];
         textField.placeholder = @"Longitude (like E 23 45.678)";
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:NO];
@@ -494,7 +494,6 @@ enum {
     else
         coordsOkButton.enabled = NO;
 }
-
 
 - (void)changeDate
 {
@@ -603,7 +602,8 @@ enum {
 {
     // Do not upload, save it locally for later
     if (upload == NO) {
-        [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note needstobelogged:YES locallog:NO coordinates:coordinates];
+        NSInteger date_epoch = [MyTools secondsSinceEpochFromISO8601:date];
+        [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date_epoch note:note needstobelogged:YES locallog:NO coordinates:coordinates];
         waypoint.logStatus = LOGSTATUS_FOUND;
         [waypoint dbUpdateLogStatus];
         [self.navigationController popViewControllerAnimated:YES];
@@ -635,16 +635,12 @@ enum {
         [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
             if (tb.logtype == TRACKABLE_LOG_DROPOFF) {
                 tb.logtype = TRACKABLE_LOG_NONE;
-                tb.carrier_id = 0;
                 tb.carrier = nil;
-                tb.carrier_str = @"";
                 tb.waypoint_name = waypoint.wpt_name;
             }
             if (tb.logtype == TRACKABLE_LOG_PICKUP) {
                 tb.logtype = TRACKABLE_LOG_VISIT;
-                tb.carrier_id = waypoint.account.accountname_id;
-                tb.carrier = [dbName dbGet:tb.carrier_id];
-                tb.carrier_str = tb.carrier.name;
+                tb.carrier = [dbName dbGet:tb.carrier._id];
                 tb.waypoint_name = @"";
             }
             [tb dbUpdate];
@@ -655,7 +651,8 @@ enum {
     [MHTabBarController enableMenus:YES controllerFrom:self];
 
     if (retValue == REMOTEAPI_OK) {
-        dbLog *log = [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note needstobelogged:NO locallog:YES coordinates:coordinates];
+        NSInteger date_epoch = [MyTools secondsSinceEpochFromISO8601:date];
+        dbLog *log = [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:date_epoch note:note needstobelogged:NO locallog:YES coordinates:coordinates];
         [log dbUpdate];
 
         if (configManager.loggingRemovesMarkedAsFoundDNF == YES) {

@@ -11,6 +11,7 @@
 		E804139F1E9F984E001FD7BF /* Menu - 640x623.png in Resources */ = {isa = PBXBuildFile; fileRef = E804139E1E9F984E001FD7BF /* Menu - 640x623.png */; };
 		E80732FB1B633A74007FDC29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732FA1B633A74007FDC29 /* main.m */; };
 		E80D7EE21EFA705900E25581 /* OpenCageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E80D7EE11EFA705900E25581 /* OpenCageManager.m */; };
+		E80D7EE51EFBE15700E25581 /* dbExternalMapURL.m in Sources */ = {isa = PBXBuildFile; fileRef = E80D7EE41EFBE15700E25581 /* dbExternalMapURL.m */; };
 		E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73741B533F4D00F35528 /* MapKit.framework */; };
 		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
 		E8182F4C1C0E41CB004AC534 /* KeyboardCoordinateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8182F4B1C0E41CB004AC534 /* KeyboardCoordinateView.m */; };
@@ -585,10 +586,17 @@
 		E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */; };
 		E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
+		E89D0D301EFA5ADD0019A411 /* PropertyUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E89D0D2F1EFA5ADD0019A411 /* PropertyUtil.m */; };
 		E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */; };
 		E8AA149C1ED7988A0023000A /* Updates and changes.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8AA149B1ED7988A0023000A /* Updates and changes.txt */; };
 		E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */; };
 		E8C8C8C21EE26AAA00E2438D /* LogTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8C11EE26AAA00E2438D /* LogTableViewCell~ipad.xib */; };
+		E8D49D2F1F00F9C1005EB7BE /* container size - nano - 35x11.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */; };
+		E8D49D301F00F9C1005EB7BE /* container size - nano - 35x11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */; };
+		E8D49D311F00F9C1005EB7BE /* container size - nano - 35x11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2E1F00F9C1005EB7BE /* container size - nano - 35x11@3x.png */; };
+		E8D49D351F0124F2005EB7BE /* container size - xlarge - 35x11.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D321F0124F2005EB7BE /* container size - xlarge - 35x11.png */; };
+		E8D49D361F0124F2005EB7BE /* container size - xlarge - 35x11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D331F0124F2005EB7BE /* container size - xlarge - 35x11@2x.png */; };
+		E8D49D371F0124F2005EB7BE /* container size - xlarge - 35x11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D341F0124F2005EB7BE /* container size - xlarge - 35x11@3x.png */; };
 		E8E3DC1C1E167C740066E903 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E3DC1B1E167C740066E903 /* AppDelegate.m */; };
 		E8EC073F1D39D898009B8EB1 /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EC073E1D39D898009B8EB1 /* DownloadManager.m */; };
 		E8EC07421D39E887009B8EB1 /* ImportManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EC07411D39E887009B8EB1 /* ImportManager.m */; };
@@ -737,6 +745,8 @@
 		E808DC7E1C3A405200B8A572 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		E80D7EE01EFA705900E25581 /* OpenCageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenCageManager.h; path = RemoteAPI/OpenCageManager.h; sourceTree = "<group>"; };
 		E80D7EE11EFA705900E25581 /* OpenCageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpenCageManager.m; path = RemoteAPI/OpenCageManager.m; sourceTree = "<group>"; };
+		E80D7EE31EFBE15700E25581 /* dbExternalMapURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbExternalMapURL.h; path = database/dbExternalMapURL.h; sourceTree = "<group>"; };
+		E80D7EE41EFBE15700E25581 /* dbExternalMapURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbExternalMapURL.m; path = database/dbExternalMapURL.m; sourceTree = "<group>"; };
 		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E80F73761B53443000F35528 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E8182F4A1C0E41CB004AC534 /* KeyboardCoordinateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardCoordinateView.h; sourceTree = "<group>"; };
@@ -1587,6 +1597,7 @@
 		E879F9CB1B7B527200220EA7 /* Geocube.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Geocube.entitlements; sourceTree = "<group>"; };
 		E87DF78C1D8564A800F16B5A /* InfoViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewer.h; sourceTree = "<group>"; };
 		E87DF78D1D8564A800F16B5A /* InfoViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewer.m; sourceTree = "<group>"; };
+		E87FE7951EFFD25F009FA65B /* Geocube-defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-defines.h"; sourceTree = "<group>"; };
 		E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Close Window - 640x430.png"; path = "images/introduction/Close Window - 640x430.png"; sourceTree = "<group>"; };
 		E88258361E9FA15F00FCF9B2 /* Map icons - 362x86.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Map icons - 362x86.png"; path = "images/introduction/Map icons - 362x86.png"; sourceTree = "<group>"; };
 		E8845CA81EF3628900A47F5D /* FileObjectView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "FileObjectView~ipad.xib"; path = "Files/FileObjectView~ipad.xib"; sourceTree = "<group>"; };
@@ -1597,12 +1608,20 @@
 		E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - empty - 30x30.png"; path = "images/logs/log - empty - 30x30.png"; sourceTree = "<group>"; };
 		E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFUIKitMainThreadGuard.m; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
+		E89D0D2E1EFA5ADD0019A411 /* PropertyUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PropertyUtil.h; path = contrib/PropertyUtil/PropertyUtil.h; sourceTree = "<group>"; };
+		E89D0D2F1EFA5ADD0019A411 /* PropertyUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PropertyUtil.m; path = contrib/PropertyUtil/PropertyUtil.m; sourceTree = "<group>"; };
 		E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesDownloadManager.h; sourceTree = "<group>"; };
 		E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesDownloadManager.m; sourceTree = "<group>"; };
 		E8AA149B1ED7988A0023000A /* Updates and changes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Updates and changes.txt"; sourceTree = "<group>"; };
 		E8BF17E21BAAE0CA008B5862 /* AudioFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFeedback.h; sourceTree = "<group>"; };
 		E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFeedback.m; sourceTree = "<group>"; };
 		E8C8C8C11EE26AAA00E2438D /* LogTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LogTableViewCell~ipad.xib"; sourceTree = "<group>"; };
+		E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11.png"; path = "images/containers/container size - nano - 35x11.png"; sourceTree = "<group>"; };
+		E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11@2x.png"; path = "images/containers/container size - nano - 35x11@2x.png"; sourceTree = "<group>"; };
+		E8D49D2E1F00F9C1005EB7BE /* container size - nano - 35x11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11@3x.png"; path = "images/containers/container size - nano - 35x11@3x.png"; sourceTree = "<group>"; };
+		E8D49D321F0124F2005EB7BE /* container size - xlarge - 35x11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - xlarge - 35x11.png"; path = "images/containers/container size - xlarge - 35x11.png"; sourceTree = "<group>"; };
+		E8D49D331F0124F2005EB7BE /* container size - xlarge - 35x11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - xlarge - 35x11@2x.png"; path = "images/containers/container size - xlarge - 35x11@2x.png"; sourceTree = "<group>"; };
+		E8D49D341F0124F2005EB7BE /* container size - xlarge - 35x11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - xlarge - 35x11@3x.png"; path = "images/containers/container size - xlarge - 35x11@3x.png"; sourceTree = "<group>"; };
 		E8E3DC1B1E167C740066E903 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E8E8CFF11B64FAC900CC741A /* tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tests; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EC073D1D39D898009B8EB1 /* DownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManager.h; sourceTree = "<group>"; };
@@ -2726,9 +2745,15 @@
 				E8FEDE471DA77F9D007C756B /* container size - small - 35x11.png */,
 				E8FEDE481DA77F9D007C756B /* container size - small - 35x11@2x.png */,
 				E8FEDE491DA77F9D007C756B /* container size - small - 35x11@3x.png */,
+				E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */,
+				E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */,
+				E8D49D2E1F00F9C1005EB7BE /* container size - nano - 35x11@3x.png */,
 				E8FEDE4A1DA77F9D007C756B /* container size - unknown - 35x11.png */,
 				E8FEDE4B1DA77F9D007C756B /* container size - unknown - 35x11@2x.png */,
 				E8FEDE4C1DA77F9D007C756B /* container size - unknown - 35x11@3x.png */,
+				E8D49D321F0124F2005EB7BE /* container size - xlarge - 35x11.png */,
+				E8D49D331F0124F2005EB7BE /* container size - xlarge - 35x11@2x.png */,
+				E8D49D341F0124F2005EB7BE /* container size - xlarge - 35x11@3x.png */,
 				E82E664F1DA07C4900CFBDED /* container flag - archived - 24x24.png */,
 				E82E66501DA07C4900CFBDED /* container flag - cross dnf - 19x19.png */,
 				E82E66511DA07C4900CFBDED /* container flag - disabled - 24x24.png */,
@@ -2829,6 +2854,15 @@
 				E823422F1EECCF4500D2CDFD /* Reachability.m */,
 			);
 			name = Reachability;
+			sourceTree = "<group>";
+		};
+		E89D0D2D1EFA5A930019A411 /* PropertyUtil */ = {
+			isa = PBXGroup;
+			children = (
+				E89D0D2E1EFA5ADD0019A411 /* PropertyUtil.h */,
+				E89D0D2F1EFA5ADD0019A411 /* PropertyUtil.m */,
+			);
+			name = PropertyUtil;
 			sourceTree = "<group>";
 		};
 		E89D15681DE55F4F00ED14B3 /* Tools */ = {
@@ -3225,6 +3259,7 @@
 			children = (
 				E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */,
 				E832E7D71B8D124900A3CCF6 /* Geocube-Classes.h */,
+				E87FE7951EFFD25F009FA65B /* Geocube-defines.h */,
 				E8F570BF1B400166003F020C /* Geocube.h */,
 				E8F570581B3F7255003F020C /* main.m */,
 				E8F570B21B3FECDF003F020C /* Tools */,
@@ -3278,6 +3313,7 @@
 				E8A3B0AF1CD33BA500170D61 /* MHTabBarController */,
 				E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */,
 				E8FD96B11EC8668600AFA7FA /* NVHTarGzip */,
+				E89D0D2D1EFA5A930019A411 /* PropertyUtil */,
 				E895801F1C66E39500282177 /* Reachability */,
 				E823418B1EECAB8E00D2CDFD /* RNCryptor */,
 				E8F570961B3F7F6A003F020C /* SSZipArchive */,
@@ -3325,6 +3361,8 @@
 				E823426C1EECD0B000D2CDFD /* database-cache.m */,
 				E823426D1EECD0B000D2CDFD /* database.h */,
 				E823426E1EECD0B000D2CDFD /* database.m */,
+				E82342951EECD0B000D2CDFD /* dbObject.h */,
+				E82342961EECD0B000D2CDFD /* dbObject.m */,
 				E823426F1EECD0B000D2CDFD /* dbAccount.h */,
 				E82342701EECD0B000D2CDFD /* dbAccount.m */,
 				E82342711EECD0B000D2CDFD /* dbAttribute.h */,
@@ -3339,6 +3377,8 @@
 				E823427A1EECD0B000D2CDFD /* dbCountry.m */,
 				E823427B1EECD0B000D2CDFD /* dbExternalMap.h */,
 				E823427C1EECD0B000D2CDFD /* dbExternalMap.m */,
+				E80D7EE31EFBE15700E25581 /* dbExternalMapURL.h */,
+				E80D7EE41EFBE15700E25581 /* dbExternalMapURL.m */,
 				E823427D1EECD0B000D2CDFD /* dbFileImport.h */,
 				E823427E1EECD0B000D2CDFD /* dbFileImport.m */,
 				E823427F1EECD0B000D2CDFD /* dbFilter.h */,
@@ -3363,8 +3403,6 @@
 				E82342921EECD0B000D2CDFD /* dbName.m */,
 				E82342931EECD0B000D2CDFD /* dbNotice.h */,
 				E82342941EECD0B000D2CDFD /* dbNotice.m */,
-				E82342951EECD0B000D2CDFD /* dbObject.h */,
-				E82342961EECD0B000D2CDFD /* dbObject.m */,
 				E82342971EECD0B100D2CDFD /* dbPersonalNote.h */,
 				E82342981EECD0B100D2CDFD /* dbPersonalNote.m */,
 				E82342991EECD0B100D2CDFD /* dbPin.h */,
@@ -3691,6 +3729,7 @@
 				E8FEDE951DA7AD67007C756B /* map - tick found - 9x9@3x.png in Resources */,
 				E82E66DE1DA07CBE00CFBDED /* cache - unknowntype - 30x30.png in Resources */,
 				E82E677A1DA0D1E600CFBDED /* menu icon - find me@3x.png in Resources */,
+				E8D49D301F00F9C1005EB7BE /* container size - nano - 35x11@2x.png in Resources */,
 				E82E677D1DA0D79A00CFBDED /* menu icon - find target@2x.png in Resources */,
 				E82E65DF1DA079AE00CFBDED /* map - highlight - 21x21.png in Resources */,
 				E82E65E01DA079AE00CFBDED /* map - in progress - 18x18.png in Resources */,
@@ -3718,6 +3757,7 @@
 				E8FEDE5F1DA77F9D007C756B /* container size - unknown - 35x11.png in Resources */,
 				E82E66381DA07A8700CFBDED /* icons - sad - 30x30@2x.png in Resources */,
 				E82E66E01DA07CBE00CFBDED /* cache - virtual - 30x30@2x.png in Resources */,
+				E8D49D311F00F9C1005EB7BE /* container size - nano - 35x11@3x.png in Resources */,
 				E8FEDE921DA7AD67007C756B /* map - pin stick - 35x42@2x.png in Resources */,
 				E8FEDE4F1DA77F9D007C756B /* container size - large - 35x11@3x.png in Resources */,
 				E82E67631DA07D0200CFBDED /* attributes - 57.png in Resources */,
@@ -3814,12 +3854,14 @@
 				E82E674D1DA07D0200CFBDED /* attributes - 35.png in Resources */,
 				E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */,
 				E823451F1EECE14A00D2CDFD /* HelpAboutTableViewCell.xib in Resources */,
+				E8D49D371F0124F2005EB7BE /* container size - xlarge - 35x11@3x.png in Resources */,
 				E82E65BE1DA0794600CFBDED /* waypoint - trailhead - 30x30.png in Resources */,
 				E82E66BC1DA07CBE00CFBDED /* cache - giga - 30x30.png in Resources */,
 				E8FEDEB51DA88474007C756B /* waypoint - multi - 30x30@3x.png in Resources */,
 				E804139D1E9EFF6D001FD7BF /* GC - logo - 512x512.png in Resources */,
 				E8FEDEB01DA87DBB007C756B /* waypoint - finish - 30x30@2x.png in Resources */,
 				E82E66BE1DA07CBE00CFBDED /* cache - history - 30x30.png in Resources */,
+				E8D49D351F0124F2005EB7BE /* container size - xlarge - 35x11.png in Resources */,
 				E82E67521DA07D0200CFBDED /* attributes - 40.png in Resources */,
 				E82E67301DA07D0200CFBDED /* attributes - 05.png in Resources */,
 				E82344961EECE0AD00D2CDFD /* QueriesTableViewCell~ipad.xib in Resources */,
@@ -3899,6 +3941,7 @@
 				E8FEDE861DA7AD67007C756B /* map - dnf stick - 35x42@2x.png in Resources */,
 				E82E67401DA07D0200CFBDED /* attributes - 22.png in Resources */,
 				E82E66C81DA07CBE00CFBDED /* cache - moveable - 30x30@3x.png in Resources */,
+				E8D49D2F1F00F9C1005EB7BE /* container size - nano - 35x11.png in Resources */,
 				E86D427D1EF68CC800E4509F /* container flag - planned - 24x21.png in Resources */,
 				E86D427F1EF68CC800E4509F /* container flag - planned - 24x21@3.png in Resources */,
 				E83C6EF21EECE28100E303F5 /* SVProgressHUD.bundle in Resources */,
@@ -3923,6 +3966,7 @@
 				E823420F1EECCEEE00D2CDFD /* MHTabBarInactiveTab.png in Resources */,
 				E8F570BC1B400124003F020C /* schema.sql in Resources */,
 				E8FEDE8D1DA7AD67007C756B /* map - in progress - 18x18@3x.png in Resources */,
+				E8D49D361F0124F2005EB7BE /* container size - xlarge - 35x11@2x.png in Resources */,
 				E82345041EECE12B00D2CDFD /* GCTableViewCellSwitch.xib in Resources */,
 				E83C6F231EEEA47900E303F5 /* GCTableViewCellRightImageDisclosure.xib in Resources */,
 				E83C6F051EECE67100E303F5 /* FilesTableViewCell.xib in Resources */,
@@ -4198,6 +4242,7 @@
 				E82343381EECDA2900D2CDFD /* GCOAuthBlackbox.m in Sources */,
 				E82342C51EECD0B100D2CDFD /* dbProtocol.m in Sources */,
 				E82343F61EECDF4400D2CDFD /* WaypointHintViewController.m in Sources */,
+				E80D7EE51EFBE15700E25581 /* dbExternalMapURL.m in Sources */,
 				E82344821EECE09C00D2CDFD /* ListIgnoredViewController.m in Sources */,
 				E823442E1EECDFB300D2CDFD /* FilterGroupsTableViewCell.m in Sources */,
 				E823444F1EECE04B00D2CDFD /* NotesSavedViewController.m in Sources */,
@@ -4236,6 +4281,7 @@
 				E82344C01EECE0E800D2CDFD /* SettingsLogTemplatesViewController.m in Sources */,
 				E82342CC1EECD0B100D2CDFD /* dbType.m in Sources */,
 				E82342BD1EECD0B100D2CDFD /* dbLogMacro.m in Sources */,
+				E89D0D301EFA5ADD0019A411 /* PropertyUtil.m in Sources */,
 				E82342291EECCF3400D2CDFD /* NVHFile.m in Sources */,
 				E82344911EECE0AC00D2CDFD /* QueriesGCAViewController.m in Sources */,
 				E82341E91EECCE9C00D2CDFD /* CCHMapViewDelegateProxy.m in Sources */,

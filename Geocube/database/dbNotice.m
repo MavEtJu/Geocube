@@ -25,6 +25,13 @@
 
 @implementation dbNotice
 
+TABLENAME(@"notices")
+
++ (NSInteger)dbCountUnread
+{
+    return [self dbCountXXX:@"where seen = 0" keys:nil values:nil];
+}
+
 - (NSId)dbCreate
 {
     @synchronized(db) {
@@ -44,12 +51,33 @@
     return self._id;
 }
 
-+ (NSArray<dbNotice *> *)dbAll
+- (void)dbUpdate
+{
+    @synchronized(db) {
+        DB_PREPARE(@"update notices set seen = ?, date = ?, sender = ?, note = ?, url = ? where id = ?");
+
+        SET_VAR_BOOL(1, self.seen);
+        SET_VAR_TEXT(2, self.date);
+        SET_VAR_TEXT(3, self.sender);
+        SET_VAR_TEXT(4, self.note);
+        SET_VAR_TEXT(5, self.url);
+        SET_VAR_INT (6, self._id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
++ (NSArray<dbNotice *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
     NSMutableArray<dbNotice *> *ss = [[NSMutableArray alloc] initWithCapacity:5];
 
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, note, sender, date, seen, geocube_id, url from notices "];
+    if (where != nil)
+        [sql appendString:where];
+
     @synchronized(db) {
-        DB_PREPARE(@"select id, note, sender, date, seen, geocube_id, url from notices order by seen, date desc, id");
+        DB_PREPARE_KEYSVALUES(sql, keys, values)
 
         DB_WHILE_STEP {
             dbNotice *n = [[dbNotice alloc] init];
@@ -69,64 +97,16 @@
     return ss;
 }
 
++ (NSArray<dbNotice *> *)dbAll
+{
+    return [self dbAllXXX:@"order by seen, date desc, id" keys:nil values:nil];
+}
+
 + (dbNotice *)dbGetByGCId:(NSInteger)geocube_id
 {
-    dbNotice *n = nil;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, note, sender, date, seen, geocube_id, url from notices where geocube_id = ? order by seen, geocube_id desc");
-
-        SET_VAR_INT(1, geocube_id);
-
-        DB_IF_STEP {
-            n = [[dbNotice alloc] init];
-            INT_FETCH (0, n._id);
-            TEXT_FETCH(1, n.note);
-            TEXT_FETCH(2, n.sender);
-            TEXT_FETCH(3, n.date);
-            BOOL_FETCH(4, n.seen);
-            TEXT_FETCH(5, n.url);
-            INT_FETCH (6, n.geocube_id);
-            [n finish];
-        }
-        DB_FINISH;
-    }
-    return n;
+    return [[self dbAllXXX:@"where geocube_id = ? order by seen, geocube_id desc" keys:@"i" values:@[[NSNumber numberWithInteger:geocube_id]]] firstObject];
 }
 
-- (void)dbUpdate
-{
-    @synchronized(db) {
-        DB_PREPARE(@"update notices set seen = ?, date = ?, sender = ?, note = ?, url = ? where id = ?");
-
-        SET_VAR_BOOL(1, self.seen);
-        SET_VAR_TEXT(2, self.date);
-        SET_VAR_TEXT(3, self.sender);
-        SET_VAR_TEXT(4, self.note);
-        SET_VAR_TEXT(5, self.url);
-        SET_VAR_INT (6, self._id);
-
-        DB_CHECK_OKAY;
-        DB_FINISH;
-    }
-}
-
-+ (NSInteger)dbCount
-{
-    return [dbNotice dbCount:@"notices"];
-}
-
-+ (NSInteger)countUnread
-{
-    NSInteger c = 0;
-    @synchronized(db) {
-        DB_PREPARE(@"select count(*) from notices set seen = 0");
-        DB_IF_STEP {
-            INT_FETCH(0, c);
-        }
-        DB_FINISH;
-    }
-    return c;
-}
+/* Other methods */
 
 @end

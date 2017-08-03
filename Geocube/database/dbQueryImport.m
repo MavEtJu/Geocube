@@ -25,31 +25,24 @@
 
 @implementation dbQueryImport
 
-- (void)finish
-{
-    [super finish];
-    if (self.account == nil)
-        self.account = [dbAccount dbGet:self.account_id];
-}
+TABLENAME(@"query_imports")
 
-+ (NSId)dbCreate:(dbQueryImport *)qi
+- (NSId)dbCreate
 {
-    NSId _id = 0;
-
+    ASSERT_SELF_FIELD_EXISTS(account);
     @synchronized(db) {
         DB_PREPARE(@"insert into query_imports(account_id, name, filesize, last_import_epoch) values(?, ?, ?, ?)");
 
-        SET_VAR_INT (1, qi.account_id);
-        SET_VAR_TEXT(2, qi.name);
-        SET_VAR_INT (3, qi.filesize);
-        SET_VAR_INT (4, qi.lastimport);
+        SET_VAR_INT (1, self.account._id);
+        SET_VAR_TEXT(2, self.name);
+        SET_VAR_INT (3, self.filesize);
+        SET_VAR_INT (4, self.lastimport);
 
         DB_CHECK_OKAY;
-        DB_GET_LAST_ID(_id);
+        DB_GET_LAST_ID(self._id);
         DB_FINISH;
     }
-    qi._id = _id;
-    return _id;
+    return self._id;
 }
 
 - (void)dbUpdate
@@ -57,7 +50,7 @@
     @synchronized(db) {
         DB_PREPARE(@"update query_imports set account_id = ?, name = ?, filesize = ?, last_import_epoch = ? where id = ?");
 
-        SET_VAR_INT (1, self.account_id);
+        SET_VAR_INT (1, self.account._id);
         SET_VAR_TEXT(2, self.name);
         SET_VAR_INT (3, self.filesize);
         SET_VAR_INT (4, self.lastimport);
@@ -71,6 +64,7 @@
 + (NSArray<dbQueryImport *> *)dbAll
 {
     NSMutableArray<dbQueryImport *> *qis = [[NSMutableArray alloc] initWithCapacity:20];
+    NSId i;
 
     @synchronized(db) {
         DB_PREPARE(@"select id, account_id, name, filesize, last_import_epoch from query_imports");
@@ -78,7 +72,8 @@
         DB_WHILE_STEP {
             dbQueryImport *qi = [[dbQueryImport alloc] init];
             INT_FETCH (0, qi._id);
-            INT_FETCH (1, qi.account_id);
+            INT_FETCH (1, i);
+            qi.account = [dbc Account_get:i];
             TEXT_FETCH(2, qi.name);
             INT_FETCH (3, qi.filesize);
             INT_FETCH (4, qi.lastimport);
@@ -88,11 +83,6 @@
         DB_FINISH;
     }
     return qis;
-}
-
-+ (NSInteger)dbCount
-{
-    return [dbQueryImport dbCount:@"query_imports"];
 }
 
 @end

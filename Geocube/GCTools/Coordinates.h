@@ -23,11 +23,11 @@
 
 #define CLLocationCoordinate2DZero  CLLocationCoordinate2DMake(0, 0)
 
-- (instancetype)init:(CLLocationDegrees)lat lon:(CLLocationDegrees)log; // -34.02787 151.07357
+- (instancetype)init:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude; // -34.02787 151.07357
 - (instancetype)init:(CLLocationCoordinate2D)coor;                      // { -34.02787, 151.07357 }
-- (instancetype)initString:(NSString *)lat lon:(NSString *)lon;         // S 34 1.672, E 151 4.414
-- (CLLocationDegrees)lat;
-- (CLLocationDegrees)lon;
+- (instancetype)initString:(NSString *)latitude longitude:(NSString *)longitude;         // S 34 1.672, E 151 4.414
+- (CLLocationDegrees)latitude;
+- (CLLocationDegrees)longitude;
 - (NSString *)lat_decimalDegreesSigned;         // -34.02787
 - (NSString *)lon_decimalDegreesSigned;         // 151.07357
 - (NSString *)lat_decimalDegreesCardinal;       // S 34.02787
@@ -39,25 +39,32 @@
 - (NSString *)lat_degreesMinutesSeconds;        // S 34° 01' 40"
 - (NSString *)lon_degreesMinutesSeconds;        // E 151° 04' 25"
 - (NSInteger)distance:(CLLocationCoordinate2D)c;
+- (NSInteger)distance:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude;
 - (NSInteger)bearing:(CLLocationCoordinate2D)c;
+- (NSInteger)bearing:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude;
 
-+ (NSInteger)latitudeToTile:(CLLocationDegrees)lat zoom:(NSInteger)zoom;
-+ (NSInteger)longitudeToTile:(CLLocationDegrees)lon zoom:(NSInteger)zoom;
++ (NSInteger)latitudeToTile:(CLLocationDegrees)latitude zoom:(NSInteger)zoom;
++ (NSInteger)longitudeToTile:(CLLocationDegrees)longitude zoom:(NSInteger)zoom;
 
 + (NSInteger)coordinates2distance:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2;
++ (NSInteger)coordinates2distance:(CLLocationCoordinate2D)c1 toLatitude:(CLLocationDegrees)c2Latitude toLongitude:(CLLocationDegrees)c2Longitude;
++ (NSInteger)coordinates2distance:(CLLocationDegrees)c1Latitude fromLongitude:(CLLocationDegrees)c1Longitude toLatitude:(CLLocationDegrees)c2Latitude toLongitude:(CLLocationDegrees)c2Longitude;
 + (NSInteger)coordinates2bearing:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2;
++ (NSInteger)coordinates2bearing:(CLLocationCoordinate2D)c1 toLatitude:(CLLocationDegrees)c2Latitude toLongitude:(CLLocationDegrees)c2Longitude;
++ (NSInteger)coordinates2bearing:(CLLocationDegrees)c1Latitude fromLongitude:(CLLocationDegrees)c1Longitude to:(CLLocationCoordinate2D)c2;
 + (NSString *)bearing2compass:(CLLocationDegrees)bearing;
 
 + (CLLocationCoordinate2D)coordinatesPlusOffset:(CLLocationCoordinate2D)c offset:(CLLocationCoordinate2D)o;
 + (CLLocationCoordinate2D)coordinatesMinusOffset:(CLLocationCoordinate2D)c offset:(CLLocationCoordinate2D)o;
 + (CLLocationCoordinate2D)location:(CLLocationCoordinate2D)origin bearing:(float)bearing distance:(float)distanceMeters;
 
-+ (NSString *)NiceCoordinates:(CLLocationCoordinate2D)c;
-+ (NSString *)NiceCoordinatesForEditing:(CLLocationCoordinate2D)c;
-+ (NSString *)NiceLatitude:(CLLocationDegrees)l;
-+ (NSString *)NiceLongitude:(CLLocationDegrees)l;
-+ (NSString *)NiceLatitudeForEditing:(CLLocationDegrees)l;
-+ (NSString *)NiceLongitudeForEditing:(CLLocationDegrees)l;
++ (NSString *)niceCoordinates:(CLLocationCoordinate2D)c;
++ (NSString *)niceCoordinates:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude;
++ (NSString *)niceCoordinatesForEditing:(CLLocationCoordinate2D)c;
++ (NSString *)niceLatitude:(CLLocationDegrees)l;
++ (NSString *)niceLongitude:(CLLocationDegrees)l;
++ (NSString *)niceLatitudeForEditing:(CLLocationDegrees)l;
++ (NSString *)niceLongitudeForEditing:(CLLocationDegrees)l;
 
 + (CLLocationDegrees)degrees2rad:(CLLocationDegrees)d;
 + (CLLocationDegrees)rad2degrees:(CLLocationDegrees)r;

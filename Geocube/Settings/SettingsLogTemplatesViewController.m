@@ -246,7 +246,10 @@ indexPath
                              NSString *name = tf.text;
 
                              NSLog(@"Creating new log template '%@'", name);
-                             [dbLogTemplate dbCreate:name text:@""];
+                             dbLogTemplate *lt = [[dbLogTemplate alloc] init];
+                             lt.name = name;
+                             lt.text = @"";
+                             [lt dbCreate];
                              [self reloadLogXxx];
                          }];
     UIAlertAction *cancel = [UIAlertAction
@@ -283,7 +286,10 @@ indexPath
                              NSString *text = tfmacro.text;
 
                              NSLog(@"Creating new log macro '%@'", name);
-                             [dbLogMacro dbCreate:name text:text];
+                             dbLogMacro *lm = [[dbLogMacro alloc] init];
+                             lm.name = name;
+                             lm.text = text;
+                             [lm dbCreate];
                              [self reloadLogXxx];
                          }];
     UIAlertAction *cancel = [UIAlertAction

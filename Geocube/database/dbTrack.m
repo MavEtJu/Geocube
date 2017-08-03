@@ -25,47 +25,7 @@
 
 @implementation dbTrack
 
-+ (dbTrack *)dbGet:(NSId)id
-{
-    dbTrack *t;
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, name, startedon, stoppedon from tracks where id = ?");
-        SET_VAR_INT(1, id);
-
-        DB_WHILE_STEP {
-            t = [[dbTrack alloc] init];
-            INT_FETCH (0, t._id);
-            TEXT_FETCH(1, t.name);
-            INT_FETCH (2, t.dateStart);
-            INT_FETCH (3, t.dateStop);
-            [t finish];
-        }
-        DB_FINISH;
-    }
-    return t;
-}
-
-+ (NSMutableArray<dbTrack *> *)dbAll
-{
-    NSMutableArray<dbTrack *> *ts = [NSMutableArray arrayWithCapacity:20];
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, name, startedon, stoppedon from tracks order by startedon desc");
-
-        DB_WHILE_STEP {
-            dbTrack *t = [[dbTrack alloc] init];
-            INT_FETCH (0, t._id);
-            TEXT_FETCH(1, t.name);
-            INT_FETCH (2, t.dateStart);
-            INT_FETCH (3, t.dateStop);
-            [t finish];
-            [ts addObject:t];
-        }
-        DB_FINISH;
-    }
-    return ts;
-}
+TABLENAME(@"tracks")
 
 - (NSId)dbCreate
 {
@@ -98,21 +58,39 @@
     }
 }
 
-+ (NSInteger)dbCount
++ (NSMutableArray<dbTrack *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
-    return [dbTrack dbCount:@"tracks"];
-}
+    NSMutableArray<dbTrack *> *ts = [NSMutableArray arrayWithCapacity:20];
 
-- (void)dbDelete
-{
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, name, startedon, stoppedon from tracks "];
+    if (where != nil)
+        [sql appendString:where];
+
     @synchronized(db) {
-        DB_PREPARE(@"delete from tracks where id = ?");
+        DB_PREPARE_KEYSVALUES(sql, keys, values)
 
-        SET_VAR_INT(1, self._id);
-
-        DB_CHECK_OKAY;
+        DB_WHILE_STEP {
+            dbTrack *t = [[dbTrack alloc] init];
+            INT_FETCH (0, t._id);
+            TEXT_FETCH(1, t.name);
+            INT_FETCH (2, t.dateStart);
+            INT_FETCH (3, t.dateStop);
+            [t finish];
+            [ts addObject:t];
+        }
         DB_FINISH;
     }
+    return ts;
+}
+
++ (NSMutableArray<dbTrack *> *)dbAll
+{
+    return [self dbAllXXX:@"order by startedon desc" keys:nil values:nil];
+}
+
++ (dbTrack *)dbGet:(NSId)_id
+{
+    return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
 }
 
 @end

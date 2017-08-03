@@ -26,6 +26,6 @@
 @property (nonatomic) NSInteger filesize;
 
 + (NSArray<dbFileImport *> *)dbAll;
-+ (NSId)dbCreate:(dbFileImport *)fi;
++ (dbFileImport *)dbGet:(NSId)_id;
 
 @end

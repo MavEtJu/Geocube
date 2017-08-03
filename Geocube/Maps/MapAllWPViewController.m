@@ -104,7 +104,7 @@ enum {
     bb.topLat = tr.latitude;
     bb.bottomLat = bl.latitude;
 
-    NSLog(@"Boundingbox: %@ x %@", [Coordinates NiceCoordinates:bl], [Coordinates NiceCoordinates:tr]);
+    NSLog(@"Boundingbox: %@ x %@", [Coordinates niceCoordinates:bl], [Coordinates niceCoordinates:tr]);
 
     oldWaypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAllInRect:bl RT:tr]];
     newWaypoints = [NSMutableArray arrayWithCapacity:[oldWaypoints count]];
@@ -181,7 +181,7 @@ enum {
 
             NSMutableArray<dbWaypoint *> *wps = [NSMutableArray arrayWithCapacity:[waypoints count]];
             [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-                if (wp.account_id == account._id)
+                if (wp.account._id == account._id)
                     [wps addObject:wp];
             }];
 

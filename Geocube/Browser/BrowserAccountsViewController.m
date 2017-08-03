@@ -49,7 +49,7 @@
     [super viewWillAppear:animated];
     accounts = [NSMutableArray arrayWithCapacity:20];
     [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
-        if (a.accountname_string != nil && [a.accountname_string isEqualToString:@""] == NO &&
+        if (IS_EMPTY(a.accountname.name) == NO &&
             a.url_queries != nil && [a.url_queries isEqualToString:@""] == NO)
             [accounts addObject:a];
     }];
@@ -78,11 +78,11 @@
     cell.textLabel.text = a.site;
 
     cell.userInteractionEnabled = YES;
-    if (a.accountname_string == nil || [a.accountname_string isEqualToString:@""] == YES) {
+    if (IS_EMPTY(a.accountname.name) == YES) {
         cell.userInteractionEnabled = NO;
         cell.textLabel.textColor = [UIColor lightGrayColor];
     } else {
-        cell.detailTextLabel.text = a.accountname_string;
+        cell.detailTextLabel.text = a.accountname.name;
     }
 
     return cell;

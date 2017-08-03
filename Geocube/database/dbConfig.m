@@ -25,54 +25,22 @@
 
 @implementation dbConfig
 
-- (instancetype)init:(NSId)_id key:(NSString *)key value:(NSString *)value
-{
-    self = [super init];
-    self._id = _id;
-    self.key = key;
-    self.value = value;
-    [self finish];
-    return self;
-}
+TABLENAME(@"config")
 
-+ (dbConfig *)dbGetByKey:(NSString *)_key
+- (NSId)dbCreate
 {
-    dbConfig *c;
-
     @synchronized(db) {
-        DB_PREPARE(@"select id, key, value from config where key = ?");
+        DB_PREPARE(@"insert into config(key, value) values(?, ?)");
 
-        SET_VAR_TEXT(1, _key);
+        SET_VAR_TEXT(1, self.key);
+        SET_VAR_TEXT(2, self.value);
 
-        DB_IF_STEP {
-            c = [[dbConfig alloc] init];
-            INT_FETCH (0, c._id);
-            TEXT_FETCH(1, c.key);
-            TEXT_FETCH(2, c.value);
-        }
+        DB_CHECK_OKAY;
+        DB_GET_LAST_ID(self._id)
         DB_FINISH;
     }
-    return c;
-}
 
-+ (NSArray<dbConfig *> *)dbAll
-{
-    NSMutableArray<dbConfig *> *ss = [NSMutableArray arrayWithCapacity:10];
-
-    @synchronized(db) {
-        DB_PREPARE(@"select id, key, value from config");
-
-        DB_WHILE_STEP {
-            dbConfig *c = [[dbConfig alloc] init];
-            INT_FETCH (0, c._id);
-            TEXT_FETCH(1, c.key);
-            TEXT_FETCH(2, c.value);
-
-            [ss addObject:c];
-        }
-        DB_FINISH;
-    }
-    return ss;
+    return self._id;
 }
 
 - (void)dbUpdate
@@ -88,23 +56,41 @@
     }
 }
 
-- (NSId)dbCreate
++ (NSArray<dbConfig *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *>*)values
 {
-    NSId __id;
+    NSMutableArray<dbConfig *> *ss = [NSMutableArray arrayWithCapacity:10];
+
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, key, value from config "];
+    if (where != nil)
+        [sql appendString:where];
 
     @synchronized(db) {
-        DB_PREPARE(@"insert into config(key, value) values(?, ?)");
+        DB_PREPARE_KEYSVALUES(sql, keys, values);
 
-        SET_VAR_TEXT(1, self.key);
-        SET_VAR_TEXT(2, self.value);
+        DB_WHILE_STEP {
+            dbConfig *c = [[dbConfig alloc] init];
+            INT_FETCH (0, c._id);
+            TEXT_FETCH(1, c.key);
+            TEXT_FETCH(2, c.value);
 
-        DB_CHECK_OKAY;
-        DB_GET_LAST_ID(__id)
+            [ss addObject:c];
+        }
         DB_FINISH;
     }
-
-    return __id;
+    return ss;
 }
+
++ (NSArray<dbConfig *> *)dbAll
+{
+    return [self dbAllXXX:nil keys:nil values:nil];
+}
+
++ (dbConfig *)dbGetByKey:(NSString *)key
+{
+    return [[self dbAllXXX:@"where key = ?" keys:@"s" values:@[key]] firstObject];
+}
+
+/* Other methods */
 
 + (void)dbUpdateOrInsert:(NSString *)key value:(NSString *)value
 {
@@ -118,11 +104,6 @@
     c.key = key;
     c.value = value;
     [c dbCreate];
-}
-
-+ (NSInteger)dbCount
-{
-    return [dbConfig dbCount:@"config"];
 }
 
 @end
