@@ -583,6 +583,9 @@
 		E8845CAE1EF409BF00A47F5D /* WaypointWaypointsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8845CAC1EF409BF00A47F5D /* WaypointWaypointsTableViewCell.xib */; };
 		E8845CAF1EF409BF00A47F5D /* WaypointWaypointsTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8845CAD1EF409BF00A47F5D /* WaypointWaypointsTableViewCell~ipad.xib */; };
 		E8845CB21EF493B200A47F5D /* FilterAccountsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8845CB11EF493B200A47F5D /* FilterAccountsTableViewCell.m */; };
+		E88DB00A1F334E4300FEF795 /* cache - gadget - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E88DB0071F334E4300FEF795 /* cache - gadget - 30x30.png */; };
+		E88DB00B1F334E4300FEF795 /* cache - gadget - 30x30@2.png in Resources */ = {isa = PBXBuildFile; fileRef = E88DB0081F334E4300FEF795 /* cache - gadget - 30x30@2.png */; };
+		E88DB00C1F334E4300FEF795 /* cache - gadget - 30x30@3.png in Resources */ = {isa = PBXBuildFile; fileRef = E88DB0091F334E4300FEF795 /* cache - gadget - 30x30@3.png */; };
 		E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */; };
 		E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
@@ -1605,6 +1608,9 @@
 		E8845CAD1EF409BF00A47F5D /* WaypointWaypointsTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "WaypointWaypointsTableViewCell~ipad.xib"; path = "Waypoints/WaypointWaypointsTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E8845CB01EF493B200A47F5D /* FilterAccountsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterAccountsTableViewCell.h; path = Filters/FilterAccountsTableViewCell.h; sourceTree = "<group>"; };
 		E8845CB11EF493B200A47F5D /* FilterAccountsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterAccountsTableViewCell.m; path = Filters/FilterAccountsTableViewCell.m; sourceTree = "<group>"; };
+		E88DB0071F334E4300FEF795 /* cache - gadget - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - gadget - 30x30.png"; path = "images/caches/cache - gadget - 30x30.png"; sourceTree = "<group>"; };
+		E88DB0081F334E4300FEF795 /* cache - gadget - 30x30@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - gadget - 30x30@2.png"; path = "images/caches/cache - gadget - 30x30@2.png"; sourceTree = "<group>"; };
+		E88DB0091F334E4300FEF795 /* cache - gadget - 30x30@3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - gadget - 30x30@3.png"; path = "images/caches/cache - gadget - 30x30@3.png"; sourceTree = "<group>"; };
 		E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - empty - 30x30.png"; path = "images/logs/log - empty - 30x30.png"; sourceTree = "<group>"; };
 		E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFUIKitMainThreadGuard.m; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
@@ -2589,6 +2595,9 @@
 				E82E66881DA07CBE00CFBDED /* cache - event - 30x30.png */,
 				E8FEDEC41DA8EEE9007C756B /* cache - event - 30x30@2x.png */,
 				E8FEDEC51DA8EEE9007C756B /* cache - event - 30x30@3x.png */,
+				E88DB0071F334E4300FEF795 /* cache - gadget - 30x30.png */,
+				E88DB0081F334E4300FEF795 /* cache - gadget - 30x30@2.png */,
+				E88DB0091F334E4300FEF795 /* cache - gadget - 30x30@3.png */,
 				E82E66891DA07CBE00CFBDED /* cache - giga - 30x30.png */,
 				E8FEDEC61DA8EEE9007C756B /* cache - giga - 30x30@2x.png */,
 				E8FEDEC71DA8EEE9007C756B /* cache - giga - 30x30@3x.png */,
@@ -3771,6 +3780,7 @@
 				E82E66E81DA07CBE00CFBDED /* cache - whereigo - 30x30@3x.png in Resources */,
 				E82E667D1DA07C6F00CFBDED /* compass - red arrow on black.png in Resources */,
 				E82E66D51DA07CBE00CFBDED /* cache - traditional - 30x30.png in Resources */,
+				E88DB00C1F334E4300FEF795 /* cache - gadget - 30x30@3.png in Resources */,
 				E82E66051DA079E500CFBDED /* log - published - 30x30.png in Resources */,
 				E823420C1EECCEEE00D2CDFD /* MHTabBarActiveTab.png in Resources */,
 				E82E67601DA07D0200CFBDED /* attributes - 54.png in Resources */,
@@ -3807,6 +3817,7 @@
 				E82E66E71DA07CBE00CFBDED /* cache - whereigo - 30x30@2x.png in Resources */,
 				E82E66251DA07A5500CFBDED /* menu icon - see target.png in Resources */,
 				E82E661A1DA07A5500CFBDED /* menu icon - close@2x.png in Resources */,
+				E88DB00B1F334E4300FEF795 /* cache - gadget - 30x30@2.png in Resources */,
 				E82341871EECA19300D2CDFD /* EncryptionKeys.plist in Resources */,
 				E82342101EECCEEE00D2CDFD /* MHTabBarInactiveTab@2x.png in Resources */,
 				E82344681EECE06E00D2CDFD /* TrackableTableViewCell.xib in Resources */,
@@ -3962,6 +3973,7 @@
 				E823449F1EECE0BD00D2CDFD /* StatisticsTableViewCell.xib in Resources */,
 				E82E67791DA0D1E600CFBDED /* menu icon - find me@2x.png in Resources */,
 				E82E66D71DA07CBE00CFBDED /* cache - traditional - 30x30@3x.png in Resources */,
+				E88DB00A1F334E4300FEF795 /* cache - gadget - 30x30.png in Resources */,
 				E8FEDE831DA7AD67007C756B /* map - cross dnf - 9x9@3x.png in Resources */,
 				E823420F1EECCEEE00D2CDFD /* MHTabBarInactiveTab.png in Resources */,
 				E8F570BC1B400124003F020C /* schema.sql in Resources */,
