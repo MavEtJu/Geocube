@@ -13,6 +13,10 @@ Version 1.4(x)
     downloaded instead of everything.
   - Auto-populate locaties (suburb, town, city) based on Geodata
     of the OpenCage Data project.
+  - Add Gadget cache type.
+  - At startup after an upgrade, you will get a headsup that the
+    configuration needs to be reloaded.
+  - At startup it will check for updates in the configuration.
 
   Fixes:
   - Made the UI for a waypoint more sane with regards to "what is
@@ -21,6 +25,8 @@ Version 1.4(x)
     's anymore.
   - Fix waypoint info vertical position after having submitted the
     logs of a waypoint.
+  - Not all logtypes were recognized on GCA.
+  - Removed some duplicate/obsolete fields from the database tables.
 
 Version 1.3(26)
 
