@@ -43,7 +43,7 @@
     needsRefresh = NO;
     lastCoordinates = CLLocationCoordinate2DZero;
 
-    if ([configManager.currentWaypoint isEqualToString:@""] == NO)
+    if (configManager.currentWaypoint != nil && [configManager.currentWaypoint isEqualToString:@""] == NO)
         self.currentWaypoint = [dbWaypoint dbGetByName:configManager.currentWaypoint];
 
     [LM startDelegation:self isNavigating:NO];
