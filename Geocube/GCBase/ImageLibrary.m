@@ -22,7 +22,6 @@
 @interface ImageLibrary ()
 {
     UIImage *imgs[ImageLibraryImagesMax];
-    UIImage *ratingImages[11];
     NSString *names[ImageLibraryImagesMax];
     NSMutableDictionary *pinImages, *typeImages;
 };
@@ -112,10 +111,6 @@
     [self addToLibrary:@"container size - unknown - 35x11" index:ImageContainerSize_Virtual];
     [self addToLibrary:@"container size - xlarge - 35x11" index:ImageContainerSize_XLarge];
 
-    [self addToLibrary:@"ratings - star base 95x18" index:ImageCacheView_ratingBase];
-    [self addToLibrary:@"ratings - star on 19x18" index:ImageCacheView_ratingOn];
-    [self addToLibrary:@"ratings - star off 18x18" index:ImageCacheView_ratingOff];
-    [self addToLibrary:@"ratings - star half 18x18" index:ImageCacheView_ratingHalf];
     [self addToLibrary:@"ratings - favourites 20x30" index:ImageCacheView_favourites];
 
     [self addToLibrary:@"map - pin stick - 35x42" index:ImageMap_pin];
@@ -233,19 +228,6 @@
 
     [self addToLibrary:@"image - no image - 32x32" index:Image_NoImageFile];
 
-    /* Make ratings images */
-    [self mergeRating:0 full:0 half:0];
-    [self mergeRating:1 full:0 half:1];
-    [self mergeRating:2 full:1 half:0];
-    [self mergeRating:3 full:1 half:1];
-    [self mergeRating:4 full:2 half:0];
-    [self mergeRating:5 full:2 half:1];
-    [self mergeRating:6 full:3 half:0];
-    [self mergeRating:7 full:3 half:1];
-    [self mergeRating:8 full:4 half:0];
-    [self mergeRating:9 full:4 half:1];
-    [self mergeRating:10 full:5 half:0];
-
     /* Pin and type images */
     pinImages = [NSMutableDictionary dictionaryWithCapacity:25];
     typeImages = [NSMutableDictionary dictionaryWithCapacity:25];
@@ -260,24 +242,6 @@
     NSAssert1(img != nil, @"ImageLibrary: Image %@ not found", s);
     imgs[idx] = img;
     names[idx] = name;
-}
-
-- (void)mergeRating:(NSInteger)index full:(NSInteger)full half:(NSInteger)half
-{
-    UIImage *out = [UIImage imageWithCGImage:[self get:ImageCacheView_ratingBase].CGImage];
-    NSInteger w = 19;
-    NSInteger h = 19;
-    for (NSInteger i = 0; i < full; i++) {
-        UIImage *_out = [self addImageToImage:out withImage2:[self get:ImageCacheView_ratingOn] andRect:CGRectMake(i * w, 0, w, h)];
-        out = [UIImage imageWithCGImage:_out.CGImage];
-    }
-
-    if (half == 1) {
-        UIImage *_out = [self addImageToImage:out withImage2:[self get:ImageCacheView_ratingHalf] andRect:CGRectMake(full * w, 0, w, h)];
-        out = [UIImage imageWithCGImage:_out.CGImage];
-    }
-
-    ratingImages[index] = [UIImage imageWithCGImage:out.CGImage];
 }
 
 // -------------------------------------------------------------
@@ -386,11 +350,6 @@
     if (name == nil)
         NSLog(@"ImageLibrary/getName: imgnum %ld not found", (long)imgnum);
     return name;
-}
-
-- (UIImage *)getRating:(float)rating
-{
-    return ratingImages[(int)(2 * rating)];
 }
 
 // -----------------------------------------------------------

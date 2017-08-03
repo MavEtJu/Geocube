@@ -191,10 +191,6 @@ typedef NS_ENUM(NSInteger, ImageNumber) {
     ImageContainerFlag_owner,
     ImageContainerFlag_planned,
 
-    ImageCacheView_ratingBase,
-    ImageCacheView_ratingOff,
-    ImageCacheView_ratingHalf,
-    ImageCacheView_ratingOn,
     ImageCacheView_favourites,
 
     ImageIcon_Smiley,
@@ -238,7 +234,6 @@ typedef NS_ENUM(NSInteger, ImageNumber) {
 - (UIImage *)getSquareWithNumber:(NSInteger)num;
 
 - (NSString *)getName:(ImageNumber)imgnum;
-- (UIImage *)getRating:(float)rating;
 
 + (UIImage *)newPinHead:(UIColor *)color;
 

@@ -34,7 +34,6 @@ enum {
     IMAGES_PINS_ONE,
     IMAGES_PINS_ALL,
     IMAGES_TYPES_ALL,
-    IMAGES_RATING,
     IMAGES_IMAGES,
     IMAGES_MAX
 };
@@ -100,8 +99,6 @@ enum {
         return 10;
     if (section == IMAGES_TYPES_ONE)
         return 10;
-    if (section == IMAGES_RATING)
-        return 11;
     if (section == IMAGES_IMAGES)
         return imgCount;
     return 0;
@@ -117,8 +114,6 @@ enum {
         return @"Pins all:";
     if (section == IMAGES_TYPES_ALL)
         return @"Types all:";
-    if (section == IMAGES_RATING)
-        return @"getRating:";
     if (section == IMAGES_IMAGES)
         return @"get:";
     return nil;
@@ -245,14 +240,6 @@ enum {
 
         cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
         cell.textLabel.text = type.type_full;
-        return cell;
-    }
-
-    if (indexPath.section == IMAGES_RATING) {
-        cell.imageView.image = [imageLibrary getRating:indexPath.row / 2.0];
-        cell.textLabel.text = [NSString stringWithFormat:@"%ld (%0.1f)", (long)indexPath.row, indexPath.row / 2.0];
-        cell.detailTextLabel.text = nil;
-
         return cell;
     }
 
