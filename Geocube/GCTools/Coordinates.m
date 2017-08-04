@@ -60,20 +60,20 @@
 /// Returns S 34.02787
 - (NSString *)lat_decimalDegreesCardinal   // S 34.02787
 {
-    NSString *hemi = (coords.latitude < 0) ? @"S" : @"N";
+    NSString *hemi = (coords.latitude < 0) ? NSLocalizedString(@"compass-S", nil) : NSLocalizedString(@"compass-N", nil) ;
     return [NSString stringWithFormat:@"%@ %9.5f", hemi, fabs(coords.latitude)];
 
 }
 /// Returns E 151.07357
 - (NSString *)lon_decimalDegreesCardinal   // E 151.07357
 {
-    NSString *hemi = (coords.longitude < 0) ? @"W" : @"E";
+    NSString *hemi = (coords.longitude < 0) ? NSLocalizedString(@"compass-W", nil) : NSLocalizedString(@"compass-E", nil) ;
     return [NSString stringWithFormat:@"%@ %9.5f", hemi, fabs(coords.longitude)];
 }
 /// Returns S 34° 1.672'
 - (NSString *)lat_degreesDecimalMinutes    // S 34° 1.672'
 {
-    NSString *hemi = (coords.latitude < 0) ? @"S" : @"N";
+    NSString *hemi = (coords.latitude < 0) ? NSLocalizedString(@"compass-S", nil) : NSLocalizedString(@"compass-N", nil) ;
     float dummy;
     int degrees = (int)fabs(coords.latitude);
     float mins = modff(fabs(coords.latitude), &dummy);
@@ -82,7 +82,7 @@
 /// Returns E 151° 4.414'
 - (NSString *)lon_degreesDecimalMinutes    // E 151° 4.414'
 {
-    NSString *hemi = (coords.longitude < 0) ? @"W" : @"E";
+    NSString *hemi = (coords.longitude < 0) ? NSLocalizedString(@"compass-W", nil) : NSLocalizedString(@"compass-E", nil) ;
     float dummy;
     int degrees = (int)fabs(coords.longitude);
     float mins = modff(fabs(coords.longitude), &dummy);
@@ -91,7 +91,7 @@
 /// Returns S 34 1.672
 - (NSString *)lat_degreesDecimalMinutesSimple    // S 34 1.672
 {
-    NSString *hemi = (coords.latitude < 0) ? @"S" : @"N";
+    NSString *hemi = (coords.latitude < 0) ? NSLocalizedString(@"compass-S", nil) : NSLocalizedString(@"compass-N", nil) ;
     float dummy;
     int degrees = (int)fabs(coords.latitude);
     float mins = modff(fabs(coords.latitude), &dummy);
@@ -100,7 +100,7 @@
 /// Returns E 151 4.414
 - (NSString *)lon_degreesDecimalMinutesSimple    // E 151 4.414
 {
-    NSString *hemi = (coords.longitude < 0) ? @"W" : @"E";
+    NSString *hemi = (coords.longitude < 0) ? NSLocalizedString(@"compass-W", nil) : NSLocalizedString(@"compass-E", nil) ;
     float dummy;
     int degrees = (int)fabs(coords.longitude);
     float mins = modff(fabs(coords.longitude), &dummy);
@@ -109,7 +109,7 @@
 /// Returns S 34° 01' 40"
 - (NSString *)lat_degreesMinutesSeconds    // S 34° 01' 40"
 {
-    NSString *hemi = (coords.latitude < 0) ? @"S" : @"N";
+    NSString *hemi = (coords.latitude < 0) ? NSLocalizedString(@"compass-S", nil) : NSLocalizedString(@"compass-N", nil) ;
     float dummy;
     int degrees = (int)fabs(coords.latitude);
     float mins = modff(fabs(coords.latitude), &dummy);
@@ -119,7 +119,7 @@
 /// Returns E 151° 04' 25"
 - (NSString *)lon_degreesMinutesSeconds    // E 151° 04' 25"
 {
-    NSString *hemi = (coords.longitude < 0) ? @"W" : @"E";
+    NSString *hemi = (coords.longitude < 0) ? NSLocalizedString(@"compass-W", nil) : NSLocalizedString(@"compass-E", nil) ;
     float dummy;
     int degrees = (int)fabs(coords.longitude);
     float mins = modff(fabs(coords.longitude), &dummy);
@@ -298,23 +298,23 @@
 {
     NSString *point;
     switch ((int)((bearing + 11.25) / 22.5)) {
-        case  0: point = @"N";   break;
-        case  1: point = @"NNE"; break;
-        case  2: point = @"NE";  break;
-        case  3: point = @"ENE"; break;
-        case  4: point = @"E";   break;
-        case  5: point = @"ESE"; break;
-        case  6: point = @"SE";  break;
-        case  7: point = @"SSE"; break;
-        case  8: point = @"S";   break;
-        case  9: point = @"SSW"; break;
-        case 10: point = @"SW";  break;
-        case 11: point = @"WSW"; break;
-        case 12: point = @"W";   break;
-        case 13: point = @"WNW"; break;
-        case 14: point = @"NW";  break;
-        case 15: point = @"NNW"; break;
-        case 16: point = @"N";   break;
+        case  0: point = NSLocalizedString(@"compass-N", nil);   break;
+        case  1: point = NSLocalizedString(@"compass-NNE", nil); break;
+        case  2: point = NSLocalizedString(@"compass-NE", nil);  break;
+        case  3: point = NSLocalizedString(@"compass-ENE", nil); break;
+        case  4: point = NSLocalizedString(@"compass-E", nil);   break;
+        case  5: point = NSLocalizedString(@"compass-ESE", nil); break;
+        case  6: point = NSLocalizedString(@"compass-SE", nil);  break;
+        case  7: point = NSLocalizedString(@"compass-SSE", nil); break;
+        case  8: point = NSLocalizedString(@"compass-S", nil);   break;
+        case  9: point = NSLocalizedString(@"compass-SSW", nil); break;
+        case 10: point = NSLocalizedString(@"compass-SW", nil);  break;
+        case 11: point = NSLocalizedString(@"compass-WSW", nil); break;
+        case 12: point = NSLocalizedString(@"compass-W", nil);   break;
+        case 13: point = NSLocalizedString(@"compass-WNW", nil); break;
+        case 14: point = NSLocalizedString(@"compass-NW", nil);  break;
+        case 15: point = NSLocalizedString(@"compass-NNW", nil); break;
+        case 16: point = NSLocalizedString(@"compass-N", nil);   break;
         default: point = @"???"; break;
     }
     return point;
@@ -385,7 +385,7 @@
     BOOL okay = YES;
 
     NSString *direction;
-    okay &= [scanner scanCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:@"NESWnesw"] intoString:&direction];
+    okay &= [scanner scanCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:NSLocalizedString(@"compass-NESWnesw", nil)] intoString:&direction];
 
     int degrees;
     okay &= [scanner scanInt:&degrees];
@@ -404,9 +404,9 @@
 
     float ddegrees = degrees + mins / 60.0;
 
-    if ([[direction uppercaseString] isEqualToString:@"W"] == YES)
+    if ([[direction uppercaseString] isEqualToString:NSLocalizedString(@"compass-W", nil)] == YES)
         ddegrees = -ddegrees;
-    if ([[direction uppercaseString] isEqualToString:@"S"] == YES)
+    if ([[direction uppercaseString] isEqualToString:NSLocalizedString(@"compass-S", nil)] == YES)
         ddegrees = -ddegrees;
 
     if (okay)
@@ -453,7 +453,7 @@
     // ^[NESW] \d{1,3}º? ?\d{1,2}\.\d{1,3}
 
     NSError *e = nil;
-    NSRegularExpression *r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"^[NESW]%@$", COORDS_REGEXP] options:0 error:&e];
+    NSRegularExpression *r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"^[%@]%@$", NSLocalizedString(@"compass-NESW", nil), COORDS_REGEXP] options:0 error:&e];
 
     NSRange range;
     range = [r5 rangeOfFirstMatchInString:text options:0 range:NSMakeRange(0, [text length])];
@@ -468,8 +468,8 @@
     NSError *e = nil;
     __block NSInteger found = 0;
 
-    NSRegularExpression *rns = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([NSns]%@)", COORDS_REGEXP] options:0 error:&e];
-    NSRegularExpression *rew = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([EWew]%@)", COORDS_REGEXP] options:0 error:&e];
+    NSRegularExpression *rns = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([%@]%@)", NSLocalizedString(@"compass-NSns", nil), COORDS_REGEXP] options:0 error:&e];
+    NSRegularExpression *rew = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([%@]%@)", NSLocalizedString(@"compass-EWew", nil), COORDS_REGEXP] options:0 error:&e];
 
     [lines enumerateObjectsUsingBlock:^(NSString *line, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *NS = nil;
