@@ -280,9 +280,9 @@ enum {
     CGContextStrokePath(context);
 
     // Update text
-    labelCoordsLast.text = [NSString stringWithFormat:@"Last: %@ ± %@", [Coordinates niceCoordinates:last.lat longitude:last.lon], [MyTools niceDistance:last.accuracy]];
-    labelCoordsAvg.text = [NSString stringWithFormat:@"Average: %@", [Coordinates niceCoordinates:avg.lat longitude:avg.lon]];
-    labelDistance.text = [NSString stringWithFormat:@"Last distance to average: %@", [MyTools niceDistance:[Coordinates coordinates2distance:avg.lat fromLongitude:avg.lon toLatitude:last.lat toLongitude:last.lon]]];
+    labelCoordsLast.text = [NSString stringWithFormat:@"%@: %@ ± %@", NSLocalizedString(@"toolsgpsviewcontroller-last", nil), [Coordinates niceCoordinates:last.lat longitude:last.lon], [MyTools niceDistance:last.accuracy]];
+    labelCoordsAvg.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"toolsgpsviewcontroller-average", nil), [Coordinates niceCoordinates:avg.lat longitude:avg.lon]];
+    labelDistance.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"toolsgpsviewcontroller-lastdistancetoaverage", nil), [MyTools niceDistance:[Coordinates coordinates2distance:avg.lat fromLongitude:avg.lon toLatitude:last.lat toLongitude:last.lon]]];
 
     // Make an image
     img = UIGraphicsGetImageFromCurrentImageContext();
@@ -355,7 +355,7 @@ enum {
 {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = c;
-    [MyTools messageBox:self header:@"Copy successful" text:@"The coordinates have been copied to the clipboard."];
+    [MyTools messageBox:self header:NSLocalizedString(@"toolsgpsviewcontroller-copysuccessful", nil) text:NSLocalizedString(@"toolsgpsviewcontroller-thecoordinateshavebeencopiedtotheclipboard", nil)];
 }
 
 - (void)createWaypoint:(CLLocationCoordinate2D)coord
