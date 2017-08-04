@@ -14,6 +14,11 @@ for fn in database/db*.m; do
 done
 
 echo
+echo "Untranslated strings:"
+find . -name '*.m' | xargs grep -h NSLocalizedString | perl findMissingLocalizations.pl
+exit
+
+echo
 echo "HelpDatabaseViewController:"
 for class in $(grep implementation database/db*.m | awk '{ print $2 }' | grep -v dbObject); do
 	if [ $(grep -c "$class dbCount" Help/HelpDatabaseViewController.m) == 0 ]; then

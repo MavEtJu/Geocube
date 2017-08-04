@@ -72,21 +72,21 @@
     items = [NSMutableArray arrayWithCapacity:RC_MAX];
     for (NSInteger i = 0; i < RC_MAX; i++) {
         switch (i) {
-            MATCH(RC_NAVIGATE, @"Navigate");
-            MATCH(RC_WAYPOINTS, @"Waypoints");
-            MATCH(RC_KEEPTRACK, @"Keep Track");
-            MATCH(RC_NOTESANDLOGS, @"Notes + Logs");
-            MATCH(RC_TRACKABLES, @"Trackables");
-            MATCH(RC_GROUPS, @"Groups");
-            MATCH(RC_BROWSER, @"Browser");
-            MATCH(RC_FILES, @"Files");
-            MATCH(RC_STATISTICS, @"Statistics");
-            MATCH(RC_SETTINGS, @"Settings");
-            MATCH(RC_HELP, @"Help");
-            MATCH(RC_LISTS, @"Lists");
-            MATCH(RC_QUERIES, @"Queries");
-            MATCH(RC_TOOLS, @"Tools");
-            MATCH(RC_LOCATIONSLESS, @"Locationless");
+            MATCH(RC_NAVIGATE, NSLocalizedString(@"menu-navigate", nil));
+            MATCH(RC_WAYPOINTS, NSLocalizedString(@"menu-waypoints", nil));
+            MATCH(RC_KEEPTRACK, NSLocalizedString(@"menu-keep_track", nil));
+            MATCH(RC_NOTESANDLOGS, NSLocalizedString(@"menu-noteslogs", nil));
+            MATCH(RC_TRACKABLES, NSLocalizedString(@"menu-trackables", nil));
+            MATCH(RC_GROUPS, NSLocalizedString(@"menu-groups", nil));
+            MATCH(RC_BROWSER, NSLocalizedString(@"menu-browser", nil));
+            MATCH(RC_FILES, NSLocalizedString(@"menu-files", nil));
+            MATCH(RC_STATISTICS, NSLocalizedString(@"menu-statistics", nil));
+            MATCH(RC_SETTINGS, NSLocalizedString(@"menu-settings", nil));
+            MATCH(RC_HELP, NSLocalizedString(@"menu-help", nil));
+            MATCH(RC_LISTS, NSLocalizedString(@"menu-lists", nil));
+            MATCH(RC_QUERIES, NSLocalizedString(@"menu-queries", nil));
+            MATCH(RC_TOOLS, NSLocalizedString(@"menu-tools", nil));
+            MATCH(RC_LOCATIONSLESS, NSLocalizedString(@"menu-locationless", nil));
             default:
                 NSAssert1(FALSE, @"Menu not matched: %ld", (long)i);
         }

@@ -134,9 +134,9 @@
             case RC_NAVIGATE:
                 controllers = [NSMutableArray array];
 
-                VC(CompassViewController, @"Compass");
-                VC(WaypointViewController, @"Target");
-                VC(MapOneWPViewController, @"Map");
+                VC(CompassViewController, NSLocalizedString(@"menu-navigate-compass", nil));
+                VC(WaypointViewController, NSLocalizedString(@"menu-navigate-target", nil));
+                VC(MapOneWPViewController, NSLocalizedString(@"menu-navigate-map", nil));
 
                 TABBARCONTROLLER(RC_NAVIGATE, controllers)
                 break;
@@ -144,9 +144,9 @@
             case RC_WAYPOINTS:
                 controllers = [NSMutableArray array];
 
-                VC(FiltersViewController, @"Filters");
-                VC(WaypointsListViewController, @"List");
-                VC(MapAllWPViewController, @"Map");
+                VC(FiltersViewController, NSLocalizedString(@"menu-waypoints-filters", nil));
+                VC(WaypointsListViewController, NSLocalizedString(@"menu-waypoints-list", nil));
+                VC(MapAllWPViewController, NSLocalizedString(@"menu-waypoints-map", nil));
 
                 TABBARCONTROLLER(RC_WAYPOINTS, controllers)
                 break;
@@ -154,9 +154,9 @@
             case RC_KEEPTRACK:
                 controllers = [NSMutableArray array];
 
-                VC(KeepTrackCar, @"Car");
-                VC(KeepTrackTracks, @"Tracks");
-                VC(MapTrackViewController, @"Map");
+                VC(KeepTrackCar, NSLocalizedString(@"menu-keeptack-car", nil));
+                VC(KeepTrackTracks, NSLocalizedString(@"menu-keeptack-tracks", nil));
+                VC(MapTrackViewController, NSLocalizedString(@"menu-keeptack-map", nil));
 
                 TABBARCONTROLLER(RC_KEEPTRACK, controllers)
                 break;
@@ -164,10 +164,10 @@
             case RC_NOTESANDLOGS:
                 controllers = [NSMutableArray array];
 
-                VC(NotesSavedViewController, @"Saved");
-                VC(NotesPersonalNotesViewController, @"Personal");
-                VC(NotesFieldnotesViewController, @"Field");
-                VC(NotesImagesViewController, @"Images");
+                VC(NotesSavedViewController, NSLocalizedString(@"menu-noteslogs-saved", nil));
+                VC(NotesPersonalNotesViewController, NSLocalizedString(@"menu-noteslogs-personal", nil));
+                VC(NotesFieldnotesViewController, NSLocalizedString(@"menu-noteslogs-field", nil));
+                VC(NotesImagesViewController, NSLocalizedString(@"menu-noteslogs-images", nil));
 
                 TABBARCONTROLLER(RC_NOTESANDLOGS, controllers)
                 break;
@@ -175,9 +175,9 @@
             case RC_TRACKABLES:
                 controllers = [NSMutableArray array];
 
-                VC(TrackablesInventoryViewController, @"Inventory");
-                VC(TrackablesMineViewController, @"Mine");
-                VC(TrackablesListViewController, @"List");
+                VC(TrackablesInventoryViewController, NSLocalizedString(@"menu-trackables-inventory", nil));
+                VC(TrackablesMineViewController, NSLocalizedString(@"menu-trackables-mine", nil));
+                VC(TrackablesListViewController, NSLocalizedString(@"menu-trackables-list", nil));
 
                 TABBARCONTROLLER(RC_TRACKABLES, controllers)
                 break;
@@ -185,8 +185,8 @@
             case RC_GROUPS:
                 controllers = [NSMutableArray array];
 
-                VC(GroupsUserViewController, @"User Groups");
-                VC(GroupsSystemViewController, @"System Groups");
+                VC(GroupsUserViewController, NSLocalizedString(@"menu-groups-usergroups", nil));
+                VC(GroupsSystemViewController, NSLocalizedString(@"menu-groups-systemgroups", nil));
 
                 TABBARCONTROLLER(RC_GROUPS, controllers)
                 break;
@@ -194,9 +194,9 @@
             case RC_BROWSER:
                 controllers = [NSMutableArray array];
 
-                VC(BrowserUserViewController, @"User");
-                VC(BrowserAccountsViewController, @"Queries");
-                VC(BrowserBrowserViewController, @"Browser");
+                VC(BrowserUserViewController, NSLocalizedString(@"menu-browser-user", nil));
+                VC(BrowserAccountsViewController, NSLocalizedString(@"menu-browser-queries", nil));
+                VC(BrowserBrowserViewController, NSLocalizedString(@"menu-browser-browser", nil));
 
                 TABBARCONTROLLER(RC_BROWSER, controllers)
                 break;
@@ -204,8 +204,8 @@
             case RC_FILES:
                 controllers = [NSMutableArray array];
 
-                VC(FilesViewController, @"Local Files");
-                VC(FileBrowserViewController, @"File Browser");
+                VC(FilesViewController, NSLocalizedString(@"menu-files-localfiles", nil));
+                VC(FileBrowserViewController, NSLocalizedString(@"menu-files-filebrowser", nil));
 
                 TABBARCONTROLLER(RC_FILES, controllers)
                 break;
@@ -213,7 +213,7 @@
             case RC_STATISTICS:
                 controllers = [NSMutableArray array];
 
-                VC(StatisticsViewController, @"Statistics");
+                VC(StatisticsViewController, NSLocalizedString(@"menu-statistics-statistics", nil));
 
                 TABBARCONTROLLER(RC_STATISTICS, controllers)
                 break;
@@ -221,10 +221,10 @@
             case RC_SETTINGS:
                 controllers = [NSMutableArray array];
 
-                VC(SettingsAccountsViewController, @"Accounts");
-                VC(SettingsMainViewController, @"Settings");
-                VC(SettingsColoursViewController, @"Colours");
-                VC(SettingsLogTemplatesViewController, @"Log");
+                VC(SettingsAccountsViewController, NSLocalizedString(@"menu-settings-accounts", nil));
+                VC(SettingsMainViewController, NSLocalizedString(@"menu-settings-settings", nil));
+                VC(SettingsColoursViewController, NSLocalizedString(@"menu-settings-colours", nil));
+                VC(SettingsLogTemplatesViewController, NSLocalizedString(@"menu-settings-log", nil));
 
                 TABBARCONTROLLER(RC_SETTINGS, controllers)
                 break;
@@ -232,11 +232,11 @@
             case RC_HELP:
                 controllers = [NSMutableArray array];
 
-                VC(HelpAboutViewController, @"About");
-                VC(HelpHelpViewController, @"Help");
-                VC(NoticesViewController, @"Notices");
-                VC(HelpImagesViewController, @"Images");
-                VC(HelpDatabaseViewController, @"DB");
+                VC(HelpAboutViewController, NSLocalizedString(@"menu-help-about", nil));
+                VC(HelpHelpViewController, NSLocalizedString(@"menu-help-help", nil));
+                VC(NoticesViewController, NSLocalizedString(@"menu-help-notices", nil));
+                VC(HelpImagesViewController, NSLocalizedString(@"menu-help-images", nil));
+                VC(HelpDatabaseViewController, NSLocalizedString(@"menu-help-db", nil));
 
                 TABBARCONTROLLER(RC_HELP, controllers)
                 break;
@@ -244,11 +244,11 @@
             case RC_LISTS:
                 controllers = [NSMutableArray array];
 
-                VC(ListHighlightViewController, @"Highlight");
-                VC(ListFoundViewController, @"Found");
-                VC(ListDNFViewController, @"DNF");
-                VC(ListInProgressViewController, @"In Progress");
-                VC(ListIgnoredViewController, @"Ingnored");
+                VC(ListHighlightViewController, NSLocalizedString(@"menu-lists-highlight", nil));
+                VC(ListFoundViewController, NSLocalizedString(@"menu-lists-found", nil));
+                VC(ListDNFViewController, NSLocalizedString(@"menu-lists-dnf", nil));
+                VC(ListInProgressViewController, NSLocalizedString(@"menu-lists-inprogress", nil));
+                VC(ListIgnoredViewController, NSLocalizedString(@"menu-lists-ingnored", nil));
 
                 TABBARCONTROLLER(RC_LISTS, controllers)
                 break;
@@ -256,9 +256,9 @@
             case RC_QUERIES:
                 controllers = [NSMutableArray array];
 
-                VC(QueriesGroundspeakViewController, @"Groundspeak");
-                VC(QueriesGGCWViewController, @"Geocaching.com website");
-                VC(QueriesGCAViewController, @"GCA");
+                VC(QueriesGroundspeakViewController, NSLocalizedString(@"menu-queries-groundspeak", nil));
+                VC(QueriesGGCWViewController, NSLocalizedString(@"menu-queries-geocaching.comwebsite", nil));
+                VC(QueriesGCAViewController, NSLocalizedString(@"menu-queries-gca", nil));
 
                 TABBARCONTROLLER(RC_QUERIES, controllers)
                 break;
@@ -266,8 +266,8 @@
             case RC_TOOLS:
                 controllers = [NSMutableArray array];
 
-                VC(ToolsGPSViewController, @"GPS");
-                VC(ToolsRot13ViewController, @"Rot13");
+                VC(ToolsGPSViewController, NSLocalizedString(@"menu-tools-gps", nil));
+                VC(ToolsRot13ViewController, NSLocalizedString(@"menu-tools-rot13", nil));
 
                 TABBARCONTROLLER(RC_QUERIES, controllers)
                 break;
@@ -275,9 +275,9 @@
             case RC_LOCATIONSLESS:
                 controllers = [NSMutableArray array];
 
-                VC(LocationlessListViewController, @"All");
-                VC(LocationlessPlannedViewController, @"Planned");
-                VC(MapLogsViewController, @"Map");
+                VC(LocationlessListViewController, NSLocalizedString(@"menu-locationless-all", nil));
+                VC(LocationlessPlannedViewController, NSLocalizedString(@"menu-locationless-planned", nil));
+                VC(MapLogsViewController, NSLocalizedString(@"menu-locationless-map", nil));
 
                 TABBARCONTROLLER(RC_QUERIES, controllers)
                 break;
