@@ -47,9 +47,9 @@ enum {
     self = [super init];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuGoHome label:@"Go home"];
-    [lmi addItem:menuEnterURL label:@"Enter URL"];
-    [lmi addItem:menuOpenInSafari label:@"Open in Safari"];
+    [lmi addItem:menuGoHome label:NSLocalizedString(@"browserbrowserviewcontroll-gohome", nil)];
+    [lmi addItem:menuEnterURL label:NSLocalizedString(@"browserbrowserviewcontroll-enterurl", nil)];
+    [lmi addItem:menuOpenInSafari label:NSLocalizedString(@"browserbrowserviewcontroll-openinsafari", nil)];
 
     webView = [[UIWebView alloc] initWithFrame:self.view.frame];
     webView.delegate = self;

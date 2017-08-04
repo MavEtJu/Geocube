@@ -93,22 +93,22 @@
         [lmi addItem:mb.menuItem label:mb.menuLabel];
     }];
 
-    [lmi addItem:MVCmenuMapMap label:@"Map"];
-    [lmi addItem:MVCmenuMapAerial label:@"Aerial"];
-    [lmi addItem:MVCmenuMapHybridMapAerial label:@"Map/Aerial"];
-    [lmi addItem:MVCmenuMapTerrain label:@"Terrain"];
+    [lmi addItem:MVCmenuMapMap label:NSLocalizedString(@"maptemplateviewcontroller-map", nil)];
+    [lmi addItem:MVCmenuMapAerial label:NSLocalizedString(@"maptemplateviewcontroller-aerial", nil)];
+    [lmi addItem:MVCmenuMapHybridMapAerial label:NSLocalizedString(@"maptemplateviewcontroller-mapaerial", nil)];
+    [lmi addItem:MVCmenuMapTerrain label:NSLocalizedString(@"maptemplateviewcontroller-terrain", nil)];
 
-    [lmi addItem:MVCmenuLoadWaypoints label:@"Load Waypoints"];
-    [lmi addItem:MVCmenuDirections label:@"Directions"];
-    [lmi addItem:MVCmenuRemoveTarget label:@"Remove Target"];
-    [lmi addItem:MVCmenuRecenter label:@"Recenter"];
-    [lmi addItem:MVCmenuUseGPS label:@"Use GPS"];
-    [lmi addItem:MVCmenuExportVisible label:@"Export Visible"];
+    [lmi addItem:MVCmenuLoadWaypoints label:NSLocalizedString(@"maptemplateviewcontroller-loadwaypoints", nil)];
+    [lmi addItem:MVCmenuDirections label:NSLocalizedString(@"maptemplateviewcontroller-directions", nil)];
+    [lmi addItem:MVCmenuRemoveTarget label:NSLocalizedString(@"maptemplateviewcontroller-removetarget", nil)];
+    [lmi addItem:MVCmenuRecenter label:NSLocalizedString(@"maptemplateviewcontroller-recenter", nil)];
+    [lmi addItem:MVCmenuUseGPS label:NSLocalizedString(@"maptemplateviewcontroller-usegps", nil)];
+    [lmi addItem:MVCmenuExportVisible label:NSLocalizedString(@"maptemplateviewcontroller-exportvisible", nil)];
 
     showBoundaries = NO;
-    [lmi addItem:MVCmenuShowBoundaries label:@"Show Boundaries"];
+    [lmi addItem:MVCmenuShowBoundaries label:NSLocalizedString(@"maptemplateviewcontroller-showboundaries", nil)];
 
-    [lmi addItem:MVCmenuRemoveHistory label:@"Remove History"];
+    [lmi addItem:MVCmenuRemoveHistory label:NSLocalizedString(@"maptemplateviewcontroller-removehistory", nil)];
 
     self.map = [[self.currentMapBrand.mapObject alloc] initMapObject:self];
     self.map.staticHistory = self.staticHistory;
@@ -128,9 +128,9 @@
         [lmi disableItem:MVCmenuRemoveTarget];
 
     if (configManager.dynamicmapEnable == YES) {
-        [lmi addItem:MVCmenuAutoZoom label:@"No AutoZoom"];
+        [lmi addItem:MVCmenuAutoZoom label:NSLocalizedString(@"maptemplateviewcontroller-noautozoom", nil)];
     } else {
-        [lmi addItem:MVCmenuAutoZoom label:@"Auto Zoom"];
+        [lmi addItem:MVCmenuAutoZoom label:NSLocalizedString(@"maptemplateviewcontroller-autozoom", nil)];
     }
 
     useGPS = LM.useGPS;
@@ -823,9 +823,9 @@
 {
     configManager.dynamicmapEnable = !configManager.dynamicmapEnable;
     if (configManager.dynamicmapEnable == YES) {
-        [lmi changeItem:MVCmenuAutoZoom label:@"No AutoZoom"];
+        [lmi changeItem:MVCmenuAutoZoom label:NSLocalizedString(@"maptemplateviewcontroller-noautozoom", nil)];
     } else {
-        [lmi changeItem:MVCmenuAutoZoom label:@"AutoZoom"];
+        [lmi changeItem:MVCmenuAutoZoom label:NSLocalizedString(@"maptemplateviewcontroller-autozoom", nil)];
     }
 }
 
@@ -857,10 +857,10 @@
 {
     if (showBoundaries == NO) {
         showBoundaries = YES;
-        [lmi changeItem:MVCmenuShowBoundaries label:@"Hide boundaries"];
+        [lmi changeItem:MVCmenuShowBoundaries label:NSLocalizedString(@"maptemplateviewcontroller-hideboundaries", nil)];
     } else {
         showBoundaries = NO;
-        [lmi changeItem:MVCmenuShowBoundaries label:@"Show boundaries"];
+        [lmi changeItem:MVCmenuShowBoundaries label:NSLocalizedString(@"maptemplateviewcontroller-showboundaries", nil)];
     }
     [self.map showBoundaries:showBoundaries];
 }

@@ -45,8 +45,8 @@ enum {
     self.delegateWaypoint = nil;
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuScanForWaypoints label:@"Extract Waypoints"];
-    [lmi addItem:menuCopyLog label:@"Copy note to clipboard"];
+    [lmi addItem:menuScanForWaypoints label:NSLocalizedString(@"waypointpersonalnoteviewcontroller-extractwaypoints", nil)];
+    [lmi addItem:menuCopyLog label:NSLocalizedString(@"waypointpersonalnoteviewcontroller-copynotetoclipboard", nil)];
 
     note = [dbPersonalNote dbGetByWaypointName:waypoint.wpt_name];
 

@@ -64,10 +64,10 @@ enum {
     self = [super init];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuRestart label:@"Restart"];
-    [lmi addItem:menuCopyCoordsAvg label:@"Copy Average Coords"];
-    [lmi addItem:menuCopyCoordsLast label:@"Copy Last Coords"];
-    [lmi addItem:menuCreateWaypoint label:@"Create Waypoint"];
+    [lmi addItem:menuRestart label:NSLocalizedString(@"toolsgpsviewcontroller-restart", nil)];
+    [lmi addItem:menuCopyCoordsAvg label:NSLocalizedString(@"toolsgpsviewcontroller-copyaveragecoords", nil)];
+    [lmi addItem:menuCopyCoordsLast label:NSLocalizedString(@"toolsgpsviewcontroller-copylastcoords", nil)];
+    [lmi addItem:menuCreateWaypoint label:NSLocalizedString(@"toolsgpsviewcontroller-createwaypoint", nil)];
 
     return self;
 }

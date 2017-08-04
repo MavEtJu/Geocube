@@ -38,7 +38,7 @@ enum {
     self = [super init];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuAddATrack label:@"Start new track"];
+    [lmi addItem:menuAddATrack label:NSLocalizedString(@"keeptracktracks-startnewtrack", nil)];
 
     [self.tableView registerNib:[UINib nibWithNibName:XIB_KEEPTRACKSTRACKTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_KEEPTRACKSTRACKTABLEVIEWCELL];
 

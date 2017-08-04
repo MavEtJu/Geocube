@@ -56,9 +56,9 @@ enum {
     self = [super init];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuSetDefaultValues label:@"Set default values"];
-    [lmi addItem:menuSaveFilter label:@"Save filter"];
-    [lmi addItem:menuLoadFilter label:@"Load filter"];
+    [lmi addItem:menuSetDefaultValues label:NSLocalizedString(@"filtersviewcontroller-setdefaultvalues", nil)];
+    [lmi addItem:menuSaveFilter label:NSLocalizedString(@"filtersviewcontroller-savefilter", nil)];
+    [lmi addItem:menuLoadFilter label:NSLocalizedString(@"filtersviewcontroller-loadfilter", nil)];
 
     filters = [NSMutableArray arrayWithCapacity:15];
 

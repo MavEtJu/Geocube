@@ -54,10 +54,10 @@ enum {
     self = [super init];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuImportPhoto label:@"Import photo"];
-    [lmi addItem:menuMakePhoto label:@"Make photo"];
-    [lmi addItem:menuDownloadImages label:@"Download photos"];
-    [lmi addItem:menuDeleteAllPhotos label:@"Delete all photos"];
+    [lmi addItem:menuImportPhoto label:NSLocalizedString(@"waypointimagesviewcontroller-importphoto", nil)];
+    [lmi addItem:menuMakePhoto label:NSLocalizedString(@"waypointimagesviewcontroller-makephoto", nil)];
+    [lmi addItem:menuDownloadImages label:NSLocalizedString(@"waypointimagesviewcontroller-downloadphotos", nil)];
+    [lmi addItem:menuDeleteAllPhotos label:NSLocalizedString(@"waypointimagesviewcontroller-deleteallphotos", nil)];
 
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary] == NO)
         [lmi disableItem:menuImportPhoto];

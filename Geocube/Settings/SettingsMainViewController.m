@@ -74,7 +74,7 @@ enum {
     [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLSWITCH bundle:nil] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLSWITCH];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuResetToDefault label:@"Reset to default"];
+    [lmi addItem:menuResetToDefault label:NSLocalizedString(@"settingsmainviewcontroller-resettodefault", nil)];
 
     compassTypes = @[@"Red arrow on blue", @"White arrow on black", @"Red arrow on black", @"Airplane"];
 

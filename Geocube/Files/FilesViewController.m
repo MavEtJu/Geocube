@@ -52,8 +52,8 @@ enum {
     [self makeInfoView];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuICloud label:@"iCloud"];
-    [lmi addItem:menuRefresh label:@"Refresh"];
+    [lmi addItem:menuICloud label:NSLocalizedString(@"filesviewcontroller-icloud", nil)];
+    [lmi addItem:menuRefresh label:NSLocalizedString(@"filesviewcontroller-refresh", nil)];
 }
 
 - (void)refreshFileData

@@ -78,15 +78,15 @@ enum {
     self = [super initWithStyle:UITableViewStyleGrouped];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuMarkAs label:@"Mark as ..."];
-    [lmi addItem:menuRefreshWaypoint label:@"Refresh waypoint"];
-    [lmi addItem:menuAddToGroup label:@"Add to group"];
-    [lmi addItem:menuViewRaw label:@"Raw data"];
-    [lmi addItem:menuSetAsTarget label:@"Set target"];
-    [lmi addItem:menuLogThisWaypoint label:@"Log waypoint"];
-    [lmi addItem:menuOpenInBrowser label:@"Open in browser"];
-    [lmi addItem:menuExportGPX label:@"Export GPX"];
-    [lmi addItem:menuDeleteWaypoint label:@"Delete waypoint"];
+    [lmi addItem:menuMarkAs label:NSLocalizedString(@"waypointviewcontroller-markas", nil)];
+    [lmi addItem:menuRefreshWaypoint label:NSLocalizedString(@"waypointviewcontroller-refreshwaypoint", nil)];
+    [lmi addItem:menuAddToGroup label:NSLocalizedString(@"waypointviewcontroller-addtogroup", nil)];
+    [lmi addItem:menuViewRaw label:NSLocalizedString(@"waypointviewcontroller-rawdata", nil)];
+    [lmi addItem:menuSetAsTarget label:NSLocalizedString(@"waypointviewcontroller-settarget", nil)];
+    [lmi addItem:menuLogThisWaypoint label:NSLocalizedString(@"waypointviewcontroller-logwaypoint", nil)];
+    [lmi addItem:menuOpenInBrowser label:NSLocalizedString(@"waypointviewcontroller-openinbrowser", nil)];
+    [lmi addItem:menuExportGPX label:NSLocalizedString(@"waypointviewcontroller-exportgpx", nil)];
+    [lmi addItem:menuDeleteWaypoint label:NSLocalizedString(@"waypointviewcontroller-deletewaypoint", nil)];
 
     self.hasCloseButton = NO;
     self.isLocationless = NO;

@@ -38,7 +38,7 @@ enum {
     self = [super init];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuAddBookmark label:@"Add bookmark"];
+    [lmi addItem:menuAddBookmark label:NSLocalizedString(@"browseruserviewcontroller-addbookmark", nil)];
 
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
 

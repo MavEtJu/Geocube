@@ -40,7 +40,7 @@ enum {
     currentSortOrder = configManager.locationlessListSortBy;
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuSortBy label:@"Sort by..."];
+    [lmi addItem:menuSortBy label:NSLocalizedString(@"locationlesstemplateviewcontroller-sortby", nil)];
 
     return self;
 }

@@ -43,10 +43,10 @@ enum {
     self = [super init];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuDelete label:@"Remove"];
-    [lmi addItem:menuSubmit label:@"Submit"];
-    [lmi addItem:menuDeleteAll label:@"Remove all"];
-    [lmi addItem:menuSubmitAll label:@"Submit all"];
+    [lmi addItem:menuDelete label:NSLocalizedString(@"notessavedviewcontroller-remove", nil)];
+    [lmi addItem:menuSubmit label:NSLocalizedString(@"notessavedviewcontroller-submit", nil)];
+    [lmi addItem:menuDeleteAll label:NSLocalizedString(@"notessavedviewcontroller-removeall", nil)];
+    [lmi addItem:menuSubmitAll label:NSLocalizedString(@"notessavedviewcontroller-submitall", nil)];
     [lmi disableItem:menuDelete];
     [lmi disableItem:menuSubmit];
     [lmi disableItem:menuSubmitAll];
