@@ -17,6 +17,7 @@ Version 1.4(x)
   - At startup after an upgrade, you will get a headsup that the
     configuration needs to be reloaded.
   - At startup it will check for updates in the configuration.
+  - Start localization, dutch first.
 
   Fixes:
   - Made the UI for a waypoint more sane with regards to "what is
