@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,11 +15,14 @@
                 <outlet property="ivGPSCompassLine" destination="uWL-Od-shz" id="OMV-yz-hng"/>
                 <outlet property="ivWPContainer" destination="HQG-ux-S8b" id="dVK-IF-hwJ"/>
                 <outlet property="ivWPSize" destination="Jz2-k2-g3E" id="RGw-N0-5ar"/>
+                <outlet property="labelAccuracy" destination="jnU-yj-LIk" id="QlO-Xr-uBL"/>
+                <outlet property="labelAltitude" destination="eZx-5p-oL3" id="qCZ-FH-IZa"/>
                 <outlet property="labelGPSAccuracy" destination="gk8-n8-Tou" id="PGj-cf-GIv"/>
                 <outlet property="labelGPSAltitude" destination="fqO-ai-Uwp" id="3Ig-Qg-xj6"/>
                 <outlet property="labelGPSDistance" destination="EKb-o1-rY3" id="SnU-XO-pUU"/>
                 <outlet property="labelGPSLat" destination="YBD-qe-PvF" id="tJz-3K-EuK"/>
                 <outlet property="labelGPSLon" destination="g2Q-bb-id8" id="nxn-OQ-JS6"/>
+                <outlet property="labelMyLocation" destination="sFx-yh-9hZ" id="Lff-5D-sGE"/>
                 <outlet property="labelWPCode" destination="P4t-PJ-wAg" id="pXH-7V-UjF"/>
                 <outlet property="labelWPDescription" destination="phE-nK-iwc" id="bb8-fT-Ex2"/>
                 <outlet property="labelWPLat" destination="n3W-As-SqZ" id="mJk-yH-0Sf"/>
@@ -130,7 +133,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accuracy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnU-yj-LIk">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accuracy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnU-yj-LIk" customClass="GCLabel">
                     <rect key="frame" x="10" y="417" width="72" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
