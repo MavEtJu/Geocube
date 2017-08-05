@@ -140,7 +140,7 @@
 
     for (NSInteger i = 0; i < [rot13string length]; i++) {
         [rot13map setObject:[rot13string substringWithRange:NSMakeRange((i + 13) % 26, 1)] forKey:[rot13string substringWithRange:NSMakeRange(i, 1)]];
-        [rot13map setObject:[[rot13string substringWithRange:NSMakeRange((i + 13) % 26, 1)] uppercaseStringWithLocale:nil ]forKey:[[rot13string substringWithRange:NSMakeRange(i, 1)] uppercaseStringWithLocale:nil]];
+        [rot13map setObject:[[rot13string substringWithRange:NSMakeRange((i + 13) % 26, 1)] uppercaseStringWithLocale:nil] forKey:[[rot13string substringWithRange:NSMakeRange(i, 1)] uppercaseStringWithLocale:nil]];
     }
     NSMutableString *output = [NSMutableString stringWithString:@""];
 
