@@ -135,25 +135,24 @@
 
 - (NSString *)rot13:(NSString *)input
 {
-    const char *in = [input cStringUsingEncoding:NSASCIIStringEncoding];
-    NSInteger inlen = [input length];
-    char out[inlen + 1];
+    NSString *rot13string = @"abcdefghijklmnopqrstuvwxyz";
+    NSMutableDictionary *rot13map = [NSMutableDictionary dictionaryWithCapacity:[rot13string length] * 2];
 
-    int x;
-    for (x = 0; x < inlen; x++ ) {
-        unsigned int aCharacter = in[x];
-
-        if( 'A' <= aCharacter && aCharacter <= 'Z' ) // A - Z
-            out[x] = (((aCharacter - 'A') + 13) % 26) + 'A';
-        else if( 'a' <= aCharacter && aCharacter <= 'z' ) // a-z
-            out[x] = (((aCharacter - 'a') + 13) % 26) + 'a';
-        else  // Not a rot13-able character
-            out[x] = aCharacter;
+    for (NSInteger i = 0; i < [rot13string length]; i++) {
+        [rot13map setObject:[rot13string substringWithRange:NSMakeRange((i + 13) % 26, 1)] forKey:[rot13string substringWithRange:NSMakeRange(i, 1)]];
+        [rot13map setObject:[[rot13string substringWithRange:NSMakeRange((i + 13) % 26, 1)] uppercaseStringWithLocale:nil ]forKey:[[rot13string substringWithRange:NSMakeRange(i, 1)] uppercaseStringWithLocale:nil]];
     }
-    out[x] = '\0';
+    NSMutableString *output = [NSMutableString stringWithString:@""];
 
-    NSString *output = [NSString stringWithCString:out encoding:NSASCIIStringEncoding];
-    return (output);
+    for (NSInteger i = 0; i < [input length]; i++ ) {
+        NSString *old = [input substringWithRange:NSMakeRange(i, 1)];
+        NSString *new = [rot13map objectForKey:old];
+        if (new == nil)
+            [output appendString:old];
+        else
+            [output appendString:new];
+    }
+    return output;
 }
 
 @end
