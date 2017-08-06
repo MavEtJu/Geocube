@@ -239,7 +239,7 @@
 
 - (void)setQueueSize:(NSInteger)queueSize
 {
-    nextQueue = [NSString stringWithFormat:@"Queue depth: %ld", (long)queueSize];
+    nextQueue = [NSString stringWithFormat:@"%@: %ld", _(@"infoitem-queuedepth"), (long)queueSize];
     self.needsRefresh = YES;
 }
 
@@ -248,9 +248,9 @@
     NSInteger lot = nextLineObjectTotal;
     NSInteger loc = nextLineObjectCount;
     if (lot <= 0)
-        nextLinesObjects = [NSString stringWithFormat:@"%@: %ld", isLines ? @"Lines" : @"Objects", (long)loc];
+        nextLinesObjects = [NSString stringWithFormat:@"%@: %ld", isLines ? _(@"infoitem-lines") : _(@"infoitem-objects"), (long)loc];
     else
-        nextLinesObjects = [NSString stringWithFormat:@"%@: %ld of %ld (%ld%%)", isLines ? @"Lines" : @"Objects", (long)loc, (long)lot, (long)(100 * loc / lot)];
+        nextLinesObjects = [NSString stringWithFormat:@"%@: %ld %@ %ld (%ld%%)", isLines ? _(@"infoitem-lines") : _(@"infoitem-objects"), (long)loc, _(@"of"), (long)lot, (long)(100 * loc / lot)];
     self.needsRefresh = YES;
 }
 - (void)setLineObjectCount:(NSInteger)count
@@ -276,11 +276,11 @@
     NSInteger bt = nextBytesTotal;
     NSInteger bc = nextBytesCount;
     if (bc < 0)
-        nextBytes = @"Bytes: -";
+        nextBytes = [NSString stringWithFormat:@"%@: -", _(@"infoitem-bytes")];
     else if (bt <= 0)
-        nextBytes = [NSString stringWithFormat:@"Bytes: %@", [MyTools niceFileSize:bc]];
+        nextBytes = [NSString stringWithFormat:@"%@: %@", _(@"infoitem-bytes"), [MyTools niceFileSize:bc]];
     else
-        nextBytes = [NSString stringWithFormat:@"Bytes: %@ of %@ (%ld %%)", [MyTools niceFileSize:bc], [MyTools niceFileSize:bt], (long)((bc * 100) / bt)];
+        nextBytes = [NSString stringWithFormat:@"%@: %@ %@ %@ (%ld %%)", _(@"infoitem-bytes"), [MyTools niceFileSize:bc], [MyTools niceFileSize:bt], _(@"of"), (long)((bc * 100) / bt)];
     self.needsRefresh = YES;
 }
 - (void)setBytesTotal:(NSInteger)newTotal
@@ -305,11 +305,11 @@
 - (void)setChunks
 {
     if (nextChunksCount < 0)
-        nextChunks = @"Chunks: -";
+        nextChunks = [NSString stringWithFormat:@"%@: -", _(@"infoitems-chunks")];
     else if (nextChunksTotal == 0)
-        nextChunks = [NSString stringWithFormat:@"Chunks: %ld", (long)nextChunksCount];
+        nextChunks = [NSString stringWithFormat:@"%@: %ld", _(@"infoitems-chunks"), (long)nextChunksCount];
     else
-        nextChunks = [NSString stringWithFormat:@"Chunks: %ld of %ld", (long)nextChunksCount, (long)nextChunksTotal];
+        nextChunks = [NSString stringWithFormat:@"%@: %ld %@ %ld", _(@"infoitems-chunks"), (long)nextChunksCount, _(@"of"), (long)nextChunksTotal];
     self.needsRefresh = YES;
 }
 - (void)setChunksTotal:(NSInteger)newTotal
@@ -343,9 +343,9 @@
 - (void)setWaypoints
 {
     if (nextWaypointsNew == 0)
-        nextWaypoints = [NSString stringWithFormat:@"Waypoints: %ld", (long)nextWaypointsTotal];
+        nextWaypoints = [NSString stringWithFormat:@"%@: %ld", _(@"infoitem-waypoints"), (long)nextWaypointsTotal];
     else
-        nextWaypoints = [NSString stringWithFormat:@"Waypoints: %ld (%ld new)", (long)nextWaypointsTotal, (long)nextWaypointsNew];
+        nextWaypoints = [NSString stringWithFormat:@"%@: %ld (%ld %@)", _(@"infoitem-waypoints"), (long)nextWaypointsTotal, (long)nextWaypointsNew, _(@"new")];
     self.needsRefresh = YES;
 }
 - (void)setWaypointsNew:(NSInteger)i
@@ -363,9 +363,9 @@
 {
     NSString *s;
     if (nextLogsNew == 0)
-        s = [NSString stringWithFormat:@"Logs: %ld", (long)nextLogsTotal];
+        s = [NSString stringWithFormat:@"%@: %ld", _(@"infoitem-logs"), (long)nextLogsTotal];
     else
-        s = [NSString stringWithFormat:@"Logs: %ld (%ld new)", (long)nextLogsTotal, (long)nextLogsNew];
+        s = [NSString stringWithFormat:@"%@: %ld (%ld %@)", _(@"infoitem-logs"), (long)nextLogsTotal, (long)nextLogsNew, _(@"new")];
     nextLogs = s;
     [self needsRefresh];
 }
@@ -384,9 +384,9 @@
 {
     NSString *s;
     if (nextTrackablesNew == 0)
-        s = [NSString stringWithFormat:@"Trackables: %ld", (long)nextTrackablesTotal];
+        s = [NSString stringWithFormat:@"%@: %ld", _(@"infoitem-trackables"), (long)nextTrackablesTotal];
     else
-        s = [NSString stringWithFormat:@"Trackables: %ld (%ld new)", (long)nextTrackablesTotal, (long)nextTrackablesNew];
+        s = [NSString stringWithFormat:@"%@: %ld (%ld %@)", _(@"infoitem-trackables"), (long)nextTrackablesTotal, (long)nextTrackablesNew, _(@"new")];
     nextTrackables = s;
     self.needsRefresh = YES;
 }

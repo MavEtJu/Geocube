@@ -130,22 +130,22 @@
                     [waypointManager needsRefreshAll];
                 }];
             } else if ([data isKindOfClass:[GCStringGPX class]] == YES) {
-                [iv setDescription:iii description:@"GPX data"];
+                [iv setDescription:iii description:_(@"importmanager-gpxdata")];
                 [imp parseString:(NSString *)data infoViewer:iv iiImport:iii];
             } else if ([data isKindOfClass:[GCStringGPXGarmin class]] == YES) {
-                [iv setDescription:iii description:@"GPX Garmin data"];
+                [iv setDescription:iii description:_(@"importmanager-gpxgarmindata")];
                 [imp parseString:(NSString *)data infoViewer:iv iiImport:iii];
             } else if ([data isKindOfClass:[GCDictionaryLiveAPI class]] == YES) {
-                [iv setDescription:iii description:@"LiveAPI data"];
+                [iv setDescription:iii description:_(@"importmanager-liveapidata")];
                 [imp parseDictionary:(GCDictionaryLiveAPI *)data infoViewer:iv iiImport:iii];
             } else if ([data isKindOfClass:[GCDictionaryGCA2 class]] == YES) {
-                [iv setDescription:iii description:@"Geocaching Australia API data"];
+                [iv setDescription:iii description:_(@"importmanager-geocachingaustraliaAPIdata")];
                 [imp parseDictionary:(GCDictionaryGCA2 *)data infoViewer:iv iiImport:iii];
             } else if ([data isKindOfClass:[GCDictionaryOKAPI class]] == YES) {
-                [iv setDescription:iii description:@"OKAPI data"];
+                [iv setDescription:iii description:_(@"importmanager-OKAPIdata")];
                 [imp parseDictionary:(GCDictionaryOKAPI *)data infoViewer:iv iiImport:iii];
             } else if ([data isKindOfClass:[GCDictionaryGGCW class]] == YES) {
-                [iv setDescription:iii description:@"Geocaching.com data"];
+                [iv setDescription:iii description:_(@"importmanager-geocaching.comdata")];
                 [imp parseDictionary:(GCDictionaryGGCW *)data infoViewer:iv iiImport:iii];
             } else {
                 NSAssert1(NO, @"Unknown data object type: %@", [data class]);

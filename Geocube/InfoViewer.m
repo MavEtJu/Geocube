@@ -41,17 +41,17 @@
     self = [super initWithFrame:frame];
 
     imageHeader = [[GCLabel alloc] initWithFrame:CGRectZero];
-    imageHeader.text = @"Images";
+    imageHeader.text = _(@"infoviewer-images");
     imageHeader.backgroundColor = [UIColor lightGrayColor];
     [self addSubview:imageHeader];
 
     downloadHeader = [[GCLabel alloc] initWithFrame:CGRectZero];
-    downloadHeader.text = @"Downloads";
+    downloadHeader.text = _(@"infoviewer-downloads");
     downloadHeader.backgroundColor = [UIColor lightGrayColor];
     [self addSubview:downloadHeader];
 
     importHeader = [[GCLabel alloc] initWithFrame:CGRectZero];
-    importHeader.text = @"Imports";
+    importHeader.text = _(@"infoviewer-imports");
     importHeader.backgroundColor = [UIColor lightGrayColor];
     [self addSubview:importHeader];
 
@@ -228,21 +228,21 @@
 - (void)setImageHeaderSuffix:(NSString *)suffix
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        imageHeader.text = [NSString stringWithFormat:@"Images (%@)", suffix];
+        imageHeader.text = [NSString stringWithFormat:@"%@ (%@)", _(@"infoviewer-images"), suffix];
     }];
 }
 
 - (void)setDownloadHeaderSuffix:(NSString *)suffix
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        downloadHeader.text = [NSString stringWithFormat:@"Downloads (%@)", suffix];
+        downloadHeader.text = [NSString stringWithFormat:@"%@ (%@)", _(@"infoviewer-downloads"), suffix];
     }];
 }
 
 - (void)setImportHeaderSuffix:(NSString *)suffix
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        importHeader.text = [NSString stringWithFormat:@"Imports (%@)", suffix];
+        importHeader.text = [NSString stringWithFormat:@"%@ (%@)", _(@"infoviewer-imports"), suffix];
     }];
 }
 
