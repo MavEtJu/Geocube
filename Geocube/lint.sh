@@ -15,6 +15,7 @@ done
 
 echo
 echo "Untranslated strings:"
+./mergeLocalizations.sh
 find . -name '*.m' | xargs grep -h "_(" | perl findMissingLocalizations.pl
 
 echo

@@ -37,7 +37,7 @@ foreach my $file (@files) {
 
 		# "Queries" = "nl-Queries";
 
-		$line =~ /"(.+)" = "(.+)"/;
+		$line =~ /"(.+)" = "(.+)";/;
 		next if (!defined $2);
 
 		if (!defined $strings{$1}) {

@@ -3618,7 +3618,6 @@
 				2B22D39840096528A77E7C43 /* 📦 Check Pods Manifest.lock */,
 				E8F5704F1B3F7255003F020C /* Sources */,
 				E8F570501B3F7255003F020C /* Frameworks */,
-				E84F923D1F372CF0007D8B0E /* ShellScript */,
 				E8F570511B3F7255003F020C /* Resources */,
 				49D5871A08E106E97092B7AE /* 📦 Embed Pods Frameworks */,
 				8D16B52877B1DEA54ABEA344 /* 📦 Copy Pods Resources */,
@@ -4179,19 +4178,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Geocube/Pods-Geocube-resources.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		E84F923D1F372CF0007D8B0E /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "";
 		};
 /* End PBXShellScriptBuildPhase section */
 
