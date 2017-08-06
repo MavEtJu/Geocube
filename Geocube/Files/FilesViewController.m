@@ -319,13 +319,13 @@ enum {
 {
     [self showInfoView];
     InfoItemID iii = [infoView addImport];
-    [infoView setDescription:iii description:[NSString stringWithFormat:@"Geocube import of %@", fn]];
+    [infoView setDescription:iii description:[NSString stringWithFormat:_(@"filesviewcontroller-geocubeimportof__"), fn]];
 
     NSData *data = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], fn]];
     if ([ImportGeocube parse:data infoViewer:infoView iiImport:iii] == NO) {
-        [MyTools messageBox:self header:@"Import failed" text:[NSString stringWithFormat:@"There was a problem importing the file %@.", fn]];
+        [MyTools messageBox:self header:_(@"filesviewcontroller-importfailed") text:[NSString stringWithFormat:_(@"filesviewcontroller-therewasaproblemimportingthefile__."), fn]];
     } else {
-        [MyTools messageBox:self header:@"Import successful" text:@"The import was successful."];
+        [MyTools messageBox:self header:_(@"filesviewcontroller-importsuccessful") text:_(@"filesviewcontroller-theimportwassuccessful.")];
     };
 
     [infoView removeItem:iii];
@@ -360,11 +360,11 @@ enum {
     }];
 
     if (groupsOkay == NO) {
-        [MyTools messageBox:self header:@"Prerequisite failed" text:@"Make sure there are user groups defined. Go to Groups -> User Groups and add a group."];
+        [MyTools messageBox:self header:_(@"filesviewcontroller-prerequisitefailed") text:_(@"filesviewcontroller-makesurethereareusergroupsdefined.gotogroups->UserGroupsandaddagroup.")];
         return;
     }
     if (accountsOkay == NO) {
-        [MyTools messageBox:self header:@"Prerequisite failed" text:@"Make sure that you have at least have defined one user account. Go to Settings -> Accounts and define an username."];
+        [MyTools messageBox:self header:_(@"filesviewcontroller-prerequisitefailed") text:_(@"filesviewcontroller-makesurethatyouhaveatleasthavedefinedoneuseraccount.gotosettings->accountsanddefineanusername.")];
         return;
     }
 
@@ -379,7 +379,7 @@ enum {
     }];
 
     [ActionSheetStringPicker
-        showPickerWithTitle:@"Select a Group"
+        showPickerWithTitle:_(@"filesviewcontroller-selectagroup")
         rows:groupNames
         initialSelection:configManager.lastImportGroup
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
@@ -405,7 +405,7 @@ enum {
     }];
 
     [ActionSheetStringPicker
-        showPickerWithTitle:@"Select the source"
+        showPickerWithTitle:_(@"filesviewcontroller-selectthesource")
         rows:accountNames
         initialSelection:configManager.lastImportSource
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
@@ -478,8 +478,8 @@ enum {
 - (void)fileRename:(NSString *)filename
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Rename file"
-                                message:[NSString stringWithFormat:@"Rename %@ to", filename]
+                                alertControllerWithTitle:_(@"filesviewcontroller-renamefile")
+                                message:[NSString stringWithFormat:_(@"filesviewcontroller-rename__to"), filename]
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
@@ -497,7 +497,7 @@ enum {
                              [self.tableView reloadData];
                          }];
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
