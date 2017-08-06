@@ -72,21 +72,21 @@
     items = [NSMutableArray arrayWithCapacity:RC_MAX];
     for (NSInteger i = 0; i < RC_MAX; i++) {
         switch (i) {
-            MATCH(RC_NAVIGATE, NSLocalizedString(@"menu-navigate", nil));
-            MATCH(RC_WAYPOINTS, NSLocalizedString(@"menu-waypoints", nil));
-            MATCH(RC_KEEPTRACK, NSLocalizedString(@"menu-keep_track", nil));
-            MATCH(RC_NOTESANDLOGS, NSLocalizedString(@"menu-noteslogs", nil));
-            MATCH(RC_TRACKABLES, NSLocalizedString(@"menu-trackables", nil));
-            MATCH(RC_GROUPS, NSLocalizedString(@"menu-groups", nil));
-            MATCH(RC_BROWSER, NSLocalizedString(@"menu-browser", nil));
-            MATCH(RC_FILES, NSLocalizedString(@"menu-files", nil));
-            MATCH(RC_STATISTICS, NSLocalizedString(@"menu-statistics", nil));
-            MATCH(RC_SETTINGS, NSLocalizedString(@"menu-settings", nil));
-            MATCH(RC_HELP, NSLocalizedString(@"menu-help", nil));
-            MATCH(RC_LISTS, NSLocalizedString(@"menu-lists", nil));
-            MATCH(RC_QUERIES, NSLocalizedString(@"menu-queries", nil));
-            MATCH(RC_TOOLS, NSLocalizedString(@"menu-tools", nil));
-            MATCH(RC_LOCATIONSLESS, NSLocalizedString(@"menu-locationless", nil));
+            MATCH(RC_NAVIGATE, _(@"menu-navigate"));
+            MATCH(RC_WAYPOINTS, _(@"menu-waypoints"));
+            MATCH(RC_KEEPTRACK, _(@"menu-keep_track"));
+            MATCH(RC_NOTESANDLOGS, _(@"menu-noteslogs"));
+            MATCH(RC_TRACKABLES, _(@"menu-trackables"));
+            MATCH(RC_GROUPS, _(@"menu-groups"));
+            MATCH(RC_BROWSER, _(@"menu-browser"));
+            MATCH(RC_FILES, _(@"menu-files"));
+            MATCH(RC_STATISTICS, _(@"menu-statistics"));
+            MATCH(RC_SETTINGS, _(@"menu-settings"));
+            MATCH(RC_HELP, _(@"menu-help"));
+            MATCH(RC_LISTS, _(@"menu-lists"));
+            MATCH(RC_QUERIES, _(@"menu-queries"));
+            MATCH(RC_TOOLS, _(@"menu-tools"));
+            MATCH(RC_LOCATIONSLESS, _(@"menu-locationless"));
             default:
                 NSAssert1(FALSE, @"Menu not matched: %ld", (long)i);
         }

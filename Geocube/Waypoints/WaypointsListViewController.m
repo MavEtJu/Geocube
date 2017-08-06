@@ -51,11 +51,11 @@ enum {
     currentSortOrder = configManager.waypointListSortBy;
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuAddWaypoint label:NSLocalizedString(@"waypointslistviewcontroller-addwaypoint", nil)];
-    [lmi addItem:menuExportGPX label:NSLocalizedString(@"waypointslistviewcontroller-exportgpx", nil)];
-    [lmi addItem:menuSortBy label:NSLocalizedString(@"waypointslistviewcontroller-sortby", nil)];
-    [lmi addItem:menuReloadWaypoints label:NSLocalizedString(@"waypointslistviewcontroller-reloadwaypoints", nil)];
-    [lmi addItem:menuDeleteAll label:NSLocalizedString(@"waypointslistviewcontroller-deleteall", nil)];
+    [lmi addItem:menuAddWaypoint label:_(@"waypointslistviewcontroller-addwaypoint")];
+    [lmi addItem:menuExportGPX label:_(@"waypointslistviewcontroller-exportgpx")];
+    [lmi addItem:menuSortBy label:_(@"waypointslistviewcontroller-sortby")];
+    [lmi addItem:menuReloadWaypoints label:_(@"waypointslistviewcontroller-reloadwaypoints")];
+    [lmi addItem:menuDeleteAll label:_(@"waypointslistviewcontroller-deleteall")];
 
     processing = [[RemoteAPIProcessingGroup alloc] init];
 

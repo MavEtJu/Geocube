@@ -56,14 +56,14 @@
     [self calculateRects];
 
     labelInput = [[UITextView alloc] initWithFrame:rectInput];
-    labelInput.text = NSLocalizedString(@"toolsrot13viewcontroller-enteryourtexthere...", nil);
+    labelInput.text = _(@"toolsrot13viewcontroller-enteryourtexthere...");
     labelInput.backgroundColor = [UIColor lightGrayColor];
     labelInput.delegate = self;
     [labelInput selectAll:self];
     [self.view addSubview:labelInput];
 
     labelOutput = [[UITextView alloc] initWithFrame:rectOutput];
-    labelOutput.text = NSLocalizedString(@"toolsrot13viewcontroller-ragrelbhegrkgurer...", nil);
+    labelOutput.text = _(@"toolsrot13viewcontroller-ragrelbhegrkgurer...");
     labelOutput.backgroundColor = [UIColor lightGrayColor];
     labelOutput.userInteractionEnabled = YES;
     labelOutput.delegate = self;
@@ -71,7 +71,7 @@
 
     buttonClear = [GCButton buttonWithType:UIButtonTypeSystem];
     buttonClear.frame = rectButtonClear;
-    [buttonClear setTitle:NSLocalizedString(@"Clear", nil) forState:UIControlStateNormal];
+    [buttonClear setTitle:_(@"Clear") forState:UIControlStateNormal];
     [buttonClear addTarget:self action:@selector(clear:) forControlEvents:UIControlEventTouchDown];
     buttonClear.userInteractionEnabled = YES;
     [self.view addSubview:buttonClear];

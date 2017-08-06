@@ -93,17 +93,17 @@
         self.labelWPRatingT.hidden = NO;
         self.ivWPContainer.image = [imageLibrary getType:waypointManager.currentWaypoint];
         self.ivWPSize.image = [imageLibrary get:waypointManager.currentWaypoint.gs_container.icon];
-        self.labelWPRatingD.text = [NSString stringWithFormat:@"%@: %0.1f", NSLocalizedString(@"compassviewcontroller-D", nil), waypointManager.currentWaypoint.gs_rating_difficulty];
-        self.labelWPRatingT.text = [NSString stringWithFormat:@"%@: %0.1f",NSLocalizedString(@"compassviewcontroller-T", nil),  waypointManager.currentWaypoint.gs_rating_terrain];
+        self.labelWPRatingD.text = [NSString stringWithFormat:@"%@: %0.1f", _(@"compassviewcontroller-D"), waypointManager.currentWaypoint.gs_rating_difficulty];
+        self.labelWPRatingT.text = [NSString stringWithFormat:@"%@: %0.1f", _(@"compassviewcontroller-T"),  waypointManager.currentWaypoint.gs_rating_terrain];
     }
 
     self.labelGPSAltitude.text = @"";
     self.labelGPSAccuracy.text = @"";
     self.labelGPSDistance.text = @"";
 
-    self.labelAltitude.text = NSLocalizedString(@"compassviewcontroller-altitude", nil);
-    self.labelAccuracy.text = NSLocalizedString(@"compassviewcontroller-accuracy", nil);
-    self.labelMyLocation.text = NSLocalizedString(@"compassviewcontroller-mylocation", nil);
+    self.labelAltitude.text = _(@"compassviewcontroller-altitude");
+    self.labelAccuracy.text = _(@"compassviewcontroller-accuracy");
+    self.labelMyLocation.text = _(@"compassviewcontroller-mylocation");
 
     if (waypointManager.currentWaypoint != nil) {
         self.labelWPCode.text = waypointManager.currentWaypoint.wpt_name;

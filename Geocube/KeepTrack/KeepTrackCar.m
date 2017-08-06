@@ -56,8 +56,8 @@ enum {
     self = [super init];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuRememberLocation label:NSLocalizedString(@"keeptrackcar-rememberlocation", nil)];
-    [lmi addItem:menuClearCoordinates label:NSLocalizedString(@"keeptrackcar-clearcoordinates", nil)];
+    [lmi addItem:menuRememberLocation label:_(@"keeptrackcar-rememberlocation")];
+    [lmi addItem:menuClearCoordinates label:_(@"keeptrackcar-clearcoordinates")];
 
     return self;
 }

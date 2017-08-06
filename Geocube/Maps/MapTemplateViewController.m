@@ -93,22 +93,22 @@
         [lmi addItem:mb.menuItem label:mb.menuLabel];
     }];
 
-    [lmi addItem:MVCmenuMapMap label:NSLocalizedString(@"maptemplateviewcontroller-map", nil)];
-    [lmi addItem:MVCmenuMapAerial label:NSLocalizedString(@"maptemplateviewcontroller-aerial", nil)];
-    [lmi addItem:MVCmenuMapHybridMapAerial label:NSLocalizedString(@"maptemplateviewcontroller-mapaerial", nil)];
-    [lmi addItem:MVCmenuMapTerrain label:NSLocalizedString(@"maptemplateviewcontroller-terrain", nil)];
+    [lmi addItem:MVCmenuMapMap label:_(@"maptemplateviewcontroller-map")];
+    [lmi addItem:MVCmenuMapAerial label:_(@"maptemplateviewcontroller-aerial")];
+    [lmi addItem:MVCmenuMapHybridMapAerial label:_(@"maptemplateviewcontroller-mapaerial")];
+    [lmi addItem:MVCmenuMapTerrain label:_(@"maptemplateviewcontroller-terrain")];
 
-    [lmi addItem:MVCmenuLoadWaypoints label:NSLocalizedString(@"maptemplateviewcontroller-loadwaypoints", nil)];
-    [lmi addItem:MVCmenuDirections label:NSLocalizedString(@"maptemplateviewcontroller-directions", nil)];
-    [lmi addItem:MVCmenuRemoveTarget label:NSLocalizedString(@"maptemplateviewcontroller-removetarget", nil)];
-    [lmi addItem:MVCmenuRecenter label:NSLocalizedString(@"maptemplateviewcontroller-recenter", nil)];
-    [lmi addItem:MVCmenuUseGPS label:NSLocalizedString(@"maptemplateviewcontroller-usegps", nil)];
-    [lmi addItem:MVCmenuExportVisible label:NSLocalizedString(@"maptemplateviewcontroller-exportvisible", nil)];
+    [lmi addItem:MVCmenuLoadWaypoints label:_(@"maptemplateviewcontroller-loadwaypoints")];
+    [lmi addItem:MVCmenuDirections label:_(@"maptemplateviewcontroller-directions")];
+    [lmi addItem:MVCmenuRemoveTarget label:_(@"maptemplateviewcontroller-removetarget")];
+    [lmi addItem:MVCmenuRecenter label:_(@"maptemplateviewcontroller-recenter")];
+    [lmi addItem:MVCmenuUseGPS label:_(@"maptemplateviewcontroller-usegps")];
+    [lmi addItem:MVCmenuExportVisible label:_(@"maptemplateviewcontroller-exportvisible")];
 
     showBoundaries = NO;
-    [lmi addItem:MVCmenuShowBoundaries label:NSLocalizedString(@"maptemplateviewcontroller-showboundaries", nil)];
+    [lmi addItem:MVCmenuShowBoundaries label:_(@"maptemplateviewcontroller-showboundaries")];
 
-    [lmi addItem:MVCmenuRemoveHistory label:NSLocalizedString(@"maptemplateviewcontroller-removehistory", nil)];
+    [lmi addItem:MVCmenuRemoveHistory label:_(@"maptemplateviewcontroller-removehistory")];
 
     self.map = [[self.currentMapBrand.mapObject alloc] initMapObject:self];
     self.map.staticHistory = self.staticHistory;
@@ -128,9 +128,9 @@
         [lmi disableItem:MVCmenuRemoveTarget];
 
     if (configManager.dynamicmapEnable == YES) {
-        [lmi addItem:MVCmenuAutoZoom label:NSLocalizedString(@"maptemplateviewcontroller-noautozoom", nil)];
+        [lmi addItem:MVCmenuAutoZoom label:_(@"maptemplateviewcontroller-noautozoom")];
     } else {
-        [lmi addItem:MVCmenuAutoZoom label:NSLocalizedString(@"maptemplateviewcontroller-autozoom", nil)];
+        [lmi addItem:MVCmenuAutoZoom label:_(@"maptemplateviewcontroller-autozoom")];
     }
 
     useGPS = LM.useGPS;
@@ -823,9 +823,9 @@
 {
     configManager.dynamicmapEnable = !configManager.dynamicmapEnable;
     if (configManager.dynamicmapEnable == YES) {
-        [lmi changeItem:MVCmenuAutoZoom label:NSLocalizedString(@"maptemplateviewcontroller-noautozoom", nil)];
+        [lmi changeItem:MVCmenuAutoZoom label:_(@"maptemplateviewcontroller-noautozoom")];
     } else {
-        [lmi changeItem:MVCmenuAutoZoom label:NSLocalizedString(@"maptemplateviewcontroller-autozoom", nil)];
+        [lmi changeItem:MVCmenuAutoZoom label:_(@"maptemplateviewcontroller-autozoom")];
     }
 }
 
@@ -857,10 +857,10 @@
 {
     if (showBoundaries == NO) {
         showBoundaries = YES;
-        [lmi changeItem:MVCmenuShowBoundaries label:NSLocalizedString(@"maptemplateviewcontroller-hideboundaries", nil)];
+        [lmi changeItem:MVCmenuShowBoundaries label:_(@"maptemplateviewcontroller-hideboundaries")];
     } else {
         showBoundaries = NO;
-        [lmi changeItem:MVCmenuShowBoundaries label:NSLocalizedString(@"maptemplateviewcontroller-showboundaries", nil)];
+        [lmi changeItem:MVCmenuShowBoundaries label:_(@"maptemplateviewcontroller-showboundaries")];
     }
     [self.map showBoundaries:showBoundaries];
 }

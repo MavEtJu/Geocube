@@ -8,9 +8,9 @@ use Data::Dumper;
 my %strings = ();
 while (my $line = <>) {
 	chomp($line);
-	# MATCH(RC_KEEPTRACK, NSLocalizedString(@"menu-keep_track", nil));
+	# MATCH(RC_KEEPTRACK, _(@"menu-keep_track"));
 
-	my @ws = split(/NSLocalizedString.@"/, $line);
+	my @ws = split(/_\(@"/, $line);
 	shift(@ws);
 	foreach my $w (@ws) {
 		# @"menu-keep_track", nil));

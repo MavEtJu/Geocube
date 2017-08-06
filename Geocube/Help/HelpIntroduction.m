@@ -29,28 +29,28 @@
 {
     KxIntroViewPage *page;
     NSMutableArray<KxIntroViewPage *> *pages = [NSMutableArray arrayWithCapacity:10];
-    page = [KxIntroViewPage introViewPageWithTitle:NSLocalizedString(@"helpintroduction-title1", nil)
-                                        withDetail:NSLocalizedString(@"helpintroduction-text1", nil)
+    page = [KxIntroViewPage introViewPageWithTitle:_(@"helpintroduction-title1")
+                                        withDetail:_(@"helpintroduction-text1")
                                          withImage:[UIImage imageNamed:@"GC - logo - 512x512"]];
     [pages addObject:page];
 
-    page = [KxIntroViewPage introViewPageWithTitle:NSLocalizedString(@"helpintroduction-title2", nil)
-                                        withDetail:NSLocalizedString(@"helpintroduction-text2", nil)
+    page = [KxIntroViewPage introViewPageWithTitle:_(@"helpintroduction-title2")
+                                        withDetail:_(@"helpintroduction-text2")
                                          withImage:[UIImage imageNamed:@"Menu - 640x623"]];
     [pages addObject:page];
 
-    page = [KxIntroViewPage introViewPageWithTitle:NSLocalizedString(@"helpintroduction-title3", nil)
-                                        withDetail:NSLocalizedString(@"helpintroduction-text3", nil)
+    page = [KxIntroViewPage introViewPageWithTitle:_(@"helpintroduction-title3")
+                                        withDetail:_(@"helpintroduction-text3")
                                          withImage:[UIImage imageNamed:@"Close Window - 640x430"]];
     [pages addObject:page];
 
-    page = [KxIntroViewPage introViewPageWithTitle:NSLocalizedString(@"helpintroduction-title4", nil)
-                                        withDetail:NSLocalizedString(@"helpintroduction-text4", nil)
+    page = [KxIntroViewPage introViewPageWithTitle:_(@"helpintroduction-title4")
+                                        withDetail:_(@"helpintroduction-text4")
                                          withImage:[UIImage imageNamed:@"Map icons - 362x86"]];
     [pages addObject:page];
 
-    page = [KxIntroViewPage introViewPageWithTitle:NSLocalizedString(@"helpintroduction-title5", nil)
-                                        withDetail:NSLocalizedString(@"helpintroduction-text5", nil)
+    page = [KxIntroViewPage introViewPageWithTitle:_(@"helpintroduction-title5")
+                                        withDetail:_(@"helpintroduction-text5")
                                          withImage:[UIImage imageNamed:@"GC - logo - 512x512"]];
     [pages addObject:page];
 

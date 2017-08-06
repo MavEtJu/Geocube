@@ -68,7 +68,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return NSLocalizedString(@"waypointtrackablesviewcontroller-trackables", nil);
+    return _(@"waypointtrackablesviewcontroller-trackables");
 }
 
 // Return a cell for the index path

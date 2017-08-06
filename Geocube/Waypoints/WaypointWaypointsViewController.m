@@ -45,8 +45,8 @@ enum {
     wps = [waypoint hasWaypoints];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuAddWaypoint label:NSLocalizedString(@"waypointwaypointsviewcontroller-addwaypoint", nil)];
-    [lmi addItem:menuCleanup label:NSLocalizedString(@"waypointwaypointsviewcontroller-removedupes", nil)];
+    [lmi addItem:menuAddWaypoint label:_(@"waypointwaypointsviewcontroller-addwaypoint")];
+    [lmi addItem:menuCleanup label:_(@"waypointwaypointsviewcontroller-removedupes")];
 
     self.delegateWaypoint = nil;
 

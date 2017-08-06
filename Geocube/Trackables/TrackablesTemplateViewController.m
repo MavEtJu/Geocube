@@ -45,7 +45,7 @@ enum {
     [self makeInfoView];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuUpdate label:NSLocalizedString(@"trackablestemplateviewcontroller-update", nil)];
+    [lmi addItem:menuUpdate label:_(@"trackablestemplateviewcontroller-update")];
 }
 
 - (void)viewWillAppear:(BOOL)animated

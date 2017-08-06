@@ -52,28 +52,28 @@
     if (isLatitude == YES) {
         dirNorth = [UIButton buttonWithType:UIButtonTypeSystem];
         dirNorth.frame = CGRectMake(0, y, 100, 80);
-        [dirNorth setTitle:NSLocalizedString(@"compass-north", nil) forState:UIControlStateNormal];
+        [dirNorth setTitle:_(@"compass-north") forState:UIControlStateNormal];
         [dirNorth addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
         [self addSubview:dirNorth];
         y += 80;
 
         dirSouth = [UIButton buttonWithType:UIButtonTypeSystem];
         dirSouth.frame = CGRectMake(0, y, 100, 80);
-        [dirSouth setTitle:NSLocalizedString(@"compass-south", nil) forState:UIControlStateNormal];
+        [dirSouth setTitle:_(@"compass-south") forState:UIControlStateNormal];
         [dirSouth addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
         [self addSubview:dirSouth];
         y += 80;
     } else {
         dirEast = [UIButton buttonWithType:UIButtonTypeSystem];
         dirEast.frame = CGRectMake(0, y, 100, 80);
-        [dirEast setTitle:NSLocalizedString(@"compass-east", nil) forState:UIControlStateNormal];
+        [dirEast setTitle:_(@"compass-east") forState:UIControlStateNormal];
         [dirEast addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
         [self addSubview:dirEast];
         y += 80;
 
         dirWest = [UIButton buttonWithType:UIButtonTypeSystem];
         dirWest.frame = CGRectMake(0, y, 100, 80);
-        [dirWest setTitle:NSLocalizedString(@"compass-west", nil) forState:UIControlStateNormal];
+        [dirWest setTitle:_(@"compass-west") forState:UIControlStateNormal];
         [dirWest addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
         [self addSubview:dirWest];
         y += 80;
@@ -143,13 +143,13 @@
     NSString *new = nil;
 
     if (b == dirNorth)
-        new = NSLocalizedString(@"compass-N", nil);
+        new = _(@"compass-N");
     if (b == dirEast)
-        new = NSLocalizedString(@"compass-E", nil);
+        new = _(@"compass-E");
     if (b == dirSouth)
-        new = NSLocalizedString(@"compass-S", nil);
+        new = _(@"compass-S");
     if (b == dirWest)
-        new = NSLocalizedString(@"compass-W", nil);
+        new = _(@"compass-W");
     new = [NSString stringWithFormat:@"%@ ", new];
 
     UITextPosition *firstTP = [self.targetTextInput beginningOfDocument];

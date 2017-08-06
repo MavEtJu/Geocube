@@ -54,10 +54,10 @@ enum {
     self = [super init];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuImportPhoto label:NSLocalizedString(@"waypointimagesviewcontroller-importphoto", nil)];
-    [lmi addItem:menuMakePhoto label:NSLocalizedString(@"waypointimagesviewcontroller-makephoto", nil)];
-    [lmi addItem:menuDownloadImages label:NSLocalizedString(@"waypointimagesviewcontroller-downloadphotos", nil)];
-    [lmi addItem:menuDeleteAllPhotos label:NSLocalizedString(@"waypointimagesviewcontroller-deleteallphotos", nil)];
+    [lmi addItem:menuImportPhoto label:_(@"waypointimagesviewcontroller-importphoto")];
+    [lmi addItem:menuMakePhoto label:_(@"waypointimagesviewcontroller-makephoto")];
+    [lmi addItem:menuDownloadImages label:_(@"waypointimagesviewcontroller-downloadphotos")];
+    [lmi addItem:menuDeleteAllPhotos label:_(@"waypointimagesviewcontroller-deleteallphotos")];
 
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary] == NO)
         [lmi disableItem:menuImportPhoto];
@@ -133,7 +133,7 @@ enum {
 - (void)downloadImagesLogs:(NSNumber *)iii_
 {
     InfoItemID iii = [iii_ integerValue];
-    [infoView setDescription:iii description:NSLocalizedString(@"waypointimagesviewcontroller-imagesfromthelogs", nil)];
+    [infoView setDescription:iii description:_(@"waypointimagesviewcontroller-imagesfromthelogs")];
 
     [logImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
         [infoView setQueueSize:iii queueSize:[logImages count] - idx];
@@ -153,7 +153,7 @@ enum {
 - (void)downloadImagesCache:(NSNumber *)iii_
 {
     InfoItemID iii = [iii_ integerValue];
-    [infoView setDescription:iii description:NSLocalizedString(@"waypointimagesviewcontroller-imagesfromthewaypoint", nil)];
+    [infoView setDescription:iii description:_(@"waypointimagesviewcontroller-imagesfromthewaypoint")];
 
     [cacheImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
         [infoView setQueueSize:iii queueSize:[cacheImages count] - idx];
@@ -214,9 +214,9 @@ enum {
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     switch (section) {
-        case SECTION_USER: return NSLocalizedString(@"waypointimagesviewcontroller-userimages", nil);
-        case SECTION_WAYPOINT: return NSLocalizedString(@"waypointimagesviewcontroller-waypointimages", nil);
-        case SECTION_LOG: return NSLocalizedString(@"waypointimagesviewcontroller-logimages", nil);
+        case SECTION_USER: return _(@"waypointimagesviewcontroller-userimages");
+        case SECTION_WAYPOINT: return _(@"waypointimagesviewcontroller-waypointimages");
+        case SECTION_LOG: return _(@"waypointimagesviewcontroller-logimages");
     }
     return @"Images???";
 }

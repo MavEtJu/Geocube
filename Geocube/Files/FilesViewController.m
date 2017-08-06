@@ -52,8 +52,8 @@ enum {
     [self makeInfoView];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuICloud label:NSLocalizedString(@"filesviewcontroller-icloud", nil)];
-    [lmi addItem:menuRefresh label:NSLocalizedString(@"filesviewcontroller-refresh", nil)];
+    [lmi addItem:menuICloud label:_(@"filesviewcontroller-icloud")];
+    [lmi addItem:menuRefresh label:_(@"filesviewcontroller-refresh")];
 }
 
 - (void)refreshFileData
@@ -141,11 +141,11 @@ enum {
 
     NSString *imported = @"";
     if (fi != nil)
-        imported = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"filesviewcontroller-lastimported", nil), [MyTools niceTimeDifference:fi.lastimport]];
+        imported = [NSString stringWithFormat:@"%@: %@", _(@"filesviewcontroller-lastimported"), [MyTools niceTimeDifference:fi.lastimport]];
 
     cell.labelFilename.text = fn;
-    cell.labelSize.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"filesviewcontroller-filesize", nil), [MyTools niceFileSize:[[filesSizes objectAtIndex:indexPath.row] integerValue]]];
-    cell.labelDateTime.text = [NSString stringWithFormat:@"%@: %@.", NSLocalizedString(@"filesviewcontroller-fileage", nil), [MyTools niceTimeDifference:[[filesDates objectAtIndex:indexPath.row] timeIntervalSince1970]]];
+    cell.labelSize.text = [NSString stringWithFormat:@"%@: %@", _(@"filesviewcontroller-filesize"), [MyTools niceFileSize:[[filesSizes objectAtIndex:indexPath.row] integerValue]]];
+    cell.labelDateTime.text = [NSString stringWithFormat:@"%@: %@.", _(@"filesviewcontroller-fileage"), [MyTools niceTimeDifference:[[filesDates objectAtIndex:indexPath.row] timeIntervalSince1970]]];
     cell.labelLastImport.text = imported;
     return cell;
 }
@@ -171,13 +171,13 @@ enum {
 
     UIAlertController *view = [UIAlertController
                                alertControllerWithTitle:fn
-                               message:NSLocalizedString(@"filesviewcontroller-chooseyouraction", nil)
+                               message:_(@"filesviewcontroller-chooseyouraction")
                                preferredStyle:UIAlertControllerStyleActionSheet];
     view.popoverPresentationController.sourceView = self.view;
     view.popoverPresentationController.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0);
 
     UIAlertAction *delete = [UIAlertAction
-                             actionWithTitle:NSLocalizedString(@"filesviewcontroller-delete", nil)
+                             actionWithTitle:_(@"filesviewcontroller-delete")
                              style:UIAlertActionStyleDestructive
                              handler:^(UIAlertAction * action) {
                                  [self fileDelete:fn forceReload:YES];
@@ -188,7 +188,7 @@ enum {
         [[fn pathExtension] isEqualToString:@"zip"] == YES ||
         [[fn pathExtension] isEqualToString:@"geocube"] == YES) {
         import = [UIAlertAction
-                  actionWithTitle:NSLocalizedString(@"filesviewcontroller-import", nil)
+                  actionWithTitle:_(@"filesviewcontroller-import")
                   style:UIAlertActionStyleDefault
                   handler:^(UIAlertAction * action) {
                       [self fileImport:indexPath.row view:[aTableView cellForRowAtIndexPath:indexPath]];
@@ -198,7 +198,7 @@ enum {
     UIAlertAction *restore = nil;
     if ([[fn pathExtension] isEqualToString:@"sqlite"] == YES) {
         restore = [UIAlertAction
-                   actionWithTitle:NSLocalizedString(@"filesviewcontroller-restore", nil)
+                   actionWithTitle:_(@"filesviewcontroller-restore")
                    style:UIAlertActionStyleDefault
                    handler:^(UIAlertAction * action) {
                        [self fileRestore:indexPath.row view:[aTableView cellForRowAtIndexPath:indexPath]];
@@ -208,7 +208,7 @@ enum {
     UIAlertAction *unzip = nil;
     if ([[fn pathExtension] isEqualToString:@"zip"] == YES) {
         unzip = [UIAlertAction
-                 actionWithTitle:NSLocalizedString(@"filesviewcontroller-unzip", nil)
+                 actionWithTitle:_(@"filesviewcontroller-unzip")
                  style:UIAlertActionStyleDefault
                  handler:^(UIAlertAction * action) {
                      [self fileUnzip:fn];
@@ -216,28 +216,28 @@ enum {
                  }];
     }
     UIAlertAction *rename = [UIAlertAction
-                             actionWithTitle:NSLocalizedString(@"filesviewcontroller-rename", nil)
+                             actionWithTitle:_(@"filesviewcontroller-rename")
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [self fileRename:fn];
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
     UIAlertAction *uploadAirdrop = [UIAlertAction
-                                    actionWithTitle:NSLocalizedString(@"filesviewcontroller-uploadwithairdrop", nil)
+                                    actionWithTitle:_(@"filesviewcontroller-uploadwithairdrop")
                                     style:UIAlertActionStyleDefault
                                     handler:^(UIAlertAction * action) {
                                         [self uploadAirdrop:fn];
                                         [view dismissViewControllerAnimated:YES completion:nil];
                                     }];
     UIAlertAction *uploadICloud = [UIAlertAction
-                                   actionWithTitle:NSLocalizedString(@"filesviewcontroller-uploadtoicloud", nil)
+                                   actionWithTitle:_(@"filesviewcontroller-uploadtoicloud")
                                    style:UIAlertActionStyleDefault
                                    handler:^(UIAlertAction * action) {
                                        [self uploadICloud:fn];
                                        [view dismissViewControllerAnimated:YES completion:nil];
                                    }];
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:NSLocalizedString(@"Cancel", nil)
+                             actionWithTitle:_(@"Cancel")
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {

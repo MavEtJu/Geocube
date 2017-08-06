@@ -15,7 +15,7 @@ done
 
 echo
 echo "Untranslated strings:"
-find . -name '*.m' | xargs grep -h NSLocalizedString | perl findMissingLocalizations.pl
+find . -name '*.m' | xargs grep -h "_(" | perl findMissingLocalizations.pl
 
 echo
 echo "HelpDatabaseViewController:"

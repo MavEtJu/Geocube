@@ -52,9 +52,9 @@ enum {
     img = nil;
     hasCloseButton = YES;
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuUploadAirdrop label:NSLocalizedString(@"waypointimageviewcontroller-airdrop", nil)];
-    [lmi addItem:menuUploadICloud label:NSLocalizedString(@"waypointimageviewcontroller-icloud", nil)];
-    [lmi addItem:menuDeletePhoto label:NSLocalizedString(@"waypointimageviewcontroller-deletephoto", nil)];
+    [lmi addItem:menuUploadAirdrop label:_(@"waypointimageviewcontroller-airdrop")];
+    [lmi addItem:menuUploadICloud label:_(@"waypointimageviewcontroller-icloud")];
+    [lmi addItem:menuDeletePhoto label:_(@"waypointimageviewcontroller-deletephoto")];
     image = nil;
     self.delegate = nil;
 

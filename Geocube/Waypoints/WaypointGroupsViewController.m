@@ -75,8 +75,8 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 0)
-        return NSLocalizedString(@"waypointgroupsviewcontroller-usergroups", nil);
-    return NSLocalizedString(@"waypointgroupsviewcontroller-systemgroups", nil);
+        return _(@"waypointgroupsviewcontroller-usergroups");
+    return _(@"waypointgroupsviewcontroller-systemgroups");
 }
 
 // Return a cell for the index path

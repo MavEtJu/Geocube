@@ -307,10 +307,10 @@ TIME(dateTimeString_dow, @"EEEE")
 {
     if (isMetric == YES) {
         if (m < 1000)
-            return [NSString stringWithFormat:@"%ld m", (long)m, NSLocalizedString(@"distance-m", nil)];
+            return [NSString stringWithFormat:@"%ld m", (long)m, _(@"distance-m")];
         if (m < 10000)
-            return [NSString stringWithFormat:@"%0.2f km", m / 1000.0, NSLocalizedString(@"distance-km", nil)];
-        return [NSString stringWithFormat:@"%ld km", (long)m / 1000, NSLocalizedString(@"distance-km", nil)];
+            return [NSString stringWithFormat:@"%0.2f km", m / 1000.0, _(@"distance-km")];
+        return [NSString stringWithFormat:@"%ld km", (long)m / 1000, _(@"distance-km")];
     }
 
     /* Metric to imperial conversions
@@ -321,10 +321,10 @@ TIME(dateTimeString_dow, @"EEEE")
      * The norm is for miles down to 0.1 then switch to feet. The few apps that use yards get riidculed for it.
      */
     if (m <= 161)   // 1/10th of a mile
-        return [NSString stringWithFormat:@"%ld %@", (long)(m / 0.30480), NSLocalizedString(@"distance-feet", nil)];
+        return [NSString stringWithFormat:@"%ld %@", (long)(m / 0.30480), _(@"distance-feet")];
     if (m <= 16093)   // 10 miles
-        return [NSString stringWithFormat:@"%0.2f %@", m / 1609.3, NSLocalizedString(@"distance-miles", nil)];
-    return [NSString stringWithFormat:@"%ld %@", (long)(m / 1609.3), NSLocalizedString(@"distance-miles", nil)];
+        return [NSString stringWithFormat:@"%0.2f %@", m / 1609.3, _(@"distance-miles")];
+    return [NSString stringWithFormat:@"%ld %@", (long)(m / 1609.3), _(@"distance-miles")];
 }
 
 /// Returns the number as a nicely formatted string with km/h or mph
@@ -336,12 +336,12 @@ TIME(dateTimeString_dow, @"EEEE")
 + (NSString *)niceSpeed:(NSInteger)kmph isMetric:(BOOL)isMetric
 {
     if (isMetric == YES) {
-        return [NSString stringWithFormat:@"%ld %@", (long)kmph, NSLocalizedString(@"distance-km/h", nil)];
+        return [NSString stringWithFormat:@"%ld %@", (long)kmph, _(@"distance-km/h")];
     } else {
         if (kmph / 1.6093 < 10)
-            return [NSString stringWithFormat:@"%0.2f %@", (kmph / 1.6093), NSLocalizedString(@"distance-mls/h", nil)];
+            return [NSString stringWithFormat:@"%0.2f %@", (kmph / 1.6093), _(@"distance-mls/h")];
         else
-            return [NSString stringWithFormat:@"%ld %@", (long)(kmph / 1.6093), NSLocalizedString(@"distance-mls/h", nil)];
+            return [NSString stringWithFormat:@"%ld %@", (long)(kmph / 1.6093), _(@"distance-mls/h")];
     }
 }
 
@@ -351,26 +351,26 @@ TIME(dateTimeString_dow, @"EEEE")
     long diff = time(NULL) - i;
 
     if (diff < 60) {
-        return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? NSLocalizedString(@"time-second-ago", nil) : NSLocalizedString(@"time-seconds-ago", nil)];
+        return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? _(@"time-second-ago") : _(@"time-seconds-ago")];
     }
     if (diff < 3600) {
         diff /= 60;
-        return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? NSLocalizedString(@"time-minute-ago", nil) : NSLocalizedString(@"time-minutes-ago", nil)];
+        return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? _(@"time-minute-ago") : _(@"time-minutes-ago")];
     }
     if (diff < 24 * 3600) {
         diff /= 3600;
-        return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? NSLocalizedString(@"time-hour-ago", nil) : NSLocalizedString(@"time-hours-ago", nil)];
+        return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? _(@"time-hour-ago") : _(@"time-hours-ago")];
     }
     if (diff < 7 * 24 * 3600) {
         diff /= 24 * 3600;
-        return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? NSLocalizedString(@"time-day-ago", nil) : NSLocalizedString(@"time-days-ago", nil)];
+        return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? _(@"time-day-ago") : _(@"time-days-ago")];
     }
     if (diff < 365 * 24 * 3600) {
         diff /= 7 * 24 * 3600;
-        return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? NSLocalizedString(@"time-week-ago", nil) : NSLocalizedString(@"time-weeks-ago", nil)];
+        return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? _(@"time-week-ago") : _(@"time-weeks-ago")];
     }
     diff /= 365 * 24 * 3600;
-    return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? NSLocalizedString(@"time-year-ago", nil) : NSLocalizedString(@"time-years-ago", nil)];
+    return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? _(@"time-year-ago") : _(@"time-years-ago")];
 }
 
 /// Returns the number as a nicely formatted string for origin
@@ -624,7 +624,7 @@ TIME(dateTimeString_dow, @"EEEE")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *close = [UIAlertAction
-                            actionWithTitle:NSLocalizedString(@"Close", nil)
+                            actionWithTitle:_(@"Close")
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction *action) {
                                 [alert dismissViewControllerAnimated:YES completion:nil];
@@ -641,11 +641,11 @@ TIME(dateTimeString_dow, @"EEEE")
 {
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:header
-                                message:[NSString stringWithFormat:@"%@\n%@: %@", text, NSLocalizedString(@"Error", nil), error]
+                                message:[NSString stringWithFormat:@"%@\n%@: %@", text, _(@"Error"), error]
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *close = [UIAlertAction
-                            actionWithTitle:NSLocalizedString(@"Close", nil)
+                            actionWithTitle:_(@"Close")
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction *action) {
                                 [alert dismissViewControllerAnimated:YES completion:nil];
@@ -735,12 +735,12 @@ TIME(dateTimeString_dow, @"EEEE")
     } else {
 
         UIAlertController *alert = [UIAlertController
-                                    alertControllerWithTitle:NSLocalizedString(@"Sorry", nil)
-                                    message:NSLocalizedString(@"tweet-fail", nil)
+                                    alertControllerWithTitle:_(@"Sorry")
+                                    message:_(@"tweet-fail")
                                     preferredStyle:UIAlertControllerStyleAlert];
 
         UIAlertAction *close = [UIAlertAction
-                                actionWithTitle:NSLocalizedString(@"Close", nil)
+                                actionWithTitle:_(@"Close")
                                 style:UIAlertActionStyleDefault
                                 handler:^(UIAlertAction *action) {
                                     [alert dismissViewControllerAnimated:YES completion:nil];
@@ -754,36 +754,36 @@ TIME(dateTimeString_dow, @"EEEE")
 }
 
 /*
-NSLocalizedString(@"distance-metre", nil);
-NSLocalizedString(@"distance-metres", nil);
-NSLocalizedString(@"distance-kms", nil);
-NSLocalizedString(@"distance-kilometer", nil);
-NSLocalizedString(@"distance-kilometers", nil);
-NSLocalizedString(@"distance-m/s", nil);
-NSLocalizedString(@"distance-metre/second", nil);
-NSLocalizedString(@"distance-metres/second", nil);
-NSLocalizedString(@"distance-kms/h", nil);
-NSLocalizedString(@"distance-kilometer/hour", nil);
-NSLocalizedString(@"distance-kilometers/hour", nil);
-NSLocalizedString(@"distance-ft", nil);
-NSLocalizedString(@"distance-ml", nil);
-NSLocalizedString(@"distance-mls", nil);
-NSLocalizedString(@"distance-mile", nil);
-NSLocalizedString(@"distance-ft/s", nil);
-NSLocalizedString(@"distance-feet/second", nil);
-NSLocalizedString(@"distance-miles/hour", nil);
-NSLocalizedString(@"time-day", nil);
-NSLocalizedString(@"time-days", nil);
-NSLocalizedString(@"time-hour", nil);
-NSLocalizedString(@"time-hours", nil);
-NSLocalizedString(@"time-minute", nil);
-NSLocalizedString(@"time-minutes", nil);
-NSLocalizedString(@"time-second", nil);
-NSLocalizedString(@"time-seconds", nil);
-NSLocalizedString(@"time-week", nil);
-NSLocalizedString(@"time-weeks", nil);
-NSLocalizedString(@"time-year", nil);
-NSLocalizedString(@"time-years", nil);
+_(@"distance-metre");
+_(@"distance-metres");
+_(@"distance-kms");
+_(@"distance-kilometer");
+_(@"distance-kilometers");
+_(@"distance-m/s");
+_(@"distance-metre/second");
+_(@"distance-metres/second");
+_(@"distance-kms/h");
+_(@"distance-kilometer/hour");
+_(@"distance-kilometers/hour");
+_(@"distance-ft");
+_(@"distance-ml");
+_(@"distance-mls");
+_(@"distance-mile");
+_(@"distance-ft/s");
+_(@"distance-feet/second");
+_(@"distance-miles/hour");
+_(@"time-day");
+_(@"time-days");
+_(@"time-hour");
+_(@"time-hours");
+_(@"time-minute");
+_(@"time-minutes");
+_(@"time-second");
+_(@"time-seconds");
+_(@"time-week");
+_(@"time-weeks");
+_(@"time-year");
+_(@"time-years");
 */
 
 @end

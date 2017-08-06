@@ -45,8 +45,8 @@ enum {
     self.delegateWaypoint = nil;
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuScanForWaypoints label:NSLocalizedString(@"waypointpersonalnoteviewcontroller-extractwaypoints", nil)];
-    [lmi addItem:menuCopyLog label:NSLocalizedString(@"waypointpersonalnoteviewcontroller-copynotetoclipboard", nil)];
+    [lmi addItem:menuScanForWaypoints label:_(@"waypointpersonalnoteviewcontroller-extractwaypoints")];
+    [lmi addItem:menuCopyLog label:_(@"waypointpersonalnoteviewcontroller-copynotetoclipboard")];
 
     note = [dbPersonalNote dbGetByWaypointName:waypoint.wpt_name];
 
@@ -89,7 +89,7 @@ enum {
 
 - (void)labelTapped
 {
-    tv = [[YIPopupTextView alloc] initWithPlaceHolder:NSLocalizedString(@"waypointpersonalnoteviewcontroller-enteryourpersonalnotehere", nil) maxCount:20000 buttonStyle:YIPopupTextViewButtonStyleRightCancelAndDone];
+    tv = [[YIPopupTextView alloc] initWithPlaceHolder:_(@"waypointpersonalnoteviewcontroller-enteryourpersonalnotehere") maxCount:20000 buttonStyle:YIPopupTextViewButtonStyleRightCancelAndDone];
 
     tv.delegate = self;
     tv.caretShiftGestureEnabled = YES;
@@ -129,9 +129,9 @@ enum {
 {
     if ([waypoint.account.remoteAPI supportsWaypointPersonalNotes] == YES) {
         [bezelManager showBezel:self];
-        [bezelManager setText:NSLocalizedString(@"waypointpersonalnoteviewcontroller-updatingpersonalnote", nil)];
+        [bezelManager setText:_(@"waypointpersonalnoteviewcontroller-updatingpersonalnote")];
         if ([waypoint.account.remoteAPI updatePersonalNote:note infoViewer:nil iiDownload:0] != REMOTEAPI_OK) {
-            [MyTools messageBox:self header:NSLocalizedString(@"waypointpersonalnoteviewcontroller-personalnote", nil) text:NSLocalizedString(@"waypointpersonalnoteviewcontroller-updateofpersonalnotehasfailed", nil) error:waypoint.account.remoteAPI.lastError];
+            [MyTools messageBox:self header:_(@"waypointpersonalnoteviewcontroller-personalnote") text:_(@"waypointpersonalnoteviewcontroller-updateofpersonalnotehasfailed") error:waypoint.account.remoteAPI.lastError];
         }
         [bezelManager removeBezel];
     }
@@ -165,7 +165,7 @@ enum {
 {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = note.note;
-    [MyTools messageBox:self header:NSLocalizedString(@"waypointpersonalnoteviewcontroller-copysuccessful", nil) text:NSLocalizedString(@"waypointpersonalnoteviewcontroller-thetextofthepersonalnotehasbeencopiedtotheclipboard", nil)];
+    [MyTools messageBox:self header:_(@"waypointpersonalnoteviewcontroller-copysuccessful") text:_(@"waypointpersonalnoteviewcontroller-thetextofthepersonalnotehasbeencopiedtotheclipboard")];
 }
 
 @end
