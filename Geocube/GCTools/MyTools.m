@@ -307,10 +307,10 @@ TIME(dateTimeString_dow, @"EEEE")
 {
     if (isMetric == YES) {
         if (m < 1000)
-            return [NSString stringWithFormat:@"%ld m", (long)m, _(@"distance-m")];
+            return [NSString stringWithFormat:@"%ld %@", (long)m, _(@"distance-m")];
         if (m < 10000)
-            return [NSString stringWithFormat:@"%0.2f km", m / 1000.0, _(@"distance-km")];
-        return [NSString stringWithFormat:@"%ld km", (long)m / 1000, _(@"distance-km")];
+            return [NSString stringWithFormat:@"%0.2f %@", m / 1000.0, _(@"distance-km")];
+        return [NSString stringWithFormat:@"%ld %@", (long)m / 1000, _(@"distance-km")];
     }
 
     /* Metric to imperial conversions
