@@ -245,7 +245,7 @@ enum {
 
     [self showInfoView];
     InfoItemID iid = [infoView addDownload];
-    [infoView setDescription:iid description:@"Downloading query"];
+    [infoView setDescription:iid description:_(@"browserbrowserviewcontroller-downloadingquery")];
 
     NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error infoViewer:infoView iiDownload:iid];
     [self showActivity:NO];
@@ -264,7 +264,7 @@ enum {
     NSLog(@"Received %ld bytes", (long)length);
     [data writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], response.suggestedFilename] atomically:NO];
 
-    [MyTools messageBox:self header:@"Download complete" text:[NSString stringWithFormat:@"Downloaded %@ for %@. You can find it in the Files menu.", [MyTools niceFileSize:length], response.suggestedFilename]];
+    [MyTools messageBox:self header:_(@"browserbrowserviewcontroller-downloadcomplete") text:[NSString stringWithFormat:_(@"browserbrowserviewcontroller-downloaded__for__.YoucanfinditintheFilesmenu."), [MyTools niceFileSize:length], response.suggestedFilename]];
 }
 
 - (void)prepare_oauth:(GCOAuthBlackbox *)_oabb
@@ -299,7 +299,7 @@ enum {
     if (error.code == 102 && [error.domain isEqual:@"WebKitErrorDomain"])
         return;
 
-    [MyTools messageBox:self header:@"Failed to download" text:[error description]];
+    [MyTools messageBox:self header:_(@"browserbrowserviewcontroller-failedtodownload") text:[error description]];
     [self showActivity:NO];
 }
 
@@ -330,12 +330,12 @@ enum {
 - (void)menuEnterURL
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Enter URL"
+                                alertControllerWithTitle:_(@"browserbrowserviewcontroller-enterurl")
                                 message:nil
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
+                         actionWithTitle:_(@"OK")
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction *action) {
                              //Do Some action
@@ -346,7 +346,7 @@ enum {
                          }];
 
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];

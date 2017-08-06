@@ -102,11 +102,11 @@ enum {
 
     UIAlertController *view = [UIAlertController
                                alertControllerWithTitle:bm.name
-                               message:@"Select you choice"
+                               message:_(@"browseruserviewcontroller-selectyouchoice")
                                preferredStyle:UIAlertControllerStyleActionSheet];
 
     UIAlertAction *delete = [UIAlertAction
-                             actionWithTitle:@"Delete"
+                             actionWithTitle:_(@"Delete")
                              style:UIAlertActionStyleDestructive
                              handler:^(UIAlertAction * action)
                              {
@@ -118,7 +118,7 @@ enum {
                              }];
 
     UIAlertAction *edit = [UIAlertAction
-                           actionWithTitle:@"Edit"
+                           actionWithTitle:_(@"Edit")
                            style:UIAlertActionStyleDefault
                            handler:^(UIAlertAction * action)
                            {
@@ -127,7 +127,7 @@ enum {
                                [view dismissViewControllerAnimated:YES completion:nil];
                            }];
     UIAlertAction *open = [UIAlertAction
-                           actionWithTitle:@"Open"
+                           actionWithTitle:_(@"Open")
                            style:UIAlertActionStyleDefault
                            handler:^(UIAlertAction * action)
                            {
@@ -137,7 +137,7 @@ enum {
                                [browserViewController loadURL:bm.url];
                            }];
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel"
+                             actionWithTitle:_(@"Cancel")
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
@@ -167,12 +167,12 @@ enum {
 - (void)bookmarkEdit:(dbBookmark *)bm
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Update bookmark"
-                                message:@"Enter the bookmark"
+                                alertControllerWithTitle:_(@"browseruserviewcontroller-updatebookmark")
+                                message:_(@"browseruserviewcontroller-enterthebookmark")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
+                         actionWithTitle:_(@"OK")
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction *action) {
                              //Do Some action
@@ -189,7 +189,7 @@ enum {
                              [self.tableView reloadData];
                          }];
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
@@ -199,11 +199,11 @@ enum {
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.text = bm.name;
-        textField.placeholder = @"Name";
+        textField.placeholder = _(@"browseruserviewcontroller-name");
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.text = bm.url;
-        textField.placeholder = @"URL";
+        textField.placeholder = _(@"URL");
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
@@ -214,12 +214,12 @@ enum {
 - (void)addBookmark
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Create bookmark"
-                                message:@"Enter the bookmark details"
+                                alertControllerWithTitle:_(@"browseruserviewcontroller-createbookmark")
+                                message:_(@"browseruserviewcontroller-enterthebookmarkdetails")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
+                         actionWithTitle:_(@"OK")
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction *action) {
                              // Do Some action
@@ -237,7 +237,7 @@ enum {
                              [self.tableView reloadData];
                          }];
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
@@ -246,10 +246,10 @@ enum {
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Name";
+        textField.placeholder = _(@"browseruserviewcontroller-name");
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"URL";
+        textField.placeholder = _(@"browseruserviewcontroller-URL");
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
