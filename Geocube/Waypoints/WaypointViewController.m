@@ -225,9 +225,9 @@ enum {
 {
     switch (section) {
         case WAYPOINT_DATA:
-            return @"Waypoint data";
+            return NSLocalizedString(@"waypointviewcontroller-waypointdata", nil);
         case WAYPOINT_ACTIONS:
-            return @"Waypoint actions";
+            return NSLocalizedString(@"waypointviewcontroller-waypointactions", nil);
     }
     return nil;
 }
@@ -271,7 +271,7 @@ enum {
             switch (indexPath.row) {
 
                case WAYPOINT_DATA_DESCRIPTION:
-                    cell.textLabel.text = @"Description";
+                    cell.textLabel.text = NSLocalizedString(@"waypointviewcontroller-description", nil);
                     if ([waypoint.gs_short_desc isEqualToString:@""] == YES && [waypoint.gs_long_desc isEqualToString:@""] == YES && [waypoint.description isEqualToString:@""] == YES) {
                         tc = currentTheme.labelTextColorDisabled;
                         cell.userInteractionEnabled = NO;
@@ -279,7 +279,7 @@ enum {
                     break;
 
                 case WAYPOINT_DATA_HINT:
-                    cell.textLabel.text = @"Hint";
+                    cell.textLabel.text = NSLocalizedString(@"waypointviewcontroller-hint", nil);
                     if (waypoint.gs_hint == nil || [waypoint.gs_hint isEqualToString:@""] == YES || [waypoint.gs_hint isEqualToString:@" "] == YES) {
                         tc = currentTheme.labelTextColorDisabled;
                         cell.userInteractionEnabled = NO;
@@ -289,10 +289,10 @@ enum {
                 case WAYPOINT_DATA_PERSONALNOTE: {
                     dbPersonalNote *pn = [dbPersonalNote dbGetByWaypointName:waypoint.wpt_name];
                     if (pn == 0)
-                        cell.textLabel.text = @"Personal Note (none yet)";
+                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", NSLocalizedString(@"waypointviewcontroller-personalnote", nil), NSLocalizedString(@"waypointviewcontroller-noneyet", nil)];
                     else {
                         NSArray<NSString *> *words = [pn.note componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                        cell.textLabel.text = [NSString stringWithFormat:@"Personal Note (%ld word%@)", (long)[words count], [words count] == 1 ? @"" : @"s"];
+                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld %@)", NSLocalizedString(@"waypointviewcontroller-personalnote", nil), (long)[words count], [words count] == 1 ? NSLocalizedString(@"waypointviewcontroller-word", nil) : NSLocalizedString(@"waypointviewcontroller-words", nil)];
                     }
                     break;
                 }
@@ -304,7 +304,7 @@ enum {
     }
                 case WAYPOINT_DATA_FIELDNOTES: {
                     WaypointLogsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:XIB_WAYPOINTLOGSTABLEVIEWCELL forIndexPath:indexPath];
-                    cell.logs.text = @"Fields Notes";
+                    cell.logs.text = NSLocalizedString(@"waypointviewcontroller-fieldsnotes", nil);
                     cell.userInteractionEnabled = YES;
                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
@@ -337,7 +337,6 @@ enum {
 
                 case WAYPOINT_DATA_LOGS: {
                     WaypointLogsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:XIB_WAYPOINTLOGSTABLEVIEWCELL forIndexPath:indexPath];
-                    cell.logs.text = @"Logs";
                     cell.userInteractionEnabled = YES;
                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
@@ -350,11 +349,11 @@ enum {
 
                     NSInteger c = [waypoint hasLogs];
                     if (c == 0) {
+                        cell.logs.text = NSLocalizedString(@"waypointviewcontroller-logs", nil);
                         cell.logs.textColor = currentTheme.labelTextColorDisabled;
                         cell.userInteractionEnabled = NO;
-
                     } else {
-                        cell.logs.text = [NSString stringWithFormat:@"%@ (%ld)", cell.logs.text, (long)c];
+                        cell.logs.text = [NSString stringWithFormat:@"%@ (%ld)", NSLocalizedString(@"waypointviewcontroller-logs", nil), (long)c];
 
                         NSArray<dbLog *> *logs = [dbLog dbLast7ByWaypoint:waypoint];
 #define IMAGE(__idx__) \
@@ -374,47 +373,48 @@ enum {
                 }
 
                 case WAYPOINT_DATA_ATTRIBUTES: {
-                    cell.textLabel.text = @"Attributes";
                     NSInteger c = [waypoint hasAttributes];
                     if (c == 0) {
+                        cell.textLabel.text = NSLocalizedString(@"waypointviewcontroller-attributes", nil);
                         tc = currentTheme.labelTextColorDisabled;
                         cell.userInteractionEnabled = NO;
                     } else
-                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", cell.textLabel.text, (long)c];
+                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", NSLocalizedString(@"waypointviewcontroller-attributes", nil), (long)c];
                     break;
                 }
 
                 case WAYPOINT_DATA_ADDITIONALWAYPOINTS: {
-                    cell.textLabel.text = @"Additional Waypoints";
 
                     NSArray<dbWaypoint *> *wps = [waypoint hasWaypoints];
                     if ([wps count] > 1)
-                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", cell.textLabel.text, (long)([wps count] - 1)];
+                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", NSLocalizedString(@"waypointviewcontroller-waypoints", nil), (long)([wps count] - 1)];
+                    else
+                        cell.textLabel.text = NSLocalizedString(@"waypointviewcontroller-waypoints", nil);
                     break;
                 }
 
                 case WAYPOINT_DATA_INVENTORY: {
-                    cell.textLabel.text = @"Inventory";
                     NSInteger c = [waypoint hasInventory];
                     if (c == 0) {
+                        cell.textLabel.text = NSLocalizedString(@"waypointviewcontroller-inventory", nil);
                         tc = currentTheme.labelTextColorDisabled;
                         cell.userInteractionEnabled = NO;
                     } else
-                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", cell.textLabel.text, (long)c];
+                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", NSLocalizedString(@"waypointviewcontroller-inventory", nil), (long)c];
                     break;
                 }
 
                 case WAYPOINT_DATA_IMAGES: {
                     NSInteger c = [waypoint hasImages];
                     if (c == 0)
-                        cell.textLabel.text = @"Images (none)";
+                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", NSLocalizedString(@"waypointviewcontroller-images", nil), NSLocalizedString(@"waypointviewcontroller-noneyet", nil)];
                     else
-                        cell.textLabel.text = [NSString stringWithFormat:@"Images (%ld)", (long)c];
+                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", NSLocalizedString(@"waypointviewcontroller-images", nil), (long)c];
                     break;
                 }
 
                 case WAYPOINT_DATA_GROUPMEMBERS:
-                    cell.textLabel.text = @"Group Members";
+                    cell.textLabel.text = NSLocalizedString(@"waypointviewcontroller-groupmembers", nil);
                     break;
             }
             cell.textLabel.textColor = tc;
@@ -430,9 +430,9 @@ enum {
                     cell.userInteractionEnabled = YES;
                     cell.imageView.image = [imageLibrary get:ImageIcon_Target];
                     if (waypoint == waypointManager.currentWaypoint) {
-                        cell.textLabel.text = @"Remove as target";
+                        cell.textLabel.text = NSLocalizedString(@"waypointviewcontroller-removeastarget", nil);
                     } else {
-                        cell.textLabel.text = @"Set as target";
+                        cell.textLabel.text = NSLocalizedString(@"waypointviewcontroller-setastarget", nil);
                     }
                     return cell;
                 }
@@ -441,7 +441,7 @@ enum {
                     GCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLRIGHTIMAGEDISCLOSURE forIndexPath:indexPath];
                     cell.userInteractionEnabled = YES;
                     cell.imageView.image = [imageLibrary get:ImageIcon_Smiley];
-                    cell.textLabel.text = @"Log this waypoint";
+                    cell.textLabel.text = NSLocalizedString(@"waypointviewcontroller-logthiswaypoint", nil);
                     return cell;
                 }
 
@@ -453,7 +453,7 @@ enum {
                     if (waypoint.wpt_url == nil)
                         cell.userInteractionEnabled = NO;
 
-                    cell.textLabel.text = @"Open in browser";
+                    cell.textLabel.text = NSLocalizedString(@"waypointviewcontroller-openinbrowser", nil);
                     return cell;
                 }
 
@@ -595,7 +595,7 @@ enum {
             return;
         case menuExportGPX:
             [ExportGPX export:waypoint];
-            [MyTools messageBox:self header:@"Export successful" text:@"The exported file can be found in the Files section"];
+            [MyTools messageBox:self header:NSLocalizedString(@"waypointviewcontroller-exportsuccessful", nil) text:NSLocalizedString(@"waypointviewcontroller-theexportedfilecanbefoundinthefilessection", nil)];
             return;
         case menuDeleteWaypoint:
             [self menuDeleteWaypoint];
@@ -648,12 +648,12 @@ enum {
 - (void)menuDeleteWaypoint
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Delete waypoint"
-                                message:@"Are you sure?"
+                                alertControllerWithTitle:NSLocalizedString(@"waypointviewcontroller-deletewaypoint", nil)
+                                message:NSLocalizedString(@"waypointviewcontroller-areyousure?", nil)
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *yes = [UIAlertAction
-                          actionWithTitle:@"Yes"
+                          actionWithTitle:NSLocalizedString(@"Yes", nil)
                           style:UIAlertActionStyleDefault
                           handler:^(UIAlertAction *action) {
                               [waypoint dbDelete];
@@ -663,7 +663,7 @@ enum {
                           }];
 
     UIAlertAction *no = [UIAlertAction
-                         actionWithTitle:@"NO!" style:UIAlertActionStyleDefault
+                         actionWithTitle:NSLocalizedString(@"NO!", nil) style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction * action) {
                              [alert dismissViewControllerAnimated:YES completion:nil];
                          }];
@@ -676,13 +676,21 @@ enum {
 
 - (void)menuMarkAs
 {
+    NSString *title;
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Waypoint flags"
-                                message:@"Mark as..."
+                                alertControllerWithTitle:NSLocalizedString(@"waypointviewcontroller-Waypointflags", nil)
+                                message:NSLocalizedString(@"waypointviewcontroller-markas", nil)
                                 preferredStyle:UIAlertControllerStyleAlert];
 
+#define TITLE(__flag__, __string__) \
+    if (__flag__ == YES) \
+        title = [NSString stringWithFormat:NSLocalizedString(@"waypointviewcontroller-removemarkas__", nil), __string__]; \
+    else \
+        title = [NSString stringWithFormat:NSLocalizedString(@"waypointviewcontroller-markas__", nil), __string__];
+
+    TITLE(waypoint.flag_dnf, NSLocalizedString(@"waypointviewcontroller-DNF", nil))
     UIAlertAction *dnf = [UIAlertAction
-                          actionWithTitle:(waypoint.flag_dnf == YES) ? @"Remove mark as DNF" : @"Mark as DNF"
+                          actionWithTitle:title
                           style:UIAlertActionStyleDefault
                           handler:^(UIAlertAction *action) {
                               if (waypoint.flag_dnf)
@@ -696,8 +704,9 @@ enum {
                                   [waypointManager setTheCurrentWaypoint:nil];
                               [self.tableView reloadData];
                           }];
+    TITLE(waypoint.flag_markedfound, NSLocalizedString(@"waypointviewcontroller-Found", nil))
     UIAlertAction *found = [UIAlertAction
-                            actionWithTitle:(waypoint.flag_markedfound == YES) ? @"Remove mark as Found" : @"Mark as Found"
+                            actionWithTitle:title
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction *action) {
                                 if (waypoint.flag_markedfound)
@@ -724,8 +733,9 @@ enum {
                                 [waypointManager needsRefreshUpdate:waypoint];
                                 [self.tableView reloadData];
                             }];
+    TITLE(waypoint.flag_ignore, NSLocalizedString(@"waypointviewcontroller-ignored", nil))
     UIAlertAction *ignore = [UIAlertAction
-                             actionWithTitle:(waypoint.flag_ignore == YES) ? @"Remove mark as Ignored" : @"Mark as Ignored"
+                             actionWithTitle:title
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction *action) {
                                  if (waypoint.flag_ignore)
@@ -743,8 +753,9 @@ enum {
                                      [[dbc Group_AllWaypoints_Ignored] removeWaypointFromGroup:waypoint];
                                  }
                              }];
+    TITLE(waypoint.flag_inprogress, NSLocalizedString(@"waypointviewcontroller-inprogress", nil))
     UIAlertAction *inprogress = [UIAlertAction
-                                 actionWithTitle:(waypoint.flag_inprogress == YES) ? @"Remove mark as In Progress" : @"Mark as In Progress"
+                                 actionWithTitle:title
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction *action) {
                                      if (waypoint.flag_inprogress)
@@ -756,8 +767,9 @@ enum {
                                      [waypointManager needsRefreshUpdate:waypoint];
                                      [self.tableView reloadData];
                                  }];
+    TITLE(waypoint.flag_highlight, NSLocalizedString(@"waypointviewcontroller-highlight", nil))
     UIAlertAction *highlight = [UIAlertAction
-                                actionWithTitle:(waypoint.flag_highlight == YES) ? @"Remove mark as highlighted" : @"Mark as Highlighted"
+                                actionWithTitle:title
                                 style:UIAlertActionStyleDefault
                                 handler:^(UIAlertAction *action) {
                                     if (waypoint.flag_highlight)
@@ -772,8 +784,9 @@ enum {
     UIAlertAction *planned = nil;
 
     if (self.isLocationless == YES) {
+        TITLE(waypoint.flag_planned, NSLocalizedString(@"waypointviewcontroller-planned", nil))
         planned = [UIAlertAction
-                   actionWithTitle:(waypoint.flag_planned == YES) ? @"Remove mark as planned" : @"Mark as Planned"
+                   actionWithTitle:title
                    style:UIAlertActionStyleDefault
                    handler:^(UIAlertAction *action) {
                        if (waypoint.flag_planned == YES)
@@ -786,7 +799,8 @@ enum {
     }
 
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:NSLocalizedString(@"Cancel", nil)
+                             style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
@@ -824,7 +838,7 @@ enum {
 
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:WAYPOINT_DATA_GROUPMEMBERS inSection:WAYPOINT_DATA]];
 
-    [ActionSheetStringPicker showPickerWithTitle:@"Select a Group"
+    [ActionSheetStringPicker showPickerWithTitle:NSLocalizedString(@"waypointviewcontroller-selectagroup" ,nil)
         rows:groupNames
         initialSelection:configManager.lastAddedGroup
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
@@ -844,7 +858,7 @@ enum {
 {
     [self showInfoView];
     InfoItemID iid = [infoView addDownload];
-    [infoView setDescription:iid description:[NSString stringWithFormat:@"Updating %@", waypoint.wpt_name]];
+    [infoView setDescription:iid description:[NSString stringWithFormat:NSLocalizedString(@"waypointviewcontroller-updating__", nil), waypoint.wpt_name]];
 
     chunksDownloaded = 0;
     chunksProcessed = 0;
@@ -853,7 +867,7 @@ enum {
     [infoView removeItem:iid];
 
     if (retValue != REMOTEAPI_OK)
-        [MyTools messageBox:self header:@"Update failed" text:@"Unable to update the waypoint." error:waypoint.account.remoteAPI.lastError];
+        [MyTools messageBox:self header:NSLocalizedString(@"waypointviewcontroller-updatefailed", nil) text:NSLocalizedString(@"waypointviewcontroller-unabletoupdatethewaypoint.", nil) error:waypoint.account.remoteAPI.lastError];
 }
 
 - (void)remoteAPI_objectReadyToImport:(NSInteger)identifier iiImport:(InfoItemID)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
