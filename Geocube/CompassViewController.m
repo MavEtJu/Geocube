@@ -195,8 +195,8 @@
 /* Receive data from the location manager */
 - (void)updateLocationManagerLocation
 {
-    self.labelGPSAccuracy.text = [NSString stringWithFormat:@"%@", [MyTools niceDistance:LM.accuracy]];
-    self.labelGPSAltitude.text = [NSString stringWithFormat:@"%@", [MyTools niceDistance:LM.altitude]];
+    self.labelGPSAccuracy.text = [MyTools niceDistance:LM.accuracy];
+    self.labelGPSAltitude.text = [MyTools niceDistance:LM.altitude];
 
     //    NSLog(@"new location: %f, %f", LM.coords.latitude, LM.coords.longitude);
 
