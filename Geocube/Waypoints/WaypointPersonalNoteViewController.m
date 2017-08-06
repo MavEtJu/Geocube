@@ -89,7 +89,7 @@ enum {
 
 - (void)labelTapped
 {
-    tv = [[YIPopupTextView alloc] initWithPlaceHolder:@"Enter your personal note here" maxCount:20000 buttonStyle:YIPopupTextViewButtonStyleRightCancelAndDone];
+    tv = [[YIPopupTextView alloc] initWithPlaceHolder:NSLocalizedString(@"waypointpersonalnoteviewcontroller-enteryourpersonalnotehere", nil) maxCount:20000 buttonStyle:YIPopupTextViewButtonStyleRightCancelAndDone];
 
     tv.delegate = self;
     tv.caretShiftGestureEnabled = YES;
@@ -129,9 +129,9 @@ enum {
 {
     if ([waypoint.account.remoteAPI supportsWaypointPersonalNotes] == YES) {
         [bezelManager showBezel:self];
-        [bezelManager setText:@"Updating personal note"];
+        [bezelManager setText:NSLocalizedString(@"waypointpersonalnoteviewcontroller-updatingpersonalnote", nil)];
         if ([waypoint.account.remoteAPI updatePersonalNote:note infoViewer:nil iiDownload:0] != REMOTEAPI_OK) {
-            [MyTools messageBox:self header:@"Personal Note" text:@"Update of personal note has failed" error:waypoint.account.remoteAPI.lastError];
+            [MyTools messageBox:self header:NSLocalizedString(@"waypointpersonalnoteviewcontroller-personalnote", nil) text:NSLocalizedString(@"waypointpersonalnoteviewcontroller-updateofpersonalnotehasfailed", nil) error:waypoint.account.remoteAPI.lastError];
         }
         [bezelManager removeBezel];
     }
@@ -165,7 +165,7 @@ enum {
 {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = note.note;
-    [MyTools messageBox:self header:@"Copy successful" text:@"The text of the personal note has been copied to the clipboard"];
+    [MyTools messageBox:self header:NSLocalizedString(@"waypointpersonalnoteviewcontroller-copysuccessful", nil) text:NSLocalizedString(@"waypointpersonalnoteviewcontroller-thetextofthepersonalnotehasbeencopiedtotheclipboard", nil)];
 }
 
 @end

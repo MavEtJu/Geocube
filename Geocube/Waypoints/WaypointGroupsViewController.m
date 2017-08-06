@@ -75,8 +75,8 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 0)
-        return @"User groups";
-    return @"System groups";
+        return NSLocalizedString(@"waypointgroupsviewcontroller-usergroups", nil);
+    return NSLocalizedString(@"waypointgroupsviewcontroller-systemgroups", nil);
 }
 
 // Return a cell for the index path
@@ -99,7 +99,7 @@
         c++;
     }
     cell.textLabel.text = cg.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld caches", (long)[cg countWaypoints]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld waypoints", (long)[cg countWaypoints]];
     cell.imageView.image = nil;
     cell.userInteractionEnabled = NO;
 

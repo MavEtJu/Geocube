@@ -69,7 +69,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"Attributes";
+    return NSLocalizedString(@"waypointattributesviewcontroller-attributes", nil);
 }
 
 // Return a cell for the index path

@@ -133,7 +133,7 @@ enum {
 - (void)downloadImagesLogs:(NSNumber *)iii_
 {
     InfoItemID iii = [iii_ integerValue];
-    [infoView setDescription:iii description:@"Images from the logs"];
+    [infoView setDescription:iii description:NSLocalizedString(@"waypointimagesviewcontroller-imagesfromthelogs", nil)];
 
     [logImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
         [infoView setQueueSize:iii queueSize:[logImages count] - idx];
@@ -153,7 +153,7 @@ enum {
 - (void)downloadImagesCache:(NSNumber *)iii_
 {
     InfoItemID iii = [iii_ integerValue];
-    [infoView setDescription:iii description:@"Images from the waypoint"];
+    [infoView setDescription:iii description:NSLocalizedString(@"waypointimagesviewcontroller-imagesfromthewaypoint", nil)];
 
     [cacheImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
         [infoView setQueueSize:iii queueSize:[cacheImages count] - idx];
@@ -214,9 +214,9 @@ enum {
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     switch (section) {
-        case SECTION_USER: return @"User Images";
-        case SECTION_WAYPOINT: return @"Waypoint Images";
-        case SECTION_LOG: return @"Log Images";
+        case SECTION_USER: return NSLocalizedString(@"waypointimagesviewcontroller-userimages", nil);
+        case SECTION_WAYPOINT: return NSLocalizedString(@"waypointimagesviewcontroller-waypointimages", nil);
+        case SECTION_LOG: return NSLocalizedString(@"waypointimagesviewcontroller-logimages", nil);
     }
     return @"Images???";
 }
