@@ -25,7 +25,7 @@
 
 @implementation RemoteAPIGCA2
 
-#define IMPORTMSG   @"Geocaching Australia JSON data (queued)"
+#define IMPORTMSG   _(@"remoteapigca2-Geocaching Australia JSON data (queued)")
 
 - (BOOL)supportsWaypointPersonalNotes { return NO; }
 - (BOOL)supportsTrackables { return NO; }
@@ -177,7 +177,7 @@
 - (RemoteAPIResult)loadWaypointsByCodes:(NSArray<NSString *> *)wpcodes infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     if ([self.account canDoRemoteStuff] == NO) {
-        [self setAPIError:@"[GCA2] loadWaypointsByCodes: remote API is disabled" error:REMOTEAPI_APIDISABLED];
+        [self setAPIError:_(@"remoteapigca2-[GCA2] loadWaypointsByCodes: remote API is disabled") error:REMOTEAPI_APIDISABLED];
         [callback remoteAPI_failed:identifier];
         return REMOTEAPI_APIDISABLED;
     }
@@ -207,7 +207,7 @@
 - (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     if ([self.account canDoRemoteStuff] == NO) {
-        [self setAPIError:@"[GCA2] loadWaypointsByBoundingBox: remote API is disabled" error:REMOTEAPI_APIDISABLED];
+        [self setAPIError:_(@"remoteapigca2-[GCA2] loadWaypointsByBoundingBox: remote API is disabled") error:REMOTEAPI_APIDISABLED];
         [callback remoteAPI_failed:identifier];
         return REMOTEAPI_APIDISABLED;
     }

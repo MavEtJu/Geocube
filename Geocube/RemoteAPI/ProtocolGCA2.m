@@ -99,11 +99,11 @@
         return NO;
     }
     if (response.statusCode != 200 && response.statusCode != 400) {
-        [account disableRemoteAccess:[NSString stringWithFormat:@"statusCode != (200|400) (%ld)", (long)response.statusCode]];
+        [account disableRemoteAccess:[NSString stringWithFormat:_(@"remoteapigca2-statusCode != (200|400) (%ld)"), (long)response.statusCode]];
         return NO;
     }
     if (data == nil) {
-        [account disableRemoteAccess:@"Data returned is empty"];
+        [account disableRemoteAccess:_(@"remoteapigca2-Data returned is empty")];
         return NO;
     }
 
@@ -136,7 +136,7 @@
 
     // Now check if the authentication cookie was set.
     if (account.gca_cookie_value == nil) {
-        [account disableRemoteAccess:@"No authentication cookie found!"];
+        [account disableRemoteAccess:_(@"remoteapigca2-No authentication cookie found!")];
         return NO;
     }
 
@@ -173,12 +173,12 @@
         NSLog(@"statusCode: %ld", (long)response.statusCode);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"retbody: %@", retbody);
-        [remoteAPI setAPIError:[NSString stringWithFormat:@"HTTP Response was %ld", (long)response.statusCode] error:REMOTEAPI_APIFAILED];
+        [remoteAPI setAPIError:[NSString stringWithFormat:_(@"remoteapigca2-HTTP Response was %ld"), (long)response.statusCode] error:REMOTEAPI_APIFAILED];
         return nil;
     }
 
     if ([data length] == 0) {
-        [remoteAPI setAPIError:@"Returned data is zero length" error:REMOTEAPI_APIFAILED];
+        [remoteAPI setAPIError:_(@"remoteapigca2-Returned data is zero length") error:REMOTEAPI_APIFAILED];
         return nil;
     }
 
@@ -212,12 +212,12 @@
         NSLog(@"statusCode: %ld", (long)response.statusCode);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"retbody: %@", retbody);
-        [remoteAPI setAPIError:[NSString stringWithFormat:@"HTTP Response was %ld", (long)response.statusCode] error:REMOTEAPI_APIFAILED];
+        [remoteAPI setAPIError:[NSString stringWithFormat:_(@"remoteapigca2-HTTP Response was %ld"), (long)response.statusCode] error:REMOTEAPI_APIFAILED];
         return nil;
     }
 
     if ([data length] == 0) {
-        [remoteAPI setAPIError:@"Returned data is zero length" error:REMOTEAPI_APIFAILED];
+        [remoteAPI setAPIError:_(@"remoteapigca2-Returned data is zero length") error:REMOTEAPI_APIFAILED];
         return nil;
     }
 
