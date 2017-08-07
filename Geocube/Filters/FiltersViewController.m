@@ -69,18 +69,18 @@ enum {
 
     for (NSInteger i = 0; i < filterMax; i++) {
         switch (i) {
-            MATCH(filterTypes, @"Types");
-            MATCH(filterGroups, @"Groups");
-            MATCH(filterFavourites, @"Favourites");
-            MATCH(filterSizes, @"Sizes");
-            MATCH(filterDifficulty, @"Difficulty");
-            MATCH(filterTerrain, @"Terrain");
-            MATCH(filterDistance, @"Distance");
-            MATCH(filterDirection, @"Direction");
-            MATCH(filterText, @"Text");
-            MATCH(filterDates, @"Date");
-            MATCH(filterFlags, @"Flags");
-            MATCH(filterAccounts, @"Accounts");
+            MATCH(filterTypes, _(@"filtersviewcontroller-types"));
+            MATCH(filterGroups, _(@"filtersviewcontroller-groups"));
+            MATCH(filterFavourites, _(@"filtersviewcontroller-favourites"));
+            MATCH(filterSizes, _(@"filtersviewcontroller-sizes"));
+            MATCH(filterDifficulty, _(@"filtersviewcontroller-difficulty"));
+            MATCH(filterTerrain, _(@"filtersviewcontroller-terrain"));
+            MATCH(filterDistance, _(@"filtersviewcontroller-distance"));
+            MATCH(filterDirection, _(@"filtersviewcontroller-direction"));
+            MATCH(filterText, _(@"filtersviewcontroller-text"));
+            MATCH(filterDates, _(@"filtersviewcontroller-date"));
+            MATCH(filterFlags, _(@"filtersviewcontroller-flags"));
+            MATCH(filterAccounts, _(@"filtersviewcontroller-accounts"));
             default:
                 NSAssert1(FALSE, @"Unknown filter %ld", (long)i);
         }
@@ -202,12 +202,12 @@ enum {
 - (void)menuSaveFilter
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Save filter as..."
+                                alertControllerWithTitle:_(@"filtersviewcontroller-savefilteras...")
                                 message:nil
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *save = [UIAlertAction
-                           actionWithTitle:@"Save" style:UIAlertActionStyleDefault
+                           actionWithTitle:_(@"Save") style:UIAlertActionStyleDefault
                            handler:^(UIAlertAction * action) {
                                UITextField *tf = alert.textFields.firstObject;
                                [self saveAsFilter:tf.text];
@@ -216,14 +216,14 @@ enum {
     [alert addAction:save];
 
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Filter name";
+        textField.placeholder = _(@"filtersviewcontroller-filtername");
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
@@ -264,7 +264,7 @@ enum {
     NSArray<NSString *> *fs = [dbFilter findFilterNames];
 
     [ActionSheetStringPicker
-        showPickerWithTitle:@"Load filter"
+        showPickerWithTitle:_(@"filtersviewcontroller-loadfilter")
         rows:fs
         initialSelection:0
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
