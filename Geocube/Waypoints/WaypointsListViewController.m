@@ -118,7 +118,7 @@ enum {
 - (void)refreshCachesData
 {
     [bezelManager showBezel:self];
-    [bezelManager setText:@"Refreshing database"];
+    [bezelManager setText:_(@"waypointslistviewcontroller-refreshingdatabase")];
 
     [self refreshCachesData:nil];
 
@@ -167,7 +167,7 @@ enum {
     if (waypoints == nil)
         return @"";
     NSInteger c = [waypoints count];
-    return [NSString stringWithFormat:@"%ld waypoint%@", (unsigned long)c, c == 1 ? @"" : @"s"];
+    return [NSString stringWithFormat:@"%ld %@", (unsigned long)c, c == 1 ? _(@"waypointslistviewcontroller-waypoint") : _(@"waypointslistviewcontroller-waypoints")];
 }
 
 // Return a cell for the index path
@@ -242,7 +242,7 @@ enum {
             return;
         case menuExportGPX:
             [ExportGPX exports:waypoints];
-            [MyTools messageBox:self header:@"Export successful" text:@"The exported file can be found in the Files section"];
+            [MyTools messageBox:self header:_(@"waypointslistviewcontroller-exportsuccessful") text:_(@"waypointslistviewcontroller-theexportedfilecanbefoundinthefilessection")];
             return;
         case menuSortBy:
             [self menuSortBy];
@@ -270,7 +270,7 @@ enum {
     NSArray<NSString *> *orders = [WaypointSorter waypointsSortOrders];
 
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Sort by"
+                                alertControllerWithTitle:_(@"waypointslistviewcontroller-sortby")
                                 message:nil
                                 preferredStyle:UIAlertControllerStyleAlert];
 
@@ -300,12 +300,12 @@ enum {
 {
     NSArray<dbWaypoint *> *wps = waypointManager.currentWaypoints;
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Delete waypoints"
-                                message:@"Are you sure?"
+                                alertControllerWithTitle:_(@"waypointslistviewcontroller-deletewaypoints")
+                                message:_(@"waypointslistviewcontroller-areyousure?")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *yes = [UIAlertAction
-                          actionWithTitle:@"Yes"
+                          actionWithTitle:_(@"Yes")
                           style:UIAlertActionStyleDefault
                           handler:^(UIAlertAction *action) {
                               [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
@@ -317,7 +317,7 @@ enum {
                           }];
 
     UIAlertAction *no = [UIAlertAction
-                         actionWithTitle:@"NO!" style:UIAlertActionStyleDefault
+                         actionWithTitle:_(@"NO!") style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction * action) {
                              [alert dismissViewControllerAnimated:YES completion:nil];
                          }];
@@ -381,12 +381,12 @@ enum {
 
     InfoItemID iid = [infoView addDownload];
     [infoView setChunksTotal:iid total:[wps count]];
-    [infoView setDescription:iid description:[NSString stringWithFormat:@"Downloading for %@", account.site]];
+    [infoView setDescription:iid description:[NSString stringWithFormat:_(@"waypointslistviewcontroller-downloadingfor__"), account.site]];
 
     NSLog(@"PROCESSING: Adding %ld (%@)", (long)account._id, account.site);
     NSInteger rv = [account.remoteAPI loadWaypointsByCodes:wps infoViewer:infoView iiDownload:iid identifier:(long)account._id group:dbc.Group_LastImport callback:self];
     if (rv != REMOTEAPI_OK)
-        [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:account.remoteAPI.lastError];
+        [MyTools messageBox:self header:_(@"waypointslistviewcontroller-reloadwaypoints") text:_(@"waypointslistviewcontroller-updatefailed") error:account.remoteAPI.lastError];
     [infoView removeItem:iid];
 }
 
