@@ -36,7 +36,16 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     fo = _fo;
 
-    directions = @[@"North", @"North East", @"East", @"South East", @"South", @"South West", @"West", @"North West"];
+    directions = @[
+                   _(@"compass-north"),
+                   _(@"compass-northeast"),
+                   _(@"compass-east"),
+                   _(@"compass-southeast"),
+                   _(@"compass-south"),
+                   _(@"compass-southwest"),
+                   _(@"compass-west"),
+                   _(@"compass-northwest"),
+                   ];
 
     [self configInit];
     [self header];
@@ -53,7 +62,7 @@
 
     rect = CGRectMake(20, y, 100, 15);
     l = [[GCLabel alloc] initWithFrame:rect];
-    l.text = @"Direction is:";
+    l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdirectiontableviewcell-directionis")];
     l.font = f2;
     l.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:l];
@@ -116,7 +125,7 @@
     }
 
     [ActionSheetStringPicker
-        showPickerWithTitle:@"Select a Direction"
+        showPickerWithTitle:_(@"filterdirectiontableviewcell-selectadirection")
         rows:directions
         initialSelection:direction
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {

@@ -101,16 +101,16 @@ typedef NS_ENUM(NSInteger, FlagType) {
     valueEnabled = FILTER_FLAGS_NOTCHECKED;
     valueArchived = FILTER_FLAGS_NOTCHECKED;
 
-    valuesHighlighted = @[@"Highlighted", @"Highlighted", @"Not highlighted"];
-    valuesMarkedAsFound = @[@"Marked as Found", @"Marked as Found", @"Not marked as found"];
-    valuesMarkedAsDNF = @[@"Marked as DNF", @"Marked as DNF", @"Not marked as DNF"];
-    valuesIgnored = @[@"Ignored", @"Ignored", @"Not ignored"];
-    valuesInProgress = @[@"In progress", @"In progress", @"Not in progress"];
-    valuesLoggedAsFound = @[@"Logged as found", @"Logged as found", @"Not logged as found"];
-    valuesLoggedAsDNF = @[@"Logged as DNF", @"Logged as DNF", @"Not logged as DNF"];
-    valuesOwner = @[@"Mine", @"Mine", @"Not mine"];
-    valuesEnabled = @[@"Enabled", @"Enabled", @"Not enabled"];
-    valuesArchived = @[@"Archived", @"Archived", @"Not archived"];
+    valuesHighlighted = @[_(@"filterflagstableviewcell-highlighted"), _(@"filterflagstableviewcell-highlighted"), _(@"filterflagstableviewcell-nothighlighted")];
+    valuesMarkedAsFound = @[_(@"filterflagstableviewcell-markedasfound"), _(@"filterflagstableviewcell-markedasfound"), _(@"filterflagstableviewcell-notmarkedasfound")];
+    valuesMarkedAsDNF = @[_(@"filterflagstableviewcell-markedasDNF"), _(@"filterflagstableviewcell-markedasDNF"), _(@"filterflagstableviewcell-notmarkedasDNF")];
+    valuesIgnored = @[_(@"filterflagstableviewcell-ignored"), _(@"filterflagstableviewcell-ignored"), _(@"filterflagstableviewcell-notignored")];
+    valuesInProgress = @[_(@"filterflagstableviewcell-inprogress"), _(@"filterflagstableviewcell-inprogress"), _(@"filterflagstableviewcell-notinprogress")];
+    valuesLoggedAsFound = @[_(@"filterflagstableviewcell-loggedasfound"), _(@"filterflagstableviewcell-loggedasfound"), _(@"filterflagstableviewcell-notloggedasfound")];
+    valuesLoggedAsDNF = @[_(@"filterflagstableviewcell-loggedasDNF"), _(@"filterflagstableviewcell-loggedasDNF"), _(@"filterflagstableviewcell-notloggedasDNF")];
+    valuesOwner = @[_(@"filterflagstableviewcell-mine"), _(@"filterflagstableviewcell-mine"), _(@"filterflagstableviewcell-notmine")];
+    valuesEnabled = @[_(@"filterflagstableviewcell-enabled"), _(@"filterflagstableviewcell-enabled"), _(@"filterflagstableviewcell-notenabled")];
+    valuesArchived = @[_(@"filterflagstableviewcell-archived"), _(@"filterflagstableviewcell-archived"), _(@"filterflagstableviewcell-notarchived")];
 
 #define CHECK(__type__, __config__) \
     c = [self configGet:__config__]; \

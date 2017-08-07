@@ -49,7 +49,7 @@
 
     rect = CGRectMake(20, y, width - 40, 15);
     sliderLabel = [[GCLabel alloc] initWithFrame:rect];
-    sliderLabel.text = @"Difficulty: 1 - 5";
+    sliderLabel.text = [NSString stringWithFormat:@"%@: 1 - 5", _(@"filterdifficultytableviewcell-difficulty")];
     sliderLabel.font = f2;
     sliderLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:sliderLabel];
@@ -127,7 +127,7 @@
     NSString *minString = [NSString stringWithFormat:((int)config_min == config_min) ? @"%1.0f" : @"%0.1f", config_min];
     NSString *maxString = [NSString stringWithFormat:((int)config_max == config_max) ? @"%1.0f" : @"%0.1f", config_max];
 
-    sliderLabel.text = [NSString stringWithFormat:@"Difficulty: %@ - %@", minString, maxString];
+    sliderLabel.text = [NSString stringWithFormat:@"%@: %@ - %@", _(@"filterdifficultytableviewcell-difficulty"), minString, maxString];
 }
 
 @end

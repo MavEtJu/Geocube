@@ -55,7 +55,7 @@
     l = [[GCLabel alloc] initWithFrame:rect];
     l.font = f2;
     l.textAlignment = NSTextAlignmentLeft;
-    l.text = @"Distance: ";
+    l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdistancetableviewcell-distance")];
     [self.contentView addSubview:l];
 
     rect = CGRectMake(80, y, 20, 15);
@@ -79,7 +79,7 @@
     l = [[GCLabel alloc] initWithFrame:rect];
     l.font = f2;
     l.textAlignment = NSTextAlignmentLeft;
-    l.text = @"Variation: ";
+    l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdistancetableviewcell-variation")];
     [self.contentView addSubview:l];
 
     rect = CGRectMake(100, y, width - 20 - 120, 15);
@@ -175,11 +175,11 @@
 - (void)clickDistance:(UIButton *)b
 {
     if (b == distanceButton) {
-        [ActionSheetDistancePicker showPickerWithTitle:@"Select distance" bigUnitString:@"km" bigUnitMax:999 selectedBigUnit:distanceKm smallUnitString:@"m" smallUnitMax:999 selectedSmallUnit:distanceM target:self action:@selector(measurementWasSelectedWithBigUnit:smallUnit:element:) origin:b];
+        [ActionSheetDistancePicker showPickerWithTitle:_(@"filterdistancetableviewcell-selectdistance") bigUnitString:@"km" bigUnitMax:999 selectedBigUnit:distanceKm smallUnitString:@"m" smallUnitMax:999 selectedSmallUnit:distanceM target:self action:@selector(measurementWasSelectedWithBigUnit:smallUnit:element:) origin:b];
         return;
     }
     if (b == variationButton) {
-        [ActionSheetDistancePicker showPickerWithTitle:@"Select variation" bigUnitString:@"km" bigUnitMax:99 selectedBigUnit:variationKm smallUnitString:@"m" smallUnitMax:999 selectedSmallUnit:variationM target:self action:@selector(measurementWasSelectedWithBigUnit:smallUnit:element:) origin:b];
+        [ActionSheetDistancePicker showPickerWithTitle:_(@"filterdistancetableviewcell-selectvariation") bigUnitString:@"km" bigUnitMax:99 selectedBigUnit:variationKm smallUnitString:@"m" smallUnitMax:999 selectedSmallUnit:variationM target:self action:@selector(measurementWasSelectedWithBigUnit:smallUnit:element:) origin:b];
         return;
     }
 }
