@@ -183,12 +183,12 @@ enum {
         NSLog(@"statusCode: %ld", (long)response.statusCode);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"retbody: %@", retbody);
-        [remoteAPI setAPIError:[NSString stringWithFormat:@"HTTP Response was %ld", (long)response.statusCode] error:REMOTEAPI_APIFAILED];
+        [remoteAPI setAPIError:[NSString stringWithFormat:_(@"protocolggcw-HTTP Response was %ld"), (long)response.statusCode] error:REMOTEAPI_APIFAILED];
         return nil;
     }
 
     if ([data length] == 0) {
-        [remoteAPI setAPIError:@"Returned data is zero length" error:REMOTEAPI_APIFAILED];
+        [remoteAPI setAPIError:_(@"protocolggcw-Returned data is zero length") error:REMOTEAPI_APIFAILED];
         return nil;
     }
 
