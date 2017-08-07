@@ -158,7 +158,7 @@ enum {
     UITableViewRowAction *remove =
         [UITableViewRowAction
             rowActionWithStyle:UITableViewRowActionStyleDefault
-            title:@"Remove"
+            title:_(@"Remove")
             handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
                 [self menuDelete:indexPath];
             }
@@ -168,7 +168,7 @@ enum {
     UITableViewRowAction *submit =
         [UITableViewRowAction
             rowActionWithStyle:UITableViewRowActionStyleDefault
-            title:@"Submit"
+            title:_(@"Submit")
             handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
                 [self menuDelete:indexPath];
             }
