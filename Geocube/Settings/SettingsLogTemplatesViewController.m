@@ -77,9 +77,9 @@ enum {
 {
     switch (section) {
         case SECTION_LOGTEMPLATES:
-            return [NSString stringWithFormat:@"%ld log templates", (long)[logtemplates count]];
+            return [NSString stringWithFormat:@"%ld %@", (long)[logtemplates count], _(@"settingslogtemplatesviewcontroller-log templates")];
         case SECTION_LOGMACROS:
-            return [NSString stringWithFormat:@"%ld log macros", (long)[logmacros count]];
+            return [NSString stringWithFormat:@"%ld %@", (long)[logmacros count], _(@"settingslogtemplatesviewcontroller-log macros")];
         default:
             return @"";
     }
@@ -132,7 +132,7 @@ enum {
     switch (indexPath.section) {
         case SECTION_LOGTEMPLATES: {
             currentLT = [logtemplates objectAtIndex:indexPath.row];
-            tv = [[YIPopupTextView alloc] initWithPlaceHolder:@"Enter your log template here" maxCount:20000 buttonStyle:YIPopupTextViewButtonStyleRightCancelAndDone];
+            tv = [[YIPopupTextView alloc] initWithPlaceHolder:_(@"settingslogtemplatesviewcontroller-Enter your log template here") maxCount:20000 buttonStyle:YIPopupTextViewButtonStyleRightCancelAndDone];
             tv.text = currentLT.text;
             tv.delegate = self;
             tv.caretShiftGestureEnabled = YES;
@@ -149,12 +149,12 @@ enum {
 - (void)updateLogMacro:(dbLogMacro *)macro
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Update log macro"
+                                alertControllerWithTitle:_(@"settingslogtemplatesviewcontroller-Update log macro")
                                 message:@""
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
+                         actionWithTitle:_(@"OK")
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction *action) {
                              //Do Some action
@@ -169,7 +169,7 @@ enum {
                              [self reloadLogXxx];
                          }];
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
@@ -178,11 +178,11 @@ enum {
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Name of the log macro";
+        textField.placeholder = _(@"settingslogtemplatesviewcontroller-Name of the log macro");
         textField.text = macro.name;
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Text of the log macro";
+        textField.placeholder = _(@"settingslogtemplatesviewcontroller-Text of the log macro");
         textField.text = macro.text;
     }];
 
@@ -203,7 +203,7 @@ enum {
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)
 indexPath
 {
-    return @"Remove";
+    return _(@"Remove");
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -233,12 +233,12 @@ indexPath
 - (void)addLogTemplate
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Create a new log template"
+                                alertControllerWithTitle:_(@"settingslogtemplatesviewcontroller-Create a new log template")
                                 message:@""
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
+                         actionWithTitle:_(@"OK")
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction *action) {
                              //Do Some action
@@ -253,7 +253,7 @@ indexPath
                              [self reloadLogXxx];
                          }];
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
@@ -262,7 +262,7 @@ indexPath
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Name of the log template";
+        textField.placeholder = _(@"settingslogtemplatesviewcontroller-Name of the log template");
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
@@ -271,12 +271,12 @@ indexPath
 - (void)addLogMacro
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Create a new log macro"
+                                alertControllerWithTitle:_(@"settingslogtemplatesviewcontroller-Create a new log macro")
                                 message:@""
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
+                         actionWithTitle:_(@"OK")
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction *action) {
                              //Do Some action
@@ -293,7 +293,7 @@ indexPath
                              [self reloadLogXxx];
                          }];
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
@@ -302,10 +302,10 @@ indexPath
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Name of the log macro";
+        textField.placeholder = _(@"settingslogtemplatesviewcontroller-Name of the log macro");
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Text of the log macro";
+        textField.placeholder = _(@"settingslogtemplatesviewcontroller-Text of the log macro");
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
@@ -354,7 +354,7 @@ indexPath
 
     [line writeToFile:fn atomically:NO encoding:NSUTF8StringEncoding error:nil];
 
-    [MyTools messageBox:self header:@"Backup complete" text:[NSString stringWithFormat:@"You can find the backup in the Files tab as '%@'", filename]];
+    [MyTools messageBox:self header:_(@"settingslogtemplatesviewcontroller-Backup complete") text:[NSString stringWithFormat:_(@"settingslogtemplatesviewcontroller-You can find the backup in the Files tab as '%@'"), filename]];
 }
 
 - (void)performLocalMenuAction:(NSInteger)index

@@ -57,15 +57,15 @@
     GCLabel *l = [[GCLabel alloc] initWithFrame:CGRectMake(10, y, frame.size.width, 20)];
     switch (type) {
         case SettingsMainColorPickerTrack:
-            l.text = @"Track";
+            l.text = _(@"settingsmaincolorpickerviewcontroller-Track");
             currentColour = configManager.mapTrackColour;
             break;
         case SettingsMainColorPickerDestination:
-            l.text = @"Destination";
+            l.text = _(@"settingsmaincolorpickerviewcontroller-Destination");
             currentColour = configManager.mapDestinationColour;
             break;
         default:
-            l.text = @"Wot?";
+            l.text = _(@"settingsmaincolorpickerviewcontroller-Wot?");
             break;
     }
     [self.view addSubview:l];
@@ -97,7 +97,7 @@
 
     chooseButton = [UIButton buttonWithType:UIButtonTypeSystem];
     chooseButton.frame = CGRectMake(frame.size.width / 5, y, 3 * frame.size.width / 5, 20);
-    [chooseButton setTitle:@"Choose this colour" forState:UIControlStateNormal];
+    [chooseButton setTitle:_(@"settingsmaincolorpickerviewcontroller-Choose this colour") forState:UIControlStateNormal];
     [chooseButton addTarget:self action:@selector(chooseColour) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:chooseButton];
     y += 30;
@@ -109,7 +109,7 @@
 
     resetButton = [UIButton buttonWithType:UIButtonTypeSystem];
     resetButton.frame = CGRectMake(frame.size.width / 5, y, 3 * frame.size.width / 5, 20);
-    [resetButton setTitle:@"Reset" forState:UIControlStateNormal];
+    [resetButton setTitle:_(@"Reset") forState:UIControlStateNormal];
     [resetButton addTarget:self action:@selector(resetColour) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:resetButton];
     y += 30;

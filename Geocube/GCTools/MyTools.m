@@ -339,9 +339,9 @@ TIME(dateTimeString_dow, @"EEEE")
         return [NSString stringWithFormat:@"%ld %@", (long)kmph, _(@"distance-km/h")];
     } else {
         if (kmph / 1.6093 < 10)
-            return [NSString stringWithFormat:@"%0.2f %@", (kmph / 1.6093), _(@"distance-mls/h")];
+            return [NSString stringWithFormat:@"%0.2f %@", (kmph / 1.6093), _(@"distance-ml/h")];
         else
-            return [NSString stringWithFormat:@"%ld %@", (long)(kmph / 1.6093), _(@"distance-mls/h")];
+            return [NSString stringWithFormat:@"%ld %@", (long)(kmph / 1.6093), _(@"distance-ml/h")];
     }
 }
 
@@ -756,18 +756,15 @@ TIME(dateTimeString_dow, @"EEEE")
 /*
 _(@"distance-metre");
 _(@"distance-metres");
-_(@"distance-kms");
 _(@"distance-kilometer");
 _(@"distance-kilometers");
 _(@"distance-m/s");
 _(@"distance-metre/second");
 _(@"distance-metres/second");
-_(@"distance-kms/h");
 _(@"distance-kilometer/hour");
 _(@"distance-kilometers/hour");
 _(@"distance-ft");
 _(@"distance-ml");
-_(@"distance-mls");
 _(@"distance-mile");
 _(@"distance-ft/s");
 _(@"distance-feet/second");

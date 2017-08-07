@@ -76,7 +76,12 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuResetToDefault label:_(@"settingsmainviewcontroller-Reset to default")];
 
-    compassTypes = @[@"Red arrow on blue", @"White arrow on black", @"Red arrow on black", @"Airplane"];
+    compassTypes = @[
+                     _(@"settingsmainviewcontroller-Red arrow on blue"),
+                     _(@"settingsmainviewcontroller-White arrow on black"),
+                     _(@"settingsmainviewcontroller-Red arrow on black"),
+                     _(@"settingsmainviewcontroller-Airplane")
+                     ];
 
     [self calculateDynamicmapSpeedsDistances];
     [self calculateMapcache];
@@ -92,13 +97,13 @@ enum {
     mapBrandsNames = names;
 
     orientationStrings = @[
-                           @"Portrait",
-                           @"Portrait UpsideDown",
-                           @"LandscapeLeft Portrait LandscapeRight",
-                           @"LandscapeLeft Portrait UpsideDown LandscapeRight",
-                           @"LandscapeRight",
-                           @"LandscapeLeft",
-                           @"LandscapeLeft LandscapeRight",
+                           _(@"settingsmainviewcontroller-Portrait"),
+                           _(@"settingsmainviewcontroller-Portrait UpsideDown"),
+                           _(@"settingsmainviewcontroller-LandscapeLeft Portrait LandscapeRight"),
+                           _(@"settingsmainviewcontroller-LandscapeLeft Portrait UpsideDown LandscapeRight"),
+                           _(@"settingsmainviewcontroller-LandscapeRight"),
+                           _(@"settingsmainviewcontroller-LandscapeLeft"),
+                           _(@"settingsmainviewcontroller-LandscapeLeft LandscapeRight"),
                            ];
     orientationValues = @[
         [NSNumber numberWithInteger:UIInterfaceOrientationMaskPortrait],
@@ -112,11 +117,11 @@ enum {
 
     downloadSimpleTimeouts = [NSMutableArray arrayWithCapacity:20];
     for (NSInteger i = 30; i < 600; i += 30) {
-        [downloadSimpleTimeouts addObject:[NSString stringWithFormat:@"%ld seconds", (long)i]];
+        [downloadSimpleTimeouts addObject:[NSString stringWithFormat:@"%ld %@", (long)i, _(@"time-seconds")]];
     }
     downloadQueryTimeouts = [NSMutableArray arrayWithCapacity:20];
     for (NSInteger i = 60; i < 1200; i += 30) {
-        [downloadQueryTimeouts addObject:[NSString stringWithFormat:@"%ld seconds", (long)i]];
+        [downloadQueryTimeouts addObject:[NSString stringWithFormat:@"%ld %@", (long)i, _(@"time-seconds")]];
     }
 }
 
@@ -136,13 +141,13 @@ enum {
 {
     NSMutableArray<NSString *> *as = [NSMutableArray arrayWithCapacity:20];
     for (NSInteger i = 0; i < 7; i++) {
-        [as addObject:[NSString stringWithFormat:@"%ld day%@", (long)i, i == 1 ? @"" : @"s"]];
+        [as addObject:[NSString stringWithFormat:@"%ld %@", (long)i, i == 1 ? _(@"time-day") : _(@"time-days")]];
     }
     for (NSInteger i = 7; i < 9 * 7; i += 7) {
-        [as addObject:[NSString stringWithFormat:@"%ld days (%ld week%@)", (long)i, (long)i / 7, (i / 7) == 1 ? @"" : @"s"]];
+        [as addObject:[NSString stringWithFormat:@"%ld %@ (%ld %@)", (long)i, _(@"time-days"), (long)i / 7, (i / 7) == 1 ? _(@"time-week") : _(@"time-weeks")]];
     }
     for (NSInteger i = 30; i < 13 * 30; i += 30) {
-        [as addObject:[NSString stringWithFormat:@"%ld days (%ld month%@)", (long)i, (long)i / 30, (i / 30) == 1 ? @"" : @"s"]];
+        [as addObject:[NSString stringWithFormat:@"%ld %@ (%ld %@)", (long)i, _(@"time-days"), (long)i / 30, (i / 30) == 1 ? _(@"time-month") : _(@"time-months")]];
     }
     mapcacheMaxAgeValues = [NSArray arrayWithArray:as];
 
@@ -374,39 +379,39 @@ enum sections {
     /* Metric section */
     switch (section) {
         case SECTION_DISTANCE:
-            return @"Distances";
+            return _(@"settingsmainviewcontroller-Distances");
         case SECTION_APPS:
-            return @"External apps";
+            return _(@"settingsmainviewcontroller-External apps");
         case SECTION_THEME:
-            return @"Theme";
+            return _(@"settingsmainviewcontroller-Theme");
         case SECTION_SOUNDS:
-            return @"Sounds";
+            return _(@"settingsmainviewcontroller-Sounds");
         case SECTION_COMPASS:
-            return @"Compass";
+            return _(@"settingsmainviewcontroller-Compass");
         case SECTION_MAPCOLOURS:
-            return @"Map colours";
+            return _(@"settingsmainviewcontroller-Map colours");
         case SECTION_MAPS:
-            return @"Maps";
+            return _(@"settingsmainviewcontroller-Maps");
         case SECTION_DYNAMICMAP:
-            return @"Dynamic Maps";
+            return _(@"settingsmainviewcontroller-Dynamic Maps");
         case SECTION_KEEPTRACK:
-            return @"Keep track";
+            return _(@"settingsmainviewcontroller-Keep track");
         case SECTION_MAPCACHE:
-            return @"Map cache";
+            return _(@"settingsmainviewcontroller-Map cache");
         case SECTION_IMPORTS:
-            return @"Import options";
+            return _(@"settingsmainviewcontroller-Import options");
         case SECTION_MAPSEARCHMAXIMUM:
-            return @"Map search maximums";
+            return _(@"settingsmainviewcontroller-Map search maximums");
         case SECTION_MARKAS:
-            return @"Mark as...";
+            return _(@"settingsmainviewcontroller-Mark as...");
         case SECTION_WAYPOINTS:
-            return @"Waypoints";
+            return _(@"settingsmainviewcontroller-Waypoints");
         case SECTION_LISTS:
-            return @"Lists";
+            return _(@"settingsmainviewcontroller-Lists");
         case SECTION_ACCOUNTS:
-            return @"Accounts";
+            return _(@"settingsmainviewcontroller-Accounts");
         case SECTION_LOCATIONLESS:
-            return @"Locationless";
+            return _(@"settingsmainviewcontroller-Locationless");
         default:
             NSAssert1(0, @"Unknown section %ld", (long)section);
     }
@@ -422,7 +427,7 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_DISTANCE_METRIC: {   // Metric
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Use metric units";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Use metric units");
                     cell.optionSwitch.on = configManager.distanceMetric;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateDistanceMetric:) forControlEvents:UIControlEventTouchUpInside];
@@ -436,7 +441,7 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_APPS_EXTERNALMAP: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"External Maps";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-External Maps");
                     __block NSString *name = nil;
                     [[dbExternalMap dbAll] enumerateObjectsUsingBlock:^(dbExternalMap *em, NSUInteger idx, BOOL * _Nonnull stop) {
                         if (em.geocube_id == configManager.mapExternal) {
@@ -449,13 +454,13 @@ enum sections {
                 }
                 case SECTION_APPS_OPENCAGEKEY: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"OpenCage key";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-OpenCage key");
                     cell.detailTextLabel.text = configManager.opencageKey;
                     return cell;
                 }
                 case SECTION_APPS_OPENCAGEOVERWIFIONLY: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"OpenCage only over Wifi";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-OpenCage only over Wifi");
                     cell.optionSwitch.on = configManager.opencageWifiOnly;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateOpenCageWifiOnly:) forControlEvents:UIControlEventTouchUpInside];
@@ -463,7 +468,7 @@ enum sections {
                 }
                 case SECTION_APPS_TWITTER: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Offer to send tweets";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Offer to send tweets");
                     cell.optionSwitch.on = configManager.sendTweets;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateSendTweets:) forControlEvents:UIControlEventTouchUpInside];
@@ -477,13 +482,13 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_THEME_THEME: {   // Theme
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Theme";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Theme");
                     cell.detailTextLabel.text = [[themeManager themeNames] objectAtIndex:configManager.themeType];
                     return cell;
                 }
                 case SECTION_THEME_COMPASS: {   // Compass type
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Compass type";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Compass type");
                     cell.detailTextLabel.text = [compassTypes objectAtIndex:configManager.compassType];
                     return cell;
                 }
@@ -493,24 +498,24 @@ enum sections {
                     if ((configManager.orientationsAllowed & UIInterfaceOrientationMaskPortrait) != 0) {
                         if ([s isEqualToString:@""] == NO)
                             [s appendString:@", "];
-                        [s appendString:@"Portrait"];
+                        [s appendString:_(@"settingsmainviewcontroller-Portrait")];
                     }
                     if ((configManager.orientationsAllowed & UIInterfaceOrientationMaskPortraitUpsideDown) != 0) {
                         if ([s isEqualToString:@""] == NO)
                             [s appendString:@", "];
-                        [s appendString:@"Upside Down"];
+                        [s appendString:_(@"settingsmainviewcontroller-Upside Down")];
                     }
                     if ((configManager.orientationsAllowed & UIInterfaceOrientationMaskLandscapeLeft) != 0) {
                         if ([s isEqualToString:@""] == NO)
                             [s appendString:@", "];
-                        [s appendString:@"Landscape Left"];
+                        [s appendString:_(@"settingsmainviewcontroller-Landscape Left")];
                     }
                     if ((configManager.orientationsAllowed & UIInterfaceOrientationMaskLandscapeRight) != 0) {
                         if ([s isEqualToString:@""] == NO)
                             [s appendString:@", "];
-                        [s appendString:@"Landscape Right"];
+                        [s appendString:_(@"settingsmainviewcontroller-Landscape Right")];
                     }
-                    cell.textLabel.text = @"Orientations allowed";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Orientations allowed");
                     cell.detailTextLabel.text = s;
                     return cell;
                 }
@@ -522,7 +527,7 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_SOUNDS_DIRECTION: {   // soundDirection
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Enable sounds for direction";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Enable sounds for direction");
                     cell.optionSwitch.on = configManager.soundDirection;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateSoundDirection:) forControlEvents:UIControlEventTouchUpInside];
@@ -530,7 +535,7 @@ enum sections {
                 }
                 case SECTION_SOUNDS_DISTANCE: {   // soundDistance
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Enable sounds for distance";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Enable sounds for distance");
                     cell.optionSwitch.on = configManager.soundDistance;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateSoundDistance:) forControlEvents:UIControlEventTouchUpInside];
@@ -544,13 +549,13 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_MAPCOLOURS_DESTINATION: {
                     GCTableViewCellRightImage *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLRIGHTIMAGE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Destination line";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Destination line");
                     cell.imageView.image = [ImageLibrary circleWithColour:configManager.mapDestinationColour];
                     return cell;
                 }
                 case SECTION_MAPCOLOURS_TRACK: {
                     GCTableViewCellRightImage *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLRIGHTIMAGE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Track line";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Track line");
                     cell.imageView.image = [ImageLibrary circleWithColour:configManager.mapTrackColour];
                     return cell;
                 }
@@ -562,7 +567,7 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_MAPS_DEFAULTBRAND: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Default map";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Default map");
                     __block NSString *value = nil;
                     [mapBrandsCodes enumerateObjectsUsingBlock:^(NSString *k, NSUInteger idx, BOOL * _Nonnull stop) {
                         if ([k isEqualToString:configManager.mapBrandDefault] == YES) {
@@ -576,7 +581,7 @@ enum sections {
                 }
                 case SECTION_MAPS_ROTATE_TO_BEARING: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Rotate to bearing";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Rotate to bearing");
                     cell.optionSwitch.on = configManager.mapRotateToBearing;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateMapRotateToBearing:) forControlEvents:UIControlEventTouchUpInside];
@@ -590,26 +595,26 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GS: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Distance in GroundSpeak geocaching.com search radius";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Distance in GroundSpeak geocaching.com search radius");
                     cell.detailTextLabel.text = [MyTools niceDistance:configManager.mapSearchMaximumDistanceGS];
                     return cell;
                 }
                 case SECTION_MAPSEARCHMAXIMUM_DISTANCE_OKAPI: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Distance in OKAPI search radius";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Distance in OKAPI search radius");
                     cell.detailTextLabel.text = [MyTools niceDistance:configManager.mapSearchMaximumDistanceOKAPI];
                     return cell;
                 }
                 case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GCA: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Distance in GCA search radius";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Distance in GCA search radius");
                     cell.detailTextLabel.text = [MyTools niceDistance:configManager.mapSearchMaximumDistanceGCA];
                     return cell;
                 }
                 case SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Number of waypoints in Geocaching Australia search";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld waypoints", (long)configManager.mapSearchMaximumNumberGCA];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Number of waypoints in Geocaching Australia search");
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld w%@", (long)configManager.mapSearchMaximumNumberGCA, _(@"waypoints")];
                     return cell;
                 }
             }
@@ -620,7 +625,7 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_DYNAMICMAP_ENABLED: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Enable dynamic maps";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Enable dynamic maps");
                     cell.optionSwitch.on = configManager.dynamicmapEnable;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateDynamicmapEnable:) forControlEvents:UIControlEventTouchUpInside];
@@ -628,38 +633,38 @@ enum sections {
                 }
                 case SECTION_DYNAMICMAP_SPEED_WALKING: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Maximum walking speed";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Maximum walking speed");
                     cell.detailTextLabel.text = [MyTools niceSpeed:configManager.dynamicmapWalkingSpeed];
                     return cell;
                 }
                 case SECTION_DYNAMICMAP_SPEED_CYCLING: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Maximum cycling speed";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Maximum cycling speed");
                     cell.detailTextLabel.text = [MyTools niceSpeed:configManager.dynamicmapCyclingSpeed];
                     return cell;
                 }
                 case SECTION_DYNAMICMAP_SPEED_DRIVING: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Maximum driving speed";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Maximum driving speed");
                     cell.detailTextLabel.text = [MyTools niceSpeed:configManager.dynamicmapDrivingSpeed];
                     return cell;
                 }
                 case SECTION_DYNAMICMAP_DISTANCE_WALKING: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Walking zoom-out distance";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"Always %@", [MyTools niceDistance:configManager.dynamicmapWalkingDistance]];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Walking zoom-out distance");
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", _(@"settingsmainviewcontroller-Always"), [MyTools niceDistance:configManager.dynamicmapWalkingDistance]];
                     return cell;
                 }
                 case SECTION_DYNAMICMAP_DISTANCE_CYCLING: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Cycling zoom-out distance";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"Between %@ and %@", [MyTools niceDistance:configManager.dynamicmapWalkingDistance], [MyTools niceDistance:configManager.dynamicmapCyclingDistance]];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Cycling zoom-out distance");
+                    cell.detailTextLabel.text = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Between %@ and %@"), [MyTools niceDistance:configManager.dynamicmapWalkingDistance], [MyTools niceDistance:configManager.dynamicmapCyclingDistance]];
                     return cell;
                 }
                 case SECTION_DYNAMICMAP_DISTANCE_DRIVING: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Driving zoom-out distance";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"Between %@ and %@", [MyTools niceDistance:configManager.dynamicmapCyclingDistance], [MyTools niceDistance:configManager.dynamicmapDrivingDistance]];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Driving zoom-out distance");
+                    cell.detailTextLabel.text = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Between %@ and %@"), [MyTools niceDistance:configManager.dynamicmapCyclingDistance], [MyTools niceDistance:configManager.dynamicmapDrivingDistance]];
                     return cell;
                 }
             }
@@ -670,7 +675,7 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_KEEPTRACK_AUTOROTATE: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Autorotate every day";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Autorotate every day");
                     cell.optionSwitch.on = configManager.keeptrackAutoRotate;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateKeeptrackAutoRotate:) forControlEvents:UIControlEventTouchUpInside];
@@ -678,38 +683,38 @@ enum sections {
                 }
                 case SECTION_KEEPTRACK_TIMEDELTA_MIN: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Time difference for a new track point";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.1f seconds", configManager.keeptrackTimeDeltaMin];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Time difference for a new track point");
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.1f %@", configManager.keeptrackTimeDeltaMin, _(@"time-seconds")];
                     return cell;
                 }
                 case SECTION_KEEPTRACK_TIMEDELTA_MAX: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Time difference for a new track";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.1f seconds", configManager.keeptrackTimeDeltaMax];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Time difference for a new track");
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.1f %@", configManager.keeptrackTimeDeltaMax, _(@"time-seconds")];
                     return cell;
                 }
                 case SECTION_KEEPTRACK_DISTANCEDELTA_MIN: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Distance difference for a new track point";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Distance difference for a new track point");
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [MyTools niceDistance:configManager.keeptrackDistanceDeltaMin]];
                     return cell;
                 }
                 case SECTION_KEEPTRACK_DISTANCEDELTA_MAX: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Distance difference for a new track";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Distance difference for a new track");
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [MyTools niceDistance:configManager.keeptrackDistanceDeltaMax]];
                     return cell;
                 }
                 case SECTION_KEEPTRACK_PURGEAGE: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Autopurge age for old tracks";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld days", (long)configManager.keeptrackPurgeAge];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Autopurge age for old tracks");
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld %@", (long)configManager.keeptrackPurgeAge, _(@"time-days")];
                     return cell;
                 }
                 case SECTION_KEEPTRACK_SYNC: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Sync track data";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"Every %ld seconds", (long)configManager.keeptrackSync];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Sync track data");
+                    cell.detailTextLabel.text = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Every %ld seconds"), (long)configManager.keeptrackSync];
                     return cell;
                 }
             }
@@ -720,7 +725,7 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_MAPCACHE_ENABLED: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Enable map cache";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Enable map cache");
                     cell.optionSwitch.on = configManager.mapcacheEnable;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateMapcacheEnable:) forControlEvents:UIControlEventTouchUpInside];
@@ -728,13 +733,13 @@ enum sections {
                 }
                 case SECTION_MAPCACHE_MAXAGE: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Maximum age for objects in cache";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld days", (long)configManager.mapcacheMaxAge];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Maximum age for objects in cache");
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld %@", (long)configManager.mapcacheMaxAge, _(@"time-days")];
                     return cell;
                 }
                 case SECTION_MAPCACHE_MAXSIZE: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Maximum size for the cache";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Maximum size for the cache");
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Mb", (long)configManager.mapcacheMaxSize];
                     return cell;
                 }
@@ -746,19 +751,19 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_IMPORTS_TIMEOUT_SIMPLE: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Timeout for simple HTTP requests";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld seconds", (long)configManager.downloadTimeoutSimple];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Timeout for simple HTTP requests");
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld %@", (long)configManager.downloadTimeoutSimple, _(@"time-seconds")];
                     return cell;
                 }
                 case SECTION_IMPORTS_TIMEOUT_QUERY: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Timeout for big HTTP requests";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld seconds", (long)configManager.downloadTimeoutQuery];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Timeout for big HTTP requests");
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld %@", (long)configManager.downloadTimeoutQuery, _(@"time-seconds")];
                     return cell;
                 }
                 case SECTION_IMPORTS_IMAGES_WAYPOINT: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Download waypoint images";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Download waypoint images");
                     cell.optionSwitch.on = configManager.downloadImagesWaypoints;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateDownloadImagesWaypoints:) forControlEvents:UIControlEventTouchUpInside];
@@ -766,7 +771,7 @@ enum sections {
                 }
                 case SECTION_IMPORTS_IMAGES_LOGS: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Download log images";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Download log images");
                     cell.optionSwitch.on = configManager.downloadImagesLogs;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateDownloadImagesLogs:) forControlEvents:UIControlEventTouchUpInside];
@@ -774,7 +779,7 @@ enum sections {
                 }
                 case SECTION_IMPORTS_LOG_IMAGES_MOBILE: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Download logged images over mobile data";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Download logged images over mobile data");
                     cell.optionSwitch.on = configManager.downloadImagesMobile;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateDownloadImagesMobile:) forControlEvents:UIControlEventTouchUpInside];
@@ -782,7 +787,7 @@ enum sections {
                 }
                 case SECTION_IMPORTS_QUERIES_MOBILE: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Download batch queries over mobile data";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Download batch queries over mobile data");
                     cell.optionSwitch.on = configManager.downloadQueriesMobile;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateDownloadQueriesMobile:) forControlEvents:UIControlEventTouchUpInside];
@@ -796,7 +801,7 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_MARKAS_FOUNDDNFCLEARSTARGET: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Remove target when marking as found/DNF";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Remove target when marking as found/DNF");
                     cell.optionSwitch.on = configManager.markasFoundDNFClearsTarget;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateMarkasFoundDNFClearsTarget:) forControlEvents:UIControlEventTouchUpInside];
@@ -804,7 +809,7 @@ enum sections {
                 }
                 case SECTION_MARKAS_FOUNDMARKSALLWAYPOINTS: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Mark all related waypoints when marked as found";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Mark all related waypoints when marked as found");
                     cell.optionSwitch.on = configManager.markasFoundMarksAllWaypoints;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateMarkasFoundMarksAllWaypoints:) forControlEvents:UIControlEventTouchUpInside];
@@ -812,7 +817,7 @@ enum sections {
                 }
                 case SECTION_LOG_REMOVEMARKASFOUNDDNF: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Remove Marked as Found/DNF when logging";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Remove Marked as Found/DNF when logging");
                     cell.optionSwitch.on = configManager.loggingRemovesMarkedAsFoundDNF;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateLoggingRemovesMarkedAsFoundDNF:) forControlEvents:UIControlEventTouchUpInside];
@@ -826,7 +831,7 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_COMPASS_ALWAYSPORTRAIT: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Compass is always in portrait mode";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Compass is always in portrait mode");
                     cell.optionSwitch.on = configManager.compassAlwaysInPortraitMode;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateCompassAlwaysInPortraitMode:) forControlEvents:UIControlEventTouchUpInside];
@@ -840,14 +845,14 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_WAYPOINTS_SORTBY: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Sort waypoints default by...";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Sort waypoints default by...");
                     NSArray<NSString *> *order = [WaypointSorter waypointsSortOrders];
                     cell.detailTextLabel.text = [order objectAtIndex:configManager.waypointListSortBy];
                     return cell;
                 }
                 case SECTION_WAYPOINTS_REFRESHAFTERLOG: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Refresh after log";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Refresh after log");
                     cell.optionSwitch.on = configManager.refreshWaypointAfterLog;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateRefreshWaypointAfterLog:) forControlEvents:UIControlEventTouchUpInside];
@@ -855,7 +860,7 @@ enum sections {
                 }
                 case SECTION_WAYPOINTS_SHOWCOUNTRYASABBREVATION: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Show country as abbrevation";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Show country as abbrevation");
                     cell.optionSwitch.on = configManager.showCountryAsAbbrevation;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateShowCountryAsAbbrevation:) forControlEvents:UIControlEventTouchUpInside];
@@ -863,7 +868,7 @@ enum sections {
                 }
                 case SECTION_WAYPOINTS_SHOWSTATEASABBREVATION: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Show state as abbrevation";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Show state as abbrevation");
                     cell.optionSwitch.on = configManager.showStateAsAbbrevation;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateShowStateAsAbbrevation:) forControlEvents:UIControlEventTouchUpInside];
@@ -871,7 +876,7 @@ enum sections {
                 }
                 case SECTION_WAYPOINTS_SHOWSTATEASABBREVATIONWITHLOCALE: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Show state as abbrevation if locale exist";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Show state as abbrevation if locality exist");
                     cell.optionSwitch.on = configManager.showStateAsAbbrevationIfLocaleExists;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateShowStateAsAbbrevationWithLocale:) forControlEvents:UIControlEventTouchUpInside];
@@ -885,7 +890,7 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_LISTS_SORTBY: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Sort lists default by...";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Sort lists default by...");
                     NSArray<NSString *> *order = [WaypointSorter listSortOrders];
                     cell.detailTextLabel.text = [order objectAtIndex:configManager.listSortBy];
                     return cell;
@@ -898,7 +903,7 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_ACCOUNTS_AUTHENTICATEKEEPUSERNAME: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Save authentication username";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Save authentication username");
                     cell.optionSwitch.on = configManager.accountsSaveAuthenticationName;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateAccountKeepUsername:) forControlEvents:UIControlEventTouchUpInside];
@@ -906,7 +911,7 @@ enum sections {
                 }
                 case SECTION_ACCOUNTS_AUTHENTICATEKEEPPASSWORD: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Save authentication password";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Save authentication password");
                     cell.optionSwitch.on = configManager.accountsSaveAuthenticationPassword;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateAccountKeepPassword:) forControlEvents:UIControlEventTouchUpInside];
@@ -919,7 +924,7 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_LOCATIONLESS_SHOWFOUND: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = @"Show found in list";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Show found in list");
                     cell.optionSwitch.on = configManager.locationlessShowFound;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
                     [cell.optionSwitch addTarget:self action:@selector(updateLocationlessShowFound:) forControlEvents:UIControlEventTouchUpInside];
@@ -927,7 +932,7 @@ enum sections {
                 }
                 case SECTION_LOCATIONLESS_SORTBY: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = @"Sort by";
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Sort by");
                     NSArray<NSString *> *order = [WaypointSorter locationlessSortOrders];
                     cell.detailTextLabel.text = [order objectAtIndex:configManager.locationlessListSortBy];
                     return cell;
@@ -1188,12 +1193,12 @@ enum sections {
 - (void)changeOpenCageKey
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"OpenCage key"
-                                message:@"Enter your OpenCage key"
+                                alertControllerWithTitle:_(@"settingsmainviewcontroller-OpenCage key")
+                                message:_(@"settingsmainviewcontroller-Enter your OpenCage key")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
+                         actionWithTitle:_(@"OK")
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction *action) {
                              //Do Some action
@@ -1204,7 +1209,7 @@ enum sections {
                          }];
 
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
@@ -1214,7 +1219,7 @@ enum sections {
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.text = configManager.opencageKey;
-        textField.placeholder = @"OpenCage key";
+        textField.placeholder = _(@"settingsmainviewcontroller-OpenCage key");
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
@@ -1228,31 +1233,31 @@ enum sections {
     NSString *message;
     switch (type) {
         case SECTION_KEEPTRACK_TIMEDELTA_MIN:
-            message = @"Change the time difference for a new track point.";
+            message = _(@"settingsmainviewcontroller-Change the time difference for a new track point.");
             break;
         case SECTION_KEEPTRACK_TIMEDELTA_MAX:
-            message = @"Change the time difference for a new track.";
+            message = _(@"settingsmainviewcontroller-Change the time difference for a new track.");
             break;
         case SECTION_KEEPTRACK_DISTANCEDELTA_MIN:
-            message = @"Change the distance difference for a new track point.";
+            message = _(@"settingsmainviewcontroller-Change in distance difference for a new track point.");
             break;
         case SECTION_KEEPTRACK_DISTANCEDELTA_MAX:
-            message = @"Change the distance difference for a new track.";
+            message = _(@"settingsmainviewcontroller-Change in distance difference for a new track.");
             break;
         case SECTION_KEEPTRACK_PURGEAGE:
-            message = @"Change the maximum age of old tracks before they get purged.";
+            message = _(@"settingsmainviewcontroller-Change the maximum age of old tracks before they get purged.");
             break;
         case SECTION_KEEPTRACK_SYNC:
-            message = @"Change the time interval to sync the track data";
+            message = _(@"settingsmainviewcontroller-Change the time interval to sync the track data");
             break;
     }
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Update value"
+                                alertControllerWithTitle:_(@"settingsmainviewcontroller-Update value")
                                 message:message
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
+                         actionWithTitle:_(@"OK")
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction *action) {
                              //Do Some action
@@ -1262,7 +1267,7 @@ enum sections {
                                  case SECTION_KEEPTRACK_TIMEDELTA_MIN: {
                                      float f = [value floatValue];
                                      if (f > configManager.keeptrackTimeDeltaMax) {
-                                         [MyTools messageBox:self header:@"Invalid value" text:[NSString stringWithFormat:@"This value should be less than %0.1f.", configManager.keeptrackTimeDeltaMax]];
+                                         [MyTools messageBox:self header:_(@"settingsmainviewcontroller-Invalid value") text:[NSString stringWithFormat:_(@"settingsmainviewcontroller-This value should be less than %0.1f."), configManager.keeptrackTimeDeltaMax]];
                                          break;
                                      }
                                      [configManager keeptrackTimeDeltaMinUpdate:f];
@@ -1271,7 +1276,7 @@ enum sections {
                                  case SECTION_KEEPTRACK_TIMEDELTA_MAX: {
                                      float f = [value floatValue];
                                      if (f < configManager.keeptrackTimeDeltaMin) {
-                                         [MyTools messageBox:self header:@"Invalid value" text:[NSString stringWithFormat:@"This value should be more than %0.1f.", configManager.keeptrackTimeDeltaMin]];
+                                         [MyTools messageBox:self header:_(@"settingsmainviewcontroller-Invalid value") text:[NSString stringWithFormat:_(@"settingsmainviewcontroller-This value should be more than %0.1f."), configManager.keeptrackTimeDeltaMin]];
                                          break;
                                      }
                                      [configManager keeptrackTimeDeltaMaxUpdate:f];
@@ -1280,7 +1285,7 @@ enum sections {
                                  case SECTION_KEEPTRACK_DISTANCEDELTA_MIN: {
                                      NSInteger i = [value integerValue];
                                      if (i > configManager.keeptrackDistanceDeltaMax) {
-                                         [MyTools messageBox:self header:@"Invalid value" text:[NSString stringWithFormat:@"This value should be less than %ld.", (long)configManager.keeptrackDistanceDeltaMin]];
+                                         [MyTools messageBox:self header:_(@"settingsmainviewcontroller-Invalid value") text:[NSString stringWithFormat:_(@"settingsmainviewcontroller-This value should be less than %ld."), (long)configManager.keeptrackDistanceDeltaMin]];
                                          break;
                                      }
                                      [configManager keeptrackDistanceDeltaMinUpdate:i];
@@ -1289,7 +1294,7 @@ enum sections {
                                  case SECTION_KEEPTRACK_DISTANCEDELTA_MAX: {
                                      NSInteger i = [value integerValue];
                                      if (i < configManager.keeptrackDistanceDeltaMin) {
-                                         [MyTools messageBox:self header:@"Invalid value" text:[NSString stringWithFormat:@"This value should be more than %ld.", (long)configManager.keeptrackDistanceDeltaMin]];
+                                         [MyTools messageBox:self header:_(@"settingsmainviewcontroller-Invalid value") text:[NSString stringWithFormat:_(@"settingsmainviewcontroller-This value should be more than %ld."), (long)configManager.keeptrackDistanceDeltaMin]];
                                          break;
                                      }
                                      [configManager keeptrackDistanceDeltaMaxUpdate:i];
@@ -1311,7 +1316,7 @@ enum sections {
                          }];
 
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
@@ -1340,7 +1345,7 @@ enum sections {
                 textField.text = [NSString stringWithFormat:@"%ld", (long)configManager.keeptrackSync];
                 break;
         }
-        textField.placeholder = @"Enter value...";
+        textField.placeholder = _(@"settingsmainviewcontroller-Enter value...");
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
@@ -1358,19 +1363,19 @@ enum sections {
         case SECTION_DYNAMICMAP_SPEED_WALKING:
             speeds = speedsWalking;
             currentSpeed = [MyTools niceSpeed:configManager.dynamicmapWalkingSpeed];
-            title = @"Maximum walking speed";
+            title = _(@"settingsmainviewcontroller-Maximum walking speed");
             successAction = @selector(updateDynamicmapSpeedWalking:element:);
             break;
         case SECTION_DYNAMICMAP_SPEED_CYCLING:
             speeds = speedsCycling;
             currentSpeed = [MyTools niceSpeed:configManager.dynamicmapCyclingSpeed];
-            title = @"Maximum cycling speed";
+            title = _(@"settingsmainviewcontroller-Maximum cycling speed");
             successAction = @selector(updateDynamicmapSpeedCycling:element:);
             break;
         case SECTION_DYNAMICMAP_SPEED_DRIVING:
             speeds = speedsDriving;
             currentSpeed = [MyTools niceSpeed:configManager.dynamicmapDrivingSpeed];
-            title = @"Maximum driving speed";
+            title = _(@"settingsmainviewcontroller-Maximum driving speed");
             successAction = @selector(updateDynamicmapSpeedDriving:element:);
             break;
     }
@@ -1423,19 +1428,19 @@ enum sections {
         case SECTION_DYNAMICMAP_DISTANCE_WALKING:
             distances = distancesWalking;
             currentDistance = [MyTools niceDistance:configManager.dynamicmapWalkingDistance];
-            title = @"Maximum walking distance";
+            title = _(@"settingsmainviewcontroller-Maximum walking distance");
             successAction = @selector(updateDynamicmapDistanceWalking:element:);
             break;
         case SECTION_DYNAMICMAP_DISTANCE_CYCLING:
             distances = distancesCycling;
             currentDistance = [MyTools niceDistance:configManager.dynamicmapCyclingDistance];
-            title = @"Maximum cycling distance";
+            title = _(@"settingsmainviewcontroller-Maximum cycling distance");
             successAction = @selector(updateDynamicmapDistanceCycling:element:);
             break;
         case SECTION_DYNAMICMAP_DISTANCE_DRIVING:
             distances = distancesDriving;
             currentDistance = [MyTools niceDistance:configManager.dynamicmapDrivingDistance];
-            title = @"Maximum driving distance";
+            title = _(@"settingsmainviewcontroller-Maximum driving distance");
             successAction = @selector(updateDynamicmapDistanceDriving:element:);
             break;
     }
@@ -1492,7 +1497,7 @@ enum sections {
 
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_IMPORTS_TIMEOUT_QUERY inSection:SECTION_IMPORTS]];
 
-    [ActionSheetStringPicker showPickerWithTitle:@"Timeout value for big HTTP requests"
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Timeout value for big HTTP requests")
                                             rows:downloadQueryTimeouts
                                 initialSelection:currentChoice
                                           target:self
@@ -1520,7 +1525,7 @@ enum sections {
 
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_IMPORTS_TIMEOUT_SIMPLE inSection:SECTION_IMPORTS]];
 
-    [ActionSheetStringPicker showPickerWithTitle:@"Timeout value for simple HTTP requests"
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Timeout value for simple HTTP requests")
                                             rows:downloadSimpleTimeouts
                                 initialSelection:currentChoice
                                           target:self
@@ -1556,7 +1561,7 @@ enum sections {
 
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_MAPCACHE_MAXAGE inSection:SECTION_MAPCACHE]];
 
-    [ActionSheetStringPicker showPickerWithTitle:@"Maximum age for objects in the map cache"
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Maximum age for objects in the map cache")
                                             rows:mapcacheMaxAgeValues
                                 initialSelection:currentChoice
                                           target:self
@@ -1583,7 +1588,7 @@ enum sections {
 
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_MAPCACHE_MAXSIZE inSection:SECTION_MAPCACHE]];
 
-    [ActionSheetStringPicker showPickerWithTitle:@"Maximum size for the map cache"
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Maximum size for the map cache")
                                             rows:mapcacheMaxSizeValues
                                 initialSelection:currentChoice
                                           target:self
@@ -1599,7 +1604,7 @@ enum sections {
 {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_THEME_THEME inSection:SECTION_THEME]];
 
-    [ActionSheetStringPicker showPickerWithTitle:@"Select theme"
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select theme")
                                             rows:[themeManager themeNames]
                                 initialSelection:configManager.themeType
                                           target:self
@@ -1623,7 +1628,7 @@ enum sections {
 {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_THEME_COMPASS inSection:SECTION_THEME]];
 
-    [ActionSheetStringPicker showPickerWithTitle:@"Select Compass"
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select Compass")
                                             rows:compassTypes
                                 initialSelection:configManager.compassType
                                           target:self
@@ -1651,7 +1656,7 @@ enum sections {
             *stop = YES;
         }
     }];
-    [ActionSheetStringPicker showPickerWithTitle:@"Select Orientations"
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select Orientations")
                                             rows:orientationStrings
                                 initialSelection:orientationIndex
                                           target:self
@@ -1678,7 +1683,7 @@ enum sections {
     for (NSInteger d = 250; d < 10000; d += 250) {
         [distances addObject:[MyTools niceDistance:d]];
     }
-    [ActionSheetStringPicker showPickerWithTitle:@"Select Maximum Distance"
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select Maximum Distance")
                                             rows:distances
                                 initialSelection:(configManager.mapSearchMaximumDistanceGS / 250) - 1
                                           target:self
@@ -1703,7 +1708,7 @@ enum sections {
     for (NSInteger d = 250; d < 10000; d += 250) {
         [distances addObject:[MyTools niceDistance:d]];
     }
-    [ActionSheetStringPicker showPickerWithTitle:@"Select Maximum Distance"
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select Maximum Distance")
                                             rows:distances
                                 initialSelection:(configManager.mapSearchMaximumDistanceGCA / 250) - 1
                                           target:self
@@ -1728,7 +1733,7 @@ enum sections {
     for (NSInteger d = 250; d < 10000; d += 250) {
         [distances addObject:[MyTools niceDistance:d]];
     }
-    [ActionSheetStringPicker showPickerWithTitle:@"Select Maximum Distance"
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select Maximum Distance")
                                             rows:distances
                                 initialSelection:(configManager.mapSearchMaximumDistanceOKAPI / 250) - 1
                                           target:self
@@ -1753,7 +1758,7 @@ enum sections {
     for (NSInteger d = 10; d < 200; d += 10) {
         [distances addObject:[NSNumber numberWithInteger:d]];
     }
-    [ActionSheetStringPicker showPickerWithTitle:@"Select Maximum Waypoints"
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select Maximum Waypoints")
                                             rows:distances
                                 initialSelection:(configManager.mapSearchMaximumNumberGCA / 10) - 1
                                           target:self
@@ -1776,7 +1781,7 @@ enum sections {
 {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_WAYPOINTS_SORTBY inSection:SECTION_WAYPOINTS]];
 
-    [ActionSheetStringPicker showPickerWithTitle:@"Sort waypoints by"
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Sort waypoints by")
                                             rows:[WaypointSorter waypointsSortOrders]
                                 initialSelection:configManager.waypointListSortBy
                                           target:self
@@ -1822,7 +1827,7 @@ enum sections {
 {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_LISTS_SORTBY inSection:SECTION_LISTS]];
 
-    [ActionSheetStringPicker showPickerWithTitle:@"Sort lists by"
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Sort lists by")
                                             rows:[WaypointSorter listSortOrders]
                                 initialSelection:configManager.listSortBy
                                           target:self
@@ -1844,7 +1849,7 @@ enum sections {
 {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_LOCATIONLESS_SORTBY inSection:SECTION_LOCATIONLESS]];
 
-    [ActionSheetStringPicker showPickerWithTitle:@"Sort locationless by"
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Sort locationless by")
                                             rows:[WaypointSorter locationlessSortOrders]
                                 initialSelection:configManager.locationlessListSortBy
                                           target:self
@@ -1880,7 +1885,7 @@ enum sections {
         }
     }];
 
-    [ActionSheetStringPicker showPickerWithTitle:@"Select Default Map"
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select Default Map")
                                             rows:mapBrandsNames
                                 initialSelection:initial
                                           target:self
@@ -1910,7 +1915,7 @@ enum sections {
 
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_APPS_EXTERNALMAP inSection:SECTION_APPS]];
 
-    [ActionSheetStringPicker showPickerWithTitle:@"Select External Maps"
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select External Maps")
                                             rows:externalMapTypes
                                 initialSelection:initial
                                           target:self

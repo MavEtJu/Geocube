@@ -93,19 +93,19 @@ enum {
         return;
 
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Initialize site details"
-                                message:@"Currently no site details have been initialized. Normally you update them by tapping on the local menu button at the top right and select 'Update config'. But for now you can update them by pressing the 'Import' button"
+                                alertControllerWithTitle:_(@"settingsaccountsviewcontroller-Initialize site details")
+                                message:_(@"settingsaccountsviewcontroller-Currently no site details have been initialized. Normally you update them by tapping on the local menu button at the top right and select 'Update config'. But for now you can update them by pressing the 'Import' button")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *import = [UIAlertAction
-                             actionWithTitle:@"Import"
+                             actionWithTitle:_(@"Import")
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction *action) {
                                  [self performSelectorInBackground:@selector(downloadFiles) withObject:nil];
                              }];
 
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
@@ -158,12 +158,12 @@ enum {
     dbAccount *account = [accounts objectAtIndex:indexPath.row];
 
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Update account details"
-                                message:@"Enter your account name"
+                                alertControllerWithTitle:_(@"settingsaccountsviewcontroller-Update account details")
+                                message:_(@"settingsaccountsviewcontroller-Enter your account name")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
+                         actionWithTitle:_(@"OK")
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction *action) {
                              //Do Some action
@@ -203,13 +203,13 @@ enum {
 
                              account.remoteAPI.authenticationDelegate = self;
                              if ([account.remoteAPI Authenticate] == NO)
-                                 [MyTools messageBox:self header:@"Unable to authenticate" text:account.remoteAccessFailureReason];
+                                 [MyTools messageBox:self header:_(@"settingsaccountsviewcontroller-Unable to authenticate") text:account.remoteAccessFailureReason];
                          }];
 
     UIAlertAction *forget = nil;
     if (IS_EMPTY(account.accountname.name) == NO)
         forget = [UIAlertAction
-                  actionWithTitle:@"Forget" style:UIAlertActionStyleDefault
+                  actionWithTitle:_(@"Forget") style:UIAlertActionStyleDefault
                   handler:^(UIAlertAction * action) {
                       account.accountname = nil;
                       account.authentictation_password = nil;
@@ -221,7 +221,7 @@ enum {
                   }];
 
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
@@ -233,17 +233,17 @@ enum {
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.text = account.accountname.name;
-        textField.placeholder = @"Geocaching name";
+        textField.placeholder = _(@"settingsaccountsviewcontroller-Geocaching name");
     }];
     if (account.protocol._id == PROTOCOL_GCA2) {
         [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
             textField.text = account.authentictation_name;
-            textField.placeholder = @"Authentication Name (if different)";
+            textField.placeholder = _(@"settingsaccountsviewcontroller-Authentication Name (if different)");
         }];
         [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
             textField.text = account.authentictation_password;
             textField.secureTextEntry = YES;
-            textField.placeholder = @"Authentication Password";
+            textField.placeholder = _(@"settingsaccountsviewcontroller-Authentication Password");
         }];
     }
 
@@ -253,14 +253,14 @@ enum {
 - (void)remoteAPI:(RemoteAPITemplate *)api failure:(NSString *)failure error:(NSError *)error
 {
     NSMutableString *msg = [NSMutableString stringWithString:failure];
-    [msg appendString:@" This means that you cannot obtain information for this account."];
+    [msg appendString:_(@"settingsaccountsviewcontroller-This means that you cannot obtain information for this account.")];
 
     if (error != nil)
         [msg appendFormat:@" (%@)", [error description]];
 
     NSLog(@"failure: %@", msg);
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [MyTools messageBox:self header:@"Authentication failed" text:msg];
+        [MyTools messageBox:self header:_(@"settingsaccountsviewcontroller-Authentication failed") text:msg];
     }];
 
     [self refreshAccountData];
@@ -270,7 +270,7 @@ enum {
 - (void)remoteAPI:(RemoteAPITemplate *)api success:(NSString *)success;
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [MyTools messageBox:self header:@"Authentication sucessful" text:@"Yay!"];
+        [MyTools messageBox:self header:_(@"settingsaccountsviewcontroller-Authentication sucessful") text:_(@"settingsaccountsviewcontroller-Yay!")];
     }];
 
     [self refreshAccountData];
@@ -294,7 +294,7 @@ enum {
 {
     NSString *lastVersion = configManager.configUpdateLastVersion;
     if ([lastVersion isEqualToString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]] == NO) {
-        [MyTools messageBox:[MyTools topMostController] header:@"Configuration Update" text:@"You haven't updated the configuration since the last code update. Please go to the Settings -> Accounts menu and update the configuration"];
+        [MyTools messageBox:[MyTools topMostController] header:_(@"settingsaccountsviewcontroller-Configuration Update") text:_(@"settingsaccountsviewcontroller-You haven't updated the configuration since the last code update. Please go to the Settings -> Accounts menu and update the configuration")];
         return;
     }
 
@@ -326,7 +326,7 @@ enum {
     COMPARE(@"url_logstrings", KEY_REVISION_LOGSTRINGS);
 
     if (needsDownload)
-        [MyTools messageBox:[MyTools topMostController] header:@"Configuration Update" text:@"A configuration update is available. Please go to the Settings -> Accounts menu and update the configuration."];
+        [MyTools messageBox:[MyTools topMostController] header:_(@"settingsaccountsviewcontroller-Configuration Update") text:_(@"settingsaccountsviewcontroller-A configuration update is available. Please go to the Settings -> Accounts menu and update the configuration.")];
 }
 
 - (void)downloadFiles
@@ -371,7 +371,7 @@ enum {
 + (void)downloadVersions:(NSMutableDictionary *)versions fail:(BOOL)showFail
 {
     if (showFail == YES)
-        [bezelManager setText:@"Downloading versions"];
+        [bezelManager setText:_(@"settingsaccountsviewcontroller-Downloading versions")];
 
     NSURL *url = [NSURL URLWithString:[[dbConfig dbGetByKey:@"url_versions"] value]];
 
@@ -397,10 +397,10 @@ enum {
             if (error != nil) {
                 err = error.description;
             } else {
-                err = [NSString stringWithFormat:@"HTTP status %ld", (long)response.statusCode];
+                err = [NSString stringWithFormat:_(@"settingsaccountsviewcontroller-HTTP status %ld"), (long)response.statusCode];
             }
 
-            [MyTools messageBox:[MyTools topMostController] header:@"Versions" text:[NSString stringWithFormat:@"Failed to download: %@", err]];
+            [MyTools messageBox:[MyTools topMostController] header:_(@"settingsaccountsviewcontroller-Versions") text:[NSString stringWithFormat:@"%@: %@", _(@"settingsaccountsviewcontroller-Failed to download"), err]];
         }
     }
 }
@@ -420,7 +420,7 @@ enum {
     if (c != nil && [[c value] integerValue] == versionFound)
         return;
 
-    [bezelManager setText:[NSString stringWithFormat:@"Downloading %@", header]];
+    [bezelManager setText:[NSString stringWithFormat:@"%@ %@", _(@"Downloading"), header]];
 
     NSURL *url = [NSURL URLWithString:[[dbConfig dbGetByKey:key_url] value]];
 
@@ -439,10 +439,10 @@ enum {
         if (error != nil) {
             err = error.description;
         } else {
-            err = [NSString stringWithFormat:@"HTTP status %ld", (long)response.statusCode];
+            err = [NSString stringWithFormat:_(@"settingsaccountsviewcontroller-HTTP status %ld"), (long)response.statusCode];
         }
 
-        [MyTools messageBox:self header:header text:[NSString stringWithFormat:@"Failed to download: %@", err]];
+        [MyTools messageBox:self header:header text:[NSString stringWithFormat:_(@"settingsaccountsviewcontroller-Failed to download: %@"), err]];
     }
 }
 

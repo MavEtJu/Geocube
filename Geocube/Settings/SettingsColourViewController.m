@@ -79,7 +79,7 @@
 
     chooseButton = [UIButton buttonWithType:UIButtonTypeSystem];
     chooseButton.frame = CGRectMake(frame.size.width / 5, y, 3 * frame.size.width / 5, 20);
-    [chooseButton setTitle:@"Choose this colour" forState:UIControlStateNormal];
+    [chooseButton setTitle:_(@"settingscolourviewcontroller-Choose this colour") forState:UIControlStateNormal];
     [chooseButton addTarget:self action:@selector(chooseColour) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:chooseButton];
     y += 30;
@@ -91,7 +91,7 @@
 
     resetButton = [UIButton buttonWithType:UIButtonTypeSystem];
     resetButton.frame = CGRectMake(frame.size.width / 5, y, 3 * frame.size.width / 5, 20);
-    [resetButton setTitle:@"Reset" forState:UIControlStateNormal];
+    [resetButton setTitle:_(@"Reset") forState:UIControlStateNormal];
     [resetButton addTarget:self action:@selector(resetColour) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:resetButton];
     y += 30;
