@@ -192,7 +192,7 @@ EMPTY_METHOD(mapViewDidLoad)
     }];
 
     [ActionSheetStringPicker
-     showPickerWithTitle:@"Select a waypoint"
+     showPickerWithTitle:_(@"maptemplate-Select a waypoint")
      rows:descs
      initialSelection:0
      doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, NSString *selectedValue) {

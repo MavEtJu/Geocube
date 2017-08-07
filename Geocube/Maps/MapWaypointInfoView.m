@@ -89,11 +89,11 @@
     self.labelDescription.text = wp.wpt_urlname;
     if (wp.gs_owner == nil) {
         if ([wp hasGSData] == YES)
-            self.labelWhoWhen.text = [NSString stringWithFormat:@"Yours on %@", [MyTools dateTimeString_YYYY_MM_DD:wp.wpt_date_placed_epoch]];
+            self.labelWhoWhen.text = [NSString stringWithFormat:_(@"mapwaypointinfoview-Yours on %@"), [MyTools dateTimeString_YYYY_MM_DD:wp.wpt_date_placed_epoch]];
         else
-            self.labelWhoWhen.text = [NSString stringWithFormat:@"Placed on %@", [MyTools dateTimeString_YYYY_MM_DD:wp.wpt_date_placed_epoch]];
+            self.labelWhoWhen.text = [NSString stringWithFormat:_(@"mapwaypointinfoview-Placed on %@"), [MyTools dateTimeString_YYYY_MM_DD:wp.wpt_date_placed_epoch]];
     } else
-        self.labelWhoWhen.text = [NSString stringWithFormat:@"by %@ on %@", wp.gs_owner.name, [MyTools dateTimeString_YYYY_MM_DD:wp.wpt_date_placed_epoch]];
+        self.labelWhoWhen.text = [NSString stringWithFormat:_(@"mapwaypointinfoview-by %@ on %@"), wp.gs_owner.name, [MyTools dateTimeString_YYYY_MM_DD:wp.wpt_date_placed_epoch]];
 
     NSMutableString *nameText = [NSMutableString stringWithString:wp.wpt_name];
     if (wp.account.site != nil)
@@ -107,7 +107,7 @@
         self.labelDescription.backgroundColor = [UIColor clearColor];
 
     if (wp.gs_rating_terrain != 0)
-        self.labelRatingDT.text = [NSString stringWithFormat:@"D/T: %0.1f/%0.1f", wp.gs_rating_difficulty, wp.gs_rating_terrain];
+        self.labelRatingDT.text = [NSString stringWithFormat:@"%@: %0.1f/%0.1f", _(@"rating-D/T"), wp.gs_rating_difficulty, wp.gs_rating_terrain];
     [self setRatings:wp.gs_favourites size:wp.gs_container.icon];
 
     NSInteger b = [Coordinates coordinates2bearing:LM.coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude];
