@@ -177,12 +177,12 @@
 
         if (error != nil) {
             NSLog(@"%@ - Error %@, bailing", [self class], [error description]);
-            [MyTools messageBox:[MyTools topMostController] header:@"OpenCage Manager" text:@"The OpenCage interface ran into a problem. It will be disabled until Geocube has been restarted." error:[error description]];
+            [MyTools messageBox:[MyTools topMostController] header:_(@"opencagemanager-OpenCage Manager") text:_(@"opencagemanager-The OpenCage interface ran into a problem. It will be disabled until Geocube has been restarted.") error:[error description]];
         } else {
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
             NSDictionary *status = [json objectForKey:@"status"];
             NSLog(@"%@ - Error %@, bailing", [self class], [status objectForKey:@"message"]);
-            [MyTools messageBox:[MyTools topMostController] header:@"OpenCage Manager" text:@"The OpenCage interface ran into a problem. It will be disabled until Geocube has been restarted." error:[status objectForKey:@"message"]];
+            [MyTools messageBox:[MyTools topMostController] header:_(@"opencagemanager-OpenCage Manager") text:_(@"opencagemanager-The OpenCage interface ran into a problem. It will be disabled until Geocube has been restarted.") error:[status objectForKey:@"message"]];
         }
     }
 }
