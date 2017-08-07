@@ -81,9 +81,9 @@ enum {
 - (NSString *)tableView:(UITableView *)aTableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 0)
-        return @"Accounts";
+        return _(@"statistics-Accounts");
     else
-        return @"Total";
+        return _(@"statistics-Total");
 }
 
 // Rows per section
@@ -147,20 +147,20 @@ enum {
             return;
 
         NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
-        [d setObject:@"Not yet polled" forKey:@"status"];
+        [d setObject:_(@"statistics-Not yet polled") forKey:@"status"];
         [d setObject:a.site forKey:@"site"];
         [d setObject:a forKey:@"account"];
         [accounts addObject:d];
 
         if (a.remoteAPI.supportsUserStatistics == NO)
-            [d setObject:@"Remote API doesn't support user statistics" forKey:@"status"];
+            [d setObject:_(@"statistics-Remote API doesn't support user statistics") forKey:@"status"];
         else if (a.enabled == NO)
-            [d setObject:@"No remote API available" forKey:@"status"];
+            [d setObject:_(@"statistics-No remote API available") forKey:@"status"];
     }];
 
     totalDictionary = [NSMutableDictionary dictionary];
     [totalDictionary setObject:@"" forKey:@"site"];
-    [totalDictionary setObject:@"Not yet computed" forKey:@"status"];
+    [totalDictionary setObject:_(@"statistics-Not yet computed") forKey:@"status"];
     [self clearTotal];
 }
 
@@ -188,17 +188,17 @@ enum {
         [d removeObjectForKey:@"recommendations_received"];
 
         if (a.enabled == NO) {
-            [d setObject:@"Remote API is not enabled" forKey:@"status"];
+            [d setObject:_(@"statistics-Remote API is not enabled") forKey:@"status"];
             return;
         }
 
         if (a.canDoRemoteStuff == NO) {
-            [d setObject:@"Remote API is not available" forKey:@"status"];
+            [d setObject:_(@"statistics-Remote API is not available") forKey:@"status"];
             return;
         }
 
         [self performSelectorInBackground:@selector(runStatistics:) withObject:d];
-        [d setObject:@"Polling..." forKey:@"status"];
+        [d setObject:_(@"statistics-Polling...") forKey:@"status"];
     }];
 
     [self reloadDataMainQueue];
@@ -244,8 +244,8 @@ enum {
         if ([infoView hasItems] == NO)
             [self hideInfoView];
 
-        NSString *header = [NSString stringWithFormat:@"Unable to load statistics for %@", a.site];
-        NSString *text = [NSString stringWithFormat:@"Returned error: %@", a.remoteAPI.lastError];
+        NSString *header = [NSString stringWithFormat:_(@"statistics-Unable to load statistics for %@"), a.site];
+        NSString *text = [NSString stringWithFormat:_(@"statistics-Returned error: %@"), a.remoteAPI.lastError];
         [MyTools messageBox:self header:header text:text];
         return;
     }
