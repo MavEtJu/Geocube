@@ -47,6 +47,13 @@ foreach my $file (@files) {
 			}
 			print "Found unknown '$1'\n";
 		}
+		if (defined $foundstrings{$1}) {
+			if ($shown == 0) {
+				print "$file\n";
+				$shown = 1;
+			}
+			print "Found duplicate '$1'\n";
+		}
 		$foundstrings{$1} = 1;
 	}
 
