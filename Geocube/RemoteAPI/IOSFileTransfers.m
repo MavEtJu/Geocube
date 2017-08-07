@@ -165,16 +165,16 @@ enum {
         error = nil;
 
         if ([fileManager copyItemAtURL:url toURL:destinationName error:&error] == YES) {
-            [MyTools messageBox:ICloudVC header:@"Download complete" text:@"You can find the saved file in the Files menu"];
+            [MyTools messageBox:ICloudVC header:_(@"iosfiletransfers-Download complete") text:_(@"iosfiletransfers-You can find the saved file in the Files menu")];
             [self.delegate refreshFilelist];
         } else {
-            [MyTools messageBox:ICloudVC header:@"Download failed" text:[NSString stringWithFormat:@"Error message: %@", error]];
+            [MyTools messageBox:ICloudVC header:_(@"iosfiletransfers-Download failed") text:[NSString stringWithFormat:(@"iosfiletransfers-Error message: %@"), error]];
         }
         currentICloud = iCloudNone;
     }
 
     if (currentICloud == iCloudUpload) {
-        [MyTools messageBox:ICloudVC header:@"Upload complete" text:@"Your other iCloud devices should be seeing this file now"];
+        [MyTools messageBox:ICloudVC header:_(@"iosfiletransfers-Upload complete") text:_(@"iosfiletransfers-Your other iCloud devices should be seeing this file now")];
         currentICloud = iCloudNone;
     }
 }
