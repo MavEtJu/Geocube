@@ -46,7 +46,7 @@
 - (void)refreshWaypointsData
 {
     [bezelManager showBezel:self];
-    [bezelManager setText:@"Refreshing database"];
+    [bezelManager setText:_(@"maponewpviewcontroller-Refreshing database")];
 
     [waypointManager applyFilters:LM.coords];
 

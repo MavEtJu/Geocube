@@ -62,7 +62,7 @@ enum {
 - (void)refreshWaypointsData
 {
     [bezelManager showBezel:self];
-    [bezelManager setText:@"Refreshing database"];
+    [bezelManager setText:_(@"mapallwpviewcontroller-Refreshing database")];
 
     [waypointManager applyFilters:LM.coords];
 
@@ -85,7 +85,7 @@ enum {
     [self.map currentRectangle:&bl topRight:&tr];
     NSInteger dist = [Coordinates coordinates2distance:bl to:tr];
     if ([Coordinates coordinates2distance:bl to:tr] > MAXSIZE) {
-        [MyTools messageBox:self header:@"Adjustment" text:[NSString stringWithFormat:@"The distance to the top right of the map and the bottom left of the map has been reduced from %@ to a maximum of %@", [MyTools niceDistance:dist], [MyTools niceDistance:MAXSIZE]]];
+        [MyTools messageBox:self header:_(@"mapallwpviewcontroller-Adjustment") text:[NSString stringWithFormat:_(@"mapallwpviewcontroller-The distance to the top right of the map and the bottom left of the map has been reduced from %@ to a maximum of %@"), [MyTools niceDistance:dist], [MyTools niceDistance:MAXSIZE]]];
         do {
             CLLocationCoordinate2D tbl = bl;
             CLLocationCoordinate2D ttr = tr;
@@ -135,7 +135,7 @@ enum {
     }];
 
     if (accountsFound == 0) {
-        [MyTools messageBox:self header:@"Nothing imported" text:@"No accounts with remote capabilities could be found. Please go to the Accounts tab in the Settings menu to define an account."];
+        [MyTools messageBox:self header:_(@"mapallwpviewcontroller-Nothing imported") text:_(@"mapallwpviewcontroller-No accounts with remote capabilities could be found. Please go to the Accounts tab in the Settings menu to define an account.")];
         return;
     }
 
@@ -265,7 +265,7 @@ enum {
     [infoView removeItem:iid];
 
     if (rv != REMOTEAPI_OK) {
-        [MyTools messageBox:self header:account.site text:@"Unable to retrieve the data" error:account.remoteAPI.lastError];
+        [MyTools messageBox:self header:account.site text:_(@"mapallwpviewcontroller-Unable to retrieve the data") error:account.remoteAPI.lastError];
         return;
     }
 }
