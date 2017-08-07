@@ -77,7 +77,7 @@ enum {
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"%ld locationless", (long)[self.waypoints count]];
+    return [NSString stringWithFormat:@"%ld %@", (long)[self.waypoints count], _(@"locationlesstemplateviewcontroller-locationless")];
 }
 
 // Return a cell for the index path
@@ -127,7 +127,7 @@ enum {
     NSArray<NSString *> *orders = [WaypointSorter locationlessSortOrders];
 
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Sort by"
+                                alertControllerWithTitle:_(@"locationlesstemplateviewcontroller-Sort by")
                                 message:nil
                                 preferredStyle:UIAlertControllerStyleAlert];
 
@@ -144,7 +144,7 @@ enum {
     }
 
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
