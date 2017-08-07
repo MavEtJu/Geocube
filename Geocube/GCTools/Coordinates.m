@@ -514,11 +514,11 @@
         }
     }];
     if (found == 0)
-        [MyTools messageBox:vc header:@"Imported failed" text:@"No waypoints were found"];
+        [MyTools messageBox:vc header:_(@"coordinates-importfailed") text:_(@"coordinates-nowaypointswerefound")];
     else if (found == 1)
-        [MyTools messageBox:vc header:@"Imported successful" text:@"Succesfully added one waypoint"];
+        [MyTools messageBox:vc header:_(@"coordinates-importsuccessful") text:_(@"coordinates-succesfullyaddedonewaypoint")];
     else
-        [MyTools messageBox:vc header:@"Imported successful" text:[NSString stringWithFormat:@"Succesfully added %ld waypoints", (long)found]];
+        [MyTools messageBox:vc header:_(@"coordinates-importsuccessful") text:[NSString stringWithFormat:_(@"coordinates-succesfullyadded%ldwaypoints"), (long)found]];
     return found;
 }
 

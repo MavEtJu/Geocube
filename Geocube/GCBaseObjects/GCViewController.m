@@ -167,6 +167,7 @@
 
 - (void)performLocalMenuAction:(NSInteger)index
 {
+    // Not localized as it will only happen in development conditions
     [MyTools messageBox:self header:@"You selected..." text:[NSString stringWithFormat:@"number %@", @(index + 1)]];
 }
 
