@@ -72,7 +72,6 @@
 
 - (void)loadTexts
 {
-//    texts = @[@"This software uses the following 3rd party modules and data. My sincere thanks to all of the above for their generousity.",
     texts = [NSMutableArray arrayWithCapacity:20];
     [texts addObject:@{
         @"name": @"OpenStreetMap maps",

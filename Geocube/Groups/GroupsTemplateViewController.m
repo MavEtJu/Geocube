@@ -99,11 +99,11 @@
 
     UIAlertController *view = [UIAlertController
                                alertControllerWithTitle:cg.name
-                               message:@"Select you choice"
+                               message:_(@"groupstemplateviewcontroller-Select your choice")
                                preferredStyle:UIAlertControllerStyleActionSheet];
 
     UIAlertAction *empty = [UIAlertAction
-                            actionWithTitle:@"Empty"
+                            actionWithTitle:_(@"Empty")
                             style:UIAlertActionStyleDestructive
                             handler:^(UIAlertAction * action)
                             {
@@ -113,7 +113,7 @@
                             }];
 
     UIAlertAction *rename = [UIAlertAction
-                             actionWithTitle:@"Rename"
+                             actionWithTitle:_(@"Rename")
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
@@ -122,7 +122,7 @@
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
     UIAlertAction *delete = [UIAlertAction
-                             actionWithTitle:@"Delete"
+                             actionWithTitle:_(@"Delete")
                              style:UIAlertActionStyleDestructive
                              handler:^(UIAlertAction * action)
                              {
@@ -131,7 +131,7 @@
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel"
+                             actionWithTitle:_(@"Cancel")
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
@@ -194,8 +194,8 @@
 - (void)groupRename:(dbGroup *)cg
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Rename group"
-                                message:[NSString stringWithFormat:@"Rename %@ to", cg.name]
+                                alertControllerWithTitle:_(@"groupstemplateviewcontroller-Rename group")
+                                message:[NSString stringWithFormat:_(@"groupstemplateviewcontroller-Rename %@ to"), cg.name]
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
@@ -212,7 +212,7 @@
                              [self.tableView reloadData];
                          }];
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
@@ -232,12 +232,12 @@
 - (void)newGroup
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Add a group"
-                                message:@"Name of the new group"
+                                alertControllerWithTitle:_(@"groupstemplateviewcontroller-Add a group")
+                                message:_(@"groupstemplateviewcontroller-Name of the new group")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
+                         actionWithTitle:_(@"OK")
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction *action) {
                              //Do Some action
@@ -255,7 +255,7 @@
                              [self.tableView reloadData];
                          }];
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
@@ -264,7 +264,7 @@
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Name of the new group";
+        textField.placeholder = _(@"groupstemplateviewcontroller-Name of the new group");
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];

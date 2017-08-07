@@ -65,19 +65,19 @@ enum {
         return;
 
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Initialize notices"
-                                message:@"Currently no notices details have been download. Normally you update them by tapping on the local menu button at the top left and select 'Download notices'. But for now you can update them by pressing the 'Import' button"
+                                alertControllerWithTitle:_(@"noticesviewcontroller-Initialize notices")
+                                message:_(@"noticesviewcontroller-Currently no notices details have been download. Normally you update them by tapping on the local menu button at the top left and select 'Download notices'. But for now you can update them by pressing the 'Import' button")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *import = [UIAlertAction
-                             actionWithTitle:@"Import"
+                             actionWithTitle:_(@"Import")
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction *action) {
                                  [self performSelectorInBackground:@selector(downloadNotices) withObject:nil];
                              }];
 
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
@@ -153,7 +153,7 @@ enum {
     NSURL *url = [NSURL URLWithString:[[dbConfig dbGetByKey:@"url_notices"] value]];
 
     [bezelManager showBezel:self];
-    [bezelManager setText:@"Downloading notices"];
+    [bezelManager setText:_(@"noticesviewcontroller-Downloading notices")];
 
     GCURLRequest *urlRequest = [GCURLRequest requestWithURL:url];
     NSHTTPURLResponse *response = nil;
@@ -165,9 +165,9 @@ enum {
     if (data != nil && error == nil && response.statusCode == 200) {
         NSLog(@"%@: Downloaded %@ (%ld bytes)", [self class], url, (unsigned long)[data length]);
         if ([ImportGeocube parse:data] == YES)
-            [MyTools messageBox:self header:@"Notices download" text:[NSString stringWithFormat:@"Successful downloaded (revision %@)", [[dbConfig dbGetByKey:@"notices_revision"] value]]];
+            [MyTools messageBox:self header:_(@"noticesviewcontroller-Notices download") text:[NSString stringWithFormat:_(@"noticesviewcontroller-Successful downloaded (revision %@)"), [[dbConfig dbGetByKey:@"notices_revision"] value]]];
         else
-            [MyTools messageBox:self header:@"Notices download" text:@"There was a failure in parsing the downloaded notices file"];
+            [MyTools messageBox:self header:_(@"noticesviewcontroller-Notices download") text:_(@"noticesviewcontroller-There was a failure in parsing the downloaded notices file")];
 
         notices = [dbNotice dbAll];
         [self reloadDataMainQueue];
@@ -181,7 +181,7 @@ enum {
             err = [NSString stringWithFormat:@"HTTP status %ld", (long)response.statusCode];
         }
 
-        [MyTools messageBox:self header:@"Notices download" text:[NSString stringWithFormat:@"Failed to download: %@", err]];
+        [MyTools messageBox:self header:_(@"noticesviewcontroller-Notices download") text:[NSString stringWithFormat:_(@"noticesviewcontroller-Failed to download: %@"), err]];
     }
 }
 
