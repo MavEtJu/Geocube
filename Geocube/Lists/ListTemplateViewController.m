@@ -88,7 +88,7 @@ enum {
     if (waypoints == nil)
         return @"";
     NSInteger c = [waypoints count];
-    return [NSString stringWithFormat:@"%ld waypoint%@", (unsigned long)c, c == 1 ? @"" : @"s"];
+    return [NSString stringWithFormat:@"%ld %@", (unsigned long)c, c == 1 ? _(@"waypoint") : _(@"waypoints")];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -146,7 +146,7 @@ enum {
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return @"Remove mark";
+    return _(@"listtemplateviewcontroller-Remove mark");
 }
 
 #pragma mark - Local menu related functions
@@ -212,11 +212,11 @@ enum {
 
     InfoItemID iid = [infoView addDownload];
     [infoView setChunksTotal:iid total:[wps count]];
-    [infoView setDescription:iid description:[NSString stringWithFormat:@"Downloading for %@", account.site]];
+    [infoView setDescription:iid description:[NSString stringWithFormat:_(@"listtemplateviewcontroller-Downloading for %@"), account.site]];
 
     NSInteger rv = [account.remoteAPI loadWaypointsByCodes:wps infoViewer:infoView iiDownload:iid identifier:(long)account._id group:dbc.Group_LastImport callback:self];
     if (rv != REMOTEAPI_OK)
-        [MyTools messageBox:self header:@"Reload waypoints" text:@"Update failed" error:account.remoteAPI.lastError];
+        [MyTools messageBox:self header:_(@"listtemplateviewcontroller-Reload waypoints") text:_(@"listtemplateviewcontroller-Update failed") error:account.remoteAPI.lastError];
     [infoView removeItem:iid];
 }
 
@@ -257,7 +257,7 @@ enum {
     NSArray<NSString *> *orders = [WaypointSorter listSortOrders];
 
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Sort by"
+                                alertControllerWithTitle:_(@"listtemplateviewcontroller-Sort by")
                                 message:nil
                                 preferredStyle:UIAlertControllerStyleAlert];
 
@@ -274,7 +274,7 @@ enum {
     }
 
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
@@ -294,7 +294,7 @@ enum {
             return;
         case menuExportGPX:
             [ExportGPX exports:waypoints];
-            [MyTools messageBox:self header:@"Export successful" text:@"The exported file can be found in the Files section"];
+            [MyTools messageBox:self header:_(@"listtemplateviewcontroller-Export successful") text:_(@"listtemplateviewcontroller-The exported file can be found in the Files section")];
             return;
         case menuSortBy:
             [self menuSortBy];
