@@ -97,7 +97,7 @@ enum {
     }];
 
     if (failure == YES)
-        [MyTools messageBox:self header:account.site text:@"Unable to retrieve the list of queries" error:account.remoteAPI.lastError];
+        [MyTools messageBox:self header:account.site text:_(@"queriesemplateviewcontroller-Unable to retrieve the list of queries") error:account.remoteAPI.lastError];
 
     [self reloadDataMainQueue];
 }
@@ -108,12 +108,12 @@ enum {
 {
     // Alert if this option isn't available.
     if (account.canDoRemoteStuff == NO)
-        return @"This account cannot be polled right now.";
+        return _(@"queriestemplateviewcontroller-This account cannot be polled right now.");
 
     if (qs == nil)
         return @"";
     NSInteger c = [qs count];
-    return [NSString stringWithFormat:@"%ld Available %@", (unsigned long)c, c == 1 ? self.queryString : self.queriesString];
+    return [NSString stringWithFormat:_(@"queriestemplateviewcontroller-%ld available %@"), (unsigned long)c, c == 1 ? self.queryString : self.queriesString];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -145,17 +145,17 @@ enum {
         NSInteger count = [[pq objectForKey:@"Count"] integerValue];
         size = count;
         if (count >= 0)
-            cell.labelWaypoints.text = [NSString stringWithFormat:@"%@ waypoint%@", [MyTools niceNumber:count], count == 1 ? @"" : @"s"];
+            cell.labelWaypoints.text = [NSString stringWithFormat:@"%@ %@", [MyTools niceNumber:count], count == 1 ? _(@"waypoint") : _(@"waypoints")];
     }
     cell.labelSize.text = @"";
     if ([pq objectForKey:@"Size"] != nil) {
         size = [[pq objectForKey:@"Size"] integerValue];
-        cell.labelSize.text = [NSString stringWithFormat:@"Download size: %@", [MyTools niceFileSize:size]];
+        cell.labelSize.text = [NSString stringWithFormat:_(@"queriestemplateviewcontroller-Download size: %@"), [MyTools niceFileSize:size]];
     }
     cell.labelDateTime.text = @"";
     if ([pq objectForKey:@"DateTime"] != nil) {
         NSString *date = [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:[[pq objectForKey:@"DateTime"] integerValue]];
-        cell.labelDateTime.text = [NSString stringWithFormat:@"Date created: %@", date];
+        cell.labelDateTime.text = [NSString stringWithFormat:_(@"queriestemplateviewcontroller-Date created: %@"), date];
     }
 
     cell.labelLastImport.text = @"";
@@ -163,7 +163,7 @@ enum {
         if (qi.account._id == account._id &&
             [qi.name isEqualToString:name] == YES &&
             qi.filesize == size) {
-            cell.labelLastImport.text = [NSString stringWithFormat:@"Last import: %@", [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:qi.lastimport]];
+            cell.labelLastImport.text = [NSString stringWithFormat:_(@"queriestemplateviewcontroller-Last import: %@"), [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:qi.lastimport]];
             *stop = YES;
         }
     }];
@@ -174,7 +174,7 @@ enum {
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (configManager.downloadQueriesMobile == NO && [MyTools hasWifiNetwork] == NO) {
-        [MyTools messageBox:self header:@"Failure" text:[NSString stringWithFormat:@"Your settings don't allow download of %@ if Wi-Fi is not available", self.queriesString]];
+        [MyTools messageBox:self header:_(@"queriestemplateviewcontroller-Failure") text:[NSString stringWithFormat:_(@"queriestemplateviewcontroller-Your settings don't allow download of %@ if Wi-Fi is not available"), self.queriesString]];
         return;
     }
 
@@ -262,7 +262,7 @@ enum {
     [processing addIdentifier:0];
     RemoteAPIResult rv = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group infoViewer:infoView iiDownload:iid identifier:0 callback:self];
     if (rv != REMOTEAPI_OK)
-        [MyTools messageBox:self header:@"Error" text:@"Unable to retrieve the data from the query" error:account.remoteAPI.lastError];
+        [MyTools messageBox:self header:_(@"Error") text:_(@"queriestemplateviewcontroller-Unable to retrieve the data from the query") error:account.remoteAPI.lastError];
 
     [infoView removeItem:iid];
 }
