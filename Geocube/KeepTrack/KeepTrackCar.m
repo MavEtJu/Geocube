@@ -77,7 +77,7 @@ enum {
 
     labelRecordedLocation = [[GCLabel alloc] initWithFrame:rectRecordedLocation];
     labelRecordedLocation.textAlignment = NSTextAlignmentCenter;
-    labelRecordedLocation.text = @"Remembered Coordinates:";
+    labelRecordedLocation.text = [NSString stringWithFormat:@"%@:", _(@"keeptrackcar-Remembered coordinates")];
     [self.view addSubview:labelRecordedLocation];
 
     labelRecordedLocationCoordinates = [[GCLabel alloc] initWithFrame:rectRecordedLocationCoordinates];
@@ -86,7 +86,7 @@ enum {
 
     labelCurrentLocation = [[GCLabel alloc] initWithFrame:rectCurrentLocation];
     labelCurrentLocation.textAlignment = NSTextAlignmentCenter;
-    labelCurrentLocation.text = @"Current Coordinates:";
+    labelCurrentLocation.text = [NSString stringWithFormat:@"%@:", _(@"keeptrackcar-Current coordinates")];
     [self.view addSubview:labelCurrentLocation];
 
     labelCurrentLocationCoordinates = [[GCLabel alloc] initWithFrame:rectCurrentLocationCoordinates];
@@ -103,7 +103,7 @@ enum {
 
     buttonSetAsTarget = [UIButton buttonWithType:UIButtonTypeSystem];
     buttonSetAsTarget.frame = rectButtonSetAsTarget;
-    [buttonSetAsTarget setTitle:@"Set remembered location as target" forState:UIControlStateNormal];
+    [buttonSetAsTarget setTitle:_(@"keeptrackcar-Set remembered coordinates as target") forState:UIControlStateNormal];
     [buttonSetAsTarget addTarget:self action:@selector(setastarget:) forControlEvents:UIControlEventTouchDown];
     buttonSetAsTarget.userInteractionEnabled = NO;
     [self.view addSubview:buttonSetAsTarget];
@@ -173,12 +173,12 @@ enum {
     labelCurrentLocationCoordinates.text = [Coordinates niceCoordinates:[LM coords]];
     if (coordsRecordedLocation.latitude != 0 && coordsRecordedLocation.longitude != 0) {
         labelRecordedLocationCoordinates.text = [Coordinates niceCoordinates:coordsRecordedLocation];
-        labelDistance.text = [NSString stringWithFormat:@"Distance: %@", [MyTools niceDistance:[Coordinates coordinates2distance:[LM coords] to:coordsRecordedLocation]]];
-        labelDirection.text = [NSString stringWithFormat:@"Direction: %@", [Coordinates bearing2compass:[Coordinates coordinates2bearing:[LM coords] to:coordsRecordedLocation]]];
+        labelDistance.text = [NSString stringWithFormat:@"%@: %@", _(@"keeptrackcar-Distance"), [MyTools niceDistance:[Coordinates coordinates2distance:[LM coords] to:coordsRecordedLocation]]];
+        labelDirection.text = [NSString stringWithFormat:@"%@: %@", _(@"keeptrackcar-Distance"), [Coordinates bearing2compass:[Coordinates coordinates2bearing:[LM coords] to:coordsRecordedLocation]]];
     } else {
         labelRecordedLocationCoordinates.text = @"-";
-        labelDistance.text = @"Distance: -";
-        labelDirection.text = @"Direction: -";
+        labelDistance.text = [NSString stringWithFormat:@"%@: - ", _(@"keeptrackcar-Distance")];
+        labelDirection.text = [NSString stringWithFormat:@"%@: - ", _(@"keeptrackcar-Direction")];
     }
 }
 
@@ -205,8 +205,8 @@ enum {
         waypoint = [[dbWaypoint alloc] init];
 
         waypoint.wpt_name = @"MYCAR";
-        waypoint.wpt_description = @"Remembered location";
-        waypoint.wpt_urlname = @"Remembered location";
+        waypoint.wpt_description = _(@"keeptrackcar-Remembered location");
+        waypoint.wpt_urlname = _(@"keeptrackcar-Remembered location");
         waypoint.wpt_type = [dbc Type_get_byname:@"Waypoint" minor:@"Final Location"];
         waypoint.wpt_symbol = [dbc Symbol_get_bysymbol:@"Final Location"];
         [waypoint dbCreate];
