@@ -38,7 +38,7 @@
 - (void)reloadQueries
 {
     [bezelManager showBezel:self];
-    [bezelManager setText:@"Downloading list of pocket queries"];
+    [bezelManager setText:_(@"queriesgroundspeakviewcontroller-Downloading list of pocket queries")];
     [self reloadQueries:PROTOCOL_LIVEAPI];
     [bezelManager removeBezel];
 }

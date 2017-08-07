@@ -40,7 +40,7 @@
 - (void)reloadQueries
 {
     [bezelManager showBezel:self];
-    [bezelManager setText:@"Downloading list of pocket queries"];
+    [bezelManager setText:_(@"queriesggcwviewcontroller-Downloading list of pocket queries")];
     [self reloadQueries:PROTOCOL_GGCW];
     [bezelManager removeBezel];
 }
