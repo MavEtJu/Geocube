@@ -82,7 +82,7 @@
         if ([_dict objectForKey:@"StatusCode"] != nil)
             dict = [_dict _dict];
     if (dict == nil) {
-        NSString *reason = @"No Status value given.";
+        NSString *reason = _(@"protocolliveapi-No Status value given.");
         [remoteAPI setAPIError:reason error:REMOTEAPI_APIFAILED];
         [remoteAPI.account disableRemoteAccess:reason];
         return NO;
@@ -94,13 +94,13 @@
 {
     NSNumber *n = [dict valueForKey:@"StatusCode"];
     if (n == nil) {
-        NSString *reason = @"No StatusCode value given.";
+        NSString *reason = _(@"protocolliveapi-No StatusCode value given.");
         [remoteAPI setAPIError:reason error:REMOTEAPI_APIFAILED];
         [remoteAPI.account disableRemoteAccess:reason];
         return NO;
     }
     if ([n isEqualToNumber:[NSNumber numberWithInteger:0]] == NO) {
-        NSString *reason = [NSString stringWithFormat:@"StatusCode %@: %@", [dict objectForKey:@"StatusCode"], [dict objectForKey:@"StatusMessage"]];
+        NSString *reason = [NSString stringWithFormat:_(@"protocolliveapi-StatusCode %@: %@"), [dict objectForKey:@"StatusCode"], [dict objectForKey:@"StatusMessage"]];
         [remoteAPI setAPIError:reason error:REMOTEAPI_APIFAILED];
         switch ([n integerValue]) {
             case  15:   // The DateTime provided must be between 2000-01-01 12:00:00 and 2017-06-14 11:23:45.
@@ -140,7 +140,7 @@
     if (response.statusCode != 200) {
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"retbody: %@", retbody);
-        [remoteAPI setNetworkError:[NSString stringWithFormat:@"HTTP response statusCode: %ld", (long)response.statusCode] error:REMOTEAPI_APIFAILED];
+        [remoteAPI setNetworkError:[NSString stringWithFormat:_(@"protocolliveapi-HTTP response statusCode: %ld"), (long)response.statusCode] error:REMOTEAPI_APIFAILED];
         return nil;
     }
 

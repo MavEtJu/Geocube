@@ -25,7 +25,7 @@
 
 @implementation RemoteAPILiveAPI
 
-#define IMPORTMSG   @"LiveAPI JSON data (queued)"
+#define IMPORTMSG   _(@"remoteapiliveapi-LiveAPI JSON data (queued)")
 
 - (BOOL)supportsWaypointPersonalNotes { return YES; }
 - (BOOL)supportsTrackables { return YES; }
@@ -53,20 +53,20 @@
                 if ([__json__ objectForKey:@"StatusCode"] != nil) \
                     status = [__json__ _dict]; \
             if (status == nil) { \
-                NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: No 'Status' field returned", __logsection__]; \
+                NSString *s = [NSString stringWithFormat:_(@"remoteapiliveapi-[LiveAPI] %@: No 'Status' field returned"), __logsection__]; \
                 NSLog(@"%@", s); \
                 [self setDataError:s error:__failure__]; \
                 return REMOTEAPI_APIFAILED; \
             } \
             NSNumber *num = [status objectForKey:@"StatusCode"]; \
             if (num == nil) { \
-                NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: No 'StatusCode' field returned", __logsection__]; \
+                NSString *s = [NSString stringWithFormat:_(@"remoteapiliveapi-LiveAPI] %@: No 'StatusCode' field returned"), __logsection__]; \
                 NSLog(@"%@", s); \
                 [self setDataError:s error:__failure__]; \
                 return REMOTEAPI_APIFAILED; \
             } \
             if ([num integerValue] != 0) { \
-                NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: 'actionstatus' was not 0 (%@)", __logsection__, num]; \
+                NSString *s = [NSString stringWithFormat:_(@"remoteapiliveapi-[LiveAPI] %@: 'actionstatus' was not 0 (%@)"), __logsection__, num]; \
                 NSLog(@"%@", s); \
                 [self setDataError:s error:__failure__]; \
                 return __failure__; \
@@ -84,7 +84,7 @@
                 if ([__json__ objectForKey:@"StatusCode"] != nil) \
                     status = [__json__ _dict]; \
             if (status == nil) { \
-                NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: No 'Status' field returned", __logsection__]; \
+                NSString *s = [NSString stringWithFormat:_(@"remoteapiliveapi-[LiveAPI] %@: No 'Status' field returned"), __logsection__]; \
                 NSLog(@"%@", s); \
                 [self setDataError:s error:__failure__]; \
                 errorCode = REMOTEAPI_APIFAILED; \
@@ -93,7 +93,7 @@
             } \
             NSNumber *num = [status objectForKey:@"StatusCode"]; \
             if (num == nil) { \
-                NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: No 'StatusCode' field returned", __logsection__]; \
+                NSString *s = [NSString stringWithFormat:_(@"remoteapiliveapi-[LiveAPI] %@: No 'StatusCode' field returned"), __logsection__]; \
                 NSLog(@"%@", s); \
                 [self setDataError:s error:__failure__]; \
                 errorCode = REMOTEAPI_APIFAILED; \
@@ -101,7 +101,7 @@
                 return; \
             } \
             if ([num integerValue] != 0) { \
-                NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: 'actionstatus' was not 0 (%@)", __logsection__, num]; \
+                NSString *s = [NSString stringWithFormat:_(@"remoteapiliveapi-[LiveAPI] %@: 'actionstatus' was not 0 (%@)"), __logsection__, num]; \
                 NSLog(@"%@", s); \
                 [self setDataError:s error:__failure__]; \
                 errorCode = __failure__; \
@@ -113,7 +113,7 @@
 #define LIVEAPI_GET_VALUE(__json__, __type__, __varname__, __field__, __logsection__, __failure__) \
             __type__ *__varname__ = [__json__ objectForKey:__field__]; \
             if (__varname__ == nil) { \
-                NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: No '%@' field returned", __logsection__, __field__]; \
+                NSString *s = [NSString stringWithFormat:_(@"remoteapiliveapi-[LiveAPI] %@: No '%@' field returned"), __logsection__, __field__]; \
                 [self setDataError:s error:__failure__]; \
                 NSLog(@"%@", s); \
                 return __failure__; \
@@ -129,7 +129,7 @@
                 if ([__json__ objectForKey:@"StatusCode"] != nil) \
                     status = [__json__ _dict]; \
             if (status == nil) { \
-                NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: No 'Status' field returned", __logsection__]; \
+                NSString *s = [NSString stringWithFormat:_(@"remoteapiliveapi-[LiveAPI] %@: No 'Status' field returned"), __logsection__]; \
                 NSLog(@"%@", s); \
                 [self setDataError:s error:__failure__]; \
                 [callback remoteAPI_failed:identifier]; \
@@ -137,14 +137,14 @@
             } \
             NSNumber *num = [status objectForKey:@"StatusCode"]; \
             if (num == nil) { \
-                NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: No 'StatusCode' field returned", __logsection__]; \
+                NSString *s = [NSString stringWithFormat:_(@"remoteapiliveapi-[LiveAPI] %@: No 'StatusCode' field returned"), __logsection__]; \
                 NSLog(@"%@", s); \
                 [self setDataError:s error:__failure__]; \
                 [callback remoteAPI_failed:identifier]; \
                 return REMOTEAPI_APIFAILED; \
             } \
             if ([num integerValue] != 0) { \
-                NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: 'actionstatus' was not 0 (%@)", __logsection__, num]; \
+                NSString *s = [NSString stringWithFormat:_(@"remoteapiliveapi-[LiveAPI] %@: 'actionstatus' was not 0 (%@)"), __logsection__, num]; \
                 NSLog(@"%@", s); \
                 [self setDataError:s error:__failure__]; \
                 [callback remoteAPI_failed:identifier]; \
@@ -155,7 +155,7 @@
 #define LIVEAPI_GET_VALUE_CB(__json__, __type__, __varname__, __field__, __logsection__, __failure__) \
             __type__ *__varname__ = [__json__ objectForKey:__field__]; \
             if (__varname__ == nil) { \
-                NSString *s = [NSString stringWithFormat:@"[LiveAPI] %@: No '%@' field returned", __logsection__, __field__]; \
+                NSString *s = [NSString stringWithFormat:_(@"remoteapiliveapi-[LiveAPI] %@: No '%@' field returned"), __logsection__, __field__]; \
                 [self setDataError:s error:__failure__]; \
                 NSLog(@"%@", s); \
                 [callback remoteAPI_failed:identifier]; \
@@ -292,7 +292,7 @@
     loadWaypointsWaypoints = 0;
 
     if ([self.account canDoRemoteStuff] == NO) {
-        [self setAPIError:@"[LiveAPI] loadWaypointsByBoundingBox: remote API is disabled" error:REMOTEAPI_APIDISABLED];
+        [self setAPIError:_(@"remoteapiliveapi-[LiveAPI] loadWaypointsByBoundingBox: remote API is disabled") error:REMOTEAPI_APIDISABLED];
         [callback remoteAPI_failed:identifier];
         return REMOTEAPI_APIDISABLED;
     }

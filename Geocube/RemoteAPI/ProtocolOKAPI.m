@@ -100,7 +100,7 @@
         NSLog(@"statusCode: %ld", (long)response.statusCode);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"retbody: %@", retbody);
-        [remoteAPI setAPIError:[NSString stringWithFormat:@"HTTP Response was %ld", (long)response.statusCode] error:REMOTEAPI_APIFAILED];
+        [remoteAPI setAPIError:[NSString stringWithFormat:_(@"remoteapiokapi-HTTP Response was %ld"), (long)response.statusCode] error:REMOTEAPI_APIFAILED];
         return nil;
     }
 

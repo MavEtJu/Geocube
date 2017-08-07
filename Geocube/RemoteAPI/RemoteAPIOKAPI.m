@@ -25,7 +25,7 @@
 
 @implementation RemoteAPIOKAPI
 
-#define IMPORTMSG   @"OKAPI JSON data (queued)"
+#define IMPORTMSG   _(@"remoteapiokapi-OKAPI JSON data (queued)")
 
 - (BOOL)supportsWaypointPersonalNotes { return NO; }
 - (BOOL)supportsTrackables { return NO; }
@@ -50,7 +50,7 @@
                 return [self lastErrorCode]; \
             NSDictionary *error = [__json__ objectForKey:@"error"]; \
             if (error != nil) { \
-                NSString *s = [NSString stringWithFormat:@"[OKAPI] %@: Error response: (%@)", __logsection__, [error description]]; \
+                NSString *s = [NSString stringWithFormat:_(@"remoteapiokapi-[OKAPI] %@: Error response: (%@)"), __logsection__, [error description]]; \
                 NSLog(@"%@", s); \
                 [self setAPIError:s error:REMOTEAPI_APIFAILED]; \
                 return REMOTEAPI_APIFAILED; \
@@ -60,7 +60,7 @@
 #define OKAPI_GET_VALUE(__json__, __type__, __varname__, __field__, __logsection__, __failure__) \
             __type__ *__varname__ = [__json__ objectForKey:__field__]; \
             if (__varname__ == nil) { \
-                NSString *s = [NSString stringWithFormat:@"[OKAPI] %@: No '%@' field returned", __logsection__, __field__]; \
+                NSString *s = [NSString stringWithFormat:_(@"remoteapiokapi-[OKAPI] %@: No '%@' field returned"), __logsection__, __field__]; \
                 [self setDataError:s error:__failure__]; \
                 NSLog(@"%@", s); \
                 return __failure__; \
@@ -73,7 +73,7 @@
             } \
             NSDictionary *error = [__json__ objectForKey:@"error"]; \
             if (error != nil) { \
-                NSString *s = [NSString stringWithFormat:@"[OKAPI] %@: Error response: (%@)", __logsection__, [error description]]; \
+                NSString *s = [NSString stringWithFormat:_(@"remoteapiokapi-[OKAPI] %@: Error response: (%@)"), __logsection__, [error description]]; \
                 NSLog(@"%@", s); \
                 [self setAPIError:s error:REMOTEAPI_APIFAILED]; \
                 [callback remoteAPI_failed:identifier]; \
@@ -84,7 +84,7 @@
 #define OKAPI_GET_VALUE_CB(__json__, __type__, __varname__, __field__, __logsection__, __failure__) \
             __type__ *__varname__ = [__json__ objectForKey:__field__]; \
             if (__varname__ == nil) { \
-                NSString *s = [NSString stringWithFormat:@"[OKAPI] %@: No '%@' field returned", __logsection__, __field__]; \
+                NSString *s = [NSString stringWithFormat:_(@"remoteapiokapi-[OKAPI] %@: No '%@' field returned"), __logsection__, __field__]; \
                 [self setDataError:s error:__failure__]; \
                 NSLog(@"%@", s); \
                 [callback remoteAPI_failed:identifier]; \
@@ -134,7 +134,7 @@
 
     OKAPI_GET_VALUE(json, NSNumber, success, @"success", @"CreateLogNote", REMOTEAPI_CREATELOG_LOGFAILED);
     if ([success boolValue] == NO) {
-        NSString *s = [NSString stringWithFormat:@"[OKAPI] CreateLogNote: 'success' is not TRUE: %@", [json objectForKey:@"message"]];
+        NSString *s = [NSString stringWithFormat:_(@"remoteapiokapi-[OKAPI] CreateLogNote: 'success' is not TRUE: %@"), [json objectForKey:@"message"]];
         [self setDataError:s error:REMOTEAPI_CREATELOG_LOGFAILED];
         NSLog(@"%@", s);
         return REMOTEAPI_CREATELOG_LOGFAILED;
@@ -169,7 +169,7 @@
 - (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     if ([self.account canDoRemoteStuff] == NO) {
-        [self setAPIError:@"[OKAPI] loadWaypointsByBoundingBox: remote API is disabled" error:REMOTEAPI_APIDISABLED];
+        [self setAPIError:_(@"remoteapiokapi-[OKAPI] loadWaypointsByBoundingBox: remote API is disabled") error:REMOTEAPI_APIDISABLED];
         [callback remoteAPI_failed:identifier];
         return REMOTEAPI_APIDISABLED;
     }

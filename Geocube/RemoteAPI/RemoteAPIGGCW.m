@@ -25,8 +25,8 @@
 
 @implementation RemoteAPIGGCW
 
-#define IMPORTMSG_GPX   @"Geocaching.com GPX Garmin data (wachtrij)"
-#define IMPORTMSG_PQ    @"Geocaching.com Pocket Query data (wachtrij)"
+#define IMPORTMSG_GPX   _(@"remoteapiggcw-Geocaching.com GPX Garmin data (queued)")
+#define IMPORTMSG_PQ    _(@"remoteapiggcw-Geocaching.com Pocket Query data (queued)")
 
 - (BOOL)supportsWaypointPersonalNotes { return NO; }
 - (BOOL)supportsTrackables { return NO; }
