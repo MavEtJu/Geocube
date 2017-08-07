@@ -50,7 +50,7 @@ enum {
     [super viewDidLoad];
     tracks = [NSMutableArray arrayWithArray:[dbTrack dbAll]];
     if ([tracks count] == 0)
-        [self newTrack:@"First track"];
+        [self newTrack:_(@"keeptracktracks-First track")];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -58,7 +58,7 @@ enum {
     [super viewWillAppear:animated];
     tracks = [NSMutableArray arrayWithArray:[dbTrack dbAll]];
     if ([tracks count] == 0)
-        [self newTrack:@"New track"];
+        [self newTrack:_(@"keeptracktracks-New track")];
     [self.tableView reloadData];
 }
 
@@ -94,7 +94,7 @@ enum {
         }
         te_prev = te;
     }];
-    cell.labelDistance.text = [NSString stringWithFormat:@"Distance: %@", [MyTools niceDistance:distance]];
+    cell.labelDistance.text = [NSString stringWithFormat:@"%@: %@", _(@"keeptracktracks-Distance"), [MyTools niceDistance:distance]];
 
     return cell;
 }
@@ -141,12 +141,12 @@ enum {
 - (void)startNewTrack
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Start a new track"
+                                alertControllerWithTitle:_(@"keeptracktracks-Start a new track")
                                 message:@""
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
+                         actionWithTitle:_(@"OK")
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction *action) {
                              //Do Some action
@@ -158,7 +158,7 @@ enum {
                              [self.tableView reloadData];
                          }];
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
@@ -167,7 +167,7 @@ enum {
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Name of the new track";
+        textField.placeholder = _(@"keeptracktracks-Name of the new track");
         textField.text = [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss];
     }];
 
@@ -195,7 +195,7 @@ enum {
 
     if ([newdate isEqualToString:olddate] == NO) {
         dbTrack *t = [[dbTrack alloc] init];
-        t.name = [NSString stringWithFormat:@"%@ (auto)", [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss]];
+        t.name = [NSString stringWithFormat:@"%@ (%@)", [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss], _(@"keeptracktracks-auto")];
         t.dateStart = time(NULL);
         t.dateStop = 0;
         [t dbCreate];
