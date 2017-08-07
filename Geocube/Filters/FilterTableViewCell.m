@@ -59,9 +59,9 @@
     labelHeader = [[GCLabel alloc] initWithFrame:rectHeader];
     labelHeader.font = f1;
     if (fo.expanded == YES)
-        labelHeader.text = [NSString stringWithFormat:@"Selected %@", fo.name];
+        labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-selected__"), fo.name];
     else
-        labelHeader.text = [NSString stringWithFormat:@"Any %@", fo.name];
+        labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-any__"), fo.name];
     labelHeader.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:labelHeader];
 }
