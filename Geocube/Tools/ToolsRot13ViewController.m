@@ -56,14 +56,14 @@
     [self calculateRects];
 
     labelInput = [[UITextView alloc] initWithFrame:rectInput];
-    labelInput.text = _(@"toolsrot13viewcontroller-enteryourtexthere...");
+    labelInput.text = _(@"toolsrot13viewcontroller-Enter your text here...");
     labelInput.backgroundColor = [UIColor lightGrayColor];
     labelInput.delegate = self;
     [labelInput selectAll:self];
     [self.view addSubview:labelInput];
 
     labelOutput = [[UITextView alloc] initWithFrame:rectOutput];
-    labelOutput.text = _(@"toolsrot13viewcontroller-ragrelbhegrkgurer...");
+    labelOutput.text = _(@"toolsrot13viewcontroller-Ragre lbhe grkg urer...");
     labelOutput.backgroundColor = [UIColor lightGrayColor];
     labelOutput.userInteractionEnabled = YES;
     labelOutput.delegate = self;

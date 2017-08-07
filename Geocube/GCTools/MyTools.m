@@ -351,26 +351,26 @@ TIME(dateTimeString_dow, @"EEEE")
     long diff = time(NULL) - i;
 
     if (diff < 60) {
-        return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? _(@"time-second-ago") : _(@"time-seconds-ago")];
+        return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? _(@"time-second ago") : _(@"time-seconds ago")];
     }
     if (diff < 3600) {
         diff /= 60;
-        return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? _(@"time-minute-ago") : _(@"time-minutes-ago")];
+        return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? _(@"time-minute ago") : _(@"time-minutes ago")];
     }
     if (diff < 24 * 3600) {
         diff /= 3600;
-        return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? _(@"time-hour-ago") : _(@"time-hours-ago")];
+        return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? _(@"time-hour ago") : _(@"time-hours ago")];
     }
     if (diff < 7 * 24 * 3600) {
         diff /= 24 * 3600;
-        return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? _(@"time-day-ago") : _(@"time-days-ago")];
+        return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? _(@"time-day ago") : _(@"time-days ago")];
     }
     if (diff < 365 * 24 * 3600) {
         diff /= 7 * 24 * 3600;
-        return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? _(@"time-week-ago") : _(@"time-weeks-ago")];
+        return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? _(@"time-week ago") : _(@"time-weeks ago")];
     }
     diff /= 365 * 24 * 3600;
-    return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? _(@"time-year-ago") : _(@"time-years-ago")];
+    return [NSString stringWithFormat:@"%ld %@", diff, diff == 1 ? _(@"time-year ago") : _(@"time-years ago")];
 }
 
 /// Returns the number as a nicely formatted string for origin

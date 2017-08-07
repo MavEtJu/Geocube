@@ -64,7 +64,7 @@
 
     rect = CGRectMake(20, y, 100, 15);
     l = [[GCLabel alloc] initWithFrame:rect];
-    l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-waypointname")];
+    l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Waypoint name")];
     l.font = f2;
     l.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:l];
@@ -80,7 +80,7 @@
 
     rect = CGRectMake(20, y, 100, 15);
     l = [[GCLabel alloc] initWithFrame:rect];
-    l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-owner")];
+    l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Owner")];
     l.font = f2;
     l.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:l];
@@ -96,7 +96,7 @@
 
     rect = CGRectMake(20, y, 100, 15);
     l = [[GCLabel alloc] initWithFrame:rect];
-    l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-locality")];
+    l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Locality")];
     l.font = f2;
     l.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:l];
@@ -112,7 +112,7 @@
 
     rect = CGRectMake(20, y, 100, 15);
     l = [[GCLabel alloc] initWithFrame:rect];
-    l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-state")];
+    l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-State")];
     l.font = f2;
     l.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:l];
@@ -128,7 +128,7 @@
 
     rect = CGRectMake(20, y, 100, 15);
     l = [[GCLabel alloc] initWithFrame:rect];
-    l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-country")];
+    l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Country")];
     l.font = f2;
     l.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:l];
@@ -144,7 +144,7 @@
 
     rect = CGRectMake(20, y, 100, 15);
     l = [[GCLabel alloc] initWithFrame:rect];
-    l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-description")];
+    l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Description")];
     l.font = f2;
     l.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:l];
@@ -160,7 +160,7 @@
 
     rect = CGRectMake(20, y, 100, 15);
     l = [[GCLabel alloc] initWithFrame:rect];
-    l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-logs")];
+    l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Logs")];
     l.font = f2;
     l.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:l];
@@ -238,8 +238,8 @@
 - (void)finishText:(UIButton *)b
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:_(@"filterflagstableviewcell-changefield")
-                                message:_(@"filterflagstableviewcell-newfield")
+                                alertControllerWithTitle:_(@"filterflagstableviewcell-Change field")
+                                message:_(@"filterflagstableviewcell-New field")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
@@ -271,7 +271,7 @@
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = _(@"filterflagstableviewcell-changefield2");
+        textField.placeholder = _(@"filterflagstableviewcell-Change field2");
     }];
 
     UIViewController *activeVC = [UIApplication sharedApplication].keyWindow.rootViewController;

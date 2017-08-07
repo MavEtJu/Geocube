@@ -37,8 +37,8 @@ enum {
 
     self.showUsers = YES;
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuEmptyGroups label:_(@"groupsuserviewcontroller-emptygroups")];
-    [lmi addItem:menuAddAGroup label:_(@"groupsuserviewcontroller-addagroup")];
+    [lmi addItem:menuEmptyGroups label:_(@"groupsuserviewcontroller-Empty groups")];
+    [lmi addItem:menuAddAGroup label:_(@"groupsuserviewcontroller-Add a group")];
 
     return self;
 }

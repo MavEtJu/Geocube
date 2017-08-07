@@ -56,8 +56,8 @@ enum {
     self = [super init];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuRememberLocation label:_(@"keeptrackcar-rememberlocation")];
-    [lmi addItem:menuClearCoordinates label:_(@"keeptrackcar-clearcoordinates")];
+    [lmi addItem:menuRememberLocation label:_(@"keeptrackcar-Remember location")];
+    [lmi addItem:menuClearCoordinates label:_(@"keeptrackcar-Clear coordinates")];
 
     return self;
 }

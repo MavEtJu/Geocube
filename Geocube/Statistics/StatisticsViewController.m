@@ -42,7 +42,7 @@ enum {
     self = [super init];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuReload label:_(@"statisticsviewcontroller-reload")];
+    [lmi addItem:menuReload label:_(@"statisticsviewcontroller-Reload")];
 
     accounts = [NSMutableArray arrayWithCapacity:[dbc.Accounts count]];
     hasbeenstarted = NO;

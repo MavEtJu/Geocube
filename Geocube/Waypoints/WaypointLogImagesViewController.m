@@ -44,8 +44,8 @@ enum {
     parentTable = table;
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuImportPhoto label:_(@"waypointlogimagesviewcontroller-importphoto")];
-    [lmi addItem:menuMakePhoto label:_(@"waypointlogimagesviewcontroller-makephoto")];
+    [lmi addItem:menuImportPhoto label:_(@"waypointlogimagesviewcontroller-Import photo")];
+    [lmi addItem:menuMakePhoto label:_(@"waypointlogimagesviewcontroller-Make photo")];
 
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary] == NO)
         [lmi disableItem:menuImportPhoto];

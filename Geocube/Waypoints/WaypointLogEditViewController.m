@@ -41,10 +41,10 @@ enum {
     self = [super init];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuUseTemplate label:_(@"waypointlogeditviewcontroller-usetemplate")];
-    [lmi addItem:menuInsertTemplate label:_(@"waypointlogeditviewcontroller-inserttemplate")];
-    [lmi addItem:menuSaveTemporary label:_(@"waypointlogeditviewcontroller-savetemporary")];
-    [lmi addItem:menuUseTemporary label:_(@"waypointlogeditviewcontroller-usetemporary")];
+    [lmi addItem:menuUseTemplate label:_(@"waypointlogeditviewcontroller-Use template")];
+    [lmi addItem:menuInsertTemplate label:_(@"waypointlogeditviewcontroller-Insert template")];
+    [lmi addItem:menuSaveTemporary label:_(@"waypointlogeditviewcontroller-Save temporary")];
+    [lmi addItem:menuUseTemporary label:_(@"waypointlogeditviewcontroller-Use temporary")];
 
     return self;
 }

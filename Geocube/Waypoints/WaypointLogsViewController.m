@@ -60,10 +60,10 @@ enum {
     }];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuMapLogs label:_(@"waypointlogsviewcontroller-maplogs")];
-    [lmi addItem:menuScanForWaypoints label:_(@"waypointlogsviewcontroller-extractwaypoints")];
-    [lmi addItem:menuCopyLog label:_(@"waypointlogsviewcontroller-copylogtoclipboard")];
-    [lmi addItem:menuDeleteLog label:_(@"waypointlogsviewcontroller-deletelog")];
+    [lmi addItem:menuMapLogs label:_(@"waypointlogsviewcontroller-Map logs")];
+    [lmi addItem:menuScanForWaypoints label:_(@"waypointlogsviewcontroller-Extract waypoints")];
+    [lmi addItem:menuCopyLog label:_(@"waypointlogsviewcontroller-Copy log to clipboard")];
+    [lmi addItem:menuDeleteLog label:_(@"waypointlogsviewcontroller-Delete log")];
     [lmi disableItem:menuScanForWaypoints];
     [lmi disableItem:menuCopyLog];
     [lmi disableItem:menuDeleteLog];

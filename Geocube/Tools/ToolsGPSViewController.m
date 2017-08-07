@@ -64,10 +64,10 @@ enum {
     self = [super init];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuRestart label:_(@"toolsgpsviewcontroller-restart")];
-    [lmi addItem:menuCopyCoordsAvg label:_(@"toolsgpsviewcontroller-copyaveragecoords")];
-    [lmi addItem:menuCopyCoordsLast label:_(@"toolsgpsviewcontroller-copylastcoords")];
-    [lmi addItem:menuCreateWaypoint label:_(@"toolsgpsviewcontroller-createwaypoint")];
+    [lmi addItem:menuRestart label:_(@"toolsgpsviewcontroller-Restart")];
+    [lmi addItem:menuCopyCoordsAvg label:_(@"toolsgpsviewcontroller-Copy average coords")];
+    [lmi addItem:menuCopyCoordsLast label:_(@"toolsgpsviewcontroller-Copy last coords")];
+    [lmi addItem:menuCreateWaypoint label:_(@"toolsgpsviewcontroller-Create waypoint")];
 
     return self;
 }
@@ -280,9 +280,9 @@ enum {
     CGContextStrokePath(context);
 
     // Update text
-    labelCoordsLast.text = [NSString stringWithFormat:@"%@: %@ ± %@", _(@"toolsgpsviewcontroller-last"), [Coordinates niceCoordinates:last.lat longitude:last.lon], [MyTools niceDistance:last.accuracy]];
-    labelCoordsAvg.text = [NSString stringWithFormat:@"%@: %@", _(@"toolsgpsviewcontroller-average"), [Coordinates niceCoordinates:avg.lat longitude:avg.lon]];
-    labelDistance.text = [NSString stringWithFormat:@"%@: %@", _(@"toolsgpsviewcontroller-lastdistancetoaverage"), [MyTools niceDistance:[Coordinates coordinates2distance:avg.lat fromLongitude:avg.lon toLatitude:last.lat toLongitude:last.lon]]];
+    labelCoordsLast.text = [NSString stringWithFormat:@"%@: %@ ± %@", _(@"toolsgpsviewcontroller-Last"), [Coordinates niceCoordinates:last.lat longitude:last.lon], [MyTools niceDistance:last.accuracy]];
+    labelCoordsAvg.text = [NSString stringWithFormat:@"%@: %@", _(@"toolsgpsviewcontroller-Average"), [Coordinates niceCoordinates:avg.lat longitude:avg.lon]];
+    labelDistance.text = [NSString stringWithFormat:@"%@: %@", _(@"toolsgpsviewcontroller-Last distance to average"), [MyTools niceDistance:[Coordinates coordinates2distance:avg.lat fromLongitude:avg.lon toLatitude:last.lat toLongitude:last.lon]]];
 
     // Make an image
     img = UIGraphicsGetImageFromCurrentImageContext();
@@ -355,7 +355,7 @@ enum {
 {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = c;
-    [MyTools messageBox:self header:_(@"toolsgpsviewcontroller-copysuccessful") text:_(@"toolsgpsviewcontroller-thecoordinateshavebeencopiedtotheclipboard")];
+    [MyTools messageBox:self header:_(@"toolsgpsviewcontroller-Copy successful") text:_(@"toolsgpsviewcontroller-The coordinates have been copied to the clipboard")];
 }
 
 - (void)createWaypoint:(CLLocationCoordinate2D)coord

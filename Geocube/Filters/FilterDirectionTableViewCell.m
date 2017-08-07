@@ -62,7 +62,7 @@
 
     rect = CGRectMake(20, y, 100, 15);
     l = [[GCLabel alloc] initWithFrame:rect];
-    l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdirectiontableviewcell-directionis")];
+    l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdirectiontableviewcell-Direction is")];
     l.font = f2;
     l.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:l];
@@ -125,7 +125,7 @@
     }
 
     [ActionSheetStringPicker
-        showPickerWithTitle:_(@"filterdirectiontableviewcell-selectadirection")
+        showPickerWithTitle:_(@"filterdirectiontableviewcell-Select a direction")
         rows:directions
         initialSelection:direction
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {

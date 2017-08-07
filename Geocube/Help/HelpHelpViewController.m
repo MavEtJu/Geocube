@@ -35,7 +35,7 @@ enum {
     self = [super init];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuIntroduction label:_(@"helphelpviewcontroller-showintroduction")];
+    [lmi addItem:menuIntroduction label:_(@"helphelpviewcontroller-Show introduction")];
 
     return self;
 }

@@ -51,11 +51,11 @@ enum {
     currentSortOrder = configManager.waypointListSortBy;
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuAddWaypoint label:_(@"waypointslistviewcontroller-addwaypoint")];
-    [lmi addItem:menuExportGPX label:_(@"waypointslistviewcontroller-exportgpx")];
-    [lmi addItem:menuSortBy label:_(@"waypointslistviewcontroller-sortby")];
-    [lmi addItem:menuReloadWaypoints label:_(@"waypointslistviewcontroller-reloadwaypoints")];
-    [lmi addItem:menuDeleteAll label:_(@"waypointslistviewcontroller-deleteall")];
+    [lmi addItem:menuAddWaypoint label:_(@"waypointslistviewcontroller-Add waypoint")];
+    [lmi addItem:menuExportGPX label:_(@"waypointslistviewcontroller-Export GPX")];
+    [lmi addItem:menuSortBy label:_(@"waypointslistviewcontroller-Sort by")];
+    [lmi addItem:menuReloadWaypoints label:_(@"waypointslistviewcontroller-Reload waypoints")];
+    [lmi addItem:menuDeleteAll label:_(@"waypointslistviewcontroller-Delete all")];
 
     processing = [[RemoteAPIProcessingGroup alloc] init];
 
@@ -118,7 +118,7 @@ enum {
 - (void)refreshCachesData
 {
     [bezelManager showBezel:self];
-    [bezelManager setText:_(@"waypointslistviewcontroller-refreshingdatabase")];
+    [bezelManager setText:_(@"waypointslistviewcontroller-Refreshing database")];
 
     [self refreshCachesData:nil];
 
@@ -167,7 +167,7 @@ enum {
     if (waypoints == nil)
         return @"";
     NSInteger c = [waypoints count];
-    return [NSString stringWithFormat:@"%ld %@", (unsigned long)c, c == 1 ? _(@"waypointslistviewcontroller-waypoint") : _(@"waypointslistviewcontroller-waypoints")];
+    return [NSString stringWithFormat:@"%ld %@", (unsigned long)c, c == 1 ? _(@"waypointslistviewcontroller-Waypoint") : _(@"waypointslistviewcontroller-Waypoints")];
 }
 
 // Return a cell for the index path
@@ -242,7 +242,7 @@ enum {
             return;
         case menuExportGPX:
             [ExportGPX exports:waypoints];
-            [MyTools messageBox:self header:_(@"waypointslistviewcontroller-exportsuccessful") text:_(@"waypointslistviewcontroller-theexportedfilecanbefoundinthefilessection")];
+            [MyTools messageBox:self header:_(@"waypointslistviewcontroller-Export successful") text:_(@"waypointslistviewcontroller-The exported file can be found in the Files section")];
             return;
         case menuSortBy:
             [self menuSortBy];
@@ -270,7 +270,7 @@ enum {
     NSArray<NSString *> *orders = [WaypointSorter waypointsSortOrders];
 
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:_(@"waypointslistviewcontroller-sortby")
+                                alertControllerWithTitle:_(@"waypointslistviewcontroller-Sort by")
                                 message:nil
                                 preferredStyle:UIAlertControllerStyleAlert];
 
@@ -300,8 +300,8 @@ enum {
 {
     NSArray<dbWaypoint *> *wps = waypointManager.currentWaypoints;
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:_(@"waypointslistviewcontroller-deletewaypoints")
-                                message:_(@"waypointslistviewcontroller-areyousure?")
+                                alertControllerWithTitle:_(@"waypointslistviewcontroller-Delete waypoints")
+                                message:_(@"waypointslistviewcontroller-Are you sure?")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *yes = [UIAlertAction
@@ -381,12 +381,12 @@ enum {
 
     InfoItemID iid = [infoView addDownload];
     [infoView setChunksTotal:iid total:[wps count]];
-    [infoView setDescription:iid description:[NSString stringWithFormat:_(@"waypointslistviewcontroller-downloadingfor__"), account.site]];
+    [infoView setDescription:iid description:[NSString stringWithFormat:_(@"waypointslistviewcontroller-Downloading for %@"), account.site]];
 
     NSLog(@"PROCESSING: Adding %ld (%@)", (long)account._id, account.site);
     NSInteger rv = [account.remoteAPI loadWaypointsByCodes:wps infoViewer:infoView iiDownload:iid identifier:(long)account._id group:dbc.Group_LastImport callback:self];
     if (rv != REMOTEAPI_OK)
-        [MyTools messageBox:self header:_(@"waypointslistviewcontroller-reloadwaypoints") text:_(@"waypointslistviewcontroller-updatefailed") error:account.remoteAPI.lastError];
+        [MyTools messageBox:self header:_(@"waypointslistviewcontroller-Reload waypoints") text:_(@"waypointslistviewcontroller-Update failed") error:account.remoteAPI.lastError];
     [infoView removeItem:iid];
 }
 

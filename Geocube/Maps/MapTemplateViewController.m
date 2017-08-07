@@ -93,22 +93,22 @@
         [lmi addItem:mb.menuItem label:mb.menuLabel];
     }];
 
-    [lmi addItem:MVCmenuMapMap label:_(@"maptemplateviewcontroller-map")];
-    [lmi addItem:MVCmenuMapAerial label:_(@"maptemplateviewcontroller-aerial")];
-    [lmi addItem:MVCmenuMapHybridMapAerial label:_(@"maptemplateviewcontroller-mapaerial")];
-    [lmi addItem:MVCmenuMapTerrain label:_(@"maptemplateviewcontroller-terrain")];
+    [lmi addItem:MVCmenuMapMap label:_(@"maptemplateviewcontroller-Map")];
+    [lmi addItem:MVCmenuMapAerial label:_(@"maptemplateviewcontroller-Aerial")];
+    [lmi addItem:MVCmenuMapHybridMapAerial label:_(@"maptemplateviewcontroller-Map/Aerial")];
+    [lmi addItem:MVCmenuMapTerrain label:_(@"maptemplateviewcontroller-Terrain")];
 
-    [lmi addItem:MVCmenuLoadWaypoints label:_(@"maptemplateviewcontroller-loadwaypoints")];
-    [lmi addItem:MVCmenuDirections label:_(@"maptemplateviewcontroller-directions")];
-    [lmi addItem:MVCmenuRemoveTarget label:_(@"maptemplateviewcontroller-removetarget")];
-    [lmi addItem:MVCmenuRecenter label:_(@"maptemplateviewcontroller-recenter")];
-    [lmi addItem:MVCmenuUseGPS label:_(@"maptemplateviewcontroller-usegps")];
-    [lmi addItem:MVCmenuExportVisible label:_(@"maptemplateviewcontroller-exportvisible")];
+    [lmi addItem:MVCmenuLoadWaypoints label:_(@"maptemplateviewcontroller-Load waypoints")];
+    [lmi addItem:MVCmenuDirections label:_(@"maptemplateviewcontroller-Directions")];
+    [lmi addItem:MVCmenuRemoveTarget label:_(@"maptemplateviewcontroller-Remove target")];
+    [lmi addItem:MVCmenuRecenter label:_(@"maptemplateviewcontroller-Recenter")];
+    [lmi addItem:MVCmenuUseGPS label:_(@"maptemplateviewcontroller-Use GPS")];
+    [lmi addItem:MVCmenuExportVisible label:_(@"maptemplateviewcontroller-Export visible")];
 
     showBoundaries = NO;
-    [lmi addItem:MVCmenuShowBoundaries label:_(@"maptemplateviewcontroller-showboundaries")];
+    [lmi addItem:MVCmenuShowBoundaries label:_(@"maptemplateviewcontroller-Show boundaries")];
 
-    [lmi addItem:MVCmenuRemoveHistory label:_(@"maptemplateviewcontroller-removehistory")];
+    [lmi addItem:MVCmenuRemoveHistory label:_(@"maptemplateviewcontroller-Remove history")];
 
     self.map = [[self.currentMapBrand.mapObject alloc] initMapObject:self];
     self.map.staticHistory = self.staticHistory;
@@ -128,9 +128,9 @@
         [lmi disableItem:MVCmenuRemoveTarget];
 
     if (configManager.dynamicmapEnable == YES) {
-        [lmi addItem:MVCmenuAutoZoom label:_(@"maptemplateviewcontroller-noautozoom")];
+        [lmi addItem:MVCmenuAutoZoom label:_(@"maptemplateviewcontroller-No autozoom")];
     } else {
-        [lmi addItem:MVCmenuAutoZoom label:_(@"maptemplateviewcontroller-autozoom")];
+        [lmi addItem:MVCmenuAutoZoom label:_(@"maptemplateviewcontroller-Autozoom")];
     }
 
     useGPS = LM.useGPS;
@@ -810,7 +810,7 @@
         }
 
         if ([[UIApplication sharedApplication] canOpenURL:url] == NO) {
-            [MyTools messageBox:self header:@"Open external application" text:[NSString stringWithFormat:@"Unable to open the %@ application: URL not recognized", em.name]];
+            [MyTools messageBox:self header:_(@"maptemplateviewcontroller-Open external application") text:[NSString stringWithFormat:_(@"maptemplateviewcontroller-Unable to open the %@ application: URL not recognized"), em.name]];
             return;
         }
 
@@ -823,9 +823,9 @@
 {
     configManager.dynamicmapEnable = !configManager.dynamicmapEnable;
     if (configManager.dynamicmapEnable == YES) {
-        [lmi changeItem:MVCmenuAutoZoom label:_(@"maptemplateviewcontroller-noautozoom")];
+        [lmi changeItem:MVCmenuAutoZoom label:_(@"maptemplateviewcontroller-No autozoom")];
     } else {
-        [lmi changeItem:MVCmenuAutoZoom label:_(@"maptemplateviewcontroller-autozoom")];
+        [lmi changeItem:MVCmenuAutoZoom label:_(@"maptemplateviewcontroller-Autozoom")];
     }
 }
 
@@ -857,10 +857,10 @@
 {
     if (showBoundaries == NO) {
         showBoundaries = YES;
-        [lmi changeItem:MVCmenuShowBoundaries label:_(@"maptemplateviewcontroller-hideboundaries")];
+        [lmi changeItem:MVCmenuShowBoundaries label:_(@"maptemplateviewcontroller-Hide boundaries")];
     } else {
         showBoundaries = NO;
-        [lmi changeItem:MVCmenuShowBoundaries label:_(@"maptemplateviewcontroller-showboundaries")];
+        [lmi changeItem:MVCmenuShowBoundaries label:_(@"maptemplateviewcontroller-Show boundaries")];
     }
     [self.map showBoundaries:showBoundaries];
 }

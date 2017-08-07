@@ -45,8 +45,8 @@ enum {
     self.delegateWaypoint = nil;
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuScanForWaypoints label:_(@"waypointpersonalnoteviewcontroller-extractwaypoints")];
-    [lmi addItem:menuCopyLog label:_(@"waypointpersonalnoteviewcontroller-copynotetoclipboard")];
+    [lmi addItem:menuScanForWaypoints label:_(@"waypointpersonalnoteviewcontroller-Extract waypoints")];
+    [lmi addItem:menuCopyLog label:_(@"waypointpersonalnoteviewcontroller-Copy note to clipboard")];
 
     note = [dbPersonalNote dbGetByWaypointName:waypoint.wpt_name];
 
@@ -89,7 +89,7 @@ enum {
 
 - (void)labelTapped
 {
-    tv = [[YIPopupTextView alloc] initWithPlaceHolder:_(@"waypointpersonalnoteviewcontroller-enteryourpersonalnotehere") maxCount:20000 buttonStyle:YIPopupTextViewButtonStyleRightCancelAndDone];
+    tv = [[YIPopupTextView alloc] initWithPlaceHolder:_(@"waypointpersonalnoteviewcontroller-Enter your personal note here") maxCount:20000 buttonStyle:YIPopupTextViewButtonStyleRightCancelAndDone];
 
     tv.delegate = self;
     tv.caretShiftGestureEnabled = YES;
@@ -129,9 +129,9 @@ enum {
 {
     if ([waypoint.account.remoteAPI supportsWaypointPersonalNotes] == YES) {
         [bezelManager showBezel:self];
-        [bezelManager setText:_(@"waypointpersonalnoteviewcontroller-updatingpersonalnote")];
+        [bezelManager setText:_(@"waypointpersonalnoteviewcontroller-Updating personal note")];
         if ([waypoint.account.remoteAPI updatePersonalNote:note infoViewer:nil iiDownload:0] != REMOTEAPI_OK) {
-            [MyTools messageBox:self header:_(@"waypointpersonalnoteviewcontroller-personalnote") text:_(@"waypointpersonalnoteviewcontroller-updateofpersonalnotehasfailed") error:waypoint.account.remoteAPI.lastError];
+            [MyTools messageBox:self header:_(@"waypointpersonalnoteviewcontroller-Personal note") text:_(@"waypointpersonalnoteviewcontroller-Update of personal note has failed") error:waypoint.account.remoteAPI.lastError];
         }
         [bezelManager removeBezel];
     }
@@ -165,7 +165,7 @@ enum {
 {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = note.note;
-    [MyTools messageBox:self header:_(@"waypointpersonalnoteviewcontroller-copysuccessful") text:_(@"waypointpersonalnoteviewcontroller-thetextofthepersonalnotehasbeencopiedtotheclipboard")];
+    [MyTools messageBox:self header:_(@"waypointpersonalnoteviewcontroller-Copy successful") text:_(@"waypointpersonalnoteviewcontroller-The text of the personal note has been copied to the clipboard")];
 }
 
 @end

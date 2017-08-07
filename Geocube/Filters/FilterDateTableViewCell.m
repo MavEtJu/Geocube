@@ -55,7 +55,7 @@
     l = [[GCLabel alloc] initWithFrame:rect];
     l.font = f2;
     l.textAlignment = NSTextAlignmentLeft;
-    l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdatetableviewcell-placedon")];
+    l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdatetableviewcell-Placed on")];
     [self.contentView addSubview:l];
 
     rect = CGRectMake(80, y, 50, 15);
@@ -79,7 +79,7 @@
     l = [[GCLabel alloc] initWithFrame:rect];
     l.font = f2;
     l.textAlignment = NSTextAlignmentLeft;
-    l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdatetableviewcell-lastlog")];
+    l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdatetableviewcell-Last log")];
     [self.contentView addSubview:l];
 
     rect = CGRectMake(80, y, 50, 15);
@@ -166,13 +166,13 @@
 
     switch (compare) {
     case FILTER_DATE_BEFORE:
-        [b setTitle:_(@"filterdatetableviewcell-before") forState:UIControlStateNormal];
+        [b setTitle:_(@"filterdatetableviewcell-Before") forState:UIControlStateNormal];
         break;
     case FILTER_DATE_AFTER:
-        [b setTitle:_(@"filterdatetableviewcell-after") forState:UIControlStateNormal];
+        [b setTitle:_(@"filterdatetableviewcell-After") forState:UIControlStateNormal];
         break;
     case FILTER_DATE_ON:
-        [b setTitle:_(@"filterdatetableviewcell-on") forState:UIControlStateNormal];
+        [b setTitle:_(@"filterdatetableviewcell-On") forState:UIControlStateNormal];
         break;
     }
 }
@@ -195,7 +195,7 @@
 
     asdp =
         [[ActionSheetDatePicker alloc]
-         initWithTitle:_(@"filterdatetableviewcell-date") datePickerMode:UIDatePickerModeDate
+         initWithTitle:_(@"filterdatetableviewcell-Date") datePickerMode:UIDatePickerModeDate
          selectedDate:d //self.selectedDate
          minimumDate:minDate
          maximumDate:maxDate

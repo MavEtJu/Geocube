@@ -54,9 +54,9 @@ enum {
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuAddTemplate label:_(@"settingslogtemplatesviewcontroller-addtemplate")];
-    [lmi addItem:menuAddMacro label:_(@"settingslogtemplatesviewcontroller-addmacro")];
-    [lmi addItem:menuBackup label:_(@"settingslogtemplatesviewcontroller-backup")];
+    [lmi addItem:menuAddTemplate label:_(@"settingslogtemplatesviewcontroller-Add template")];
+    [lmi addItem:menuAddMacro label:_(@"settingslogtemplatesviewcontroller-Add macro")];
+    [lmi addItem:menuBackup label:_(@"settingslogtemplatesviewcontroller-Backup")];
 }
 
 - (void)reloadLogXxx

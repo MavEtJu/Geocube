@@ -72,21 +72,21 @@
     items = [NSMutableArray arrayWithCapacity:RC_MAX];
     for (NSInteger i = 0; i < RC_MAX; i++) {
         switch (i) {
-            MATCH(RC_NAVIGATE, _(@"menu-navigate"));
-            MATCH(RC_WAYPOINTS, _(@"menu-waypoints"));
-            MATCH(RC_KEEPTRACK, _(@"menu-keep_track"));
-            MATCH(RC_NOTESANDLOGS, _(@"menu-noteslogs"));
-            MATCH(RC_TRACKABLES, _(@"menu-trackables"));
-            MATCH(RC_GROUPS, _(@"menu-groups"));
-            MATCH(RC_BROWSER, _(@"menu-browser"));
-            MATCH(RC_FILES, _(@"menu-files"));
-            MATCH(RC_STATISTICS, _(@"menu-statistics"));
-            MATCH(RC_SETTINGS, _(@"menu-settings"));
-            MATCH(RC_HELP, _(@"menu-help"));
-            MATCH(RC_LISTS, _(@"menu-lists"));
-            MATCH(RC_QUERIES, _(@"menu-queries"));
-            MATCH(RC_TOOLS, _(@"menu-tools"));
-            MATCH(RC_LOCATIONSLESS, _(@"menu-locationless"));
+            MATCH(RC_NAVIGATE, _(@"menu-Navigate"));
+            MATCH(RC_WAYPOINTS, _(@"menu-Waypoints"));
+            MATCH(RC_KEEPTRACK, _(@"menu-Keep Track"));
+            MATCH(RC_NOTESANDLOGS, _(@"menu-Notes + Logs"));
+            MATCH(RC_TRACKABLES, _(@"menu-Trackables"));
+            MATCH(RC_GROUPS, _(@"menu-Groups"));
+            MATCH(RC_BROWSER, _(@"menu-Browser"));
+            MATCH(RC_FILES, _(@"menu-Files"));
+            MATCH(RC_STATISTICS, _(@"menu-Statistics"));
+            MATCH(RC_SETTINGS, _(@"menu-Settings"));
+            MATCH(RC_HELP, _(@"menu-Help"));
+            MATCH(RC_LISTS, _(@"menu-Lists"));
+            MATCH(RC_QUERIES, _(@"menu-Queries"));
+            MATCH(RC_TOOLS, _(@"menu-Tools"));
+            MATCH(RC_LOCATIONSLESS, _(@"menu-Locationless"));
             default:
                 NSAssert1(FALSE, @"Menu not matched: %ld", (long)i);
         }

@@ -49,7 +49,7 @@
 
     rect = CGRectMake(20, y, width - 40, 15);
     sliderLabel = [[GCLabel alloc] initWithFrame:rect];
-    sliderLabel.text = [NSString stringWithFormat:@"%@: 1 -5", _(@"filterterraintableviewcell-terrain")];
+    sliderLabel.text = [NSString stringWithFormat:@"%@: 1 -5", _(@"filterterraintableviewcell-Terrain")];
     sliderLabel.font = f2;
     sliderLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:sliderLabel];
@@ -126,7 +126,7 @@
     NSString *minString = [NSString stringWithFormat:((int)config_min == config_min) ? @"%1.0f" : @"%0.1f", config_min];
     NSString *maxString = [NSString stringWithFormat:((int)config_max == config_max) ? @"%1.0f" : @"%0.1f", config_max];
 
-    sliderLabel.text = [NSString stringWithFormat:@"%@: %@ - %@", _(@"filterterraintableviewcell-terrain"), minString, maxString];
+    sliderLabel.text = [NSString stringWithFormat:@"%@: %@ - %@", _(@"filterterraintableviewcell-Terrain"), minString, maxString];
 }
 
 @end

@@ -47,9 +47,9 @@ enum {
     self = [super init];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuGoHome label:_(@"browserbrowserviewcontroll-gohome")];
-    [lmi addItem:menuEnterURL label:_(@"browserbrowserviewcontroll-enterurl")];
-    [lmi addItem:menuOpenInSafari label:_(@"browserbrowserviewcontroll-openinsafari")];
+    [lmi addItem:menuGoHome label:_(@"browserbrowserviewcontroller-Go home")];
+    [lmi addItem:menuEnterURL label:_(@"browserbrowserviewcontroller-Enter URL")];
+    [lmi addItem:menuOpenInSafari label:_(@"browserbrowserviewcontroller-Open in Safari")];
 
     webView = [[UIWebView alloc] initWithFrame:self.view.frame];
     webView.delegate = self;
@@ -245,7 +245,7 @@ enum {
 
     [self showInfoView];
     InfoItemID iid = [infoView addDownload];
-    [infoView setDescription:iid description:_(@"browserbrowserviewcontroller-downloadingquery")];
+    [infoView setDescription:iid description:_(@"browserbrowserviewcontroller-Downloading query")];
 
     NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error infoViewer:infoView iiDownload:iid];
     [self showActivity:NO];
@@ -264,7 +264,7 @@ enum {
     NSLog(@"Received %ld bytes", (long)length);
     [data writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], response.suggestedFilename] atomically:NO];
 
-    [MyTools messageBox:self header:_(@"browserbrowserviewcontroller-downloadcomplete") text:[NSString stringWithFormat:_(@"browserbrowserviewcontroller-downloaded__for__.YoucanfinditintheFilesmenu."), [MyTools niceFileSize:length], response.suggestedFilename]];
+    [MyTools messageBox:self header:_(@"browserbrowserviewcontroller-Download complete") text:[NSString stringWithFormat:_(@"browserbrowserviewcontroller-Downloaded %@ for %@. You can find it in the Files menu."), [MyTools niceFileSize:length], response.suggestedFilename]];
 }
 
 - (void)prepare_oauth:(GCOAuthBlackbox *)_oabb
@@ -299,7 +299,7 @@ enum {
     if (error.code == 102 && [error.domain isEqual:@"WebKitErrorDomain"])
         return;
 
-    [MyTools messageBox:self header:_(@"browserbrowserviewcontroller-failedtodownload") text:[error description]];
+    [MyTools messageBox:self header:_(@"browserbrowserviewcontroller-Failed to download") text:[error description]];
     [self showActivity:NO];
 }
 
@@ -330,7 +330,7 @@ enum {
 - (void)menuEnterURL
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:_(@"browserbrowserviewcontroller-enterurl")
+                                alertControllerWithTitle:_(@"browserbrowserviewcontroller-Enter URL")
                                 message:nil
                                 preferredStyle:UIAlertControllerStyleAlert];
 

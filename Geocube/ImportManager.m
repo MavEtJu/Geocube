@@ -130,22 +130,22 @@
                     [waypointManager needsRefreshAll];
                 }];
             } else if ([data isKindOfClass:[GCStringGPX class]] == YES) {
-                [iv setDescription:iii description:_(@"importmanager-gpxdata")];
+                [iv setDescription:iii description:_(@"importmanager-GPX data")];
                 [imp parseString:(NSString *)data infoViewer:iv iiImport:iii];
             } else if ([data isKindOfClass:[GCStringGPXGarmin class]] == YES) {
-                [iv setDescription:iii description:_(@"importmanager-gpxgarmindata")];
+                [iv setDescription:iii description:_(@"importmanager-GPX Garmin data")];
                 [imp parseString:(NSString *)data infoViewer:iv iiImport:iii];
             } else if ([data isKindOfClass:[GCDictionaryLiveAPI class]] == YES) {
-                [iv setDescription:iii description:_(@"importmanager-liveapidata")];
+                [iv setDescription:iii description:_(@"importmanager-LiveAPI data")];
                 [imp parseDictionary:(GCDictionaryLiveAPI *)data infoViewer:iv iiImport:iii];
             } else if ([data isKindOfClass:[GCDictionaryGCA2 class]] == YES) {
-                [iv setDescription:iii description:_(@"importmanager-geocachingaustraliaAPIdata")];
+                [iv setDescription:iii description:_(@"importmanager-Geocaching Australia API data")];
                 [imp parseDictionary:(GCDictionaryGCA2 *)data infoViewer:iv iiImport:iii];
             } else if ([data isKindOfClass:[GCDictionaryOKAPI class]] == YES) {
-                [iv setDescription:iii description:_(@"importmanager-OKAPIdata")];
+                [iv setDescription:iii description:_(@"importmanager-OKAPI data")];
                 [imp parseDictionary:(GCDictionaryOKAPI *)data infoViewer:iv iiImport:iii];
             } else if ([data isKindOfClass:[GCDictionaryGGCW class]] == YES) {
-                [iv setDescription:iii description:_(@"importmanager-geocaching.comdata")];
+                [iv setDescription:iii description:_(@"importmanager-Geocaching.com data")];
                 [imp parseDictionary:(GCDictionaryGGCW *)data infoViewer:iv iiImport:iii];
             } else {
                 NSAssert1(NO, @"Unknown data object type: %@", [data class]);

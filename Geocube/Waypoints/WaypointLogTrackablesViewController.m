@@ -49,8 +49,8 @@ enum {
     }];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuPickup label:_(@"waypointlogtrackablesviewcontroller-pickup")];
-    [lmi addItem:menuDiscover label:_(@"waypointlogtrackablesviewcontroller-discover")];
+    [lmi addItem:menuPickup label:_(@"waypointlogtrackablesviewcontroller-Pickup")];
+    [lmi addItem:menuDiscover label:_(@"waypointlogtrackablesviewcontroller-Discover")];
 
     self.hasCloseButton = YES;
     _delegate = nil;

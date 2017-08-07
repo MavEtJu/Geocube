@@ -38,7 +38,7 @@ enum {
     self = [super init];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuAddBookmark label:_(@"browseruserviewcontroller-addbookmark")];
+    [lmi addItem:menuAddBookmark label:_(@"browseruserviewcontroller-Add bookmark")];
 
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
 
@@ -102,7 +102,7 @@ enum {
 
     UIAlertController *view = [UIAlertController
                                alertControllerWithTitle:bm.name
-                               message:_(@"browseruserviewcontroller-selectyouchoice")
+                               message:_(@"browseruserviewcontroller-Select your choice")
                                preferredStyle:UIAlertControllerStyleActionSheet];
 
     UIAlertAction *delete = [UIAlertAction
@@ -167,8 +167,8 @@ enum {
 - (void)bookmarkEdit:(dbBookmark *)bm
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:_(@"browseruserviewcontroller-updatebookmark")
-                                message:_(@"browseruserviewcontroller-enterthebookmark")
+                                alertControllerWithTitle:_(@"browseruserviewcontroller-Update bookmark")
+                                message:_(@"browseruserviewcontroller-Enter the bookmark")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
@@ -199,7 +199,7 @@ enum {
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.text = bm.name;
-        textField.placeholder = _(@"browseruserviewcontroller-name");
+        textField.placeholder = _(@"browseruserviewcontroller-Name");
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.text = bm.url;
@@ -214,8 +214,8 @@ enum {
 - (void)addBookmark
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:_(@"browseruserviewcontroller-createbookmark")
-                                message:_(@"browseruserviewcontroller-enterthebookmarkdetails")
+                                alertControllerWithTitle:_(@"browseruserviewcontroller-Create bookmark")
+                                message:_(@"browseruserviewcontroller-Enter the bookmark details")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
@@ -246,7 +246,7 @@ enum {
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = _(@"browseruserviewcontroller-name");
+        textField.placeholder = _(@"browseruserviewcontroller-Name");
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = _(@"browseruserviewcontroller-URL");

@@ -101,16 +101,16 @@ typedef NS_ENUM(NSInteger, FlagType) {
     valueEnabled = FILTER_FLAGS_NOTCHECKED;
     valueArchived = FILTER_FLAGS_NOTCHECKED;
 
-    valuesHighlighted = @[_(@"filterflagstableviewcell-highlighted"), _(@"filterflagstableviewcell-highlighted"), _(@"filterflagstableviewcell-nothighlighted")];
-    valuesMarkedAsFound = @[_(@"filterflagstableviewcell-markedasfound"), _(@"filterflagstableviewcell-markedasfound"), _(@"filterflagstableviewcell-notmarkedasfound")];
-    valuesMarkedAsDNF = @[_(@"filterflagstableviewcell-markedasDNF"), _(@"filterflagstableviewcell-markedasDNF"), _(@"filterflagstableviewcell-notmarkedasDNF")];
-    valuesIgnored = @[_(@"filterflagstableviewcell-ignored"), _(@"filterflagstableviewcell-ignored"), _(@"filterflagstableviewcell-notignored")];
-    valuesInProgress = @[_(@"filterflagstableviewcell-inprogress"), _(@"filterflagstableviewcell-inprogress"), _(@"filterflagstableviewcell-notinprogress")];
-    valuesLoggedAsFound = @[_(@"filterflagstableviewcell-loggedasfound"), _(@"filterflagstableviewcell-loggedasfound"), _(@"filterflagstableviewcell-notloggedasfound")];
-    valuesLoggedAsDNF = @[_(@"filterflagstableviewcell-loggedasDNF"), _(@"filterflagstableviewcell-loggedasDNF"), _(@"filterflagstableviewcell-notloggedasDNF")];
-    valuesOwner = @[_(@"filterflagstableviewcell-mine"), _(@"filterflagstableviewcell-mine"), _(@"filterflagstableviewcell-notmine")];
-    valuesEnabled = @[_(@"filterflagstableviewcell-enabled"), _(@"filterflagstableviewcell-enabled"), _(@"filterflagstableviewcell-notenabled")];
-    valuesArchived = @[_(@"filterflagstableviewcell-archived"), _(@"filterflagstableviewcell-archived"), _(@"filterflagstableviewcell-notarchived")];
+    valuesHighlighted = @[_(@"filterflagstableviewcell-Highlighted"), _(@"filterflagstableviewcell-Highlighted"), _(@"filterflagstableviewcell-Not highlighted")];
+    valuesMarkedAsFound = @[_(@"filterflagstableviewcell-Marked as Found"), _(@"filterflagstableviewcell-Marked as Found"), _(@"filterflagstableviewcell-Not marked as Found")];
+    valuesMarkedAsDNF = @[_(@"filterflagstableviewcell-Marked as DNF"), _(@"filterflagstableviewcell-Marked as DNF"), _(@"filterflagstableviewcell-Not marked as DNF")];
+    valuesIgnored = @[_(@"filterflagstableviewcell-Ignored"), _(@"filterflagstableviewcell-Ignored"), _(@"filterflagstableviewcell-Not ignored")];
+    valuesInProgress = @[_(@"filterflagstableviewcell-In progress"), _(@"filterflagstableviewcell-In progress"), _(@"filterflagstableviewcell-Not in progress")];
+    valuesLoggedAsFound = @[_(@"filterflagstableviewcell-Logged as Found"), _(@"filterflagstableviewcell-Logged as Found"), _(@"filterflagstableviewcell-Not logged as Found")];
+    valuesLoggedAsDNF = @[_(@"filterflagstableviewcell-Logged as DNF"), _(@"filterflagstableviewcell-Logged as DNF"), _(@"filterflagstableviewcell-Not logged as DNF")];
+    valuesOwner = @[_(@"filterflagstableviewcell-Mine"), _(@"filterflagstableviewcell-Mine"), _(@"filterflagstableviewcell-Not mine")];
+    valuesEnabled = @[_(@"filterflagstableviewcell-Enabled"), _(@"filterflagstableviewcell-Enabled"), _(@"filterflagstableviewcell-Not enabled")];
+    valuesArchived = @[_(@"filterflagstableviewcell-Archived"), _(@"filterflagstableviewcell-Archived"), _(@"filterflagstableviewcell-Not archived")];
 
 #define CHECK(__type__, __config__) \
     c = [self configGet:__config__]; \

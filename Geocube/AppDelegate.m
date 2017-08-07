@@ -134,9 +134,9 @@
             case RC_NAVIGATE:
                 controllers = [NSMutableArray array];
 
-                VC(CompassViewController, _(@"menu-navigate-compass"));
-                VC(WaypointViewController, _(@"menu-navigate-target"));
-                VC(MapOneWPViewController, _(@"menu-navigate-map"));
+                VC(CompassViewController, _(@"menu-navigate-Compass"));
+                VC(WaypointViewController, _(@"menu-navigate-Target"));
+                VC(MapOneWPViewController, _(@"menu-navigate-Map"));
 
                 TABBARCONTROLLER(RC_NAVIGATE, controllers)
                 break;
@@ -144,9 +144,9 @@
             case RC_WAYPOINTS:
                 controllers = [NSMutableArray array];
 
-                VC(FiltersViewController, _(@"menu-waypoints-filters"));
-                VC(WaypointsListViewController, _(@"menu-waypoints-list"));
-                VC(MapAllWPViewController, _(@"menu-waypoints-map"));
+                VC(FiltersViewController, _(@"menu-waypoints-Filters"));
+                VC(WaypointsListViewController, _(@"menu-waypoints-List"));
+                VC(MapAllWPViewController, _(@"menu-waypoints-Map"));
 
                 TABBARCONTROLLER(RC_WAYPOINTS, controllers)
                 break;
@@ -154,9 +154,9 @@
             case RC_KEEPTRACK:
                 controllers = [NSMutableArray array];
 
-                VC(KeepTrackCar, _(@"menu-keeptack-car"));
-                VC(KeepTrackTracks, _(@"menu-keeptack-tracks"));
-                VC(MapTrackViewController, _(@"menu-keeptack-map"));
+                VC(KeepTrackCar, _(@"menu-keeptack-Car"));
+                VC(KeepTrackTracks, _(@"menu-keeptack-Tracks"));
+                VC(MapTrackViewController, _(@"menu-keeptack-Map"));
 
                 TABBARCONTROLLER(RC_KEEPTRACK, controllers)
                 break;
@@ -164,10 +164,10 @@
             case RC_NOTESANDLOGS:
                 controllers = [NSMutableArray array];
 
-                VC(NotesSavedViewController, _(@"menu-noteslogs-saved"));
-                VC(NotesPersonalNotesViewController, _(@"menu-noteslogs-personal"));
-                VC(NotesFieldnotesViewController, _(@"menu-noteslogs-field"));
-                VC(NotesImagesViewController, _(@"menu-noteslogs-images"));
+                VC(NotesSavedViewController, _(@"menu-noteslogs-Saved"));
+                VC(NotesPersonalNotesViewController, _(@"menu-noteslogs-Personal"));
+                VC(NotesFieldnotesViewController, _(@"menu-noteslogs-Field"));
+                VC(NotesImagesViewController, _(@"menu-noteslogs-Images"));
 
                 TABBARCONTROLLER(RC_NOTESANDLOGS, controllers)
                 break;
@@ -175,9 +175,9 @@
             case RC_TRACKABLES:
                 controllers = [NSMutableArray array];
 
-                VC(TrackablesInventoryViewController, _(@"menu-trackables-inventory"));
-                VC(TrackablesMineViewController, _(@"menu-trackables-mine"));
-                VC(TrackablesListViewController, _(@"menu-trackables-list"));
+                VC(TrackablesInventoryViewController, _(@"menu-trackables-Inventory"));
+                VC(TrackablesMineViewController, _(@"menu-trackables-Mine"));
+                VC(TrackablesListViewController, _(@"menu-trackables-List"));
 
                 TABBARCONTROLLER(RC_TRACKABLES, controllers)
                 break;
@@ -185,8 +185,8 @@
             case RC_GROUPS:
                 controllers = [NSMutableArray array];
 
-                VC(GroupsUserViewController, _(@"menu-groups-usergroups"));
-                VC(GroupsSystemViewController, _(@"menu-groups-systemgroups"));
+                VC(GroupsUserViewController, _(@"menu-groups-User Groups"));
+                VC(GroupsSystemViewController, _(@"menu-groups-System Groups"));
 
                 TABBARCONTROLLER(RC_GROUPS, controllers)
                 break;
@@ -194,9 +194,9 @@
             case RC_BROWSER:
                 controllers = [NSMutableArray array];
 
-                VC(BrowserUserViewController, _(@"menu-browser-user"));
-                VC(BrowserAccountsViewController, _(@"menu-browser-queries"));
-                VC(BrowserBrowserViewController, _(@"menu-browser-browser"));
+                VC(BrowserUserViewController, _(@"menu-browser-User"));
+                VC(BrowserAccountsViewController, _(@"menu-browser-Queries"));
+                VC(BrowserBrowserViewController, _(@"menu-browser-Browser"));
 
                 TABBARCONTROLLER(RC_BROWSER, controllers)
                 break;
@@ -204,8 +204,8 @@
             case RC_FILES:
                 controllers = [NSMutableArray array];
 
-                VC(FilesViewController, _(@"menu-files-localfiles"));
-                VC(FileBrowserViewController, _(@"menu-files-filebrowser"));
+                VC(FilesViewController, _(@"menu-files-Local Files"));
+                VC(FileBrowserViewController, _(@"menu-files-File Browser"));
 
                 TABBARCONTROLLER(RC_FILES, controllers)
                 break;
@@ -213,7 +213,7 @@
             case RC_STATISTICS:
                 controllers = [NSMutableArray array];
 
-                VC(StatisticsViewController, _(@"menu-statistics-statistics"));
+                VC(StatisticsViewController, _(@"menu-statistics-Statistics"));
 
                 TABBARCONTROLLER(RC_STATISTICS, controllers)
                 break;
@@ -221,10 +221,10 @@
             case RC_SETTINGS:
                 controllers = [NSMutableArray array];
 
-                VC(SettingsAccountsViewController, _(@"menu-settings-accounts"));
-                VC(SettingsMainViewController, _(@"menu-settings-settings"));
-                VC(SettingsColoursViewController, _(@"menu-settings-colours"));
-                VC(SettingsLogTemplatesViewController, _(@"menu-settings-log"));
+                VC(SettingsAccountsViewController, _(@"menu-settings-Accounts"));
+                VC(SettingsMainViewController, _(@"menu-settings-Settings"));
+                VC(SettingsColoursViewController, _(@"menu-settings-Colours"));
+                VC(SettingsLogTemplatesViewController, _(@"menu-settings-Log"));
 
                 TABBARCONTROLLER(RC_SETTINGS, controllers)
                 break;
@@ -232,11 +232,11 @@
             case RC_HELP:
                 controllers = [NSMutableArray array];
 
-                VC(HelpAboutViewController, _(@"menu-help-about"));
-                VC(HelpHelpViewController, _(@"menu-help-help"));
-                VC(NoticesViewController, _(@"menu-help-notices"));
-                VC(HelpImagesViewController, _(@"menu-help-images"));
-                VC(HelpDatabaseViewController, _(@"menu-help-db"));
+                VC(HelpAboutViewController, _(@"menu-help-About"));
+                VC(HelpHelpViewController, _(@"menu-help-Help"));
+                VC(NoticesViewController, _(@"menu-help-Notices"));
+                VC(HelpImagesViewController, _(@"menu-help-Images"));
+                VC(HelpDatabaseViewController, _(@"menu-help-DB"));
 
                 TABBARCONTROLLER(RC_HELP, controllers)
                 break;
@@ -244,11 +244,11 @@
             case RC_LISTS:
                 controllers = [NSMutableArray array];
 
-                VC(ListHighlightViewController, _(@"menu-lists-highlight"));
-                VC(ListFoundViewController, _(@"menu-lists-found"));
-                VC(ListDNFViewController, _(@"menu-lists-dnf"));
-                VC(ListInProgressViewController, _(@"menu-lists-inprogress"));
-                VC(ListIgnoredViewController, _(@"menu-lists-ingnored"));
+                VC(ListHighlightViewController, _(@"menu-lists-Highlight"));
+                VC(ListFoundViewController, _(@"menu-lists-Found"));
+                VC(ListDNFViewController, _(@"menu-lists-DNF"));
+                VC(ListInProgressViewController, _(@"menu-lists-In Progress"));
+                VC(ListIgnoredViewController, _(@"menu-lists-Ignored"));
 
                 TABBARCONTROLLER(RC_LISTS, controllers)
                 break;
@@ -256,9 +256,9 @@
             case RC_QUERIES:
                 controllers = [NSMutableArray array];
 
-                VC(QueriesGroundspeakViewController, _(@"menu-queries-groundspeak"));
-                VC(QueriesGGCWViewController, _(@"menu-queries-geocaching.comwebsite"));
-                VC(QueriesGCAViewController, _(@"menu-queries-gca"));
+                VC(QueriesGroundspeakViewController, _(@"menu-queries-Groundspeak"));
+                VC(QueriesGGCWViewController, _(@"menu-queries-Geocaching.com website"));
+                VC(QueriesGCAViewController, _(@"menu-queries-GCA"));
 
                 TABBARCONTROLLER(RC_QUERIES, controllers)
                 break;
@@ -266,8 +266,8 @@
             case RC_TOOLS:
                 controllers = [NSMutableArray array];
 
-                VC(ToolsGPSViewController, _(@"menu-tools-gps"));
-                VC(ToolsRot13ViewController, _(@"menu-tools-rot13"));
+                VC(ToolsGPSViewController, _(@"menu-tools-GPS"));
+                VC(ToolsRot13ViewController, _(@"menu-tools-ROT13"));
 
                 TABBARCONTROLLER(RC_QUERIES, controllers)
                 break;
@@ -275,9 +275,9 @@
             case RC_LOCATIONSLESS:
                 controllers = [NSMutableArray array];
 
-                VC(LocationlessListViewController, _(@"menu-locationless-all"));
-                VC(LocationlessPlannedViewController, _(@"menu-locationless-planned"));
-                VC(MapLogsViewController, _(@"menu-locationless-map"));
+                VC(LocationlessListViewController, _(@"menu-locationless-All"));
+                VC(LocationlessPlannedViewController, _(@"menu-locationless-Planned"));
+                VC(MapLogsViewController, _(@"menu-locationless-Map"));
 
                 TABBARCONTROLLER(RC_QUERIES, controllers)
                 break;

@@ -45,10 +45,10 @@ enum {
     self = [super init];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuClearFlags label:_(@"listtemplateviewcontroller-clearlist")];
-    [lmi addItem:menuReloadWaypoints label:_(@"listtemplateviewcontroller-reloadwaypoints")];
-    [lmi addItem:menuExportGPX label:_(@"listtemplateviewcontroller-exportgpx")];
-    [lmi addItem:menuSortBy label:_(@"listtemplateviewcontroller-sortby")];
+    [lmi addItem:menuClearFlags label:_(@"listtemplateviewcontroller-Clear list")];
+    [lmi addItem:menuReloadWaypoints label:_(@"listtemplateviewcontroller-Reload waypoints")];
+    [lmi addItem:menuExportGPX label:_(@"listtemplateviewcontroller-Export GPX")];
+    [lmi addItem:menuSortBy label:_(@"listtemplateviewcontroller-Sort by")];
 
     currentSortOrder = configManager.listSortBy;
     processing = [[RemoteAPIProcessingGroup alloc] init];

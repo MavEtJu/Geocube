@@ -52,8 +52,8 @@ enum {
     [self makeInfoView];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuICloud label:_(@"filesviewcontroller-icloud")];
-    [lmi addItem:menuRefresh label:_(@"filesviewcontroller-refresh")];
+    [lmi addItem:menuICloud label:_(@"filesviewcontroller-iCloud")];
+    [lmi addItem:menuRefresh label:_(@"filesviewcontroller-Refresh")];
 }
 
 - (void)refreshFileData
@@ -141,11 +141,11 @@ enum {
 
     NSString *imported = @"";
     if (fi != nil)
-        imported = [NSString stringWithFormat:@"%@: %@", _(@"filesviewcontroller-lastimported"), [MyTools niceTimeDifference:fi.lastimport]];
+        imported = [NSString stringWithFormat:@"%@: %@", _(@"filesviewcontroller-Last imported"), [MyTools niceTimeDifference:fi.lastimport]];
 
     cell.labelFilename.text = fn;
-    cell.labelSize.text = [NSString stringWithFormat:@"%@: %@", _(@"filesviewcontroller-filesize"), [MyTools niceFileSize:[[filesSizes objectAtIndex:indexPath.row] integerValue]]];
-    cell.labelDateTime.text = [NSString stringWithFormat:@"%@: %@.", _(@"filesviewcontroller-fileage"), [MyTools niceTimeDifference:[[filesDates objectAtIndex:indexPath.row] timeIntervalSince1970]]];
+    cell.labelSize.text = [NSString stringWithFormat:@"%@: %@", _(@"filesviewcontroller-File size"), [MyTools niceFileSize:[[filesSizes objectAtIndex:indexPath.row] integerValue]]];
+    cell.labelDateTime.text = [NSString stringWithFormat:@"%@: %@.", _(@"filesviewcontroller-File age"), [MyTools niceTimeDifference:[[filesDates objectAtIndex:indexPath.row] timeIntervalSince1970]]];
     cell.labelLastImport.text = imported;
     return cell;
 }
@@ -171,13 +171,13 @@ enum {
 
     UIAlertController *view = [UIAlertController
                                alertControllerWithTitle:fn
-                               message:_(@"filesviewcontroller-chooseyouraction")
+                               message:_(@"filesviewcontroller-Choose your action")
                                preferredStyle:UIAlertControllerStyleActionSheet];
     view.popoverPresentationController.sourceView = self.view;
     view.popoverPresentationController.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0);
 
     UIAlertAction *delete = [UIAlertAction
-                             actionWithTitle:_(@"filesviewcontroller-delete")
+                             actionWithTitle:_(@"filesviewcontroller-Delete")
                              style:UIAlertActionStyleDestructive
                              handler:^(UIAlertAction * action) {
                                  [self fileDelete:fn forceReload:YES];
@@ -188,7 +188,7 @@ enum {
         [[fn pathExtension] isEqualToString:@"zip"] == YES ||
         [[fn pathExtension] isEqualToString:@"geocube"] == YES) {
         import = [UIAlertAction
-                  actionWithTitle:_(@"filesviewcontroller-import")
+                  actionWithTitle:_(@"filesviewcontroller-Import")
                   style:UIAlertActionStyleDefault
                   handler:^(UIAlertAction * action) {
                       [self fileImport:indexPath.row view:[aTableView cellForRowAtIndexPath:indexPath]];
@@ -198,7 +198,7 @@ enum {
     UIAlertAction *restore = nil;
     if ([[fn pathExtension] isEqualToString:@"sqlite"] == YES) {
         restore = [UIAlertAction
-                   actionWithTitle:_(@"filesviewcontroller-restore")
+                   actionWithTitle:_(@"filesviewcontroller-Restore")
                    style:UIAlertActionStyleDefault
                    handler:^(UIAlertAction * action) {
                        [self fileRestore:indexPath.row view:[aTableView cellForRowAtIndexPath:indexPath]];
@@ -208,7 +208,7 @@ enum {
     UIAlertAction *unzip = nil;
     if ([[fn pathExtension] isEqualToString:@"zip"] == YES) {
         unzip = [UIAlertAction
-                 actionWithTitle:_(@"filesviewcontroller-unzip")
+                 actionWithTitle:_(@"filesviewcontroller-Unzip")
                  style:UIAlertActionStyleDefault
                  handler:^(UIAlertAction * action) {
                      [self fileUnzip:fn];
@@ -216,21 +216,21 @@ enum {
                  }];
     }
     UIAlertAction *rename = [UIAlertAction
-                             actionWithTitle:_(@"filesviewcontroller-rename")
+                             actionWithTitle:_(@"filesviewcontroller-Rename")
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [self fileRename:fn];
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
     UIAlertAction *uploadAirdrop = [UIAlertAction
-                                    actionWithTitle:_(@"filesviewcontroller-uploadwithairdrop")
+                                    actionWithTitle:_(@"filesviewcontroller-Upload with Airdrop")
                                     style:UIAlertActionStyleDefault
                                     handler:^(UIAlertAction * action) {
                                         [self uploadAirdrop:fn];
                                         [view dismissViewControllerAnimated:YES completion:nil];
                                     }];
     UIAlertAction *uploadICloud = [UIAlertAction
-                                   actionWithTitle:_(@"filesviewcontroller-uploadtoicloud")
+                                   actionWithTitle:_(@"filesviewcontroller-Upload to iCloud")
                                    style:UIAlertActionStyleDefault
                                    handler:^(UIAlertAction * action) {
                                        [self uploadICloud:fn];
@@ -319,13 +319,13 @@ enum {
 {
     [self showInfoView];
     InfoItemID iii = [infoView addImport];
-    [infoView setDescription:iii description:[NSString stringWithFormat:_(@"filesviewcontroller-geocubeimportof__"), fn]];
+    [infoView setDescription:iii description:[NSString stringWithFormat:_(@"filesviewcontroller-Geocube import of %@"), fn]];
 
     NSData *data = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], fn]];
     if ([ImportGeocube parse:data infoViewer:infoView iiImport:iii] == NO) {
-        [MyTools messageBox:self header:_(@"filesviewcontroller-importfailed") text:[NSString stringWithFormat:_(@"filesviewcontroller-therewasaproblemimportingthefile__."), fn]];
+        [MyTools messageBox:self header:_(@"filesviewcontroller-Import failed") text:[NSString stringWithFormat:_(@"filesviewcontroller-There was a problem importing the file %@."), fn]];
     } else {
-        [MyTools messageBox:self header:_(@"filesviewcontroller-importsuccessful") text:_(@"filesviewcontroller-theimportwassuccessful.")];
+        [MyTools messageBox:self header:_(@"filesviewcontroller-Import successful") text:_(@"filesviewcontroller-The import was successful.")];
     };
 
     [infoView removeItem:iii];
@@ -360,11 +360,11 @@ enum {
     }];
 
     if (groupsOkay == NO) {
-        [MyTools messageBox:self header:_(@"filesviewcontroller-prerequisitefailed") text:_(@"filesviewcontroller-makesurethereareusergroupsdefined.gotogroups->UserGroupsandaddagroup.")];
+        [MyTools messageBox:self header:_(@"filesviewcontroller-Prerequisite failed") text:_(@"filesviewcontroller-Make sure there are user groups defined. Go to Groups -> User Groups and add a group.")];
         return;
     }
     if (accountsOkay == NO) {
-        [MyTools messageBox:self header:_(@"filesviewcontroller-prerequisitefailed") text:_(@"filesviewcontroller-makesurethatyouhaveatleasthavedefinedoneuseraccount.gotosettings->accountsanddefineanusername.")];
+        [MyTools messageBox:self header:_(@"filesviewcontroller-Prerequisite failed") text:_(@"filesviewcontroller-Make sure that you at least have defined one user account. Go to Settings -> Accounts and define an username.")];
         return;
     }
 
@@ -379,7 +379,7 @@ enum {
     }];
 
     [ActionSheetStringPicker
-        showPickerWithTitle:_(@"filesviewcontroller-selectagroup")
+        showPickerWithTitle:_(@"filesviewcontroller-Select a group")
         rows:groupNames
         initialSelection:configManager.lastImportGroup
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
@@ -405,7 +405,7 @@ enum {
     }];
 
     [ActionSheetStringPicker
-        showPickerWithTitle:_(@"filesviewcontroller-selectthesource")
+        showPickerWithTitle:_(@"filesviewcontroller-Select the source")
         rows:accountNames
         initialSelection:configManager.lastImportSource
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
@@ -478,8 +478,8 @@ enum {
 - (void)fileRename:(NSString *)filename
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:_(@"filesviewcontroller-renamefile")
-                                message:[NSString stringWithFormat:_(@"filesviewcontroller-rename__to"), filename]
+                                alertControllerWithTitle:_(@"filesviewcontroller-Rename file")
+                                message:[NSString stringWithFormat:_(@"filesviewcontroller-Rename %@ to"), filename]
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction

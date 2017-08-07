@@ -101,9 +101,9 @@
     self.labelGPSAccuracy.text = @"";
     self.labelGPSDistance.text = @"";
 
-    self.labelAltitude.text = _(@"compassviewcontroller-altitude");
-    self.labelAccuracy.text = _(@"compassviewcontroller-accuracy");
-    self.labelMyLocation.text = _(@"compassviewcontroller-mylocation");
+    self.labelAltitude.text = _(@"compassviewcontroller-Altitude");
+    self.labelAccuracy.text = _(@"compassviewcontroller-Accuracy");
+    self.labelMyLocation.text = _(@"compassviewcontroller-My location");
 
     if (waypointManager.currentWaypoint != nil) {
         self.labelWPCode.text = waypointManager.currentWaypoint.wpt_name;

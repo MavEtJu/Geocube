@@ -49,7 +49,7 @@
 
     rect = CGRectMake(20, y, width - 40, 15);
     sliderLabel = [[GCLabel alloc] initWithFrame:rect];
-    sliderLabel.text = _(@"filterfavouritestableviewcell-favourites:atleast0");
+    sliderLabel.text = _(@"filterfavouritestableviewcell-Favourites: At least 0");
     sliderLabel.font = f2;
     sliderLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:sliderLabel];
@@ -126,15 +126,15 @@
     NSString *maxString = [NSString stringWithFormat:@"%ld", (long)config_max];
 
     if (config_min == 0 && config_max == 100)
-        sliderLabel.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-favourites:anything")];
+        sliderLabel.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: Anything")];
     else if (config_min == config_max)
-        sliderLabel.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-favourites:__"), minString];
+        sliderLabel.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: %@"), minString];
     else if (config_max == 100)
-        sliderLabel.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-favourites:atleast__"), minString];
+        sliderLabel.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: At least %@"), minString];
     else if (config_min == 0)
-        sliderLabel.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-favourites:atmost__"), maxString];
+        sliderLabel.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: At most %@"), maxString];
     else
-        sliderLabel.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-favourites:between__and__"), minString, maxString];
+        sliderLabel.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: Between %@ and %@"), minString, maxString];
 }
 
 @end

@@ -41,7 +41,7 @@ enum {
     self = [super init];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuReload label:_(@"queriestemplateviewcontroller-reload")];
+    [lmi addItem:menuReload label:_(@"queriestemplateviewcontroller-Reload")];
 
     processing = [[RemoteAPIProcessingGroup alloc] init];
 

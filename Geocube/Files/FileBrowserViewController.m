@@ -60,7 +60,7 @@
     self.stackFO = [NSMutableArray arrayWithCapacity:10];
 
     [bezelManager showBezel:self];
-    [bezelManager setText:_(@"filebrowserviewcontroller-retrievingdirectorycontents")];
+    [bezelManager setText:_(@"filebrowserviewcontroller-Retrieving directory contents")];
 }
 
 - (void)loadContents:(FileObject *)rootFO
@@ -243,7 +243,7 @@
 
     UIAlertController *view = [UIAlertController
                                alertControllerWithTitle:fo.filename
-                               message:_(@"filebrowserviewcontroller-chooseyouraction")
+                               message:_(@"filebrowserviewcontroller-Choose your action")
                                preferredStyle:UIAlertControllerStyleActionSheet];
     view.popoverPresentationController.sourceView = self.view;
     view.popoverPresentationController.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0);
@@ -262,7 +262,7 @@
 
                                  [self performSelectorInBackground:@selector(loadContents:) withObject:self.rootFO];
                                  [bezelManager showBezel:self];
-                                 [bezelManager setText:_(@"filebrowserviewcontroller-retrievingdirectorycontents")];
+                                 [bezelManager setText:_(@"filebrowserviewcontroller-Retrieving directory contents")];
 
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
@@ -283,13 +283,13 @@
 
                               [self performSelectorInBackground:@selector(loadContents:) withObject:self.rootFO];
                               [bezelManager showBezel:self];
-                              [bezelManager setText:_(@"filebrowserviewcontroller-retrievingdirectorycontents")];
+                              [bezelManager setText:_(@"filebrowserviewcontroller-Retrieving directory contents")];
 
                               [view dismissViewControllerAnimated:YES completion:nil];
                           }];
 
     UIAlertAction *uploadAirdrop = [UIAlertAction
-                                    actionWithTitle:_(@"filebrowserviewcontroller-uploadwithairdrop")
+                                    actionWithTitle:_(@"filebrowserviewcontroller-Upload with Airdrop")
                                     style:UIAlertActionStyleDefault
                                     handler:^(UIAlertAction * action) {
                                         [self uploadAirdrop:fo.fullFilename];
@@ -297,7 +297,7 @@
                                     }];
 
     UIAlertAction *uploadICloud = [UIAlertAction
-                                   actionWithTitle:_(@"filebrowserviewcontroller-uploadtoicloud")
+                                   actionWithTitle:_(@"filebrowserviewcontroller-Upload to iCloud")
                                    style:UIAlertActionStyleDefault
                                    handler:^(UIAlertAction * action) {
                                        [self uploadICloud:fo.fullFilename];

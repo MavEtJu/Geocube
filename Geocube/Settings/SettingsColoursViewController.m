@@ -41,7 +41,7 @@ enum {
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELL];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuReset label:_(@"settingscoloursviewcontroller-reset")];
+    [lmi addItem:menuReset label:_(@"settingscoloursviewcontroller-Reset")];
 
     pins = [NSMutableArray arrayWithArray:[dbc Pins]];
 }

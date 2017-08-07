@@ -78,15 +78,15 @@ enum {
     self = [super initWithStyle:UITableViewStyleGrouped];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuMarkAs label:_(@"waypointviewcontroller-markas")];
-    [lmi addItem:menuRefreshWaypoint label:_(@"waypointviewcontroller-refreshwaypoint")];
-    [lmi addItem:menuAddToGroup label:_(@"waypointviewcontroller-addtogroup")];
-    [lmi addItem:menuViewRaw label:_(@"waypointviewcontroller-rawdata")];
-    [lmi addItem:menuSetAsTarget label:_(@"waypointviewcontroller-settarget")];
-    [lmi addItem:menuLogThisWaypoint label:_(@"waypointviewcontroller-logwaypoint")];
-    [lmi addItem:menuOpenInBrowser label:_(@"waypointviewcontroller-openinbrowser")];
-    [lmi addItem:menuExportGPX label:_(@"waypointviewcontroller-exportgpx")];
-    [lmi addItem:menuDeleteWaypoint label:_(@"waypointviewcontroller-deletewaypoint")];
+    [lmi addItem:menuMarkAs label:_(@"waypointviewcontroller-Mark as")];
+    [lmi addItem:menuRefreshWaypoint label:_(@"waypointviewcontroller-Refresh waypoint")];
+    [lmi addItem:menuAddToGroup label:_(@"waypointviewcontroller-Add to group")];
+    [lmi addItem:menuViewRaw label:_(@"waypointviewcontroller-Raw data")];
+    [lmi addItem:menuSetAsTarget label:_(@"waypointviewcontroller-Set target")];
+    [lmi addItem:menuLogThisWaypoint label:_(@"waypointviewcontroller-Log waypoint")];
+    [lmi addItem:menuOpenInBrowser label:_(@"waypointviewcontroller-Open in browser")];
+    [lmi addItem:menuExportGPX label:_(@"waypointviewcontroller-Export GPX")];
+    [lmi addItem:menuDeleteWaypoint label:_(@"waypointviewcontroller-Delete waypoint")];
 
     self.hasCloseButton = NO;
     self.isLocationless = NO;
@@ -225,9 +225,9 @@ enum {
 {
     switch (section) {
         case WAYPOINT_DATA:
-            return _(@"waypointviewcontroller-waypointdata");
+            return _(@"waypointviewcontroller-Waypoint data");
         case WAYPOINT_ACTIONS:
-            return _(@"waypointviewcontroller-waypointactions");
+            return _(@"waypointviewcontroller-Waypoint actions");
     }
     return nil;
 }
@@ -271,7 +271,7 @@ enum {
             switch (indexPath.row) {
 
                case WAYPOINT_DATA_DESCRIPTION:
-                    cell.textLabel.text = _(@"waypointviewcontroller-description");
+                    cell.textLabel.text = _(@"waypointviewcontroller-Description");
                     if ([waypoint.gs_short_desc isEqualToString:@""] == YES && [waypoint.gs_long_desc isEqualToString:@""] == YES && [waypoint.description isEqualToString:@""] == YES) {
                         tc = currentTheme.labelTextColorDisabled;
                         cell.userInteractionEnabled = NO;
@@ -279,7 +279,7 @@ enum {
                     break;
 
                 case WAYPOINT_DATA_HINT:
-                    cell.textLabel.text = _(@"waypointviewcontroller-hint");
+                    cell.textLabel.text = _(@"waypointviewcontroller-Hint");
                     if (waypoint.gs_hint == nil || [waypoint.gs_hint isEqualToString:@""] == YES || [waypoint.gs_hint isEqualToString:@" "] == YES) {
                         tc = currentTheme.labelTextColorDisabled;
                         cell.userInteractionEnabled = NO;
@@ -289,10 +289,10 @@ enum {
                 case WAYPOINT_DATA_PERSONALNOTE: {
                     dbPersonalNote *pn = [dbPersonalNote dbGetByWaypointName:waypoint.wpt_name];
                     if (pn == 0)
-                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", _(@"waypointviewcontroller-personalnote"), _(@"waypointviewcontroller-noneyet")];
+                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", _(@"waypointviewcontroller-Personal note"), _(@"waypointviewcontroller-None yet")];
                     else {
                         NSArray<NSString *> *words = [pn.note componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld %@)", _(@"waypointviewcontroller-personalnote"), (long)[words count], [words count] == 1 ? _(@"waypointviewcontroller-word") : _(@"waypointviewcontroller-words")];
+                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld %@)", _(@"waypointviewcontroller-Personal note"), (long)[words count], [words count] == 1 ? _(@"waypointviewcontroller-Word") : _(@"waypointviewcontroller-Words")];
                     }
                     break;
                 }
@@ -304,7 +304,7 @@ enum {
     }
                 case WAYPOINT_DATA_FIELDNOTES: {
                     WaypointLogsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:XIB_WAYPOINTLOGSTABLEVIEWCELL forIndexPath:indexPath];
-                    cell.logs.text = _(@"waypointviewcontroller-fieldsnotes");
+                    cell.logs.text = _(@"waypointviewcontroller-Field notes");
                     cell.userInteractionEnabled = YES;
                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
@@ -349,11 +349,11 @@ enum {
 
                     NSInteger c = [waypoint hasLogs];
                     if (c == 0) {
-                        cell.logs.text = _(@"waypointviewcontroller-logs");
+                        cell.logs.text = _(@"waypointviewcontroller-Logs");
                         cell.logs.textColor = currentTheme.labelTextColorDisabled;
                         cell.userInteractionEnabled = NO;
                     } else {
-                        cell.logs.text = [NSString stringWithFormat:@"%@ (%ld)", _(@"waypointviewcontroller-logs"), (long)c];
+                        cell.logs.text = [NSString stringWithFormat:@"%@ (%ld)", _(@"waypointviewcontroller-Logs"), (long)c];
 
                         NSArray<dbLog *> *logs = [dbLog dbLast7ByWaypoint:waypoint];
 #define IMAGE(__idx__) \
@@ -375,11 +375,11 @@ enum {
                 case WAYPOINT_DATA_ATTRIBUTES: {
                     NSInteger c = [waypoint hasAttributes];
                     if (c == 0) {
-                        cell.textLabel.text = _(@"waypointviewcontroller-attributes");
+                        cell.textLabel.text = _(@"waypointviewcontroller-Attributes");
                         tc = currentTheme.labelTextColorDisabled;
                         cell.userInteractionEnabled = NO;
                     } else
-                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", _(@"waypointviewcontroller-attributes"), (long)c];
+                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", _(@"waypointviewcontroller-Attributes"), (long)c];
                     break;
                 }
 
@@ -387,34 +387,34 @@ enum {
 
                     NSArray<dbWaypoint *> *wps = [waypoint hasWaypoints];
                     if ([wps count] > 1)
-                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", _(@"waypointviewcontroller-waypoints"), (long)([wps count] - 1)];
+                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", _(@"waypointviewcontroller-Waypoints"), (long)([wps count] - 1)];
                     else
-                        cell.textLabel.text = _(@"waypointviewcontroller-waypoints");
+                        cell.textLabel.text = _(@"waypointviewcontroller-Waypoints");
                     break;
                 }
 
                 case WAYPOINT_DATA_INVENTORY: {
                     NSInteger c = [waypoint hasInventory];
                     if (c == 0) {
-                        cell.textLabel.text = _(@"waypointviewcontroller-inventory");
+                        cell.textLabel.text = _(@"waypointviewcontroller-Inventory");
                         tc = currentTheme.labelTextColorDisabled;
                         cell.userInteractionEnabled = NO;
                     } else
-                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", _(@"waypointviewcontroller-inventory"), (long)c];
+                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", _(@"waypointviewcontroller-Inventory"), (long)c];
                     break;
                 }
 
                 case WAYPOINT_DATA_IMAGES: {
                     NSInteger c = [waypoint hasImages];
                     if (c == 0)
-                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", _(@"waypointviewcontroller-images"), _(@"waypointviewcontroller-noneyet")];
+                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", _(@"waypointviewcontroller-Images"), _(@"waypointviewcontroller-None yet")];
                     else
-                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", _(@"waypointviewcontroller-images"), (long)c];
+                        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", _(@"waypointviewcontroller-Images"), (long)c];
                     break;
                 }
 
                 case WAYPOINT_DATA_GROUPMEMBERS:
-                    cell.textLabel.text = _(@"waypointviewcontroller-groupmembers");
+                    cell.textLabel.text = _(@"waypointviewcontroller-Group members");
                     break;
             }
             cell.textLabel.textColor = tc;
@@ -430,9 +430,9 @@ enum {
                     cell.userInteractionEnabled = YES;
                     cell.imageView.image = [imageLibrary get:ImageIcon_Target];
                     if (waypoint == waypointManager.currentWaypoint) {
-                        cell.textLabel.text = _(@"waypointviewcontroller-removeastarget");
+                        cell.textLabel.text = _(@"waypointviewcontroller-Remove as target");
                     } else {
-                        cell.textLabel.text = _(@"waypointviewcontroller-setastarget");
+                        cell.textLabel.text = _(@"waypointviewcontroller-Set as target");
                     }
                     return cell;
                 }
@@ -441,7 +441,7 @@ enum {
                     GCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLRIGHTIMAGEDISCLOSURE forIndexPath:indexPath];
                     cell.userInteractionEnabled = YES;
                     cell.imageView.image = [imageLibrary get:ImageIcon_Smiley];
-                    cell.textLabel.text = _(@"waypointviewcontroller-logthiswaypoint");
+                    cell.textLabel.text = _(@"waypointviewcontroller-Log this waypoint");
                     return cell;
                 }
 
@@ -453,7 +453,7 @@ enum {
                     if (waypoint.wpt_url == nil)
                         cell.userInteractionEnabled = NO;
 
-                    cell.textLabel.text = _(@"waypointviewcontroller-openinbrowser");
+                    cell.textLabel.text = _(@"waypointviewcontroller-Open in browser");
                     return cell;
                 }
 
@@ -595,7 +595,7 @@ enum {
             return;
         case menuExportGPX:
             [ExportGPX export:waypoint];
-            [MyTools messageBox:self header:_(@"waypointviewcontroller-exportsuccessful") text:_(@"waypointviewcontroller-theexportedfilecanbefoundinthefilessection")];
+            [MyTools messageBox:self header:_(@"waypointviewcontroller-Export successful") text:_(@"waypointviewcontroller-The exported file can be found in the Files section.")];
             return;
         case menuDeleteWaypoint:
             [self menuDeleteWaypoint];
@@ -648,8 +648,8 @@ enum {
 - (void)menuDeleteWaypoint
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:_(@"waypointviewcontroller-deletewaypoint")
-                                message:_(@"waypointviewcontroller-areyousure?")
+                                alertControllerWithTitle:_(@"waypointviewcontroller-Delete waypoint")
+                                message:_(@"waypointviewcontroller-Are you sure?")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *yes = [UIAlertAction
@@ -678,15 +678,15 @@ enum {
 {
     NSString *title;
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:_(@"waypointviewcontroller-Waypointflags")
-                                message:_(@"waypointviewcontroller-markas")
+                                alertControllerWithTitle:_(@"waypointviewcontroller-Waypoint flags")
+                                message:_(@"waypointviewcontroller-Mark as")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
 #define TITLE(__flag__, __string__) \
     if (__flag__ == YES) \
-        title = [NSString stringWithFormat:_(@"waypointviewcontroller-removemarkas__"), __string__]; \
+        title = [NSString stringWithFormat:_(@"waypointviewcontroller-Remove mark as %@"), __string__]; \
     else \
-        title = [NSString stringWithFormat:_(@"waypointviewcontroller-markas__"), __string__];
+        title = [NSString stringWithFormat:_(@"waypointviewcontroller-Mark as %@"), __string__];
 
     TITLE(waypoint.flag_dnf, _(@"waypointviewcontroller-DNF"))
     UIAlertAction *dnf = [UIAlertAction
@@ -733,7 +733,7 @@ enum {
                                 [waypointManager needsRefreshUpdate:waypoint];
                                 [self.tableView reloadData];
                             }];
-    TITLE(waypoint.flag_ignore, _(@"waypointviewcontroller-ignored"))
+    TITLE(waypoint.flag_ignore, _(@"waypointviewcontroller-Ignored"))
     UIAlertAction *ignore = [UIAlertAction
                              actionWithTitle:title
                              style:UIAlertActionStyleDefault
@@ -753,7 +753,7 @@ enum {
                                      [[dbc Group_AllWaypoints_Ignored] removeWaypointFromGroup:waypoint];
                                  }
                              }];
-    TITLE(waypoint.flag_inprogress, _(@"waypointviewcontroller-inprogress"))
+    TITLE(waypoint.flag_inprogress, _(@"waypointviewcontroller-In progress"))
     UIAlertAction *inprogress = [UIAlertAction
                                  actionWithTitle:title
                                  style:UIAlertActionStyleDefault
@@ -767,7 +767,7 @@ enum {
                                      [waypointManager needsRefreshUpdate:waypoint];
                                      [self.tableView reloadData];
                                  }];
-    TITLE(waypoint.flag_highlight, _(@"waypointviewcontroller-highlight"))
+    TITLE(waypoint.flag_highlight, _(@"waypointviewcontroller-Highlight"))
     UIAlertAction *highlight = [UIAlertAction
                                 actionWithTitle:title
                                 style:UIAlertActionStyleDefault
@@ -784,7 +784,7 @@ enum {
     UIAlertAction *planned = nil;
 
     if (self.isLocationless == YES) {
-        TITLE(waypoint.flag_planned, _(@"waypointviewcontroller-planned"))
+        TITLE(waypoint.flag_planned, _(@"waypointviewcontroller-Planned"))
         planned = [UIAlertAction
                    actionWithTitle:title
                    style:UIAlertActionStyleDefault
@@ -838,7 +838,7 @@ enum {
 
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:WAYPOINT_DATA_GROUPMEMBERS inSection:WAYPOINT_DATA]];
 
-    [ActionSheetStringPicker showPickerWithTitle:_(@"waypointviewcontroller-selectagroup")
+    [ActionSheetStringPicker showPickerWithTitle:_(@"waypointviewcontroller-Select a group")
         rows:groupNames
         initialSelection:configManager.lastAddedGroup
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
@@ -858,7 +858,7 @@ enum {
 {
     [self showInfoView];
     InfoItemID iid = [infoView addDownload];
-    [infoView setDescription:iid description:[NSString stringWithFormat:_(@"waypointviewcontroller-updating__"), waypoint.wpt_name]];
+    [infoView setDescription:iid description:[NSString stringWithFormat:_(@"waypointviewcontroller-Updating %@"), waypoint.wpt_name]];
 
     chunksDownloaded = 0;
     chunksProcessed = 0;
@@ -867,7 +867,7 @@ enum {
     [infoView removeItem:iid];
 
     if (retValue != REMOTEAPI_OK)
-        [MyTools messageBox:self header:_(@"waypointviewcontroller-updatefailed") text:_(@"waypointviewcontroller-unabletoupdatethewaypoint.") error:waypoint.account.remoteAPI.lastError];
+        [MyTools messageBox:self header:_(@"waypointviewcontroller-Update failed") text:_(@"waypointviewcontroller-Unable to update the waypoint.") error:waypoint.account.remoteAPI.lastError];
 }
 
 - (void)remoteAPI_objectReadyToImport:(NSInteger)identifier iiImport:(InfoItemID)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account

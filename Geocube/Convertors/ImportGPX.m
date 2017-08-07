@@ -558,7 +558,7 @@ bye:
 {
     NSString *errorString = [NSString stringWithFormat:@"%@ error (Error code %ld)", [self class], (long)[parseError code]];
     NSLog(@"Error parsing XML: %@ (%@)", errorString, parseError);
-    [MyTools messageBox:[MyTools topMostController] header:_(@"importgpx-errorparsingXMLcode") text:_(@"importgpx-anerroroccuredwhileimportingtheGPXfile.") error:[parseError.userInfo description]];
+    [MyTools messageBox:[MyTools topMostController] header:_(@"importgpx-Error parsing XML code") text:_(@"importgpx-An error occured while importing the GPX file.") error:[parseError.userInfo description]];
 }
 
 @end
