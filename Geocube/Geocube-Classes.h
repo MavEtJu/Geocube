@@ -130,6 +130,7 @@
 @class ListInProgressViewController;
 @class ListTemplateViewController;
 @class LocalMenuItems;
+@class LocalizationManager;
 @class LocationManager;
 @class LocationlessListViewController;
 @class LocationlessPlannedViewController;

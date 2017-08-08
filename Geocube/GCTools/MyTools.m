@@ -92,6 +92,11 @@
     return s;
 }
 
++ (NSString *)SettingsBundleDirectory
+{
+    return [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
+}
+
 + (NSInteger)determineDirectorySize:(NSString *)path
 {
     NSDirectoryEnumerator *dirEnum = [fileManager enumeratorAtPath:path];

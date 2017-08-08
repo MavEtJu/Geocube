@@ -61,9 +61,6 @@
         }
     }];
 
-    // Initialize the global menu
-    menuGlobal = [[SideMenu alloc] init];
-
     // Initialize the IOS File Transfer Manager - After fileManager
     IOSFTM = [[IOSFileTransfers alloc] init];
 
@@ -75,6 +72,12 @@
 
     // Initialize the configuration manager - after db
     configManager = [[ConfigManager alloc] init];
+
+    // Localization manager - after configManager
+    localizationManager = [[LocalizationManager alloc] init];
+
+    // Initialize the global menu - after localizationManager
+    menuGlobal = [[SideMenu alloc] init];
 
     // After configManager
     opencageManager = [[OpenCageManager alloc] init];

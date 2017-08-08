@@ -75,6 +75,9 @@ extern KeyManager *keyManager;
 // OpenCageManager
 extern OpenCageManager *opencageManager;
 
+// LocalisationManager
+extern LocalizationManager *localizationManager;
+
 //
 extern AppDelegate *_AppDelegate;
 

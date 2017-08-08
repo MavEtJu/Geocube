@@ -35,6 +35,7 @@ typedef NS_ENUM(NSInteger, PlaySound) {
 + (NSString *)ImagesDir;
 + (NSString *)OldImagesDir;
 + (NSString *)ImageFile:(NSString *)imgFile;
++ (NSString *)SettingsBundleDirectory;
 
 + (NSInteger)determineDirectorySize:(NSString *)path;
 
@@ -235,5 +236,3 @@ typedef sqlite3_int64 NSId;
         NSString *fmt = [NSString stringWithFormat:@"%%s: %@", __fmt__]; \
         NSLog(fmt, __func__, ## __VA_ARGS__); \
     }
-
-#define _(__s__) NSLocalizedString(__s__, nil)

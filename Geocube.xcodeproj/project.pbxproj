@@ -566,6 +566,7 @@
 		E84725E51DF774E200CFF99B /* menu icon - local - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725DF1DF774E200CFF99B /* menu icon - local - night.png */; };
 		E84725E61DF774E200CFF99B /* menu icon - local@2x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E01DF774E200CFF99B /* menu icon - local@2x - night.png */; };
 		E84725E71DF774E200CFF99B /* menu icon - local@3x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */; };
+		E85AE1C01F39E96A00FA746C /* LocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E85AE1BF1F39E96A00FA746C /* LocalizationManager.m */; };
 		E861B97E1EE2E6D300BD82AC /* GC - logo - 1536×2048.png in Resources */ = {isa = PBXBuildFile; fileRef = E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */; };
 		E861B9801EE2E8AC00BD82AC /* GC - logo - 768×1024.png in Resources */ = {isa = PBXBuildFile; fileRef = E861B97F1EE2E8AC00BD82AC /* GC - logo - 768×1024.png */; };
 		E86C4AAF1E321822004526E2 /* CompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C4AAD1E321822004526E2 /* CompassViewController.m */; };
@@ -590,7 +591,6 @@
 		E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
 		E89D0D301EFA5ADD0019A411 /* PropertyUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E89D0D2F1EFA5ADD0019A411 /* PropertyUtil.m */; };
-		E8A575751F33F202008D3CC5 /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E8A575741F33F202008D3CC5 /* nl.lproj */; };
 		E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */; };
 		E8AA149C1ED7988A0023000A /* Updates and changes.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8AA149B1ED7988A0023000A /* Updates and changes.txt */; };
 		E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */; };
@@ -1586,6 +1586,8 @@
 		E84725DF1DF774E200CFF99B /* menu icon - local - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local - night.png"; path = "images/menu/menu icon - local - night.png"; sourceTree = "<group>"; };
 		E84725E01DF774E200CFF99B /* menu icon - local@2x - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local@2x - night.png"; path = "images/menu/menu icon - local@2x - night.png"; sourceTree = "<group>"; };
 		E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local@3x - night.png"; path = "images/menu/menu icon - local@3x - night.png"; sourceTree = "<group>"; };
+		E85AE1BE1F39E96A00FA746C /* LocalizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalizationManager.h; path = GCTools/LocalizationManager.h; sourceTree = "<group>"; };
+		E85AE1BF1F39E96A00FA746C /* LocalizationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalizationManager.m; path = GCTools/LocalizationManager.m; sourceTree = "<group>"; };
 		E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 1536×2048.png"; path = "images/logos/GC - logo - 1536×2048.png"; sourceTree = "<group>"; };
 		E861B97F1EE2E8AC00BD82AC /* GC - logo - 768×1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 768×1024.png"; path = "images/logos/GC - logo - 768×1024.png"; sourceTree = "<group>"; };
 		E86C4AAC1E321822004526E2 /* CompassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassViewController.h; sourceTree = "<group>"; };
@@ -1617,8 +1619,6 @@
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
 		E89D0D2E1EFA5ADD0019A411 /* PropertyUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PropertyUtil.h; path = contrib/PropertyUtil/PropertyUtil.h; sourceTree = "<group>"; };
 		E89D0D2F1EFA5ADD0019A411 /* PropertyUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PropertyUtil.m; path = contrib/PropertyUtil/PropertyUtil.m; sourceTree = "<group>"; };
-		E8A575731F33F1BE008D3CC5 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
-		E8A575741F33F202008D3CC5 /* nl.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nl.lproj; sourceTree = "<group>"; };
 		E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesDownloadManager.h; sourceTree = "<group>"; };
 		E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesDownloadManager.m; sourceTree = "<group>"; };
 		E8AA149B1ED7988A0023000A /* Updates and changes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Updates and changes.txt"; sourceTree = "<group>"; };
@@ -3293,7 +3293,6 @@
 		E8F570561B3F7255003F020C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E8A575741F33F202008D3CC5 /* nl.lproj */,
 				E82341861EECA19300D2CDFD /* EncryptionKeys.plist */,
 				E823419A1EECAF4F00D2CDFD /* EncryptionKeysExample.plist */,
 				E879F9CB1B7B527200220EA7 /* Geocube.entitlements */,
@@ -3477,6 +3476,8 @@
 				E823430B1EECD97400D2CDFD /* MyClock.m */,
 				E823430C1EECD97400D2CDFD /* MyTools.h */,
 				E823430D1EECD97400D2CDFD /* MyTools.m */,
+				E85AE1BE1F39E96A00FA746C /* LocalizationManager.h */,
+				E85AE1BF1F39E96A00FA746C /* LocalizationManager.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -3960,7 +3961,6 @@
 				E86D427D1EF68CC800E4509F /* container flag - planned - 24x21.png in Resources */,
 				E86D427F1EF68CC800E4509F /* container flag - planned - 24x21@3.png in Resources */,
 				E83C6EF21EECE28100E303F5 /* SVProgressHUD.bundle in Resources */,
-				E8A575751F33F202008D3CC5 /* nl.lproj in Resources */,
 				E8FEDEE31DA8EEE9007C756B /* cache - maze - 30x30@3x.png in Resources */,
 				E8FEDE7E1DA7AD67007C756B /* map - archived - 15x15@2x.png in Resources */,
 				E8FEDE541DA77F9D007C756B /* container size - notchosen - 35x11@2x.png in Resources */,
@@ -4247,6 +4247,7 @@
 				E86C4AAF1E321822004526E2 /* CompassViewController.m in Sources */,
 				E82342C31EECD0B100D2CDFD /* dbPersonalNote.m in Sources */,
 				E83C6EEB1EECE1CB00E303F5 /* BezelManager.m in Sources */,
+				E85AE1C01F39E96A00FA746C /* LocalizationManager.m in Sources */,
 				E82342641EECCFDA00D2CDFD /* XMLReader.m in Sources */,
 				E82343F41EECDF4400D2CDFD /* WaypointDescriptionViewController.m in Sources */,
 				E82344321EECDFB300D2CDFD /* FiltersViewController.m in Sources */,
@@ -4510,7 +4511,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				E8F570611B3F7255003F020C /* Base */,
-				E8A575731F33F1BE008D3CC5 /* nl */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

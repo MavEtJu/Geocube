@@ -126,7 +126,7 @@
     NSString *maxString = [NSString stringWithFormat:@"%ld", (long)config_max];
 
     if (config_min == 0 && config_max == 100)
-        sliderLabel.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: Anything")];
+        sliderLabel.text = _(@"filterfavouritestableviewcell-Favourites: Anything");
     else if (config_min == config_max)
         sliderLabel.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: %@"), minString];
     else if (config_max == 100)

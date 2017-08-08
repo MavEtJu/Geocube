@@ -72,6 +72,9 @@ KeyManager *keyManager = nil;
 // OpenCageManager
 OpenCageManager *opencageManager = nil;
 
+// LocalisationManager
+LocalizationManager *localizationManager = nil;
+
 //
 AppDelegate *_AppDelegate;
 

@@ -63,6 +63,7 @@
 #import "Geocube-Classes.h"
 #import "Geocube-defines.h"
 
+#import "LocalizationManager.h"
 #import "MyTools.h"
 #import "MyClock.h"
 #import "Coordinates.h"
