@@ -20,47 +20,54 @@ while (my $line = <>) {
 	}
 }
 
-my @files = ();
-open(FIN, "find . -name Localizable.strings |");
-while (my $line = <FIN>) {
-	chomp($line);
-	push(@files, $line);
-}
+my @langs = ();
+opendir(my $dh, "Settings.bundle");
+@langs = grep { /^.*.lproj/} readdir($dh);
+closedir $dh;
 
-foreach my $file (@files) {
-	open(FIN, $file);
+foreach my $lang (@langs) {
+	my @files = ();
+	open(FIN, "find Settings.bundle/$lang -name Localizable-*strings |");
+	while (my $line = <FIN>) {
+		chomp($line);
+		push(@files, $line);
+	}
+
 	my %foundstrings = ();
 	my $shown = 0;
-	while (my $line = <FIN>) {
-		$line = decode("UTF-16BE", $line);
-		chomp($line);
+	foreach my $file (@files) {
+		open(FIN, $file);
+		while (my $line = <FIN>) {
+			$line = decode("UTF-16BE", $line);
+			chomp($line);
 
-		# "Queries" = "nl-Queries";
+			# "Queries" = "nl-Queries";
 
-		$line =~ /"([^"]+)" = "([^"]+)";/;
-		next if (!defined $2);
+			$line =~ /"([^"]+)" = "([^"]+)";/;
+			next if (!defined $2);
 
-		if (!defined $strings{$1}) {
-			if ($shown == 0) {
-				print "$file\n";
-				$shown = 1;
+			if (!defined $strings{$1}) {
+				if ($shown == 0) {
+					print "$lang - $file\n";
+					$shown = 1;
+				}
+				print "Found unknown '$1'\n";
 			}
-			print "Found unknown '$1'\n";
-		}
-		if (defined $foundstrings{$1}) {
-			if ($shown == 0) {
-				print "$file\n";
-				$shown = 1;
+			if (defined $foundstrings{$1}) {
+				if ($shown == 0) {
+					print "$lang - $file\n";
+					$shown = 1;
+				}
+				print "Found duplicate '$1'\n";
 			}
-			print "Found duplicate '$1'\n";
+			$foundstrings{$1} = 1;
 		}
-		$foundstrings{$1} = 1;
 	}
 
 	foreach my $s (sort(keys(%strings))) {
 		if (!defined $foundstrings{$s}) {
 			if ($shown == 0) {
-				print "$file\n";
+				print "$lang\n";
 				$shown = 1;
 			}
 			print "\"$s\" = \"$s\";\n";
