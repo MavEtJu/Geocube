@@ -111,7 +111,7 @@
     [self setRatings:wp.gs_favourites size:wp.gs_container.icon];
 
     NSInteger b = [Coordinates coordinates2bearing:LM.coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude];
-    self.labelBearing.text = [NSString stringWithFormat:@"%ld° (%@) at %@", (long)b, [Coordinates bearing2compass:b], [MyTools niceDistance:[Coordinates coordinates2distance:LM.coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude]]];
+    self.labelBearing.text = [NSString stringWithFormat:@"%ld° (%@) %@ %@", (long)b, [Coordinates bearing2compass:b], _(@"mapwaypointinfoview-at"), [MyTools niceDistance:[Coordinates coordinates2distance:LM.coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude]]];
 
     self.labelSize.text = wp.wpt_type.type_minor;
     if (wp.gs_container.icon == 0) {
