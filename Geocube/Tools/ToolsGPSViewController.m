@@ -380,7 +380,7 @@ enum {
 
     [waypointManager needsRefreshAdd:wp];
 
-    [MyTools messageBox:self header:@"Waypoint added" text:[NSString stringWithFormat:@"Waypoint %@ is now created at %@", code, [Coordinates niceCoordinates:coord]]];
+    [MyTools messageBox:self header:_(@"toolsgpxviewcontroller-Waypoint added") text:[NSString stringWithFormat:_(@"toolsgpxviewcontroller-Waypoint %@ is now created at %@"), code, [Coordinates niceCoordinates:coord]]];
 }
 
 - (void)performLocalMenuAction:(NSInteger)index
