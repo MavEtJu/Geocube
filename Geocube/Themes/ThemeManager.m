@@ -37,8 +37,8 @@ ThemeManager *themeManager;
     self = [super init];
 
     self.themeNames = @[
-                        @"Default iOS theme",
-                        @"Geocube night theme",
+                        _(@"thememanager-Default iOS theme"),
+                        _(@"thememanager-Geocube night theme"),
                         ];
 
     return self;
