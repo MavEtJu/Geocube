@@ -79,17 +79,17 @@ enum {
 
     cell.name.text = tb.name;
     if (!IS_EMPTY(tb.ref) && !IS_EMPTY(tb.code))
-        cell.code.text = [NSString stringWithFormat:@"Code: %@ / %@", tb.ref, tb.code];
+        cell.code.text = [NSString stringWithFormat:_(@"trackablestemplateviewcontroller-Code: %@ / %@"), tb.ref, tb.code];
     if ( IS_EMPTY(tb.ref) && !IS_EMPTY(tb.code))
-        cell.code.text = [NSString stringWithFormat:@"Code: %@", tb.code];
+        cell.code.text = [NSString stringWithFormat:_(@"trackablestemplateviewcontroller-Code: %@"), tb.code];
     if (!IS_EMPTY(tb.ref) &&  IS_EMPTY(tb.code))
-        cell.code.text = [NSString stringWithFormat:@"Code: %@", tb.ref];
+        cell.code.text = [NSString stringWithFormat:_(@"trackablestemplateviewcontroller-Code: %@"), tb.ref];
     if (tb.carrier != nil)
-        cell.carrier.text = [NSString stringWithFormat:@"Carried by %@", tb.carrier.name];
+        cell.carrier.text = [NSString stringWithFormat:_(@"trackablestemplateviewcontroller-Carried by %@"), tb.carrier.name];
     if (!IS_EMPTY(tb.waypoint_name))
-        cell.waypoint.text = [NSString stringWithFormat:@"Stored in %@", tb.waypoint_name];
+        cell.waypoint.text = [NSString stringWithFormat:_(@"trackablestemplateviewcontroller-Stored in %@"), tb.waypoint_name];
     if (tb.owner != nil)
-        cell.owner.text = [NSString stringWithFormat:@"Owned by %@", tb.owner.name];
+        cell.owner.text = [NSString stringWithFormat:_(@"trackablestemplateviewcontroller-Owned by %@"), tb.owner.name];
 
     cell.userInteractionEnabled = NO;
 
@@ -102,7 +102,7 @@ enum {
 {
     [self showInfoView];
     InfoItemID iid = [infoView addDownload];
-    [infoView setDescription:iid description:@"Download trackables information"];
+    [infoView setDescription:iid description:_(@"trackablestemplateviewcontroller-Download trackables information")];
 
     [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a.remoteAPI.supportsTrackables == YES && a.canDoRemoteStuff == YES) {
