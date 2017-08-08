@@ -143,9 +143,9 @@ enum {
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     switch (section) {
-        case SECTION_LOGDETAILS: return @"Log details";
-        case SECTION_EXTRADETAILS: return @"Extra details";
-        case SECTION_SUBMIT: return @"Submit";
+        case SECTION_LOGDETAILS: return _(@"waypointlogviewcontroller-Log details");
+        case SECTION_EXTRADETAILS: return _(@"waypointlogviewcontroller-Extra details");
+        case SECTION_SUBMIT: return _(@"waypointlogviewcontroller-Submit");
     }
     return @"???";
 }
@@ -163,7 +163,7 @@ enum {
             switch (indexPath.row) {
                 case SECTION_LOGDETAILS_TYPE: {
                     GCTableViewCellKeyValue *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLKEYVALUE];
-                    c.keyLabel.text = @"Type";
+                    c.keyLabel.text = _(@"waypointlogviewcontroller-Type");
                     c.valueLabel.text = logstring.text;
                     cell = c;
                     break;
@@ -171,7 +171,7 @@ enum {
 
                 case SECTION_LOGDETAILS_DATE: {
                     GCTableViewCellKeyValue *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLKEYVALUE];
-                    c.keyLabel.text = @"Date";
+                    c.keyLabel.text = _(@"waypointlogviewcontroller-Date");
                     c.valueLabel.text = date;
                     cell = c;
                     break;
@@ -179,7 +179,7 @@ enum {
 
                 case SECTION_LOGDETAILS_COMMENT: {
                     GCTableViewCellWithSubtitle *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
-                    c.textLabel.text = @"Comment";
+                    c.textLabel.text = _(@"waypointlogviewcontroller-Comment");
                     c.detailTextLabel.text = note;
                     cell = c;
                     break;
@@ -192,7 +192,7 @@ enum {
             switch (indexPath.row) {
                 case SECTION_EXTRADETAILS_PHOTO: {
                     GCTableViewCellRightImage *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLRIGHTIMAGE];
-                    c.textLabel.text = @"Photo";
+                    c.textLabel.text = _(@"waypointlogviewcontroller-Photo");
                     if (image != nil)
                         c.imageView.image = image.imageGet;
                     else
@@ -207,7 +207,7 @@ enum {
 
                 case SECTION_EXTRADETAILS_FAVOURITE: {
                     GCTableViewCellSwitch *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH];
-                    c.textLabel.text = @"Favourite Point";
+                    c.textLabel.text = _(@"waypointlogviewcontroller-Favourite Point");
                     c.optionSwitch.on = fp;
                     if ([waypoint.account.remoteAPI supportsLoggingFavouritePoint] == NO) {
                         c.userInteractionEnabled = NO;
@@ -221,7 +221,7 @@ enum {
 
                 case SECTION_EXTRADETAILS_RATING: {
                     GCTableViewCellKeyValue *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLKEYVALUE];
-                    c.keyLabel.text = @"Rating";
+                    c.keyLabel.text = _(@"waypointlogviewcontroller-Rating");
                     if ([waypoint.account.remoteAPI supportsLoggingRating] == NO) {
                         c.userInteractionEnabled = NO;
                         c.keyLabel.textColor = currentTheme.labelTextColorDisabled;
@@ -229,9 +229,9 @@ enum {
                     } else {
                         NSRange r = waypoint.account.remoteAPI.supportsLoggingRatingRange;
                         if (ratingSelected != 0)
-                            c.valueLabel.text = [NSString stringWithFormat:@"%ld out of %ld", (long)ratingSelected, (unsigned long)r.length];
+                            c.valueLabel.text = [NSString stringWithFormat:_(@"waypointlogviewcontroller-%ld out of %ld"), (long)ratingSelected, (unsigned long)r.length];
                         else
-                            c.valueLabel.text = @"No rating selected";
+                            c.valueLabel.text = _(@"waypointlogviewcontroller-No rating selected");
                     }
                     cell = c;
                     break;
@@ -239,7 +239,7 @@ enum {
 
                 case SECTION_EXTRADETAILS_TRACKABLE: {
                     GCTableViewCellWithSubtitle *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
-                    c.textLabel.text = @"Trackables";
+                    c.textLabel.text = _(@"waypointlogviewcontroller-Trackables");
                     if ([waypoint.account.remoteAPI supportsTrackables] == NO) {
                         c.userInteractionEnabled = NO;
                         c.textLabel.textColor = currentTheme.labelTextColorDisabled;
@@ -259,7 +259,7 @@ enum {
                                 default: NSAssert1(NO, @"unknown logtype: %ld", (long)tb.logtype);
                             }
                         }];
-                        NSMutableString *s = [NSMutableString stringWithString:@"Actions: "];
+                        NSMutableString *s = [NSMutableString stringWithString:_(@"waypointlogviewcontroller-Actions: ")];
                         BOOL first = YES;
 #define ACTION(__s__, __v__) \
     if (__v__ != 0) { \
@@ -268,12 +268,12 @@ enum {
         [s appendFormat: @"%ld %@", (long)__v__, __s__]; \
         first = NO; \
     }
-                        ACTION(@"visited", visited);
-                        ACTION(@"discovered", discovered);
-                        ACTION(@"picked up", pickedup);
-                        ACTION(@"dropped off", droppedoff);
+                        ACTION(_(@"waypointlogviewcontroller-visited"), visited);
+                        ACTION(_(@"waypointlogviewcontroller-discovered"), discovered);
+                        ACTION(_(@"waypointlogviewcontroller-picked up"), pickedup);
+                        ACTION(_(@"waypointlogviewcontroller-dropped off"), droppedoff);
                         if (first == YES)
-                            [s appendString:@" none"];
+                            [s appendString:_(@"waypointlogviewcontroller-none")];
                         c.detailTextLabel.text = s;
                     }
                     cell = c;
@@ -282,13 +282,13 @@ enum {
 
                 case SECTION_EXTRADETAILS_COORDINATES: {
                     GCTableViewCellWithSubtitle *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
-                    c.textLabel.text = @"Coordinates";
+                    c.textLabel.text = _(@"waypointlogviewcontroller-Coordinates");
                     if ([waypoint.account.remoteAPI supportsLoggingCoordinates] == NO) {
                         c.userInteractionEnabled = NO;
                         c.textLabel.textColor = currentTheme.labelTextColorDisabled;
                     } else {
                         if (coordinates.latitude == 0 && coordinates.longitude == 0)
-                            c.detailTextLabel.text = @"(None set)";
+                            c.detailTextLabel.text = _(@"waypointlogviewcontroller-(None set)");
                         else
                             c.detailTextLabel.text = [Coordinates niceCoordinates:coordinates];
                     }
@@ -305,7 +305,7 @@ enum {
             switch (indexPath.row) {
                 case SECTION_SUBMIT_UPLOAD: {
                     GCTableViewCellSwitch *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH];
-                    c.textLabel.text = @"Upload";
+                    c.textLabel.text = _(@"waypointlogviewcontroller-Upload");
                     if (waypoint.account.remoteAPI.supportsLogging == YES && waypoint.account.canDoRemoteStuff == YES) {
                         c.optionSwitch.on = upload;
                         [c.optionSwitch addTarget:self action:@selector(updateUploadSwitch:) forControlEvents:UIControlEventTouchUpInside];
@@ -321,11 +321,11 @@ enum {
 
                 case SECTION_SUBMIT_SUBMIT:
                     if (waypoint.account.canDoRemoteStuff == YES && upload == YES) {
-                        cell.textLabel.text = @"Submit";
+                        cell.textLabel.text = _(@"Submit");
                         cell.userInteractionEnabled = (note == nil || [note isEqualToString:@""] == YES) ? NO : YES;
                         cell.textLabel.textColor = cell.userInteractionEnabled == YES ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled;
                     } else {
-                        cell.textLabel.text = @"Save";
+                        cell.textLabel.text = _(@"Save");
                         cell.userInteractionEnabled = YES;
                         cell.textLabel.textColor = [currentTheme labelTextColor];
                     }
@@ -411,7 +411,7 @@ enum {
         [as addObject:ls.text];
     }];
     [ActionSheetStringPicker
-        showPickerWithTitle:@"Select a Logtype"
+        showPickerWithTitle:_(@"waypointlogviewcontroller-Select a Logtype")
         rows:as
         initialSelection:selected
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
@@ -427,12 +427,12 @@ enum {
 - (void)changeCoordinates
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Update coordinates"
-                                message:@"Please enter the coordinates"
+                                alertControllerWithTitle:_(@"waypointlogviewcontroller-Update coordinates")
+                                message:_(@"waypointlogviewcontroller-Please enter the coordinates")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     coordsOkButton = [UIAlertAction
-                      actionWithTitle:@"OK"
+                      actionWithTitle:_(@"OK")
                       style:UIAlertActionStyleDefault
                       handler:^(UIAlertAction *action) {
                           //Do Some action
@@ -452,7 +452,7 @@ enum {
                           [self.tableView reloadData];
                       }];
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
@@ -462,7 +462,7 @@ enum {
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.text = [Coordinates niceLatitudeForEditing:coordinates.latitude];
-        textField.placeholder = @"Latitude (like S 12 34.567)";
+        textField.placeholder = [NSString stringWithFormat:@"%@ (%@ %@ 12 34.567)", _(@"Latitude"), _(@"waypointlogviewcontroller-like"), _(@"compass-S")];
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:YES];
         [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
@@ -470,7 +470,7 @@ enum {
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.text = [Coordinates niceLongitudeForEditing:coordinates.longitude];
-        textField.placeholder = @"Longitude (like E 23 45.678)";
+        textField.placeholder = [NSString stringWithFormat:@"%@ (%@ %@ 12 34.567)", _(@"Longitude"), _(@"waypointlogviewcontroller-like"), _(@"compass-E")];
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:NO];
         [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
@@ -567,15 +567,15 @@ enum {
 {
     NSMutableArray<NSString *> *as = [NSMutableArray arrayWithCapacity:5];
     NSRange r = waypoint.account.remoteAPI.supportsLoggingRatingRange;
-    [as addObject:@"No rating selected"];
+    [as addObject:_(@"waypointlogviewcontroller-No rating selected")];
     for (NSInteger i = r.location; i <= r.length; i++) {
-        [as addObject:[NSString stringWithFormat:@"%ld out of %lu", (long)i, (unsigned long)r.length]];
+        [as addObject:[NSString stringWithFormat:_(@"waypointlogviewcontroller-%ld out of %lu"), (long)i, (unsigned long)r.length]];
     }
 
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_EXTRADETAILS_RATING inSection:SECTION_EXTRADETAILS]];
 
     [ActionSheetStringPicker
-     showPickerWithTitle:@"Select a Rating"
+     showPickerWithTitle:_(@"waypointlogviewcontroller-Select a Rating")
      rows:as
      initialSelection:ratingSelected
      doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
@@ -612,7 +612,7 @@ enum {
 
     // Check length
     if ([note length] == 0) {
-        [MyTools messageBox:self header:@"Please fill in the comment" text:@"Even TFTC is better than nothing at all."];
+        [MyTools messageBox:self header:_(@"waypointlogviewcontroller-Please fill in the comment") text:_(@"waypointlogviewcontroller-Even TFTC is better than nothing at all.")];
         return;
     }
 
@@ -625,7 +625,7 @@ enum {
     [MHTabBarController enableMenus:NO controllerFrom:self];
 
     [bezelManager showBezel:self];
-    [bezelManager setText:@"Uploading log"];
+    [bezelManager setText:_(@"waypointlogviewcontroller-Uploading log")];
 
     NSInteger retValue = [waypoint.account.remoteAPI CreateLogNote:logstring waypoint:waypoint dateLogged:date note:note favourite:fp image:image imageCaption:imageCaption imageDescription:imageLongText rating:ratingSelected trackables:trackables coordinates:coordinates infoViewer:nil iiDownload:0];
 
@@ -668,11 +668,11 @@ enum {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [self.navigationController popViewControllerAnimated:YES];
         }];
-        [MyTools messageBox:self.parentViewController header:@"Log successful" text:@"This log has been successfully submitted."];
+        [MyTools messageBox:self.parentViewController header:_(@"waypointlogviewcontroller-Log successful") text:_(@"waypointlogviewcontroller-This log has been successfully submitted.")];
 
         return;
     } else {
-        [MyTools messageBox:self header:@"Log failed" text:@"This log has not been submitted yet." error:waypoint.account.remoteAPI.lastError];
+        [MyTools messageBox:self header:_(@"waypointlogviewcontroller-Log failed") text:_(@"waypointlogviewcontroller-This log has not been submitted yet.") error:waypoint.account.remoteAPI.lastError];
     }
 }
 

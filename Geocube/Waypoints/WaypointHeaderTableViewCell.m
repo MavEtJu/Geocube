@@ -63,16 +63,17 @@
     if (wp.gs_rating_terrain == 0)
         self.labelRatingT.text = @"";
     else
-        self.labelRatingT.text = [NSString stringWithFormat:@"T: %0.1f", wp.gs_rating_terrain];
+        self.labelRatingT.text = [NSString stringWithFormat:@"%@: %0.1f", _(@"rating-T"), wp.gs_rating_terrain];
     if (wp.gs_rating_difficulty == 0)
         self.labelRatingD.text = @"";
     else
-        self.labelRatingD.text = [NSString stringWithFormat:@"D: %0.1f", wp.gs_rating_difficulty];
+        self.labelRatingD.text = [NSString stringWithFormat:@"%@: %0.1f", _(@"rating-D"), wp.gs_rating_difficulty];
 
     NSInteger bearing = [Coordinates coordinates2bearing:LM.coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude];
-    self.labelBearDis.text = [NSString stringWithFormat:@"%ldº (%@) at %@",
+    self.labelBearDis.text = [NSString stringWithFormat:@"%ldº (%@) %@ %@",
                               (long)[Coordinates coordinates2bearing:LM.coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude],
                               [Coordinates bearing2compass:bearing],
+                              _(@"waypointheadertableviewcell-at"),
                               [MyTools niceDistance:[Coordinates coordinates2distance:LM.coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude]]];
     self.labelLocation.text = [wp makeLocaleStateCountry];
 

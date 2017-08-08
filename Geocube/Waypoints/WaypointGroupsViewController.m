@@ -99,7 +99,7 @@
         c++;
     }
     cell.textLabel.text = cg.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld waypoints", (long)[cg countWaypoints]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld %@", (long)[cg countWaypoints], _(@"waypoints")];
     cell.imageView.image = nil;
     cell.userInteractionEnabled = NO;
 

@@ -61,7 +61,7 @@ enum {
     self.view = contentView;
     [self.view sizeToFit];
 
-    tv = [[YIPopupTextView alloc] initWithPlaceHolder:@"Enter your log here" maxCount:20000 buttonStyle:YIPopupTextViewButtonStyleRightCancelAndDone];
+    tv = [[YIPopupTextView alloc] initWithPlaceHolder:_(@"waypointlogeditviewcontroller-Enter your log here") maxCount:20000 buttonStyle:YIPopupTextViewButtonStyleRightCancelAndDone];
 
     tv.delegate = self;
     tv.caretShiftGestureEnabled = YES;
@@ -91,7 +91,7 @@ enum {
     }];
 
     [ActionSheetStringPicker
-     showPickerWithTitle:@"Select a template"
+     showPickerWithTitle:_(@"waypointlogeditviewcontroller-Select a template")
                     rows:ltnames
         initialSelection:0
                doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
@@ -115,7 +115,7 @@ enum {
     }];
 
     [ActionSheetStringPicker
-     showPickerWithTitle:@"Select a template"
+     showPickerWithTitle:_(@"waypointlogeditviewcontroller-Select a template")
                     rows:ltnames
         initialSelection:0
                doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {

@@ -85,7 +85,7 @@ enum {
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"New waypoint data";
+    return _(@"waypointaddviewcontroller-New waypoint data");
 }
 
 // Return a cell for the index path
@@ -96,19 +96,19 @@ enum {
     cell.accessoryType = UITableViewCellAccessoryNone;
     switch (indexPath.row) {
         case cellCode:
-            cell.textLabel.text = @"Waypoint code";
+            cell.textLabel.text = _(@"waypointaddviewcontroller-Waypoint code");
             cell.detailTextLabel.text = code;
             break;
         case cellName:
-            cell.textLabel.text = @"Short Name";
+            cell.textLabel.text = _(@"waypointaddviewcontroller-Short Name");
             cell.detailTextLabel.text = name;
             break;
         case cellCoords:
-            cell.textLabel.text = @"Coords";
+            cell.textLabel.text = _(@"waypointaddviewcontroller-Coords");
             cell.detailTextLabel.text = [Coordinates niceCoordinates:coords];
             break;
         case cellSubmit:
-            cell.textLabel.text = @"Create this waypoint";
+            cell.textLabel.text = _(@"waypointaddviewcontroller-Create this waypoint");
             cell.detailTextLabel.text = @"";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
@@ -138,12 +138,12 @@ enum {
 - (void)updateCode
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Update waypoint"
-                                message:@"Update waypoint code"
+                                alertControllerWithTitle:_(@"waypointaddviewcontroller-Update waypoint")
+                                message:_(@"waypointaddviewcontroller-Update waypoint code")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
+                         actionWithTitle:_(@"OK")
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction *action) {
                              //Do Some action
@@ -154,7 +154,7 @@ enum {
                          }];
 
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
@@ -164,7 +164,7 @@ enum {
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.text = code;
-        textField.placeholder = @"Waypoint code";
+        textField.placeholder = _(@"waypointaddviewcontroller-Waypoint code");
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
@@ -173,12 +173,12 @@ enum {
 - (void)updateName
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Update waypoint"
-                                message:@"Update waypoint name"
+                                alertControllerWithTitle:_(@"waypointaddviewcontroller-Update waypoint")
+                                message:_(@"waypointaddviewcontroller-Update waypoint name")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
+                         actionWithTitle:_(@"OK")
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction *action) {
                              //Do Some action
@@ -189,7 +189,7 @@ enum {
                          }];
 
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
@@ -199,7 +199,7 @@ enum {
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.text = name;
-        textField.placeholder = @"Waypoint name";
+        textField.placeholder = _(@"waypointaddviewcontroller-Waypoint name");
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
@@ -208,12 +208,12 @@ enum {
 - (void)updateCoords
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Update waypoint"
-                                message:@"Please enter the coordinates"
+                                alertControllerWithTitle:_(@"waypointaddviewcontroller-Update waypoint")
+                                message:_(@"waypointaddviewcontroller-Please enter the coordinates")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     coordsOkButton = [UIAlertAction
-                      actionWithTitle:@"OK"
+                      actionWithTitle:_(@"OK")
                       style:UIAlertActionStyleDefault
                       handler:^(UIAlertAction *action) {
                           //Do Some action
@@ -233,7 +233,7 @@ enum {
                           [self.tableView reloadData];
                       }];
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
@@ -243,7 +243,7 @@ enum {
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.text = [Coordinates niceLatitudeForEditing:coords.latitude];
-        textField.placeholder = [NSString stringWithFormat:@"%@ (like %@ 12 34.567)", _(@"Latitude"), _(@"compass-S")];
+        textField.placeholder = [NSString stringWithFormat:@"%@ (%@ %@ 12 34.567)", _(@"Latitude"), _(@"waypointaddviewcontroller-like"), (@"compass-S")];
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:YES];
         [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
@@ -251,7 +251,7 @@ enum {
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.text = [Coordinates niceLongitudeForEditing:coords.longitude];
-        textField.placeholder = [NSString stringWithFormat:@"%@ (like %@ 23 45.678)", _(@"Longitude"), _(@"compass-E")];
+        textField.placeholder = [NSString stringWithFormat:@"%@ (%@ %@ 23 45.678)", _(@"Longitude"), _(@"waypointaddviewcontroller-like"), _(@"compass-E")];
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:NO];
         [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];

@@ -108,24 +108,24 @@ enum {
     switch (logtype) {
         case TRACKABLE_LOG_NONE:
             if (tb.logtype == TRACKABLE_LOG_NONE)
-                cell.detailTextLabel.text = @"No action (automatic)";
+                cell.detailTextLabel.text = _(@"waypointlogimagesviewcontroller-No action (automatic)");
             else
-                cell.detailTextLabel.text = @"No action";
+                cell.detailTextLabel.text = _(@"waypointlogimagesviewcontroller-No action");
             break;
         case TRACKABLE_LOG_VISIT:
             if (tb.logtype == TRACKABLE_LOG_NONE)
-                cell.detailTextLabel.text = @"Visited";
+                cell.detailTextLabel.text = _(@"waypointlogimagesviewcontroller-Visited");
             else
-                cell.detailTextLabel.text = @"Visited (automatic)";
+                cell.detailTextLabel.text = _(@"waypointlogimagesviewcontroller-Visited (automatic)");
             break;
         case TRACKABLE_LOG_DROPOFF:
-            cell.detailTextLabel.text = @"Dropped off";
+            cell.detailTextLabel.text = _(@"waypointlogimagesviewcontroller-Dropped off");
             break;
         case TRACKABLE_LOG_PICKUP:
-            cell.detailTextLabel.text = @"Picked up";
+            cell.detailTextLabel.text = _(@"waypointlogimagesviewcontroller-Picked up");
             break;
         case TRACKABLE_LOG_DISCOVER:
-            cell.detailTextLabel.text = @"Discovered";
+            cell.detailTextLabel.text = _(@"waypointlogimagesviewcontroller-Discovered");
             break;
     }
 
@@ -148,12 +148,12 @@ enum {
 - (void)trackableContainerAction:(dbTrackable *)tb indexPath:(NSIndexPath *)indexPath
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Trackable action"
+                                alertControllerWithTitle:_(@"waypointlogimagesviewcontroller-Trackable action")
                                 message:@""
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ignore = [UIAlertAction
-                               actionWithTitle:@"Ignore"
+                               actionWithTitle:_(@"waypointlogimagesviewcontroller-Ignore")
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction *action) {
                                    [logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_NONE] atIndexedSubscript:indexPath.row];
@@ -161,7 +161,7 @@ enum {
                                }];
 
     UIAlertAction *pickup = [UIAlertAction
-                             actionWithTitle:@"Pick up"
+                             actionWithTitle:_(@"waypointlogimagesviewcontroller-Pick up")
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction *action) {
                                  [logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_PICKUP] atIndexedSubscript:indexPath.row];
@@ -169,7 +169,7 @@ enum {
                              }];
 
     UIAlertAction *discovered = [UIAlertAction
-                                 actionWithTitle:@"Discovered"
+                                 actionWithTitle:_(@"waypointlogimagesviewcontroller-Discovered")
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction *action) {
                                      [logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_DISCOVER] atIndexedSubscript:indexPath.row];
@@ -177,7 +177,7 @@ enum {
                                  }];
 
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel"
+                             actionWithTitle:_(@"Cancel")
                              style:UIAlertActionStyleCancel
                              handler:^(UIAlertAction *action) {
                                  [self.tableView reloadData];
@@ -194,12 +194,12 @@ enum {
 - (void)trackableCarrierAction:(dbTrackable *)tb indexPath:(NSIndexPath *)indexPath
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Trackable action"
+                                alertControllerWithTitle:_(@"waypointlogimagesviewcontroller-Trackable action")
                                 message:@""
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *noaction = [UIAlertAction
-                               actionWithTitle:@"No action"
+                               actionWithTitle:_(@"waypointlogimagesviewcontroller-No action")
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction *action) {
                                    [logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_NONE] atIndexedSubscript:indexPath.row];
@@ -207,7 +207,7 @@ enum {
                                }];
 
     UIAlertAction *dropoff = [UIAlertAction
-                              actionWithTitle:@"Dropped off"
+                              actionWithTitle:_(@"waypointlogimagesviewcontroller-Dropped off")
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction *action) {
                                   [logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_DROPOFF] atIndexedSubscript:indexPath.row];
@@ -215,7 +215,7 @@ enum {
                               }];
 
     UIAlertAction *visited = [UIAlertAction
-                              actionWithTitle:@"Visited"
+                              actionWithTitle:_(@"waypointlogimagesviewcontroller-Visited")
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction *action) {
                                   [logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_VISIT] atIndexedSubscript:indexPath.row];
@@ -223,7 +223,7 @@ enum {
                               }];
 
     UIAlertAction *cancel = [UIAlertAction
-                              actionWithTitle:@"Cancel"
+                              actionWithTitle:_(@"Cancel")
                               style:UIAlertActionStyleCancel
                               handler:^(UIAlertAction *action) {
                                   [self.tableView reloadData];
@@ -256,12 +256,12 @@ enum {
 - (void)menuPickup
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Pick up a trackable"
-                                message:@"Enter the code as found on the trackable"
+                                alertControllerWithTitle:_(@"waypointlogimagesviewcontroller-Pick up a trackable")
+                                message:_(@"waypointlogimagesviewcontroller-Enter the code as found on the trackable")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"Pick up"
+                         actionWithTitle:_(@"waypointlogimagesviewcontroller-Pick up")
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction *action) {
                              NSString *code = [alert.textFields objectAtIndex:0].text;
@@ -276,7 +276,7 @@ enum {
                              }
 
                              if (tb == nil) {
-                                 [MyTools messageBox:self header:@"Trackable not found" text:[NSString stringWithFormat:@"There was no travelbug found with the code '%@'", code]];
+                                 [MyTools messageBox:self header:_(@"waypointlogimagesviewcontroller-Trackable not found") text:[NSString stringWithFormat:_(@"waypointlogimagesviewcontroller-There was no travelbug found with the code '%@'"), code]];
                                  return;
                              }
 
@@ -287,7 +287,7 @@ enum {
                          }];
 
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel"
+                             actionWithTitle:_(@"Cancel")
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction *action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
@@ -297,7 +297,7 @@ enum {
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Code";
+        textField.placeholder = _(@"waypointlogimagesviewcontroller-Code");
         textField.keyboardType = UIKeyboardTypeDefault;
         textField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
         textField.autocorrectionType = UITextAutocorrectionTypeYes;
@@ -309,12 +309,12 @@ enum {
 - (void)menuDiscover
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Discover a trackable"
-                                message:@"Enter the code as found on the trackable"
+                                alertControllerWithTitle:_(@"waypointlogimagesviewcontroller-Discover a trackable")
+                                message:_(@"waypointlogimagesviewcontroller-Enter the code as found on the trackable")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"Discover"
+                         actionWithTitle:_(@"waypointlogimagesviewcontroller-Discover")
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction *action) {
                              NSString *code = [alert.textFields objectAtIndex:0].text;
@@ -329,7 +329,7 @@ enum {
                              }
 
                              if (tb == nil) {
-                                 [MyTools messageBox:self header:@"Trackable not found" text:[NSString stringWithFormat:@"There was no travelbug found with the code '%@'", code]];
+                                 [MyTools messageBox:self header:_(@"waypointlogimagesviewcontroller-Trackable not found") text:[NSString stringWithFormat:_(@"waypointlogimagesviewcontroller-There was no travelbug found with the code '%@'"), code]];
                                  return;
                              }
 
@@ -340,7 +340,7 @@ enum {
                          }];
 
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel"
+                             actionWithTitle:_(@"Cancel")
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction *action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
@@ -350,7 +350,7 @@ enum {
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Code";
+        textField.placeholder = _(@"waypointlogimagesviewcontroller-Code");
         textField.keyboardType = UIKeyboardTypeDefault;
         textField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
         textField.autocorrectionType = UITextAutocorrectionTypeYes;

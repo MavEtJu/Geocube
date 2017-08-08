@@ -206,7 +206,7 @@ enum {
 
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = selectedLog.log;
-    [MyTools messageBox:self header:@"Copy successful" text:@"The text of the selected log has been copied to the clipboard"];
+    [MyTools messageBox:self header:_(@"waypointlogsviewcontroller-Copy successful") text:_(@"waypointlogsviewcontroller-The text of the selected log has been copied to the clipboard")];
 }
 
 - (void)menuDeleteLog

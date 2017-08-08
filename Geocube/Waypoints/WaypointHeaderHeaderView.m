@@ -56,16 +56,16 @@
 
     NSMutableString *s = [NSMutableString stringWithString:@""];
     if (waypoint.gs_owner.name != nil && [waypoint.gs_owner.name isEqualToString:@""] == NO)
-        [s appendFormat:@"by %@", waypoint.gs_owner.name];
+        [s appendFormat:_(@"waypointheaderheaderview-by %@"), waypoint.gs_owner.name];
     if (waypoint.wpt_date_placed_epoch != 0)
-        [s appendFormat:@" on %@", [MyTools dateTimeString_YYYY_MM_DD:waypoint.wpt_date_placed_epoch]];
+        [s appendFormat:_(@"waypointheaderheaderview- on %@"), [MyTools dateTimeString_YYYY_MM_DD:waypoint.wpt_date_placed_epoch]];
     self.labelWhoWhen.text = s;
     self.labelWhoWhen.backgroundColor = bgColor;
 
     self.labelCode.text = [NSString stringWithFormat:@"%@ (%@)", waypoint.wpt_name, waypoint.account.site];
     self.labelCode.backgroundColor = bgColor;
 
-    self.labelLastImport.text = [NSString stringWithFormat:@"Last imported on %@", [MyTools dateTimeString_YYYY_MM_DD:waypoint.date_lastimport_epoch]];
+    self.labelLastImport.text = [NSString stringWithFormat:_(@"waypointheaderheaderview-Last imported on %@"), [MyTools dateTimeString_YYYY_MM_DD:waypoint.date_lastimport_epoch]];
     self.labelLastImport.backgroundColor = bgColor;
 }
 
