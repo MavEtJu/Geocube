@@ -2,7 +2,9 @@
 
 use strict;
 use warnings;
-use Encode qw/encode decode/;
+use Encode;
+use Encode::Detect;
+use Encode::Guess;
 use Data::Dumper;
 
 my %strings = ();
@@ -37,14 +39,14 @@ foreach my $lang (@langs) {
 	my $shown = 0;
 	foreach my $file (@files) {
 		open(FIN, $file);
-		while (my $line = <FIN>) {
-			$line = decode("UTF-16BE", $line);
-			chomp($line);
+		my @lines = <FIN>;
+		my $lines = Encode::decode("Guess", join("", @lines));
+		@lines = split("\n", $lines);
 
+		foreach my $line (@lines) {
 			# "Queries" = "nl-Queries";
 
-			$line =~ /"([^"]+)" = "([^"]+)";/;
-			next if (!defined $2);
+			next if ($line !~ /"([^"]+)" = "([^"]+)";/);
 
 			if (!defined $strings{$1}) {
 				if ($shown == 0) {
@@ -58,9 +60,9 @@ foreach my $lang (@langs) {
 					print "$lang - $file\n";
 					$shown = 1;
 				}
-				print "Found duplicate '$1'\n";
+				print "Found duplicate '$1' in $foundstrings{$1}\n";
 			}
-			$foundstrings{$1} = 1;
+			$foundstrings{$1} = $file;
 		}
 	}
 
