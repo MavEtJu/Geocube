@@ -190,7 +190,7 @@
 @class ThemeManager;
 @class ThemeNight;
 @class ThemeTemplate;
-@class ToolsGPSViewController;
+@class ToolsGNSSViewController;
 @class ToolsRot13ViewController;
 @class TrackableTableViewCell;
 @class TrackablesInventoryViewController;

@@ -30,7 +30,7 @@
 
     CLLocationCoordinate2D meLocation;
     CLLocationDirection meBearing;
-    BOOL useGPS;
+    BOOL useGNSS;
 
     BOOL hasGMS;
     BOOL showBoundaries;
@@ -102,7 +102,7 @@
     [lmi addItem:MVCmenuDirections label:_(@"maptemplateviewcontroller-Directions")];
     [lmi addItem:MVCmenuRemoveTarget label:_(@"maptemplateviewcontroller-Remove target")];
     [lmi addItem:MVCmenuRecenter label:_(@"maptemplateviewcontroller-Recenter")];
-    [lmi addItem:MVCmenuUseGPS label:_(@"maptemplateviewcontroller-Use GPS")];
+    [lmi addItem:MVCmenuUseGNSS label:_(@"maptemplateviewcontroller-Use GNSS")];
     [lmi addItem:MVCmenuExportVisible label:_(@"maptemplateviewcontroller-Export visible")];
 
     showBoundaries = NO;
@@ -133,11 +133,11 @@
         [lmi addItem:MVCmenuAutoZoom label:_(@"maptemplateviewcontroller-Autozoom")];
     }
 
-    useGPS = LM.useGPS;
-    if (useGPS == YES)
-        [lmi disableItem:MVCmenuUseGPS];
+    useGNSS = LM.useGNSS;
+    if (useGNSS == YES)
+        [lmi disableItem:MVCmenuUseGNSS];
     else
-        [lmi disableItem:MVCmenuUseGPS];
+        [lmi disableItem:MVCmenuUseGNSS];
 
     if (keyManager.googlemaps == nil || [keyManager.googlemaps isEqualToString:@""] == YES)
         [lmi disableItem:MVCmenuBrandGoogle];
@@ -197,12 +197,12 @@
         }
     }
 
-    // Enable GPS Menu?
-    useGPS = LM.useGPS;
-    if (useGPS == YES)
-        [lmi disableItem:MVCmenuUseGPS];
+    // Enable GNSS Menu?
+    useGNSS = LM.useGNSS;
+    if (useGNSS == YES)
+        [lmi disableItem:MVCmenuUseGNSS];
     else
-        [lmi enableItem:MVCmenuUseGPS];
+        [lmi enableItem:MVCmenuUseGNSS];
 
     // Enable Remove Target menu only if there is a target
     if (waypointManager.currentWaypoint == nil)
@@ -428,7 +428,7 @@
 /* Delegated from GCLocationManager */
 - (void)updateLocationManagerLocation
 {
-    if (useGPS == NO)
+    if (useGNSS == NO)
         return;
     if (self.staticHistory == YES)
         return;
@@ -831,22 +831,22 @@
 
 - (void)menuRecenter
 {
-    [lmi enableItem:MVCmenuUseGPS];
+    [lmi enableItem:MVCmenuUseGNSS];
 
-    useGPS = NO;
-    [LM useGPS:NO coordinates:[self.map currentCenter]];
+    useGNSS = NO;
+    [LM useGNSS:NO coordinates:[self.map currentCenter]];
 
     meLocation = [self.map currentCenter];
     self.followWhom = SHOW_NEITHER;
     [waypointManager needsRefreshAll];
 }
 
-- (void)menuUseGPS
+- (void)menuUseGNSS
 {
-    [lmi disableItem:MVCmenuUseGPS];
+    [lmi disableItem:MVCmenuUseGNSS];
 
-    useGPS = YES;
-    [LM useGPS:YES coordinates:CLLocationCoordinate2DZero];
+    useGNSS = YES;
+    [LM useGNSS:YES coordinates:CLLocationCoordinate2DZero];
 
     meLocation = [self.map currentCenter];
     self.followWhom = SHOW_NEITHER;
@@ -930,8 +930,8 @@
         case MVCmenuRecenter:
             [self menuRecenter];
             return;
-        case MVCmenuUseGPS:
-            [self menuUseGPS];
+        case MVCmenuUseGNSS:
+            [self menuUseGNSS];
             return;
 
         case MVCmenuShowBoundaries:

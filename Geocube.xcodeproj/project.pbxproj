@@ -263,7 +263,7 @@
 		E82344A81EECE0C900D2CDFD /* BrowserAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344A31EECE0C900D2CDFD /* BrowserAccountsViewController.m */; };
 		E82344A91EECE0C900D2CDFD /* BrowserBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344A51EECE0C900D2CDFD /* BrowserBrowserViewController.m */; };
 		E82344AA1EECE0C900D2CDFD /* BrowserUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344A71EECE0C900D2CDFD /* BrowserUserViewController.m */; };
-		E82344AF1EECE0D500D2CDFD /* ToolsGPSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344AC1EECE0D500D2CDFD /* ToolsGPSViewController.m */; };
+		E82344AF1EECE0D500D2CDFD /* ToolsGNSSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344AC1EECE0D500D2CDFD /* ToolsGNSSViewController.m */; };
 		E82344B01EECE0D500D2CDFD /* ToolsRot13ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344AE1EECE0D500D2CDFD /* ToolsRot13ViewController.m */; };
 		E82344BD1EECE0E800D2CDFD /* SettingsAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344B21EECE0E800D2CDFD /* SettingsAccountsViewController.m */; };
 		E82344BE1EECE0E800D2CDFD /* SettingsColoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344B41EECE0E800D2CDFD /* SettingsColoursViewController.m */; };
@@ -1227,8 +1227,8 @@
 		E82344A51EECE0C900D2CDFD /* BrowserBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrowserBrowserViewController.m; path = Browser/BrowserBrowserViewController.m; sourceTree = "<group>"; };
 		E82344A61EECE0C900D2CDFD /* BrowserUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrowserUserViewController.h; path = Browser/BrowserUserViewController.h; sourceTree = "<group>"; };
 		E82344A71EECE0C900D2CDFD /* BrowserUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrowserUserViewController.m; path = Browser/BrowserUserViewController.m; sourceTree = "<group>"; };
-		E82344AB1EECE0D500D2CDFD /* ToolsGPSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToolsGPSViewController.h; path = Tools/ToolsGPSViewController.h; sourceTree = "<group>"; };
-		E82344AC1EECE0D500D2CDFD /* ToolsGPSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ToolsGPSViewController.m; path = Tools/ToolsGPSViewController.m; sourceTree = "<group>"; };
+		E82344AB1EECE0D500D2CDFD /* ToolsGNSSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToolsGNSSViewController.h; path = Tools/ToolsGNSSViewController.h; sourceTree = "<group>"; };
+		E82344AC1EECE0D500D2CDFD /* ToolsGNSSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ToolsGNSSViewController.m; path = Tools/ToolsGNSSViewController.m; sourceTree = "<group>"; };
 		E82344AD1EECE0D500D2CDFD /* ToolsRot13ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToolsRot13ViewController.h; path = Tools/ToolsRot13ViewController.h; sourceTree = "<group>"; };
 		E82344AE1EECE0D500D2CDFD /* ToolsRot13ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ToolsRot13ViewController.m; path = Tools/ToolsRot13ViewController.m; sourceTree = "<group>"; };
 		E82344B11EECE0E800D2CDFD /* SettingsAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsAccountsViewController.h; path = Settings/SettingsAccountsViewController.h; sourceTree = "<group>"; };
@@ -2880,8 +2880,8 @@
 		E89D15681DE55F4F00ED14B3 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				E82344AB1EECE0D500D2CDFD /* ToolsGPSViewController.h */,
-				E82344AC1EECE0D500D2CDFD /* ToolsGPSViewController.m */,
+				E82344AB1EECE0D500D2CDFD /* ToolsGNSSViewController.h */,
+				E82344AC1EECE0D500D2CDFD /* ToolsGNSSViewController.m */,
 				E82344AD1EECE0D500D2CDFD /* ToolsRot13ViewController.h */,
 				E82344AE1EECE0D500D2CDFD /* ToolsRot13ViewController.m */,
 			);
@@ -4383,7 +4383,7 @@
 				E82341BE1EECCE8300D2CDFD /* AbstractActionSheetPicker.m in Sources */,
 				E823430F1EECD97400D2CDFD /* GCURLRequest.m in Sources */,
 				E82342301EECCF4500D2CDFD /* Reachability.m in Sources */,
-				E82344AF1EECE0D500D2CDFD /* ToolsGPSViewController.m in Sources */,
+				E82344AF1EECE0D500D2CDFD /* ToolsGNSSViewController.m in Sources */,
 				E82343FB1EECDF4400D2CDFD /* WaypointWaypointsTableViewCell.m in Sources */,
 				E82342B81EECD0B100D2CDFD /* dbGroup.m in Sources */,
 				E82341C01EECCE8300D2CDFD /* ActionSheetDatePicker.m in Sources */,

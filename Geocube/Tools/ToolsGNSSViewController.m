@@ -19,12 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ToolsGPSViewController ()
+@interface ToolsGNSSViewController ()
 {
     NSMutableArray<GCLocationCoordinate2D *> *coords;
     CLLocationCoordinate2D coordsLast, coordsAverage;
 
-    GCImageView *ivGpsMap;
+    GCImageView *ivGNSSMap;
 
     GCSmallLabel *labelCoordsMinX;
     GCSmallLabel *labelCoordsMinY;
@@ -34,7 +34,7 @@
     GCSmallLabel *labelCoordsLast;
     GCSmallLabel *labelDistance;
 
-    CGRect rectGpsMap;
+    CGRect rectGNSSMap;
     CGRect rectCoordsMinX;
     CGRect rectCoordsMinY;
     CGRect rectCoordsMaxX;
@@ -49,7 +49,7 @@
 
 @end
 
-@implementation ToolsGPSViewController
+@implementation ToolsGNSSViewController
 
 enum {
     menuRestart,
@@ -64,10 +64,10 @@ enum {
     self = [super init];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuRestart label:_(@"toolsgpsviewcontroller-Restart")];
-    [lmi addItem:menuCopyCoordsAvg label:_(@"toolsgpsviewcontroller-Copy average coords")];
-    [lmi addItem:menuCopyCoordsLast label:_(@"toolsgpsviewcontroller-Copy last coords")];
-    [lmi addItem:menuCreateWaypoint label:_(@"toolsgpsviewcontroller-Create waypoint")];
+    [lmi addItem:menuRestart label:_(@"toolsgnssviewcontroller-Restart")];
+    [lmi addItem:menuCopyCoordsAvg label:_(@"toolsgnssviewcontroller-Copy average coords")];
+    [lmi addItem:menuCopyCoordsLast label:_(@"toolsgnssviewcontroller-Copy last coords")];
+    [lmi addItem:menuCreateWaypoint label:_(@"toolsgnssviewcontroller-Create waypoint")];
 
     return self;
 }
@@ -89,9 +89,9 @@ enum {
 
     coords = [NSMutableArray arrayWithCapacity:100];
 
-    ivGpsMap = [[GCImageView alloc] initWithFrame:rectGpsMap];
-    ivGpsMap.image = [self createGPSMap];
-    [self.view addSubview:ivGpsMap];
+    ivGNSSMap = [[GCImageView alloc] initWithFrame:rectGNSSMap];
+    ivGNSSMap.image = [self createGNSSMap];
+    [self.view addSubview:ivGNSSMap];
 
     labelCoordsMinX = [[GCSmallLabel alloc] initWithFrame:rectCoordsMinX];
     labelCoordsMinX.text = @"MinX";
@@ -165,7 +165,7 @@ enum {
     NSInteger height16 = bounds.size.height / 18;
     NSInteger height = 16.8 * height16;
 
-    rectGpsMap = CGRectMake(smallLabelLineHeight, smallLabelLineHeight, width - 2 * smallLabelLineHeight, height - 5 * smallLabelLineHeight);
+    rectGNSSMap = CGRectMake(smallLabelLineHeight, smallLabelLineHeight, width - 2 * smallLabelLineHeight, height - 5 * smallLabelLineHeight);
 
     rectCoordsMinX = CGRectMake( 0 * width16, width16, smallLabelLineHeight, 15 * height16);
     rectCoordsMaxX = CGRectMake(width - smallLabelLineHeight, width16, smallLabelLineHeight, 15 * height16);
@@ -189,14 +189,14 @@ enum {
     labelCoordsLast.frame = rectCoordsLast;
     labelDistance.frame = rectDistance;
 
-    ivGpsMap.frame = rectGpsMap;
+    ivGNSSMap.frame = rectGNSSMap;
 }
 
-- (UIImage *)createGPSMap
+- (UIImage *)createGNSSMap
 {
     UIImage *img = nil;
-    NSInteger X = rectGpsMap.size.width;
-    NSInteger Y = rectGpsMap.size.height;
+    NSInteger X = rectGNSSMap.size.width;
+    NSInteger Y = rectGNSSMap.size.height;
 
     if (X == 0 && Y == 0)
         return nil;
@@ -280,9 +280,9 @@ enum {
     CGContextStrokePath(context);
 
     // Update text
-    labelCoordsLast.text = [NSString stringWithFormat:@"%@: %@ ± %@", _(@"toolsgpsviewcontroller-Last"), [Coordinates niceCoordinates:last.lat longitude:last.lon], [MyTools niceDistance:last.accuracy]];
-    labelCoordsAvg.text = [NSString stringWithFormat:@"%@: %@", _(@"toolsgpsviewcontroller-Average"), [Coordinates niceCoordinates:avg.lat longitude:avg.lon]];
-    labelDistance.text = [NSString stringWithFormat:@"%@: %@", _(@"toolsgpsviewcontroller-Last distance to average"), [MyTools niceDistance:[Coordinates coordinates2distance:avg.lat fromLongitude:avg.lon toLatitude:last.lat toLongitude:last.lon]]];
+    labelCoordsLast.text = [NSString stringWithFormat:@"%@: %@ ± %@", _(@"toolsgnssviewcontroller-Last"), [Coordinates niceCoordinates:last.lat longitude:last.lon], [MyTools niceDistance:last.accuracy]];
+    labelCoordsAvg.text = [NSString stringWithFormat:@"%@: %@", _(@"toolsgnssviewcontroller-Average"), [Coordinates niceCoordinates:avg.lat longitude:avg.lon]];
+    labelDistance.text = [NSString stringWithFormat:@"%@: %@", _(@"toolsgnssviewcontroller-Last distance to average"), [MyTools niceDistance:[Coordinates coordinates2distance:avg.lat fromLongitude:avg.lon toLatitude:last.lat toLongitude:last.lon]]];
 
     // Make an image
     img = UIGraphicsGetImageFromCurrentImageContext();
@@ -323,7 +323,7 @@ enum {
         [coords removeObjectAtIndex:0];
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        ivGpsMap.image = [self createGPSMap];
+        ivGNSSMap.image = [self createGNSSMap];
     }];
 }
 
@@ -355,7 +355,7 @@ enum {
 {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = c;
-    [MyTools messageBox:self header:_(@"toolsgpsviewcontroller-Copy successful") text:_(@"toolsgpsviewcontroller-The coordinates have been copied to the clipboard")];
+    [MyTools messageBox:self header:_(@"toolsgnssviewcontroller-Copy successful") text:_(@"toolsgnssviewcontroller-The coordinates have been copied to the clipboard")];
 }
 
 - (void)createWaypoint:(CLLocationCoordinate2D)coord
@@ -380,7 +380,7 @@ enum {
 
     [waypointManager needsRefreshAdd:wp];
 
-    [MyTools messageBox:self header:_(@"toolsgpxviewcontroller-Waypoint added") text:[NSString stringWithFormat:_(@"toolsgpxviewcontroller-Waypoint %@ is now created at %@"), code, [Coordinates niceCoordinates:coord]]];
+    [MyTools messageBox:self header:_(@"toolsgnssviewcontroller-Waypoint added") text:[NSString stringWithFormat:_(@"toolsgnssviewcontroller-Waypoint %@ is now created at %@"), code, [Coordinates niceCoordinates:coord]]];
 }
 
 - (void)performLocalMenuAction:(NSInteger)index

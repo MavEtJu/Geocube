@@ -312,7 +312,7 @@
 #import "LocationlessTableViewCell.h"
 
 #import "ToolsRot13ViewController.h"
-#import "ToolsGPSViewController.h"
+#import "ToolsGNSSViewController.h"
 
 #import "ListTemplateViewController.h"
 #import "ListDNFViewController.h"

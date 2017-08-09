@@ -36,14 +36,14 @@
 @property (nonatomic, weak) IBOutlet GCLabel *labelWPLon;
 @property (nonatomic, weak) IBOutlet GCLabel *labelWPRatingD;
 @property (nonatomic, weak) IBOutlet GCLabel *labelWPRatingT;
-@property (nonatomic, weak) IBOutlet GCLabel *labelGPSLat;
-@property (nonatomic, weak) IBOutlet GCLabel *labelGPSLon;
-@property (nonatomic, weak) IBOutlet GCLabel *labelGPSAccuracy;
-@property (nonatomic, weak) IBOutlet GCLabel *labelGPSAltitude;
-@property (nonatomic, weak) IBOutlet GCLabel *labelGPSDistance;
+@property (nonatomic, weak) IBOutlet GCLabel *labelGNSSLat;
+@property (nonatomic, weak) IBOutlet GCLabel *labelGNSSLon;
+@property (nonatomic, weak) IBOutlet GCLabel *labelGNSSAccuracy;
+@property (nonatomic, weak) IBOutlet GCLabel *labelGNSSAltitude;
+@property (nonatomic, weak) IBOutlet GCLabel *labelGNSSDistance;
 
-@property (nonatomic, weak) IBOutlet GCImageView *ivGPSCompassBackground;
-@property (nonatomic, weak) IBOutlet GCImageView *ivGPSCompassLine;
+@property (nonatomic, weak) IBOutlet GCImageView *ivGNSSCompassBackground;
+@property (nonatomic, weak) IBOutlet GCImageView *ivGNSSCompassLine;
 @property (nonatomic, weak) IBOutlet GCImageView *ivWPContainer;
 @property (nonatomic, weak) IBOutlet GCImageView *ivWPSize;
 
@@ -97,9 +97,9 @@
         self.labelWPRatingT.text = [NSString stringWithFormat:@"%@: %0.1f", _(@"compassviewcontroller-T"),  waypointManager.currentWaypoint.gs_rating_terrain];
     }
 
-    self.labelGPSAltitude.text = @"";
-    self.labelGPSAccuracy.text = @"";
-    self.labelGPSDistance.text = @"";
+    self.labelGNSSAltitude.text = @"";
+    self.labelGNSSAccuracy.text = @"";
+    self.labelGNSSDistance.text = @"";
 
     self.labelAltitude.text = _(@"compassviewcontroller-Altitude");
     self.labelAccuracy.text = _(@"compassviewcontroller-Accuracy");
@@ -121,24 +121,24 @@
     switch (configManager.compassType) {
         case COMPASS_REDONBLUECOMPASS:
             compassImage = [imageLibrary get:ImageCompass_RedArrowOnBlueCompass];
-            self.ivGPSCompassBackground.image = compassImage;
+            self.ivGNSSCompassBackground.image = compassImage;
             lineImage = [imageLibrary get:ImageCompass_RedArrowOnBlueArrow];
-            self.ivGPSCompassLine.image = lineImage;
+            self.ivGNSSCompassLine.image = lineImage;
             break;
         case COMPASS_WHITEARROWONBLACK:
-            self.ivGPSCompassBackground.image = nil;
+            self.ivGNSSCompassBackground.image = nil;
             lineImage = [imageLibrary get:ImageCompass_WhiteArrowOnBlack];
-            self.ivGPSCompassLine.image = lineImage;
+            self.ivGNSSCompassLine.image = lineImage;
             break;
         case COMPASS_REDARROWONBLACK:
-            self.ivGPSCompassBackground.image = nil;
+            self.ivGNSSCompassBackground.image = nil;
             lineImage = [imageLibrary get:ImageCompass_RedArrowOnBlack];
-            self.ivGPSCompassLine.image = lineImage;
+            self.ivGNSSCompassLine.image = lineImage;
             break;
         case COMPASS_AIRPLANE:
-            self.ivGPSCompassBackground.image = [imageLibrary get:ImageCompass_AirplaneCompass];
+            self.ivGNSSCompassBackground.image = [imageLibrary get:ImageCompass_AirplaneCompass];
             lineImage = [imageLibrary get:ImageCompass_AirplaneAirplane];
-            self.ivGPSCompassLine.image = lineImage;
+            self.ivGNSSCompassLine.image = lineImage;
             break;
     }
 
@@ -195,31 +195,31 @@
 /* Receive data from the location manager */
 - (void)updateLocationManagerLocation
 {
-    self.labelGPSAccuracy.text = [MyTools niceDistance:LM.accuracy];
-    self.labelGPSAltitude.text = [MyTools niceDistance:LM.altitude];
+    self.labelGNSSAccuracy.text = [MyTools niceDistance:LM.accuracy];
+    self.labelGNSSAltitude.text = [MyTools niceDistance:LM.altitude];
 
     //    NSLog(@"new location: %f, %f", LM.coords.latitude, LM.coords.longitude);
 
     Coordinates *c = [[Coordinates alloc] init:LM.coords];
-    self.labelGPSLat.text = [c lat_degreesDecimalMinutes];
-    self.labelGPSLon.text = [c lon_degreesDecimalMinutes];
+    self.labelGNSSLat.text = [c lat_degreesDecimalMinutes];
+    self.labelGNSSLon.text = [c lon_degreesDecimalMinutes];
 
     /* Draw the compass */
     float newCompass = -LM.direction * M_PI / 180.0f + bearingAdjustment;
 
-    self.ivGPSCompassBackground.transform = CGAffineTransformMakeRotation(newCompass);
+    self.ivGNSSCompassBackground.transform = CGAffineTransformMakeRotation(newCompass);
 
     NSInteger bearing = [Coordinates coordinates2bearing:LM.coords toLatitude:waypointManager.currentWaypoint.wpt_latitude toLongitude:waypointManager.currentWaypoint.wpt_longitude] - LM.direction;
     float fBearing = bearing * M_PI / 180.0 + bearingAdjustment;
 
     /* Draw the line */
     if (waypointManager.currentWaypoint == nil) {
-        self.ivGPSCompassLine.hidden = YES;
+        self.ivGNSSCompassLine.hidden = YES;
     } else {
-        self.ivGPSCompassLine.hidden = NO;
+        self.ivGNSSCompassLine.hidden = NO;
 
-        self.ivGPSCompassLine.transform = CGAffineTransformMakeRotation(fBearing);
-        self.labelGPSDistance.text = [MyTools niceDistance:[c distance:waypointManager.currentWaypoint.wpt_latitude longitude:waypointManager.currentWaypoint.wpt_longitude]];
+        self.ivGNSSCompassLine.transform = CGAffineTransformMakeRotation(fBearing);
+        self.labelGNSSDistance.text = [MyTools niceDistance:[c distance:waypointManager.currentWaypoint.wpt_latitude longitude:waypointManager.currentWaypoint.wpt_longitude]];
     }
 
     if (configManager.soundDirection == YES) {

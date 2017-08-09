@@ -39,12 +39,12 @@
 @property (nonatomic) CLLocationDirection direction;
 @property (nonatomic) CLLocationCoordinate2D coords;
 @property (nonatomic) NSMutableArray<GCCoordsHistorical *> *coordsHistorical;
-@property (nonatomic, readonly) BOOL useGPS;
+@property (nonatomic, readonly) BOOL useGNSS;
 
 - (void)startDelegation:(id<LocationManagerDelegate>)delegate isNavigating:(BOOL)isNavigating;
 - (void)stopDelegation:(id<LocationManagerDelegate>)delegate;
 - (void)updateDataDelegates;
-- (void)useGPS:(BOOL)_useGPS coordinates:(CLLocationCoordinate2D)newcoords;
+- (void)useGNSS:(BOOL)_useGNSS coordinates:(CLLocationCoordinate2D)newcoords;
 - (void)clearCoordsHistorical;
 
 @end

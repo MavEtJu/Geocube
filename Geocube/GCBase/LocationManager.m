@@ -30,7 +30,7 @@
     NSInteger lastSync;
 }
 
-@property (nonatomic, readwrite) BOOL useGPS;
+@property (nonatomic, readwrite) BOOL useGNSS;
 
 @end
 
@@ -55,7 +55,7 @@
     NSLog(@"LocationManager: Starting at %@", [Coordinates niceCoordinates:self.coords]);
 
     self.delegates = [NSMutableArray arrayWithCapacity:5];
-    self.useGPS = YES;
+    self.useGNSS = YES;
 
     lastSync = 0;
     historyData = [NSMutableArray arrayWithCapacity:configManager.keeptrackSync / configManager.keeptrackTimeDeltaMax];
@@ -72,7 +72,7 @@
 - (void)updateDataDelegates
 {
     // Disable updates when not needed.
-    if (self.useGPS == NO)
+    if (self.useGNSS == NO)
         return;
 
     if ([self.delegates count] == 0)
@@ -130,7 +130,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    if (self.useGPS == NO)
+    if (self.useGNSS == NO)
         return;
 
     // Keep track of new values
@@ -206,7 +206,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
 {
-    if (self.useGPS == NO)
+    if (self.useGNSS == NO)
         return;
 
     self.altitude = manager.location.altitude;
@@ -218,16 +218,16 @@
     [self updateDataDelegates];
 }
 
-- (void)useGPS:(BOOL)useGPS coordinates:(CLLocationCoordinate2D)newcoords
+- (void)useGNSS:(BOOL)useGNSS coordinates:(CLLocationCoordinate2D)newcoords
 {
-    if (useGPS == YES) {
-        self.useGPS = YES;
+    if (useGNSS == YES) {
+        self.useGNSS = YES;
         [self updateDataDelegates];
     } else {
         self.coords = newcoords;
         // First tell the others, then disable.
         [self updateDataDelegates];
-        self.useGPS = NO;
+        self.useGNSS = NO;
     }
 }
 

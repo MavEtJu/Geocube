@@ -103,9 +103,9 @@
 @property (nonatomic) BOOL accountsSaveAuthenticationName;
 @property (nonatomic) BOOL accountsSaveAuthenticationPassword;
 
-@property (nonatomic) BOOL gpsAdjustmentEnable;
-@property (nonatomic) NSInteger gpsAdjustmentLatitude;
-@property (nonatomic) NSInteger gpsAdjustmentLongitude;
+@property (nonatomic) BOOL gnssAdjustmentEnable;
+@property (nonatomic) NSInteger gnssAdjustmentLatitude;
+@property (nonatomic) NSInteger gnssAdjustmentLongitude;
 
 @property (nonatomic) BOOL introSeen;
 

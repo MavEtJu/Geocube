@@ -28,6 +28,7 @@ Version 1.4(x)
     logs of a waypoint.
   - Not all logtypes were recognized on GCA.
   - Removed some duplicate/obsolete fields from the database tables.
+  - GPS -> GNNS.
 
 Version 1.3(26)
 

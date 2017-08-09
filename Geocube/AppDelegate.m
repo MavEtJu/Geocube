@@ -269,7 +269,7 @@
             case RC_TOOLS:
                 controllers = [NSMutableArray array];
 
-                VC(ToolsGPSViewController, _(@"menu-tools-GPS"));
+                VC(ToolsGNSSViewController, _(@"menu-tools-GNSS"));
                 VC(ToolsRot13ViewController, _(@"menu-tools-ROT13"));
 
                 TABBARCONTROLLER(RC_QUERIES, controllers)
