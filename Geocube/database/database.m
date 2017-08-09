@@ -666,15 +666,6 @@
 
     // Version 52
     a = @[
-    @"alter table accounts add column accountname_id integer",
-    @"update accounts set accountname_id = name_id",
-    @"alter table waypoints add column wpt_lat float",
-    @"alter table waypoints add column wpt_lon float",
-    @"alter table trackelements add column lat float",
-    @"alter table trackelements add column lon float",
-    ];
-
-    a = @[
     // Fix trackelements table
     @"drop index trackelements_idx_id",
     @"drop index trackelements_idx_trackid",
@@ -700,6 +691,16 @@
     @"create index waypoint_idx_name on waypoints(wpt_name)",
     @"create index waypoint_idx_id on waypoints(id)",
     @"drop table waypoints_old",
+    ];
+    [upgradeSteps addObject:a];
+
+    // Version 53
+    a = @[
+    @"create table languages(id integer primary key, language text, country text)",
+    @"create index languages_idx on languages(id)",
+    @"insert into languages(language, country) values('en', '')",
+    @"insert into languages(language, country) values('en', 'US')",
+    @"insert into languages(language, country) values('nl', '')",
     ];
     [upgradeSteps addObject:a];
 }

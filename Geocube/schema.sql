@@ -18,7 +18,7 @@ insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.4.geocube");
 insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.4.geocube");
 insert into config(key, value) values("url_versions", "https://geocube.mavetju.org/geocube_versions.geocube");
-insert into config(key, value) values("version", "52");
+insert into config(key, value) values("version", "53");
 
 create table filters (
     id integer primary key,
@@ -406,3 +406,13 @@ create table log_macros (
     text text
 );
 create index log_macros_idx  on log_macros(id);
+
+create table languages (
+    id integer primary key,
+    language text,
+    country text
+);
+create index languages_idx on languages(id);
+insert into languages(language, country) values("en", "");
+insert into languages(language, country) values("en", "US");
+insert into languages(language, country) values("nl", "");
