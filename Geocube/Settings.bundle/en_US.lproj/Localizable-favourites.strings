@@ -1,3 +1,5 @@
+/* Change Favourite into Favorite */
+
 "waypointlogviewcontroller-Favourite Point" = "Favorite Point";
 "filtersviewcontroller-Favourites" = "Favorites";
 "filterfavouritestableviewcell-Favourites: %@" = "Favorites: %@";
