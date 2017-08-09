@@ -36,27 +36,43 @@
     NSString *sbdir = [MyTools SettingsBundleDirectory];
 
     // Find the first known localisation
-    __block NSString *lang = nil;
+    __block NSString *languageCode = nil;
+    __block NSString *countryCode = nil;
     __block NSString *langdir = nil;
     [[NSLocale preferredLanguages] enumerateObjectsUsingBlock:^(NSString * _Nonnull language, NSUInteger idx, BOOL * _Nonnull stop) {
         NSDictionary *languageDic = [NSLocale componentsFromLocaleIdentifier:language];
-        NSString *languageCode = [languageDic objectForKey:@"kCFLocaleLanguageCodeKey"];
+        languageCode = [languageDic objectForKey:@"kCFLocaleLanguageCodeKey"];
+        countryCode = [languageDic objectForKey:@"kCFLocaleCountryCodeKey"];
         langdir = [NSString stringWithFormat:@"%@/%@.lproj", sbdir, languageCode];
-        if ([fileManager fileExistsAtPath:langdir] == YES) {
-            lang = languageCode;
+        if ([fileManager fileExistsAtPath:langdir] == YES)
             *stop = YES;
-        }
     }];
-    if (lang == nil)
-        lang = @"en";
+    if (languageCode == nil)
+        languageCode = @"en";
+    if (countryCode == nil)
+        countryCode = @"GB";
 
-    /* Default translations */
+    /* Load from {lang}.lproj, for example en.lprog */
+    /* Load from {lang}_${cc}.lproj, for example en_US.lprog */
+
+    /* Default translations for en */
+    langdir = [NSString stringWithFormat:@"%@/%@.lproj", sbdir, languageCode];
     NSEnumerator *e = [fileManager enumeratorAtPath:langdir];
     NSString *s;
     while ((s = [e nextObject]) != nil) {
         if ([s rangeOfString:@"Localizable-.*.strings" options:NSRegularExpressionSearch].location != NSNotFound) {
             NSInteger c = [self addToDictionary:langdir file:s];
-            NSLog(@"Found %@, %ld records", s, (long)c);
+            NSLog(@"Found %@/%@, %ld records", languageCode, s, (long)c);
+        }
+    }
+
+    /* Default translations for en_US */
+    langdir = [NSString stringWithFormat:@"%@/%@_%@.lproj", sbdir, languageCode, countryCode];
+    e = [fileManager enumeratorAtPath:langdir];
+    while ((s = [e nextObject]) != nil) {
+        if ([s rangeOfString:@"Localizable-.*.strings" options:NSRegularExpressionSearch].location != NSNotFound) {
+            NSInteger c = [self addToDictionary:langdir file:s];
+            NSLog(@"Found %@_%@/%@, %ld records", languageCode, countryCode, s, (long)c);
         }
     }
 
