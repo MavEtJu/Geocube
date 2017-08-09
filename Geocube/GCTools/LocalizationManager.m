@@ -50,31 +50,48 @@
     if (lang == nil)
         lang = @"en";
 
+    /* Default translations */
     NSEnumerator *e = [fileManager enumeratorAtPath:langdir];
     NSString *s;
     while ((s = [e nextObject]) != nil) {
         if ([s rangeOfString:@"Localizable-.*.strings" options:NSRegularExpressionSearch].location != NSNotFound) {
-            [self addToDictionary:langdir file:s];
-            NSLog(@"Found %@", s);
+            NSInteger c = [self addToDictionary:langdir file:s];
+            NSLog(@"Found %@, %ld records", s, (long)c);
+        }
+    }
+
+    /* User supplied translations */
+    e = [fileManager enumeratorAtPath:[MyTools FilesDir]];
+    while ((s = [e nextObject]) != nil) {
+        if ([s isEqualToString:@"Personalize.strings"] == YES) {
+            NSInteger c = [self addToDictionary:[MyTools FilesDir] file:s];
+            NSLog(@"Found %@, %ld records", s, (long)c);
         }
     }
 
     return self;
 }
 
-- (void)addToDictionary:(NSString *)langdir file:(NSString *)file
+- (NSInteger)addToDictionary:(NSString *)langdir file:(NSString *)file
 {
-    NSString *content = [NSString stringWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", langdir, file] encoding:NSUTF16StringEncoding error:NULL];
+    NSError *error = nil;
+    NSString *content = [NSString stringWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", langdir, file] usedEncoding:nil error:&error];
+    if (error != nil)
+        NSLog(@"%@", error);
     NSArray<NSString *> *lines = [content componentsSeparatedByString:@"\n"];
+    __block NSInteger c = 0;
     [lines enumerateObjectsUsingBlock:^(NSString * _Nonnull line, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([line rangeOfString:@"\"[^\"]+\" = \"[^\"]+\";" options:NSRegularExpressionSearch].location != NSNotFound) {
             NSArray<NSString *> *cs = [line componentsSeparatedByString:@"\" = \""];
             NSString *key = [cs objectAtIndex:0];
             NSString *value = [cs objectAtIndex:1];
-            
+
             [self.txtable setObject:[value substringToIndex:[value length] - 2] forKey:[key substringFromIndex:1]];
+            c++;
         }
     }];
+
+    return c;
 }
 
 - (NSString *)localize:(NSString *)s
