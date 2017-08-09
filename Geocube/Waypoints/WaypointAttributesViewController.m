@@ -80,7 +80,7 @@
 
     dbAttribute *a = [attrs objectAtIndex:indexPath.row];
 
-    cell.textLabel.text = a.label;
+    cell.textLabel.text = _(([NSString stringWithFormat:@"attributes-%@", a.label]));
     cell.imageView.image = [imageLibrary get:a.icon];
     cell.userInteractionEnabled = NO;
 
