@@ -182,3 +182,74 @@ TABLENAME(@"attributes")
 }
 
 @end
+
+/*
+_(@"attributes-Unknown");
+_(@"attributes-Dogs Allowed");
+_(@"attributes-Access or parking fee");
+_(@"attributes-Rock Climbing");
+_(@"attributes-Boat");
+_(@"attributes-Scuba Gear");
+_(@"attributes-Recommended for kids");
+_(@"attributes-Takes less than an hour");
+_(@"attributes-Scenic view");
+_(@"attributes-Significant Hike");
+_(@"attributes-Difficult climbing");
+_(@"attributes-May require wading");
+_(@"attributes-May require swimming");
+_(@"attributes-Available at all times");
+_(@"attributes-Recommended at night");
+_(@"attributes-Available during winter");
+_(@"attributes-?");
+_(@"attributes-Poison plants");
+_(@"attributes-Dangerous Animals");
+_(@"attributes-Ticks");
+_(@"attributes-Abandoned mines");
+_(@"attributes-Cliff / falling rocks");
+_(@"attributes-Hunting");
+_(@"attributes-Dangerous area");
+_(@"attributes-Wheelchair accessible");
+_(@"attributes-Parking available");
+_(@"attributes-Public transportation");
+_(@"attributes-Drinking water nearby");
+_(@"attributes-Public restrooms nearby");
+_(@"attributes-Telephone nearby");
+_(@"attributes-Picnic tables nearby");
+_(@"attributes-Camping available");
+_(@"attributes-Campfires");
+_(@"attributes-Bicycles");
+_(@"attributes-Motorcycles");
+_(@"attributes-Quads");
+_(@"attributes-Off-road vehicles");
+_(@"attributes-Snowmobiles");
+_(@"attributes-Horses");
+_(@"attributes-Thorns");
+_(@"attributes-Stealth required");
+_(@"attributes-Stroller accessible");
+_(@"attributes-Needs maintenance");
+_(@"attributes-Watch for livestock");
+_(@"attributes-Flashlight required");
+_(@"attributes-Lost And Found Tour");
+_(@"attributes-Truck Driver/RV");
+_(@"attributes-Field Puzzle");
+_(@"attributes-UV Torch required");
+_(@"attributes-Snowshoes");
+_(@"attributes-Cross Country Skies");
+_(@"attributes-Special Tool Required");
+_(@"attributes-Night Cache");
+_(@"attributes-Park and Grab");
+_(@"attributes-Abandoned Structure");
+_(@"attributes-Short hike (less than 1km)");
+_(@"attributes-Medium hike (1km-10km)");
+_(@"attributes-Long Hike (+10km)");
+_(@"attributes-Fuel Nearby");
+_(@"attributes-Food Nearby");
+_(@"attributes-WirelessBeacon");
+_(@"attributes-Partnership Cache");
+_(@"attributes-Seasonal Access");
+_(@"attributes-Tourist Friendly");
+_(@"attributes-Tree Climbing");
+_(@"attributes-Front Yard");
+_(@"attributes-Teamwork Required");
+_(@"attributes-Part of a GeoTour");
+*/
