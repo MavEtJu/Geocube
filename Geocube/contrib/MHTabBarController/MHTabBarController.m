@@ -438,10 +438,11 @@ static const NSInteger TagOffset = 1000;
     // XXX appropriate one!
     if (localMenuButton != menuGlobal.menuLocalButton) {
         NSLog(@"Warning! menuGlobal doesn't have the same local menu button!");
-        menuGlobal.menuLocalButton = b;
+        menuGlobal.menuLocalButton = localMenuButton;
     }
     if (globalMenuButton != menuGlobal.menuGlobalButton) {
         NSLog(@"XXX menuGlobal doesn't have the same global menu button");
+        menuGlobal.menuGlobalButton = globalMenuButton;
     }
 }
 
