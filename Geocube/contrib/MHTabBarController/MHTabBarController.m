@@ -440,6 +440,9 @@ static const NSInteger TagOffset = 1000;
         NSLog(@"Warning! menuGlobal doesn't have the same local menu button!");
         menuGlobal.menuLocalButton = b;
     }
+    if (globalMenuButton != menuGlobal.menuGlobalButton) {
+        NSLog(@"XXX menuGlobal doesn't have the same global menu button");
+    }
 }
 
 - (void)resizeController:(CGSize)size coordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
