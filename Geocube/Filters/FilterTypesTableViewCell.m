@@ -58,13 +58,14 @@
         else
             t.selected = [c boolValue];
 
-        rect = CGRectMake(img.size.width + 30, y, width - img.size.width - 10, img.size.height);
-        UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
+        rect = CGRectMake(img.size.width + 30, y, width - img.size.width - 10, img.size.height + 5);
+        GCFilterButton *b = [GCFilterButton buttonWithType:UIButtonTypeSystem];
         b.frame = rect;
         b.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [b setTitle:t.type_full forState:UIControlStateNormal];
         [b setTitleColor:(t.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b addTarget:self action:@selector(clickGroup:) forControlEvents:UIControlEventTouchDown];
+        b.index = idx;
         [self.contentView addSubview:b];
 
         y += tv.frame.size.height;
@@ -115,17 +116,13 @@
 
 #pragma mark -- callback functions
 
-- (void)clickGroup:(UIButton *)b
+- (void)clickGroup:(GCFilterButton *)b
 {
-    [types enumerateObjectsUsingBlock:^(dbType *t, NSUInteger idx, BOOL *stop) {
-        if ([t.type_full isEqualToString:[b titleForState:UIControlStateNormal]] == YES) {
-            t.selected = !t.selected;
-            [b setTitleColor:(t.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-            [self configSet:[NSString stringWithFormat:@"type_%ld", (long)t._id] value:[NSString stringWithFormat:@"%d", t.selected]];
-            [self configUpdate];
-            *stop = YES;
-        }
-    }];
+    dbType *t = [types objectAtIndex:b.index];
+    t.selected = !t.selected;
+    [b setTitleColor:(t.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
+    [self configSet:[NSString stringWithFormat:@"type_%ld", (long)t._id] value:[NSString stringWithFormat:@"%d", t.selected]];
+    [self configUpdate];
 }
 
 @end

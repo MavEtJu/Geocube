@@ -63,13 +63,16 @@
         else
             c.selected = [cfg boolValue];
 
-        CGRect rect = CGRectMake(imgSize.width + 30, y, width - imgSize.width - 10, imgSize.height);
-        UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
+        CGRect rect = CGRectMake(imgSize.width + 30, y, width - imgSize.width - 10, imgSize.height + 5);
+        GCFilterButton *b = [GCFilterButton buttonWithType:UIButtonTypeSystem];
         b.frame = rect;
         b.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        [b setTitle:c.size forState:UIControlStateNormal];
+        NSString *s = [NSString stringWithFormat:@"container-%@", c.size];
+        [b setTitle:_(s) forState:UIControlStateNormal];
         [b setTitleColor:(c.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b addTarget:self action:@selector(clickGroup:) forControlEvents:UIControlEventTouchDown];
+        b.index = idx;
+
         [self.contentView addSubview:b];
 
         y += rect.size.height;
@@ -120,17 +123,13 @@
 
 #pragma mark -- callback functions
 
-- (void)clickGroup:(UIButton *)b
+- (void)clickGroup:(GCFilterButton *)b
 {
-    [containers enumerateObjectsUsingBlock:^(dbContainer *c, NSUInteger idx, BOOL *stop) {
-        if ([c.size isEqualToString:[b titleForState:UIControlStateNormal]] == YES) {
-            c.selected = !c.selected;
-            [b setTitleColor:(c.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-            [self configSet:[NSString stringWithFormat:@"container_%ld", (long)c._id] value:[NSString stringWithFormat:@"%d", c.selected]];
-            [self configUpdate];
-            *stop = YES;
-        }
-    }];
+    dbContainer *c = [containers objectAtIndex:b.index];
+    c.selected = !c.selected;
+    [b setTitleColor:(c.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
+    [self configSet:[NSString stringWithFormat:@"container_%ld", (long)c._id] value:[NSString stringWithFormat:@"%d", c.selected]];
+    [self configUpdate];
 }
 
 @end

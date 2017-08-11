@@ -164,7 +164,8 @@ enum {
                 case SECTION_LOGDETAILS_TYPE: {
                     GCTableViewCellKeyValue *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLKEYVALUE];
                     c.keyLabel.text = _(@"waypointlogviewcontroller-Type");
-                    c.valueLabel.text = logstring.text;
+                    NSString *s = [NSString stringWithFormat:@"logstring-%@", logstring.text];
+                    c.valueLabel.text = _(s);
                     cell = c;
                     break;
                 }
@@ -321,7 +322,7 @@ enum {
 
                 case SECTION_SUBMIT_SUBMIT:
                     if (waypoint.account.canDoRemoteStuff == YES && upload == YES) {
-                        cell.textLabel.text = _(@"Submit");
+                        cell.textLabel.text = _(@"waypointlogviewcontroller-Submit");
                         cell.userInteractionEnabled = (note == nil || [note isEqualToString:@""] == YES) ? NO : YES;
                         cell.textLabel.textColor = cell.userInteractionEnabled == YES ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled;
                     } else {
@@ -408,7 +409,8 @@ enum {
     [logstrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL *stop) {
         if (ls == logstring)
             selected = idx;
-        [as addObject:ls.text];
+        NSString *s = [NSString stringWithFormat:@"logstring-%@", ls.text];
+        [as addObject:_(s)];
     }];
     [ActionSheetStringPicker
         showPickerWithTitle:_(@"waypointlogviewcontroller-Select a Logtype")

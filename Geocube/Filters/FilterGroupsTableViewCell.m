@@ -54,15 +54,16 @@
         else
             g.selected = [c boolValue];
 
-        CGRect rect = CGRectMake(20, y, width - 40, 15);
-        UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
+        CGRect rect = CGRectMake(20, y, width - 40, 20);
+        GCFilterButton *b = [GCFilterButton buttonWithType:UIButtonTypeSystem];
         b.frame = rect;
         [b setTitle:g.name forState:UIControlStateNormal];
         [b setTitleColor:(g.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b addTarget:self action:@selector(clickGroup:) forControlEvents:UIControlEventTouchDown];
+        b.index = idx;
         [self.contentView addSubview:b];
 
-        y += 15;
+        y += rect.size.height;
     }];
 
     [self.contentView sizeToFit];
@@ -115,17 +116,13 @@
 
 #pragma mark -- callback functions
 
-- (void)clickGroup:(UIButton *)b
+- (void)clickGroup:(GCFilterButton *)b
 {
-    [groups enumerateObjectsUsingBlock:^(dbGroup *g, NSUInteger idx, BOOL *stop) {
-        if ([g.name isEqualToString:[b titleForState:UIControlStateNormal]] == YES) {
-            g.selected = !g.selected;
-            [b setTitleColor:(g.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-            [self configSet:[NSString stringWithFormat:@"group_%ld", (long)g._id] value:[NSString stringWithFormat:@"%d", g.selected]];
-            [self configUpdate];
-            *stop = YES;
-        }
-    }];
+    dbGroup *g = [groups objectAtIndex:b.index];
+    g.selected = !g.selected;
+    [b setTitleColor:(g.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
+    [self configSet:[NSString stringWithFormat:@"group_%ld", (long)g._id] value:[NSString stringWithFormat:@"%d", g.selected]];
+    [self configUpdate];
 }
 
 @end

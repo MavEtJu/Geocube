@@ -54,15 +54,16 @@
         else
             a.selected = [c boolValue];
 
-        CGRect rect = CGRectMake(20, y, width - 40, 15);
-        UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
+        CGRect rect = CGRectMake(20, y, width - 40, 20);
+        GCFilterButton *b = [GCFilterButton buttonWithType:UIButtonTypeSystem];
         b.frame = rect;
         [b setTitle:a.site forState:UIControlStateNormal];
         [b setTitleColor:(a.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b addTarget:self action:@selector(clickAccount:) forControlEvents:UIControlEventTouchDown];
+        b.index = idx;
         [self.contentView addSubview:b];
 
-        y += 15;
+        y += rect.size.height;
     }];
 
     [self.contentView sizeToFit];
@@ -115,17 +116,13 @@
 
 #pragma mark -- callback functions
 
-- (void)clickAccount:(UIButton *)b
+- (void)clickAccount:(GCFilterButton *)b
 {
-    [accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
-        if ([a.site isEqualToString:[b titleForState:UIControlStateNormal]] == YES) {
-            a.selected = !a.selected;
-            [b setTitleColor:(a.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-            [self configSet:[NSString stringWithFormat:@"account_%ld", (long)a._id] value:[NSString stringWithFormat:@"%d", a.selected]];
-            [self configUpdate];
-            *stop = YES;
-        }
-    }];
+    dbAccount *a = [accounts objectAtIndex:b.index];
+    a.selected = !a.selected;
+    [b setTitleColor:(a.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
+    [self configSet:[NSString stringWithFormat:@"account_%ld", (long)a._id] value:[NSString stringWithFormat:@"%d", a.selected]];
+    [self configUpdate];
 }
 
 @end
