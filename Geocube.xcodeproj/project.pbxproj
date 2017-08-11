@@ -567,6 +567,7 @@
 		E84725E61DF774E200CFF99B /* menu icon - local@2x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E01DF774E200CFF99B /* menu icon - local@2x - night.png */; };
 		E84725E71DF774E200CFF99B /* menu icon - local@3x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */; };
 		E85AE1C01F39E96A00FA746C /* LocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E85AE1BF1F39E96A00FA746C /* LocalizationManager.m */; };
+		E85AE1C31F3DD9C500FA746C /* GCFilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E85AE1C21F3DD9C500FA746C /* GCFilterButton.m */; };
 		E861B97E1EE2E6D300BD82AC /* GC - logo - 1536×2048.png in Resources */ = {isa = PBXBuildFile; fileRef = E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */; };
 		E861B9801EE2E8AC00BD82AC /* GC - logo - 768×1024.png in Resources */ = {isa = PBXBuildFile; fileRef = E861B97F1EE2E8AC00BD82AC /* GC - logo - 768×1024.png */; };
 		E86C4AAF1E321822004526E2 /* CompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C4AAD1E321822004526E2 /* CompassViewController.m */; };
@@ -1588,6 +1589,8 @@
 		E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local@3x - night.png"; path = "images/menu/menu icon - local@3x - night.png"; sourceTree = "<group>"; };
 		E85AE1BE1F39E96A00FA746C /* LocalizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalizationManager.h; path = GCTools/LocalizationManager.h; sourceTree = "<group>"; };
 		E85AE1BF1F39E96A00FA746C /* LocalizationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalizationManager.m; path = GCTools/LocalizationManager.m; sourceTree = "<group>"; };
+		E85AE1C11F3DD9C500FA746C /* GCFilterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCFilterButton.h; path = GCBaseObjects/GCFilterButton.h; sourceTree = "<group>"; };
+		E85AE1C21F3DD9C500FA746C /* GCFilterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCFilterButton.m; path = GCBaseObjects/GCFilterButton.m; sourceTree = "<group>"; };
 		E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 1536×2048.png"; path = "images/logos/GC - logo - 1536×2048.png"; sourceTree = "<group>"; };
 		E861B97F1EE2E8AC00BD82AC /* GC - logo - 768×1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 768×1024.png"; path = "images/logos/GC - logo - 768×1024.png"; sourceTree = "<group>"; };
 		E86C4AAC1E321822004526E2 /* CompassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassViewController.h; sourceTree = "<group>"; };
@@ -2413,6 +2416,8 @@
 				E82344C41EECE12A00D2CDFD /* GCBoundingBox.m */,
 				E82344C51EECE12A00D2CDFD /* GCButton.h */,
 				E82344C61EECE12A00D2CDFD /* GCButton.m */,
+				E85AE1C11F3DD9C500FA746C /* GCFilterButton.h */,
+				E85AE1C21F3DD9C500FA746C /* GCFilterButton.m */,
 				E82344C71EECE12A00D2CDFD /* GCCloseButton.h */,
 				E82344C81EECE12A00D2CDFD /* GCCloseButton.m */,
 				E82344C91EECE12A00D2CDFD /* GCImageView.h */,
@@ -4202,6 +4207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E82344F51EECE12A00D2CDFD /* GCLabel.m in Sources */,
+				E85AE1C31F3DD9C500FA746C /* GCFilterButton.m in Sources */,
 				E82344711EECE08A00D2CDFD /* GroupsTemplateViewController.m in Sources */,
 				E823422D1EECCF3400D2CDFD /* NVHTarGzip.m in Sources */,
 				E83C6EEC1EECE1CB00E303F5 /* ConfigManager.m in Sources */,

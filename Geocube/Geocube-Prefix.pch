@@ -132,6 +132,7 @@
 
 #import "GCArray.h"
 #import "GCButton.h"
+#import "GCFilterButton.h"
 #import "GCCloseButton.h"
 #import "GCImageView.h"
 #import "GCLabel.h"

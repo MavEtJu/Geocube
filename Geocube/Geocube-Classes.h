@@ -66,6 +66,7 @@
 @class GCDictionaryGGCW;
 @class GCDictionaryLiveAPI;
 @class GCDictionaryOKAPI;
+@class GCFilterButton;
 @class GCGMSCircle;
 @class GCImageView;
 @class GCLabel;
