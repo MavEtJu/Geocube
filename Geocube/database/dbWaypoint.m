@@ -769,7 +769,8 @@ TABLENAME(@"waypoints")
     if (self.gs_country != nil) {
         if ([s isEqualToString:@""] == NO)
             [s appendFormat:@", "];
-        [s appendFormat:@"%@", configManager.showCountryAsAbbrevation == YES ? self.gs_country.code : self.gs_country.name];
+        NSString *cs = [NSString stringWithFormat:@"country-%@", self.gs_country.name];
+        [s appendFormat:@"%@", configManager.showCountryAsAbbrevation == YES ? self.gs_country.code : _(cs)];
     }
     return s;
 }

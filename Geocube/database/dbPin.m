@@ -123,3 +123,29 @@ TABLENAME(@"pins")
 }
 
 @end
+
+/*
+ _(@"pin-Benchmark");
+ _(@"pin-Earth Cache");
+ _(@"pin-Event");
+ _(@"pin-Letterbox Cache");
+ _(@"pin-Locationless Cache");
+ _(@"pin-Moveable Cache");
+ _(@"pin-Multi Cache");
+ _(@"pin-Mystery Cache");
+ _(@"pin-Other Cache");
+ _(@"pin-Traditional Cache");
+ _(@"pin-Virtual Cache");
+ _(@"pin-Waymark Cache");
+ _(@"pin-Waypoint - Final Location");
+ _(@"pin-Waypoint - Flag");
+ _(@"pin-Waypoint - Manally entered");
+ _(@"pin-Waypoint - Multi Stage");
+ _(@"pin-Waypoint - Parking Area");
+ _(@"pin-Waypoint - Physical Stage");
+ _(@"pin-Waypoint - Reference Point");
+ _(@"pin-Waypoint - Trailhead");
+ _(@"pin-Waypoint - Virtual Stage");
+ _(@"pin-Webcam Cache");
+ _(@"pin-Wherigo Cache");
+*/

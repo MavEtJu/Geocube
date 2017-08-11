@@ -210,4 +210,67 @@ TABLENAME(@"log_strings")
     return LOGSTRING_LOGTYPE_WAYPOINT;
 }
 
+/*
+ _(@"logstring-Announcement");
+ _(@"logstring-Archive");
+ _(@"logstring-Archived");
+ _(@"logstring-Attended");
+ _(@"logstring-Comment");
+ _(@"logstring-Coords Updated");
+ _(@"logstring-Did not find it");
+ _(@"logstring-Didn't find it");
+ _(@"logstring-Disabled");
+ _(@"logstring-Discovered It");
+ _(@"logstring-Dropped Off");
+ _(@"logstring-Enable Listing");
+ _(@"logstring-Enabled");
+ _(@"logstring-Flagged as Missing");
+ _(@"logstring-Found it");
+ _(@"logstring-Grab It (Not from a Cache)");
+ _(@"logstring-Grab it");
+ _(@"logstring-Grabbed it");
+ _(@"logstring-Hidden");
+ _(@"logstring-Maintained");
+ _(@"logstring-Maintenance performed");
+ _(@"logstring-Mark Missing");
+ _(@"logstring-Move To Collection");
+ _(@"logstring-Move To Inventory");
+ _(@"logstring-Moved");
+ _(@"logstring-Needs Archived");
+ _(@"logstring-Needs Maintenance");
+ _(@"logstring-Needs archiving");
+ _(@"logstring-Needs maintenance");
+ _(@"logstring-Noted");
+ _(@"logstring-OC Team comment");
+ _(@"logstring-Other");
+ _(@"logstring-Owner Maintenance");
+ _(@"logstring-Permanently Archived");
+ _(@"logstring-Photographed");
+ _(@"logstring-Picked Up");
+ _(@"logstring-Post Reviewer Note");
+ _(@"logstring-Publish Listing");
+ _(@"logstring-Post Reviewer Note");
+ _(@"logstring-Publish Listing");
+ _(@"logstring-Published");
+ _(@"logstring-Ready to search");
+ _(@"logstring-Retract Listing");
+ _(@"logstring-Retracted");
+ _(@"logstring-Retrieve It from a Cache");
+ _(@"logstring-Spotted");
+ _(@"logstring-Submit for Review");
+ _(@"logstring-Temporarily Disable Listing");
+ _(@"logstring-Temporarily unavailable");
+ _(@"logstring-Transfer");
+ _(@"logstring-Unarchive");
+ _(@"logstring-Unarchived");
+ _(@"logstring-Update Coordinates");
+ _(@"logstring-Visited");
+ _(@"logstring-Webcam Photo Taken");
+ _(@"logstring-Will Attend");
+ _(@"logstring-Will attend");
+ _(@"logstring-Write Note");
+ _(@"logstring-Write note");
+
+*/
+
 @end

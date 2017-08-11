@@ -1,0 +1,25 @@
+/* Pins */
+
+"pin-Benchmark" = "Benchmark";
+"pin-Earth Cache" = "Earth Cache";
+"pin-Event" = "Evenement";
+"pin-Letterbox Cache" = "Brievenbus Cache";
+"pin-Locationless Cache" = "Lokatieloze Cache";
+"pin-Moveable Cache" = "Verplaatsbare Cache";
+"pin-Multi Cache" = "Multi Cache";
+"pin-Mystery Cache" = "Mysterie Cache";
+"pin-Other Cache" = "Andere Cache";
+"pin-Traditional Cache" = "Tradi Cache";
+"pin-Virtual Cache" = "Virtuële Cache";
+"pin-Waymark Cache" = "Waymark Cache";
+"pin-Waypoint - Final Location" = "Waypoint - Laatste Locatie";
+"pin-Waypoint - Flag" = "Waypoint - Vlag";
+"pin-Waypoint - Manally entered" = "Waypoint - Zelf ingevoerd";
+"pin-Waypoint - Multi Stage" = "Waypoint - Multi Stage";
+"pin-Waypoint - Parking Area" = "Waypoint - Parkeerplaats";
+"pin-Waypoint - Physical Stage" = "Waypoint - Fysieke Stage";
+"pin-Waypoint - Reference Point" = "Waypoint - Referentie Punt";
+"pin-Waypoint - Trailhead" = "Waypoint - Begin van pad";
+"pin-Waypoint - Virtual Stage" = "Waypoint - Virtueëel punt";
+"pin-Webcam Cache" = "Webcam Cache";
+"pin-Wherigo Cache" = "Wherigo Cache";

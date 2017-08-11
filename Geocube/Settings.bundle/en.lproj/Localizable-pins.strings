@@ -1,0 +1,25 @@
+/* Pins */
+
+"pin-Benchmark" = "Benchmark";
+"pin-Earth Cache" = "Earth Cache";
+"pin-Event" = "Event";
+"pin-Letterbox Cache" = "Letterbox Cache";
+"pin-Locationless Cache" = "Locationless Cache";
+"pin-Moveable Cache" = "Moveable Cache";
+"pin-Multi Cache" = "Multi Cache";
+"pin-Mystery Cache" = "Mystery Cache";
+"pin-Other Cache" = "Other Cache";
+"pin-Traditional Cache" = "Traditional Cache";
+"pin-Virtual Cache" = "Virtual Cache";
+"pin-Waymark Cache" = "Waymark Cache";
+"pin-Waypoint - Final Location" = "Waypoint - Final Location";
+"pin-Waypoint - Flag" = "Waypoint - Flag";
+"pin-Waypoint - Manally entered" = "Waypoint - Manally entered";
+"pin-Waypoint - Multi Stage" = "Waypoint - Multi Stage";
+"pin-Waypoint - Parking Area" = "Waypoint - Parking Area";
+"pin-Waypoint - Physical Stage" = "Waypoint - Physical Stage";
+"pin-Waypoint - Reference Point" = "Waypoint - Reference Point";
+"pin-Waypoint - Trailhead" = "Waypoint - Trailhead";
+"pin-Waypoint - Virtual Stage" = "Waypoint - Virtual Stage";
+"pin-Webcam Cache" = "Webcam Cache";
+"pin-Wherigo Cache" = "Wherigo Cache";

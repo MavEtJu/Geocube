@@ -92,4 +92,45 @@ TABLENAME(@"containers")
     return [[self dbAllXXX:@"where gc_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:gc_id]]] firstObject];
 }
 
+/*
+_(@"container-Bolt");
+_(@"container-Buried Block");
+_(@"container-Cannon");
+_(@"container-Cut");
+_(@"container-Disc");
+_(@"container-FBM");
+_(@"container-Intersected Station");
+_(@"container-Pillar");
+_(@"container-Rivet");
+_(@"container-Spider");
+_(@"container-Micro");
+_(@"container-Surface Block");
+_(@"container-Berntsen");
+_(@"container-Brass Plate");
+_(@"container-Concrete Ring");
+_(@"container-Curry Stool");
+_(@"container-Fenomark");
+_(@"container-Pipe");
+_(@"container-Platform Bolt");
+_(@"container-Unknown - user added");
+_(@"container-Unknown");
+_(@"container-Nano");
+_(@"container-Not chosen");
+_(@"container-nano");
+_(@"container-micro");
+_(@"container-small");
+_(@"container-regular");
+_(@"container-large");
+_(@"container-none");
+_(@"container-other");
+_(@"container-xlarge");
+_(@"container-Other");
+_(@"container-Regular");
+_(@"container-Small");
+_(@"container-Virtual");
+_(@"container-Active station");
+_(@"container-Block");
+_(@"container-Large");
+*/
+
 @end
