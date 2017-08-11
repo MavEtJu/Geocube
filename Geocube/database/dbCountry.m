@@ -360,4 +360,5 @@ TABLENAME(@"countries")
  _(@"country-South Africa");
  _(@"country-Zambia");
  _(@"country-Zimbabwe");
+ _(@"country-Locationless");
 */
