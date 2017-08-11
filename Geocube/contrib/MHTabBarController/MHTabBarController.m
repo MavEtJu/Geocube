@@ -431,6 +431,15 @@ static const NSInteger TagOffset = 1000;
     UIButton *b = localMenuButton;
     UIImage *imgMenu = currentTheme.menuLocalIcon;
     b.frame = CGRectMake(bounds.size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
+    
+    // XXX menuGlobal.menuLocalButton can get out of sync with localMenuButton.
+    // XXX I'm not sure why you even have multiple local menu buttons, but
+    // XXX you need to ensure that menuGlobal.menuLocalButton is set to the
+    // XXX appropriate one!
+    if (localMenuButton != menuGlobal.menuLocalButton) {
+        NSLog(@"Warning! menuGlobal doesn't have the same local menu button!");
+        menuGlobal.menuLocalButton = b;
+    }
 }
 
 - (void)resizeController:(CGSize)size coordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
