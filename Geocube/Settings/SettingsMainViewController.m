@@ -614,7 +614,7 @@ enum sections {
                 case SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Number of waypoints in Geocaching Australia search");
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld w%@", (long)configManager.mapSearchMaximumNumberGCA, _(@"waypoints")];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld %@", (long)configManager.mapSearchMaximumNumberGCA, _(@"waypoints")];
                     return cell;
                 }
             }

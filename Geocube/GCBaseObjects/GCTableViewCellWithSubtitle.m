@@ -28,6 +28,10 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
+    self.textLabel.numberOfLines = 0;
+    self.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.detailTextLabel.numberOfLines = 0;
+    self.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
     return self;
 }
 

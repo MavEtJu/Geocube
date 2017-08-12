@@ -68,7 +68,8 @@ enum {
     GCTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
 
     dbPin *p = [pins objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", p.desc];
+    cell.textLabel.text = [NSString stringWithFormat:@"pin-%@", p.desc];
+    cell.textLabel.text = _(cell.textLabel.text);
     cell.imageView.image = p.img;
 
     return cell;

@@ -8,9 +8,9 @@
 "pin-Moveable Cache" = "Verplaatsbare Cache";
 "pin-Multi Cache" = "Multi Cache";
 "pin-Mystery Cache" = "Mysterie Cache";
-"pin-Other Cache" = "Andere Cache";
+"pin-Other Cache" = "Ander soort Cache";
 "pin-Traditional Cache" = "Tradi Cache";
-"pin-Virtual Cache" = "Virtuële Cache";
+"pin-Virtual Cache" = "Virtuele Cache";
 "pin-Waymark Cache" = "Waymark Cache";
 "pin-Waypoint - Final Location" = "Waypoint - Laatste Locatie";
 "pin-Waypoint - Flag" = "Waypoint - Vlag";
@@ -20,6 +20,6 @@
 "pin-Waypoint - Physical Stage" = "Waypoint - Fysieke Stage";
 "pin-Waypoint - Reference Point" = "Waypoint - Referentie Punt";
 "pin-Waypoint - Trailhead" = "Waypoint - Begin van pad";
-"pin-Waypoint - Virtual Stage" = "Waypoint - Virtueëel punt";
+"pin-Waypoint - Virtual Stage" = "Waypoint - Virtueel punt";
 "pin-Webcam Cache" = "Webcam Cache";
 "pin-Wherigo Cache" = "Wherigo Cache";

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOG-lU-lOT" customClass="GCLabel">
-                        <rect key="frame" x="48" y="11" width="42" height="21"/>
+                        <rect key="frame" x="48" y="11" width="213" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -37,6 +37,7 @@
                     <constraint firstItem="XOG-lU-lOT" firstAttribute="leading" secondItem="O9i-y6-XYc" secondAttribute="leadingMargin" constant="40" id="4K1-jL-lTY"/>
                     <constraint firstAttribute="trailing" secondItem="umc-Lo-sNB" secondAttribute="trailing" constant="65" id="BZZ-uO-JnC"/>
                     <constraint firstItem="XOG-lU-lOT" firstAttribute="centerY" secondItem="O9i-y6-XYc" secondAttribute="centerY" id="QSn-Al-ZS0"/>
+                    <constraint firstItem="umc-Lo-sNB" firstAttribute="leading" secondItem="XOG-lU-lOT" secondAttribute="trailing" id="pJp-dX-yDV"/>
                     <constraint firstItem="umc-Lo-sNB" firstAttribute="centerY" secondItem="O9i-y6-XYc" secondAttribute="centerY" id="sdy-9D-nWx"/>
                 </constraints>
             </tableViewCellContentView>
