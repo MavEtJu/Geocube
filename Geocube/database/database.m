@@ -82,7 +82,6 @@
     [self checkAndCreateDatabase];
 
     // Determine version of the distribution database
-    NSLog(@"Determine version of the distribution database");
     sqlite3 *tdb;
     sqlite3_open([dbempty UTF8String], &tdb);
     self.db = tdb;
@@ -98,7 +97,6 @@
     }
 
     // Determine version of the active database
-    NSLog(@"Determine version of the active database");
     sqlite3_open([dbname UTF8String], &tdb);
     self.db = tdb;
     dbConfig *c_real = [dbConfig dbGetByKey:KEY_VERSION_DB];
@@ -107,7 +105,6 @@
     tdb = nil;
 
     // If the active version is different from the distribution version, then reinitialize.
-    NSLog(@"If the active version is different from the distribution version, then reinitialize.");
     NSLog(@"Database version %@, distribution is %@.", c_real.value, c_empty.value);
     if ([c_real.value isEqualToString:c_empty.value] == NO) {
         NSLog(@"Empty database is newer, upgrading");
@@ -126,7 +123,6 @@
         tdb = nil;
     }
 
-    NSLog(@"Opening database name");
     sqlite3_open([dbname UTF8String], &tdb);
     self.db = tdb;
 }
