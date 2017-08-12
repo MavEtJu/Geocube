@@ -1,7 +1,7 @@
 /* Change Favourite into Favorite */
 
 "waypointlogviewcontroller-Favourite Point" = "Favorite Point";
-"filtersviewcontroller-Favourites" = "Favorites";
+"filtersviewcontroller-favourites" = "favorites";
 "filterfavouritestableviewcell-Favourites: %@" = "Favorites: %@";
 "filterfavouritestableviewcell-Favourites: Anything" = "Favorites: Anything";
 "filterfavouritestableviewcell-Favourites: At least 0" = "Favorites: At least 0";

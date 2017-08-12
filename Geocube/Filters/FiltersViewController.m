@@ -69,18 +69,18 @@ enum {
 
     for (NSInteger i = 0; i < filterMax; i++) {
         switch (i) {
-            MATCH(filterTypes, _(@"filtersviewcontroller-Types"));
-            MATCH(filterGroups, _(@"filtersviewcontroller-Groups"));
-            MATCH(filterFavourites, _(@"filtersviewcontroller-Favourites"));
-            MATCH(filterSizes, _(@"filtersviewcontroller-Sizes"));
-            MATCH(filterDifficulty, _(@"filtersviewcontroller-Difficulty"));
-            MATCH(filterTerrain, _(@"filtersviewcontroller-Terrain"));
-            MATCH(filterDistance, _(@"filtersviewcontroller-Distance"));
-            MATCH(filterDirection, _(@"filtersviewcontroller-Direction"));
-            MATCH(filterText, _(@"filtersviewcontroller-Text"));
-            MATCH(filterDates, _(@"filtersviewcontroller-Date"));
-            MATCH(filterFlags, _(@"filtersviewcontroller-Flags"));
-            MATCH(filterAccounts, _(@"filtersviewcontroller-Accounts"));
+            MATCH(filterTypes, _(@"filtersviewcontroller-types"));
+            MATCH(filterGroups, _(@"filtersviewcontroller-groups"));
+            MATCH(filterFavourites, _(@"filtersviewcontroller-favourites"));
+            MATCH(filterSizes, _(@"filtersviewcontroller-sizes"));
+            MATCH(filterDifficulty, _(@"filtersviewcontroller-difficulty"));
+            MATCH(filterTerrain, _(@"filtersviewcontroller-terrain"));
+            MATCH(filterDistance, _(@"filtersviewcontroller-distance"));
+            MATCH(filterDirection, _(@"filtersviewcontroller-direction"));
+            MATCH(filterText, _(@"filtersviewcontroller-text"));
+            MATCH(filterDates, _(@"filtersviewcontroller-dates"));
+            MATCH(filterFlags, _(@"filtersviewcontroller-flags"));
+            MATCH(filterAccounts, _(@"filtersviewcontroller-accounts"));
             default:
                 NSAssert1(FALSE, @"Unknown filter %ld", (long)i);
         }
