@@ -45,7 +45,7 @@
 
 @implementation MapTemplateViewController
 
-+ (NSArray<MapBrands *> *)initMapBrands
++ (NSArray<MapBrand *> *)initMapBrands
 {
     NSMutableArray<MapBrand *> *mapBrands = [NSMutableArray arrayWithCapacity:5];
     [mapBrands addObject:[MapBrand mapBrandWithData:[MapGoogle class] defaultString:@"google" menuLabel:@"Google Maps" key:MAPBRAND_GOOGLEMAPS]];
