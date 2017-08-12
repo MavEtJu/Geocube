@@ -23,5 +23,4 @@
 
 @property (nonatomic) NSInteger index;
 
-
 @end
