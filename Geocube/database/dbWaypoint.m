@@ -585,7 +585,7 @@ TABLENAME(@"waypoints")
 
 + (NSArray<dbWaypoint *> *)dbAllWaypointsWithMyLogs
 {
-    return [dbWaypoint dbAllXXX:@"where id in (select waypoint_id from logs where logger_id in (select accountname_id from accounts)" keys:nil values:nil];
+    return [dbWaypoint dbAllXXX:@"where id in (select waypoint_id from logs where logger_id in (select accountname_id from accounts))" keys:nil values:nil];
 }
 
 + (NSArray<dbWaypoint *> *)dbAllByFlag:(Flag)flag
