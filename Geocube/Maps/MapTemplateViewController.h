@@ -22,10 +22,7 @@
 @interface MapTemplateViewController : GCViewController <LocationManagerDelegate, WaypointManagerDelegate>
 
 typedef NS_ENUM(NSInteger, MVMenuItem) {
-    MVCmenuBrandGoogle,
-    MVCmenuBrandApple,
-    MVCmenuBrandOSM,
-    MVCmenuBrandESRIWorldTopo,
+    MVCmenuBrandChange,
     MVCmenuMapMap,
     MVCmenuMapAerial,
     MVCmenuMapHybridMapAerial,
@@ -80,7 +77,7 @@ typedef NS_ENUM(NSInteger, GCMapType) {
 - (void)userInteractionFinished;
 - (void)refreshWaypointsData;
 - (void)addNewWaypoint:(CLLocationCoordinate2D)coords;
-+ (NSDictionary *)initMapBrands;
++ (NSArray<MapBrand *> *)initMapBrands;
 
 - (void)menuChangeMapbrand:(MapBrand *)mapBrand;
 

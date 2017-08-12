@@ -25,17 +25,28 @@
 
 @implementation MapBrand
 
-+ (MapBrand *)mapBrandWithData:(Class)mapClass menuItem:(MVMenuItem)menuItem defaultString:(NSString *)defaultString menuLabel:(NSString *)menuLabel key:(NSString *)key
++ (MapBrand *)mapBrandWithData:(Class)mapClass defaultString:(NSString *)defaultString menuLabel:(NSString *)menuLabel key:(NSString *)key
 {
     MapBrand *mp = [[MapBrand alloc] init];
 
     mp.menuLabel = menuLabel;
-    mp.menuItem = menuItem;
     mp.key = key;
     mp.defaultString = defaultString;
     mp.mapObject = mapClass;
 
     return mp;
+}
+
++ (MapBrand *)findMapBrand:(NSString *)key brands:(NSArray<MapBrand *> *)brands
+{
+    __block MapBrand *m = nil;
+    [brands enumerateObjectsUsingBlock:^(MapBrand * _Nonnull mb, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([mb.key isEqualToString:key] == YES) {
+            m = mb;
+            *stop = YES;
+        }
+    }];
+    return m;
 }
 
 @end

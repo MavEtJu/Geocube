@@ -38,20 +38,20 @@
     BOOL isVisible;
     BOOL needsRefresh;
 
-    NSDictionary *mapBrands;
+    NSArray<MapBrand *> *mapBrands;
 }
 
 @end
 
 @implementation MapTemplateViewController
 
-+ (NSDictionary *)initMapBrands
++ (NSArray<MapBrands *> *)initMapBrands
 {
-    NSMutableDictionary *mapBrands = [NSMutableDictionary dictionaryWithCapacity:10];
-    [mapBrands setObject:[MapBrand mapBrandWithData:[MapGoogle class] menuItem:MVCmenuBrandGoogle defaultString:@"google" menuLabel:@"Google Maps" key:MAPBRAND_GOOGLEMAPS] forKey:MAPBRAND_GOOGLEMAPS];
-    [mapBrands setObject:[MapBrand mapBrandWithData:[MapApple class] menuItem:MVCmenuBrandApple defaultString:@"apple" menuLabel:@"Apple Maps" key:MAPBRAND_APPLEMAPS] forKey:MAPBRAND_APPLEMAPS];
-    [mapBrands setObject:[MapBrand mapBrandWithData:[MapOSM class] menuItem:MVCmenuBrandOSM defaultString:@"osm" menuLabel:@"OSM" key:MAPBRAND_OSM] forKey:MAPBRAND_OSM];
-    [mapBrands setObject:[MapBrand mapBrandWithData:[MapESRIWorldTopo class] menuItem:MVCmenuBrandESRIWorldTopo defaultString:@"esri_worldtopo" menuLabel:@"ESRI WorldTopo" key:MAPBRAND_ESRI_WORLDTOPO] forKey:MAPBRAND_ESRI_WORLDTOPO];
+    NSMutableArray<MapBrand *> *mapBrands = [NSMutableArray arrayWithCapacity:5];
+    [mapBrands addObject:[MapBrand mapBrandWithData:[MapGoogle class] defaultString:@"google" menuLabel:@"Google Maps" key:MAPBRAND_GOOGLEMAPS]];
+    [mapBrands addObject:[MapBrand mapBrandWithData:[MapApple class] defaultString:@"apple" menuLabel:@"Apple Maps" key:MAPBRAND_APPLEMAPS]];
+    [mapBrands addObject:[MapBrand mapBrandWithData:[MapOSM class] defaultString:@"osm" menuLabel:@"OSM" key:MAPBRAND_OSM]];
+    [mapBrands addObject:[MapBrand mapBrandWithData:[MapESRIWorldTopo class] defaultString:@"esri_worldtopo" menuLabel:@"ESRI WorldTopo" key:MAPBRAND_ESRI_WORLDTOPO]];
 
     return mapBrands;
 }
@@ -72,27 +72,24 @@
 
     // Default map brand
     self.currentMapBrand = nil;
-    [mapBrands enumerateKeysAndObjectsUsingBlock:^(NSString *key, MapBrand *mb, BOOL *stop) {
+    [mapBrands enumerateObjectsUsingBlock:^(MapBrand *mb, NSUInteger idx, BOOL *stop) {
         if ([configManager.mapBrandDefault isEqualToString:mb.defaultString] == YES) {
             self.currentMapBrand = mb;
             *stop = YES;
         }
     }];
     if (self.currentMapBrand == nil)
-        self.currentMapBrand = [mapBrands objectForKey:@"applemaps"];
+        self.currentMapBrand = [MapBrand findMapBrand:MAPBRAND_APPLEMAPS brands:mapBrands];
 
     // Disable GoogleMaps if there is no key
     hasGMS = YES;
     if (keyManager.googlemaps == nil || [keyManager.googlemaps isEqualToString:@""] == YES)
         hasGMS = NO;
     if ([self.currentMapBrand.key isEqualToString:MAPBRAND_GOOGLEMAPS] == YES && hasGMS == NO)
-        self.currentMapBrand = [mapBrands objectForKey:@"applemaps"];
+        self.currentMapBrand = [MapBrand findMapBrand:MAPBRAND_APPLEMAPS brands:mapBrands];
 
     lmi = [[LocalMenuItems alloc] init:MVCmenuMax];
-    [mapBrands enumerateKeysAndObjectsUsingBlock:^(NSString *key, MapBrand *mb, BOOL * _Nonnull stop) {
-        [lmi addItem:mb.menuItem label:mb.menuLabel];
-    }];
-
+    [lmi addItem:MVCmenuBrandChange label:_(@"maptemplaceviewcontroller-Map Change")];
     [lmi addItem:MVCmenuMapMap label:_(@"maptemplateviewcontroller-Map")];
     [lmi addItem:MVCmenuMapAerial label:_(@"maptemplateviewcontroller-Aerial")];
     [lmi addItem:MVCmenuMapHybridMapAerial label:_(@"maptemplateviewcontroller-Map/Aerial")];
@@ -112,7 +109,6 @@
 
     self.map = [[self.currentMapBrand.mapObject alloc] initMapObject:self];
     self.map.staticHistory = self.staticHistory;
-    [lmi disableItem:self.currentMapBrand.menuItem];
 
     // Various map view options
     if ([self.map mapHasViewMap] == FALSE)
@@ -138,9 +134,6 @@
         [lmi disableItem:MVCmenuUseGNSS];
     else
         [lmi disableItem:MVCmenuUseGNSS];
-
-    if (keyManager.googlemaps == nil || [keyManager.googlemaps isEqualToString:@""] == YES)
-        [lmi disableItem:MVCmenuBrandGoogle];
 
     self.waypointsArray = nil;
 
@@ -192,7 +185,6 @@
     if (hasGMS == NO) {
         if (keyManager.googlemaps != nil && [keyManager.googlemaps isEqualToString:@""] == NO) {
             hasGMS = YES;
-            [lmi enableItem:MVCmenuBrandGoogle];
             [GMSServices provideAPIKey:keyManager.googlemaps];
         }
     }
@@ -598,6 +590,45 @@
 
 #pragma mark - Local menu related functions
 
+- (void)menuChangeMapbrand
+{
+    UIAlertController *view = [UIAlertController
+                               alertControllerWithTitle:_(@"maptemplateviewcontroller-Choose your map")
+                               message:nil
+                               preferredStyle:UIAlertControllerStyleActionSheet];
+    view.popoverPresentationController.sourceView = self.view;
+    view.popoverPresentationController.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0);
+
+    [mapBrands enumerateObjectsUsingBlock:^(MapBrand * _Nonnull mb, NSUInteger idx, BOOL * _Nonnull stop) {
+        // Do not enable Google Maps until available
+        if ([mb.key isEqualToString:MAPBRAND_GOOGLEMAPS] == YES && (keyManager.googlemaps == nil || [keyManager.googlemaps isEqualToString:@""] == YES))
+            return;
+
+        UIAlertAction *a = [UIAlertAction
+                            actionWithTitle:mb.key
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action) {
+                                [self menuChangeMapbrand:mb];
+                                [view dismissViewControllerAnimated:YES completion:nil];
+                            }];
+        [view addAction:a];
+    }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel")
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [view dismissViewControllerAnimated:YES completion:nil];
+                             }];
+    [view addAction:cancel];
+
+    [ALERT_VC_RVC(self) presentViewController:view animated:YES completion:nil];
+
+    // Just check if we can do this...
+
+}
+
 - (void)menuChangeMapbrand:(MapBrand *)mapBrand
 {
     CLLocationCoordinate2D currentCoords = [self.map currentCenter];
@@ -606,7 +637,6 @@
     NSLog(@"currentZoom: %f", currentZoom);
 
     [self removeDistanceLabel];
-//    [map removeMarkers];
     [self.map removeCamera];
     [self.map removeMap];
 
@@ -614,13 +644,9 @@
         [b removeFromSuperview];
     }
 
-    [mapBrands enumerateKeysAndObjectsUsingBlock:^(NSString *key, MapBrand *mb, BOOL * _Nonnull stop) {
-        [lmi enableItem:mb.menuItem];
-    }];
     NSLog(@"Switching to %@", mapBrand.key);
     self.map = [[mapBrand.mapObject alloc] initMapObject:self];
     self.map.staticHistory = self.staticHistory;
-    [lmi disableItem:mapBrand.menuItem];
     self.currentMapBrand = mapBrand;
 
     // Various map view options
@@ -641,10 +667,6 @@
     else
         [lmi enableItem:MVCmenuMapTerrain];
 
-    // Just check if we can do this...
-    if (keyManager.googlemaps == nil || [keyManager.googlemaps isEqualToString:@""] == YES)
-        [lmi disableItem:MVCmenuBrandGoogle];
-
     [self.map initMap];
     [self.map mapViewDidLoad];
     [self.map initCamera:currentCoords];
@@ -655,7 +677,6 @@
     [self recalculateRects];
 
     [self refreshWaypointsData];
-//    [map placeMarkers];
 
     [self.map mapViewDidAppear];
     [self menuShowWhom:self.followWhom];
@@ -947,17 +968,12 @@
             [self menuRemoveHistory];
             return;
 
+        case MVCmenuBrandChange:
+            [self menuChangeMapbrand];
+            return;
+
         case MVCmenuMax:
             break;
-
-        default:
-            [mapBrands enumerateKeysAndObjectsUsingBlock:^(NSString *key, MapBrand * _Nonnull mb, BOOL * _Nonnull stop) {
-                if (item == mb.menuItem) {
-                    [self menuChangeMapbrand:mb];
-                    *stop = YES;
-                }
-            }];
-            return;
     }
 
     [super performLocalMenuAction:index];

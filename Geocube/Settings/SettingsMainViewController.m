@@ -86,10 +86,10 @@ enum {
     [self calculateDynamicmapSpeedsDistances];
     [self calculateMapcache];
 
-    NSDictionary *mapBrands = [MapTemplateViewController initMapBrands];
+    NSArray<MapBrand *> *mapBrands = [MapTemplateViewController initMapBrands];
     NSMutableArray<NSString *> *codes = [NSMutableArray arrayWithCapacity:[mapBrands count]];
     NSMutableArray<NSString *> *names = [NSMutableArray arrayWithCapacity:[mapBrands count]];
-    [mapBrands enumerateKeysAndObjectsUsingBlock:^(NSString *key, MapBrand *mp, BOOL *stop) {
+    [mapBrands enumerateObjectsUsingBlock:^(MapBrand * _Nonnull mp, NSUInteger idx, BOOL * _Nonnull stop) {
         [codes addObject:mp.defaultString];
         [names addObject:mp.key];
     }];

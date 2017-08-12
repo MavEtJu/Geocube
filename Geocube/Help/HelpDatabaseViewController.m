@@ -153,8 +153,8 @@ enum {
     [fs addObject:@"Files directory size"];
     [self reloadDataMainQueue];
 
-    NSDictionary<NSString *, MapBrand *> *d = [MapTemplateViewController initMapBrands];
-    [d enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, MapBrand * _Nonnull mb, BOOL * _Nonnull stop) {
+    NSArray<MapBrand *> *mbs = [MapTemplateViewController initMapBrands];
+    [mbs enumerateObjectsUsingBlock:^(MapBrand * _Nonnull mb, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([mb.mapObject respondsToSelector:@selector(cachePrefix)] == NO)
             return;
         NSString *prefix = [mb.mapObject cachePrefix];
