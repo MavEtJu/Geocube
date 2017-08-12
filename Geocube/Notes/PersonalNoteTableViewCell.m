@@ -47,7 +47,8 @@
 
 - (void)setNote:(dbPersonalNote *)pn
 {
-    self.labelCode.text = pn.wp_name;
+    dbWaypoint *wp = [dbWaypoint dbGetByName:pn.wp_name];
+    self.labelCode.text = [NSString stringWithFormat:@"%@ - %@", wp.wpt_name, wp.wpt_urlname];
     self.labelNote.text = pn.note;
 }
 

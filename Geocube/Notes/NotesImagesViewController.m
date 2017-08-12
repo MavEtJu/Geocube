@@ -61,7 +61,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     dbWaypoint *wp = [waypointsWithImages objectAtIndex:section];
-    return wp.wpt_urlname;
+    return [NSString stringWithFormat:@"%@ - %@", wp.wpt_name, wp.wpt_urlname];
 }
 
 // Return a cell for the index path
