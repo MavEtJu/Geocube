@@ -17,8 +17,8 @@
                 <outlet property="ivWPSize" destination="Jz2-k2-g3E" id="RGw-N0-5ar"/>
                 <outlet property="labelAccuracy" destination="jnU-yj-LIk" id="QlO-Xr-uBL"/>
                 <outlet property="labelAltitude" destination="eZx-5p-oL3" id="qCZ-FH-IZa"/>
-                <outlet property="labelGNSSAccuracy" destination="jnU-yj-LIk" id="hNx-eg-XJt"/>
-                <outlet property="labelGNSSAltitude" destination="eZx-5p-oL3" id="CdT-AC-gBu"/>
+                <outlet property="labelGNSSAccuracy" destination="gk8-n8-Tou" id="5ap-tg-h65"/>
+                <outlet property="labelGNSSAltitude" destination="fqO-ai-Uwp" id="ZCb-F4-8PL"/>
                 <outlet property="labelGNSSDistance" destination="EKb-o1-rY3" id="nFw-qQ-CyC"/>
                 <outlet property="labelGNSSLat" destination="YBD-qe-PvF" id="vdc-Lg-PMr"/>
                 <outlet property="labelGNSSLon" destination="g2Q-bb-id8" id="piP-nf-Wcz"/>
