@@ -97,8 +97,13 @@ enum {
         return [[dbc Types] count];
     if (section == IMAGES_PINS_ONE && [[dbc Pins] count] != 0)
         return 10;
-    if (section == IMAGES_TYPES_ONE)
+    if (section == IMAGES_TYPES_ONE) {
+        if ([dbc Type_get_byminor:@"Traditional"] == nil) {
+            // Data isn't loaded yet. Only make 1 cell so that it can warn user.
+            return 1;
+        }
         return 10;
+    }
     if (section == IMAGES_IMAGES)
         return imgCount;
     return 0;
@@ -178,6 +183,17 @@ enum {
     if (indexPath.section == IMAGES_TYPES_ONE) {
         dbType *type = [dbc Type_get_byminor:@"Traditional"];
 
+        // If the user hasn't imported settings, then there won't be any images for this type.
+        // Just display a simple message and leave it blank.
+        if (type == nil) {
+            // XXX Let the previous cell just go away. Not sure if this is a memory leak, but
+            // XXX it's really not important right now -- until the user imports real data, there
+            // XXX isn't much they can really do.
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+            cell.textLabel.text = @"Image unavailable";
+            cell.detailTextLabel.text = @"You need to import data before this image is available.";
+            return cell;
+        }
         switch (indexPath.row) {
             case 0:
                 cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];

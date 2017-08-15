@@ -192,6 +192,10 @@
 
 - (dbType *)Type_get_byminor:(NSString *)minor
 {
+    // If the user hasn't import settings, then this will be empty.
+    if ([self.Types count] == 0) {
+        return nil;
+    }
     NSAssert([self.Types count] != 0, @"Types");
     __block dbType *_ct = nil;
     [self.Types enumerateObjectsUsingBlock:^(dbType *ct, NSUInteger idx, BOOL *stop) {
