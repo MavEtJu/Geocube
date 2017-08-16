@@ -60,7 +60,7 @@
     country_order = @[@"country"
                      ];
 
-    urlFormat = @"https://api.opencagedata.com/geocode/v1/json?q=%f,%f&no_annotations=1&key=%@";
+    urlFormat = @"https://api.opencagedata.com/geocode/v1/json?q=%f,%f&no_annotations=1&key=%@&language=en";
     queue = [NSMutableArray arrayWithCapacity:20];
     isRunning = NO;
     disabled = NO;
