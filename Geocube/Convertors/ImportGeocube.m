@@ -350,7 +350,6 @@ typedef NS_ENUM(NSInteger, Type) {
 
         dbProtocol *protocol = [dbProtocol dbGetByName:protocol_string];
 
-
         dbAccount *a = [dbAccount dbGetBySite:_site];
         if (a == nil) {
             a = [[dbAccount alloc] init];
