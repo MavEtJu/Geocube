@@ -19,7 +19,9 @@ The shared secrets are (currently only) used to hide the API keys
 hidden downloaded via geocube_sites.geocube:
 
     <oauth_key_public sharedsecret="1">
+
 is encoded with "shared_secret_1":
+
     <key>sharedsecret_1</key>
     <string>foobar</string>
 
