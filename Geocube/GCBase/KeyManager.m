@@ -50,6 +50,10 @@
 - (NSString *)decrypt:(NSString *)key data:(NSString *)encryptedString
 {
     NSString *password = [keyManager sharedSecret:key];
+    if (password == nil) {
+        NSLog(@"No password for %@, skipping decrypt", key);
+        return nil;
+    }
     NSError *error = nil;
     NSData *encryptedData = [[NSData alloc] initWithBase64EncodedString:encryptedString options:0];
     NSData *decryptedData = [RNDecryptor decryptData:encryptedData withPassword:password error:&error];

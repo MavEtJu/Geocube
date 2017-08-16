@@ -310,6 +310,9 @@ typedef NS_ENUM(NSInteger, Type) {
         NSString *revision = [site objectForKey:@"revision"];
         NSString *_site = [site objectForKey:@"site"];
         NSString *enabled = [site objectForKey:@"enabled"];
+        BOOL enabledBool = NO;
+        if ([enabled isEqualToString:@"YES"] == YES)
+            enabledBool = YES;
 
         KEY(site, gca_authenticate_url, @"gca_authenticate_url");
         KEY(site, gca_callback_url, @"gca_callback_url");
@@ -323,10 +326,22 @@ typedef NS_ENUM(NSInteger, Type) {
         KEY(site, oauth_url_authorize, @"oauth_url_authorize");
         KEY(site, oauth_url_request, @"oauth_url_request");
 
-        if (oauth_key_private_ss != nil)
+        if (oauth_key_private_ss != nil) {
             oauth_key_private = [keyManager decrypt:oauth_key_private_ss data:oauth_key_private];
-        if (oauth_key_public_ss != nil)
+            if (oauth_key_private == nil) {
+                NSLog(@"Couldn't find oauth private key for %@. This means that EncryptionKeys.plist is missing data", oauth_key_private_ss);
+                // To keep the program from crashing, disable this account.
+                enabledBool = NO;
+            }
+        }
+        if (oauth_key_public_ss != nil) {
             oauth_key_public = [keyManager decrypt:oauth_key_public_ss data:oauth_key_public];
+            if (oauth_key_public == nil) {
+                NSLog(@"Couldn't find oauth public key for %@. This means that EncryptionKeys.plist is missing data", oauth_key_public_ss);
+                // To keep the program from crashing, disable this account.
+                enabledBool = NO;
+            }
+        }
 
         KEY(site, protocol_string, @"protocol");
         KEY(site, url_queries, @"queries");
@@ -335,9 +350,6 @@ typedef NS_ENUM(NSInteger, Type) {
 
         dbProtocol *protocol = [dbProtocol dbGetByName:protocol_string];
 
-        BOOL enabledBool = NO;
-        if ([enabled isEqualToString:@"YES"] == YES)
-            enabledBool = YES;
 
         dbAccount *a = [dbAccount dbGetBySite:_site];
         if (a == nil) {
