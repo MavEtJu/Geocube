@@ -81,7 +81,7 @@ sub loadfile {
 		# "Queries" = "nl-Queries";
 
 		# // comments
-		$line =~ s/\/\/.*//;
+		$line =~ s/\/\/ .*//;
 		# /* comments */
 		$line =~ s/\/\*.*\*\///;
 
