@@ -27,3 +27,6 @@ is encoded with "shared_secret_1":
 
 
 Then build and run!
+
+After you have made changes, run ./lint.sh. It will check for style
+and completeness issues like configuration, localization etc.
