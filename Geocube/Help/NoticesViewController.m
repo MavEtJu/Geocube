@@ -66,7 +66,7 @@ enum {
 
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:_(@"noticesviewcontroller-Initialize notices")
-                                message:_(@"noticesviewcontroller-Currently no notices details have been download. Normally you update them by tapping on the local menu button at the top left and select 'Download notices'. But for now you can update them by pressing the 'Import' button")
+                                message:_(@"noticesviewcontroller-Currently no notices details have been downloaded. Normally you update them by tapping on the local menu button at the top right and select 'Download notices'. But for now you can update them by pressing the 'Import' button")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *import = [UIAlertAction
