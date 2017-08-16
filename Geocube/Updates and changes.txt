@@ -29,6 +29,7 @@ Version 1.4(x)
   - Not all logtypes were recognized on GCA.
   - Removed some duplicate/obsolete fields from the database tables.
   - GPS -> GNNS.
+  - Fixed the sometimes disappearance of the Local Menu button.
 
 Version 1.3(26)
 
