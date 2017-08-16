@@ -169,7 +169,7 @@ static const NSInteger TagOffset = 1000;
 	NSUInteger count = [self.viewControllers count];
     BOOL portrait = (self.view.bounds.size.width < self.view.bounds.size.height);
 
-	CGRect rect = CGRectMake(globalMenuButton.frame.size.width, 0.0f, floorf((self.view.bounds.size.width - 2 * globalMenuButton.frame.size.width) / count), self.tabBarHeight);
+    CGRect rect = CGRectMake(globalMenuButton.frame.size.width, 0.0f, floorf((self.view.bounds.size.width - 2 * globalMenuButton.frame.size.width) / count), self.tabBarHeight);
 //	rect = CGRectMake(0, 0.0f, floorf((self.view.bounds.size.width) / count), self.tabBarHeight);
 
 	indicatorImageView.hidden = YES;
@@ -431,6 +431,20 @@ static const NSInteger TagOffset = 1000;
     UIButton *b = localMenuButton;
     UIImage *imgMenu = currentTheme.menuLocalIcon;
     b.frame = CGRectMake(bounds.size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
+
+    // https://github.com/MavEtJu/Geocube/pull/1
+    // XXX menuGlobal.menuLocalButton can get out of sync with localMenuButton.
+    // XXX I'm not sure why you even have multiple local menu buttons, but
+    // XXX you need to ensure that menuGlobal.menuLocalButton is set to the
+    // XXX appropriate one!
+    if (localMenuButton != menuGlobal.menuLocalButton) {
+        NSLog(@"Warning! menuGlobal doesn't have the same local menu button!");
+        menuGlobal.menuLocalButton = localMenuButton;
+    }
+    if (globalMenuButton != menuGlobal.menuGlobalButton) {
+        NSLog(@"XXX menuGlobal doesn't have the same global menu button");
+        menuGlobal.menuGlobalButton = globalMenuButton;
+    }
 }
 
 - (void)resizeController:(CGSize)size coordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
