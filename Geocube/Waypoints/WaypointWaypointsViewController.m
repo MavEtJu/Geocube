@@ -238,6 +238,8 @@ enum {
                     [wp finish];
                     [wp dbCreate];
 
+                    [opencageManager addForProcessing:wp];
+
                     [dbc.Group_AllWaypoints_ManuallyAdded addWaypointToGroup:wp];
                     [dbc.Group_AllWaypoints addWaypointToGroup:wp];
 
