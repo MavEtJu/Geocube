@@ -23,10 +23,7 @@
 
 typedef NS_ENUM(NSInteger, MVMenuItem) {
     MVCmenuBrandChange,
-    MVCmenuMapMap,
-    MVCmenuMapAerial,
-    MVCmenuMapHybridMapAerial,
-    MVCmenuMapTerrain,
+    MVCmenuMapType,
     MVCmenuLoadWaypoints,
     MVCmenuDirections,
     MVCmenuAutoZoom,

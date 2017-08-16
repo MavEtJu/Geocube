@@ -90,10 +90,7 @@
 
     lmi = [[LocalMenuItems alloc] init:MVCmenuMax];
     [lmi addItem:MVCmenuBrandChange label:_(@"maptemplaceviewcontroller-Map Change")];
-    [lmi addItem:MVCmenuMapMap label:_(@"maptemplateviewcontroller-Map")];
-    [lmi addItem:MVCmenuMapAerial label:_(@"maptemplateviewcontroller-Aerial")];
-    [lmi addItem:MVCmenuMapHybridMapAerial label:_(@"maptemplateviewcontroller-Map/Aerial")];
-    [lmi addItem:MVCmenuMapTerrain label:_(@"maptemplateviewcontroller-Terrain")];
+    [lmi addItem:MVCmenuMapType label:_(@"maptemplateviewcontroller-Map Type")];
 
     [lmi addItem:MVCmenuLoadWaypoints label:_(@"maptemplateviewcontroller-Load waypoints")];
     [lmi addItem:MVCmenuDirections label:_(@"maptemplateviewcontroller-Directions")];
@@ -109,16 +106,6 @@
 
     self.map = [[self.currentMapBrand.mapObject alloc] initMapObject:self];
     self.map.staticHistory = self.staticHistory;
-
-    // Various map view options
-    if ([self.map mapHasViewMap] == FALSE)
-        [lmi disableItem:MVCmenuMapMap];
-    if ([self.map mapHasViewAerial] == FALSE)
-        [lmi disableItem:MVCmenuMapAerial];
-    if ([self.map mapHasViewHybridMapAerial] == FALSE)
-        [lmi disableItem:MVCmenuMapHybridMapAerial];
-    if ([self.map mapHasViewTerrain] == FALSE)
-        [lmi disableItem:MVCmenuMapTerrain];
 
     if (waypointManager.currentWaypoint == nil)
         [lmi disableItem:MVCmenuRemoveTarget];
@@ -154,22 +141,6 @@
     [self recalculateRects];
 
     [self makeInfoView];
-
-    // This has to happen as last as it isn't initialized until the map is shown
-    switch ([self.map mapType]) {
-        case MAPTYPE_NORMAL:
-            [lmi disableItem:MVCmenuMapMap];
-            break;
-        case MAPTYPE_AERIAL:
-            [lmi disableItem:MVCmenuMapAerial];
-            break;
-        case MAPTYPE_HYBRIDMAPAERIAL:
-            [lmi disableItem:MVCmenuMapHybridMapAerial];
-            break;
-        case MAPTYPE_TERRAIN:
-            [lmi disableItem:MVCmenuMapTerrain];
-            break;
-    }
 
     needsRefresh = YES;
     isVisible = NO;
@@ -624,9 +595,6 @@
     [view addAction:cancel];
 
     [ALERT_VC_RVC(self) presentViewController:view animated:YES completion:nil];
-
-    // Just check if we can do this...
-
 }
 
 - (void)menuChangeMapbrand:(MapBrand *)mapBrand
@@ -649,24 +617,6 @@
     self.map.staticHistory = self.staticHistory;
     self.currentMapBrand = mapBrand;
 
-    // Various map view options
-    if ([self.map mapHasViewMap] == FALSE)
-        [lmi disableItem:MVCmenuMapMap];
-    else
-        [lmi enableItem:MVCmenuMapMap];
-    if ([self.map mapHasViewAerial] == FALSE)
-        [lmi disableItem:MVCmenuMapAerial];
-    else
-        [lmi enableItem:MVCmenuMapAerial];
-    if ([self.map mapHasViewHybridMapAerial] == FALSE)
-        [lmi disableItem:MVCmenuMapHybridMapAerial];
-    else
-        [lmi enableItem:MVCmenuMapHybridMapAerial];
-    if ([self.map mapHasViewTerrain] == FALSE)
-        [lmi disableItem:MVCmenuMapTerrain];
-    else
-        [lmi enableItem:MVCmenuMapTerrain];
-
     [self.map initMap];
     [self.map mapViewDidLoad];
     [self.map initCamera:currentCoords];
@@ -684,58 +634,68 @@
     [self.map showBoundaries:showBoundaries];
 
     [self updateLocationManagerLocation];
-
-    // This has to happen as last as it isn't initialized until the map is shown
-    switch ([self.map mapType]) {
-        case MAPTYPE_NORMAL:
-            [lmi disableItem:MVCmenuMapMap];
-            break;
-        case MAPTYPE_AERIAL:
-            [lmi disableItem:MVCmenuMapAerial];
-            break;
-        case MAPTYPE_HYBRIDMAPAERIAL:
-            [lmi disableItem:MVCmenuMapHybridMapAerial];
-            break;
-        case MAPTYPE_TERRAIN:
-            [lmi disableItem:MVCmenuMapTerrain];
-            break;
-    }
-
 }
 
-- (void)menuMapType:(GCMapType)maptype
+- (void)menuMapType
 {
-    switch ([self.map mapType]) {
-        case MAPTYPE_NORMAL:
-            [lmi enableItem:MVCmenuMapMap];
-            break;
-        case MAPTYPE_AERIAL:
-            [lmi enableItem:MVCmenuMapAerial];
-            break;
-        case MAPTYPE_HYBRIDMAPAERIAL:
-            [lmi enableItem:MVCmenuMapHybridMapAerial];
-            break;
-        case MAPTYPE_TERRAIN:
-            [lmi enableItem:MVCmenuMapTerrain];
-            break;
+    UIAlertController *view = [UIAlertController
+                               alertControllerWithTitle:_(@"maptemplateviewcontroller-Choose the map type")
+                               message:nil
+                               preferredStyle:UIAlertControllerStyleActionSheet];
+    view.popoverPresentationController.sourceView = self.view;
+    view.popoverPresentationController.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0);
+
+    if ([self.map mapHasViewMap] == TRUE) {
+        UIAlertAction *a = [UIAlertAction
+                            actionWithTitle:_(@"maptemplateviewcontroller-Map")
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action) {
+                                [self.map setMapType:MAPTYPE_NORMAL];
+                                [view dismissViewControllerAnimated:YES completion:nil];
+                            }];
+        [view addAction:a];
+    }
+    if ([self.map mapHasViewAerial] == TRUE) {
+        UIAlertAction *a = [UIAlertAction
+                            actionWithTitle:_(@"maptemplateviewcontroller-Aerial")
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action) {
+                                [self.map setMapType:MAPTYPE_AERIAL];
+                                [view dismissViewControllerAnimated:YES completion:nil];
+                            }];
+        [view addAction:a];
+    }
+    if ([self.map mapHasViewHybridMapAerial] == TRUE) {
+        UIAlertAction *a = [UIAlertAction
+                            actionWithTitle:_(@"maptemplateviewcontroller-Map/Aerial")
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action) {
+                                [self.map setMapType:MAPTYPE_HYBRIDMAPAERIAL];
+                                [view dismissViewControllerAnimated:YES completion:nil];
+                            }];
+        [view addAction:a];
+    }
+    if ([self.map mapHasViewTerrain] == TRUE) {
+        UIAlertAction *a = [UIAlertAction
+                            actionWithTitle:_(@"maptemplateviewcontroller-Terrain")
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action) {
+                                [self.map setMapType:MAPTYPE_TERRAIN];
+                                [view dismissViewControllerAnimated:YES completion:nil];
+                            }];
+        [view addAction:a];
     }
 
-    [self.map setMapType:maptype];
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel")
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [view dismissViewControllerAnimated:YES completion:nil];
+                             }];
+    [view addAction:cancel];
 
-    switch ([self.map mapType]) {
-        case MAPTYPE_NORMAL:
-            [lmi disableItem:MVCmenuMapMap];
-            break;
-        case MAPTYPE_AERIAL:
-            [lmi disableItem:MVCmenuMapAerial];
-            break;
-        case MAPTYPE_HYBRIDMAPAERIAL:
-            [lmi disableItem:MVCmenuMapHybridMapAerial];
-            break;
-        case MAPTYPE_TERRAIN:
-            [lmi disableItem:MVCmenuMapTerrain];
-            break;
-    }
+    [ALERT_VC_RVC(self) presentViewController:view animated:YES completion:nil];
 }
 
 - (NSString *)translateURLType:(dbExternalMapURL *)url
@@ -925,17 +885,8 @@
 {
     MVMenuItem item = index;
     switch (item) {
-        case MVCmenuMapMap: /* Map view */
-            [self menuMapType:MAPTYPE_NORMAL];
-            return;
-        case MVCmenuMapAerial: /* Aerial view */
-            [self menuMapType:MAPTYPE_AERIAL];
-            return;
-        case MVCmenuMapHybridMapAerial: /* Hybrid view */
-            [self menuMapType:MAPTYPE_HYBRIDMAPAERIAL];
-            return;
-        case MVCmenuMapTerrain: /* Terrain view */
-            [self menuMapType:MAPTYPE_TERRAIN];
+        case MVCmenuMapType: /* Map view */
+            [self menuMapType];
             return;
 
         case MVCmenuDirections:
