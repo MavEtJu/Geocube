@@ -23,6 +23,7 @@
 {
     NSString *code;
     NSString *name;
+    dbAccount *account;
     CLLocationCoordinate2D coords;
     UIAlertAction *coordsOkButton;
     UITextField *coordsLatitude;
@@ -37,6 +38,7 @@ enum {
     cellCode = 0,
     cellName,
     cellCoords,
+    cellAccount,
     cellSubmit,
     cellMax
 };
@@ -94,6 +96,8 @@ enum {
     GCTableViewCellWithSubtitle *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
 
     cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.userInteractionEnabled = YES;
+    cell.textLabel.textColor = currentTheme.labelTextColor;
     switch (indexPath.row) {
         case cellCode:
             cell.textLabel.text = _(@"waypointaddviewcontroller-Waypoint code");
@@ -107,10 +111,21 @@ enum {
             cell.textLabel.text = _(@"waypointaddviewcontroller-Coords");
             cell.detailTextLabel.text = [Coordinates niceCoordinates:coords];
             break;
+        case cellAccount:
+            cell.textLabel.text = _(@"waypointaddviewcontroller-Account");
+            if (account == nil)
+                cell.detailTextLabel.text = _(@"waypointaddviewcontroller-None chosen yet");
+            else
+                cell.detailTextLabel.text = account.site;
+            break;
         case cellSubmit:
             cell.textLabel.text = _(@"waypointaddviewcontroller-Create this waypoint");
             cell.detailTextLabel.text = @"";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            if (account == nil) {
+                cell.textLabel.textColor = currentTheme.labelTextColorDisabled;
+                cell.userInteractionEnabled = NO;
+            }
             break;
     }
 
@@ -129,10 +144,39 @@ enum {
         case cellCoords:
             [self updateCoords];
             break;
+        case cellAccount:
+            [self updateAccount:[aTableView cellForRowAtIndexPath:indexPath]];
+            break;
         case cellSubmit:
             [self updateSubmit];
             break;
     }
+}
+
+- (void)updateAccount:(UITableViewCell *)tablecell
+{
+    NSMutableArray<dbAccount *> *accounts = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray<NSString *> *accountNames = [NSMutableArray arrayWithCapacity:10];
+    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
+        if (IS_EMPTY(a.accountname.name) == YES)
+            return;
+        [accountNames addObject:a.site];
+        [accounts addObject:a];
+    }];
+
+    [ActionSheetStringPicker
+     showPickerWithTitle:_(@"waypointaddviewcontroller-Select the account")
+     rows:accountNames
+     initialSelection:configManager.lastImportSource
+     doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+         account = [accounts objectAtIndex:selectedIndex];
+         [self.tableView reloadData];
+     }
+     cancelBlock:^(ActionSheetStringPicker *picker) {
+         NSLog(@"Block Picker Canceled");
+     }
+     origin:tablecell
+    ];
 }
 
 - (void)updateCode
@@ -284,6 +328,7 @@ enum {
     wp.wpt_urlname = [NSString stringWithFormat:@"%@ - %@", code, name];
     wp.wpt_symbol = [dbc Symbol_VirtualStage];
     wp.wpt_type = [dbc Type_ManuallyEntered];
+    wp.account = account;
     [wp finish];
     [wp dbCreate];
 
@@ -292,6 +337,7 @@ enum {
     [dbc.Group_ManualWaypoints addWaypointToGroup:wp];
 
     [waypointManager needsRefreshAdd:wp];
+    [opencageManager addForProcessing:wp];
 
     [self.navigationController popViewControllerAnimated:YES];
 }
