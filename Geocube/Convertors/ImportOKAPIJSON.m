@@ -332,7 +332,7 @@
  }
 */
 
-    LogStringWPType wptype = [dbLogString wptTypeToLogType:wp.wpt_type.type_full];
+    LogStringWPType wptype = [dbLogString wptTypeToWPType:wp.wpt_type.type_full];
     NSString *type;
     NSString *date;
     NSInteger dateSinceEpoch;

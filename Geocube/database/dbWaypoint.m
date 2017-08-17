@@ -40,7 +40,7 @@ TABLENAME(@"waypoints")
 
 - (void)finish
 {
-    self.logstring_wptype = [dbLogString wptTypeToLogType:self.wpt_type.type_full];
+    self.logstring_wptype = [dbLogString wptTypeToWPType:self.wpt_type.type_full];
     [super finish];
 }
 

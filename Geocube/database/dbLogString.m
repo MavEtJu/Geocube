@@ -181,7 +181,7 @@ TABLENAME(@"log_strings")
 
 /* Other methods */
 
-+ (LogStringWPType)stringToLogtype:(NSString *)string
++ (LogStringWPType)stringToWPtype:(NSString *)string
 {
     if ([string isEqualToString:@"Event"] == YES)
         return LOGSTRING_WPTYPE_EVENT;
@@ -198,7 +198,7 @@ TABLENAME(@"log_strings")
     return LOGSTRING_WPTYPE_UNKNOWN;
 }
 
-+ (LogStringWPType)wptTypeToLogType:(NSString *)type_full
++ (LogStringWPType)wptTypeToWPType:(NSString *)type_full
 {
     if ([type_full isEqualToString:@"Geocache|Event Cache"] == YES ||
         [type_full isEqualToString:@"Geocache|Event"] == YES ||

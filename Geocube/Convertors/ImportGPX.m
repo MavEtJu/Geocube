@@ -375,7 +375,7 @@
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:type"] == YES) {
-                    LogStringWPType wptype = [dbLogString wptTypeToLogType:currentWP.wpt_type.type_full];
+                    LogStringWPType wptype = [dbLogString wptTypeToWPType:currentWP.wpt_type.type_full];
                     NSAssert(wptype != 0, @"wptype != 0");
                     currentLog.logstring = [dbc LogString_get_bytype:account wptype:wptype type:cleanText];
                     NSAssert(currentLog.logstring != nil, @"currentLog.logstring != nil");

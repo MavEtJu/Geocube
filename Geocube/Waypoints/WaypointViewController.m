@@ -819,7 +819,7 @@ enum {
 
 - (void)addLog:(NSString *)text
 {
-    LogStringWPType wptype = [dbLogString wptTypeToLogType:waypoint.wpt_type.type_full];
+    LogStringWPType wptype = [dbLogString wptTypeToWPType:waypoint.wpt_type.type_full];
     dbLogString *logstring = [dbLogString dbGetByProtocolLogtypeDefault:waypoint.account.protocol wptype:wptype default:LOGSTRING_DEFAULT_NOTE];
 
     [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:time(NULL) note:text needstobelogged:NO locallog:YES coordinates:LM.coords];

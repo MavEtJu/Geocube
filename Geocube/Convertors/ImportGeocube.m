@@ -719,7 +719,7 @@ typedef NS_ENUM(NSInteger, Type) {
             logtypes = @[logtypes];
         [logtypes enumerateObjectsUsingBlock:^(NSDictionary *logtypedict, NSUInteger idx, BOOL * _Nonnull stop) {
             NSString *logtype_type = [logtypedict objectForKey:@"type"];
-            LogStringWPType wptype = [dbLogString stringToLogtype:logtype_type];
+            LogStringWPType wptype = [dbLogString stringToWPtype:logtype_type];
             NSArray<NSDictionary *> *logs = [logtypedict objectForKey:@"log"];
             [logs enumerateObjectsUsingBlock:^(NSDictionary *logdict, NSUInteger idx, BOOL * _Nonnull stop) {
                 NSString *displaystring = [logdict objectForKey:@"displaystring"];

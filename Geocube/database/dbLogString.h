@@ -61,8 +61,8 @@ typedef NS_ENUM(NSInteger, LogStringDefault) {
 @property (nonatomic) NSInteger icon;
 
 + (NSArray<dbLogString *> *)dbAll;
-+ (LogStringWPType)stringToLogtype:(NSString *)string;
-+ (LogStringWPType)wptTypeToLogType:(NSString *)type_full;
++ (LogStringWPType)stringToWPtype:(NSString *)string;
++ (LogStringWPType)wptTypeToWPType:(NSString *)type_full;
 + (NSArray<dbLogString *> *)dbAllByProtocol:(dbProtocol *)protocol;
 + (dbLogString *)dbGet_byProtocolLogtypeType:(dbProtocol *)protocl wptype:(LogStringWPType)wptype type:(NSString *)type;
 + (NSArray<dbLogString *> *)dbAllByProtocolLogtype_All:(dbProtocol *)protocol wptype:(LogStringWPType)wptype;
