@@ -31,7 +31,7 @@ TABLENAME(@"log_strings")
 {
     ASSERT_SELF_FIELD_EXISTS(protocol);
     @synchronized(db) {
-        DB_PREPARE(@"insert into log_strings(display_string, log_string, logtype, protocol_id, default_note, default_found, icon, forlogs, found, default_visit, default_dropoff, default_pickup, default_discover) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into log_strings(display_string, log_string, wptype, protocol_id, default_note, default_found, icon, forlogs, found, default_visit, default_dropoff, default_pickup, default_discover) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT( 1, self.displayString);
         SET_VAR_TEXT( 2, self.logString);
@@ -58,7 +58,7 @@ TABLENAME(@"log_strings")
 - (void)dbUpdate
 {
     @synchronized(db) {
-        DB_PREPARE(@"update log_strings set display_string = ?, log_string = ?, logtype = ?, protocol_id = ?, default_note = ?, default_found = ?, icon= ?, forlogs = ?, found = ?, default_visit = ?, default_dropoff = ?, default_pickup = ?, default_discover = ? where id = ?");
+        DB_PREPARE(@"update log_strings set display_string = ?, log_string = ?, wptype = ?, protocol_id = ?, default_note = ?, default_found = ?, icon= ?, forlogs = ?, found = ?, default_visit = ?, default_dropoff = ?, default_pickup = ?, default_discover = ? where id = ?");
 
         SET_VAR_TEXT( 1, self.displayString);
         SET_VAR_TEXT( 2, self.logString);
@@ -85,7 +85,7 @@ TABLENAME(@"log_strings")
     NSMutableArray<dbLogString *> *lss = [[NSMutableArray alloc] initWithCapacity:20];
     NSId i;
 
-    NSMutableString *sql = [NSMutableString stringWithString:@"select id, display_string, log_string, logtype, protocol_id, default_note, default_found, icon, forlogs, found, default_visit, default_dropoff, default_pickup, default_discover from log_strings "];
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, display_string, log_string, wptype, protocol_id, default_note, default_found, icon, forlogs, found, default_visit, default_dropoff, default_pickup, default_discover from log_strings "];
     if (where != nil)
         [sql appendString:where];
 
@@ -128,22 +128,22 @@ TABLENAME(@"log_strings")
 
 + (NSArray<dbLogString *> *)dbAllByProtocolLogtype_All:(dbProtocol *)protocol wptype:(LogStringWPType)wptype
 {
-    return [dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? order by id" keys:@"ii" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:wptype]]];
+    return [dbLogString dbAllXXX:@"where protocol_id = ? and wptype = ? order by id" keys:@"ii" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:wptype]]];
 }
 
 + (NSArray<dbLogString *> *)dbAllByProtocolLogtype_LogOnly:(dbProtocol *)protocol wptype:(LogStringWPType)wptype
 {
-    return [dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and forlogs = 1 order by id" keys:@"ii" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:wptype]]];
+    return [dbLogString dbAllXXX:@"where protocol_id = ? and wptype = ? and forlogs = 1 order by id" keys:@"ii" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:wptype]]];
 }
 
 + (dbLogString *)dbGet_byProtocolLogtypeType:(dbProtocol *)protocol wptype:(LogStringWPType)wptype type:(NSString *)type;
 {
-    return [[dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and type = ? order by id" keys:@"iis" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:wptype], type]] firstObject];
+    return [[dbLogString dbAllXXX:@"where protocol_id = ? and wptype = ? and type = ? order by id" keys:@"iis" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:wptype], type]] firstObject];
 }
 
 + (dbLogString *)dbGetByProtocolEventType:(dbProtocol *)protocol wptype:(LogStringWPType)wptype type:(NSString *)type
 {
-    return [[dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and type = ? order by id" keys:@"iis" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:wptype], type]] firstObject];
+    return [[dbLogString dbAllXXX:@"where protocol_id = ? and wptype = ? and type = ? order by id" keys:@"iis" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:wptype], type]] firstObject];
 }
 
 + (dbLogString *)dbGetByProtocolLogtypeDefault:(dbProtocol *)protocol wptype:(LogStringWPType)wptype default:(LogStringDefault)dflt
@@ -172,7 +172,7 @@ TABLENAME(@"log_strings")
             NSAssert1(NO, @"Unknown default field: %ld", (long)dflt);
     }
 
-    NSString *where = [NSString stringWithFormat:@"where protocol_id = ? and logtype = ? and default_%@ = 1", what];
+    NSString *where = [NSString stringWithFormat:@"where protocol_id = ? and wptype = ? and default_%@ = 1", what];
     return [[dbLogString dbAllXXX:where
                              keys:@"ii"
                            values:@[[NSNumber numberWithLongLong:protocol._id], [NSNumber numberWithInteger:wptype]]]
