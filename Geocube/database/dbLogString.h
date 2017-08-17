@@ -64,10 +64,9 @@ typedef NS_ENUM(NSInteger, LogStringDefault) {
 + (LogStringWPType)stringToWPtype:(NSString *)string;
 + (LogStringWPType)wptTypeToWPType:(NSString *)type_full;
 + (NSArray<dbLogString *> *)dbAllByProtocol:(dbProtocol *)protocol;
-+ (dbLogString *)dbGet_byProtocolLogtypeType:(dbProtocol *)protocol wptype:(LogStringWPType)wptype type:(NSString *)type;
-+ (NSArray<dbLogString *> *)dbAllByProtocolLogtype_All:(dbProtocol *)protocol wptype:(LogStringWPType)wptype;
-+ (NSArray<dbLogString *> *)dbAllByProtocolLogtype_LogOnly:(dbProtocol *)protocol wptype:(LogStringWPType)wptype;
-+ (dbLogString *)dbGetByProtocolEventType:(dbProtocol *)protocol wptype:(LogStringWPType)wptype type:(NSString *)type;
-+ (dbLogString *)dbGetByProtocolLogtypeDefault:(dbProtocol *)protocol wptype:(LogStringWPType)wptype default:(LogStringDefault)dflt;
++ (NSArray<dbLogString *> *)dbAllByProtocolWPType_All:(dbProtocol *)protocol wptype:(LogStringWPType)wptype;
++ (NSArray<dbLogString *> *)dbAllByProtocolWPType_LogOnly:(dbProtocol *)protocol wptype:(LogStringWPType)wptype;
++ (dbLogString *)dbGetByProtocolWPTypeType:(dbProtocol *)protocol wptype:(LogStringWPType)wptype type:(NSString *)type;
++ (dbLogString *)dbGetByProtocolWPTypeDefault:(dbProtocol *)protocol wptype:(LogStringWPType)wptype default:(LogStringDefault)dflt;
 
 @end

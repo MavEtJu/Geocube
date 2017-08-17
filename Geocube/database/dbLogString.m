@@ -126,27 +126,22 @@ TABLENAME(@"log_strings")
     return [dbLogString dbAllXXX:@"where protocol_id = ? order by id" keys:@"i" values:@[[NSNumber numberWithInteger:protocol._id]]];
 }
 
-+ (NSArray<dbLogString *> *)dbAllByProtocolLogtype_All:(dbProtocol *)protocol wptype:(LogStringWPType)wptype
++ (NSArray<dbLogString *> *)dbAllByProtocolWPType_All:(dbProtocol *)protocol wptype:(LogStringWPType)wptype
 {
     return [dbLogString dbAllXXX:@"where protocol_id = ? and wptype = ? order by id" keys:@"ii" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:wptype]]];
 }
 
-+ (NSArray<dbLogString *> *)dbAllByProtocolLogtype_LogOnly:(dbProtocol *)protocol wptype:(LogStringWPType)wptype
++ (NSArray<dbLogString *> *)dbAllByProtocolWPType_LogOnly:(dbProtocol *)protocol wptype:(LogStringWPType)wptype
 {
     return [dbLogString dbAllXXX:@"where protocol_id = ? and wptype = ? and forlogs = 1 order by id" keys:@"ii" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:wptype]]];
 }
 
-+ (dbLogString *)dbGet_byProtocolLogtypeType:(dbProtocol *)protocol wptype:(LogStringWPType)wptype type:(NSString *)type;
++ (dbLogString *)dbGetByProtocolWPTypeType:(dbProtocol *)protocol wptype:(LogStringWPType)wptype type:(NSString *)type
 {
     return [[dbLogString dbAllXXX:@"where protocol_id = ? and wptype = ? and type = ? order by id" keys:@"iis" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:wptype], type]] firstObject];
 }
 
-+ (dbLogString *)dbGetByProtocolEventType:(dbProtocol *)protocol wptype:(LogStringWPType)wptype type:(NSString *)type
-{
-    return [[dbLogString dbAllXXX:@"where protocol_id = ? and wptype = ? and type = ? order by id" keys:@"iis" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:wptype], type]] firstObject];
-}
-
-+ (dbLogString *)dbGetByProtocolLogtypeDefault:(dbProtocol *)protocol wptype:(LogStringWPType)wptype default:(LogStringDefault)dflt
++ (dbLogString *)dbGetByProtocolWPTypeDefault:(dbProtocol *)protocol wptype:(LogStringWPType)wptype default:(LogStringDefault)dflt
 {
     NSString *what = nil;
     switch (dflt) {

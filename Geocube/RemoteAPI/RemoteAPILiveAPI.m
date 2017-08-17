@@ -244,7 +244,7 @@
             default:
                 NSAssert(NO, @"Unknown tb.logtype");
         }
-        dbLogString *ls = [dbLogString dbGetByProtocolLogtypeDefault:self.account.protocol wptype:wptype default:dflt];
+        dbLogString *ls = [dbLogString dbGetByProtocolWPTypeDefault:self.account.protocol wptype:wptype default:dflt];
         GCDictionaryLiveAPI *json = [liveAPI CreateTrackableLog:waypoint logtype:ls.logString trackable:tb note:note dateLogged:dateLogged infoViewer:iv iiDownload:iid];
         LIVEAPI_CHECK_STATUS_ENUM(json, @"CreateTrackableLog", REMOTEAPI_CREATELOG_LOGFAILED);
     }];

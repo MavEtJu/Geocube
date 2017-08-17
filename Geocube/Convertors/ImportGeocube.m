@@ -744,13 +744,13 @@ typedef NS_ENUM(NSInteger, Type) {
                 NSInteger icon = [[logdict objectForKey:@"icon"] integerValue];
 
                 if (wasType != nil) {
-                    dbLogString *ls = [dbLogString dbGetByProtocolEventType:_protocol wptype:wptype type:wasType];
+                    dbLogString *ls = [dbLogString dbGetByProtocolWPTypeType:_protocol wptype:wptype type:wasType];
                     if (ls != nil) {
                         ls.logString = logstring;
                         [ls dbUpdate];
                     }
                 }
-                dbLogString *ls = [dbLogString dbGetByProtocolEventType:_protocol wptype:wptype type:logstring];
+                dbLogString *ls = [dbLogString dbGetByProtocolWPTypeType:_protocol wptype:wptype type:logstring];
                 if (ls == nil) {
                     dbLogString *ls = [[dbLogString alloc] init];
                     ls.displayString = displaystring;

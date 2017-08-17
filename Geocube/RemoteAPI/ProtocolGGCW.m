@@ -1531,7 +1531,7 @@ bail:
             default:
                 NSAssert(NO, @"Unknown tb.logtype");
         }
-        dbLogString *ls = [dbLogString dbGetByProtocolLogtypeDefault:remoteAPI.account.protocol wptype:wptype default:dflt];
+        dbLogString *ls = [dbLogString dbGetByProtocolWPTypeDefault:remoteAPI.account.protocol wptype:wptype default:dflt];
 
         NSMutableDictionary *tbjson = [NSMutableDictionary dictionaryWithCapacity:10];
         NSMutableDictionary *j = [NSMutableDictionary dictionaryWithCapacity:10];

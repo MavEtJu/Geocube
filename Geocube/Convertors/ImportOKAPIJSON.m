@@ -341,7 +341,7 @@
     NSString *comment;
     dbName *name;
     DICT_NSSTRING_KEY(dict, type, @"type");
-    dbLogString *ls = [dbLogString dbGetByProtocolEventType:account.protocol wptype:wptype type:type];
+    dbLogString *ls = [dbLogString dbGetByProtocolWPTypeType:account.protocol wptype:wptype type:type];
     DICT_NSSTRING_KEY(dict, date, @"date");
     dateSinceEpoch = [MyTools secondsSinceEpochFromISO8601:date];
     DICT_NSSTRING_PATH(dict, loggername, @"user.username");
