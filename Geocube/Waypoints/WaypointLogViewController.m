@@ -164,7 +164,7 @@ enum {
                 case SECTION_LOGDETAILS_TYPE: {
                     GCTableViewCellKeyValue *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLKEYVALUE];
                     c.keyLabel.text = _(@"waypointlogviewcontroller-Type");
-                    NSString *s = [NSString stringWithFormat:@"logstring-%@", logstring.text];
+                    NSString *s = [NSString stringWithFormat:@"logstring-%@", logstring.displayString];
                     c.valueLabel.text = _(s);
                     cell = c;
                     break;
@@ -409,7 +409,7 @@ enum {
     [logstrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL *stop) {
         if (ls == logstring)
             selected = idx;
-        NSString *s = [NSString stringWithFormat:@"logstring-%@", ls.text];
+        NSString *s = [NSString stringWithFormat:@"logstring-%@", ls.displayString];
         [as addObject:_(s)];
     }];
     [ActionSheetStringPicker

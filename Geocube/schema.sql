@@ -18,7 +18,7 @@ insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.4.geocube");
 insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.4.geocube");
 insert into config(key, value) values("url_versions", "https://geocube.mavetju.org/geocube_versions.geocube");
-insert into config(key, value) values("version", "53");
+insert into config(key, value) values("version", "54");
 
 create table filters (
     id integer primary key,
@@ -369,9 +369,9 @@ create table externalmap_urls (
 
 create table log_strings (
     id integer primary key,
-    text text,
-    type text,
-    logtype integer,
+    display_string text,
+    log_string text,
+    logtype integer,		-- Unknown = 0, Event, Waypoint, TrackablePerson, TrackableWaypoint, Moveable, Webcam
     default_note bool,
     default_found bool,
     default_visit bool,

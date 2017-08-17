@@ -699,6 +699,15 @@
     @"insert into languages(language, country) values('nl', '')",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 54
+    a = @[
+    @"alter table log_strings add column display_string text",
+    @"alter table log_strings add column log_string text",
+    @"update log_strings set display_string = text, log_string = type",
+    @"update log_strings set text = text, type = type",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

@@ -210,15 +210,15 @@
     if (image != nil)
         imgdata = [NSData dataWithContentsOfFile:[MyTools ImageFile:image.datafile]];
 
-    GCDictionaryLiveAPI *json = [liveAPI CreateFieldNoteAndPublish:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite imageCaption:imageCaption imageDescription:imageDescription imageData:imgdata imageFilename:image.datafile infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [liveAPI CreateFieldNoteAndPublish:logstring.logString waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite imageCaption:imageCaption imageDescription:imageDescription imageData:imgdata imageFilename:image.datafile infoViewer:iv iiDownload:iid];
     LIVEAPI_CHECK_STATUS(json, @"CreateLogNote", REMOTEAPI_CREATELOG_LOGFAILED);
 
     __block NSInteger errorCode = REMOTEAPI_OK;
     [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
         if (tb.logtype == TRACKABLE_LOG_NONE)
             return;
-        NSInteger dflt = 0;
-        NSInteger logtype = LOGSTRING_LOGTYPE_UNKNOWN;
+        LogStringDefault dflt = 0;
+        LogStringLogType logtype = LOGSTRING_LOGTYPE_UNKNOWN;
         NSString *note = nil;
         switch (tb.logtype) {
             case TRACKABLE_LOG_VISIT:
@@ -245,7 +245,7 @@
                 NSAssert(NO, @"Unknown tb.logtype");
         }
         dbLogString *ls = [dbLogString dbGetByProtocolLogtypeDefault:self.account.protocol logtype:logtype default:dflt];
-        GCDictionaryLiveAPI *json = [liveAPI CreateTrackableLog:waypoint logtype:ls.type trackable:tb note:note dateLogged:dateLogged infoViewer:iv iiDownload:iid];
+        GCDictionaryLiveAPI *json = [liveAPI CreateTrackableLog:waypoint logtype:ls.logString trackable:tb note:note dateLogged:dateLogged infoViewer:iv iiDownload:iid];
         LIVEAPI_CHECK_STATUS_ENUM(json, @"CreateTrackableLog", REMOTEAPI_CREATELOG_LOGFAILED);
     }];
     return errorCode;

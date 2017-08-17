@@ -304,7 +304,7 @@
     [LogStrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL *stop) {
         if (ls.protocol._id == account.protocol._id &&
             ls.logtype == logtype &&
-            [ls.text compare:type options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+            [ls.displayString compare:type options:NSCaseInsensitiveSearch] == NSOrderedSame) {
             _ls = ls;
             *stop = YES;
         }

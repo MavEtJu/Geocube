@@ -719,11 +719,11 @@ typedef NS_ENUM(NSInteger, Type) {
             logtypes = @[logtypes];
         [logtypes enumerateObjectsUsingBlock:^(NSDictionary *logtypedict, NSUInteger idx, BOOL * _Nonnull stop) {
             NSString *logtype_type = [logtypedict objectForKey:@"type"];
-            NSInteger logtype = [dbLogString stringToLogtype:logtype_type];
+            LogStringLogType logtype = [dbLogString stringToLogtype:logtype_type];
             NSArray<NSDictionary *> *logs = [logtypedict objectForKey:@"log"];
             [logs enumerateObjectsUsingBlock:^(NSDictionary *logdict, NSUInteger idx, BOOL * _Nonnull stop) {
-                NSString *text = [logdict objectForKey:@"string"];
-                NSString *type = [logdict objectForKey:@"type"];
+                NSString *displaystring = [logdict objectForKey:@"displaystring"];
+                NSString *logstring = [logdict objectForKey:@"logstring"];
                 NSString *s = [logdict objectForKey:@"default"];
                 BOOL defaultNote = ([s isEqualToString:@"note"] == YES);
                 BOOL defaultFound = ([s isEqualToString:@"found"] == YES);
@@ -746,15 +746,15 @@ typedef NS_ENUM(NSInteger, Type) {
                 if (wasType != nil) {
                     dbLogString *ls = [dbLogString dbGetByProtocolEventType:_protocol logtype:logtype type:wasType];
                     if (ls != nil) {
-                        ls.type = type;
+                        ls.logString = logstring;
                         [ls dbUpdate];
                     }
                 }
-                dbLogString *ls = [dbLogString dbGetByProtocolEventType:_protocol logtype:logtype type:type];
+                dbLogString *ls = [dbLogString dbGetByProtocolEventType:_protocol logtype:logtype type:logstring];
                 if (ls == nil) {
                     dbLogString *ls = [[dbLogString alloc] init];
-                    ls.text = text;
-                    ls.type = type;
+                    ls.displayString = displaystring;
+                    ls.logString = logstring;
                     ls.logtype = logtype;
                     ls.protocol = _protocol;
                     ls.defaultNote = defaultNote;
@@ -768,7 +768,7 @@ typedef NS_ENUM(NSInteger, Type) {
                     ls.found = found;
                     [ls dbCreate];
                 } else {
-                    ls.text = text;
+                    ls.displayString = displaystring;
                     ls.defaultNote = defaultNote;
                     ls.defaultFound = defaultFound;
                     ls.defaultVisit = defaultVisit;

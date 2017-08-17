@@ -113,7 +113,7 @@
 //    NSDictionary *dict = [ggcw geocache:waypoint.wpt_name infoViewer:iv iiDownload:iid];
 //    NSString *gc_id = [dict objectForKey:@"gc_id"];
     NSDictionary *dict = [ggcw play_geocache_log__form:waypoint.wpt_name infoViewer:iv iiDownload:iid];
-    [ggcw play_geocache_log__submit:waypoint.wpt_name dict:dict logstring:logstring.type dateLogged:dateLogged note:note favpoint:favourite infoViewer:iv iiDownload:iid];
+    [ggcw play_geocache_log__submit:waypoint.wpt_name dict:dict logstring:logstring.logString dateLogged:dateLogged note:note favpoint:favourite infoViewer:iv iiDownload:iid];
     if ([trackables count] > 0)
         [ggcw api_proxy_trackable_activities:waypoint.wpt_name trackables:trackables dateLogged:dateLogged infoViewer:iv iiDownload:iid];
 

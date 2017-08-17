@@ -1504,8 +1504,8 @@ bail:
     [tbs enumerateObjectsUsingBlock:^(dbTrackable * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {
         if (tb.logtype == TRACKABLE_LOG_NONE)
             return;
-        NSInteger dflt = 0;
-        NSInteger logtype = LOGSTRING_LOGTYPE_UNKNOWN;
+        LogStringDefault dflt = 0;
+        LogStringLogType logtype = LOGSTRING_LOGTYPE_UNKNOWN;
         NSString *note = nil;
         switch (tb.logtype) {
             case TRACKABLE_LOG_VISIT:

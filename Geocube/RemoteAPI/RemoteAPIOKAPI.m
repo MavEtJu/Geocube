@@ -129,7 +129,7 @@
     if (image != nil)
         imgdata = [NSData dataWithContentsOfFile:[MyTools ImageFile:image.datafile]];
 
-    GCDictionaryOKAPI *json = [okapi services_logs_submit:logstring.type waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite infoViewer:iv iiDownload:iid];
+    GCDictionaryOKAPI *json = [okapi services_logs_submit:logstring.logString waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite infoViewer:iv iiDownload:iid];
     OKAPI_CHECK_STATUS(json, @"CreateLogNote", REMOTEAPI_CREATELOG_LOGFAILED);
 
     OKAPI_GET_VALUE(json, NSNumber, success, @"success", @"CreateLogNote", REMOTEAPI_CREATELOG_LOGFAILED);

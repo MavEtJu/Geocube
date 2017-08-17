@@ -27,11 +27,17 @@ typedef NS_ENUM(NSInteger, LogStringLogType) {
     LOGSTRING_LOGTYPE_WAYPOINT,
     LOGSTRING_LOGTYPE_TRACKABLEPERSON,
     LOGSTRING_LOGTYPE_TRACKABLEWAYPOINT,
+    LOGSTRING_LOGTYPE_MOVEABLE,
+    LOGSTRING_LOGTYPE_WEBCAM,
+};
 
+typedef NS_ENUM(NSInteger, LogStringFound) {
     LOGSTRING_FOUND_NO = 0,
     LOGSTRING_FOUND_YES,
     LOGSTRING_FOUND_NA,
+};
 
+typedef NS_ENUM(NSInteger, LogStringDefault) {
     LOGSTRING_DEFAULT_NOTE = 0,
     LOGSTRING_DEFAULT_FOUND,
     LOGSTRING_DEFAULT_VISIT,
@@ -40,8 +46,8 @@ typedef NS_ENUM(NSInteger, LogStringLogType) {
     LOGSTRING_DEFAULT_DISCOVER,
 };
 
-@property (nonatomic, retain) NSString *text;
-@property (nonatomic, retain) NSString *type;
+@property (nonatomic, retain) NSString *displayString;
+@property (nonatomic, retain) NSString *logString;
 @property (nonatomic) dbProtocol *protocol;
 @property (nonatomic) BOOL defaultNote;
 @property (nonatomic) BOOL defaultFound;
@@ -51,17 +57,17 @@ typedef NS_ENUM(NSInteger, LogStringLogType) {
 @property (nonatomic) BOOL defaultDiscover;
 @property (nonatomic) BOOL forLogs;
 @property (nonatomic) LogStringLogType logtype;
-@property (nonatomic) NSInteger found;
+@property (nonatomic) LogStringFound found;
 @property (nonatomic) NSInteger icon;
 
 + (NSArray<dbLogString *> *)dbAll;
-+ (NSInteger)stringToLogtype:(NSString *)string;
-+ (NSInteger)wptTypeToLogType:(NSString *)type_full;
++ (LogStringLogType)stringToLogtype:(NSString *)string;
++ (LogStringLogType)wptTypeToLogType:(NSString *)type_full;
 + (NSArray<dbLogString *> *)dbAllByProtocol:(dbProtocol *)protocol;
 + (dbLogString *)dbGet_byProtocolLogtypeType:(dbProtocol *)protocl logtype:(LogStringLogType)logtype type:(NSString *)type;
 + (NSArray<dbLogString *> *)dbAllByProtocolLogtype_All:(dbProtocol *)protocl logtype:(LogStringLogType)logtype;
 + (NSArray<dbLogString *> *)dbAllByProtocolLogtype_LogOnly:(dbProtocol *)protocl logtype:(LogStringLogType)logtype;
 + (dbLogString *)dbGetByProtocolEventType:(dbProtocol *)protocl logtype:(LogStringLogType)logtype type:(NSString *)type;
-+ (dbLogString *)dbGetByProtocolLogtypeDefault:(dbProtocol *)protocl logtype:(LogStringLogType)logtype default:(NSInteger)dflt;
++ (dbLogString *)dbGetByProtocolLogtypeDefault:(dbProtocol *)protocl logtype:(LogStringLogType)logtype default:(LogStringDefault)dflt;
 
 @end

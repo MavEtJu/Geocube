@@ -31,10 +31,10 @@ TABLENAME(@"log_strings")
 {
     ASSERT_SELF_FIELD_EXISTS(protocol);
     @synchronized(db) {
-        DB_PREPARE(@"insert into log_strings(text, type, logtype, protocol_id, default_note, default_found, icon, forlogs, found, default_visit, default_dropoff, default_pickup, default_discover) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into log_strings(display_string, log_string, logtype, protocol_id, default_note, default_found, icon, forlogs, found, default_visit, default_dropoff, default_pickup, default_discover) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-        SET_VAR_TEXT( 1, self.text);
-        SET_VAR_TEXT( 2, self.type);
+        SET_VAR_TEXT( 1, self.displayString);
+        SET_VAR_TEXT( 2, self.logString);
         SET_VAR_INT ( 3, self.logtype);
         SET_VAR_INT ( 4, self.protocol._id);
         SET_VAR_BOOL( 5, self.defaultNote);
@@ -58,10 +58,10 @@ TABLENAME(@"log_strings")
 - (void)dbUpdate
 {
     @synchronized(db) {
-        DB_PREPARE(@"update log_strings set text = ?, type = ?, logtype = ?, protocol_id = ?, default_note = ?, default_found = ?, icon= ?, forlogs = ?, found = ?, default_visit = ?, default_dropoff = ?, default_pickup = ?, default_discover = ? where id = ?");
+        DB_PREPARE(@"update log_strings set display_string = ?, log_string = ?, logtype = ?, protocol_id = ?, default_note = ?, default_found = ?, icon= ?, forlogs = ?, found = ?, default_visit = ?, default_dropoff = ?, default_pickup = ?, default_discover = ? where id = ?");
 
-        SET_VAR_TEXT( 1, self.text);
-        SET_VAR_TEXT( 2, self.type);
+        SET_VAR_TEXT( 1, self.displayString);
+        SET_VAR_TEXT( 2, self.logString);
         SET_VAR_INT ( 3, self.logtype);
         SET_VAR_INT ( 4, self.protocol._id);
         SET_VAR_BOOL( 5, self.defaultNote);
@@ -85,7 +85,7 @@ TABLENAME(@"log_strings")
     NSMutableArray<dbLogString *> *lss = [[NSMutableArray alloc] initWithCapacity:20];
     NSId i;
 
-    NSMutableString *sql = [NSMutableString stringWithString:@"select id, text, type, logtype, protocol_id, default_note, default_found, icon, forlogs, found, default_visit, default_dropoff, default_pickup, default_discover from log_strings "];
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, display_string, log_string, logtype, protocol_id, default_note, default_found, icon, forlogs, found, default_visit, default_dropoff, default_pickup, default_discover from log_strings "];
     if (where != nil)
         [sql appendString:where];
 
@@ -94,8 +94,8 @@ TABLENAME(@"log_strings")
         DB_WHILE_STEP {
             dbLogString *ls = [[dbLogString alloc] init];
             INT_FETCH ( 0, ls._id);
-            TEXT_FETCH( 1, ls.text);
-            TEXT_FETCH( 2, ls.type);
+            TEXT_FETCH( 1, ls.displayString);
+            TEXT_FETCH( 2, ls.logString);
             INT_FETCH ( 3, ls.logtype);
             INT_FETCH ( 4, i);
             ls.protocol = [dbc Protocol_get:i];
@@ -146,7 +146,7 @@ TABLENAME(@"log_strings")
     return [[dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and type = ? order by id" keys:@"iis" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:logtype], type]] firstObject];
 }
 
-+ (dbLogString *)dbGetByProtocolLogtypeDefault:(dbProtocol *)protocol logtype:(LogStringLogType)logtype default:(NSInteger)dflt
++ (dbLogString *)dbGetByProtocolLogtypeDefault:(dbProtocol *)protocol logtype:(LogStringLogType)logtype default:(LogStringDefault)dflt
 {
     NSString *what = nil;
     switch (dflt) {
@@ -181,7 +181,7 @@ TABLENAME(@"log_strings")
 
 /* Other methods */
 
-+ (NSInteger)stringToLogtype:(NSString *)string
++ (LogStringLogType)stringToLogtype:(NSString *)string
 {
     if ([string isEqualToString:@"Event"] == YES)
         return LOGSTRING_LOGTYPE_EVENT;
@@ -191,10 +191,14 @@ TABLENAME(@"log_strings")
         return LOGSTRING_LOGTYPE_TRACKABLEWAYPOINT;
     if ([string isEqualToString:@"TrackablePerson"] == YES)
         return LOGSTRING_LOGTYPE_TRACKABLEPERSON;
+    if ([string isEqualToString:@"Moveable"] == YES)
+        return LOGSTRING_LOGTYPE_MOVEABLE;
+    if ([string isEqualToString:@"Webcam"] == YES)
+        return LOGSTRING_LOGTYPE_WEBCAM;
     return LOGSTRING_LOGTYPE_UNKNOWN;
 }
 
-+ (NSInteger)wptTypeToLogType:(NSString *)type_full
++ (LogStringLogType)wptTypeToLogType:(NSString *)type_full
 {
     if ([type_full isEqualToString:@"Geocache|Event Cache"] == YES ||
         [type_full isEqualToString:@"Geocache|Event"] == YES ||
@@ -207,6 +211,11 @@ TABLENAME(@"log_strings")
         [type_full isEqualToString:@"Lost and Found Event Caches"] == YES ||
         [type_full isEqualToString:@"Geocache|Mega"] == YES)
         return LOGSTRING_LOGTYPE_EVENT;
+    if ([type_full isEqualToString:@"Geocache|Moveable] == YES"])
+        return LOGSTRING_LOGTYPE_MOVEABLE;
+    if ([type_full isEqualToString:@"Geocache|Webcam] == YES"] ||
+        [type_full isEqualToString:@"Geocache|Webcam Cache] == YES"])
+        return LOGSTRING_LOGTYPE_WEBCAM;
     return LOGSTRING_LOGTYPE_WAYPOINT;
 }
 
