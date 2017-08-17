@@ -137,6 +137,9 @@
                 [asyncRequests removeObjectAtIndex:idx];
                 dispatch_semaphore_signal([req objectForKey:@"semaphore"]);
 
+                // Free session information, prevent memory leak
+                [session finishTasksAndInvalidate];
+
                 InfoItemID iid = [[req objectForKey:@"iid"] integerValue];
                 InfoViewer *iv = [req objectForKey:@"infoViewer"];
                 if (iv != nil && [iv isKindOfClass:[NSNull class]] == NO) {
