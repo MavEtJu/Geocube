@@ -35,7 +35,7 @@ TABLENAME(@"log_strings")
 
         SET_VAR_TEXT( 1, self.displayString);
         SET_VAR_TEXT( 2, self.logString);
-        SET_VAR_INT ( 3, self.logtype);
+        SET_VAR_INT ( 3, self.wptype);
         SET_VAR_INT ( 4, self.protocol._id);
         SET_VAR_BOOL( 5, self.defaultNote);
         SET_VAR_BOOL( 6, self.defaultFound);
@@ -62,7 +62,7 @@ TABLENAME(@"log_strings")
 
         SET_VAR_TEXT( 1, self.displayString);
         SET_VAR_TEXT( 2, self.logString);
-        SET_VAR_INT ( 3, self.logtype);
+        SET_VAR_INT ( 3, self.wptype);
         SET_VAR_INT ( 4, self.protocol._id);
         SET_VAR_BOOL( 5, self.defaultNote);
         SET_VAR_BOOL( 6, self.defaultFound);
@@ -96,7 +96,7 @@ TABLENAME(@"log_strings")
             INT_FETCH ( 0, ls._id);
             TEXT_FETCH( 1, ls.displayString);
             TEXT_FETCH( 2, ls.logString);
-            INT_FETCH ( 3, ls.logtype);
+            INT_FETCH ( 3, ls.wptype);
             INT_FETCH ( 4, i);
             ls.protocol = [dbc Protocol_get:i];
             BOOL_FETCH( 5, ls.defaultNote);
@@ -126,27 +126,27 @@ TABLENAME(@"log_strings")
     return [dbLogString dbAllXXX:@"where protocol_id = ? order by id" keys:@"i" values:@[[NSNumber numberWithInteger:protocol._id]]];
 }
 
-+ (NSArray<dbLogString *> *)dbAllByProtocolLogtype_All:(dbProtocol *)protocol logtype:(LogStringLogType)logtype
++ (NSArray<dbLogString *> *)dbAllByProtocolLogtype_All:(dbProtocol *)protocol wptype:(LogStringWPType)wptype
 {
-    return [dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? order by id" keys:@"ii" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:logtype]]];
+    return [dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? order by id" keys:@"ii" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:wptype]]];
 }
 
-+ (NSArray<dbLogString *> *)dbAllByProtocolLogtype_LogOnly:(dbProtocol *)protocol logtype:(LogStringLogType)logtype
++ (NSArray<dbLogString *> *)dbAllByProtocolLogtype_LogOnly:(dbProtocol *)protocol wptype:(LogStringWPType)wptype
 {
-    return [dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and forlogs = 1 order by id" keys:@"ii" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:logtype]]];
+    return [dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and forlogs = 1 order by id" keys:@"ii" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:wptype]]];
 }
 
-+ (dbLogString *)dbGet_byProtocolLogtypeType:(dbProtocol *)protocol logtype:(LogStringLogType)logtype type:(NSString *)type;
++ (dbLogString *)dbGet_byProtocolLogtypeType:(dbProtocol *)protocol wptype:(LogStringWPType)wptype type:(NSString *)type;
 {
-    return [[dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and type = ? order by id" keys:@"iis" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:logtype], type]] firstObject];
+    return [[dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and type = ? order by id" keys:@"iis" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:wptype], type]] firstObject];
 }
 
-+ (dbLogString *)dbGetByProtocolEventType:(dbProtocol *)protocol logtype:(LogStringLogType)logtype type:(NSString *)type
++ (dbLogString *)dbGetByProtocolEventType:(dbProtocol *)protocol wptype:(LogStringWPType)wptype type:(NSString *)type
 {
-    return [[dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and type = ? order by id" keys:@"iis" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:logtype], type]] firstObject];
+    return [[dbLogString dbAllXXX:@"where protocol_id = ? and logtype = ? and type = ? order by id" keys:@"iis" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:wptype], type]] firstObject];
 }
 
-+ (dbLogString *)dbGetByProtocolLogtypeDefault:(dbProtocol *)protocol logtype:(LogStringLogType)logtype default:(LogStringDefault)dflt
++ (dbLogString *)dbGetByProtocolLogtypeDefault:(dbProtocol *)protocol wptype:(LogStringWPType)wptype default:(LogStringDefault)dflt
 {
     NSString *what = nil;
     switch (dflt) {
@@ -175,30 +175,30 @@ TABLENAME(@"log_strings")
     NSString *where = [NSString stringWithFormat:@"where protocol_id = ? and logtype = ? and default_%@ = 1", what];
     return [[dbLogString dbAllXXX:where
                              keys:@"ii"
-                           values:@[[NSNumber numberWithLongLong:protocol._id], [NSNumber numberWithInteger:logtype]]]
+                           values:@[[NSNumber numberWithLongLong:protocol._id], [NSNumber numberWithInteger:wptype]]]
             firstObject];
 }
 
 /* Other methods */
 
-+ (LogStringLogType)stringToLogtype:(NSString *)string
++ (LogStringWPType)stringToLogtype:(NSString *)string
 {
     if ([string isEqualToString:@"Event"] == YES)
-        return LOGSTRING_LOGTYPE_EVENT;
+        return LOGSTRING_WPTYPE_EVENT;
     if ([string isEqualToString:@"Waypoint"] == YES)
-        return LOGSTRING_LOGTYPE_WAYPOINT;
+        return LOGSTRING_WPTYPE_WAYPOINT;
     if ([string isEqualToString:@"TrackableWaypoint"] == YES)
-        return LOGSTRING_LOGTYPE_TRACKABLEWAYPOINT;
+        return LOGSTRING_WPTYPE_TRACKABLEWAYPOINT;
     if ([string isEqualToString:@"TrackablePerson"] == YES)
-        return LOGSTRING_LOGTYPE_TRACKABLEPERSON;
+        return LOGSTRING_WPTYPE_TRACKABLEPERSON;
     if ([string isEqualToString:@"Moveable"] == YES)
-        return LOGSTRING_LOGTYPE_MOVEABLE;
+        return LOGSTRING_WPTYPE_MOVEABLE;
     if ([string isEqualToString:@"Webcam"] == YES)
-        return LOGSTRING_LOGTYPE_WEBCAM;
-    return LOGSTRING_LOGTYPE_UNKNOWN;
+        return LOGSTRING_WPTYPE_WEBCAM;
+    return LOGSTRING_WPTYPE_UNKNOWN;
 }
 
-+ (LogStringLogType)wptTypeToLogType:(NSString *)type_full
++ (LogStringWPType)wptTypeToLogType:(NSString *)type_full
 {
     if ([type_full isEqualToString:@"Geocache|Event Cache"] == YES ||
         [type_full isEqualToString:@"Geocache|Event"] == YES ||
@@ -210,13 +210,13 @@ TABLENAME(@"log_strings")
         [type_full isEqualToString:@"Geocache|Groundspeak Block Party"] == YES ||
         [type_full isEqualToString:@"Lost and Found Event Caches"] == YES ||
         [type_full isEqualToString:@"Geocache|Mega"] == YES)
-        return LOGSTRING_LOGTYPE_EVENT;
+        return LOGSTRING_WPTYPE_EVENT;
     if ([type_full isEqualToString:@"Geocache|Moveable] == YES"])
-        return LOGSTRING_LOGTYPE_MOVEABLE;
+        return LOGSTRING_WPTYPE_MOVEABLE;
     if ([type_full isEqualToString:@"Geocache|Webcam] == YES"] ||
         [type_full isEqualToString:@"Geocache|Webcam Cache] == YES"])
-        return LOGSTRING_LOGTYPE_WEBCAM;
-    return LOGSTRING_LOGTYPE_WAYPOINT;
+        return LOGSTRING_WPTYPE_WEBCAM;
+    return LOGSTRING_WPTYPE_WAYPOINT;
 }
 
 /*

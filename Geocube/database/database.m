@@ -708,6 +708,15 @@
     @"update log_strings set text = text, type = type",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 55
+    a = @[
+    @"alter table log_strings add column wptype integer",
+    @"update log_strings set wptype = logtype",
+    @"update log_strings set logtype = -1",
+    ];
+    [upgradeSteps addObject:a];
+
 }
 
 - (void)singleStatement:(NSString *)sql

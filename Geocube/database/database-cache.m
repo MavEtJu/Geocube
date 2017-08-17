@@ -297,13 +297,13 @@
     [Symbols addObject:s];
 }
 
-- (dbLogString *)LogString_get_bytype:(dbAccount *)account logtype:(NSInteger)logtype type:(NSString *)type
+- (dbLogString *)LogString_get_bytype:(dbAccount *)account wptype:(LogStringWPType)wptype type:(NSString *)type
 {
     NSAssert([LogStrings count] != 0, @"LogStrings");
     __block dbLogString *_ls = nil;
     [LogStrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL *stop) {
         if (ls.protocol._id == account.protocol._id &&
-            ls.logtype == logtype &&
+            ls.wptype == wptype &&
             [ls.displayString compare:type options:NSCaseInsensitiveSearch] == NSOrderedSame) {
             _ls = ls;
             *stop = YES;

@@ -78,8 +78,8 @@ enum {
     ratingSelected = 0;
     self.delegateWaypoint = nil;
 
-    NSInteger type = [dbLogString wptTypeToLogType:waypoint.wpt_type.type_full];
-    logstrings = [dbLogString dbAllByProtocolLogtype_LogOnly:waypoint.account.protocol logtype:type];
+    LogStringWPType wptype = [dbLogString wptTypeToLogType:waypoint.wpt_type.type_full];
+    logstrings = [dbLogString dbAllByProtocolLogtype_LogOnly:waypoint.account.protocol wptype:wptype];
     [logstrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL * _Nonnull stop) {
         if (ls.defaultFound == YES) {
             logstring = ls;

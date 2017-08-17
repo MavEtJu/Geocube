@@ -71,7 +71,6 @@
 #import "KeyboardCoordinateView.h"
 
 #import "database.h"
-#import "database-cache.h"
 #import "dbObject.h"
 #import "dbAccount.h"
 #import "dbAttribute.h"
@@ -104,6 +103,7 @@
 #import "dbTrackElement.h"
 #import "dbTrackable.h"
 #import "dbWaypoint.h"
+#import "database-cache.h"
 
 #import "ThemeTemplate.h"
 #import "ThemeIOS.h"

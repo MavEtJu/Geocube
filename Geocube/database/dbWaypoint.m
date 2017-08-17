@@ -33,14 +33,14 @@ TABLENAME(@"waypoints")
 
     self.gs_available = YES;
     self.logStatus = LOGSTATUS_NOTLOGGED;
-    self.logstring_logtype = LOGSTRING_LOGTYPE_UNKNOWN;
+    self.logstring_wptype = LOGSTRING_WPTYPE_UNKNOWN;
 
     return self;
 }
 
 - (void)finish
 {
-    self.logstring_logtype = [dbLogString wptTypeToLogType:self.wpt_type.type_full];
+    self.logstring_wptype = [dbLogString wptTypeToLogType:self.wpt_type.type_full];
     [super finish];
 }
 

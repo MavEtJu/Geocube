@@ -21,14 +21,14 @@
 
 @interface dbLogString : dbObject
 
-typedef NS_ENUM(NSInteger, LogStringLogType) {
-    LOGSTRING_LOGTYPE_UNKNOWN = 0,
-    LOGSTRING_LOGTYPE_EVENT,
-    LOGSTRING_LOGTYPE_WAYPOINT,
-    LOGSTRING_LOGTYPE_TRACKABLEPERSON,
-    LOGSTRING_LOGTYPE_TRACKABLEWAYPOINT,
-    LOGSTRING_LOGTYPE_MOVEABLE,
-    LOGSTRING_LOGTYPE_WEBCAM,
+typedef NS_ENUM(NSInteger, LogStringWPType) {
+    LOGSTRING_WPTYPE_UNKNOWN = 0,
+    LOGSTRING_WPTYPE_EVENT,
+    LOGSTRING_WPTYPE_WAYPOINT,
+    LOGSTRING_WPTYPE_TRACKABLEPERSON,
+    LOGSTRING_WPTYPE_TRACKABLEWAYPOINT,
+    LOGSTRING_WPTYPE_MOVEABLE,
+    LOGSTRING_WPTYPE_WEBCAM,
 };
 
 typedef NS_ENUM(NSInteger, LogStringFound) {
@@ -56,18 +56,18 @@ typedef NS_ENUM(NSInteger, LogStringDefault) {
 @property (nonatomic) BOOL defaultPickup;
 @property (nonatomic) BOOL defaultDiscover;
 @property (nonatomic) BOOL forLogs;
-@property (nonatomic) LogStringLogType logtype;
+@property (nonatomic) LogStringWPType wptype;
 @property (nonatomic) LogStringFound found;
 @property (nonatomic) NSInteger icon;
 
 + (NSArray<dbLogString *> *)dbAll;
-+ (LogStringLogType)stringToLogtype:(NSString *)string;
-+ (LogStringLogType)wptTypeToLogType:(NSString *)type_full;
++ (LogStringWPType)stringToLogtype:(NSString *)string;
++ (LogStringWPType)wptTypeToLogType:(NSString *)type_full;
 + (NSArray<dbLogString *> *)dbAllByProtocol:(dbProtocol *)protocol;
-+ (dbLogString *)dbGet_byProtocolLogtypeType:(dbProtocol *)protocl logtype:(LogStringLogType)logtype type:(NSString *)type;
-+ (NSArray<dbLogString *> *)dbAllByProtocolLogtype_All:(dbProtocol *)protocl logtype:(LogStringLogType)logtype;
-+ (NSArray<dbLogString *> *)dbAllByProtocolLogtype_LogOnly:(dbProtocol *)protocl logtype:(LogStringLogType)logtype;
-+ (dbLogString *)dbGetByProtocolEventType:(dbProtocol *)protocl logtype:(LogStringLogType)logtype type:(NSString *)type;
-+ (dbLogString *)dbGetByProtocolLogtypeDefault:(dbProtocol *)protocl logtype:(LogStringLogType)logtype default:(LogStringDefault)dflt;
++ (dbLogString *)dbGet_byProtocolLogtypeType:(dbProtocol *)protocl wptype:(LogStringWPType)wptype type:(NSString *)type;
++ (NSArray<dbLogString *> *)dbAllByProtocolLogtype_All:(dbProtocol *)protocol wptype:(LogStringWPType)wptype;
++ (NSArray<dbLogString *> *)dbAllByProtocolLogtype_LogOnly:(dbProtocol *)protocl wptype:(LogStringWPType)wptype;
++ (dbLogString *)dbGetByProtocolEventType:(dbProtocol *)protocl wptype:(LogStringWPType)wptype type:(NSString *)type;
++ (dbLogString *)dbGetByProtocolLogtypeDefault:(dbProtocol *)protocl wptype:(LogStringWPType)wptype default:(LogStringDefault)dflt;
 
 @end

@@ -37,7 +37,7 @@ typedef NS_ENUM(NSInteger, LogStatus) {
 @property (nonatomic, retain) dbSymbol *wpt_symbol;
 @property (nonatomic, retain) dbType *wpt_type;
 
-@property (nonatomic) LogStringLogType logstring_logtype;
+@property (nonatomic) LogStringWPType logstring_wptype;
 @property (nonatomic) LogStatus logStatus;
 @property (nonatomic) BOOL flag_highlight;
 @property (nonatomic) BOOL flag_ignore;

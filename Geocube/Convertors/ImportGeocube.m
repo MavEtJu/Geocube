@@ -719,7 +719,7 @@ typedef NS_ENUM(NSInteger, Type) {
             logtypes = @[logtypes];
         [logtypes enumerateObjectsUsingBlock:^(NSDictionary *logtypedict, NSUInteger idx, BOOL * _Nonnull stop) {
             NSString *logtype_type = [logtypedict objectForKey:@"type"];
-            LogStringLogType logtype = [dbLogString stringToLogtype:logtype_type];
+            LogStringWPType wptype = [dbLogString stringToLogtype:logtype_type];
             NSArray<NSDictionary *> *logs = [logtypedict objectForKey:@"log"];
             [logs enumerateObjectsUsingBlock:^(NSDictionary *logdict, NSUInteger idx, BOOL * _Nonnull stop) {
                 NSString *displaystring = [logdict objectForKey:@"displaystring"];
@@ -744,18 +744,18 @@ typedef NS_ENUM(NSInteger, Type) {
                 NSInteger icon = [[logdict objectForKey:@"icon"] integerValue];
 
                 if (wasType != nil) {
-                    dbLogString *ls = [dbLogString dbGetByProtocolEventType:_protocol logtype:logtype type:wasType];
+                    dbLogString *ls = [dbLogString dbGetByProtocolEventType:_protocol wptype:wptype type:wasType];
                     if (ls != nil) {
                         ls.logString = logstring;
                         [ls dbUpdate];
                     }
                 }
-                dbLogString *ls = [dbLogString dbGetByProtocolEventType:_protocol logtype:logtype type:logstring];
+                dbLogString *ls = [dbLogString dbGetByProtocolEventType:_protocol wptype:wptype type:logstring];
                 if (ls == nil) {
                     dbLogString *ls = [[dbLogString alloc] init];
                     ls.displayString = displaystring;
                     ls.logString = logstring;
-                    ls.logtype = logtype;
+                    ls.wptype = wptype;
                     ls.protocol = _protocol;
                     ls.defaultNote = defaultNote;
                     ls.defaultFound = defaultFound;

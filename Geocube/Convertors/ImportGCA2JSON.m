@@ -373,7 +373,7 @@
     dbName *name;
 
     DICT_NSSTRING_KEY(dict, type, @"type");
-    dbLogString *logstring = [dbc LogString_get_bytype:wp.account logtype:wp.logstring_logtype type:type];
+    dbLogString *logstring = [dbc LogString_get_bytype:wp.account wptype:wp.logstring_wptype type:type];
     DICT_NSSTRING_KEY(dict, date, @"date");
     dateSinceEpoch = [MyTools secondsSinceEpochFromISO8601:date];
     DICT_NSSTRING_PATH(dict, loggername, @"user.username");

@@ -332,7 +332,7 @@
  }
 */
 
-    NSInteger logtype = [dbLogString wptTypeToLogType:wp.wpt_type.type_full];
+    LogStringWPType wptype = [dbLogString wptTypeToLogType:wp.wpt_type.type_full];
     NSString *type;
     NSString *date;
     NSInteger dateSinceEpoch;
@@ -341,7 +341,7 @@
     NSString *comment;
     dbName *name;
     DICT_NSSTRING_KEY(dict, type, @"type");
-    dbLogString *ls = [dbLogString dbGetByProtocolEventType:account.protocol logtype:logtype type:type];
+    dbLogString *ls = [dbLogString dbGetByProtocolEventType:account.protocol wptype:wptype type:type];
     DICT_NSSTRING_KEY(dict, date, @"date");
     dateSinceEpoch = [MyTools secondsSinceEpochFromISO8601:date];
     DICT_NSSTRING_PATH(dict, loggername, @"user.username");

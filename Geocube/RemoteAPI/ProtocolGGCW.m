@@ -1505,33 +1505,33 @@ bail:
         if (tb.logtype == TRACKABLE_LOG_NONE)
             return;
         LogStringDefault dflt = 0;
-        LogStringLogType logtype = LOGSTRING_LOGTYPE_UNKNOWN;
+        LogStringWPType wptype = LOGSTRING_WPTYPE_UNKNOWN;
         NSString *note = nil;
         switch (tb.logtype) {
             case TRACKABLE_LOG_VISIT:
                 dflt = LOGSTRING_DEFAULT_VISIT;
-                logtype = LOGSTRING_LOGTYPE_TRACKABLEPERSON;
+                wptype = LOGSTRING_WPTYPE_TRACKABLEPERSON;
                 note = [NSString stringWithFormat:@"Visited '%@'", gccode];
                 break;
             case TRACKABLE_LOG_DROPOFF:
                 dflt = LOGSTRING_DEFAULT_DROPOFF;
                 note = [NSString stringWithFormat:@"Dropped off at '%@'", gccode];
-                logtype = LOGSTRING_LOGTYPE_TRACKABLEPERSON;
+                wptype = LOGSTRING_WPTYPE_TRACKABLEPERSON;
                 break;
             case TRACKABLE_LOG_PICKUP:
                 dflt = LOGSTRING_DEFAULT_PICKUP;
                 note = [NSString stringWithFormat:@"Picked up from '%@'", gccode];
-                logtype = LOGSTRING_LOGTYPE_TRACKABLEWAYPOINT;
+                wptype = LOGSTRING_WPTYPE_TRACKABLEWAYPOINT;
                 break;
             case TRACKABLE_LOG_DISCOVER:
                 dflt = LOGSTRING_DEFAULT_DISCOVER;
                 note = [NSString stringWithFormat:@"Discovered in '%@'", gccode];
-                logtype = LOGSTRING_LOGTYPE_TRACKABLEWAYPOINT;
+                wptype = LOGSTRING_WPTYPE_TRACKABLEWAYPOINT;
                 break;
             default:
                 NSAssert(NO, @"Unknown tb.logtype");
         }
-        dbLogString *ls = [dbLogString dbGetByProtocolLogtypeDefault:remoteAPI.account.protocol logtype:logtype default:dflt];
+        dbLogString *ls = [dbLogString dbGetByProtocolLogtypeDefault:remoteAPI.account.protocol wptype:wptype default:dflt];
 
         NSMutableDictionary *tbjson = [NSMutableDictionary dictionaryWithCapacity:10];
         NSMutableDictionary *j = [NSMutableDictionary dictionaryWithCapacity:10];
