@@ -246,7 +246,7 @@
     if (section == 0)
         return @"Geocube";
     else
-        return @"Licensed modules";
+        return _(@"helpaboutviewcontroller-Licensed modules");
 }
 
 // Rows per section
@@ -279,11 +279,11 @@
         NSDictionary *d = [texts objectAtIndex:indexPath.row];
         cell.name.text = [d objectForKey:@"name"];
         if ((s = [d objectForKey:@"url"]) != nil)
-            cell.url.text = [NSString stringWithFormat:@"URL: %@", s];
+            cell.url.text = [NSString stringWithFormat:@"%@: %@", _(@"URL"), s];
         if ((s = [d objectForKey:@"copyright"]) != nil)
-            cell.copyright.text = [NSString stringWithFormat:@"Copyright: %@", s];
+            cell.copyright.text = [NSString stringWithFormat:@"%@: %@", _(@"helpaboutviewcontroller-Copyright"), s];
         if ((s = [d objectForKey:@"license"]) != nil)
-            cell.license.text = [NSString stringWithFormat:@"License:\n%@", s];
+            cell.license.text = [NSString stringWithFormat:@"%@:\n%@", _(@"helpaboutviewcontroller-License"), s];
     }
 
     [cell setUserInteractionEnabled:NO];

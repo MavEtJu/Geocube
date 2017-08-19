@@ -20,7 +20,7 @@ find . -name '*.m' | xargs grep -h "_(" | perl findMissingLocalizations.pl
 echo
 echo "HelpDatabaseViewController:"
 for class in $(grep implementation database/db*.m | awk '{ print $2 }' | grep -v dbObject); do
-	if [ $(grep -c "$class dbCount" Help/HelpDatabaseViewController.m) == 0 ]; then
+	if [ $(grep -c "$class dbCount" Help/DeveloperDatabaseViewController.m) == 0 ]; then
 		echo "Not found: $class"
 	fi
 done

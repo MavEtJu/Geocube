@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@interface dbLogStringWaypoint ()
+
+@end
+
 @implementation dbLogStringWaypoint
 
 TABLENAME(@"log_string_waypoints")
