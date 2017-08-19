@@ -717,6 +717,13 @@
     ];
     [upgradeSteps addObject:a];
 
+    // Version 56
+    a = @[
+    @"create table log_string_waypoints (id integer primary key, wptype integer, log_string_id integer)",
+    @"create index log_string_waypoints_idx  on log_string_waypoints(id)",
+    @"delete from log_strings where id not in (select distinct log_string_id from logs)",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

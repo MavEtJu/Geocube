@@ -241,6 +241,7 @@
 @class dbLog;
 @class dbLogMacro;
 @class dbLogString;
+@class dbLogStringWaypoint;
 @class dbLogTemplate;
 @class dbName;
 @class dbNotice;

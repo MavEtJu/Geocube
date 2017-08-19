@@ -79,7 +79,7 @@
 - (dbSymbol *)Symbol_get:(NSId)_id;
 - (void)Symbols_add:(dbSymbol *)s;
 
-- (dbLogString *)LogString_get_bytype:(dbAccount *)account wptype:(LogStringWPType)wptype type:(NSString *)type;
+- (dbLogString *)LogString_get_byDisplayString:(dbAccount *)account displayString:(NSString *)displayString;
 - (dbLogString *)LogString_get:(NSId)_id;
 - (void)LogString_add:(dbLogString *)logstring;
 

@@ -18,7 +18,7 @@ insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.4.geocube");
 insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.4.geocube");
 insert into config(key, value) values("url_versions", "https://geocube.mavetju.org/geocube_versions.geocube");
-insert into config(key, value) values("version", "55");
+insert into config(key, value) values("version", "56");
 
 create table filters (
     id integer primary key,
@@ -371,7 +371,6 @@ create table log_strings (
     id integer primary key,
     display_string text,
     log_string text,
-    wptype integer,		-- Unknown = 0, Event, Waypoint, TrackablePerson, TrackableWaypoint, Moveable, Webcam
     default_note bool,
     default_found bool,
     default_visit bool,
@@ -380,9 +379,15 @@ create table log_strings (
     default_discover bool,
     protocol_id integer,	-- points to protocols(id)
     icon integer,
-    found integer,
-    forlogs bool
+    found integer
 );
+
+create table log_string_waypoints (
+    id integer primary key,
+    wptype integer,		-- Unknown = 0, Event, Waypoint, TrackablePerson, TrackableWaypoint, Moveable, Webcam
+    log_string_id integer	-- points to log_strings(id)
+);
+create index log_string_waypoints_idx  on log_string_waypoints(id);
 
 create table listdata (
     id integer primary key,

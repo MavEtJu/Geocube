@@ -579,6 +579,7 @@
 		E86D427F1EF68CC800E4509F /* container flag - planned - 24x21@3.png in Resources */ = {isa = PBXBuildFile; fileRef = E86D427C1EF68CC800E4509F /* container flag - planned - 24x21@3.png */; };
 		E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FEB1B509575002527DA /* LogTableViewCell.m */; };
 		E87DF78E1D8564A800F16B5A /* InfoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF78D1D8564A800F16B5A /* InfoViewer.m */; };
+		E87F58D11F46F0C200C90375 /* dbLogStringWaypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E87F58D01F46F0C200C90375 /* dbLogStringWaypoint.m */; };
 		E88258351E9FA03700FCF9B2 /* Close Window - 640x430.png in Resources */ = {isa = PBXBuildFile; fileRef = E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */; };
 		E88258371E9FA15F00FCF9B2 /* Map icons - 362x86.png in Resources */ = {isa = PBXBuildFile; fileRef = E88258361E9FA15F00FCF9B2 /* Map icons - 362x86.png */; };
 		E8845CA91EF3628900A47F5D /* FileObjectView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8845CA81EF3628900A47F5D /* FileObjectView~ipad.xib */; };
@@ -1606,6 +1607,8 @@
 		E879F9CB1B7B527200220EA7 /* Geocube.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Geocube.entitlements; sourceTree = "<group>"; };
 		E87DF78C1D8564A800F16B5A /* InfoViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewer.h; sourceTree = "<group>"; };
 		E87DF78D1D8564A800F16B5A /* InfoViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewer.m; sourceTree = "<group>"; };
+		E87F58CF1F46F0C200C90375 /* dbLogStringWaypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbLogStringWaypoint.h; path = database/dbLogStringWaypoint.h; sourceTree = "<group>"; };
+		E87F58D01F46F0C200C90375 /* dbLogStringWaypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbLogStringWaypoint.m; path = database/dbLogStringWaypoint.m; sourceTree = "<group>"; };
 		E87FE7951EFFD25F009FA65B /* Geocube-defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-defines.h"; sourceTree = "<group>"; };
 		E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Close Window - 640x430.png"; path = "images/introduction/Close Window - 640x430.png"; sourceTree = "<group>"; };
 		E88258361E9FA15F00FCF9B2 /* Map icons - 362x86.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Map icons - 362x86.png"; path = "images/introduction/Map icons - 362x86.png"; sourceTree = "<group>"; };
@@ -3414,6 +3417,8 @@
 				E823428C1EECD0B000D2CDFD /* dbLogMacro.m */,
 				E823428D1EECD0B000D2CDFD /* dbLogString.h */,
 				E823428E1EECD0B000D2CDFD /* dbLogString.m */,
+				E87F58CF1F46F0C200C90375 /* dbLogStringWaypoint.h */,
+				E87F58D01F46F0C200C90375 /* dbLogStringWaypoint.m */,
 				E823428F1EECD0B000D2CDFD /* dbLogTemplate.h */,
 				E82342901EECD0B000D2CDFD /* dbLogTemplate.m */,
 				E82342911EECD0B000D2CDFD /* dbName.h */,
@@ -4477,6 +4482,7 @@
 				E82343DE1EECDEE200D2CDFD /* WaypointViewController.m in Sources */,
 				E82344701EECE08A00D2CDFD /* GroupsSystemViewController.m in Sources */,
 				E82344311EECDFB300D2CDFD /* FilterSizesTableViewCell.m in Sources */,
+				E87F58D11F46F0C200C90375 /* dbLogStringWaypoint.m in Sources */,
 				E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */,
 				E82343FC1EECDF4400D2CDFD /* WaypointWaypointsViewController.m in Sources */,
 				E82342B51EECD0B100D2CDFD /* dbExternalMap.m in Sources */,

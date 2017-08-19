@@ -55,18 +55,18 @@ typedef NS_ENUM(NSInteger, LogStringDefault) {
 @property (nonatomic) BOOL defaultDropoff;
 @property (nonatomic) BOOL defaultPickup;
 @property (nonatomic) BOOL defaultDiscover;
-@property (nonatomic) BOOL forLogs;
-@property (nonatomic) LogStringWPType wptype;
+//@property (nonatomic) BOOL forLogs;
+//@property (nonatomic) LogStringWPType wptype;
 @property (nonatomic) LogStringFound found;
 @property (nonatomic) NSInteger icon;
 
++ (dbLogString *)dbGet:(NSId)_id;
 + (NSArray<dbLogString *> *)dbAll;
 + (LogStringWPType)stringToWPtype:(NSString *)string;
 + (LogStringWPType)wptTypeToWPType:(NSString *)type_full;
 + (NSArray<dbLogString *> *)dbAllByProtocol:(dbProtocol *)protocol;
-+ (NSArray<dbLogString *> *)dbAllByProtocolWPType_All:(dbProtocol *)protocol wptype:(LogStringWPType)wptype;
++ (dbLogString *)dbGetByProtocolDisplayString:(dbProtocol *)protocol displayString:(NSString *)displayString;
 + (NSArray<dbLogString *> *)dbAllByProtocolWPType_LogOnly:(dbProtocol *)protocol wptype:(LogStringWPType)wptype;
-+ (dbLogString *)dbGetByProtocolWPTypeType:(dbProtocol *)protocol wptype:(LogStringWPType)wptype type:(NSString *)type;
 + (dbLogString *)dbGetByProtocolWPTypeDefault:(dbProtocol *)protocol wptype:(LogStringWPType)wptype default:(LogStringDefault)dflt;
 
 @end

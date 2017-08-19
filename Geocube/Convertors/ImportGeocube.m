@@ -714,73 +714,77 @@ typedef NS_ENUM(NSInteger, Type) {
 //            return;
 //        }
 
-        NSArray<NSDictionary *> *logtypes = [protocoldict objectForKey:@"logtype"];
+        NSArray<NSDictionary *> *logtypes = [protocoldict objectForKey:@"log"];
         if ([logtypes isKindOfClass:[NSDictionary class]] == YES)
             logtypes = @[logtypes];
-        [logtypes enumerateObjectsUsingBlock:^(NSDictionary *logtypedict, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSString *logtype_type = [logtypedict objectForKey:@"type"];
-            LogStringWPType wptype = [dbLogString stringToWPtype:logtype_type];
-            NSArray<NSDictionary *> *logs = [logtypedict objectForKey:@"log"];
-            [logs enumerateObjectsUsingBlock:^(NSDictionary *logdict, NSUInteger idx, BOOL * _Nonnull stop) {
-                NSString *displaystring = [logdict objectForKey:@"displaystring"];
-                NSString *logstring = [logdict objectForKey:@"logstring"];
-                NSString *s = [logdict objectForKey:@"default"];
-                BOOL defaultNote = ([s isEqualToString:@"note"] == YES);
-                BOOL defaultFound = ([s isEqualToString:@"found"] == YES);
-                BOOL defaultVisit = ([s isEqualToString:@"visit"] == YES);
-                BOOL defaultDropoff = ([s isEqualToString:@"dropoff"] == YES);
-                BOOL defaultPickup = ([s isEqualToString:@"pickup"] == YES);
-                BOOL defaultDiscover = ([s isEqualToString:@"discover"] == YES);
-                BOOL forlogs = [[logdict objectForKey:@"forlogs"] boolValue];
-                NSString *wasType = [logdict objectForKey:@"wastype"];
-                NSString *_found = [logdict objectForKey:@"found"];
-                NSInteger found = LOGSTRING_FOUND_NA;
-                if (_found != nil) {
-                    if ([_found isEqualToString:@"yes"] == YES)
-                        found = LOGSTRING_FOUND_YES;
-                    if ([_found isEqualToString:@"no"] == YES)
-                        found = LOGSTRING_FOUND_NO;
-                }
-                NSInteger icon = [[logdict objectForKey:@"icon"] integerValue];
+        [logtypes enumerateObjectsUsingBlock:^(NSDictionary *logdict, NSUInteger idx, BOOL * _Nonnull stop) {
 
-                if (wasType != nil) {
-                    dbLogString *ls = [dbLogString dbGetByProtocolWPTypeType:_protocol wptype:wptype type:wasType];
-                    if (ls != nil) {
-                        ls.logString = logstring;
-                        [ls dbUpdate];
-                    }
-                }
-                dbLogString *ls = [dbLogString dbGetByProtocolWPTypeType:_protocol wptype:wptype type:logstring];
-                if (ls == nil) {
-                    dbLogString *ls = [[dbLogString alloc] init];
-                    ls.displayString = displaystring;
-                    ls.logString = logstring;
-                    ls.wptype = wptype;
-                    ls.protocol = _protocol;
-                    ls.defaultNote = defaultNote;
-                    ls.defaultFound = defaultFound;
-                    ls.defaultVisit = defaultVisit;
-                    ls.defaultDropoff = defaultDropoff;
-                    ls.defaultPickup = defaultPickup;
-                    ls.defaultDiscover = defaultDiscover;
-                    ls.icon = icon;
-                    ls.forLogs = forlogs;
-                    ls.found = found;
-                    [ls dbCreate];
+            NSString *displaystring = [logdict objectForKey:@"displaystring"];
+            NSString *logstring = [logdict objectForKey:@"logstring"];
+            NSInteger icon = [[logdict objectForKey:@"icon"] integerValue];
+            NSString *forlogs = [logdict objectForKey:@"forlogs"];
+            NSString *dflt = [logdict objectForKey:@"default"];
+            NSString *_found = [logdict objectForKey:@"found"];
+            BOOL defaultNote = ([dflt isEqualToString:@"note"] == YES);
+            BOOL defaultFound = ([dflt isEqualToString:@"found"] == YES);
+            BOOL defaultVisit = ([dflt isEqualToString:@"visit"] == YES);
+            BOOL defaultDropoff = ([dflt isEqualToString:@"dropoff"] == YES);
+            BOOL defaultPickup = ([dflt isEqualToString:@"pickup"] == YES);
+            BOOL defaultDiscover = ([dflt isEqualToString:@"discover"] == YES);
+
+            LogStringFound found = LOGSTRING_FOUND_NA;
+            if (_found != nil) {
+                if ([_found isEqualToString:@"yes"] == YES)
+                    found = LOGSTRING_FOUND_YES;
+                if ([_found isEqualToString:@"no"] == YES)
+                    found = LOGSTRING_FOUND_NO;
+            }
+
+            dbLogString *ls = [dbLogString dbGetByProtocolDisplayString:_protocol displayString:displaystring];
+            if (ls == nil) {
+                ls = [[dbLogString alloc] init];
+                ls.displayString = displaystring;
+                ls.logString = logstring;
+                ls.protocol = _protocol;
+                ls.defaultNote = defaultNote;
+                ls.defaultFound = defaultFound;
+                ls.defaultVisit = defaultVisit;
+                ls.defaultDropoff = defaultDropoff;
+                ls.defaultPickup = defaultPickup;
+                ls.defaultDiscover = defaultDiscover;
+                ls.icon = icon;
+                ls.found = found;
+                [ls dbCreate];
+            } else {
+                ls.displayString = displaystring;
+                ls.defaultNote = defaultNote;
+                ls.defaultFound = defaultFound;
+                ls.defaultVisit = defaultVisit;
+                ls.defaultDropoff = defaultDropoff;
+                ls.defaultPickup = defaultPickup;
+                ls.defaultDiscover = defaultDiscover;
+                ls.icon = icon;
+                ls.found = found;
+                [ls dbUpdate];
+            }
+
+            [dbLogStringWaypoint dbDeleteAllByLogString:ls];
+
+            [[forlogs componentsSeparatedByString:@","] enumerateObjectsUsingBlock:^(NSString * _Nonnull forlog, NSUInteger idx, BOOL * _Nonnull stop) {
+                LogStringWPType wptype = [dbLogString stringToWPtype:forlog];
+                dbLogStringWaypoint *lswp = [dbLogStringWaypoint dbGetByLogStringWPType:ls wptype:wptype];
+                if (lswp == nil) {
+                    lswp = [[dbLogStringWaypoint alloc] init];
+                    lswp.wptype = wptype;
+                    lswp.logString = ls;
+                    [lswp dbCreate];
                 } else {
-                    ls.displayString = displaystring;
-                    ls.defaultNote = defaultNote;
-                    ls.defaultFound = defaultFound;
-                    ls.defaultVisit = defaultVisit;
-                    ls.defaultDropoff = defaultDropoff;
-                    ls.defaultPickup = defaultPickup;
-                    ls.defaultDiscover = defaultDiscover;
-                    ls.icon = icon;
-                    ls.forLogs = forlogs;
-                    ls.found = found;
-                    [ls dbUpdate];
+                    lswp.wptype = wptype;
+                    lswp.logString = ls;
+                    [lswp dbUpdate];
                 }
             }];
+
         }];
     }];
 

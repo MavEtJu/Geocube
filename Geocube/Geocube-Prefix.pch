@@ -89,6 +89,7 @@
 #import "dbLog.h"
 #import "dbLogMacro.h"
 #import "dbLogString.h"
+#import "dbLogStringWaypoint.h"
 #import "dbLogTemplate.h"
 #import "dbName.h"
 #import "dbNotice.h"
