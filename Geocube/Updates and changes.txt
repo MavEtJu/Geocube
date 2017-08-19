@@ -30,6 +30,8 @@ Version 1.4(x)
   - Removed some duplicate/obsolete fields from the database tables.
   - GPS -> GNNS.
   - Fixed the sometimes disappearance of the Local Menu button.
+  - Refresh of trackables won't show doubles anymore.
+  - Moved several developer tabs to the Developer menu.
 
 Version 1.3(26)
 
