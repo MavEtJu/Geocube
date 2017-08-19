@@ -139,12 +139,12 @@ TABLENAME(@"travelbugs")
 
 + (NSArray<dbTrackable *> *)dbAllMine
 {
-    return [self dbAllXXX:@"where owner_id in (select id from names where name in (select accountname_id from accounts where accountname_id != 0))" keys:nil values:nil];
+    return [self dbAllXXX:@"where owner_id in (select accountname_id from accounts where accountname_id != 0)" keys:nil values:nil];
 }
 
 + (NSArray<dbTrackable *> *)dbAllInventory
 {
-    return [self dbAllXXX:@"where carrier_id in (select id from names where name in (select accountname_id from accounts where accountname_id != 0))" keys:nil values:nil];
+    return [self dbAllXXX:@"where carrier_id in (select accountname_id from accounts where accountname_id != 0)" keys:nil values:nil];
 }
 
 + (NSArray<dbTrackable *> *)dbAllByWaypoint:(dbWaypoint *)wp
@@ -159,7 +159,7 @@ TABLENAME(@"travelbugs")
 
 + (NSId)dbGetIdByGC:(NSInteger)gc_id
 {
-    return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithLongLong:gc_id]]] firstObject]._id;
+    return [[self dbAllXXX:@"where gc_id = ?" keys:@"i" values:@[[NSNumber numberWithLongLong:gc_id]]] firstObject]._id;
 }
 
 + (dbTrackable *)dbGetByCode:(NSString *)code
