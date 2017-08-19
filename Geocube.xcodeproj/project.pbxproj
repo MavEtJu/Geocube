@@ -302,9 +302,9 @@
 		E823451F1EECE14A00D2CDFD /* HelpAboutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E823450E1EECE14A00D2CDFD /* HelpAboutTableViewCell.xib */; };
 		E82345201EECE14A00D2CDFD /* HelpAboutTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E823450F1EECE14A00D2CDFD /* HelpAboutTableViewCell~ipad.xib */; };
 		E82345211EECE14A00D2CDFD /* HelpAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82345111EECE14A00D2CDFD /* HelpAboutViewController.m */; };
-		E82345221EECE14A00D2CDFD /* HelpDatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82345131EECE14A00D2CDFD /* HelpDatabaseViewController.m */; };
+		E82345221EECE14A00D2CDFD /* DeveloperDatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82345131EECE14A00D2CDFD /* DeveloperDatabaseViewController.m */; };
 		E82345231EECE14A00D2CDFD /* HelpHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82345151EECE14A00D2CDFD /* HelpHelpViewController.m */; };
-		E82345241EECE14A00D2CDFD /* HelpImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82345171EECE14A00D2CDFD /* HelpImagesViewController.m */; };
+		E82345241EECE14A00D2CDFD /* DeveloperImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82345171EECE14A00D2CDFD /* DeveloperImagesViewController.m */; };
 		E82345251EECE14A00D2CDFD /* HelpIntroduction.m in Sources */ = {isa = PBXBuildFile; fileRef = E82345191EECE14A00D2CDFD /* HelpIntroduction.m */; };
 		E82345261EECE14A00D2CDFD /* NoticesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E823451B1EECE14A00D2CDFD /* NoticesViewController.m */; };
 		E82345271EECE14A00D2CDFD /* NoticeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E823451D1EECE14A00D2CDFD /* NoticeTableViewCell.m */; };
@@ -1297,12 +1297,12 @@
 		E823450F1EECE14A00D2CDFD /* HelpAboutTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "HelpAboutTableViewCell~ipad.xib"; path = "Help/HelpAboutTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E82345101EECE14A00D2CDFD /* HelpAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelpAboutViewController.h; path = Help/HelpAboutViewController.h; sourceTree = "<group>"; };
 		E82345111EECE14A00D2CDFD /* HelpAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelpAboutViewController.m; path = Help/HelpAboutViewController.m; sourceTree = "<group>"; };
-		E82345121EECE14A00D2CDFD /* HelpDatabaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelpDatabaseViewController.h; path = Help/HelpDatabaseViewController.h; sourceTree = "<group>"; };
-		E82345131EECE14A00D2CDFD /* HelpDatabaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelpDatabaseViewController.m; path = Help/HelpDatabaseViewController.m; sourceTree = "<group>"; };
+		E82345121EECE14A00D2CDFD /* DeveloperDatabaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeveloperDatabaseViewController.h; path = Help/DeveloperDatabaseViewController.h; sourceTree = "<group>"; };
+		E82345131EECE14A00D2CDFD /* DeveloperDatabaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeveloperDatabaseViewController.m; path = Help/DeveloperDatabaseViewController.m; sourceTree = "<group>"; };
 		E82345141EECE14A00D2CDFD /* HelpHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelpHelpViewController.h; path = Help/HelpHelpViewController.h; sourceTree = "<group>"; };
 		E82345151EECE14A00D2CDFD /* HelpHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelpHelpViewController.m; path = Help/HelpHelpViewController.m; sourceTree = "<group>"; };
-		E82345161EECE14A00D2CDFD /* HelpImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelpImagesViewController.h; path = Help/HelpImagesViewController.h; sourceTree = "<group>"; };
-		E82345171EECE14A00D2CDFD /* HelpImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelpImagesViewController.m; path = Help/HelpImagesViewController.m; sourceTree = "<group>"; };
+		E82345161EECE14A00D2CDFD /* DeveloperImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeveloperImagesViewController.h; path = Help/DeveloperImagesViewController.h; sourceTree = "<group>"; };
+		E82345171EECE14A00D2CDFD /* DeveloperImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeveloperImagesViewController.m; path = Help/DeveloperImagesViewController.m; sourceTree = "<group>"; };
 		E82345181EECE14A00D2CDFD /* HelpIntroduction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelpIntroduction.h; path = Help/HelpIntroduction.h; sourceTree = "<group>"; };
 		E82345191EECE14A00D2CDFD /* HelpIntroduction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelpIntroduction.m; path = Help/HelpIntroduction.m; sourceTree = "<group>"; };
 		E823451A1EECE14A00D2CDFD /* NoticesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoticesViewController.h; path = Help/NoticesViewController.h; sourceTree = "<group>"; };
@@ -2821,6 +2821,17 @@
 			name = SVProgressHUD;
 			sourceTree = "<group>";
 		};
+		E87F58D21F48611700C90375 /* Developer */ = {
+			isa = PBXGroup;
+			children = (
+				E82345121EECE14A00D2CDFD /* DeveloperDatabaseViewController.h */,
+				E82345131EECE14A00D2CDFD /* DeveloperDatabaseViewController.m */,
+				E82345161EECE14A00D2CDFD /* DeveloperImagesViewController.h */,
+				E82345171EECE14A00D2CDFD /* DeveloperImagesViewController.m */,
+			);
+			name = Developer;
+			sourceTree = "<group>";
+		};
 		E887201C1B5EF5F300994BE0 /* icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -2992,12 +3003,8 @@
 			isa = PBXGroup;
 			children = (
 				E83C6F251EEEA89100E303F5 /* About */,
-				E82345121EECE14A00D2CDFD /* HelpDatabaseViewController.h */,
-				E82345131EECE14A00D2CDFD /* HelpDatabaseViewController.m */,
 				E82345141EECE14A00D2CDFD /* HelpHelpViewController.h */,
 				E82345151EECE14A00D2CDFD /* HelpHelpViewController.m */,
-				E82345161EECE14A00D2CDFD /* HelpImagesViewController.h */,
-				E82345171EECE14A00D2CDFD /* HelpImagesViewController.m */,
 				E82345181EECE14A00D2CDFD /* HelpIntroduction.h */,
 				E82345191EECE14A00D2CDFD /* HelpIntroduction.m */,
 				E83C6F261EEEA8A200E303F5 /* Notices */,
@@ -3510,6 +3517,7 @@
 				E89D15681DE55F4F00ED14B3 /* Tools */,
 				E8E8CFE91B639A0400CC741A /* Settings */,
 				E8A7FA9C1B784065003F4132 /* Help */,
+				E87F58D21F48611700C90375 /* Developer */,
 			);
 			name = "GUI - pages";
 			sourceTree = "<group>";
@@ -4429,7 +4437,7 @@
 				E82344F81EECE12A00D2CDFD /* GCSwitch.m in Sources */,
 				E82344F21EECE12A00D2CDFD /* GCButton.m in Sources */,
 				E82344361EECDFB300D2CDFD /* FilterTypesTableViewCell.m in Sources */,
-				E82345241EECE14A00D2CDFD /* HelpImagesViewController.m in Sources */,
+				E82345241EECE14A00D2CDFD /* DeveloperImagesViewController.m in Sources */,
 				E82344401EECE01500D2CDFD /* KeepTracksTrackTableViewCell.m in Sources */,
 				E82341C31EECCE8300D2CDFD /* ActionSheetMultipleStringPicker.m in Sources */,
 				E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */,
@@ -4447,7 +4455,7 @@
 				E823432D1EECD9BC00D2CDFD /* ProtocolLiveAPI.m in Sources */,
 				E83C6F021EECE67100E303F5 /* FileObjectView.m in Sources */,
 				E82343301EECD9BC00D2CDFD /* RemoteAPIGCA2.m in Sources */,
-				E82345221EECE14A00D2CDFD /* HelpDatabaseViewController.m in Sources */,
+				E82345221EECE14A00D2CDFD /* DeveloperDatabaseViewController.m in Sources */,
 				E82343501EECDA4900D2CDFD /* ImportGCA2JSON.m in Sources */,
 				E82342B21EECD0B100D2CDFD /* dbConfig.m in Sources */,
 				E82343C31EECDE8A00D2CDFD /* WaypointImageViewController.m in Sources */,

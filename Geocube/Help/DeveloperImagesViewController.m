@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface HelpImagesViewController ()
+@interface DeveloperImagesViewController ()
 {
     NSMutableArray<UIImage *> *imgs;
     NSMutableArray<NSString *> *names;
@@ -38,7 +38,7 @@ enum {
     IMAGES_MAX
 };
 
-@implementation HelpImagesViewController
+@implementation DeveloperImagesViewController
 
 - (instancetype)init
 {

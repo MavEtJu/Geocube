@@ -238,8 +238,6 @@
                 VC(HelpAboutViewController, _(@"menu-help-About"));
                 VC(HelpHelpViewController, _(@"menu-help-Help"));
                 VC(NoticesViewController, _(@"menu-help-Notices"));
-                VC(HelpImagesViewController, _(@"menu-help-Images"));
-                VC(HelpDatabaseViewController, _(@"menu-help-DB"));
 
                 TABBARCONTROLLER(RC_HELP, controllers)
                 break;
@@ -283,6 +281,15 @@
                 VC(MapLogsViewController, _(@"menu-locationless-Map"));
 
                 TABBARCONTROLLER(RC_QUERIES, controllers)
+                break;
+
+            case RC_DEVELOPER:
+                controllers = [NSMutableArray array];
+
+                VC(DeveloperImagesViewController, _(@"menu-developer-Images"));
+                VC(DeveloperDatabaseViewController, _(@"menu-developer-DB"));
+
+                TABBARCONTROLLER(RC_DEVELOPER, controllers)
                 break;
 
             default:

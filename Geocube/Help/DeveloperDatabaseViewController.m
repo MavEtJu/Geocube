@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface HelpDatabaseViewController ()
+@interface DeveloperDatabaseViewController ()
 {
     NSArray<NSString *> *fieldsSizes;
     NSArray<NSString *> *valuesSizes;
@@ -30,7 +30,7 @@
 
 @end
 
-@implementation HelpDatabaseViewController
+@implementation DeveloperDatabaseViewController
 
 enum {
     SECTION_SIZES = 0,

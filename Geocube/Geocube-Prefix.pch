@@ -255,10 +255,11 @@
 
 #import "HelpAboutViewController.h"
 #import "HelpAboutTableViewCell.h"
-#import "HelpDatabaseViewController.h"
 #import "HelpHelpViewController.h"
-#import "HelpImagesViewController.h"
 #import "HelpIntroduction.h"
+
+#import "DeveloperDatabaseViewController.h"
+#import "DeveloperImagesViewController.h"
 
 #import "KeepTracksTrackTableViewCell.h"
 #import "KeepTrackCar.h"

@@ -29,6 +29,8 @@
 @class ConfigManager;
 @class Coordinates;
 @class DatabaseCache;
+@class DeveloperDatabaseViewController;
+@class DeveloperImagesViewController;
 @class DownloadManager;
 @class ExportGPX;
 @class FileBrowserViewController;
@@ -101,9 +103,7 @@
 @class GroupsUserViewController;
 @class HelpAboutTableViewCell;
 @class HelpAboutViewController;
-@class HelpDatabaseViewController;
 @class HelpHelpViewController;
-@class HelpImagesViewController;
 @class HelpIntroduction;
 @class IOSFileTransfers;
 @class ImageLibrary;
