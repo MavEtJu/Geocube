@@ -189,4 +189,9 @@
 "waypointsorter-Time added (descending)" = "Datum geïmporteerd (aflopend)";
 "waypointsorter-Type" = "Type";
 
+/* Waypoint TableViewCell */
+"waypointtableviewcell-%@ on %@" = "%@ op %@";
+"waypointtableviewcell-Placed on %@" = "Geplaatst op %@";
+"waypointtableviewcell-Yours on %@" = "Van jou op %@";
+"waypointtableviewcell-by %@ on %@" = "Door %@ op %@";
 

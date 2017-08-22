@@ -189,3 +189,9 @@
 "waypointsorter-Time added (ascending)" = "Time added (ascending)";
 "waypointsorter-Time added (descending)" = "Time added (descending)";
 "waypointsorter-Type" = "Type";
+
+/* Waypoint TableViewCell */
+"waypointtableviewcell-%@ on %@" = "%@ on %@";
+"waypointtableviewcell-Placed on %@" = "Placed on %@";
+"waypointtableviewcell-Yours on %@" = "Yours on %@";
+"waypointtableviewcell-by %@ on %@" = "by %@ on %@";

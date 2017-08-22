@@ -72,15 +72,15 @@
     if (wp.account == nil)
         self.labelCode.text = wp.wpt_name;
     else
-        self.labelCode.text = [NSString stringWithFormat:@"%@ on %@", wp.wpt_name, wp.account.site];
+        self.labelCode.text = [NSString stringWithFormat:_(@"waypointtableviewcell-%@ on %@"), wp.wpt_name, wp.account.site];
 
     if (wp.gs_owner == nil) {
         if ([wp hasGSData] == NO)
-            self.labelWhoWhen.text = [NSString stringWithFormat:@"Placed on %@", [MyTools dateTimeString_YYYY_MM_DD:wp.wpt_date_placed_epoch]];
+            self.labelWhoWhen.text = [NSString stringWithFormat:_(@"waypointtableviewcell-Placed on %@"), [MyTools dateTimeString_YYYY_MM_DD:wp.wpt_date_placed_epoch]];
         else
-            self.labelWhoWhen.text = [NSString stringWithFormat:@"Yours on %@", [MyTools dateTimeString_YYYY_MM_DD:wp.wpt_date_placed_epoch]];
+            self.labelWhoWhen.text = [NSString stringWithFormat:_(@"waypointtableviewcell-Yours on %@"), [MyTools dateTimeString_YYYY_MM_DD:wp.wpt_date_placed_epoch]];
     } else
-        self.labelWhoWhen.text = [NSString stringWithFormat:@"by %@ on %@", wp.gs_owner.name, [MyTools dateTimeString_YYYY_MM_DD:wp.wpt_date_placed_epoch]];
+        self.labelWhoWhen.text = [NSString stringWithFormat:_(@"waypointtableviewcell-by %@ on %@"), wp.gs_owner.name, [MyTools dateTimeString_YYYY_MM_DD:wp.wpt_date_placed_epoch]];
 
     if (wp.flag_highlight == YES)
         self.labelDescription.backgroundColor = currentTheme.labelHighlightBackgroundColor;
@@ -90,11 +90,11 @@
     if (wp.gs_rating_terrain == 0)
         self.labelTerrain.text = @"";
     else
-        self.labelTerrain.text = [NSString stringWithFormat:@"T: %0.1f", wp.gs_rating_terrain];
+        self.labelTerrain.text = [NSString stringWithFormat:@"%@: %0.1f", _(@"rating-T"), wp.gs_rating_terrain];
     if (wp.gs_rating_difficulty == 0)
         self.labelDifficulty.text = @"";
     else
-        self.labelDifficulty.text = [NSString stringWithFormat:@"D: %0.1f", wp.gs_rating_difficulty];
+        self.labelDifficulty.text = [NSString stringWithFormat:@"%@: %0.1f", _(@"rating-D"), wp.gs_rating_difficulty];
 
     [self setRatings:wp.gs_favourites size:wp.gs_container.icon];
 
