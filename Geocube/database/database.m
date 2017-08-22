@@ -726,8 +726,9 @@
     [upgradeSteps addObject:a];
 
     // Version 57
+    // Fix duplicate travelbugs
     a = @[
-    @"delete from travelbugs where gc_id in (select gc_id from travelbugs group by gc_id having count(gc_id) > 1) and (carrier_id is null or carried_id = 0) and (waypoint_name is null or waypoint_name = 0)",
+    @"delete from travelbugs where gc_id in (select gc_id from travelbugs group by gc_id having count(gc_id) > 1) and (carrier_id is null or carrier_id = 0) and (waypoint_name is null or waypoint_name = 0)",
     @"delete from travelbugs where not (owner_id in (select accountname_id from accounts where accountname_id != 0)) and not (carrier_id in (select accountname_id from accounts where accountname_id != 0))",
     ];
     [upgradeSteps addObject:a];
