@@ -165,3 +165,14 @@
 "settingsmainviewcontroller-Walking zoom-out distance" = "Walking zoom-out distance";
 "settingsmainviewcontroller-Waypoints" = "Waypoints";
 "settingsmainviewcontroller-White arrow on black" = "White arrow on black";
+"settingsmainviewcontroller-Backup rotation" = "Backup rotation";
+"settingsmainviewcontroller-Backups" = "Backups";
+"settingsmainviewcontroller-Enable backups" = "Enable backups";
+"settingsmainviewcontroller-Make a new backup every" = "Make a new backup every";
+"settingsmainviewcontroller-Number of backups (between 1 and 10)" = "Number of backups (between 1 and 10)";
+"settingsmainviewcontroller-Number of backups to be kept" = "Number of backups to be kept";
+"settingsmainviewcontroller-Number of days between backups" = "Number of days between backups";
+"settingsmainviewcontroller-Specify how many backups need to be saved" = "Specify how many backups need to be saved";
+"settingsmainviewcontroller-Specify the number of days between backups" = "Specify the number of days between backups";
+"settingsmainviewcontroller-backups" = "backups";
+

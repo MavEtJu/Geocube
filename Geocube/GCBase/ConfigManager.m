@@ -142,6 +142,10 @@
     CHECK(@"configupdate_lastversion", @"1.3");
     s = [NSString stringWithFormat:@"%ld", time(NULL)];
     CHECK(@"configupdate_lasttime", s);
+
+    CHECK(@"automaticdatabasebackup_enable", @"1");
+    CHECK(@"automaticdatabasebackup_period", @"7");
+    CHECK(@"automaticdatabasebackup_rotate", @"5");
 }
 
 - (void)loadValues
@@ -214,6 +218,9 @@
     self.opencageWifiOnly = [[dbConfig dbGetByKey:@"opencage_wifionly"].value boolValue];
     self.configUpdateLastVersion = [dbConfig dbGetByKey:@"configupdate_lastversion"].value;
     self.configUpdateLastTime = [[dbConfig dbGetByKey:@"configupdate_lasttime"].value integerValue];
+    self.automaticDatabaseBackup = [[dbConfig dbGetByKey:@"automaticdatabasebackup_enable"].value boolValue];
+    self.automaticDatabaseBackupPeriod = [[dbConfig dbGetByKey:@"automaticdatabasebackup_period"].value integerValue];
+    self.automaticDatabaseBackupRotate = [[dbConfig dbGetByKey:@"automaticdatabasebackup_rotate"].value integerValue];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -633,6 +640,22 @@
 {
     self.configUpdateLastVersion = value;
     [self NSStringUpdate:@"configupdate_lastversion" value:value];
+}
+
+- (void)automaticDatabaseBackupUpdate:(BOOL)value
+{
+    self.automaticDatabaseBackup = value;
+    [self BOOLUpdate:@"automaticdatabasebackup_enable" value:value];
+}
+- (void)automaticDatabaseBackupPeriodUpdate:(NSInteger)value
+{
+    self.automaticDatabaseBackupPeriod = value;
+    [self NSIntegerUpdate:@"automaticdatabasebackup_period" value:value];
+}
+- (void)automaticDatabaseBackupRotateUpdate:(NSInteger)value
+{
+    self.automaticDatabaseBackupRotate = value;
+    [self NSIntegerUpdate:@"automaticdatabasebackup_rotate" value:value];
 }
 
 @end

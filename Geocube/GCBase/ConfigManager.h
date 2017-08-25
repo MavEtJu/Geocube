@@ -120,6 +120,10 @@
 @property (nonatomic) NSInteger configUpdateLastTime;
 @property (nonatomic) NSString *configUpdateLastVersion;
 
+@property (nonatomic) BOOL automaticDatabaseBackup;
+@property (nonatomic) NSInteger automaticDatabaseBackupPeriod;
+@property (nonatomic) NSInteger automaticDatabaseBackupRotate;
+
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown
 // UIInterfaceOrientationMaskLandscapeLeft, UIInterfaceOrientationMaskLandscapeRight
@@ -193,5 +197,8 @@
 - (void)opencageWifiOnlyUpdate:(BOOL)value;
 - (void)configUpdateLastTime:(NSInteger)value;
 - (void)configUpdateLastVersion:(NSString *)value;
+- (void)automaticDatabaseBackupUpdate:(BOOL)value;
+- (void)automaticDatabaseBackupPeriodUpdate:(NSInteger)value;
+- (void)automaticDatabaseBackupRotateUpdate:(NSInteger)value;
 
 @end

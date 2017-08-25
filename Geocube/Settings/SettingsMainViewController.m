@@ -230,6 +230,7 @@ enum {
 
 enum sections {
     SECTION_DISTANCE = 0,
+    SECTION_BACKUPS,
     SECTION_APPS,
     SECTION_IMPORTS,
     SECTION_THEME,
@@ -336,6 +337,11 @@ enum sections {
     SECTION_LOCATIONLESS_SORTBY = 0,
     SECTION_LOCATIONLESS_SHOWFOUND,
     SECTION_LOCATIONLESS_MAX,
+
+    SECTION_BACKUPS_ENABLED = 0,
+    SECTION_BACKUPS_INTERVAL,
+    SECTION_BACKUPS_ROTATION,
+    SECTION_BACKUPS_MAX,
 };
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -367,6 +373,7 @@ enum sections {
         SECTION_MAX(LISTS);
         SECTION_MAX(ACCOUNTS);
         SECTION_MAX(LOCATIONLESS);
+        SECTION_MAX(BACKUPS);
         default:
             NSAssert1(0, @"Unknown section %ld", (long)section);
     }
@@ -412,6 +419,8 @@ enum sections {
             return _(@"settingsmainviewcontroller-Accounts");
         case SECTION_LOCATIONLESS:
             return _(@"settingsmainviewcontroller-Locationless");
+        case SECTION_BACKUPS:
+            return _(@"settingsmainviewcontroller-Backups");
         default:
             NSAssert1(0, @"Unknown section %ld", (long)section);
     }
@@ -940,6 +949,31 @@ enum sections {
             }
         }
 
+        case SECTION_BACKUPS: {
+            switch (indexPath.row) {
+                case SECTION_BACKUPS_ENABLED: {
+                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Enable backups");
+                    cell.optionSwitch.on = configManager.automaticDatabaseBackup;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+                    [cell.optionSwitch addTarget:self action:@selector(updateBackupsEnable:) forControlEvents:UIControlEventTouchUpInside];
+                    return cell;
+                }
+                case SECTION_BACKUPS_INTERVAL: {
+                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Make a new backup every");
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld %@", (long)configManager.automaticDatabaseBackupPeriod, _(@"time-days")];
+                    return cell;
+                }
+                case SECTION_BACKUPS_ROTATION: {
+                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Number of backups to be kept");
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld %@", (long)configManager.automaticDatabaseBackupRotate, _(@"settingsmainviewcontroller-backups")];
+                    return cell;
+                }
+            }
+        }
+
     }
 
     // Not reached
@@ -1045,6 +1079,11 @@ enum sections {
 - (void)updateKeeptrackAutoRotate:(GCSwitch *)s
 {
     [configManager keeptrackAutoRotateUpdate:s.on];
+}
+
+- (void)updateBackupsEnable:(GCSwitch *)s
+{
+    [configManager automaticDatabaseBackupUpdate:s.on];
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -1185,6 +1224,17 @@ enum sections {
                     break;
             }
             return;
+
+        case SECTION_BACKUPS:
+            switch (indexPath.row) {
+                case SECTION_BACKUPS_ROTATION:
+                    [self changeBackupsRotation];
+                    break;
+                case SECTION_BACKUPS_INTERVAL:
+                    [self changeBackupsInterval];
+                    break;
+            }
+            return;
     }
 }
 
@@ -1223,7 +1273,6 @@ enum sections {
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
-
 }
 
 /* ********************************************************************************* */
@@ -1819,6 +1868,82 @@ enum sections {
 {
     [configManager showStateAsAbbrevationIfLocaleExistsUpdate:b.on];
     [self.tableView reloadData];
+}
+
+/* ********************************************************************************* */
+
+- (void)changeBackupsRotation
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:_(@"settingsmainviewcontroller-Backup rotation")
+                                message:_(@"settingsmainviewcontroller-Specify how many backups need to be saved")
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:_(@"OK")
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *value = tf.text;
+                             NSInteger i = [value integerValue];
+                             if (i > 0 || i < 10)
+                                 [configManager automaticDatabaseBackupRotateUpdate:i];
+                             [self.tableView reloadData];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = configManager.opencageKey;
+        textField.placeholder = _(@"settingsmainviewcontroller-Number of backups (between 1 and 10)");
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)changeBackupsInterval
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:_(@"settingsmainviewcontroller-Backup rotation")
+                                message:_(@"settingsmainviewcontroller-Specify the number of days between backups")
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:_(@"OK")
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *value = tf.text;
+                             NSInteger i = [value integerValue];
+                             if (i > 0)
+                                 [configManager automaticDatabaseBackupPeriodUpdate:i];
+                             [self.tableView reloadData];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = configManager.opencageKey;
+        textField.placeholder = _(@"settingsmainviewcontroller-Number of days between backups");
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 /* ********************************************************************************* */
