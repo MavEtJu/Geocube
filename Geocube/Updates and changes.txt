@@ -18,6 +18,7 @@ Version 1.4(x)
     configuration needs to be reloaded.
   - At startup it will check for updates in the configuration.
   - Localization to the Dutch language.
+  - Automatic creation of backups of the database.
 
   Fixes:
   - Made the UI for a waypoint more sane with regards to "what is
