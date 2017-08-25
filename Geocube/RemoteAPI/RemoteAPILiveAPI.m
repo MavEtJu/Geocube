@@ -281,7 +281,7 @@
     [iv setDescription:iii description:IMPORTMSG];
     [callback remoteAPI_objectReadyToImport:identifier iiImport:iii object:json group:group account:self.account];
 
-    [callback remoteAPI_finishedDownloads:identifier numberOfChunks:[wpcodes count]];
+    [callback remoteAPI_finishedDownloads:identifier numberOfChunks:1];
     return REMOTEAPI_OK;
 }
 
