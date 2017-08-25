@@ -264,7 +264,7 @@ enum {
 - (void)dumpDatabase
 {
     NSString *file = [db saveCopy];
-    [MyTools messageBox:self header:@"Backup saved" text:[NSString stringWithFormat:@"You can find the dump in the Files section as %@", file]];
+    [MyTools messageBox:[MyTools topMostController] header:@"Backup saved" text:[NSString stringWithFormat:@"You can find the dump in the Files section as %@", file]];
 }
 
 @end

@@ -38,6 +38,7 @@
 - (NSString *)saveCopy;
 - (BOOL)restoreFromCopy:(NSString *)source;
 - (void)cleanupAfterDelete;
+- (void)checkForBackup;
 
 @end
 

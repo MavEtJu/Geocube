@@ -143,7 +143,8 @@
     s = [NSString stringWithFormat:@"%ld", time(NULL)];
     CHECK(@"configupdate_lasttime", s);
 
-    CHECK(@"automaticdatabasebackup_enable", @"1");
+    CHECK(@"automaticdatabasebackup_enable", @"0");
+    CHECK(@"automaticdatabasebackup_last", @"0");
     CHECK(@"automaticdatabasebackup_period", @"7");
     CHECK(@"automaticdatabasebackup_rotate", @"5");
 }
@@ -219,6 +220,7 @@
     self.configUpdateLastVersion = [dbConfig dbGetByKey:@"configupdate_lastversion"].value;
     self.configUpdateLastTime = [[dbConfig dbGetByKey:@"configupdate_lasttime"].value integerValue];
     self.automaticDatabaseBackup = [[dbConfig dbGetByKey:@"automaticdatabasebackup_enable"].value boolValue];
+    self.automaticDatabaseBackupLast = [[dbConfig dbGetByKey:@"automaticdatabasebackup_last"].value doubleValue];
     self.automaticDatabaseBackupPeriod = [[dbConfig dbGetByKey:@"automaticdatabasebackup_period"].value integerValue];
     self.automaticDatabaseBackupRotate = [[dbConfig dbGetByKey:@"automaticdatabasebackup_rotate"].value integerValue];
 
@@ -256,6 +258,13 @@
 }
 
 - (void)FloatUpdate:(NSString *)key value:(float)value
+{
+    dbConfig *c = [dbConfig dbGetByKey:key];
+    c.value = [NSString stringWithFormat:@"%f", value];
+    [c dbUpdate];
+}
+
+- (void)DoubleUpdate:(NSString *)key value:(double)value
 {
     dbConfig *c = [dbConfig dbGetByKey:key];
     c.value = [NSString stringWithFormat:@"%f", value];
@@ -651,6 +660,11 @@
 {
     self.automaticDatabaseBackupPeriod = value;
     [self NSIntegerUpdate:@"automaticdatabasebackup_period" value:value];
+}
+- (void)automaticDatabaseBackupLastUpdate:(NSTimeInterval)value
+{
+    self.automaticDatabaseBackupLast = value;
+    [self DoubleUpdate:@"automaticdatabasebackup_last" value:value];
 }
 - (void)automaticDatabaseBackupRotateUpdate:(NSInteger)value
 {

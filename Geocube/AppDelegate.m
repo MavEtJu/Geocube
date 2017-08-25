@@ -73,6 +73,10 @@
     // Initialize the configuration manager - after db
     configManager = [[ConfigManager alloc] init];
 
+    // Database backup - after configManager and db
+    if (configManager.automaticDatabaseBackup == YES)
+        [db checkForBackup];
+
     // Localization manager - after configManager
     localizationManager = [[LocalizationManager alloc] init];
 

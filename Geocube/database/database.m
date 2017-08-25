@@ -45,7 +45,9 @@
     NSString *toName = [NSString stringWithFormat:@"Geocube-%@.sqlite", [MyTools dateTimeString_YYYYMMDD]];
     NSString *to = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], toName];
     [fileManager removeItemAtPath:to error:&error];
-    [fileManager copyItemAtPath:dbname toPath:to error:&error];
+    @synchronized(db) {
+        [fileManager copyItemAtPath:dbname toPath:to error:&error];
+    }
     return toName;
 }
 
@@ -56,6 +58,35 @@
     [fileManager removeItemAtPath:dbname error:&error];
     [fileManager copyItemAtPath:from toPath:dbname error:&error];
     return (error == nil);
+}
+
+- (void)checkForBackup
+{
+    if (configManager.automaticDatabaseBackup == NO)
+        return;
+    if (configManager.automaticDatabaseBackupLast > time(NULL) - configManager.automaticDatabaseBackupPeriod * 86400)
+        return;
+
+    [db saveCopy];
+    NSEnumerator *e = [fileManager enumeratorAtPath:[MyTools FilesDir]];
+    NSString *fn;
+    NSMutableArray *a = [NSMutableArray arrayWithCapacity:configManager.automaticDatabaseBackupRotate + 1];
+    while ((fn = [e nextObject]) != nil) {
+        if ([[fn substringToIndex:8] isEqualToString:@"Geocube-"] == YES)
+            [a addObject:fn];
+    }
+    if ([a count] > configManager.automaticDatabaseBackupRotate) {
+        NSEnumerator *e = [[a sortedArrayUsingSelector:@selector(compare:)] reverseObjectEnumerator];
+        NSInteger idx = 0;
+        NSString *fn;
+        while ((fn = [e nextObject]) != nil) {
+            if (idx > configManager.automaticDatabaseBackupRotate) {
+                NSLog(@"checkForBackup: Removing %@", fn);
+                [fileManager removeItemAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], fn] error:nil];
+            }
+            idx++;
+        };
+    }
 }
 
 - (void)checkVersion

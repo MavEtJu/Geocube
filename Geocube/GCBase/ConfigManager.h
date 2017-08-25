@@ -121,6 +121,7 @@
 @property (nonatomic) NSString *configUpdateLastVersion;
 
 @property (nonatomic) BOOL automaticDatabaseBackup;
+@property (nonatomic) NSTimeInterval automaticDatabaseBackupLast;
 @property (nonatomic) NSInteger automaticDatabaseBackupPeriod;
 @property (nonatomic) NSInteger automaticDatabaseBackupRotate;
 
@@ -198,6 +199,7 @@
 - (void)configUpdateLastTime:(NSInteger)value;
 - (void)configUpdateLastVersion:(NSString *)value;
 - (void)automaticDatabaseBackupUpdate:(BOOL)value;
+- (void)automaticDatabaseBackupLastUpdate:(NSTimeInterval)value;
 - (void)automaticDatabaseBackupPeriodUpdate:(NSInteger)value;
 - (void)automaticDatabaseBackupRotateUpdate:(NSInteger)value;
 
