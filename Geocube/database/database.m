@@ -68,6 +68,8 @@
         return;
 
     [db saveCopy];
+    [configManager automaticDatabaseBackupLastUpdate:time(NULL)];
+
     NSEnumerator *e = [fileManager enumeratorAtPath:[MyTools FilesDir]];
     NSString *fn;
     NSMutableArray *a = [NSMutableArray arrayWithCapacity:configManager.automaticDatabaseBackupRotate + 1];
