@@ -271,7 +271,7 @@
 
     labelMapFindTarget.frame = CGRectMake(width - 1 * 28 - 3, 3, imgwidth, imgheight);
 
-    CGRect rect = CGRectMake(0, applicationFrame.size.height - [MapWaypointInfoView viewHeight], width, [MapWaypointInfoView viewHeight]);
+    CGRect rect = CGRectMake(0, self.view.frame.size.height - [MapWaypointInfoView viewHeight], width, [MapWaypointInfoView viewHeight]);
     wpInfoView.frame = rect;
 
     [self.map recalculateRects];
