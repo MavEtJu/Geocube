@@ -22,7 +22,8 @@
 @interface WaypointHintViewController ()
 {
     dbWaypoint *waypoint;
-    UIWebView *webview;
+    GCScrollView *scrollview;
+    GCTextblock *block;
 }
 
 @end
@@ -39,26 +40,37 @@
     return self;
 }
 
-- (void)viewDidLoad
+- (void)loadView
 {
     hasCloseButton = YES;
-    [super viewDidLoad];
+    [super loadView];
     // Do any additional setup after loading the view.
 
     CGRect bounds = [[UIScreen mainScreen] bounds];
     NSInteger width = bounds.size.width;
-    webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, width, 0)];
+    scrollview = [[GCScrollView alloc] initWithFrame:CGRectMake(0, 0, width, 0)];
 
-    [webview loadHTMLString:[self makeHTMLString] baseURL:nil];
-    [webview sizeToFit];
-    self.view = webview;
+    block = [[GCTextblock alloc] initWithFrame:CGRectMake(0, 0, width, 0)];
+    block.text = waypoint.gs_hint;
+    block.numberOfLines = 0;
 
-    [self prepareCloseButton:webview];
+    [scrollview addSubview:block];
+    [block sizeToFit];
+
+    [scrollview sizeToFit];
+    self.view = scrollview;
+
+    [self prepareCloseButton:scrollview];
 }
 
-- (NSString *)makeHTMLString
+- (void)calculateRects
 {
-    return [MyTools simpleHTML:waypoint.gs_hint];
+    [super calculateRects];
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
+    NSInteger width = applicationFrame.size.width;
+
+    block.frame = CGRectMake(0, 0, width, 0);
+    [block sizeToFit];
 }
 
 @end

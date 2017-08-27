@@ -24,6 +24,7 @@
     dbWaypoint *waypoint;
     UIWebView *webview;
     GCScrollView *scrollview;
+    GCTextblock *block;
     BOOL useWebview;
 }
 
@@ -70,21 +71,32 @@ enum {
         CGRect applicationFrame = [[UIScreen mainScreen] bounds];
         scrollview = [[GCScrollView alloc] initWithFrame:applicationFrame];
 
-        GCTextblock *l = [[GCTextblock alloc] initWithFrame:CGRectMake(0, 0, applicationFrame.size.width, 0)];
-        l.text = [self makeTextString];
-        [l sizeToFit];
-        l.userInteractionEnabled = YES;
+        block = [[GCTextblock alloc] initWithFrame:CGRectMake(0, 0, applicationFrame.size.width, 0)];
+        block.text = [self makeTextString];
+        [block sizeToFit];
 
-        CGRect frame = l.frame;
+        CGRect frame = block.frame;
         frame.size.width = applicationFrame.size.width;
-        l.frame = frame;
+        block.frame = frame;
 
-        [scrollview addSubview:l];
+        [scrollview addSubview:block];
 
-        scrollview.contentSize = l.frame.size;
+        scrollview.contentSize = block.frame.size;
         [scrollview sizeToFit];
         self.view = scrollview;
         [self prepareCloseButton:scrollview];
+    }
+}
+
+- (void)calculateRects
+{
+    [super calculateRects];
+    if (useWebview == NO) {
+        CGRect applicationFrame = [[UIScreen mainScreen] bounds];
+        NSInteger width = applicationFrame.size.width;
+
+        block.frame = CGRectMake(0, 0, width, 0);
+        [block sizeToFit];
     }
 }
 
