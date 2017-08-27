@@ -72,7 +72,7 @@
 
     NSEnumerator *e = [fileManager enumeratorAtPath:[MyTools FilesDir]];
     NSString *fn;
-    NSMutableArray *a = [NSMutableArray arrayWithCapacity:configManager.automaticDatabaseBackupRotate + 1];
+    NSMutableArray<NSString *> *a = [NSMutableArray arrayWithCapacity:configManager.automaticDatabaseBackupRotate + 1];
     while ((fn = [e nextObject]) != nil) {
         if ([[fn substringToIndex:8] isEqualToString:@"Geocube-"] == YES)
             [a addObject:fn];
