@@ -208,10 +208,8 @@
 
 - (void)dateWasSelected:(NSDate *)date element:(UIButton *)b
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYY-MM-dd"];
-    NSString *dateFromString = [dateFormatter stringFromDate:date];
-
+    NSString *dateFromString = [NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
+    
     [b setTitle:dateFromString forState:UIControlStateNormal];
 
     if (b == buttonDateLastLog)
