@@ -195,3 +195,6 @@
 "waypointtableviewcell-Yours on %@" = "Van jou op %@";
 "waypointtableviewcell-by %@ on %@" = "Door %@ op %@";
 
+/* Waypoint description */
+"waypointdescriptionviewcontroller-Show as HTML" = "Laat zien als HTML";
+"waypointdescriptionviewcontroller-Show as text" = "Laat zien als tekst";

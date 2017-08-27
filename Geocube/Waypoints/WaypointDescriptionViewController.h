@@ -21,6 +21,6 @@
 
 @interface WaypointDescriptionViewController : GCViewController <UIScrollViewDelegate, UIWebViewDelegate>
 
-- (instancetype)init:(dbWaypoint *)waypoint;
+- (instancetype)init:(dbWaypoint *)waypoint webview:(BOOL)webview;
 
 @end

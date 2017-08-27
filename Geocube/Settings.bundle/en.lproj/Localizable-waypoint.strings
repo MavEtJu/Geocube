@@ -195,3 +195,7 @@
 "waypointtableviewcell-Placed on %@" = "Placed on %@";
 "waypointtableviewcell-Yours on %@" = "Yours on %@";
 "waypointtableviewcell-by %@ on %@" = "by %@ on %@";
+
+/* Waypoint description */
+"waypointdescriptionviewcontroller-Show as HTML" = "Show as HTML";
+"waypointdescriptionviewcontroller-Show as text" = "Show as text";

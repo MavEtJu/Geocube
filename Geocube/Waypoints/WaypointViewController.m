@@ -473,7 +473,7 @@ enum {
         case WAYPOINT_DATA:
             switch (indexPath.row) {
                 case WAYPOINT_DATA_DESCRIPTION: {
-                    UIViewController *newController = [[WaypointDescriptionViewController alloc] init:waypoint];
+                    UIViewController *newController = [[WaypointDescriptionViewController alloc] init:waypoint webview:YES];
                     newController.edgesForExtendedLayout = UIRectEdgeNone;
                     [self.navigationController pushViewController:newController animated:YES];
                     return;

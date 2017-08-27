@@ -23,34 +23,69 @@
 {
     dbWaypoint *waypoint;
     UIWebView *webview;
+    GCScrollView *scrollview;
+    BOOL useWebview;
 }
 
 @end
 
 @implementation WaypointDescriptionViewController
 
-- (instancetype)init:(dbWaypoint *)_wp
+enum {
+    menuShowAsText,
+    menuMax,
+};
+
+- (instancetype)init:(dbWaypoint *)_wp webview:(BOOL)yesno
 {
     self = [super init];
 
     waypoint = _wp;
-    lmi = nil;
+    useWebview = yesno;
+
+    lmi = [[LocalMenuItems alloc] init:menuMax];
+    if (yesno == YES)
+        [lmi addItem:menuShowAsText label:_(@"waypointdescriptionviewcontroller-Show as text")];
+    else
+        [lmi addItem:menuShowAsText label:_(@"waypointdescriptionviewcontroller-Show as HTML")];
 
     return self;
 }
 
-- (void)viewDidLoad
+- (void)loadView
 {
     hasCloseButton = YES;
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [super loadView];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    [webview loadHTMLString:[self makeHTMLString] baseURL:nil];
-    [webview sizeToFit];
-    self.view = webview;
+    /* webview */
+    if (useWebview == YES) {
+        webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+        [webview loadHTMLString:[self makeHTMLString] baseURL:nil];
+        [webview sizeToFit];
+        self.view = webview;
+        [self prepareCloseButton:webview];
+    } else {
+        /* scrollview */
+        CGRect applicationFrame = [[UIScreen mainScreen] bounds];
+        scrollview = [[GCScrollView alloc] initWithFrame:applicationFrame];
 
-    [self prepareCloseButton:webview];
+        GCTextblock *l = [[GCTextblock alloc] initWithFrame:CGRectMake(0, 0, applicationFrame.size.width, 0)];
+        l.text = [self makeTextString];
+        [l sizeToFit];
+        l.userInteractionEnabled = YES;
+
+        CGRect frame = l.frame;
+        frame.size.width = applicationFrame.size.width;
+        l.frame = frame;
+
+        [scrollview addSubview:l];
+
+        scrollview.contentSize = l.frame.size;
+        [scrollview sizeToFit];
+        self.view = scrollview;
+        [self prepareCloseButton:scrollview];
+    }
 }
 
 - (NSString *)makeHTMLString
@@ -72,6 +107,74 @@
     }
 
     return ret;
+}
+
+- (NSString *)makeTextString
+{
+    NSMutableString *ret = [NSMutableString stringWithString:waypoint.description];
+
+    if ([waypoint.gs_short_desc isEqualToString:@""] == NO) {
+        NSString *s = waypoint.gs_short_desc;
+        if (waypoint.gs_short_desc_html == NO)
+            s = [MyTools simpleHTML:s];
+        [ret appendFormat:@"\n-----------------\n%@", s];
+    }
+
+    if ([waypoint.gs_long_desc isEqualToString:@""] == NO) {
+        NSString *s = waypoint.gs_long_desc;
+        if (waypoint.gs_long_desc_html == NO)
+            s = [MyTools simpleHTML:s];
+        [ret appendFormat:@"\n-----------------\n%@", s];
+    }
+
+#define REPLACE(_a_, _b_) \
+    [ret replaceOccurrencesOfString:_a_ withString:_b_ options:NSCaseInsensitiveSearch|NSRegularExpressionSearch range:NSMakeRange(0, [ret length])];
+    REPLACE(@"<br[^>]*>", @"\n");
+    REPLACE(@"</?p>", @"\n");
+    REPLACE(@"&nbsp;", @" ");
+    REPLACE(@"&quot;", @"\"");
+    REPLACE(@"&amp;", @"&");
+    REPLACE(@"&#39;", @"'");
+    REPLACE(@"</?span[^>]*>", @" ");
+    REPLACE(@"</?i[^>]*>", @"/");
+    REPLACE(@"</?em[^>]*>", @"/");
+    REPLACE(@"</?b[^>]*>", @"*");
+    REPLACE(@"</?strong[^>]*>", @"*");
+    REPLACE(@"</?[Hh][1-5]>", @"==");
+    REPLACE(@"<img[^>]*>", @"[PICTURE]");
+    REPLACE(@"<a[^>]*>", @"[ANCHOR]");
+    REPLACE(@"</a>", @"[/ANCHOR]");
+    REPLACE(@"</?p>", @"\n");
+    REPLACE(@"</?ul>", @"\n");
+    REPLACE(@"</?ol>", @"\n");
+    REPLACE(@"</?li>", @"\n* ");
+    REPLACE(@"\r", @"\n");
+    REPLACE(@"\n+", @"\n");
+
+    return ret;
+}
+
+#pragma mark - Local menu related functions
+
+- (void)performLocalMenuAction:(NSInteger)index
+{
+    // Import a photo
+    switch (index) {
+        case menuShowAsText:
+            [self showAsText];
+            return;
+    }
+
+    [super performLocalMenuAction:index];
+}
+
+- (void)showAsText
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    WaypointViewController *cvc = (WaypointViewController *)self.navigationController.topViewController;
+    UIViewController *newController = [[WaypointDescriptionViewController alloc] init:waypoint webview:!useWebview];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    [cvc.navigationController pushViewController:newController animated:YES];
 }
 
 @end
