@@ -20,9 +20,6 @@
  */
 
 @interface MapTemplate ()
-{
-    MapWaypointInfoView *wpInfoView;
-}
 
 @end
 
@@ -208,62 +205,11 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (void)recalculateRects
 {
-    CGRect frame = self.mapvc.view.frame;
-    CGRect rect = CGRectMake(0, frame.size.height - [MapWaypointInfoView viewHeight], frame.size.width, [MapWaypointInfoView viewHeight]);
-    wpInfoView.frame = rect;
 }
 
 - (void)updateMapScaleView
 {
     [mapScaleView update];
-}
-
-/*
- * WaypointInfo related stuff
- */
-
-- (void)hideWaypointInfo
-{
-    [UIView transitionWithView:self.mapvc.view
-                      duration:0.5
-                       options:UIViewAnimationOptionTransitionNone
-                    animations:^{
-                                wpInfoView.hidden = YES;
-                                }
-                    completion:nil
-    ];
-}
-
-- (void)showWaypointInfo
-{
-    [self recalculateRects];
-
-    [self.mapvc.view bringSubviewToFront:wpInfoView];
-    wpInfoView.hidden = NO;
-}
-
-- (BOOL)waypointInfoViewIsShown
-{
-    return (wpInfoView.hidden == NO);
-}
-
-- (void)updateWaypointInfo:(dbWaypoint *)wp
-{
-    [wpInfoView setWaypoint:wp];
-}
-
-- (void)initWaypointInfo
-{
-    /* Add the info window */
-    CGRect maprect = self.mapvc.view.frame;
-    maprect.origin.y = maprect.size.height - [MapWaypointInfoView viewHeight];
-    maprect.size.height = [MapWaypointInfoView viewHeight];
-    wpInfoView = [[MapWaypointInfoView alloc] initWithFrame:maprect];
-    wpInfoView.parentMap = self;
-    [self.mapvc.view addSubview:wpInfoView];
-    [self.mapvc.view sendSubviewToBack:wpInfoView];
-
-    [self hideWaypointInfo];
 }
 
 - (void)moveCameraToAll

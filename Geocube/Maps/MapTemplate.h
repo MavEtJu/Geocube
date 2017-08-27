@@ -81,13 +81,6 @@
 - (void)showTrack:(dbTrack *)track;
 - (void)showTrack;
 
-- (void)hideWaypointInfo;
-- (void)showWaypointInfo;
-- (void)initWaypointInfo;
-- (void)updateWaypointInfo:(dbWaypoint *)wp;
-- (void)openWaypointInfo:(dbWaypoint *)sender;
-- (BOOL)waypointInfoViewIsShown;
-
 - (CLLocationCoordinate2D)currentCenter;
 - (double)currentZoom;
 - (void)currentRectangle:(CLLocationCoordinate2D *)bottomLeft topRight:(CLLocationCoordinate2D *)topRight;

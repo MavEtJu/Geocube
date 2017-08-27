@@ -83,7 +83,6 @@
     lpgr.minimumPressDuration = 2.0; //user needs to press for 2 seconds
     [mapView addGestureRecognizer:lpgr];
 
-    [self initWaypointInfo];
     if (linesHistory == nil)
         linesHistory = [NSMutableArray arrayWithCapacity:100];
     if (viewLinesHistory == nil)
@@ -315,15 +314,15 @@
 {
     if ([view.annotation isKindOfClass:[GCWaypointAnnotation class]]) {
         GCWaypointAnnotation *pa = (GCWaypointAnnotation *)view.annotation;
-        [self updateWaypointInfo:pa.waypoint];
-        [self showWaypointInfo];
+        [self.mapvc updateWaypointInfo:pa.waypoint];
+        [self.mapvc showWaypointInfo];
     }
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
 {
     if ([view.annotation isKindOfClass:[GCWaypointAnnotation class]]) {
-        [self hideWaypointInfo];
+        [self.mapvc hideWaypointInfo];
     }
 }
 

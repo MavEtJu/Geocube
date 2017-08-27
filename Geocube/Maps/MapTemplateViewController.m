@@ -27,6 +27,7 @@
     UIButton *labelMapSeeTarget;
     UIButton *labelMapFindMe;
     UIButton *labelMapFindTarget;
+    MapWaypointInfoView *wpInfoView;
 
     CLLocationCoordinate2D meLocation;
     CLLocationDirection meBearing;
@@ -196,8 +197,8 @@
         needsRefresh = NO;
     }
 
-    if ([self.map waypointInfoViewIsShown] == YES)
-        [self.map showWaypointInfo];
+    if ([self waypointInfoViewIsShown] == YES)
+        [self showWaypointInfo];
 }
 
 - (void)updateMapButtons
@@ -253,6 +254,7 @@
 - (void)recalculateRects
 {
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
+    NSLog(@"New size %@", [MyTools niceCGRect:applicationFrame]);
     NSInteger width = applicationFrame.size.width;
 
     distanceLabel.frame = CGRectMake(3, 3, 250, 20);
@@ -268,6 +270,9 @@
     labelMapSeeTarget.frame = CGRectMake(width - 2.5 * 28 - 3, 3, imgwidth, imgheight);
 
     labelMapFindTarget.frame = CGRectMake(width - 1 * 28 - 3, 3, imgwidth, imgheight);
+
+    CGRect rect = CGRectMake(0, applicationFrame.size.height - [MapWaypointInfoView viewHeight], width, [MapWaypointInfoView viewHeight]);
+    wpInfoView.frame = rect;
 
     [self.map recalculateRects];
     [self.map updateMapScaleView];
@@ -351,6 +356,8 @@
         default:
             break;
     }
+
+    [self initWaypointInfo];
 }
 
 - (void)removeDistanceLabel
@@ -557,6 +564,54 @@
     if (idx == NSNotFound)
         [self.waypointsArray addObject:wp];
     [self.map updateMarker:wp];
+}
+
+/*
+ * WaypointInfo related stuff
+ */
+
+- (void)hideWaypointInfo
+{
+    [UIView transitionWithView:self.view
+                      duration:0.5
+                       options:UIViewAnimationOptionTransitionNone
+                    animations:^{
+                        wpInfoView.hidden = YES;
+                    }
+                    completion:nil
+     ];
+}
+
+- (void)showWaypointInfo
+{
+    [self recalculateRects];
+
+//    [self.view bringSubviewToFront:wpInfoView];
+    wpInfoView.hidden = NO;
+}
+
+- (BOOL)waypointInfoViewIsShown
+{
+    return (wpInfoView.hidden == NO);
+}
+
+- (void)updateWaypointInfo:(dbWaypoint *)wp
+{
+    [wpInfoView setWaypoint:wp];
+}
+
+- (void)initWaypointInfo
+{
+    /* Add the info window */
+    CGRect maprect = self.view.frame;
+    maprect.origin.y = maprect.size.height - [MapWaypointInfoView viewHeight];
+    maprect.size.height = [MapWaypointInfoView viewHeight];
+    wpInfoView = [[MapWaypointInfoView alloc] initWithFrame:maprect];
+    wpInfoView.parentMap = self.map;
+    [self.view addSubview:wpInfoView];
+//    [self.view sendSubviewToBack:wpInfoView];
+
+    [self hideWaypointInfo];
 }
 
 #pragma mark - Local menu related functions
