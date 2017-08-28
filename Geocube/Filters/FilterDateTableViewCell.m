@@ -209,7 +209,7 @@
 - (void)dateWasSelected:(NSDate *)date element:(UIButton *)b
 {
     NSString *dateFromString = [NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
-    
+
     [b setTitle:dateFromString forState:UIControlStateNormal];
 
     if (b == buttonDateLastLog)
