@@ -119,6 +119,7 @@
 @class ImportTemplate;
 @class InfoItem;
 @class InfoViewer;
+@class KeepTrackBeeper;
 @class KeepTrackCar;
 @class KeepTrackTracks;
 @class KeepTracksTrackTableViewCell;

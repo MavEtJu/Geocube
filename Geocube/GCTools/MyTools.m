@@ -613,6 +613,9 @@ TIME(dateTimeString_dow, @"EEEE")
         case PLAYSOUND_IMPORTCOMPLETE:
             [MyTools playSoundFile:@"Import Complete" extension:@"wav"];
             break;
+        case PLAYSOUND_BEEPER:
+            [MyTools playSoundFile:@"Beeper" extension:@"wav"];
+            break;
         case PLAYSOUND_MAX:
             break;
     }

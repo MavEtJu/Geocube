@@ -15,3 +15,7 @@
 "keeptracktracks-New track" = "New track";
 "keeptracktracks-Start a new track" = "Start a new track";
 "keeptracktracks-auto" = "auto";
+
+/* Beeper */
+"keeptrackbeeper-Start beeping" = "Start beeping";
+"keeptrackbeeper-Stop beeping" = "Stop beeping";

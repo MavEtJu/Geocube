@@ -264,6 +264,7 @@
 #import "KeepTracksTrackTableViewCell.h"
 #import "KeepTrackCar.h"
 #import "KeepTrackTracks.h"
+#import "KeepTrackBeeper.h"
 
 #import "FilesTableViewCell.h"
 #import "FilesViewController.h"

@@ -15,3 +15,7 @@
 "keeptracktracks-New track" = "Nieuw spoor";
 "keeptracktracks-Start a new track" = "Maak een nieuw spoor";
 "keeptracktracks-auto" = "auto";
+
+/* Beeper */
+"keeptrackbeeper-Start beeping" = "Begin met beepen";
+"keeptrackbeeper-Stop beeping" = "Stop met beepen";

@@ -164,6 +164,7 @@
                 VC(KeepTrackCar, _(@"menu-keeptack-Car"));
                 VC(KeepTrackTracks, _(@"menu-keeptack-Tracks"));
                 VC(MapTrackViewController, _(@"menu-keeptack-Map"));
+                VC(KeepTrackBeeper, _(@"menu-keeptack-Beeper"));
 
                 TABBARCONTROLLER(RC_KEEPTRACK, controllers)
                 break;

@@ -23,6 +23,7 @@
 
 typedef NS_ENUM(NSInteger, PlaySound) {
     PLAYSOUND_IMPORTCOMPLETE,
+    PLAYSOUND_BEEPER,
     PLAYSOUND_MAX
 };
 

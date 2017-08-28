@@ -568,6 +568,8 @@
 		E84725E71DF774E200CFF99B /* menu icon - local@3x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */; };
 		E85AE1C01F39E96A00FA746C /* LocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E85AE1BF1F39E96A00FA746C /* LocalizationManager.m */; };
 		E85AE1C31F3DD9C500FA746C /* GCFilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E85AE1C21F3DD9C500FA746C /* GCFilterButton.m */; };
+		E85BA88E1F544372008E708F /* KeepTrackBeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = E85BA88D1F544372008E708F /* KeepTrackBeeper.m */; };
+		E85BA8901F5449F5008E708F /* Beeper.wav in Resources */ = {isa = PBXBuildFile; fileRef = E85BA88F1F5449F5008E708F /* Beeper.wav */; };
 		E861B97E1EE2E6D300BD82AC /* GC - logo - 1536×2048.png in Resources */ = {isa = PBXBuildFile; fileRef = E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */; };
 		E861B9801EE2E8AC00BD82AC /* GC - logo - 768×1024.png in Resources */ = {isa = PBXBuildFile; fileRef = E861B97F1EE2E8AC00BD82AC /* GC - logo - 768×1024.png */; };
 		E86C4AAF1E321822004526E2 /* CompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C4AAD1E321822004526E2 /* CompassViewController.m */; };
@@ -1592,6 +1594,9 @@
 		E85AE1BF1F39E96A00FA746C /* LocalizationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalizationManager.m; path = GCTools/LocalizationManager.m; sourceTree = "<group>"; };
 		E85AE1C11F3DD9C500FA746C /* GCFilterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCFilterButton.h; path = GCBaseObjects/GCFilterButton.h; sourceTree = "<group>"; };
 		E85AE1C21F3DD9C500FA746C /* GCFilterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCFilterButton.m; path = GCBaseObjects/GCFilterButton.m; sourceTree = "<group>"; };
+		E85BA88C1F544372008E708F /* KeepTrackBeeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeepTrackBeeper.h; path = KeepTrack/KeepTrackBeeper.h; sourceTree = "<group>"; };
+		E85BA88D1F544372008E708F /* KeepTrackBeeper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeepTrackBeeper.m; path = KeepTrack/KeepTrackBeeper.m; sourceTree = "<group>"; };
+		E85BA88F1F5449F5008E708F /* Beeper.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beeper.wav; sourceTree = "<group>"; };
 		E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 1536×2048.png"; path = "images/logos/GC - logo - 1536×2048.png"; sourceTree = "<group>"; };
 		E861B97F1EE2E8AC00BD82AC /* GC - logo - 768×1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 768×1024.png"; path = "images/logos/GC - logo - 768×1024.png"; sourceTree = "<group>"; };
 		E86C4AAC1E321822004526E2 /* CompassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassViewController.h; sourceTree = "<group>"; };
@@ -2982,6 +2987,8 @@
 				E82344371EECE01500D2CDFD /* KeepTrackCar.h */,
 				E82344381EECE01500D2CDFD /* KeepTrackCar.m */,
 				E83C6F2B1EEEAE1400E303F5 /* Tracks */,
+				E85BA88C1F544372008E708F /* KeepTrackBeeper.h */,
+				E85BA88D1F544372008E708F /* KeepTrackBeeper.m */,
 			);
 			name = "Keep Track";
 			sourceTree = "<group>";
@@ -3321,6 +3328,7 @@
 		E8F5707C1B3F75D1003F020C /* Data files */ = {
 			isa = PBXGroup;
 			children = (
+				E85BA88F1F5449F5008E708F /* Beeper.wav */,
 				E897702E1BA3910F000573FB /* Import Complete.wav */,
 				E8F570BD1B400137003F020C /* empty.db */,
 				E808DC7E1C3A405200B8A572 /* Location.gpx */,
@@ -3937,6 +3945,7 @@
 				E8F403EC1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png in Resources */,
 				E8AA149C1ED7988A0023000A /* Updates and changes.txt in Resources */,
 				E86D427E1EF68CC800E4509F /* container flag - planned - 24x21@2.png in Resources */,
+				E85BA8901F5449F5008E708F /* Beeper.wav in Resources */,
 				E82E663A1DA07A8700CFBDED /* icons - smiley - 15x15.png in Resources */,
 				E82E67681DA07D0200CFBDED /* attributes - 62.png in Resources */,
 				E8F403EB1DAFA23600318CC6 /* cache - reverse - 30x30@2x.png in Resources */,
@@ -4481,6 +4490,7 @@
 				E82345091EECE12B00D2CDFD /* GCTextblock.m in Sources */,
 				E82343311EECD9BC00D2CDFD /* RemoteAPIGGCW.m in Sources */,
 				E82344F61EECE12A00D2CDFD /* GCScrollView.m in Sources */,
+				E85BA88E1F544372008E708F /* KeepTrackBeeper.m in Sources */,
 				E82341C41EECCE8300D2CDFD /* ActionSheetStringPicker.m in Sources */,
 				E82343781EECDB4500D2CDFD /* ThemeNight.m in Sources */,
 				E82341FF1EECCEDB00D2CDFD /* LXMapScaleView.m in Sources */,
