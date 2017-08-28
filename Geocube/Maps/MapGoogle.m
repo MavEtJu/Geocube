@@ -78,7 +78,6 @@
     [mapScaleView update];
 
     wpSelected = nil;
-    [self.mapvc initWaypointInfo];
 
     if (linesHistory == nil)
         linesHistory = [NSMutableArray arrayWithCapacity:100];
@@ -529,14 +528,13 @@
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker
 {
     wpSelected = marker.userData;
-    [self.mapvc updateWaypointInfo:wpSelected];
-    [self.mapvc showWaypointInfo];
+    [self.mapvc showWaypointInfo:wpSelected];
     return YES;
 }
 
 - (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
 {
-    [self.mapvc hideWaypointInfo];
+    [self.mapvc removeWaypointInfo];
     wpSelected = nil;
 }
 

@@ -22,8 +22,6 @@
 @interface MapWaypointInfoView ()
 {
     UIImage *imgFavourites, *imgSize;
-
-    dbWaypoint *waypoint;
 }
 
 @property (weak, nonatomic) IBOutlet GCImageView *ivFavourites;
@@ -55,8 +53,9 @@
     imgFavourites = [imageLibrary get:ImageCacheView_favourites];
     imgSize = [imageLibrary get:ImageContainerSize_NotChosen];
 
-    UIView *firstViewUIView = [[[NSBundle mainBundle] loadNibNamed:@"MapWaypointInfoView" owner:self options:nil] firstObject];
-    [self addSubview:firstViewUIView];
+    self.firstView = [[[NSBundle mainBundle] loadNibNamed:@"MapWaypointInfoView" owner:self options:nil] firstObject];
+    self.firstView.frame = CGRectMake((frame.size.width - self.firstView.frame.size.width) / 2, 0, self.firstView.frame.size.width, self.firstView.frame.size.height);
+    [self addSubview:self.firstView];
 
     self.ivFavourites.image = imgFavourites;
     self.ivTarget.image = [imageLibrary get:ImageIcon_Target];
@@ -70,6 +69,13 @@
     return self;
 }
 
+- (void)recalculateRects:(CGRect)rect
+{
+    CGRect r = CGRectMake((rect.size.width - self.firstView.frame.size.width) / 2, 0, self.firstView.frame.size.width, self.firstView.frame.size.height);
+    self.firstView.frame = r;
+    self.frame = rect;
+}
+
 - (void)clearLabels;
 {
     self.labelDescription.text = @"";
@@ -81,10 +87,10 @@
     self.labelStateCountry.text = @"";
 }
 
-- (void)setWaypoint:(dbWaypoint *)wp
+- (void)showWaypoint:(dbWaypoint *)wp
 {
     [self clearLabels];
-    waypoint = wp;
+    self.waypoint = wp;
 
     self.labelDescription.text = wp.wpt_urlname;
     if (wp.gs_owner == nil) {
@@ -127,12 +133,12 @@
 
 - (void)actionShowWaypoint:(UIButton *)showWaypoint
 {
-    [self.parentMap openWaypointView:waypoint];
+    [self.parentMap openWaypointView:self.waypoint];
 }
 
 - (void)actionSetAsTarget:(UIButton *)setAsTarget
 {
-    [waypointManager setTheCurrentWaypoint:waypoint];
+    [waypointManager setTheCurrentWaypoint:self.waypoint];
 
     MHTabBarController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
     UINavigationController *nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_TARGET];
@@ -190,18 +196,18 @@
 
 - (void)refreshWaypoints
 {
-    self.ivContainer.image = [imageLibrary getType:waypoint];
+    self.ivContainer.image = [imageLibrary getType:self.waypoint];
 }
 
 - (void)addWaypoint:(dbWaypoint *)wp
 {
-    self.ivContainer.image = [imageLibrary getType:waypoint];
+    self.ivContainer.image = [imageLibrary getType:self.waypoint];
 }
 
 - (void)updateWaypoint:(dbWaypoint *)wp
 {
-    waypoint = wp;
-    self.ivContainer.image = [imageLibrary getType:waypoint];
+    self.waypoint = wp;
+    self.ivContainer.image = [imageLibrary getType:self.waypoint];
 }
 
 - (void)removeWaypoint:(dbWaypoint *)wp

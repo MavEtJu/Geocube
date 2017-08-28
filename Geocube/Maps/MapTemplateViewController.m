@@ -196,9 +196,6 @@
         [self refreshWaypointsData];
         needsRefresh = NO;
     }
-
-    if ([self waypointInfoViewIsShown] == YES)
-        [self showWaypointInfo];
 }
 
 - (void)updateMapButtons
@@ -271,8 +268,7 @@
 
     labelMapFindTarget.frame = CGRectMake(width - 1 * 28 - 3, 3, imgwidth, imgheight);
 
-    CGRect rect = CGRectMake(0, self.view.frame.size.height - [MapWaypointInfoView viewHeight], width, [MapWaypointInfoView viewHeight]);
-    wpInfoView.frame = rect;
+    [self showWaypointInfo:wpInfoView.waypoint];
 
     [self.map recalculateRects];
     [self.map updateMapScaleView];
@@ -356,8 +352,6 @@
         default:
             break;
     }
-
-    [self initWaypointInfo];
 }
 
 - (void)removeDistanceLabel
@@ -570,34 +564,10 @@
  * WaypointInfo related stuff
  */
 
-- (void)hideWaypointInfo
+- (void)removeWaypointInfo
 {
-    [UIView transitionWithView:self.view
-                      duration:0.5
-                       options:UIViewAnimationOptionTransitionNone
-                    animations:^{
-                        wpInfoView.hidden = YES;
-                    }
-                    completion:nil
-     ];
-}
-
-- (void)showWaypointInfo
-{
-    [self recalculateRects];
-
-//    [self.view bringSubviewToFront:wpInfoView];
-    wpInfoView.hidden = NO;
-}
-
-- (BOOL)waypointInfoViewIsShown
-{
-    return (wpInfoView.hidden == NO);
-}
-
-- (void)updateWaypointInfo:(dbWaypoint *)wp
-{
-    [wpInfoView setWaypoint:wp];
+    [wpInfoView removeFromSuperview];
+    wpInfoView = nil;
 }
 
 - (void)initWaypointInfo
@@ -609,9 +579,16 @@
     wpInfoView = [[MapWaypointInfoView alloc] initWithFrame:maprect];
     wpInfoView.parentMap = self.map;
     [self.view addSubview:wpInfoView];
-//    [self.view sendSubviewToBack:wpInfoView];
+}
 
-    [self hideWaypointInfo];
+- (void)showWaypointInfo:(dbWaypoint *)wp
+{
+    if (wp == nil)
+        return;
+    if (wpInfoView != nil)
+        [self removeWaypointInfo];
+    [self initWaypointInfo];
+    [wpInfoView showWaypoint:wp];
 }
 
 #pragma mark - Local menu related functions

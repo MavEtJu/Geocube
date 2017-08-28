@@ -78,11 +78,7 @@ typedef NS_ENUM(NSInteger, GCMapType) {
 
 - (void)menuChangeMapbrand:(MapBrand *)mapBrand;
 
-- (void)hideWaypointInfo;
-- (void)showWaypointInfo;
-- (void)initWaypointInfo;
-- (void)updateWaypointInfo:(dbWaypoint *)wp;
-//- (void)openWaypointInfo:(dbWaypoint *)sender;
-- (BOOL)waypointInfoViewIsShown;
+- (void)showWaypointInfo:(dbWaypoint *)wp;
+- (void)removeWaypointInfo;
 
 @end

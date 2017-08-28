@@ -36,6 +36,9 @@ Version 1.4(x)
   - Moved several developer tabs to the Developer menu.
   - Refresh waypoints on the map will not hang forever anymore if
     there are more than 1 records to be returned via the LiveAPI.
+  - When the interface was landscape before the map was loaded, the
+    waypoint infoviewer wouldn't resize properly when the interface
+    was set back to portrait. That is now fixed.
 
 Version 1.3(26)
 

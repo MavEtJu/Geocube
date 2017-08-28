@@ -314,15 +314,14 @@
 {
     if ([view.annotation isKindOfClass:[GCWaypointAnnotation class]]) {
         GCWaypointAnnotation *pa = (GCWaypointAnnotation *)view.annotation;
-        [self.mapvc updateWaypointInfo:pa.waypoint];
-        [self.mapvc showWaypointInfo];
+        [self.mapvc showWaypointInfo:pa.waypoint];
     }
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
 {
     if ([view.annotation isKindOfClass:[GCWaypointAnnotation class]]) {
-        [self.mapvc hideWaypointInfo];
+        [self.mapvc removeWaypointInfo];
     }
 }
 

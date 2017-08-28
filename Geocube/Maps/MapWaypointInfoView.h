@@ -24,8 +24,10 @@
 @interface MapWaypointInfoView : GCView <WaypointManagerDelegate>
 
 @property (nonatomic, retain) MapTemplate *parentMap;
+@property (nonatomic, retain) UIView *firstView;
+@property (nonatomic, retain) dbWaypoint *waypoint;
 
-- (void)setWaypoint:(dbWaypoint *)wp;
+- (void)showWaypoint:(dbWaypoint *)wp;
 + (NSInteger)viewHeight;
 
 @end
