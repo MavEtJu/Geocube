@@ -161,10 +161,10 @@
             case RC_KEEPTRACK:
                 controllers = [NSMutableArray array];
 
-                VC(KeepTrackCar, _(@"menu-keeptack-Car"));
-                VC(KeepTrackTracks, _(@"menu-keeptack-Tracks"));
-                VC(MapTrackViewController, _(@"menu-keeptack-Map"));
-                VC(KeepTrackBeeper, _(@"menu-keeptack-Beeper"));
+                VC(KeepTrackCar, _(@"menu-keeptrack-Car"));
+                VC(KeepTrackTracks, _(@"menu-keeptrack-Tracks"));
+                VC(MapTrackViewController, _(@"menu-keeptrack-Map"));
+                VC(KeepTrackBeeper, _(@"menu-keeptrack-Beeper"));
 
                 TABBARCONTROLLER(RC_KEEPTRACK, controllers)
                 break;

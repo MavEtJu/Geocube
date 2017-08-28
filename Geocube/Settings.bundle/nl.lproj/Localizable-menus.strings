@@ -31,10 +31,10 @@
 "menu-help-About" = "Over";
 "menu-help-Help" = "Help";
 "menu-help-Notices" = "Berichten";
-"menu-keeptack-Beeper" = "Beeper";
-"menu-keeptack-Car" = "Auto";
-"menu-keeptack-Map" = "Kaart";
-"menu-keeptack-Tracks" = "Sporen";
+"menu-keeptrack-Beeper" = "Beeper";
+"menu-keeptrack-Car" = "Auto";
+"menu-keeptrack-Map" = "Kaart";
+"menu-keeptrack-Tracks" = "Sporen";
 "menu-lists-DNF" = "DNF";
 "menu-lists-Found" = "Gevonden";
 "menu-lists-Highlight" = "Gemarkeerd";

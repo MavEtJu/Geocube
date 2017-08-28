@@ -31,10 +31,10 @@
 "menu-help-About" = "About";
 "menu-help-Help" = "Help";
 "menu-help-Notices" = "Notices";
-"menu-keeptack-Beeper" = "Beeper";
-"menu-keeptack-Car" = "Car";
-"menu-keeptack-Map" = "Map";
-"menu-keeptack-Tracks" = "Tracks";
+"menu-keeptrack-Beeper" = "Beeper";
+"menu-keeptrack-Car" = "Car";
+"menu-keeptrack-Map" = "Map";
+"menu-keeptrack-Tracks" = "Tracks";
 "menu-lists-DNF" = "DNF";
 "menu-lists-Found" = "Found";
 "menu-lists-Highlight" = "Highlight";
