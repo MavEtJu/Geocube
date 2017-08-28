@@ -1101,7 +1101,7 @@ enum sections {
                     [self changeThemeOrientations];
                     break;
             }
-            return;
+            break;
         case SECTION_APPS:
             switch (indexPath.row) {
                 case SECTION_APPS_EXTERNALMAP:
@@ -1111,7 +1111,7 @@ enum sections {
                     [self changeOpenCageKey];
                     break;
             }
-            return;
+            break;
         case SECTION_MAPSEARCHMAXIMUM:
             switch (indexPath.row) {
                 case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GS:
@@ -1127,14 +1127,14 @@ enum sections {
                     [self changeMapSearchMaximumNumberGCA];
                     break;
             }
-            return;
+            break;
         case SECTION_MAPS:
             switch (indexPath.row) {
                 case SECTION_MAPS_DEFAULTBRAND:
                     [self changeMapsDefaultBrand];
                     break;
             }
-            return;
+            break;
         case SECTION_DYNAMICMAP:
             switch (indexPath.row) {
                 case SECTION_DYNAMICMAP_SPEED_WALKING:
@@ -1148,7 +1148,7 @@ enum sections {
                     [self changeDynamicmapDistance:indexPath.row];
                     break;
             }
-            return;
+            break;
         case SECTION_MAPCOLOURS:
             switch (indexPath.row) {
                 case SECTION_MAPCOLOURS_TRACK: {
@@ -1164,7 +1164,7 @@ enum sections {
                     break;
                 }
             }
-            return;
+            break;
 
         case SECTION_MAPCACHE:
             switch (indexPath.row) {
@@ -1175,7 +1175,7 @@ enum sections {
                     [self changeMapCacheMaxSize];
                     break;
             }
-            return;
+            break;
 
         case SECTION_IMPORTS:
             switch (indexPath.row) {
@@ -1186,7 +1186,7 @@ enum sections {
                     [self changeImportsQueryTimeout];
                     break;
             }
-            return;
+            break;
 
         case SECTION_KEEPTRACK:
             switch (indexPath.row) {
@@ -1199,7 +1199,7 @@ enum sections {
                     [self keeptrackChange:indexPath.row];
                     break;
             }
-            return;
+            break;
 
         case SECTION_WAYPOINTS:
             switch (indexPath.row) {
@@ -1207,7 +1207,7 @@ enum sections {
                     [self changeWaypointSortBy];
                     break;
             }
-            return;
+            break;
 
         case SECTION_LISTS:
             switch (indexPath.row) {
@@ -1215,7 +1215,7 @@ enum sections {
                     [self changeListSortBy];
                     break;
             }
-            return;
+            break;
 
         case SECTION_LOCATIONLESS:
             switch (indexPath.row) {
@@ -1223,7 +1223,7 @@ enum sections {
                     [self changeLocationlessSortOrder];
                     break;
             }
-            return;
+            break;
 
         case SECTION_BACKUPS:
             switch (indexPath.row) {
@@ -1234,8 +1234,9 @@ enum sections {
                     [self changeBackupsInterval];
                     break;
             }
-            return;
+            break;
     }
+    [aTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 /* ********************************************************************************* */
