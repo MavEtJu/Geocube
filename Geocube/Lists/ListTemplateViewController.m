@@ -200,7 +200,7 @@ enum {
     waypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAllByFlag:flag]];
     [waypointManager needsRefreshAll];
     [self reloadDataMainQueue];
-    [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
+    [audioManager playSound:PLAYSOUND_IMPORTCOMPLETE];
 
     [self hideInfoView];
 }

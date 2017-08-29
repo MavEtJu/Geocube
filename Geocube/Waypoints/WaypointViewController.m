@@ -897,7 +897,7 @@ enum {
     waypoint = [dbWaypoint dbGet:waypoint._id];
     [self reloadDataMainQueue];
     [waypointManager needsRefreshUpdate:waypoint];
-    [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
+    [audioManager playSound:PLAYSOUND_IMPORTCOMPLETE];
 
     [self hideInfoView];
 }

@@ -19,6 +19,14 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface KeepTrackBeeper : GCViewController <KeepTrackBeeperViewDelegate>
+@interface AudioManager : NSObject <AVAudioPlayerDelegate>
+
+typedef NS_ENUM(NSInteger, PlaySound) {
+    PLAYSOUND_IMPORTCOMPLETE,
+    PLAYSOUND_BEEPER,
+    PLAYSOUND_MAX
+};
+
+- (void)playSound:(PlaySound)reason;
 
 @end

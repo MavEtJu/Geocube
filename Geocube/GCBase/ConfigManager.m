@@ -82,6 +82,7 @@
     CHECK(@"keeptrack_distancedelta_max", @"200");
     CHECK(@"keeptrack_purgeage", @"30");
     CHECK(@"keeptrack_sync", @"120");
+    CHECK(@"keeptrack_beeper_interval", @"10");
 
     CHECK(@"map_clusters_enable", @"0");
     CHECK(@"map_clusters_zoomlevel", @"11.0");
@@ -176,6 +177,7 @@
     self.keeptrackDistanceDeltaMax = [[dbConfig dbGetByKey:@"keeptrack_distancedelta_max"].value floatValue];
     self.keeptrackPurgeAge = [[dbConfig dbGetByKey:@"keeptrack_purgeage"].value integerValue];
     self.keeptrackSync = [[dbConfig dbGetByKey:@"keeptrack_sync"].value integerValue];
+    self.keeptrackBeeperInterval = [[dbConfig dbGetByKey:@"keeptrack_beeper_interval"].value integerValue];
     self.mapClustersEnable = [[dbConfig dbGetByKey:@"map_clusters_enable"].value boolValue];
     self.mapClustersZoomLevel = [[dbConfig dbGetByKey:@"map_clusters_zoomlevel"].value floatValue];
     self.mapRotateToBearing = [[dbConfig dbGetByKey:@"map_rotate_to_bearing"].value boolValue];
@@ -415,6 +417,11 @@
 {
     self.keeptrackSync = value;
     [self NSIntegerUpdate:@"keeptrack_sync" value:value];
+}
+- (void)keeptrackBeeperIntervalUpdate:(NSInteger)value
+{
+    self.keeptrackBeeperInterval = value;
+    [self NSIntegerUpdate:@"keeptrack_beeper_interval" value:value];
 }
 
 - (void)mapClustersUpdateEnable:(BOOL)value

@@ -471,7 +471,7 @@ enum {
     [infoView removeItem:iii];
     if ([infoView hasItems] == NO) {
         [self hideInfoView];
-        [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
+        [audioManager playSound:PLAYSOUND_IMPORTCOMPLETE];
     }
 }
 

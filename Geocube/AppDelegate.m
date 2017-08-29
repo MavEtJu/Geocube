@@ -40,6 +40,9 @@
     // PKI manager
     keyManager = [[KeyManager alloc] init];
 
+    // Audio manager
+    audioManager = [[AudioManager alloc] init];
+
     /* Create working directories */
     [fileManager createDirectoryAtPath:[MyTools FilesDir] withIntermediateDirectories:NO attributes:nil error:nil];
     [fileManager createDirectoryAtPath:[MyTools ApplicationSupportRoot] withIntermediateDirectories:NO attributes:nil error:nil];

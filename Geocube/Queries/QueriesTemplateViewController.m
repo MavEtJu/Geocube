@@ -221,7 +221,7 @@ enum {
     [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil iiImport:0];
 
     [self reloadDataMainQueue];
-    [MyTools playSound:PLAYSOUND_IMPORTCOMPLETE];
+    [audioManager playSound:PLAYSOUND_IMPORTCOMPLETE];
     [waypointManager needsRefreshAll];
 
     [self hideInfoView];

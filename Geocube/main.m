@@ -75,6 +75,9 @@ OpenCageManager *opencageManager = nil;
 // LocalisationManager
 LocalizationManager *localizationManager = nil;
 
+// AudioManager
+AudioManager *audioManager = nil;
+
 //
 AppDelegate *_AppDelegate;
 

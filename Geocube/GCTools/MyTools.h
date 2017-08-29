@@ -21,12 +21,6 @@
 
 @interface MyTools : NSObject
 
-typedef NS_ENUM(NSInteger, PlaySound) {
-    PLAYSOUND_IMPORTCOMPLETE,
-    PLAYSOUND_BEEPER,
-    PLAYSOUND_MAX
-};
-
 + (NSString *)DocumentRoot;
 + (NSString *)DataDistributionDirectory;
 + (NSString *)ApplicationSupportRoot;
@@ -94,7 +88,6 @@ typedef NS_ENUM(NSInteger, PlaySound) {
 
 //+ (NSData *)sendSynchronousRequest:(NSURLRequest *)request returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr;
 
-+ (void)playSound:(PlaySound)reason;
 + (void)messageBox:(UIViewController *)vc header:(NSString *)header text:(NSString *)text;
 + (void)messageBox:(UIViewController *)vc header:(NSString *)header text:(NSString *)text error:(NSString *)error;
 

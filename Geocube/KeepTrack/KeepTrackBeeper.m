@@ -21,10 +21,8 @@
 
 @interface KeepTrackBeeper ()
 {
-    CGRect rectButton;
-    GCButton *button;
-
     BOOL isBeeping;
+    NSInteger interval;
 }
 
 @end
@@ -48,70 +46,49 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
-    UIView *contentView = [[UIView alloc] initWithFrame:applicationFrame];
-    self.view = contentView;
+    KeepTrackBeeperView *beepview = [[KeepTrackBeeperView alloc] initWithFrame:applicationFrame];
+    beepview.delegate = self;
+    self.view = beepview;
     [self.view sizeToFit];
 
-    [self calculateRects];
-
-    button = [GCButton buttonWithType:UIButtonTypeSystem];
-    button.frame = rectButton;
-    [button setTitle:_(@"keeptrackbeeper-Start beeping") forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(toggleBeeping:) forControlEvents:UIControlEventTouchDown];
-    button.userInteractionEnabled = YES;
-    [self.view addSubview:button];
+    interval = configManager.keeptrackBeeperInterval;
 
     [self changeTheme];
 }
 
-- (void)calculateRects
+- (void)buttonTestPressed
 {
-    CGRect bounds = [[UIScreen mainScreen] bounds];
-    NSInteger width = bounds.size.width;
-    NSInteger height = bounds.size.height;
-    NSInteger height18 = bounds.size.height / 18;
-
-    /*
-     * +---------------------------------+
-     * |       Current Coordinates       |
-     * |           Curr Coords           |
-     * |     Remembered Coordinates      |
-     * |         Car coordinates         |
-     * |                                 |
-     * |         Distance: xxxx          |
-     * |         Direction: xxx          |
-     * |                                 |
-     * |          Set as Target          |
-     * |    Remember Current Location    |
-     * |                                 |
-     * +---------------------------------+
-     */
-
-    rectButton = CGRectMake(0, height - 5 * height18, width, height18);
+    [self testBeep];
 }
 
-- (void)viewWilltransitionToSize
+- (void)buttonPlayPressed
 {
-    button.frame = rectButton;
+    isBeeping = YES;
+    [self performSelectorInBackground:@selector(performBeeping) withObject:nil];
 }
 
-- (void)toggleBeeping:(GCButton *)b
+- (void)buttonStopPressed
 {
-    isBeeping = !isBeeping;
-    if (isBeeping == YES) {
-        [self performSelectorInBackground:@selector(performBeeping) withObject:nil];
-        [button setTitle:_(@"keeptrackbeeper-Stop beeping") forState:UIControlStateNormal];
-    } else {
-        [button setTitle:_(@"keeptrackbeeper-Start beeping") forState:UIControlStateNormal];
-    }
+    isBeeping = NO;
+}
+
+- (void)sliderIntervalChanged:(float)value
+{
+    interval = value;
+    [configManager keeptrackBeeperIntervalUpdate:interval];
 }
 
 - (void)performBeeping
 {
     while (isBeeping == YES) {
-        [MyTools playSound:PLAYSOUND_BEEPER];
-        [NSThread sleepForTimeInterval:5.0];
+        [audioManager playSound:PLAYSOUND_BEEPER];
+        [NSThread sleepForTimeInterval:interval];
     }
+}
+
+- (void)testBeep
+{
+    [audioManager playSound:PLAYSOUND_BEEPER];
 }
 
 @end

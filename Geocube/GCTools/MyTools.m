@@ -590,39 +590,6 @@ TIME(dateTimeString_dow, @"EEEE")
 
 ///////////////////////////////////////////
 
-/// Play a sound file
-+ (void)playSoundFile:(NSString *)filename extension:(NSString *)extension
-{
-    /* Crappy way to do sound but will work for now */
-    NSURL *tapSound = [[NSBundle mainBundle] URLForResource:filename withExtension:extension];
-    CFURLRef        soundFileURLRef;
-    SystemSoundID   soundFileObject;
-
-    // Store the URL as a CFURLRef instance
-    soundFileURLRef = (__bridge CFURLRef)tapSound;
-
-    // Create a system sound object representing the sound file.
-    AudioServicesCreateSystemSoundID(soundFileURLRef, &soundFileObject );
-    AudioServicesPlaySystemSound(soundFileObject);
-}
-
-/// Play one of the defined sounds
-+ (void)playSound:(PlaySound)reason
-{
-    switch (reason) {
-        case PLAYSOUND_IMPORTCOMPLETE:
-            [MyTools playSoundFile:@"Import Complete" extension:@"wav"];
-            break;
-        case PLAYSOUND_BEEPER:
-            [MyTools playSoundFile:@"Beeper" extension:@"wav"];
-            break;
-        case PLAYSOUND_MAX:
-            break;
-    }
-}
-
-///////////////////////////////////////////
-
 /// Show up a message box with a header and a text
 + (void)messageBox:(UIViewController *)vc header:(NSString *)header text:(NSString *)text
 {

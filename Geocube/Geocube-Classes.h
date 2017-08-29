@@ -21,6 +21,7 @@
 
 @class AppDelegate;
 @class AudioFeedback;
+@class AudioManager;
 @class BezelManager;
 @class BrowserAccountsViewController;
 @class BrowserBrowserViewController;
@@ -120,6 +121,7 @@
 @class InfoItem;
 @class InfoViewer;
 @class KeepTrackBeeper;
+@class KeepTrackBeeperView;
 @class KeepTrackCar;
 @class KeepTrackTracks;
 @class KeepTracksTrackTableViewCell;

@@ -78,6 +78,9 @@ extern OpenCageManager *opencageManager;
 // LocalisationManager
 extern LocalizationManager *localizationManager;
 
+// AudioManager
+extern AudioManager *audioManager;
+
 //
 extern AppDelegate *_AppDelegate;
 

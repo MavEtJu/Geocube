@@ -31,6 +31,7 @@
 #import <CommonCrypto/CommonHMAC.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
+#import <MediaPlayer/MediaPlayer.h>
 #import <Social/Social.h>
 
 #import <math.h>
@@ -122,6 +123,7 @@
 #import "ConfigManager.h"
 #import "AudioFeedback.h"
 #import "WaypointSorter.h"
+#import "AudioManager.h"
 
 #import "GCCoordsHistorical.h"
 #import "LocationManager.h"
@@ -264,6 +266,7 @@
 #import "KeepTracksTrackTableViewCell.h"
 #import "KeepTrackCar.h"
 #import "KeepTrackTracks.h"
+#import "KeepTrackBeeperView.h"
 #import "KeepTrackBeeper.h"
 
 #import "FilesTableViewCell.h"

@@ -17,5 +17,9 @@
 "keeptracktracks-auto" = "auto";
 
 /* Beeper */
-"keeptrackbeeper-Start beeping" = "Start beeping";
-"keeptrackbeeper-Stop beeping" = "Stop beeping";
+"keeptrackbeeperview-Start beeping" = "Start beeping";
+"keeptrackbeeperview-Stop beeping" = "Stop beeping";
+"keeptrackbeeperview-Test Sound" = "Test Sound";
+"keeptrackbeeperview-After starting the beeping, place your phone on a stable location so that it doesn't slide away. The sound will guide you back to the phone once you need it." = "After starting the beeping, place your phone on a stable location so that it doesn't slide away. The sound will guide you back to the phone once you need it.";
+"keeptrackbeeperview-Interval between beeps: %ld seconds" = "Interval between beeps: %ld seconds";
+"keeptrackbeeperview-Volume" = "Volume";

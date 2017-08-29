@@ -19,6 +19,17 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface KeepTrackBeeper : GCViewController <KeepTrackBeeperViewDelegate>
+@protocol KeepTrackBeeperViewDelegate
+
+- (void)buttonTestPressed;
+- (void)buttonPlayPressed;
+- (void)buttonStopPressed;
+- (void)sliderIntervalChanged:(float)value;
+
+@end
+
+@interface KeepTrackBeeperView : GCView
+
+@property (nonatomic, retain) id<KeepTrackBeeperViewDelegate> delegate;
 
 @end

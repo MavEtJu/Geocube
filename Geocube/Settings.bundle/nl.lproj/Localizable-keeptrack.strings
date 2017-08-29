@@ -17,5 +17,10 @@
 "keeptracktracks-auto" = "auto";
 
 /* Beeper */
-"keeptrackbeeper-Start beeping" = "Begin met beepen";
-"keeptrackbeeper-Stop beeping" = "Stop met beepen";
+"keeptrackbeeperview-Start beeping" = "Begin met beepen";
+"keeptrackbeeperview-Stop beeping" = "Stop met beepen";
+"keeptrackbeeperview-Test Sound" = "Test de beep";
+"keeptrackbeeperview-After starting the beeping, place your phone on a stable location so that it doesn't slide away. The sound will guide you back to the phone once you need it." = "Wanneer het beepen start, plaats de telefoon in een stabiele positie zo dat het niet wegglijdt. Wanneer je klaar bent zullen de beeps je terugleiden naar de plaats waar je de telefoon geplaatst is.";
+"keeptrackbeeperview-Interval between beeps: %ld seconds" = "Interval tussen beeps: %ld seconden";
+"keeptrackbeeperview-Volume" = "Volume";
+
