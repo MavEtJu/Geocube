@@ -259,14 +259,14 @@
     [c dbUpdate];
 }
 
-- (void)FloatUpdate:(NSString *)key value:(float)value
+- (void)floatUpdate:(NSString *)key value:(float)value
 {
     dbConfig *c = [dbConfig dbGetByKey:key];
     c.value = [NSString stringWithFormat:@"%f", value];
     [c dbUpdate];
 }
 
-- (void)DoubleUpdate:(NSString *)key value:(double)value
+- (void)doubleUpdate:(NSString *)key value:(double)value
 {
     dbConfig *c = [dbConfig dbGetByKey:key];
     c.value = [NSString stringWithFormat:@"%f", value];
@@ -284,67 +284,104 @@
  * Updates-related functions
  */
 
-- (void)distanceMetricUpdate:(BOOL)value
-{
-    self.distanceMetric = value;
-    [self BOOLUpdate:@"distance_metric" value:value];
-}
+#define UPDATE3(__type__, __field__, __key__) \
+    - (void)__field__ ## Update:(__type__)value \
+    { \
+        self.__field__ = value; \
+        [self __type__ ## Update:__key__ value:value]; \
+    }
+#define UPDATE4(__type__, __func__, __field__, __key__) \
+    - (void)__field__ ## Update:(__type__)value \
+    { \
+        self.__field__ = value; \
+        [self __func__ ## Update:__key__ value:value]; \
+    }
+#define UPDATE5(__type__, __func__, __field__, __key__, __field2__) \
+    - (void)__field__ ## Update:(__type__)value \
+    { \
+        self.__field__ = value; \
+        [self __func__ ## Update:__key__ value:value.__field2__]; \
+    }
 
-- (void)sendTweetsUpdate:(BOOL)value
-{
-    self.sendTweets = value;
-    [self BOOLUpdate:@"send_tweets" value:value];
-}
+UPDATE3(BOOL, distanceMetric, @"distance_metric")
+UPDATE3(BOOL, sendTweets, @"send_tweets")
+UPDATE3(BOOL, soundDirection, @"sound_direction")
+UPDATE3(BOOL, soundDistance, @"sound_distance")
+UPDATE3(BOOL, keeptrackAutoRotate, @"keeptrack_autorotate")
+UPDATE3(BOOL, mapClustersEnable, @"map_clusters_enable")
+UPDATE3(BOOL, mapRotateToBearing, @"map_rotate_to_bearing")
+UPDATE3(BOOL, dynamicmapEnable, @"dynamicmap_enable")
+UPDATE3(BOOL, mapcacheEnable, @"mapcache_enable")
+UPDATE3(BOOL, downloadImagesLogs, @"download_images_logs")
+UPDATE3(BOOL, downloadImagesWaypoints, @"download_images_waypoints")
+UPDATE3(BOOL, downloadImagesMobile, @"download_images_mobile")
+UPDATE3(BOOL, downloadQueriesMobile, @"download_queries_mobile")
+UPDATE3(BOOL, markasFoundDNFClearsTarget, @"markas_founddnf_clearstarget")
+UPDATE3(BOOL, markasFoundMarksAllWaypoints, @"markas_foundmarksallwaypoints")
+UPDATE3(BOOL, loggingRemovesMarkedAsFoundDNF, @"logging_removesmarkedasfounddnf")
+UPDATE3(BOOL, compassAlwaysInPortraitMode, @"compass_alwaysinportraitmode")
+UPDATE3(BOOL, showStateAsAbbrevation, @"showasabbrevation_state")
+UPDATE3(BOOL, showStateAsAbbrevationIfLocaleExists, @"showasabbrevation_statewithlocale")
+UPDATE3(BOOL, showCountryAsAbbrevation, @"showasabbrevation_country")
+UPDATE3(BOOL, refreshWaypointAfterLog, @"waypoint_refreshafterlog")
+UPDATE3(BOOL, accountsSaveAuthenticationName, @"accounts_save_authenticationname")
+UPDATE3(BOOL, accountsSaveAuthenticationPassword, @"accounts_save_authenticationpassword")
+UPDATE3(BOOL, introSeen, @"intro_seen")
+UPDATE3(BOOL, locationlessShowFound, @"locationless_showfound")
+UPDATE3(BOOL, opencageWifiOnly, @"opencage_wifionly")
+UPDATE3(BOOL, automaticDatabaseBackup, @"automaticdatabasebackup_enable")
 
-- (void)currentWaypointUpdate:(NSString *)value
-{
-    self.currentWaypoint = value;
-    [self NSStringUpdate:@"waypoint_current" value:value];
-}
+UPDATE3(NSInteger, currentPage, @"page_current")
+UPDATE3(NSInteger, currentPageTab, @"pagetab_current")
+UPDATE3(NSInteger, lastImportGroup, @"lastimport_group")
+UPDATE3(NSInteger, lastAddedGroup, @"lastadded_group")
+UPDATE3(NSInteger, lastImportSource, @"lastimport_source")
+UPDATE3(NSInteger, mapExternal, @"map_external")
+UPDATE3(NSInteger, compassType, @"compass_type")
+UPDATE3(NSInteger, themeType, @"theme_type")
+UPDATE3(NSInteger, orientationsAllowed, @"orientations_allowed")
+UPDATE3(NSInteger, keeptrackDistanceDeltaMin, @"keeptrack_distancedelta_min")
+UPDATE3(NSInteger, keeptrackDistanceDeltaMax, @"keeptrack_distancedelta_max")
+UPDATE3(NSInteger, keeptrackPurgeAge, @"keeptrack_purgeage")
+UPDATE3(NSInteger, keeptrackSync, @"keeptrack_sync")
+UPDATE3(NSInteger, keeptrackBeeperInterval, @"keeptrack_beeper_interval")
+UPDATE3(NSInteger, dynamicmapWalkingSpeed, @"dynamicmap_speed_walking")
+UPDATE3(NSInteger, dynamicmapWalkingDistance, @"dynamicmap_distance_walking")
+UPDATE3(NSInteger, dynamicmapCyclingSpeed, @"dynamicmap_speed_cycling")
+UPDATE3(NSInteger, dynamicmapCyclingDistance, @"dynamicmap_distance_cycling")
+UPDATE3(NSInteger, dynamicmapDrivingSpeed, @"dynamicmap_speed_driving")
+UPDATE3(NSInteger, dynamicmapDrivingDistance, @"dynamicmap_distance_driving")
+UPDATE3(NSInteger, mapcacheMaxSize, @"mapcache_maxsize")
+UPDATE3(NSInteger, mapcacheMaxAge, @"mapcache_maxage")
+UPDATE3(NSInteger, downloadTimeoutSimple, @"download_timeout_simple")
+UPDATE3(NSInteger, downloadTimeoutQuery, @"download_timeout_query")
+UPDATE3(NSInteger, mapSearchMaximumNumberGCA, @"mapsearchmaximum_numbergca")
+UPDATE3(NSInteger, mapSearchMaximumDistanceGS, @"mapsearchmaximum_distancegs")
+UPDATE3(NSInteger, mapSearchMaximumDistanceOKAPI, @"mapsearchmaximum_distanceokapi")
+UPDATE3(NSInteger, mapSearchMaximumDistanceGCA, @"mapsearchmaximum_distancegca")
+UPDATE3(NSInteger, waypointListSortBy, @"waypointlist_sortby")
+UPDATE3(NSInteger, listSortBy, @"list_sortby")
+UPDATE3(NSInteger, locationlessListSortBy, @"locationless_sortby")
+UPDATE3(NSInteger, configUpdateLastTime, @"configupdate_lasttime")
+UPDATE3(NSInteger, automaticDatabaseBackupPeriod, @"automaticdatabasebackup_period")
+UPDATE3(NSInteger, automaticDatabaseBackupRotate, @"automaticdatabasebackup_rotate")
 
-- (void)currentPageUpdate:(NSInteger)value
-{
-    self.currentPage = value;
-    [self NSIntegerUpdate:@"page_current" value:value];
-}
-- (void)currentPageTabUpdate:(NSInteger)value
-{
-    self.currentPageTab = value;
-    [self NSIntegerUpdate:@"pagetab_current" value:value];
-}
+UPDATE3(float, keeptrackTimeDeltaMin, @"keeptrack_timedelta_min")
+UPDATE3(float, keeptrackTimeDeltaMax, @"keeptrack_timedelta_max")
+UPDATE3(float, mapClustersZoomLevel, @"map_clusters_zoomlevel")
 
-- (void)currentTrackUpdate:(dbTrack *)value
-{
-    self.currentTrack = value;
-    [self NSIdUpdate:@"track_current" value:value._id];
-}
+UPDATE4(NSString *, NSString, currentWaypoint, @"waypoint_current")
+UPDATE4(NSString *, NSString, mapBrandDefault, @"map_branddefault")
+UPDATE4(NSString *, NSString, logTemporaryText, @"log_temporary_text")
+UPDATE4(NSString *, NSString, opencageKey, @"opencage_key")
+UPDATE4(NSString *, NSString, configUpdateLastVersion, @"configupdate_lastversion")
 
-- (void)lastImportGroupUpdate:(NSInteger)value
-{
-    self.lastImportGroup = value;
-    [self NSIntegerUpdate:@"lastimport_group" value:value];
-}
-- (void)lastAddedGroupUpdate:(NSInteger)value
-{
-    self.lastAddedGroup = value;
-    [self NSIntegerUpdate:@"lastadded_group" value:value];
-}
-- (void)lastImportSourceUpdate:(NSInteger)value
-{
-    self.lastImportSource = value;
-    [self NSIntegerUpdate:@"lastimport_source" value:value];
-}
+UPDATE4(NSTimeInterval, double, automaticDatabaseBackupLast, @"automaticdatabasebackup_last")
 
-- (void)mapExternalUpdate:(NSInteger)value
-{
-    self.mapExternal = value;
-    [self NSIntegerUpdate:@"map_external" value:value];
-}
-- (void)mapBrandDefaultUpdate:(NSString *)value
-{
-    self.mapBrandDefault = value;
-    [self NSStringUpdate:@"map_branddefault" value:value];
-}
+UPDATE5(dbTrack *, NSId, currentTrack, @"track_current", _id)
+
+///////
+
 - (void)mapTrackColourUpdate:(NSString *)value
 {
     self.mapTrackColour = [ImageLibrary RGBtoColor:value];
@@ -354,329 +391,6 @@
 {
     self.mapDestinationColour = [ImageLibrary RGBtoColor:value];
     [self NSStringUpdate:@"map_destination_colour" value:value];
-}
-- (void)compassTypeUpdate:(NSInteger)value
-{
-    self.compassType = value;
-    [self NSIntegerUpdate:@"compass_type" value:value];
-}
-- (void)themeTypeUpdate:(NSInteger)value
-{
-    self.themeType = value;
-    [self NSIntegerUpdate:@"theme_type" value:value];
-}
-- (void)orientationsAllowedUpdate:(NSInteger)value
-{
-    self.orientationsAllowed = value;
-    [self NSIntegerUpdate:@"orientations_allowed" value:value];
-}
-
-- (void)soundDirectionUpdate:(BOOL)value
-{
-    self.soundDirection = value;
-    [self BOOLUpdate:@"sound_direction" value:value];
-}
-- (void)soundDistanceUpdate:(BOOL)value
-{
-    self.soundDistance = value;
-    [self BOOLUpdate:@"sound_distance" value:value];
-}
-
-- (void)keeptrackAutoRotateUpdate:(BOOL)value
-{
-    self.keeptrackAutoRotate = value;
-    [self BOOLUpdate:@"keeptrack_autorotate" value:value];
-}
-
-- (void)keeptrackTimeDeltaMinUpdate:(float)value
-{
-    self.keeptrackTimeDeltaMin = value;
-    [self FloatUpdate:@"keeptrack_timedelta_min" value:value];
-}
-- (void)keeptrackTimeDeltaMaxUpdate:(float)value
-{
-    self.keeptrackTimeDeltaMax = value;
-    [self FloatUpdate:@"keeptrack_timedelta_max" value:value];
-}
-- (void)keeptrackDistanceDeltaMinUpdate:(NSInteger)value
-{
-    self.keeptrackDistanceDeltaMin = value;
-    [self NSIntegerUpdate:@"keeptrack_distancedelta_min" value:value];
-}
-- (void)keeptrackDistanceDeltaMaxUpdate:(NSInteger)value
-{
-    self.keeptrackDistanceDeltaMax = value;
-    [self NSIntegerUpdate:@"keeptrack_distancedelta_max" value:value];
-}
-- (void)keeptrackPurgeAgeUpdate:(NSInteger)value
-{
-    self.keeptrackPurgeAge = value;
-    [self NSIntegerUpdate:@"keeptrack_purgeage" value:value];
-}
-- (void)keeptrackSync:(NSInteger)value
-{
-    self.keeptrackSync = value;
-    [self NSIntegerUpdate:@"keeptrack_sync" value:value];
-}
-- (void)keeptrackBeeperIntervalUpdate:(NSInteger)value
-{
-    self.keeptrackBeeperInterval = value;
-    [self NSIntegerUpdate:@"keeptrack_beeper_interval" value:value];
-}
-
-- (void)mapClustersUpdateEnable:(BOOL)value
-{
-    self.mapClustersEnable = value;
-    [self BOOLUpdate:@"map_clusters_enable" value:value];
-}
-- (void)mapClustersUpdateZoomLevel:(float)value
-{
-    self.mapClustersZoomLevel = value;
-    [self FloatUpdate:@"map_clusters_zoomlevel" value:value];
-}
-- (void)mapRotateToBearingUpdate:(BOOL)value
-{
-    self.mapRotateToBearing = value;
-    [self BOOLUpdate:@"map_rotate_to_bearing" value:value];
-}
-
-- (void)dynamicmapEnableUpdate:(BOOL)value
-{
-    self.dynamicmapEnable = value;
-    [self BOOLUpdate:@"dynamicmap_enable" value:value];
-}
-- (void)dynamicmapWalkingSpeedUpdate:(NSInteger)value
-{
-    self.dynamicmapWalkingSpeed = value;
-    [self NSIntegerUpdate:@"dynamicmap_speed_walking" value:value];
-}
-- (void)dynamicmapWalkingDistanceUpdate:(NSInteger)value
-{
-    self.dynamicmapWalkingDistance = value;
-    [self NSIntegerUpdate:@"dynamicmap_distance_walking" value:value];
-}
-- (void)dynamicmapCyclingSpeedUpdate:(NSInteger)value
-{
-    self.dynamicmapCyclingSpeed = value;
-    [self NSIntegerUpdate:@"dynamicmap_speed_cycling" value:value];
-}
-- (void)dynamicmapCyclingDistanceUpdate:(NSInteger)value
-{
-    self.dynamicmapCyclingDistance = value;
-    [self NSIntegerUpdate:@"dynamicmap_distance_cycling" value:value];
-}
-- (void)dynamicmapDrivingSpeedUpdate:(NSInteger)value
-{
-    self.dynamicmapDrivingSpeed = value;
-    [self NSIntegerUpdate:@"dynamicmap_speed_driving" value:value];
-}
-- (void)dynamicmapDrivingDistanceUpdate:(NSInteger)value
-{
-    self.dynamicmapDrivingDistance = value;
-    [self NSIntegerUpdate:@"dynamicmap_distance_driving" value:value];
-}
-
-- (void)mapcacheEnableUpdate:(BOOL)value
-{
-    self.mapcacheEnable = value;
-    [self BOOLUpdate:@"mapcache_enable" value:value];
-}
-- (void)mapcacheMaxSizeUpdate:(NSInteger)value
-{
-    self.mapcacheMaxSize = value;
-    [self NSIntegerUpdate:@"mapcache_maxsize" value:value];
-}
-- (void)mapcacheMaxAgeUpdate:(NSInteger)value
-{
-    self.mapcacheMaxAge = value;
-    [self NSIntegerUpdate:@"mapcache_maxage" value:value];
-}
-
-- (void)downloadImagesLogsUpdate:(BOOL)value
-{
-    self.downloadImagesLogs = value;
-    [self BOOLUpdate:@"download_images_logs" value:value];
-}
-
-- (void)downloadImagesWaypointsUpdate:(BOOL)value
-{
-    self.downloadImagesWaypoints = value;
-    [self BOOLUpdate:@"download_images_waypoints" value:value];
-}
-
-- (void)downloadImagesMobileUpdate:(BOOL)value
-{
-    self.downloadImagesMobile = value;
-    [self BOOLUpdate:@"download_images_mobile" value:value];
-}
-
-- (void)downloadQueriesMobileUpdate:(BOOL)value;
-{
-    self.downloadQueriesMobile = value;
-    [self BOOLUpdate:@"download_queries_mobile" value:value];
-}
-- (void)downloadTimeoutSimpleUpdate:(NSInteger)value
-{
-    self.downloadTimeoutSimple = value;
-    [self NSIntegerUpdate:@"download_timeout_simple" value:value];
-}
-- (void)downloadTimeoutQueryUpdate:(NSInteger)value
-{
-    self.downloadTimeoutQuery = value;
-    [self NSIntegerUpdate:@"download_timeout_query" value:value];
-}
-
-- (void)mapSearchMaximumNumberGCAUpdate:(NSInteger)value
-{
-    self.mapSearchMaximumNumberGCA = value;
-    [self NSIntegerUpdate:@"mapsearchmaximum_numbergca" value:value];
-}
-- (void)mapSearchMaximumDistanceGSUpdate:(NSInteger)value
-{
-    self.mapSearchMaximumDistanceGS = value;
-    [self NSIntegerUpdate:@"mapsearchmaximum_distancegs" value:value];
-}
-- (void)mapSearchMaximumDistanceOKAPIUpdate:(NSInteger)value
-{
-    self.mapSearchMaximumDistanceOKAPI = value;
-    [self NSIntegerUpdate:@"mapsearchmaximum_distanceokapi" value:value];
-}
-- (void)mapSearchMaximumDistanceGCAUpdate:(NSInteger)value
-{
-    self.mapSearchMaximumDistanceOKAPI = value;
-    [self NSIntegerUpdate:@"mapsearchmaximum_distancegca" value:value];
-}
-
-- (void)markasFoundDNFClearsTargetUpdate:(BOOL)value
-{
-    self.markasFoundDNFClearsTarget = value;
-    [self BOOLUpdate:@"markas_founddnf_clearstarget" value:value];
-}
-- (void)markasFoundMarksAllWaypointsUpdate:(BOOL)value
-{
-    self.markasFoundMarksAllWaypoints = value;
-    [self BOOLUpdate:@"markas_foundmarksallwaypoints" value:value];
-}
-- (void)loggingRemovesMarkedAsFoundDNFUpdate:(BOOL)value
-{
-    self.loggingRemovesMarkedAsFoundDNF = value;
-    [self BOOLUpdate:@"logging_removesmarkedasfounddnf" value:value];
-}
-
-- (void)compassAlwaysInPortraitModeUpdate:(BOOL)value
-{
-    self.compassAlwaysInPortraitMode = value;
-    [self BOOLUpdate:@"compass_alwaysinportraitmode" value:value];
-}
-- (void)showStateAsAbbrevationUpdate:(BOOL)value
-{
-    self.showStateAsAbbrevation = value;
-    [self BOOLUpdate:@"showasabbrevation_state" value:value];
-}
-- (void)showStateAsAbbrevationIfLocaleExistsUpdate:(BOOL)value
-{
-    self.showStateAsAbbrevationIfLocaleExists = value;
-    [self BOOLUpdate:@"showasabbrevation_statewithlocale" value:value];
-}
-- (void)showCountryAsAbbrevationUpdate:(BOOL)value
-{
-    self.showCountryAsAbbrevation = value;
-    [self BOOLUpdate:@"showasabbrevation_country" value:value];
-}
-
-- (void)waypointListSortByUpdate:(NSInteger)value
-{
-    self.waypointListSortBy = value;
-    [self NSIntegerUpdate:@"waypointlist_sortby" value:value];
-}
-
-- (void)refreshWaypointAfterLogUpdate:(BOOL)value
-{
-    self.refreshWaypointAfterLog = value;
-    [self BOOLUpdate:@"waypoint_refreshafterlog" value:value];
-}
-
-- (void)listSortByUpdate:(NSInteger)value
-{
-    self.listSortBy = value;
-    [self NSIntegerUpdate:@"list_sortby" value:value];
-}
-
-- (void)accountsSaveAuthenticationNameUpdate:(BOOL)value
-{
-    self.accountsSaveAuthenticationName = value;
-    [self BOOLUpdate:@"accounts_save_authenticationname" value:value];
-}
-- (void)accountsSaveAuthenticationPasswordUpdate:(BOOL)value
-{
-    self.accountsSaveAuthenticationPassword = value;
-    [self BOOLUpdate:@"accounts_save_authenticationpassword" value:value];
-}
-
-- (void)introSeenUpdate:(BOOL)value
-{
-    self.introSeen = value;
-    [self BOOLUpdate:@"intro_seen" value:value];
-}
-
-- (void)logTemporaryTextUpdate:(NSString *)value
-{
-    self.logTemporaryText = value;
-    [self NSStringUpdate:@"log_temporary_text" value:value];
-}
-
-- (void)locationlessShowFoundUpdate:(BOOL)value
-{
-    self.locationlessShowFound = value;
-    [self BOOLUpdate:@"locationless_showfound" value:value];
-}
-- (void)locationlessListSortByUpdate:(NSInteger)value
-{
-    self.locationlessListSortBy = value;
-    [self NSIntegerUpdate:@"locationless_sortby" value:value];
-}
-
-- (void)opencageKeyUpdate:(NSString *)value
-{
-    self.opencageKey = value;
-    [self NSStringUpdate:@"opencage_key" value:value];
-}
-- (void)opencageWifiOnlyUpdate:(BOOL)value
-{
-    self.opencageWifiOnly = value;
-    [self BOOLUpdate:@"opencage_wifionly" value:value];
-}
-
-- (void)configUpdateLastTime:(NSInteger)value
-{
-    self.configUpdateLastTime = value;
-    [self NSIntegerUpdate:@"configupdate_lasttime" value:value];
-}
-- (void)configUpdateLastVersion:(NSString *)value
-{
-    self.configUpdateLastVersion = value;
-    [self NSStringUpdate:@"configupdate_lastversion" value:value];
-}
-
-- (void)automaticDatabaseBackupUpdate:(BOOL)value
-{
-    self.automaticDatabaseBackup = value;
-    [self BOOLUpdate:@"automaticdatabasebackup_enable" value:value];
-}
-- (void)automaticDatabaseBackupPeriodUpdate:(NSInteger)value
-{
-    self.automaticDatabaseBackupPeriod = value;
-    [self NSIntegerUpdate:@"automaticdatabasebackup_period" value:value];
-}
-- (void)automaticDatabaseBackupLastUpdate:(NSTimeInterval)value
-{
-    self.automaticDatabaseBackupLast = value;
-    [self DoubleUpdate:@"automaticdatabasebackup_last" value:value];
-}
-- (void)automaticDatabaseBackupRotateUpdate:(NSInteger)value
-{
-    self.automaticDatabaseBackupRotate = value;
-    [self NSIntegerUpdate:@"automaticdatabasebackup_rotate" value:value];
 }
 
 @end

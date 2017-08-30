@@ -354,8 +354,8 @@ enum {
         [self downloadFile:versions url:@"url_logstrings" header:@"log strings" revision:KEY_REVISION_LOGSTRINGS];
     }
 
-    [configManager configUpdateLastTime:time(NULL)];
-    [configManager configUpdateLastVersion:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+    [configManager configUpdateLastTimeUpdate:time(NULL)];
+    [configManager configUpdateLastVersionUpdate:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
 
     [bezelManager removeBezel];
 

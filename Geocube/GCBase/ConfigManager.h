@@ -104,10 +104,6 @@
 @property (nonatomic) BOOL accountsSaveAuthenticationName;
 @property (nonatomic) BOOL accountsSaveAuthenticationPassword;
 
-@property (nonatomic) BOOL gnssAdjustmentEnable;
-@property (nonatomic) NSInteger gnssAdjustmentLatitude;
-@property (nonatomic) NSInteger gnssAdjustmentLongitude;
-
 @property (nonatomic) BOOL introSeen;
 
 @property (nonatomic, retain) NSString *logTemporaryText;
@@ -154,10 +150,10 @@
 - (void)keeptrackDistanceDeltaMinUpdate:(NSInteger)value;
 - (void)keeptrackDistanceDeltaMaxUpdate:(NSInteger)value;
 - (void)keeptrackPurgeAgeUpdate:(NSInteger)value;
-- (void)keeptrackSync:(NSInteger)value;
+- (void)keeptrackSyncUpdate:(NSInteger)value;
 - (void)keeptrackBeeperIntervalUpdate:(NSInteger)value;
-- (void)mapClustersUpdateEnable:(BOOL)value;
-- (void)mapClustersUpdateZoomLevel:(float)value;
+- (void)mapClustersEnableUpdate:(BOOL)value;
+- (void)mapClustersZoomLevelUpdate:(float)value;
 - (void)mapRotateToBearingUpdate:(BOOL)value;
 - (void)dynamicmapEnableUpdate:(BOOL)value;
 - (void)dynamicmapWalkingSpeedUpdate:(NSInteger)value;
@@ -198,8 +194,8 @@
 - (void)locationlessListSortByUpdate:(NSInteger)value;
 - (void)opencageKeyUpdate:(NSString *)value;
 - (void)opencageWifiOnlyUpdate:(BOOL)value;
-- (void)configUpdateLastTime:(NSInteger)value;
-- (void)configUpdateLastVersion:(NSString *)value;
+- (void)configUpdateLastTimeUpdate:(NSInteger)value;
+- (void)configUpdateLastVersionUpdate:(NSString *)value;
 - (void)automaticDatabaseBackupUpdate:(BOOL)value;
 - (void)automaticDatabaseBackupLastUpdate:(NSTimeInterval)value;
 - (void)automaticDatabaseBackupPeriodUpdate:(NSInteger)value;

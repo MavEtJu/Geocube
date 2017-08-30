@@ -77,20 +77,6 @@ echo "Subclassing space-colon-space:"
 grep @interface *.h */*.h | grep -v "\w\s:\s\w"
 
 echo
-echo "Missing interface()"
-for i in $(grep '@class' Geocube-Classes.h | awk '{ print $2 }' | sed -e 's/;$//'); do
-	if [ -z "$(grep @interface\ $i\  *.h */*.h)" ]; then
-		echo "Missing @interface for $i in .h"
-	fi
-	if [ -z "$(grep @interface\ $i\  *.m */*.m)" ]; then
-		echo "Missing @interface for $i in .m"
-	fi
-	if [ -z "$(grep @implementation\ $i\$ *.m */*.m)" ]; then
-		echo "Missing @implementation for $i in .m"
-	fi
-done
-
-echo
 echo "No { after @interface:"
 grep @interface *.[mh] */*.[mh] | grep \{
 
@@ -125,19 +111,7 @@ grep ";;" *.[hm] */*.[hm]
 
 echo
 echo "ConfigManager:"
-a=$(grep -c 'CHECK.@' */ConfigManager.m)
-b=$(grep -c 'self .*Update:.*value:value' */ConfigManager.m)
-c=$(grep -c 'dbConfig dbGetByKey:@"' */ConfigManager.m)
-if [ $a -ne $b -o $b -ne $c ]; then
-	echo "CHECK: $a"
-	echo "dbConfig dbGetByKey: $c"
-	echo "self .*Update:.*value:value: $b"
-fi
-for w in $(grep 'CHECK.@' */ConfigManager.m | sed -e 's/",.*//' -e 's/.*"//'); do
-	if [ $(grep -cw $w */ConfigManager.m) -ne 3 ]; then
-		echo "Incomplete: $w"
-	fi
-done
+./checkConfigManager.pl GCBase/ConfigManager
 
 echo
 echo "XIB for iPhone/iPad"
@@ -151,6 +125,20 @@ a=$(find . -name '*.xib' | grep ~ipad)
 for f in $a; do
 	if [ ! -f $(echo $f | sed -e 's/~ipad.xib/.xib/') ]; then
 		echo "iPhone XIB not found for $f"
+	fi
+done
+
+echo
+echo "Missing interface()"
+for i in $(grep '@class' Geocube-Classes.h | awk '{ print $2 }' | sed -e 's/;$//'); do
+	if [ -z "$(grep @interface\ $i\  *.h */*.h)" ]; then
+		echo "Missing @interface for $i in .h"
+	fi
+	if [ -z "$(grep @interface\ $i\  *.m */*.m)" ]; then
+		echo "Missing @interface for $i in .m"
+	fi
+	if [ -z "$(grep @implementation\ $i\$ *.m */*.m)" ]; then
+		echo "Missing @implementation for $i in .m"
 	fi
 done
 

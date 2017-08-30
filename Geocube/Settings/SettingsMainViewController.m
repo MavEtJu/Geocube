@@ -1069,7 +1069,7 @@ enum sections {
 
 - (void)updateMapClustersEnable:(GCSwitch *)s
 {
-    [configManager mapClustersUpdateEnable:s.on];
+    [configManager mapClustersEnableUpdate:s.on];
 }
 - (void)updateMapRotateToBearing:(GCSwitch *)s
 {
@@ -1357,7 +1357,7 @@ enum sections {
                                  }
                                  case SECTION_KEEPTRACK_SYNC: {
                                      NSInteger i = [value integerValue];
-                                     [configManager keeptrackSync:i];
+                                     [configManager keeptrackSyncUpdate:i];
                                      break;
                                  }
                              }
