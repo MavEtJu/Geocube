@@ -25,6 +25,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
+#import <ImageIO/CGImageProperties.h>
+#import <ImageIO/CGImageSource.h>
 #import <MapKit/MapKit.h>
 #import <WebKit/WebKit.h>
 #import <CommonCrypto/CommonDigest.h>

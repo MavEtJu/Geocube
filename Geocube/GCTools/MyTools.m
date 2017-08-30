@@ -588,6 +588,27 @@ TIME(dateTimeString_dow, @"EEEE")
     return NO;
 }
 
+/// Return EXIF Data from an image
++ (NSDictionary *)imageEXIFData:(NSString *)filename
+{
+    NSString *URLString = [NSString stringWithFormat:@"file://%@", [filename stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
+    NSURL *url = [NSURL URLWithString:URLString];
+    CGImageSourceRef imageSource = CGImageSourceCreateWithURL((__bridge CFURLRef)url, NULL);
+
+    if (imageSource == nil) {
+        NSLog(@"%s failed to create image at url: %@", __PRETTY_FUNCTION__, url);
+        return nil;
+    }
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                             [NSNumber numberWithBool:NO], (NSString *)kCGImageSourceShouldCache,
+                             nil];
+    CFDictionaryRef imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, (__bridge CFDictionaryRef)options);
+    CFRelease(imageSource);
+    NSMutableDictionary *metadata = [NSMutableDictionary dictionaryWithDictionary:(__bridge NSDictionary *)imageProperties];
+    CFRelease(imageProperties);
+    return metadata;
+}
+
 ///////////////////////////////////////////
 
 /// Show up a message box with a header and a text
