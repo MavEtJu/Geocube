@@ -122,6 +122,28 @@ enum {
 
 #pragma mark - Functions for downloading of images
 
+- (void)downloadImage:(dbImage *)image
+{
+    [self showInfoView];
+    NSNumber *iiiImage = [NSNumber numberWithInteger:[infoView addImage]];
+    NSDictionary *d = @{@"iii": iiiImage, @"image": image };
+    [self performSelectorInBackground:@selector(downloadImageBG:) withObject:d];
+}
+
+- (void)downloadImageBG:(NSDictionary *)dict
+{
+    InfoItemID iii = [[dict objectForKey:@"iii"]  integerValue];
+    dbImage *img = [dict objectForKey:@"image"];
+    [infoView setDescription:iii description:_(@"waypointimagesviewcontroller-Images")];
+    [self downloadImage:img infoViewer:infoView iiImage:iii];
+    [infoView setQueueSize:iii queueSize:0];
+    [infoView removeItem:iii];
+    if ([infoView hasItems] == NO) {
+        [self hideInfoView];
+        [self needsDownloadMenu];
+    }
+}
+
 - (void)downloadImages
 {
     [self showInfoView];
@@ -264,21 +286,23 @@ enum {
     if (img == nil)
         return nil;
 
-    NSDictionary *exif = [MyTools imageEXIFData:[MyTools ImageFile:img.datafile]];
-    NSDictionary *exifgps = [exif objectForKey:@"{GPS}"];
-    NSString *lats = [exifgps objectForKey:@"Latitude"];
-    NSString *latref = [exifgps objectForKey:@"LatitudeRef"];
-    NSString *lons = [exifgps objectForKey:@"Longitude"];
-    NSString *lonref = [exifgps objectForKey:@"LongitudeRef"];
+    if ([img imageHasBeenDowloaded] == YES) {
+        NSDictionary *exif = [MyTools imageEXIFData:[MyTools ImageFile:img.datafile]];
+        NSDictionary *exifgps = [exif objectForKey:@"{GPS}"];
+        NSString *lats = [exifgps objectForKey:@"Latitude"];
+        NSString *latref = [exifgps objectForKey:@"LatitudeRef"];
+        NSString *lons = [exifgps objectForKey:@"Longitude"];
+        NSString *lonref = [exifgps objectForKey:@"LongitudeRef"];
 
-    if (lats != nil) {
-        CLLocationDegrees lat = [lats floatValue];
-        if ([latref isEqualToString:@"S"] == YES)
-            lat *= -1;
-        CLLocationDegrees lon = [lons floatValue];
-        if ([lonref isEqualToString:@"W"] == YES)
-            lon *= -1;
-        cell.detailTextLabel.text = [Coordinates niceCoordinates:lat longitude:lon];
+        if (lats != nil) {
+            CLLocationDegrees lat = [lats floatValue];
+            if ([latref isEqualToString:@"S"] == YES)
+                lat *= -1;
+            CLLocationDegrees lon = [lons floatValue];
+            if ([lonref isEqualToString:@"W"] == YES)
+                lon *= -1;
+            cell.detailTextLabel.text = [Coordinates niceCoordinates:lat longitude:lon];
+        }
     }
 
     cell.textLabel.text = img.name;
@@ -286,7 +310,6 @@ enum {
 
     if ([img imageHasBeenDowloaded] == YES) {
         cell.imageView.image = [img imageGet];
-
     } else {
         cell.imageView.image = [imageLibrary get:Image_NoImageFile];
     }
@@ -315,6 +338,11 @@ enum {
 
     if (img == nil)
         return;
+
+    if ([img imageHasBeenDowloaded] == NO) {
+        [self downloadImage:img];
+        return;
+    }
 
     ivc = [[WaypointImageViewController alloc] init];
     ivc.edgesForExtendedLayout = UIRectEdgeNone;

@@ -55,6 +55,7 @@
 "waypointimagesviewcontroller-Log images" = "Log Images";
 "waypointimagesviewcontroller-User images" = "User Images";
 "waypointimagesviewcontroller-Waypoint images" = "Waypoint Images";
+"waypointimagesviewcontroller-Images" = "Images";
 
 /* WaypointImage viewcontroller */
 "waypointimageviewcontroller-The new waypoint has been added to the map" = "The new waypoint has been added to the map";

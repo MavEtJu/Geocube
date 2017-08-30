@@ -54,6 +54,7 @@
 "waypointimagesviewcontroller-Log images" = "Log fotos";
 "waypointimagesviewcontroller-User images" = "Jouw fotos";
 "waypointimagesviewcontroller-Waypoint images" = "Waypoint fotos";
+"waypointimagesviewcontroller-Images" = "Fotos";
 
 /* WaypointImage viewcontroller */
 "waypointimageviewcontroller-The new waypoint has been added to the map" = "Het nieuwe waypoint is toegevoegd aan de kaart";
@@ -92,7 +93,6 @@
 "waypointaddviewcontroller-Account" = "Profiel";
 "waypointaddviewcontroller-None chosen yet" = "Nog geen gekozen";
 "waypointaddviewcontroller-Select the account" = "Selecteer profiel";
-
 
 /* WaypointHeaderHeaderView */
 "waypointheaderheaderview- on %@" = " op %@";
