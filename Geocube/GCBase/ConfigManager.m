@@ -53,10 +53,9 @@
         [dbConfig dbUpdateOrInsert:__key__ value:__default__]
 
     NSString *defaultUsesMetric = @"1";
-    if (![[NSLocale currentLocale] usesMetricSystem]) {
+    if ([MyTools iOSVersionAtLeast_10_0_0] == YES && [[NSLocale currentLocale] usesMetricSystem] == NO)
         // This locale doesn't default to metric system.
         defaultUsesMetric = @"0";
-    }
     CHECK(@"distance_metric", defaultUsesMetric);
     CHECK(@"send_tweets", @"1");
     CHECK(@"waypoint_current", @"");
