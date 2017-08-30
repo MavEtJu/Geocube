@@ -41,6 +41,7 @@ Version 1.4(x)
   - When the interface was landscape before the map was loaded, the
     waypoint infoviewer wouldn't resize properly when the interface
     was set back to portrait. That is now fixed.
+  - When opening a non-downloaded image, download it.
 
 Version 1.3(26)
 
