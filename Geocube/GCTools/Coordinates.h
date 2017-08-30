@@ -28,6 +28,7 @@
 - (instancetype)initString:(NSString *)latitude longitude:(NSString *)longitude;         // S 34 1.672, E 151 4.414
 - (CLLocationDegrees)latitude;
 - (CLLocationDegrees)longitude;
+- (CLLocationCoordinate2D)coordinates;
 - (NSString *)lat_decimalDegreesSigned;         // -34.02787
 - (NSString *)lon_decimalDegreesSigned;         // 151.07357
 - (NSString *)lat_decimalDegreesCardinal;       // S 34.02787
@@ -58,6 +59,7 @@
 + (CLLocationCoordinate2D)coordinatesMinusOffset:(CLLocationCoordinate2D)c offset:(CLLocationCoordinate2D)o;
 + (CLLocationCoordinate2D)location:(CLLocationCoordinate2D)origin bearing:(float)bearing distance:(float)distanceMeters;
 
+- (NSString *)niceCoordinates;
 + (NSString *)niceCoordinates:(CLLocationCoordinate2D)c;
 + (NSString *)niceCoordinates:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude;
 + (NSString *)niceCoordinatesForEditing:(CLLocationCoordinate2D)c;

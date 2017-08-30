@@ -47,6 +47,11 @@
     return self;
 }
 
+- (CLLocationCoordinate2D)coordinates
+{
+    return CLLocationCoordinate2DMake(coords.latitude, coords.longitude);
+}
+
 /// Returns -34.02787
 - (NSString *)lat_decimalDegreesSigned     // -34.02787
 {
@@ -318,6 +323,12 @@
         default: point = @"???"; break;
     }
     return point;
+}
+
+/// Returns string with coordinates like N 1° 2.3' E 4° 5.6
+- (NSString *)niceCoordinates
+{
+    return [NSString stringWithFormat:@"%@ %@", [self lat_degreesDecimalMinutes], [self lon_degreesDecimalMinutes]];
 }
 
 /// Returns string with coordinates like N 1° 2.3' E 4° 5.6
