@@ -88,7 +88,7 @@
     dbImage *img = [imgs objectAtIndex:indexPath.row];
 
     WaypointImageViewController *newController = [[WaypointImageViewController alloc] init];
-    [newController setImage:img idx:0 totalImages:0];
+    [newController setImage:img idx:0 totalImages:0 waypoint:wp];
     newController.edgesForExtendedLayout = UIRectEdgeNone;
     [self.navigationController pushViewController:newController animated:YES];
     return;

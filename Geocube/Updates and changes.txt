@@ -21,6 +21,7 @@ Version 1.4(x)
   - Automatic creation of backups of the database.
   - Be able to strip the HTML code from the description.
   - Add beeper to be able to find out where the phone was left.
+  - Be able to extra EXIF GNSS data from images into a waypoint.
 
   Fixes:
   - Made the UI for a waypoint more sane with regards to "what is

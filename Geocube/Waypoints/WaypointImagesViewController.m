@@ -67,6 +67,7 @@ enum {
     self.hasCloseButton = YES;
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLSUBTITLERIGHTIMAGE bundle:nil] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLSUBTITLERIGHTIMAGE];
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELL];
 
     waypoint = wp;
@@ -249,8 +250,9 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    GCTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL];
+    GCTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSUBTITLERIGHTIMAGE];
     cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.detailTextLabel.text = @"";
 
     dbImage *img;
     switch (indexPath.section) {
@@ -262,11 +264,29 @@ enum {
     if (img == nil)
         return nil;
 
+    NSDictionary *exif = [MyTools imageEXIFData:[MyTools ImageFile:img.datafile]];
+    NSDictionary *exifgps = [exif objectForKey:@"{GPS}"];
+    NSString *lats = [exifgps objectForKey:@"Latitude"];
+    NSString *latref = [exifgps objectForKey:@"LatitudeRef"];
+    NSString *lons = [exifgps objectForKey:@"Longitude"];
+    NSString *lonref = [exifgps objectForKey:@"LongitudeRef"];
+
+    if (lats != nil) {
+        CLLocationDegrees lat = [lats floatValue];
+        if ([latref isEqualToString:@"S"] == YES)
+            lat *= -1;
+        CLLocationDegrees lon = [lons floatValue];
+        if ([lonref isEqualToString:@"W"] == YES)
+            lon *= -1;
+        cell.detailTextLabel.text = [Coordinates niceCoordinates:lat longitude:lon];
+    }
+
     cell.textLabel.text = img.name;
     cell.userInteractionEnabled = YES;
 
     if ([img imageHasBeenDowloaded] == YES) {
         cell.imageView.image = [img imageGet];
+
     } else {
         cell.imageView.image = [imageLibrary get:Image_NoImageFile];
     }
@@ -301,7 +321,7 @@ enum {
     [self.navigationController pushViewController:ivc animated:YES];
     ivc.delegate = self;
 
-    [ivc setImage:img idx:indexPath.row + 1 totalImages:max];
+    [ivc setImage:img idx:indexPath.row + 1 totalImages:max waypoint:waypoint];
     return;
 }
 
@@ -309,6 +329,11 @@ enum {
 {
     [self.tableView reloadData];
     [self needsDownloadMenu];
+}
+
+- (void)WaypointImage_refreshWaypoint
+{
+    [self.delegateWaypoint WaypointImages_refreshTable];
 }
 
 - (void)WaypointImage_swipeToDown
@@ -330,7 +355,7 @@ enum {
             case SECTION_LOG: img = [logImages objectAtIndex:currentIndexPath.row]; break;
         }
 
-        [ivc setImage:img idx:currentIndexPath.row + 1 totalImages:max];
+        [ivc setImage:img idx:currentIndexPath.row + 1 totalImages:max waypoint:waypoint];
     }
 }
 
@@ -353,7 +378,7 @@ enum {
             case SECTION_LOG: img = [logImages objectAtIndex:currentIndexPath.row]; break;
         }
 
-        [ivc setImage:img idx:currentIndexPath.row + 1 totalImages:max];
+        [ivc setImage:img idx:currentIndexPath.row + 1 totalImages:max waypoint:waypoint];
     }
 }
 

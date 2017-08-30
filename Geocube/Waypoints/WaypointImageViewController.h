@@ -24,6 +24,7 @@
 - (void)WaypointImage_swipeToUp;
 - (void)WaypointImage_swipeToDown;
 - (void)WaypointImage_refreshTable;
+- (void)WaypointImage_refreshWaypoint;
 
 @end
 
@@ -32,6 +33,6 @@
 @property (nonatomic) id<WaypointImageViewControllerDelegate> delegate;
 
 - (instancetype)init;
-- (void)setImage:(dbImage *)img idx:(NSInteger)thisImage totalImages:(NSInteger)totalImages;
+- (void)setImage:(dbImage *)img idx:(NSInteger)thisImage totalImages:(NSInteger)totalImages waypoint:(dbWaypoint *)wp;
 
 @end

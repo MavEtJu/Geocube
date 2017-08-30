@@ -55,6 +55,10 @@
 "waypointimagesviewcontroller-User images" = "Jouw fotos";
 "waypointimagesviewcontroller-Waypoint images" = "Waypoint fotos";
 
+/* WaypointImage viewcontroller */
+"waypointimageviewcontroller-The new waypoint has been added to the map" = "Het nieuwe waypoint is toegevoegd aan de kaart";
+"waypointimageviewcontroller-Waypoint added" = "Waypoint toegevoegd";
+
 /* WaypointAttributes viewcontroller */
 "waypointattributesviewcontroller-Attributes" = "Attributen";
 

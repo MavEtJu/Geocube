@@ -140,6 +140,7 @@
 "waypointimageviewcontroller-Airdrop" = "Airdrop";
 "waypointimageviewcontroller-Delete photo" = "Delete Photo";
 "waypointimageviewcontroller-iCloud" = "iCloud";
+"waypointimageviewcontroller-Add waypoint" = "Add waypoint";
 "waypointlogimagesviewcontroller-Import photo" = "Import Photo";
 "waypointlogimagesviewcontroller-Make photo" = "Make Photo";
 "waypointlogsviewcontroller-Copy log to clipboard" = "Copy Log to Clipboard";

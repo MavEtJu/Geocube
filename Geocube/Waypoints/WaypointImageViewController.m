@@ -22,12 +22,14 @@
 @interface WaypointImageViewController ()
 {
     dbImage *img;
+    dbWaypoint *waypoint;
     UIScrollView *sv;
     UIImage *image;
     UIImageView *imgview;
 
     CGRect imgViewRect;
     GCLabel *labelCount;
+    Coordinates *exifCoordinates;
 
     BOOL zoomedIn;
 
@@ -42,6 +44,7 @@ enum {
     menuUploadAirdrop,
     menuUploadICloud,
     menuDeletePhoto,
+    menuAddNewWaypoint,
     menuMax,
 };
 
@@ -55,6 +58,7 @@ enum {
     [lmi addItem:menuUploadAirdrop label:_(@"waypointimageviewcontroller-Airdrop")];
     [lmi addItem:menuUploadICloud label:_(@"waypointimageviewcontroller-iCloud")];
     [lmi addItem:menuDeletePhoto label:_(@"waypointimageviewcontroller-Delete photo")];
+    [lmi addItem:menuAddNewWaypoint label:_(@"waypointimageviewcontroller-Add waypoint")];
     image = nil;
     self.delegate = nil;
 
@@ -261,12 +265,32 @@ enum {
     [self zoominout:zoomedIn];
 }
 
-- (void)setImage:(dbImage *)_img idx:(NSInteger)_thisImage totalImages:(NSInteger)_totalImages
+- (void)setImage:(dbImage *)_img idx:(NSInteger)_thisImage totalImages:(NSInteger)_totalImages waypoint:(dbWaypoint *)wp
 {
     img = _img;
+    waypoint = wp;
     thisImage = _thisImage;
     totalImages = _totalImages;
     [self viewWillTransitionToSize];
+
+    [lmi disableItem:menuAddNewWaypoint];
+    NSDictionary *exif = [MyTools imageEXIFData:[MyTools ImageFile:img.datafile]];
+    NSDictionary *exifgps = [exif objectForKey:@"{GPS}"];
+    NSString *lats = [exifgps objectForKey:@"Latitude"];
+    NSString *latref = [exifgps objectForKey:@"LatitudeRef"];
+    NSString *lons = [exifgps objectForKey:@"Longitude"];
+    NSString *lonref = [exifgps objectForKey:@"LongitudeRef"];
+
+    if (lats != nil) {
+        CLLocationDegrees lat = [lats floatValue];
+        if ([latref isEqualToString:@"S"] == YES)
+            lat = -lat;
+        CLLocationDegrees lon = [lons floatValue];
+        if ([lonref isEqualToString:@"W"] == YES)
+            lon = -lon;
+        exifCoordinates = [[Coordinates alloc] init:lat longitude:lon];
+        [lmi enableItem:menuAddNewWaypoint];
+    }
 }
 
 - (void)viewWillTransitionToSize
@@ -294,6 +318,9 @@ enum {
             [self.delegate WaypointImage_refreshTable];
             [self.navigationController popViewControllerAnimated:YES];
             return;
+        case menuAddNewWaypoint:
+            [self addNewWaypoint];
+            return;
     }
 
     [super performLocalMenuAction:index];
@@ -309,6 +336,33 @@ enum {
 {
     NSString *filename = [MyTools ImageFile:img.datafile];
     [IOSFTM uploadICloud:filename vc:self];
+}
+
+- (void)addNewWaypoint
+{
+    dbWaypoint *wp = [[dbWaypoint alloc] init];
+    wp.wpt_latitude = exifCoordinates.latitude;
+    wp.wpt_longitude = exifCoordinates.longitude;
+    wp.wpt_name = [dbWaypoint makeName:[waypoint.wpt_name substringFromIndex:2]];
+    wp.wpt_description = wp.wpt_name;
+    wp.wpt_date_placed_epoch = time(NULL);
+    wp.wpt_url = nil;
+    wp.wpt_urlname = wp.wpt_name;
+    wp.wpt_symbol = dbc.Symbol_VirtualStage;
+    wp.wpt_type = [dbc Type_ManuallyEntered];
+    wp.account = waypoint.account;
+    [wp finish];
+    [wp dbCreate];
+
+    [dbc.Group_AllWaypoints_ManuallyAdded addWaypointToGroup:wp];
+    [dbc.Group_AllWaypoints addWaypointToGroup:wp];
+    [dbc.Group_ManualWaypoints addWaypointToGroup:wp];
+
+    [waypointManager needsRefreshAdd:wp];
+
+    [MyTools messageBox:self header:_(@"waypointimageviewcontroller-Waypoint added") text:_(@"waypointimageviewcontroller-The new waypoint has been added to the map")];
+
+    [self.delegate WaypointImage_refreshWaypoint];
 }
 
 @end
