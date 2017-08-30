@@ -280,7 +280,7 @@
     else if (bt <= 0)
         nextBytes = [NSString stringWithFormat:@"%@: %@", _(@"infoitem-Bytes"), [MyTools niceFileSize:bc]];
     else
-        nextBytes = [NSString stringWithFormat:@"%@: %@ %@ %@ (%ld %%)", _(@"infoitem-Bytes"), [MyTools niceFileSize:bc], [MyTools niceFileSize:bt], _(@"of"), (long)((bc * 100) / bt)];
+        nextBytes = [NSString stringWithFormat:@"%@: %@ %@ %@ (%ld %%)", _(@"infoitem-Bytes"), [MyTools niceFileSize:bc], _(@"of"), [MyTools niceFileSize:bt], (long)((bc * 100) / bt)];
     self.needsRefresh = YES;
 }
 - (void)setBytesTotal:(NSInteger)newTotal
