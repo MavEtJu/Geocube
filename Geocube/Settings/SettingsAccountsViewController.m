@@ -310,7 +310,7 @@ enum {
         NSArray<NSString *> *ws = [curl.value componentsSeparatedByString:@"/"]; \
         NSString *versionKnown = [versions objectForKey:[ws lastObject]]; \
         dbConfig *cold = [dbConfig dbGetByKey:__key__]; \
-        NSLog(@"current: %@ seen: %@", cold.value, versionKnown); \
+        NSLog(@"%@: current: %@ seen: %@", [ws lastObject], cold.value, versionKnown); \
         if ([cold.value isEqualToString:versionKnown] == NO) \
             needsDownload = YES; \
     }

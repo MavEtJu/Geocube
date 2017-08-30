@@ -238,7 +238,8 @@ typedef NS_ENUM(NSInteger, Type) {
         currevision.value = @"0";
         [currevision dbCreate];
     }
-    if ([currevision.value isEqualToString:revision] == NO) {
+    if ([revision integerValue] != 0 &&
+        [currevision.value isEqualToString:revision] == NO) {
         currevision.value = revision;
         [currevision dbUpdate];
     }
