@@ -52,7 +52,12 @@
     if (c == nil) \
         [dbConfig dbUpdateOrInsert:__key__ value:__default__]
 
-    CHECK(@"distance_metric", @"1");
+    NSString *defaultUsesMetric = @"1";
+    if (![[NSLocale currentLocale] usesMetricSystem]) {
+        // This locale doesn't default to metric system.
+        defaultUsesMetric = @"0";
+    }
+    CHECK(@"distance_metric", defaultUsesMetric);
     CHECK(@"send_tweets", @"1");
     CHECK(@"waypoint_current", @"");
     CHECK(@"page_current", @"0");
