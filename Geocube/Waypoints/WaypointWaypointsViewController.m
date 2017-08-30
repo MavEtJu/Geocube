@@ -242,6 +242,7 @@ enum {
 
                     [dbc.Group_AllWaypoints_ManuallyAdded addWaypointToGroup:wp];
                     [dbc.Group_AllWaypoints addWaypointToGroup:wp];
+                    [dbc.Group_ManualWaypoints addWaypointToGroup:wp];
 
                     wps = [waypoint hasWaypoints];
                     [self.tableView reloadData];
