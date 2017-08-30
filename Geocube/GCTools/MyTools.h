@@ -98,6 +98,8 @@
 + (UIViewController *)topMostController;
 + (void)sendTweet:(UIViewController *)vc text:(NSString *)text;
 
++ (BOOL)iOSVersionAtLeast_10_0_0;
+
 @end
 
 typedef sqlite3_int64 NSId;
