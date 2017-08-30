@@ -88,7 +88,7 @@ TABLENAME(@"log_templates")
 
 + (dbLogTemplate *)dbGet:(NSId)_id
 {
-    return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
+    return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithId:_id]]] firstObject];
 }
 
 /* Other methods */

@@ -137,4 +137,6 @@
         }]; \
     } \
 
+#define numberWithId numberWithLongLong
+
 #endif

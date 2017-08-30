@@ -112,7 +112,7 @@ TABLENAME(@"log_strings")
 
 + (dbLogString *)dbGet:(NSId)_id
 {
-    return [[dbLogString dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
+    return [[dbLogString dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithId:_id]]] firstObject];
 }
 
 + (NSArray<dbLogString *> *)dbAll
@@ -122,22 +122,22 @@ TABLENAME(@"log_strings")
 
 + (NSArray<dbLogString *> *)dbAllByProtocol:(dbProtocol *)protocol
 {
-    return [dbLogString dbAllXXX:@"where protocol_id = ? order by id" keys:@"i" values:@[[NSNumber numberWithInteger:protocol._id]]];
+    return [dbLogString dbAllXXX:@"where protocol_id = ? order by id" keys:@"i" values:@[[NSNumber numberWithId:protocol._id]]];
 }
 
 + (NSArray<dbLogString *> *)dbAllByProtocol_All:(dbProtocol *)protocol
 {
-    return [dbLogString dbAllXXX:@"where protocol_id = ? order by id" keys:@"i" values:@[[NSNumber numberWithInteger:protocol._id]]];
+    return [dbLogString dbAllXXX:@"where protocol_id = ? order by id" keys:@"i" values:@[[NSNumber numberWithId:protocol._id]]];
 }
 
 + (NSArray<dbLogString *> *)dbAllByProtocolWPType_LogOnly:(dbProtocol *)protocol wptype:(LogStringWPType)wptype
 {
-    return [dbLogString dbAllXXX:@"where protocol_id = ? and id in (select log_string_id from log_string_waypoints where wptype = ?) order by id" keys:@"ii" values:@[[NSNumber numberWithInteger:protocol._id], [NSNumber numberWithInteger:wptype]]];
+    return [dbLogString dbAllXXX:@"where protocol_id = ? and id in (select log_string_id from log_string_waypoints where wptype = ?) order by id" keys:@"ii" values:@[[NSNumber numberWithId:protocol._id], [NSNumber numberWithInteger:wptype]]];
 }
 
 + (dbLogString *)dbGetByProtocolDisplayString:(dbProtocol *)protocol displayString:(NSString *)displaystring
 {
-    return [[dbLogString dbAllXXX:@"where protocol_id = ? and display_string = ? order by id" keys:@"is" values:@[[NSNumber numberWithInteger:protocol._id], displaystring]] firstObject];
+    return [[dbLogString dbAllXXX:@"where protocol_id = ? and display_string = ? order by id" keys:@"is" values:@[[NSNumber numberWithId:protocol._id], displaystring]] firstObject];
 }
 
 + (dbLogString *)dbGetByProtocolWPTypeDefault:(dbProtocol *)protocol wptype:(LogStringWPType)wptype default:(LogStringDefault)dflt

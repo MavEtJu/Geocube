@@ -87,7 +87,7 @@ TABLENAME(@"states")
 
 + (dbState *)dbGet:(NSId)_id
 {
-    return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
+    return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithId:_id]]] firstObject];
 }
 
 + (dbState *)dbGetByNameCode:(NSString *)namecode

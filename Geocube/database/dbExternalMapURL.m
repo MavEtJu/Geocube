@@ -90,7 +90,7 @@ TABLENAME(@"externalmap_urls")
 
 + (NSArray<dbExternalMapURL *> *)dbAllByExternalMap:(dbExternalMap *)map
 {
-    return [self dbAllXXX:@"where externalmap_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:map._id]]];
+    return [self dbAllXXX:@"where externalmap_id = ?" keys:@"i" values:@[[NSNumber numberWithId:map._id]]];
 }
 
 + (void)dbDeleteByExternalMap:(dbExternalMap *)map

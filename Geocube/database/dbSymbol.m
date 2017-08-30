@@ -70,7 +70,7 @@ TABLENAME(@"symbols")
 
 + (dbObject *)dbGet:(NSId)_id;
 {
-    return [[self dbAllXXX:@"Where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
+    return [[self dbAllXXX:@"Where id = ?" keys:@"i" values:@[[NSNumber numberWithId:_id]]] firstObject];
 }
 
 @end

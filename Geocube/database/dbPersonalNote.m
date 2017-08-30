@@ -87,7 +87,7 @@ TABLENAME(@"personal_notes")
 
 + (dbPersonalNote *)dbGetByWaypointID:(NSId)wp_id
 {
-    return [[self dbAllXXX:@"where waypoint_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:wp_id]]] firstObject];
+    return [[self dbAllXXX:@"where waypoint_id = ?" keys:@"i" values:@[[NSNumber numberWithId:wp_id]]] firstObject];
 }
 
 + (dbPersonalNote *)dbGetByWaypointName:(NSString *)wpname

@@ -85,7 +85,7 @@ TABLENAME(@"log_string_waypoints")
 
 + (dbLogStringWaypoint *)dbGetByLogStringWPType:(dbLogString *)logstring wptype:(LogStringWPType)wptype
 {
-    return [[self dbAllXXX:@"where log_string_id = ? and wptype = ?" keys:@"ii" values:@[[NSNumber numberWithInteger:logstring._id], [NSNumber numberWithInteger:wptype]]] firstObject];
+    return [[self dbAllXXX:@"where log_string_id = ? and wptype = ?" keys:@"ii" values:@[[NSNumber numberWithId:logstring._id], [NSNumber numberWithInteger:wptype]]] firstObject];
 }
 
 + (void)dbDeleteAllByLogString:(dbLogString *)logstring

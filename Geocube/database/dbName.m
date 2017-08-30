@@ -97,22 +97,22 @@ TABLENAME(@"names")
 
 + (dbName *)dbGet:(NSId)_id
 {
-    return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
+    return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithId:_id]]] firstObject];
 }
 
 + (dbName *)dbGetByNameCode:(NSString *)name code:(NSString *)code account:(dbAccount *)account
 {
-    return [[self dbAllXXX:@"where name = ? and code = ? and account_id = ?" keys:@"ssi" values:@[name, code, [NSNumber numberWithInteger:account._id]]] firstObject];
+    return [[self dbAllXXX:@"where name = ? and code = ? and account_id = ?" keys:@"ssi" values:@[name, code, [NSNumber numberWithId:account._id]]] firstObject];
 }
 
 + (dbName *)dbGetByCode:(NSString *)code account:(dbAccount *)account
 {
-    return [[self dbAllXXX:@"where code = ? and account_id = ?" keys:@"si" values:@[code, [NSNumber numberWithInteger:account._id]]] firstObject];
+    return [[self dbAllXXX:@"where code = ? and account_id = ?" keys:@"si" values:@[code, [NSNumber numberWithId:account._id]]] firstObject];
 }
 
 + (dbName *)dbGetByName:(NSString *)name account:(dbAccount *)account
 {
-    return [[self dbAllXXX:@"where name = ? and account_id = ?" keys:@"si" values:@[name, [NSNumber numberWithInteger:account._id]]] firstObject];
+    return [[self dbAllXXX:@"where name = ? and account_id = ?" keys:@"si" values:@[name, [NSNumber numberWithId:account._id]]] firstObject];
 }
 
 /* Other methods */

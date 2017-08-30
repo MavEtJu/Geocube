@@ -62,7 +62,7 @@ TABLENAME(@"listdata")
 
 + (dbListData *)dbGetByWaypoint:(dbWaypoint *)wp flag:(Flag)flag
 {
-    return [[self dbAllXXX:@"where type = ? and waypoint_id = ?" keys:@"ii" values:@[[NSNumber numberWithInteger:flag], [NSNumber numberWithInteger:wp._id]]] firstObject];
+    return [[self dbAllXXX:@"where type = ? and waypoint_id = ?" keys:@"ii" values:@[[NSNumber numberWithInteger:flag], [NSNumber numberWithId:wp._id]]] firstObject];
 }
 
 /* Other methods */

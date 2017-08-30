@@ -75,7 +75,7 @@ TABLENAME(@"images")
 
 + (NSArray<dbImage *> *)dbAllByWaypoint:(dbWaypoint *)wp type:(ImageCategory)type
 {
-    return [self dbAllXXX:@"where id in (select image_id from image2waypoint where waypoint_id = ? and type = ?)" keys:@"ii" values:@[[NSNumber numberWithInteger:wp._id], [NSNumber numberWithInteger:type]]];
+    return [self dbAllXXX:@"where id in (select image_id from image2waypoint where waypoint_id = ? and type = ?)" keys:@"ii" values:@[[NSNumber numberWithId:wp._id], [NSNumber numberWithInteger:type]]];
 }
 
 + (dbImage *)dbGetByURL:(NSString *)url

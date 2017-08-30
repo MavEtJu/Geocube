@@ -90,7 +90,7 @@ TABLENAME(@"file_imports")
 
 + (dbFileImport *)dbGet:(NSId)_id
 {
-    return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
+    return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithId:_id]]] firstObject];
 }
 
 @end
