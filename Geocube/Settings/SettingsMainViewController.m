@@ -19,6 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@class ExtraEditRowInfo;
 @interface SettingsMainViewController ()
 {
     float mapClustersZoomlevel;
@@ -52,9 +53,105 @@
 
     NSMutableArray<NSString *> *downloadSimpleTimeouts;
     NSMutableArray<NSString *> *downloadQueryTimeouts;
+    
+    ExtraEditRowInfo *extraEditRowInfo;
 }
 
 @end
+
+// Helper classes
+@protocol ExtraEditRowHelper
+@end
+@interface ExtraEditRowInfo: NSObject
+@property id<ExtraEditRowHelper> helper;
+@property NSIndexPath *indexPath;
++ (ExtraEditRowInfo *)extraEditRowInfoForIndexPath: (NSIndexPath *)indexPath;
+@end
+@implementation ExtraEditRowInfo
+@synthesize helper;
+@synthesize indexPath;
+
++ (ExtraEditRowInfo *)extraEditRowInfoForIndexPath:(NSIndexPath *)indexPath
+{
+    ExtraEditRowInfo *value = [[ExtraEditRowInfo alloc] init];
+    value.indexPath = indexPath;
+    return value;
+}
+
+@end
+
+@interface GCPickerHelper: NSObject<UIPickerViewDataSource, UIPickerViewDelegate, ExtraEditRowHelper>
+
+typedef void(^GCPickerHelperValueChosenBlock)(GCPickerHelper *helper, NSInteger selectedIndex, NSString *selectedValue);
+
+@property (nonatomic, weak) UIPickerView *picker;
+@property NSArray<NSString *> *values;
+@property NSInteger initialIndex;
+@property NSInteger currentIndex;
+@property (nonatomic, copy) GCPickerHelperValueChosenBlock valueChosenBlock;
+
++ (GCPickerHelper *)pickerHelperForPickerView: (UIPickerView *)pickerView withValues: (NSArray<NSString *>*)pickerValues initialSelection: (NSInteger)initialSelection valueChosenBlock: (nullable GCPickerHelperValueChosenBlock)valueChosenBlock;
+@end
+@implementation GCPickerHelper
+#pragma mark - UIPickerViewDelegate methods
+@synthesize values;
+@synthesize initialIndex;
+
++ (GCPickerHelper *)pickerHelperForPickerView: (UIPickerView *)pickerView withValues: (NSArray<NSString *>*)pickerValues initialSelection: (NSInteger)initialSelection valueChosenBlock:(nullable GCPickerHelperValueChosenBlock)valueChosenBlock
+{
+    GCPickerHelper *helper = [[GCPickerHelper alloc] init];
+    
+    pickerView.delegate = helper;
+    pickerView.dataSource = helper;
+    
+    helper.picker = pickerView;
+    helper.values = pickerValues;
+    helper.initialIndex = initialSelection;
+    helper.valueChosenBlock = valueChosenBlock;
+    
+    if (initialSelection !=  NSNotFound) {
+        [pickerView selectRow:initialSelection inComponent:0 animated:NO];
+    }
+    
+    return helper;
+}
+
+- (NSInteger) currentIndex
+{
+    return [self.picker selectedRowInComponent:0];
+}
+
+- (void) setCurrentIndex: (NSInteger)newValue
+{
+    [self.picker selectRow:newValue inComponent:0 animated:YES];
+}
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [values objectAtIndex:row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    NSLog(@"Selected %@", [values objectAtIndex:row]);
+    if (self.valueChosenBlock != nil) {
+        self.valueChosenBlock(self, row, [values objectAtIndex:row]);
+    }
+}
+
+#pragma mark - UIPickerViewDatasource Methods
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [values count];
+}
+
+
+@end
+
 
 @implementation SettingsMainViewController
 
@@ -72,6 +169,7 @@ enum {
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLRIGHTIMAGE bundle:nil] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLRIGHTIMAGE];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLSWITCH bundle:nil] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLSWITCH];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLPICKER bundle:nil] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLPICKER];
 
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuResetToDefault label:_(@"settingsmainviewcontroller-Reset to default")];
@@ -123,6 +221,8 @@ enum {
     for (NSInteger i = 60; i < 1200; i += 30) {
         [downloadQueryTimeouts addObject:[NSString stringWithFormat:@"%ld %@", (long)i, _(@"time-seconds")]];
     }
+    
+    extraEditRowInfo = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -352,10 +452,12 @@ enum sections {
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
+    NSInteger rowCount = 0;
+    
     switch (section) {
 #define SECTION_MAX(__d__) \
     case SECTION_##__d__: \
-        return SECTION_##__d__##_MAX;
+        rowCount = SECTION_##__d__##_MAX; break;
         SECTION_MAX(DISTANCE);
         SECTION_MAX(APPS);
         SECTION_MAX(THEME);
@@ -376,9 +478,13 @@ enum sections {
         SECTION_MAX(BACKUPS);
         default:
             NSAssert1(0, @"Unknown section %ld", (long)section);
+            return 0;
     }
 
-    return 0;
+    if ((extraEditRowInfo != nil) && (extraEditRowInfo.indexPath.section == section)) {
+        rowCount++;
+    }
+    return rowCount;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -431,9 +537,35 @@ enum sections {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (indexPath.section) {
+    // We need to factor in the additional edit row
+    BOOL isEditRow = NO;
+    BOOL isAssociatedRow = NO;
+    NSInteger convertedRow = indexPath.row;
+    NSInteger section = indexPath.section;
+    
+    if ((extraEditRowInfo != nil) && (section == extraEditRowInfo.indexPath.section)){
+        NSInteger row = indexPath.row;
+        NSInteger extraRow = extraEditRowInfo.indexPath.row;
+        
+        if (row == extraRow) {
+            // It's the additional edit row info!
+            // Keep track of the fact that we're looking at the extra row,
+            // and update the converted row to point to the row *before* the extra row.
+            // This is the one that knows how to display the edit row.
+            isEditRow = YES;
+            convertedRow = extraRow - 1;
+        } else if (row > extraRow) {
+            // It's a row *past* the extra row, update the converted row to show which normal row it is.
+            convertedRow--;
+        } else if (row == (extraRow - 1)) {
+            // It's the associated row. This *might* be displayed differently when we're editing.
+            isAssociatedRow = YES;
+        }
+    }
+    
+    switch (section) {
         case SECTION_DISTANCE: {   // Distance
-            switch (indexPath.row) {
+            switch (convertedRow) {
                 case SECTION_DISTANCE_METRIC: {   // Metric
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Use metric units");
@@ -447,7 +579,7 @@ enum sections {
         }
 
         case SECTION_APPS: {
-            switch (indexPath.row) {
+            switch (convertedRow) {
                 case SECTION_APPS_EXTERNALMAP: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-External Maps");
@@ -488,7 +620,7 @@ enum sections {
         }
 
         case SECTION_THEME: {   // Theme
-            switch (indexPath.row) {
+            switch (convertedRow) {
                 case SECTION_THEME_THEME: {   // Theme
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Theme");
@@ -502,38 +634,38 @@ enum sections {
                     return cell;
                 }
                 case SECTION_THEME_ORIENTATIONS: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    NSMutableString *s = [NSMutableString stringWithString:@""];
-                    if ((configManager.orientationsAllowed & UIInterfaceOrientationMaskPortrait) != 0) {
-                        if ([s isEqualToString:@""] == NO)
-                            [s appendString:@", "];
-                        [s appendString:_(@"settingsmainviewcontroller-Portrait")];
-                    }
-                    if ((configManager.orientationsAllowed & UIInterfaceOrientationMaskPortraitUpsideDown) != 0) {
-                        if ([s isEqualToString:@""] == NO)
-                            [s appendString:@", "];
-                        [s appendString:_(@"settingsmainviewcontroller-Upside Down")];
-                    }
-                    if ((configManager.orientationsAllowed & UIInterfaceOrientationMaskLandscapeLeft) != 0) {
-                        if ([s isEqualToString:@""] == NO)
-                            [s appendString:@", "];
-                        [s appendString:_(@"settingsmainviewcontroller-Landscape Left")];
-                    }
-                    if ((configManager.orientationsAllowed & UIInterfaceOrientationMaskLandscapeRight) != 0) {
-                        if ([s isEqualToString:@""] == NO)
-                            [s appendString:@", "];
-                        [s appendString:_(@"settingsmainviewcontroller-Landscape Right")];
-                    }
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Orientations allowed");
-                    cell.detailTextLabel.text = s;
-                    return cell;
+                        GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
+                        NSMutableString *s = [NSMutableString stringWithString:@""];
+                        if ((configManager.orientationsAllowed & UIInterfaceOrientationMaskPortrait) != 0) {
+                            if ([s isEqualToString:@""] == NO)
+                                [s appendString:@", "];
+                            [s appendString:_(@"settingsmainviewcontroller-Portrait")];
+                        }
+                        if ((configManager.orientationsAllowed & UIInterfaceOrientationMaskPortraitUpsideDown) != 0) {
+                            if ([s isEqualToString:@""] == NO)
+                                [s appendString:@", "];
+                            [s appendString:_(@"settingsmainviewcontroller-Upside Down")];
+                        }
+                        if ((configManager.orientationsAllowed & UIInterfaceOrientationMaskLandscapeLeft) != 0) {
+                            if ([s isEqualToString:@""] == NO)
+                                [s appendString:@", "];
+                            [s appendString:_(@"settingsmainviewcontroller-Landscape Left")];
+                        }
+                        if ((configManager.orientationsAllowed & UIInterfaceOrientationMaskLandscapeRight) != 0) {
+                            if ([s isEqualToString:@""] == NO)
+                                [s appendString:@", "];
+                            [s appendString:_(@"settingsmainviewcontroller-Landscape Right")];
+                        }
+                        cell.textLabel.text = _(@"settingsmainviewcontroller-Orientations allowed");
+                        cell.detailTextLabel.text = s;
+                        return cell;
                 }
             }
             break;
         }
 
         case SECTION_SOUNDS: {   // Sounds
-            switch (indexPath.row) {
+            switch (convertedRow) {
                 case SECTION_SOUNDS_DIRECTION: {   // soundDirection
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Enable sounds for direction");
@@ -555,7 +687,7 @@ enum sections {
         }
 
         case SECTION_MAPCOLOURS: {
-            switch (indexPath.row) {
+            switch (convertedRow) {
                 case SECTION_MAPCOLOURS_DESTINATION: {
                     GCTableViewCellRightImage *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLRIGHTIMAGE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Destination line");
@@ -573,20 +705,52 @@ enum sections {
         }
 
         case SECTION_MAPS: {   // Maps
-            switch (indexPath.row) {
+            switch (convertedRow) {
                 case SECTION_MAPS_DEFAULTBRAND: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Default map");
-                    __block NSString *value = nil;
-                    [mapBrandsCodes enumerateObjectsUsingBlock:^(NSString *k, NSUInteger idx, BOOL * _Nonnull stop) {
-                        if ([k isEqualToString:configManager.mapBrandDefault] == YES) {
-                            value = [mapBrandsNames objectAtIndex:idx];
-                            *stop = YES;
-                            return;
+                    if (isEditRow) {
+                        GCTableViewCellPicker *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLPICKER forIndexPath:indexPath];
+                        __block NSInteger initial = 0;
+                        [mapBrandsCodes enumerateObjectsUsingBlock:^(NSString *k, NSUInteger idx, BOOL * _Nonnull stop) {
+                            if ([k isEqualToString:configManager.mapBrandDefault] == YES) {
+                                initial = idx;
+                                *stop = YES;
+                            }
+                        }];
+                        if (extraEditRowInfo.helper == nil) {
+                            extraEditRowInfo.helper = [GCPickerHelper pickerHelperForPickerView:cell.pickerView withValues:mapBrandsNames initialSelection:initial valueChosenBlock:^(GCPickerHelper *helper, NSInteger selectedIndex, NSString *selectedValue) {
+                                NSString *code = [mapBrandsCodes objectAtIndex:selectedIndex];
+                                [configManager mapBrandDefaultUpdate:code];
+                                [self.tableView reloadData];
+                            }];
                         }
-                    }];
-                    cell.detailTextLabel.text = value;
-                    return cell;
+                        return cell;
+                    } else {
+                        GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
+                        cell.textLabel.text = _(@"settingsmainviewcontroller-Default map");
+                        __block NSString *value = nil;
+                        [mapBrandsCodes enumerateObjectsUsingBlock:^(NSString *k, NSUInteger idx, BOOL * _Nonnull stop) {
+                            if ([k isEqualToString:configManager.mapBrandDefault] == YES) {
+                                value = [mapBrandsNames objectAtIndex:idx];
+                                *stop = YES;
+                                return;
+                            }
+                        }];
+                        cell.detailTextLabel.text = value;
+                        // XXX This stuff doesn't take into account the current theme.
+                        // XXX I know that, but just wanted to get something running quickly.
+                        if (isAssociatedRow) {
+                            // We're editing this info. Show the text in a special color.
+                            GCPickerHelper *editRowPicker = (GCPickerHelper *)extraEditRowInfo.helper;
+                            if ([configManager.mapBrandDefault isEqualToString:[mapBrandsCodes objectAtIndex:editRowPicker.initialIndex]]) {
+                                cell.detailTextLabel.textColor = [UIColor blueColor];
+                            } else {
+                            cell.detailTextLabel.textColor = [UIColor redColor];
+                            }
+                        } else {
+                            cell.detailTextLabel.textColor = [UIColor blackColor];
+                        }
+                        return cell;
+                    }
                 }
                 case SECTION_MAPS_ROTATE_TO_BEARING: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
@@ -601,37 +765,153 @@ enum sections {
         }
 
         case SECTION_MAPSEARCHMAXIMUM: {
-            switch (indexPath.row) {
+            switch (convertedRow) {
                 case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GS: {
+                    if (isEditRow) {
+                        GCTableViewCellPicker *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLPICKER forIndexPath:indexPath];
+                        if (extraEditRowInfo.helper == nil) {
+                            NSMutableArray<NSString *> *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
+                            for (NSInteger d = 250; d < 10000; d += 250) {
+                                [distances addObject:[MyTools niceDistance:d]];
+                            }
+                            extraEditRowInfo.helper = [GCPickerHelper pickerHelperForPickerView:cell.pickerView withValues:distances initialSelection:(configManager.mapSearchMaximumDistanceGS / 250) - 1 valueChosenBlock:^(GCPickerHelper *helper, NSInteger selectedIndex, NSString *selectedValue) {
+                                NSInteger d = (1 + selectedIndex) * 250;
+                                [configManager mapSearchMaximumDistanceGSUpdate:d];
+                                [self.tableView reloadData];
+                            }];
+                        }
+                        return cell;
+                    } else {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Distance in GroundSpeak geocaching.com search radius");
                     cell.detailTextLabel.text = [MyTools niceDistance:configManager.mapSearchMaximumDistanceGS];
+                        // XXX This stuff doesn't take into account the current theme.
+                        // XXX I know that, but just wanted to get something running quickly.
+                        if (isAssociatedRow) {
+                            // We're editing this info. Show the text in a special color.
+                            GCPickerHelper *editRowPicker = (GCPickerHelper *)extraEditRowInfo.helper;
+                            if (((configManager.mapSearchMaximumDistanceGS / 250) - 1) == editRowPicker.initialIndex) {
+                                cell.detailTextLabel.textColor = [UIColor blueColor];
+                            } else {
+                                cell.detailTextLabel.textColor = [UIColor redColor];
+                            }
+                        } else {
+                            cell.detailTextLabel.textColor = [UIColor blackColor];
+                        }
                     return cell;
+                    }
                 }
                 case SECTION_MAPSEARCHMAXIMUM_DISTANCE_OKAPI: {
+                    if (isEditRow) {
+                        GCTableViewCellPicker *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLPICKER forIndexPath:indexPath];
+                        if (extraEditRowInfo.helper == nil) {
+                            NSMutableArray<NSString *> *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
+                            for (NSInteger d = 250; d < 10000; d += 250) {
+                                [distances addObject:[MyTools niceDistance:d]];
+                            }
+                            extraEditRowInfo.helper = [GCPickerHelper pickerHelperForPickerView:cell.pickerView withValues:distances initialSelection:(configManager.mapSearchMaximumDistanceOKAPI / 250) - 1 valueChosenBlock:^(GCPickerHelper *helper, NSInteger selectedIndex, NSString *selectedValue) {
+                                NSInteger d = (1 + selectedIndex) * 250;
+                                [configManager mapSearchMaximumDistanceOKAPIUpdate:d];
+                                [self.tableView reloadData];
+                            }];
+                        }
+                        return cell;
+                    } else {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Distance in OKAPI search radius");
                     cell.detailTextLabel.text = [MyTools niceDistance:configManager.mapSearchMaximumDistanceOKAPI];
+                    // XXX This stuff doesn't take into account the current theme.
+                    // XXX I know that, but just wanted to get something running quickly.
+                    if (isAssociatedRow) {
+                        // We're editing this info. Show the text in a special color.
+                        GCPickerHelper *editRowPicker = (GCPickerHelper *)extraEditRowInfo.helper;
+                        if (((configManager.mapSearchMaximumDistanceOKAPI / 250) - 1) == editRowPicker.initialIndex) {
+                            cell.detailTextLabel.textColor = [UIColor blueColor];
+                        } else {
+                            cell.detailTextLabel.textColor = [UIColor redColor];
+                        }
+                    } else {
+                        cell.detailTextLabel.textColor = [UIColor blackColor];
+                    }
                     return cell;
+                    }
                 }
                 case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GCA: {
+                    if (isEditRow) {
+                        GCTableViewCellPicker *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLPICKER forIndexPath:indexPath];
+                        if (extraEditRowInfo.helper == nil) {
+                            NSMutableArray<NSString *> *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
+                            for (NSInteger d = 250; d < 10000; d += 250) {
+                                [distances addObject:[MyTools niceDistance:d]];
+                            }
+                            extraEditRowInfo.helper = [GCPickerHelper pickerHelperForPickerView:cell.pickerView withValues:distances initialSelection:(configManager.mapSearchMaximumDistanceGCA / 250) - 1 valueChosenBlock:^(GCPickerHelper *helper, NSInteger selectedIndex, NSString *selectedValue) {
+                                NSInteger d = (1 + selectedIndex) * 250;
+                                [configManager mapSearchMaximumDistanceGCAUpdate:d];
+                                [self.tableView reloadData];
+                            }];
+                        }
+                        return cell;
+                    } else {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Distance in GCA search radius");
                     cell.detailTextLabel.text = [MyTools niceDistance:configManager.mapSearchMaximumDistanceGCA];
+                    // XXX This stuff doesn't take into account the current theme.
+                    // XXX I know that, but just wanted to get something running quickly.
+                    if (isAssociatedRow) {
+                        // We're editing this info. Show the text in a special color.
+                        GCPickerHelper *editRowPicker = (GCPickerHelper *)extraEditRowInfo.helper;
+                        if (((configManager.mapSearchMaximumDistanceGCA / 250) - 1) == editRowPicker.initialIndex) {
+                            cell.detailTextLabel.textColor = [UIColor blueColor];
+                        } else {
+                            cell.detailTextLabel.textColor = [UIColor redColor];
+                        }
+                    } else {
+                        cell.detailTextLabel.textColor = [UIColor blackColor];
+                    }
                     return cell;
+                    }
                 }
                 case SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA: {
+                    if (isEditRow) {
+                        GCTableViewCellPicker *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLPICKER forIndexPath:indexPath];
+                        if (extraEditRowInfo.helper == nil) {
+                            NSMutableArray<NSString *> *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
+                            for (NSInteger d = 10; d < 200; d += 10) {
+                                [distances addObject:[NSString stringWithFormat:@"%d", d]];
+                            }
+                            extraEditRowInfo.helper = [GCPickerHelper pickerHelperForPickerView:cell.pickerView withValues:distances initialSelection:(configManager.mapSearchMaximumNumberGCA / 10) - 1 valueChosenBlock:^(GCPickerHelper *helper, NSInteger selectedIndex, NSString *selectedValue) {
+                                NSInteger d = (1 + selectedIndex) * 10;
+                                [configManager mapSearchMaximumNumberGCAUpdate:d];
+                                [self.tableView reloadData];
+                            }];
+                        }
+                        return cell;
+                    } else {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Number of waypoints in Geocaching Australia search");
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld %@", (long)configManager.mapSearchMaximumNumberGCA, _(@"waypoints")];
+                    // XXX This stuff doesn't take into account the current theme.
+                    // XXX I know that, but just wanted to get something running quickly.
+                    if (isAssociatedRow) {
+                        // We're editing this info. Show the text in a special color.
+                        GCPickerHelper *editRowPicker = (GCPickerHelper *)extraEditRowInfo.helper;
+                        if (((configManager.mapSearchMaximumNumberGCA / 10) - 1) == editRowPicker.initialIndex) {
+                            cell.detailTextLabel.textColor = [UIColor blueColor];
+                        } else {
+                            cell.detailTextLabel.textColor = [UIColor redColor];
+                        }
+                    } else {
+                        cell.detailTextLabel.textColor = [UIColor blackColor];
+                    }
                     return cell;
+                    }
                 }
             }
             break;
         }
 
         case SECTION_DYNAMICMAP: {
-            switch (indexPath.row) {
+            switch (convertedRow) {
                 case SECTION_DYNAMICMAP_ENABLED: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Enable dynamic maps");
@@ -681,7 +961,7 @@ enum sections {
         }
 
         case SECTION_KEEPTRACK: {
-            switch (indexPath.row) {
+            switch (convertedRow) {
                 case SECTION_KEEPTRACK_AUTOROTATE: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Autorotate every day");
@@ -731,7 +1011,7 @@ enum sections {
         }
 
         case SECTION_MAPCACHE: {
-            switch (indexPath.row) {
+            switch (convertedRow) {
                 case SECTION_MAPCACHE_ENABLED: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Enable map cache");
@@ -757,17 +1037,29 @@ enum sections {
         }
 
         case SECTION_IMPORTS: {
-            switch (indexPath.row) {
+            switch (convertedRow) {
                 case SECTION_IMPORTS_TIMEOUT_SIMPLE: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Timeout for simple HTTP requests");
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld %@", (long)configManager.downloadTimeoutSimple, _(@"time-seconds")];
+                    if (isAssociatedRow) {
+                        // We're editing this info. Show the text in a special color.
+                        cell.detailTextLabel.textColor = [UIColor redColor];
+                    } else {
+                        cell.detailTextLabel.textColor = [UIColor blackColor];
+                    }
                     return cell;
                 }
                 case SECTION_IMPORTS_TIMEOUT_QUERY: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Timeout for big HTTP requests");
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld %@", (long)configManager.downloadTimeoutQuery, _(@"time-seconds")];
+                    if (isAssociatedRow) {
+                        // We're editing this info. Show the text in a special color.
+                        cell.detailTextLabel.textColor = [UIColor redColor];
+                    } else {
+                        cell.detailTextLabel.textColor = [UIColor blackColor];
+                    }
                     return cell;
                 }
                 case SECTION_IMPORTS_IMAGES_WAYPOINT: {
@@ -807,7 +1099,7 @@ enum sections {
         }
 
         case SECTION_MARKAS: {
-            switch (indexPath.row) {
+            switch (convertedRow) {
                 case SECTION_MARKAS_FOUNDDNFCLEARSTARGET: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Remove target when marking as found/DNF");
@@ -837,7 +1129,7 @@ enum sections {
         }
 
         case SECTION_COMPASS: {
-            switch (indexPath.row) {
+            switch (convertedRow) {
                 case SECTION_COMPASS_ALWAYSPORTRAIT: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Compass is always in portrait mode");
@@ -851,7 +1143,7 @@ enum sections {
         }
 
         case SECTION_WAYPOINTS: {
-            switch (indexPath.row) {
+            switch (convertedRow) {
                 case SECTION_WAYPOINTS_SORTBY: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Sort waypoints default by...");
@@ -896,7 +1188,7 @@ enum sections {
         }
 
         case SECTION_LISTS: {
-            switch (indexPath.row) {
+            switch (convertedRow) {
                 case SECTION_LISTS_SORTBY: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Sort lists default by...");
@@ -909,7 +1201,7 @@ enum sections {
         }
 
         case SECTION_ACCOUNTS: {
-            switch (indexPath.row) {
+            switch (convertedRow) {
                 case SECTION_ACCOUNTS_AUTHENTICATEKEEPUSERNAME: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Save authentication username");
@@ -930,7 +1222,7 @@ enum sections {
         }
 
         case SECTION_LOCATIONLESS: {
-            switch (indexPath.row) {
+            switch (convertedRow) {
                 case SECTION_LOCATIONLESS_SHOWFOUND: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Show found in list");
@@ -950,7 +1242,7 @@ enum sections {
         }
 
         case SECTION_BACKUPS: {
-            switch (indexPath.row) {
+            switch (convertedRow) {
                 case SECTION_BACKUPS_ENABLED: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Enable backups");
@@ -1088,155 +1380,252 @@ enum sections {
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (indexPath.section) {
-        case SECTION_THEME:
-            switch (indexPath.row) {
-                case SECTION_THEME_THEME:
-                    [self changeThemeTheme];
-                    break;
-                case SECTION_THEME_COMPASS:
-                    [self changeThemeCompass];
-                    break;
-                case SECTION_THEME_ORIENTATIONS:
-                    [self changeThemeOrientations];
-                    break;
-            }
-            break;
-        case SECTION_APPS:
-            switch (indexPath.row) {
-                case SECTION_APPS_EXTERNALMAP:
-                    [self changeAppsExternalMap];
-                    break;
-                case SECTION_APPS_OPENCAGEKEY:
-                    [self changeOpenCageKey];
-                    break;
-            }
-            break;
-        case SECTION_MAPSEARCHMAXIMUM:
-            switch (indexPath.row) {
-                case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GS:
-                    [self changeMapSearchMaximumDistanceGS];
-                    break;
-                case SECTION_MAPSEARCHMAXIMUM_DISTANCE_OKAPI:
-                    [self changeMapSearchMaximumDistanceOKAPI];
-                    break;
-                case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GCA:
-                    [self changeMapSearchMaximumDistanceGCA];
-                    break;
-                case SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA:
-                    [self changeMapSearchMaximumNumberGCA];
-                    break;
-            }
-            break;
-        case SECTION_MAPS:
-            switch (indexPath.row) {
-                case SECTION_MAPS_DEFAULTBRAND:
-                    [self changeMapsDefaultBrand];
-                    break;
-            }
-            break;
-        case SECTION_DYNAMICMAP:
-            switch (indexPath.row) {
-                case SECTION_DYNAMICMAP_SPEED_WALKING:
-                case SECTION_DYNAMICMAP_SPEED_CYCLING:
-                case SECTION_DYNAMICMAP_SPEED_DRIVING:
-                    [self changeDynamicmapSpeed:indexPath.row];
-                    break;
-                case SECTION_DYNAMICMAP_DISTANCE_WALKING:
-                case SECTION_DYNAMICMAP_DISTANCE_CYCLING:
-                case SECTION_DYNAMICMAP_DISTANCE_DRIVING:
-                    [self changeDynamicmapDistance:indexPath.row];
-                    break;
-            }
-            break;
-        case SECTION_MAPCOLOURS:
-            switch (indexPath.row) {
-                case SECTION_MAPCOLOURS_TRACK: {
-                    UIViewController *newController = [[SettingsMainColorPickerViewController alloc] init:SettingsMainColorPickerTrack];
-                    newController.edgesForExtendedLayout = UIRectEdgeNone;
-                    [self.navigationController pushViewController:newController animated:YES];
-                    break;
-                }
-                case SECTION_MAPCOLOURS_DESTINATION: {
-                    UIViewController *newController = [[SettingsMainColorPickerViewController alloc] init:SettingsMainColorPickerDestination];
-                    newController.edgesForExtendedLayout = UIRectEdgeNone;
-                    [self.navigationController pushViewController:newController animated:YES];
-                    break;
-                }
-            }
-            break;
-
-        case SECTION_MAPCACHE:
-            switch (indexPath.row) {
-                case SECTION_MAPCACHE_MAXAGE:
-                    [self changeMapCacheMaxAge];
-                    break;
-                case SECTION_MAPCACHE_MAXSIZE:
-                    [self changeMapCacheMaxSize];
-                    break;
-            }
-            break;
-
-        case SECTION_IMPORTS:
-            switch (indexPath.row) {
-                case SECTION_IMPORTS_TIMEOUT_SIMPLE:
-                    [self changeImportsSimpleTimeout];
-                    break;
-                case SECTION_IMPORTS_TIMEOUT_QUERY:
-                    [self changeImportsQueryTimeout];
-                    break;
-            }
-            break;
-
-        case SECTION_KEEPTRACK:
-            switch (indexPath.row) {
-                case SECTION_KEEPTRACK_TIMEDELTA_MIN:
-                case SECTION_KEEPTRACK_TIMEDELTA_MAX:
-                case SECTION_KEEPTRACK_DISTANCEDELTA_MIN:
-                case SECTION_KEEPTRACK_DISTANCEDELTA_MAX:
-                case SECTION_KEEPTRACK_PURGEAGE:
-                case SECTION_KEEPTRACK_SYNC:
-                    [self keeptrackChange:indexPath.row];
-                    break;
-            }
-            break;
-
-        case SECTION_WAYPOINTS:
-            switch (indexPath.row) {
-                case SECTION_WAYPOINTS_SORTBY:
-                    [self changeWaypointSortBy];
-                    break;
-            }
-            break;
-
-        case SECTION_LISTS:
-            switch (indexPath.row) {
-                case SECTION_LISTS_SORTBY:
-                    [self changeListSortBy];
-                    break;
-            }
-            break;
-
-        case SECTION_LOCATIONLESS:
-            switch (indexPath.row) {
-                case SECTION_LOCATIONLESS_SORTBY:
-                    [self changeLocationlessSortOrder];
-                    break;
-            }
-            break;
-
-        case SECTION_BACKUPS:
-            switch (indexPath.row) {
-                case SECTION_BACKUPS_ROTATION:
-                    [self changeBackupsRotation];
-                    break;
-                case SECTION_BACKUPS_INTERVAL:
-                    [self changeBackupsInterval];
-                    break;
-            }
-            break;
+    // We need to factor in the additional edit row
+    BOOL isEditRow = NO;
+    BOOL isAssociatedRow = NO;
+    NSInteger convertedRow = indexPath.row;
+    NSInteger section = indexPath.section;
+    
+    if ((extraEditRowInfo != nil) && (section == extraEditRowInfo.indexPath.section)){
+        NSInteger row = indexPath.row;
+        NSInteger extraRow = extraEditRowInfo.indexPath.row;
+        
+        if (row == extraRow) {
+            // It's the additional edit row info!
+            // Keep track of the fact that we're looking at the extra row,
+            // and update the converted row to point to the row *before* the extra row.
+            // This is the one that knows how to display the edit row.
+            isEditRow = YES;
+            convertedRow = extraRow - 1;
+        } else if (row > extraRow) {
+            // It's a row *past* the extra row, update the converted row to show which normal row it is.
+            convertedRow--;
+        } else if (row == (extraRow - 1)) {
+            // It's the associated row. This *might* be displayed differently when we're editing.
+            isAssociatedRow = YES;
+        }
     }
-    [aTableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    BOOL removeOldEditRow = NO;
+    BOOL addEditRow = NO;
+    if (isAssociatedRow) {
+        // Close the edit row. Nothing else to do!
+        removeOldEditRow = YES;
+    } else {
+        switch (section) {
+            case SECTION_THEME:
+                switch (convertedRow) {
+                    case SECTION_THEME_THEME:
+                            [self changeThemeTheme];
+                        break;
+                    case SECTION_THEME_COMPASS:
+                            [self changeThemeCompass];
+                        break;
+                    case SECTION_THEME_ORIENTATIONS:
+                            [self changeThemeOrientations];
+                        break;
+                }
+                break;
+            case SECTION_APPS:
+                switch (convertedRow) {
+                    case SECTION_APPS_EXTERNALMAP:
+                            [self changeAppsExternalMap];
+                        break;
+                    case SECTION_APPS_OPENCAGEKEY:
+                        [self changeOpenCageKey];
+                        break;
+                }
+                break;
+            case SECTION_MAPSEARCHMAXIMUM:
+                if (!isEditRow) {
+                    addEditRow = YES;
+                } else {
+//                switch (convertedRow) {
+//                    case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GS:
+//                            [self changeMapSearchMaximumDistanceGS];
+//                        break;
+//                    case SECTION_MAPSEARCHMAXIMUM_DISTANCE_OKAPI:
+//                            [self changeMapSearchMaximumDistanceOKAPI];
+//                        break;
+//                    case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GCA:
+//                            [self changeMapSearchMaximumDistanceGCA];
+//                        break;
+//                    case SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA:
+//                            [self changeMapSearchMaximumNumberGCA];
+//                        break;
+//                }
+                }
+                break;
+            case SECTION_MAPS:
+                switch (convertedRow) {
+                    case SECTION_MAPS_DEFAULTBRAND:
+                        if (!isEditRow) {
+                            // Add an edit row!
+                            addEditRow = YES;
+                        }
+                        break;
+                }
+                break;
+            case SECTION_DYNAMICMAP:
+                switch (convertedRow) {
+                    case SECTION_DYNAMICMAP_SPEED_WALKING:
+                    case SECTION_DYNAMICMAP_SPEED_CYCLING:
+                    case SECTION_DYNAMICMAP_SPEED_DRIVING:
+                            [self changeDynamicmapSpeed:convertedRow];
+                        break;
+                    case SECTION_DYNAMICMAP_DISTANCE_WALKING:
+                    case SECTION_DYNAMICMAP_DISTANCE_CYCLING:
+                    case SECTION_DYNAMICMAP_DISTANCE_DRIVING:
+                            [self changeDynamicmapDistance:convertedRow];
+                        break;
+                }
+                break;
+            case SECTION_MAPCOLOURS:
+                switch (convertedRow) {
+                    case SECTION_MAPCOLOURS_TRACK: {
+                        UIViewController *newController = [[SettingsMainColorPickerViewController alloc] init:SettingsMainColorPickerTrack];
+                        newController.edgesForExtendedLayout = UIRectEdgeNone;
+                        [self.navigationController pushViewController:newController animated:YES];
+                        break;
+                    }
+                    case SECTION_MAPCOLOURS_DESTINATION: {
+                        UIViewController *newController = [[SettingsMainColorPickerViewController alloc] init:SettingsMainColorPickerDestination];
+                        newController.edgesForExtendedLayout = UIRectEdgeNone;
+                        [self.navigationController pushViewController:newController animated:YES];
+                        break;
+                    }
+                }
+                break;
+                
+            case SECTION_MAPCACHE:
+                switch (convertedRow) {
+                    case SECTION_MAPCACHE_MAXAGE:
+                            [self changeMapCacheMaxAge];
+                        break;
+                    case SECTION_MAPCACHE_MAXSIZE:
+                            [self changeMapCacheMaxSize];
+                        break;
+                }
+                break;
+                
+            case SECTION_IMPORTS:
+                switch (convertedRow) {
+                    case SECTION_IMPORTS_TIMEOUT_SIMPLE:
+                            [self changeImportsSimpleTimeout];
+                        break;
+                    case SECTION_IMPORTS_TIMEOUT_QUERY:
+                            [self changeImportsQueryTimeout];
+                        break;
+                }
+                break;
+                
+            case SECTION_KEEPTRACK:
+                switch (convertedRow) {
+                    case SECTION_KEEPTRACK_TIMEDELTA_MIN:
+                    case SECTION_KEEPTRACK_TIMEDELTA_MAX:
+                    case SECTION_KEEPTRACK_DISTANCEDELTA_MIN:
+                    case SECTION_KEEPTRACK_DISTANCEDELTA_MAX:
+                    case SECTION_KEEPTRACK_PURGEAGE:
+                    case SECTION_KEEPTRACK_SYNC:
+                        [self keeptrackChange:convertedRow];
+                        break;
+                }
+                break;
+                
+            case SECTION_WAYPOINTS:
+                switch (convertedRow) {
+                    case SECTION_WAYPOINTS_SORTBY:
+                            [self changeWaypointSortBy];
+                        break;
+                }
+                break;
+                
+            case SECTION_LISTS:
+                switch (convertedRow) {
+                    case SECTION_LISTS_SORTBY:
+                            [self changeListSortBy];
+                        break;
+                }
+                break;
+                
+            case SECTION_LOCATIONLESS:
+                switch (convertedRow) {
+                    case SECTION_LOCATIONLESS_SORTBY:
+                            [self changeLocationlessSortOrder];
+                        break;
+                }
+                break;
+                
+            case SECTION_BACKUPS:
+                switch (convertedRow) {
+                    case SECTION_BACKUPS_ROTATION:
+                            [self changeBackupsRotation];
+                        break;
+                    case SECTION_BACKUPS_INTERVAL:
+                            [self changeBackupsInterval];
+                        break;
+                }
+                break;
+        }
+    }
+
+    // We only ever have one edit row visible at a time.
+    // Switching between edit rows takes a bit of finesse.
+    BOOL scrollToMakeExtraEditRowVisible = NO;
+    NSIndexPath *previousAssociatedRowToReload = nil;
+    NSIndexPath *newAssociatedRowToReload = nil;
+    [aTableView beginUpdates];
+ 
+    // if the row that *was* the edit row is immediately before the new associated row,
+    // then we can just
+    if ((extraEditRowInfo != nil) && (removeOldEditRow || addEditRow)) {
+        // We need to get rid of the previous extra edit row
+        NSIndexPath *extraEditRowIndexPath = extraEditRowInfo.indexPath;
+        // Remove the previous extra edit row
+        [aTableView deleteRowsAtIndexPaths:@[extraEditRowIndexPath] withRowAnimation:UITableViewRowAnimationBottom];
+        // Also, reload the row above the old edit row.
+        previousAssociatedRowToReload = [NSIndexPath indexPathForRow:extraEditRowIndexPath.row - 1 inSection:extraEditRowIndexPath.section];
+        extraEditRowInfo = nil;
+    }
+
+    if (addEditRow) {
+        NSIndexPath *extraEditRow = [NSIndexPath indexPathForRow:convertedRow + 1 inSection:section];
+        extraEditRowInfo = [ExtraEditRowInfo extraEditRowInfoForIndexPath:extraEditRow];
+        
+        [aTableView insertRowsAtIndexPaths:@[extraEditRow] withRowAnimation:UITableViewRowAnimationBottom];
+        // Since we've added a new row, our value for previousAssociatedRowToReload might need to be adjusted.
+        if (previousAssociatedRowToReload != nil) {
+            // If the previous associated row is in the same section, *after* the added edit row, then we need
+            // to update the location to compensate.
+            if ((previousAssociatedRowToReload.section == section) && (previousAssociatedRowToReload.row >= extraEditRow.row)) {
+                previousAssociatedRowToReload = [NSIndexPath indexPathForRow:previousAssociatedRowToReload.row + 1 inSection:previousAssociatedRowToReload.section];
+            }
+        }
+        // Also, reload the row above the edit row.
+        newAssociatedRowToReload = [NSIndexPath indexPathForRow:extraEditRow.row - 1 inSection:extraEditRow.section];
+        scrollToMakeExtraEditRowVisible = YES;
+    }
+//    [aTableView deselectRowAtIndexPath:indexPath animated:YES];
+    [aTableView endUpdates];
+
+    // Reload the appropriate associated rows.
+    NSMutableArray<NSIndexPath *> *rowsToReload = [NSMutableArray arrayWithCapacity:2];
+    if (previousAssociatedRowToReload != nil) {
+        [rowsToReload addObject:previousAssociatedRowToReload];
+    }
+    if (newAssociatedRowToReload != nil) {
+        [rowsToReload addObject:newAssociatedRowToReload];
+    }
+    [aTableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationFade];
+    // Scrolling to make the extra edit row visible has to happen after the table updates,
+    // because otherwise the number of rows might be wrong.
+    if (scrollToMakeExtraEditRowVisible) {
+        NSIndexPath *extraEditRow = extraEditRowInfo.indexPath;
+        NSArray<NSIndexPath *> *visibleCells = aTableView.indexPathsForVisibleRows;
+        if (![visibleCells containsObject:extraEditRow]) {
+            [aTableView scrollToRowAtIndexPath:extraEditRow atScrollPosition:UITableViewScrollPositionNone animated:YES];
+        }
+    }
 }
 
 /* ********************************************************************************* */
