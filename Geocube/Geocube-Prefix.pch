@@ -145,6 +145,7 @@
 #import "GCScrollView.h"
 #import "GCSwitch.h"
 #import "GCTableViewCell.h"
+#import "GCTableViewCellPicker.h"
 #import "GCTableViewCellRightImage.h"
 #import "GCTableViewCellRightImageDisclosure.h"
 #import "GCTableViewCellSubtitleRightImage.h"

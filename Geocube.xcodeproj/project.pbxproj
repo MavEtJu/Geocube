@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04C2C1A11F5742A300F8F8B8 /* GCTableViewCellPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2C1A01F5742A300F8F8B8 /* GCTableViewCellPicker.m */; };
+		04C2C1A31F57442200F8F8B8 /* GCTableViewCellPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C2C1A21F57442200F8F8B8 /* GCTableViewCellPicker.xib */; };
 		E804139D1E9EFF6D001FD7BF /* GC - logo - 512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = E804139C1E9EFF6D001FD7BF /* GC - logo - 512x512.png */; };
 		E804139F1E9F984E001FD7BF /* Menu - 640x623.png in Resources */ = {isa = PBXBuildFile; fileRef = E804139E1E9F984E001FD7BF /* Menu - 640x623.png */; };
 		E80732FB1B633A74007FDC29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732FA1B633A74007FDC29 /* main.m */; };
@@ -750,6 +752,9 @@
 
 /* Begin PBXFileReference section */
 		0087F95E865F48AD94ADB39B /* Pods-Geocube.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Geocube.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Geocube/Pods-Geocube.debug.xcconfig"; sourceTree = "<group>"; };
+		04C2C19F1F5742A300F8F8B8 /* GCTableViewCellPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCTableViewCellPicker.h; path = GCBaseObjects/GCTableViewCellPicker.h; sourceTree = "<group>"; };
+		04C2C1A01F5742A300F8F8B8 /* GCTableViewCellPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCTableViewCellPicker.m; path = GCBaseObjects/GCTableViewCellPicker.m; sourceTree = "<group>"; };
+		04C2C1A21F57442200F8F8B8 /* GCTableViewCellPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GCTableViewCellPicker.xib; path = GCBaseObjects/GCTableViewCellPicker.xib; sourceTree = "<group>"; };
 		237ED37D295689D607775605 /* Pods-Geocube.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Geocube.release.xcconfig"; path = "Pods/Target Support Files/Pods-Geocube/Pods-Geocube.release.xcconfig"; sourceTree = "<group>"; };
 		88880BCD488967D0BA49FBE0 /* libPods-Geocube.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Geocube.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E804139C1E9EFF6D001FD7BF /* GC - logo - 512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 512x512.png"; path = "images/introduction/GC - logo - 512x512.png"; sourceTree = "<group>"; };
@@ -2496,6 +2501,9 @@
 				E82344EE1EECE12A00D2CDFD /* GCView.m */,
 				E82344EF1EECE12A00D2CDFD /* GCViewController.h */,
 				E82344F01EECE12A00D2CDFD /* GCViewController.m */,
+				04C2C19F1F5742A300F8F8B8 /* GCTableViewCellPicker.h */,
+				04C2C1A01F5742A300F8F8B8 /* GCTableViewCellPicker.m */,
+				04C2C1A21F57442200F8F8B8 /* GCTableViewCellPicker.xib */,
 			);
 			name = "Base GUI objects";
 			sourceTree = "<group>";
@@ -3835,6 +3843,7 @@
 				E82E66E81DA07CBE00CFBDED /* cache - whereigo - 30x30@3x.png in Resources */,
 				E82E667D1DA07C6F00CFBDED /* compass - red arrow on black.png in Resources */,
 				E82E66D51DA07CBE00CFBDED /* cache - traditional - 30x30.png in Resources */,
+				04C2C1A31F57442200F8F8B8 /* GCTableViewCellPicker.xib in Resources */,
 				E88DB00C1F334E4300FEF795 /* cache - gadget - 30x30@3.png in Resources */,
 				E82E66051DA079E500CFBDED /* log - published - 30x30.png in Resources */,
 				E823420C1EECCEEE00D2CDFD /* MHTabBarActiveTab.png in Resources */,
@@ -4315,6 +4324,7 @@
 				E82342C51EECD0B100D2CDFD /* dbProtocol.m in Sources */,
 				E82343F61EECDF4400D2CDFD /* WaypointHintViewController.m in Sources */,
 				E80D7EE51EFBE15700E25581 /* dbExternalMapURL.m in Sources */,
+				04C2C1A11F5742A300F8F8B8 /* GCTableViewCellPicker.m in Sources */,
 				E82344821EECE09C00D2CDFD /* ListIgnoredViewController.m in Sources */,
 				E823442E1EECDFB300D2CDFD /* FilterGroupsTableViewCell.m in Sources */,
 				E823444F1EECE04B00D2CDFD /* NotesSavedViewController.m in Sources */,
