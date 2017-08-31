@@ -72,6 +72,27 @@ enum {
     [self.tableView registerClass:[GCTableViewCellWithSubtitle class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (account == nil) {
+        // The user hasn't set an account. If there is only one account with a name, then
+        // choose that.
+        [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
+            if (IS_EMPTY(a.accountname.name) == YES)
+                return;
+            if (account == nil) {
+                account = a;
+            } else {
+                // There was another account, so reset account to nil and stop.
+                account = nil;
+                *stop = YES;
+            }
+        }];
+        
+    }
+}
 #pragma mark - TableViewController related functions
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
