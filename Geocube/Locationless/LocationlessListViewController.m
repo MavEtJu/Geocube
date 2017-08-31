@@ -25,7 +25,7 @@
 
 @implementation LocationlessListViewController
 
-- (void)refreshWaypoints
+- (void)loadWaypoints
 {
     if (configManager.locationlessShowFound == YES)
         self.waypoints = [dbWaypoint dbAllLocationless];

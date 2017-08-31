@@ -21,6 +21,4 @@
 
 @interface WaypointsListViewController : GCTableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UISearchResultsUpdating, WaypointManagerDelegate, RemoteAPIDownloadDelegate>
 
-@property (strong, nonatomic) UISearchController *searchController;
-
 @end

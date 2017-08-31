@@ -24,6 +24,8 @@
     SortOrderLocationless currentSortOrder;
 }
 
+@property (strong, nonatomic) UISearchController *searchController;
+
 @end
 
 @implementation LocationlessTemplateViewController
@@ -48,18 +50,52 @@ enum {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self refreshWaypoints];
+    [self refreshWaypoints:nil];
     self.waypoints = [WaypointSorter resortWaypoints:self.waypoints locationlessSortOrder:currentSortOrder];
     [self.tableView reloadData];
 }
 
-- NEEDS_OVERLOADING_VOID(refreshWaypoints)
+- (void)refreshWaypoints:(NSString *)searchString
+{
+    [self loadWaypoints];
+    if (searchString != nil) {
+        searchString = [searchString lowercaseString];
+        NSMutableArray<dbWaypoint *> *wps = [NSMutableArray arrayWithCapacity:[self.waypoints count]];
+        [self.waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([[wp.description lowercaseString] containsString:searchString] == NO &&
+                [[wp.wpt_name lowercaseString] containsString:searchString] == NO)
+                return;
+            [wps addObject:wp];
+        }];
+        self.waypoints = wps;
+    } else {
+        // Hide the search window by default
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        }];
+    }
+}
+
+- NEEDS_OVERLOADING_VOID(loadWaypoints)
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerNib:[UINib nibWithNibName:XIB_LOCATIONLESSTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_LOCATIONLESSTABLEVIEWCELL];
+
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.searchController.hidesNavigationBarDuringPresentation = YES;
+    self.searchController.searchBar.delegate = self;
+
+    self.searchController.searchBar.scopeButtonTitles = @[];
+    self.searchController.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.searchController.searchBar sizeToFit];
+
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+    self.definesPresentationContext = YES;
 }
 
 #pragma mark - TableViewController related functions
@@ -151,6 +187,18 @@ enum {
     [alert addAction:cancel];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+#pragma mark - SearchBar related functions
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
+{
+    NSString *searchString = searchController.searchBar.text;
+    if ([searchString isEqualToString:@""] == YES)
+        searchString = nil;
+    [self refreshWaypoints:searchString];
+    //    [self searchForText:searchString scope:searchController.searchBar.selectedScopeButtonIndex];
+    [self.tableView reloadData];
 }
 
 @end

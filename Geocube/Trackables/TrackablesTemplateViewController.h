@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface TrackablesTemplateViewController : GCTableViewController
+@interface TrackablesTemplateViewController : GCTableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UISearchResultsUpdating>
 
 @property (nonatomic, retain) NSArray<dbTrackable *> *tbs;
 

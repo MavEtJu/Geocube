@@ -25,7 +25,7 @@
 
 @implementation LocationlessPlannedViewController
 
-- (void)refreshWaypoints
+- (void)loadWaypoints
 {
     self.waypoints = [dbWaypoint dbAllLocationlessPlanned];
 }

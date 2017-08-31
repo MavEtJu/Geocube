@@ -21,6 +21,8 @@
 
 @interface TrackablesInventoryViewController ()
 
+@property (strong, nonatomic) UISearchController *searchController;
+
 @end
 
 @implementation TrackablesInventoryViewController
