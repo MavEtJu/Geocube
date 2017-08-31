@@ -72,7 +72,7 @@ enum {
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
     self.searchController.dimsBackgroundDuringPresentation = NO;
-    self.searchController.hidesNavigationBarDuringPresentation = YES;
+    self.searchController.hidesNavigationBarDuringPresentation = NO;
     self.searchController.searchBar.delegate = self;
 
     self.searchController.searchBar.scopeButtonTitles = @[];
