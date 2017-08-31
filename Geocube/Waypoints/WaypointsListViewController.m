@@ -76,10 +76,10 @@ enum {
     needsRefresh = YES;
     [waypointManager startDelegation:self];
 
-    /*
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
     self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.searchController.hidesNavigationBarDuringPresentation = YES;
     self.searchController.searchBar.delegate = self;
 
     self.searchController.searchBar.scopeButtonTitles = @[];
@@ -88,7 +88,6 @@ enum {
 
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.definesPresentationContext = YES;
-     */
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -126,8 +125,13 @@ enum {
 
     if ([waypoints count] == 0)
         [lmi disableItem:menuExportGPX];
-    else
+    else {
         [lmi enableItem:menuExportGPX];
+
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        }];
+    }
 }
 
 - (void)refreshCachesData:(NSString *)searchString
@@ -138,8 +142,11 @@ enum {
     [waypointManager applyFilters:LM.coords];
     [clock clockShowAndReset];
 
+    searchString = [searchString lowercaseString];
     [[waypointManager currentWaypoints] enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
-        if (searchString != nil && [[wp.description lowercaseString] containsString:[searchString lowercaseString]] == NO)
+        if (searchString != nil &&
+            [[wp.description lowercaseString] containsString:searchString] == NO &&
+            [[wp.wpt_name lowercaseString] containsString:searchString] == NO)
             return;
         [_wps addObject:wp];
     }];
