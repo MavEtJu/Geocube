@@ -23,7 +23,6 @@
 
 @interface MapApple ()
 {
-    GCWaypointAnnotation *me;
     NSMutableArray<GCWaypointAnnotation *> *markers;
     NSMutableArray<GCCircle *> *circles;
 
@@ -35,6 +34,10 @@
     NSInteger historyCoordsIdx;
     CLLocationCoordinate2D trackBL, trackTR;
 
+    MKPolyline *lineTapToMe;
+    MKPolylineRenderer *viewLineTapToMe;
+
+    dbWaypoint *wpSelected;
     BOOL modifyingMap;
 }
 
@@ -83,6 +86,10 @@
     lpgr.minimumPressDuration = 2.0; //user needs to press for 2 seconds
     [mapView addGestureRecognizer:lpgr];
 
+    UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleShortPress:)];
+    [tgr setNumberOfTouchesRequired:1];
+    [mapView addGestureRecognizer:tgr];
+
     if (linesHistory == nil)
         linesHistory = [NSMutableArray arrayWithCapacity:100];
     if (viewLinesHistory == nil)
@@ -101,6 +108,21 @@
     CLLocationCoordinate2D touchMapCoordinate = [mapView convertPoint:touchPoint toCoordinateFromView:mapView];
 
     [self.mapvc addNewWaypoint:touchMapCoordinate];
+}
+
+- (void)handleShortPress:(UIGestureRecognizer *)gestureRecognizer
+{
+    if (wpSelected != nil)
+        return;
+    if (viewLineTapToMe != nil) {
+        [self removeLineTapToMe];
+        return;
+    }
+
+    CGPoint touchPoint = [gestureRecognizer locationInView:mapView];
+    CLLocationCoordinate2D touchMapCoordinate = [mapView convertPoint:touchPoint toCoordinateFromView:mapView];
+
+    [self addLineTapToMe:touchMapCoordinate];
 }
 
 - (void)removeMap
@@ -314,6 +336,7 @@
 {
     if ([view.annotation isKindOfClass:[GCWaypointAnnotation class]]) {
         GCWaypointAnnotation *pa = (GCWaypointAnnotation *)view.annotation;
+        wpSelected = pa.waypoint;
         [self.mapvc showWaypointInfo:pa.waypoint];
     }
 }
@@ -322,6 +345,7 @@
 {
     if ([view.annotation isKindOfClass:[GCWaypointAnnotation class]]) {
         [self.mapvc removeWaypointInfo];
+        wpSelected = nil;
     }
 }
 
@@ -336,6 +360,16 @@
         }
 
         return viewLineMeToWaypoint;
+    }
+    if (overlay == lineTapToMe) {
+        if (viewLineTapToMe == nil) {
+            viewLineTapToMe = [[MKPolylineRenderer alloc] initWithPolyline:lineTapToMe];
+            viewLineTapToMe.fillColor = configManager.mapDestinationColour;
+            viewLineTapToMe.strokeColor = configManager.mapDestinationColour;
+            viewLineTapToMe.lineWidth = 5;
+        }
+
+        return viewLineTapToMe;
     }
 
     __block MKPolylineRenderer *vlHistory = nil;
@@ -505,6 +539,27 @@
     [mapView removeOverlay:lineMeToWaypoint];
     viewLineMeToWaypoint = nil;
     lineMeToWaypoint = nil;
+}
+
+- (void)addLineTapToMe:(CLLocationCoordinate2D)c;
+{
+    CLLocationCoordinate2D coordinateArray[2];
+    coordinateArray[0] = LM.coords;
+    coordinateArray[1] = c;
+
+    lineTapToMe = [MKPolyline polylineWithCoordinates:coordinateArray count:2];
+    [mapView addOverlay:lineTapToMe];
+
+    [self.mapvc showDistance:[MyTools niceDistance:[Coordinates coordinates2distance:c to:LM.coords]]];
+}
+
+- (void)removeLineTapToMe
+{
+    [mapView removeOverlay:lineTapToMe];
+    viewLineTapToMe = nil;
+    lineTapToMe = nil;
+
+    [self.mapvc showDistance:@""];
 }
 
 - (void)showHistory

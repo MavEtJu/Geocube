@@ -439,6 +439,11 @@
     }
 }
 
+- (void)showDistance:(NSString *)d
+{
+    distanceLabel.text = d;
+}
+
 - (void)updateLocationManagerHistory:(GCCoordsHistorical *)ch
 {
     if (ch == nil) {

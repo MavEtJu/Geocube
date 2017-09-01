@@ -5,6 +5,8 @@ Version 1.5(x)
   Features:
   - Search option in the Waypoints list, trackables and Locationless
     lists.
+  - When tapping on a place on the map, it will draw a line and show
+    the distance.
 
   Fixes:
   - If the locale doesn't use the metric system, then default to

@@ -24,11 +24,11 @@
 @interface MapGoogle ()
 {
     GMSMapView *mapView;
-    GMSMarker *me;
     NSMutableArray<GMSMarker *> *markers;
     NSMutableArray<GCGMSCircle *> *circles;
 
     GMSPolyline *lineMeToWaypoint;
+    GMSPolyline *lineTapToMe;
     NSMutableArray<GMSPolyline *> *linesHistory;
     GMSMutablePath *lastPathHistory;
 
@@ -340,6 +340,27 @@
     lineMeToWaypoint.map = nil;
 }
 
+- (void)addLineTapToMe:(CLLocationCoordinate2D)c
+{
+    GMSMutablePath *path = [GMSMutablePath path];
+    [path addCoordinate:c];
+    [path addCoordinate:LM.coords];
+
+    lineTapToMe = [GMSPolyline polylineWithPath:path];
+    lineTapToMe.strokeWidth = 2.f;
+    lineTapToMe.strokeColor = configManager.mapDestinationColour;
+    lineTapToMe.map = mapView;
+
+    [self.mapvc showDistance:[MyTools niceDistance:[Coordinates coordinates2distance:c to:LM.coords]]];
+}
+
+- (void)removeLineTapToMe
+{
+    lineTapToMe.map = nil;
+    lineTapToMe = nil;
+    [self.mapvc showDistance:@""];
+}
+
 - (void)showHistory
 {
     if (self.staticHistory == YES)
@@ -534,8 +555,18 @@
 
 - (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
 {
-    [self.mapvc removeWaypointInfo];
-    wpSelected = nil;
+    if (wpSelected != nil) {
+        [self.mapvc removeWaypointInfo];
+        wpSelected = nil;
+        return;
+    }
+
+    if (lineTapToMe != nil) {
+        [self removeLineTapToMe];
+        return;
+    }
+
+    [self addLineTapToMe:coordinate];
 }
 
 - (void)openWaypointInfo:(id)sender

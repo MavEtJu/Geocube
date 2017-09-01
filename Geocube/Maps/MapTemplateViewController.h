@@ -80,5 +80,6 @@ typedef NS_ENUM(NSInteger, GCMapType) {
 
 - (void)showWaypointInfo:(dbWaypoint *)wp;
 - (void)removeWaypointInfo;
+- (void)showDistance:(NSString *)d;
 
 @end

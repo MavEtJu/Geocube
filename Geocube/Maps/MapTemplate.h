@@ -74,6 +74,9 @@
 - (void)addLineMeToWaypoint;
 - (void)removeLineMeToWaypoint;
 
+- (void)addLineTapToMe:(CLLocationCoordinate2D)c;
+- (void)removeLineTapToMe;
+
 - (void)removeHistory;
 - (void)showHistory;
 - (void)addHistory:(GCCoordsHistorical *)ch;
