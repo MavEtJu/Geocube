@@ -301,12 +301,6 @@
     }
 }
 
-- (void)openWaypointInfo:(id)sender
-{
-    GCWaypointAnnotation *ann = [[mapView selectedAnnotations] objectAtIndex:0];
-    [self openWaypointView:ann.waypoint];
-}
-
 - (MKAnnotationView *)mapView:(MKMapView *)_mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     // If it is the user location, just return nil.

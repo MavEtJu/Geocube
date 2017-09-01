@@ -569,10 +569,4 @@
     [self addLineTapToMe:coordinate];
 }
 
-- (void)openWaypointInfo:(id)sender
-{
-    NSLog(@"%@", wpSelected.wpt_name);
-    [self openWaypointView:wpSelected];
-}
-
 @end
