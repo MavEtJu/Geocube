@@ -87,7 +87,7 @@
     [mapView addGestureRecognizer:lpgr];
 
     UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleShortPress:)];
-    [tgr setNumberOfTouchesRequired:1];
+    [tgr setNumberOfTapsRequired:1];
     [mapView addGestureRecognizer:tgr];
 
     if (linesHistory == nil)
@@ -119,9 +119,15 @@
         return;
     }
 
+    /* Check if an annotation is being tapped */
     CGPoint touchPoint = [gestureRecognizer locationInView:mapView];
-    CLLocationCoordinate2D touchMapCoordinate = [mapView convertPoint:touchPoint toCoordinateFromView:mapView];
+    UIView *v = [mapView hitTest:touchPoint withEvent:nil];
 
+    if ([v isKindOfClass:[MKAnnotationView class]])
+        return;
+
+    /* And now just draw the line */
+    CLLocationCoordinate2D touchMapCoordinate = [mapView convertPoint:touchPoint toCoordinateFromView:mapView];
     [self addLineTapToMe:touchMapCoordinate];
 }
 
@@ -328,6 +334,9 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
+    if (lineTapToMe != nil)
+        [self removeLineTapToMe];
+
     if ([view.annotation isKindOfClass:[GCWaypointAnnotation class]]) {
         GCWaypointAnnotation *pa = (GCWaypointAnnotation *)view.annotation;
         wpSelected = pa.waypoint;

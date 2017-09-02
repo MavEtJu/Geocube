@@ -548,6 +548,9 @@
 
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker
 {
+    if (lineTapToMe != nil)
+        [self removeLineTapToMe];
+
     wpSelected = marker.userData;
     [self.mapvc showWaypointInfo:wpSelected];
     return YES;
