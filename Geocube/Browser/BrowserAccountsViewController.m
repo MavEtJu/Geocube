@@ -48,7 +48,7 @@
 {
     [super viewWillAppear:animated];
     accounts = [NSMutableArray arrayWithCapacity:20];
-    [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
+    [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (IS_EMPTY(a.accountname.name) == NO &&
             a.url_queries != nil && [a.url_queries isEqualToString:@""] == NO)
             [accounts addObject:a];

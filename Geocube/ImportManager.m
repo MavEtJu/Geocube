@@ -69,7 +69,7 @@
 
     if ([data isKindOfClass:[GCArray class]] == YES) {
         GCArray *as = (GCArray *)data;
-        [as enumerateObjectsUsingBlock:^(id a, NSUInteger idx, BOOL *stop) {
+        [as enumerateObjectsUsingBlock:^(id a, NSUInteger idx, BOOL * _Nonnull stop) {
             [self process:a group:group account:account options:runoptions infoViewer:iv iiImport:iii];
         }];
         return processedWaypoints;
@@ -124,7 +124,7 @@
     if ((run_options & IMPORTOPTION_NOPARSE) == 0) {
         @autoreleasepool {
             if ([data isKindOfClass:[GCStringFilename class]] == YES) {
-                [filenames enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
+                [filenames enumerateObjectsUsingBlock:^(NSString * _Nonnull filename, NSUInteger idx, BOOL * _Nonnull stop) {
                     [iv setDescription:iii description:filename];
                     [imp parseFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] infoViewer:iv iiImport:iii];
                     [waypointManager needsRefreshAll];
@@ -156,7 +156,7 @@
     if ((run_options & IMPORTOPTION_NOPOST) == 0)
         [imp parseAfter];
 
-    [filenamesToBeRemoved enumerateObjectsUsingBlock:^(NSString *filename, NSUInteger idx, BOOL *stop) {
+    [filenamesToBeRemoved enumerateObjectsUsingBlock:^(NSString * _Nonnull filename, NSUInteger idx, BOOL * _Nonnull stop) {
         [fileManager removeItemAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] error:nil];
     }];
 }

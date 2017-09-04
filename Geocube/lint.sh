@@ -1,5 +1,6 @@
 #!/bin/sh
 
+echo
 echo "Licenses:"
 grep -c GNU $(ls -1 *.[mh] */*.[mh] | grep -v PSPDFUIKitMainThreadGuard.m) | grep -v 3$
 
@@ -87,6 +88,10 @@ grep "^[-+].*{\s*$" *.m */*.m
 echo
 echo "Method definitions should have a space between [-+] and name:"
 grep "^[-+]\S" *.m */*.m
+
+echo
+echo "enumeration:"
+grep -n enumerate *.m */*.m | grep -v _Nonnull.*_Nonnull | grep -v "(id " | grep ":^"
 
 echo
 echo "Make sure that NSArray knows which class it represent:"

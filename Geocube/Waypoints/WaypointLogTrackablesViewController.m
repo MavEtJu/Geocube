@@ -44,7 +44,7 @@ enum {
     tbs = _tbs;
     logtypes = [NSMutableArray arrayWithCapacity:[tbs count]];
 
-    [tbs enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
+    [tbs enumerateObjectsUsingBlock:^(dbTrackable * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {
         [logtypes addObject:[NSNumber numberWithInteger:tb.logtype]];
     }];
 
@@ -62,7 +62,7 @@ enum {
 
 - (void)willClosePage
 {
-    [logtypes enumerateObjectsUsingBlock:^(NSNumber *logtype, NSUInteger idx, BOOL * _Nonnull stop) {
+    [logtypes enumerateObjectsUsingBlock:^(NSNumber * _Nonnull logtype, NSUInteger idx, BOOL * _Nonnull stop) {
         NSInteger lt = [logtype integerValue];
         dbTrackable *tb = [tbs objectAtIndex:idx];
         if (lt == TRACKABLE_LOG_VISIT && tb.logtype != TRACKABLE_LOG_VISIT) {
@@ -267,7 +267,7 @@ enum {
                              NSString *code = [alert.textFields objectAtIndex:0].text;
                              __block dbTrackable *tb = [dbTrackable dbGetByCode:code];
                              if (tb == nil) {
-                                 [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
+                                 [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
                                      if (a.remoteAPI.supportsTrackables == YES) {
                                          [a.remoteAPI trackableFind:code trackable:&tb infoViewer:nil iiDownload:0];
                                          *stop = YES;
@@ -320,7 +320,7 @@ enum {
                              NSString *code = [alert.textFields objectAtIndex:0].text;
                              __block dbTrackable *tb = [dbTrackable dbGetByCode:code];
                              if (tb == nil) {
-                                 [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
+                                 [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
                                      if (a.remoteAPI.supportsTrackables && a.canDoRemoteStuff == YES) {
                                          [a.remoteAPI trackableFind:code trackable:&tb infoViewer:nil iiDownload:0];
                                          *stop = YES;

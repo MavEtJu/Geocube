@@ -62,7 +62,7 @@
     return [a objectAtIndex:idx];
 }
 
-- (void)enumerateObjectsUsingBlock:(void (NS_NOESCAPE ^)(id key, NSUInteger idx, BOOL *stop))block;
+- (void)enumerateObjectsUsingBlock:(void (NS_NOESCAPE ^)(id key, NSUInteger idx, BOOL * _Nonnull stop))block;
 {
     [a enumerateObjectsUsingBlock:block];
 }

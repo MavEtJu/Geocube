@@ -164,9 +164,9 @@ enum {
 {
     // Find which waypoints are duplicates
     NSMutableArray<dbWaypoint *> *nwps = [NSMutableArray arrayWithCapacity:[wps count]];
-    [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp1, NSUInteger idx1, BOOL *stop1) {
+    [wps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp1, NSUInteger idx1, BOOL * _Nonnull stop1) {
         __block BOOL found = NO;
-        [nwps enumerateObjectsUsingBlock:^(dbWaypoint *wp2, NSUInteger idx2, BOOL *stop2) {
+        [nwps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp2, NSUInteger idx2, BOOL * _Nonnull stop2) {
             if (wp1.wpt_latitude == wp2.wpt_latitude &&
                 wp1.wpt_longitude == wp2.wpt_longitude) {
                 found = YES;
@@ -178,9 +178,9 @@ enum {
     }];
 
     // Find which waypoints are unique and don't delete them
-    [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+    [wps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
         __block BOOL found = NO;
-        [nwps enumerateObjectsUsingBlock:^(dbWaypoint *nwp, NSUInteger idx2, BOOL *stop2) {
+        [nwps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull nwp, NSUInteger idx2, BOOL * _Nonnull stop2) {
             if (nwp._id == wp._id) {
                 found = YES;
                 *stop2 = YES;

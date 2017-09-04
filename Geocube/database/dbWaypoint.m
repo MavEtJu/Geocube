@@ -81,7 +81,7 @@ TABLENAME(@"waypoints")
         self.wpt_type = [dbc Type_get_byname:[as objectAtIndex:0] minor:[as objectAtIndex:1]];
     } else {
         // Traditional Cache
-        [[dbc Types] enumerateObjectsUsingBlock:^(dbType *t, NSUInteger idx, BOOL *stop) {
+        [[dbc Types] enumerateObjectsUsingBlock:^(dbType * _Nonnull t, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([t.type_minor isEqualToString:s] == YES) {
                 self.wpt_type = t;
                 *stop = YES;
@@ -268,12 +268,12 @@ TABLENAME(@"waypoints")
      @synchronized(db) {
      NSArray<dbWaypoint *> *waypoints = [dbWaypoint dbAllFound];
      NSLog(@"Checking %ld waypoints", [waypoints count]);
-     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *waypoint, NSUInteger idx, BOOL *stop) {
+     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull waypoint, NSUInteger idx, BOOL * _Nonnull stop) {
      NSArray<dbWaypoint *> *wps = [waypoint hasWaypoints];
      if ([wps count] <= 1)
      return;
      NSMutableString *ids = [NSMutableString string];
-     [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+     [wps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
      if (wp.logStatus == LOGSTATUS_FOUND)
      return;
      if ([ids isEqualToString:@""] == NO)
@@ -551,7 +551,7 @@ TABLENAME(@"waypoints")
     NSMutableString *keys = [NSMutableString stringWithString:@""];
     NSMutableArray<NSNumber *> *values = [NSMutableArray arrayWithCapacity:[groups count]];
     NSMutableString *where = [NSMutableString stringWithString:@""];
-    [groups enumerateObjectsUsingBlock:^(dbGroup *group, NSUInteger idx, BOOL *stop) {
+    [groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull group, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([where isEqualToString:@""] == NO)
             [where appendString:@" or "];
         [where appendString:@"group_id = ?"];

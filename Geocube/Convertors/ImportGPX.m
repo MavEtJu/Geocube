@@ -257,16 +257,16 @@
             }
 
             // Link images to cache
-            [imagesCache enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL * _Nonnull stop) {
+            [imagesCache enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
                 newImagesCount += [ImagesDownloadManager downloadImage:currentWP url:img.url name:img.name type:IMAGECATEGORY_CACHE];
             }];
 
-            [imagesLog enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL * _Nonnull stop) {
+            [imagesLog enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
                 newImagesCount += [ImagesDownloadManager downloadImage:currentWP url:img.url name:img.name type:IMAGECATEGORY_LOG];
             }];
 
             // Link logs to cache
-            [logs enumerateObjectsUsingBlock:^(dbLog *l, NSUInteger idx, BOOL *stop) {
+            [logs enumerateObjectsUsingBlock:^(dbLog * _Nonnull l, NSUInteger idx, BOOL * _Nonnull stop) {
                 newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP text:l.log type:IMAGECATEGORY_LOG];
                 l.waypoint = currentWP;
                 [l finish];
@@ -298,7 +298,7 @@
 
                 // Link trackables to cache
                 [dbTrackable dbUnlinkAllFromWaypoint:currentWP];
-                [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL *stop) {
+                [trackables enumerateObjectsUsingBlock:^(dbTrackable * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {
                     NSId _id = [dbTrackable dbGetIdByGC:tb.gc_id];
                     [tb finish];
                     if (_id == 0) {

@@ -183,7 +183,7 @@ EMPTY_METHOD(mapViewDidLoad)
     NSLog(@"amount: %lu", (unsigned long)[names count]);
 
     NSMutableArray<NSString *> *descs = [NSMutableArray arrayWithCapacity:[names count]];
-    [names enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL * _Nonnull stop) {
+    [names enumerateObjectsUsingBlock:^(NSString * _Nonnull name, NSUInteger idx, BOOL * _Nonnull stop) {
         dbWaypoint *wp = [waypointManager waypoint_byName:name];
 
         [descs addObject:[NSString stringWithFormat:@"%@ - %@", name, wp.wpt_urlname]];

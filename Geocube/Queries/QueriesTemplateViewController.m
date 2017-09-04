@@ -79,7 +79,7 @@ enum {
     account = nil;
 
     __block BOOL failure = NO;
-    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
+    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a.protocol._id == protocol && a.remoteAPI.supportsListQueries == YES) {
             account = a;
             if (a.canDoRemoteStuff == NO) {
@@ -159,7 +159,7 @@ enum {
     }
 
     cell.labelLastImport.text = @"";
-    [qis enumerateObjectsUsingBlock:^(dbQueryImport *qi, NSUInteger idx, BOOL * _Nonnull stop) {
+    [qis enumerateObjectsUsingBlock:^(dbQueryImport * _Nonnull qi, NSUInteger idx, BOOL * _Nonnull stop) {
         if (qi.account._id == account._id &&
             [qi.name isEqualToString:name] == YES &&
             qi.filesize == size) {
@@ -187,7 +187,7 @@ enum {
 
     // Update historical data for this query.
     __block dbQueryImport *foundqi = nil;
-    [qis enumerateObjectsUsingBlock:^(dbQueryImport *qi, NSUInteger idx, BOOL * _Nonnull stop) {
+    [qis enumerateObjectsUsingBlock:^(dbQueryImport * _Nonnull qi, NSUInteger idx, BOOL * _Nonnull stop) {
         if (qi.account._id == account._id &&
             [qi.name isEqualToString:[pq objectForKey:@"Name"]] == YES &&
             qi.filesize == [[pq objectForKey:@"Size"] integerValue]) {
@@ -231,7 +231,7 @@ enum {
 {
     // Find the group to import to
     __block dbGroup *group = nil;
-    [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup *g, NSUInteger idx, BOOL * _Nonnull stop) {
+    [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([g.name isEqualToString:name] == YES) {
             group = g;
             *stop = YES;

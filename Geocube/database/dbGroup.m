@@ -165,7 +165,7 @@ TABLENAME(@"groups")
 
 - (void)addWaypointsToGroup:(NSArray<dbWaypoint *> *)waypoints
 {
-    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
         [self addWaypointToGroup:wp];
     }];
 }

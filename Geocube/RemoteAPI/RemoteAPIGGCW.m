@@ -90,7 +90,7 @@
         imgdata = [NSData dataWithContentsOfFile:[MyTools ImageFile:image.datafile]];
 
     NSMutableDictionary *tbs = [NSMutableDictionary dictionaryWithCapacity:[trackables count]];
-    [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
+    [trackables enumerateObjectsUsingBlock:^(dbTrackable * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {
         if (tb.logtype == TRACKABLE_LOG_NONE)
             return;
         NSString *note = nil;
@@ -154,7 +154,7 @@
     GCMutableArray *gpxarray = [[GCMutableArray alloc] initWithCapacity:[wpcodes count]];
 
     [iv setChunksTotal:iid total:[wpcodes count]];
-    [[wpcodes allKeys] enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL *stop) {
+    [[wpcodes allKeys] enumerateObjectsUsingBlock:^(NSString * _Nonnull wpcode, NSUInteger idx, BOOL * _Nonnull stop) {
         [iv setChunksCount:iid count:idx + 1];
         [iv resetBytes:iid];
 
@@ -214,7 +214,7 @@
     GGCW_CHECK_STATUS(dict, @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
 
     NSMutableArray<NSDictionary *> *as = [NSMutableArray arrayWithCapacity:20];
-    [dict enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSDictionary *a, BOOL *stop) {
+    [dict enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSDictionary *a, BOOL * _Nonnull stop) {
         NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
         [d setValue:[a objectForKey:@"name"] forKey:@"Name"];
         [d setValue:[a objectForKey:@"g"] forKey:@"Id"];
@@ -263,7 +263,7 @@
     NSMutableArray<NSDictionary *> *tbstot = [NSMutableArray arrayWithCapacity:[tbs count]];
     [iv resetBytesChunks:iid];
     [iv setChunksTotal:iid total:[tbs count]];
-    [tbs enumerateObjectsUsingBlock:^(NSDictionary *tb, NSUInteger idx, BOOL *sto) {
+    [tbs enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull sto) {
         [iv resetBytes:iid];
         [iv setChunksCount:iid count:idx + 1];
         NSDictionary *d = [ggcw track_details:nil id:[tb objectForKey:@"id"] infoViewer:iv iiDownload:iid];
@@ -298,7 +298,7 @@
     NSMutableArray<NSDictionary *> *tbstot = [NSMutableArray arrayWithCapacity:[tbs count]];
     [iv resetBytesChunks:iid];
     [iv setChunksTotal:iid total:[tbs count]];
-    [tbs enumerateObjectsUsingBlock:^(NSDictionary *tb, NSUInteger idx, BOOL *sto) {
+    [tbs enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull sto) {
         [iv resetBytes:iid];
         [iv setChunksCount:iid count:idx + 1];
         NSDictionary *d = [ggcw track_details:[tb objectForKey:@"guid"] id:nil infoViewer:iv iiDownload:iid];

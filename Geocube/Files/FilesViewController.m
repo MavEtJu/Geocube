@@ -65,7 +65,7 @@ enum {
     filesDates = [NSMutableArray arrayWithCapacity:20];
     filesSizes = [NSMutableArray arrayWithCapacity:20];
 
-    [files enumerateObjectsUsingBlock:^(NSString *file, NSUInteger idx, BOOL *stop) {
+    [files enumerateObjectsUsingBlock:^(NSString * _Nonnull file, NSUInteger idx, BOOL * _Nonnull stop) {
         NSDictionary *a = [fileManager attributesOfItemAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], file] error:nil];
         if ([[a objectForKey:NSFileType] isEqualToString:NSFileTypeDirectory] == YES)
             return;
@@ -131,7 +131,7 @@ enum {
     NSNumber *fs = [filesSizes objectAtIndex:indexPath.row];
 
     __block dbFileImport *fi = nil;
-    [fileImports enumerateObjectsUsingBlock:^(dbFileImport *_fi, NSUInteger idx, BOOL *stop) {
+    [fileImports enumerateObjectsUsingBlock:^(dbFileImport * _Nonnull _fi, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([_fi.filename isEqualToString:fn] == YES &&
             _fi.filesize == [fs integerValue]) {
             fi = _fi;
@@ -346,13 +346,13 @@ enum {
     __block BOOL groupsOkay = NO;
     __block BOOL accountsOkay = NO;
 
-    [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
+    [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup * _Nonnull cg, NSUInteger idx, BOOL * _Nonnull stop) {
         if (cg.usergroup == 0)
             return;
         groupsOkay = YES;
         *stop = YES;
     }];
-    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
+    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a.accountname == nil)
             return;
         accountsOkay = YES;
@@ -371,7 +371,7 @@ enum {
     // Show all user groups.
     NSMutableArray<dbGroup *> *groups = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray<NSString *> *groupNames = [NSMutableArray arrayWithCapacity:10];
-    [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
+    [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup * _Nonnull cg, NSUInteger idx, BOOL * _Nonnull stop) {
         if (cg.usergroup == 0)
             return;
         [groupNames addObject:cg.name];
@@ -397,7 +397,7 @@ enum {
 {
     NSMutableArray<dbAccount *> *accounts = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray<NSString *> *accountNames = [NSMutableArray arrayWithCapacity:10];
-    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
+    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (IS_EMPTY(a.accountname.name) == YES)
             return;
         [accountNames addObject:a.site];
@@ -427,7 +427,7 @@ enum {
             [self performSelectorInBackground:@selector(fileImportBG:) withObject:dict];
 
             __block dbFileImport *fi = nil;
-            [fileImports enumerateObjectsUsingBlock:^(dbFileImport *_fi, NSUInteger idx, BOOL *stop) {
+            [fileImports enumerateObjectsUsingBlock:^(dbFileImport * _Nonnull _fi, NSUInteger idx, BOOL * _Nonnull stop) {
                 if ([_fi.filename isEqualToString:filename] == YES &&
                     _fi.filesize == [filesize integerValue]) {
                     fi = _fi;

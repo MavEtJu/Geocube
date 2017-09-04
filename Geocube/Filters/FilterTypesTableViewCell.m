@@ -45,7 +45,7 @@
     }
 
     types = [dbc Types];
-    [types enumerateObjectsUsingBlock:^(dbType *t, NSUInteger idx, BOOL *stop) {
+    [types enumerateObjectsUsingBlock:^(dbType * _Nonnull t, NSUInteger idx, BOOL * _Nonnull stop) {
         UIImage *img = [imageLibrary get:t.icon];
         CGRect rect = CGRectMake(20, y, img.size.width, img.size.height);
         UIImageView *tv = [[UIImageView alloc] initWithFrame:rect];

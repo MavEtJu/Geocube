@@ -69,7 +69,7 @@
 
     // Should be done only once
     NSArray<NSString *> *files = [fileManager contentsOfDirectoryAtPath:imagesDir error:nil];
-    [files enumerateObjectsUsingBlock:^(NSString *file, NSUInteger idx, BOOL *stop) {
+    [files enumerateObjectsUsingBlock:^(NSString * _Nonnull file, NSUInteger idx, BOOL * _Nonnull stop) {
         // Check if it isn't a directory
         NSString *oldName = [NSString stringWithFormat:@"%@/%@", imagesDir, file];
         BOOL isDirectory;

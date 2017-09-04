@@ -141,7 +141,7 @@ enum {
 
 - (void)createStatistics
 {
-    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
+    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
 
         if (IS_EMPTY(a.accountname.name) == YES)
             return;

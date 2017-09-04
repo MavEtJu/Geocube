@@ -76,7 +76,7 @@
 
     // Default map brand
     self.currentMapBrand = nil;
-    [mapBrands enumerateObjectsUsingBlock:^(MapBrand *mb, NSUInteger idx, BOOL *stop) {
+    [mapBrands enumerateObjectsUsingBlock:^(MapBrand * _Nonnull mb, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([configManager.mapBrandDefault isEqualToString:mb.defaultString] == YES) {
             self.currentMapBrand = mb;
             *stop = YES;
@@ -806,7 +806,7 @@
 
 - (void)menuDirections
 {
-    [[dbExternalMap dbAll] enumerateObjectsUsingBlock:^(dbExternalMap *em, NSUInteger idx, BOOL * _Nonnull stop) {
+    [[dbExternalMap dbAll] enumerateObjectsUsingBlock:^(dbExternalMap * _Nonnull em, NSUInteger idx, BOOL * _Nonnull stop) {
         if (em.geocube_id != configManager.mapExternal)
             return;
 
@@ -818,7 +818,7 @@
         __block dbExternalMapURL *urlCurrent = nil;
         __block dbExternalMapURL *urlDestination = nil;
 
-        [urls enumerateObjectsUsingBlock:^(dbExternalMapURL *url, NSUInteger idx, BOOL * _Nonnull stop) {
+        [urls enumerateObjectsUsingBlock:^(dbExternalMapURL * _Nonnull url, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([url.model isEqualToString:@"current"] == YES)
                 urlCurrent = url;
             if ([url.model isEqualToString:@"directions"] == YES)
@@ -929,7 +929,7 @@
     NSLog(@"topRight: %@", [Coordinates niceCoordinates:topRight]);
 
     NSMutableArray<dbWaypoint *> *wps = [NSMutableArray arrayWithCapacity:200];
-    [self.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
         if (wp.wpt_latitude > bottomLeft.latitude &&
             wp.wpt_latitude < topRight.latitude &&
             wp.wpt_longitude > bottomLeft.longitude &&

@@ -41,7 +41,7 @@
 {
     ExportGPX *e = [[ExportGPX alloc] init];
     [e header];
-    [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+    [wps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
         [e waypoint:wp];
     }];
     [e trailer];
@@ -144,7 +144,7 @@
             [lines addObject:@"<groundspeak:attributes />"];
         } else {
             [lines addObject:@"<groundspeak:attributes>"];
-            [as enumerateObjectsUsingBlock:^(dbAttribute *a, NSUInteger idx, BOOL *stop) {
+            [as enumerateObjectsUsingBlock:^(dbAttribute * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
                 NSString *l = [NSString stringWithFormat:@"<groundspeak:attribute id=\"%ld\" inc=\"%d\">%@</groundspeak:attribute>", (long)a.gc_id, a._YesNo == YES ? 1 : 0, a.label];
                 [lines addObject:l];
             }];
@@ -177,7 +177,7 @@
             [lines addObject:@"<groundspeak:logs />"];
         } else {
             [lines addObject:@"<groundspeak:logs>"];
-            [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL * _Nonnull stop) {
+            [logs enumerateObjectsUsingBlock:^(dbLog * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
                 [lines addObject:[NSString stringWithFormat:@"<groundspeak:log id=\"%ld\">", (long)log._id]];
                 LINE_S(@"groundspeak:date", [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:log.datetime_epoch]);
                 LINE_S(@"groundspeak:type", log.logstring.displayString);
@@ -202,7 +202,7 @@
     NSLog(@"Exporting to %@", fn);
 
     NSMutableString *line = [NSMutableString string];
-    [lines enumerateObjectsUsingBlock:^(NSString *l, NSUInteger idx, BOOL * _Nonnull stop) {
+    [lines enumerateObjectsUsingBlock:^(NSString * _Nonnull l, NSUInteger idx, BOOL * _Nonnull stop) {
         [line appendString:l];
         [line appendString:@"\n"];
     }];

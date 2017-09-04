@@ -88,7 +88,7 @@ enum {
     NSArray<dbTrackElement *> *tes = [dbTrackElement dbAllByTrack:t];
     __block CGFloat distance = 0;
     __block dbTrackElement *te_prev = nil;
-    [tes enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
+    [tes enumerateObjectsUsingBlock:^(dbTrackElement * _Nonnull te, NSUInteger idx, BOOL * _Nonnull stop) {
         if (te_prev != nil && te.restart == NO) {
             distance += [Coordinates coordinates2distance:te_prev.lat fromLongitude:te_prev.lon toLatitude:te.lat toLongitude:te.lon];
         }
@@ -209,7 +209,7 @@ enum {
     NSArray<dbTrack *> *tracks = [dbTrack dbAll];
     time_t cutoff = time(NULL) - configManager.keeptrackPurgeAge * 86400;
 
-    [tracks enumerateObjectsUsingBlock:^(dbTrack *track, NSUInteger idx, BOOL * _Nonnull stop) {
+    [tracks enumerateObjectsUsingBlock:^(dbTrack * _Nonnull track, NSUInteger idx, BOOL * _Nonnull stop) {
         if (track.dateStart < cutoff) {
             NSLog(@"trackAutoPurge: Purging %@", track.name);
             [dbTrackElement dbDeleteByTrack:track];

@@ -100,7 +100,7 @@ enum {
 
 - (void)resetPinColours
 {
-    [[dbc Pins] enumerateObjectsUsingBlock:^(dbPin *p, NSUInteger idx, BOOL * _Nonnull stop) {
+    [[dbc Pins] enumerateObjectsUsingBlock:^(dbPin * _Nonnull p, NSUInteger idx, BOOL * _Nonnull stop) {
         p.rgb = @"";
         [p dbUpdateRGB];
         [p finish];

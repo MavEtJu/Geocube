@@ -720,7 +720,7 @@ enum {
 
                                 if (waypoint.flag_markedfound == YES) {
                                     NSArray<dbWaypoint *> *wps = [waypoint hasWaypoints];
-                                    [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                                    [wps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                                         if (wp._id == waypoint._id)
                                             return;
                                         wp.flag_markedfound = YES;
@@ -829,7 +829,7 @@ enum {
 {
     NSMutableArray<dbGroup *> *groups = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray<NSString *> *groupNames = [NSMutableArray arrayWithCapacity:10];
-    [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
+    [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup * _Nonnull cg, NSUInteger idx, BOOL * _Nonnull stop) {
         if (cg.usergroup == 0)
             return;
         [groupNames addObject:cg.name];

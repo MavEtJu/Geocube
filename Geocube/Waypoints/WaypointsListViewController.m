@@ -146,7 +146,7 @@ enum {
     [clock clockShowAndReset];
 
     searchString = [searchString lowercaseString];
-    [[waypointManager currentWaypoints] enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+    [[waypointManager currentWaypoints] enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
         if (searchString != nil &&
             [[wp.description lowercaseString] containsString:searchString] == NO &&
             [[wp.wpt_name lowercaseString] containsString:searchString] == NO)
@@ -318,7 +318,7 @@ enum {
                           actionWithTitle:_(@"Yes")
                           style:UIAlertActionStyleDefault
                           handler:^(UIAlertAction *action) {
-                              [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                              [wps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                                   [wp dbDelete];
                               }];
                               [db cleanupAfterDelete];
@@ -347,9 +347,9 @@ enum {
     [processing clearAll];
     [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoViewer:nil iiImport:0];
 
-    [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL *stop) {
+    [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull account, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMutableArray<NSString *> *wps = [NSMutableArray arrayWithCapacity:[waypoints count]];
-        [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+        [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
             if (wp.account._id == account._id)
                 [wps addObject:wp.wpt_name];
         }];

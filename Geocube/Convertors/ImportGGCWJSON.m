@@ -55,7 +55,7 @@
 {
     [infoViewer setLineObjectTotal:iiImport total:[waypoints count] isLines:NO];
     __block NSInteger idx = 0;
-    [waypoints enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSDictionary *wp, BOOL *stop) {
+    [waypoints enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSDictionary *wp, BOOL * _Nonnull stop) {
         [self parseData_mapwaypoint:wp];
         ++totalWaypointsCount;
         [infoViewer setWaypointsTotal:iiImport total:totalWaypointsCount];
@@ -155,7 +155,7 @@
 - (void)parseData_trackables:(NSArray<NSDictionary *> *)trackables
 {
     [infoViewer setLineObjectTotal:iiImport total:[trackables count] isLines:NO];
-    [trackables enumerateObjectsUsingBlock:^(NSDictionary *tb, NSUInteger idx, BOOL *stop) {
+    [trackables enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseData_trackable:tb];
         ++totalTrackablesCount;
         [infoViewer setWaypointsTotal:iiImport total:totalTrackablesCount];

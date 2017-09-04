@@ -283,7 +283,7 @@ enum {
     switch (index) {
         case menuSetDefaultValues:
             [dbFilter dbAllClear:nil];
-            [filters enumerateObjectsUsingBlock:^(FilterObject *fo, NSUInteger idx, BOOL *stop) {
+            [filters enumerateObjectsUsingBlock:^(FilterObject * _Nonnull fo, NSUInteger idx, BOOL * _Nonnull stop) {
                 fo.expanded = NO;
             }];
             [self.tableView reloadData];

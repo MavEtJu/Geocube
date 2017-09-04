@@ -162,7 +162,7 @@
 
 - (void)emptyGroups
 {
-    [self.cgs enumerateObjectsUsingBlock:^(dbGroup *cg, NSUInteger idx, BOOL *stop) {
+    [self.cgs enumerateObjectsUsingBlock:^(dbGroup * _Nonnull cg, NSUInteger idx, BOOL * _Nonnull stop) {
         [self groupEmpty:cg reload:NO];
     }];
     [self refreshGroupData];

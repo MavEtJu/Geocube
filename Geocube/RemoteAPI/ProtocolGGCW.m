@@ -246,7 +246,7 @@ enum {
      */
     NSString *re = @"//script";
     NSArray<TFHppleElement *> *nodes = [parser searchWithXPathQuery:re];
-    [nodes enumerateObjectsUsingBlock:^(TFHppleElement *e, NSUInteger idx, BOOL *stop) {
+    [nodes enumerateObjectsUsingBlock:^(TFHppleElement * _Nonnull e, NSUInteger idx, BOOL * _Nonnull stop) {
         NSRange r = [e.content rangeOfString:@"publicGuid: \""];
         if (r.location == NSNotFound)
             return;
@@ -339,7 +339,7 @@ bail:
      */
     NSString *re = @"//table[@id='uxOfflinePQTable']/tr";
     NSArray<TFHppleElement *> *nodes = [parser searchWithXPathQuery:re];
-    [nodes enumerateObjectsUsingBlock:^(TFHppleElement *tr, NSUInteger idx, BOOL *stop) {
+    [nodes enumerateObjectsUsingBlock:^(TFHppleElement * _Nonnull tr, NSUInteger idx, BOOL * _Nonnull stop) {
         TFHppleElement *e;
         NSString *guid = nil;
         NSString *name = nil;
@@ -508,7 +508,7 @@ bail1:
     __block NSString *usertoken = nil;
     re = @"//script";
     nodes = [parser searchWithXPathQuery:re];
-    [nodes enumerateObjectsUsingBlock:^(TFHppleElement *e, NSUInteger idx, BOOL *stop) {
+    [nodes enumerateObjectsUsingBlock:^(TFHppleElement * _Nonnull e, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([e.content containsString:@"userToken = '"] == NO)
             return;
 
@@ -662,7 +662,7 @@ bail2:
     // First find the usersession data
     NSString *re = [NSString stringWithFormat:@"//script"];
     NSArray<TFHppleElement *> *nodes = [parser searchWithXPathQuery:re];
-    [nodes enumerateObjectsUsingBlock:^(TFHppleElement *e, NSUInteger idx, BOOL *stop) {
+    [nodes enumerateObjectsUsingBlock:^(TFHppleElement * _Nonnull e, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *s = e.content;
         NSRange r = [s rangeOfString:@"Groundspeak.UserSession"];
         if (r.location == NSNotFound)
@@ -899,7 +899,7 @@ bail:
     NSArray<TFHppleElement *> *nodes = [parser searchWithXPathQuery:re];
 
     NSMutableArray<NSDictionary *> *tbs = [NSMutableArray arrayWithCapacity:[nodes count]];
-    [nodes enumerateObjectsUsingBlock:^(TFHppleElement *trs, NSUInteger idx, BOOL *stop) {
+    [nodes enumerateObjectsUsingBlock:^(TFHppleElement * _Nonnull trs, NSUInteger idx, BOOL * _Nonnull stop) {
         TFHppleElement *tds;
         TFHppleElement *td;
         NSString *href;
@@ -1174,7 +1174,7 @@ bail:
     NSMutableArray<NSDictionary *> *tbs = [NSMutableArray arrayWithCapacity:20];
     NSString *re = @"//table[@class='Table']/tbody/tr";
     NSArray<TFHppleElement *> *nodes = [parser searchWithXPathQuery:re];
-    [nodes enumerateObjectsUsingBlock:^(TFHppleElement *tr, NSUInteger idx, BOOL *stop) {
+    [nodes enumerateObjectsUsingBlock:^(TFHppleElement * _Nonnull tr, NSUInteger idx, BOOL * _Nonnull stop) {
         NSArray<TFHppleElement *> *tds = tr.children;
         NSMutableDictionary *dict;
         NSString *name;

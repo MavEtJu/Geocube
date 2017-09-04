@@ -207,7 +207,7 @@
     // oauth_token=q3rHbDurHspVhzuV36Wp&
     // oauth_token_secret=8gpVwNwNwgGK9WjasCsZUEL456QX2CbZKqM638Jq
 
-    [[retbody componentsSeparatedByString:@"&"] enumerateObjectsUsingBlock:^(NSString *keyvalue, NSUInteger idx, BOOL *stop) {
+    [[retbody componentsSeparatedByString:@"&"] enumerateObjectsUsingBlock:^(NSString * _Nonnull keyvalue, NSUInteger idx, BOOL * _Nonnull stop) {
         NSArray<NSString *> *ss = [keyvalue componentsSeparatedByString:@"="];
         NSString *key = [ss objectAtIndex:0];
         NSString *value = [ss objectAtIndex:1];
@@ -252,7 +252,7 @@
     // oauth_token_secret=w7EXnvDKw5fyXBzvjVXNpPb2wkACxJyTF3GTpbuJ&
     // oauth_callback_confirmed=true
 
-    [[retbody componentsSeparatedByString:@"&"] enumerateObjectsUsingBlock:^(NSString *keyvalue, NSUInteger idx, BOOL *stop) {
+    [[retbody componentsSeparatedByString:@"&"] enumerateObjectsUsingBlock:^(NSString * _Nonnull keyvalue, NSUInteger idx, BOOL * _Nonnull stop) {
         NSArray<NSString *> *ss = [keyvalue componentsSeparatedByString:@"="];
         NSString *key = [ss objectAtIndex:0];
         NSString *value = [ss objectAtIndex:1];
@@ -282,7 +282,7 @@
 
     if ([[url substringToIndex:[self.callback length]] isEqualToString:self.callback] == YES) {
         // In body: oauth_token=MyEhWdraaVDuUyvqRwxr&oauth_verifier=56536006
-        [[query componentsSeparatedByString:@"&"] enumerateObjectsUsingBlock:^(NSString *keyvalue, NSUInteger idx, BOOL *stop) {
+        [[query componentsSeparatedByString:@"&"] enumerateObjectsUsingBlock:^(NSString * _Nonnull keyvalue, NSUInteger idx, BOOL * _Nonnull stop) {
             NSArray<NSString *> *ss = [keyvalue componentsSeparatedByString:@"="];
             NSString *key = [ss objectAtIndex:0];
             NSString *value = [ss objectAtIndex:1];
@@ -325,7 +325,7 @@
         NSLog(@"query: %@", query);
 
         NSArray<NSString *> *queries = [query componentsSeparatedByString:@"&"];
-        [queries enumerateObjectsUsingBlock:^(NSString *s, NSUInteger idx, BOOL *stop) {
+        [queries enumerateObjectsUsingBlock:^(NSString * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
             NSArray<NSString *> *ss = [s componentsSeparatedByString:@"="];
             [paramDict setValue:[MyTools urlDecode:[ss objectAtIndex:1]] forKey:[ss objectAtIndex:0]];
         }];
@@ -334,7 +334,7 @@
     // - From the HTTP body
     {
         NSArray<NSString *> *queries = [body componentsSeparatedByString:@"&"];
-        [queries enumerateObjectsUsingBlock:^(NSString *s, NSUInteger idx, BOOL *stop) {
+        [queries enumerateObjectsUsingBlock:^(NSString * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
             NSArray<NSString *> *ss = [s componentsSeparatedByString:@"="];
             [paramDict setValue:[MyTools urlDecode:[ss objectAtIndex:1]] forKey:[ss objectAtIndex:0]];
         }];
@@ -358,7 +358,7 @@
         return [a compare:b];
     }];
 
-    [order enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
+    [order enumerateObjectsUsingBlock:^(NSString * _Nonnull key, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([params compare:@""] != NSOrderedSame)
             [params appendString:@"&"];
         [params appendFormat:@"%@=%@", [MyTools urlEncode:key], [MyTools urlEncode:[paramDict objectForKey:key]]];

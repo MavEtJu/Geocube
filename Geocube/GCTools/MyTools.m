@@ -436,7 +436,7 @@ TIME(dateTimeString_dow, @"EEEE")
 + (NSString *)urlParameterJoin:(NSDictionary *)in
 {
     NSMutableString *s = [NSMutableString stringWithString:@""];
-    [in enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
+    [in enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString *value, BOOL * _Nonnull stop) {
         if ([s length] != 0)
             [s appendString:@"&"];
         [s appendFormat:@"%@=%@", key, value];

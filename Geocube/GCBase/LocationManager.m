@@ -77,7 +77,7 @@
 
     if ([self.delegates count] == 0)
         return;
-    [self.delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
+    [self.delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         [delegate updateLocationManagerLocation];
     }];
 }
@@ -86,7 +86,7 @@
 {
     if ([self.delegates count] == 0)
         return;
-    [self.delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
+    [self.delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([delegate respondsToSelector:@selector(updateLocationManagerHistory:)])
             [delegate updateLocationManagerHistory:ch];
     }];
@@ -192,7 +192,7 @@
             [te dbCreate];
             [historyData addObject:te];
             if (lastSync + configManager.keeptrackSync < te.timestamp_epoch) {
-                [historyData enumerateObjectsUsingBlock:^(dbTrackElement *e, NSUInteger idx, BOOL * _Nonnull stop) {
+                [historyData enumerateObjectsUsingBlock:^(dbTrackElement * _Nonnull e, NSUInteger idx, BOOL * _Nonnull stop) {
                     [e dbCreate];
                 }];
                 [historyData removeAllObjects];

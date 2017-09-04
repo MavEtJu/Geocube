@@ -110,7 +110,7 @@
 - (void)refreshItems:(NSArray<InfoItem *> *)items
 {
     @synchronized (items) {
-        [items enumerateObjectsUsingBlock:^(InfoItem *ii, NSUInteger idx, BOOL *stop) {
+        [items enumerateObjectsUsingBlock:^(InfoItem * _Nonnull ii, NSUInteger idx, BOOL * _Nonnull stop) {
             if (ii.needsRefresh == YES) {
                 NSLog(@".");
                 [ii refresh];
@@ -208,7 +208,7 @@
 {
     __block InfoItem *ii = nil;
     @synchronized (items) {
-        [items enumerateObjectsUsingBlock:^(InfoItem *_ii, NSUInteger idx, BOOL *stop) {
+        [items enumerateObjectsUsingBlock:^(InfoItem * _Nonnull _ii, NSUInteger idx, BOOL * _Nonnull stop) {
             if (_ii._id == _id) {
                 [items removeObjectAtIndex:idx];
                 ii = _ii;
@@ -285,7 +285,7 @@
 
     // Items
     @synchronized (items) {
-        [items enumerateObjectsUsingBlock:^(InfoItem *ii, NSUInteger idx, BOOL *stop) {
+        [items enumerateObjectsUsingBlock:^(InfoItem * _Nonnull ii, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([ii isExpanded] == NO)
                 ii.view.frame = CGRectMake(0, height, width, header.font.lineHeight);
             else
@@ -308,7 +308,7 @@
 - (void)viewWillTransitionToSize:(NSArray<InfoItem *> *)items
 {
     @synchronized (items) {
-        [items enumerateObjectsUsingBlock:^(InfoItem *d, NSUInteger idx, BOOL *stop) {
+        [items enumerateObjectsUsingBlock:^(InfoItem * _Nonnull d, NSUInteger idx, BOOL * _Nonnull stop) {
             [d calculateRects];
         }];
     }
@@ -341,7 +341,7 @@
     __block InfoItem *ii = nil;
 
     @synchronized (items) {
-        [items enumerateObjectsUsingBlock:^(InfoItem *_ii, NSUInteger idx, BOOL *stop) {
+        [items enumerateObjectsUsingBlock:^(InfoItem * _Nonnull _ii, NSUInteger idx, BOOL * _Nonnull stop) {
             if (_ii._id == _id) {
                 ii = _ii;
                 *stop = YES;

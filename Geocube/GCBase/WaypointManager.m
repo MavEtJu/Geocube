@@ -72,7 +72,7 @@
     if (needsRefresh == NO) {
         needsRefresh = YES;
 
-        [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
+        [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
             // Doing this via the main queue because Google Map Service insists on it.
             NSLog(@"%@: refreshing #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -86,7 +86,7 @@
 {
     [self.currentWaypoints addObject:wp];
 
-    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
+    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -99,7 +99,7 @@
 {
     [self.currentWaypoints removeObject:wp];
 
-    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
+    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -114,7 +114,7 @@
     if (idx != NSNotFound)
         [self.currentWaypoints replaceObjectAtIndex:idx withObject:wp];
 
-    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL *stop) {
+    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -149,7 +149,7 @@
         __block NSString *c_distance = [self configGet:@"distance_enabled"];
         if (c_groups != nil && [c_groups boolValue] == YES) {
             __block NSMutableArray<dbGroup *> *groups = [NSMutableArray arrayWithCapacity:20];
-            [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup *group, NSUInteger idx, BOOL *stop) {
+            [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup * _Nonnull group, NSUInteger idx, BOOL * _Nonnull stop) {
                 NSString *c = [self configGet:[NSString stringWithFormat:@"groups_group_%ld", (long)group._id]];
                 if (c == nil || [c boolValue] == NO)
                     return;
@@ -201,7 +201,7 @@
         if (c != nil && [c boolValue] == YES) {
             NSLog(@"%@ - Filtering acounts", [self class]);
 
-            [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL *stop) {
+            [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount * _Nonnull account, NSUInteger idx, BOOL * _Nonnull stop) {
                 NSString *c = [self configGet:[NSString stringWithFormat:@"accounts_account_%ld", (long)account._id]];
                 if (c == nil || [c boolValue] == NO)
                     return;
@@ -226,11 +226,11 @@
         c = [self configGet:@"types_enabled"];
         if (c != nil && [c boolValue] == YES) {
             NSLog(@"%@ - Filtering types", [self class]);
-            [[dbc Types] enumerateObjectsUsingBlock:^(dbType *type, NSUInteger idx, BOOL *stop) {
+            [[dbc Types] enumerateObjectsUsingBlock:^(dbType * _Nonnull type, NSUInteger idx, BOOL * _Nonnull stop) {
                 c = [self configGet:[NSString stringWithFormat:@"types_type_%ld", (long)type._id]];
                 if (c == nil || [c boolValue] == NO)
                     return;
-                [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                     if (wp.wpt_type._id == type._id)
                         [after addObject:wp];
                 }];
@@ -259,17 +259,17 @@
             if (min == 0 && max == 100) {
                 after = waypoints;
             } else if (min == 0) {
-                [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                     if (wp.gs_favourites <= max)
                         [after addObject:wp];
                 }];
             } else if (max == 100) {
-                [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                     if (wp.gs_favourites >= min)
                         [after addObject:wp];
                 }];
             } else {
-                [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                     if (wp.gs_favourites >= min && wp.gs_favourites <= max)
                         [after addObject:wp];
                 }];
@@ -290,11 +290,11 @@
         c = [self configGet:@"sizes_enabled"];
         if (c != nil && [c boolValue] == YES) {
             NSLog(@"%@ - Filtering sizes", [self class]);
-            [[dbc Containers] enumerateObjectsUsingBlock:^(dbContainer *container, NSUInteger idx, BOOL *stop) {
+            [[dbc Containers] enumerateObjectsUsingBlock:^(dbContainer * _Nonnull container, NSUInteger idx, BOOL * _Nonnull stop) {
                 c = [self configGet:[NSString stringWithFormat:@"sizes_container_%ld", (long)container._id]];
                 if (c == nil || [c boolValue] == NO)
                     return;
-                [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                     if (wp.gs_container._id == container._id)
                         [after addObject:wp];
                 }];
@@ -315,7 +315,7 @@
             float min = [[self configGet:@"difficulty_min"] floatValue];
             float max = [[self configGet:@"difficulty_max"] floatValue];
 
-            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                 if (wp.gs_rating_difficulty >= min && wp.gs_rating_difficulty <= max)
                     [after addObject:wp];
             }];
@@ -336,7 +336,7 @@
             float min = [[self configGet:@"terrain_min"] floatValue];
             float max = [[self configGet:@"terrain_max"] floatValue];
 
-            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                 if (wp.gs_rating_terrain >= min && wp.gs_rating_terrain <= max)
                     [after addObject:wp];
             }];
@@ -361,21 +361,21 @@
 
             switch (placedCompare) {
                 case FILTER_DATE_BEFORE: {
-                    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                         if (wp.wpt_date_placed_epoch <= placedEpoch)
                             [after addObject:wp];
                     }];
                     break;
                 }
                 case FILTER_DATE_AFTER: {
-                    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                         if (wp.wpt_date_placed_epoch >= placedEpoch)
                             [after addObject:wp];
                     }];
                     break;
                 }
                 case FILTER_DATE_ON: {
-                    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                         if (wp.wpt_date_placed_epoch >= placedEpoch - 86400 && wp.wpt_date_placed_epoch <= placedEpoch + 86400)
                             [after addObject:wp];
                     }];
@@ -385,10 +385,10 @@
 
             switch (lastLogCompare) {
                 case FILTER_DATE_BEFORE: {
-                    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                         NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp];
                         __block BOOL rv = YES;
-                        [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL *stop) {
+                        [logs enumerateObjectsUsingBlock:^(dbLog * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
                             if (log.datetime_epoch > lastLogEpoch) {
                                 rv = NO;
                                 *stop = YES;
@@ -400,10 +400,10 @@
                     break;
                 }
                 case FILTER_DATE_AFTER: {
-                    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                         NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp];
                         __block BOOL rv = NO;
-                        [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL *stop) {
+                        [logs enumerateObjectsUsingBlock:^(dbLog * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
                             if (log.datetime_epoch > lastLogEpoch) {
                                 rv = YES;
                                 *stop = YES;
@@ -415,10 +415,10 @@
                     break;
                 }
                 case FILTER_DATE_ON: {
-                    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+                    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                         NSArray<dbLog *> *logs = [dbLog dbAllByWaypoint:wp];
                         __block BOOL rv = NO;
-                        [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL *stop) {
+                        [logs enumerateObjectsUsingBlock:^(dbLog * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
                             if (log.datetime_epoch > lastLogEpoch - 86400 && log.datetime_epoch < lastLogEpoch + 86400) {
                                 rv = YES;
                                 *stop = YES;
@@ -459,7 +459,7 @@
 
             if (country != nil && [country isEqualToString:@""] == NO) {
                 countries = [NSMutableArray arrayWithCapacity:20];
-                [[dbc Countries] enumerateObjectsUsingBlock:^(dbCountry *c, NSUInteger idx, BOOL *stop) {
+                [[dbc Countries] enumerateObjectsUsingBlock:^(dbCountry * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
                     if ([c.name localizedCaseInsensitiveContainsString:country] ||
                         [c.code localizedCaseInsensitiveContainsString:country])
                         [countries addObject:c];
@@ -468,7 +468,7 @@
 
             if (state != nil && [state isEqualToString:@""] == NO) {
                 states = [NSMutableArray arrayWithCapacity:20];
-                [[dbc States] enumerateObjectsUsingBlock:^(dbState *c, NSUInteger idx, BOOL *stop) {
+                [[dbc States] enumerateObjectsUsingBlock:^(dbState * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
                     if ([c.name localizedCaseInsensitiveContainsString:state] ||
                         [c.code localizedCaseInsensitiveContainsString:state])
                         [states addObject:c];
@@ -477,7 +477,7 @@
 
             if (locale != nil && [locale isEqualToString:@""] == NO) {
                 locales = [NSMutableArray arrayWithCapacity:20];
-                [[dbc Locales] enumerateObjectsUsingBlock:^(dbLocale *c, NSUInteger idx, BOOL *stop) {
+                [[dbc Locales] enumerateObjectsUsingBlock:^(dbLocale * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
                     if ([c.name localizedCaseInsensitiveContainsString:locale])
                         [locales addObject:c];
                 }];
@@ -485,13 +485,13 @@
 
             if (owner != nil && [owner isEqualToString:@""] == NO) {
                 owners = [NSMutableArray arrayWithCapacity:20];
-                [[dbName dbAll] enumerateObjectsUsingBlock:^(dbName *n, NSUInteger idx, BOOL *stop) {
+                [[dbName dbAll] enumerateObjectsUsingBlock:^(dbName * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
                     if ([n.name localizedCaseInsensitiveContainsString:owner])
                         [owners addObject:n];
                 }];
             }
 
-            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                 __block BOOL rv = YES;
 
                 if (cachename != nil && [cachename isEqualToString:@""] == NO &&
@@ -509,7 +509,7 @@
 
                 if (locales != nil) {
                     __block BOOL matched = NO;
-                    [locales enumerateObjectsUsingBlock:^(dbLocale *s, NSUInteger idx, BOOL *stop) {
+                    [locales enumerateObjectsUsingBlock:^(dbLocale * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
                         if (s._id == wp.gca_locale._id) {
                             matched = YES;
                             *stop = YES;
@@ -521,7 +521,7 @@
 
                 if (states != nil) {
                     __block BOOL matched = NO;
-                    [states enumerateObjectsUsingBlock:^(dbState *s, NSUInteger idx, BOOL *stop) {
+                    [states enumerateObjectsUsingBlock:^(dbState * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
                         if (s._id == wp.gs_state._id) {
                             matched = YES;
                             *stop = YES;
@@ -533,7 +533,7 @@
 
                 if (countries != nil) {
                     __block BOOL matched = NO;
-                    [countries enumerateObjectsUsingBlock:^(dbCountry *c, NSUInteger idx, BOOL *stop) {
+                    [countries enumerateObjectsUsingBlock:^(dbCountry * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
                         if (c._id == wp.gs_country._id) {
                             matched = YES;
                             *stop = YES;
@@ -545,7 +545,7 @@
 
                 if (owners != nil) {
                     __block BOOL matched = NO;
-                    [owners enumerateObjectsUsingBlock:^(dbName *o, NSUInteger idx, BOOL *stop) {
+                    [owners enumerateObjectsUsingBlock:^(dbName * _Nonnull o, NSUInteger idx, BOOL * _Nonnull stop) {
                         if (o._id == wp.gs_owner._id) {
                             matched = YES;
                             *stop = YES;
@@ -585,7 +585,7 @@
             NSInteger flagEnabled = [[self configGet:@"flags_isenabled"] integerValue];
             NSInteger flagArchived = [[self configGet:@"flags_isarchived"] integerValue];
 
-            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                 BOOL keep = YES;
 
                 if (keep == YES && flagHighlight != FILTER_FLAGS_NOTCHECKED)
@@ -623,7 +623,7 @@
             [clock clockShowAndReset:@"ignored"];
 
             NSLog(@"%@ - Filtering ignored", [self class]);
-            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                 if (wp.flag_ignore == NO)
                     [after addObject:wp];
             }];
@@ -632,7 +632,7 @@
 
         /* Calculate the distance and the bearing */
         NSLog(@"Coordinates: %@", [Coordinates niceCoordinates:coords]);
-        [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+        [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
             wp.calculatedDistance = [Coordinates coordinates2distance:coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude];
             wp.calculatedBearing = [Coordinates coordinates2bearing:coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude];
         }];
@@ -651,7 +651,7 @@
             NSInteger variationM = [[self configGet:@"distance_variationM"] integerValue];
             NSInteger variationKm = [[self configGet:@"distance_variationKm"] integerValue];
 
-            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                 BOOL fine = NO;
                 switch (compareDistance) {
                     case FILTER_DISTANCE_LESSTHAN:
@@ -683,7 +683,7 @@
             NSLog(@"%@ - Filtering direction", [self class]);
             NSInteger direction = [[self configGet:@"direction_direction"] integerValue];
 
-            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                 BOOL fine = NO;
 
                 if (direction == FILTER_DIRECTIONS_NORTH     && (wp.calculatedBearing <=  45 || wp.calculatedBearing >= 315)) fine = YES;
@@ -759,7 +759,7 @@
 - (dbWaypoint *)waypoint_byId:(NSId)_id
 {
     __block dbWaypoint *cwp = nil;
-    [self.currentWaypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.currentWaypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
         if (wp._id == _id) {
             cwp = wp;
             *stop = YES;
@@ -771,7 +771,7 @@
 - (dbWaypoint *)waypoint_byName:(NSString *)name
 {
     __block dbWaypoint *cwp = nil;
-    [self.currentWaypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.currentWaypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([wp.wpt_name isEqualToString:name] == YES) {
             cwp = wp;
             *stop = YES;

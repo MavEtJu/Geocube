@@ -130,7 +130,7 @@ enum {
     [super viewDidAppear:animated];
 
     NSMutableArray<NSString *> *as = [NSMutableArray arrayWithCapacity:20];
-    [[dbExternalMap dbAll] enumerateObjectsUsingBlock:^(dbExternalMap *em, NSUInteger idx, BOOL * _Nonnull stop) {
+    [[dbExternalMap dbAll] enumerateObjectsUsingBlock:^(dbExternalMap * _Nonnull em, NSUInteger idx, BOOL * _Nonnull stop) {
         [as addObject:em.name];
     }];
     externalMapTypes = as;
@@ -452,7 +452,7 @@ enum sections {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-External Maps");
                     __block NSString *name = nil;
-                    [[dbExternalMap dbAll] enumerateObjectsUsingBlock:^(dbExternalMap *em, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [[dbExternalMap dbAll] enumerateObjectsUsingBlock:^(dbExternalMap * _Nonnull em, NSUInteger idx, BOOL * _Nonnull stop) {
                         if (em.geocube_id == configManager.mapExternal) {
                             name = em.name;
                             *stop = YES;
@@ -578,7 +578,7 @@ enum sections {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Default map");
                     __block NSString *value = nil;
-                    [mapBrandsCodes enumerateObjectsUsingBlock:^(NSString *k, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [mapBrandsCodes enumerateObjectsUsingBlock:^(NSString * _Nonnull k, NSUInteger idx, BOOL * _Nonnull stop) {
                         if ([k isEqualToString:configManager.mapBrandDefault] == YES) {
                             value = [mapBrandsNames objectAtIndex:idx];
                             *stop = YES;
@@ -1433,7 +1433,7 @@ enum sections {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:SECTION_DYNAMICMAP]];
 
     __block NSInteger selectedSpeed = 0;
-    [speeds enumerateObjectsUsingBlock:^(NSString *speed, NSUInteger idx, BOOL * _Nonnull stop) {
+    [speeds enumerateObjectsUsingBlock:^(NSString * _Nonnull speed, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([currentSpeed isEqualToString:speed] == YES) {
             selectedSpeed = idx;
             *stop = YES;
@@ -1498,7 +1498,7 @@ enum sections {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:SECTION_DYNAMICMAP]];
 
     __block NSInteger selectedDistance = 0;
-    [distances enumerateObjectsUsingBlock:^(NSString *distance, NSUInteger idx, BOOL * _Nonnull stop) {
+    [distances enumerateObjectsUsingBlock:^(NSString * _Nonnull distance, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([currentDistance isEqualToString:distance] == YES) {
             selectedDistance = idx;
             *stop = YES;
@@ -1538,7 +1538,7 @@ enum sections {
 - (void)changeImportsQueryTimeout
 {
     __block NSInteger currentChoice = 10;   // 600 seconds
-    [downloadQueryTimeouts enumerateObjectsUsingBlock:^(NSString *s, NSUInteger idx, BOOL * _Nonnull stop) {
+    [downloadQueryTimeouts enumerateObjectsUsingBlock:^(NSString * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([s integerValue] == configManager.downloadTimeoutQuery) {
             currentChoice = idx;
             *stop = YES;
@@ -1566,7 +1566,7 @@ enum sections {
 - (void)changeImportsSimpleTimeout
 {
     __block NSInteger currentChoice = 4;   // 120 seconds
-    [downloadSimpleTimeouts enumerateObjectsUsingBlock:^(NSString *s, NSUInteger idx, BOOL * _Nonnull stop) {
+    [downloadSimpleTimeouts enumerateObjectsUsingBlock:^(NSString * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([s integerValue] == configManager.downloadTimeoutSimple) {
             currentChoice = idx;
             *stop = YES;
@@ -1602,7 +1602,7 @@ enum sections {
 - (void)changeMapCacheMaxAge
 {
     __block NSInteger currentChoice = 14;   // 30 days
-    [mapcacheMaxAgeValues enumerateObjectsUsingBlock:^(NSString *s, NSUInteger idx, BOOL * _Nonnull stop) {
+    [mapcacheMaxAgeValues enumerateObjectsUsingBlock:^(NSString * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([s integerValue] == configManager.mapcacheMaxAge) {
             currentChoice = idx;
             *stop = YES;
@@ -1629,7 +1629,7 @@ enum sections {
 
 - (void)changeMapCacheMaxSize
 {    __block NSInteger currentChoice = 10;   // 250 Mb
-    [mapcacheMaxSizeValues enumerateObjectsUsingBlock:^(NSString *s, NSUInteger idx, BOOL * _Nonnull stop) {
+    [mapcacheMaxSizeValues enumerateObjectsUsingBlock:^(NSString * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([s integerValue] == configManager.mapcacheMaxSize) {
             currentChoice = idx;
             *stop = YES;
@@ -1700,7 +1700,7 @@ enum sections {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_THEME_ORIENTATIONS inSection:SECTION_THEME]];
 
     __block NSInteger orientationIndex = 0;
-    [orientationValues enumerateObjectsUsingBlock:^(NSNumber *n, NSUInteger idx, BOOL * _Nonnull stop) {
+    [orientationValues enumerateObjectsUsingBlock:^(NSNumber * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([n integerValue] == configManager.orientationsAllowed) {
             orientationIndex = idx;
             *stop = YES;
@@ -2004,7 +2004,7 @@ enum sections {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_MAPS_DEFAULTBRAND inSection:SECTION_MAPS]];
 
     __block NSInteger initial = 0;
-    [mapBrandsCodes enumerateObjectsUsingBlock:^(NSString *k, NSUInteger idx, BOOL * _Nonnull stop) {
+    [mapBrandsCodes enumerateObjectsUsingBlock:^(NSString * _Nonnull k, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([k isEqualToString:configManager.mapBrandDefault] == YES) {
             initial = idx;
             *stop = YES;
@@ -2032,7 +2032,7 @@ enum sections {
 {
     NSArray<dbExternalMap *> *maps = [dbExternalMap dbAll];
     __block NSInteger initial = 0;
-    [maps enumerateObjectsUsingBlock:^(dbExternalMap *map, NSUInteger idx, BOOL * _Nonnull stop) {
+    [maps enumerateObjectsUsingBlock:^(dbExternalMap * _Nonnull map, NSUInteger idx, BOOL * _Nonnull stop) {
         if (map.geocube_id == configManager.mapExternal) {
             initial = idx;
             *stop = YES;

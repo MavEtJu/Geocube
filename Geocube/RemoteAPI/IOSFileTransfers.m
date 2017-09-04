@@ -94,7 +94,7 @@ enum {
 {
     NSArray<NSString *> *files = [fileManager contentsOfDirectoryAtPath:[MyTools DocumentRoot] error:nil];
 
-    [files enumerateObjectsUsingBlock:^(NSString *file, NSUInteger idx, BOOL *stop) {
+    [files enumerateObjectsUsingBlock:^(NSString * _Nonnull file, NSUInteger idx, BOOL * _Nonnull stop) {
         /*
          * Do not move directories.
          * Do not move database.

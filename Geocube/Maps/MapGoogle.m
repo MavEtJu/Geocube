@@ -109,13 +109,13 @@
 
 - (void)removeMarkers
 {
-    [markers enumerateObjectsUsingBlock:^(GMSMarker *m, NSUInteger idx, BOOL *stop) {
+    [markers enumerateObjectsUsingBlock:^(GMSMarker * _Nonnull m, NSUInteger idx, BOOL * _Nonnull stop) {
         m.map = nil;
         m = nil;
     }];
     markers = nil;
 
-    [circles enumerateObjectsUsingBlock:^(GCGMSCircle *c, NSUInteger idx, BOOL *stop) {
+    [circles enumerateObjectsUsingBlock:^(GCGMSCircle * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
         c.map = nil;
         c = nil;
     }];
@@ -149,7 +149,7 @@
 - (void)placeMarkers
 {
     // Remove everything from the map
-    [markers enumerateObjectsUsingBlock:^(GMSMarker *m, NSUInteger idx, BOOL *stop) {
+    [markers enumerateObjectsUsingBlock:^(GMSMarker * _Nonnull m, NSUInteger idx, BOOL * _Nonnull stop) {
         m.map = nil;
     }];
     markers = nil;
@@ -157,7 +157,7 @@
     // Add the new markers to the map
     markers = [NSMutableArray arrayWithCapacity:20];
     circles = [NSMutableArray arrayWithCapacity:20];
-    [self.mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+    [self.mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
         [markers addObject:[self makeMarker:wp]];
 
         if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES)
@@ -169,7 +169,7 @@
 {
     // Add a new marker
     __block BOOL found = NO;
-    [markers enumerateObjectsUsingBlock:^(GMSMarker *m, NSUInteger idx, BOOL *stop) {
+    [markers enumerateObjectsUsingBlock:^(GMSMarker * _Nonnull m, NSUInteger idx, BOOL * _Nonnull stop) {
         dbObject *o = (dbObject *)m.userData;
         if (wp._id == o._id) {
             found = YES;
@@ -193,7 +193,7 @@
 {
     // Remove an new marker
     __block NSUInteger idx = NSNotFound;
-    [markers enumerateObjectsUsingBlock:^(GMSMarker *m, NSUInteger idxx, BOOL *stop) {
+    [markers enumerateObjectsUsingBlock:^(GMSMarker * _Nonnull m, NSUInteger idxx, BOOL * _Nonnull stop) {
         dbObject *o = (dbObject *)m.userData;
         if (wp._id == o._id) {
             idx = idxx;
@@ -208,7 +208,7 @@
 
     // Remove the boundary if needed
     if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
-        [circles enumerateObjectsUsingBlock:^(GCGMSCircle *c, NSUInteger idx, BOOL *stop) {
+        [circles enumerateObjectsUsingBlock:^(GCGMSCircle * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
             if (c.userData == wp) {
                 [circles removeObjectAtIndex:idx];
                 c.map = nil;
@@ -221,7 +221,7 @@
 - (void)updateMarker:(dbWaypoint *)wp
 {
     __block NSUInteger idx = NSNotFound;
-    [markers enumerateObjectsUsingBlock:^(GMSMarker *m, NSUInteger idxx, BOOL *stop) {
+    [markers enumerateObjectsUsingBlock:^(GMSMarker * _Nonnull m, NSUInteger idxx, BOOL * _Nonnull stop) {
         dbObject *o = (dbObject *)m.userData;
         if (wp._id == o._id) {
             idx = idxx;
@@ -366,7 +366,7 @@
     if (self.staticHistory == YES)
         return;
 
-    [LM.coordsHistorical enumerateObjectsUsingBlock:^(GCCoordsHistorical *mho, NSUInteger idx, BOOL * _Nonnull stop) {
+    [LM.coordsHistorical enumerateObjectsUsingBlock:^(GCCoordsHistorical * _Nonnull mho, NSUInteger idx, BOOL * _Nonnull stop) {
         if (mho.restart == NO) {
             [lastPathHistory addCoordinate:mho.coord];
             return;
@@ -458,7 +458,7 @@
     top = -180;
     bottom = 180;
 
-    [[dbTrackElement dbAllByTrack:track] enumerateObjectsUsingBlock:^(dbTrackElement *te, NSUInteger idx, BOOL * _Nonnull stop) {
+    [[dbTrackElement dbAllByTrack:track] enumerateObjectsUsingBlock:^(dbTrackElement * _Nonnull te, NSUInteger idx, BOOL * _Nonnull stop) {
         bottom = MIN(bottom, te.lat);
         top = MAX(top, te.lat);
         right = MAX(right, te.lon);

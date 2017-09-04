@@ -27,7 +27,7 @@
 
 + (NSArray<dbWaypoint *> *)resortWaypoints:(NSArray<dbWaypoint *> *)wps waypointsSortOrder:(SortOrderWaypoints)newSortOrder
 {
-    [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+    [wps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
         wp.calculatedDistance = [Coordinates coordinates2distance:LM.coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude];
         wp.calculatedBearing = [Coordinates coordinates2bearing:wp.wpt_latitude fromLongitude:wp.wpt_longitude to:LM.coords];
     }];
@@ -83,7 +83,7 @@
 
 + (NSArray<dbWaypoint *> *)resortWaypoints:(NSArray<dbWaypoint *> *)wps locationlessSortOrder:(SortOrderLocationless)newSortOrder
 {
-    [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+    [wps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
         wp.calculatedDistance = [Coordinates coordinates2distance:LM.coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude];
         wp.calculatedBearing = [Coordinates coordinates2bearing:wp.wpt_latitude fromLongitude:wp.wpt_longitude to:LM.coords];
     }];
@@ -127,7 +127,7 @@
 
 + (NSArray<dbWaypoint *> *)resortWaypoints:(NSArray<dbWaypoint *> *)wps listSortOrder:(SortOrderList)newSortOrder flag:(Flag)flag
 {
-    [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+    [wps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
         wp.calculatedDistance = [Coordinates coordinates2distance:LM.coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude];
         wp.calculatedBearing = [Coordinates coordinates2bearing:wp.wpt_latitude fromLongitude:wp.wpt_longitude to:LM.coords];
     }];

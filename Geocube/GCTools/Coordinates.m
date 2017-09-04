@@ -482,7 +482,7 @@
     NSRegularExpression *rns = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([%@]%@)", _(@"compass-NSns"), COORDS_REGEXP] options:0 error:&e];
     NSRegularExpression *rew = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([%@]%@)", _(@"compass-EWew"), COORDS_REGEXP] options:0 error:&e];
 
-    [lines enumerateObjectsUsingBlock:^(NSString *line, NSUInteger idx, BOOL * _Nonnull stop) {
+    [lines enumerateObjectsUsingBlock:^(NSString * _Nonnull line, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *NS = nil;
         NSString *EW = nil;
 

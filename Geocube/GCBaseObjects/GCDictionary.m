@@ -45,7 +45,7 @@
     return [d valueForKey:aKey];
 }
 
-- (void)enumerateKeysAndObjectsUsingBlock:(void (NS_NOESCAPE ^)(id key, id obj, BOOL *stop))block
+- (void)enumerateKeysAndObjectsUsingBlock:(void (NS_NOESCAPE ^)(id key, id obj, BOOL * _Nonnull stop))block
 {
     [d enumerateKeysAndObjectsUsingBlock:block];
 }

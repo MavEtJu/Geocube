@@ -92,19 +92,19 @@ enum {
 {
     __block NSInteger needsDownload = NO;
     __block NSInteger needsDelete = NO;
-    [userImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL * _Nonnull stop) {
+    [userImages enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([img imageHasBeenDowloaded] == NO)
             needsDownload = YES;
         else
             needsDelete = YES;
     }];
-    [cacheImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL * _Nonnull stop) {
+    [cacheImages enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([img imageHasBeenDowloaded] == NO)
             needsDownload = YES;
         else
             needsDelete = YES;
     }];
-    [logImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL * _Nonnull stop) {
+    [logImages enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([img imageHasBeenDowloaded] == NO)
             needsDownload = YES;
         else
@@ -158,7 +158,7 @@ enum {
     InfoItemID iii = [iii_ integerValue];
     [infoView setDescription:iii description:_(@"waypointimagesviewcontroller-Images from the logs")];
 
-    [logImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
+    [logImages enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
         [infoView setQueueSize:iii queueSize:[logImages count] - idx];
         if ([img imageHasBeenDowloaded] == NO) {
             [self downloadImage:img infoViewer:infoView iiImage:iii];
@@ -178,7 +178,7 @@ enum {
     InfoItemID iii = [iii_ integerValue];
     [infoView setDescription:iii description:_(@"waypointimagesviewcontroller-Images from the waypoint")];
 
-    [cacheImages enumerateObjectsUsingBlock:^(dbImage *img, NSUInteger idx, BOOL *stop) {
+    [cacheImages enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
         [infoView setQueueSize:iii queueSize:[cacheImages count] - idx];
         if ([img imageHasBeenDowloaded] == NO)
             [self downloadImage:img infoViewer:infoView iiImage:iii];
@@ -445,7 +445,7 @@ enum {
 
 - (void)deleteAllPhotos:(NSArray<dbImage *> *)images
 {
-    [images enumerateObjectsUsingBlock:^(dbImage *image, NSUInteger idx, BOOL * _Nonnull stop) {
+    [images enumerateObjectsUsingBlock:^(dbImage * _Nonnull image, NSUInteger idx, BOOL * _Nonnull stop) {
         [fileManager removeItemAtPath:[MyTools ImageFile:image.datafile] error:nil];
     }];
 }

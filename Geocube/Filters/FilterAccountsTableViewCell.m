@@ -46,7 +46,7 @@
 
     accounts = [dbc Accounts];
 
-    [accounts enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
+    [accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *s = [NSString stringWithFormat:@"account_%ld", (long)a._id];
         NSString *c = [self configGet:s];
         if (c == nil)

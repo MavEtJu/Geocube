@@ -367,7 +367,7 @@
 
 - (void)resizeControllers:(CGSize)size coordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
-    [self.tabBars enumerateObjectsUsingBlock:^(MHTabBarController *vc, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.tabBars enumerateObjectsUsingBlock:^(MHTabBarController * _Nonnull vc, NSUInteger idx, BOOL * _Nonnull stop) {
         [vc resizeController:size coordinator:coordinator];
     }];
 }

@@ -202,7 +202,7 @@ enum {
         return nil;
 
     __block CGFloat x0 = +180, x3 = -180, y0 = +180, y3 = -180;
-    [coords enumerateObjectsUsingBlock:^(GCLocationCoordinate2D *c, NSUInteger idx, BOOL *stop) {
+    [coords enumerateObjectsUsingBlock:^(GCLocationCoordinate2D * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
         x0 = MIN(x0, c.lon);
         x3 = MAX(x3, c.lon);
         y0 = MIN(y0, c.lat);
@@ -248,7 +248,7 @@ enum {
     GCLocationCoordinate2D *avg = [[GCLocationCoordinate2D alloc] init];
     CGContextSetLineWidth(context, 1);
     __block NSInteger countavg = 0;
-    [coords enumerateObjectsUsingBlock:^(GCLocationCoordinate2D *c, NSUInteger idx, BOOL * _Nonnull stop) {
+    [coords enumerateObjectsUsingBlock:^(GCLocationCoordinate2D * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
         CGContextSetStrokeColorWithColor(context, [[UIColor colorWithWhite:(1.0 - 1.0 * (idx + 1) / [coords count]) alpha:1] CGColor]);
         CGFloat xx = [self xtrack:c.lon x0:x0 X:X x3:x3];
         CGFloat yy = [self ytrack:c.lat y0:y0 Y:Y y3:y3];

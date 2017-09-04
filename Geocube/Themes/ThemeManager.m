@@ -64,10 +64,10 @@ ThemeManager *themeManager;
             break;
     }
 
-    [_AppDelegate.tabBars enumerateObjectsUsingBlock:^(MHTabBarController *tb, NSUInteger tidx, BOOL *stop) {
+    [_AppDelegate.tabBars enumerateObjectsUsingBlock:^(MHTabBarController * _Nonnull tb, NSUInteger tidx, BOOL * _Nonnull stop) {
         [tb changeTheme];
-        [tb.viewControllers enumerateObjectsUsingBlock:^(UINavigationController *nvc, NSUInteger nvidx, BOOL *stop) {
-            [nvc.viewControllers enumerateObjectsUsingBlock:^(GCViewController *vc, NSUInteger vcidx, BOOL *stop) {
+        [tb.viewControllers enumerateObjectsUsingBlock:^(UINavigationController * _Nonnull nvc, NSUInteger nvidx, BOOL * _Nonnull stop) {
+            [nvc.viewControllers enumerateObjectsUsingBlock:^(GCViewController * _Nonnull vc, NSUInteger vcidx, BOOL * _Nonnull stop) {
                 NSLog(@"%ld %ld %ld", (unsigned long)tidx, (unsigned long)nvidx, (unsigned long)vcidx);
                 [vc changeTheme];
             }];
@@ -99,7 +99,7 @@ ThemeManager *themeManager;
 
 - (void)changeThemeArray:(NSArray<UIView *> *)vs
 {
-    [vs enumerateObjectsUsingBlock:^(UIView *v, NSUInteger idx, BOOL *stop) {
+    [vs enumerateObjectsUsingBlock:^(UIView * _Nonnull v, NSUInteger idx, BOOL * _Nonnull stop) {
         [self changeTheme_:v];
     }];
 }

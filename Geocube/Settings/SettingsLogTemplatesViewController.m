@@ -347,7 +347,7 @@ indexPath
     NSLog(@"Exporting to %@", fn);
 
     NSMutableString *line = [NSMutableString string];
-    [lines enumerateObjectsUsingBlock:^(NSString *l, NSUInteger idx, BOOL * _Nonnull stop) {
+    [lines enumerateObjectsUsingBlock:^(NSString * _Nonnull l, NSUInteger idx, BOOL * _Nonnull stop) {
         [line appendString:l];
         [line appendString:@"\n"];
     }];

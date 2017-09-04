@@ -116,7 +116,7 @@ enum {
 
     NSArray<dbAccount *> *accounts = [dbc Accounts];
     __block NSInteger accountsFound = 0;
-    [accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL * _Nonnull stop) {
+    [accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull account, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([account.remoteAPI supportsLoadWaypointsByBoundaryBox] == NO)
             return;
         if ([account canDoRemoteStuff] == NO)
@@ -153,8 +153,8 @@ enum {
     if (currentRun == RUN_BOUNDINGBOX) {
         // Now need to find all the waypoints which weren't found
         NSMutableArray<dbWaypoint *> *waypoints = [NSMutableArray arrayWithArray:oldWaypoints];
-        [newWaypoints enumerateObjectsUsingBlock:^(NSString *wpn, NSUInteger nidx, BOOL *stop) {
-            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wpo, NSUInteger oidx, BOOL *stop) {
+        [newWaypoints enumerateObjectsUsingBlock:^(NSString * _Nonnull wpn, NSUInteger nidx, BOOL * _Nonnull stop) {
+            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wpo, NSUInteger oidx, BOOL * _Nonnull stop) {
                 if ([wpo.wpt_name isEqualToString:wpn] == YES) {
                     [waypoints removeObjectAtIndex:oidx];
                     *stop = YES;
@@ -175,12 +175,12 @@ enum {
 
         // Deal with the waypoints by account
         NSArray<dbAccount *> *accounts = [dbc Accounts];
-        [accounts enumerateObjectsUsingBlock:^(dbAccount *account, NSUInteger idx, BOOL * _Nonnull stop) {
+        [accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull account, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([account canDoRemoteStuff] == NO)
                 return;
 
             NSMutableArray<dbWaypoint *> *wps = [NSMutableArray arrayWithCapacity:[waypoints count]];
-            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                 if (wp.account._id == account._id)
                     [wps addObject:wp];
             }];
@@ -191,7 +191,7 @@ enum {
             InfoItemID iid = [infoView addDownload:YES];
             [infoView setDescription:iid description:account.site];
             NSMutableArray<NSString *> *wpnames = [NSMutableArray arrayWithCapacity:[wps count]];
-            [wps enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL * _Nonnull stop) {
+            [wps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                 [wpnames addObject:wp.wpt_name];
             }];
             [processing addIdentifier:(long)account._id];

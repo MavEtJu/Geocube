@@ -80,7 +80,7 @@
 
     NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     NSArray<NSHTTPCookie *> *cookies = [cookiemgr cookiesForURL:req.URL];
-    [cookies enumerateObjectsUsingBlock:^(NSHTTPCookie *c, NSUInteger idx, BOOL *stop) {
+    [cookies enumerateObjectsUsingBlock:^(NSHTTPCookie * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([c.name isEqualToString:account.gca_cookie_name] == YES)
             [cookiemgr deleteCookie:c];
         if ([c.name isEqualToString:@"country_region"] == YES)
@@ -109,7 +109,7 @@
 
     // Check if the authentication cookie is there, but don't complain about it yet.
     cookies = [cookiemgr cookiesForURL:req.URL];
-    [cookies enumerateObjectsUsingBlock:^(NSHTTPCookie *cookie, NSUInteger idx, BOOL *stop) {
+    [cookies enumerateObjectsUsingBlock:^(NSHTTPCookie * _Nonnull cookie, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([cookie.name isEqualToString:account.gca_cookie_name] == NO)
             return;
 
@@ -391,7 +391,7 @@
     [params setObject:imgdata forKey:@"image"];
 
     NSMutableData *body = [NSMutableData data];
-    [[params allKeys] enumerateObjectsUsingBlock:^(NSString *k, NSUInteger idx, BOOL *stop) {
+    [[params allKeys] enumerateObjectsUsingBlock:^(NSString * _Nonnull k, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([k isEqualToString:@"image"] == YES) {
             [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
             [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"photo.jpg\"\r\n", k] dataUsingEncoding:NSUTF8StringEncoding]];

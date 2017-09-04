@@ -80,7 +80,7 @@ enum {
 
     LogStringWPType wptype = [dbLogString wptTypeToWPType:waypoint.wpt_type.type_full];
     logstrings = [dbLogString dbAllByProtocolWPType_LogOnly:waypoint.account.protocol wptype:wptype];
-    [logstrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL * _Nonnull stop) {
+    [logstrings enumerateObjectsUsingBlock:^(dbLogString * _Nonnull ls, NSUInteger idx, BOOL * _Nonnull stop) {
         if (ls.defaultFound == YES) {
             logstring = ls;
             *stop = YES;
@@ -250,7 +250,7 @@ enum {
                         __block NSInteger pickedup = 0;
                         __block NSInteger droppedoff = 0;
                         __block NSInteger noaction = 0;
-                        [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
+                        [trackables enumerateObjectsUsingBlock:^(dbTrackable * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {
                             switch (tb.logtype) {
                                 case TRACKABLE_LOG_NONE: noaction++; break;
                                 case TRACKABLE_LOG_DISCOVER: discovered++; break;
@@ -406,7 +406,7 @@ enum {
 
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_LOGDETAILS_TYPE inSection:SECTION_LOGDETAILS]];
 
-    [logstrings enumerateObjectsUsingBlock:^(dbLogString *ls, NSUInteger idx, BOOL *stop) {
+    [logstrings enumerateObjectsUsingBlock:^(dbLogString * _Nonnull ls, NSUInteger idx, BOOL * _Nonnull stop) {
         if (ls == logstring)
             selected = idx;
         NSString *s = [NSString stringWithFormat:@"logstring-%@", ls.displayString];
@@ -634,7 +634,7 @@ enum {
     [bezelManager removeBezel];
 
     if ([waypoint.account.remoteAPI supportsTrackables] == YES) {
-        [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
+        [trackables enumerateObjectsUsingBlock:^(dbTrackable * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {
             if (tb.logtype == TRACKABLE_LOG_DROPOFF) {
                 tb.logtype = TRACKABLE_LOG_NONE;
                 tb.carrier = nil;

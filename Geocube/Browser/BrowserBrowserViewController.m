@@ -194,7 +194,7 @@ enum {
         [url length] >= [oabb.callback length] &&
         [[url substringToIndex:[oabb.callback length]] isEqualToString:oabb.callback] == YES) {
         // In body: oauth_token=MyEhWdraaVDuUyvqRwxr&oauth_verifier=56536006
-        [[query componentsSeparatedByString:@"&"] enumerateObjectsUsingBlock:^(NSString *keyvalue, NSUInteger idx, BOOL *stop) {
+        [[query componentsSeparatedByString:@"&"] enumerateObjectsUsingBlock:^(NSString * _Nonnull keyvalue, NSUInteger idx, BOOL * _Nonnull stop) {
             NSArray<NSString *> *ss = [keyvalue componentsSeparatedByString:@"="];
             NSString *key = [ss objectAtIndex:0];
             NSString *value = [ss objectAtIndex:1];
@@ -220,7 +220,7 @@ enum {
         NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
         NSArray<NSHTTPCookie *> *cookies = [cookiemgr cookiesForURL:req.URL];
 
-        [cookies enumerateObjectsUsingBlock:^(NSHTTPCookie *cookie, NSUInteger idx, BOOL *stop) {
+        [cookies enumerateObjectsUsingBlock:^(NSHTTPCookie * _Nonnull cookie, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([cookie.name isEqualToString:@"gspkauth"] == NO)
                 return;
 
@@ -279,7 +279,7 @@ enum {
     NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     NSArray<NSHTTPCookie *> *cookies = cookiemgr.cookies;
 
-    [cookies enumerateObjectsUsingBlock:^(NSHTTPCookie *cookie, NSUInteger idx, BOOL *stop) {
+    [cookies enumerateObjectsUsingBlock:^(NSHTTPCookie * _Nonnull cookie, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([cookie.name isEqualToString:@"gspkauth"] == NO)
             return;
 

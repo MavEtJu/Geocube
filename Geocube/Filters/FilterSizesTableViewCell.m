@@ -48,7 +48,7 @@
     CGSize imgSize = img.size;
 
     containers = [dbc Containers];
-    [containers enumerateObjectsUsingBlock:^(dbContainer *c, NSUInteger idx, BOOL *stop) {
+    [containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
         UIImage *img = [imageLibrary get:c.icon];
         if (img != nil) {
             CGRect rect = CGRectMake(20, y, imgSize.width, imgSize.height);

@@ -235,7 +235,7 @@
 
         DB_PREPARE(@"begin");
         DB_CHECK_OKAY;
-        [[upgradeSteps objectAtIndex:version] enumerateObjectsUsingBlock:^(NSString *sql, NSUInteger idx, BOOL *stop) {
+        [[upgradeSteps objectAtIndex:version] enumerateObjectsUsingBlock:^(NSString * _Nonnull sql, NSUInteger idx, BOOL * _Nonnull stop) {
             DB_PREPARE(sql);
             if (sqlite3_step(req) != SQLITE_DONE) {
                 NSLog(@"Failure of '%@'", sql);

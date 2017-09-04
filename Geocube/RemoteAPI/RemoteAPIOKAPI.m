@@ -192,7 +192,7 @@
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
     NSMutableArray<dbWaypoint *> *wps = [NSMutableArray arrayWithCapacity:[wpcodes count]];
-    [wpcodes enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL *stop) {
+    [wpcodes enumerateObjectsUsingBlock:^(NSString * _Nonnull wpcode, NSUInteger idx, BOOL * _Nonnull stop) {
         [wps addObject:[json objectForKey:wpcode]];
     }];
     [d setObject:wps forKey:@"waypoints"];

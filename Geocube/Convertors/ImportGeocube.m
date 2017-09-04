@@ -258,7 +258,7 @@ typedef NS_ENUM(NSInteger, Type) {
     if ([notices isKindOfClass:[NSDictionary class]] == YES)
         notices = @[notices];
 
-    [notices enumerateObjectsUsingBlock:^(NSDictionary *notice, NSUInteger idx, BOOL * _Nonnull stop) {
+    [notices enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull notice, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *geocube_id = [notice objectForKey:@"id"];
         [infoViewer setLineObjectCount:iiImport count:idx + 1];
 
@@ -305,7 +305,7 @@ typedef NS_ENUM(NSInteger, Type) {
     if ([sites isKindOfClass:[NSDictionary class]] == YES)
         sites = @[sites];
     [infoViewer setLineObjectTotal:iiImport total:[sites count] isLines:NO];
-    [sites enumerateObjectsUsingBlock:^(NSDictionary *site, NSUInteger idx, BOOL * _Nonnull stop) {
+    [sites enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull site, NSUInteger idx, BOOL * _Nonnull stop) {
         [infoViewer setLineObjectCount:iiImport count:idx + 1];
         NSString *_id = [site objectForKey:@"id"];
         NSString *revision = [site objectForKey:@"revision"];
@@ -403,7 +403,7 @@ typedef NS_ENUM(NSInteger, Type) {
 
     NSArray<NSDictionary *> *keys = [dict objectForKey:@"externalmap"];
     [infoViewer setLineObjectTotal:iiImport total:[keys count] isLines:NO];
-    [keys enumerateObjectsUsingBlock:^(NSDictionary *key, NSUInteger idx, BOOL * _Nonnull stop) {
+    [keys enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull key, NSUInteger idx, BOOL * _Nonnull stop) {
         NSInteger gc_id = [[key objectForKey:@"id"] integerValue];
         NSString *enabled = [key objectForKey:@"enabled"];
         KEY(key, name, @"name");
@@ -427,7 +427,7 @@ typedef NS_ENUM(NSInteger, Type) {
         [dbExternalMapURL dbDeleteByExternalMap:em];
 
         NSArray<NSDictionary *> *urls = [key objectForKey:@"url"];
-        [urls enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
+        [urls enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dict, NSUInteger idx, BOOL * _Nonnull stop) {
             NSString *model = [dict objectForKey:@"model"];
             NSInteger type = [[dict objectForKey:@"type"] integerValue];
             NSString *url = [dict objectForKey:@"text"];
@@ -453,7 +453,7 @@ typedef NS_ENUM(NSInteger, Type) {
 
     NSArray<NSDictionary *> *attrs = [dict objectForKey:@"attribute"];
     [infoViewer setLineObjectTotal:iiImport total:[attrs count] isLines:NO];
-    [attrs enumerateObjectsUsingBlock:^(NSDictionary *attr, NSUInteger idx, BOOL * _Nonnull stop) {
+    [attrs enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull attr, NSUInteger idx, BOOL * _Nonnull stop) {
         [infoViewer setLineObjectCount:iiImport count:idx + 1];
         NSInteger gc_id = [[attr objectForKey:@"gc_id"] integerValue];
         NSInteger icon = [[attr objectForKey:@"icon"] integerValue];
@@ -484,7 +484,7 @@ typedef NS_ENUM(NSInteger, Type) {
 
     NSArray<NSDictionary *> *states = [dict objectForKey:@"state"];
     [infoViewer setLineObjectTotal:iiImport total:[states count] isLines:NO];
-    [states enumerateObjectsUsingBlock:^(NSDictionary *state, NSUInteger idx, BOOL * _Nonnull stop) {
+    [states enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull state, NSUInteger idx, BOOL * _Nonnull stop) {
         [infoViewer setLineObjectCount:iiImport count:idx + 1];
         NSString *abbr = [state objectForKey:@"abbr"];
         NSString *name = [state objectForKey:@"name"];
@@ -513,7 +513,7 @@ typedef NS_ENUM(NSInteger, Type) {
 
     NSArray<NSDictionary *> *countries = [dict objectForKey:@"country"];
     [infoViewer setLineObjectTotal:iiImport total:[countries count] isLines:NO];
-    [countries enumerateObjectsUsingBlock:^(NSDictionary *country, NSUInteger idx, BOOL * _Nonnull stop) {
+    [countries enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull country, NSUInteger idx, BOOL * _Nonnull stop) {
         [infoViewer setLineObjectCount:iiImport count:idx + 1];
         NSString *abbr = [country objectForKey:@"abbr"];
         NSString *name = [country objectForKey:@"name"];
@@ -542,7 +542,7 @@ typedef NS_ENUM(NSInteger, Type) {
 
     NSArray<NSDictionary *> *types = [dict objectForKey:@"type"];
     [infoViewer setLineObjectTotal:iiImport total:[types count] isLines:NO];
-    [types enumerateObjectsUsingBlock:^(NSDictionary *type, NSUInteger idx, BOOL * _Nonnull stop) {
+    [types enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull type, NSUInteger idx, BOOL * _Nonnull stop) {
         [infoViewer setLineObjectCount:iiImport count:idx + 1];
         NSString *major = [type objectForKey:@"major"];
         NSString *minor = [type objectForKey:@"minor"];
@@ -585,7 +585,7 @@ typedef NS_ENUM(NSInteger, Type) {
 
     NSArray<NSDictionary *> *pins = [dict objectForKey:@"pin"];
     [infoViewer setLineObjectTotal:iiImport total:[pins count] isLines:NO];
-    [pins enumerateObjectsUsingBlock:^(NSDictionary *pin, NSUInteger idx, BOOL * _Nonnull stop) {
+    [pins enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull pin, NSUInteger idx, BOOL * _Nonnull stop) {
         [infoViewer setLineObjectCount:iiImport count:idx + 1];
         NSString *description = [pin objectForKey:@"description"];
         NSString *rgb = [pin objectForKey:@"rgb"];
@@ -620,7 +620,7 @@ typedef NS_ENUM(NSInteger, Type) {
 
     NSArray<NSDictionary *> *bookmarks = [dict objectForKey:@"bookmark"];
     [infoViewer setLineObjectTotal:iiImport total:[bookmarks count] isLines:NO];
-    [bookmarks enumerateObjectsUsingBlock:^(NSDictionary *bookmark, NSUInteger idx, BOOL * _Nonnull stop) {
+    [bookmarks enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull bookmark, NSUInteger idx, BOOL * _Nonnull stop) {
         [infoViewer setLineObjectCount:iiImport count:idx + 1];
         NSString *description = [bookmark objectForKey:@"description"];
         NSString *url = [bookmark objectForKey:@"url"];
@@ -652,7 +652,7 @@ typedef NS_ENUM(NSInteger, Type) {
 
     NSArray<NSDictionary *> *containers = [dict objectForKey:@"container"];
     [infoViewer setLineObjectTotal:iiImport total:[containers count] isLines:NO];
-    [containers enumerateObjectsUsingBlock:^(NSDictionary *container, NSUInteger idx, BOOL * _Nonnull stop) {
+    [containers enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull container, NSUInteger idx, BOOL * _Nonnull stop) {
         [infoViewer setLineObjectCount:iiImport count:idx + 1];
         NSString *label = [container objectForKey:@"label"];
         NSInteger gc_id = [[container objectForKey:@"gc_id"] integerValue];
@@ -684,7 +684,7 @@ typedef NS_ENUM(NSInteger, Type) {
 
     NSArray<NSDictionary *> *protocols = [dict objectForKey:@"protocol"];
     [infoViewer setLineObjectTotal:iiImport total:[protocols count] isLines:NO];
-    [protocols enumerateObjectsUsingBlock:^(NSDictionary *protocoldict, NSUInteger idx, BOOL * _Nonnull stop) {
+    [protocols enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull protocoldict, NSUInteger idx, BOOL * _Nonnull stop) {
         [infoViewer setLineObjectCount:iiImport count:idx + 1];
         NSString *protocol_name = [protocoldict objectForKey:@"name"];
         dbProtocol *_protocol = [dbProtocol dbGetByName:protocol_name];
@@ -697,7 +697,7 @@ typedef NS_ENUM(NSInteger, Type) {
 //
 //            NSArray<dbLogString *> *as = [dbLogString dbAllByAccount:seeAccount];
 //
-//            [as enumerateObjectsUsingBlock:^(dbLogString *lsOriginal, NSUInteger idx, BOOL * _Nonnull stop) {
+//            [as enumerateObjectsUsingBlock:^(dbLogString * _Nonnull lsOriginal, NSUInteger idx, BOOL * _Nonnull stop) {
 //                dbLogString *lsReplicate = [dbLogString dbGet_byAccountLogtypeType:_account logtype:lsOriginal.logtype type:lsOriginal.type];
 //
 //                lsOriginal.account = _account;
@@ -718,7 +718,7 @@ typedef NS_ENUM(NSInteger, Type) {
         NSArray<NSDictionary *> *logtypes = [protocoldict objectForKey:@"log"];
         if ([logtypes isKindOfClass:[NSDictionary class]] == YES)
             logtypes = @[logtypes];
-        [logtypes enumerateObjectsUsingBlock:^(NSDictionary *logdict, NSUInteger idx, BOOL * _Nonnull stop) {
+        [logtypes enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull logdict, NSUInteger idx, BOOL * _Nonnull stop) {
 
             NSString *displaystring = [logdict objectForKey:@"displaystring"];
             NSString *logstring = [logdict objectForKey:@"logstring"];
@@ -800,7 +800,7 @@ typedef NS_ENUM(NSInteger, Type) {
         [db singleStatement:sql];
     }
     if ([sqls isKindOfClass:[NSArray class]] == YES) {
-        [(NSArray *)sqls enumerateObjectsUsingBlock:^(NSDictionary *sqldict, NSUInteger idx, BOOL * _Nonnull stop) {
+        [(NSArray *)sqls enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull sqldict, NSUInteger idx, BOOL * _Nonnull stop) {
             NSString *sql = [[sqldict objectForKey:@"text"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
             [db singleStatement:sql];
         }];

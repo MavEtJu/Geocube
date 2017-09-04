@@ -64,7 +64,7 @@
     if ([geocaches isKindOfClass:[NSNull class]] == YES)
         return;
     [infoViewer setLineObjectTotal:iiImport total:[geocaches count] isLines:NO];
-    [geocaches enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
+    [geocaches enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull d, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseGeocache:d];
         totalWaypointsCount++;
 
@@ -311,7 +311,7 @@
         return;
     if (wp != nil)
         [dbTrackable dbUnlinkAllFromWaypoint:wp];
-    [trackables enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
+    [trackables enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull d, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseTrackable:d waypoint:wp];
         totalTrackablesCount++;
         [infoViewer setTrackablesTotal:iiImport total:totalTrackablesCount];
@@ -446,7 +446,7 @@
 {
     if ([images isKindOfClass:[NSNull class]] == YES)
         return;
-    [images enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
+    [images enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull d, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseImage:d waypoint:wp imageSource:imageSource];
     }];
 }
@@ -491,7 +491,7 @@
     if ([attributes isKindOfClass:[NSNull class]] == YES)
         return;
     [dbAttribute dbUnlinkAllFromWaypoint:wp];
-    [attributes enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
+    [attributes enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull d, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseAttribute:d waypoint:wp];
     }];
 }
@@ -516,7 +516,7 @@
 {
     if ([wps isKindOfClass:[NSNull class]] == YES)
         return;
-    [wps enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
+    [wps enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull d, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseUserWaypoint:d waypoint:wp];
         totalWaypointsCount++;
         [infoViewer setWaypointsTotal:iiImport total:totalWaypointsCount];
@@ -584,7 +584,7 @@
 {
     if ([wps isKindOfClass:[NSNull class]] == YES)
         return;
-    [wps enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
+    [wps enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull d, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseAdditionalWaypoint:d waypoint:wp];
         totalWaypointsCount++;
         [infoViewer setWaypointsTotal:iiImport total:totalWaypointsCount];
@@ -682,7 +682,7 @@
 {
     if ([logs isKindOfClass:[NSNull class]] == YES)
         return;
-    [logs enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL *stop) {
+    [logs enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull d, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseLog:d waypoint:wp];
         totalLogsCount++;
         [infoViewer setLogsTotal:iiImport total:totalLogsCount];

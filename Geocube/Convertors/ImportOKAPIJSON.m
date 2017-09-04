@@ -47,7 +47,7 @@
 - (void)parseData_caches:(NSArray<NSDictionary *> *)caches
 {
     [infoViewer setLineObjectTotal:iiImport total:[caches count] isLines:NO];
-    [caches enumerateObjectsUsingBlock:^(NSDictionary *cache, NSUInteger idx, BOOL * _Nonnull stop) {
+    [caches enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull cache, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseData_cache:cache];
         totalWaypointsCount++;
         [infoViewer setWaypointsTotal:iiImport total:totalWaypointsCount];
@@ -262,7 +262,7 @@
 - (void)parseData_images:(NSArray<NSDictionary *> *)images waypoint:(dbWaypoint *)wp
 {
     NSLog(@"Image number 0-%lu", (unsigned long)([images count] - 1));
-    [images enumerateObjectsUsingBlock:^(NSDictionary *image, NSUInteger idx, BOOL * _Nonnull stop) {
+    [images enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull image, NSUInteger idx, BOOL * _Nonnull stop) {
         NSLog(@"Image number %ld", (unsigned long)idx);
         [self parseData_image:image waypoint:wp];
     }];
@@ -309,7 +309,7 @@
 {
     NSArray<dbLog *> *alllogs = [dbLog dbAllByWaypoint:wp];
     [infoViewer setLogsTotal:iiImport total:[alllogs count]];
-    [logs enumerateObjectsUsingBlock:^(NSDictionary *log, NSUInteger idx, BOOL * _Nonnull stop) {
+    [logs enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseData_log:log waypoint:wp logs:alllogs];
         totalLogsCount++;
         [infoViewer setLogsTotal:iiImport total:totalLogsCount];
@@ -353,7 +353,7 @@
     [ImagesDownloadManager findImagesInDescription:wp text:comment type:IMAGECATEGORY_LOG];
 
     __block BOOL found = NO;
-    [logs enumerateObjectsUsingBlock:^(dbLog *log, NSUInteger idx, BOOL * _Nonnull stop) {
+    [logs enumerateObjectsUsingBlock:^(dbLog * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
         if (name._id == log.logger._id && dateSinceEpoch == log.datetime_epoch) {
             found = YES;
             *stop = YES;
@@ -372,7 +372,7 @@
 - (void)parseData_trackables:(NSArray<NSDictionary *> *)trackables waypoint:(dbWaypoint *)wp
 {
     [infoViewer setTrackablesTotal:iiImport total:[trackables count]];
-    [trackables enumerateObjectsUsingBlock:^(NSDictionary *trackable, NSUInteger idx, BOOL * _Nonnull stop) {
+    [trackables enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull trackable, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseData_trackable:trackable waypoint:wp];
         totalTrackablesCount++;
         [infoViewer setTrackablesTotal:iiImport total:totalTrackablesCount];

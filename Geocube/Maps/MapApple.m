@@ -127,7 +127,7 @@
     // Creates a marker in the center of the map.
     markers = [NSMutableArray arrayWithCapacity:[self.mapvc.waypointsArray count]];
     circles = [NSMutableArray arrayWithCapacity:[self.mapvc.waypointsArray count]];
-    [self.mapvc.waypointsArray enumerateObjectsUsingBlock:^(NSObject *o, NSUInteger idx, BOOL *stop) {
+    [self.mapvc.waypointsArray enumerateObjectsUsingBlock:^(NSObject * _Nonnull o, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([o isKindOfClass:[dbWaypoint class]] == YES) {
             dbWaypoint *wp = (dbWaypoint *)o;
             // Place a single pin
@@ -162,7 +162,7 @@
 - (void)placeMarker:(dbWaypoint *)wp
 {
     __block BOOL found = NO;
-    [markers enumerateObjectsUsingBlock:^(GCWaypointAnnotation *m, NSUInteger idx, BOOL *stop) {
+    [markers enumerateObjectsUsingBlock:^(GCWaypointAnnotation * _Nonnull m, NSUInteger idx, BOOL * _Nonnull stop) {
         if (wp._id == m.waypoint._id) {
             found = YES;
             *stop = YES;
@@ -194,7 +194,7 @@
     // Take care of the waypoint
     __block GCWaypointAnnotation *annotiation;
     __block NSUInteger idx = NSNotFound;
-    [markers enumerateObjectsUsingBlock:^(GCWaypointAnnotation *m, NSUInteger idxx, BOOL *stop) {
+    [markers enumerateObjectsUsingBlock:^(GCWaypointAnnotation * _Nonnull m, NSUInteger idxx, BOOL * _Nonnull stop) {
         if (wp._id == m.waypoint._id) {
             annotiation = m;
             idx = idxx;
@@ -209,7 +209,7 @@
 
     // Take care of the boundary circles
     if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
-        [circles enumerateObjectsUsingBlock:^(GCCircle *c, NSUInteger idx, BOOL *stop) {
+        [circles enumerateObjectsUsingBlock:^(GCCircle * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
             if (c.waypoint._id == wp._id) {
                 [mapView removeOverlay:c];
                 [circles removeObject:c];
@@ -224,7 +224,7 @@
     // Take care of the waypoint
     __block GCWaypointAnnotation *annotiation;
     __block NSUInteger idx = NSNotFound;
-    [markers enumerateObjectsUsingBlock:^(GCWaypointAnnotation *m, NSUInteger idxx, BOOL *stop) {
+    [markers enumerateObjectsUsingBlock:^(GCWaypointAnnotation * _Nonnull m, NSUInteger idxx, BOOL * _Nonnull stop) {
         if (wp._id == m.waypoint._id) {
             annotiation = m;
             idx = idxx;
@@ -245,7 +245,7 @@
 
     // Take care of the boundary circles
     if (showBoundary == YES) {
-        [circles enumerateObjectsUsingBlock:^(GCCircle *c, NSUInteger idx, BOOL *stop) {
+        [circles enumerateObjectsUsingBlock:^(GCCircle * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
             if (c.waypoint._id == wp._id) {
                 [mapView removeOverlay:c];
                 [circles removeObject:c];
@@ -264,7 +264,7 @@
     if (yesno == YES) {
         showBoundary = YES;
         circles = [NSMutableArray arrayWithCapacity:[self.mapvc.waypointsArray count]];
-        [self.mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint *wp, NSUInteger idx, BOOL *stop) {
+        [self.mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
             if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
                 GCCircle *circle = [GCCircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) radius:wp.account.distance_minimum];
                 circle.waypoint = wp;
@@ -345,7 +345,7 @@
         return vlHistory;
 
     __block MKCircleRenderer *circleRenderer = nil;
-    [circles enumerateObjectsUsingBlock:^(GCCircle *c, NSUInteger idx, BOOL *stop) {
+    [circles enumerateObjectsUsingBlock:^(GCCircle * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
         if (overlay == c) {
             circleRenderer = [[MKCircleRenderer alloc] initWithCircle:overlay];
             circleRenderer.strokeColor = [UIColor blueColor];
@@ -533,7 +533,7 @@
 
     __block CLLocationCoordinate2D *coordinateArray = calloc([LM.coordsHistorical count], sizeof(CLLocationCoordinate2D));
     __block NSInteger counter = 0;
-    [LM.coordsHistorical enumerateObjectsUsingBlock:^(GCCoordsHistorical *mho, NSUInteger idx, BOOL * _Nonnull stop) {
+    [LM.coordsHistorical enumerateObjectsUsingBlock:^(GCCoordsHistorical * _Nonnull mho, NSUInteger idx, BOOL * _Nonnull stop) {
         if (mho.restart == NO) {
             coordinateArray[counter++] = mho.coord;
             return;
@@ -674,7 +674,7 @@
     //  Look through gesture recognizers to determine whether this region change is from user interaction
 
     __block BOOL found = NO;
-    [views enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL * _Nonnull stop) {
+    [views enumerateObjectsUsingBlock:^(UIView * _Nonnull view, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([view isKindOfClass:[UIView class]] == NO)
              return;
         for (UIGestureRecognizer *recognizer in view.gestureRecognizers) {

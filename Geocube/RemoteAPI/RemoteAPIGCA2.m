@@ -190,7 +190,7 @@
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
     NSMutableArray<NSString *> *wps = [NSMutableArray arrayWithCapacity:[wpcodes count]];
-    [wpcodes enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL *stop) {
+    [wpcodes enumerateObjectsUsingBlock:^(NSString * _Nonnull wpcode, NSUInteger idx, BOOL * _Nonnull stop) {
         [wps addObject:[json objectForKey:wpcode]];
     }];
     [d setObject:wps forKey:@"waypoints"];
@@ -230,7 +230,7 @@
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
     NSMutableArray<NSString *> *wps = [NSMutableArray arrayWithCapacity:[wpcodes count]];
-    [wpcodes enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL *stop) {
+    [wpcodes enumerateObjectsUsingBlock:^(NSString * _Nonnull wpcode, NSUInteger idx, BOOL * _Nonnull stop) {
         [wps addObject:[json objectForKey:wpcode]];
     }];
     [d setObject:wps forKey:@"waypoints"];
@@ -261,7 +261,7 @@
     NSMutableArray<NSDictionary *> *as = [NSMutableArray arrayWithCapacity:20];
     GCA2_GET_VALUE(json, NSArray, pqs, @"queries", @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
 
-    [pqs enumerateObjectsUsingBlock:^(NSDictionary *pq, NSUInteger idx, BOOL * _Nonnull stop) {
+    [pqs enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull pq, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:4];
 
         [d setValue:[pq objectForKey:@"description"] forKey:@"Name"];
@@ -290,7 +290,7 @@
     // Find the chunks...
     NSMutableArray<NSArray <NSString *>*> *wpchunks = [NSMutableArray arrayWithCapacity:1 + [wps count] / 100];
     __block NSMutableArray<NSString *> *wpcodes = [NSMutableArray arrayWithCapacity:100];
-    [wps enumerateObjectsUsingBlock:^(NSDictionary *wp, NSUInteger idx, BOOL *stop) {
+    [wps enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
         if (idx % 100 == 0 && [wpcodes count] != 0) {
             [wpchunks addObject:wpcodes];
             wpcodes = [NSMutableArray arrayWithCapacity:100];
@@ -315,7 +315,7 @@
 
         NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
         NSMutableArray<NSDictionary *> *_wps = [NSMutableArray arrayWithCapacity:[wpcodes count]];
-        [wpcodes enumerateObjectsUsingBlock:^(NSString *wpcode, NSUInteger idx, BOOL *stop) {
+        [wpcodes enumerateObjectsUsingBlock:^(NSString * _Nonnull wpcode, NSUInteger idx, BOOL * _Nonnull stop) {
             [_wps addObject:[json objectForKey:wpcode]];
         }];
         [d setObject:_wps forKey:@"waypoints"];

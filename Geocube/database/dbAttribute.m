@@ -151,7 +151,7 @@ TABLENAME(@"attributes")
         return;
 
     __block NSMutableString *sql = [NSMutableString stringWithString:@"insert into attribute2waypoints(attribute_id, waypoint_id, yes) values "];
-    [attrs enumerateObjectsUsingBlock:^(dbAttribute *attr, NSUInteger idx, BOOL *stop) {
+    [attrs enumerateObjectsUsingBlock:^(dbAttribute * _Nonnull attr, NSUInteger idx, BOOL * _Nonnull stop) {
         if (idx != 0)
             [sql appendString:@","];
         [sql appendFormat:@"(%ld, %ld, %d)", (long)attr._id, (long)wp._id, YesNo];

@@ -214,7 +214,7 @@
     LIVEAPI_CHECK_STATUS(json, @"CreateLogNote", REMOTEAPI_CREATELOG_LOGFAILED);
 
     __block NSInteger errorCode = REMOTEAPI_OK;
-    [trackables enumerateObjectsUsingBlock:^(dbTrackable *tb, NSUInteger idx, BOOL * _Nonnull stop) {
+    [trackables enumerateObjectsUsingBlock:^(dbTrackable * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {
         if (tb.logtype == TRACKABLE_LOG_NONE)
             return;
         LogStringDefault dflt = 0;
@@ -358,7 +358,7 @@
     NSMutableArray<NSDictionary *> *as = [NSMutableArray arrayWithCapacity:20];
 
     NSArray<NSDictionary *> *pqs = [json objectForKey:@"PocketQueryList"];
-    [pqs enumerateObjectsUsingBlock:^(NSDictionary *pq, NSUInteger idx, BOOL * _Nonnull stop) {
+    [pqs enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull pq, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:4];
 
         [d setValue:[pq objectForKey:@"Name"] forKey:@"Name"];

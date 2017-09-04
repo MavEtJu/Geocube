@@ -129,7 +129,7 @@
 #endif
 
     @synchronized (asyncRequests) {
-        [asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary *req, NSUInteger idx, BOOL * _Nonnull stop) {
+        [asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull req, NSUInteger idx, BOOL * _Nonnull stop) {
             if (session == [req objectForKey:@"session"] && task == [req objectForKey:@"task"]) {
                 [req setObject:[NSNumber numberWithBool:YES] forKey:@"completed"];
                 if (error != nil)
@@ -166,7 +166,7 @@
 #endif
 
     @synchronized (asyncRequests) {
-        [asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary *req, NSUInteger idx, BOOL * _Nonnull stop) {
+        [asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull req, NSUInteger idx, BOOL * _Nonnull stop) {
             if (session == [req objectForKey:@"session"] && dataTask == [req objectForKey:@"task"]) {
                 NSMutableData *d = [req objectForKey:@"data"];
                 [d appendData:data];
@@ -190,7 +190,7 @@
 #endif
 
     @synchronized (asyncRequests) {
-        [asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary *req, NSUInteger idx, BOOL * _Nonnull stop) {
+        [asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull req, NSUInteger idx, BOOL * _Nonnull stop) {
             if (session == [req objectForKey:@"session"] && dataTask == [req objectForKey:@"task"]) {
 #ifdef GC_VERBOSE
                 NSLog(@"Starting download thread %ld", (long)idx);

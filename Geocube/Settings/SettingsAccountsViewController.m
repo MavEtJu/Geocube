@@ -56,19 +56,19 @@ enum {
     NSArray<dbAccount *> *as = [dbc Accounts];
     NSMutableArray<dbAccount *> *bs = [NSMutableArray arrayWithCapacity:[as count]];
 
-    [as enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
+    [as enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a.enabled == YES && IS_EMPTY(a.accountname.name) == NO)
             [bs addObject:a];
     }];
-    [as enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
+    [as enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a.enabled == NO && IS_EMPTY(a.accountname.name) == NO)
             [bs addObject:a];
     }];
-    [as enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
+    [as enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a.enabled == YES && IS_EMPTY(a.accountname.name) == YES)
             [bs addObject:a];
     }];
-    [as enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL * _Nonnull stop) {
+    [as enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a.enabled == NO && IS_EMPTY(a.accountname.name) == YES)
             [bs addObject:a];
     }];
