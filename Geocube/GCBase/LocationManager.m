@@ -97,7 +97,8 @@
     NSLog(@"LocationManager: starting for %@ (isNavigating:%d)", [_delegate class], isNavigating);
 
     if (isNavigating == YES)
-        _LM.desiredAccuracy = kCLLocationAccuracyBest;
+//        _LM.desiredAccuracy = kCLLocationAccuracyBest;
+        _LM.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
     else
         _LM.desiredAccuracy = kCLLocationAccuracyHundredMeters;
     [_LM startUpdatingHeading];
