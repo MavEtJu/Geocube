@@ -75,7 +75,7 @@ enum {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+
     if (account == nil) {
         // The user hasn't set an account. If there is only one account with a name, then
         // choose that.
@@ -92,6 +92,7 @@ enum {
         }];
     }
 }
+
 #pragma mark - TableViewController related functions
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
