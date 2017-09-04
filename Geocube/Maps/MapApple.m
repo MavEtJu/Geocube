@@ -34,9 +34,6 @@
     NSInteger historyCoordsIdx;
     CLLocationCoordinate2D trackBL, trackTR;
 
-    MKPolyline *lineTapToMe;
-    MKPolylineRenderer *viewLineTapToMe;
-
     dbWaypoint *wpSelected;
     BOOL modifyingMap;
 }
@@ -86,10 +83,6 @@
     lpgr.minimumPressDuration = 2.0; //user needs to press for 2 seconds
     [mapView addGestureRecognizer:lpgr];
 
-    UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleShortPress:)];
-    [tgr setNumberOfTapsRequired:1];
-    [mapView addGestureRecognizer:tgr];
-
     if (linesHistory == nil)
         linesHistory = [NSMutableArray arrayWithCapacity:100];
     if (viewLinesHistory == nil)
@@ -108,27 +101,6 @@
     CLLocationCoordinate2D touchMapCoordinate = [mapView convertPoint:touchPoint toCoordinateFromView:mapView];
 
     [self.mapvc addNewWaypoint:touchMapCoordinate];
-}
-
-- (void)handleShortPress:(UIGestureRecognizer *)gestureRecognizer
-{
-    if (wpSelected != nil)
-        return;
-    if (viewLineTapToMe != nil) {
-        [self removeLineTapToMe];
-        return;
-    }
-
-    /* Check if an annotation is being tapped */
-    CGPoint touchPoint = [gestureRecognizer locationInView:mapView];
-    UIView *v = [mapView hitTest:touchPoint withEvent:nil];
-
-    if ([v isKindOfClass:[MKAnnotationView class]])
-        return;
-
-    /* And now just draw the line */
-    CLLocationCoordinate2D touchMapCoordinate = [mapView convertPoint:touchPoint toCoordinateFromView:mapView];
-    [self addLineTapToMe:touchMapCoordinate];
 }
 
 - (void)removeMap
@@ -334,9 +306,6 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-    if (lineTapToMe != nil)
-        [self removeLineTapToMe];
-
     if ([view.annotation isKindOfClass:[GCWaypointAnnotation class]]) {
         GCWaypointAnnotation *pa = (GCWaypointAnnotation *)view.annotation;
         wpSelected = pa.waypoint;
@@ -363,16 +332,6 @@
         }
 
         return viewLineMeToWaypoint;
-    }
-    if (overlay == lineTapToMe) {
-        if (viewLineTapToMe == nil) {
-            viewLineTapToMe = [[MKPolylineRenderer alloc] initWithPolyline:lineTapToMe];
-            viewLineTapToMe.fillColor = configManager.mapDestinationColour;
-            viewLineTapToMe.strokeColor = configManager.mapDestinationColour;
-            viewLineTapToMe.lineWidth = 5;
-        }
-
-        return viewLineTapToMe;
     }
 
     __block MKPolylineRenderer *vlHistory = nil;
@@ -546,23 +505,12 @@
 
 - (void)addLineTapToMe:(CLLocationCoordinate2D)c;
 {
-    CLLocationCoordinate2D coordinateArray[2];
-    coordinateArray[0] = LM.coords;
-    coordinateArray[1] = c;
-
-    lineTapToMe = [MKPolyline polylineWithCoordinates:coordinateArray count:2];
-    [mapView addOverlay:lineTapToMe];
-
-    [self.mapvc showDistance:[MyTools niceDistance:[Coordinates coordinates2distance:c to:LM.coords]]];
+    /* Not supported on Apple Maps as there is no way to determine if a tap was made on a non-populated area or for a sequence which started later. */
 }
 
 - (void)removeLineTapToMe
 {
-    [mapView removeOverlay:lineTapToMe];
-    viewLineTapToMe = nil;
-    lineTapToMe = nil;
-
-    [self.mapvc showDistance:@""];
+    /* Not supported on Apple Maps */
 }
 
 - (void)showHistory

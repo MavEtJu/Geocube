@@ -351,14 +351,14 @@
     lineTapToMe.strokeColor = configManager.mapDestinationColour;
     lineTapToMe.map = mapView;
 
-    [self.mapvc showDistance:[MyTools niceDistance:[Coordinates coordinates2distance:c to:LM.coords]]];
+    [self.mapvc showDistance:[MyTools niceDistance:[Coordinates coordinates2distance:c to:LM.coords]] timeout:5 unlock:NO];
 }
 
 - (void)removeLineTapToMe
 {
     lineTapToMe.map = nil;
     lineTapToMe = nil;
-    [self.mapvc showDistance:@""];
+    [self.mapvc showDistance:@"" timeout:0 unlock:YES];
 }
 
 - (void)showHistory

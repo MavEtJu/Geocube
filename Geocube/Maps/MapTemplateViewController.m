@@ -22,6 +22,9 @@
 @interface MapTemplateViewController ()
 {
     THLabel *distanceLabel;
+    BOOL distanceLabelLocked;
+    NSInteger distanceLabelCounter;
+
     UIButton *labelMapFollowMe;
     UIButton *labelMapShowBoth;
     UIButton *labelMapSeeTarget;
@@ -278,6 +281,8 @@
 {
     distanceLabel = [[THLabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     distanceLabel.strokeColor = [UIColor whiteColor];
+    distanceLabel.layer.shadowColor = [[UIColor redColor] CGColor];
+    distanceLabel.layer.shadowRadius = 1;
     distanceLabel.strokeSize = 1;
     distanceLabel.text = @"Nothing yet";
     [self.view addSubview:distanceLabel];
@@ -431,17 +436,43 @@
 
     if (waypointManager.currentWaypoint != nil) {
         NSString *distance = [MyTools niceDistance:[Coordinates coordinates2distance:meLocation toLatitude:waypointManager.currentWaypoint.wpt_latitude toLongitude:waypointManager.currentWaypoint.wpt_longitude]];
-        distanceLabel.text = distance;
-        distanceLabel.layer.shadowColor = [[UIColor redColor] CGColor];
-        distanceLabel.layer.shadowRadius = 1;
+        [self showDistance:distance];
     } else {
-        distanceLabel.text = @"";
+        [self showDistance:@""];
     }
 }
 
 - (void)showDistance:(NSString *)d
 {
+    [self showDistance:d timeout:0 unlock:NO];
+}
+
+- (void)showDistance:(NSString *)d timeout:(NSTimeInterval)seconds unlock:(BOOL)unlock
+{
+    if (unlock == YES)
+        distanceLabelLocked = NO;
+    if (distanceLabelLocked == YES)
+        return;
+    if (seconds != 0)
+        distanceLabelLocked = YES;
     distanceLabel.text = d;
+    if (seconds != 0) {
+        distanceLabelCounter++;
+        [self performSelectorInBackground:@selector(showDistanceHide:) withObject:[NSNumber numberWithInteger:seconds]];
+    }
+}
+
+- (void)showDistanceHide:(NSNumber *)seconds
+{
+    NSInteger i = distanceLabelCounter;
+    [NSThread sleepForTimeInterval:[seconds integerValue]];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if (distanceLabelLocked == YES && i == distanceLabelCounter) {
+            distanceLabelLocked = NO;
+            distanceLabel.text = @"";
+            [self.map removeLineTapToMe];
+        }
+    }];
 }
 
 - (void)updateLocationManagerHistory:(GCCoordsHistorical *)ch
