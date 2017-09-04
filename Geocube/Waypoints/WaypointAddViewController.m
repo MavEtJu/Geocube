@@ -79,7 +79,7 @@ enum {
     if (account == nil) {
         // The user hasn't set an account. If there is only one account with a name, then
         // choose that.
-        [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount *a, NSUInteger idx, BOOL *stop) {
+        [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
             if (IS_EMPTY(a.accountname.name) == YES)
                 return;
             if (account == nil) {
@@ -90,7 +90,6 @@ enum {
                 *stop = YES;
             }
         }];
-        
     }
 }
 #pragma mark - TableViewController related functions
