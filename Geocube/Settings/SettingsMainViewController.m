@@ -323,7 +323,7 @@ enum sections {
     SECTION_WAYPOINTS_SORTBY = 0,
     SECTION_WAYPOINTS_SHOWCOUNTRYASABBREVATION,
     SECTION_WAYPOINTS_SHOWSTATEASABBREVATION,
-    SECTION_WAYPOINTS_SHOWSTATEASABBREVATIONWITHLOCALE,
+    SECTION_WAYPOINTS_SHOWSTATEASABBREVATIONWITHLOCALITY,
     SECTION_WAYPOINTS_REFRESHAFTERLOG,
     SECTION_WAYPOINTS_MAX,
 
@@ -883,12 +883,12 @@ enum sections {
                     [cell.optionSwitch addTarget:self action:@selector(updateShowStateAsAbbrevation:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
-                case SECTION_WAYPOINTS_SHOWSTATEASABBREVATIONWITHLOCALE: {
+                case SECTION_WAYPOINTS_SHOWSTATEASABBREVATIONWITHLOCALITY: {
                     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Show state as abbrevation if locality exist");
-                    cell.optionSwitch.on = configManager.showStateAsAbbrevationIfLocaleExists;
+                    cell.optionSwitch.on = configManager.showStateAsAbbrevationIfLocalityExists;
                     [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateShowStateAsAbbrevationWithLocale:) forControlEvents:UIControlEventTouchUpInside];
+                    [cell.optionSwitch addTarget:self action:@selector(updateShowStateAsAbbrevationWithLocality:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
             }
@@ -1865,9 +1865,9 @@ enum sections {
     [self.tableView reloadData];
 }
 
-- (void)updateShowStateAsAbbrevationWithLocale:(GCSwitch *)b
+- (void)updateShowStateAsAbbrevationWithLocality:(GCSwitch *)b
 {
-    [configManager showStateAsAbbrevationIfLocaleExistsUpdate:b.on];
+    [configManager showStateAsAbbrevationIfLocalityExistsUpdate:b.on];
     [self.tableView reloadData];
 }
 

@@ -19,12 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbLocale : dbObject
+@interface dbLocality : dbObject
 
 @property (nonatomic, retain) NSString *name;
 
-+ (NSArray<dbLocale *> *)dbAll;
++ (NSArray<dbLocality *> *)dbAll;
 + (void)makeNameExist:(NSString *)name;
-+ (dbLocale *)dbGet:(NSId)_id;
++ (dbLocality *)dbGet:(NSId)_id;
 
 @end

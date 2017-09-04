@@ -88,7 +88,7 @@
 #import "dbGroup.h"
 #import "dbImage.h"
 #import "dbListData.h"
-#import "dbLocale.h"
+#import "dbLocality.h"
 #import "dbLog.h"
 #import "dbLogMacro.h"
 #import "dbLogString.h"

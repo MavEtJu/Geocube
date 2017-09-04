@@ -128,7 +128,7 @@
         self.ivSize.hidden = NO;
     }
 
-    self.labelStateCountry.text = [wp makeLocaleStateCountry];
+    self.labelStateCountry.text = [wp makeLocalityStateCountry];
 }
 
 - (void)actionShowWaypoint:(UIButton *)showWaypoint

@@ -496,7 +496,7 @@
                 }
 
                 if ([elementName isEqualToString:@"gsak:County"] == YES) {
-                    [currentWP set_gca_locale_str:cleanText];
+                    [currentWP set_gca_locality_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"gsak:FavPoints"] == YES) {

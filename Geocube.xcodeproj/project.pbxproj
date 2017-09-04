@@ -99,7 +99,7 @@
 		E82342B81EECD0B100D2CDFD /* dbGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342821EECD0B000D2CDFD /* dbGroup.m */; };
 		E82342B91EECD0B100D2CDFD /* dbImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342841EECD0B000D2CDFD /* dbImage.m */; };
 		E82342BA1EECD0B100D2CDFD /* dbListData.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342861EECD0B000D2CDFD /* dbListData.m */; };
-		E82342BB1EECD0B100D2CDFD /* dbLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342881EECD0B000D2CDFD /* dbLocale.m */; };
+		E82342BB1EECD0B100D2CDFD /* dbLocality.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342881EECD0B000D2CDFD /* dbLocality.m */; };
 		E82342BC1EECD0B100D2CDFD /* dbLog.m in Sources */ = {isa = PBXBuildFile; fileRef = E823428A1EECD0B000D2CDFD /* dbLog.m */; };
 		E82342BD1EECD0B100D2CDFD /* dbLogMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = E823428C1EECD0B000D2CDFD /* dbLogMacro.m */; };
 		E82342BE1EECD0B100D2CDFD /* dbLogString.m in Sources */ = {isa = PBXBuildFile; fileRef = E823428E1EECD0B000D2CDFD /* dbLogString.m */; };
@@ -928,8 +928,8 @@
 		E82342841EECD0B000D2CDFD /* dbImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbImage.m; path = database/dbImage.m; sourceTree = "<group>"; };
 		E82342851EECD0B000D2CDFD /* dbListData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbListData.h; path = database/dbListData.h; sourceTree = "<group>"; };
 		E82342861EECD0B000D2CDFD /* dbListData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbListData.m; path = database/dbListData.m; sourceTree = "<group>"; };
-		E82342871EECD0B000D2CDFD /* dbLocale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbLocale.h; path = database/dbLocale.h; sourceTree = "<group>"; };
-		E82342881EECD0B000D2CDFD /* dbLocale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbLocale.m; path = database/dbLocale.m; sourceTree = "<group>"; };
+		E82342871EECD0B000D2CDFD /* dbLocality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbLocality.h; path = database/dbLocality.h; sourceTree = "<group>"; };
+		E82342881EECD0B000D2CDFD /* dbLocality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbLocality.m; path = database/dbLocality.m; sourceTree = "<group>"; };
 		E82342891EECD0B000D2CDFD /* dbLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbLog.h; path = database/dbLog.h; sourceTree = "<group>"; };
 		E823428A1EECD0B000D2CDFD /* dbLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbLog.m; path = database/dbLog.m; sourceTree = "<group>"; };
 		E823428B1EECD0B000D2CDFD /* dbLogMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbLogMacro.h; path = database/dbLogMacro.h; sourceTree = "<group>"; };
@@ -3448,8 +3448,8 @@
 				E82342841EECD0B000D2CDFD /* dbImage.m */,
 				E82342851EECD0B000D2CDFD /* dbListData.h */,
 				E82342861EECD0B000D2CDFD /* dbListData.m */,
-				E82342871EECD0B000D2CDFD /* dbLocale.h */,
-				E82342881EECD0B000D2CDFD /* dbLocale.m */,
+				E82342871EECD0B000D2CDFD /* dbLocality.h */,
+				E82342881EECD0B000D2CDFD /* dbLocality.m */,
 				E82342891EECD0B000D2CDFD /* dbLog.h */,
 				E823428A1EECD0B000D2CDFD /* dbLog.m */,
 				E823428B1EECD0B000D2CDFD /* dbLogMacro.h */,
@@ -4511,7 +4511,7 @@
 				E82342BE1EECD0B100D2CDFD /* dbLogString.m in Sources */,
 				E823451E1EECE14A00D2CDFD /* HelpAboutTableViewCell.m in Sources */,
 				E82344281EECDFB300D2CDFD /* FilterDateTableViewCell.m in Sources */,
-				E82342BB1EECD0B100D2CDFD /* dbLocale.m in Sources */,
+				E82342BB1EECD0B100D2CDFD /* dbLocality.m in Sources */,
 				E823444E1EECE04B00D2CDFD /* NotesPersonalNotesViewController.m in Sources */,
 				E87DF78E1D8564A800F16B5A /* InfoViewer.m in Sources */,
 				E82345091EECE12B00D2CDFD /* GCTextblock.m in Sources */,

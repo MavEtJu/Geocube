@@ -240,7 +240,7 @@
 @class dbGroup;
 @class dbImage;
 @class dbListData;
-@class dbLocale;
+@class dbLocality;
 @class dbLog;
 @class dbLogMacro;
 @class dbLogString;

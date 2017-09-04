@@ -30,7 +30,7 @@
 @property (nonatomic, retain) NSMutableArray<dbContainer *> *Containers;
 @property (nonatomic, retain) NSMutableArray<dbCountry *> *Countries;
 @property (nonatomic, retain) NSMutableArray<dbState *> *States;
-@property (nonatomic, retain) NSMutableArray<dbLocale *> *Locales;
+@property (nonatomic, retain) NSMutableArray<dbLocality *> *Localities;
 
 // System Groups
 @property (nonatomic, retain) dbGroup *Group_AllWaypoints;
@@ -99,9 +99,9 @@
 - (dbState *)State_get:(NSId)_id;
 - (void)State_add:(dbState *)state;
 
-- (dbLocale *)Locale_get_byName:(NSString *)name;
-- (dbLocale *)Locale_get:(NSId)_id;
-- (void)Locale_add:(dbLocale *)state;
+- (dbLocality *)Locality_get_byName:(NSString *)name;
+- (dbLocality *)Locality_get:(NSId)_id;
+- (void)Locality_add:(dbLocality *)state;
 
 - (void)AccountsReload;
 - (dbAccount *)Account_get:(NSId)_id;

@@ -75,7 +75,7 @@
                               [Coordinates bearing2compass:bearing],
                               _(@"waypointheadertableviewcell-at"),
                               [MyTools niceDistance:[Coordinates coordinates2distance:LM.coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude]]];
-    self.labelLocation.text = [wp makeLocaleStateCountry];
+    self.labelLocation.text = [wp makeLocalityStateCountry];
 
     self.ivContainer.image = [imageLibrary getType:wp];
 

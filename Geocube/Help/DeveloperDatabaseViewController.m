@@ -94,8 +94,8 @@ enum {
     [vs addObject:[[NSNumber numberWithInteger:[dbImage dbCount]] stringValue]];
     [fs addObject:@"ListData"];
     [vs addObject:[[NSNumber numberWithInteger:[dbListData dbCount]] stringValue]];
-    [fs addObject:@"Locales"];
-    [vs addObject:[[NSNumber numberWithInteger:[dbLocale dbCount]] stringValue]];
+    [fs addObject:@"Localities"];
+    [vs addObject:[[NSNumber numberWithInteger:[dbLocality dbCount]] stringValue]];
     [fs addObject:@"Logs"];
     [vs addObject:[[NSNumber numberWithInteger:[dbLog dbCount]] stringValue]];
     [fs addObject:@"LogMacros"];

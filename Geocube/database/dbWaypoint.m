@@ -52,9 +52,9 @@ TABLENAME(@"waypoints")
 {
     self.gs_state = [dbc State_get_byNameCode:s];
 }
-- (void)set_gca_locale_str:(NSString *)s
+- (void)set_gca_locality_str:(NSString *)s
 {
-    self.gca_locale = [dbc Locale_get_byName:s];
+    self.gca_locality = [dbc Locality_get_byName:s];
 }
 - (void)set_gs_container_str:(NSString *)s
 {
@@ -122,7 +122,7 @@ TABLENAME(@"waypoints")
         ASSERT_SELF_FIELD_EXISTS(gs_container);
         ASSERT_SELF_FIELD_EXISTS(gs_owner);
     }
-    // ASSERT_SELF_FIELD_EXISTS(gca_locale);    -- This is only for GCA by default.
+    // ASSERT_SELF_FIELD_EXISTS(gca_locality);    -- This is only for GCA by default.
     ASSERT_SELF_FIELD_EXISTS(account);
     NSId _id = 0;
     @synchronized(db) {
@@ -164,7 +164,7 @@ TABLENAME(@"waypoints")
         SET_VAR_INT   (31, self.gs_date_found);
         SET_VAR_BOOL  (32, self.flag_dnf);
         SET_VAR_INT   (33, self.date_lastlog_epoch);
-        SET_VAR_INT   (34, self.gca_locale._id);
+        SET_VAR_INT   (34, self.gca_locality._id);
         SET_VAR_INT   (35, self.date_lastimport_epoch);
         SET_VAR_INT   (36, self.flag_planned);
 
@@ -218,7 +218,7 @@ TABLENAME(@"waypoints")
         SET_VAR_INT   (31, self.gs_date_found);
         SET_VAR_BOOL  (32, self.flag_dnf);
         SET_VAR_INT   (33, self.date_lastlog_epoch);
-        SET_VAR_INT   (34, self.gca_locale._id);
+        SET_VAR_INT   (34, self.gca_locality._id);
         SET_VAR_INT   (35, self.date_lastimport_epoch);
         SET_VAR_INT   (36, self.flag_planned);
 
@@ -426,12 +426,12 @@ TABLENAME(@"waypoints")
         [dbListData waypointClearFlag:self flag:FLAGS_PLANNED];
 }
 
-- (void)dbUpdateCountryStateLocale
+- (void)dbUpdateCountryStateLocality
 {
     @synchronized(db) {
         DB_PREPARE(@"update waypoints set gca_locale_id = ?, gs_country_id = ?, gs_state_id = ? where id = ?");
 
-        SET_VAR_INT(1, self.gca_locale._id);
+        SET_VAR_INT(1, self.gca_locality._id);
         SET_VAR_INT(2, self.gs_country._id);
         SET_VAR_INT(3, self.gs_state._id);
         SET_VAR_INT(4, self._id);
@@ -503,7 +503,7 @@ TABLENAME(@"waypoints")
             BOOL_FETCH  (32, wp.flag_dnf);
             INT_FETCH   (33, wp.date_lastlog_epoch);
             INT_FETCH   (34, i);
-            wp.gca_locale = [dbc Locale_get:i];
+            wp.gca_locality = [dbc Locality_get:i];
             INT_FETCH   (35, wp.date_lastimport_epoch);
             INT_FETCH   (36, wp.flag_planned);
 
@@ -752,16 +752,16 @@ TABLENAME(@"waypoints")
     return wps;
 }
 
-- (NSString *)makeLocaleStateCountry
+- (NSString *)makeLocalityStateCountry
 {
     ASSERT_FINISHED;
     NSMutableString *s = [NSMutableString stringWithFormat:@""];
-    if (self.gca_locale != nil)
-        [s appendFormat:@"%@", self.gca_locale.name];
+    if (self.gca_locality != nil)
+        [s appendFormat:@"%@", self.gca_locality.name];
     if (self.gs_state != nil) {
         if ([s isEqualToString:@""] == NO)
             [s appendFormat:@", "];
-        if (configManager.showStateAsAbbrevationIfLocaleExists == YES && self.gca_locale != nil)
+        if (configManager.showStateAsAbbrevationIfLocalityExists == YES && self.gca_locality != nil)
             [s appendFormat:@"%@", self.gs_state.code];
         else
             [s appendFormat:@"%@", configManager.showStateAsAbbrevation == YES ? self.gs_state.code : self.gs_state.name];

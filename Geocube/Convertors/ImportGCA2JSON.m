@@ -200,8 +200,8 @@
     [dbCountry makeNameExist:dummy];
     [wp set_gs_country_str:dummy];
     DICT_NSSTRING_KEY(dict, dummy, @"locale");
-    [dbLocale makeNameExist:dummy];
-    [wp set_gca_locale_str:dummy];
+    [dbLocality makeNameExist:dummy];
+    [wp set_gca_locality_str:dummy];
     DICT_NSSTRING_KEY(dict, wp.gs_long_desc, @"description");
     wp.gs_long_desc_html = YES;
     DICT_NSSTRING_KEY(dict, dummy, @"date_hidden");

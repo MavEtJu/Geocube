@@ -26,7 +26,7 @@
     UIButton *bPlacedBy;
     UIButton *bCountry;
     UIButton *bState;
-    UIButton *bLocale;
+    UIButton *bLocality;
     UIButton *bDescription;
     UIButton *bLogs;
 
@@ -35,7 +35,7 @@
     NSString *placedBy;
     NSString *country;
     NSString *state;
-    NSString *locale;
+    NSString *locality;
     NSString *description;
     NSString *logs;
 }
@@ -102,12 +102,12 @@
     [self.contentView addSubview:l];
 
     rect = CGRectMake(120, y, width - 140, 15);
-    bLocale = [UIButton buttonWithType:UIButtonTypeSystem];
-    bLocale.frame = rect;
-    bLocale.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [bLocale setTitle:locale forState:UIControlStateNormal];
-    [bLocale addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
-    [self.contentView addSubview:bLocale];
+    bLocality = [UIButton buttonWithType:UIButtonTypeSystem];
+    bLocality.frame = rect;
+    bLocality.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [bLocality setTitle:locality forState:UIControlStateNormal];
+    [bLocality addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
+    [self.contentView addSubview:bLocality];
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
@@ -189,7 +189,7 @@
     waypointName = [self configGet:@"waypointname"];
     owner = [self configGet:@"owner"];
     placedBy = [self configGet:@"placedby"];
-    locale = [self configGet:@"locale"];
+    locality = [self configGet:@"locale"];
     state = [self configGet:@"state"];
     country = [self configGet:@"country"];
     description = [self configGet:@"description"];
@@ -201,7 +201,7 @@
     [self configSet:@"waypointname" value:waypointName];
     [self configSet:@"owner" value:owner];
     [self configSet:@"placedby" value:placedBy];
-    [self configSet:@"locale" value:locale];
+    [self configSet:@"locale" value:locality];
     [self configSet:@"state" value:state];
     [self configSet:@"country" value:country];
     [self configSet:@"description" value:description];
@@ -254,7 +254,7 @@
                              if (b == bWaypointName) waypointName = newstring;
                              if (b == bOwner) owner = newstring;
                              if (b == bPlacedBy) placedBy = newstring;
-                             if (b == bLocale) locale = newstring;
+                             if (b == bLocality) locality = newstring;
                              if (b == bState) state = newstring;
                              if (b == bCountry) country = newstring;
                              if (b == bDescription) description = newstring;

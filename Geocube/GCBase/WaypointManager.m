@@ -446,7 +446,7 @@
             NSLog(@"%@ - Filtering text", [self class]);
             NSString *cachename = [self configGet:@"text_waypointname"];
             NSString *owner = [self configGet:@"text_owner"];
-            NSString *locale = [self configGet:@"text_locale"];
+            NSString *locality = [self configGet:@"text_locale"];
             NSString *state = [self configGet:@"text_state"];
             NSString *country = [self configGet:@"text_country"];
             NSString *description = [self configGet:@"text_description"];
@@ -454,7 +454,7 @@
 
             __block NSMutableArray<dbCountry *> *countries = nil;
             __block NSMutableArray<dbState *> *states = nil;
-            __block NSMutableArray<dbLocale *> *locales = nil;
+            __block NSMutableArray<dbLocality *> *localities = nil;
             __block NSMutableArray<dbName *> *owners = nil;
 
             if (country != nil && [country isEqualToString:@""] == NO) {
@@ -475,11 +475,11 @@
                 }];
             }
 
-            if (locale != nil && [locale isEqualToString:@""] == NO) {
-                locales = [NSMutableArray arrayWithCapacity:20];
-                [[dbc Locales] enumerateObjectsUsingBlock:^(dbLocale * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
-                    if ([c.name localizedCaseInsensitiveContainsString:locale])
-                        [locales addObject:c];
+            if (locality != nil && [locality isEqualToString:@""] == NO) {
+                localities = [NSMutableArray arrayWithCapacity:20];
+                [[dbc Localities] enumerateObjectsUsingBlock:^(dbLocality * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if ([c.name localizedCaseInsensitiveContainsString:locality])
+                        [localities addObject:c];
                 }];
             }
 
@@ -507,10 +507,10 @@
                     rv = NO;
                 }
 
-                if (locales != nil) {
+                if (localities != nil) {
                     __block BOOL matched = NO;
-                    [locales enumerateObjectsUsingBlock:^(dbLocale * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
-                        if (s._id == wp.gca_locale._id) {
+                    [localities enumerateObjectsUsingBlock:^(dbLocality * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
+                        if (s._id == wp.gca_locality._id) {
                             matched = YES;
                             *stop = YES;
                         }

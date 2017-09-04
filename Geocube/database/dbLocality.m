@@ -19,11 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbLocale ()
+@interface dbLocality ()
 
 @end
 
-@implementation dbLocale
+@implementation dbLocality
 
 TABLENAME(@"locales")
 
@@ -55,9 +55,9 @@ TABLENAME(@"locales")
     }
 }
 
-+ (NSArray<dbLocale *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
++ (NSArray<dbLocality *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
 {
-    NSMutableArray<dbLocale *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
+    NSMutableArray<dbLocality *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
     NSMutableString *sql = [NSMutableString stringWithString:@"select id, name from locales "];
     if (where != nil)
@@ -67,7 +67,7 @@ TABLENAME(@"locales")
         DB_PREPARE_KEYSVALUES(sql, keys, values)
 
         DB_WHILE_STEP {
-            dbLocale *l = [[dbLocale alloc] init];
+            dbLocality *l = [[dbLocality alloc] init];
             INT_FETCH (0, l._id);
             TEXT_FETCH(1, l.name);
             [ss addObject:l];
@@ -77,12 +77,12 @@ TABLENAME(@"locales")
     return ss;
 }
 
-+ (NSArray<dbLocale *> *)dbAll
++ (NSArray<dbLocality *> *)dbAll
 {
     return [self dbAllXXX:nil keys:nil values:nil];
 }
 
-+ (dbLocale *)dbGet:(NSId)_id
++ (dbLocality *)dbGet:(NSId)_id
 {
     return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithId:_id]]] firstObject];
 }
@@ -91,11 +91,11 @@ TABLENAME(@"locales")
 
 + (void)makeNameExist:(NSString *)name
 {
-    if ([dbc Locale_get_byName:name] == nil) {
-        dbLocale *l = [[dbLocale alloc] init];
+    if ([dbc Locality_get_byName:name] == nil) {
+        dbLocality *l = [[dbLocality alloc] init];
         l.name = name;
         [l dbCreate];
-        [dbc Locale_add:l];
+        [dbc Locality_add:l];
     }
 }
 

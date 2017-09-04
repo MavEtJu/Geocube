@@ -211,7 +211,7 @@
     self.compassAlwaysInPortraitMode = [[dbConfig dbGetByKey:@"compass_alwaysinportraitmode"].value boolValue];
     self.showCountryAsAbbrevation = [[dbConfig dbGetByKey:@"showasabbrevation_country"].value boolValue];
     self.showStateAsAbbrevation = [[dbConfig dbGetByKey:@"showasabbrevation_state"].value boolValue];
-    self.showStateAsAbbrevationIfLocaleExists = [[dbConfig dbGetByKey:@"showasabbrevation_statewithlocale"].value boolValue];
+    self.showStateAsAbbrevationIfLocalityExists = [[dbConfig dbGetByKey:@"showasabbrevation_statewithlocale"].value boolValue];
     self.waypointListSortBy = [[dbConfig dbGetByKey:@"waypointlist_sortby"].value integerValue];
     self.refreshWaypointAfterLog = [[dbConfig dbGetByKey:@"waypoint_refreshafterlog"].value boolValue];
     self.listSortBy = [[dbConfig dbGetByKey:@"list_sortby"].value integerValue];
@@ -325,7 +325,7 @@ UPDATE3(BOOL, markasFoundMarksAllWaypoints, @"markas_foundmarksallwaypoints")
 UPDATE3(BOOL, loggingRemovesMarkedAsFoundDNF, @"logging_removesmarkedasfounddnf")
 UPDATE3(BOOL, compassAlwaysInPortraitMode, @"compass_alwaysinportraitmode")
 UPDATE3(BOOL, showStateAsAbbrevation, @"showasabbrevation_state")
-UPDATE3(BOOL, showStateAsAbbrevationIfLocaleExists, @"showasabbrevation_statewithlocale")
+UPDATE3(BOOL, showStateAsAbbrevationIfLocalityExists, @"showasabbrevation_statewithlocale")
 UPDATE3(BOOL, showCountryAsAbbrevation, @"showasabbrevation_country")
 UPDATE3(BOOL, refreshWaypointAfterLog, @"waypoint_refreshafterlog")
 UPDATE3(BOOL, accountsSaveAuthenticationName, @"accounts_save_authenticationname")

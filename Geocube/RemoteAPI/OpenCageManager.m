@@ -75,7 +75,7 @@
     if (IS_EMPTY(configManager.opencageKey) == YES)
         return;
 
-    if (wp.gs_country != nil && wp.gs_state != nil && wp.gca_locale != nil)
+    if (wp.gs_country != nil && wp.gs_state != nil && wp.gca_locality != nil)
         return;
 
     @synchronized (self) {
@@ -128,16 +128,16 @@
 
         BOOL needsUpdate = NO;
 
-        if (wp.gca_locale == nil) {
-            __block NSString *locale = nil;
+        if (wp.gca_locality == nil) {
+            __block NSString *locality = nil;
             [locale_order enumerateObjectsUsingBlock:^(NSString * _Nonnull field, NSUInteger idx, BOOL * _Nonnull stop) {
-                locale = [components objectForKey:field];
-                if (locale != nil)
+                locality = [components objectForKey:field];
+                if (locality != nil)
                     *stop = YES;
             }];
-            if (locale != nil) {
-                [dbLocale makeNameExist:locale];
-                wp.gca_locale = [dbc Locale_get_byName:locale];
+            if (locality != nil) {
+                [dbLocality makeNameExist:locality];
+                wp.gca_locality = [dbc Locality_get_byName:locality];
                 needsUpdate = YES;
             }
         }
@@ -168,7 +168,7 @@
             }
         }
 
-        [wp dbUpdateCountryStateLocale];
+        [wp dbUpdateCountryStateLocality];
     } else {
         disabled = YES;
         @synchronized (self) {

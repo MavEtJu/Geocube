@@ -53,7 +53,7 @@
     Symbols = [NSMutableArray arrayWithArray:[dbSymbol dbAll]];
     self.Countries = [NSMutableArray arrayWithArray:[dbCountry dbAll]];
     self.States = [NSMutableArray arrayWithArray:[dbState dbAll]];
-    self.Locales = [NSMutableArray arrayWithArray:[dbLocale dbAll]];
+    self.Localities = [NSMutableArray arrayWithArray:[dbLocality dbAll]];
 
     self.Group_AllWaypoints = nil;
     self.Group_AllWaypoints_Found = nil;
@@ -471,10 +471,10 @@
     [self.States addObject:state];
 }
 
-- (dbLocale *)Locale_get_byName:(NSString *)name
+- (dbLocality *)Locality_get_byName:(NSString *)name
 {
-    __block dbLocale *_l = nil;
-    [self.Locales enumerateObjectsUsingBlock:^(dbLocale * _Nonnull l, NSUInteger idx, BOOL * _Nonnull stop) {
+    __block dbLocality *_l = nil;
+    [self.Localities enumerateObjectsUsingBlock:^(dbLocality * _Nonnull l, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([l.name isEqualToString:name] == YES) {
             _l = l;
             *stop = YES;
@@ -483,10 +483,10 @@
     return _l;
 }
 
-- (dbLocale *)Locale_get:(NSId)_id
+- (dbLocality *)Locality_get:(NSId)_id
 {
-    __block dbLocale *_l = nil;
-    [self.Locales enumerateObjectsUsingBlock:^(dbLocale * _Nonnull l, NSUInteger idx, BOOL * _Nonnull stop) {
+    __block dbLocality *_l = nil;
+    [self.Localities enumerateObjectsUsingBlock:^(dbLocality * _Nonnull l, NSUInteger idx, BOOL * _Nonnull stop) {
         if (l._id == _id) {
             _l = l;
             *stop = YES;
@@ -495,9 +495,9 @@
     return _l;
 }
 
-- (void)Locale_add:(dbLocale *)l
+- (void)Locality_add:(dbLocality *)l
 {
-    [self.Locales addObject:l];
+    [self.Localities addObject:l];
 }
 
 - (dbProtocol *)Protocol_get:(NSId)_id

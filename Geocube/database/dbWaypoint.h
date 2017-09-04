@@ -68,14 +68,14 @@ typedef NS_ENUM(NSInteger, LogStatus) {
 @property (nonatomic) NSInteger date_lastlog_epoch;
 @property (nonatomic) NSInteger date_lastimport_epoch;
 
-@property (nonatomic) dbLocale *gca_locale;
+@property (nonatomic) dbLocality *gca_locality;
 
 @property (nonatomic) NSInteger calculatedDistance;
 @property (nonatomic) NSInteger calculatedBearing;
 
 - (void)set_gs_country_str:(NSString *)s;
 - (void)set_gs_state_str:(NSString *)s;
-- (void)set_gca_locale_str:(NSString *)s;
+- (void)set_gca_locality_str:(NSString *)s;
 - (void)set_gs_container_str:(NSString *)s;
 - (void)set_gs_owner_str:(NSString *)s;
 - (void)set_wpt_symbol_str:(NSString *)s;
@@ -113,9 +113,9 @@ typedef NS_ENUM(NSInteger, LogStatus) {
 - (void)dbUpdateInProgress;
 - (void)dbUpdateMarkedDNF;
 - (void)dbUpdatePlanned;
-- (void)dbUpdateCountryStateLocale;
+- (void)dbUpdateCountryStateLocality;
 
-- (NSString *)makeLocaleStateCountry;
+- (NSString *)makeLocalityStateCountry;
 + (NSString *)makeName:(NSString *)suffix;
 + (NSArray<dbWaypoint *> *)dbAllWaypointsWithImages;
 + (NSArray<dbWaypoint *> *)dbAllWaypointsWithLogs;

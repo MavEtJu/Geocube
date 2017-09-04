@@ -102,7 +102,7 @@
     self.labelBearing.text = [NSString stringWithFormat:@"%ld°", (long)bearing];
     self.labelDirection.text = [Coordinates bearing2compass:bearing];
     self.labelDistance.text = [MyTools niceDistance:[Coordinates coordinates2distance:LM.coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude]];
-    self.labelLocation.text = [wp makeLocaleStateCountry];
+    self.labelLocation.text = [wp makeLocalityStateCountry];
 
     self.labelSize.text = wp.wpt_type.type_minor;
     if (wp.gs_container.icon == 0) {
