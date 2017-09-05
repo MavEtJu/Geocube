@@ -131,27 +131,35 @@
 
     // Static stuff, easy:
     if (configManager.accuracyDynamicEnable == NO) {
-        if (isNavigating == NO)
+        if (isNavigating == NO) {
             [self setNewAccuracy:configManager.accuracyStaticAccuracyNonNavigating];
-        else
+            _LM.distanceFilter = configManager.accuracyStaticDeltaDNonNavigating;
+        } else {
             [self setNewAccuracy:configManager.accuracyStaticAccuracyNavigating];
+            _LM.distanceFilter = configManager.accuracyStaticDeltaDNavigating;
+        }
         return;
     }
 
     // Not navigating or no waypoint selected, as such assume "far"
     if (isNavigating == NO || waypointManager.currentWaypoint == nil) {
         [self setNewAccuracy:configManager.accuracyDynamicAccuracyFar];
+        _LM.distanceFilter = configManager.accuracyDynamicDeltaDFar;
         return;
     }
 
     // Check the distances
     NSInteger d = [Coordinates coordinates2distance:self.coords toLatitude:waypointManager.currentWaypoint.wpt_latitude toLongitude:waypointManager.currentWaypoint.wpt_longitude];
-    if (d <= configManager.accuracyDynamicDistanceNearToMidrange)
+    if (d <= configManager.accuracyDynamicDistanceNearToMidrange) {
         [self setNewAccuracy:configManager.accuracyDynamicAccuracyNear];
-    else if (d <= configManager.accuracyDynamicDistanceMidrangeToFar)
+        _LM.distanceFilter = configManager.accuracyDynamicDeltaDNear;
+    } else if (d <= configManager.accuracyDynamicDistanceMidrangeToFar) {
         [self setNewAccuracy:configManager.accuracyDynamicAccuracyMidrange];
-    else
+        _LM.distanceFilter = configManager.accuracyDynamicDeltaDMidrange;
+    } else {
         [self setNewAccuracy:configManager.accuracyDynamicAccuracyFar];
+        _LM.distanceFilter = configManager.accuracyDynamicDeltaDFar;
+    }
 }
 
 - (void)startDelegation:(id)_delegate isNavigating:(BOOL)isNavigating
