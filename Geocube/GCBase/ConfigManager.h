@@ -214,7 +214,7 @@
 - (void)accuracyDynamicMidrangeUpdate:(NSInteger)value;
 - (void)accuracyDynamicFarUpdate:(NSInteger)value;
 - (void)accuracyDynamicNearToMidrangeUpdate:(NSInteger)value;
-- (void)accuracyDynamicMidrangeToFarUpdate:(NSInteger)value
+- (void)accuracyDynamicMidrangeToFarUpdate:(NSInteger)value;
 - (void)accuracyStaticNavigatingUpdate:(NSInteger)value;
 - (void)accuracyStaticNonNavigatingUpdate:(NSInteger)value;
 
