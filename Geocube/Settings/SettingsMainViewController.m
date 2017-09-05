@@ -356,13 +356,18 @@ enum sections {
     SECTION_BACKUPS_MAX,
 
     SECTION_ACCURACY_DYNAMIC_ENABLE = 0,
-    SECTION_ACCURACY_DYNAMIC_NEAR,
-    SECTION_ACCURACY_DYNAMIC_MIDRANGE,
-    SECTION_ACCURACY_DYNAMIC_FAR,
-    SECTION_ACCURACY_DYNAMIC_NEARTOMIDRANGE,
-    SECTION_ACCURACY_DYNAMIC_MIDRANGETOFAR,
-    SECTION_ACCURACY_STATIC_NAVIGATING,
-    SECTION_ACCURACY_STATIC_NONNAVIGATING,
+    SECTION_ACCURACY_DYNAMIC_ACCURACY_NEAR,
+    SECTION_ACCURACY_DYNAMIC_ACCURACY_MIDRANGE,
+    SECTION_ACCURACY_DYNAMIC_ACCURACY_FAR,
+    SECTION_ACCURACY_DYNAMIC_DELTAD_NEAR,
+    SECTION_ACCURACY_DYNAMIC_DELTAD_MIDRANGE,
+    SECTION_ACCURACY_DYNAMIC_DELTAD_FAR,
+    SECTION_ACCURACY_DYNAMIC_DISTANCE_NEARTOMIDRANGE,
+    SECTION_ACCURACY_DYNAMIC_DISTANCE_MIDRANGETOFAR,
+    SECTION_ACCURACY_STATIC_ACCURACY_NAVIGATING,
+    SECTION_ACCURACY_STATIC_ACCURACY_NONNAVIGATING,
+    SECTION_ACCURACY_STATIC_DELTAD_NAVIGATING,
+    SECTION_ACCURACY_STATIC_DELTAD_NONNAVIGATING,
     SECTION_ACCURACY_MAX,
 };
 
@@ -468,7 +473,7 @@ enum sections {
                     return cell;
                 }
             }
-            break;
+            abort();
         }
 
         case SECTION_APPS: {
@@ -509,7 +514,7 @@ enum sections {
                     return cell;
                 }
             }
-            break;
+            abort();
         }
 
         case SECTION_THEME: {   // Theme
@@ -554,7 +559,7 @@ enum sections {
                     return cell;
                 }
             }
-            break;
+            abort();
         }
 
         case SECTION_SOUNDS: {   // Sounds
@@ -576,7 +581,7 @@ enum sections {
                     return cell;
                 }
             }
-            break;
+            abort();
         }
 
         case SECTION_MAPCOLOURS: {
@@ -594,7 +599,7 @@ enum sections {
                     return cell;
                 }
             }
-            break;
+            abort();
         }
 
         case SECTION_MAPS: {   // Maps
@@ -622,7 +627,7 @@ enum sections {
                     return cell;
                 }
             }
-            break;
+            abort();
         }
 
         case SECTION_MAPSEARCHMAXIMUM: {
@@ -652,7 +657,7 @@ enum sections {
                     return cell;
                 }
             }
-            break;
+            abort();
         }
 
         case SECTION_DYNAMICMAP: {
@@ -702,7 +707,7 @@ enum sections {
                     return cell;
                 }
             }
-            break;
+            abort();
         }
 
         case SECTION_KEEPTRACK: {
@@ -752,7 +757,7 @@ enum sections {
                     return cell;
                 }
             }
-            break;
+            abort();
         }
 
         case SECTION_MAPCACHE: {
@@ -778,7 +783,7 @@ enum sections {
                     return cell;
                 }
             }
-            break;
+            abort();
         }
 
         case SECTION_IMPORTS: {
@@ -828,7 +833,7 @@ enum sections {
                     return cell;
                 }
             }
-            break;
+            abort();
         }
 
         case SECTION_MARKAS: {
@@ -858,7 +863,7 @@ enum sections {
                     return cell;
                 }
             }
-            break;
+            abort();
         }
 
         case SECTION_COMPASS: {
@@ -872,7 +877,7 @@ enum sections {
                     return cell;
                 }
             }
-            break;
+            abort();
         }
 
         case SECTION_WAYPOINTS: {
@@ -917,7 +922,7 @@ enum sections {
                     return cell;
                 }
             }
-            break;
+            abort();
         }
 
         case SECTION_LISTS: {
@@ -930,7 +935,7 @@ enum sections {
                     return cell;
                 }
             }
-            break;
+            abort();
         }
 
         case SECTION_ACCOUNTS: {
@@ -952,6 +957,7 @@ enum sections {
                     return cell;
                 }
             }
+            abort();
         }
 
         case SECTION_LOCATIONLESS: {
@@ -972,6 +978,7 @@ enum sections {
                     return cell;
                 }
             }
+            abort();
         }
 
         case SECTION_BACKUPS: {
@@ -997,6 +1004,7 @@ enum sections {
                     return cell;
                 }
             }
+            abort();
         }
 
         case SECTION_ACCURACY: {
@@ -1009,49 +1017,80 @@ enum sections {
                     [cell.optionSwitch addTarget:self action:@selector(updateDynamicAccuracyEnable:) forControlEvents:UIControlEventTouchUpInside];
                     return cell;
                 }
-                case SECTION_ACCURACY_DYNAMIC_NEAR: {
+                case SECTION_ACCURACY_DYNAMIC_ACCURACY_NEAR: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Accuracy for 'near' accuracy");
                     cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyDynamicAccuracyNear];
                     return cell;
                 }
-                case SECTION_ACCURACY_DYNAMIC_MIDRANGE: {
+                case SECTION_ACCURACY_DYNAMIC_ACCURACY_MIDRANGE: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Accuracy for 'midrange' accuracy");
                     cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyDynamicAccuracyMidrange];
                     return cell;
                 }
-                case SECTION_ACCURACY_DYNAMIC_FAR: {
+                case SECTION_ACCURACY_DYNAMIC_ACCURACY_FAR: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Accuracy for 'far' accuracy");
                     cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyDynamicAccuracyFar];
                     return cell;
                 }
-                case SECTION_ACCURACY_DYNAMIC_NEARTOMIDRANGE: {
+                case SECTION_ACCURACY_DYNAMIC_DISTANCE_NEARTOMIDRANGE: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Distance for 'near' accuracy");
                     cell.detailTextLabel.text = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Up to %@"), [MyTools niceDistance:configManager.accuracyDynamicDistanceNearToMidrange]];
                     return cell;
                 }
-                case SECTION_ACCURACY_DYNAMIC_MIDRANGETOFAR: {
+                case SECTION_ACCURACY_DYNAMIC_DISTANCE_MIDRANGETOFAR: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Distance for 'midrange' accuracy");
-                    cell.detailTextLabel.text = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Up to %@"), [MyTools niceDistance:configManager.accuracyDynamicDistanceNearToMidrange]];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Up to %@"), [MyTools niceDistance:configManager.accuracyDynamicDistanceMidrangeToFar]];
                     return cell;
                 }
-                case SECTION_ACCURACY_STATIC_NAVIGATING: {
+                case SECTION_ACCURACY_STATIC_ACCURACY_NAVIGATING: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Accuracy for static 'navigating' accuracy");
                     cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyStaticAccuracyNavigating];
                     return cell;
                 }
-                case SECTION_ACCURACY_STATIC_NONNAVIGATING: {
+                case SECTION_ACCURACY_STATIC_ACCURACY_NONNAVIGATING: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Accuracy for static 'non-navigating' accuracy");
                     cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyStaticAccuracyNonNavigating];
                     return cell;
                 }
+                case SECTION_ACCURACY_STATIC_DELTAD_NONNAVIGATING: {
+                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Update distance for static 'non-navigating' pages");
+                    cell.detailTextLabel.text = [MyTools niceDistance:configManager.accuracyStaticDeltaDNonNavigating];
+                    return cell;
+                }
+                case SECTION_ACCURACY_STATIC_DELTAD_NAVIGATING: {
+                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Update distance for static 'navigating' pages");
+                    cell.detailTextLabel.text = [MyTools niceDistance:configManager.accuracyStaticDeltaDNavigating];
+                    return cell;
+                }
+                case SECTION_ACCURACY_DYNAMIC_DELTAD_NEAR: {
+                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Update distance for 'near' accuracy");
+                    cell.detailTextLabel.text = [MyTools niceDistance:configManager.accuracyDynamicDeltaDNear];
+                    return cell;
+                }
+                case SECTION_ACCURACY_DYNAMIC_DELTAD_MIDRANGE: {
+                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Update distance 'midrange' accuracy");
+                    cell.detailTextLabel.text = [MyTools niceDistance:configManager.accuracyDynamicDeltaDMidrange];
+                    return cell;
+                }
+                case SECTION_ACCURACY_DYNAMIC_DELTAD_FAR: {
+                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Update distance for 'far' accuracy");
+                    cell.detailTextLabel.text = [MyTools niceDistance:configManager.accuracyDynamicDeltaDFar];
+                    return cell;
+                }
             }
+            abort();
         }
 
     }
@@ -1322,14 +1361,23 @@ enum sections {
             break;
         case SECTION_ACCURACY:
             switch (indexPath.row) {
-                case SECTION_ACCURACY_DYNAMIC_NEAR:
-                case SECTION_ACCURACY_DYNAMIC_MIDRANGE:
-                case SECTION_ACCURACY_DYNAMIC_FAR:
-                case SECTION_ACCURACY_DYNAMIC_NEARTOMIDRANGE:
-                case SECTION_ACCURACY_DYNAMIC_MIDRANGETOFAR:
-                case SECTION_ACCURACY_STATIC_NAVIGATING:
-                case SECTION_ACCURACY_STATIC_NONNAVIGATING:
-                    [self changeAccuracy:indexPath.row];
+                case SECTION_ACCURACY_DYNAMIC_ACCURACY_NEAR:
+                case SECTION_ACCURACY_DYNAMIC_ACCURACY_MIDRANGE:
+                case SECTION_ACCURACY_DYNAMIC_ACCURACY_FAR:
+                case SECTION_ACCURACY_STATIC_ACCURACY_NAVIGATING:
+                case SECTION_ACCURACY_STATIC_ACCURACY_NONNAVIGATING:
+                    [self changeAccuracyAccuracy:indexPath.row];
+                    break;
+                case SECTION_ACCURACY_DYNAMIC_DELTAD_NEAR:
+                case SECTION_ACCURACY_DYNAMIC_DELTAD_MIDRANGE:
+                case SECTION_ACCURACY_DYNAMIC_DELTAD_FAR:
+                case SECTION_ACCURACY_STATIC_DELTAD_NAVIGATING:
+                case SECTION_ACCURACY_STATIC_DELTAD_NONNAVIGATING:
+                    [self changeAccuracyDeltaD:indexPath.row];
+                    break;
+                case SECTION_ACCURACY_DYNAMIC_DISTANCE_NEARTOMIDRANGE:
+                case SECTION_ACCURACY_DYNAMIC_DISTANCE_MIDRANGETOFAR:
+                    [self changeAccuracyDistance:indexPath.row];
                     break;
             }
             break;
@@ -2159,25 +2207,25 @@ enum sections {
 
 /* ********************************************************************************* */
 
-- (void)changeAccuracy:(NSInteger)field
+- (void)changeAccuracyAccuracy:(NSInteger)field
 {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:field inSection:SECTION_ACCURACY]];
 
     NSInteger initial = LMACCURACY_1000M;
     switch (field) {
-        case SECTION_ACCURACY_STATIC_NONNAVIGATING:
+        case SECTION_ACCURACY_STATIC_ACCURACY_NONNAVIGATING:
             initial = configManager.accuracyStaticAccuracyNonNavigating;
             break;
-        case SECTION_ACCURACY_STATIC_NAVIGATING:
+        case SECTION_ACCURACY_STATIC_ACCURACY_NAVIGATING:
             initial = configManager.accuracyStaticAccuracyNavigating;
             break;
-        case SECTION_ACCURACY_DYNAMIC_NEAR:
+        case SECTION_ACCURACY_DYNAMIC_ACCURACY_NEAR:
             initial = configManager.accuracyDynamicAccuracyNear;
             break;
-        case SECTION_ACCURACY_DYNAMIC_MIDRANGE:
+        case SECTION_ACCURACY_DYNAMIC_ACCURACY_MIDRANGE:
             initial = configManager.accuracyDynamicAccuracyMidrange;
             break;
-        case SECTION_ACCURACY_DYNAMIC_FAR:
+        case SECTION_ACCURACY_DYNAMIC_ACCURACY_FAR:
             initial = configManager.accuracyDynamicAccuracyFar;
             break;
         default:
@@ -2189,19 +2237,19 @@ enum sections {
                                 initialSelection:initial
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                            switch (field) {
-                                               case SECTION_ACCURACY_STATIC_NONNAVIGATING:
+                                               case SECTION_ACCURACY_STATIC_ACCURACY_NONNAVIGATING:
                                                    [configManager accuracyStaticAccuracyNonNavigatingUpdate:selectedIndex];
                                                    break;
-                                               case SECTION_ACCURACY_STATIC_NAVIGATING:
+                                               case SECTION_ACCURACY_STATIC_ACCURACY_NAVIGATING:
                                                     [configManager accuracyStaticAccuracyNavigatingUpdate:selectedIndex];
                                                    break;
-                                               case SECTION_ACCURACY_DYNAMIC_NEAR:
+                                               case SECTION_ACCURACY_DYNAMIC_ACCURACY_NEAR:
                                                     [configManager accuracyDynamicAccuracyNearUpdate:selectedIndex];
                                                    break;
-                                               case SECTION_ACCURACY_DYNAMIC_MIDRANGE:
+                                               case SECTION_ACCURACY_DYNAMIC_ACCURACY_MIDRANGE:
                                                     [configManager accuracyDynamicAccuracyMidrangeUpdate:selectedIndex];
                                                    break;
-                                               case SECTION_ACCURACY_DYNAMIC_FAR:
+                                               case SECTION_ACCURACY_DYNAMIC_ACCURACY_FAR:
                                                     [configManager accuracyDynamicAccuracyFarUpdate:selectedIndex];
                                                    break;
                                            }
@@ -2210,6 +2258,136 @@ enum sections {
                                      cancelBlock:nil
                                           origin:cell.contentView
      ];
+}
+
+- (void)changeAccuracyDistance:(NSInteger)field
+{
+    NSInteger value = 0;
+    switch (field) {
+        case SECTION_ACCURACY_DYNAMIC_DISTANCE_NEARTOMIDRANGE:
+            value = configManager.accuracyDynamicDistanceNearToMidrange;
+            break;
+        case SECTION_ACCURACY_DYNAMIC_DISTANCE_MIDRANGETOFAR:
+            value = configManager.accuracyDynamicDistanceMidrangeToFar;
+            break;
+        default:
+            abort();
+    }
+
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:_(@"settingsmainviewcontroller-Select Distance")
+                                message:_(@"settingsmainviewcontroller-Radius around the destination waypoint")
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:_(@"OK")
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *value = tf.text;
+                             NSInteger i = [value integerValue];
+                             if (i > 0) {
+                                 switch (field) {
+                                     case SECTION_ACCURACY_DYNAMIC_DISTANCE_NEARTOMIDRANGE:
+                                         [configManager accuracyDynamicDistanceNearToMidrangeUpdate:i];
+                                         break;
+                                     case SECTION_ACCURACY_DYNAMIC_DISTANCE_MIDRANGETOFAR:
+                                         [configManager accuracyDynamicDistanceMidrangeToFarUpdate:i];
+                                         break;
+                                 }
+                             }
+                             [self.tableView reloadData];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = [NSString stringWithFormat:@"%ld", (long)value];
+        textField.placeholder = _(@"settingsmainviewcontroller-Distance in meters");
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)changeAccuracyDeltaD:(NSInteger)field
+{
+    NSInteger value = 0;
+    switch (field) {
+        case SECTION_ACCURACY_DYNAMIC_DELTAD_FAR:
+            value = configManager.accuracyDynamicDeltaDFar;
+            break;
+        case SECTION_ACCURACY_DYNAMIC_DELTAD_NEAR:
+            value = configManager.accuracyDynamicDeltaDNear;
+            break;
+        case SECTION_ACCURACY_DYNAMIC_DELTAD_MIDRANGE:
+            value = configManager.accuracyDynamicDeltaDMidrange;
+            break;
+        case SECTION_ACCURACY_STATIC_DELTAD_NAVIGATING:
+            value = configManager.accuracyStaticDeltaDNavigating;
+            break;
+        case SECTION_ACCURACY_STATIC_DELTAD_NONNAVIGATING:
+            value = configManager.accuracyStaticDeltaDNonNavigating;
+            break;
+        default:
+            abort();
+    }
+
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:_(@"settingsmainviewcontroller-Select Distance")
+                                message:_(@"settingsmainviewcontroller-Distance update interval")
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:_(@"OK")
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *value = tf.text;
+                             NSInteger i = [value integerValue];
+                             switch (field) {
+                                 case SECTION_ACCURACY_DYNAMIC_DELTAD_NEAR:
+                                     [configManager accuracyDynamicDeltaDNearUpdate:i];
+                                     break;
+                                 case SECTION_ACCURACY_DYNAMIC_DELTAD_MIDRANGE:
+                                     [configManager accuracyDynamicDeltaDMidrangeUpdate:i];
+                                     break;
+                                 case SECTION_ACCURACY_DYNAMIC_DELTAD_FAR:
+                                     [configManager accuracyDynamicDeltaDFarUpdate:i];
+                                     break;
+                                 case SECTION_ACCURACY_STATIC_DELTAD_NONNAVIGATING:
+                                     [configManager accuracyStaticDeltaDNonNavigatingUpdate:i];
+                                     break;
+                                 case SECTION_ACCURACY_STATIC_DELTAD_NAVIGATING:
+                                     [configManager accuracyStaticDeltaDNavigatingUpdate:i];
+                                     break;
+                             }
+                             [self.tableView reloadData];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = [NSString stringWithFormat:@"%ld", (long)value];
+        textField.placeholder = _(@"settingsmainviewcontroller-Distance in meters");
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 /*******************************************************************/

@@ -192,3 +192,13 @@
 "settingsmainviewcontroller-Highest possible accuracy with additional sensor data" = "Highest possible accuracy with additional sensor data";
 "settingsmainviewcontroller-Up to %@" = "Up to %@";
 "settingsmainviewcontroller-Select accuracy" = "Select accuracy";
+"settingsmainviewcontroller-Distance in meters" = "Distance in meters";
+"settingsmainviewcontroller-Distance update interval" = "Distance update interval";
+"settingsmainviewcontroller-Radius around the destination waypoint" = "Radius around the destination waypoint";
+"settingsmainviewcontroller-Select Distance" = "Select Distance";
+"settingsmainviewcontroller-Update distance 'midrange' accuracy" = "Update distance 'midrange' accuracy";
+"settingsmainviewcontroller-Update distance for 'far' accuracy" = "Update distance for 'far' accuracy";
+"settingsmainviewcontroller-Update distance for 'near' accuracy" = "Update distance for 'near' accuracy";
+"settingsmainviewcontroller-Update distance for static 'navigating' pages" = "Update distance for static 'navigating' pages";
+"settingsmainviewcontroller-Update distance for static 'non-navigating' pages" = "Update distance for static 'non-navigating' pages";
+
