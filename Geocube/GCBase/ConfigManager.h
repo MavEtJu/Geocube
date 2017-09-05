@@ -21,211 +21,118 @@
 
 @interface ConfigManager : NSObject
 
+#define PROTO_NR(__type__, __name__) \
+    @property (nonatomic, retain) __type__ __name__; \
+    - (void)__name__ ## Update:(__type__)value;
+
+#define PROTO_N3(__type__, __name__, __type2__) \
+    @property (nonatomic, retain) __type__ __name__; \
+    - (void)__name__ ## Update:(__type2__)value;
+
+#define PROTO_N(__type__, __name__) \
+    @property (nonatomic) __type__ __name__; \
+    - (void)__name__ ## Update:(__type__)value;
+
 // System settings
-@property (nonatomic, retain) NSString *currentWaypoint;
-@property (nonatomic) NSInteger currentPage;
-@property (nonatomic) NSInteger currentPageTab;
 
-@property (nonatomic, retain) dbTrack *currentTrack;
+PROTO_NR(NSString *, currentWaypoint);
+PROTO_N (NSInteger, currentPage);
+PROTO_N (NSInteger, currentPageTab);
+PROTO_NR(dbTrack *, currentTrack);
+PROTO_N (NSInteger, lastImportSource);
+PROTO_N (NSInteger, lastImportGroup);
+PROTO_N (NSInteger, lastAddedGroup);
 
-@property (nonatomic) NSInteger lastImportSource;
-@property (nonatomic) NSInteger lastImportGroup;
-@property (nonatomic) NSInteger lastAddedGroup;
+// UI settings
+
+@property (nonatomic, retain) UIFont * GCLabelFont;
+@property (nonatomic, retain) UIFont * GCSmallFont;
+@property (nonatomic, retain) UIFont * GCTextblockFont;
 
 // User settings
-@property (nonatomic) BOOL distanceMetric;
-@property (nonatomic) BOOL sendTweets;
 
-@property (nonatomic) NSInteger mapExternal;
-@property (nonatomic) NSString *mapBrandDefault;
-@property (nonatomic) UIColor  *mapTrackColour;
-@property (nonatomic) UIColor  *mapDestinationColour;
-@property (nonatomic) NSInteger compassType;
-@property (nonatomic) NSInteger themeType;
-
-@property (nonatomic) BOOL soundDirection;
-@property (nonatomic) BOOL soundDistance;
-
-@property (nonatomic) BOOL keeptrackAutoRotate;
-@property (nonatomic) float keeptrackTimeDeltaMin;
-@property (nonatomic) float keeptrackTimeDeltaMax;
-@property (nonatomic) NSInteger keeptrackDistanceDeltaMin;
-@property (nonatomic) NSInteger keeptrackDistanceDeltaMax;
-@property (nonatomic) NSInteger keeptrackPurgeAge;
-@property (nonatomic) NSInteger keeptrackSync;
-@property (nonatomic) NSInteger keeptrackBeeperInterval;
-
-@property (nonatomic) BOOL mapClustersEnable;
-@property (nonatomic) float mapClustersZoomLevel;
-@property (nonatomic) BOOL mapRotateToBearing;
-
-@property (nonatomic, retain) UIFont *GCLabelFont;
-@property (nonatomic, retain) UIFont *GCSmallFont;
-@property (nonatomic, retain) UIFont *GCTextblockFont;
-
-@property (nonatomic) BOOL dynamicmapEnable;    // Not read-only
-@property (nonatomic) NSInteger dynamicmapWalkingSpeed;
-@property (nonatomic) NSInteger dynamicmapWalkingDistance;
-@property (nonatomic) NSInteger dynamicmapCyclingSpeed;
-@property (nonatomic) NSInteger dynamicmapCyclingDistance;
-@property (nonatomic) NSInteger dynamicmapDrivingSpeed;
-@property (nonatomic) NSInteger dynamicmapDrivingDistance;
-
-@property (nonatomic) BOOL mapcacheEnable;
-@property (nonatomic) NSInteger mapcacheMaxAge;
-@property (nonatomic) NSInteger mapcacheMaxSize;
-
-@property (nonatomic) BOOL downloadImagesLogs;
-@property (nonatomic) BOOL downloadImagesWaypoints;
-@property (nonatomic) BOOL downloadImagesMobile;
-@property (nonatomic) BOOL downloadQueriesMobile;
-@property (nonatomic) NSInteger downloadTimeoutSimple;
-@property (nonatomic) NSInteger downloadTimeoutQuery;
-
-@property (nonatomic) NSInteger mapSearchMaximumNumberGCA;
-@property (nonatomic) NSInteger mapSearchMaximumDistanceGS;
-@property (nonatomic) NSInteger mapSearchMaximumDistanceOKAPI;
-@property (nonatomic) NSInteger mapSearchMaximumDistanceGCA;
-
-@property (nonatomic) BOOL markasFoundDNFClearsTarget;
-@property (nonatomic) BOOL markasFoundMarksAllWaypoints;
-@property (nonatomic) BOOL loggingRemovesMarkedAsFoundDNF;
-
-@property (nonatomic) BOOL compassAlwaysInPortraitMode;
-@property (nonatomic) BOOL showCountryAsAbbrevation;
-@property (nonatomic) BOOL showStateAsAbbrevation;
-@property (nonatomic) BOOL showStateAsAbbrevationIfLocalityExists;
-
-@property (nonatomic) NSInteger waypointListSortBy;
-@property (nonatomic) BOOL refreshWaypointAfterLog;
-
-@property (nonatomic) NSInteger listSortBy;
-
-@property (nonatomic) BOOL accountsSaveAuthenticationName;
-@property (nonatomic) BOOL accountsSaveAuthenticationPassword;
-
-@property (nonatomic) BOOL introSeen;
-
-@property (nonatomic, retain) NSString *logTemporaryText;
-
-@property (nonatomic) BOOL locationlessShowFound;
-@property (nonatomic) NSInteger locationlessListSortBy;
-
-@property (nonatomic, retain) NSString *opencageKey;
-@property (nonatomic) BOOL opencageWifiOnly;
-
-@property (nonatomic) NSInteger configUpdateLastTime;
-@property (nonatomic) NSString *configUpdateLastVersion;
-
-@property (nonatomic) BOOL automaticDatabaseBackup;
-@property (nonatomic) NSTimeInterval automaticDatabaseBackupLast;
-@property (nonatomic) NSInteger automaticDatabaseBackupPeriod;
-@property (nonatomic) NSInteger automaticDatabaseBackupRotate;
-
-@property (nonatomic) BOOL accuracyDynamicEnable;
-@property (nonatomic) LM_ACCURACY accuracyDynamicAccuracyNear;
-@property (nonatomic) LM_ACCURACY accuracyDynamicAccuracyMidrange;
-@property (nonatomic) LM_ACCURACY accuracyDynamicAccuracyFar;
-@property (nonatomic) LM_ACCURACY accuracyDynamicDeltaDNear;
-@property (nonatomic) LM_ACCURACY accuracyDynamicDeltaDMidrange;
-@property (nonatomic) LM_ACCURACY accuracyDynamicDeltaDFar;
-@property (nonatomic) NSInteger accuracyDynamicDistanceNearToMidrange;
-@property (nonatomic) NSInteger accuracyDynamicDistanceMidrangeToFar;
-@property (nonatomic) LM_ACCURACY accuracyStaticAccuracyNavigating;
-@property (nonatomic) LM_ACCURACY accuracyStaticAccuracyNonNavigating;
-@property (nonatomic) LM_ACCURACY accuracyStaticDeltaDNavigating;
-@property (nonatomic) LM_ACCURACY accuracyStaticDeltaDNonNavigating;
+PROTO_N (BOOL, distanceMetric);
+PROTO_N (BOOL, sendTweets);
+PROTO_N (NSInteger, mapExternal);
+PROTO_NR(NSString *, mapBrandDefault);
+PROTO_N3(UIColor *, mapTrackColour, NSString *);
+PROTO_N3(UIColor *, mapDestinationColour, NSString *);
+PROTO_N (NSInteger, compassType);
+PROTO_N (NSInteger, themeType);
+PROTO_N (BOOL, soundDirection);
+PROTO_N (BOOL, soundDistance);
+PROTO_N (BOOL, keeptrackAutoRotate);
+PROTO_N (float, keeptrackTimeDeltaMin);
+PROTO_N (float, keeptrackTimeDeltaMax);
+PROTO_N (NSInteger, keeptrackDistanceDeltaMin);
+PROTO_N (NSInteger, keeptrackDistanceDeltaMax);
+PROTO_N (NSInteger, keeptrackPurgeAge);
+PROTO_N (NSInteger, keeptrackSync);
+PROTO_N (NSInteger, keeptrackBeeperInterval);
+PROTO_N (BOOL, mapClustersEnable);
+PROTO_N (float, mapClustersZoomLevel);
+PROTO_N (BOOL, mapRotateToBearing);
+PROTO_N (BOOL, dynamicmapEnable);
+PROTO_N (NSInteger, dynamicmapWalkingSpeed);
+PROTO_N (NSInteger, dynamicmapWalkingDistance);
+PROTO_N (NSInteger, dynamicmapCyclingSpeed);
+PROTO_N (NSInteger, dynamicmapCyclingDistance);
+PROTO_N (NSInteger, dynamicmapDrivingSpeed);
+PROTO_N (NSInteger, dynamicmapDrivingDistance);
+PROTO_N (BOOL, mapcacheEnable);
+PROTO_N (NSInteger, mapcacheMaxAge);
+PROTO_N (NSInteger, mapcacheMaxSize);
+PROTO_N (BOOL, downloadImagesLogs);
+PROTO_N (BOOL, downloadImagesWaypoints);
+PROTO_N (BOOL, downloadImagesMobile);
+PROTO_N (BOOL, downloadQueriesMobile);
+PROTO_N (NSInteger, downloadTimeoutSimple);
+PROTO_N (NSInteger, downloadTimeoutQuery);
+PROTO_N (NSInteger, mapSearchMaximumNumberGCA);
+PROTO_N (NSInteger, mapSearchMaximumDistanceGS);
+PROTO_N (NSInteger, mapSearchMaximumDistanceOKAPI);
+PROTO_N (NSInteger, mapSearchMaximumDistanceGCA);
+PROTO_N (BOOL, markasFoundDNFClearsTarget);
+PROTO_N (BOOL, markasFoundMarksAllWaypoints);
+PROTO_N (BOOL, loggingRemovesMarkedAsFoundDNF);
+PROTO_N (BOOL, compassAlwaysInPortraitMode);
+PROTO_N (BOOL, showCountryAsAbbrevation);
+PROTO_N (BOOL, showStateAsAbbrevation);
+PROTO_N (BOOL, showStateAsAbbrevationIfLocalityExists);
+PROTO_N (NSInteger, waypointListSortBy);
+PROTO_N (BOOL, refreshWaypointAfterLog);
+PROTO_N (NSInteger, listSortBy);
+PROTO_N (BOOL, accountsSaveAuthenticationName);
+PROTO_N (BOOL, accountsSaveAuthenticationPassword);
+PROTO_N (BOOL, introSeen);
+PROTO_NR(NSString *, logTemporaryText);
+PROTO_N (BOOL, locationlessShowFound);
+PROTO_N (NSInteger, locationlessListSortBy);
+PROTO_NR(NSString *, opencageKey);
+PROTO_N (BOOL, opencageWifiOnly);
+PROTO_N (NSInteger, configUpdateLastTime);
+PROTO_NR(NSString *, configUpdateLastVersion);
+PROTO_N (BOOL, automaticDatabaseBackup);
+PROTO_N (NSTimeInterval, automaticDatabaseBackupLast);
+PROTO_N (NSInteger, automaticDatabaseBackupPeriod);
+PROTO_N (NSInteger, automaticDatabaseBackupRotate);
+PROTO_N (BOOL, accuracyDynamicEnable);
+PROTO_N (LM_ACCURACY, accuracyDynamicAccuracyNear);
+PROTO_N (LM_ACCURACY, accuracyDynamicAccuracyMidrange);
+PROTO_N (LM_ACCURACY, accuracyDynamicAccuracyFar);
+PROTO_N (NSInteger, accuracyDynamicDeltaDNear);
+PROTO_N (NSInteger, accuracyDynamicDeltaDMidrange);
+PROTO_N (NSInteger, accuracyDynamicDeltaDFar);
+PROTO_N (NSInteger, accuracyDynamicDistanceNearToMidrange);
+PROTO_N (NSInteger, accuracyDynamicDistanceMidrangeToFar);
+PROTO_N (LM_ACCURACY, accuracyStaticAccuracyNavigating);
+PROTO_N (LM_ACCURACY, accuracyStaticAccuracyNonNavigating);
+PROTO_N (NSInteger, accuracyStaticDeltaDNavigating);
+PROTO_N (NSInteger, accuracyStaticDeltaDNonNavigating);
 
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown
 // UIInterfaceOrientationMaskLandscapeLeft, UIInterfaceOrientationMaskLandscapeRight
-@property (nonatomic) NSInteger orientationsAllowed;
-
-- (void)distanceMetricUpdate:(BOOL)value;
-- (void)sendTweetsUpdate:(BOOL)value;
-- (void)currentWaypointUpdate:(NSString *)name;
-- (void)currentPageUpdate:(NSInteger)value;
-- (void)currentPageTabUpdate:(NSInteger)value;
-- (void)currentTrackUpdate:(dbTrack *)value;
-- (void)lastAddedGroupUpdate:(NSInteger)value;
-- (void)lastImportGroupUpdate:(NSInteger)value;
-- (void)lastImportSourceUpdate:(NSInteger)value;
-- (void)mapExternalUpdate:(NSInteger)value;
-- (void)mapBrandDefaultUpdate:(NSString *)value;
-- (void)mapTrackColourUpdate:(NSString *)value;
-- (void)mapDestinationColourUpdate:(NSString *)value;
-- (void)compassTypeUpdate:(NSInteger)value;
-- (void)themeTypeUpdate:(NSInteger)value;
-- (void)soundDirectionUpdate:(BOOL)value;
-- (void)soundDistanceUpdate:(BOOL)value;
-- (void)keeptrackAutoRotateUpdate:(BOOL)value;
-- (void)keeptrackTimeDeltaMinUpdate:(float)value;
-- (void)keeptrackTimeDeltaMaxUpdate:(float)value;
-- (void)keeptrackDistanceDeltaMinUpdate:(NSInteger)value;
-- (void)keeptrackDistanceDeltaMaxUpdate:(NSInteger)value;
-- (void)keeptrackPurgeAgeUpdate:(NSInteger)value;
-- (void)keeptrackSyncUpdate:(NSInteger)value;
-- (void)keeptrackBeeperIntervalUpdate:(NSInteger)value;
-- (void)mapClustersEnableUpdate:(BOOL)value;
-- (void)mapClustersZoomLevelUpdate:(float)value;
-- (void)mapRotateToBearingUpdate:(BOOL)value;
-- (void)dynamicmapEnableUpdate:(BOOL)value;
-- (void)dynamicmapWalkingSpeedUpdate:(NSInteger)value;
-- (void)dynamicmapWalkingDistanceUpdate:(NSInteger)value;
-- (void)dynamicmapCyclingSpeedUpdate:(NSInteger)value;
-- (void)dynamicmapCyclingDistanceUpdate:(NSInteger)value;
-- (void)dynamicmapDrivingSpeedUpdate:(NSInteger)value;
-- (void)dynamicmapDrivingDistanceUpdate:(NSInteger)value;
-- (void)mapcacheEnableUpdate:(BOOL)value;
-- (void)mapcacheMaxAgeUpdate:(NSInteger)value;
-- (void)mapcacheMaxSizeUpdate:(NSInteger)value;
-- (void)downloadImagesLogsUpdate:(BOOL)value;
-- (void)downloadImagesWaypointsUpdate:(BOOL)value;
-- (void)downloadImagesMobileUpdate:(BOOL)value;
-- (void)downloadQueriesMobileUpdate:(BOOL)value;
-- (void)downloadTimeoutSimpleUpdate:(NSInteger)value;
-- (void)downloadTimeoutQueryUpdate:(NSInteger)value;
-- (void)mapSearchMaximumNumberGCAUpdate:(NSInteger)value;
-- (void)mapSearchMaximumDistanceGSUpdate:(NSInteger)value;
-- (void)mapSearchMaximumDistanceOKAPIUpdate:(NSInteger)value;
-- (void)mapSearchMaximumDistanceGCAUpdate:(NSInteger)value;
-- (void)orientationsAllowedUpdate:(NSInteger)value;
-- (void)markasFoundDNFClearsTargetUpdate:(BOOL)value;
-- (void)markasFoundMarksAllWaypointsUpdate:(BOOL)value;
-- (void)loggingRemovesMarkedAsFoundDNFUpdate:(BOOL)value;
-- (void)compassAlwaysInPortraitModeUpdate:(BOOL)value;
-- (void)showStateAsAbbrevationIfLocalityExistsUpdate:(BOOL)value;
-- (void)showStateAsAbbrevationUpdate:(BOOL)value;
-- (void)showCountryAsAbbrevationUpdate:(BOOL)value;
-- (void)waypointListSortByUpdate:(NSInteger)value;
-- (void)refreshWaypointAfterLogUpdate:(BOOL)value;
-- (void)listSortByUpdate:(NSInteger)value;
-- (void)accountsSaveAuthenticationNameUpdate:(BOOL)value;
-- (void)accountsSaveAuthenticationPasswordUpdate:(BOOL)value;
-- (void)introSeenUpdate:(BOOL)value;
-- (void)logTemporaryTextUpdate:(NSString *)value;
-- (void)locationlessShowFoundUpdate:(BOOL)value;
-- (void)locationlessListSortByUpdate:(NSInteger)value;
-- (void)opencageKeyUpdate:(NSString *)value;
-- (void)opencageWifiOnlyUpdate:(BOOL)value;
-- (void)configUpdateLastTimeUpdate:(NSInteger)value;
-- (void)configUpdateLastVersionUpdate:(NSString *)value;
-- (void)automaticDatabaseBackupUpdate:(BOOL)value;
-- (void)automaticDatabaseBackupLastUpdate:(NSTimeInterval)value;
-- (void)automaticDatabaseBackupPeriodUpdate:(NSInteger)value;
-- (void)automaticDatabaseBackupRotateUpdate:(NSInteger)value;
-- (void)accuracyDynamicEnableUpdate:(BOOL)value;
-- (void)accuracyDynamicAccuracyNearUpdate:(NSInteger)value;
-- (void)accuracyDynamicDeltaDNearUpdate:(NSInteger)value;
-- (void)accuracyDynamicAccuracyMidrangeUpdate:(NSInteger)value;
-- (void)accuracyDynamicDeltaDMidrangeUpdate:(NSInteger)value;
-- (void)accuracyDynamicAccuracyFarUpdate:(NSInteger)value;
-- (void)accuracyDynamicDeltaDFarUpdate:(NSInteger)value;
-- (void)accuracyDynamicDistanceNearToMidrangeUpdate:(NSInteger)value;
-- (void)accuracyDynamicDistanceMidrangeToFarUpdate:(NSInteger)value;
-- (void)accuracyStaticAccuracyNavigatingUpdate:(NSInteger)value;
-- (void)accuracyStaticAccuracyNonNavigatingUpdate:(NSInteger)value;
-- (void)accuracyStaticDeltaDNavigatingUpdate:(NSInteger)value;
-- (void)accuracyStaticDeltaDNonNavigatingUpdate:(NSInteger)value;
+PROTO_N (NSInteger, orientationsAllowed);
 
 @end

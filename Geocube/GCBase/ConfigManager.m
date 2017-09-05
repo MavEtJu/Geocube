@@ -175,92 +175,105 @@
 
 - (void)loadValues
 {
-    self.distanceMetric = [[dbConfig dbGetByKey:@"distance_metric"].value boolValue];
-    self.sendTweets = [[dbConfig dbGetByKey:@"send_tweets"].value boolValue];
-    self.currentWaypoint = [dbConfig dbGetByKey:@"waypoint_current"].value;
-    self.currentPage = [[dbConfig dbGetByKey:@"page_current"].value integerValue];
-    self.currentPageTab = [[dbConfig dbGetByKey:@"pagetab_current"].value integerValue];
+#define LOAD_VALUE(__field__, __key__) \
+    self.__field__ = [dbConfig dbGetByKey:__key__].value;
+#define LOAD_BOOL(__field__, __key__) \
+    self.__field__ = [[dbConfig dbGetByKey:__key__].value boolValue];
+#define LOAD_INTEGER(__field__, __key__) \
+    self.__field__ = [[dbConfig dbGetByKey:__key__].value integerValue];
+#define LOAD_FLOAT(__field__, __key__) \
+    self.__field__ = [[dbConfig dbGetByKey:__key__].value floatValue];
+#define LOAD_DOUBLE(__field__, __key__) \
+    self.__field__ = [[dbConfig dbGetByKey:__key__].value doubleValue];
+
+    LOAD_BOOL   (self.distanceMetric, @"distance_metric");
+    LOAD_BOOL   (self.sendTweets, @"send_tweets");
+    LOAD_VALUE  (self.currentWaypoint, @"waypoint_current");
+    LOAD_INTEGER(self.currentPage, @"page_current");
+    LOAD_INTEGER(self.currentPageTab, @"pagetab_current");
+    LOAD_INTEGER(self.lastImportSource, @"lastimport_source");
+    LOAD_INTEGER(self.lastImportGroup, @"lastimport_group");
+    LOAD_INTEGER(self.lastAddedGroup, @"lastadded_group");
+    LOAD_INTEGER(self.mapExternal, @"map_external");
+    LOAD_VALUE (self.mapBrandDefault, @"map_branddefault");
+    LOAD_INTEGER(self.compassType, @"compass_type");
+    LOAD_INTEGER(self.themeType, @"theme_type");
+    LOAD_INTEGER(self.orientationsAllowed, @"orientations_allowed");
+    LOAD_BOOL   (self.soundDirection, @"sound_direction");
+    LOAD_BOOL   (self.soundDistance, @"sound_distance");
+    LOAD_BOOL   (self.keeptrackAutoRotate, @"keeptrack_autorotate");
+    LOAD_FLOAT  (self.keeptrackTimeDeltaMin, @"keeptrack_timedelta_min");
+    LOAD_FLOAT  (self.keeptrackTimeDeltaMax, @"keeptrack_timedelta_max");
+    LOAD_FLOAT  (self.keeptrackDistanceDeltaMin, @"keeptrack_distancedelta_min");
+    LOAD_FLOAT  (self.keeptrackDistanceDeltaMax, @"keeptrack_distancedelta_max");
+    LOAD_INTEGER(self.keeptrackPurgeAge, @"keeptrack_purgeage");
+    LOAD_INTEGER(self.keeptrackSync, @"keeptrack_sync");
+    LOAD_INTEGER(self.keeptrackBeeperInterval, @"keeptrack_beeper_interval");
+    LOAD_BOOL   (self.mapClustersEnable, @"map_clusters_enable");
+    LOAD_FLOAT  (self.mapClustersZoomLevel, @"map_clusters_zoomlevel");
+    LOAD_BOOL   (self.mapRotateToBearing, @"map_rotate_to_bearing");
+    LOAD_BOOL   (self.dynamicmapEnable, @"dynamicmap_enable");
+    LOAD_FLOAT  (self.dynamicmapWalkingDistance, @"dynamicmap_distance_walking");
+    LOAD_FLOAT  (self.dynamicmapCyclingDistance, @"dynamicmap_distance_cycling");
+    LOAD_FLOAT  (self.dynamicmapDrivingDistance, @"dynamicmap_distance_driving");
+    LOAD_INTEGER(self.dynamicmapWalkingSpeed, @"dynamicmap_speed_walking");
+    LOAD_INTEGER(self.dynamicmapCyclingSpeed, @"dynamicmap_speed_cycling");
+    LOAD_INTEGER(self.dynamicmapDrivingSpeed, @"dynamicmap_speed_driving");
+    LOAD_BOOL   (self.mapcacheEnable, @"mapcache_enable");
+    LOAD_INTEGER(self.mapcacheMaxAge, @"mapcache_maxage");
+    LOAD_INTEGER(self.mapcacheMaxSize, @"mapcache_maxsize");
+    LOAD_BOOL   (self.downloadImagesLogs, @"download_images_logs");
+    LOAD_BOOL   (self.downloadImagesWaypoints, @"download_images_waypoints");
+    LOAD_BOOL   (self.downloadImagesMobile, @"download_images_mobile");
+    LOAD_BOOL   (self.downloadQueriesMobile, @"download_queries_mobile");
+    LOAD_INTEGER(self.downloadTimeoutSimple, @"download_timeout_simple");
+    LOAD_INTEGER(self.downloadTimeoutQuery, @"download_timeout_query");
+    LOAD_INTEGER(self.mapSearchMaximumNumberGCA, @"mapsearchmaximum_numbergca");
+    LOAD_INTEGER(self.mapSearchMaximumDistanceGS, @"mapsearchmaximum_distancegs");
+    LOAD_INTEGER(self.mapSearchMaximumDistanceOKAPI, @"mapsearchmaximum_distanceokapi");
+    LOAD_INTEGER(self.mapSearchMaximumDistanceGCA, @"mapsearchmaximum_distancegca");
+    LOAD_BOOL   (self.markasFoundDNFClearsTarget, @"markas_founddnf_clearstarget");
+    LOAD_BOOL   (self.markasFoundMarksAllWaypoints, @"markas_foundmarksallwaypoints");
+    LOAD_BOOL   (self.loggingRemovesMarkedAsFoundDNF, @"logging_removesmarkedasfounddnf");
+    LOAD_BOOL   (self.compassAlwaysInPortraitMode, @"compass_alwaysinportraitmode");
+    LOAD_BOOL   (self.showCountryAsAbbrevation, @"showasabbrevation_country");
+    LOAD_BOOL   (self.showStateAsAbbrevation, @"showasabbrevation_state");
+    LOAD_BOOL   (self.showStateAsAbbrevationIfLocalityExists, @"showasabbrevation_statewithlocale");
+    LOAD_INTEGER(self.waypointListSortBy, @"waypointlist_sortby");
+    LOAD_BOOL   (self.refreshWaypointAfterLog, @"waypoint_refreshafterlog");
+    LOAD_INTEGER(self.listSortBy, @"list_sortby");
+    LOAD_BOOL   (self.accountsSaveAuthenticationName, @"accounts_save_authenticationname");
+    LOAD_BOOL   (self.accountsSaveAuthenticationPassword, @"accounts_save_authenticationpassword");
+    LOAD_BOOL   (self.introSeen, @"intro_seen");
+    LOAD_VALUE  (self.logTemporaryText, @"log_temporary_text");
+    LOAD_BOOL   (self.locationlessShowFound, @"locationless_showfound");
+    LOAD_INTEGER(self.locationlessListSortBy, @"locationless_sortby");
+    LOAD_VALUE  (self.opencageKey, @"opencage_key");
+    LOAD_BOOL   (self.opencageWifiOnly, @"opencage_wifionly");
+    LOAD_VALUE  (self.configUpdateLastVersion, @"configupdate_lastversion");
+    LOAD_INTEGER(self.configUpdateLastTime, @"configupdate_lasttime");
+    LOAD_BOOL   (self.automaticDatabaseBackup, @"automaticdatabasebackup_enable");
+    LOAD_DOUBLE (self.automaticDatabaseBackupLast, @"automaticdatabasebackup_last");
+    LOAD_INTEGER(self.automaticDatabaseBackupPeriod, @"automaticdatabasebackup_period");
+    LOAD_INTEGER(self.automaticDatabaseBackupRotate, @"automaticdatabasebackup_rotate");
+    LOAD_BOOL   (self.accuracyDynamicEnable, @"accuracy_dynamic_enable");
+    LOAD_INTEGER(self.accuracyDynamicAccuracyNear, @"accuracy_dynamic_accuracy_near");
+    LOAD_INTEGER(self.accuracyDynamicAccuracyMidrange, @"accuracy_dynamic_accuracy_midrange");
+    LOAD_INTEGER(self.accuracyDynamicAccuracyFar, @"accuracy_dynamic_accuracy_far");
+    LOAD_INTEGER(self.accuracyDynamicDeltaDNear, @"accuracy_dynamic_deltad_near");
+    LOAD_INTEGER(self.accuracyDynamicDeltaDMidrange, @"accuracy_dynamic_deltad_midrange");
+    LOAD_INTEGER(self.accuracyDynamicDeltaDFar, @"accuracy_dynamic_deltad_far");
+    LOAD_INTEGER(self.accuracyDynamicDistanceNearToMidrange, @"accuracy_dynamic_distance_neartomidrange");
+    LOAD_INTEGER(self.accuracyDynamicDistanceMidrangeToFar, @"accuracy_dynamic_distance_midrangetofar");
+    LOAD_INTEGER(self.accuracyStaticAccuracyNavigating, @"accuracy_static_accuracy_navigating");
+    LOAD_INTEGER(self.accuracyStaticAccuracyNonNavigating, @"accuracy_static_accuracy_nonnavigating");
+    LOAD_INTEGER(self.accuracyStaticDeltaDNavigating, @"accuracy_static_deltad_navigating");
+    LOAD_INTEGER(self.accuracyStaticDeltaDNonNavigating, @"accuracy_static_deltad_nonnavigating");
+
+    /* Leftovers */
     self.currentTrack = [dbTrack dbGet:[[dbConfig dbGetByKey:@"track_current"].value integerValue]];
-    self.lastImportSource = [[dbConfig dbGetByKey:@"lastimport_source"].value integerValue];
-    self.lastImportGroup = [[dbConfig dbGetByKey:@"lastimport_group"].value integerValue];
-    self.lastAddedGroup = [[dbConfig dbGetByKey:@"lastadded_group"].value integerValue];
-    self.mapExternal = [[dbConfig dbGetByKey:@"map_external"].value integerValue];
-    self.mapBrandDefault = [dbConfig dbGetByKey:@"map_branddefault"].value;
     self.mapTrackColour = [ImageLibrary RGBtoColor:[dbConfig dbGetByKey:@"map_track_colour"].value];
     self.mapDestinationColour = [ImageLibrary RGBtoColor:[dbConfig dbGetByKey:@"map_destination_colour"].value];
-    self.compassType = [[dbConfig dbGetByKey:@"compass_type"].value integerValue];
-    self.themeType = [[dbConfig dbGetByKey:@"theme_type"].value integerValue];
-    self.orientationsAllowed = [[dbConfig dbGetByKey:@"orientations_allowed"].value integerValue];
-    self.soundDirection = [[dbConfig dbGetByKey:@"sound_direction"].value boolValue];
-    self.soundDistance = [[dbConfig dbGetByKey:@"sound_distance"].value boolValue];
-    self.keeptrackAutoRotate = [[dbConfig dbGetByKey:@"keeptrack_autorotate"].value boolValue];
-    self.keeptrackTimeDeltaMin = [[dbConfig dbGetByKey:@"keeptrack_timedelta_min"].value floatValue];
-    self.keeptrackTimeDeltaMax = [[dbConfig dbGetByKey:@"keeptrack_timedelta_max"].value floatValue];
-    self.keeptrackDistanceDeltaMin = [[dbConfig dbGetByKey:@"keeptrack_distancedelta_min"].value floatValue];
-    self.keeptrackDistanceDeltaMax = [[dbConfig dbGetByKey:@"keeptrack_distancedelta_max"].value floatValue];
-    self.keeptrackPurgeAge = [[dbConfig dbGetByKey:@"keeptrack_purgeage"].value integerValue];
-    self.keeptrackSync = [[dbConfig dbGetByKey:@"keeptrack_sync"].value integerValue];
-    self.keeptrackBeeperInterval = [[dbConfig dbGetByKey:@"keeptrack_beeper_interval"].value integerValue];
-    self.mapClustersEnable = [[dbConfig dbGetByKey:@"map_clusters_enable"].value boolValue];
-    self.mapClustersZoomLevel = [[dbConfig dbGetByKey:@"map_clusters_zoomlevel"].value floatValue];
-    self.mapRotateToBearing = [[dbConfig dbGetByKey:@"map_rotate_to_bearing"].value boolValue];
-    self.dynamicmapEnable = [[dbConfig dbGetByKey:@"dynamicmap_enable"].value boolValue];
-    self.dynamicmapWalkingDistance = [[dbConfig dbGetByKey:@"dynamicmap_distance_walking"].value floatValue];
-    self.dynamicmapCyclingDistance = [[dbConfig dbGetByKey:@"dynamicmap_distance_cycling"].value floatValue];
-    self.dynamicmapDrivingDistance = [[dbConfig dbGetByKey:@"dynamicmap_distance_driving"].value floatValue];
-    self.dynamicmapWalkingSpeed = [[dbConfig dbGetByKey:@"dynamicmap_speed_walking"].value integerValue];
-    self.dynamicmapCyclingSpeed = [[dbConfig dbGetByKey:@"dynamicmap_speed_cycling"].value integerValue];
-    self.dynamicmapDrivingSpeed = [[dbConfig dbGetByKey:@"dynamicmap_speed_driving"].value integerValue];
-    self.mapcacheEnable = [[dbConfig dbGetByKey:@"mapcache_enable"].value boolValue];
-    self.mapcacheMaxAge = [[dbConfig dbGetByKey:@"mapcache_maxage"].value integerValue];
-    self.mapcacheMaxSize = [[dbConfig dbGetByKey:@"mapcache_maxsize"].value integerValue];
-    self.downloadImagesLogs = [[dbConfig dbGetByKey:@"download_images_logs"].value boolValue];
-    self.downloadImagesWaypoints = [[dbConfig dbGetByKey:@"download_images_waypoints"].value boolValue];
-    self.downloadImagesMobile = [[dbConfig dbGetByKey:@"download_images_mobile"].value boolValue];
-    self.downloadQueriesMobile = [[dbConfig dbGetByKey:@"download_queries_mobile"].value boolValue];
-    self.downloadTimeoutSimple = [[dbConfig dbGetByKey:@"download_timeout_simple"].value integerValue];
-    self.downloadTimeoutQuery = [[dbConfig dbGetByKey:@"download_timeout_query"].value integerValue];
-    self.mapSearchMaximumNumberGCA = [[dbConfig dbGetByKey:@"mapsearchmaximum_numbergca"].value integerValue];
-    self.mapSearchMaximumDistanceGS = [[dbConfig dbGetByKey:@"mapsearchmaximum_distancegs"].value integerValue];
-    self.mapSearchMaximumDistanceOKAPI = [[dbConfig dbGetByKey:@"mapsearchmaximum_distanceokapi"].value integerValue];
-    self.mapSearchMaximumDistanceGCA = [[dbConfig dbGetByKey:@"mapsearchmaximum_distancegca"].value integerValue];
-    self.markasFoundDNFClearsTarget = [[dbConfig dbGetByKey:@"markas_founddnf_clearstarget"].value boolValue];
-    self.markasFoundMarksAllWaypoints = [[dbConfig dbGetByKey:@"markas_foundmarksallwaypoints"].value boolValue];
-    self.loggingRemovesMarkedAsFoundDNF = [[dbConfig dbGetByKey:@"logging_removesmarkedasfounddnf"].value boolValue];
-    self.compassAlwaysInPortraitMode = [[dbConfig dbGetByKey:@"compass_alwaysinportraitmode"].value boolValue];
-    self.showCountryAsAbbrevation = [[dbConfig dbGetByKey:@"showasabbrevation_country"].value boolValue];
-    self.showStateAsAbbrevation = [[dbConfig dbGetByKey:@"showasabbrevation_state"].value boolValue];
-    self.showStateAsAbbrevationIfLocalityExists = [[dbConfig dbGetByKey:@"showasabbrevation_statewithlocale"].value boolValue];
-    self.waypointListSortBy = [[dbConfig dbGetByKey:@"waypointlist_sortby"].value integerValue];
-    self.refreshWaypointAfterLog = [[dbConfig dbGetByKey:@"waypoint_refreshafterlog"].value boolValue];
-    self.listSortBy = [[dbConfig dbGetByKey:@"list_sortby"].value integerValue];
-    self.accountsSaveAuthenticationName = [[dbConfig dbGetByKey:@"accounts_save_authenticationname"].value boolValue];
-    self.accountsSaveAuthenticationPassword = [[dbConfig dbGetByKey:@"accounts_save_authenticationpassword"].value boolValue];
-    self.introSeen = [[dbConfig dbGetByKey:@"intro_seen"].value boolValue];
-    self.logTemporaryText = [dbConfig dbGetByKey:@"log_temporary_text"].value;
-    self.locationlessShowFound = [[dbConfig dbGetByKey:@"locationless_showfound"].value boolValue];
-    self.locationlessListSortBy = [[dbConfig dbGetByKey:@"locationless_sortby"].value integerValue];
-    self.opencageKey = [dbConfig dbGetByKey:@"opencage_key"].value;
-    self.opencageWifiOnly = [[dbConfig dbGetByKey:@"opencage_wifionly"].value boolValue];
-    self.configUpdateLastVersion = [dbConfig dbGetByKey:@"configupdate_lastversion"].value;
-    self.configUpdateLastTime = [[dbConfig dbGetByKey:@"configupdate_lasttime"].value integerValue];
-    self.automaticDatabaseBackup = [[dbConfig dbGetByKey:@"automaticdatabasebackup_enable"].value boolValue];
-    self.automaticDatabaseBackupLast = [[dbConfig dbGetByKey:@"automaticdatabasebackup_last"].value doubleValue];
-    self.automaticDatabaseBackupPeriod = [[dbConfig dbGetByKey:@"automaticdatabasebackup_period"].value integerValue];
-    self.automaticDatabaseBackupRotate = [[dbConfig dbGetByKey:@"automaticdatabasebackup_rotate"].value integerValue];
-    self.accuracyDynamicEnable = [[dbConfig dbGetByKey:@"accuracy_dynamic_enable"].value boolValue];
-    self.accuracyDynamicAccuracyNear = [[dbConfig dbGetByKey:@"accuracy_dynamic_accuracy_near"].value integerValue];
-    self.accuracyDynamicAccuracyMidrange = [[dbConfig dbGetByKey:@"accuracy_dynamic_accuracy_midrange"].value integerValue];
-    self.accuracyDynamicAccuracyFar = [[dbConfig dbGetByKey:@"accuracy_dynamic_accuracy_far"].value integerValue];
-    self.accuracyDynamicDeltaDNear = [[dbConfig dbGetByKey:@"accuracy_dynamic_deltad_near"].value integerValue];
-    self.accuracyDynamicDeltaDMidrange = [[dbConfig dbGetByKey:@"accuracy_dynamic_deltad_midrange"].value integerValue];
-    self.accuracyDynamicDeltaDFar = [[dbConfig dbGetByKey:@"accuracy_dynamic_deltad_far"].value integerValue];
-    self.accuracyDynamicDistanceNearToMidrange = [[dbConfig dbGetByKey:@"accuracy_dynamic_distance_neartomidrange"].value integerValue];
-    self.accuracyDynamicDistanceMidrangeToFar = [[dbConfig dbGetByKey:@"accuracy_dynamic_distance_midrangetofar"].value integerValue];
-    self.accuracyStaticAccuracyNavigating = [[dbConfig dbGetByKey:@"accuracy_static_accuracy_navigating"].value integerValue];
-    self.accuracyStaticAccuracyNonNavigating = [[dbConfig dbGetByKey:@"accuracy_static_accuracy_nonnavigating"].value integerValue];
-    self.accuracyStaticDeltaDNavigating = [[dbConfig dbGetByKey:@"accuracy_static_deltad_navigating"].value integerValue];
-    self.accuracyStaticDeltaDNonNavigating = [[dbConfig dbGetByKey:@"accuracy_static_deltad_nonnavigating"].value integerValue];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -368,16 +381,16 @@ UPDATE3(BOOL, opencageWifiOnly, @"opencage_wifionly")
 UPDATE3(BOOL, automaticDatabaseBackup, @"automaticdatabasebackup_enable")
 UPDATE3(BOOL, accuracyDynamicEnable, @"accuracy_dynamic_enable")
 
-UPDATE3(NSInteger, accuracyDynamicAccuracyNear, @"accuracy_dynamic_accuracy_near")
-UPDATE3(NSInteger, accuracyDynamicAccuracyMidrange, @"accuracy_dynamic_accuracy_midrange")
-UPDATE3(NSInteger, accuracyDynamicAccuracyFar, @"accuracy_dynamic_accuracy_far")
+UPDATE4(LM_ACCURACY, NSInteger, accuracyDynamicAccuracyNear, @"accuracy_dynamic_accuracy_near")
+UPDATE4(LM_ACCURACY, NSInteger, accuracyDynamicAccuracyMidrange, @"accuracy_dynamic_accuracy_midrange")
+UPDATE4(LM_ACCURACY, NSInteger, accuracyDynamicAccuracyFar, @"accuracy_dynamic_accuracy_far")
 UPDATE3(NSInteger, accuracyDynamicDeltaDNear, @"accuracy_dynamic_deltad_near")
 UPDATE3(NSInteger, accuracyDynamicDeltaDMidrange, @"accuracy_dynamic_deltad_midrange")
 UPDATE3(NSInteger, accuracyDynamicDeltaDFar, @"accuracy_dynamic_deltad_far")
 UPDATE3(NSInteger, accuracyDynamicDistanceNearToMidrange, @"accuracy_dynamic_distance_neartomidrange")
 UPDATE3(NSInteger, accuracyDynamicDistanceMidrangeToFar, @"accuracy_dynamic_distance_midrangetofar")
-UPDATE3(NSInteger, accuracyStaticAccuracyNavigating, @"accuracy_static_accuracy_navigating")
-UPDATE3(NSInteger, accuracyStaticAccuracyNonNavigating, @"accuracy_static_accuracy_nonnavigating")
+UPDATE4(LM_ACCURACY, NSInteger, accuracyStaticAccuracyNavigating, @"accuracy_static_accuracy_navigating")
+UPDATE4(LM_ACCURACY, NSInteger, accuracyStaticAccuracyNonNavigating, @"accuracy_static_accuracy_nonnavigating")
 UPDATE3(NSInteger, accuracyStaticDeltaDNavigating, @"accuracy_static_deltad_navigating")
 UPDATE3(NSInteger, accuracyStaticDeltaDNonNavigating, @"accuracy_static_deltad_nonnavigating")
 UPDATE3(NSInteger, currentPage, @"page_current")
