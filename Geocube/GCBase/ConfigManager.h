@@ -123,13 +123,13 @@
 @property (nonatomic) NSInteger automaticDatabaseBackupRotate;
 
 @property (nonatomic) BOOL accuracyDynamicEnable;
-@property (nonatomic) LM_ACCURACY accuracyDynamicNear;
-@property (nonatomic) NSInteger accuracyDynamicNearToMidrange;
-@property (nonatomic) LM_ACCURACY accuracyDynamicMidrange;
-@property (nonatomic) NSInteger accuracyDynamicMidrangeToFar;
-@property (nonatomic) LM_ACCURACY accuracyDynamicFar;
-@property (nonatomic) LM_ACCURACY accuracyStaticNavigating;
-@property (nonatomic) LM_ACCURACY accuracyStaticNonNavigating;
+@property (nonatomic) LM_ACCURACY accuracyDynamicAccuracyNear;
+@property (nonatomic) LM_ACCURACY accuracyDynamicAccuracyMidrange;
+@property (nonatomic) LM_ACCURACY accuracyDynamicAccuracyFar;
+@property (nonatomic) NSInteger accuracyDynamicDistanceNearToMidrange;
+@property (nonatomic) NSInteger accuracyDynamicDistanceMidrangeToFar;
+@property (nonatomic) LM_ACCURACY accuracyStaticAccuracyNavigating;
+@property (nonatomic) LM_ACCURACY accuracyStaticAccuracyNonNavigating;
 
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown
@@ -210,12 +210,12 @@
 - (void)automaticDatabaseBackupPeriodUpdate:(NSInteger)value;
 - (void)automaticDatabaseBackupRotateUpdate:(NSInteger)value;
 - (void)accuracyDynamicEnableUpdate:(BOOL)value;
-- (void)accuracyDynamicNearUpdate:(NSInteger)value;
-- (void)accuracyDynamicMidrangeUpdate:(NSInteger)value;
-- (void)accuracyDynamicFarUpdate:(NSInteger)value;
-- (void)accuracyDynamicNearToMidrangeUpdate:(NSInteger)value;
-- (void)accuracyDynamicMidrangeToFarUpdate:(NSInteger)value;
-- (void)accuracyStaticNavigatingUpdate:(NSInteger)value;
-- (void)accuracyStaticNonNavigatingUpdate:(NSInteger)value;
+- (void)accuracyDynamicAccuracyNearUpdate:(NSInteger)value;
+- (void)accuracyDynamicAccuracyMidrangeUpdate:(NSInteger)value;
+- (void)accuracyDynamicAccuracyFarUpdate:(NSInteger)value;
+- (void)accuracyDynamicDistanceNearToMidrangeUpdate:(NSInteger)value;
+- (void)accuracyDynamicDistanceMidrangeToFarUpdate:(NSInteger)value;
+- (void)accuracyStaticAccuracyNavigatingUpdate:(NSInteger)value;
+- (void)accuracyStaticAccuracyNonNavigatingUpdate:(NSInteger)value;
 
 @end

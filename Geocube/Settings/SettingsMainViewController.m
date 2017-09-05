@@ -1012,43 +1012,43 @@ enum sections {
                 case SECTION_ACCURACY_DYNAMIC_NEAR: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Accuracy for 'near' accuracy");
-                    cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyDynamicNear];
+                    cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyDynamicAccuracyNear];
                     return cell;
                 }
                 case SECTION_ACCURACY_DYNAMIC_MIDRANGE: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Accuracy for 'midrange' accuracy");
-                    cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyDynamicMidrange];
+                    cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyDynamicAccuracyMidrange];
                     return cell;
                 }
                 case SECTION_ACCURACY_DYNAMIC_FAR: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Accuracy for 'far' accuracy");
-                    cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyDynamicFar];
+                    cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyDynamicAccuracyFar];
                     return cell;
                 }
                 case SECTION_ACCURACY_DYNAMIC_NEARTOMIDRANGE: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Distance for 'near' accuracy");
-                    cell.detailTextLabel.text = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Up to %@"), [MyTools niceDistance:configManager.accuracyDynamicNearToMidrange]];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Up to %@"), [MyTools niceDistance:configManager.accuracyDynamicDistanceNearToMidrange]];
                     return cell;
                 }
                 case SECTION_ACCURACY_DYNAMIC_MIDRANGETOFAR: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Distance for 'midrange' accuracy");
-                    cell.detailTextLabel.text = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Up to %@"), [MyTools niceDistance:configManager.accuracyDynamicNearToMidrange]];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Up to %@"), [MyTools niceDistance:configManager.accuracyDynamicDistanceNearToMidrange]];
                     return cell;
                 }
                 case SECTION_ACCURACY_STATIC_NAVIGATING: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Accuracy for static 'navigating' accuracy");
-                    cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyStaticNavigating];
+                    cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyStaticAccuracyNavigating];
                     return cell;
                 }
                 case SECTION_ACCURACY_STATIC_NONNAVIGATING: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Accuracy for static 'non-navigating' accuracy");
-                    cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyStaticNonNavigating];
+                    cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyStaticAccuracyNonNavigating];
                     return cell;
                 }
             }
@@ -2166,20 +2166,22 @@ enum sections {
     NSInteger initial = LMACCURACY_1000M;
     switch (field) {
         case SECTION_ACCURACY_STATIC_NONNAVIGATING:
-            initial = configManager.accuracyStaticNonNavigating;
+            initial = configManager.accuracyStaticAccuracyNonNavigating;
             break;
         case SECTION_ACCURACY_STATIC_NAVIGATING:
-            initial = configManager.accuracyStaticNavigating;
+            initial = configManager.accuracyStaticAccuracyNavigating;
             break;
         case SECTION_ACCURACY_DYNAMIC_NEAR:
-            initial = configManager.accuracyDynamicNear;
+            initial = configManager.accuracyDynamicAccuracyNear;
             break;
         case SECTION_ACCURACY_DYNAMIC_MIDRANGE:
-            initial = configManager.accuracyDynamicMidrange;
+            initial = configManager.accuracyDynamicAccuracyMidrange;
             break;
         case SECTION_ACCURACY_DYNAMIC_FAR:
-            initial = configManager.accuracyDynamicFar;
+            initial = configManager.accuracyDynamicAccuracyFar;
             break;
+        default:
+            abort();
     }
 
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select accuracy")
@@ -2188,19 +2190,19 @@ enum sections {
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                            switch (field) {
                                                case SECTION_ACCURACY_STATIC_NONNAVIGATING:
-                                                   [configManager accuracyStaticNonNavigatingUpdate:selectedIndex];
+                                                   [configManager accuracyStaticAccuracyNonNavigatingUpdate:selectedIndex];
                                                    break;
                                                case SECTION_ACCURACY_STATIC_NAVIGATING:
-                                                    [configManager accuracyStaticNavigatingUpdate:selectedIndex];
+                                                    [configManager accuracyStaticAccuracyNavigatingUpdate:selectedIndex];
                                                    break;
                                                case SECTION_ACCURACY_DYNAMIC_NEAR:
-                                                    [configManager accuracyDynamicNearUpdate:selectedIndex];
+                                                    [configManager accuracyDynamicAccuracyNearUpdate:selectedIndex];
                                                    break;
                                                case SECTION_ACCURACY_DYNAMIC_MIDRANGE:
-                                                    [configManager accuracyDynamicMidrangeUpdate:selectedIndex];
+                                                    [configManager accuracyDynamicAccuracyMidrangeUpdate:selectedIndex];
                                                    break;
                                                case SECTION_ACCURACY_DYNAMIC_FAR:
-                                                    [configManager accuracyDynamicFarUpdate:selectedIndex];
+                                                    [configManager accuracyDynamicAccuracyFarUpdate:selectedIndex];
                                                    break;
                                            }
                                            [self.tableView reloadData];
