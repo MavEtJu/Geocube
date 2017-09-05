@@ -122,11 +122,14 @@
 @property (nonatomic) NSInteger automaticDatabaseBackupPeriod;
 @property (nonatomic) NSInteger automaticDatabaseBackupRotate;
 
-@property (nonatomic) LM_ACCURACY accuracyAccuracyClose;
-@property (nonatomic) NSInteger accuracyDistanceCloseToNear;
-@property (nonatomic) LM_ACCURACY accuracyAccuracyNear;
-@property (nonatomic) NSInteger accuracyDistanceNearToFar;
-@property (nonatomic) LM_ACCURACY accuracyAccuracyFar;
+@property (nonatomic) BOOL accuracyDynamicEnable;
+@property (nonatomic) LM_ACCURACY accuracyDynamicNear;
+@property (nonatomic) NSInteger accuracyDynamicNearToMidrange;
+@property (nonatomic) LM_ACCURACY accuracyDynamicMidrange;
+@property (nonatomic) NSInteger accuracyDynamicMidrangeToFar;
+@property (nonatomic) LM_ACCURACY accuracyDynamicFar;
+@property (nonatomic) LM_ACCURACY accuracyStaticNavigating;
+@property (nonatomic) LM_ACCURACY accuracyStaticNonNavigating;
 
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown
@@ -206,10 +209,13 @@
 - (void)automaticDatabaseBackupLastUpdate:(NSTimeInterval)value;
 - (void)automaticDatabaseBackupPeriodUpdate:(NSInteger)value;
 - (void)automaticDatabaseBackupRotateUpdate:(NSInteger)value;
-- (void)accuracyAccuracyCloseUpdate:(NSInteger)value;
-- (void)accuracyAccuracyNearUpdate:(NSInteger)value;
-- (void)accuracyAccuracyFarUpdate:(NSInteger)value;
-- (void)accuracyDistanceCloseToNearUpdate:(NSInteger)value;
-- (void)accuracyDistanceNearToFarUpdate:(NSInteger)value;
+- (void)accuracyDynamicEnableUpdate:(BOOL)value;
+- (void)accuracyDynamicNearUpdate:(NSInteger)value;
+- (void)accuracyDynamicMidrangeUpdate:(NSInteger)value;
+- (void)accuracyDynamicFarUpdate:(NSInteger)value;
+- (void)accuracyDynamicNearToMidrangeUpdate:(NSInteger)value;
+- (void)accuracyDynamicMidrangeToFarUpdate:(NSInteger)value
+- (void)accuracyStaticNavigatingUpdate:(NSInteger)value;
+- (void)accuracyStaticNonNavigatingUpdate:(NSInteger)value;
 
 @end
