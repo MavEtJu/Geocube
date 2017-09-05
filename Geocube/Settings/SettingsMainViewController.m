@@ -45,6 +45,8 @@
     NSMutableArray<NSString *> *distancesCycling;
     NSMutableArray<NSString *> *distancesDriving;
 
+    NSArray<NSString *> *accuracies;
+
     NSInteger mapcacheMaxAge;
     NSInteger mapcacheMaxSize;
     NSArray<NSString *> *mapcacheMaxAgeValues;
@@ -113,6 +115,15 @@ enum {
         [NSNumber numberWithInteger:UIInterfaceOrientationMaskLandscapeRight],
         [NSNumber numberWithInteger:UIInterfaceOrientationMaskLandscapeLeft],
         [NSNumber numberWithInteger:UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight],
+        ];
+
+    accuracies = @[
+        _(@"settingsmainviewcontroller-Highest possible accuracy with additional sensor data"),
+        _(@"settingsmainviewcontroller-Highest possible accuracy"),
+        _(@"settingsmainviewcontroller-Accurate to ten meters"),
+        _(@"settingsmainviewcontroller-Accurate to hundred meters"),
+        _(@"settingsmainviewcontroller-Accurate to one kilometer"),
+        _(@"settingsmainviewcontroller-Accurate to three kilometers"),
         ];
 
     downloadSimpleTimeouts = [NSMutableArray arrayWithCapacity:20];
@@ -230,7 +241,6 @@ enum {
 
 enum sections {
     SECTION_DISTANCE = 0,
-    SECTION_BACKUPS,
     SECTION_APPS,
     SECTION_IMPORTS,
     SECTION_THEME,
@@ -239,6 +249,7 @@ enum sections {
     SECTION_MAPCOLOURS,
     SECTION_MAPSEARCHMAXIMUM,
     SECTION_MAPS,
+    SECTION_ACCURACY,
     SECTION_MAPCACHE,
     SECTION_DYNAMICMAP,
     SECTION_KEEPTRACK,
@@ -247,6 +258,7 @@ enum sections {
     SECTION_LISTS,
     SECTION_ACCOUNTS,
     SECTION_LOCATIONLESS,
+    SECTION_BACKUPS,
     SECTION_MAX,
 
     SECTION_DISTANCE_METRIC = 0,
@@ -342,6 +354,16 @@ enum sections {
     SECTION_BACKUPS_INTERVAL,
     SECTION_BACKUPS_ROTATION,
     SECTION_BACKUPS_MAX,
+
+    SECTION_ACCURACY_DYNAMIC_ENABLE = 0,
+    SECTION_ACCURACY_DYNAMIC_NEAR,
+    SECTION_ACCURACY_DYNAMIC_MIDRANGE,
+    SECTION_ACCURACY_DYNAMIC_FAR,
+    SECTION_ACCURACY_DYNAMIC_NEARTOMIDRANGE,
+    SECTION_ACCURACY_DYNAMIC_MIDRANGETOFAR,
+    SECTION_ACCURACY_STATIC_NAVIGATING,
+    SECTION_ACCURACY_STATIC_NONNAVIGATING,
+    SECTION_ACCURACY_MAX,
 };
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -374,6 +396,7 @@ enum sections {
         SECTION_MAX(ACCOUNTS);
         SECTION_MAX(LOCATIONLESS);
         SECTION_MAX(BACKUPS);
+        SECTION_MAX(ACCURACY);
         default:
             NSAssert1(0, @"Unknown section %ld", (long)section);
     }
@@ -421,6 +444,8 @@ enum sections {
             return _(@"settingsmainviewcontroller-Locationless");
         case SECTION_BACKUPS:
             return _(@"settingsmainviewcontroller-Backups");
+        case SECTION_ACCURACY:
+            return _(@"settingsmainviewcontroller-Accuracy");
         default:
             NSAssert1(0, @"Unknown section %ld", (long)section);
     }
@@ -974,6 +999,61 @@ enum sections {
             }
         }
 
+        case SECTION_ACCURACY: {
+            switch (indexPath.row) {
+                case SECTION_ACCURACY_DYNAMIC_ENABLE: {
+                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Enable dynamic accuracy");
+                    cell.optionSwitch.on = configManager.accuracyDynamicEnable;
+                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+                    [cell.optionSwitch addTarget:self action:@selector(updateDynamicAccuracyEnable:) forControlEvents:UIControlEventTouchUpInside];
+                    return cell;
+                }
+                case SECTION_ACCURACY_DYNAMIC_NEAR: {
+                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Accuracy for 'near' accuracy");
+                    cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyDynamicNear];
+                    return cell;
+                }
+                case SECTION_ACCURACY_DYNAMIC_MIDRANGE: {
+                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Accuracy for 'midrange' accuracy");
+                    cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyDynamicMidrange];
+                    return cell;
+                }
+                case SECTION_ACCURACY_DYNAMIC_FAR: {
+                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Accuracy for 'far' accuracy");
+                    cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyDynamicFar];
+                    return cell;
+                }
+                case SECTION_ACCURACY_DYNAMIC_NEARTOMIDRANGE: {
+                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Distance for 'near' accuracy");
+                    cell.detailTextLabel.text = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Up to %@"), [MyTools niceDistance:configManager.accuracyDynamicNearToMidrange]];
+                    return cell;
+                }
+                case SECTION_ACCURACY_DYNAMIC_MIDRANGETOFAR: {
+                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Distance for 'midrange' accuracy");
+                    cell.detailTextLabel.text = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Up to %@"), [MyTools niceDistance:configManager.accuracyDynamicNearToMidrange]];
+                    return cell;
+                }
+                case SECTION_ACCURACY_STATIC_NAVIGATING: {
+                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Accuracy for static 'navigating' accuracy");
+                    cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyStaticNavigating];
+                    return cell;
+                }
+                case SECTION_ACCURACY_STATIC_NONNAVIGATING: {
+                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
+                    cell.textLabel.text = _(@"settingsmainviewcontroller-Accuracy for static 'non-navigating' accuracy");
+                    cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyStaticNonNavigating];
+                    return cell;
+                }
+            }
+        }
+
     }
 
     // Not reached
@@ -1084,6 +1164,11 @@ enum sections {
 - (void)updateBackupsEnable:(GCSwitch *)s
 {
     [configManager automaticDatabaseBackupUpdate:s.on];
+}
+
+- (void)updateDynamicAccuracyEnable:(GCSwitch *)s
+{
+    [configManager accuracyDynamicEnableUpdate:s.on];
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -1232,6 +1317,19 @@ enum sections {
                     break;
                 case SECTION_BACKUPS_INTERVAL:
                     [self changeBackupsInterval];
+                    break;
+            }
+            break;
+        case SECTION_ACCURACY:
+            switch (indexPath.row) {
+                case SECTION_ACCURACY_DYNAMIC_NEAR:
+                case SECTION_ACCURACY_DYNAMIC_MIDRANGE:
+                case SECTION_ACCURACY_DYNAMIC_FAR:
+                case SECTION_ACCURACY_DYNAMIC_NEARTOMIDRANGE:
+                case SECTION_ACCURACY_DYNAMIC_MIDRANGETOFAR:
+                case SECTION_ACCURACY_STATIC_NAVIGATING:
+                case SECTION_ACCURACY_STATIC_NONNAVIGATING:
+                    [self changeAccuracy:indexPath.row];
                     break;
             }
             break;
@@ -2058,6 +2156,61 @@ enum sections {
     [configManager mapExternalUpdate:map.geocube_id];
     [self.tableView reloadData];
 }
+
+/* ********************************************************************************* */
+
+- (void)changeAccuracy:(NSInteger)field
+{
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:field inSection:SECTION_ACCURACY]];
+
+    NSInteger initial = LMACCURACY_1000M;
+    switch (field) {
+        case SECTION_ACCURACY_STATIC_NONNAVIGATING:
+            initial = configManager.accuracyStaticNonNavigating;
+            break;
+        case SECTION_ACCURACY_STATIC_NAVIGATING:
+            initial = configManager.accuracyStaticNavigating;
+            break;
+        case SECTION_ACCURACY_DYNAMIC_NEAR:
+            initial = configManager.accuracyDynamicNear;
+            break;
+        case SECTION_ACCURACY_DYNAMIC_MIDRANGE:
+            initial = configManager.accuracyDynamicMidrange;
+            break;
+        case SECTION_ACCURACY_DYNAMIC_FAR:
+            initial = configManager.accuracyDynamicFar;
+            break;
+    }
+
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select accuracy")
+                                            rows:accuracies
+                                initialSelection:initial
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           switch (field) {
+                                               case SECTION_ACCURACY_STATIC_NONNAVIGATING:
+                                                   [configManager accuracyStaticNonNavigatingUpdate:selectedIndex];
+                                                   break;
+                                               case SECTION_ACCURACY_STATIC_NAVIGATING:
+                                                    [configManager accuracyStaticNavigatingUpdate:selectedIndex];
+                                                   break;
+                                               case SECTION_ACCURACY_DYNAMIC_NEAR:
+                                                    [configManager accuracyDynamicNearUpdate:selectedIndex];
+                                                   break;
+                                               case SECTION_ACCURACY_DYNAMIC_MIDRANGE:
+                                                    [configManager accuracyDynamicMidrangeUpdate:selectedIndex];
+                                                   break;
+                                               case SECTION_ACCURACY_DYNAMIC_FAR:
+                                                    [configManager accuracyDynamicFarUpdate:selectedIndex];
+                                                   break;
+                                           }
+                                           [self.tableView reloadData];
+                                       }
+                                     cancelBlock:nil
+                                          origin:cell.contentView
+     ];
+}
+
+/*******************************************************************/
 
 - (void)updateCancel:(id)sender
 {

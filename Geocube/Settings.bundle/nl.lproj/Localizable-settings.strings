@@ -176,3 +176,22 @@
 "settingsmainviewcontroller-Specify how many backups need to be saved" = "Hoeveel backups moeten er bewaard blijven?";
 "settingsmainviewcontroller-Specify the number of days between backups" = "Hoeveel dagen tussen de backup";
 "settingsmainviewcontroller-backups" = "backups";
+
+"settingsmainviewcontroller-Accuracy" = "Nauwkeurigheid";
+"settingsmainviewcontroller-Accuracy for 'far' accuracy" = "Nauwkeurigheid voor 'verre' nauwkeurigheid";
+"settingsmainviewcontroller-Accuracy for 'midrange' accuracy" = "Nauwkeurigheid voor 'middlellange' nauwkeurigheid";
+"settingsmainviewcontroller-Accuracy for 'near' accuracy" = "Nauwkeurigheid for 'dichtbij' nauwkeurigheid";
+"settingsmainviewcontroller-Accuracy for static 'navigating' accuracy" = "Nauwkeurigheid voor statische 'navigatie' nauwkeurigheid";
+"settingsmainviewcontroller-Accuracy for static 'non-navigating' accuracy" = "Nauwkeurigheid voor 'achtergrond' nauwkeurigheid";
+"settingsmainviewcontroller-Accurate to hundred meters" = "Nauwkeurig tot honderd meter";
+"settingsmainviewcontroller-Accurate to one kilometer" = "Nauwkeurig tot één kilometer";
+"settingsmainviewcontroller-Accurate to ten meters" = "Nauwkeurig tot tien meter";
+"settingsmainviewcontroller-Accurate to three kilometers" = "Nauwkeurig tot drie kilometer";
+"settingsmainviewcontroller-Distance for 'midrange' accuracy" = "Afstand voor 'middlellange' nauwkeurigheid";
+"settingsmainviewcontroller-Distance for 'near' accuracy" = "Afstand voor 'dichtbij' nauwkeurigheid";
+"settingsmainviewcontroller-Enable dynamic accuracy" = "Gebruik dynamische nauwkeurigheid";
+"settingsmainviewcontroller-Highest possible accuracy" = "Hoogst mogelijke nauwkeurigheid";
+"settingsmainviewcontroller-Highest possible accuracy with additional sensor data" = "Hoogst mogelijke nauwkeurigheid met extra sensor data";
+"settingsmainviewcontroller-Up to %@" = "Tot %@";
+"settingsmainviewcontroller-Select accuracy" = "Selecteer nauwkeurigheid";
+

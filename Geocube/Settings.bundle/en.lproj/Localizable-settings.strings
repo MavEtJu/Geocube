@@ -175,4 +175,20 @@
 "settingsmainviewcontroller-Specify how many backups need to be saved" = "Specify how many backups need to be saved";
 "settingsmainviewcontroller-Specify the number of days between backups" = "Specify the number of days between backups";
 "settingsmainviewcontroller-backups" = "backups";
-
+"settingsmainviewcontroller-Accuracy" = "Accuracy";
+"settingsmainviewcontroller-Accuracy for 'far' accuracy" = "Accuracy for 'far' accuracy";
+"settingsmainviewcontroller-Accuracy for 'midrange' accuracy" = "Accuracy for 'midrange' accuracy";
+"settingsmainviewcontroller-Accuracy for 'near' accuracy" = "Accuracy for 'near' accuracy";
+"settingsmainviewcontroller-Accuracy for static 'navigating' accuracy" = "Accuracy for static 'navigating' accuracy";
+"settingsmainviewcontroller-Accuracy for static 'non-navigating' accuracy" = "Accuracy for static 'non-navigating' accuracy";
+"settingsmainviewcontroller-Accurate to hundred meters" = "Accurate to hundred meters";
+"settingsmainviewcontroller-Accurate to one kilometer" = "Accurate to one kilometer";
+"settingsmainviewcontroller-Accurate to ten meters" = "Accurate to ten meters";
+"settingsmainviewcontroller-Accurate to three kilometers" = "Accurate to three kilometers";
+"settingsmainviewcontroller-Distance for 'midrange' accuracy" = "Distance for 'midrange' accuracy";
+"settingsmainviewcontroller-Distance for 'near' accuracy" = "Distance for 'near' accuracy";
+"settingsmainviewcontroller-Enable dynamic accuracy" = "Enable dynamic accuracy";
+"settingsmainviewcontroller-Highest possible accuracy" = "Highest possible accuracy";
+"settingsmainviewcontroller-Highest possible accuracy with additional sensor data" = "Highest possible accuracy with additional sensor data";
+"settingsmainviewcontroller-Up to %@" = "Up to %@";
+"settingsmainviewcontroller-Select accuracy" = "Select accuracy";
