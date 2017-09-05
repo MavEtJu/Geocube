@@ -46,7 +46,7 @@
 
     /* Initiate the location manager */
     _LM = [[CLLocationManager alloc] init];
-    _LM.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    [self adjustAccuracy:LMACCURACY_1000M];
     _LM.distanceFilter = 1;
     _LM.headingFilter = 1;
     _LM.delegate = self;
@@ -92,14 +92,62 @@
     }];
 }
 
+- (void)adjustAccuracy:(LM_ACCURACY)accuracy
+{
+    switch (accuracy) {
+        case LMACCURACY_3000M:
+            _LM.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
+            break;
+        case LMACCURACY_1000M:
+            _LM.desiredAccuracy = kCLLocationAccuracyKilometer;
+            break;
+        case LMACCURACY_100M:
+            _LM.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+            break;
+        case LMACCURACY_10M:
+            _LM.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+            break;
+        case LMACCURACY_BEST:
+            _LM.desiredAccuracy = kCLLocationAccuracyBest;
+            break;
+        case LMACCURACY_BESTFORNAVIGATION:
+            _LM.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+            break;
+        default:
+            abort();
+    }
+    NSLog(@"New accuracy: %d", accuracy);
+}
+
 - (void)startDelegation:(id)_delegate isNavigating:(BOOL)isNavigating
 {
     NSLog(@"LocationManager: starting for %@ (isNavigating:%d)", [_delegate class], isNavigating);
 
-    if (isNavigating == YES)
-        _LM.desiredAccuracy = kCLLocationAccuracyBest;
-    else
-        _LM.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    if (isNavigating == NO) {
+        // Not navigating, just do some minimal stuff
+        if (configManager.accuracyDynamicEnable == NO)
+            [self adjustAccuracy:configManager.accuracyStaticNonNavigating];
+        else
+            [self adjustAccuracy:configManager.accuracyDynamicFar];
+    } else {
+        // Navigating, keep track!
+        if (configManager.accuracyDynamicEnable == NO)
+            [self adjustAccuracy:configManager.accuracyStaticNavigating];
+        else {
+            // Nothing selected, as such assume "far"
+            if (waypointManager.currentWaypoint == nil) {
+                [self adjustAccuracy:configManager.accuracyDynamicFar];
+            } else {
+                NSInteger d = [Coordinates coordinates2distance:self.coords toLatitude:waypointManager.currentWaypoint.wpt_latitude toLongitude:waypointManager.currentWaypoint.wpt_longitude];
+                if (d <= configManager.accuracyDynamicNearToMidrange)
+                    [self adjustAccuracy:configManager.accuracyDynamicNear];
+                else if (d <= configManager.accuracyDynamicMidrangeToFar)
+                    [self adjustAccuracy:configManager.accuracyDynamicMidrange];
+                else
+                    [self adjustAccuracy:configManager.accuracyDynamicFar];
+            }
+        }
+    }
     [_LM startUpdatingHeading];
     [_LM startUpdatingLocation];
 
