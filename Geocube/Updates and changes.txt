@@ -13,6 +13,7 @@ Version 1.5(x)
   Fixes:
   - If the locale doesn't use the metric system, then default to
     non-metric distances.
+  - Fixed background colour of Keep Track -> Beeper.
 
 Version 1.4(27)
 
