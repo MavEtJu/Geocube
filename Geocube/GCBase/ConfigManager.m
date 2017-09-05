@@ -160,12 +160,17 @@
     CHECK(@"accuracy_dynamic_accuracy_midrange", s);
     s = [NSString stringWithFormat:@"%ld", (long)LMACCURACY_100M];
     CHECK(@"accuracy_dynamic_accuracy_far", s);
+    CHECK(@"accuracy_dynamic_deltad_near", @"0");
+    CHECK(@"accuracy_dynamic_deltad_midrange", @"5");
+    CHECK(@"accuracy_dynamic_deltad_far", @"10");
     CHECK(@"accuracy_dynamic_distance_neartomidrange", @"50");
     CHECK(@"accuracy_dynamic_distance_midrangetofar", @"250");
     s = [NSString stringWithFormat:@"%ld", (long)LMACCURACY_BEST];
     CHECK(@"accuracy_static_accuracy_navigating", s);
     s = [NSString stringWithFormat:@"%ld", (long)LMACCURACY_100M];
     CHECK(@"accuracy_static_accuracy_nonnavigating", s);
+    CHECK(@"accuracy_static_deltad_navigating", @"0");
+    CHECK(@"accuracy_static_deltad_nonnavigating", @"10");
 }
 
 - (void)loadValues
@@ -247,10 +252,15 @@
     self.accuracyDynamicAccuracyNear = [[dbConfig dbGetByKey:@"accuracy_dynamic_accuracy_near"].value integerValue];
     self.accuracyDynamicAccuracyMidrange = [[dbConfig dbGetByKey:@"accuracy_dynamic_accuracy_midrange"].value integerValue];
     self.accuracyDynamicAccuracyFar = [[dbConfig dbGetByKey:@"accuracy_dynamic_accuracy_far"].value integerValue];
+    self.accuracyDynamicDeltaDNear = [[dbConfig dbGetByKey:@"accuracy_dynamic_deltad_near"].value integerValue];
+    self.accuracyDynamicDeltaDMidrange = [[dbConfig dbGetByKey:@"accuracy_dynamic_deltad_midrange"].value integerValue];
+    self.accuracyDynamicDeltaDFar = [[dbConfig dbGetByKey:@"accuracy_dynamic_deltad_far"].value integerValue];
     self.accuracyDynamicDistanceNearToMidrange = [[dbConfig dbGetByKey:@"accuracy_dynamic_distance_neartomidrange"].value integerValue];
     self.accuracyDynamicDistanceMidrangeToFar = [[dbConfig dbGetByKey:@"accuracy_dynamic_distance_midrangetofar"].value integerValue];
     self.accuracyStaticAccuracyNavigating = [[dbConfig dbGetByKey:@"accuracy_static_accuracy_navigating"].value integerValue];
     self.accuracyStaticAccuracyNonNavigating = [[dbConfig dbGetByKey:@"accuracy_static_accuracy_nonnavigating"].value integerValue];
+    self.accuracyStaticDeltaDNavigating = [[dbConfig dbGetByKey:@"accuracy_static_deltad_navigating"].value integerValue];
+    self.accuracyStaticDeltaDNonNavigating = [[dbConfig dbGetByKey:@"accuracy_static_deltad_nonnavigating"].value integerValue];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -361,10 +371,15 @@ UPDATE3(BOOL, accuracyDynamicEnable, @"accuracy_dynamic_enable")
 UPDATE3(NSInteger, accuracyDynamicAccuracyNear, @"accuracy_dynamic_accuracy_near")
 UPDATE3(NSInteger, accuracyDynamicAccuracyMidrange, @"accuracy_dynamic_accuracy_midrange")
 UPDATE3(NSInteger, accuracyDynamicAccuracyFar, @"accuracy_dynamic_accuracy_far")
+UPDATE3(NSInteger, accuracyDynamicDeltaDNear, @"accuracy_dynamic_deltad_near")
+UPDATE3(NSInteger, accuracyDynamicDeltaDMidrange, @"accuracy_dynamic_deltad_midrange")
+UPDATE3(NSInteger, accuracyDynamicDeltaDFar, @"accuracy_dynamic_deltad_far")
 UPDATE3(NSInteger, accuracyDynamicDistanceNearToMidrange, @"accuracy_dynamic_distance_neartomidrange")
 UPDATE3(NSInteger, accuracyDynamicDistanceMidrangeToFar, @"accuracy_dynamic_distance_midrangetofar")
 UPDATE3(NSInteger, accuracyStaticAccuracyNavigating, @"accuracy_static_accuracy_navigating")
 UPDATE3(NSInteger, accuracyStaticAccuracyNonNavigating, @"accuracy_static_accuracy_nonnavigating")
+UPDATE3(NSInteger, accuracyStaticDeltaDNavigating, @"accuracy_static_deltad_navigating")
+UPDATE3(NSInteger, accuracyStaticDeltaDNonNavigating, @"accuracy_static_deltad_nonnavigating")
 UPDATE3(NSInteger, currentPage, @"page_current")
 UPDATE3(NSInteger, currentPageTab, @"pagetab_current")
 UPDATE3(NSInteger, lastImportGroup, @"lastimport_group")

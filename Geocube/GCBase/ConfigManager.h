@@ -126,10 +126,15 @@
 @property (nonatomic) LM_ACCURACY accuracyDynamicAccuracyNear;
 @property (nonatomic) LM_ACCURACY accuracyDynamicAccuracyMidrange;
 @property (nonatomic) LM_ACCURACY accuracyDynamicAccuracyFar;
+@property (nonatomic) LM_ACCURACY accuracyDynamicDeltaDNear;
+@property (nonatomic) LM_ACCURACY accuracyDynamicDeltaDMidrange;
+@property (nonatomic) LM_ACCURACY accuracyDynamicDeltaDFar;
 @property (nonatomic) NSInteger accuracyDynamicDistanceNearToMidrange;
 @property (nonatomic) NSInteger accuracyDynamicDistanceMidrangeToFar;
 @property (nonatomic) LM_ACCURACY accuracyStaticAccuracyNavigating;
 @property (nonatomic) LM_ACCURACY accuracyStaticAccuracyNonNavigating;
+@property (nonatomic) LM_ACCURACY accuracyStaticDeltaDNavigating;
+@property (nonatomic) LM_ACCURACY accuracyStaticDeltaDNonNavigating;
 
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown
@@ -211,11 +216,16 @@
 - (void)automaticDatabaseBackupRotateUpdate:(NSInteger)value;
 - (void)accuracyDynamicEnableUpdate:(BOOL)value;
 - (void)accuracyDynamicAccuracyNearUpdate:(NSInteger)value;
+- (void)accuracyDynamicDeltaDNearUpdate:(NSInteger)value;
 - (void)accuracyDynamicAccuracyMidrangeUpdate:(NSInteger)value;
+- (void)accuracyDynamicDeltaDMidrangeUpdate:(NSInteger)value;
 - (void)accuracyDynamicAccuracyFarUpdate:(NSInteger)value;
+- (void)accuracyDynamicDeltaDFarUpdate:(NSInteger)value;
 - (void)accuracyDynamicDistanceNearToMidrangeUpdate:(NSInteger)value;
 - (void)accuracyDynamicDistanceMidrangeToFarUpdate:(NSInteger)value;
 - (void)accuracyStaticAccuracyNavigatingUpdate:(NSInteger)value;
 - (void)accuracyStaticAccuracyNonNavigatingUpdate:(NSInteger)value;
+- (void)accuracyStaticDeltaDNavigatingUpdate:(NSInteger)value;
+- (void)accuracyStaticDeltaDNonNavigatingUpdate:(NSInteger)value;
 
 @end
