@@ -7,6 +7,8 @@ Version 1.5(x)
     lists.
   - When tapping on a place on the map, it will draw a line and show
     the distance. Google Maps only.
+  - Accuracy of the location services can be set to static (navigating
+    / non-navigating) or dynamic (near, midrange, far).
 
   Fixes:
   - If the locale doesn't use the metric system, then default to
