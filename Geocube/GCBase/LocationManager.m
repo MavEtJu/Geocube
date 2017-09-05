@@ -28,6 +28,8 @@
 
     NSMutableArray<dbTrackElement *> *historyData;
     NSInteger lastSync;
+    NSInteger lastAccuracy;
+    NSInteger lastIsNavigating;
 }
 
 @property (nonatomic, readwrite) BOOL useGNSS;
@@ -52,7 +54,7 @@
     _LM.delegate = self;
 
     self.coords = _LM.location.coordinate;
-    NSLog(@"LocationManager: Starting at %@", [Coordinates niceCoordinates:self.coords]);
+    NSLog(@"%@: Starting at %@", [self class], [Coordinates niceCoordinates:self.coords]);
 
     self.delegates = [NSMutableArray arrayWithCapacity:5];
     self.useGNSS = YES;
@@ -92,8 +94,13 @@
     }];
 }
 
-- (void)adjustAccuracy:(LM_ACCURACY)accuracy
+- (void)setNewAccuracy:(LM_ACCURACY)accuracy
 {
+    if (accuracy == lastAccuracy)
+        return;
+    lastAccuracy = accuracy;
+    NSLog(@"%@: New accuracy: %ld", [self class], (long)accuracy);
+
     switch (accuracy) {
         case LMACCURACY_3000M:
             _LM.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
@@ -116,38 +123,42 @@
         default:
             abort();
     }
-    NSLog(@"New accuracy: %d", accuracy);
+}
+
+- (void)adjustAccuracy:(BOOL)isNavigating
+{
+    lastIsNavigating = isNavigating;
+
+    // Static stuff, easy:
+    if (configManager.accuracyDynamicEnable == NO) {
+        if (isNavigating == NO)
+            [self setNewAccuracy:configManager.accuracyStaticNonNavigating];
+        else
+            [self setNewAccuracy:configManager.accuracyStaticNavigating];
+        return;
+    }
+
+    // Not navigating or no waypoint selected, as such assume "far"
+    if (isNavigating == NO || waypointManager.currentWaypoint == nil) {
+        [self setNewAccuracy:configManager.accuracyDynamicFar];
+        return;
+    }
+
+    // Check the distances
+    NSInteger d = [Coordinates coordinates2distance:self.coords toLatitude:waypointManager.currentWaypoint.wpt_latitude toLongitude:waypointManager.currentWaypoint.wpt_longitude];
+    if (d <= configManager.accuracyDynamicNearToMidrange)
+        [self setNewAccuracy:configManager.accuracyDynamicNear];
+    else if (d <= configManager.accuracyDynamicMidrangeToFar)
+        [self setNewAccuracy:configManager.accuracyDynamicMidrange];
+    else
+        [self setNewAccuracy:configManager.accuracyDynamicFar];
 }
 
 - (void)startDelegation:(id)_delegate isNavigating:(BOOL)isNavigating
 {
-    NSLog(@"LocationManager: starting for %@ (isNavigating:%d)", [_delegate class], isNavigating);
+    NSLog(@"%@: starting for %@ (isNavigating:%d)", [self class], [_delegate class], isNavigating);
 
-    if (isNavigating == NO) {
-        // Not navigating, just do some minimal stuff
-        if (configManager.accuracyDynamicEnable == NO)
-            [self adjustAccuracy:configManager.accuracyStaticNonNavigating];
-        else
-            [self adjustAccuracy:configManager.accuracyDynamicFar];
-    } else {
-        // Navigating, keep track!
-        if (configManager.accuracyDynamicEnable == NO)
-            [self adjustAccuracy:configManager.accuracyStaticNavigating];
-        else {
-            // Nothing selected, as such assume "far"
-            if (waypointManager.currentWaypoint == nil) {
-                [self adjustAccuracy:configManager.accuracyDynamicFar];
-            } else {
-                NSInteger d = [Coordinates coordinates2distance:self.coords toLatitude:waypointManager.currentWaypoint.wpt_latitude toLongitude:waypointManager.currentWaypoint.wpt_longitude];
-                if (d <= configManager.accuracyDynamicNearToMidrange)
-                    [self adjustAccuracy:configManager.accuracyDynamicNear];
-                else if (d <= configManager.accuracyDynamicMidrangeToFar)
-                    [self adjustAccuracy:configManager.accuracyDynamicMidrange];
-                else
-                    [self adjustAccuracy:configManager.accuracyDynamicFar];
-            }
-        }
-    }
+    [self adjustAccuracy:isNavigating];
     [_LM startUpdatingHeading];
     [_LM startUpdatingLocation];
 
@@ -161,14 +172,15 @@
 
 - (void)stopDelegation:(id)_delegate
 {
-    NSLog(@"LocationManager: stopping for %@", [_delegate class]);
+    NSLog(@"%@: stopping for %@", [self class], [_delegate class]);
     [self.delegates removeObject:_delegate];
+    [self adjustAccuracy:0];
 
     if ([self.delegates count] > 0)
         return;
     [_LM stopUpdatingHeading];
     [_LM stopUpdatingLocation];
-    NSLog(@"LocationManager: stopping");
+    NSLog(@"%@: stopped all of them", [self class]);
 }
 
 - (void)clearCoordsHistorical
@@ -217,6 +229,9 @@
 
     // Send out the location and direction changes
     [self updateDataDelegates];
+
+    // Change the accuracy for the receiver
+    [self adjustAccuracy:lastIsNavigating];
 
     // Update the historical track.
     // To save from random data changes, only do it every 5 seconds or every 100 meters, whatever comes first.
