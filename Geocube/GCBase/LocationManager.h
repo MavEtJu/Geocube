@@ -31,6 +31,15 @@
 
 @interface LocationManager : NSObject <CLLocationManagerDelegate>
 
+typedef NS_ENUM(NSInteger, LM_ACCURACY) {
+    LMACCURACY_BESTFORNAVIGATION = 0,
+    LMACCURACY_BEST,
+    LMACCURACY_10M,
+    LMACCURACY_100M,
+    LMACCURACY_1000M,
+    LMACCURACY_3000M,
+};
+
 @property (nonatomic, retain) NSMutableArray<id> *delegates;
 @property (nonatomic) float speed;
 

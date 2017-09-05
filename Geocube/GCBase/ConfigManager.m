@@ -152,6 +152,15 @@
     CHECK(@"automaticdatabasebackup_last", @"0");
     CHECK(@"automaticdatabasebackup_period", @"7");
     CHECK(@"automaticdatabasebackup_rotate", @"5");
+
+    s = [NSString stringWithFormat:@"%ld", LMACCURACY_BESTFORNAVIGATION];
+    CHECK(@"accuracy_accuracy_close", s);
+    s = [NSString stringWithFormat:@"%ld", LMACCURACY_10M];
+    CHECK(@"accuracy_accuracy_near", s);
+    s = [NSString stringWithFormat:@"%ld", LMACCURACY_100M];
+    CHECK(@"accuracy_accuracy_far", s);
+    CHECK(@"accuracy_distance_closetonear", @"50");
+    CHECK(@"accuracy_distance_neartofar", @"250");
 }
 
 - (void)loadValues
@@ -229,6 +238,11 @@
     self.automaticDatabaseBackupLast = [[dbConfig dbGetByKey:@"automaticdatabasebackup_last"].value doubleValue];
     self.automaticDatabaseBackupPeriod = [[dbConfig dbGetByKey:@"automaticdatabasebackup_period"].value integerValue];
     self.automaticDatabaseBackupRotate = [[dbConfig dbGetByKey:@"automaticdatabasebackup_rotate"].value integerValue];
+    self.accuracyAccuracyClose = [[dbConfig dbGetByKey:@"accuracy_accuracy_close"].value integerValue];
+    self.accuracyAccuracyNear = [[dbConfig dbGetByKey:@"accuracy_accuracy_near"].value integerValue];
+    self.accuracyAccuracyFar = [[dbConfig dbGetByKey:@"accuracy_accuracy_far"].value integerValue];
+    self.accuracyDistanceNearToFar = [[dbConfig dbGetByKey:@"accuracy_distance_neartofar"].value integerValue];
+    self.accuracyDistanceCloseToNear = [[dbConfig dbGetByKey:@"accuracy_distance_closetonear"].value integerValue];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -335,6 +349,11 @@ UPDATE3(BOOL, locationlessShowFound, @"locationless_showfound")
 UPDATE3(BOOL, opencageWifiOnly, @"opencage_wifionly")
 UPDATE3(BOOL, automaticDatabaseBackup, @"automaticdatabasebackup_enable")
 
+UPDATE3(NSInteger, accuracyAccuracyClose, @"accuracy_accuracy_close")
+UPDATE3(NSInteger, accuracyAccuracyNear, @"accuracy_accuracy_near")
+UPDATE3(NSInteger, accuracyAccuracyFar, @"accuracy_accuracy_far")
+UPDATE3(NSInteger, accuracyDistanceCloseToNear, @"accuracy_distance_closetonear")
+UPDATE3(NSInteger, accuracyDistanceNearToFar, @"accuracy_distance_neartofar")
 UPDATE3(NSInteger, currentPage, @"page_current")
 UPDATE3(NSInteger, currentPageTab, @"pagetab_current")
 UPDATE3(NSInteger, lastImportGroup, @"lastimport_group")
