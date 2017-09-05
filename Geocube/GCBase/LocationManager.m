@@ -127,6 +127,45 @@
 
 - (void)adjustAccuracy:(BOOL)isNavigating
 {
+    /*
+
+                far
+     +-----------------------+
+     |                       |
+     |                       |
+     |        midrange       | GNNS accuracy
+     |                       | DynamicAccuracyNear - Accuracy within the Near radius
+     |        +-----+        | DynamicAccuracyMidrange - Accuracy within the Midrange radius
+     |        |near |        | DynamicAccuracyFar - Accuracy outside the Far radius
+     |        |  +  |        |
+     |        |     |        | DynamicDistanceNeartoMidrange - Radius of Near
+     |        +-----+        | DynamicDistanceMidrangeToFar - Radius of Midrange
+     |                       |
+     |                       | GNNS coordinate update interval
+     |                       | DynamicDeltaDNear - Distance to move to send coordinates to delegates within Near radius
+     |                       | DynamicDeltaDMidrange - Distance to move to send coordinates to delegates within Midrange radius
+     +-----------------------+ DynamicDeltaDFar - Distance to move to send coordinates to delegates within Far radius
+
+     Multiple scenarios:
+     - No target waypoint is set, app is just being used to cruise:
+       o  Set the GNNS accuracy to far as it doesn't matter to be close by anything.
+       o  Set the GNNS coordinate update interval to far as it doesn't matter to be really up-to-date
+     - Target is set, current waypoint is in the "far" area:
+       o  Set the GNNS accuracy to "far" (100 meter).
+       o  Set the GNNS coordinate update interval to "far" (10 meters).
+     - Target is set, current waypoint is in the "midrange" area (250 meters)
+       o  Set the GNNS accuracy to "midrange" (10 meter).
+       o  Set the GNNS coordinate update interval to "midrange" (5 meters).
+     - Target is set, current waypoint is in the "near" area (50 meters)
+       o  Set the GNNS accuracy to "near" (best).
+       o  Set the GNNS coordinate update interval to "near" (0 meters).
+
+     Interesting information:
+     http://evgenii.com/blog/power-consumption-of-location-services-in-ios/
+     http://www.bionoren.com/blog/2013/08/why-do-navigation-apps-drain-your-battery/
+
+     */
+
     lastIsNavigating = isNavigating;
 
     // Static stuff, easy:
