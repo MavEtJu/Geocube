@@ -765,6 +765,24 @@
     @"delete from travelbugs where not (owner_id in (select accountname_id from accounts where accountname_id != 0)) and not (carrier_id in (select accountname_id from accounts where accountname_id != 0))",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 58
+    a = @[
+    @"update config set value = 'https://geocube.mavetju.org/geocube_sites.5.geocube' where key = 'url_sites'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_sites.5.geocube' where key = 'url_sites'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_notices.5.geocube' where key = 'url_notices'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_externalmaps.5.geocube' where key = 'url_externalmaps'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_countries.5.geocube' where key = 'url_countries'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_states.5.geocube' where key = 'url_states'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_attributes.5.geocube' where key = 'url_attributes'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_keys.5.geocube' where key = 'url_keys'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_types.5.geocube' where key = 'url_types'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_pins.5.geocube' where key = 'url_pins'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_bookmarks.5.geocube' where key = 'url_bookmarks'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_containers.5.geocube' where key = 'url_containers'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_logstrings.5.geocube' where key = 'url_logstrings'",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

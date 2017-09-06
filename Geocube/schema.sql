@@ -6,19 +6,19 @@ create table config (
     value text
 );
 create index config_idx_key on config(key);
-insert into config(key, value) values("url_sites", "https://geocube.mavetju.org/geocube_sites.4.geocube");
-insert into config(key, value) values("url_notices", "https://geocube.mavetju.org/geocube_notices.4.geocube");
-insert into config(key, value) values("url_externalmaps", "https://geocube.mavetju.org/geocube_externalmaps.4.geocube");
-insert into config(key, value) values("url_countries", "https://geocube.mavetju.org/geocube_countries.4.geocube");
-insert into config(key, value) values("url_states", "https://geocube.mavetju.org/geocube_states.4.geocube");
-insert into config(key, value) values("url_attributes", "https://geocube.mavetju.org/geocube_attributes.4.geocube");
-insert into config(key, value) values("url_types", "https://geocube.mavetju.org/geocube_types.4.geocube");
-insert into config(key, value) values("url_pins", "https://geocube.mavetju.org/geocube_pins.4.geocube");
-insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.org/geocube_bookmarks.4.geocube");
-insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.4.geocube");
-insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.4.geocube");
+insert into config(key, value) values("url_sites", "https://geocube.mavetju.org/geocube_sites.5.geocube");
+insert into config(key, value) values("url_notices", "https://geocube.mavetju.org/geocube_notices.5.geocube");
+insert into config(key, value) values("url_externalmaps", "https://geocube.mavetju.org/geocube_externalmaps.5.geocube");
+insert into config(key, value) values("url_countries", "https://geocube.mavetju.org/geocube_countries.5.geocube");
+insert into config(key, value) values("url_states", "https://geocube.mavetju.org/geocube_states.5.geocube");
+insert into config(key, value) values("url_attributes", "https://geocube.mavetju.org/geocube_attributes.5.geocube");
+insert into config(key, value) values("url_types", "https://geocube.mavetju.org/geocube_types.5.geocube");
+insert into config(key, value) values("url_pins", "https://geocube.mavetju.org/geocube_pins.5.geocube");
+insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.org/geocube_bookmarks.5.geocube");
+insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.5.geocube");
+insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.5.geocube");
 insert into config(key, value) values("url_versions", "https://geocube.mavetju.org/geocube_versions.geocube");
-insert into config(key, value) values("version", "57");
+insert into config(key, value) values("version", "58");
 
 create table filters (
     id integer primary key,
