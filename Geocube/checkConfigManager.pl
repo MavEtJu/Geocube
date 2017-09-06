@@ -25,6 +25,14 @@ foreach my $line (@lines) {
 		$prototype_fields{$1} = 1;
 		next;
 	}
+	
+	# PROTO_N (BOOL, sendTweets);
+	if ($line =~ /^PROTO_[^(]+\([^,]+, ([a-zA-Z]+)/) {
+		$prototype_fields{$1} = 1;
+		$property_fields{$1} = 1;
+		next;
+	}
+
 }
 
 ## .m
@@ -45,8 +53,18 @@ foreach my $line (@lines) {
 		next;
 	}
 
+	# LOAD_BOOL   (self.sendTweets, @"send_tweets");
+	if ($line =~ /LOAD_.[^(]+\(self.([^,]+), \@"([^"]+)"/) {
+		$init_fields{$1} = 1;
+		$init_keys{$2} = 1;
+		next;
+	}
+
 	# self.sendTweets = [[dbConfig dbGetByKey:@"send_tweets"].value boolValue];
-	if ($line =~ /self.([^ ]+) = .+dbGetByKey:..([^"]+)/) {
+	# but not:
+	# self.__field__ = [dbConfig dbGetByKey:__key__].value
+	if ($line !~ /__field__/ &&
+	    $line =~ /self.([^ ]+) = .+dbGetByKey:..([^"]+)/) {
 		$init_fields{$1} = 1;
 		$init_keys{$2} = 1;
 		next;
@@ -95,16 +113,16 @@ sub check_fields {
 	my @fields = @_;
 	foreach my $field (@fields) {
 		if (!defined $property_fields{$field}) {
-			print "Found $type '$field', no property.\n";
+			print "Found field $type '$field', no property.\n";
 		}
 		if (!defined $prototype_fields{$field}) {
-			print "Found $type '$field', no prototype.\n";
+			print "Found field $type '$field', no prototype.\n";
 		}
 		if (!defined $init_fields{$field}) {
-			print "Found $type '$field', no init.\n";
+			print "Found field $type '$field', no init.\n";
 		}
 		if (!defined $update_fields{$field}) {
-			print "Found $type '$field', no update.\n";
+			print "Found field $type '$field', no update.\n";
 		}
 	}
 }
@@ -119,13 +137,13 @@ sub check_keys {
 	my @keys = @_;
 	foreach my $key (@keys) {
 		if (!defined $check_keys{$key}) {
-			print "Found $type '$key', no check.\n";
+			print "Found key $type '$key', no check.\n";
 		}
 		if (!defined $init_keys{$key}) {
-			print "Found $type '$key', no init.\n";
+			print "Found key $type '$key', no init.\n";
 		}
 		if (!defined $update_keys{$key}) {
-			print "Found $type '$key', no update.\n";
+			print "Found key $type '$key', no update.\n";
 		}
 	}
 }
