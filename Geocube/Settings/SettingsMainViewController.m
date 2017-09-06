@@ -461,17 +461,21 @@ enum sections {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
+#define CELL_SWITCH(__text__, __configfield__, __selector__) { \
+    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath]; \
+    cell.textLabel.text = __text__; \
+    cell.optionSwitch.on = configManager.__configfield__; \
+    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside]; \
+    [cell.optionSwitch addTarget:self action:@selector(__selector__:) forControlEvents:UIControlEventTouchUpInside]; \
+    return cell; \
+}
+
     switch (indexPath.section) {
         case SECTION_DISTANCE: {   // Distance
             switch (indexPath.row) {
-                case SECTION_DISTANCE_METRIC: {   // Metric
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Use metric units");
-                    cell.optionSwitch.on = configManager.distanceMetric;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateDistanceMetric:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
+                case SECTION_DISTANCE_METRIC:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Use metric units"), distanceMetric, updateDistanceMetric)
             }
             abort();
         }
@@ -497,22 +501,10 @@ enum sections {
                     cell.detailTextLabel.text = configManager.opencageKey;
                     return cell;
                 }
-                case SECTION_APPS_OPENCAGEOVERWIFIONLY: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-OpenCage only over Wifi");
-                    cell.optionSwitch.on = configManager.opencageWifiOnly;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateOpenCageWifiOnly:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
-                case SECTION_APPS_TWITTER: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Offer to send tweets");
-                    cell.optionSwitch.on = configManager.sendTweets;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateSendTweets:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
+                case SECTION_APPS_OPENCAGEOVERWIFIONLY:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-OpenCage only over Wifi"), opencageWifiOnly, updateOpenCageWifiOnly)
+                case SECTION_APPS_TWITTER:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Offer to send tweets"), sendTweets, updateSendTweets)
             }
             abort();
         }
@@ -564,22 +556,10 @@ enum sections {
 
         case SECTION_SOUNDS: {   // Sounds
             switch (indexPath.row) {
-                case SECTION_SOUNDS_DIRECTION: {   // soundDirection
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Enable sounds for direction");
-                    cell.optionSwitch.on = configManager.soundDirection;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateSoundDirection:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
-                case SECTION_SOUNDS_DISTANCE: {   // soundDistance
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Enable sounds for distance");
-                    cell.optionSwitch.on = configManager.soundDistance;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateSoundDistance:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
+                case SECTION_SOUNDS_DIRECTION:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Enable sounds for direction"), soundDirection, updateSoundDirection)
+                case SECTION_SOUNDS_DISTANCE:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Enable sounds for distance"), soundDistance, updateSoundDistance)
             }
             abort();
         }
@@ -618,14 +598,8 @@ enum sections {
                     cell.detailTextLabel.text = value;
                     return cell;
                 }
-                case SECTION_MAPS_ROTATE_TO_BEARING: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Rotate to bearing");
-                    cell.optionSwitch.on = configManager.mapRotateToBearing;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateMapRotateToBearing:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
+                case SECTION_MAPS_ROTATE_TO_BEARING:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Rotate to bearing"), mapRotateToBearing, updateMapRotateToBearing)
             }
             abort();
         }
@@ -662,14 +636,8 @@ enum sections {
 
         case SECTION_DYNAMICMAP: {
             switch (indexPath.row) {
-                case SECTION_DYNAMICMAP_ENABLED: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Enable dynamic maps");
-                    cell.optionSwitch.on = configManager.dynamicmapEnable;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateDynamicmapEnable:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
+                case SECTION_DYNAMICMAP_ENABLED:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Enable dynamic maps"), dynamicmapEnable, updateDynamicmapEnable)
                 case SECTION_DYNAMICMAP_SPEED_WALKING: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Maximum walking speed");
@@ -712,14 +680,8 @@ enum sections {
 
         case SECTION_KEEPTRACK: {
             switch (indexPath.row) {
-                case SECTION_KEEPTRACK_AUTOROTATE: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Autorotate every day");
-                    cell.optionSwitch.on = configManager.keeptrackAutoRotate;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateKeeptrackAutoRotate:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
+                case SECTION_KEEPTRACK_AUTOROTATE:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Autorotate every day"), keeptrackAutoRotate, updateKeeptrackAutoRotate)
                 case SECTION_KEEPTRACK_TIMEDELTA_MIN: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Time difference for a new track point");
@@ -762,14 +724,8 @@ enum sections {
 
         case SECTION_MAPCACHE: {
             switch (indexPath.row) {
-                case SECTION_MAPCACHE_ENABLED: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Enable map cache");
-                    cell.optionSwitch.on = configManager.mapcacheEnable;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateMapcacheEnable:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
+                case SECTION_MAPCACHE_ENABLED:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Enable map cache"), mapcacheEnable, updateMapcacheEnable)
                 case SECTION_MAPCACHE_MAXAGE: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Maximum age for objects in cache");
@@ -800,82 +756,34 @@ enum sections {
                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld %@", (long)configManager.downloadTimeoutQuery, _(@"time-seconds")];
                     return cell;
                 }
-                case SECTION_IMPORTS_IMAGES_WAYPOINT: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Download waypoint images");
-                    cell.optionSwitch.on = configManager.downloadImagesWaypoints;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateDownloadImagesWaypoints:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
-                case SECTION_IMPORTS_IMAGES_LOGS: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Download log images");
-                    cell.optionSwitch.on = configManager.downloadImagesLogs;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateDownloadImagesLogs:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
-                case SECTION_IMPORTS_LOG_IMAGES_MOBILE: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Download logged images over mobile data");
-                    cell.optionSwitch.on = configManager.downloadImagesMobile;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateDownloadImagesMobile:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
-                case SECTION_IMPORTS_QUERIES_MOBILE: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Download batch queries over mobile data");
-                    cell.optionSwitch.on = configManager.downloadQueriesMobile;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateDownloadQueriesMobile:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
+                case SECTION_IMPORTS_IMAGES_WAYPOINT:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Download waypoint images"), downloadImagesWaypoints, updateDownloadImagesWaypoints)
+                case SECTION_IMPORTS_IMAGES_LOGS:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Download log images"), downloadImagesLogs, updateDownloadImagesLogs)
+                case SECTION_IMPORTS_LOG_IMAGES_MOBILE:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Download logged images over mobile data"), downloadImagesMobile, updateDownloadImagesMobile)
+                case SECTION_IMPORTS_QUERIES_MOBILE:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Download batch queries over mobile data"), downloadQueriesMobile, updateDownloadQueriesMobile)
             }
             abort();
         }
 
         case SECTION_MARKAS: {
             switch (indexPath.row) {
-                case SECTION_MARKAS_FOUNDDNFCLEARSTARGET: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Remove target when marking as found/DNF");
-                    cell.optionSwitch.on = configManager.markasFoundDNFClearsTarget;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateMarkasFoundDNFClearsTarget:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
-                case SECTION_MARKAS_FOUNDMARKSALLWAYPOINTS: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Mark all related waypoints when marked as found");
-                    cell.optionSwitch.on = configManager.markasFoundMarksAllWaypoints;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateMarkasFoundMarksAllWaypoints:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
-                case SECTION_LOG_REMOVEMARKASFOUNDDNF: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Remove Marked as Found/DNF when logging");
-                    cell.optionSwitch.on = configManager.loggingRemovesMarkedAsFoundDNF;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateLoggingRemovesMarkedAsFoundDNF:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
+                case SECTION_MARKAS_FOUNDDNFCLEARSTARGET:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Remove target when marking as found/DNF"), markasFoundDNFClearsTarget, updateMarkasFoundDNFClearsTarget)
+                case SECTION_MARKAS_FOUNDMARKSALLWAYPOINTS:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Mark all related waypoints when marked as found"), markasFoundMarksAllWaypoints, updateMarkasFoundMarksAllWaypoints)
+                case SECTION_LOG_REMOVEMARKASFOUNDDNF:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Remove Marked as Found/DNF when logging"), loggingRemovesMarkedAsFoundDNF, updateLoggingRemovesMarkedAsFoundDNF)
             }
             abort();
         }
 
         case SECTION_COMPASS: {
             switch (indexPath.row) {
-                case SECTION_COMPASS_ALWAYSPORTRAIT: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Compass is always in portrait mode");
-                    cell.optionSwitch.on = configManager.compassAlwaysInPortraitMode;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateCompassAlwaysInPortraitMode:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
+                case SECTION_COMPASS_ALWAYSPORTRAIT:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Compass is always in portrait mode"), compassAlwaysInPortraitMode, updateCompassAlwaysInPortraitMode)
             }
             abort();
         }
@@ -889,38 +797,14 @@ enum sections {
                     cell.detailTextLabel.text = [order objectAtIndex:configManager.waypointListSortBy];
                     return cell;
                 }
-                case SECTION_WAYPOINTS_REFRESHAFTERLOG: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Refresh after log");
-                    cell.optionSwitch.on = configManager.refreshWaypointAfterLog;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateRefreshWaypointAfterLog:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
-                case SECTION_WAYPOINTS_SHOWCOUNTRYASABBREVATION: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Show country as abbrevation");
-                    cell.optionSwitch.on = configManager.showCountryAsAbbrevation;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateShowCountryAsAbbrevation:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
-                case SECTION_WAYPOINTS_SHOWSTATEASABBREVATION: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Show state as abbrevation");
-                    cell.optionSwitch.on = configManager.showStateAsAbbrevation;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateShowStateAsAbbrevation:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
-                case SECTION_WAYPOINTS_SHOWSTATEASABBREVATIONWITHLOCALITY: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Show state as abbrevation if locality exist");
-                    cell.optionSwitch.on = configManager.showStateAsAbbrevationIfLocalityExists;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateShowStateAsAbbrevationWithLocality:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
+                case SECTION_WAYPOINTS_REFRESHAFTERLOG:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Refresh after log"), refreshWaypointAfterLog, updateRefreshWaypointAfterLog)
+                case SECTION_WAYPOINTS_SHOWCOUNTRYASABBREVATION:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Show country as abbrevation"), showCountryAsAbbrevation, updateShowCountryAsAbbrevation)
+                case SECTION_WAYPOINTS_SHOWSTATEASABBREVATION:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Show state as abbrevation"), showStateAsAbbrevation, updateShowStateAsAbbrevation)
+                case SECTION_WAYPOINTS_SHOWSTATEASABBREVATIONWITHLOCALITY:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Show state as abbrevation if locality exist"), showStateAsAbbrevationIfLocalityExists, updateShowStateAsAbbrevationWithLocality)
             }
             abort();
         }
@@ -940,36 +824,18 @@ enum sections {
 
         case SECTION_ACCOUNTS: {
             switch (indexPath.row) {
-                case SECTION_ACCOUNTS_AUTHENTICATEKEEPUSERNAME: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Save authentication username");
-                    cell.optionSwitch.on = configManager.accountsSaveAuthenticationName;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateAccountKeepUsername:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
-                case SECTION_ACCOUNTS_AUTHENTICATEKEEPPASSWORD: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Save authentication password");
-                    cell.optionSwitch.on = configManager.accountsSaveAuthenticationPassword;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateAccountKeepPassword:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
+                case SECTION_ACCOUNTS_AUTHENTICATEKEEPUSERNAME:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Save authentication username"), accountsSaveAuthenticationName, updateAccountKeepUsername)
+                case SECTION_ACCOUNTS_AUTHENTICATEKEEPPASSWORD:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Save authentication password"), accountsSaveAuthenticationPassword, updateAccountKeepPassword)
             }
             abort();
         }
 
         case SECTION_LOCATIONLESS: {
             switch (indexPath.row) {
-                case SECTION_LOCATIONLESS_SHOWFOUND: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Show found in list");
-                    cell.optionSwitch.on = configManager.locationlessShowFound;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateLocationlessShowFound:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
+                case SECTION_LOCATIONLESS_SHOWFOUND:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Show found in list"), locationlessShowFound, updateLocationlessShowFound)
                 case SECTION_LOCATIONLESS_SORTBY: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Sort by");
@@ -983,14 +849,8 @@ enum sections {
 
         case SECTION_BACKUPS: {
             switch (indexPath.row) {
-                case SECTION_BACKUPS_ENABLED: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Enable backups");
-                    cell.optionSwitch.on = configManager.automaticDatabaseBackup;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateBackupsEnable:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
+                case SECTION_BACKUPS_ENABLED:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Enable backups"), automaticDatabaseBackup, updateBackupsEnable)
                 case SECTION_BACKUPS_INTERVAL: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Make a new backup every");
@@ -1009,14 +869,8 @@ enum sections {
 
         case SECTION_ACCURACY: {
             switch (indexPath.row) {
-                case SECTION_ACCURACY_DYNAMIC_ENABLE: {
-                    GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Enable dynamic accuracy");
-                    cell.optionSwitch.on = configManager.accuracyDynamicEnable;
-                    [cell.optionSwitch removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-                    [cell.optionSwitch addTarget:self action:@selector(updateDynamicAccuracyEnable:) forControlEvents:UIControlEventTouchUpInside];
-                    return cell;
-                }
+                case SECTION_ACCURACY_DYNAMIC_ENABLE:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Enable dynamic accuracy"), accuracyDynamicEnable, updateDynamicAccuracyEnable)
                 case SECTION_ACCURACY_DYNAMIC_ACCURACY_NEAR: {
                     GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     cell.textLabel.text = _(@"settingsmainviewcontroller-Accuracy for 'near' accuracy");
