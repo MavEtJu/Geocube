@@ -344,6 +344,7 @@ TABLENAME(@"countries")
  _(@"country-Uganda");
  _(@"country-US minor outlying islands");
  _(@"country-United States");
+ _(@"country-United States of America")
  _(@"country-Uruguay");
  _(@"country-Uzbekistan");
  _(@"country-Vatican City");
