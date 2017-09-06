@@ -166,7 +166,7 @@ TABLENAME(@"log_strings")
             NSAssert1(NO, @"Unknown default field: %ld", (long)dflt);
     }
 
-    NSString *where = [NSString stringWithFormat:@"where protocol_id = ? and wptype = ? and default_%@ = 1", what];
+    NSString *where = [NSString stringWithFormat:@"where protocol_id = ? and id in (select log_string_id from log_string_waypoints where wptype = ?) and default_%@ = 1", what];
     return [[dbLogString dbAllXXX:where
                              keys:@"ii"
                            values:@[[NSNumber numberWithLongLong:protocol._id], [NSNumber numberWithInteger:wptype]]]
@@ -189,6 +189,8 @@ TABLENAME(@"log_strings")
         return LOGSTRING_WPTYPE_MOVEABLE;
     if ([string isEqualToString:@"Webcam"] == YES)
         return LOGSTRING_WPTYPE_WEBCAM;
+    if ([string isEqualToString:@"LocalLog"] == YES)
+        return LOGSTRING_WPTYPE_LOCALLOG;
     return LOGSTRING_WPTYPE_UNKNOWN;
 }
 
