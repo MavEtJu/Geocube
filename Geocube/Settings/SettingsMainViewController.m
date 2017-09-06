@@ -478,6 +478,13 @@ enum sections {
     return cell; \
     }
 
+#define CELL_RIGHTIMAGE(__text__, __image__) { \
+    GCTableViewCellRightImage *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLRIGHTIMAGE forIndexPath:indexPath]; \
+    cell.textLabel.text = __text__; \
+    cell.imageView.image = __image__; \
+    return cell; \
+    }
+
     switch (indexPath.section) {
         case SECTION_DISTANCE: {   // Distance
             switch (indexPath.row) {
@@ -555,18 +562,10 @@ enum sections {
 
         case SECTION_MAPCOLOURS: {
             switch (indexPath.row) {
-                case SECTION_MAPCOLOURS_DESTINATION: {
-                    GCTableViewCellRightImage *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLRIGHTIMAGE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Destination line");
-                    cell.imageView.image = [ImageLibrary circleWithColour:configManager.mapDestinationColour];
-                    return cell;
-                }
-                case SECTION_MAPCOLOURS_TRACK: {
-                    GCTableViewCellRightImage *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLRIGHTIMAGE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Track line");
-                    cell.imageView.image = [ImageLibrary circleWithColour:configManager.mapTrackColour];
-                    return cell;
-                }
+                case SECTION_MAPCOLOURS_DESTINATION:
+                    CELL_RIGHTIMAGE(_(@"settingsmainviewcontroller-Destination line"), [ImageLibrary circleWithColour:configManager.mapDestinationColour])
+                case SECTION_MAPCOLOURS_TRACK:
+                    CELL_RIGHTIMAGE(_(@"settingsmainviewcontroller-Track line"), [ImageLibrary circleWithColour:configManager.mapTrackColour])
             }
             abort();
         }
