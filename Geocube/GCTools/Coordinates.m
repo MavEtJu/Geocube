@@ -94,6 +94,24 @@
     return [NSString stringWithFormat:@"%@ %3d° %06.3f'", hemi, degrees, mins * 60];
 }
 /// Returns S 34 1.672
+- (NSString *)lat_degreesDecimalMinutesEdit    // S 34 1.672
+{
+    NSString *hemi = (coords.latitude < 0) ? _(@"compass-S") : _(@"compass-N") ;
+    float dummy;
+    int degrees = (int)fabs(coords.latitude);
+    float mins = modff(fabs(coords.latitude), &dummy);
+    return [NSString stringWithFormat:@"%@ %d %0.3f", hemi, degrees, mins * 60];
+}
+/// Returns E 151 4.414
+- (NSString *)lon_degreesDecimalMinutesEdit    // E 151 4.414
+{
+    NSString *hemi = (coords.longitude < 0) ? _(@"compass-W") : _(@"compass-E") ;
+    float dummy;
+    int degrees = (int)fabs(coords.longitude);
+    float mins = modff(fabs(coords.longitude), &dummy);
+    return [NSString stringWithFormat:@"%@ %d %0.3f", hemi, degrees, mins * 60];
+}
+/// Returns S 34 1.672
 - (NSString *)lat_degreesDecimalMinutesSimple    // S 34 1.672
 {
     NSString *hemi = (coords.latitude < 0) ? _(@"compass-S") : _(@"compass-N") ;
@@ -348,7 +366,7 @@
 + (NSString *)niceCoordinatesForEditing:(CLLocationCoordinate2D)c
 {
     Coordinates *co = [[Coordinates alloc] init:c];
-    return [NSString stringWithFormat:@"%@ %@", [co lat_degreesDecimalMinutesSimple], [co lon_degreesDecimalMinutesSimple]];
+    return [NSString stringWithFormat:@"%@ %@", [co lat_degreesDecimalMinutesEdit], [co lon_degreesDecimalMinutesEdit]];
 }
 
 /// Returns string with latitude like N 1° 2.3'
@@ -368,13 +386,13 @@
 + (NSString *)niceLatitudeForEditing:(CLLocationDegrees)l
 {
     Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(l, 0)];
-    return [co lat_degreesDecimalMinutesSimple];
+    return [co lat_degreesDecimalMinutesEdit];
 }
 /// Returns string with longitude like E 1 2.3
 + (NSString *)niceLongitudeForEditing:(CLLocationDegrees)l
 {
     Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(0, l)];
-    return [co lon_degreesDecimalMinutesSimple];
+    return [co lon_degreesDecimalMinutesEdit];
 }
 
 /// Convert degrees to radians

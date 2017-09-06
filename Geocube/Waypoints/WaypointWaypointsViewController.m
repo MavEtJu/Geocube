@@ -263,7 +263,7 @@ enum {
         textField.placeholder = @"Latitude (like S 12 34.567)";
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:YES];
-        textField.text = [NSString stringWithString:[Coordinates niceLatitude:waypoint.wpt_latitude]];
+        textField.text = [NSString stringWithString:[Coordinates niceLatitudeForEditing:waypoint.wpt_latitude]];
         [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         tfLatitude = textField;
     }];
@@ -271,7 +271,7 @@ enum {
         textField.placeholder = @"Longitude (like E 23 45.678)";
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:NO];
-        textField.text = [NSString stringWithString:[Coordinates niceLongitude:waypoint.wpt_longitude]];
+        textField.text = [NSString stringWithString:[Coordinates niceLongitudeForEditing:waypoint.wpt_longitude]];
         [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         tfLongitude = textField;
     }];
