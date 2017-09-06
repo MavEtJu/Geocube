@@ -694,9 +694,9 @@ enum {
                           style:UIAlertActionStyleDefault
                           handler:^(UIAlertAction *action) {
                               if (waypoint.flag_dnf)
-                                  [self addLog:_(@"waypointviewcontroller-Unmarked as DNF")];
+                                  [self addLocalLog:_(@"waypointviewcontroller-Unmarked as DNF")];
                               else
-                                  [self addLog:_(@"waypointviewcontroller-Marked as DNF")];
+                                  [self addLocalLog:_(@"waypointviewcontroller-Marked as DNF")];
                               waypoint.flag_dnf = !waypoint.flag_dnf;
                               [waypoint dbUpdateMarkedDNF];
                               [waypointManager needsRefreshUpdate:waypoint];
@@ -710,9 +710,9 @@ enum {
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction *action) {
                                 if (waypoint.flag_markedfound)
-                                    [self addLog:_(@"waypointviewcontroller-Unmarked as Found")];
+                                    [self addLocalLog:_(@"waypointviewcontroller-Unmarked as Found")];
                                 else
-                                    [self addLog:_(@"waypointviewcontroller-Marked as Found")];
+                                    [self addLocalLog:_(@"waypointviewcontroller-Marked as Found")];
                                 waypoint.flag_markedfound = !waypoint.flag_markedfound;
                                 [waypoint dbUpdateMarkedFound];
                                 if (waypoint.flag_markedfound == YES && waypoint == waypointManager.currentWaypoint)
@@ -739,9 +739,9 @@ enum {
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction *action) {
                                  if (waypoint.flag_ignore)
-                                     [self addLog:_(@"waypointviewcontroller-Unmarked as Ignored")];
+                                     [self addLocalLog:_(@"waypointviewcontroller-Unmarked as Ignored")];
                                  else
-                                     [self addLog:_(@"waypointviewcontroller-Marked as Ignored")];
+                                     [self addLocalLog:_(@"waypointviewcontroller-Marked as Ignored")];
                                  waypoint.flag_ignore = !waypoint.flag_ignore;
                                  [waypoint dbUpdateIgnore];
                                  [waypointManager needsRefreshUpdate:waypoint];
@@ -759,9 +759,9 @@ enum {
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction *action) {
                                      if (waypoint.flag_inprogress)
-                                         [self addLog:_(@"waypointviewcontroller-Unmarked as In Progress")];
+                                         [self addLocalLog:_(@"waypointviewcontroller-Unmarked as In Progress")];
                                      else
-                                         [self addLog:_(@"waypointviewcontroller-Marked as In Progress")];
+                                         [self addLocalLog:_(@"waypointviewcontroller-Marked as In Progress")];
                                      waypoint.flag_inprogress = !waypoint.flag_inprogress;
                                      [waypoint dbUpdateInProgress];
                                      [waypointManager needsRefreshUpdate:waypoint];
@@ -773,9 +773,9 @@ enum {
                                 style:UIAlertActionStyleDefault
                                 handler:^(UIAlertAction *action) {
                                     if (waypoint.flag_highlight)
-                                        [self addLog:_(@"waypointviewcontroller-Unmarked as Highlighted")];
+                                        [self addLocalLog:_(@"waypointviewcontroller-Unmarked as Highlighted")];
                                     else
-                                        [self addLog:_(@"waypointviewcontroller-Marked as Highlighted")];
+                                        [self addLocalLog:_(@"waypointviewcontroller-Marked as Highlighted")];
                                     waypoint.flag_highlight = !waypoint.flag_highlight;
                                     [waypoint dbUpdateHighlight];
                                     [waypointManager needsRefreshUpdate:waypoint];
@@ -790,9 +790,9 @@ enum {
                    style:UIAlertActionStyleDefault
                    handler:^(UIAlertAction *action) {
                        if (waypoint.flag_planned == YES)
-                           [self addLog:_(@"waypointviewcontroller-Unmarked as Planned")];
+                           [self addLocalLog:_(@"waypointviewcontroller-Unmarked as Planned")];
                        else
-                           [self addLog:_(@"waypointviewcontroller-Marked as Planned")];
+                           [self addLocalLog:_(@"waypointviewcontroller-Marked as Planned")];
                        waypoint.flag_planned = !waypoint.flag_planned;
                        [waypoint dbUpdatePlanned];
                    }];
@@ -817,11 +817,12 @@ enum {
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)addLog:(NSString *)text
+- (void)addLocalLog:(NSString *)text
 {
-    LogStringWPType wptype = [dbLogString wptTypeToWPType:waypoint.wpt_type.type_full];
-    dbLogString *logstring = [dbLogString dbGetByProtocolWPTypeDefault:waypoint.account.protocol wptype:wptype default:LOGSTRING_DEFAULT_NOTE];
+    dbLogString *logstring = [dbLogString dbGetByProtocolWPTypeDefault:waypoint.account.protocol wptype:LOGSTRING_WPTYPE_LOCALLOG default:LOGSTRING_DEFAULT_NOTE];
 
+    if (logstring == nil)
+        return;
     [dbLog CreateLogNote:logstring waypoint:waypoint dateLogged:time(NULL) note:text needstobelogged:NO locallog:YES coordinates:LM.coords];
 }
 
