@@ -1356,17 +1356,13 @@ SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Timeout value for big HTTP requests")
                                             rows:downloadQueryTimeouts
                                 initialSelection:currentChoice
-                                          target:self
-                                   successAction:@selector(updateDownloadQueryTimeout:element:)
-                                    cancelAction:@selector(updateCancel:)
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           [configManager downloadTimeoutQueryUpdate:[[downloadQueryTimeouts objectAtIndex:selectedIndex] integerValue]];
+                                           [self.tableView reloadData];
+                                       }
+                                     cancelBlock:nil
                                           origin:cell.contentView
      ];
-}
-
-- (void)updateDownloadQueryTimeout:(NSNumber *)selectedIndex element:(NSString *)element
-{
-    [configManager downloadTimeoutQueryUpdate:[[downloadQueryTimeouts objectAtIndex:[selectedIndex integerValue]] integerValue]];
-    [self.tableView reloadData];
 }
 
 - (void)changeImportsSimpleTimeout
@@ -1384,26 +1380,16 @@ SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Timeout value for simple HTTP requests")
                                             rows:downloadSimpleTimeouts
                                 initialSelection:currentChoice
-                                          target:self
-                                   successAction:@selector(updateDownloadSimpleTimeout:element:)
-                                    cancelAction:@selector(updateCancel:)
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           [configManager downloadTimeoutSimpleUpdate:[[downloadSimpleTimeouts objectAtIndex:selectedIndex] integerValue]];
+                                           [self.tableView reloadData];
+                                       }
+                                     cancelBlock:nil
                                           origin:cell.contentView
      ];
 }
 
-- (void)updateDownloadSimpleTimeout:(NSNumber *)selectedIndex element:(NSString *)element
-{
-    [configManager downloadTimeoutSimpleUpdate:[[downloadSimpleTimeouts objectAtIndex:[selectedIndex integerValue]] integerValue]];
-    [self.tableView reloadData];
-}
-
 /* ********************************************************************************* */
-
-- (void)updateMapcacheMaxAge:(NSNumber *)selectedIndex element:(NSString *)element
-{
-    [configManager mapcacheMaxAgeUpdate:[[mapcacheMaxAgeValues objectAtIndex:[selectedIndex integerValue]] integerValue]];
-    [self.tableView reloadData];
-}
 
 - (void)changeMapCacheMaxAge
 {
@@ -1420,17 +1406,13 @@ SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Maximum age for objects in the map cache")
                                             rows:mapcacheMaxAgeValues
                                 initialSelection:currentChoice
-                                          target:self
-                                   successAction:@selector(updateMapcacheMaxAge:element:)
-                                    cancelAction:@selector(updateCancel:)
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           [configManager mapcacheMaxAgeUpdate:[[mapcacheMaxAgeValues objectAtIndex:selectedIndex] integerValue]];
+                                           [self.tableView reloadData];
+                                       }
+                                     cancelBlock:nil
                                           origin:cell.contentView
      ];
-}
-
-- (void)updateMapcacheMaxSize:(NSNumber *)selectedIndex element:(NSString *)element
-{
-    [configManager mapcacheMaxSizeUpdate:[[mapcacheMaxSizeValues objectAtIndex:[selectedIndex integerValue]] integerValue]];
-    [self.tableView reloadData];
 }
 
 - (void)changeMapCacheMaxSize
@@ -1447,9 +1429,11 @@ SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Maximum size for the map cache")
                                             rows:mapcacheMaxSizeValues
                                 initialSelection:currentChoice
-                                          target:self
-                                   successAction:@selector(updateMapcacheMaxSize:element:)
-                                    cancelAction:@selector(updateCancel:)
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           [configManager mapcacheMaxSizeUpdate:[[mapcacheMaxSizeValues objectAtIndex:selectedIndex] integerValue]];
+                                           [self.tableView reloadData];
+                                       }
+                                     cancelBlock:nil
                                           origin:cell.contentView
      ];
 }
@@ -1463,21 +1447,14 @@ SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select theme")
                                             rows:[themeManager themeNames]
                                 initialSelection:configManager.themeType
-                                          target:self
-                                   successAction:@selector(updateThemeThemeSuccess:element:)
-                                    cancelAction:@selector(updateCancel:)
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           [configManager themeTypeUpdate:selectedIndex];
+                                           [themeManager setTheme:selectedIndex];
+                                           [self.tableView reloadData];
+                                       }
+                                     cancelBlock:nil
                                           origin:cell.contentView
      ];
-}
-
-- (void)updateThemeThemeSuccess:(NSNumber *)selectedIndex element:(id)element
-{
-    NSInteger i = [selectedIndex intValue];
-    [configManager themeTypeUpdate:i];
-    [self.tableView reloadData];
-
-    [themeManager setTheme:i];
-    [self.tableView reloadData];
 }
 
 - (void)changeThemeCompass
@@ -1487,18 +1464,13 @@ SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select Compass")
                                             rows:compassTypes
                                 initialSelection:configManager.compassType
-                                          target:self
-                                   successAction:@selector(updateThemeCompassSuccess:element:)
-                                    cancelAction:@selector(updateCancel:)
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           [configManager compassTypeUpdate:selectedIndex];
+                                           [self.tableView reloadData];
+                                       }
+                                     cancelBlock:nil
                                           origin:cell.contentView
      ];
-}
-
-- (void)updateThemeCompassSuccess:(NSNumber *)selectedIndex element:(id)element
-{
-    NSInteger i = [selectedIndex intValue];
-    [configManager compassTypeUpdate:i];
-    [self.tableView reloadData];
 }
 
 - (void)changeThemeOrientations
@@ -1515,18 +1487,14 @@ SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select Orientations")
                                             rows:orientationStrings
                                 initialSelection:orientationIndex
-                                          target:self
-                                   successAction:@selector(updateThemeOrientations:element:)
-                                    cancelAction:@selector(updateCancel:)
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           NSInteger d = [[orientationValues objectAtIndex:selectedIndex] integerValue];
+                                           [configManager orientationsAllowedUpdate:d];
+                                           [self.tableView reloadData];
+                                       }
+                                     cancelBlock:nil
                                           origin:cell.contentView
      ];
-}
-
-- (void)updateThemeOrientations:(NSNumber *)selectedIndex element:(id)element
-{
-    NSInteger d = [[orientationValues objectAtIndex:[selectedIndex integerValue]] integerValue];
-    [configManager orientationsAllowedUpdate:d];
-    [self.tableView reloadData];
 }
 
 /* ********************************************************************************* */
@@ -1542,18 +1510,14 @@ SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select Maximum Distance")
                                             rows:distances
                                 initialSelection:(configManager.mapSearchMaximumDistanceGS / 250) - 1
-                                          target:self
-                                   successAction:@selector(updateMapSearchMaximumDistanceGS:element:)
-                                    cancelAction:@selector(updateCancel:)
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           NSInteger d = (1 + selectedIndex) * 250;
+                                           [configManager mapSearchMaximumDistanceGSUpdate:d];
+                                           [self.tableView reloadData];
+                                       }
+                                     cancelBlock:nil
                                           origin:cell.contentView
      ];
-}
-
-- (void)updateMapSearchMaximumDistanceGS:(NSNumber *)selectedIndex element:(id)element
-{
-    NSInteger d = (1 + [selectedIndex integerValue]) * 250;
-    [configManager mapSearchMaximumDistanceGSUpdate:d];
-    [self.tableView reloadData];
 }
 
 - (void)changeMapSearchMaximumDistanceGCA
@@ -1567,18 +1531,14 @@ SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select Maximum Distance")
                                             rows:distances
                                 initialSelection:(configManager.mapSearchMaximumDistanceGCA / 250) - 1
-                                          target:self
-                                   successAction:@selector(updateMapSearchMaximumDistanceGCA:element:)
-                                    cancelAction:@selector(updateCancel:)
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           NSInteger d = (1 + selectedIndex) * 250;
+                                           [configManager mapSearchMaximumDistanceGCAUpdate:d];
+                                           [self.tableView reloadData];
+                                       }
+                                     cancelBlock:nil
                                           origin:cell.contentView
      ];
-}
-
-- (void)updateMapSearchMaximumDistanceGCA:(NSNumber *)selectedIndex element:(id)element
-{
-    NSInteger d = (1 + [selectedIndex integerValue]) * 250;
-    [configManager mapSearchMaximumDistanceGCAUpdate:d];
-    [self.tableView reloadData];
 }
 
 - (void)changeMapSearchMaximumDistanceOKAPI
@@ -1592,18 +1552,14 @@ SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select Maximum Distance")
                                             rows:distances
                                 initialSelection:(configManager.mapSearchMaximumDistanceOKAPI / 250) - 1
-                                          target:self
-                                   successAction:@selector(updateMapSearchMaximumDistanceOKAPI:element:)
-                                    cancelAction:@selector(updateCancel:)
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           NSInteger d = (1 + selectedIndex) * 250;
+                                           [configManager mapSearchMaximumDistanceOKAPIUpdate:d];
+                                           [self.tableView reloadData];
+                                       }
+                                     cancelBlock:nil
                                           origin:cell.contentView
      ];
-}
-
-- (void)updateMapSearchMaximumDistanceOKAPI:(NSNumber *)selectedIndex element:(id)element
-{
-    NSInteger d = (1 + [selectedIndex integerValue]) * 250;
-    [configManager mapSearchMaximumDistanceOKAPIUpdate:d];
-    [self.tableView reloadData];
 }
 
 - (void)changeMapSearchMaximumNumberGCA
@@ -1617,18 +1573,18 @@ SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select Maximum Waypoints")
                                             rows:distances
                                 initialSelection:(configManager.mapSearchMaximumNumberGCA / 10) - 1
-                                          target:self
-                                   successAction:@selector(updateMapSearchMaximumNumberGCA:element:)
-                                    cancelAction:@selector(updateCancel:)
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           NSInteger d = (1 + selectedIndex) * 10;
+                                           [configManager mapSearchMaximumNumberGCAUpdate:d];
+                                           [self.tableView reloadData];
+                                       }
+                                     cancelBlock:nil
                                           origin:cell.contentView
      ];
 }
 
 - (void)updateMapSearchMaximumNumberGCA:(NSNumber *)selectedIndex element:(id)element
 {
-    NSInteger d = (1 + [selectedIndex integerValue]) * 10;
-    [configManager mapSearchMaximumNumberGCAUpdate:d];
-    [self.tableView reloadData];
 }
 
 /* ********************************************************************************* */
@@ -1640,17 +1596,13 @@ SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Sort waypoints by")
                                             rows:[WaypointSorter waypointsSortOrders]
                                 initialSelection:configManager.waypointListSortBy
-                                          target:self
-                                   successAction:@selector(updateWaypointSortBy:element:)
-                                    cancelAction:@selector(updateCancel:)
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           [configManager waypointListSortByUpdate:selectedIndex];
+                                           [self.tableView reloadData];
+                                       }
+                                     cancelBlock:nil
                                           origin:cell.contentView
      ];
-}
-
-- (void)updateWaypointSortBy:(NSNumber *)selectedIndex element:(id)element
-{
-    [configManager waypointListSortByUpdate:selectedIndex.integerValue];
-    [self.tableView reloadData];
 }
 
 /* ********************************************************************************* */
@@ -1738,17 +1690,13 @@ SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Sort lists by")
                                             rows:[WaypointSorter listSortOrders]
                                 initialSelection:configManager.listSortBy
-                                          target:self
-                                   successAction:@selector(updateListSortBy:element:)
-                                    cancelAction:@selector(updateCancel:)
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           [configManager listSortByUpdate:selectedIndex];
+                                           [self.tableView reloadData];
+                                       }
+                                     cancelBlock:nil
                                           origin:cell.contentView
      ];
-}
-
-- (void)updateListSortBy:(NSNumber *)selectedIndex element:(id)element
-{
-    [configManager listSortByUpdate:selectedIndex.integerValue];
-    [self.tableView reloadData];
 }
 
 /* ********************************************************************************* */
@@ -1760,17 +1708,13 @@ SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Sort locationless by")
                                             rows:[WaypointSorter locationlessSortOrders]
                                 initialSelection:configManager.locationlessListSortBy
-                                          target:self
-                                   successAction:@selector(updateLocationlessSortBy:element:)
-                                    cancelAction:@selector(updateCancel:)
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           [configManager locationlessListSortByUpdate:selectedIndex];
+                                           [self.tableView reloadData];
+                                       }
+                                     cancelBlock:nil
                                           origin:cell.contentView
      ];
-}
-
-- (void)updateLocationlessSortBy:(NSNumber *)selectedIndex element:(id)element
-{
-    [configManager locationlessListSortByUpdate:selectedIndex.integerValue];
-    [self.tableView reloadData];
 }
 
 /* ********************************************************************************* */
@@ -1790,18 +1734,15 @@ SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select Default Map")
                                             rows:mapBrandsNames
                                 initialSelection:initial
-                                          target:self
-                                   successAction:@selector(updateMapsDefaultBrand:element:)
-                                    cancelAction:@selector(updateCancel:)
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           NSString *code = [mapBrandsCodes objectAtIndex:selectedIndex];
+                                           [configManager mapBrandDefaultUpdate:code];
+                                           [self.tableView reloadData];
+                                       }
+                                     cancelBlock:nil
                                           origin:cell.contentView
      ];
-}
 
-- (void)updateMapsDefaultBrand:(NSNumber *)selectedIndex element:(id)element
-{
-    NSString *code = [mapBrandsCodes objectAtIndex:[selectedIndex integerValue]];
-    [configManager mapBrandDefaultUpdate:code];
-    [self.tableView reloadData];
 }
 
 - (void)changeAppsExternalMap
@@ -1820,19 +1761,14 @@ SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select External Maps")
                                             rows:externalMapTypes
                                 initialSelection:initial
-                                          target:self
-                                   successAction:@selector(updateAppsExternalMap:element:)
-                                    cancelAction:@selector(updateCancel:)
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           dbExternalMap *map = [maps objectAtIndex:selectedIndex];
+                                           [configManager mapExternalUpdate:map.geocube_id];
+                                           [self.tableView reloadData];
+                                       }
+                                     cancelBlock:nil
                                           origin:cell.contentView
      ];
-}
-
-- (void)updateAppsExternalMap:(NSNumber *)selectedIndex element:(id)element
-{
-    NSArray<dbExternalMap *> *maps = [dbExternalMap dbAll];
-    dbExternalMap *map = [maps objectAtIndex:[selectedIndex integerValue]];
-    [configManager mapExternalUpdate:map.geocube_id];
-    [self.tableView reloadData];
 }
 
 /* ********************************************************************************* */
