@@ -471,6 +471,13 @@ enum sections {
     return cell; \
 }
 
+#define CELL_SUBTITLE(__text__, __detail__) { \
+    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath]; \
+    cell.textLabel.text = __text__; \
+    cell.detailTextLabel.text = __detail__; \
+    return cell; \
+    }
+
     switch (indexPath.section) {
         case SECTION_DISTANCE: {   // Distance
             switch (indexPath.row) {
@@ -483,8 +490,6 @@ enum sections {
         case SECTION_APPS: {
             switch (indexPath.row) {
                 case SECTION_APPS_EXTERNALMAP: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-External Maps");
                     __block NSString *name = nil;
                     [[dbExternalMap dbAll] enumerateObjectsUsingBlock:^(dbExternalMap * _Nonnull em, NSUInteger idx, BOOL * _Nonnull stop) {
                         if (em.geocube_id == configManager.mapExternal) {
@@ -492,15 +497,10 @@ enum sections {
                             *stop = YES;
                         }
                     }];
-                    cell.detailTextLabel.text = name;
-                    return cell;
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-External Maps"), name);
                 }
-                case SECTION_APPS_OPENCAGEKEY: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-OpenCage key");
-                    cell.detailTextLabel.text = configManager.opencageKey;
-                    return cell;
-                }
+                case SECTION_APPS_OPENCAGEKEY:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-OpenCage key"), configManager.opencageKey);
                 case SECTION_APPS_OPENCAGEOVERWIFIONLY:
                     CELL_SWITCH(_(@"settingsmainviewcontroller-OpenCage only over Wifi"), opencageWifiOnly, updateOpenCageWifiOnly)
                 case SECTION_APPS_TWITTER:
@@ -511,20 +511,11 @@ enum sections {
 
         case SECTION_THEME: {   // Theme
             switch (indexPath.row) {
-                case SECTION_THEME_THEME: {   // Theme
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Theme");
-                    cell.detailTextLabel.text = [[themeManager themeNames] objectAtIndex:configManager.themeType];
-                    return cell;
-                }
-                case SECTION_THEME_COMPASS: {   // Compass type
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Compass type");
-                    cell.detailTextLabel.text = [compassTypes objectAtIndex:configManager.compassType];
-                    return cell;
-                }
+                case SECTION_THEME_THEME:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Theme"), [[themeManager themeNames] objectAtIndex:configManager.themeType]);
+                case SECTION_THEME_COMPASS:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Compass type"), [compassTypes objectAtIndex:configManager.compassType]);
                 case SECTION_THEME_ORIENTATIONS: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
                     NSMutableString *s = [NSMutableString stringWithString:@""];
                     if ((configManager.orientationsAllowed & UIInterfaceOrientationMaskPortrait) != 0) {
                         if ([s isEqualToString:@""] == NO)
@@ -546,9 +537,7 @@ enum sections {
                             [s appendString:@", "];
                         [s appendString:_(@"settingsmainviewcontroller-Landscape Right")];
                     }
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Orientations allowed");
-                    cell.detailTextLabel.text = s;
-                    return cell;
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Orientations allowed"), s);
                 }
             }
             abort();
@@ -585,8 +574,6 @@ enum sections {
         case SECTION_MAPS: {   // Maps
             switch (indexPath.row) {
                 case SECTION_MAPS_DEFAULTBRAND: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Default map");
                     __block NSString *value = nil;
                     [mapBrandsCodes enumerateObjectsUsingBlock:^(NSString * _Nonnull k, NSUInteger idx, BOOL * _Nonnull stop) {
                         if ([k isEqualToString:configManager.mapBrandDefault] == YES) {
@@ -595,8 +582,7 @@ enum sections {
                             return;
                         }
                     }];
-                    cell.detailTextLabel.text = value;
-                    return cell;
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Default map"), value);
                 }
                 case SECTION_MAPS_ROTATE_TO_BEARING:
                     CELL_SWITCH(_(@"settingsmainviewcontroller-Rotate to bearing"), mapRotateToBearing, updateMapRotateToBearing)
@@ -606,30 +592,14 @@ enum sections {
 
         case SECTION_MAPSEARCHMAXIMUM: {
             switch (indexPath.row) {
-                case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GS: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Distance in GroundSpeak geocaching.com search radius");
-                    cell.detailTextLabel.text = [MyTools niceDistance:configManager.mapSearchMaximumDistanceGS];
-                    return cell;
-                }
-                case SECTION_MAPSEARCHMAXIMUM_DISTANCE_OKAPI: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Distance in OKAPI search radius");
-                    cell.detailTextLabel.text = [MyTools niceDistance:configManager.mapSearchMaximumDistanceOKAPI];
-                    return cell;
-                }
-                case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GCA: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Distance in GCA search radius");
-                    cell.detailTextLabel.text = [MyTools niceDistance:configManager.mapSearchMaximumDistanceGCA];
-                    return cell;
-                }
-                case SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Number of waypoints in Geocaching Australia search");
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld %@", (long)configManager.mapSearchMaximumNumberGCA, _(@"waypoints")];
-                    return cell;
-                }
+                case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GS:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Distance in GroundSpeak geocaching.com search radius"), [MyTools niceDistance:configManager.mapSearchMaximumDistanceGS]);
+                case SECTION_MAPSEARCHMAXIMUM_DISTANCE_OKAPI:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Distance in OKAPI search radius"), [MyTools niceDistance:configManager.mapSearchMaximumDistanceOKAPI]);
+                case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GCA:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Distance in GCA search radius"), [MyTools niceDistance:configManager.mapSearchMaximumDistanceGCA]);
+                case SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Number of waypoints in GCA search"), [MyTools niceDistance:configManager.mapSearchMaximumNumberGCA]);
             }
             abort();
         }
@@ -638,41 +608,23 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_DYNAMICMAP_ENABLED:
                     CELL_SWITCH(_(@"settingsmainviewcontroller-Enable dynamic maps"), dynamicmapEnable, updateDynamicmapEnable)
-                case SECTION_DYNAMICMAP_SPEED_WALKING: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Maximum walking speed");
-                    cell.detailTextLabel.text = [MyTools niceSpeed:configManager.dynamicmapWalkingSpeed];
-                    return cell;
-                }
-                case SECTION_DYNAMICMAP_SPEED_CYCLING: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Maximum cycling speed");
-                    cell.detailTextLabel.text = [MyTools niceSpeed:configManager.dynamicmapCyclingSpeed];
-                    return cell;
-                }
-                case SECTION_DYNAMICMAP_SPEED_DRIVING: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Maximum driving speed");
-                    cell.detailTextLabel.text = [MyTools niceSpeed:configManager.dynamicmapDrivingSpeed];
-                    return cell;
-                }
+                case SECTION_DYNAMICMAP_SPEED_WALKING:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Maximum walking speed"), [MyTools niceSpeed:configManager.dynamicmapWalkingSpeed])
+                case SECTION_DYNAMICMAP_SPEED_CYCLING:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Maximum cycling speed"), [MyTools niceSpeed:configManager.dynamicmapCyclingSpeed])
+                case SECTION_DYNAMICMAP_SPEED_DRIVING: 
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Maximum driving speed"), [MyTools niceSpeed:configManager.dynamicmapDrivingSpeed])
                 case SECTION_DYNAMICMAP_DISTANCE_WALKING: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Walking zoom-out distance");
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", _(@"settingsmainviewcontroller-Always"), [MyTools niceDistance:configManager.dynamicmapWalkingDistance]];
-                    return cell;
+                    NSString *s = [NSString stringWithFormat:@"%@ %@", _(@"settingsmainviewcontroller-Always"), [MyTools niceDistance:configManager.dynamicmapWalkingDistance]];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Walking zoom-out distance"), s);
                 }
                 case SECTION_DYNAMICMAP_DISTANCE_CYCLING: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Cycling zoom-out distance");
-                    cell.detailTextLabel.text = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Between %@ and %@"), [MyTools niceDistance:configManager.dynamicmapWalkingDistance], [MyTools niceDistance:configManager.dynamicmapCyclingDistance]];
-                    return cell;
+                    NSString *s = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Between %@ and %@"), [MyTools niceDistance:configManager.dynamicmapWalkingDistance], [MyTools niceDistance:configManager.dynamicmapCyclingDistance]];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Cycling zoom-out distance"), s)
                 }
                 case SECTION_DYNAMICMAP_DISTANCE_DRIVING: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Driving zoom-out distance");
-                    cell.detailTextLabel.text = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Between %@ and %@"), [MyTools niceDistance:configManager.dynamicmapCyclingDistance], [MyTools niceDistance:configManager.dynamicmapDrivingDistance]];
-                    return cell;
+                    NSString *s = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Between %@ and %@"), [MyTools niceDistance:configManager.dynamicmapCyclingDistance], [MyTools niceDistance:configManager.dynamicmapDrivingDistance]];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Driving zoom-out distance"), s)
                 }
             }
             abort();
@@ -683,40 +635,24 @@ enum sections {
                 case SECTION_KEEPTRACK_AUTOROTATE:
                     CELL_SWITCH(_(@"settingsmainviewcontroller-Autorotate every day"), keeptrackAutoRotate, updateKeeptrackAutoRotate)
                 case SECTION_KEEPTRACK_TIMEDELTA_MIN: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Time difference for a new track point");
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.1f %@", configManager.keeptrackTimeDeltaMin, _(@"time-seconds")];
-                    return cell;
+                    NSString *s = [NSString stringWithFormat:@"%0.1f %@", configManager.keeptrackTimeDeltaMin, _(@"time-seconds")];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Time difference for a new track point"), s)
                 }
                 case SECTION_KEEPTRACK_TIMEDELTA_MAX: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Time difference for a new track");
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.1f %@", configManager.keeptrackTimeDeltaMax, _(@"time-seconds")];
-                    return cell;
+                    NSString *s = [NSString stringWithFormat:@"%0.1f %@", configManager.keeptrackTimeDeltaMax, _(@"time-seconds")];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Time difference for a new track"), s)
                 }
-                case SECTION_KEEPTRACK_DISTANCEDELTA_MIN: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Distance difference for a new track point");
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [MyTools niceDistance:configManager.keeptrackDistanceDeltaMin]];
-                    return cell;
-                }
-                case SECTION_KEEPTRACK_DISTANCEDELTA_MAX: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Distance difference for a new track");
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [MyTools niceDistance:configManager.keeptrackDistanceDeltaMax]];
-                    return cell;
-                }
+                case SECTION_KEEPTRACK_DISTANCEDELTA_MIN:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Distance difference for a new track point"), [MyTools niceDistance:configManager.keeptrackDistanceDeltaMin]);
+                case SECTION_KEEPTRACK_DISTANCEDELTA_MAX:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Distance difference for a new track"), [MyTools niceDistance:configManager.keeptrackDistanceDeltaMax])
                 case SECTION_KEEPTRACK_PURGEAGE: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Autopurge age for old tracks");
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld %@", (long)configManager.keeptrackPurgeAge, _(@"time-days")];
-                    return cell;
+                    NSString *s = [NSString stringWithFormat:@"%ld %@", (long)configManager.keeptrackPurgeAge, _(@"time-days")];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Autopurge age for old tracks"), s)
                 }
                 case SECTION_KEEPTRACK_SYNC: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Sync track data");
-                    cell.detailTextLabel.text = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Every %ld seconds"), (long)configManager.keeptrackSync];
-                    return cell;
+                    NSString *s = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Every %ld seconds"), (long)configManager.keeptrackSync];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Sync track data"), s)
                 }
             }
             abort();
@@ -727,16 +663,12 @@ enum sections {
                 case SECTION_MAPCACHE_ENABLED:
                     CELL_SWITCH(_(@"settingsmainviewcontroller-Enable map cache"), mapcacheEnable, updateMapcacheEnable)
                 case SECTION_MAPCACHE_MAXAGE: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Maximum age for objects in cache");
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld %@", (long)configManager.mapcacheMaxAge, _(@"time-days")];
-                    return cell;
+                    NSString *s = [NSString stringWithFormat:@"%ld %@", (long)configManager.mapcacheMaxAge, _(@"time-days")];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Maximum age for objects in cache"), s)
                 }
                 case SECTION_MAPCACHE_MAXSIZE: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Maximum size for the cache");
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Mb", (long)configManager.mapcacheMaxSize];
-                    return cell;
+                    NSString *s = [NSString stringWithFormat:@"%ld Mb", (long)configManager.mapcacheMaxSize];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Maximum size for the cache"), s)
                 }
             }
             abort();
@@ -745,16 +677,12 @@ enum sections {
         case SECTION_IMPORTS: {
             switch (indexPath.row) {
                 case SECTION_IMPORTS_TIMEOUT_SIMPLE: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Timeout for simple HTTP requests");
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld %@", (long)configManager.downloadTimeoutSimple, _(@"time-seconds")];
-                    return cell;
+                    NSString *s = [NSString stringWithFormat:@"%ld %@", (long)configManager.downloadTimeoutSimple, _(@"time-seconds")];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Timeout for simple HTTP requests"), s);
                 }
                 case SECTION_IMPORTS_TIMEOUT_QUERY: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Timeout for big HTTP requests");
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld %@", (long)configManager.downloadTimeoutQuery, _(@"time-seconds")];
-                    return cell;
+                    NSString *s = [NSString stringWithFormat:@"%ld %@", (long)configManager.downloadTimeoutQuery, _(@"time-seconds")];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Timeout for big HTTP requests"), s);
                 }
                 case SECTION_IMPORTS_IMAGES_WAYPOINT:
                     CELL_SWITCH(_(@"settingsmainviewcontroller-Download waypoint images"), downloadImagesWaypoints, updateDownloadImagesWaypoints)
@@ -791,11 +719,8 @@ enum sections {
         case SECTION_WAYPOINTS: {
             switch (indexPath.row) {
                 case SECTION_WAYPOINTS_SORTBY: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Sort waypoints default by...");
                     NSArray<NSString *> *order = [WaypointSorter waypointsSortOrders];
-                    cell.detailTextLabel.text = [order objectAtIndex:configManager.waypointListSortBy];
-                    return cell;
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Sort waypoints default by..."), [order objectAtIndex:configManager.waypointListSortBy])
                 }
                 case SECTION_WAYPOINTS_REFRESHAFTERLOG:
                     CELL_SWITCH(_(@"settingsmainviewcontroller-Refresh after log"), refreshWaypointAfterLog, updateRefreshWaypointAfterLog)
@@ -812,11 +737,8 @@ enum sections {
         case SECTION_LISTS: {
             switch (indexPath.row) {
                 case SECTION_LISTS_SORTBY: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Sort lists default by...");
                     NSArray<NSString *> *order = [WaypointSorter listSortOrders];
-                    cell.detailTextLabel.text = [order objectAtIndex:configManager.listSortBy];
-                    return cell;
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Sort lists default by..."), [order objectAtIndex:configManager.listSortBy])
                 }
             }
             abort();
@@ -837,11 +759,8 @@ enum sections {
                 case SECTION_LOCATIONLESS_SHOWFOUND:
                     CELL_SWITCH(_(@"settingsmainviewcontroller-Show found in list"), locationlessShowFound, updateLocationlessShowFound)
                 case SECTION_LOCATIONLESS_SORTBY: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Sort by");
                     NSArray<NSString *> *order = [WaypointSorter locationlessSortOrders];
-                    cell.detailTextLabel.text = [order objectAtIndex:configManager.locationlessListSortBy];
-                    return cell;
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Sort by"), [order objectAtIndex:configManager.locationlessListSortBy])
                 }
             }
             abort();
@@ -852,16 +771,12 @@ enum sections {
                 case SECTION_BACKUPS_ENABLED:
                     CELL_SWITCH(_(@"settingsmainviewcontroller-Enable backups"), automaticDatabaseBackup, updateBackupsEnable)
                 case SECTION_BACKUPS_INTERVAL: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Make a new backup every");
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld %@", (long)configManager.automaticDatabaseBackupPeriod, _(@"time-days")];
-                    return cell;
+                    NSString *s = [NSString stringWithFormat:@"%ld %@", (long)configManager.automaticDatabaseBackupPeriod, _(@"time-days")];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Make a new backup every"), s)
                 }
                 case SECTION_BACKUPS_ROTATION: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Number of backups to be kept");
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld %@", (long)configManager.automaticDatabaseBackupRotate, _(@"settingsmainviewcontroller-backups")];
-                    return cell;
+                    NSString *s = [NSString stringWithFormat:@"%ld %@", (long)configManager.automaticDatabaseBackupRotate, _(@"settingsmainviewcontroller-backups")];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Number of backups to be kept"), s)
                 }
             }
             abort();
@@ -871,78 +786,34 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_ACCURACY_DYNAMIC_ENABLE:
                     CELL_SWITCH(_(@"settingsmainviewcontroller-Enable dynamic accuracy"), accuracyDynamicEnable, updateDynamicAccuracyEnable)
-                case SECTION_ACCURACY_DYNAMIC_ACCURACY_NEAR: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Accuracy for 'near' accuracy");
-                    cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyDynamicAccuracyNear];
-                    return cell;
-                }
-                case SECTION_ACCURACY_DYNAMIC_ACCURACY_MIDRANGE: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Accuracy for 'midrange' accuracy");
-                    cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyDynamicAccuracyMidrange];
-                    return cell;
-                }
-                case SECTION_ACCURACY_DYNAMIC_ACCURACY_FAR: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Accuracy for 'far' accuracy");
-                    cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyDynamicAccuracyFar];
-                    return cell;
-                }
+                case SECTION_ACCURACY_DYNAMIC_ACCURACY_NEAR:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Accuracy for 'near' accuracy"), [accuracies objectAtIndex:configManager.accuracyDynamicAccuracyNear])
+                case SECTION_ACCURACY_DYNAMIC_ACCURACY_MIDRANGE:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Accuracy for 'midrange' accuracy"), [accuracies objectAtIndex:configManager.accuracyDynamicAccuracyMidrange])
+                case SECTION_ACCURACY_DYNAMIC_ACCURACY_FAR:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Accuracy for 'far' accuracy"), [accuracies objectAtIndex:configManager.accuracyDynamicAccuracyFar])
                 case SECTION_ACCURACY_DYNAMIC_DISTANCE_NEARTOMIDRANGE: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Distance for 'near' accuracy");
-                    cell.detailTextLabel.text = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Up to %@"), [MyTools niceDistance:configManager.accuracyDynamicDistanceNearToMidrange]];
-                    return cell;
+                    NSString *s = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Up to %@"), [MyTools niceDistance:configManager.accuracyDynamicDistanceNearToMidrange]];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Distance for 'near' accuracy"), s)
                 }
                 case SECTION_ACCURACY_DYNAMIC_DISTANCE_MIDRANGETOFAR: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Distance for 'midrange' accuracy");
-                    cell.detailTextLabel.text = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Up to %@"), [MyTools niceDistance:configManager.accuracyDynamicDistanceMidrangeToFar]];
-                    return cell;
+                    NSString *s = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Up to %@"), [MyTools niceDistance:configManager.accuracyDynamicDistanceMidrangeToFar]];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Distance for 'midrange' accuracy"), s)
                 }
-                case SECTION_ACCURACY_STATIC_ACCURACY_NAVIGATING: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Accuracy for static 'navigating' accuracy");
-                    cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyStaticAccuracyNavigating];
-                    return cell;
-                }
-                case SECTION_ACCURACY_STATIC_ACCURACY_NONNAVIGATING: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Accuracy for static 'non-navigating' accuracy");
-                    cell.detailTextLabel.text = [accuracies objectAtIndex:configManager.accuracyStaticAccuracyNonNavigating];
-                    return cell;
-                }
-                case SECTION_ACCURACY_STATIC_DELTAD_NONNAVIGATING: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Update distance for static 'non-navigating' pages");
-                    cell.detailTextLabel.text = [MyTools niceDistance:configManager.accuracyStaticDeltaDNonNavigating];
-                    return cell;
-                }
-                case SECTION_ACCURACY_STATIC_DELTAD_NAVIGATING: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Update distance for static 'navigating' pages");
-                    cell.detailTextLabel.text = [MyTools niceDistance:configManager.accuracyStaticDeltaDNavigating];
-                    return cell;
-                }
-                case SECTION_ACCURACY_DYNAMIC_DELTAD_NEAR: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Update distance for 'near' accuracy");
-                    cell.detailTextLabel.text = [MyTools niceDistance:configManager.accuracyDynamicDeltaDNear];
-                    return cell;
-                }
-                case SECTION_ACCURACY_DYNAMIC_DELTAD_MIDRANGE: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Update distance 'midrange' accuracy");
-                    cell.detailTextLabel.text = [MyTools niceDistance:configManager.accuracyDynamicDeltaDMidrange];
-                    return cell;
-                }
-                case SECTION_ACCURACY_DYNAMIC_DELTAD_FAR: {
-                    GCTableViewCellWithSubtitle *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-                    cell.textLabel.text = _(@"settingsmainviewcontroller-Update distance for 'far' accuracy");
-                    cell.detailTextLabel.text = [MyTools niceDistance:configManager.accuracyDynamicDeltaDFar];
-                    return cell;
-                }
+                case SECTION_ACCURACY_STATIC_ACCURACY_NAVIGATING:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Accuracy for static 'navigating' accuracy"), [accuracies objectAtIndex:configManager.accuracyStaticAccuracyNavigating])
+                case SECTION_ACCURACY_STATIC_ACCURACY_NONNAVIGATING:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Accuracy for static 'non-navigating' accuracy"), [accuracies objectAtIndex:configManager.accuracyStaticAccuracyNonNavigating])
+                case SECTION_ACCURACY_STATIC_DELTAD_NONNAVIGATING:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Update distance for static 'non-navigating' pages"), [MyTools niceDistance:configManager.accuracyStaticDeltaDNonNavigating])
+                case SECTION_ACCURACY_STATIC_DELTAD_NAVIGATING:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Update distance for static 'navigating' pages"), [MyTools niceDistance:configManager.accuracyStaticDeltaDNavigating])
+                case SECTION_ACCURACY_DYNAMIC_DELTAD_NEAR:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Update distance for 'near' accuracy"), [MyTools niceDistance:configManager.accuracyDynamicDeltaDNear])
+                case SECTION_ACCURACY_DYNAMIC_DELTAD_MIDRANGE:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Update distance for 'midrange' accuracy"), [MyTools niceDistance:configManager.accuracyDynamicDeltaDMidrange])
+                case SECTION_ACCURACY_DYNAMIC_DELTAD_FAR:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Update distance for 'far' accuracy"), [MyTools niceDistance:configManager.accuracyDynamicDeltaDFar])
             }
             abort();
         }
