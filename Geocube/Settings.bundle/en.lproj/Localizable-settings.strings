@@ -114,7 +114,7 @@
 "settingsmainviewcontroller-Maximum size for the map cache" = "Maximum size for the map cache";
 "settingsmainviewcontroller-Maximum walking distance" = "Maximum walking distance";
 "settingsmainviewcontroller-Maximum walking speed" = "Maximum walking speed";
-"settingsmainviewcontroller-Number of waypoints in Geocaching Australia search" = "Number of waypoints in Geocaching Australia search";
+"settingsmainviewcontroller-Number of waypoints in GCA search" = "Number of waypoints in GCA search";
 "settingsmainviewcontroller-Offer to send tweets" = "Offer to send tweets";
 "settingsmainviewcontroller-OpenCage key" = "OpenCage key";
 "settingsmainviewcontroller-OpenCage only over Wifi" = "OpenCage only over Wifi";
@@ -196,7 +196,7 @@
 "settingsmainviewcontroller-Distance update interval" = "Distance update interval";
 "settingsmainviewcontroller-Radius around the destination waypoint" = "Radius around the destination waypoint";
 "settingsmainviewcontroller-Select Distance" = "Select Distance";
-"settingsmainviewcontroller-Update distance 'midrange' accuracy" = "Update distance 'midrange' accuracy";
+"settingsmainviewcontroller-Update distance for 'midrange' accuracy" = "Update distance for 'midrange' accuracy";
 "settingsmainviewcontroller-Update distance for 'far' accuracy" = "Update distance for 'far' accuracy";
 "settingsmainviewcontroller-Update distance for 'near' accuracy" = "Update distance for 'near' accuracy";
 "settingsmainviewcontroller-Update distance for static 'navigating' pages" = "Update distance for static 'navigating' pages";

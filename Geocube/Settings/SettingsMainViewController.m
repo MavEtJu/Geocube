@@ -461,7 +461,6 @@ enum sections {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
 #define CELL_SWITCH(__text__, __configfield__, __selector__) { \
     GCTableViewCellSwitch *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH forIndexPath:indexPath]; \
     cell.textLabel.text = __text__; \
@@ -611,7 +610,7 @@ enum sections {
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-Maximum walking speed"), [MyTools niceSpeed:configManager.dynamicmapWalkingSpeed])
                 case SECTION_DYNAMICMAP_SPEED_CYCLING:
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-Maximum cycling speed"), [MyTools niceSpeed:configManager.dynamicmapCyclingSpeed])
-                case SECTION_DYNAMICMAP_SPEED_DRIVING: 
+                case SECTION_DYNAMICMAP_SPEED_DRIVING:
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-Maximum driving speed"), [MyTools niceSpeed:configManager.dynamicmapDrivingSpeed])
                 case SECTION_DYNAMICMAP_DISTANCE_WALKING: {
                     NSString *s = [NSString stringWithFormat:@"%@ %@", _(@"settingsmainviewcontroller-Always"), [MyTools niceDistance:configManager.dynamicmapWalkingDistance]];

@@ -114,7 +114,7 @@
 "settingsmainviewcontroller-Maximum size for the map cache" = "Maximale grootte voor de kaart cache";
 "settingsmainviewcontroller-Maximum walking distance" = "Maximale loop afstand";
 "settingsmainviewcontroller-Maximum walking speed" = "Maximale loop snelhead";
-"settingsmainviewcontroller-Number of waypoints in Geocaching Australia search" = "Maximale hoeveelheid waypoints in een  Geocaching Australia zoekopdracht";
+"settingsmainviewcontroller-Number of waypoints in GCA search" = "Maximale hoeveelheid waypoints in een GCA zoekopdracht";
 "settingsmainviewcontroller-Offer to send tweets" = "Suggereer tweets";
 "settingsmainviewcontroller-OpenCage key" = "OpenCage key";
 "settingsmainviewcontroller-OpenCage only over Wifi" = "Gebruik OpenCage alleen over Wifi";
@@ -198,9 +198,9 @@
 "settingsmainviewcontroller-Distance update interval" = "Afstand verander interval";
 "settingsmainviewcontroller-Radius around the destination waypoint" = "Radius om het doel waypoint";
 "settingsmainviewcontroller-Select Distance" = "Selecteer afstand";
-"settingsmainviewcontroller-Update distance 'midrange' accuracy" = "Verander afstand 'middellange' nauwkeurigheid";
-"settingsmainviewcontroller-Update distance for 'far' accuracy" = "Verander afstand for 'verre' nauwkeurigheid";
-"settingsmainviewcontroller-Update distance for 'near' accuracy" = "Verander afstand for 'dichtbij' nauwkeurigheid";
+"settingsmainviewcontroller-Update distance for 'midrange' accuracy" = "Verander afstand voor 'middellange' nauwkeurigheid";
+"settingsmainviewcontroller-Update distance for 'far' accuracy" = "Verander afstand voor 'verre' nauwkeurigheid";
+"settingsmainviewcontroller-Update distance for 'near' accuracy" = "Verander afstand voor 'dichtbij' nauwkeurigheid";
 "settingsmainviewcontroller-Update distance for static 'navigating' pages" = "Verander afstand voor statische 'navigating' paginas";
 "settingsmainviewcontroller-Update distance for static 'non-navigating' pages" = "Verander afstand voor statische 'non-navigating' paginas";
 
