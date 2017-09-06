@@ -1099,64 +1099,37 @@ enum sections {
     abort();
 }
 
-- (void)updateAccountKeepUsername:(GCSwitch *)s
-{
-    [configManager accountsSaveAuthenticationNameUpdate:s.on];
-}
-- (void)updateAccountKeepPassword:(GCSwitch *)s
-{
-    [configManager accountsSaveAuthenticationPasswordUpdate:s.on];
-}
+#define SWITCH_UPDATE(__func__, __field__) \
+    - (void)__func__:(GCSwitch *)s \
+    { \
+        [configManager __field__ ## Update:s.on]; \
+    }
 
-- (void)updateMarkasFoundDNFClearsTarget:(GCSwitch *)s
-{
-    [configManager markasFoundDNFClearsTargetUpdate:s.on];
-}
-
-- (void)updateMarkasFoundMarksAllWaypoints:(GCSwitch *)s
-{
-    [configManager markasFoundMarksAllWaypointsUpdate:s.on];
-}
-
-- (void)updateLoggingRemovesMarkedAsFoundDNF:(GCSwitch *)s
-{
-    [configManager loggingRemovesMarkedAsFoundDNFUpdate:s.on];
-}
-
-- (void)updateCompassAlwaysInPortraitMode:(GCSwitch *)s
-{
-    [configManager compassAlwaysInPortraitModeUpdate:s.on];
-}
-
-- (void)updateDownloadImagesLogs:(GCSwitch *)s
-{
-    [configManager downloadImagesLogsUpdate:s.on];
-}
-
-- (void)updateDownloadImagesWaypoints:(GCSwitch *)s
-{
-    [configManager downloadImagesWaypointsUpdate:s.on];
-}
-
-- (void)updateDownloadImagesMobile:(GCSwitch *)s
-{
-    [configManager downloadImagesMobileUpdate:s.on];
-}
-
-- (void)updateDownloadQueriesMobile:(GCSwitch *)s
-{
-    [configManager downloadQueriesMobileUpdate:s.on];
-}
-
-- (void)updateMapcacheEnable:(GCSwitch *)s
-{
-    [configManager mapcacheEnableUpdate:s.on];
-}
-
-- (void)updateDynamicmapEnable:(GCSwitch *)s
-{
-    [configManager dynamicmapEnableUpdate:s.on];
-}
+SWITCH_UPDATE(updateAccountKeepUsername, accountsSaveAuthenticationName)
+SWITCH_UPDATE(updateAccountKeepPassword, accountsSaveAuthenticationPassword)
+SWITCH_UPDATE(updateMarkasFoundDNFClearsTarget, markasFoundDNFClearsTarget)
+SWITCH_UPDATE(updateMarkasFoundMarksAllWaypoints, markasFoundMarksAllWaypoints)
+SWITCH_UPDATE(updateLoggingRemovesMarkedAsFoundDNF, loggingRemovesMarkedAsFoundDNF)
+SWITCH_UPDATE(updateCompassAlwaysInPortraitMode, compassAlwaysInPortraitMode)
+SWITCH_UPDATE(updateDownloadImagesLogs, downloadImagesLogs)
+SWITCH_UPDATE(updateDownloadImagesWaypoints, downloadImagesWaypoints)
+SWITCH_UPDATE(updateDownloadImagesMobile, downloadImagesMobile)
+SWITCH_UPDATE(updateDownloadQueriesMobile, downloadQueriesMobile)
+SWITCH_UPDATE(updateMapcacheEnable, mapcacheEnable)
+SWITCH_UPDATE(updateDynamicmapEnable, dynamicmapEnable)
+SWITCH_UPDATE(updateOpenCageWifiOnly, opencageWifiOnly)
+SWITCH_UPDATE(updateSendTweets, sendTweets)
+SWITCH_UPDATE(updateSoundDistance, soundDistance)
+SWITCH_UPDATE(updateMapClustersEnable, mapClustersEnable)
+SWITCH_UPDATE(updateMapRotateToBearing, mapRotateToBearing)
+SWITCH_UPDATE(updateKeeptrackAutoRotate, keeptrackAutoRotate)
+SWITCH_UPDATE(updateBackupsEnable, automaticDatabaseBackup)
+SWITCH_UPDATE(updateDynamicAccuracyEnable, accuracyDynamicEnable)
+SWITCH_UPDATE(updateRefreshWaypointAfterLog, refreshWaypointAfterLog)
+SWITCH_UPDATE(updateShowCountryAsAbbrevation, showCountryAsAbbrevation)
+SWITCH_UPDATE(updateShowStateAsAbbrevation, showStateAsAbbrevation)
+SWITCH_UPDATE(updateShowStateAsAbbrevationWithLocality, showStateAsAbbrevationIfLocalityExists)
+SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
 
 - (void)updateDistanceMetric:(GCSwitch *)s
 {
@@ -1165,50 +1138,13 @@ enum sections {
     [self.tableView reloadData];
 }
 
-- (void)updateOpenCageWifiOnly:(GCSwitch *)s
-{
-    [configManager opencageWifiOnlyUpdate:s.on];
-}
-
-- (void)updateSendTweets:(GCSwitch *)s
-{
-    [configManager sendTweetsUpdate:s.on];
-}
-
-- (void)updateSoundDistance:(GCSwitch *)s
-{
-    [configManager soundDistanceUpdate:s.on];
-}
-
 - (void)updateSoundDirection:(GCSwitch *)s
 {
     [audioFeedback togglePlay:s.on];
     [configManager soundDirectionUpdate:s.on];
 }
 
-- (void)updateMapClustersEnable:(GCSwitch *)s
-{
-    [configManager mapClustersEnableUpdate:s.on];
-}
-- (void)updateMapRotateToBearing:(GCSwitch *)s
-{
-    [configManager mapRotateToBearingUpdate:s.on];
-}
-
-- (void)updateKeeptrackAutoRotate:(GCSwitch *)s
-{
-    [configManager keeptrackAutoRotateUpdate:s.on];
-}
-
-- (void)updateBackupsEnable:(GCSwitch *)s
-{
-    [configManager automaticDatabaseBackupUpdate:s.on];
-}
-
-- (void)updateDynamicAccuracyEnable:(GCSwitch *)s
-{
-    [configManager accuracyDynamicEnableUpdate:s.on];
-}
+/*************************************/
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -1993,30 +1929,6 @@ enum sections {
     [self.tableView reloadData];
 }
 
-- (void)updateRefreshWaypointAfterLog:(GCSwitch *)b
-{
-    [configManager refreshWaypointAfterLogUpdate:b.on];
-    [self.tableView reloadData];
-}
-
-- (void)updateShowCountryAsAbbrevation:(GCSwitch *)b
-{
-    [configManager showCountryAsAbbrevationUpdate:b.on];
-    [self.tableView reloadData];
-}
-
-- (void)updateShowStateAsAbbrevation:(GCSwitch *)b
-{
-    [configManager showStateAsAbbrevationUpdate:b.on];
-    [self.tableView reloadData];
-}
-
-- (void)updateShowStateAsAbbrevationWithLocality:(GCSwitch *)b
-{
-    [configManager showStateAsAbbrevationIfLocalityExistsUpdate:b.on];
-    [self.tableView reloadData];
-}
-
 /* ********************************************************************************* */
 
 - (void)changeBackupsRotation
@@ -2134,12 +2046,6 @@ enum sections {
 - (void)updateLocationlessSortBy:(NSNumber *)selectedIndex element:(id)element
 {
     [configManager locationlessListSortByUpdate:selectedIndex.integerValue];
-    [self.tableView reloadData];
-}
-
-- (void)updateLocationlessShowFound:(GCSwitch *)b
-{
-    [configManager locationlessShowFoundUpdate:b.on];
     [self.tableView reloadData];
 }
 
