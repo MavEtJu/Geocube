@@ -168,6 +168,15 @@
     if ([Attributes count] != 0)
         NSAssert(self.Attribute_Unknown != nil, @"Attribute_Unknown");
 
+    [self.Accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([a.site isEqualToString:@"My Private Collection"] == YES) {
+            self.accountPrivate = a;
+            *stop = YES;
+        }
+    }];
+    if ([Attributes count] != 0)
+        NSAssert(self.Attribute_Unknown != nil, @"Attribute_Unknown");
+
     Names = [NSMutableDictionary dictionaryWithCapacity:200];
     [[dbName dbAll] enumerateObjectsUsingBlock:^(dbName * _Nonnull name, NSUInteger idx, BOOL * _Nonnull stop) {
         [Names setObject:name forKey:[NSNumber numberWithLongLong:name._id]];

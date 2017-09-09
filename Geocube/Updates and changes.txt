@@ -9,12 +9,15 @@ Version 1.5(x)
     the distance. Google Maps only.
   - Accuracy of the location services can be set to static (navigating
     / non-navigating) or dynamic (near, midrange, far).
+  - Add a private account for importing of waypoints unrelated to
+    listing services.
 
   Fixes:
   - If the locale doesn't use the metric system, then default to
     non-metric distances.
   - Fixed background colour of Keep Track -> Beeper.
   - Fix initial display of coordinates while editing waypoints.
+  - Keep Track "remember location" didn't work anymore.
 
 Version 1.4(27)
 

@@ -209,6 +209,8 @@ enum {
         waypoint.wpt_urlname = _(@"keeptrackcar-Remembered location");
         waypoint.wpt_type = [dbc Type_get_byname:@"Waypoint" minor:@"Final Location"];
         waypoint.wpt_symbol = [dbc Symbol_get_bysymbol:@"Final Location"];
+        waypoint.account = dbc.accountPrivate;
+        [waypoint finish];
         [waypoint dbCreate];
         [waypointManager needsRefreshAdd:waypoint];
     }

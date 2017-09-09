@@ -783,6 +783,12 @@
     @"update config set value = 'https://geocube.mavetju.org/geocube_logstrings.5.geocube' where key = 'url_logstrings'",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 59
+    a = @[
+    @"insert into protocols(id, name) values(8, 'Geocube')",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

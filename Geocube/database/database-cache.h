@@ -61,6 +61,9 @@
 // Attributes
 @property (nonatomic, retain) dbAttribute *Attribute_Unknown;
 
+// Accounts
+@property (nonatomic, retain) dbAccount *accountPrivate;
+
 - (void)loadCachableData;
 
 - (dbType *)Type_get_byname:(NSString *)name minor:(NSString *)minor;
