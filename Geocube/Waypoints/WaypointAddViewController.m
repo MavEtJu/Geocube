@@ -76,21 +76,7 @@ enum {
 {
     [super viewWillAppear:animated];
 
-    if (account == nil) {
-        // The user hasn't set an account. If there is only one account with a name, then
-        // choose that.
-        [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (IS_EMPTY(a.accountname.name) == YES)
-                return;
-            if (account == nil) {
-                account = a;
-            } else {
-                // There was another account, so reset account to nil and stop.
-                account = nil;
-                *stop = YES;
-            }
-        }];
-    }
+    account = dbc.accountPrivate;
 }
 
 #pragma mark - TableViewController related functions
