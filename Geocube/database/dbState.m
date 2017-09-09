@@ -99,12 +99,12 @@ TABLENAME(@"states")
 
 + (void)makeNameExist:(NSString *)name
 {
-    if ([dbc State_get_byNameCode:name] == nil) {
+    if ([dbc stateGetByNameCode:name] == nil) {
         dbState *s = [[dbState alloc] init];
         s.name = name;
         s.code = name;
         [s dbCreate];
-        [dbc State_add:s];
+        [dbc stateAdd:s];
     }
 }
 

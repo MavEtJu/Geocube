@@ -243,7 +243,7 @@ enum {
         group.usergroup = YES;
         group.deletable = YES;
         [group dbCreate];
-        [dbc Group_add:group];
+        [dbc groupAdd:group];
     }
 
     return group;

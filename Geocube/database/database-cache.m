@@ -171,7 +171,7 @@
     }];
 }
 
-- (dbType *)Type_get_byname:(NSString *)major minor:(NSString *)minor
+- (dbType *)typeGetByName:(NSString *)major minor:(NSString *)minor
 {
     NSAssert([self.types count] != 0, @"Types");
     __block dbType *_ct = nil;
@@ -187,7 +187,7 @@
     return _ct;
 }
 
-- (dbType *)Type_get_byminor:(NSString *)minor
+- (dbType *)typeGetByMinor:(NSString *)minor
 {
     NSAssert([self.types count] != 0, @"Types");
     __block dbType *_ct = nil;
@@ -202,7 +202,7 @@
     return _ct;
 }
 
-- (dbType *)Type_get:(NSId)_id
+- (dbType *)typeGet:(NSId)_id
 {
     NSAssert([self.types count] != 0, @"Types");
     __block dbType *_ct = nil;
@@ -217,14 +217,14 @@
     return _ct;
 }
 
-- (void)Type_add:(dbType *)type
+- (void)typeAdd:(dbType *)type
 {
     NSMutableArray<dbType *> *as = [NSMutableArray arrayWithArray:self.types];
     [as addObject:type];
     self.types = as;
 }
 
-- (dbPin *)Pin_get:(NSId)_id
+- (dbPin *)pinGet:(NSId)_id
 {
     NSAssert([self.pins count] != 0, @"Pins");
     __block dbPin *_pt = nil;
@@ -239,7 +239,7 @@
     return _pt;
 }
 
-- (dbPin *)Pin_get_nilokay:(NSId)_id
+- (dbPin *)pinGet_nilOkay:(NSId)_id
 {
     NSAssert([self.pins count] != 0, @"Pins");
     __block dbPin *_pt = nil;
@@ -252,14 +252,14 @@
     return _pt;
 }
 
-- (void)Pin_add:(dbPin *)pin
+- (void)pinAdd:(dbPin *)pin
 {
     NSMutableArray<dbPin *> *as = [NSMutableArray arrayWithArray:self.pins];
     [as addObject:pin];
     self.pins = as;
 }
 
-- (dbSymbol *)Symbol_get_bysymbol:(NSString *)symbol
+- (dbSymbol *)symbolGetBySymbol:(NSString *)symbol
 {
     NSAssert([symbols count] != 0, @"Symbol");
     __block dbSymbol *_lt = nil;
@@ -274,7 +274,7 @@
     return _lt;
 }
 
-- (dbSymbol *)Symbol_get:(NSId)_id
+- (dbSymbol *)symbolGet:(NSId)_id
 {
     NSAssert([symbols count] != 0, @"Symbol");
     __block dbSymbol *_lt = nil;
@@ -289,12 +289,12 @@
     return _lt;
 }
 
-- (void)Symbols_add:(dbSymbol *)s
+- (void)symbolsAdd:(dbSymbol *)s
 {
     [symbols addObject:s];
 }
 
-- (dbLogString *)LogString_get_byDisplayString:(dbAccount *)account displayString:(NSString *)displayString
+- (dbLogString *)logStringGetByDisplayString:(dbAccount *)account displayString:(NSString *)displayString
 {
     NSAssert([logStrings count] != 0, @"LogStrings");
     __block dbLogString *_ls = nil;
@@ -308,7 +308,7 @@
     return _ls;
 }
 
-- (dbLogString *)LogString_get:(NSId)_id
+- (dbLogString *)logStringGet:(NSId)_id
 {
     NSAssert([logStrings count] != 0, @"LogStrings");
     __block dbLogString *_ls = nil;
@@ -321,14 +321,14 @@
     return _ls;
 }
 
-- (void)LogString_add:(dbLogString *)logstring
+- (void)logStringAdd:(dbLogString *)logstring
 {
     NSMutableArray<dbLogString *> *as = [NSMutableArray arrayWithArray:logStrings];
     [as addObject:logstring];
     logStrings = as;
 }
 
-- (dbGroup *)Group_get:(NSId)_id
+- (dbGroup *)groupGet:(NSId)_id
 {
     NSAssert([self.groups count] != 0, @"Groups");
     __block dbGroup *_g = nil;
@@ -341,17 +341,17 @@
     return _g;
 }
 
-- (void)Group_add:(dbGroup *)group
+- (void)groupAdd:(dbGroup *)group
 {
     [self.groups addObject:group];
 }
 
-- (void)Group_delete:(dbGroup *)group
+- (void)groupDelete:(dbGroup *)group
 {
     [self.groups removeObject:group];
 }
 
-- (dbContainer *)Container_get:(NSId)_id
+- (dbContainer *)containerGet:(NSId)_id
 {
     NSAssert([self.containers count] != 0, @"Containers");
     __block dbContainer *_c = nil;
@@ -364,7 +364,7 @@
     return _c;
 }
 
-- (dbContainer *)Container_get_bysize:(NSString *)size
+- (dbContainer *)containerGetBySize:(NSString *)size
 {
     NSAssert([self.containers count] != 0, @"Containers");
     __block dbContainer *_c = nil;
@@ -377,7 +377,7 @@
     return _c;
 }
 
-- (dbAttribute *)Attribute_get:(NSId)_id
+- (dbAttribute *)attributeGet:(NSId)_id
 {
     NSAssert([attributes count] != 0, @"Attributes");
     __block dbAttribute *_a = nil;
@@ -390,7 +390,7 @@
     return _a;
 }
 
-- (dbAttribute *)Attribute_get_bygcid:(NSId)gcid
+- (dbAttribute *)attributeGetByGCId:(NSId)gcid
 {
     NSAssert([attributes count] != 0, @"Attributes");
     __block dbAttribute *_a = nil;
@@ -403,14 +403,14 @@
     return _a;
 }
 
-- (void)Attribute_add:(dbAttribute *)attr
+- (void)attributeAdd:(dbAttribute *)attr
 {
     NSMutableArray<dbAttribute *> *as = [NSMutableArray arrayWithArray:attributes];
     [as addObject:attr];
     attributes = as;
 }
 
-- (dbCountry *)Country_get_byNameCode:(NSString *)name
+- (dbCountry *)countryGetByNameCode:(NSString *)name
 {
     __block dbCountry *_c = nil;
     [self.countries enumerateObjectsUsingBlock:^(dbCountry * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -422,7 +422,7 @@
     return _c;
 }
 
-- (dbCountry *)Country_get:(NSId)_id
+- (dbCountry *)countryGet:(NSId)_id
 {
     __block dbCountry *_c = nil;
     [self.countries enumerateObjectsUsingBlock:^(dbCountry * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -434,12 +434,12 @@
     return _c;
 }
 
-- (void)Country_add:(dbCountry *)country
+- (void)countryAdd:(dbCountry *)country
 {
     [self.countries addObject:country];
 }
 
-- (dbState *)State_get_byNameCode:(NSString *)name
+- (dbState *)stateGetByNameCode:(NSString *)name
 {
     __block dbState *_s = nil;
     [self.states enumerateObjectsUsingBlock:^(dbState * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -451,7 +451,7 @@
     return _s;
 }
 
-- (dbState *)State_get:(NSId)_id
+- (dbState *)stateGet:(NSId)_id
 {
     __block dbState *_s = nil;
     [self.states enumerateObjectsUsingBlock:^(dbState * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -463,12 +463,12 @@
     return _s;
 }
 
-- (void)State_add:(dbState *)state
+- (void)stateAdd:(dbState *)state
 {
     [self.states addObject:state];
 }
 
-- (dbLocality *)Locality_get_byName:(NSString *)name
+- (dbLocality *)localityGetByName:(NSString *)name
 {
     __block dbLocality *_l = nil;
     [self.localities enumerateObjectsUsingBlock:^(dbLocality * _Nonnull l, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -480,7 +480,7 @@
     return _l;
 }
 
-- (dbLocality *)Locality_get:(NSId)_id
+- (dbLocality *)localityGet:(NSId)_id
 {
     __block dbLocality *_l = nil;
     [self.localities enumerateObjectsUsingBlock:^(dbLocality * _Nonnull l, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -492,12 +492,12 @@
     return _l;
 }
 
-- (void)Locality_add:(dbLocality *)l
+- (void)localityAdd:(dbLocality *)l
 {
     [self.localities addObject:l];
 }
 
-- (dbProtocol *)Protocol_get:(NSId)_id
+- (dbProtocol *)protocolGet:(NSId)_id
 {
     NSAssert([self.protocols count] != 0, @"Protocols");
     __block dbProtocol *_p = nil;
@@ -510,7 +510,7 @@
     return _p;
 }
 
-- (void)AccountsReload
+- (void)accountsReload
 {
     NSMutableArray<dbAccount *> *newAccounts = [NSMutableArray arrayWithArray:[dbAccount dbAll]];
 
@@ -548,7 +548,7 @@
     }];
 }
 
-- (dbAccount *)Account_get:(NSId)_id
+- (dbAccount *)accountGet:(NSId)_id
 {
     __block dbAccount *_a;
     [self.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -560,7 +560,7 @@
     return _a;
 }
 
-- (BOOL)Account_isOwner:(dbWaypoint *)wp
+- (BOOL)accountIsOwner:(dbWaypoint *)wp
 {
     __block BOOL found = NO;
     [self.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -574,7 +574,7 @@
     return found;
 }
 
-- (dbName *)Name_get:(NSId)_id
+- (dbName *)nameGet:(NSId)_id
 {
     NSAssert([names count] != 0, @"Names");
     NSNumber *n = [NSNumber numberWithLongLong:_id];
@@ -582,7 +582,7 @@
     return name;
 }
 
-- (void)Name_add:(dbName *)name
+- (void)nameAdd:(dbName *)name
 {
     NSNumber *n = [NSNumber numberWithLongLong:name._id];
     [names setObject:name forKey:n];

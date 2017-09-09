@@ -73,7 +73,7 @@ TABLENAME(@"query_imports")
             dbQueryImport *qi = [[dbQueryImport alloc] init];
             INT_FETCH (0, qi._id);
             INT_FETCH (1, i);
-            qi.account = [dbc Account_get:i];
+            qi.account = [dbc accountGet:i];
             TEXT_FETCH(2, qi.name);
             INT_FETCH (3, qi.filesize);
             INT_FETCH (4, qi.lastimport);

@@ -368,7 +368,7 @@ enum {
 
     if (needsFullReload == YES)
         [dbc loadCachableData];
-    [dbc AccountsReload];
+    [dbc accountsReload];
     [self refreshAccountData];
 
     [self reloadDataMainQueue];

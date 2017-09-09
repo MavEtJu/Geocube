@@ -137,7 +137,7 @@
             }];
             if (locality != nil) {
                 [dbLocality makeNameExist:locality];
-                wp.gca_locality = [dbc Locality_get_byName:locality];
+                wp.gca_locality = [dbc localityGetByName:locality];
                 needsUpdate = YES;
             }
         }
@@ -150,7 +150,7 @@
             }];
             if (state != nil) {
                 [dbState makeNameExist:state];
-                wp.gs_state = [dbc State_get_byNameCode:state];
+                wp.gs_state = [dbc stateGetByNameCode:state];
                 needsUpdate = YES;
             }
         }
@@ -163,7 +163,7 @@
             }];
             if (country != nil) {
                 [dbCountry makeNameExist:country];
-                wp.gs_country = [dbc Country_get_byNameCode:country];
+                wp.gs_country = [dbc countryGetByNameCode:country];
                 needsUpdate = YES;
             }
         }

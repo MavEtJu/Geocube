@@ -185,7 +185,7 @@
     [cg dbDelete];
     [db cleanupAfterDelete];
     [waypointManager needsRefreshAll];
-    [dbc Group_delete:cg];
+    [dbc groupDelete:cg];
     [self refreshGroupData];
     if (forceReload == YES)
         [self.tableView reloadData];
@@ -250,7 +250,7 @@
                              group.usergroup = YES;
                              group.deletable = YES;
                              [group dbCreate];
-                             [dbc Group_add:group];
+                             [dbc groupAdd:group];
                              [self refreshGroupData];
                              [self.tableView reloadData];
                          }];

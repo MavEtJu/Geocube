@@ -470,7 +470,7 @@ typedef NS_ENUM(NSInteger, Type) {
             a.label = label;
             a.icon = icon;
             [a dbCreate];
-            [dbc Attribute_add:a];
+            [dbc attributeAdd:a];
         }
     }];
 
@@ -499,7 +499,7 @@ typedef NS_ENUM(NSInteger, Type) {
             s.name = name;
             s.code = abbr;
             [s dbCreate];
-            [dbc State_add:s];
+            [dbc stateAdd:s];
         }
     }];
 
@@ -528,7 +528,7 @@ typedef NS_ENUM(NSInteger, Type) {
             c.name = name;
             c.code = abbr;
             [c dbCreate];
-            [dbc Country_add:c];
+            [dbc countryAdd:c];
         }
     }];
 
@@ -571,7 +571,7 @@ typedef NS_ENUM(NSInteger, Type) {
             t.hasBoundary = hasBoundary;
             [t finish];
             [t dbCreate];
-            [dbc Type_add:t];
+            [dbc typeAdd:t];
         }
     }];
 
@@ -606,7 +606,7 @@ typedef NS_ENUM(NSInteger, Type) {
             p.rgb = @"";
             [p finish];
             [p dbCreate];
-            [dbc Pin_add:p];
+            [dbc pinAdd:p];
         }
     }];
 

@@ -506,7 +506,7 @@
      */
     NSInteger gc_id;
     DICT_INTEGER_KEY(dict, gc_id, @"AttributeTypeID");
-    dbAttribute *a = [dbc Attribute_get_bygcid:gc_id];
+    dbAttribute *a = [dbc attributeGetByGCId:gc_id];
     BOOL yesNo;
     DICT_BOOL_KEY(dict, yesNo, @"IsOn");
     [a dbLinkToWaypoint:wp YesNo:yesNo];
@@ -744,7 +744,7 @@
     l.needstobelogged = NO;
     DICT_NSSTRING_KEY(dict, l.log, @"LogText");
     DICT_NSSTRING_PATH(dict, dummy, @"LogType.WptLogTypeName");
-    l.logstring = [dbc LogString_get_byDisplayString:account displayString:dummy];
+    l.logstring = [dbc logStringGetByDisplayString:account displayString:dummy];
 
     [ImagesDownloadManager findImagesInDescription:wp text:l.log type:IMAGECATEGORY_LOG];
 

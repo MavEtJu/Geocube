@@ -91,11 +91,11 @@ TABLENAME(@"locales")
 
 + (void)makeNameExist:(NSString *)name
 {
-    if ([dbc Locality_get_byName:name] == nil) {
+    if ([dbc localityGetByName:name] == nil) {
         dbLocality *l = [[dbLocality alloc] init];
         l.name = name;
         [l dbCreate];
-        [dbc Locality_add:l];
+        [dbc localityAdd:l];
     }
 }
 

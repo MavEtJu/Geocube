@@ -176,7 +176,7 @@ enum {
     }
 
     if (indexPath.section == IMAGES_TYPES_ONE) {
-        dbType *type = [dbc Type_get_byminor:@"Traditional"];
+        dbType *type = [dbc typeGetByMinor:@"Traditional"];
 
         switch (indexPath.row) {
             case 0:

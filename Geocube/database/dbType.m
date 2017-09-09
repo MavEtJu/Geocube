@@ -91,7 +91,7 @@ TABLENAME(@"types")
             TEXT_FETCH(2, t.type_minor);
             INT_FETCH (3, t.icon);
             INT_FETCH (4, i);
-            t.pin = [dbc Pin_get:i];
+            t.pin = [dbc pinGet:i];
             BOOL_FETCH(5, t.hasBoundary);
             [t finish];
             [ts addObject:t];

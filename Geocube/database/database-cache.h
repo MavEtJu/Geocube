@@ -66,53 +66,53 @@
 
 - (void)loadCachableData;
 
-- (dbType *)Type_get_byname:(NSString *)name minor:(NSString *)minor;
-- (dbType *)Type_get_byminor:(NSString *)minor;
-- (dbType *)Type_get:(NSId)_id;
-- (void)Type_add:(dbType *)type;
+- (dbType *)typeGetByName:(NSString *)name minor:(NSString *)minor;
+- (dbType *)typeGetByMinor:(NSString *)minor;
+- (dbType *)typeGet:(NSId)_id;
+- (void)typeAdd:(dbType *)type;
 
-- (dbPin *)Pin_get:(NSId)_id;
-- (dbPin *)Pin_get_nilokay:(NSId)_id;
-- (void)Pin_add:(dbPin *)pin;
+- (dbPin *)pinGet:(NSId)_id;
+- (dbPin *)pinGet_nilOkay:(NSId)_id;
+- (void)pinAdd:(dbPin *)pin;
 
-- (dbContainer *)Container_get_bysize:(NSString *)size;
-- (dbContainer *)Container_get:(NSId)_id;
+- (dbContainer *)containerGetBySize:(NSString *)size;
+- (dbContainer *)containerGet:(NSId)_id;
 
-- (dbSymbol *)Symbol_get_bysymbol:(NSString *)size;
-- (dbSymbol *)Symbol_get:(NSId)_id;
-- (void)Symbols_add:(dbSymbol *)s;
+- (dbSymbol *)symbolGetBySymbol:(NSString *)size;
+- (dbSymbol *)symbolGet:(NSId)_id;
+- (void)symbolsAdd:(dbSymbol *)s;
 
-- (dbLogString *)LogString_get_byDisplayString:(dbAccount *)account displayString:(NSString *)displayString;
-- (dbLogString *)LogString_get:(NSId)_id;
-- (void)LogString_add:(dbLogString *)logstring;
+- (dbLogString *)logStringGetByDisplayString:(dbAccount *)account displayString:(NSString *)displayString;
+- (dbLogString *)logStringGet:(NSId)_id;
+- (void)logStringAdd:(dbLogString *)logstring;
 
-- (dbGroup *)Group_get:(NSId)_id;
-- (void)Group_add:(dbGroup *)group;
-- (void)Group_delete:(dbGroup *)group;
+- (dbGroup *)groupGet:(NSId)_id;
+- (void)groupAdd:(dbGroup *)group;
+- (void)groupDelete:(dbGroup *)group;
 
-- (dbAttribute *)Attribute_get:(NSId)_id;
-- (dbAttribute *)Attribute_get_bygcid:(NSId)gc_id;
-- (void)Attribute_add:(dbAttribute *)attr;
+- (dbAttribute *)attributeGet:(NSId)_id;
+- (dbAttribute *)attributeGetByGCId:(NSId)gc_id;
+- (void)attributeAdd:(dbAttribute *)attr;
 
-- (dbCountry *)Country_get_byNameCode:(NSString *)name;
-- (dbCountry *)Country_get:(NSId)_id;
-- (void)Country_add:(dbCountry *)country;
+- (dbCountry *)countryGetByNameCode:(NSString *)name;
+- (dbCountry *)countryGet:(NSId)_id;
+- (void)countryAdd:(dbCountry *)country;
 
-- (dbState *)State_get_byNameCode:(NSString *)name;
-- (dbState *)State_get:(NSId)_id;
-- (void)State_add:(dbState *)state;
+- (dbState *)stateGetByNameCode:(NSString *)name;
+- (dbState *)stateGet:(NSId)_id;
+- (void)stateAdd:(dbState *)state;
 
-- (dbLocality *)Locality_get_byName:(NSString *)name;
-- (dbLocality *)Locality_get:(NSId)_id;
-- (void)Locality_add:(dbLocality *)state;
+- (dbLocality *)localityGetByName:(NSString *)name;
+- (dbLocality *)localityGet:(NSId)_id;
+- (void)localityAdd:(dbLocality *)state;
 
-- (void)AccountsReload;
-- (dbAccount *)Account_get:(NSId)_id;
-- (BOOL)Account_isOwner:(dbWaypoint *)wp;
+- (void)accountsReload;
+- (dbAccount *)accountGet:(NSId)_id;
+- (BOOL)accountIsOwner:(dbWaypoint *)wp;
 
-- (dbName *)Name_get:(NSId)_id;
-- (void)Name_add:(dbName *)name;
+- (dbName *)nameGet:(NSId)_id;
+- (void)nameAdd:(dbName *)name;
 
-- (dbProtocol *)Protocol_get:(NSId)_id;
+- (dbProtocol *)protocolGet:(NSId)_id;
 
 @end

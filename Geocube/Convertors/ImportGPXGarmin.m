@@ -172,12 +172,12 @@
         if ([currentElement isEqualToString:@"attribute"] == YES) {
             NSId _id = [[attributeDict objectForKey:@"id"] integerValue];
             BOOL YesNo = [[attributeDict objectForKey:@"inc"] boolValue];
-            dbAttribute *a = [dbc Attribute_get_bygcid:_id];
+            dbAttribute *a = [dbc attributeGetByGCId:_id];
             a._YesNo = YesNo;
             if (YesNo == YES)
-                [attributesYES addObject:[dbc Attribute_get_bygcid:_id]];
+                [attributesYES addObject:[dbc attributeGetByGCId:_id]];
             else
-                [attributesNO addObject:[dbc Attribute_get_bygcid:_id]];
+                [attributesNO addObject:[dbc attributeGetByGCId:_id]];
             return;
         }
 
@@ -381,12 +381,12 @@
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"sym"] == YES) {
-                    if ([dbc Symbol_get_bysymbol:cleanText] == nil) {
+                    if ([dbc symbolGetBySymbol:cleanText] == nil) {
                         NSLog(@"Adding symbol '%@'", cleanText);
                         dbSymbol *s = [[dbSymbol alloc] init];
                         s.symbol = cleanText;
                         [s dbCreate];
-                        [dbc Symbols_add:s];
+                        [dbc symbolsAdd:s];
                     }
                     [currentWP set_wpt_symbol_str:cleanText];
                     goto bye;

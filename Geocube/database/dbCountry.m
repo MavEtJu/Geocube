@@ -99,12 +99,12 @@ TABLENAME(@"countries")
 
 + (void)makeNameExist:(NSString *)name
 {
-    if ([dbc Country_get_byNameCode:name] == nil) {
+    if ([dbc countryGetByNameCode:name] == nil) {
         dbCountry *c = [[dbCountry alloc] init];
         c.name = name;
         c.code = name;
         [c dbCreate];
-        [dbc Country_add:c];
+        [dbc countryAdd:c];
     }
 }
 

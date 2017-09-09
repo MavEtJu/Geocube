@@ -93,7 +93,7 @@ TABLENAME(@"log_strings")
             TEXT_FETCH( 1, ls.displayString);
             TEXT_FETCH( 2, ls.logString);
             INT_FETCH ( 3, i);
-            ls.protocol = [dbc Protocol_get:i];
+            ls.protocol = [dbc protocolGet:i];
             BOOL_FETCH( 4, ls.defaultNote);
             BOOL_FETCH( 5, ls.defaultFound);
             INT_FETCH ( 6, ls.icon);

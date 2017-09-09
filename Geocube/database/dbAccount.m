@@ -242,7 +242,7 @@ TABLENAME(@"accounts")
             TEXT_FETCH( 2, a.url_site);
             TEXT_FETCH( 3, a.url_queries);
             INT_FETCH ( 4, i);
-            a.protocol = [dbc Protocol_get:i];
+            a.protocol = [dbc protocolGet:i];
             TEXT_FETCH( 5, a.oauth_consumer_public);
             TEXT_FETCH( 6, a.oauth_consumer_private);
             TEXT_FETCH( 7, a.oauth_token);

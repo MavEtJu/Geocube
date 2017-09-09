@@ -171,10 +171,10 @@ TABLENAME(@"logs")
             INT_FETCH   ( 2, i);
             l.waypoint = [dbWaypoint dbGet:i];
             INT_FETCH   ( 3, i);
-            l.logstring = [dbc LogString_get:i];
+            l.logstring = [dbc logStringGet:i];
             INT_FETCH   ( 4, l.datetime_epoch);
             INT_FETCH   ( 5, i);
-            l.logger = [dbc Name_get:i];
+            l.logger = [dbc nameGet:i];
             TEXT_FETCH  ( 6, l.log);
             BOOL_FETCH  ( 7, l.needstobelogged);
             BOOL_FETCH  ( 8, l.localLog);

@@ -43,7 +43,7 @@ TABLENAME(@"names")
     }
 
     // Keep a copy in the cache
-    [dbc Name_add:self];
+    [dbc nameAdd:self];
 
     return self._id;
 }
@@ -81,7 +81,7 @@ TABLENAME(@"names")
             TEXT_FETCH(1, s.name);
             TEXT_FETCH(2, s.code);
             INT_FETCH (3, i);
-            s.account = [dbc Account_get:i];
+            s.account = [dbc accountGet:i];
             [s finish];
             [ss addObject:s];
         }
