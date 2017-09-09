@@ -136,7 +136,6 @@ enum {
     dbAccount *a = [accounts objectAtIndex:indexPath.row];
     cell.textLabel.text = a.site;
     cell.detailTextLabel.text = a.accountname.name;
-    cell.userInteractionEnabled = YES;
     if (a.enabled == NO) {
         cell.imageView.image = [imageLibrary get:Image_Nil];
     } else {
@@ -148,6 +147,14 @@ enum {
             else
                 cell.imageView.image = [imageLibrary get:ImageIcon_Sad];
         }
+    }
+
+    if ([a.site isEqualToString:dbc.accountPrivate.site] == YES) {
+        cell.textLabel.textColor = currentTheme.labelTextColorDisabled;
+        cell.userInteractionEnabled = NO;
+    } else {
+        cell.textLabel.textColor = currentTheme.labelTextColor;
+        cell.userInteractionEnabled = YES;
     }
 
     return cell;
