@@ -44,7 +44,7 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuReload label:_(@"statisticsviewcontroller-Reload")];
 
-    accounts = [NSMutableArray arrayWithCapacity:[dbc.Accounts count]];
+    accounts = [NSMutableArray arrayWithCapacity:[dbc.accounts count]];
     hasbeenstarted = NO;
 
     [self makeInfoView];
@@ -141,7 +141,7 @@ enum {
 
 - (void)createStatistics
 {
-    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+    [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
 
         if (IS_EMPTY(a.accountname.name) == YES)
             return;

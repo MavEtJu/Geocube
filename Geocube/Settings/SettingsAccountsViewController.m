@@ -53,7 +53,7 @@ enum {
      * Then show the accounts which are enabled and do not have an username.
      * Then show the accounts which are not enabled and do not have an username.
      */
-    NSArray<dbAccount *> *as = [dbc Accounts];
+    NSArray<dbAccount *> *as = dbc.accounts;
     NSMutableArray<dbAccount *> *bs = [NSMutableArray arrayWithCapacity:[as count]];
 
     [as enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -343,7 +343,7 @@ enum {
     [MHTabBarController enableMenus:NO controllerFrom:self];
 
     [bezelManager showBezel:self];
-    BOOL needsFullReload = ([[dbc Accounts] count] == 0);
+    BOOL needsFullReload = ([dbc.accounts count] == 0);
 
     NSMutableDictionary *versions = [NSMutableDictionary dictionaryWithCapacity:20];
     [[self class] downloadVersions:versions fail:YES];

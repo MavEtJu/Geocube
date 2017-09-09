@@ -43,7 +43,7 @@ enum {
     lmi = [[LocalMenuItems alloc] init:menuMax];
     [lmi addItem:menuReset label:_(@"settingscoloursviewcontroller-Reset")];
 
-    pins = [NSMutableArray arrayWithArray:[dbc Pins]];
+    pins = [NSMutableArray arrayWithArray:dbc.pins];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -100,7 +100,7 @@ enum {
 
 - (void)resetPinColours
 {
-    [[dbc Pins] enumerateObjectsUsingBlock:^(dbPin * _Nonnull p, NSUInteger idx, BOOL * _Nonnull stop) {
+    [dbc.pins enumerateObjectsUsingBlock:^(dbPin * _Nonnull p, NSUInteger idx, BOOL * _Nonnull stop) {
         p.rgb = @"";
         [p dbUpdateRGB];
         [p finish];

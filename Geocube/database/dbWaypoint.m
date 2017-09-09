@@ -81,7 +81,7 @@ TABLENAME(@"waypoints")
         self.wpt_type = [dbc Type_get_byname:[as objectAtIndex:0] minor:[as objectAtIndex:1]];
     } else {
         // Traditional Cache
-        [[dbc Types] enumerateObjectsUsingBlock:^(dbType * _Nonnull t, NSUInteger idx, BOOL * _Nonnull stop) {
+        [dbc.types enumerateObjectsUsingBlock:^(dbType * _Nonnull t, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([t.type_minor isEqualToString:s] == YES) {
                 self.wpt_type = t;
                 *stop = YES;

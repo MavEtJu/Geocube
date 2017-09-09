@@ -373,8 +373,8 @@ enum {
     wp.wpt_date_placed_epoch = time(NULL);
     wp.wpt_url = nil;
     wp.wpt_urlname = [NSString stringWithFormat:@"%@ - %@", code, name];
-    wp.wpt_symbol = [dbc Symbol_VirtualStage];
-    wp.wpt_type = [dbc Type_ManuallyEntered];
+    wp.wpt_symbol = dbc.symbolVirtualStage;
+    wp.wpt_type = dbc.typeManuallyEntered;
     [wp finish];
     [wp dbCreate];
 

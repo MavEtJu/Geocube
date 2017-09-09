@@ -44,10 +44,10 @@
         return self;
     }
 
-    UIImage *img = [imageLibrary get:dbc.Container_Unknown.icon];
+    UIImage *img = [imageLibrary get:dbc.containerUnknown.icon];
     CGSize imgSize = img.size;
 
-    containers = [dbc Containers];
+    containers = dbc.containers;
     [containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
         UIImage *img = [imageLibrary get:c.icon];
         if (img != nil) {
@@ -104,7 +104,7 @@
 + (NSArray<NSString *> *)configFields
 {
     NSMutableArray<NSString *> *as = [NSMutableArray arrayWithArray:@[@"enabled"]];
-    [[dbc Containers] enumerateObjectsUsingBlock:^(dbContainer * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
+    [dbc.containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
         [as addObject:c.size];
     }];
     return as;
@@ -112,10 +112,10 @@
 
 + (NSDictionary *)configDefaults
 {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:[[dbc Containers] count] + 1];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:[dbc.containers count] + 1];
     [dict setObject:@"0" forKey:@"enabled"];
 
-    [[dbc Containers] enumerateObjectsUsingBlock:^(dbContainer * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
+    [dbc.containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
         [dict setObject:@"0" forKey:c.size];
     }];
     return dict;

@@ -44,7 +44,7 @@
         return self;
     }
 
-    groups = [dbc Groups];
+    groups = dbc.groups;
 
     [groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *s = [NSString stringWithFormat:@"group_%ld", (long)g._id];
@@ -97,7 +97,7 @@
 + (NSArray<NSString *> *)configFields
 {
     NSMutableArray<NSString *> *as = [NSMutableArray arrayWithArray:@[@"enabled"]];
-    [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
+    [dbc.groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
         [as addObject:g.name];
     }];
     return as;
@@ -105,10 +105,10 @@
 
 + (NSDictionary *)configDefaults
 {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:[[dbc Groups] count] + 1];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:[dbc.groups count] + 1];
     [dict setObject:@"0" forKey:@"enabled"];
 
-    [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
+    [dbc.groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
         [dict setObject:@"0" forKey:g.name];
     }];
     return dict;

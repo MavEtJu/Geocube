@@ -114,7 +114,7 @@ enum {
 
     [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoViewer:nil iiImport:0];
 
-    NSArray<dbAccount *> *accounts = [dbc Accounts];
+    NSArray<dbAccount *> *accounts = dbc.accounts;
     __block NSInteger accountsFound = 0;
     [accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull account, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([account.remoteAPI supportsLoadWaypointsByBoundaryBox] == NO)
@@ -174,7 +174,7 @@ enum {
         currentRun = RUN_INDIVIDUAL;
 
         // Deal with the waypoints by account
-        NSArray<dbAccount *> *accounts = [dbc Accounts];
+        NSArray<dbAccount *> *accounts = dbc.accounts;
         [accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull account, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([account canDoRemoteStuff] == NO)
                 return;
@@ -195,7 +195,7 @@ enum {
                 [wpnames addObject:wp.wpt_name];
             }];
             [processing addIdentifier:(long)account._id];
-            [account.remoteAPI loadWaypointsByCodes:wpnames infoViewer:infoView iiDownload:iid identifier:(long)account._id group:dbc.Group_LiveImport callback:self];
+            [account.remoteAPI loadWaypointsByCodes:wpnames infoViewer:infoView iiDownload:iid identifier:(long)account._id group:dbc.groupLiveImport callback:self];
         }];
 
         [self performSelectorInBackground:@selector(waitForDownloadsToFinish) withObject:nil];
@@ -223,7 +223,7 @@ enum {
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
     [dict setObject:[NSNumber numberWithInteger:iii] forKey:@"iii"];
     [dict setObject:o forKey:@"object"];
-    [dict setObject:dbc.Group_LiveImport forKey:@"group"];
+    [dict setObject:dbc.groupLiveImport forKey:@"group"];
     [dict setObject:account forKey:@"account"];
     [dict setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
     [self performSelectorInBackground:@selector(importObjectBG:) withObject:dict];

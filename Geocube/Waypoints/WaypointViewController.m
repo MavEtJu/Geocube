@@ -748,9 +748,9 @@ enum {
                                  [self.tableView reloadData];
 
                                  if (waypoint.flag_ignore == YES) {
-                                     [[dbc Group_AllWaypoints_Ignored] addWaypointToGroup:waypoint];
+                                     [dbc.groupAllWaypointsIgnored addWaypointToGroup:waypoint];
                                  } else {
-                                     [[dbc Group_AllWaypoints_Ignored] removeWaypointFromGroup:waypoint];
+                                     [dbc.groupAllWaypointsIgnored removeWaypointFromGroup:waypoint];
                                  }
                              }];
     TITLE(waypoint.flag_inprogress, _(@"waypointviewcontroller-In progress"))
@@ -830,7 +830,7 @@ enum {
 {
     NSMutableArray<dbGroup *> *groups = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray<NSString *> *groupNames = [NSMutableArray arrayWithCapacity:10];
-    [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup * _Nonnull cg, NSUInteger idx, BOOL * _Nonnull stop) {
+    [dbc.groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull cg, NSUInteger idx, BOOL * _Nonnull stop) {
         if (cg.usergroup == 0)
             return;
         [groupNames addObject:cg.name];

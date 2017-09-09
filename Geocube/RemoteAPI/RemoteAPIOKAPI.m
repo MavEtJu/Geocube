@@ -145,7 +145,7 @@
 - (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     dbAccount *a = waypoint.account;
-    dbGroup *g = dbc.Group_LiveImport;
+    dbGroup *g = dbc.groupLiveImport;
 
     [iv setChunksTotal:iid total:1];
     [iv setChunksCount:iid count:1];

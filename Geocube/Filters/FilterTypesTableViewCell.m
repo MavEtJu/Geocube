@@ -44,7 +44,7 @@
         return self;
     }
 
-    types = [dbc Types];
+    types = dbc.types;
     [types enumerateObjectsUsingBlock:^(dbType * _Nonnull t, NSUInteger idx, BOOL * _Nonnull stop) {
         UIImage *img = [imageLibrary get:t.icon];
         CGRect rect = CGRectMake(20, y, img.size.width, img.size.height);
@@ -97,7 +97,7 @@
 + (NSArray<NSString *> *)configFields
 {
     NSMutableArray<NSString *> *as = [NSMutableArray arrayWithArray:@[@"enabled"]];
-    [[dbc Types] enumerateObjectsUsingBlock:^(dbType * _Nonnull t, NSUInteger idx, BOOL * _Nonnull stop) {
+    [dbc.types enumerateObjectsUsingBlock:^(dbType * _Nonnull t, NSUInteger idx, BOOL * _Nonnull stop) {
         [as addObject:t.type_full];
     }];
     return as;
@@ -105,10 +105,10 @@
 
 + (NSDictionary *)configDefaults
 {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:[[dbc Types] count] + 1];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:[dbc.types count] + 1];
     [dict setObject:@"0" forKey:@"enabled"];
 
-    [[dbc Types] enumerateObjectsUsingBlock:^(dbType * _Nonnull t, NSUInteger idx, BOOL * _Nonnull stop) {
+    [dbc.types enumerateObjectsUsingBlock:^(dbType * _Nonnull t, NSUInteger idx, BOOL * _Nonnull stop) {
         [dict setObject:@"0" forKey:t.type_full];
     }];
     return dict;

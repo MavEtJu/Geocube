@@ -346,13 +346,13 @@ enum {
     __block BOOL groupsOkay = NO;
     __block BOOL accountsOkay = NO;
 
-    [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup * _Nonnull cg, NSUInteger idx, BOOL * _Nonnull stop) {
+    [dbc.groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull cg, NSUInteger idx, BOOL * _Nonnull stop) {
         if (cg.usergroup == 0)
             return;
         groupsOkay = YES;
         *stop = YES;
     }];
-    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+    [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a.accountname == nil)
             return;
         accountsOkay = YES;
@@ -371,7 +371,7 @@ enum {
     // Show all user groups.
     NSMutableArray<dbGroup *> *groups = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray<NSString *> *groupNames = [NSMutableArray arrayWithCapacity:10];
-    [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup * _Nonnull cg, NSUInteger idx, BOOL * _Nonnull stop) {
+    [dbc.groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull cg, NSUInteger idx, BOOL * _Nonnull stop) {
         if (cg.usergroup == 0)
             return;
         [groupNames addObject:cg.name];
@@ -397,7 +397,7 @@ enum {
 {
     NSMutableArray<dbAccount *> *accounts = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray<NSString *> *accountNames = [NSMutableArray arrayWithCapacity:10];
-    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+    [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (IS_EMPTY(a.accountname.name) == YES)
             return;
         [accountNames addObject:a.site];

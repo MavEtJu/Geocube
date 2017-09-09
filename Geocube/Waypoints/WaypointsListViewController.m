@@ -347,7 +347,7 @@ enum {
     [processing clearAll];
     [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoViewer:nil iiImport:0];
 
-    [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull account, NSUInteger idx, BOOL * _Nonnull stop) {
+    [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull account, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMutableArray<NSString *> *wps = [NSMutableArray arrayWithCapacity:[waypoints count]];
         [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
             if (wp.account._id == account._id)
@@ -394,7 +394,7 @@ enum {
     [infoView setDescription:iid description:[NSString stringWithFormat:_(@"waypointslistviewcontroller-Downloading for %@"), account.site]];
 
     NSLog(@"PROCESSING: Adding %ld (%@)", (long)account._id, account.site);
-    NSInteger rv = [account.remoteAPI loadWaypointsByCodes:wps infoViewer:infoView iiDownload:iid identifier:(long)account._id group:dbc.Group_LastImport callback:self];
+    NSInteger rv = [account.remoteAPI loadWaypointsByCodes:wps infoViewer:infoView iiDownload:iid identifier:(long)account._id group:dbc.groupLastImport callback:self];
     if (rv != REMOTEAPI_OK)
         [MyTools messageBox:self header:_(@"waypointslistviewcontroller-Reload waypoints") text:_(@"waypointslistviewcontroller-Update failed") error:account.remoteAPI.lastError];
     [infoView removeItem:iid];

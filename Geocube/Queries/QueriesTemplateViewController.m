@@ -79,7 +79,7 @@ enum {
     account = nil;
 
     __block BOOL failure = NO;
-    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+    [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a.protocol._id == protocol && a.remoteAPI.supportsListQueries == YES) {
             account = a;
             if (a.canDoRemoteStuff == NO) {
@@ -231,7 +231,7 @@ enum {
 {
     // Find the group to import to
     __block dbGroup *group = nil;
-    [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
+    [dbc.groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([g.name isEqualToString:name] == YES) {
             group = g;
             *stop = YES;

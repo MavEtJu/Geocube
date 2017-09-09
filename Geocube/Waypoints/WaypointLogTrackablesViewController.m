@@ -267,7 +267,7 @@ enum {
                              NSString *code = [alert.textFields objectAtIndex:0].text;
                              __block dbTrackable *tb = [dbTrackable dbGetByCode:code];
                              if (tb == nil) {
-                                 [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+                                 [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
                                      if (a.remoteAPI.supportsTrackables == YES) {
                                          [a.remoteAPI trackableFind:code trackable:&tb infoViewer:nil iiDownload:0];
                                          *stop = YES;
@@ -320,7 +320,7 @@ enum {
                              NSString *code = [alert.textFields objectAtIndex:0].text;
                              __block dbTrackable *tb = [dbTrackable dbGetByCode:code];
                              if (tb == nil) {
-                                 [dbc.Accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+                                 [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
                                      if (a.remoteAPI.supportsTrackables && a.canDoRemoteStuff == YES) {
                                          [a.remoteAPI trackableFind:code trackable:&tb infoViewer:nil iiDownload:0];
                                          *stop = YES;

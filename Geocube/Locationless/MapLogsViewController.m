@@ -60,7 +60,7 @@
         wp.wpt_urlname = [NSString stringWithFormat:@"%@ on %@", log.logger.name, [MyTools dateTimeString_YYYY_MM_DD:log.datetime_epoch]];
         wp.wpt_latitude = log.latitude;
         wp.wpt_longitude = log.longitude;
-        wp.wpt_type = [dbc Type_Log];
+        wp.wpt_type = dbc.typeLog;
         [wp finish];
         [self.waypointsArray addObject:wp];
     }];

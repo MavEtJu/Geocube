@@ -22,44 +22,44 @@
 @interface DatabaseCache : NSObject
 
 // In memory database information
-@property (nonatomic, retain) NSMutableArray<dbAccount *> *Accounts;
-@property (nonatomic, retain) NSMutableArray<dbProtocol *> *Protocols;
-@property (nonatomic, retain) NSMutableArray<dbPin *> *Pins;
-@property (nonatomic, retain) NSMutableArray<dbType *> *Types;
-@property (nonatomic, retain) NSMutableArray<dbGroup *> *Groups;
-@property (nonatomic, retain) NSMutableArray<dbContainer *> *Containers;
-@property (nonatomic, retain) NSMutableArray<dbCountry *> *Countries;
-@property (nonatomic, retain) NSMutableArray<dbState *> *States;
-@property (nonatomic, retain) NSMutableArray<dbLocality *> *Localities;
+@property (nonatomic, retain) NSMutableArray<dbAccount *> *accounts;
+@property (nonatomic, retain) NSMutableArray<dbProtocol *> *protocols;
+@property (nonatomic, retain) NSMutableArray<dbPin *> *pins;
+@property (nonatomic, retain) NSMutableArray<dbType *> *types;
+@property (nonatomic, retain) NSMutableArray<dbGroup *> *groups;
+@property (nonatomic, retain) NSMutableArray<dbContainer *> *containers;
+@property (nonatomic, retain) NSMutableArray<dbCountry *> *countries;
+@property (nonatomic, retain) NSMutableArray<dbState *> *states;
+@property (nonatomic, retain) NSMutableArray<dbLocality *> *localities;
 
 // System Groups
-@property (nonatomic, retain) dbGroup *Group_AllWaypoints;
-@property (nonatomic, retain) dbGroup *Group_AllWaypoints_Found;
-@property (nonatomic, retain) dbGroup *Group_AllWaypoints_NotFound;
-@property (nonatomic, retain) dbGroup *Group_AllWaypoints_ManuallyAdded;
-@property (nonatomic, retain) dbGroup *Group_AllWaypoints_Ignored;
-@property (nonatomic, retain) dbGroup *Group_LiveImport;
-@property (nonatomic, retain) dbGroup *Group_LastImport;
-@property (nonatomic, retain) dbGroup *Group_LastImportAdded;
-@property (nonatomic, retain) dbGroup *Group_ManualWaypoints;
+@property (nonatomic, retain) dbGroup *groupAllWaypoints;
+@property (nonatomic, retain) dbGroup *groupAllWaypointsFound;
+@property (nonatomic, retain) dbGroup *groupAllWaypointsNotFound;
+@property (nonatomic, retain) dbGroup *groupAllWaypointsManuallyAdded;
+@property (nonatomic, retain) dbGroup *groupAllWaypointsIgnored;
+@property (nonatomic, retain) dbGroup *groupLiveImport;
+@property (nonatomic, retain) dbGroup *groupLastImport;
+@property (nonatomic, retain) dbGroup *groupLastImportAdded;
+@property (nonatomic, retain) dbGroup *groupManualWaypoints;
 
 // Types
-@property (nonatomic, retain) dbType *Type_Unknown;
-@property (nonatomic, retain) dbType *Type_ManuallyEntered;
-@property (nonatomic, retain) dbType *Type_Log;
+@property (nonatomic, retain) dbType *typeUnknown;
+@property (nonatomic, retain) dbType *typeManuallyEntered;
+@property (nonatomic, retain) dbType *typeLog;
 
 // Pins
-@property (nonatomic, retain) dbPin *Pin_Unknown;
+@property (nonatomic, retain) dbPin *pinUnknown;
 
 // Symbols
-@property (nonatomic, retain) dbSymbol *Symbol_Unknown;
-@property (nonatomic, retain) dbSymbol *Symbol_VirtualStage;
+@property (nonatomic, retain) dbSymbol *symbolUnknown;
+@property (nonatomic, retain) dbSymbol *symbolVirtualStage;
 
 // ContainerSize
-@property (nonatomic, retain) dbContainer *Container_Unknown;
+@property (nonatomic, retain) dbContainer *containerUnknown;
 
 // Attributes
-@property (nonatomic, retain) dbAttribute *Attribute_Unknown;
+@property (nonatomic, retain) dbAttribute *attributeUnknown;
 
 // Accounts
 @property (nonatomic, retain) dbAccount *accountPrivate;

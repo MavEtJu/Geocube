@@ -432,7 +432,7 @@
 - (UIImage *)getPin:(dbWaypoint *)wp
 {
     __block BOOL owner = NO;
-    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+    [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a._id == wp.account._id && a.accountname._id == wp.gs_owner._id) {
             *stop = YES;
             owner = YES;

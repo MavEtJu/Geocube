@@ -139,7 +139,7 @@ enum {
     InfoItemID iid = [infoView addDownload];
     [infoView setDescription:iid description:_(@"trackablestemplateviewcontroller-Download trackables information")];
 
-    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+    [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a.remoteAPI.supportsTrackables == YES && a.canDoRemoteStuff == YES) {
             // Get rid of any old data
             [self.tbs enumerateObjectsUsingBlock:^(dbTrackable * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {

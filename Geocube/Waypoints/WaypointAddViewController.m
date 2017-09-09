@@ -164,7 +164,7 @@ enum {
 {
     NSMutableArray<dbAccount *> *accounts = [NSMutableArray arrayWithCapacity:10];
     NSMutableArray<NSString *> *accountNames = [NSMutableArray arrayWithCapacity:10];
-    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+    [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (IS_EMPTY(a.accountname.name) == YES)
             return;
         [accountNames addObject:a.site];
@@ -333,15 +333,15 @@ enum {
     wp.wpt_date_placed_epoch = time(NULL);
     wp.wpt_url = nil;
     wp.wpt_urlname = [NSString stringWithFormat:@"%@ - %@", code, name];
-    wp.wpt_symbol = [dbc Symbol_VirtualStage];
-    wp.wpt_type = [dbc Type_ManuallyEntered];
+    wp.wpt_symbol = dbc.symbolVirtualStage;
+    wp.wpt_type = dbc.typeManuallyEntered;
     wp.account = account;
     [wp finish];
     [wp dbCreate];
 
-    [dbc.Group_AllWaypoints_ManuallyAdded addWaypointToGroup:wp];
-    [dbc.Group_AllWaypoints addWaypointToGroup:wp];
-    [dbc.Group_ManualWaypoints addWaypointToGroup:wp];
+    [dbc.groupAllWaypointsManuallyAdded addWaypointToGroup:wp];
+    [dbc.groupAllWaypoints addWaypointToGroup:wp];
+    [dbc.groupManualWaypoints addWaypointToGroup:wp];
 
     [waypointManager needsRefreshAdd:wp];
     [opencageManager addForProcessing:wp];

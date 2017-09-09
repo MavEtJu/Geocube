@@ -92,10 +92,10 @@ enum {
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == IMAGES_PINS_ALL)
-        return [[dbc Pins] count];
+        return [dbc.pins count];
     if (section == IMAGES_TYPES_ALL)
-        return [[dbc Types] count];
-    if (section == IMAGES_PINS_ONE && [[dbc Pins] count] != 0)
+        return [dbc.types count];
+    if (section == IMAGES_PINS_ONE && [dbc.pins count] != 0)
         return 10;
     if (section == IMAGES_TYPES_ONE)
         return 10;
@@ -125,7 +125,7 @@ enum {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
 
     if (indexPath.section == IMAGES_PINS_ONE) {
-        NSArray<dbPin *> *pins = [dbc Pins];
+        NSArray<dbPin *> *pins = dbc.pins;
         dbPin *pin = [pins objectAtIndex:1];
 
         switch (indexPath.row) {
@@ -226,7 +226,7 @@ enum {
     }
 
     if (indexPath.section == IMAGES_PINS_ALL) {
-        NSArray<dbPin *> *pins = [dbc Pins];
+        NSArray<dbPin *> *pins = dbc.pins;
         dbPin *pin = [pins objectAtIndex:indexPath.row];
 
         cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
@@ -235,7 +235,7 @@ enum {
     }
 
     if (indexPath.section == IMAGES_TYPES_ALL) {
-        NSArray<dbType *> *types = [dbc Types];
+        NSArray<dbType *> *types = dbc.types;
         dbType *type = [types objectAtIndex:indexPath.row];
 
         cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];

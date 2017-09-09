@@ -528,15 +528,15 @@
             wp.wpt_date_placed_epoch = time(NULL);
             wp.wpt_url = nil;
             wp.wpt_urlname = wp.wpt_name;
-            wp.wpt_symbol = dbc.Symbol_VirtualStage;
-            wp.wpt_type = [dbc Type_ManuallyEntered];
+            wp.wpt_symbol = dbc.symbolVirtualStage;
+            wp.wpt_type = [dbc typeManuallyEntered];
             wp.account = waypoint.account;
             [wp finish];
             [wp dbCreate];
 
-            [dbc.Group_AllWaypoints_ManuallyAdded addWaypointToGroup:wp];
-            [dbc.Group_AllWaypoints addWaypointToGroup:wp];
-            [dbc.Group_ManualWaypoints addWaypointToGroup:wp];
+            [dbc.groupAllWaypointsManuallyAdded addWaypointToGroup:wp];
+            [dbc.groupAllWaypoints addWaypointToGroup:wp];
+            [dbc.groupManualWaypoints addWaypointToGroup:wp];
 
             [waypointManager needsRefreshAdd:wp];
             found++;

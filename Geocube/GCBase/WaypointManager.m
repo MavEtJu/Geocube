@@ -149,7 +149,7 @@
         __block NSString *c_distance = [self configGet:@"distance_enabled"];
         if (c_groups != nil && [c_groups boolValue] == YES) {
             __block NSMutableArray<dbGroup *> *groups = [NSMutableArray arrayWithCapacity:20];
-            [[dbc Groups] enumerateObjectsUsingBlock:^(dbGroup * _Nonnull group, NSUInteger idx, BOOL * _Nonnull stop) {
+            [dbc.groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull group, NSUInteger idx, BOOL * _Nonnull stop) {
                 NSString *c = [self configGet:[NSString stringWithFormat:@"groups_group_%ld", (long)group._id]];
                 if (c == nil || [c boolValue] == NO)
                     return;
@@ -201,7 +201,7 @@
         if (c != nil && [c boolValue] == YES) {
             NSLog(@"%@ - Filtering acounts", [self class]);
 
-            [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount * _Nonnull account, NSUInteger idx, BOOL * _Nonnull stop) {
+            [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull account, NSUInteger idx, BOOL * _Nonnull stop) {
                 NSString *c = [self configGet:[NSString stringWithFormat:@"accounts_account_%ld", (long)account._id]];
                 if (c == nil || [c boolValue] == NO)
                     return;
@@ -226,7 +226,7 @@
         c = [self configGet:@"types_enabled"];
         if (c != nil && [c boolValue] == YES) {
             NSLog(@"%@ - Filtering types", [self class]);
-            [[dbc Types] enumerateObjectsUsingBlock:^(dbType * _Nonnull type, NSUInteger idx, BOOL * _Nonnull stop) {
+            [dbc.types enumerateObjectsUsingBlock:^(dbType * _Nonnull type, NSUInteger idx, BOOL * _Nonnull stop) {
                 c = [self configGet:[NSString stringWithFormat:@"types_type_%ld", (long)type._id]];
                 if (c == nil || [c boolValue] == NO)
                     return;
@@ -290,7 +290,7 @@
         c = [self configGet:@"sizes_enabled"];
         if (c != nil && [c boolValue] == YES) {
             NSLog(@"%@ - Filtering sizes", [self class]);
-            [[dbc Containers] enumerateObjectsUsingBlock:^(dbContainer * _Nonnull container, NSUInteger idx, BOOL * _Nonnull stop) {
+            [dbc.containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull container, NSUInteger idx, BOOL * _Nonnull stop) {
                 c = [self configGet:[NSString stringWithFormat:@"sizes_container_%ld", (long)container._id]];
                 if (c == nil || [c boolValue] == NO)
                     return;
@@ -459,7 +459,7 @@
 
             if (country != nil && [country isEqualToString:@""] == NO) {
                 countries = [NSMutableArray arrayWithCapacity:20];
-                [[dbc Countries] enumerateObjectsUsingBlock:^(dbCountry * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
+                [dbc.countries enumerateObjectsUsingBlock:^(dbCountry * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
                     if ([c.name localizedCaseInsensitiveContainsString:country] ||
                         [c.code localizedCaseInsensitiveContainsString:country])
                         [countries addObject:c];
@@ -468,7 +468,7 @@
 
             if (state != nil && [state isEqualToString:@""] == NO) {
                 states = [NSMutableArray arrayWithCapacity:20];
-                [[dbc States] enumerateObjectsUsingBlock:^(dbState * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
+                [dbc.states enumerateObjectsUsingBlock:^(dbState * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
                     if ([c.name localizedCaseInsensitiveContainsString:state] ||
                         [c.code localizedCaseInsensitiveContainsString:state])
                         [states addObject:c];
@@ -477,7 +477,7 @@
 
             if (locality != nil && [locality isEqualToString:@""] == NO) {
                 localities = [NSMutableArray arrayWithCapacity:20];
-                [[dbc Localities] enumerateObjectsUsingBlock:^(dbLocality * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
+                [dbc.localities enumerateObjectsUsingBlock:^(dbLocality * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
                     if ([c.name localizedCaseInsensitiveContainsString:locality])
                         [localities addObject:c];
                 }];

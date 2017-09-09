@@ -559,7 +559,7 @@
     DICT_NSSTRING_KEY(dict, dummy, @"UTCDate");
     awp.wpt_date_placed_epoch = [MyTools secondsSinceEpochFromWindows:dummy];
 
-    awp.wpt_type = [dbc Type_ManuallyEntered];
+    awp.wpt_type = dbc.typeManuallyEntered;
 
     awp.account = account;
     awp.date_lastimport_epoch = time(NULL);

@@ -44,7 +44,7 @@
         return self;
     }
 
-    accounts = [dbc Accounts];
+    accounts = dbc.accounts;
 
     [accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *s = [NSString stringWithFormat:@"account_%ld", (long)a._id];
@@ -97,7 +97,7 @@
 + (NSArray<NSString *> *)configFields
 {
     NSMutableArray<NSString *> *as = [NSMutableArray arrayWithArray:@[@"enabled"]];
-    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+    [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         [as addObject:a.site];
     }];
     return as;
@@ -105,10 +105,10 @@
 
 + (NSDictionary *)configDefaults
 {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:[[dbc Accounts] count] + 1];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:[dbc.accounts count] + 1];
     [dict setObject:@"0" forKey:@"enabled"];
 
-    [[dbc Accounts] enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+    [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         [dict setObject:@"0" forKey:a.site];
     }];
     return dict;
