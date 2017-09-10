@@ -209,8 +209,6 @@
     LOAD_INTEGER(self.keeptrackPurgeAge, @"keeptrack_purgeage");
     LOAD_INTEGER(self.keeptrackSync, @"keeptrack_sync");
     LOAD_INTEGER(self.keeptrackBeeperInterval, @"keeptrack_beeper_interval");
-    LOAD_BOOL   (self.mapClustersEnable, @"map_clusters_enable");
-    LOAD_FLOAT  (self.mapClustersZoomLevel, @"map_clusters_zoomlevel");
     LOAD_BOOL   (self.mapRotateToBearing, @"map_rotate_to_bearing");
     LOAD_BOOL   (self.dynamicmapEnable, @"dynamicmap_enable");
     LOAD_FLOAT  (self.dynamicmapWalkingDistance, @"dynamicmap_distance_walking");
@@ -357,8 +355,6 @@ UPDATE3(BOOL, sendTweets, @"send_tweets")
 UPDATE3(BOOL, soundDirection, @"sound_direction")
 UPDATE3(BOOL, soundDistance, @"sound_distance")
 UPDATE3(BOOL, keeptrackAutoRotate, @"keeptrack_autorotate")
-UPDATE3(BOOL, mapClustersEnable, @"map_clusters_enable")
-UPDATE3(BOOL, mapRotateToBearing, @"map_rotate_to_bearing")
 UPDATE3(BOOL, dynamicmapEnable, @"dynamicmap_enable")
 UPDATE3(BOOL, mapcacheEnable, @"mapcache_enable")
 UPDATE3(BOOL, downloadImagesLogs, @"download_images_logs")
@@ -430,7 +426,6 @@ UPDATE3(NSInteger, automaticDatabaseBackupRotate, @"automaticdatabasebackup_rota
 
 UPDATE3(float, keeptrackTimeDeltaMin, @"keeptrack_timedelta_min")
 UPDATE3(float, keeptrackTimeDeltaMax, @"keeptrack_timedelta_max")
-UPDATE3(float, mapClustersZoomLevel, @"map_clusters_zoomlevel")
 
 UPDATE4(NSString *, NSString, currentWaypoint, @"waypoint_current")
 UPDATE4(NSString *, NSString, mapBrandDefault, @"map_branddefault")

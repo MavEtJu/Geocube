@@ -21,8 +21,6 @@
 
 @interface SettingsMainViewController ()
 {
-    float mapClustersZoomlevel;
-
     NSArray<NSString *> *compassTypes;
     NSArray<NSString *> *externalMapTypes;
     NSArray<NSString *> *mapBrandsCodes;
@@ -843,7 +841,6 @@ SWITCH_UPDATE(updateDynamicmapEnable, dynamicmapEnable)
 SWITCH_UPDATE(updateOpenCageWifiOnly, opencageWifiOnly)
 SWITCH_UPDATE(updateSendTweets, sendTweets)
 SWITCH_UPDATE(updateSoundDistance, soundDistance)
-SWITCH_UPDATE(updateMapClustersEnable, mapClustersEnable)
 SWITCH_UPDATE(updateMapRotateToBearing, mapRotateToBearing)
 SWITCH_UPDATE(updateKeeptrackAutoRotate, keeptrackAutoRotate)
 SWITCH_UPDATE(updateBackupsEnable, automaticDatabaseBackup)
