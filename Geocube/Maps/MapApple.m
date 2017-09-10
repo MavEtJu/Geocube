@@ -335,12 +335,14 @@
     }
 
     __block MKPolylineRenderer *vlHistory = nil;
-    [linesHistory enumerateObjectsUsingBlock:^(MKPolyline * _Nonnull lh, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (overlay == lh) {
-            vlHistory = [viewLinesHistory objectAtIndex:idx];
-            *stop = YES;
-        }
-    }];
+    @synchronized (linesHistory) {
+        [linesHistory enumerateObjectsUsingBlock:^(MKPolyline * _Nonnull lh, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (overlay == lh) {
+                vlHistory = [viewLinesHistory objectAtIndex:idx];
+                *stop = YES;
+            }
+        }];
+    }
     if (vlHistory != nil)
         return vlHistory;
 
@@ -526,8 +528,10 @@
         vlHistory.strokeColor = configManager.mapTrackColour; \
         vlHistory.lineWidth = 5; \
         \
-        [viewLinesHistory addObject:vlHistory]; \
-        [linesHistory addObject:lh]; \
+        @synchronized(linesHistory) { \
+            [viewLinesHistory addObject:vlHistory]; \
+            [linesHistory addObject:lh]; \
+        } \
         [mapView addOverlay:lh]; \
     }
 
@@ -559,9 +563,11 @@
 
     if (ch.restart == NO && historyCoordsIdx < COORDHISTORYSIZE - 1) {
         historyCoords[historyCoordsIdx++] = ch.coord;
-        [mapView removeOverlay:[linesHistory lastObject]];
-        [linesHistory removeLastObject];
-        [viewLinesHistory removeLastObject];
+        @synchronized (linesHistory) {
+            [mapView removeOverlay:[linesHistory lastObject]];
+            [linesHistory removeLastObject];
+            [viewLinesHistory removeLastObject];
+        }
     } else {
         historyCoordsIdx = 0;
         historyCoords[historyCoordsIdx++] = ch.coord;
@@ -575,11 +581,13 @@
         return;
 
     NSLog(@"removing %ld history", (long)[linesHistory count]);
-    [linesHistory enumerateObjectsUsingBlock:^(MKPolyline * _Nonnull lh, NSUInteger idx, BOOL * _Nonnull stop) {
-        [mapView removeOverlay:lh];
-    }];
-    [viewLinesHistory removeAllObjects];
-    [linesHistory removeAllObjects];
+    @synchronized (linesHistory) {
+        [linesHistory enumerateObjectsUsingBlock:^(MKPolyline * _Nonnull lh, NSUInteger idx, BOOL * _Nonnull stop) {
+            [mapView removeOverlay:lh];
+        }];
+        [viewLinesHistory removeAllObjects];
+        [linesHistory removeAllObjects];
+    }
     historyCoordsIdx = 0;
 }
 
@@ -595,8 +603,10 @@
         vlHistory.strokeColor = configManager.mapTrackColour; \
         vlHistory.lineWidth = 5; \
         \
-        [viewLinesHistory addObject:vlHistory]; \
-        [linesHistory addObject:lh]; \
+        @synchronized (linesHistory) { \
+            [viewLinesHistory addObject:vlHistory]; \
+            [linesHistory addObject:lh]; \
+        } \
         [mapView addOverlay:lh]; \
     }
 
@@ -642,9 +652,11 @@
 
 - (void)showTrack
 {
-    [linesHistory enumerateObjectsUsingBlock:^(MKPolyline * _Nonnull lh, NSUInteger idx, BOOL * _Nonnull stop) {
-        [mapView addOverlay:lh];
-    }];
+    @synchronized (linesHistory) {
+        [linesHistory enumerateObjectsUsingBlock:^(MKPolyline * _Nonnull lh, NSUInteger idx, BOOL * _Nonnull stop) {
+            [mapView addOverlay:lh];
+        }];
+    }
     [self moveCameraTo:trackBL c2:trackTR];
 }
 

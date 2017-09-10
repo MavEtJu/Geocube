@@ -378,15 +378,19 @@
         __line__.strokeColor = configManager.mapTrackColour; \
         __line__.map = mapView;
 
-        ADDPATH(lastPathHistory, lineHistory)
-        [linesHistory addObject:lineHistory];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            ADDPATH(lastPathHistory, lineHistory)
+            [linesHistory addObject:lineHistory];
+        }];
 
         [lastPathHistory removeAllCoordinates];
     }];
 
     if ([lastPathHistory count] != 0) {
-        ADDPATH(lastPathHistory, lineHistory)
-        [linesHistory addObject:lineHistory];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            ADDPATH(lastPathHistory, lineHistory)
+            [linesHistory addObject:lineHistory];
+        }];
     }
 }
 
@@ -402,20 +406,26 @@
     if (ch.restart == YES) {
         [lastPathHistory removeAllCoordinates];
     } else {
-        [linesHistory lastObject].map = nil;
-        [linesHistory removeLastObject];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [linesHistory lastObject].map = nil;
+            [linesHistory removeLastObject];
+        }];
     }
 
     [lastPathHistory addCoordinate:ch.coord];
 
-    ADDPATH(lastPathHistory, lineHistory)
-    [linesHistory addObject:lineHistory];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        ADDPATH(lastPathHistory, lineHistory)
+        [linesHistory addObject:lineHistory];
+    }];
 
     if ([lastPathHistory count] == 200) {
         lastPathHistory = [GMSMutablePath path];
         [lastPathHistory addCoordinate:ch.coord];
-        ADDPATH(lastPathHistory, lineHistory)
-        [linesHistory addObject:lineHistory];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            ADDPATH(lastPathHistory, lineHistory)
+            [linesHistory addObject:lineHistory];
+        }];
     }
 }
 

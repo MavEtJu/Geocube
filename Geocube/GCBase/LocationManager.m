@@ -30,6 +30,8 @@
     NSInteger lastSync;
     NSInteger lastAccuracy;
     NSInteger lastIsNavigating;
+
+    BOOL gotUpdate;
 }
 
 @property (nonatomic, readwrite) BOOL useGNSS;
@@ -67,6 +69,8 @@
         stat == kCLAuthorizationStatusRestricted ||
         stat == kCLAuthorizationStatusDenied)
         [_LM requestWhenInUseAuthorization];
+
+    [self performSelectorInBackground:@selector(backgroundUpdater) withObject:nil];
 
     return self;
 }
@@ -230,6 +234,76 @@
     NSLog(@"%@: stopped all of them", [self class]);
 }
 
+- (void)backgroundUpdater
+{
+    do {
+        NSLog(@"backgroundUpdater");
+        // Wait for a second
+        [NSThread sleepForTimeInterval:1];
+        if (gotUpdate == NO)
+            continue;
+
+        gotUpdate = NO;
+
+        // Keep a copy of the current data
+        NSDate *now = [NSDate date];
+        NSTimeInterval td = [now timeIntervalSince1970];
+
+        GCCoordsHistorical *ch = [[GCCoordsHistorical alloc] init];
+        ch.when = td;
+        ch.coord = LM.coords;
+        ch.restart = NO;
+
+        [self.coordsHistorical addObject:ch];
+
+        // Calculate speed over the last ten units.
+        if ([self.coordsHistorical count] > 10) {
+            GCCoordsHistorical *ch0 = [self.coordsHistorical objectAtIndex:[self.coordsHistorical count] - 10];
+            td = ch.when - ch0.when;
+            float distance = [Coordinates coordinates2distance:ch.coord to:ch0.coord];
+            if (td != 0)
+                self.speed = distance / td;
+        }
+
+        // Change the accuracy for the receiver
+        [self adjustAccuracy:lastIsNavigating];
+
+        // Update the historical track.
+        // To save from random data changes, only do it every 5 seconds or every 100 meters, whatever comes first.
+        float distance = [Coordinates coordinates2distance:ch.coord to:coordsHistoricalLast];
+        td = ch.when - lastHistory.timeIntervalSince1970;
+        if (td > configManager.keeptrackTimeDeltaMin || distance > configManager.keeptrackDistanceDeltaMin) {
+            BOOL jump = (td > configManager.keeptrackTimeDeltaMax || distance > configManager.keeptrackDistanceDeltaMax);
+            if (jump)
+                ch.restart = YES;
+            [self updateHistoryDelegate:ch];
+
+            coordsHistoricalLast = ch.coord;
+            lastHistory = now;
+            if (configManager.currentTrack != 0) {
+                dbTrackElement *te = [[dbTrackElement alloc] init];
+                te.track = configManager.currentTrack;
+                te.lat = self.coords.latitude;
+                te.lon = self.coords.longitude;
+                te.height = self.altitude;
+                te.restart = jump;
+                [te dbCreate];
+                [historyData addObject:te];
+                if (lastSync + configManager.keeptrackSync < te.timestamp_epoch) {
+                    [historyData enumerateObjectsUsingBlock:^(dbTrackElement * _Nonnull e, NSUInteger idx, BOOL * _Nonnull stop) {
+                        [e dbCreate];
+                    }];
+                    [historyData removeAllObjects];
+                    lastSync = te.timestamp_epoch;
+                }
+            }
+        }
+
+        NSLog(@"Coordinates: %@ - Direction: %ld - speed: %0.2lf m/s", [Coordinates niceCoordinates:self.coords], (long)LM.direction, LM.speed);
+
+    } while (YES);
+}
+
 - (void)clearCoordsHistorical
 {
     [self.coordsHistorical removeAllObjects];
@@ -254,64 +328,11 @@
         }
     }
 
-    // Keep a copy of the current data
-    NSDate *now = [NSDate date];
-    NSTimeInterval td = [now timeIntervalSince1970];
-
-    GCCoordsHistorical *ch = [[GCCoordsHistorical alloc] init];
-    ch.when = td;
-    ch.coord = newLocation.coordinate;
-    ch.restart = NO;
-
-    [self.coordsHistorical addObject:ch];
-
-    // Calculate speed over the last ten units.
-    if ([self.coordsHistorical count] > 10) {
-        GCCoordsHistorical *ch0 = [self.coordsHistorical objectAtIndex:[self.coordsHistorical count] - 10];
-        td = ch.when - ch0.when;
-        float distance = [Coordinates coordinates2distance:ch.coord to:ch0.coord];
-        if (td != 0)
-            self.speed = distance / td;
-    }
-
     // Send out the location and direction changes
     [self updateDataDelegates];
 
-    // Change the accuracy for the receiver
-    [self adjustAccuracy:lastIsNavigating];
-
-    // Update the historical track.
-    // To save from random data changes, only do it every 5 seconds or every 100 meters, whatever comes first.
-    float distance = [Coordinates coordinates2distance:ch.coord to:coordsHistoricalLast];
-    td = ch.when - lastHistory.timeIntervalSince1970;
-    if (td > configManager.keeptrackTimeDeltaMin || distance > configManager.keeptrackDistanceDeltaMin) {
-        BOOL jump = (td > configManager.keeptrackTimeDeltaMax || distance > configManager.keeptrackDistanceDeltaMax);
-        if (jump)
-            ch.restart = YES;
-        [self updateHistoryDelegate:ch];
-
-        coordsHistoricalLast = ch.coord;
-        lastHistory = now;
-        if (configManager.currentTrack != 0) {
-            dbTrackElement *te = [[dbTrackElement alloc] init];
-            te.track = configManager.currentTrack;
-            te.lat = self.coords.latitude;
-            te.lon = self.coords.longitude;
-            te.height = self.altitude;
-            te.restart = jump;
-            [te dbCreate];
-            [historyData addObject:te];
-            if (lastSync + configManager.keeptrackSync < te.timestamp_epoch) {
-                [historyData enumerateObjectsUsingBlock:^(dbTrackElement * _Nonnull e, NSUInteger idx, BOOL * _Nonnull stop) {
-                    [e dbCreate];
-                }];
-                [historyData removeAllObjects];
-                lastSync = te.timestamp_epoch;
-            }
-        }
-    }
-
-    NSLog(@"Coordinates: %@ - Direction: %ld - speed: %0.2lf m/s", [Coordinates niceCoordinates:self.coords], (long)LM.direction, LM.speed);
+    // Let somebody else deal with the expensive stuff.
+    gotUpdate = YES;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
