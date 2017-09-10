@@ -528,7 +528,7 @@
         vlHistory.strokeColor = configManager.mapTrackColour; \
         vlHistory.lineWidth = 5; \
         \
-        @synchronized(linesHistory) { \
+        @synchronized (linesHistory) { \
             [viewLinesHistory addObject:vlHistory]; \
             [linesHistory addObject:lh]; \
         } \
@@ -594,21 +594,6 @@
 - (void)showTrack:(dbTrack *)track
 {
     NSAssert(self.staticHistory == YES, @"Should only be called with static history");
-
-#define ADDPATH(__coords__, __count__) { \
-        MKPolyline *lh = [MKPolyline polylineWithCoordinates:__coords__ count:__count__]; \
-        \
-        MKPolylineRenderer *vlHistory = [[MKPolylineRenderer alloc] initWithPolyline:lh]; \
-        vlHistory.fillColor = configManager.mapTrackColour; \
-        vlHistory.strokeColor = configManager.mapTrackColour; \
-        vlHistory.lineWidth = 5; \
-        \
-        @synchronized (linesHistory) { \
-            [viewLinesHistory addObject:vlHistory]; \
-            [linesHistory addObject:lh]; \
-        } \
-        [mapView addOverlay:lh]; \
-    }
 
     if (linesHistory == nil)
         linesHistory = [NSMutableArray arrayWithCapacity:100];
