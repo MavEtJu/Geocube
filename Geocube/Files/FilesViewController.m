@@ -403,8 +403,6 @@ enum {
         [accountNames addObject:a.site];
         [accounts addObject:a];
     }];
-    [accountNames addObject:dbc.accountPrivate.site];
-    [accounts addObject:dbc.accountPrivate];
 
     [ActionSheetStringPicker
         showPickerWithTitle:_(@"filesviewcontroller-Select the source")

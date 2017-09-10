@@ -149,13 +149,7 @@ enum {
         }
     }
 
-    if ([a.site isEqualToString:dbc.accountPrivate.site] == YES) {
-        cell.textLabel.textColor = currentTheme.labelTextColorDisabled;
-        cell.userInteractionEnabled = NO;
-    } else {
-        cell.textLabel.textColor = currentTheme.labelTextColor;
-        cell.userInteractionEnabled = YES;
-    }
+    cell.userInteractionEnabled = YES;
 
     return cell;
 }
