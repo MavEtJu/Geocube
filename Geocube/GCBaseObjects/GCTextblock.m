@@ -29,7 +29,7 @@
 {
     self = [super initWithFrame:frame];
 
-    self.font = configManager.GCTextblockFont;
+    self.font = currentTheme.GCTextblockFont;
     self.numberOfLines = 0;
     [self changeTheme];
 
@@ -46,9 +46,9 @@
 - (void)bold:(BOOL)onoff
 {
     if (onoff == YES)
-        self.font = [UIFont boldSystemFontOfSize:configManager.GCTextblockFont.pointSize];
+        self.font = [UIFont boldSystemFontOfSize:currentTheme.GCTextblockFont.pointSize];
     else
-        self.font = [UIFont systemFontOfSize:configManager.GCTextblockFont.pointSize];
+        self.font = [UIFont systemFontOfSize:currentTheme.GCTextblockFont.pointSize];
 }
 
 @end

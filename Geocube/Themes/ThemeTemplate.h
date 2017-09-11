@@ -44,4 +44,10 @@
 @property (nonatomic, retain) UIImage *menuLocalIcon;
 @property (nonatomic, retain) UIImage *menuGlobalIcon;
 
+// UI settings
+
+@property (nonatomic, retain) UIFont *GCLabelFont;
+@property (nonatomic, retain) UIFont *GCSmallFont;
+@property (nonatomic, retain) UIFont *GCTextblockFont;
+
 @end

@@ -29,7 +29,7 @@
 {
     self = [super initWithFrame:frame];
 
-    self.font = configManager.GCSmallFont;
+    self.font = currentTheme.GCSmallFont;
     [self changeTheme];
 
     return self;
@@ -45,9 +45,9 @@
 - (void)bold:(BOOL)onoff
 {
     if (onoff == YES)
-        self.font = [UIFont boldSystemFontOfSize:configManager.GCSmallFont.pointSize];
+        self.font = [UIFont boldSystemFontOfSize:currentTheme.GCSmallFont.pointSize];
     else
-        self.font = [UIFont systemFontOfSize:configManager.GCSmallFont.pointSize];
+        self.font = [UIFont systemFontOfSize:currentTheme.GCSmallFont.pointSize];
 }
 
 @end

@@ -43,12 +43,6 @@ PROTO_N (NSInteger, lastImportSource);
 PROTO_N (NSInteger, lastImportGroup);
 PROTO_N (NSInteger, lastAddedGroup);
 
-// UI settings
-
-@property (nonatomic, retain) UIFont * GCLabelFont;
-@property (nonatomic, retain) UIFont * GCSmallFont;
-@property (nonatomic, retain) UIFont * GCTextblockFont;
-
 // User settings
 
 PROTO_N (BOOL, distanceMetric);

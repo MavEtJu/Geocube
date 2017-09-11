@@ -25,4 +25,17 @@
 
 @implementation ThemeTemplate
 
+- (instancetype)init
+{
+    self = [super init];
+
+    UITableViewCell *tvc = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+
+    self.GCLabelFont = [UIFont systemFontOfSize:tvc.textLabel.font.pointSize];
+    self.GCTextblockFont = [UIFont systemFontOfSize:tvc.textLabel.font.pointSize];
+    self.GCSmallFont = [UIFont systemFontOfSize:11];
+
+    return self;
+}
+
 @end
