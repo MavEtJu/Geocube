@@ -321,7 +321,7 @@
     }
 }
 
-- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
+- (MKOverlayRenderer *)mapView:(MKMapView *)_mapView rendererForOverlay:(id<MKOverlay>)overlay
 {
     if (overlay == lineMeToWaypoint) {
         if (viewLineMeToWaypoint == nil) {
