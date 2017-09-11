@@ -88,8 +88,6 @@
     CHECK(@"keeptrack_sync", @"120");
     CHECK(@"keeptrack_beeper_interval", @"10");
 
-    CHECK(@"map_clusters_enable", @"0");
-    CHECK(@"map_clusters_zoomlevel", @"11.0");
     CHECK(@"map_rotate_to_bearing", @"0");
 
     CHECK(@"dynamicmap_enable", @"1");
