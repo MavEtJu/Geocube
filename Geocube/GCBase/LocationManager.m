@@ -27,6 +27,7 @@
     CLLocationCoordinate2D coordsHistoricalLast;
 
     NSMutableArray<dbTrackElement *> *historyData;
+    NSMutableArray<GCCoordsHistorical *> *coordsSpeed;
     NSInteger lastSync;
     NSInteger lastAccuracy;
     NSInteger lastIsNavigating;
@@ -39,6 +40,8 @@
 @end
 
 @implementation LocationManager
+
+#define MAXSPEEDRECORDS 10
 
 - (instancetype)init
 {
@@ -65,6 +68,7 @@
 
     lastSync = 0;
     historyData = [NSMutableArray arrayWithCapacity:configManager.keeptrackSync / configManager.keeptrackTimeDeltaMax];
+    coordsSpeed = [NSMutableArray arrayWithCapacity:MAXSPEEDRECORDS];
 
     CLAuthorizationStatus stat = [CLLocationManager authorizationStatus];
     if (stat == kCLAuthorizationStatusNotDetermined ||
@@ -285,16 +289,18 @@
         ch.restart = NO;
 
         [self.coordsHistorical addObject:ch];
+        [coordsSpeed addObject:ch];
 
         // Calculate speed over the last ten units.
-        if ([self.coordsHistorical count] > 10) {
-            GCCoordsHistorical *ch0 = [self.coordsHistorical objectAtIndex:[self.coordsHistorical count] - 10];
+        if ([coordsSpeed count] >= MAXSPEEDRECORDS) {
+            GCCoordsHistorical *ch0 = [coordsSpeed firstObject];
             td = ch.when - ch0.when;
             float distance = [Coordinates coordinates2distance:ch.coord to:ch0.coord];
             if (td != 0) {
                 self.speed = distance / td;
                 [self updateSpeedDelegates];
             }
+            [coordsSpeed removeObjectAtIndex:0];
         }
 
         // Change the accuracy for the receiver
@@ -306,8 +312,12 @@
         td = ch.when - lastHistory.timeIntervalSince1970;
         if (td > configManager.keeptrackTimeDeltaMin || distance > configManager.keeptrackDistanceDeltaMin) {
             BOOL jump = (td > configManager.keeptrackTimeDeltaMax || distance > configManager.keeptrackDistanceDeltaMax);
-            if (jump)
+            if (jump == YES) {
                 ch.restart = YES;
+                self.speed = 0;
+                [coordsSpeed removeAllObjects];
+                [self updateSpeedDelegates];
+            }
             [self updateHistoryDelegates:ch];
 
             coordsHistoricalLast = ch.coord;
