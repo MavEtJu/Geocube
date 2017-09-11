@@ -47,9 +47,8 @@
 @property (nonatomic, weak) IBOutlet GCImageView *ivWPContainer;
 @property (nonatomic, weak) IBOutlet GCImageView *ivWPSize;
 
-@property (nonatomic, weak) IBOutlet GCLabel *labelAltitude;
-@property (nonatomic, weak) IBOutlet GCLabel *labelAccuracy;
 @property (nonatomic, weak) IBOutlet GCLabel *labelMyLocation;
+@property (nonatomic, weak) IBOutlet GCLabel *labelSpeed;
 
 @end
 
@@ -100,9 +99,8 @@
     self.labelGNSSAltitude.text = @"";
     self.labelGNSSAccuracy.text = @"";
     self.labelGNSSDistance.text = @"";
+    self.labelSpeed.text = @"";
 
-    self.labelAltitude.text = _(@"compassviewcontroller-Altitude");
-    self.labelAccuracy.text = _(@"compassviewcontroller-Accuracy");
     self.labelMyLocation.text = _(@"compassviewcontroller-My location");
 
     if (waypointManager.currentWaypoint != nil) {
@@ -152,6 +150,7 @@
 
     /* Start the location manager */
     [LM startDelegationLocation:self isNavigating:TRUE];
+    [LM startDelegationSpeed:self];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -159,6 +158,7 @@
     NSLog(@"%@/viewWillDisappear", [self class]);
     [audioFeedback togglePlay:NO];
     [LM stopDelegationLocation:self];
+    [LM stopDelegationSpeed:self];
     [super viewWillDisappear:animated];
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -193,10 +193,23 @@
 }
 
 /* Receive data from the location manager */
+- (void)updateLocationManagerSpeed
+{
+    NSString *t = [NSString stringWithFormat:_(@"compassviewcontroller-Speed: %@"), [MyTools niceSpeed:LM.speed * 3.6]];
+    MAINQUEUE(
+        self.labelSpeed.text = t;
+    )
+}
+
+/* Receive data from the location manager */
 - (void)updateLocationManagerLocation
 {
-    self.labelGNSSAccuracy.text = [MyTools niceDistance:LM.accuracy];
-    self.labelGNSSAltitude.text = [MyTools niceDistance:LM.altitude];
+    NSString *t1 = [NSString stringWithFormat:_(@"compassviewcontroller-Accuracy: %@"), [MyTools niceDistance:LM.accuracy]];
+    NSString *t2 = [NSString stringWithFormat:_(@"compassviewcontroller-Altitude: %@"), [MyTools niceDistance:LM.altitude]];
+    MAINQUEUE(
+        self.labelGNSSAccuracy.text = t1;
+        self.labelGNSSAltitude.text = t2;
+    );
 
     //    NSLog(@"new location: %f, %f", LM.coords.latitude, LM.coords.longitude);
 

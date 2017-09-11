@@ -60,6 +60,7 @@
 
     self.delegatesHistory = [NSMutableArray arrayWithCapacity:5];
     self.delegatesLocation = [NSMutableArray arrayWithCapacity:5];
+    self.delegatesSpeed = [NSMutableArray arrayWithCapacity:5];
     self.useGNSS = YES;
 
     lastSync = 0;
@@ -82,16 +83,22 @@
     if (self.useGNSS == NO)
         return;
 
-    [self.delegatesLocation enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.delegatesLocation enumerateObjectsUsingBlock:^(id<LocationManagerLocationDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         [delegate updateLocationManagerLocation];
     }];
 }
 
 - (void)updateHistoryDelegates:(GCCoordsHistorical *)ch
 {
-    [self.delegatesHistory enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([delegate respondsToSelector:@selector(updateLocationManagerHistory:)])
-            [delegate updateLocationManagerHistory:ch];
+    [self.delegatesHistory enumerateObjectsUsingBlock:^(id<LocationManagerHistoryDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+        [delegate updateLocationManagerHistory:ch];
+    }];
+}
+
+- (void)updateSpeedDelegates
+{
+    [self.delegatesSpeed enumerateObjectsUsingBlock:^(id<LocationManagerSpeedDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+        [delegate updateLocationManagerSpeed];
     }];
 }
 
@@ -222,7 +229,7 @@
     [self.delegatesLocation removeObject:_delegate];
     [self adjustAccuracy:0];
 
-    if ([self.delegatesLocation count] > 0 || [self.delegatesHistory count] > 0)
+    if ([self.delegatesLocation count] > 0)
         return;
     [_LM stopUpdatingHeading];
     [_LM stopUpdatingLocation];
@@ -241,12 +248,20 @@
 {
     NSLog(@"%@: History stopping for %@", [self class], [_delegate class]);
     [self.delegatesHistory removeObject:_delegate];
+}
 
-    if ([self.delegatesHistory count] > 0 || [self.delegatesHistory count] > 0)
-        return;
-    [_LM stopUpdatingHeading];
-    [_LM stopUpdatingLocation];
-    NSLog(@"%@: Stopped all of them", [self class]);
+- (void)startDelegationSpeed:(id)_delegate
+{
+    NSLog(@"%@: Speed starting for %@", [self class], [_delegate class]);
+
+    [self.delegatesSpeed addObject:_delegate];
+    [_delegate updateLocationManagerSpeed];
+}
+
+- (void)stopDelegationSpeed:(id)_delegate
+{
+    NSLog(@"%@: Speed stopping for %@", [self class], [_delegate class]);
+    [self.delegatesSpeed removeObject:_delegate];
 }
 
 - (void)backgroundUpdater
@@ -276,8 +291,10 @@
             GCCoordsHistorical *ch0 = [self.coordsHistorical objectAtIndex:[self.coordsHistorical count] - 10];
             td = ch.when - ch0.when;
             float distance = [Coordinates coordinates2distance:ch.coord to:ch0.coord];
-            if (td != 0)
+            if (td != 0) {
                 self.speed = distance / td;
+                [self updateSpeedDelegates];
+            }
         }
 
         // Change the accuracy for the receiver

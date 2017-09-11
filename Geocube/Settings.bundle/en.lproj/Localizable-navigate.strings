@@ -1,8 +1,9 @@
 /* Navigate */
 
 /* Navigate - Compass */
-"compassviewcontroller-Accuracy" = "Accuracy";
-"compassviewcontroller-Altitude" = "Altitude";
 "compassviewcontroller-My location" = "My Location";
 "compassviewcontroller-D" = "D";
 "compassviewcontroller-T" = "T";
+"compassviewcontroller-Accuracy: %@" = "Accuracy: %@";
+"compassviewcontroller-Altitude: %@" = "Altitude: %@";
+"compassviewcontroller-Speed: %@" = "Speed: %@";
