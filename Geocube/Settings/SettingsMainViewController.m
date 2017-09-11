@@ -309,7 +309,8 @@ enum sections {
     SECTION_DYNAMICMAP_DISTANCE_DRIVING,
     SECTION_DYNAMICMAP_MAX,
 
-    SECTION_KEEPTRACK_AUTOROTATE = 0,
+    SECTION_KEEPTRACK_ENABLE = 0,
+    SECTION_KEEPTRACK_AUTOROTATE,
     SECTION_KEEPTRACK_TIMEDELTA_MIN,
     SECTION_KEEPTRACK_TIMEDELTA_MAX,
     SECTION_KEEPTRACK_DISTANCEDELTA_MIN,
@@ -637,6 +638,8 @@ enum sections {
 
         case SECTION_KEEPTRACK: {
             switch (indexPath.row) {
+                case SECTION_KEEPTRACK_ENABLE:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Enable keeping track"), keeptrackEnable, updateKeeptrackEnable)
                 case SECTION_KEEPTRACK_AUTOROTATE:
                     CELL_SWITCH(_(@"settingsmainviewcontroller-Autorotate every day"), keeptrackAutoRotate, updateKeeptrackAutoRotate)
                 case SECTION_KEEPTRACK_TIMEDELTA_MIN: {
@@ -867,6 +870,7 @@ SWITCH_UPDATE(updateSendTweets, sendTweets)
 SWITCH_UPDATE(updateSoundDistance, soundDistance)
 SWITCH_UPDATE(updateMapRotateToBearing, mapRotateToBearing)
 SWITCH_UPDATE(updateKeeptrackAutoRotate, keeptrackAutoRotate)
+SWITCH_UPDATE(updateKeeptrackEnable, keeptrackEnable)
 SWITCH_UPDATE(updateBackupsEnable, automaticDatabaseBackup)
 SWITCH_UPDATE(updateDynamicAccuracyEnable, accuracyDynamicEnable)
 SWITCH_UPDATE(updateRefreshWaypointAfterLog, refreshWaypointAfterLog)

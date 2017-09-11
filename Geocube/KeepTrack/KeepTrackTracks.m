@@ -62,6 +62,13 @@ enum {
     [self.tableView reloadData];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (configManager.keeptrackEnable == NO)
+        [MyTools messageBox:self header:_(@"keeptracktracks-Keep Track is not enabled") text:_(@"keeptracktracks-You can enable it in the settings menu")];
+}
+
 #pragma mark - TableViewController related functions
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView

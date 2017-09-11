@@ -91,7 +91,7 @@
 "settingsmainviewcontroller-Invalid value" = "Onjuiste waarde";
 "settingsmainviewcontroller-Keep track" = "Onthoud sporen";
 "settingsmainviewcontroller-Landscape Left" = "Landschap Links";
-"settingsmainviewcontroller-Landscape Right" = "Landscahp Rechts";
+"settingsmainviewcontroller-Landscape Right" = "Landschap Rechts";
 "settingsmainviewcontroller-LandscapeLeft" = "LandschapLinks";
 "settingsmainviewcontroller-LandscapeLeft LandscapeRight" = "LandschapLinks LandschapRechts";
 "settingsmainviewcontroller-LandscapeLeft Portrait LandscapeRight" = "LandschapLinks Portret LandschapRechts";
@@ -165,6 +165,7 @@
 "settingsmainviewcontroller-Walking zoom-out distance" = "Loop zoom-out afstand";
 "settingsmainviewcontroller-Waypoints" = "Waypoints";
 "settingsmainviewcontroller-White arrow on black" = "Witte pijl op zwarte achtergrond";
+"settingsmainviewcontroller-Enable keeping track" = "Zet het maken van Sporen aan";
 
 "settingsmainviewcontroller-Backup rotation" = "Backup rotatie";
 "settingsmainviewcontroller-Backups" = "Backups";

@@ -333,37 +333,39 @@
         // Change the accuracy for the receiver
         [self adjustAccuracy:lastIsNavigating];
 
-        // Update the historical track.
-        // To save from random data changes, only do it every 5 seconds or every 100 meters, whatever comes first.
-        float distance = [Coordinates coordinates2distance:ch.coord to:coordsHistoricalLast];
-        td = ch.when - lastHistory.timeIntervalSince1970;
-        if (td > configManager.keeptrackTimeDeltaMin || distance > configManager.keeptrackDistanceDeltaMin) {
-            BOOL jump = (td > configManager.keeptrackTimeDeltaMax || distance > configManager.keeptrackDistanceDeltaMax);
-            if (jump == YES) {
-                ch.restart = YES;
-                self.speed = 0;
-                [coordsSpeed removeAllObjects];
-                [self updateSpeedDelegates];
-            }
-            [self updateHistoryDelegates:ch];
+        if (configManager.keeptrackEnable == YES) {
+            // Update the historical track.
+            // To save from random data changes, only do it every 5 seconds or every 100 meters, whatever comes first.
+            float distance = [Coordinates coordinates2distance:ch.coord to:coordsHistoricalLast];
+            td = ch.when - lastHistory.timeIntervalSince1970;
+            if (td > configManager.keeptrackTimeDeltaMin || distance > configManager.keeptrackDistanceDeltaMin) {
+                BOOL jump = (td > configManager.keeptrackTimeDeltaMax || distance > configManager.keeptrackDistanceDeltaMax);
+                if (jump == YES) {
+                    ch.restart = YES;
+                    self.speed = 0;
+                    [coordsSpeed removeAllObjects];
+                    [self updateSpeedDelegates];
+                }
+                [self updateHistoryDelegates:ch];
 
-            coordsHistoricalLast = ch.coord;
-            lastHistory = now;
-            if (configManager.currentTrack != 0) {
-                dbTrackElement *te = [[dbTrackElement alloc] init];
-                te.track = configManager.currentTrack;
-                te.lat = self.coords.latitude;
-                te.lon = self.coords.longitude;
-                te.height = self.altitude;
-                te.restart = jump;
-                [te dbCreate];
-                [historyData addObject:te];
-                if (lastSync + configManager.keeptrackSync < te.timestamp_epoch) {
-                    [historyData enumerateObjectsUsingBlock:^(dbTrackElement * _Nonnull e, NSUInteger idx, BOOL * _Nonnull stop) {
-                        [e dbCreate];
-                    }];
-                    [historyData removeAllObjects];
-                    lastSync = te.timestamp_epoch;
+                coordsHistoricalLast = ch.coord;
+                lastHistory = now;
+                if (configManager.currentTrack != 0) {
+                    dbTrackElement *te = [[dbTrackElement alloc] init];
+                    te.track = configManager.currentTrack;
+                    te.lat = self.coords.latitude;
+                    te.lon = self.coords.longitude;
+                    te.height = self.altitude;
+                    te.restart = jump;
+                    [te dbCreate];
+                    [historyData addObject:te];
+                    if (lastSync + configManager.keeptrackSync < te.timestamp_epoch) {
+                        [historyData enumerateObjectsUsingBlock:^(dbTrackElement * _Nonnull e, NSUInteger idx, BOOL * _Nonnull stop) {
+                            [e dbCreate];
+                        }];
+                        [historyData removeAllObjects];
+                        lastSync = te.timestamp_epoch;
+                    }
                 }
             }
         }

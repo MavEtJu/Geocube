@@ -201,6 +201,7 @@
 "settingsmainviewcontroller-Update distance for 'near' accuracy" = "Update distance for 'near' accuracy";
 "settingsmainviewcontroller-Update distance for static 'navigating' pages" = "Update distance for static 'navigating' pages";
 "settingsmainviewcontroller-Update distance for static 'non-navigating' pages" = "Update distance for static 'non-navigating' pages";
+"settingsmainviewcontroller-Enable keeping track" = "Enable keeping track";
 
 "settingsmainviewcontroller-%ld seconds" = "%ld seconds";
 "settingsmainviewcontroller-Averaged over X seconds" = "Averaged over X seconds";

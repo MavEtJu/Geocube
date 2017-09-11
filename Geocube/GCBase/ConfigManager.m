@@ -79,6 +79,7 @@
     CHECK(@"sound_direction", @"0");
     CHECK(@"sound_distance", @"0");
 
+    CHECK(@"keeptrack_enable", @"1");
     CHECK(@"keeptrack_autorotate", @"1");
     CHECK(@"keeptrack_timedelta_min", @"5.0");
     CHECK(@"keeptrack_timedelta_max", @"10.0");
@@ -203,6 +204,7 @@
     LOAD_INTEGER(self.orientationsAllowed, @"orientations_allowed");
     LOAD_BOOL   (self.soundDirection, @"sound_direction");
     LOAD_BOOL   (self.soundDistance, @"sound_distance");
+    LOAD_BOOL   (self.keeptrackEnable, @"keeptrack_enable");
     LOAD_BOOL   (self.keeptrackAutoRotate, @"keeptrack_autorotate");
     LOAD_FLOAT  (self.keeptrackTimeDeltaMin, @"keeptrack_timedelta_min");
     LOAD_FLOAT  (self.keeptrackTimeDeltaMax, @"keeptrack_timedelta_max");
@@ -359,6 +361,7 @@ UPDATE3(BOOL, distanceMetric, @"distance_metric")
 UPDATE3(BOOL, sendTweets, @"send_tweets")
 UPDATE3(BOOL, soundDirection, @"sound_direction")
 UPDATE3(BOOL, soundDistance, @"sound_distance")
+UPDATE3(BOOL, keeptrackEnable, @"keeptrack_enable")
 UPDATE3(BOOL, keeptrackAutoRotate, @"keeptrack_autorotate")
 UPDATE3(BOOL, mapRotateToBearing, @"map_rotate_to_bearing")
 UPDATE3(BOOL, dynamicmapEnable, @"dynamicmap_enable")
