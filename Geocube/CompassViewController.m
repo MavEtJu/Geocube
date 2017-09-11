@@ -221,7 +221,9 @@
     Coordinates *c = [[Coordinates alloc] init:LM.coords];
     self.labelGNSSLat.text = [c lat_degreesDecimalMinutes];
     self.labelGNSSLon.text = [c lon_degreesDecimalMinutes];
-    self.labelGNSSDistance.text = [MyTools niceDistance:[c distance:waypointManager.currentWaypoint.wpt_latitude longitude:waypointManager.currentWaypoint.wpt_longitude]];
+
+    if (waypointManager.currentWaypoint != nil)
+        self.labelGNSSDistance.text = [MyTools niceDistance:[c distance:waypointManager.currentWaypoint.wpt_latitude longitude:waypointManager.currentWaypoint.wpt_longitude]];
 }
 
 /* Receive data from the location manager */
