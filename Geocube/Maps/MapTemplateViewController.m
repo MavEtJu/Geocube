@@ -652,6 +652,16 @@
                             handler:^(UIAlertAction * action) {
                                 [self menuChangeMapbrand:mb];
                                 [view dismissViewControllerAnimated:YES completion:nil];
+
+                                NSInteger count = 0;
+                                if ([self.map mapHasViewMap] == TRUE) count++;
+                                if ([self.map mapHasViewAerial] == TRUE) count++;
+                                if ([self.map mapHasViewHybridMapAerial] == TRUE) count++;
+                                if ([self.map mapHasViewTerrain] == TRUE) count++;
+                                if (count <= 1)
+                                    [lmi disableItem:MVCmenuMapType];
+                                else
+                                    [lmi enableItem:MVCmenuMapType];
                             }];
         [view addAction:a];
     }];
