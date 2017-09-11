@@ -127,7 +127,7 @@ enum {
     [self showInfoView];
     NSNumber *iiiImage = [NSNumber numberWithInteger:[infoView addImage]];
     NSDictionary *d = @{@"iii": iiiImage, @"image": image };
-    [self performSelectorInBackground:@selector(downloadImageBG:) withObject:d];
+    BACKGROUND(downloadImageBG:, d);
 }
 
 - (void)downloadImageBG:(NSDictionary *)dict
@@ -149,8 +149,8 @@ enum {
     [self showInfoView];
     NSNumber *iiiLogs = [NSNumber numberWithInteger:[infoView addImage]];
     NSNumber *iiiCache = [NSNumber numberWithInteger:[infoView addImage]];
-    [self performSelectorInBackground:@selector(downloadImagesLogs:) withObject:iiiLogs];
-    [self performSelectorInBackground:@selector(downloadImagesCache:) withObject:iiiCache];
+    BACKGROUND(downloadImagesLogs:, iiiLogs);
+    BACKGROUND(downloadImagesCache:, iiiCache);
 }
 
 - (void)downloadImagesLogs:(NSNumber *)iii_

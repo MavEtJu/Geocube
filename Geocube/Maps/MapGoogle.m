@@ -406,10 +406,10 @@
     if (ch.restart == YES) {
         [lastPathHistory removeAllCoordinates];
     } else {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        MAINTHREAD(
             [linesHistory lastObject].map = nil;
             [linesHistory removeLastObject];
-        }];
+        )
     }
 
     [lastPathHistory addCoordinate:ch.coord];

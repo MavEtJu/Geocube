@@ -72,7 +72,7 @@
 {
     stopUpdating = NO;
     contentOffset = _contentOffset;
-    [self performSelectorInBackground:@selector(refreshItems) withObject:nil];
+    BACKGROUND(refreshItems, nil);
     [[NSOperationQueue mainQueue] addOperationWithBlock:^(void) {
         CGRect frame = self.frame;
         CGRect bounds = self.superview.frame;

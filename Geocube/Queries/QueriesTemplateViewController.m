@@ -67,7 +67,7 @@ enum {
 
     if (qs == nil) {
         qs = @[];
-        [self performSelectorInBackground:@selector(reloadQueries) withObject:nil];
+        BACKGROUND(reloadQueries, nil);
     }
     qis = [dbQueryImport dbAll];
 }
@@ -182,8 +182,8 @@ enum {
     [self showInfoView];
 
     NSDictionary *pq = [qs objectAtIndex:indexPath.row];
-    [self performSelectorInBackground:@selector(doRunRetrieveQuery:) withObject:pq];
-    [self performSelectorInBackground:@selector(waitForDownloadsToFinish) withObject:nil];
+    BACKGROUND(doRunRetrieveQuery:, pq);
+    BACKGROUND(waitForDownloadsToFinish, nil);
 
     // Update historical data for this query.
     __block dbQueryImport *foundqi = nil;
@@ -278,7 +278,7 @@ enum {
 
     NSLog(@"PROCESSING: Downloaded %ld", (long)identifier);
     [processing increaseDownloadedChunks:identifier];
-    [self performSelectorInBackground:@selector(parseQueryBG:) withObject:d];
+    BACKGROUND(parseQueryBG:, d);
 }
 
 - (void)parseQueryBG:(NSDictionary *)dict
@@ -321,7 +321,7 @@ enum {
 {
     switch (index) {
         case menuReload:
-            [self performSelectorInBackground:@selector(reloadQueries) withObject:nil];
+            BACKGROUND(reloadQueries, nil);
             return;
     }
 

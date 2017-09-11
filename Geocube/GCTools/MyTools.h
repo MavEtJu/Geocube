@@ -234,3 +234,12 @@ typedef sqlite3_int64 NSId;
         NSString *fmt = [NSString stringWithFormat:@"%%s: %@", __fmt__]; \
         NSLog(fmt, __func__, ## __VA_ARGS__); \
     }
+
+// Main Thread macro
+#define MAINTHREAD(block) \
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{ \
+        block \
+    }]; \
+
+#define BACKGROUND(__selector__, __data__) \
+    [self performSelectorInBackground:@selector(__selector__) withObject:__data__];

@@ -131,7 +131,7 @@ enum {
         [d setObject:[NSNumber numberWithInteger:iid] forKey:@"iid"];
         [d setObject:account forKey:@"account"];
 
-        [self performSelectorInBackground:@selector(runLoadWaypoints:) withObject:d];
+        BACKGROUND(runLoadWaypoints:, d);
     }];
 
     if (accountsFound == 0) {
@@ -139,7 +139,7 @@ enum {
         return;
     }
 
-    [self performSelectorInBackground:@selector(waitForDownloadsToFinish) withObject:nil];
+    BACKGROUND(waitForDownloadsToFinish, nil);
 }
 
 - (void)waitForDownloadsToFinish
@@ -198,7 +198,7 @@ enum {
             [account.remoteAPI loadWaypointsByCodes:wpnames infoViewer:infoView iiDownload:iid identifier:(long)account._id group:dbc.groupLiveImport callback:self];
         }];
 
-        [self performSelectorInBackground:@selector(waitForDownloadsToFinish) withObject:nil];
+        BACKGROUND(waitForDownloadsToFinish, nil);
 
         return;
     }
@@ -226,7 +226,7 @@ enum {
     [dict setObject:dbc.groupLiveImport forKey:@"group"];
     [dict setObject:account forKey:@"account"];
     [dict setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
-    [self performSelectorInBackground:@selector(importObjectBG:) withObject:dict];
+    BACKGROUND(importObjectBG:, dict);
 }
 
 - (void)importObjectBG:(NSDictionary *)dict

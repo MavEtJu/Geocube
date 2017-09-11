@@ -107,7 +107,7 @@ enum {
 {
     [super viewDidAppear:animated];
     if (needsRefresh == YES) {
-        [self performSelectorInBackground:@selector(refreshCachesData) withObject:nil];
+        BACKGROUND(refreshCachesData, nil);
     } else {
         waypoints = [WaypointSorter resortWaypoints:waypoints waypointsSortOrder:currentSortOrder];
         [self.tableView reloadData];
@@ -361,10 +361,10 @@ enum {
         [dict setObject:account forKey:@"account"];
 
         [processing addIdentifier:(long)account._id];
-        [self performSelectorInBackground:@selector(runReloadWaypoints:) withObject:dict];
+        BACKGROUND(runReloadWaypoints:, dict);
     }];
 
-    [self performSelectorInBackground:@selector(waitForDownloadsToFinish) withObject:nil];
+    BACKGROUND(waitForDownloadsToFinish, nil);
 }
 
 - (void)waitForDownloadsToFinish

@@ -70,7 +70,7 @@
         stat == kCLAuthorizationStatusDenied)
         [_LM requestWhenInUseAuthorization];
 
-    [self performSelectorInBackground:@selector(backgroundUpdater) withObject:nil];
+    BACKGROUND(backgroundUpdater, nil);
 
     return self;
 }

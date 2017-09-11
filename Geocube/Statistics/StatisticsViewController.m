@@ -197,7 +197,7 @@ enum {
             return;
         }
 
-        [self performSelectorInBackground:@selector(runStatistics:) withObject:d];
+        BACKGROUND(runStatistics:, d);
         [d setObject:_(@"statistics-Polling...") forKey:@"status"];
     }];
 

@@ -458,7 +458,7 @@
     distanceLabel.text = d;
     if (seconds != 0) {
         distanceLabelCounter++;
-        [self performSelectorInBackground:@selector(showDistanceHide:) withObject:[NSNumber numberWithInteger:seconds]];
+        BACKGROUND(showDistanceHide:, [NSNumber numberWithInteger:seconds]);
     }
 }
 
@@ -566,7 +566,7 @@
     needsRefresh = YES;
     if (isVisible == YES) {
         needsRefresh = NO;
-        [self performSelectorInBackground:@selector(refreshWaypointsData) withObject:nil];
+        BACKGROUND(refreshWaypointsData, nil);
     }
 }
 

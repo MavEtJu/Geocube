@@ -119,7 +119,7 @@ enum {
         note.note = text;
         [note dbUpdate];
     }
-    [self performSelectorInBackground:@selector(updatePersonalNote) withObject:nil];
+    BACKGROUND(updatePersonalNote, nil);
 
     if (self.delegateWaypoint != nil)
         [self.delegateWaypoint WaypointPersonalNote_refreshTable];

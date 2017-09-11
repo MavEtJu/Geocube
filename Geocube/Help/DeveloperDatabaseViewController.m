@@ -59,7 +59,7 @@ enum {
 {
     [super viewWillAppear:animated];
     [self reloadNumbers];
-    [self performSelectorInBackground:@selector(reloadDiskUtilization) withObject:nil];
+    BACKGROUND(reloadDiskUtilization, nil);
     [self.tableView reloadData];
 }
 

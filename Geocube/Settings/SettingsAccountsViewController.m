@@ -101,7 +101,7 @@ enum {
                              actionWithTitle:_(@"Import")
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction *action) {
-                                 [self performSelectorInBackground:@selector(downloadFiles) withObject:nil];
+                                 BACKGROUND(downloadFiles, nil);
                              }];
 
     UIAlertAction *cancel = [UIAlertAction
@@ -284,7 +284,7 @@ enum {
 {
     switch (index) {
         case menuUpdate:
-            [self performSelectorInBackground:@selector(downloadFiles) withObject:nil];
+            BACKGROUND(downloadFiles, nil);
             return;
     }
 

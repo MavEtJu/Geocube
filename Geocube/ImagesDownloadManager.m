@@ -94,7 +94,7 @@
     if (running == 0) {
         NSLog(@"%@/starting", [self class]);
         running = 10;
-        [self performSelectorInBackground:@selector(run) withObject:nil];
+        BACKGROUND(run, nil);
     }
     running = 10;
 }

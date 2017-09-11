@@ -162,7 +162,7 @@ enum {
 {
     switch (index) {
         case menuUpdate:
-            [self performSelectorInBackground:@selector(menuUpdate) withObject:nil];
+            BACKGROUND(menuUpdate, nil);
             return;
     }
 

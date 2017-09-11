@@ -144,14 +144,14 @@ enum {
         // Download Pocket Queries from geocaching.com
         if ([urlString containsString:@"geocaching.com/"] == YES &&
             [urlString containsString:@"/pocket/downloadpq.ashx"] == YES) {
-            [self performSelectorInBackground:@selector(downloadBG:) withObject:urlString];
+            BACKGROUND(downloadBG:, urlString);
             return NO;
         }
 
         // Download queries from Geocaching Australia
         if ([urlString containsString:@"geocaching.com.au/my/query/gpx/"] == YES ||
             [urlString containsString:@"geocaching.com.au/my/query/zip/"] == YES) {
-            [self performSelectorInBackground:@selector(downloadBG:) withObject:urlString];
+            BACKGROUND(downloadBG:, urlString);
             return NO;
         }
 
@@ -159,14 +159,14 @@ enum {
         if ([urlString containsString:@"opencaching"] == YES &&
             [urlString containsString:@"search.php"] == YES &&
             [urlString containsString:@"output=gpxgc"] == YES) {
-            [self performSelectorInBackground:@selector(downloadBG:) withObject:urlString];
+            BACKGROUND(downloadBG:, urlString);
             return NO;
         }
 
         // Download a single GPX file from geocaching.com
         if ([urlString containsString:@"geocaching.com/geocache"] == YES &&
             [[newRequest HTTPMethod] isEqualToString:@"POST"] == YES) {
-            [self performSelectorInBackground:@selector(downloadBG:) withObject:urlString];
+            BACKGROUND(downloadBG:, urlString);
             return NO;
         }
 
@@ -174,7 +174,7 @@ enum {
         if ([[urlString substringFromIndex:[urlString length] - 4] isEqualToString:@".zip"] == YES ||
             [[urlString substringFromIndex:[urlString length] - 4] isEqualToString:@".xml"] == YES ||
             [[urlString substringFromIndex:[urlString length] - 4] isEqualToString:@".gpx"] == YES) {
-            [self performSelectorInBackground:@selector(downloadBG:) withObject:urlString];
+            BACKGROUND(downloadBG:, urlString);
             return NO;
         }
 

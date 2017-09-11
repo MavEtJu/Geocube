@@ -181,10 +181,10 @@ enum {
 
         [processing addIdentifier:(long)account._id];
         NSLog(@"PROCESSING: Adding %ld (%@)", (long)account._id, account.site);
-        [self performSelectorInBackground:@selector(runReloadWaypoints:) withObject:dict];
+        BACKGROUND(runReloadWaypoints:, dict);
     }];
 
-    [self performSelectorInBackground:@selector(waitForDownloadsToFinish) withObject:nil];
+    BACKGROUND(waitForDownloadsToFinish, nil);
 }
 
 - (void)waitForDownloadsToFinish

@@ -141,7 +141,7 @@ enum {
     [super viewDidAppear:animated];
     [LM startDelegation:self isNavigating:YES];
     stopTimer = NO;
-    [self performSelectorInBackground:@selector(updateEverySecond) withObject:nil];
+    BACKGROUND(updateEverySecond, nil);
 }
 
 - (void)viewWillDisappear:(BOOL)animated

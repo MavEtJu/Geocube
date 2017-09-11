@@ -193,7 +193,7 @@ enum {
 
 -  (void)WaypointLog_refreshWaypointData
 {
-    [self performSelectorInBackground:@selector(runRefreshWaypoint) withObject:nil];
+    BACKGROUND(runRefreshWaypoint, nil);
 }
 
 #pragma mark - Table view data source
@@ -573,7 +573,7 @@ enum {
 {
     switch (index) {
         case menuRefreshWaypoint: // Refresh waypoint from server
-            [self performSelectorInBackground:@selector(runRefreshWaypoint) withObject:nil];
+            BACKGROUND(runRefreshWaypoint, nil);
             return;
         case menuAddToGroup: // Add waypoint to a group
             [self addToGroup];

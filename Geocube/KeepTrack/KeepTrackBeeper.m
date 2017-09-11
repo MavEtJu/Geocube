@@ -64,7 +64,7 @@
 - (void)buttonPlayPressed
 {
     isBeeping = YES;
-    [self performSelectorInBackground:@selector(performBeeping) withObject:nil];
+    BACKGROUND(performBeeping, nil);
 }
 
 - (void)buttonStopPressed

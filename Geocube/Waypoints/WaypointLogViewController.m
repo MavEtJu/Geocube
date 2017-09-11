@@ -618,7 +618,7 @@ enum {
         return;
     }
 
-    [self performSelectorInBackground:@selector(submitLogBackground) withObject:nil];
+    BACKGROUND(submitLogBackground, nil);
 }
 
 - (void)submitLogBackground

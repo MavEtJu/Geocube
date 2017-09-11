@@ -82,7 +82,7 @@
         [queue addObject:wp];
     }
     if (isRunning == NO)
-        [self performSelectorInBackground:@selector(runQueue) withObject:nil];
+        BACKGROUND(runQueue, nil);
 }
 
 - (void)runQueue

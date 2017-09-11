@@ -54,7 +54,7 @@
     self.rootFO.filename = @"";
     self.rootFO.isDir = YES;
     self.rootFO.cwd = @"";
-    [self performSelectorInBackground:@selector(loadContents:) withObject:self.rootFO];
+    BACKGROUND(loadContents:, self.rootFO);
 
     self.shownFO = self.rootFO;
     self.stackFO = [NSMutableArray arrayWithCapacity:10];
@@ -260,7 +260,7 @@
                                  self.shownFO = self.rootFO;
                                  [self.stackFO removeAllObjects];
 
-                                 [self performSelectorInBackground:@selector(loadContents:) withObject:self.rootFO];
+                                 BACKGROUND(loadContents:,  self.rootFO);
                                  [bezelManager showBezel:self];
                                  [bezelManager setText:_(@"filebrowserviewcontroller-Retrieving directory contents")];
 
@@ -281,7 +281,7 @@
                               self.shownFO = self.rootFO;
                               [self.stackFO removeAllObjects];
 
-                              [self performSelectorInBackground:@selector(loadContents:) withObject:self.rootFO];
+                              BACKGROUND(loadContents:, self.rootFO);
                               [bezelManager showBezel:self];
                               [bezelManager setText:_(@"filebrowserviewcontroller-Retrieving directory contents")];
 

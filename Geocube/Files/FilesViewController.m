@@ -338,7 +338,7 @@ enum {
     NSString *fn = [filesNames objectAtIndex:row];
     if ([[fn pathExtension] isEqualToString:@"geocube"] == YES) {
 
-        [self performSelectorInBackground:@selector(fileImportGeocube:) withObject:fn];
+        BACKGROUND(fileImportGeocube:, fn);
         return;
     }
 
@@ -424,7 +424,7 @@ enum {
             [dict setObject:[accounts objectAtIndex:selectedIndex] forKey:@"account"];
             [dict setObject:[NSNumber numberWithInt:IMPORTOPTION_NONE] forKey:@"options"];
 
-            [self performSelectorInBackground:@selector(fileImportBG:) withObject:dict];
+            BACKGROUND(fileImportBG:, dict);
 
             __block dbFileImport *fi = nil;
             [fileImports enumerateObjectsUsingBlock:^(dbFileImport * _Nonnull _fi, NSUInteger idx, BOOL * _Nonnull stop) {
