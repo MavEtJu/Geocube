@@ -111,13 +111,11 @@
 {
     [markers enumerateObjectsUsingBlock:^(GMSMarker * _Nonnull m, NSUInteger idx, BOOL * _Nonnull stop) {
         m.map = nil;
-        m = nil;
     }];
     markers = nil;
 
     [circles enumerateObjectsUsingBlock:^(GCGMSCircle * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
         c.map = nil;
-        c = nil;
     }];
     circles = nil;
 }

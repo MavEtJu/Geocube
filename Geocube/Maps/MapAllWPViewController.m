@@ -94,7 +94,6 @@ enum {
             bl.latitude = (tbl.latitude * 19 + ttr.latitude) / 20;
             tr.longitude = (tbl.longitude + ttr.longitude * 19) / 20;
             tr.latitude = (tbl.latitude + ttr.latitude * 19) / 20;
-            dist = [Coordinates coordinates2distance:bl to:tr];
         } while ([Coordinates coordinates2distance:bl to:tr] > MAXSIZE);
     }
 

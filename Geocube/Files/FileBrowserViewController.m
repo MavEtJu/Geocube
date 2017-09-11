@@ -169,15 +169,15 @@
         FileObjectView *fov = [[FileObjectView alloc] initWithFrame:CGRectMake(0, self.y, width, 20)];
         fov.filename.text = fo.filename;
         fov.filesize.text = [MyTools niceFileSize:fo.filesize];
-        fov.filetype.text = @"(f)";
+        fov.filetype.text = _(@"filebrowserviewcontroller-(f)");
         if (fo.isDir == YES)
-            fov.filetype.text = @"(d)";
+            fov.filetype.text = _(@"filebrowserviewcontroller-(d)");
         if (fo.isLinkToLink == YES)
-            fov.filetype.text = @"(ll)";
+            fov.filetype.text = _(@"filebrowserviewcontroller-(ll)");
         if (fo.isLinkToDir == YES)
-            fov.filetype.text = @"(ld)";
+            fov.filetype.text = _(@"filebrowserviewcontroller-(ld)");
         if (fo.isLinkToFile == YES)
-            fov.filetype.text = @"(lf)";
+            fov.filetype.text = _(@"filebrowserviewcontroller-(lf)");
         fov.fo = fo;
         self.y += fov.frame.size.height;
 

@@ -1542,6 +1542,7 @@ bail:
         [tbjson setObject:j forKey:@"geocache"];
         [tbjson setObject:tb.ref forKey:@"referenceCode"];
         [tbjson setObject:dateLogged forKey:@"date"];
+        [tbjson setObject:note forKey:@"note"];
         [json addObject:tbjson];
     }];
 
