@@ -131,9 +131,9 @@ enum {
         [lmi enableItem:menuExportGPX];
 
         // Hide the search window by default
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        MAINQUEUE(
             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-        }];
+        )
     }
 }
 

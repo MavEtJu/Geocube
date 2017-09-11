@@ -57,10 +57,10 @@
         self.waypointsArray = nil;
     }
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    MAINQUEUE(
         [self.map removeMarkers];
         [self.map placeMarkers];
-    }];
+    )
 
     [bezelManager removeBezel];
 }

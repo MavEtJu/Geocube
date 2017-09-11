@@ -27,25 +27,25 @@
 
 - (void)showBezel:(UIViewController *)vc
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    MAINQUEUE(
         [SVProgressHUD setDefaultStyle:currentTheme.svProgressHUDStyle];
         [SVProgressHUD showWithStatus:@"Doing stuff"];
-    }];
+    )
 }
 
 - (void)setText:(NSString *)text
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    MAINQUEUE(
         [SVProgressHUD setDefaultStyle:currentTheme.svProgressHUDStyle];
         [SVProgressHUD showWithStatus:text];
-    }];
+    )
 }
 
 - (void)removeBezel
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    MAINQUEUE(
         [SVProgressHUD dismiss];
-    }];
+    )
 }
 
 @end

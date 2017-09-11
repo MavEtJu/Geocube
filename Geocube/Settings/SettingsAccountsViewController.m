@@ -260,9 +260,9 @@ enum {
         [msg appendFormat:@" (%@)", [error description]];
 
     NSLog(@"failure: %@", msg);
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    MAINQUEUE(
         [MyTools messageBox:self header:_(@"settingsaccountsviewcontroller-Authentication failed") text:msg];
-    }];
+    )
 
     [self refreshAccountData];
     [self.tableView reloadData];
@@ -270,9 +270,9 @@ enum {
 
 - (void)remoteAPI:(RemoteAPITemplate *)api success:(NSString *)success;
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    MAINQUEUE(
         [MyTools messageBox:self header:_(@"settingsaccountsviewcontroller-Authentication sucessful") text:_(@"settingsaccountsviewcontroller-Yay!")];
-    }];
+    )
 
     [self refreshAccountData];
     [self.tableView reloadData];

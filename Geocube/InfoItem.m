@@ -81,13 +81,13 @@
             labelChunks = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
             labelBytes = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
 
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            MAINQUEUE(
                 [self.view addSubview:labelDesc];
                 [self.view addSubview:labelURL];
                 [self.view addSubview:labelChunks];
                 [self.view addSubview:labelBytes];
                 [self calculateRects];
-            }];
+            )
 
             break;
         }
@@ -106,14 +106,14 @@
             showWaypoints = YES;
             showTrackables = YES;
 
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            MAINQUEUE(
                 [self.view addSubview:labelDesc];
                 [self.view addSubview:labelLinesObjects];
                 [self.view addSubview:labelWaypoints];
                 [self.view addSubview:labelLogs];
                 [self.view addSubview:labelTrackables];
                 [self calculateRects];
-            }];
+            )
 
             break;
         }
@@ -127,13 +127,13 @@
             labelBytes = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
             labelQueue = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
 
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            MAINQUEUE(
                 [self.view addSubview:labelDesc];
                 [self.view addSubview:labelQueue];
                 [self.view addSubview:labelURL];
                 [self.view addSubview:labelBytes];
                 [self calculateRects];
-            }];
+            )
             break;
     }
 
@@ -210,7 +210,7 @@
         __var__ = nil; \
     }
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    MAINQUEUE(
         UPDATE(labelDesc, nextDesc);
         UPDATE(labelURL, nextURL);
         UPDATE(labelChunks, nextChunks);
@@ -220,7 +220,7 @@
         UPDATE(labelTrackables, nextTrackables);
         UPDATE(labelWaypoints, nextWaypoints);
         UPDATE(labelQueue, nextQueue);
-    }];
+    )
 
     self.needsRefresh = NO;
 }

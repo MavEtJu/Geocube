@@ -152,9 +152,9 @@
 
 - (void)reloadDataMainQueue
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    MAINQUEUE(
         [self.tableView reloadData];
-    }];
+    )
 }
 
 #pragma -- UITableView related functions

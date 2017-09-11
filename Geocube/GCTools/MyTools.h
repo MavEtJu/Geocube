@@ -236,9 +236,9 @@ typedef sqlite3_int64 NSId;
     }
 
 // Main Thread macro
-#define MAINTHREAD(block) \
+#define MAINQUEUE(block) \
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{ \
-        block \
+        block; \
     }]; \
 
 #define BACKGROUND(__selector__, __data__) \

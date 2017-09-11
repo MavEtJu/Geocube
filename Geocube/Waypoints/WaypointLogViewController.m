@@ -667,9 +667,9 @@ enum {
         if (self.delegateWaypoint != nil)
             [self.delegateWaypoint WaypointLog_refreshWaypointData];
 
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        MAINQUEUE(
             [self.navigationController popViewControllerAnimated:YES];
-        }];
+        )
         [MyTools messageBox:self.parentViewController header:_(@"waypointlogviewcontroller-Log successful") text:_(@"waypointlogviewcontroller-This log has been successfully submitted.")];
 
         return;

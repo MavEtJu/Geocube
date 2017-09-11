@@ -466,13 +466,13 @@
 {
     NSInteger i = distanceLabelCounter;
     [NSThread sleepForTimeInterval:[seconds integerValue]];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    MAINQUEUE(
         if (distanceLabelLocked == YES && i == distanceLabelCounter) {
             distanceLabelLocked = NO;
             distanceLabel.text = @"";
             [self.map removeLineTapToMe];
         }
-    }];
+    )
 }
 
 - (void)updateLocationManagerHistory:(GCCoordsHistorical *)ch

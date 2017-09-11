@@ -378,19 +378,19 @@
         __line__.strokeColor = configManager.mapTrackColour; \
         __line__.map = mapView;
 
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        MAINQUEUE(
             ADDPATH(lastPathHistory, lineHistory)
             [linesHistory addObject:lineHistory];
-        }];
+        )
 
         [lastPathHistory removeAllCoordinates];
     }];
 
     if ([lastPathHistory count] != 0) {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        MAINQUEUE(
             ADDPATH(lastPathHistory, lineHistory)
             [linesHistory addObject:lineHistory];
-        }];
+        )
     }
 }
 
@@ -406,7 +406,7 @@
     if (ch.restart == YES) {
         [lastPathHistory removeAllCoordinates];
     } else {
-        MAINTHREAD(
+        MAINQUEUE(
             [linesHistory lastObject].map = nil;
             [linesHistory removeLastObject];
         )
@@ -414,18 +414,18 @@
 
     [lastPathHistory addCoordinate:ch.coord];
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    MAINQUEUE(
         ADDPATH(lastPathHistory, lineHistory)
         [linesHistory addObject:lineHistory];
-    }];
+    )
 
     if ([lastPathHistory count] == 200) {
         lastPathHistory = [GMSMutablePath path];
         [lastPathHistory addCoordinate:ch.coord];
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        MAINQUEUE(
             ADDPATH(lastPathHistory, lineHistory)
             [linesHistory addObject:lineHistory];
-        }];
+        )
     }
 }
 

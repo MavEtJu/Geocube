@@ -75,9 +75,9 @@
         [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
             // Doing this via the main queue because Google Map Service insists on it.
             NSLog(@"%@: refreshing #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            MAINQUEUE(
                 [delegate refreshWaypoints];
-            }];
+            )
         }];
     }
 }
@@ -89,9 +89,9 @@
     [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        MAINQUEUE(
             [delegate addWaypoint:wp];
-        }];
+        )
     }];
 }
 
@@ -102,9 +102,9 @@
     [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        MAINQUEUE(
             [delegate removeWaypoint:wp];
-        }];
+        )
     }];
 }
 
@@ -117,9 +117,9 @@
     [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        MAINQUEUE(
             [delegate updateWaypoint:wp];
-        }];
+        )
     }];
 }
 

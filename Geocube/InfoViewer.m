@@ -73,7 +73,7 @@
     stopUpdating = NO;
     contentOffset = _contentOffset;
     BACKGROUND(refreshItems, nil);
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^(void) {
+    MAINQUEUE(
         CGRect frame = self.frame;
         CGRect bounds = self.superview.frame;
 
@@ -82,15 +82,15 @@
 
         self.hidden = NO;
         [self.superview bringSubviewToFront:self];
-    }];
+    )
 }
 
 - (void)hide
 {
     stopUpdating = YES;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^(void) {
+    MAINQUEUE(
         self.hidden = YES;
-    }];
+    )
 }
 
 - (void)refreshItems
@@ -117,10 +117,10 @@
             }
             if (ii.needsRecalculate == YES) {
                 NSLog(@"!");
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                MAINQUEUE(
                     [ii recalculate];
                     [self calculateRects];
-                }];
+                )
             }
         }];
     }
@@ -145,10 +145,10 @@
         [imageItems addObject:iii];
     }
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    MAINQUEUE(
         [self addSubview:iii.view];
         [self calculateRects];
-    }];
+    )
 
     return iii._id;
 }
@@ -167,10 +167,10 @@
         [importItems addObject:iii];
     }
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    MAINQUEUE(
         [self addSubview:iii.view];
         [self calculateRects];
-    }];
+    )
 
     return iii._id;
 }
@@ -189,10 +189,10 @@
         [downloadItems addObject:iid];
     }
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    MAINQUEUE(
         [self addSubview:iid.view];
         [self calculateRects];
-    }];
+    )
 
     return iid._id;
 }
@@ -218,32 +218,35 @@
     }
 
     if (ii != nil) {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        MAINQUEUE(
             [ii.view removeFromSuperview];
             [self calculateRects];
-        }];
+        )
     }
 }
 
 - (void)setImageHeaderSuffix:(NSString *)suffix
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        imageHeader.text = [NSString stringWithFormat:@"%@ (%@)", _(@"infoviewer-Images"), suffix];
-    }];
+    NSString *t = [NSString stringWithFormat:@"%@ (%@)", _(@"infoviewer-Images"), suffix];
+    MAINQUEUE(
+        imageHeader.text = t;
+    )
 }
 
 - (void)setDownloadHeaderSuffix:(NSString *)suffix
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        downloadHeader.text = [NSString stringWithFormat:@"%@ (%@)", _(@"infoviewer-Downloads"), suffix];
-    }];
+    NSString *t = [NSString stringWithFormat:@"%@ (%@)", _(@"infoviewer-Downloads"), suffix];
+    MAINQUEUE(
+        downloadHeader.text = t;
+    )
 }
 
 - (void)setImportHeaderSuffix:(NSString *)suffix
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        importHeader.text = [NSString stringWithFormat:@"%@ (%@)", _(@"infoviewer-Imports"), suffix];
-    }];
+    NSString *t = [NSString stringWithFormat:@"%@ (%@)", _(@"infoviewer-Imports"), suffix];
+    MAINQUEUE(
+        importHeader.text = t;
+    )
 }
 
 - (CGRect)rectFromBottom

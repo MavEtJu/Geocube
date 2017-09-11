@@ -68,10 +68,10 @@ enum {
 
     self.waypointsArray = [waypointManager currentWaypoints];
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    MAINQUEUE(
         [self.map removeMarkers];
         [self.map placeMarkers];
-    }];
+    )
 
     [bezelManager removeBezel];
 }

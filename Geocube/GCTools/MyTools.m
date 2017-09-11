@@ -627,9 +627,9 @@ TIME(dateTimeString_dow, @"EEEE")
                             }];
 
     [alert addAction:close];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    MAINQUEUE(
         [ALERT_VC_RVC(vc) presentViewController:alert animated:YES completion:nil];
-    }];
+    )
 }
 
 /// Show up a message box with a header, a text and an error string
@@ -648,9 +648,9 @@ TIME(dateTimeString_dow, @"EEEE")
                             }];
 
     [alert addAction:close];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    MAINQUEUE(
         [ALERT_VC_RVC(vc) presentViewController:alert animated:YES completion:nil];
-    }];
+    )
 }
 
 /// Returns a random UIColor object (not black)
@@ -743,9 +743,9 @@ TIME(dateTimeString_dow, @"EEEE")
                                 }];
 
         [alert addAction:close];
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        MAINQUEUE(
             [ALERT_VC_RVC(vc) presentViewController:alert animated:YES completion:nil];
-        }];
+        )
     }
 }
 

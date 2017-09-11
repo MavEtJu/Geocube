@@ -322,9 +322,9 @@ enum {
     while ([coords count] > 100)
         [coords removeObjectAtIndex:0];
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    MAINQUEUE(
         ivGNSSMap.image = [self createGNSSMap];
-    }];
+    )
 }
 
 - (void)updateEverySecond

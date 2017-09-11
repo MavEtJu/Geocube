@@ -84,10 +84,10 @@
     rootFO.contents = fos;
 
     if ([rootFO.cwd isEqualToString:@""] == YES) {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        MAINQUEUE(
             [bezelManager removeBezel];
             [self refreshContentsView];
-        }];
+        )
     }
 }
 

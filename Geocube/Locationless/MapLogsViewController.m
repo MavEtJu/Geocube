@@ -65,11 +65,11 @@
         [self.waypointsArray addObject:wp];
     }];
 
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    MAINQUEUE(
         [self.map removeMarkers];
         [self.map placeMarkers];
         [self.map moveCameraToAll];
-    }];
+    )
 }
 
 - (void)refreshWaypointsData
