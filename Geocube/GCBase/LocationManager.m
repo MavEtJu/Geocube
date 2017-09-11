@@ -62,6 +62,7 @@
     self.delegatesHistory = [NSMutableArray arrayWithCapacity:5];
     self.delegatesLocation = [NSMutableArray arrayWithCapacity:5];
     self.delegatesSpeed = [NSMutableArray arrayWithCapacity:5];
+    self.delegatesHeading = [NSMutableArray arrayWithCapacity:5];
     self.useGNSS = YES;
 
     lastSync = 0;
@@ -102,6 +103,89 @@
     [self.delegatesSpeed enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         [delegate updateLocationManagerSpeed];
     }];
+}
+
+- (void)updateHeadingDelegates
+{
+    [self.delegatesHeading enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+        [delegate updateLocationManagerHeading];
+    }];
+}
+
+- (void)checkStopDelegations
+{
+    if ([self.delegatesLocation count] > 0 ||
+        [self.delegatesSpeed count] > 0 ||
+        [self.delegatesHeading count] > 0 ||
+        [self.delegatesHistory count] > 0)
+        return;
+
+    [_LM stopUpdatingHeading];
+    [_LM stopUpdatingLocation];
+    NSLog(@"%@: Stopped all of them", [self class]);
+}
+
+- (void)startDelegationLocation:(id)_delegate isNavigating:(BOOL)isNavigating
+{
+    NSLog(@"%@: Location starting for %@ (isNavigating:%d)", [self class], [_delegate class], isNavigating);
+    [self adjustAccuracy:isNavigating];
+    [_LM startUpdatingHeading];
+    [_LM startUpdatingLocation];
+
+    if (_delegate != nil) {
+        [self.delegatesLocation addObject:_delegate];
+        [_delegate updateLocationManagerLocation];
+    }
+}
+
+- (void)stopDelegationLocation:(id)_delegate
+{
+    NSLog(@"%@: Location stopping for %@", [self class], [_delegate class]);
+    [self.delegatesLocation removeObject:_delegate];
+    [self adjustAccuracy:0];
+    [self checkStopDelegations];
+}
+
+- (void)startDelegationHistory:(id)_delegate
+{
+    NSLog(@"%@: History starting for %@", [self class], [_delegate class]);
+    [self.delegatesHistory addObject:_delegate];
+    [_delegate updateLocationManagerHistory:nil];
+}
+
+- (void)stopDelegationHistory:(id)_delegate
+{
+    NSLog(@"%@: History stopping for %@", [self class], [_delegate class]);
+    [self.delegatesHistory removeObject:_delegate];
+    [self checkStopDelegations];
+}
+
+- (void)startDelegationSpeed:(id)_delegate
+{
+    NSLog(@"%@: Speed starting for %@", [self class], [_delegate class]);
+    [self.delegatesSpeed addObject:_delegate];
+    [_delegate updateLocationManagerSpeed];
+}
+
+- (void)stopDelegationSpeed:(id)_delegate
+{
+    NSLog(@"%@: Speed stopping for %@", [self class], [_delegate class]);
+    [self.delegatesSpeed removeObject:_delegate];
+    [self checkStopDelegations];
+}
+
+- (void)startDelegationHeading:(id)_delegate
+{
+    NSLog(@"%@: Heading starting for %@", [self class], [_delegate class]);
+    [self.delegatesHeading addObject:_delegate];
+    [_delegate updateLocationManagerHeading];
+}
+
+- (void)stopDelegationHeading:(id)_delegate
+{
+    NSLog(@"%@: Heading stopping for %@", [self class], [_delegate class]);
+    [self.delegatesHeading removeObject:_delegate];
+    [self checkStopDelegations];
 }
 
 - (void)setNewAccuracy:(LM_ACCURACY)accuracy
@@ -211,69 +295,13 @@
     }
 }
 
-- (void)startDelegationLocation:(id)_delegate isNavigating:(BOOL)isNavigating
-{
-    NSLog(@"%@: Location starting for %@ (isNavigating:%d)", [self class], [_delegate class], isNavigating);
-
-    [self adjustAccuracy:isNavigating];
-    [_LM startUpdatingHeading];
-    [_LM startUpdatingLocation];
-
-    if (_delegate != nil) {
-        [self.delegatesLocation addObject:_delegate];
-        [_delegate updateLocationManagerLocation];
-    }
-}
-
-- (void)stopDelegationLocation:(id)_delegate
-{
-    NSLog(@"%@: Location stopping for %@", [self class], [_delegate class]);
-    [self.delegatesLocation removeObject:_delegate];
-    [self adjustAccuracy:0];
-
-    if ([self.delegatesLocation count] > 0)
-        return;
-    [_LM stopUpdatingHeading];
-    [_LM stopUpdatingLocation];
-    NSLog(@"%@: Stopped all of them", [self class]);
-}
-
-- (void)startDelegationHistory:(id)_delegate
-{
-    NSLog(@"%@: History starting for %@", [self class], [_delegate class]);
-
-    [self.delegatesHistory addObject:_delegate];
-    [_delegate updateLocationManagerHistory:nil];
-}
-
-- (void)stopDelegationHistory:(id)_delegate
-{
-    NSLog(@"%@: History stopping for %@", [self class], [_delegate class]);
-    [self.delegatesHistory removeObject:_delegate];
-}
-
-- (void)startDelegationSpeed:(id)_delegate
-{
-    NSLog(@"%@: Speed starting for %@", [self class], [_delegate class]);
-
-    [self.delegatesSpeed addObject:_delegate];
-    [_delegate updateLocationManagerSpeed];
-}
-
-- (void)stopDelegationSpeed:(id)_delegate
-{
-    NSLog(@"%@: Speed stopping for %@", [self class], [_delegate class]);
-    [self.delegatesSpeed removeObject:_delegate];
-}
-
 - (void)backgroundUpdater
 {
     do {
-        // Wait for a second
+        // Wait for a second and updates
         [NSThread sleepForTimeInterval:1];
         if (gotUpdate == NO)
             continue;
-
         gotUpdate = NO;
 
         // Keep a copy of the current data
@@ -355,19 +383,16 @@
     if (self.useGNSS == NO)
         return;
 
+    if (self.altitude == manager.location.altitude &&
+        self.coords.latitude == newLocation.coordinate.latitude &&
+        self.coords.longitude == newLocation.coordinate.longitude &&
+        self.accuracy == newLocation.horizontalAccuracy)
+        return;
+
     // Keep track of new values
     self.altitude = manager.location.altitude;
     self.coords = newLocation.coordinate;
     self.accuracy = newLocation.horizontalAccuracy;
-
-    // If the location hasn't changed, don't do anything at all.
-    if ([self.coordsHistorical count] != 0) {
-        GCCoordsHistorical *chLast = [self.coordsHistorical objectAtIndex:[self.coordsHistorical count] - 1];
-        if (chLast.coord.longitude == newLocation.coordinate.longitude &&
-            chLast.coord.latitude == newLocation.coordinate.latitude) {
-            return;
-        }
-    }
 
     // Send out the location and direction changes
     [self updateLocationDelegates];
@@ -381,13 +406,11 @@
     if (self.useGNSS == NO)
         return;
 
-    self.altitude = manager.location.altitude;
-    self.coords = manager.location.coordinate;
     self.direction = newHeading.trueHeading;
 
     // NSLog(@"Coordinates: %@ - Direction: %ld - speed: %0.2lf m/s", [Coordinates NiceCoordinates:coords], (long)LM.direction, LM.speed);
 
-    [self updateLocationDelegates];
+    [self updateHeadingDelegates];
 }
 
 - (void)useGNSS:(BOOL)useGNSS coordinates:(CLLocationCoordinate2D)newcoords

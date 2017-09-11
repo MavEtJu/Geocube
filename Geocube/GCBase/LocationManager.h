@@ -25,6 +25,12 @@
 
 @end
 
+@protocol LocationManagerHeadingDelegate
+
+- (void)updateLocationManagerHeading;
+
+@end
+
 @protocol LocationManagerSpeedDelegate
 
 - (void)updateLocationManagerSpeed;
@@ -51,6 +57,7 @@ typedef NS_ENUM(NSInteger, LM_ACCURACY) {
 @property (nonatomic, retain) NSMutableArray<id> *delegatesLocation;
 @property (nonatomic, retain) NSMutableArray<id> *delegatesHistory;
 @property (nonatomic, retain) NSMutableArray<id> *delegatesSpeed;
+@property (nonatomic, retain) NSMutableArray<id> *delegatesHeading;
 @property (nonatomic) float speed;
 
 @property (nonatomic) CLLocationAccuracy accuracy;
@@ -66,6 +73,9 @@ typedef NS_ENUM(NSInteger, LM_ACCURACY) {
 - (void)stopDelegationHistory:(id<LocationManagerHistoryDelegate>)delegate;
 - (void)startDelegationSpeed:(id<LocationManagerSpeedDelegate>)delegate;
 - (void)stopDelegationSpeed:(id<LocationManagerSpeedDelegate>)delegate;
+- (void)startDelegationHeading:(id<LocationManagerHeadingDelegate>)delegate;
+- (void)stopDelegationHeading:(id<LocationManagerHeadingDelegate>)delegate;
+
 - (void)useGNSS:(BOOL)_useGNSS coordinates:(CLLocationCoordinate2D)newcoords;
 - (void)clearCoordsHistorical;
 

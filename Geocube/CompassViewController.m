@@ -151,6 +151,7 @@
     /* Start the location manager */
     [LM startDelegationLocation:self isNavigating:TRUE];
     [LM startDelegationSpeed:self];
+    [LM startDelegationHeading:self];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -159,6 +160,7 @@
     [audioFeedback togglePlay:NO];
     [LM stopDelegationLocation:self];
     [LM stopDelegationSpeed:self];
+    [LM stopDelegationHeading:self];
     [super viewWillDisappear:animated];
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -219,7 +221,12 @@
     Coordinates *c = [[Coordinates alloc] init:LM.coords];
     self.labelGNSSLat.text = [c lat_degreesDecimalMinutes];
     self.labelGNSSLon.text = [c lon_degreesDecimalMinutes];
+    self.labelGNSSDistance.text = [MyTools niceDistance:[c distance:waypointManager.currentWaypoint.wpt_latitude longitude:waypointManager.currentWaypoint.wpt_longitude]];
+}
 
+/* Receive data from the location manager */
+- (void)updateLocationManagerHeading
+{
     /* Draw the compass */
     float newCompass = -LM.direction * M_PI / 180.0f + bearingAdjustment;
 
@@ -235,7 +242,6 @@
         self.ivGNSSCompassLine.hidden = NO;
 
         self.ivGNSSCompassLine.transform = CGAffineTransformMakeRotation(fBearing);
-        self.labelGNSSDistance.text = [MyTools niceDistance:[c distance:waypointManager.currentWaypoint.wpt_latitude longitude:waypointManager.currentWaypoint.wpt_longitude]];
     }
 
     if (configManager.soundDirection == YES) {
@@ -246,7 +252,6 @@
         //NSLog(@"bearing: %ld - freq: %ld", bearing, freq);
         [audioFeedback setTheFrequency:freq];
     }
-
 }
 
 @end

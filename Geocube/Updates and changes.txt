@@ -11,6 +11,7 @@ Version 1.5(x)
     / non-navigating) or dynamic (near, midrange, far).
   - Add a private account for importing of waypoints unrelated to
     listing services.
+  - Show speed on the compass.
 
   Fixes:
   - If the locale doesn't use the metric system, then default to
