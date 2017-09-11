@@ -85,21 +85,21 @@
     if (self.useGNSS == NO)
         return;
 
-    [self.delegatesLocation enumerateObjectsUsingBlock:^(id<LocationManagerLocationDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.delegatesLocation enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         [delegate updateLocationManagerLocation];
     }];
 }
 
 - (void)updateHistoryDelegates:(GCCoordsHistorical *)ch
 {
-    [self.delegatesHistory enumerateObjectsUsingBlock:^(id<LocationManagerHistoryDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.delegatesHistory enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         [delegate updateLocationManagerHistory:ch];
     }];
 }
 
 - (void)updateSpeedDelegates
 {
-    [self.delegatesSpeed enumerateObjectsUsingBlock:^(id<LocationManagerSpeedDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.delegatesSpeed enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         [delegate updateLocationManagerSpeed];
     }];
 }
@@ -286,18 +286,20 @@
         ch.restart = NO;
 
         [self.coordsHistorical addObject:ch];
-        [coordsSpeed addObject:ch];
 
         // Calculate speed over the last ten units.
-        if ([coordsSpeed count] >= configManager.speedSamples) {
-            GCCoordsHistorical *ch0 = [coordsSpeed firstObject];
-            td = ch.when - ch0.when;
-            float distance = [Coordinates coordinates2distance:ch.coord to:ch0.coord];
-            if (td != 0) {
-                self.speed = distance / td;
-                [self updateSpeedDelegates];
+        if (configManager.speedEnable == YES) {
+            [coordsSpeed addObject:ch];
+            if ([coordsSpeed count] >= configManager.speedSamples) {
+                GCCoordsHistorical *ch0 = [coordsSpeed firstObject];
+                td = ch.when - ch0.when;
+                float distance = [Coordinates coordinates2distance:ch.coord to:ch0.coord];
+                if (td != 0) {
+                    self.speed = distance / td;
+                    [self updateSpeedDelegates];
+                }
+                [coordsSpeed removeObjectAtIndex:0];
             }
-            [coordsSpeed removeObjectAtIndex:0];
         }
 
         // Change the accuracy for the receiver

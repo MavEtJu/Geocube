@@ -204,4 +204,10 @@
 "settingsmainviewcontroller-Update distance for static 'navigating' pages" = "Verander afstand voor statische 'navigating' paginas";
 "settingsmainviewcontroller-Update distance for static 'non-navigating' pages" = "Verander afstand voor statische 'non-navigating' paginas";
 
-
+"settingsmainviewcontroller-%ld seconds" = "%ld seconde";
+"settingsmainviewcontroller-Averaged over X seconds" = "Gemiddeld over X secondes";
+"settingsmainviewcontroller-Enable speed calculation" = "Bereken de snelheid";
+"settingsmainviewcontroller-Minimum speed to be displayed (in km/h)" = "Minimum zichtbare snelheid (in km/h)";
+"settingsmainviewcontroller-Minimum speed to show" = "Minimum zichtbare snelheid";
+"settingsmainviewcontroller-Speed" = "Snelheid";
+"settingsmainviewcontroller-Speed sample time" = "Berekend over";

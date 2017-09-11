@@ -170,6 +170,7 @@
     CHECK(@"accuracy_static_deltad_navigating", @"0");
     CHECK(@"accuracy_static_deltad_nonnavigating", @"10");
 
+    CHECK(@"speed_enable", @"1");
     CHECK(@"speed_samples", @"10");
     CHECK(@"speed_minimum", @"3");
 }
@@ -268,6 +269,7 @@
     LOAD_INTEGER(self.accuracyStaticAccuracyNonNavigating, @"accuracy_static_accuracy_nonnavigating");
     LOAD_INTEGER(self.accuracyStaticDeltaDNavigating, @"accuracy_static_deltad_navigating");
     LOAD_INTEGER(self.accuracyStaticDeltaDNonNavigating, @"accuracy_static_deltad_nonnavigating");
+    LOAD_BOOL   (self.speedEnable, @"speed_enable");
     LOAD_INTEGER(self.speedMinimum, @"speed_minimum");
     LOAD_INTEGER(self.speedSamples, @"speed_samples");
 
@@ -380,6 +382,7 @@ UPDATE3(BOOL, locationlessShowFound, @"locationless_showfound")
 UPDATE3(BOOL, opencageWifiOnly, @"opencage_wifionly")
 UPDATE3(BOOL, automaticDatabaseBackup, @"automaticdatabasebackup_enable")
 UPDATE3(BOOL, accuracyDynamicEnable, @"accuracy_dynamic_enable")
+UPDATE3(BOOL, speedEnable, @"speed_enable")
 
 UPDATE4(LM_ACCURACY, NSInteger, accuracyDynamicAccuracyNear, @"accuracy_dynamic_accuracy_near")
 UPDATE4(LM_ACCURACY, NSInteger, accuracyDynamicAccuracyMidrange, @"accuracy_dynamic_accuracy_midrange")

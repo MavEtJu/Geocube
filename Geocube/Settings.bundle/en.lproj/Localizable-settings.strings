@@ -202,3 +202,10 @@
 "settingsmainviewcontroller-Update distance for static 'navigating' pages" = "Update distance for static 'navigating' pages";
 "settingsmainviewcontroller-Update distance for static 'non-navigating' pages" = "Update distance for static 'non-navigating' pages";
 
+"settingsmainviewcontroller-%ld seconds" = "%ld seconds";
+"settingsmainviewcontroller-Averaged over X seconds" = "Averaged over X seconds";
+"settingsmainviewcontroller-Enable speed calculation" = "Enable speed calculation";
+"settingsmainviewcontroller-Minimum speed to be displayed (in km/h)" = "Minimum speed to be displayed (in km/h)";
+"settingsmainviewcontroller-Minimum speed to show" = "Minimum speed to show";
+"settingsmainviewcontroller-Speed" = "Speed";
+"settingsmainviewcontroller-Speed sample time" = "Speed sample time";

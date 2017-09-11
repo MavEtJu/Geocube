@@ -127,6 +127,7 @@ PROTO_N (LM_ACCURACY, accuracyStaticAccuracyNavigating);
 PROTO_N (LM_ACCURACY, accuracyStaticAccuracyNonNavigating);
 PROTO_N (NSInteger, accuracyStaticDeltaDNavigating);
 PROTO_N (NSInteger, accuracyStaticDeltaDNonNavigating);
+PROTO_N (BOOL, speedEnable);
 PROTO_N (NSInteger, speedSamples);
 PROTO_N (NSInteger, speedMinimum);
 

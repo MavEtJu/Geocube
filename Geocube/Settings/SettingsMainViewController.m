@@ -256,6 +256,7 @@ enum sections {
     SECTION_LISTS,
     SECTION_ACCOUNTS,
     SECTION_LOCATIONLESS,
+    SECTION_SPEED,
     SECTION_BACKUPS,
     SECTION_MAX,
 
@@ -367,6 +368,11 @@ enum sections {
     SECTION_ACCURACY_STATIC_DELTAD_NAVIGATING,
     SECTION_ACCURACY_STATIC_DELTAD_NONNAVIGATING,
     SECTION_ACCURACY_MAX,
+
+    SECTION_SPEED_ENABLE = 0,
+    SECTION_SPEED_SAMPLES,
+    SECTION_SPEED_MINIMUM,
+    SECTION_SPEED_MAX,
 };
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -388,6 +394,7 @@ enum sections {
         SECTION_MAX(COMPASS);
         SECTION_MAX(MAPS);
         SECTION_MAX(DYNAMICMAP);
+        SECTION_MAX(SPEED);
         SECTION_MAX(MAPCOLOURS);
         SECTION_MAX(KEEPTRACK);
         SECTION_MAX(MAPCACHE);
@@ -449,6 +456,8 @@ enum sections {
             return _(@"settingsmainviewcontroller-Backups");
         case SECTION_ACCURACY:
             return _(@"settingsmainviewcontroller-Accuracy");
+        case SECTION_SPEED:
+            return _(@"settingsmainviewcontroller-Speed");
         default:
             NSAssert1(0, @"Unknown section %ld", (long)section);
     }
@@ -814,6 +823,21 @@ enum sections {
             abort();
         }
 
+        case SECTION_SPEED: {
+            switch (indexPath.row) {
+                case SECTION_SPEED_ENABLE:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Enable speed calculation"), speedEnable, updateSpeedEnable)
+                case SECTION_SPEED_MINIMUM: {
+                    NSString *t = [MyTools niceSpeed:configManager.speedMinimum isMetric:YES];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Minimum speed to show"), t);
+                }
+                case SECTION_SPEED_SAMPLES: {
+                    NSString *t = [NSString stringWithFormat:_(@"settingsmainviewcontroller-%ld seconds"), configManager.speedSamples];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Speed sample time"), t);
+                }
+            }
+            abort();
+        }
     }
 
     // Not reached
@@ -850,6 +874,7 @@ SWITCH_UPDATE(updateShowCountryAsAbbrevation, showCountryAsAbbrevation)
 SWITCH_UPDATE(updateShowStateAsAbbrevation, showStateAsAbbrevation)
 SWITCH_UPDATE(updateShowStateAsAbbrevationWithLocality, showStateAsAbbrevationIfLocalityExists)
 SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
+SWITCH_UPDATE(updateSpeedEnable, speedEnable)
 
 - (void)updateDistanceMetric:(GCSwitch *)s
 {
@@ -1015,6 +1040,7 @@ SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
                     break;
             }
             break;
+
         case SECTION_ACCURACY:
             switch (indexPath.row) {
                 case SECTION_ACCURACY_DYNAMIC_ACCURACY_NEAR:
@@ -1034,6 +1060,17 @@ SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
                 case SECTION_ACCURACY_DYNAMIC_DISTANCE_NEARTOMIDRANGE:
                 case SECTION_ACCURACY_DYNAMIC_DISTANCE_MIDRANGETOFAR:
                     [self changeAccuracyDistance:indexPath.row];
+                    break;
+            }
+            break;
+
+        case SECTION_SPEED:
+            switch (indexPath.row) {
+                case SECTION_SPEED_MINIMUM:
+                    [self changeSpeedMinimum];
+                    break;
+                case SECTION_SPEED_SAMPLES:
+                    [self changeSpeedSamples];
                     break;
             }
             break;
@@ -1672,6 +1709,79 @@ SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.text = configManager.opencageKey;
         textField.placeholder = _(@"settingsmainviewcontroller-Number of days between backups");
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+/* ********************************************************************************* */
+
+- (void)changeSpeedMinimum
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:_(@"settingsmainviewcontroller-Speed")
+                                message:_(@"settingsmainviewcontroller-Minimum speed to be displayed (in km/h)")
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:_(@"OK")
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *value = tf.text;
+                             NSInteger i = [value integerValue];
+                             [configManager speedMinimumUpdate:i];
+                             [self.tableView reloadData];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = [NSString stringWithFormat:@"%ld", (long)configManager.speedMinimum];
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)changeSpeedSamples
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:_(@"settingsmainviewcontroller-Speed")
+                                message:_(@"settingsmainviewcontroller-Averaged over X seconds")
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:_(@"OK")
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *value = tf.text;
+                             NSInteger i = [value integerValue];
+                             if (i > 0)
+                                 [configManager speedSamplesUpdate:i];
+                             [self.tableView reloadData];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = [NSString stringWithFormat:@"%ld", (long)configManager.speedSamples];
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
