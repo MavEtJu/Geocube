@@ -187,7 +187,8 @@
     [self.map mapViewDidAppear];
 
     if (self.staticHistory == NO) {
-        [LM startDelegation:self isNavigating:isNavigating];
+        [LM startDelegationLocation:self isNavigating:isNavigating];
+        [LM startDelegationHistory:self];
         if (meLocation.longitude == 0 && meLocation.latitude == 0)
             [self updateLocationManagerLocation];
     }
@@ -224,8 +225,10 @@
 {
     NSLog(@"%@/viewWillDisappear", [self class]);
 
-    if (self.staticHistory == NO)
-        [LM stopDelegation:self];
+    if (self.staticHistory == NO) {
+        [LM stopDelegationLocation:self];
+        [LM stopDelegationHistory:self];
+    }
     [super viewWillDisappear:animated];
     [self.map mapViewWillDisappear];
     isVisible = NO;

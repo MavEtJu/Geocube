@@ -139,7 +139,7 @@ enum {
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [LM startDelegation:self isNavigating:YES];
+    [LM startDelegationLocation:self isNavigating:YES];
     stopTimer = NO;
     BACKGROUND(updateEverySecond, nil);
 }
@@ -148,13 +148,7 @@ enum {
 {
     [super viewWillDisappear:animated];
     stopTimer = YES;
-    [LM stopDelegation:self];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    [LM stopDelegation:self];
+    [LM stopDelegationLocation:self];
 }
 
 - (void)calculateRects

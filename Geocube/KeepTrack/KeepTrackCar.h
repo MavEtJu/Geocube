@@ -19,6 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface KeepTrackCar : GCViewController <LocationManagerDelegate>
+@interface KeepTrackCar : GCViewController <LocationManagerLocationDelegate>
 
 @end

@@ -151,14 +151,14 @@
     [self viewWilltransitionToSize];
 
     /* Start the location manager */
-    [LM startDelegation:self isNavigating:TRUE];
+    [LM startDelegationLocation:self isNavigating:TRUE];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     NSLog(@"%@/viewWillDisappear", [self class]);
     [audioFeedback togglePlay:NO];
-    [LM stopDelegation:self];
+    [LM stopDelegationLocation:self];
     [super viewWillDisappear:animated];
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];

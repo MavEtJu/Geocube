@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapTemplateViewController : GCViewController <LocationManagerDelegate, WaypointManagerDelegate>
+@interface MapTemplateViewController : GCViewController <LocationManagerLocationDelegate, LocationManagerHistoryDelegate, WaypointManagerDelegate>
 
 typedef NS_ENUM(NSInteger, MVMenuItem) {
     MVCmenuBrandChange,

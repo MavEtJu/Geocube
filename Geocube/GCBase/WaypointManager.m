@@ -46,7 +46,7 @@
     if (configManager.currentWaypoint != nil && [configManager.currentWaypoint isEqualToString:@""] == NO)
         self.currentWaypoint = [dbWaypoint dbGetByName:configManager.currentWaypoint];
 
-    [LM startDelegation:self isNavigating:NO];
+    [LM startDelegationLocation:self isNavigating:NO];
 
     delegates = [NSMutableArray arrayWithCapacity:5];
     [self needsRefreshAll];

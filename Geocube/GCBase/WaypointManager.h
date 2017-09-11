@@ -28,7 +28,7 @@
 
 @end
 
-@interface WaypointManager : NSObject <LocationManagerDelegate>
+@interface WaypointManager : NSObject <LocationManagerLocationDelegate>
 
 @property (nonatomic, retain, readonly) dbWaypoint *currentWaypoint;
 @property (nonatomic, retain) NSMutableArray<dbWaypoint *> *currentWaypoints;

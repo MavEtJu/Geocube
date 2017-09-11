@@ -28,6 +28,6 @@ typedef NS_ENUM(NSInteger, GCCompassType) {
     COMPASS_AIRPLANE
 };
 
-@interface CompassViewController : GCViewController <LocationManagerDelegate>
+@interface CompassViewController : GCViewController <LocationManagerLocationDelegate>
 
 @end

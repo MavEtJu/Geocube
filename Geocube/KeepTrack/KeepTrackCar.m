@@ -185,13 +185,13 @@ enum {
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [LM startDelegation:self isNavigating:NO];
+    [LM startDelegationLocation:self isNavigating:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [LM stopDelegation:self];
+    [LM stopDelegationLocation:self];
 }
 
 - (void)remember

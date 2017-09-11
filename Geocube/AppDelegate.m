@@ -91,7 +91,7 @@
 
     // Initialize the location mamager - after configurationManager
     LM = [[LocationManager alloc] init];
-    [LM startDelegation:nil isNavigating:NO];
+    [LM startDelegationLocation:nil isNavigating:NO];
 
     // Initialize Google Maps -- after keyManager
     [GMSServices provideAPIKey:keyManager.googlemaps];

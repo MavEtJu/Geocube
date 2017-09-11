@@ -19,11 +19,13 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol LocationManagerDelegate
+@protocol LocationManagerLocationDelegate
 
 - (void)updateLocationManagerLocation;
 
-@optional
+@end
+
+@protocol LocationManagerHistoryDelegate
 
 - (void)updateLocationManagerHistory:(GCCoordsHistorical *)ch;
 
@@ -40,7 +42,8 @@ typedef NS_ENUM(NSInteger, LM_ACCURACY) {
     LMACCURACY_3000M,
 };
 
-@property (nonatomic, retain) NSMutableArray<id> *delegates;
+@property (nonatomic, retain) NSMutableArray<id> *delegatesLocation;
+@property (nonatomic, retain) NSMutableArray<id> *delegatesHistory;
 @property (nonatomic) float speed;
 
 @property (nonatomic) CLLocationAccuracy accuracy;
@@ -50,9 +53,10 @@ typedef NS_ENUM(NSInteger, LM_ACCURACY) {
 @property (nonatomic) NSMutableArray<GCCoordsHistorical *> *coordsHistorical;
 @property (nonatomic, readonly) BOOL useGNSS;
 
-- (void)startDelegation:(id<LocationManagerDelegate>)delegate isNavigating:(BOOL)isNavigating;
-- (void)stopDelegation:(id<LocationManagerDelegate>)delegate;
-- (void)updateDataDelegates;
+- (void)startDelegationLocation:(id<LocationManagerLocationDelegate>)delegate isNavigating:(BOOL)isNavigating;
+- (void)stopDelegationLocation:(id<LocationManagerLocationDelegate>)delegate;
+- (void)startDelegationHistory:(id<LocationManagerHistoryDelegate>)delegate;
+- (void)stopDelegationHistory:(id<LocationManagerHistoryDelegate>)delegate;
 - (void)useGNSS:(BOOL)_useGNSS coordinates:(CLLocationCoordinate2D)newcoords;
 - (void)clearCoordsHistorical;
 
