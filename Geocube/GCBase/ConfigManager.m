@@ -80,6 +80,7 @@
     CHECK(@"sound_distance", @"0");
 
     CHECK(@"keeptrack_enable", @"1");
+    CHECK(@"keeptrack_memoryonly", @"0");
     CHECK(@"keeptrack_autorotate", @"1");
     CHECK(@"keeptrack_timedelta_min", @"5.0");
     CHECK(@"keeptrack_timedelta_max", @"10.0");
@@ -198,13 +199,14 @@
     LOAD_INTEGER(self.lastImportGroup, @"lastimport_group");
     LOAD_INTEGER(self.lastAddedGroup, @"lastadded_group");
     LOAD_INTEGER(self.mapExternal, @"map_external");
-    LOAD_VALUE (self.mapBrandDefault, @"map_branddefault");
+    LOAD_VALUE  (self.mapBrandDefault, @"map_branddefault");
     LOAD_INTEGER(self.compassType, @"compass_type");
     LOAD_INTEGER(self.themeType, @"theme_type");
     LOAD_INTEGER(self.orientationsAllowed, @"orientations_allowed");
     LOAD_BOOL   (self.soundDirection, @"sound_direction");
     LOAD_BOOL   (self.soundDistance, @"sound_distance");
     LOAD_BOOL   (self.keeptrackEnable, @"keeptrack_enable");
+    LOAD_BOOL   (self.keeptrackMemoryOnly, @"keeptrack_memoryonly");
     LOAD_BOOL   (self.keeptrackAutoRotate, @"keeptrack_autorotate");
     LOAD_FLOAT  (self.keeptrackTimeDeltaMin, @"keeptrack_timedelta_min");
     LOAD_FLOAT  (self.keeptrackTimeDeltaMax, @"keeptrack_timedelta_max");
@@ -362,6 +364,7 @@ UPDATE3(BOOL, sendTweets, @"send_tweets")
 UPDATE3(BOOL, soundDirection, @"sound_direction")
 UPDATE3(BOOL, soundDistance, @"sound_distance")
 UPDATE3(BOOL, keeptrackEnable, @"keeptrack_enable")
+UPDATE3(BOOL, keeptrackMemoryOnly, @"keeptrack_memoryonly")
 UPDATE3(BOOL, keeptrackAutoRotate, @"keeptrack_autorotate")
 UPDATE3(BOOL, mapRotateToBearing, @"map_rotate_to_bearing")
 UPDATE3(BOOL, dynamicmapEnable, @"dynamicmap_enable")

@@ -62,6 +62,7 @@ PROTO_N (NSInteger, themeType);
 PROTO_N (BOOL, soundDirection);
 PROTO_N (BOOL, soundDistance);
 PROTO_N (BOOL, keeptrackEnable);
+PROTO_N (BOOL, keeptrackMemoryOnly);
 PROTO_N (BOOL, keeptrackAutoRotate);
 PROTO_N (float, keeptrackTimeDeltaMin);
 PROTO_N (float, keeptrackTimeDeltaMax);

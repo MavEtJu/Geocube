@@ -333,6 +333,9 @@
         // Change the accuracy for the receiver
         [self adjustAccuracy:lastIsNavigating];
 
+        if (configManager.keeptrackEnable == NO && configManager.keeptrackMemoryOnly == YES)
+            [self updateHistoryDelegates:ch];
+
         if (configManager.keeptrackEnable == YES) {
             // Update the historical track.
             // To save from random data changes, only do it every 5 seconds or every 100 meters, whatever comes first.
@@ -359,6 +362,8 @@
                     te.restart = jump;
                     [te dbCreate];
                     [historyData addObject:te];
+
+                    // Sync
                     if (lastSync + configManager.keeptrackSync < te.timestamp_epoch) {
                         [historyData enumerateObjectsUsingBlock:^(dbTrackElement * _Nonnull e, NSUInteger idx, BOOL * _Nonnull stop) {
                             [e dbCreate];

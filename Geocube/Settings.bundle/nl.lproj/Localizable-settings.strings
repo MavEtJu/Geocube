@@ -166,6 +166,7 @@
 "settingsmainviewcontroller-Waypoints" = "Waypoints";
 "settingsmainviewcontroller-White arrow on black" = "Witte pijl op zwarte achtergrond";
 "settingsmainviewcontroller-Enable keeping track" = "Zet het maken van Sporen aan";
+"settingsmainviewcontroller-Keep tracks in memory only" = "Onthoud de sporen alleen in het geheugen";
 
 "settingsmainviewcontroller-Backup rotation" = "Backup rotatie";
 "settingsmainviewcontroller-Backups" = "Backups";
