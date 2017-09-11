@@ -195,7 +195,10 @@
 /* Receive data from the location manager */
 - (void)updateLocationManagerSpeed
 {
-    NSString *t = [NSString stringWithFormat:_(@"compassviewcontroller-Speed: %@"), [MyTools niceSpeed:LM.speed * 3.6]];
+    NSString *t = @"";
+    float speedkmph = LM.speed * 3.6;
+    if (speedkmph > configManager.speedMinimum)
+        t = [NSString stringWithFormat:_(@"compassviewcontroller-Speed: %@"), [MyTools niceSpeed:speedkmph]];
     MAINQUEUE(
         self.labelSpeed.text = t;
     )

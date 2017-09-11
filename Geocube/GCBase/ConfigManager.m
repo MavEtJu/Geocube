@@ -169,6 +169,9 @@
     CHECK(@"accuracy_static_accuracy_nonnavigating", s);
     CHECK(@"accuracy_static_deltad_navigating", @"0");
     CHECK(@"accuracy_static_deltad_nonnavigating", @"10");
+
+    CHECK(@"speed_samples", @"10");
+    CHECK(@"speed_minimum", @"3");
 }
 
 - (void)loadValues
@@ -265,6 +268,8 @@
     LOAD_INTEGER(self.accuracyStaticAccuracyNonNavigating, @"accuracy_static_accuracy_nonnavigating");
     LOAD_INTEGER(self.accuracyStaticDeltaDNavigating, @"accuracy_static_deltad_navigating");
     LOAD_INTEGER(self.accuracyStaticDeltaDNonNavigating, @"accuracy_static_deltad_nonnavigating");
+    LOAD_INTEGER(self.speedMinimum, @"speed_minimum");
+    LOAD_INTEGER(self.speedSamples, @"speed_samples");
 
     /* Leftovers */
     self.currentTrack = [dbTrack dbGet:[[dbConfig dbGetByKey:@"track_current"].value integerValue]];
@@ -422,6 +427,8 @@ UPDATE3(NSInteger, locationlessListSortBy, @"locationless_sortby")
 UPDATE3(NSInteger, configUpdateLastTime, @"configupdate_lasttime")
 UPDATE3(NSInteger, automaticDatabaseBackupPeriod, @"automaticdatabasebackup_period")
 UPDATE3(NSInteger, automaticDatabaseBackupRotate, @"automaticdatabasebackup_rotate")
+UPDATE3(NSInteger, speedSamples, @"speed_samples")
+UPDATE3(NSInteger, speedMinimum, @"speed_minimum")
 
 UPDATE3(float, keeptrackTimeDeltaMin, @"keeptrack_timedelta_min")
 UPDATE3(float, keeptrackTimeDeltaMax, @"keeptrack_timedelta_max")

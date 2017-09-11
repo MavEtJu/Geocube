@@ -41,8 +41,6 @@
 
 @implementation LocationManager
 
-#define MAXSPEEDRECORDS 10
-
 - (instancetype)init
 {
     self = [super init];
@@ -68,7 +66,7 @@
 
     lastSync = 0;
     historyData = [NSMutableArray arrayWithCapacity:configManager.keeptrackSync / configManager.keeptrackTimeDeltaMax];
-    coordsSpeed = [NSMutableArray arrayWithCapacity:MAXSPEEDRECORDS];
+    coordsSpeed = [NSMutableArray arrayWithCapacity:configManager.speedSamples];
 
     CLAuthorizationStatus stat = [CLLocationManager authorizationStatus];
     if (stat == kCLAuthorizationStatusNotDetermined ||
@@ -292,7 +290,7 @@
         [coordsSpeed addObject:ch];
 
         // Calculate speed over the last ten units.
-        if ([coordsSpeed count] >= MAXSPEEDRECORDS) {
+        if ([coordsSpeed count] >= configManager.speedSamples) {
             GCCoordsHistorical *ch0 = [coordsSpeed firstObject];
             td = ch.when - ch0.when;
             float distance = [Coordinates coordinates2distance:ch.coord to:ch0.coord];
