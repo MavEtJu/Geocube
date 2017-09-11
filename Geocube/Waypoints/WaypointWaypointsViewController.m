@@ -202,14 +202,14 @@ enum {
 
 - (void)newWaypoint
 {
-    NSString *s = [NSString stringWithFormat:@"Waypoint coordinates:\n%@\nCurrent coordinates:\n%@", [Coordinates niceCoordinates:waypoint.wpt_latitude longitude:waypoint.wpt_longitude], [Coordinates niceCoordinates:LM.coords]];
+    NSString *s = [NSString stringWithFormat:_(@"waypointwaypointsviewcontroller-Waypoint coordinates:\n%@\nCurrent coordinates:\n%@"), [Coordinates niceCoordinates:waypoint.wpt_latitude longitude:waypoint.wpt_longitude], [Coordinates niceCoordinates:LM.coords]];
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Add a related waypoint"
+                                alertControllerWithTitle:_(@"waypointwaypointsviewcontroller-Add a related waypoint")
                                 message:s
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     okButton = [UIAlertAction
-                actionWithTitle:@"OK"
+                actionWithTitle:_(@"OK")
                 style:UIAlertActionStyleDefault
                 handler:^(UIAlertAction *action) {
                     //Do Some action
@@ -251,7 +251,7 @@ enum {
                         [self.delegateWaypoint WaypointWaypoints_refreshTable];
                 }];
     UIAlertAction *cancel = [UIAlertAction
-                             actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
@@ -260,7 +260,7 @@ enum {
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Latitude (like S 12 34.567)";
+        textField.placeholder = _(@"waypointwaypointsviewcontroller-Latitude (like S 12 34.567)");
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:YES];
         textField.text = [NSString stringWithString:[Coordinates niceLatitudeForEditing:waypoint.wpt_latitude]];
@@ -268,7 +268,7 @@ enum {
         tfLatitude = textField;
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Longitude (like E 23 45.678)";
+        textField.placeholder = _(@"waypointwaypointsviewcontroller-Longitude (like E 23 45.678)");
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:NO];
         textField.text = [NSString stringWithString:[Coordinates niceLongitudeForEditing:waypoint.wpt_longitude]];

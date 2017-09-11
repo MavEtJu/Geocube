@@ -28,7 +28,6 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.logs.text = @"Foo";
     [self changeTheme];
 }
 

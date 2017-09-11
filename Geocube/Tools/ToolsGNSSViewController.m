@@ -94,41 +94,34 @@ enum {
     [self.view addSubview:ivGNSSMap];
 
     labelCoordsMinX = [[GCSmallLabel alloc] initWithFrame:rectCoordsMinX];
-    labelCoordsMinX.text = @"MinX";
     labelCoordsMinX.transform = CGAffineTransformMakeRotation(-M_PI_2);
     labelCoordsMinX.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:labelCoordsMinX];
 
     labelCoordsMinY = [[GCSmallLabel alloc] initWithFrame:rectCoordsMinY];
-    labelCoordsMinY.text = @"MinY";
     labelCoordsMinY.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:labelCoordsMinY];
 
     labelCoordsMaxX = [[GCSmallLabel alloc] initWithFrame:rectCoordsMaxX];
-    labelCoordsMaxX.text = @"MaxX";
     labelCoordsMaxX.transform = CGAffineTransformMakeRotation(M_PI_2);
     labelCoordsMaxX.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:labelCoordsMaxX];
 
     labelCoordsMaxY = [[GCSmallLabel alloc] initWithFrame:rectCoordsMaxY];
-    labelCoordsMaxY.text = @"MaxY";
     labelCoordsMaxY.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:labelCoordsMaxY];
 
     labelCoordsAvg = [[GCSmallLabel alloc] initWithFrame:rectCoordsAvg];
-    labelCoordsAvg.text = @"avg";
     labelCoordsAvg.textAlignment = NSTextAlignmentCenter;
     labelCoordsAvg.textColor = [UIColor redColor];
     [self.view addSubview:labelCoordsAvg];
 
     labelCoordsLast = [[GCSmallLabel alloc] initWithFrame:rectCoordsLast];
-    labelCoordsLast.text = @"last";
     labelCoordsLast.textAlignment = NSTextAlignmentCenter;
     labelCoordsLast.textColor = [UIColor greenColor];
     [self.view addSubview:labelCoordsLast];
 
     labelDistance = [[GCSmallLabel alloc] initWithFrame:rectDistance];
-    labelDistance.text = @"last";
     labelDistance.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:labelDistance];
 

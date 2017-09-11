@@ -119,8 +119,9 @@ enum {
         }
     }
 
-    cell.userInteractionEnabled = YES;
+    NSAssert(cell != nil, @"Missing SECTION_LOGxxx");
 
+    cell.userInteractionEnabled = YES;
     return cell;
 }
 

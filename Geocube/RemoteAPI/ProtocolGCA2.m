@@ -370,7 +370,7 @@
 
 - (GCDictionaryGCA2 *)api_services_logs_images_add:(NSNumber *)logid data:(NSData *)imgdata caption:(NSString *)imageCaption description:(NSString *)imageDescription infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    NSLog(@"api_services_logs_images_add:%ld", (long)logid);
+    NSLog(@"api_services_logs_images_add:%ld", [logid longValue]);
 
     NSString *urlString = [self prepareURLString:@"/logs/images/add" params:nil];
     NSURL *url = [NSURL URLWithString:urlString];

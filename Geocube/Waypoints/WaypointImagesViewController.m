@@ -284,7 +284,7 @@ enum {
     }
 
     if (img == nil)
-        return nil;
+        abort();
 
     if ([img imageHasBeenDowloaded] == YES) {
         NSDictionary *exif = [MyTools imageEXIFData:[MyTools ImageFile:img.datafile]];

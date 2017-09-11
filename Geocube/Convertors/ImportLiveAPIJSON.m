@@ -205,7 +205,6 @@
     DICT_NSSTRING_PATH(dict, dummy, @"UTCPlaceDate");
     wp.wpt_date_placed_epoch = [MyTools secondsSinceEpochFromWindows:dummy];
 
-    dummy = @"Geocache";
     DICT_NSSTRING_PATH(dict, dummy, @"CacheType.GeocacheTypeName");
     [wp set_wpt_type_str:dummy];
     [wp set_wpt_symbol_str:@"Geocache"];

@@ -286,7 +286,6 @@
     distanceLabel.layer.shadowColor = [[UIColor redColor] CGColor];
     distanceLabel.layer.shadowRadius = 1;
     distanceLabel.strokeSize = 1;
-    distanceLabel.text = @"Nothing yet";
     [self.view addSubview:distanceLabel];
 }
 

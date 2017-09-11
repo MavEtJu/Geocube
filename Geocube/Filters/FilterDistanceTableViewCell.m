@@ -156,16 +156,16 @@
 
     switch (compareDistance) {
         case FILTER_DISTANCE_LESSTHAN:
-            [compareDistanceButton setTitle:@"=<" forState:UIControlStateNormal];
-            [compareDistanceButton setTitle:@"=<" forState:UIControlStateSelected];
+            [compareDistanceButton setTitle:_(@"=<") forState:UIControlStateNormal];
+            [compareDistanceButton setTitle:_(@"=<") forState:UIControlStateSelected];
             break;
         case FILTER_DISTANCE_MORETHAN:
-            [compareDistanceButton setTitle:@">=" forState:UIControlStateNormal];
-            [compareDistanceButton setTitle:@">=" forState:UIControlStateSelected];
+            [compareDistanceButton setTitle:_(@">=") forState:UIControlStateNormal];
+            [compareDistanceButton setTitle:_(@">=") forState:UIControlStateSelected];
             break;
         case FILTER_DISTANCE_INBETWEEN:
-            [compareDistanceButton setTitle:@"=" forState:UIControlStateNormal];
-            [compareDistanceButton setTitle:@"=" forState:UIControlStateSelected];
+            [compareDistanceButton setTitle:_(@"=") forState:UIControlStateNormal];
+            [compareDistanceButton setTitle:_(@"=") forState:UIControlStateSelected];
             break;
         default:
             break;

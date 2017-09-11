@@ -213,7 +213,7 @@ static const double kFeetPerMile = 5280.0;
 		if ( meters > 2000.0f )
 		{
 			// use kilometer scale
-			unit = @"km";
+			unit = _(@"distance-km");
 			static const NSUInteger kKilometerScale[] = {1,2,5,10,20,50,100,200,500,1000,2000,5000,10000,20000,50000};
 			float kilometers = meters / 1000.0f;
 			
@@ -230,7 +230,7 @@ static const double kFeetPerMile = 5280.0;
 		else
 		{
 			// use meter scale
-			unit = @"m";
+			unit = _(@"distance-m");
 			static const NSUInteger kMeterScale[11] = {1,2,5,10,20,50,100,200,500,1000,2000};
 
 			for ( int i = 0; i < 11; ++i )
@@ -251,7 +251,7 @@ static const double kFeetPerMile = 5280.0;
 		if ( feet > kFeetPerMile )
 		{
 			// user mile scale
-			unit = @"mi";
+			unit = _(@"distance-mi");
 			static const double kMileScale[] = {1,2,5,10,20,50,100,200,500,1000,2000,5000,10000,20000,50000};
 			float miles = feet / kFeetPerMile;
 			
@@ -268,7 +268,7 @@ static const double kFeetPerMile = 5280.0;
 		else
 		{
 			// use foot scale
-			unit = @"ft";
+			unit = _(@"distance-ft");
 			static const double kFootScale[] = {1,2,5,10,20,50,100,200,500,1000,2000,5000,10000};
 
 			for ( int i = 0; i < 13; ++i )

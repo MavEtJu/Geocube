@@ -356,7 +356,7 @@ enum {
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.text = @"";
-        textField.placeholder = @"URL";
+        textField.placeholder = _(@"URL");
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];

@@ -168,7 +168,8 @@
             }
         }
 
-        [wp dbUpdateCountryStateLocality];
+        if (needsUpdate == YES)
+            [wp dbUpdateCountryStateLocality];
     } else {
         disabled = YES;
         @synchronized (self) {

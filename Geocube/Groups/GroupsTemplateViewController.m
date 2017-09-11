@@ -199,7 +199,7 @@
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
+                         actionWithTitle:_(@"OK")
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction *action) {
                              //Do Some action

@@ -85,10 +85,6 @@
 
 - (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables coordinates:(CLLocationCoordinate2D)coordinates infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    NSData *imgdata = nil;
-    if (image != nil)
-        imgdata = [NSData dataWithContentsOfFile:[MyTools ImageFile:image.datafile]];
-
     NSMutableDictionary *tbs = [NSMutableDictionary dictionaryWithCapacity:[trackables count]];
     [trackables enumerateObjectsUsingBlock:^(dbTrackable * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {
         if (tb.logtype == TRACKABLE_LOG_NONE)

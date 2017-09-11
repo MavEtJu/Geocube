@@ -54,12 +54,12 @@
 
 "distance-ft" = "ft";
 "distance-feet" = "feet";
-"distance-ml" = "ml";
+"distance-mi" = "mi";
 "distance-mile" = "mile";
 "distance-miles" = "miles";
 "distance-ft/s" = "ft/s";
 "distance-feet/second" = "feet/second";
-"distance-ml/h" = "ml/h";
+"distance-mi/h" = "mi/h";
 "distance-miles/hour" = "miles/hour";
 
 /* Time related */
@@ -160,4 +160,7 @@
 "Reset" = "Reset";
 
 /* Others */
+"=" = "=";
+"=<" = "=<";
+">=" = ">=";
 "tweet-fail" = "You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup.";

@@ -270,12 +270,12 @@
     HelpAboutTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_HELPABOUTTABLEVIEWCELL forIndexPath:indexPath];
 
     if (indexPath.section == 0) {
-        NSString *s = [NSString stringWithFormat:@"Geocube Version %@(%@)\nBuild on %s %s",
+        NSString *s = [NSString stringWithFormat:@"helpaboutviewcontroller-Geocube Version %@(%@)\nBuild on %s %s",
                        [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
                        [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"],
                        __DATE__, __TIME__];
         cell.name.text = s;
-        cell.url.text = @"http://geocube.mavetju.org/";
+        cell.url.text = _(@"helpaboutviewcontroller-https://geocube.mavetju.org/");
         cell.copyright.text = @"";
         cell.license.text = @"";
     }

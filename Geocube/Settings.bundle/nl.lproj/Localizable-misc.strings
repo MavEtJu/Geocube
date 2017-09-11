@@ -54,13 +54,13 @@
 
 "distance-ft" = "vt";
 "distance-feet" = "voet";
-"distance-ml" = "ml";
+"distance-mi" = "mi";
 "distance-mile" = "mijl";
 "distance-miles" = "mijlen";
 "distance-ft/s" = "vt/s";
 "distance-feet/second" = "voet/seconde";
 "distance-miles/hour" = "mijlen/uur";
-"distance-ml/h" = "ml/u";
+"distance-mi/h" = "mi/u";
 
 /* Time related */
 "time-day" = "dag";
@@ -160,4 +160,7 @@
 "Reset" = "Reset";
 
 /* Others */
+"=" = "=";
+"=<" = "=<";
+">=" = ">=";
 "tweet-fail" = "Momenteel kan er geen tweet verzonden worden. Zorg dat je telefoon internet verbinding heeft en dat er tenminste één Twitter profiel beschikbaar is.";
