@@ -269,7 +269,6 @@
 - (void)backgroundUpdater
 {
     do {
-        NSLog(@"backgroundUpdater");
         // Wait for a second
         [NSThread sleepForTimeInterval:1];
         if (gotUpdate == NO)
