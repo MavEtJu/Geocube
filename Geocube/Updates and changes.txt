@@ -12,7 +12,7 @@ Version 1.5(x)
   - Add a private account for importing of waypoints unrelated to
     listing services.
   - Show speed on the compass.
-  - Keep Tracks can be disabled.
+  - Keep Tracks can be disabled, but still can be done in memory.
 
   Fixes:
   - If the locale doesn't use the metric system, then default to
