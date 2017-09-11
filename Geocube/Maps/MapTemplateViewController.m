@@ -237,7 +237,6 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     NSLog(@"%@/viewDidDisappear", [self class]);
-//    [self.map removeMarkers];
     [super viewDidDisappear:animated];
     [self.map mapViewDidDisappear];
 }
