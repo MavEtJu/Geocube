@@ -23,7 +23,6 @@
 #import "GMUKMLParser.h"
 #import "GMUGeometryRenderer.h"
 
-
 @interface MapGoogle ()
 {
     GMSMapView *mapView;
