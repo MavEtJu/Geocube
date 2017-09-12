@@ -22,6 +22,13 @@
 #define COORDHISTORYSIZE    100
 
 #import "SimpleKML.h"
+#import "SimpleKMLFeature.h"
+#import "SimpleKMLFolder.h"
+#import "SimpleKMLDocument.h"
+#import "SimpleKMLPlacemark.h"
+#import "SimpleKMLPolygon.h"
+#import "SimpleKMLPoint.h"
+#import "SimpleKMLLinearRing.h"
 
 @interface MapApple ()
 {
@@ -94,6 +101,67 @@
     historyCoordsIdx = 0;
     if (self.staticHistory == NO)
         [self showHistory];
+
+    // KML test
+    // grab the example KML file (which we know will have no errors, but you should ordinarily check)
+    //
+    NSString *path = [NSString stringWithFormat:@"%@/apple run.kml", [MyTools FilesDir]];
+    SimpleKML *kml = [SimpleKML KMLWithContentsOfFile:path error:nil];
+
+    // look for a document feature in it per the KML spec
+    //
+    if (kml.feature != nil && [kml.feature isKindOfClass:[SimpleKMLDocument class]] == YES) {
+        for (SimpleKMLFeature *feature in ((SimpleKMLContainer *)kml.feature).features) {
+            [self dealWithKMLFeature:feature mapView:mapView];
+        }
+    }
+}
+
+- (void)dealWithKMLFeature:(SimpleKMLFeature *)feature mapView:(MKMapView *)mapview
+{
+    NSLog(@"feature: %@", [feature class]);
+
+    if ([feature isKindOfClass:[SimpleKMLFolder class]] == YES) {
+        NSArray<SimpleKMLObject *> *entries = ((SimpleKMLFolder *)feature).entries;
+        NSLog(@"children: %d", [entries count]);
+        for (SimpleKMLFeature *entry in entries)
+            [self dealWithKMLFeature:entry mapView:mapview];
+        return;
+    }
+
+    if ([feature isKindOfClass:[SimpleKMLPlacemark class]] == YES && ((SimpleKMLPlacemark *)feature).point != nil) {
+        SimpleKMLPoint *point = ((SimpleKMLPlacemark *)feature).point;
+
+        // create a normal point annotation for it
+        MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+
+        annotation.coordinate = point.coordinate;
+        annotation.title      = feature.name;
+
+        [mapView addAnnotation:annotation];
+        return;
+    }
+
+    // otherwise, see if we have any placemark features with a polygon
+    if ([feature isKindOfClass:[SimpleKMLPlacemark class]] == YES && ((SimpleKMLPlacemark *)feature).polygon != nil) {
+        SimpleKMLPolygon *polygon = (SimpleKMLPolygon *)((SimpleKMLPlacemark *)feature).polygon;
+
+        SimpleKMLLinearRing *outerRing = polygon.outerBoundary;
+
+        CLLocationCoordinate2D points[[outerRing.coordinates count]];
+        NSUInteger i = 0;
+
+        for (CLLocation *coordinate in outerRing.coordinates)
+            points[i++] = coordinate.coordinate;
+
+        // create a polygon annotation for it
+        MKPolygon *overlayPolygon = [MKPolygon polygonWithCoordinates:points count:[outerRing.coordinates count]];
+
+        [mapView addOverlay:overlayPolygon];
+        return;
+    }
+
+    NSLog(@"Unknown KML feature: %@", [feature class]);
 }
 
 - (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
@@ -362,6 +430,17 @@
     }];
     if (circleRenderer != nil)
         return circleRenderer;
+
+    if ([overlay isKindOfClass:[MKPolygon class]] == YES) {
+        MKPolygonRenderer *polygonRenderer = [[MKPolygonRenderer alloc] initWithPolygon:(MKPolygon *)overlay];
+
+        // use some sensible defaults - normally, you'd probably look for LineStyle & PolyStyle in the KML
+        polygonRenderer.fillColor   = [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.25];
+        polygonRenderer.strokeColor = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.75];
+        polygonRenderer.lineWidth = 2.0;
+
+        return polygonRenderer;
+    }
 
     return nil;
 }
