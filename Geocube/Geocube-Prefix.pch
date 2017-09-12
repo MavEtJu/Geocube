@@ -288,6 +288,7 @@
 #import "FileObject.h"
 #import "FileObjectView.h"
 #import "FileBrowserViewController.h"
+#import "FileKMLViewController.h"
 
 #import "TrackableTableViewCell.h"
 #import "TrackablesTemplateViewController.h"

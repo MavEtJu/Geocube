@@ -75,6 +75,13 @@
     [fos addObject:fo];
 
     fo = [[FileObject alloc] init];
+    fo.filename = @"KML";
+    fo.isDir = YES;
+    fo.cwd = @"";
+    [self loadContentsOfDir:fo start:[MyTools KMLDir]];
+    [fos addObject:fo];
+
+    fo = [[FileObject alloc] init];
     fo.filename = @"Application Support";
     fo.isDir = YES;
     fo.cwd = @"";

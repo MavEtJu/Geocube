@@ -14,6 +14,7 @@
 		E80D7EE51EFBE15700E25581 /* dbExternalMapURL.m in Sources */ = {isa = PBXBuildFile; fileRef = E80D7EE41EFBE15700E25581 /* dbExternalMapURL.m */; };
 		E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73741B533F4D00F35528 /* MapKit.framework */; };
 		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
+		E815B7831F67FCB2003A6092 /* FileKMLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E815B7821F67FCB2003A6092 /* FileKMLViewController.m */; };
 		E8182F4C1C0E41CB004AC534 /* KeyboardCoordinateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8182F4B1C0E41CB004AC534 /* KeyboardCoordinateView.m */; };
 		E823024E1DCD54520032C5C6 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E823024D1DCD54520032C5C6 /* libxml2.tbd */; };
 		E82341871EECA19300D2CDFD /* EncryptionKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E82341861EECA19300D2CDFD /* EncryptionKeys.plist */; };
@@ -815,6 +816,8 @@
 		E80D7EE41EFBE15700E25581 /* dbExternalMapURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbExternalMapURL.m; path = database/dbExternalMapURL.m; sourceTree = "<group>"; };
 		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E80F73761B53443000F35528 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E815B7811F67FCB2003A6092 /* FileKMLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileKMLViewController.h; path = Files/FileKMLViewController.h; sourceTree = "<group>"; };
+		E815B7821F67FCB2003A6092 /* FileKMLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileKMLViewController.m; path = Files/FileKMLViewController.m; sourceTree = "<group>"; };
 		E8182F4A1C0E41CB004AC534 /* KeyboardCoordinateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardCoordinateView.h; sourceTree = "<group>"; };
 		E8182F4B1C0E41CB004AC534 /* KeyboardCoordinateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardCoordinateView.m; sourceTree = "<group>"; };
 		E823024D1DCD54520032C5C6 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
@@ -3894,6 +3897,8 @@
 			children = (
 				E83C6F291EEEAD8100E303F5 /* Local Files */,
 				E83C6F2A1EEEAD9900E303F5 /* File Browser */,
+				E815B7811F67FCB2003A6092 /* FileKMLViewController.h */,
+				E815B7821F67FCB2003A6092 /* FileKMLViewController.m */,
 			);
 			name = Files;
 			sourceTree = "<group>";
@@ -4644,6 +4649,7 @@
 				E82343791EECDB4500D2CDFD /* ThemeTemplate.m in Sources */,
 				E82343C61EECDEA100D2CDFD /* WaypointAddViewController.m in Sources */,
 				E856525A1F66B4B500A415D0 /* GMUGeometryRenderer.m in Sources */,
+				E815B7831F67FCB2003A6092 /* FileKMLViewController.m in Sources */,
 				E82343F91EECDF4400D2CDFD /* WaypointRawViewController.m in Sources */,
 				E85652E51F678AB600A415D0 /* SimpleKMLFeature.m in Sources */,
 				E82344A81EECE0C900D2CDFD /* BrowserAccountsViewController.m in Sources */,

@@ -35,6 +35,7 @@
 @class DownloadManager;
 @class ExportGPX;
 @class FileBrowserViewController;
+@class FileKMLViewController;
 @class FileObject;
 @class FileObjectView;
 @class FilesTableViewCell;

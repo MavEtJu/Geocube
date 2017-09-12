@@ -183,6 +183,18 @@ enum {
                                  [self fileDelete:fn forceReload:YES];
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
+
+    UIAlertAction *kmlmove = nil;
+    if ([[fn pathExtension] isEqualToString:@"kml"] == YES) {
+        kmlmove = [UIAlertAction
+                   actionWithTitle:_(@"filesviewcontroller-Move to KML folder")
+                   style:UIAlertActionStyleDefault
+                   handler:^(UIAlertAction * action) {
+                       [self fileKML:fn];
+                       [view dismissViewControllerAnimated:YES completion:nil];
+                   }];
+    }
+
     UIAlertAction *import = nil;
     if ([[fn pathExtension] isEqualToString:@"gpx"] == YES ||
         [[fn pathExtension] isEqualToString:@"zip"] == YES ||
@@ -195,6 +207,7 @@ enum {
                       [view dismissViewControllerAnimated:YES completion:nil];
                   }];
     }
+
     UIAlertAction *restore = nil;
     if ([[fn pathExtension] isEqualToString:@"sqlite"] == YES) {
         restore = [UIAlertAction
@@ -205,6 +218,7 @@ enum {
                        [view dismissViewControllerAnimated:YES completion:nil];
                    }];
     }
+
     UIAlertAction *unzip = nil;
     if ([[fn pathExtension] isEqualToString:@"zip"] == YES) {
         unzip = [UIAlertAction
@@ -215,6 +229,7 @@ enum {
                      [view dismissViewControllerAnimated:YES completion:nil];
                  }];
     }
+
     UIAlertAction *rename = [UIAlertAction
                              actionWithTitle:_(@"filesviewcontroller-Rename")
                              style:UIAlertActionStyleDefault
@@ -222,6 +237,7 @@ enum {
                                  [self fileRename:fn];
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
+
     UIAlertAction *uploadAirdrop = [UIAlertAction
                                     actionWithTitle:_(@"filesviewcontroller-Upload with Airdrop")
                                     style:UIAlertActionStyleDefault
@@ -229,6 +245,7 @@ enum {
                                         [self uploadAirdrop:fn];
                                         [view dismissViewControllerAnimated:YES completion:nil];
                                     }];
+
     UIAlertAction *uploadICloud = [UIAlertAction
                                    actionWithTitle:_(@"filesviewcontroller-Upload to iCloud")
                                    style:UIAlertActionStyleDefault
@@ -236,6 +253,7 @@ enum {
                                        [self uploadICloud:fn];
                                        [view dismissViewControllerAnimated:YES completion:nil];
                                    }];
+
     UIAlertAction *cancel = [UIAlertAction
                              actionWithTitle:_(@"Cancel")
                              style:UIAlertActionStyleDefault
@@ -261,6 +279,8 @@ enum {
         [view addAction:restore];
     if (import != nil)
         [view addAction:import];
+    if (kmlmove != nil)
+        [view addAction:kmlmove];
     if (unzip != nil)
         [view addAction:unzip];
     [view addAction:rename];
@@ -290,6 +310,16 @@ enum {
     [self refreshFileData];
     if (forceReload == YES)
         [self.tableView reloadData];
+}
+
+- (void)fileKML:(NSString *)filename
+{
+    NSString *from = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename];
+    NSString *to = [NSString stringWithFormat:@"%@/%@", [MyTools KMLDir], filename];
+    [fileManager moveItemAtPath:from toPath:to error:nil];
+
+    [self refreshFileData];
+    [self.tableView reloadData];
 }
 
 - (void)fileUnzip:(NSString *)filename
