@@ -21,18 +21,44 @@
 
 @interface GCTableViewCellWithSubtitle ()
 
+@property (nonatomic, weak) IBOutlet GCLabel *myTextLabel;
+@property (nonatomic, weak) IBOutlet GCLabel *myDetailLabel;
+
 @end
 
 @implementation GCTableViewCellWithSubtitle
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+//- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+//{
+//    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
+//    self.textLabel.numberOfLines = 0;
+//    self.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//    self.detailTextLabel.numberOfLines = 0;
+//    self.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//    return self;
+//}
+
+- (void)awakeFromNib
 {
-    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
-    self.textLabel.numberOfLines = 0;
-    self.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    self.detailTextLabel.numberOfLines = 0;
-    self.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    return self;
+    [super awakeFromNib];
+    [self changeTheme];
+}
+
+- (void)changeTheme
+{
+    [super changeTheme];
+    [self.myTextLabel changeTheme];
+    [self.myDetailLabel changeTheme];
+}
+
+- (UILabel *)textLabel
+{
+    return self.myTextLabel;
+}
+
+- (UILabel *)detailTextLabel
+{
+    return self.myDetailLabel;
 }
 
 @end
