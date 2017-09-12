@@ -262,7 +262,7 @@
 {
     NSAssert(_node != NULL, @"TODO");
     
-    NSMutableString *result = [NSMutableString stringWithFormat:@"<%@ %p [%p]> ", NSStringFromClass([self class]), self, self->_node];
+    NSMutableString *result = [NSMutableString stringWithFormat:@"<%@ %p [%p]> ", NSStringFromClass([self class]), (void *)self, (void *)self->_node];
     xmlChar *xmlbuff;
     int buffersize;
     

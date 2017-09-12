@@ -21,6 +21,8 @@
 
 #define COORDHISTORYSIZE    100
 
+#import "SimpleKML.h"
+
 @interface MapApple ()
 {
     NSMutableArray<GCWaypointAnnotation *> *markers;
@@ -36,6 +38,8 @@
 
     dbWaypoint *wpSelected;
     BOOL modifyingMap;
+
+    SimpleKML *simpleKML;
 }
 
 @end

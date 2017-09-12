@@ -279,7 +279,7 @@ else
 {
 NSAssert(_node != NULL, @"CXMLNode does not have attached libxml2 _node.");
 
-return([NSString stringWithFormat:@"<%@ %p [%p] %@ %@>", NSStringFromClass([self class]), self, self->_node, [self name], [self XMLStringWithOptions:0]]);
+return([NSString stringWithFormat:@"<%@ %p [%p] %@ %@>", NSStringFromClass([self class]), (void *)self, (void *)self->_node, [self name], [self XMLStringWithOptions:0]]);
 }
 
 - (NSString *)XMLString
