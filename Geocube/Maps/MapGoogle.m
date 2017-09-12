@@ -20,8 +20,6 @@
  */
 
 @import GoogleMaps;
-#import "GMUKMLParser.h"
-#import "GMUGeometryRenderer.h"
 
 @interface MapGoogle ()
 {

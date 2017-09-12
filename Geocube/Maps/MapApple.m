@@ -21,15 +21,6 @@
 
 #define COORDHISTORYSIZE    100
 
-#import "SimpleKML.h"
-#import "SimpleKMLFeature.h"
-#import "SimpleKMLFolder.h"
-#import "SimpleKMLDocument.h"
-#import "SimpleKMLPlacemark.h"
-#import "SimpleKMLPolygon.h"
-#import "SimpleKMLPoint.h"
-#import "SimpleKMLLinearRing.h"
-
 @interface MapApple ()
 {
     NSMutableArray<GCWaypointAnnotation *> *markers;

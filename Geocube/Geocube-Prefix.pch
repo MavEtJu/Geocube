@@ -63,6 +63,18 @@
 #import "XMLReader.h"
 #import "YIPopupTextView.h"
 
+#import "SimpleKML.h"
+#import "SimpleKMLFeature.h"
+#import "SimpleKMLFolder.h"
+#import "SimpleKMLDocument.h"
+#import "SimpleKMLPlacemark.h"
+#import "SimpleKMLPolygon.h"
+#import "SimpleKMLPoint.h"
+#import "SimpleKMLLinearRing.h"
+
+#import "GMUKMLParser.h"
+#import "GMUGeometryRenderer.h"
+
 #import "Geocube-Classes.h"
 #import "Geocube-defines.h"
 
