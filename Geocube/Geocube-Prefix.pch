@@ -99,6 +99,7 @@
 #import "dbFilter.h"
 #import "dbGroup.h"
 #import "dbImage.h"
+#import "dbKMLFile.h"
 #import "dbListData.h"
 #import "dbLocality.h"
 #import "dbLog.h"

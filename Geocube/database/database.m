@@ -789,6 +789,12 @@
     @"insert into protocols(id, name) values(8, 'Geocube')",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 60
+    a = @[
+    @"create table kml_files (id integer primary key, filename text, enabled bool)",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

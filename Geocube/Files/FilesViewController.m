@@ -318,6 +318,14 @@ enum {
     NSString *to = [NSString stringWithFormat:@"%@/%@", [MyTools KMLDir], filename];
     [fileManager moveItemAtPath:from toPath:to error:nil];
 
+    dbKMLFile *f = [dbKMLFile dbGetByFilename:filename];
+    if (f == nil) {
+        f = [[dbKMLFile alloc] init];
+        f.filename = filename;
+        f.enabled = NO;
+        [f dbCreate];
+    }
+
     [self refreshFileData];
     [self.tableView reloadData];
 }

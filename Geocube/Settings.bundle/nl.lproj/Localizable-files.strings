@@ -37,4 +37,8 @@
 "filebrowserviewcontroller-(lf)" = "(lf)";
 "filebrowserviewcontroller-(ll)" = "(ll)";
 
+/* Files - KML */
+"filekmlviewcontroller-Not shown" = "Niet zichtbaar";
+"filekmlviewcontroller-Shown on map" = "Zichtbaar op de kaart";
+
 
