@@ -20,6 +20,9 @@
  */
 
 @import GoogleMaps;
+#import "GMUKMLParser.h"
+#import "GMUGeometryRenderer.h"
+
 
 @interface MapGoogle ()
 {
@@ -85,6 +88,16 @@
         lastPathHistory = [GMSMutablePath path];
     if (self.staticHistory == NO)
         [self showHistory];
+
+    // KML test
+    NSString *path = [NSString stringWithFormat:@"%@/apple run.kml", [MyTools FilesDir]];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    GMUKMLParser *parser = [[GMUKMLParser alloc] initWithURL:url];
+    [parser parse];
+    GMUGeometryRenderer *renderer = [[GMUGeometryRenderer alloc] initWithMap:mapView
+                                                                  geometries:parser.placemarks
+                                                                      styles:parser.styles];
+    [renderer render];
 }
 
 - (void)removeMap
