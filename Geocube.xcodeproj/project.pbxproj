@@ -2284,14 +2284,14 @@
 				E82343921EECDBCE00D2CDFD /* MapGoogle.m */,
 				E82343891EECDBCE00D2CDFD /* MapApple.h */,
 				E823438A1EECDBCE00D2CDFD /* MapApple.m */,
-				E823438B1EECDBCE00D2CDFD /* MapAppleCache.h */,
-				E823438C1EECDBCE00D2CDFD /* MapAppleCache.m */,
 				E823438D1EECDBCE00D2CDFD /* MapAppleTemplate.h */,
 				E823438E1EECDBCE00D2CDFD /* MapAppleTemplate.m */,
 				E82343931EECDBCE00D2CDFD /* MapOSM.h */,
 				E82343941EECDBCE00D2CDFD /* MapOSM.m */,
 				E823438F1EECDBCE00D2CDFD /* MapESRIWorldTopo.h */,
 				E82343901EECDBCE00D2CDFD /* MapESRIWorldTopo.m */,
+				E823438B1EECDBCE00D2CDFD /* MapAppleCache.h */,
+				E823438C1EECDBCE00D2CDFD /* MapAppleCache.m */,
 			);
 			name = "Map sources";
 			sourceTree = "<group>";

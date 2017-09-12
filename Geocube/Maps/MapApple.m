@@ -335,7 +335,7 @@
     }
 
     __block MKPolylineRenderer *vlHistory = nil;
-    @synchronized (self) {
+    @synchronized (linesHistory) {
         [linesHistory enumerateObjectsUsingBlock:^(MKPolyline * _Nonnull lh, NSUInteger idx, BOOL * _Nonnull stop) {
             if (overlay == lh) {
                 vlHistory = [viewLinesHistory objectAtIndex:idx];
@@ -490,19 +490,23 @@
 
 - (void)addLineMeToWaypoint
 {
-    CLLocationCoordinate2D coordinateArray[2];
-    coordinateArray[0] = LM.coords;
-    coordinateArray[1] = CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude);
+    MAINQUEUE(
+        CLLocationCoordinate2D coordinateArray[2];
+        coordinateArray[0] = LM.coords;
+        coordinateArray[1] = CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude);
 
-    lineMeToWaypoint = [MKPolyline polylineWithCoordinates:coordinateArray count:2];
-    [mapView addOverlay:lineMeToWaypoint];
+        lineMeToWaypoint = [MKPolyline polylineWithCoordinates:coordinateArray count:2];
+        [mapView addOverlay:lineMeToWaypoint];
+    )
 }
 
 - (void)removeLineMeToWaypoint
 {
-    [mapView removeOverlay:lineMeToWaypoint];
-    viewLineMeToWaypoint = nil;
-    lineMeToWaypoint = nil;
+    MAINQUEUE(
+        [mapView removeOverlay:lineMeToWaypoint];
+        viewLineMeToWaypoint = nil;
+        lineMeToWaypoint = nil;
+    )
 }
 
 - (void)addLineTapToMe:(CLLocationCoordinate2D)c;
@@ -528,11 +532,11 @@
         vlHistory.strokeColor = configManager.mapTrackColour; \
         vlHistory.lineWidth = 5; \
         \
-        @synchronized (self) { \
+        @synchronized (linesHistory) { \
             [viewLinesHistory addObject:vlHistory]; \
             [linesHistory addObject:lh]; \
+            [mapView addOverlay:lh]; \
         } \
-        [mapView addOverlay:lh]; \
     }
 
     __block CLLocationCoordinate2D *coordinateArray = calloc([LM.coordsHistorical count], sizeof(CLLocationCoordinate2D));
@@ -561,18 +565,20 @@
     if (self.staticHistory == YES)
         return;
 
-    if (ch.restart == NO && historyCoordsIdx < COORDHISTORYSIZE - 1) {
-        historyCoords[historyCoordsIdx++] = ch.coord;
-        @synchronized (self) {
-            [mapView removeOverlay:[linesHistory lastObject]];
-            [linesHistory removeLastObject];
-            [viewLinesHistory removeLastObject];
+    MAINQUEUE(
+        if (ch.restart == NO && historyCoordsIdx < COORDHISTORYSIZE - 1) {
+            historyCoords[historyCoordsIdx++] = ch.coord;
+            @synchronized (linesHistory) {
+                [mapView removeOverlay:[linesHistory lastObject]];
+                [linesHistory removeLastObject];
+                [viewLinesHistory removeLastObject];
+            }
+        } else {
+            historyCoordsIdx = 0;
+            historyCoords[historyCoordsIdx++] = ch.coord;
         }
-    } else {
-        historyCoordsIdx = 0;
-        historyCoords[historyCoordsIdx++] = ch.coord;
-    }
-    ADDPATH(historyCoords, historyCoordsIdx)
+        ADDPATH(historyCoords, historyCoordsIdx)
+    )
 }
 
 - (void)removeHistory
@@ -580,15 +586,17 @@
     if (self.staticHistory == YES)
         return;
 
-    @synchronized (self) {
-        NSLog(@"removing %ld history", (long)[linesHistory count]);
-        [linesHistory enumerateObjectsUsingBlock:^(MKPolyline * _Nonnull lh, NSUInteger idx, BOOL * _Nonnull stop) {
-            [mapView removeOverlay:lh];
-        }];
-        [viewLinesHistory removeAllObjects];
-        [linesHistory removeAllObjects];
-    }
-    historyCoordsIdx = 0;
+    MAINQUEUE(
+        @synchronized (linesHistory) {
+            NSLog(@"removing %ld history", (long)[linesHistory count]);
+            [linesHistory enumerateObjectsUsingBlock:^(MKPolyline * _Nonnull lh, NSUInteger idx, BOOL * _Nonnull stop) {
+                [mapView removeOverlay:lh];
+            }];
+            [viewLinesHistory removeAllObjects];
+            [linesHistory removeAllObjects];
+        }
+        historyCoordsIdx = 0;
+    )
 }
 
 - (void)showTrack:(dbTrack *)track
@@ -637,7 +645,7 @@
 
 - (void)showTrack
 {
-    @synchronized (self) {
+    @synchronized (linesHistory) {
         [linesHistory enumerateObjectsUsingBlock:^(MKPolyline * _Nonnull lh, NSUInteger idx, BOOL * _Nonnull stop) {
             [mapView addOverlay:lh];
         }];
