@@ -279,6 +279,23 @@
     }
 }
 
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+    if ([view.annotation isKindOfClass:[GCWaypointAnnotation class]]) {
+        GCWaypointAnnotation *pa = (GCWaypointAnnotation *)view.annotation;
+        wpSelected = pa.waypoint;
+        [self.mapvc showWaypointInfo:pa.waypoint];
+    }
+}
+
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
+{
+    if ([view.annotation isKindOfClass:[GCWaypointAnnotation class]]) {
+        [self.mapvc removeWaypointInfo];
+        wpSelected = nil;
+    }
+}
+
 - (MKAnnotationView *)mapView:(MKMapView *)_mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     // If it is the user location, just return nil.
@@ -302,23 +319,6 @@
     }
 
     return nil;
-}
-
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
-{
-    if ([view.annotation isKindOfClass:[GCWaypointAnnotation class]]) {
-        GCWaypointAnnotation *pa = (GCWaypointAnnotation *)view.annotation;
-        wpSelected = pa.waypoint;
-        [self.mapvc showWaypointInfo:pa.waypoint];
-    }
-}
-
-- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
-{
-    if ([view.annotation isKindOfClass:[GCWaypointAnnotation class]]) {
-        [self.mapvc removeWaypointInfo];
-        wpSelected = nil;
-    }
 }
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)_mapView rendererForOverlay:(id<MKOverlay>)overlay
