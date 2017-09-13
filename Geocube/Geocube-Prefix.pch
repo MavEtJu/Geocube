@@ -71,6 +71,7 @@
 #import "SimpleKMLPolygon.h"
 #import "SimpleKMLPoint.h"
 #import "SimpleKMLLinearRing.h"
+#import "SimpleKMLLineString.h"
 
 #import "GMUKMLParser.h"
 #import "GMUGeometryRenderer.h"

@@ -376,6 +376,17 @@
         return polygonRenderer;
     }
 
+    if ([overlay isKindOfClass:[MKPolyline class]] == YES) {
+        MKPolylineRenderer *polylineRenderer = [[MKPolylineRenderer alloc] initWithPolyline:(MKPolyline *)overlay];
+
+        // use some sensible defaults - normally, you'd probably look for LineStyle & PolyStyle in the KML
+        polylineRenderer.fillColor   = [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.25];
+        polylineRenderer.strokeColor = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.75];
+        polylineRenderer.lineWidth = 2.0;
+
+        return polylineRenderer;
+    }
+
     return nil;
 }
 
@@ -700,9 +711,9 @@
 
 - (void)dealWithKMLFeature:(SimpleKMLFeature *)feature mapView:(MKMapView *)mapview
 {
-    NSLog(@"feature: %@", [feature class]);
-
     if ([feature isKindOfClass:[SimpleKMLFolder class]] == YES) {
+        NSLog(@"reloadKMLFiles: SimpleKMLFolder");
+
         NSArray<SimpleKMLObject *> *entries = ((SimpleKMLFolder *)feature).entries;
         NSLog(@"children: %d", [entries count]);
         for (SimpleKMLFeature *entry in entries)
@@ -712,6 +723,7 @@
 
     if ([feature isKindOfClass:[SimpleKMLPlacemark class]] == YES && ((SimpleKMLPlacemark *)feature).point != nil) {
         SimpleKMLPoint *point = ((SimpleKMLPlacemark *)feature).point;
+        NSLog(@"reloadKMLFiles: SimpleKMLPoint");
 
         // create a normal point annotation for it
         MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
@@ -724,9 +736,30 @@
         return;
     }
 
+    // line
+    if ([feature isKindOfClass:[SimpleKMLPlacemark class]] == YES && ((SimpleKMLPlacemark *)feature).lineString != nil) {
+        SimpleKMLLineString *lines = (SimpleKMLLineString *)((SimpleKMLPlacemark *)feature).lineString;
+        NSLog(@"reloadKMLFiles: SimpleKMLLineString");
+
+        NSArray<CLLocation *> *coords = lines.coordinates;
+
+        CLLocationCoordinate2D *points = calloc([coords count], sizeof(CLLocationCoordinate2D));
+        __block NSUInteger i = 0;
+        [coords enumerateObjectsUsingBlock:^(CLLocation * _Nonnull coordinate, NSUInteger idx, BOOL * _Nonnull stop) {
+            points[i++] = coordinate.coordinate;
+        }];
+        MKPolyline *overlayPolyline = [MKPolyline polylineWithCoordinates:points count:i];
+        free(points);
+
+        [mapView addOverlay:overlayPolyline];
+        [KMLfeatures addObject:overlayPolyline];
+        return;
+    }
+
     // otherwise, see if we have any placemark features with a polygon
     if ([feature isKindOfClass:[SimpleKMLPlacemark class]] == YES && ((SimpleKMLPlacemark *)feature).polygon != nil) {
         SimpleKMLPolygon *polygon = (SimpleKMLPolygon *)((SimpleKMLPlacemark *)feature).polygon;
+        NSLog(@"reloadKMLFiles: SimpleKMLPolygon");
 
         SimpleKMLLinearRing *outerRing = polygon.outerBoundary;
 

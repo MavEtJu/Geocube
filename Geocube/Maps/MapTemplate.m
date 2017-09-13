@@ -248,7 +248,7 @@ EMPTY_METHOD(mapViewDidLoad)
     }];
 }
 
-- (void)refreshKMLs
+- (void)reloadKMLFiles
 {
     [self removeKMLs];
     [self loadKMLs];
