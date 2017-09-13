@@ -74,7 +74,7 @@
     NSString *fn;
     NSMutableArray<NSString *> *a = [NSMutableArray arrayWithCapacity:configManager.automaticDatabaseBackupRotate + 1];
     while ((fn = [e nextObject]) != nil) {
-        if ([[fn substringToIndex:8] isEqualToString:@"Geocube-"] == YES)
+        if ([fn length] > 8 && [[fn substringToIndex:8] isEqualToString:@"Geocube-"] == YES)
             [a addObject:fn];
     }
     if ([a count] > configManager.automaticDatabaseBackupRotate) {
