@@ -1,6 +1,6 @@
 Interesting additions and changes to Geocube
 
-Version 1.5(x)
+Version 1.5(28)
 
   Features:
   - Search option in the Waypoints list, trackables and Locationless
