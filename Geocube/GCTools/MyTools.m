@@ -596,10 +596,16 @@ TIME(dateTimeString_dow, @"EEEE")
 }
 
 /// Return EXIF Data from an image
-+ (NSDictionary *)imageEXIFData:(NSString *)filename
++ (NSDictionary *)imageEXIFDataFile:(NSString *)filename
 {
     NSString *URLString = [NSString stringWithFormat:@"file://%@", [filename stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
     NSURL *url = [NSURL URLWithString:URLString];
+    return [self imageEXIFDataURL:url];
+}
+
+/// Return EXIF Data from an image
++ (NSDictionary *)imageEXIFDataURL:(NSURL *)url
+{
     CGImageSourceRef imageSource = CGImageSourceCreateWithURL((__bridge CFURLRef)url, NULL);
 
     if (imageSource == nil) {
@@ -611,6 +617,7 @@ TIME(dateTimeString_dow, @"EEEE")
                              nil];
     CFDictionaryRef imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, (__bridge CFDictionaryRef)options);
     CFRelease(imageSource);
+
     NSMutableDictionary *metadata = [NSMutableDictionary dictionaryWithDictionary:(__bridge NSDictionary *)imageProperties];
     CFRelease(imageProperties);
     return metadata;

@@ -83,7 +83,8 @@
 
 + (NSString *)makeNewWaypoint:(NSString *)prefix;
 
-+ (NSDictionary *)imageEXIFData:(NSString *)file;
++ (NSDictionary *)imageEXIFDataFile:(NSString *)file;
++ (NSDictionary *)imageEXIFDataURL:(NSURL *)url;
 
 + (BOOL)hasWifiNetwork;
 + (BOOL)hasMobileNetwork;

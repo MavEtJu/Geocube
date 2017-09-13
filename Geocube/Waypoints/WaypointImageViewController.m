@@ -274,7 +274,7 @@ enum {
     [self viewWillTransitionToSize];
 
     [lmi disableItem:menuAddNewWaypoint];
-    NSDictionary *exif = [MyTools imageEXIFData:[MyTools ImageFile:img.datafile]];
+    NSDictionary *exif = [MyTools imageEXIFDataFile:[MyTools ImageFile:img.datafile]];
     NSDictionary *exifgps = [exif objectForKey:@"{GPS}"];
     NSString *lats = [exifgps objectForKey:@"Latitude"];
     NSString *latref = [exifgps objectForKey:@"LatitudeRef"];

@@ -274,7 +274,7 @@ enum {
 {
     GCTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSUBTITLERIGHTIMAGE];
     cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.detailTextLabel.text = @"";
+    cell.detailTextLabel.text = @"";    // clear by default
 
     dbImage *img;
     switch (indexPath.section) {
@@ -287,7 +287,7 @@ enum {
         abort();
 
     if ([img imageHasBeenDowloaded] == YES) {
-        NSDictionary *exif = [MyTools imageEXIFData:[MyTools ImageFile:img.datafile]];
+        NSDictionary *exif = [MyTools imageEXIFDataFile:[MyTools ImageFile:img.datafile]];
         NSDictionary *exifgps = [exif objectForKey:@"{GPS}"];
         NSString *lats = [exifgps objectForKey:@"Latitude"];
         NSString *latref = [exifgps objectForKey:@"LatitudeRef"];
@@ -302,7 +302,10 @@ enum {
             if ([lonref isEqualToString:@"W"] == YES)
                 lon *= -1;
             cell.detailTextLabel.text = [Coordinates niceCoordinates:lat longitude:lon];
-        }
+        } else if (img.lat != 0 && img.lon != 0)
+            cell.detailTextLabel.text = [Coordinates niceCoordinates:img.lat longitude:img.lon];
+        else
+            cell.detailTextLabel.text = @"";
     }
 
     cell.textLabel.text = img.name;
@@ -477,6 +480,10 @@ enum {
     NSURL *imgURL = [info valueForKey:UIImagePickerControllerReferenceURL];
     if (imgURL != nil) {
         // From Library.
+
+        PHFetchResult *fetchResult = [PHAsset fetchAssetsWithALAssetURLs:@[imgURL] options:nil];
+        PHAsset *asset = fetchResult.firstObject;
+
         NSString *imgtag = imgURL.absoluteString;
         img = [dbImage dbGetByURL:imgtag];
         NSString *datafile = [dbImage createDataFilename:imgtag];
@@ -487,6 +494,8 @@ enum {
             img.url = imgtag;
             img.name = [dbImage filename:imgtag];
             img.datafile = datafile;
+            img.lat = asset.location.coordinate.latitude;
+            img.lon = asset.location.coordinate.longitude;
             [img dbCreate];
         } else {
             NSLog(@"%@/parse: Image already seen", [self class]);
@@ -502,6 +511,8 @@ enum {
         img.url = datecreated;
         img.name= [dbImage filename:datecreated];
         img.datafile = datafile;
+        img.lat = LM.coords.latitude;
+        img.lon = LM.coords.longitude;
         [img dbCreate];
 
         UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);

@@ -30,11 +30,13 @@ TABLENAME(@"images")
 - (NSId)dbCreate
 {
     @synchronized(db) {
-        DB_PREPARE(@"insert into images(url, datafile, filename) values(?, ?, ?)");
+        DB_PREPARE(@"insert into images(url, datafile, filename, lat, lon) values(?, ?, ?, ?, ?)");
 
-        SET_VAR_TEXT(1, self.url);
-        SET_VAR_TEXT(2, self.datafile);
-        SET_VAR_TEXT(3, self.name);
+        SET_VAR_TEXT  (1, self.url);
+        SET_VAR_TEXT  (2, self.datafile);
+        SET_VAR_TEXT  (3, self.name);
+        SET_VAR_DOUBLE(4, self.lat);
+        SET_VAR_DOUBLE(5, self.lon);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(self._id);
@@ -47,7 +49,7 @@ TABLENAME(@"images")
 {
     NSMutableArray<dbImage *> *is = [[NSMutableArray alloc] initWithCapacity:20];
 
-    NSMutableString *sql = [NSMutableString stringWithString:@"select id, url, datafile, filename from images "];
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, url, datafile, filename, lat, lon from images "];
     if (where != nil)
         [sql appendString:where];
 
@@ -56,10 +58,12 @@ TABLENAME(@"images")
 
         DB_WHILE_STEP {
             dbImage *i = [[dbImage alloc] init];
-            INT_FETCH (0, i._id);
-            TEXT_FETCH(1, i.url);
-            TEXT_FETCH(2, i.datafile);
-            TEXT_FETCH(3, i.name);
+            INT_FETCH   (0, i._id);
+            TEXT_FETCH  (1, i.url);
+            TEXT_FETCH  (2, i.datafile);
+            TEXT_FETCH  (3, i.name);
+            DOUBLE_FETCH(4, i.lat);
+            DOUBLE_FETCH(5, i.lon);
             [i finish];
             [is addObject:i];
         }

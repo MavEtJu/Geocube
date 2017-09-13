@@ -795,6 +795,14 @@
     @"create table kml_files (id integer primary key, filename text, enabled bool)",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 61
+    a = @[
+    @"alter table images add column lat float",
+    @"alter table images add column lon float",
+    @"update images set lat = 0, lon = 0",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

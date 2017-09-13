@@ -35,6 +35,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <Social/Social.h>
+#import <Photos/Photos.h>
 
 #import <math.h>
 #import <sqlite3.h>

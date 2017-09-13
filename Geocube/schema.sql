@@ -18,7 +18,7 @@ insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.5.geocube");
 insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.5.geocube");
 insert into config(key, value) values("url_versions", "https://geocube.mavetju.org/geocube_versions.geocube");
-insert into config(key, value) values("version", "60");
+insert into config(key, value) values("version", "61");
 
 create table filters (
     id integer primary key,
@@ -221,7 +221,9 @@ create table images (
     url text,
     filename text,
     datetime integer,
-    datafile text
+    datafile text,
+    lat float,
+    lon float
 );
 create index images_idx_url on images(url);
 

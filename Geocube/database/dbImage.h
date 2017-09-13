@@ -31,6 +31,8 @@ typedef NS_ENUM(NSInteger, ImageCategory) {
 @property (nonatomic, retain) NSString *url;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *datafile;
+@property (nonatomic) CLLocationDegrees lat;
+@property (nonatomic) CLLocationDegrees lon;
 
 + (NSString *)createDataFilename:(NSString *)url;
 + (dbImage *)dbGetByURL:(NSString *)url;
