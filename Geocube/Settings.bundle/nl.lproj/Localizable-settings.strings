@@ -80,6 +80,7 @@
 "settingsmainviewcontroller-Dynamic Maps" = "Dynamische kaarten";
 "settingsmainviewcontroller-Enable dynamic maps" = "Zet dynamische kaart aan";
 "settingsmainviewcontroller-Enable map cache" = "Zet kaartcaches aan";
+"settingsmainviewcontroller-Enable OpenCage" = "Gebruik OpenCage";
 "settingsmainviewcontroller-Enable sounds for direction" = "Zet geluid voor richting aan";
 "settingsmainviewcontroller-Enable sounds for distance" = "Zet geluid voor afstand aan";
 "settingsmainviewcontroller-Enter value..." = "Geef waarde...";

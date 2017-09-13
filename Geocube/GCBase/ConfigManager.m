@@ -135,6 +135,7 @@
     CHECK(@"locationless_showfound", @"1");
     CHECK(@"locationless_sortby", @"0");
 
+    CHECK(@"opencage_enable", @"0");
     CHECK(@"opencage_key", @"");
     CHECK(@"opencage_wifionly", @"1");
 
@@ -246,6 +247,7 @@
     LOAD_VALUE  (self.logTemporaryText, @"log_temporary_text");
     LOAD_BOOL   (self.locationlessShowFound, @"locationless_showfound");
     LOAD_INTEGER(self.locationlessListSortBy, @"locationless_sortby");
+    LOAD_BOOL   (self.opencageEnable, @"opencage_enable");
     LOAD_VALUE  (self.opencageKey, @"opencage_key");
     LOAD_BOOL   (self.opencageWifiOnly, @"opencage_wifionly");
     LOAD_VALUE  (self.configUpdateLastVersion, @"configupdate_lastversion");
@@ -379,6 +381,7 @@ UPDATE3(BOOL, accountsSaveAuthenticationName, @"accounts_save_authenticationname
 UPDATE3(BOOL, accountsSaveAuthenticationPassword, @"accounts_save_authenticationpassword")
 UPDATE3(BOOL, introSeen, @"intro_seen")
 UPDATE3(BOOL, locationlessShowFound, @"locationless_showfound")
+UPDATE3(BOOL, opencageEnable, @"opencage_enable")
 UPDATE3(BOOL, opencageWifiOnly, @"opencage_wifionly")
 UPDATE3(BOOL, automaticDatabaseBackup, @"automaticdatabasebackup_enable")
 UPDATE3(BOOL, accuracyDynamicEnable, @"accuracy_dynamic_enable")

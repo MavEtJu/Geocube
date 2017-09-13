@@ -80,6 +80,7 @@
 "settingsmainviewcontroller-Dynamic Maps" = "Dynamic Maps";
 "settingsmainviewcontroller-Enable dynamic maps" = "Enable dynamic maps";
 "settingsmainviewcontroller-Enable map cache" = "Enable map cache";
+"settingsmainviewcontroller-Enable OpenCage" = "Enable OpenCage";
 "settingsmainviewcontroller-Enable sounds for direction" = "Enable sounds for direction";
 "settingsmainviewcontroller-Enable sounds for distance" = "Enable sounds for distance";
 "settingsmainviewcontroller-Enter value..." = "Enter value...";

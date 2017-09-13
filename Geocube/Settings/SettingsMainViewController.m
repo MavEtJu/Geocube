@@ -285,8 +285,6 @@ enum sections {
 
     SECTION_APPS_EXTERNALMAP = 0,
     SECTION_APPS_TWITTER,
-    SECTION_APPS_OPENCAGEOVERWIFIONLY,
-    SECTION_APPS_OPENCAGEKEY,
     SECTION_APPS_MAX,
 
     SECTION_MAPCACHE_ENABLED = 0,
@@ -338,6 +336,9 @@ enum sections {
     SECTION_WAYPOINTS_SHOWSTATEASABBREVATION,
     SECTION_WAYPOINTS_SHOWSTATEASABBREVATIONWITHLOCALITY,
     SECTION_WAYPOINTS_REFRESHAFTERLOG,
+    SECTION_WAYPOINTS_OPENCAGEENABLE,
+    SECTION_WAYPOINTS_OPENCAGEOVERWIFIONLY,
+    SECTION_WAYPOINTS_OPENCAGEKEY,
     SECTION_WAYPOINTS_MAX,
 
     SECTION_LISTS_SORTBY = 0,
@@ -514,10 +515,6 @@ enum sections {
                     }];
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-External Maps"), name);
                 }
-                case SECTION_APPS_OPENCAGEKEY:
-                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-OpenCage key"), configManager.opencageKey);
-                case SECTION_APPS_OPENCAGEOVERWIFIONLY:
-                    CELL_SWITCH(_(@"settingsmainviewcontroller-OpenCage only over Wifi"), opencageWifiOnly, updateOpenCageWifiOnly)
                 case SECTION_APPS_TWITTER:
                     CELL_SWITCH(_(@"settingsmainviewcontroller-Offer to send tweets"), sendTweets, updateSendTweets)
             }
@@ -741,6 +738,12 @@ enum sections {
                     CELL_SWITCH(_(@"settingsmainviewcontroller-Show state as abbrevation"), showStateAsAbbrevation, updateShowStateAsAbbrevation)
                 case SECTION_WAYPOINTS_SHOWSTATEASABBREVATIONWITHLOCALITY:
                     CELL_SWITCH(_(@"settingsmainviewcontroller-Show state as abbrevation if locality exist"), showStateAsAbbrevationIfLocalityExists, updateShowStateAsAbbrevationWithLocality)
+                case SECTION_WAYPOINTS_OPENCAGEENABLE:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Enable OpenCage"), opencageEnable, updateOpenCageEnable);
+                case SECTION_WAYPOINTS_OPENCAGEKEY:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-OpenCage key"), configManager.opencageKey);
+                case SECTION_WAYPOINTS_OPENCAGEOVERWIFIONLY:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-OpenCage only over Wifi"), opencageWifiOnly, updateOpenCageWifiOnly)
             }
             abort();
         }
@@ -868,6 +871,7 @@ SWITCH_UPDATE(updateDownloadImagesMobile, downloadImagesMobile)
 SWITCH_UPDATE(updateDownloadQueriesMobile, downloadQueriesMobile)
 SWITCH_UPDATE(updateMapcacheEnable, mapcacheEnable)
 SWITCH_UPDATE(updateDynamicmapEnable, dynamicmapEnable)
+SWITCH_UPDATE(updateOpenCageEnable, opencageEnable)
 SWITCH_UPDATE(updateOpenCageWifiOnly, opencageWifiOnly)
 SWITCH_UPDATE(updateSendTweets, sendTweets)
 SWITCH_UPDATE(updateSoundDistance, soundDistance)
@@ -919,9 +923,6 @@ SWITCH_UPDATE(updateSpeedEnable, speedEnable)
             switch (indexPath.row) {
                 case SECTION_APPS_EXTERNALMAP:
                     [self changeAppsExternalMap];
-                    break;
-                case SECTION_APPS_OPENCAGEKEY:
-                    [self changeOpenCageKey];
                     break;
             }
             break;
@@ -1018,6 +1019,9 @@ SWITCH_UPDATE(updateSpeedEnable, speedEnable)
             switch (indexPath.row) {
                 case SECTION_WAYPOINTS_SORTBY:
                     [self changeWaypointSortBy];
+                    break;
+                case SECTION_WAYPOINTS_OPENCAGEKEY:
+                    [self changeOpenCageKey];
                     break;
             }
             break;

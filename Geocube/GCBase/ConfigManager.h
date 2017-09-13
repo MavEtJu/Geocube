@@ -102,6 +102,7 @@ PROTO_N (BOOL, introSeen);
 PROTO_NR(NSString *, logTemporaryText);
 PROTO_N (BOOL, locationlessShowFound);
 PROTO_N (NSInteger, locationlessListSortBy);
+PROTO_N (BOOL, opencageEnable);
 PROTO_NR(NSString *, opencageKey);
 PROTO_N (BOOL, opencageWifiOnly);
 PROTO_N (NSInteger, configUpdateLastTime);

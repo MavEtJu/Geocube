@@ -72,6 +72,8 @@
 {
     if (disabled == YES)
         return;
+    if (configManager.opencageEnable == NO)
+        return;
     if (IS_EMPTY(configManager.opencageKey) == YES)
         return;
 
