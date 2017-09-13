@@ -149,7 +149,7 @@
     needsRefresh = YES;
     isVisible = NO;
     if (self.staticHistory == NO)
-        [waypointManager startDelegation:self];
+        [waypointManager startDelegationWaypoints:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated

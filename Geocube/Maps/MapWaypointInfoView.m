@@ -64,7 +64,7 @@
 
     [self changeTheme];
 
-    [waypointManager startDelegation:self];
+    [waypointManager startDelegationWaypoints:self];
 
     return self;
 }

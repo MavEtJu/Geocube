@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapTemplate : NSObject
+@interface MapTemplate : NSObject <WaypointManagerKMLDelegate>
 {
     LXMapScaleView *mapScaleView;
     BOOL showBoundary;
@@ -84,8 +84,9 @@
 - (void)showTrack:(dbTrack *)track;
 - (void)showTrack;
 
-- (void)loadKML;
+- (void)loadKMLs;
 - (void)loadKML:(NSString *)file;
+- (void)removeKMLs;
 
 - (CLLocationCoordinate2D)currentCenter;
 - (double)currentZoom;

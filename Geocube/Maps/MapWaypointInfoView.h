@@ -21,7 +21,7 @@
 
 #define XIB_MAPWAYPOINTINFOVIEW @"MapWaypointInfoView"
 
-@interface MapWaypointInfoView : GCView <WaypointManagerDelegate>
+@interface MapWaypointInfoView : GCView <WaypointManagerWaypointDelegate>
 
 @property (nonatomic, retain) MapTemplate *parentMap;
 @property (nonatomic, retain) UIView *firstView;

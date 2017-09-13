@@ -38,6 +38,7 @@
     BOOL modifyingMap;
 
     SimpleKML *simpleKML;
+    NSMutableArray<id> *KMLfeatures;
 }
 
 @end
@@ -93,7 +94,8 @@
     if (self.staticHistory == NO)
         [self showHistory];
 
-    [self loadKML];
+    KMLfeatures = [NSMutableArray arrayWithCapacity:3];
+    [self loadKMLs];
 }
 
 - (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
@@ -668,6 +670,20 @@
     [self moveCameraTo:trackBL c2:trackTR];
 }
 
+- (void)removeKMLs
+{
+    [KMLfeatures enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[MKPointAnnotation class]] == YES) {
+            [mapView removeAnnotation:obj];
+            return;
+        }
+        if ([obj isKindOfClass:[MKPolygon class]] == YES) {
+            [mapView removeOverlay:obj];
+            return;
+        }
+        NSLog(@"removeKMLs: Unknown KML feature: %@", [obj class]);
+    }];
+}
 
 - (void)loadKML:(NSString *)path
 {
@@ -704,6 +720,7 @@
         annotation.title      = feature.name;
 
         [mapView addAnnotation:annotation];
+        [KMLfeatures addObject:annotation];
         return;
     }
 
@@ -723,10 +740,11 @@
         MKPolygon *overlayPolygon = [MKPolygon polygonWithCoordinates:points count:[outerRing.coordinates count]];
 
         [mapView addOverlay:overlayPolygon];
+        [KMLfeatures addObject:overlayPolygon];
         return;
     }
 
-    NSLog(@"Unknown KML feature: %@", [feature class]);
+    NSLog(@"dealWithKMLFeature: Unknown KML feature: %@", [feature class]);
 }
 
 - (CLLocationCoordinate2D)currentCenter
