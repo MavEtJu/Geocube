@@ -84,6 +84,9 @@
 - (void)showTrack:(dbTrack *)track;
 - (void)showTrack;
 
+- (void)loadKML;
+- (void)loadKML:(NSString *)file;
+
 - (CLLocationCoordinate2D)currentCenter;
 - (double)currentZoom;
 - (void)currentRectangle:(CLLocationCoordinate2D *)bottomLeft topRight:(CLLocationCoordinate2D *)topRight;

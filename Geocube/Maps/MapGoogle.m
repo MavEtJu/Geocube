@@ -86,15 +86,7 @@
     if (self.staticHistory == NO)
         [self showHistory];
 
-    // KML test
-    NSString *path = [NSString stringWithFormat:@"%@/apple run.kml", [MyTools FilesDir]];
-    NSURL *url = [NSURL fileURLWithPath:path];
-    GMUKMLParser *parser = [[GMUKMLParser alloc] initWithURL:url];
-    [parser parse];
-    GMUGeometryRenderer *renderer = [[GMUGeometryRenderer alloc] initWithMap:mapView
-                                                                  geometries:parser.placemarks
-                                                                      styles:parser.styles];
-    [renderer render];
+    [self loadKML];
 }
 
 - (void)removeMap
@@ -510,6 +502,17 @@
         line.map = mapView;
     }];
     [self moveCameraTo:trackBL c2:trackTR];
+}
+
+- (void)loadKML:(NSString *)path
+{
+    NSURL *url = [NSURL fileURLWithPath:path];
+    GMUKMLParser *parser = [[GMUKMLParser alloc] initWithURL:url];
+    [parser parse];
+    GMUGeometryRenderer *renderer = [[GMUGeometryRenderer alloc] initWithMap:mapView
+                                                                  geometries:parser.placemarks
+                                                                      styles:parser.styles];
+    [renderer render];
 }
 
 - (CLLocationCoordinate2D)currentCenter
