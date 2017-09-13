@@ -276,7 +276,6 @@ enum sections {
     SECTION_COMPASS_MAX,
 
     SECTION_MAPS_DEFAULTBRAND = 0,
-    SECTION_MAPS_ROTATE_TO_BEARING,
     SECTION_MAPS_MAX,
 
     SECTION_MAPCOLOURS_TRACK = 0,
@@ -588,8 +587,6 @@ enum sections {
                     }];
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-Default map"), value);
                 }
-                case SECTION_MAPS_ROTATE_TO_BEARING:
-                    CELL_SWITCH(_(@"settingsmainviewcontroller-Rotate to bearing"), mapRotateToBearing, updateMapRotateToBearing)
             }
             abort();
         }
@@ -875,7 +872,6 @@ SWITCH_UPDATE(updateOpenCageEnable, opencageEnable)
 SWITCH_UPDATE(updateOpenCageWifiOnly, opencageWifiOnly)
 SWITCH_UPDATE(updateSendTweets, sendTweets)
 SWITCH_UPDATE(updateSoundDistance, soundDistance)
-SWITCH_UPDATE(updateMapRotateToBearing, mapRotateToBearing)
 SWITCH_UPDATE(updateKeeptrackAutoRotate, keeptrackAutoRotate)
 SWITCH_UPDATE(updateKeeptrackEnable, keeptrackEnable)
 SWITCH_UPDATE(updateKeeptrackMemoryOnly, keeptrackMemoryOnly)

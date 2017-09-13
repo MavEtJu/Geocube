@@ -65,7 +65,6 @@ PROTO_N (NSInteger, keeptrackDistanceDeltaMax);
 PROTO_N (NSInteger, keeptrackPurgeAge);
 PROTO_N (NSInteger, keeptrackSync);
 PROTO_N (NSInteger, keeptrackBeeperInterval);
-PROTO_N (BOOL, mapRotateToBearing);
 PROTO_N (BOOL, dynamicmapEnable);
 PROTO_N (NSInteger, dynamicmapWalkingSpeed);
 PROTO_N (NSInteger, dynamicmapWalkingDistance);

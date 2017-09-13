@@ -405,11 +405,8 @@
 
     meLocation = [LM coords];
 
-    if (fabs(meBearing - [LM direction]) > 5) {
+    if (fabs(meBearing - [LM direction]) > 5)
         meBearing = [LM direction];
-        if (configManager.mapRotateToBearing == YES)
-            [self.map updateMyBearing:meBearing];
-    }
 
     // Move the map around to match current location
     switch (self.followWhom) {

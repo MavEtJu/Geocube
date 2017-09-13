@@ -84,8 +84,6 @@
     CHECK(@"keeptrack_sync", @"120");
     CHECK(@"keeptrack_beeper_interval", @"10");
 
-    CHECK(@"map_rotate_to_bearing", @"0");
-
     CHECK(@"dynamicmap_enable", @"1");
     CHECK(@"dynamicmap_speed_walking", @"7");
     CHECK(@"dynamicmap_speed_cycling", @"40");
@@ -210,7 +208,6 @@
     LOAD_INTEGER(self.keeptrackPurgeAge, @"keeptrack_purgeage");
     LOAD_INTEGER(self.keeptrackSync, @"keeptrack_sync");
     LOAD_INTEGER(self.keeptrackBeeperInterval, @"keeptrack_beeper_interval");
-    LOAD_BOOL   (self.mapRotateToBearing, @"map_rotate_to_bearing");
     LOAD_BOOL   (self.dynamicmapEnable, @"dynamicmap_enable");
     LOAD_FLOAT  (self.dynamicmapWalkingDistance, @"dynamicmap_distance_walking");
     LOAD_FLOAT  (self.dynamicmapCyclingDistance, @"dynamicmap_distance_cycling");
@@ -362,7 +359,6 @@ UPDATE3(BOOL, soundDistance, @"sound_distance")
 UPDATE3(BOOL, keeptrackEnable, @"keeptrack_enable")
 UPDATE3(BOOL, keeptrackMemoryOnly, @"keeptrack_memoryonly")
 UPDATE3(BOOL, keeptrackAutoRotate, @"keeptrack_autorotate")
-UPDATE3(BOOL, mapRotateToBearing, @"map_rotate_to_bearing")
 UPDATE3(BOOL, dynamicmapEnable, @"dynamicmap_enable")
 UPDATE3(BOOL, mapcacheEnable, @"mapcache_enable")
 UPDATE3(BOOL, downloadImagesLogs, @"download_images_logs")
