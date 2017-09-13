@@ -4,6 +4,8 @@ Version 1.6(x)
 
   Features:
   - Add button to enable/disable OpenCage support.
+  - EXIF GPS data for the images imported from the library and for
+    the images made by the camera is now captured.
 
   Fixes:
   - Remove "rotate to bearing" for the map as it was never implemented.
