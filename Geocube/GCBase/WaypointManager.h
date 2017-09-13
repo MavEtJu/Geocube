@@ -19,12 +19,18 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol WaypointManagerDelegate
+@protocol WaypointManagerWaypointDelegate
 
 - (void)refreshWaypoints;
 - (void)removeWaypoint:(dbWaypoint *)wp;
 - (void)addWaypoint:(dbWaypoint *)wp;
 - (void)updateWaypoint:(dbWaypoint *)wp;
+
+@end
+
+@protocol WaypointManagerKMLDelegate
+
+- (void)reloadKMLFiles;
 
 @end
 
@@ -42,10 +48,15 @@
 - (void)needsRefreshAdd:(dbWaypoint *)wp;
 - (void)needsRefreshUpdate:(dbWaypoint *)wp;
 - (void)setTheCurrentWaypoint:(dbWaypoint *)wp;
-- (void)startDelegation:(id<WaypointManagerDelegate>)_delegate;
-- (void)stopDelegation:(id<WaypointManagerDelegate>)_delegate;
+
+- (void)startDelegationWaypoints:(id<WaypointManagerWaypointDelegate>)_delegate;
+- (void)stopDelegationWaypoints:(id<WaypointManagerWaypointDelegate>)_delegate;
+- (void)startDelegationKML:(id<WaypointManagerKMLDelegate>)_delegate;
+- (void)stopDelegationKML:(id<WaypointManagerKMLDelegate>)_delegate;
 
 - (dbWaypoint *)waypoint_byId:(NSId)id;
 - (dbWaypoint *)waypoint_byName:(NSString *)name;
+
+- (void)refreshKMLs;
 
 @end

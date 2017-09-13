@@ -76,7 +76,7 @@ enum {
 
     isVisible = NO;
     needsRefresh = YES;
-    [waypointManager startDelegation:self];
+    [waypointManager startDelegationWaypoints:self];
 
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;

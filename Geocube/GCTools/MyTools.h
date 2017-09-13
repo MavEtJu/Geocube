@@ -25,6 +25,7 @@
 + (NSString *)DataDistributionDirectory;
 + (NSString *)ApplicationSupportRoot;
 + (NSString *)FilesDir;
++ (NSString *)KMLDir;
 + (NSString *)MapCacheDir;
 + (NSString *)OldMapCacheDir;
 + (NSString *)ImagesDir;

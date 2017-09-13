@@ -64,6 +64,8 @@ EMPTY_METHOD(mapViewDidLoad)
 - NEEDS_OVERLOADING_VOID(placeMarker:(dbWaypoint *)wp)
 - NEEDS_OVERLOADING_VOID(removeMarker:(dbWaypoint *)wp)
 - NEEDS_OVERLOADING_VOID(updateMarker:(dbWaypoint *)wp)
+- NEEDS_OVERLOADING_VOID(loadKML:(NSString *)file)
+- NEEDS_OVERLOADING_VOID(removeKMLs)
 
 - (instancetype)initMapObject:(MapTemplateViewController *)mvc
 {
@@ -72,6 +74,7 @@ EMPTY_METHOD(mapViewDidLoad)
     self.mapvc = mvc;
     self.circlesShown = NO;
 
+    [waypointManager startDelegationKML:self];
     return self;
 }
 
@@ -233,6 +236,22 @@ EMPTY_METHOD(mapViewDidLoad)
     }];
 
     [self moveCameraTo:CLLocationCoordinate2DMake(bottom, left) c2:CLLocationCoordinate2DMake(top, right)];
+}
+
+- (void)loadKMLs
+{
+    [[dbKMLFile dbAll] enumerateObjectsUsingBlock:^(dbKMLFile * _Nonnull f, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (f.enabled == NO)
+            return;
+        NSString *path = [NSString stringWithFormat:@"%@/%@", [MyTools KMLDir], f.filename];
+        [self loadKML:path];
+    }];
+}
+
+- (void)reloadKMLFiles
+{
+    [self removeKMLs];
+    [self loadKMLs];
 }
 
 @end

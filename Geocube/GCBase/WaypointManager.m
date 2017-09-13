@@ -24,7 +24,8 @@
     CLLocationCoordinate2D lastCoordinates;
     BOOL needsRefresh;
 
-    NSMutableArray<id> *delegates;
+    NSMutableArray<id> *delegatesWaypoints;
+    NSMutableArray<id> *delegatesKML;
 }
 
 @property (nonatomic, retain, readwrite) dbWaypoint *currentWaypoint;
@@ -48,23 +49,37 @@
 
     [LM startDelegationLocation:self isNavigating:NO];
 
-    delegates = [NSMutableArray arrayWithCapacity:5];
+    delegatesWaypoints = [NSMutableArray arrayWithCapacity:5];
+    delegatesKML = [NSMutableArray arrayWithCapacity:5];
     [self needsRefreshAll];
 
     return self;
 }
 
-- (void)startDelegation:(id)_delegate
+- (void)startDelegationWaypoints:(id)_delegate
 {
     NSLog(@"%@: starting for %@", [self class], [_delegate class]);
     if (_delegate != nil)
-        [delegates addObject:_delegate];
+        [delegatesWaypoints addObject:_delegate];
 }
 
-- (void)stopDelegation:(id)_delegate
+- (void)stopDelegationWaypoints:(id)_delegate
 {
     NSLog(@"%@: stopping for %@", [self class], [_delegate class]);
-    [delegates removeObject:_delegate];
+    [delegatesWaypoints removeObject:_delegate];
+}
+
+- (void)startDelegationKML:(id)_delegate
+{
+    NSLog(@"%@: starting for %@", [self class], [_delegate class]);
+    if (_delegate != nil)
+        [delegatesKML addObject:_delegate];
+}
+
+- (void)stopDelegationKML:(id)_delegate
+{
+    NSLog(@"%@: stopping for %@", [self class], [_delegate class]);
+    [delegatesKML removeObject:_delegate];
 }
 
 - (void)needsRefreshAll
@@ -72,7 +87,7 @@
     if (needsRefresh == NO) {
         needsRefresh = YES;
 
-        [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+        [delegatesWaypoints enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
             // Doing this via the main queue because Google Map Service insists on it.
             NSLog(@"%@: refreshing #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
             MAINQUEUE(
@@ -86,7 +101,7 @@
 {
     [self.currentWaypoints addObject:wp];
 
-    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+    [delegatesWaypoints enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
         MAINQUEUE(
@@ -99,7 +114,7 @@
 {
     [self.currentWaypoints removeObject:wp];
 
-    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+    [delegatesWaypoints enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
         MAINQUEUE(
@@ -114,7 +129,7 @@
     if (idx != NSNotFound)
         [self.currentWaypoints replaceObjectAtIndex:idx withObject:wp];
 
-    [delegates enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+    [delegatesWaypoints enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
         MAINQUEUE(
@@ -778,6 +793,16 @@
         }
     }];
     return cwp;
+}
+
+- (void)refreshKMLs
+{
+    [delegatesKML enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+        // Doing this via the main queue because Google Map Service insists on it.
+        MAINQUEUE(
+            [delegate refreshKMLs];
+        )
+    }];
 }
 
 @end

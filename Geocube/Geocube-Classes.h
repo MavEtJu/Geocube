@@ -35,6 +35,7 @@
 @class DownloadManager;
 @class ExportGPX;
 @class FileBrowserViewController;
+@class FileKMLViewController;
 @class FileObject;
 @class FileObjectView;
 @class FilesTableViewCell;
@@ -239,6 +240,7 @@
 @class dbFilter;
 @class dbGroup;
 @class dbImage;
+@class dbKMLFile;
 @class dbListData;
 @class dbLocality;
 @class dbLog;

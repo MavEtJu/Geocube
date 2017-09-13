@@ -13,6 +13,7 @@ Version 1.5(x)
     listing services.
   - Show speed on the compass.
   - Keep Tracks can be disabled, but still can be done in memory.
+  - Be able to show KML files.
 
   Fixes:
   - If the locale doesn't use the metric system, then default to

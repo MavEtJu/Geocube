@@ -35,6 +35,9 @@
     CLLocationCoordinate2D trackBL, trackTR;
 
     dbWaypoint *wpSelected;
+
+    GMUGeometryRenderer *KMLrenderer;
+    NSMutableArray<GMUGeometryRenderer *> *KMLrenderers;
 }
 
 @end
@@ -85,6 +88,9 @@
         lastPathHistory = [GMSMutablePath path];
     if (self.staticHistory == NO)
         [self showHistory];
+
+    KMLrenderers = [NSMutableArray arrayWithCapacity:3];
+    [self loadKMLs];
 }
 
 - (void)removeMap
@@ -500,6 +506,25 @@
         line.map = mapView;
     }];
     [self moveCameraTo:trackBL c2:trackTR];
+}
+
+- (void)removeKMLs
+{
+    [KMLrenderers enumerateObjectsUsingBlock:^(GMUGeometryRenderer * _Nonnull renderer, NSUInteger idx, BOOL * _Nonnull stop) {
+        [renderer clear];
+    }];
+}
+
+- (void)loadKML:(NSString *)path
+{
+    NSURL *url = [NSURL fileURLWithPath:path];
+    GMUKMLParser *parser = [[GMUKMLParser alloc] initWithURL:url];
+    [parser parse];
+    GMUGeometryRenderer *renderer = [[GMUGeometryRenderer alloc] initWithMap:mapView
+                                                                  geometries:parser.placemarks
+                                                                      styles:parser.styles];
+    [renderer render];
+    [KMLrenderers addObject:renderer];
 }
 
 - (CLLocationCoordinate2D)currentCenter

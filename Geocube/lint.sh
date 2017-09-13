@@ -51,7 +51,7 @@ diff /tmp/[ab]
 
 echo
 echo "Copyright:"
-grep -c "2015, 2016, 2017" $(ls -1 *.m */*.m | grep -v PSPDFUIKitMainThreadGuard.m) | sed -e 's/:/ /' | grep -v " 1$"
+grep -c "Copyright .*$(date +%Y)" $(ls -1 *.m */*.m | grep -v PSPDFUIKitMainThreadGuard.m) | sed -e 's/:/ /' | grep -v " 1$"
 
 echo
 echo "Tabs:"

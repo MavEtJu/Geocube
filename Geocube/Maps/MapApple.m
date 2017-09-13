@@ -36,6 +36,9 @@
 
     dbWaypoint *wpSelected;
     BOOL modifyingMap;
+
+    SimpleKML *simpleKML;
+    NSMutableArray<id> *KMLfeatures;
 }
 
 @end
@@ -90,6 +93,9 @@
     historyCoordsIdx = 0;
     if (self.staticHistory == NO)
         [self showHistory];
+
+    KMLfeatures = [NSMutableArray arrayWithCapacity:3];
+    [self loadKMLs];
 }
 
 - (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
@@ -279,6 +285,23 @@
     }
 }
 
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+    if ([view.annotation isKindOfClass:[GCWaypointAnnotation class]]) {
+        GCWaypointAnnotation *pa = (GCWaypointAnnotation *)view.annotation;
+        wpSelected = pa.waypoint;
+        [self.mapvc showWaypointInfo:pa.waypoint];
+    }
+}
+
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
+{
+    if ([view.annotation isKindOfClass:[GCWaypointAnnotation class]]) {
+        [self.mapvc removeWaypointInfo];
+        wpSelected = nil;
+    }
+}
+
 - (MKAnnotationView *)mapView:(MKMapView *)_mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     // If it is the user location, just return nil.
@@ -302,23 +325,6 @@
     }
 
     return nil;
-}
-
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
-{
-    if ([view.annotation isKindOfClass:[GCWaypointAnnotation class]]) {
-        GCWaypointAnnotation *pa = (GCWaypointAnnotation *)view.annotation;
-        wpSelected = pa.waypoint;
-        [self.mapvc showWaypointInfo:pa.waypoint];
-    }
-}
-
-- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
-{
-    if ([view.annotation isKindOfClass:[GCWaypointAnnotation class]]) {
-        [self.mapvc removeWaypointInfo];
-        wpSelected = nil;
-    }
 }
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)_mapView rendererForOverlay:(id<MKOverlay>)overlay
@@ -358,6 +364,28 @@
     }];
     if (circleRenderer != nil)
         return circleRenderer;
+
+    if ([overlay isKindOfClass:[MKPolygon class]] == YES) {
+        MKPolygonRenderer *polygonRenderer = [[MKPolygonRenderer alloc] initWithPolygon:(MKPolygon *)overlay];
+
+        // use some sensible defaults - normally, you'd probably look for LineStyle & PolyStyle in the KML
+        polygonRenderer.fillColor   = [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.25];
+        polygonRenderer.strokeColor = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.75];
+        polygonRenderer.lineWidth = 2.0;
+
+        return polygonRenderer;
+    }
+
+    if ([overlay isKindOfClass:[MKPolyline class]] == YES) {
+        MKPolylineRenderer *polylineRenderer = [[MKPolylineRenderer alloc] initWithPolyline:(MKPolyline *)overlay];
+
+        // use some sensible defaults - normally, you'd probably look for LineStyle & PolyStyle in the KML
+        polylineRenderer.fillColor   = [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.25];
+        polylineRenderer.strokeColor = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.75];
+        polylineRenderer.lineWidth = 2.0;
+
+        return polylineRenderer;
+    }
 
     return nil;
 }
@@ -651,6 +679,105 @@
         }];
     }
     [self moveCameraTo:trackBL c2:trackTR];
+}
+
+- (void)removeKMLs
+{
+    [KMLfeatures enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[MKPointAnnotation class]] == YES) {
+            [mapView removeAnnotation:obj];
+            return;
+        }
+        if ([obj isKindOfClass:[MKPolygon class]] == YES) {
+            [mapView removeOverlay:obj];
+            return;
+        }
+        NSLog(@"removeKMLs: Unknown KML feature: %@", [obj class]);
+    }];
+}
+
+- (void)loadKML:(NSString *)path
+{
+    SimpleKML *kml = [SimpleKML KMLWithContentsOfFile:path error:nil];
+
+    // look for a document feature in it per the KML spec
+    //
+    if (kml.feature != nil && [kml.feature isKindOfClass:[SimpleKMLDocument class]] == YES) {
+        for (SimpleKMLFeature *feature in ((SimpleKMLContainer *)kml.feature).features) {
+            [self dealWithKMLFeature:feature mapView:mapView];
+        }
+    }
+}
+
+- (void)dealWithKMLFeature:(SimpleKMLFeature *)feature mapView:(MKMapView *)mapview
+{
+    if ([feature isKindOfClass:[SimpleKMLFolder class]] == YES) {
+        NSLog(@"reloadKMLFiles: SimpleKMLFolder");
+
+        NSArray<SimpleKMLObject *> *entries = ((SimpleKMLFolder *)feature).entries;
+        NSLog(@"children: %d", [entries count]);
+        for (SimpleKMLFeature *entry in entries)
+            [self dealWithKMLFeature:entry mapView:mapview];
+        return;
+    }
+
+    if ([feature isKindOfClass:[SimpleKMLPlacemark class]] == YES && ((SimpleKMLPlacemark *)feature).point != nil) {
+        SimpleKMLPoint *point = ((SimpleKMLPlacemark *)feature).point;
+        NSLog(@"reloadKMLFiles: SimpleKMLPoint");
+
+        // create a normal point annotation for it
+        MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+
+        annotation.coordinate = point.coordinate;
+        annotation.title      = feature.name;
+
+        [mapView addAnnotation:annotation];
+        [KMLfeatures addObject:annotation];
+        return;
+    }
+
+    // line
+    if ([feature isKindOfClass:[SimpleKMLPlacemark class]] == YES && ((SimpleKMLPlacemark *)feature).lineString != nil) {
+        SimpleKMLLineString *lines = (SimpleKMLLineString *)((SimpleKMLPlacemark *)feature).lineString;
+        NSLog(@"reloadKMLFiles: SimpleKMLLineString");
+
+        NSArray<CLLocation *> *coords = lines.coordinates;
+
+        CLLocationCoordinate2D *points = calloc([coords count], sizeof(CLLocationCoordinate2D));
+        __block NSUInteger i = 0;
+        [coords enumerateObjectsUsingBlock:^(CLLocation * _Nonnull coordinate, NSUInteger idx, BOOL * _Nonnull stop) {
+            points[i++] = coordinate.coordinate;
+        }];
+        MKPolyline *overlayPolyline = [MKPolyline polylineWithCoordinates:points count:i];
+        free(points);
+
+        [mapView addOverlay:overlayPolyline];
+        [KMLfeatures addObject:overlayPolyline];
+        return;
+    }
+
+    // otherwise, see if we have any placemark features with a polygon
+    if ([feature isKindOfClass:[SimpleKMLPlacemark class]] == YES && ((SimpleKMLPlacemark *)feature).polygon != nil) {
+        SimpleKMLPolygon *polygon = (SimpleKMLPolygon *)((SimpleKMLPlacemark *)feature).polygon;
+        NSLog(@"reloadKMLFiles: SimpleKMLPolygon");
+
+        SimpleKMLLinearRing *outerRing = polygon.outerBoundary;
+
+        CLLocationCoordinate2D points[[outerRing.coordinates count]];
+        NSUInteger i = 0;
+
+        for (CLLocation *coordinate in outerRing.coordinates)
+            points[i++] = coordinate.coordinate;
+
+        // create a polygon annotation for it
+        MKPolygon *overlayPolygon = [MKPolygon polygonWithCoordinates:points count:[outerRing.coordinates count]];
+
+        [mapView addOverlay:overlayPolygon];
+        [KMLfeatures addObject:overlayPolygon];
+        return;
+    }
+
+    NSLog(@"dealWithKMLFeature: Unknown KML feature: %@", [feature class]);
 }
 
 - (CLLocationCoordinate2D)currentCenter

@@ -7,6 +7,7 @@
 "filesviewcontroller-Choose your action" = "Choose Your Action";
 "filesviewcontroller-Delete" = "Delete";
 "filesviewcontroller-Import" = "Import";
+"filesviewcontroller-Move to KML folder" = "Move to KML folder";
 "filesviewcontroller-Rename" = "Rename";
 "filesviewcontroller-Restore" = "Restore";
 "filesviewcontroller-Unzip" = "Unzip";
@@ -35,3 +36,7 @@
 "filebrowserviewcontroller-(ld)" = "(ld)";
 "filebrowserviewcontroller-(lf)" = "(lf)";
 "filebrowserviewcontroller-(ll)" = "(ll)";
+
+/* Files - KML */
+"filekmlviewcontroller-Not shown" = "Not shown on the map";
+"filekmlviewcontroller-Shown on map" = "Shown on the map";

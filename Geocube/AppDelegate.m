@@ -45,6 +45,7 @@
 
     /* Create working directories */
     [fileManager createDirectoryAtPath:[MyTools FilesDir] withIntermediateDirectories:NO attributes:nil error:nil];
+    [fileManager createDirectoryAtPath:[MyTools KMLDir] withIntermediateDirectories:NO attributes:nil error:nil];
     [fileManager createDirectoryAtPath:[MyTools ApplicationSupportRoot] withIntermediateDirectories:NO attributes:nil error:nil];
 
     // Do some directory juggling
@@ -216,6 +217,7 @@
                 controllers = [NSMutableArray array];
 
                 VC(FilesViewController, _(@"menu-files-Local Files"));
+                VC(FileKMLViewController, _(@"menu-files-KML"));
                 VC(FileBrowserViewController, _(@"menu-files-File Browser"));
 
                 TABBARCONTROLLER(RC_FILES, controllers)

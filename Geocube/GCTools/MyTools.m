@@ -56,6 +56,13 @@
     return s;
 }
 
+/// Returns the location where the KML files are installed
++ (NSString *)KMLDir
+{
+    NSString *s = [[NSString alloc] initWithFormat:@"%@/kml", [self DocumentRoot]];
+    return s;
+}
+
 /// Returns the location where the images downloaded will be
 + (NSString *)ImagesDir
 {

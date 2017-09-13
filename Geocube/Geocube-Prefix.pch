@@ -63,6 +63,19 @@
 #import "XMLReader.h"
 #import "YIPopupTextView.h"
 
+#import "SimpleKML.h"
+#import "SimpleKMLFeature.h"
+#import "SimpleKMLFolder.h"
+#import "SimpleKMLDocument.h"
+#import "SimpleKMLPlacemark.h"
+#import "SimpleKMLPolygon.h"
+#import "SimpleKMLPoint.h"
+#import "SimpleKMLLinearRing.h"
+#import "SimpleKMLLineString.h"
+
+#import "GMUKMLParser.h"
+#import "GMUGeometryRenderer.h"
+
 #import "Geocube-Classes.h"
 #import "Geocube-defines.h"
 
@@ -87,6 +100,7 @@
 #import "dbFilter.h"
 #import "dbGroup.h"
 #import "dbImage.h"
+#import "dbKMLFile.h"
 #import "dbListData.h"
 #import "dbLocality.h"
 #import "dbLog.h"
@@ -276,6 +290,7 @@
 #import "FileObject.h"
 #import "FileObjectView.h"
 #import "FileBrowserViewController.h"
+#import "FileKMLViewController.h"
 
 #import "TrackableTableViewCell.h"
 #import "TrackablesTemplateViewController.h"
