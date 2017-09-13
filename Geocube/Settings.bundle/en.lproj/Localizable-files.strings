@@ -38,5 +38,5 @@
 "filebrowserviewcontroller-(ll)" = "(ll)";
 
 /* Files - KML */
-"filekmlviewcontroller-Not shown" = "Not shown";
-"filekmlviewcontroller-Shown on map" = "Shown on map";
+"filekmlviewcontroller-Not shown" = "Not shown on the map";
+"filekmlviewcontroller-Shown on map" = "Shown on the map";
