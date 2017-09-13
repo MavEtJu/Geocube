@@ -6,6 +6,7 @@ Version 1.6(x)
   - Add button to enable/disable OpenCage support.
 
   Fixes:
+  - Remove "rotate to bearing" for the map as it was never implemented.
 
 Version 1.5(x)
 
