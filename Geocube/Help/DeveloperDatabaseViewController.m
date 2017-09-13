@@ -92,6 +92,8 @@ enum {
     [vs addObject:[[NSNumber numberWithInteger:[dbGroup dbCount]] stringValue]];
     [fs addObject:@"Images"];
     [vs addObject:[[NSNumber numberWithInteger:[dbImage dbCount]] stringValue]];
+    [fs addObject:@"KMLFiles"];
+    [vs addObject:[[NSNumber numberWithInteger:[dbKMLFile dbCount]] stringValue]];
     [fs addObject:@"ListData"];
     [vs addObject:[[NSNumber numberWithInteger:[dbListData dbCount]] stringValue]];
     [fs addObject:@"Localities"];
