@@ -29,17 +29,6 @@
 		E82341C41EECCE8300D2CDFD /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341B91EECCE8300D2CDFD /* ActionSheetStringPicker.m */; };
 		E82341C51EECCE8300D2CDFD /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341BB1EECCE8300D2CDFD /* DistancePickerView.m */; };
 		E82341C61EECCE8300D2CDFD /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341BD1EECCE8300D2CDFD /* SWActionSheet.m */; };
-		E82341E01EECCE9C00D2CDFD /* CCHCenterOfMassMapClusterer.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341C81EECCE9C00D2CDFD /* CCHCenterOfMassMapClusterer.m */; };
-		E82341E11EECCE9C00D2CDFD /* CCHFadeInOutMapAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341CA1EECCE9C00D2CDFD /* CCHFadeInOutMapAnimator.m */; };
-		E82341E21EECCE9C00D2CDFD /* CCHMapClusterAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341CD1EECCE9C00D2CDFD /* CCHMapClusterAnnotation.m */; };
-		E82341E31EECCE9C00D2CDFD /* CCHMapClusterController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341CF1EECCE9C00D2CDFD /* CCHMapClusterController.m */; };
-		E82341E41EECCE9C00D2CDFD /* CCHMapClusterControllerDebugPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341D11EECCE9C00D2CDFD /* CCHMapClusterControllerDebugPolygon.m */; };
-		E82341E51EECCE9C00D2CDFD /* CCHMapClusterControllerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341D41EECCE9C00D2CDFD /* CCHMapClusterControllerUtils.m */; };
-		E82341E61EECCE9C00D2CDFD /* CCHMapClusterOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341D71EECCE9C00D2CDFD /* CCHMapClusterOperation.m */; };
-		E82341E71EECCE9C00D2CDFD /* CCHMapTree.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341D91EECCE9C00D2CDFD /* CCHMapTree.m */; };
-		E82341E81EECCE9C00D2CDFD /* CCHMapTreeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341DB1EECCE9C00D2CDFD /* CCHMapTreeUtils.m */; };
-		E82341E91EECCE9C00D2CDFD /* CCHMapViewDelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341DD1EECCE9C00D2CDFD /* CCHMapViewDelegateProxy.m */; };
-		E82341EA1EECCE9C00D2CDFD /* CCHNearCenterMapClusterer.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341DF1EECCE9C00D2CDFD /* CCHNearCenterMapClusterer.m */; };
 		E82341F01EECCEBB00D2CDFD /* fillrange.png in Resources */ = {isa = PBXBuildFile; fileRef = E82341EB1EECCEBB00D2CDFD /* fillrange.png */; };
 		E82341F11EECCEBB00D2CDFD /* fullrange.png in Resources */ = {isa = PBXBuildFile; fileRef = E82341EC1EECCEBB00D2CDFD /* fullrange.png */; };
 		E82341F21EECCEBB00D2CDFD /* RangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341EE1EECCEBB00D2CDFD /* RangeSlider.m */; };
@@ -875,31 +864,6 @@
 		E82341BB1EECCE8300D2CDFD /* DistancePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DistancePickerView.m; path = contrib/ActionSheetPicker/DistancePickerView.m; sourceTree = "<group>"; };
 		E82341BC1EECCE8300D2CDFD /* SWActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWActionSheet.h; path = contrib/ActionSheetPicker/SWActionSheet.h; sourceTree = "<group>"; };
 		E82341BD1EECCE8300D2CDFD /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWActionSheet.m; path = contrib/ActionSheetPicker/SWActionSheet.m; sourceTree = "<group>"; };
-		E82341C71EECCE9C00D2CDFD /* CCHCenterOfMassMapClusterer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHCenterOfMassMapClusterer.h; path = contrib/CCHMapClusterController/CCHCenterOfMassMapClusterer.h; sourceTree = "<group>"; };
-		E82341C81EECCE9C00D2CDFD /* CCHCenterOfMassMapClusterer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHCenterOfMassMapClusterer.m; path = contrib/CCHMapClusterController/CCHCenterOfMassMapClusterer.m; sourceTree = "<group>"; };
-		E82341C91EECCE9C00D2CDFD /* CCHFadeInOutMapAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHFadeInOutMapAnimator.h; path = contrib/CCHMapClusterController/CCHFadeInOutMapAnimator.h; sourceTree = "<group>"; };
-		E82341CA1EECCE9C00D2CDFD /* CCHFadeInOutMapAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHFadeInOutMapAnimator.m; path = contrib/CCHMapClusterController/CCHFadeInOutMapAnimator.m; sourceTree = "<group>"; };
-		E82341CB1EECCE9C00D2CDFD /* CCHMapAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHMapAnimator.h; path = contrib/CCHMapClusterController/CCHMapAnimator.h; sourceTree = "<group>"; };
-		E82341CC1EECCE9C00D2CDFD /* CCHMapClusterAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHMapClusterAnnotation.h; path = contrib/CCHMapClusterController/CCHMapClusterAnnotation.h; sourceTree = "<group>"; };
-		E82341CD1EECCE9C00D2CDFD /* CCHMapClusterAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHMapClusterAnnotation.m; path = contrib/CCHMapClusterController/CCHMapClusterAnnotation.m; sourceTree = "<group>"; };
-		E82341CE1EECCE9C00D2CDFD /* CCHMapClusterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHMapClusterController.h; path = contrib/CCHMapClusterController/CCHMapClusterController.h; sourceTree = "<group>"; };
-		E82341CF1EECCE9C00D2CDFD /* CCHMapClusterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHMapClusterController.m; path = contrib/CCHMapClusterController/CCHMapClusterController.m; sourceTree = "<group>"; };
-		E82341D01EECCE9C00D2CDFD /* CCHMapClusterControllerDebugPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHMapClusterControllerDebugPolygon.h; path = contrib/CCHMapClusterController/CCHMapClusterControllerDebugPolygon.h; sourceTree = "<group>"; };
-		E82341D11EECCE9C00D2CDFD /* CCHMapClusterControllerDebugPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHMapClusterControllerDebugPolygon.m; path = contrib/CCHMapClusterController/CCHMapClusterControllerDebugPolygon.m; sourceTree = "<group>"; };
-		E82341D21EECCE9C00D2CDFD /* CCHMapClusterControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHMapClusterControllerDelegate.h; path = contrib/CCHMapClusterController/CCHMapClusterControllerDelegate.h; sourceTree = "<group>"; };
-		E82341D31EECCE9C00D2CDFD /* CCHMapClusterControllerUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHMapClusterControllerUtils.h; path = contrib/CCHMapClusterController/CCHMapClusterControllerUtils.h; sourceTree = "<group>"; };
-		E82341D41EECCE9C00D2CDFD /* CCHMapClusterControllerUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHMapClusterControllerUtils.m; path = contrib/CCHMapClusterController/CCHMapClusterControllerUtils.m; sourceTree = "<group>"; };
-		E82341D51EECCE9C00D2CDFD /* CCHMapClusterer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHMapClusterer.h; path = contrib/CCHMapClusterController/CCHMapClusterer.h; sourceTree = "<group>"; };
-		E82341D61EECCE9C00D2CDFD /* CCHMapClusterOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHMapClusterOperation.h; path = contrib/CCHMapClusterController/CCHMapClusterOperation.h; sourceTree = "<group>"; };
-		E82341D71EECCE9C00D2CDFD /* CCHMapClusterOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHMapClusterOperation.m; path = contrib/CCHMapClusterController/CCHMapClusterOperation.m; sourceTree = "<group>"; };
-		E82341D81EECCE9C00D2CDFD /* CCHMapTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHMapTree.h; path = contrib/CCHMapClusterController/CCHMapTree.h; sourceTree = "<group>"; };
-		E82341D91EECCE9C00D2CDFD /* CCHMapTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHMapTree.m; path = contrib/CCHMapClusterController/CCHMapTree.m; sourceTree = "<group>"; };
-		E82341DA1EECCE9C00D2CDFD /* CCHMapTreeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHMapTreeUtils.h; path = contrib/CCHMapClusterController/CCHMapTreeUtils.h; sourceTree = "<group>"; };
-		E82341DB1EECCE9C00D2CDFD /* CCHMapTreeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHMapTreeUtils.m; path = contrib/CCHMapClusterController/CCHMapTreeUtils.m; sourceTree = "<group>"; };
-		E82341DC1EECCE9C00D2CDFD /* CCHMapViewDelegateProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHMapViewDelegateProxy.h; path = contrib/CCHMapClusterController/CCHMapViewDelegateProxy.h; sourceTree = "<group>"; };
-		E82341DD1EECCE9C00D2CDFD /* CCHMapViewDelegateProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHMapViewDelegateProxy.m; path = contrib/CCHMapClusterController/CCHMapViewDelegateProxy.m; sourceTree = "<group>"; };
-		E82341DE1EECCE9C00D2CDFD /* CCHNearCenterMapClusterer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCHNearCenterMapClusterer.h; path = contrib/CCHMapClusterController/CCHNearCenterMapClusterer.h; sourceTree = "<group>"; };
-		E82341DF1EECCE9C00D2CDFD /* CCHNearCenterMapClusterer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCHNearCenterMapClusterer.m; path = contrib/CCHMapClusterController/CCHNearCenterMapClusterer.m; sourceTree = "<group>"; };
 		E82341EB1EECCEBB00D2CDFD /* fillrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fillrange.png; path = contrib/CMRangeSlider/fillrange.png; sourceTree = "<group>"; };
 		E82341EC1EECCEBB00D2CDFD /* fullrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fullrange.png; path = contrib/CMRangeSlider/fullrange.png; sourceTree = "<group>"; };
 		E82341ED1EECCEBB00D2CDFD /* RangeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RangeSlider.h; path = contrib/CMRangeSlider/RangeSlider.h; sourceTree = "<group>"; };
@@ -3180,38 +3144,6 @@
 			name = ActionSheetPicker;
 			sourceTree = "<group>";
 		};
-		E8D7BA2F1BC67CA3001B0805 /* CCHMapClusterController */ = {
-			isa = PBXGroup;
-			children = (
-				E82341C71EECCE9C00D2CDFD /* CCHCenterOfMassMapClusterer.h */,
-				E82341C81EECCE9C00D2CDFD /* CCHCenterOfMassMapClusterer.m */,
-				E82341C91EECCE9C00D2CDFD /* CCHFadeInOutMapAnimator.h */,
-				E82341CA1EECCE9C00D2CDFD /* CCHFadeInOutMapAnimator.m */,
-				E82341CB1EECCE9C00D2CDFD /* CCHMapAnimator.h */,
-				E82341CC1EECCE9C00D2CDFD /* CCHMapClusterAnnotation.h */,
-				E82341CD1EECCE9C00D2CDFD /* CCHMapClusterAnnotation.m */,
-				E82341CE1EECCE9C00D2CDFD /* CCHMapClusterController.h */,
-				E82341CF1EECCE9C00D2CDFD /* CCHMapClusterController.m */,
-				E82341D01EECCE9C00D2CDFD /* CCHMapClusterControllerDebugPolygon.h */,
-				E82341D11EECCE9C00D2CDFD /* CCHMapClusterControllerDebugPolygon.m */,
-				E82341D21EECCE9C00D2CDFD /* CCHMapClusterControllerDelegate.h */,
-				E82341D31EECCE9C00D2CDFD /* CCHMapClusterControllerUtils.h */,
-				E82341D41EECCE9C00D2CDFD /* CCHMapClusterControllerUtils.m */,
-				E82341D51EECCE9C00D2CDFD /* CCHMapClusterer.h */,
-				E82341D61EECCE9C00D2CDFD /* CCHMapClusterOperation.h */,
-				E82341D71EECCE9C00D2CDFD /* CCHMapClusterOperation.m */,
-				E82341D81EECCE9C00D2CDFD /* CCHMapTree.h */,
-				E82341D91EECCE9C00D2CDFD /* CCHMapTree.m */,
-				E82341DA1EECCE9C00D2CDFD /* CCHMapTreeUtils.h */,
-				E82341DB1EECCE9C00D2CDFD /* CCHMapTreeUtils.m */,
-				E82341DC1EECCE9C00D2CDFD /* CCHMapViewDelegateProxy.h */,
-				E82341DD1EECCE9C00D2CDFD /* CCHMapViewDelegateProxy.m */,
-				E82341DE1EECCE9C00D2CDFD /* CCHNearCenterMapClusterer.h */,
-				E82341DF1EECCE9C00D2CDFD /* CCHNearCenterMapClusterer.m */,
-			);
-			name = CCHMapClusterController;
-			sourceTree = "<group>";
-		};
 		E8E0A6571DEE2255004A885D /* GCA2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3472,7 +3404,6 @@
 			children = (
 				E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */,
 				E8D569E21B54A0ED001A0F8E /* ActionSheetPicker */,
-				E8D7BA2F1BC67CA3001B0805 /* CCHMapClusterController */,
 				E8E8D0171B66E74600CC741A /* CMRangeSlider */,
 				E804138A1E9EF71E001FD7BF /* kxintro */,
 				E8F6BE731BB8C77A009EA037 /* LXMapScale */,
@@ -4434,7 +4365,6 @@
 				E823430E1EECD97400D2CDFD /* Coordinates.m in Sources */,
 				E82343841EECDB9B00D2CDFD /* MapAllWPViewController.m in Sources */,
 				E8182F4C1C0E41CB004AC534 /* KeyboardCoordinateView.m in Sources */,
-				E82341EA1EECCE9C00D2CDFD /* CCHNearCenterMapClusterer.m in Sources */,
 				E82344971EECE0AD00D2CDFD /* QueriesTemplateViewController.m in Sources */,
 				E823432C1EECD9BC00D2CDFD /* ProtocolGGCW.m in Sources */,
 				E8E3DC1C1E167C740066E903 /* AppDelegate.m in Sources */,
@@ -4500,7 +4430,6 @@
 				E83B10961EF4FC6000F2C5FA /* LocationlessListViewController.m in Sources */,
 				E82342CA1EECD0B100D2CDFD /* dbTrackable.m in Sources */,
 				E82342C81EECD0B100D2CDFD /* dbSymbol.m in Sources */,
-				E82341E21EECCE9C00D2CDFD /* CCHMapClusterAnnotation.m in Sources */,
 				E82344331EECDFB300D2CDFD /* FilterTableViewCell.m in Sources */,
 				E82343F71EECDF4400D2CDFD /* WaypointLogsViewController.m in Sources */,
 				E82343791EECDB4500D2CDFD /* ThemeTemplate.m in Sources */,
@@ -4519,7 +4448,6 @@
 				E82342BD1EECD0B100D2CDFD /* dbLogMacro.m in Sources */,
 				E89D0D301EFA5ADD0019A411 /* PropertyUtil.m in Sources */,
 				E82344911EECE0AC00D2CDFD /* QueriesGCAViewController.m in Sources */,
-				E82341E91EECCE9C00D2CDFD /* CCHMapViewDelegateProxy.m in Sources */,
 				E82342581EECCFA400D2CDFD /* XPathQuery.m in Sources */,
 				E82344841EECE09C00D2CDFD /* ListTemplateViewController.m in Sources */,
 				E823442D1EECDFB300D2CDFD /* FilterFlagsTableViewCell.m in Sources */,
@@ -4550,12 +4478,10 @@
 				E82343BB1EECDE6C00D2CDFD /* WaypointLogImagesViewController.m in Sources */,
 				E82344291EECDFB300D2CDFD /* FilterDifficultyTableViewCell.m in Sources */,
 				E82343351EECD9BC00D2CDFD /* RemoteAPITemplate.m in Sources */,
-				E82341E71EECCE9C00D2CDFD /* CCHMapTree.m in Sources */,
 				E82343771EECDB4500D2CDFD /* ThemeManager.m in Sources */,
 				E823424E1EECCF9300D2CDFD /* SVProgressHUD.m in Sources */,
 				E82342C41EECD0B100D2CDFD /* dbPin.m in Sources */,
 				E83C6F041EECE67100E303F5 /* FilesTableViewCell.m in Sources */,
-				E82341E51EECCE9C00D2CDFD /* CCHMapClusterControllerUtils.m in Sources */,
 				E82345071EECE12B00D2CDFD /* GCTableViewController.m in Sources */,
 				E82342CB1EECD0B100D2CDFD /* dbTrackElement.m in Sources */,
 				E82345261EECE14A00D2CDFD /* NoticesViewController.m in Sources */,
@@ -4568,10 +4494,8 @@
 				E82342401EECCF7E00D2CDFD /* SSZipArchive.m in Sources */,
 				E82342B31EECD0B100D2CDFD /* dbContainer.m in Sources */,
 				E8EC073F1D39D898009B8EB1 /* DownloadManager.m in Sources */,
-				E82341E41EECCE9C00D2CDFD /* CCHMapClusterControllerDebugPolygon.m in Sources */,
 				E823435D1EECDAEF00D2CDFD /* LocalMenuItems.m in Sources */,
 				E815B7861F6805C9003A6092 /* dbKMLFile.m in Sources */,
-				E82341E31EECCE9C00D2CDFD /* CCHMapClusterController.m in Sources */,
 				E82344941EECE0AD00D2CDFD /* QueriesTableViewCell.m in Sources */,
 				E823420E1EECCEEE00D2CDFD /* MHTabBarController.m in Sources */,
 				E82342C91EECD0B100D2CDFD /* dbTrack.m in Sources */,
@@ -4615,11 +4539,9 @@
 				E82341FC1EECCECE00D2CDFD /* KxIntroViewPage.m in Sources */,
 				E82342B61EECD0B100D2CDFD /* dbFileImport.m in Sources */,
 				E823439D1EECDBCF00D2CDFD /* MapTemplate.m in Sources */,
-				E82341E81EECCE9C00D2CDFD /* CCHMapTreeUtils.m in Sources */,
 				E823424B1EECCF9300D2CDFD /* SVIndefiniteAnimatedView.m in Sources */,
 				E82342C61EECD0B100D2CDFD /* dbQueryImport.m in Sources */,
 				E82343AB1EECDDD400D2CDFD /* GCGMSCircle.m in Sources */,
-				E82341E01EECCE9C00D2CDFD /* CCHCenterOfMassMapClusterer.m in Sources */,
 				E82343881EECDB9B00D2CDFD /* MapTrackViewController.m in Sources */,
 				E83B10A21EF4FDDD00F2C5FA /* MapLogsViewController.m in Sources */,
 				E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */,
@@ -4648,7 +4570,6 @@
 				E82343691EECDB2C00D2CDFD /* GCArray.m in Sources */,
 				E82344641EECE06E00D2CDFD /* TrackablesListViewController.m in Sources */,
 				E82343871EECDB9B00D2CDFD /* MapTemplateViewController.m in Sources */,
-				E82341E61EECCE9C00D2CDFD /* CCHMapClusterOperation.m in Sources */,
 				E823432D1EECD9BC00D2CDFD /* ProtocolLiveAPI.m in Sources */,
 				E83C6F021EECE67100E303F5 /* FileObjectView.m in Sources */,
 				E82343301EECD9BC00D2CDFD /* RemoteAPIGCA2.m in Sources */,
@@ -4681,7 +4602,6 @@
 				E82341C41EECCE8300D2CDFD /* ActionSheetStringPicker.m in Sources */,
 				E82343781EECDB4500D2CDFD /* ThemeNight.m in Sources */,
 				E82341FF1EECCEDB00D2CDFD /* LXMapScaleView.m in Sources */,
-				E82341E11EECCE9C00D2CDFD /* CCHFadeInOutMapAnimator.m in Sources */,
 				E823425B1EECCFB200D2CDFD /* THLabel.m in Sources */,
 				E823447F1EECE09C00D2CDFD /* ListDNFViewController.m in Sources */,
 				E8EC01A61F551A990032F168 /* KeepTrackBeeperView.m in Sources */,
