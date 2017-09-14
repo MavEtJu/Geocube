@@ -84,7 +84,6 @@
 		E823425B1EECCFB200D2CDFD /* THLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E823425A1EECCFB200D2CDFD /* THLabel.m */; };
 		E823425E1EECCFC000D2CDFD /* VKSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E823425D1EECCFC000D2CDFD /* VKSideMenu.m */; };
 		E82342611EECCFCF00D2CDFD /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342601EECCFCF00D2CDFD /* XMLDictionary.m */; };
-		E82342641EECCFDA00D2CDFD /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342631EECCFDA00D2CDFD /* XMLReader.m */; };
 		E82342691EECCFE700D2CDFD /* YIPopupTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342661EECCFE700D2CDFD /* YIPopupTextView.m */; };
 		E823426A1EECCFE700D2CDFD /* YISSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342681EECCFE700D2CDFD /* YISSTextView.m */; };
 		E82342AD1EECD0B100D2CDFD /* database-cache.m in Sources */ = {isa = PBXBuildFile; fileRef = E823426C1EECD0B000D2CDFD /* database-cache.m */; };
@@ -568,8 +567,6 @@
 		E84725E51DF774E200CFF99B /* menu icon - local - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725DF1DF774E200CFF99B /* menu icon - local - night.png */; };
 		E84725E61DF774E200CFF99B /* menu icon - local@2x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E01DF774E200CFF99B /* menu icon - local@2x - night.png */; };
 		E84725E71DF774E200CFF99B /* menu icon - local@3x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */; };
-		E85653041F6797D700A415D0 /* GCTableViewCellWithSubtitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85653031F6797D700A415D0 /* GCTableViewCellWithSubtitle.xib */; };
-		E85653061F679EBA00A415D0 /* GCTableViewCellWithSubtitle~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85653051F679EBA00A415D0 /* GCTableViewCellWithSubtitle~ipad.xib */; };
 		E85652591F66B4B500A415D0 /* GMUGeoJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E85652531F66B4B500A415D0 /* GMUGeoJSONParser.m */; };
 		E856525A1F66B4B500A415D0 /* GMUGeometryRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = E85652551F66B4B500A415D0 /* GMUGeometryRenderer.m */; };
 		E856525B1F66B4B500A415D0 /* GMUKMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E85652581F66B4B500A415D0 /* GMUKMLParser.m */; };
@@ -622,6 +619,8 @@
 		E85652F81F678AB600A415D0 /* SimpleKMLSubStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = E85652DC1F678AB600A415D0 /* SimpleKMLSubStyle.m */; };
 		E85653011F678BB700A415D0 /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E85652FE1F678BB700A415D0 /* CXMLDocument_CreationExtensions.m */; };
 		E85653021F678BB700A415D0 /* CXMLNode_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E85653001F678BB700A415D0 /* CXMLNode_CreationExtensions.m */; };
+		E85653041F6797D700A415D0 /* GCTableViewCellWithSubtitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85653031F6797D700A415D0 /* GCTableViewCellWithSubtitle.xib */; };
+		E85653061F679EBA00A415D0 /* GCTableViewCellWithSubtitle~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85653051F679EBA00A415D0 /* GCTableViewCellWithSubtitle~ipad.xib */; };
 		E858F5991F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E858F5981F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib */; };
 		E858F59B1F56610B002C1F9B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E858F59A1F56610B002C1F9B /* ImageIO.framework */; };
 		E85AE1C01F39E96A00FA746C /* LocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E85AE1BF1F39E96A00FA746C /* LocalizationManager.m */; };
@@ -653,6 +652,7 @@
 		E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
 		E89D0D301EFA5ADD0019A411 /* PropertyUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E89D0D2F1EFA5ADD0019A411 /* PropertyUtil.m */; };
+		E8A271C21F6A1F72008D4370 /* libXMLReader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A271C11F6A1F38008D4370 /* libXMLReader.a */; };
 		E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */; };
 		E8AA149C1ED7988A0023000A /* Updates and changes.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8AA149B1ED7988A0023000A /* Updates and changes.txt */; };
 		E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */; };
@@ -774,6 +774,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E8A271C01F6A1F38008D4370 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8A271BC1F6A1F37008D4370 /* XMLReader.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E8A271B01F6A1F37008D4370;
+			remoteInfo = XMLReader;
+		};
 		E8F5706D1B3F7255003F020C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E8F5704B1B3F7255003F020C /* Project object */;
@@ -954,8 +961,6 @@
 		E823425D1EECCFC000D2CDFD /* VKSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VKSideMenu.m; path = contrib/VKSideMenu/VKSideMenu.m; sourceTree = "<group>"; };
 		E823425F1EECCFCF00D2CDFD /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLDictionary.h; path = contrib/XMLDictionary/XMLDictionary.h; sourceTree = "<group>"; };
 		E82342601EECCFCF00D2CDFD /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLDictionary.m; path = contrib/XMLDictionary/XMLDictionary.m; sourceTree = "<group>"; };
-		E82342621EECCFDA00D2CDFD /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = contrib/XMLReader/XMLReader.h; sourceTree = "<group>"; };
-		E82342631EECCFDA00D2CDFD /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = contrib/XMLReader/XMLReader.m; sourceTree = "<group>"; };
 		E82342651EECCFE600D2CDFD /* YIPopupTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YIPopupTextView.h; path = contrib/YIPopupTextView/YIPopupTextView.h; sourceTree = "<group>"; };
 		E82342661EECCFE700D2CDFD /* YIPopupTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YIPopupTextView.m; path = contrib/YIPopupTextView/YIPopupTextView.m; sourceTree = "<group>"; };
 		E82342671EECCFE700D2CDFD /* YISSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YISSTextView.h; path = contrib/YIPopupTextView/YISSTextView.h; sourceTree = "<group>"; };
@@ -1656,8 +1661,6 @@
 		E84725DF1DF774E200CFF99B /* menu icon - local - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local - night.png"; path = "images/menu/menu icon - local - night.png"; sourceTree = "<group>"; };
 		E84725E01DF774E200CFF99B /* menu icon - local@2x - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local@2x - night.png"; path = "images/menu/menu icon - local@2x - night.png"; sourceTree = "<group>"; };
 		E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local@3x - night.png"; path = "images/menu/menu icon - local@3x - night.png"; sourceTree = "<group>"; };
-		E85653031F6797D700A415D0 /* GCTableViewCellWithSubtitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GCTableViewCellWithSubtitle.xib; path = GCBaseObjects/GCTableViewCellWithSubtitle.xib; sourceTree = "<group>"; };
-		E85653051F679EBA00A415D0 /* GCTableViewCellWithSubtitle~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "GCTableViewCellWithSubtitle~ipad.xib"; path = "GCBaseObjects/GCTableViewCellWithSubtitle~ipad.xib"; sourceTree = "<group>"; };
 		E85652521F66B4B500A415D0 /* GMUGeoJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMUGeoJSONParser.h; path = "contrib/GMU-Geometry/GMUGeoJSONParser.h"; sourceTree = "<group>"; };
 		E85652531F66B4B500A415D0 /* GMUGeoJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GMUGeoJSONParser.m; path = "contrib/GMU-Geometry/GMUGeoJSONParser.m"; sourceTree = "<group>"; };
 		E85652541F66B4B500A415D0 /* GMUGeometryRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMUGeometryRenderer.h; path = "contrib/GMU-Geometry/GMUGeometryRenderer.h"; sourceTree = "<group>"; };
@@ -1766,6 +1769,8 @@
 		E85652FE1F678BB700A415D0 /* CXMLDocument_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CXMLDocument_CreationExtensions.m; path = contrib/TouchXML/Creation/CXMLDocument_CreationExtensions.m; sourceTree = "<group>"; };
 		E85652FF1F678BB700A415D0 /* CXMLNode_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CXMLNode_CreationExtensions.h; path = contrib/TouchXML/Creation/CXMLNode_CreationExtensions.h; sourceTree = "<group>"; };
 		E85653001F678BB700A415D0 /* CXMLNode_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CXMLNode_CreationExtensions.m; path = contrib/TouchXML/Creation/CXMLNode_CreationExtensions.m; sourceTree = "<group>"; };
+		E85653031F6797D700A415D0 /* GCTableViewCellWithSubtitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GCTableViewCellWithSubtitle.xib; path = GCBaseObjects/GCTableViewCellWithSubtitle.xib; sourceTree = "<group>"; };
+		E85653051F679EBA00A415D0 /* GCTableViewCellWithSubtitle~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "GCTableViewCellWithSubtitle~ipad.xib"; path = "GCBaseObjects/GCTableViewCellWithSubtitle~ipad.xib"; sourceTree = "<group>"; };
 		E858F5981F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "KeepTrackBeeperView~ipad.xib"; path = "KeepTrack/KeepTrackBeeperView~ipad.xib"; sourceTree = "<group>"; };
 		E858F59A1F56610B002C1F9B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		E85AE1BE1F39E96A00FA746C /* LocalizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalizationManager.h; path = GCTools/LocalizationManager.h; sourceTree = "<group>"; };
@@ -1808,6 +1813,7 @@
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
 		E89D0D2E1EFA5ADD0019A411 /* PropertyUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PropertyUtil.h; path = contrib/PropertyUtil/PropertyUtil.h; sourceTree = "<group>"; };
 		E89D0D2F1EFA5ADD0019A411 /* PropertyUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PropertyUtil.m; path = contrib/PropertyUtil/PropertyUtil.m; sourceTree = "<group>"; };
+		E8A271BC1F6A1F37008D4370 /* XMLReader.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XMLReader.xcodeproj; path = Contrib/XMLReader/XMLReader.xcodeproj; sourceTree = "<group>"; };
 		E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesDownloadManager.h; sourceTree = "<group>"; };
 		E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesDownloadManager.m; sourceTree = "<group>"; };
 		E8AA149B1ED7988A0023000A /* Updates and changes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Updates and changes.txt"; sourceTree = "<group>"; };
@@ -1958,6 +1964,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8A271C21F6A1F72008D4370 /* libXMLReader.a in Frameworks */,
 				E858F59B1F56610B002C1F9B /* ImageIO.framework in Frameworks */,
 				E8EC01A81F554C8F0032F168 /* MediaPlayer.framework in Frameworks */,
 				E823024E1DCD54520032C5C6 /* libxml2.tbd in Frameworks */,
@@ -2107,15 +2114,6 @@
 				E82341A51EECCDDE00D2CDFD /* RNEncryptor.m */,
 			);
 			name = RNCryptor;
-			sourceTree = "<group>";
-		};
-		E82990471C87AF9000504421 /* XMLReader */ = {
-			isa = PBXGroup;
-			children = (
-				E82342621EECCFDA00D2CDFD /* XMLReader.h */,
-				E82342631EECCFDA00D2CDFD /* XMLReader.m */,
-			);
-			name = XMLReader;
 			sourceTree = "<group>";
 		};
 		E82E660A1DA07A0300CFBDED /* menu */ = {
@@ -3233,6 +3231,14 @@
 			name = Tools;
 			sourceTree = "<group>";
 		};
+		E8A271BD1F6A1F37008D4370 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8A271C11F6A1F38008D4370 /* libXMLReader.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3599,6 +3605,7 @@
 				6917C4AD2B052674BDDB3A0D /* Frameworks */,
 				E8F570B91B3FF668003F020C /* System Libraries */,
 				B88F87C0C9D0E4A555CE980D /* Pods */,
+				E8A271BC1F6A1F37008D4370 /* XMLReader.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3685,7 +3692,6 @@
 				E8371D4E1D101F9400C2F174 /* THLabel */,
 				E812CF531D01A07400C4E777 /* VKSideMenu */,
 				E81D242D1B9BDB80001E6027 /* XMLDictionary */,
-				E82990471C87AF9000504421 /* XMLReader */,
 				E8575FF61B8466AA00F34483 /* YIPopupTextView */,
 			);
 			name = "External modules";
@@ -4058,6 +4064,12 @@
 			mainGroup = E8F5704A1B3F7255003F020C;
 			productRefGroup = E8F570541B3F7255003F020C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E8A271BD1F6A1F37008D4370 /* Products */;
+					ProjectRef = E8A271BC1F6A1F37008D4370 /* XMLReader.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				E8F570521B3F7255003F020C /* Geocube */,
@@ -4067,6 +4079,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E8A271C11F6A1F38008D4370 /* libXMLReader.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libXMLReader.a;
+			remoteRef = E8A271C01F6A1F38008D4370 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E8F570511B3F7255003F020C /* Resources */ = {
@@ -4615,7 +4637,6 @@
 				E85652EB1F678AB600A415D0 /* SimpleKMLLineString.m in Sources */,
 				E83C6EEB1EECE1CB00E303F5 /* BezelManager.m in Sources */,
 				E85AE1C01F39E96A00FA746C /* LocalizationManager.m in Sources */,
-				E82342641EECCFDA00D2CDFD /* XMLReader.m in Sources */,
 				E82343F41EECDF4400D2CDFD /* WaypointDescriptionViewController.m in Sources */,
 				E82344321EECDFB300D2CDFD /* FiltersViewController.m in Sources */,
 				E85652E91F678AB600A415D0 /* SimpleKMLIconStyle.m in Sources */,

@@ -61,7 +61,7 @@
 #import "THLabel.h"
 #import "VKSideMenu.h"
 #import "XMLDictionary.h"
-#import "XMLReader.h"
+#import "XMLReader/XMLReader.h"
 #import "YIPopupTextView.h"
 
 #import "SimpleKML.h"
