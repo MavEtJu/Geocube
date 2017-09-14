@@ -58,12 +58,6 @@
 		E82342151EECCEEE00D2CDFD /* MHTabBarIndicator@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E823420A1EECCEEE00D2CDFD /* MHTabBarIndicator@3x.png */; };
 		E823421A1EECCF2600D2CDFD /* nko_colormap.png in Resources */ = {isa = PBXBuildFile; fileRef = E82342171EECCF2600D2CDFD /* nko_colormap.png */; };
 		E823421B1EECCF2600D2CDFD /* NKOColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342191EECCF2600D2CDFD /* NKOColorPickerView.m */; };
-		E82342281EECCF3400D2CDFD /* NSFileManager+NVHFileSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E823421D1EECCF3400D2CDFD /* NSFileManager+NVHFileSize.m */; };
-		E82342291EECCF3400D2CDFD /* NVHFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E823421F1EECCF3400D2CDFD /* NVHFile.m */; };
-		E823422A1EECCF3400D2CDFD /* NVHGzipFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342211EECCF3400D2CDFD /* NVHGzipFile.m */; };
-		E823422B1EECCF3400D2CDFD /* NVHProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342231EECCF3400D2CDFD /* NVHProgress.m */; };
-		E823422C1EECCF3400D2CDFD /* NVHTarFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342251EECCF3400D2CDFD /* NVHTarFile.m */; };
-		E823422D1EECCF3400D2CDFD /* NVHTarGzip.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342271EECCF3400D2CDFD /* NVHTarGzip.m */; };
 		E82342301EECCF4500D2CDFD /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E823422F1EECCF4500D2CDFD /* Reachability.m */; };
 		E823423A1EECCF6E00D2CDFD /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = E82342321EECCF6E00D2CDFD /* ioapi.c */; };
 		E823423B1EECCF6E00D2CDFD /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = E82342341EECCF6E00D2CDFD /* mztools.c */; };
@@ -563,17 +557,7 @@
 		E84725E51DF774E200CFF99B /* menu icon - local - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725DF1DF774E200CFF99B /* menu icon - local - night.png */; };
 		E84725E61DF774E200CFF99B /* menu icon - local@2x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E01DF774E200CFF99B /* menu icon - local@2x - night.png */; };
 		E84725E71DF774E200CFF99B /* menu icon - local@3x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */; };
-		E856529A1F678AA300A415D0 /* CXHTMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = E85652841F678AA300A415D0 /* CXHTMLDocument.m */; };
-		E856529B1F678AA300A415D0 /* CXMLDocument_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E85652861F678AA300A415D0 /* CXMLDocument_PrivateExtensions.m */; };
-		E856529C1F678AA300A415D0 /* CXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = E85652881F678AA300A415D0 /* CXMLDocument.m */; };
-		E856529D1F678AA300A415D0 /* CXMLElement_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E856528A1F678AA300A415D0 /* CXMLElement_CreationExtensions.m */; };
-		E856529E1F678AA300A415D0 /* CXMLElement_ElementTreeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E856528C1F678AA300A415D0 /* CXMLElement_ElementTreeExtensions.m */; };
-		E856529F1F678AA300A415D0 /* CXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E856528E1F678AA300A415D0 /* CXMLElement.m */; };
-		E85652A01F678AA300A415D0 /* CXMLNamespaceNode.m in Sources */ = {isa = PBXBuildFile; fileRef = E85652901F678AA300A415D0 /* CXMLNamespaceNode.m */; };
-		E85652A11F678AA300A415D0 /* CXMLNode_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E85652921F678AA300A415D0 /* CXMLNode_PrivateExtensions.m */; };
-		E85652A21F678AA300A415D0 /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E85652941F678AA300A415D0 /* CXMLNode_XPathExtensions.m */; };
-		E85652A31F678AA300A415D0 /* CXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = E85652961F678AA300A415D0 /* CXMLNode.m */; };
-		E85652A41F678AA300A415D0 /* CXMLUnsupportedNode.m in Sources */ = {isa = PBXBuildFile; fileRef = E85652981F678AA300A415D0 /* CXMLUnsupportedNode.m */; };
+		E84F356D1F6A450000C7BD20 /* libTouchXMLLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E84F35431F6A438500C7BD20 /* libTouchXMLLibrary.a */; };
 		E85652DD1F678AB600A415D0 /* SimpleKML_UIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E85652A61F678AB600A415D0 /* SimpleKML_UIImage.m */; };
 		E85652DE1F678AB600A415D0 /* SimpleKML.m in Sources */ = {isa = PBXBuildFile; fileRef = E85652A81F678AB600A415D0 /* SimpleKML.m */; };
 		E85652DF1F678AB600A415D0 /* SimpleKMLBalloonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = E85652AA1F678AB600A415D0 /* SimpleKMLBalloonStyle.m */; };
@@ -602,8 +586,6 @@
 		E85652F61F678AB600A415D0 /* SimpleKMLStyleSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = E85652D81F678AB600A415D0 /* SimpleKMLStyleSelector.m */; };
 		E85652F71F678AB600A415D0 /* SimpleKMLSubData.m in Sources */ = {isa = PBXBuildFile; fileRef = E85652DA1F678AB600A415D0 /* SimpleKMLSubData.m */; };
 		E85652F81F678AB600A415D0 /* SimpleKMLSubStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = E85652DC1F678AB600A415D0 /* SimpleKMLSubStyle.m */; };
-		E85653011F678BB700A415D0 /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E85652FE1F678BB700A415D0 /* CXMLDocument_CreationExtensions.m */; };
-		E85653021F678BB700A415D0 /* CXMLNode_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E85653001F678BB700A415D0 /* CXMLNode_CreationExtensions.m */; };
 		E85653041F6797D700A415D0 /* GCTableViewCellWithSubtitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85653031F6797D700A415D0 /* GCTableViewCellWithSubtitle.xib */; };
 		E85653061F679EBA00A415D0 /* GCTableViewCellWithSubtitle~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85653051F679EBA00A415D0 /* GCTableViewCellWithSubtitle~ipad.xib */; };
 		E858F5991F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E858F5981F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib */; };
@@ -660,6 +642,7 @@
 		E8F403EC1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */; };
 		E8F5534D1F6A37610054806E /* libRNCryptorLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A272801F6A343A008D4370 /* libRNCryptorLibrary.a */; };
 		E8F5538D1F6A3AB00054806E /* libGMUGeometryLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F553681F6A38EB0054806E /* libGMUGeometryLibrary.a */; };
+		E8F553CA1F6A417A0054806E /* libNVHTarGzipLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F553C91F6A415B0054806E /* libNVHTarGzipLibrary.a */; };
 		E8F570591B3F7255003F020C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570581B3F7255003F020C /* main.m */; };
 		E8F570621B3F7255003F020C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8F570601B3F7255003F020C /* Main.storyboard */; };
 		E8F570641B3F7255003F020C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8F570631B3F7255003F020C /* Images.xcassets */; };
@@ -761,6 +744,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E84F35421F6A438500C7BD20 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E84F353B1F6A438400C7BD20 /* TouchXMLLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E84F352F1F6A438400C7BD20;
+			remoteInfo = TouchXMLLibrary;
+		};
 		E8A271C01F6A1F38008D4370 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E8A271BC1F6A1F37008D4370 /* XMLReader.xcodeproj */;
@@ -781,6 +771,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = E8F553571F6A38E90054806E;
 			remoteInfo = GMUGeometryLibrary;
+		};
+		E8F553C81F6A415B0054806E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8F553C41F6A415A0054806E /* NVHTarGzipLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E8F553B81F6A415A0054806E;
+			remoteInfo = NVHTarGzipLibrary;
 		};
 		E8F5706D1B3F7255003F020C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -906,18 +903,6 @@
 		E82342171EECCF2600D2CDFD /* nko_colormap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nko_colormap.png; path = contrib/NKOColorPickerView/nko_colormap.png; sourceTree = "<group>"; };
 		E82342181EECCF2600D2CDFD /* NKOColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKOColorPickerView.h; path = contrib/NKOColorPickerView/NKOColorPickerView.h; sourceTree = "<group>"; };
 		E82342191EECCF2600D2CDFD /* NKOColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKOColorPickerView.m; path = contrib/NKOColorPickerView/NKOColorPickerView.m; sourceTree = "<group>"; };
-		E823421C1EECCF3400D2CDFD /* NSFileManager+NVHFileSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+NVHFileSize.h"; path = "contrib/NVHTarGzip/NSFileManager+NVHFileSize.h"; sourceTree = "<group>"; };
-		E823421D1EECCF3400D2CDFD /* NSFileManager+NVHFileSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+NVHFileSize.m"; path = "contrib/NVHTarGzip/NSFileManager+NVHFileSize.m"; sourceTree = "<group>"; };
-		E823421E1EECCF3400D2CDFD /* NVHFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NVHFile.h; path = contrib/NVHTarGzip/NVHFile.h; sourceTree = "<group>"; };
-		E823421F1EECCF3400D2CDFD /* NVHFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NVHFile.m; path = contrib/NVHTarGzip/NVHFile.m; sourceTree = "<group>"; };
-		E82342201EECCF3400D2CDFD /* NVHGzipFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NVHGzipFile.h; path = contrib/NVHTarGzip/NVHGzipFile.h; sourceTree = "<group>"; };
-		E82342211EECCF3400D2CDFD /* NVHGzipFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NVHGzipFile.m; path = contrib/NVHTarGzip/NVHGzipFile.m; sourceTree = "<group>"; };
-		E82342221EECCF3400D2CDFD /* NVHProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NVHProgress.h; path = contrib/NVHTarGzip/NVHProgress.h; sourceTree = "<group>"; };
-		E82342231EECCF3400D2CDFD /* NVHProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NVHProgress.m; path = contrib/NVHTarGzip/NVHProgress.m; sourceTree = "<group>"; };
-		E82342241EECCF3400D2CDFD /* NVHTarFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NVHTarFile.h; path = contrib/NVHTarGzip/NVHTarFile.h; sourceTree = "<group>"; };
-		E82342251EECCF3400D2CDFD /* NVHTarFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NVHTarFile.m; path = contrib/NVHTarGzip/NVHTarFile.m; sourceTree = "<group>"; };
-		E82342261EECCF3400D2CDFD /* NVHTarGzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NVHTarGzip.h; path = contrib/NVHTarGzip/NVHTarGzip.h; sourceTree = "<group>"; };
-		E82342271EECCF3400D2CDFD /* NVHTarGzip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NVHTarGzip.m; path = contrib/NVHTarGzip/NVHTarGzip.m; sourceTree = "<group>"; };
 		E823422E1EECCF4500D2CDFD /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = contrib/Reachability/Reachability.h; sourceTree = "<group>"; };
 		E823422F1EECCF4500D2CDFD /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = contrib/Reachability/Reachability.m; sourceTree = "<group>"; };
 		E82342311EECCF6E00D2CDFD /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crypt.h; path = Geocube/contrib/SSZipArchive/minizip/crypt.h; sourceTree = SOURCE_ROOT; };
@@ -1652,29 +1637,7 @@
 		E84725DF1DF774E200CFF99B /* menu icon - local - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local - night.png"; path = "images/menu/menu icon - local - night.png"; sourceTree = "<group>"; };
 		E84725E01DF774E200CFF99B /* menu icon - local@2x - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local@2x - night.png"; path = "images/menu/menu icon - local@2x - night.png"; sourceTree = "<group>"; };
 		E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local@3x - night.png"; path = "images/menu/menu icon - local@3x - night.png"; sourceTree = "<group>"; };
-		E85652831F678AA300A415D0 /* CXHTMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CXHTMLDocument.h; path = contrib/TouchXML/CXHTMLDocument.h; sourceTree = "<group>"; };
-		E85652841F678AA300A415D0 /* CXHTMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CXHTMLDocument.m; path = contrib/TouchXML/CXHTMLDocument.m; sourceTree = "<group>"; };
-		E85652851F678AA300A415D0 /* CXMLDocument_PrivateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CXMLDocument_PrivateExtensions.h; path = contrib/TouchXML/CXMLDocument_PrivateExtensions.h; sourceTree = "<group>"; };
-		E85652861F678AA300A415D0 /* CXMLDocument_PrivateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CXMLDocument_PrivateExtensions.m; path = contrib/TouchXML/CXMLDocument_PrivateExtensions.m; sourceTree = "<group>"; };
-		E85652871F678AA300A415D0 /* CXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CXMLDocument.h; path = contrib/TouchXML/CXMLDocument.h; sourceTree = "<group>"; };
-		E85652881F678AA300A415D0 /* CXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CXMLDocument.m; path = contrib/TouchXML/CXMLDocument.m; sourceTree = "<group>"; };
-		E85652891F678AA300A415D0 /* CXMLElement_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CXMLElement_CreationExtensions.h; path = contrib/TouchXML/CXMLElement_CreationExtensions.h; sourceTree = "<group>"; };
-		E856528A1F678AA300A415D0 /* CXMLElement_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CXMLElement_CreationExtensions.m; path = contrib/TouchXML/CXMLElement_CreationExtensions.m; sourceTree = "<group>"; };
-		E856528B1F678AA300A415D0 /* CXMLElement_ElementTreeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CXMLElement_ElementTreeExtensions.h; path = contrib/TouchXML/CXMLElement_ElementTreeExtensions.h; sourceTree = "<group>"; };
-		E856528C1F678AA300A415D0 /* CXMLElement_ElementTreeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CXMLElement_ElementTreeExtensions.m; path = contrib/TouchXML/CXMLElement_ElementTreeExtensions.m; sourceTree = "<group>"; };
-		E856528D1F678AA300A415D0 /* CXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CXMLElement.h; path = contrib/TouchXML/CXMLElement.h; sourceTree = "<group>"; };
-		E856528E1F678AA300A415D0 /* CXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CXMLElement.m; path = contrib/TouchXML/CXMLElement.m; sourceTree = "<group>"; };
-		E856528F1F678AA300A415D0 /* CXMLNamespaceNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CXMLNamespaceNode.h; path = contrib/TouchXML/CXMLNamespaceNode.h; sourceTree = "<group>"; };
-		E85652901F678AA300A415D0 /* CXMLNamespaceNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CXMLNamespaceNode.m; path = contrib/TouchXML/CXMLNamespaceNode.m; sourceTree = "<group>"; };
-		E85652911F678AA300A415D0 /* CXMLNode_PrivateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CXMLNode_PrivateExtensions.h; path = contrib/TouchXML/CXMLNode_PrivateExtensions.h; sourceTree = "<group>"; };
-		E85652921F678AA300A415D0 /* CXMLNode_PrivateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CXMLNode_PrivateExtensions.m; path = contrib/TouchXML/CXMLNode_PrivateExtensions.m; sourceTree = "<group>"; };
-		E85652931F678AA300A415D0 /* CXMLNode_XPathExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CXMLNode_XPathExtensions.h; path = contrib/TouchXML/CXMLNode_XPathExtensions.h; sourceTree = "<group>"; };
-		E85652941F678AA300A415D0 /* CXMLNode_XPathExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CXMLNode_XPathExtensions.m; path = contrib/TouchXML/CXMLNode_XPathExtensions.m; sourceTree = "<group>"; };
-		E85652951F678AA300A415D0 /* CXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CXMLNode.h; path = contrib/TouchXML/CXMLNode.h; sourceTree = "<group>"; };
-		E85652961F678AA300A415D0 /* CXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CXMLNode.m; path = contrib/TouchXML/CXMLNode.m; sourceTree = "<group>"; };
-		E85652971F678AA300A415D0 /* CXMLUnsupportedNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CXMLUnsupportedNode.h; path = contrib/TouchXML/CXMLUnsupportedNode.h; sourceTree = "<group>"; };
-		E85652981F678AA300A415D0 /* CXMLUnsupportedNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CXMLUnsupportedNode.m; path = contrib/TouchXML/CXMLUnsupportedNode.m; sourceTree = "<group>"; };
-		E85652991F678AA300A415D0 /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchXML.h; path = contrib/TouchXML/TouchXML.h; sourceTree = "<group>"; };
+		E84F353B1F6A438400C7BD20 /* TouchXMLLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TouchXMLLibrary.xcodeproj; path = Contrib/TouchXMLLibrary/TouchXMLLibrary.xcodeproj; sourceTree = "<group>"; };
 		E85652A51F678AB600A415D0 /* SimpleKML_UIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleKML_UIImage.h; path = contrib/SimpleKML/SimpleKML_UIImage.h; sourceTree = "<group>"; };
 		E85652A61F678AB600A415D0 /* SimpleKML_UIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimpleKML_UIImage.m; path = contrib/SimpleKML/SimpleKML_UIImage.m; sourceTree = "<group>"; };
 		E85652A71F678AB600A415D0 /* SimpleKML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleKML.h; path = contrib/SimpleKML/SimpleKML.h; sourceTree = "<group>"; };
@@ -1731,10 +1694,6 @@
 		E85652DA1F678AB600A415D0 /* SimpleKMLSubData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimpleKMLSubData.m; path = contrib/SimpleKML/SimpleKMLSubData.m; sourceTree = "<group>"; };
 		E85652DB1F678AB600A415D0 /* SimpleKMLSubStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleKMLSubStyle.h; path = contrib/SimpleKML/SimpleKMLSubStyle.h; sourceTree = "<group>"; };
 		E85652DC1F678AB600A415D0 /* SimpleKMLSubStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimpleKMLSubStyle.m; path = contrib/SimpleKML/SimpleKMLSubStyle.m; sourceTree = "<group>"; };
-		E85652FD1F678BB700A415D0 /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CXMLDocument_CreationExtensions.h; path = contrib/TouchXML/Creation/CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
-		E85652FE1F678BB700A415D0 /* CXMLDocument_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CXMLDocument_CreationExtensions.m; path = contrib/TouchXML/Creation/CXMLDocument_CreationExtensions.m; sourceTree = "<group>"; };
-		E85652FF1F678BB700A415D0 /* CXMLNode_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CXMLNode_CreationExtensions.h; path = contrib/TouchXML/Creation/CXMLNode_CreationExtensions.h; sourceTree = "<group>"; };
-		E85653001F678BB700A415D0 /* CXMLNode_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CXMLNode_CreationExtensions.m; path = contrib/TouchXML/Creation/CXMLNode_CreationExtensions.m; sourceTree = "<group>"; };
 		E85653031F6797D700A415D0 /* GCTableViewCellWithSubtitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GCTableViewCellWithSubtitle.xib; path = GCBaseObjects/GCTableViewCellWithSubtitle.xib; sourceTree = "<group>"; };
 		E85653051F679EBA00A415D0 /* GCTableViewCellWithSubtitle~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "GCTableViewCellWithSubtitle~ipad.xib"; path = "GCBaseObjects/GCTableViewCellWithSubtitle~ipad.xib"; sourceTree = "<group>"; };
 		E858F5981F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "KeepTrackBeeperView~ipad.xib"; path = "KeepTrack/KeepTrackBeeperView~ipad.xib"; sourceTree = "<group>"; };
@@ -1809,6 +1768,7 @@
 		E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@2x.png"; path = "images/caches/cache - reverse - 30x30@2x.png"; sourceTree = "<group>"; };
 		E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@3x.png"; path = "images/caches/cache - reverse - 30x30@3x.png"; sourceTree = "<group>"; };
 		E8F553631F6A38EA0054806E /* GMUGeometryLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GMUGeometryLibrary.xcodeproj; path = Contrib/GMUGeometryLibrary/GMUGeometryLibrary.xcodeproj; sourceTree = "<group>"; };
+		E8F553C41F6A415A0054806E /* NVHTarGzipLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NVHTarGzipLibrary.xcodeproj; path = Contrib/NVHTarGzipLibrary/NVHTarGzipLibrary.xcodeproj; sourceTree = "<group>"; };
 		E8F570531B3F7255003F020C /* Geocube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F570571B3F7255003F020C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8F570581B3F7255003F020C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1932,6 +1892,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E84F356D1F6A450000C7BD20 /* libTouchXMLLibrary.a in Frameworks */,
+				E8F553CA1F6A417A0054806E /* libNVHTarGzipLibrary.a in Frameworks */,
 				E8F5538D1F6A3AB00054806E /* libGMUGeometryLibrary.a in Frameworks */,
 				E8F5534D1F6A37610054806E /* libRNCryptorLibrary.a in Frameworks */,
 				E8A271C21F6A1F72008D4370 /* libXMLReader.a in Frameworks */,
@@ -2446,38 +2408,12 @@
 			name = Queries;
 			sourceTree = "<group>";
 		};
-		E85652811F678A7900A415D0 /* TouchXML */ = {
+		E84F353C1F6A438400C7BD20 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E85652FD1F678BB700A415D0 /* CXMLDocument_CreationExtensions.h */,
-				E85652FE1F678BB700A415D0 /* CXMLDocument_CreationExtensions.m */,
-				E85652FF1F678BB700A415D0 /* CXMLNode_CreationExtensions.h */,
-				E85653001F678BB700A415D0 /* CXMLNode_CreationExtensions.m */,
-				E85652831F678AA300A415D0 /* CXHTMLDocument.h */,
-				E85652841F678AA300A415D0 /* CXHTMLDocument.m */,
-				E85652851F678AA300A415D0 /* CXMLDocument_PrivateExtensions.h */,
-				E85652861F678AA300A415D0 /* CXMLDocument_PrivateExtensions.m */,
-				E85652871F678AA300A415D0 /* CXMLDocument.h */,
-				E85652881F678AA300A415D0 /* CXMLDocument.m */,
-				E85652891F678AA300A415D0 /* CXMLElement_CreationExtensions.h */,
-				E856528A1F678AA300A415D0 /* CXMLElement_CreationExtensions.m */,
-				E856528B1F678AA300A415D0 /* CXMLElement_ElementTreeExtensions.h */,
-				E856528C1F678AA300A415D0 /* CXMLElement_ElementTreeExtensions.m */,
-				E856528D1F678AA300A415D0 /* CXMLElement.h */,
-				E856528E1F678AA300A415D0 /* CXMLElement.m */,
-				E856528F1F678AA300A415D0 /* CXMLNamespaceNode.h */,
-				E85652901F678AA300A415D0 /* CXMLNamespaceNode.m */,
-				E85652911F678AA300A415D0 /* CXMLNode_PrivateExtensions.h */,
-				E85652921F678AA300A415D0 /* CXMLNode_PrivateExtensions.m */,
-				E85652931F678AA300A415D0 /* CXMLNode_XPathExtensions.h */,
-				E85652941F678AA300A415D0 /* CXMLNode_XPathExtensions.m */,
-				E85652951F678AA300A415D0 /* CXMLNode.h */,
-				E85652961F678AA300A415D0 /* CXMLNode.m */,
-				E85652971F678AA300A415D0 /* CXMLUnsupportedNode.h */,
-				E85652981F678AA300A415D0 /* CXMLUnsupportedNode.m */,
-				E85652991F678AA300A415D0 /* TouchXML.h */,
+				E84F35431F6A438500C7BD20 /* libTouchXMLLibrary.a */,
 			);
-			name = TouchXML;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		E85652821F678A7E00A415D0 /* SimpleKML */ = {
@@ -3533,6 +3469,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E8F553C51F6A415A0054806E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8F553C91F6A415B0054806E /* libNVHTarGzipLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E8F5704A1B3F7255003F020C = {
 			isa = PBXGroup;
 			children = (
@@ -3543,7 +3487,9 @@
 				E8F570B91B3FF668003F020C /* System Libraries */,
 				B88F87C0C9D0E4A555CE980D /* Pods */,
 				E8F553631F6A38EA0054806E /* GMUGeometryLibrary.xcodeproj */,
+				E8F553C41F6A415A0054806E /* NVHTarGzipLibrary.xcodeproj */,
 				E8A2727B1F6A3438008D4370 /* RNCryptorLibrary.xcodeproj */,
+				E84F353B1F6A438400C7BD20 /* TouchXMLLibrary.xcodeproj */,
 				E8A271BC1F6A1F37008D4370 /* XMLReader.xcodeproj */,
 			);
 			sourceTree = "<group>";
@@ -3611,7 +3557,6 @@
 			isa = PBXGroup;
 			children = (
 				E85652821F678A7E00A415D0 /* SimpleKML */,
-				E85652811F678A7900A415D0 /* TouchXML */,
 				E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */,
 				E8D569E21B54A0ED001A0F8E /* ActionSheetPicker */,
 				E8D7BA2F1BC67CA3001B0805 /* CCHMapClusterController */,
@@ -3620,7 +3565,6 @@
 				E8F6BE731BB8C77A009EA037 /* LXMapScale */,
 				E8A3B0AF1CD33BA500170D61 /* MHTabBarController */,
 				E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */,
-				E8FD96B11EC8668600AFA7FA /* NVHTarGzip */,
 				E89D0D2D1EFA5A930019A411 /* PropertyUtil */,
 				E895801F1C66E39500282177 /* Reachability */,
 				E8F570961B3F7F6A003F020C /* SSZipArchive */,
@@ -3857,25 +3801,6 @@
 			name = Files;
 			sourceTree = "<group>";
 		};
-		E8FD96B11EC8668600AFA7FA /* NVHTarGzip */ = {
-			isa = PBXGroup;
-			children = (
-				E823421C1EECCF3400D2CDFD /* NSFileManager+NVHFileSize.h */,
-				E823421D1EECCF3400D2CDFD /* NSFileManager+NVHFileSize.m */,
-				E823421E1EECCF3400D2CDFD /* NVHFile.h */,
-				E823421F1EECCF3400D2CDFD /* NVHFile.m */,
-				E82342201EECCF3400D2CDFD /* NVHGzipFile.h */,
-				E82342211EECCF3400D2CDFD /* NVHGzipFile.m */,
-				E82342221EECCF3400D2CDFD /* NVHProgress.h */,
-				E82342231EECCF3400D2CDFD /* NVHProgress.m */,
-				E82342241EECCF3400D2CDFD /* NVHTarFile.h */,
-				E82342251EECCF3400D2CDFD /* NVHTarFile.m */,
-				E82342261EECCF3400D2CDFD /* NVHTarGzip.h */,
-				E82342271EECCF3400D2CDFD /* NVHTarGzip.m */,
-			);
-			name = NVHTarGzip;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -4007,8 +3932,16 @@
 					ProjectRef = E8F553631F6A38EA0054806E /* GMUGeometryLibrary.xcodeproj */;
 				},
 				{
+					ProductGroup = E8F553C51F6A415A0054806E /* Products */;
+					ProjectRef = E8F553C41F6A415A0054806E /* NVHTarGzipLibrary.xcodeproj */;
+				},
+				{
 					ProductGroup = E8A2727C1F6A3438008D4370 /* Products */;
 					ProjectRef = E8A2727B1F6A3438008D4370 /* RNCryptorLibrary.xcodeproj */;
+				},
+				{
+					ProductGroup = E84F353C1F6A438400C7BD20 /* Products */;
+					ProjectRef = E84F353B1F6A438400C7BD20 /* TouchXMLLibrary.xcodeproj */;
 				},
 				{
 					ProductGroup = E8A271BD1F6A1F37008D4370 /* Products */;
@@ -4026,6 +3959,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		E84F35431F6A438500C7BD20 /* libTouchXMLLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTouchXMLLibrary.a;
+			remoteRef = E84F35421F6A438500C7BD20 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		E8A271C11F6A1F38008D4370 /* libXMLReader.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -4045,6 +3985,13 @@
 			fileType = archive.ar;
 			path = libGMUGeometryLibrary.a;
 			remoteRef = E8F553671F6A38EB0054806E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E8F553C91F6A415B0054806E /* libNVHTarGzipLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNVHTarGzipLibrary.a;
+			remoteRef = E8F553C81F6A415B0054806E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -4548,7 +4495,6 @@
 				E82344F51EECE12A00D2CDFD /* GCLabel.m in Sources */,
 				E85AE1C31F3DD9C500FA746C /* GCFilterButton.m in Sources */,
 				E82344711EECE08A00D2CDFD /* GroupsTemplateViewController.m in Sources */,
-				E823422D1EECCF3400D2CDFD /* NVHTarGzip.m in Sources */,
 				E83C6EEC1EECE1CB00E303F5 /* ConfigManager.m in Sources */,
 				E823423D1EECCF6E00D2CDFD /* zip.c in Sources */,
 				E82344831EECE09C00D2CDFD /* ListInProgressViewController.m in Sources */,
@@ -4603,7 +4549,6 @@
 				E85652F61F678AB600A415D0 /* SimpleKMLStyleSelector.m in Sources */,
 				E82342BF1EECD0B100D2CDFD /* dbLogTemplate.m in Sources */,
 				E82344671EECE06E00D2CDFD /* TrackableTableViewCell.m in Sources */,
-				E85653011F678BB700A415D0 /* CXMLDocument_CreationExtensions.m in Sources */,
 				E82343381EECDA2900D2CDFD /* GCOAuthBlackbox.m in Sources */,
 				E85652ED1F678AB600A415D0 /* SimpleKMLMultiGeometry.m in Sources */,
 				E82342C51EECD0B100D2CDFD /* dbProtocol.m in Sources */,
@@ -4652,10 +4597,8 @@
 				E82342CC1EECD0B100D2CDFD /* dbType.m in Sources */,
 				E82342BD1EECD0B100D2CDFD /* dbLogMacro.m in Sources */,
 				E89D0D301EFA5ADD0019A411 /* PropertyUtil.m in Sources */,
-				E82342291EECCF3400D2CDFD /* NVHFile.m in Sources */,
 				E85652F71F678AB600A415D0 /* SimpleKMLSubData.m in Sources */,
 				E82344911EECE0AC00D2CDFD /* QueriesGCAViewController.m in Sources */,
-				E856529E1F678AA300A415D0 /* CXMLElement_ElementTreeExtensions.m in Sources */,
 				E82341E91EECCE9C00D2CDFD /* CCHMapViewDelegateProxy.m in Sources */,
 				E82342581EECCFA400D2CDFD /* XPathQuery.m in Sources */,
 				E82344841EECE09C00D2CDFD /* ListTemplateViewController.m in Sources */,
@@ -4677,7 +4620,6 @@
 				E82342BC1EECD0B100D2CDFD /* dbLog.m in Sources */,
 				E83B109F1EF4FCCC00F2C5FA /* LocationlessTableViewCell.m in Sources */,
 				E82345251EECE14A00D2CDFD /* HelpIntroduction.m in Sources */,
-				E85652A01F678AA300A415D0 /* CXMLNamespaceNode.m in Sources */,
 				E82341FB1EECCECE00D2CDFD /* KxIntroViewController.m in Sources */,
 				E85652DF1F678AB600A415D0 /* SimpleKMLBalloonStyle.m in Sources */,
 				E82342AE1EECD0B100D2CDFD /* database.m in Sources */,
@@ -4701,7 +4643,6 @@
 				E82343F51EECDF4400D2CDFD /* WaypointGroupsViewController.m in Sources */,
 				E82344431EECE01500D2CDFD /* KeepTrackTracks.m in Sources */,
 				E82341C21EECCE8300D2CDFD /* ActionSheetLocalePicker.m in Sources */,
-				E856529B1F678AA300A415D0 /* CXMLDocument_PrivateExtensions.m in Sources */,
 				E82343BA1EECDE6C00D2CDFD /* WaypointLogEditViewController.m in Sources */,
 				E823432E1EECD9BC00D2CDFD /* ProtocolOKAPI.m in Sources */,
 				E82343BC1EECDE6C00D2CDFD /* WaypointLogTrackablesViewController.m in Sources */,
@@ -4714,7 +4655,6 @@
 				E815B7861F6805C9003A6092 /* dbKMLFile.m in Sources */,
 				E82341E31EECCE9C00D2CDFD /* CCHMapClusterController.m in Sources */,
 				E85652E81F678AB600A415D0 /* SimpleKMLGroundOverlay.m in Sources */,
-				E856529F1F678AA300A415D0 /* CXMLElement.m in Sources */,
 				E85652E31F678AB600A415D0 /* SimpleKMLDocument.m in Sources */,
 				E82344941EECE0AD00D2CDFD /* QueriesTableViewCell.m in Sources */,
 				E823420E1EECCEEE00D2CDFD /* MHTabBarController.m in Sources */,
@@ -4726,13 +4666,11 @@
 				E82343F31EECDF4400D2CDFD /* WaypointAttributesViewController.m in Sources */,
 				E823432B1EECD9BC00D2CDFD /* ProtocolGCA2.m in Sources */,
 				E85652E21F678AB600A415D0 /* SimpleKMLData.m in Sources */,
-				E85652A41F678AA300A415D0 /* CXMLUnsupportedNode.m in Sources */,
 				E823423A1EECCF6E00D2CDFD /* ioapi.c in Sources */,
 				E85652F01F678AB600A415D0 /* SimpleKMLPlacemark.m in Sources */,
 				E82343551EECDA4900D2CDFD /* ImportLiveAPIJSON.m in Sources */,
 				E823442C1EECDFB300D2CDFD /* FilterFavouritesTableViewCell.m in Sources */,
 				E823444D1EECE04B00D2CDFD /* NotesImagesViewController.m in Sources */,
-				E856529C1F678AA300A415D0 /* CXMLDocument.m in Sources */,
 				E82343851EECDB9B00D2CDFD /* MapBrand.m in Sources */,
 				E8EC019F1F54E7950032F168 /* AudioManager.m in Sources */,
 				E82343D51EECDEE200D2CDFD /* WaypointHeaderHeaderView.m in Sources */,
@@ -4742,7 +4680,6 @@
 				E8EC07421D39E887009B8EB1 /* ImportManager.m in Sources */,
 				E82344BD1EECE0E800D2CDFD /* SettingsAccountsViewController.m in Sources */,
 				E82344631EECE06E00D2CDFD /* TrackablesInventoryViewController.m in Sources */,
-				E856529D1F678AA300A415D0 /* CXMLElement_CreationExtensions.m in Sources */,
 				E823442A1EECDFB300D2CDFD /* FilterDirectionTableViewCell.m in Sources */,
 				E82343761EECDB4500D2CDFD /* ThemeIOS.m in Sources */,
 				E823423B1EECCF6E00D2CDFD /* mztools.c in Sources */,
@@ -4761,7 +4698,6 @@
 				E82341C01EECCE8300D2CDFD /* ActionSheetDatePicker.m in Sources */,
 				E85652F51F678AB600A415D0 /* SimpleKMLStyle.m in Sources */,
 				E82345271EECE14A00D2CDFD /* NoticeTableViewCell.m in Sources */,
-				E856529A1F678AA300A415D0 /* CXHTMLDocument.m in Sources */,
 				E823436B1EECDB2C00D2CDFD /* GCDictionary.m in Sources */,
 				E82344721EECE08A00D2CDFD /* GroupsUserViewController.m in Sources */,
 				E82344271EECDFB300D2CDFD /* FilterCategoryTableViewCell.m in Sources */,
@@ -4793,20 +4729,16 @@
 				E82342B41EECD0B100D2CDFD /* dbCountry.m in Sources */,
 				E82344F81EECE12A00D2CDFD /* GCSwitch.m in Sources */,
 				E82344F21EECE12A00D2CDFD /* GCButton.m in Sources */,
-				E85652A31F678AA300A415D0 /* CXMLNode.m in Sources */,
 				E82344361EECDFB300D2CDFD /* FilterTypesTableViewCell.m in Sources */,
 				E82345241EECE14A00D2CDFD /* DeveloperImagesViewController.m in Sources */,
 				E82344401EECE01500D2CDFD /* KeepTracksTrackTableViewCell.m in Sources */,
 				E82341C31EECCE8300D2CDFD /* ActionSheetMultipleStringPicker.m in Sources */,
 				E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */,
 				E82342611EECCFCF00D2CDFD /* XMLDictionary.m in Sources */,
-				E85653021F678BB700A415D0 /* CXMLNode_CreationExtensions.m in Sources */,
 				E83C6EEE1EECE1CB00E303F5 /* KeyManager.m in Sources */,
-				E823422B1EECCF3400D2CDFD /* NVHProgress.m in Sources */,
 				E841E15A1D88FC950050D4B4 /* InfoItem.m in Sources */,
 				E8F570591B3F7255003F020C /* main.m in Sources */,
 				E823442F1EECDFB300D2CDFD /* FilterObject.m in Sources */,
-				E823422C1EECCF3400D2CDFD /* NVHTarFile.m in Sources */,
 				E82343691EECDB2C00D2CDFD /* GCArray.m in Sources */,
 				E82344641EECE06E00D2CDFD /* TrackablesListViewController.m in Sources */,
 				E82343871EECDB9B00D2CDFD /* MapTemplateViewController.m in Sources */,
@@ -4825,11 +4757,8 @@
 				E82344AA1EECE0C900D2CDFD /* BrowserUserViewController.m in Sources */,
 				E82344931EECE0AD00D2CDFD /* QueriesGroundspeakViewController.m in Sources */,
 				E82343DB1EECDEE200D2CDFD /* WaypointLogsTableViewCell.m in Sources */,
-				E85652A21F678AA300A415D0 /* CXMLNode_XPathExtensions.m in Sources */,
 				E823444C1EECE04B00D2CDFD /* NotesFieldnotesViewController.m in Sources */,
-				E85652A11F678AA300A415D0 /* CXMLNode_PrivateExtensions.m in Sources */,
 				E82345001EECE12A00D2CDFD /* GCTableViewCellSubtitleRightImage.m in Sources */,
-				E823422A1EECCF3400D2CDFD /* NVHGzipFile.m in Sources */,
 				E83B10A51EF4FDFA00F2C5FA /* LocationlessTemplateViewController.m in Sources */,
 				E82344A11EECE0BD00D2CDFD /* StatisticsViewController.m in Sources */,
 				E82344B01EECE0D500D2CDFD /* ToolsRot13ViewController.m in Sources */,
@@ -4864,7 +4793,6 @@
 				E823449E1EECE0BD00D2CDFD /* StatisticsTableViewCell.m in Sources */,
 				E82342C21EECD0B100D2CDFD /* dbObject.m in Sources */,
 				E823424F1EECCF9300D2CDFD /* SVRadialGradientLayer.m in Sources */,
-				E82342281EECCF3400D2CDFD /* NSFileManager+NVHFileSize.m in Sources */,
 				E823436A1EECDB2C00D2CDFD /* GCDataObjects.m in Sources */,
 				E85652E71F678AB600A415D0 /* SimpleKMLGeometry.m in Sources */,
 				E82345211EECE14A00D2CDFD /* HelpAboutViewController.m in Sources */,

@@ -49,7 +49,7 @@
 #import "LXMapScaleView.h"
 #import "MHTabBarController.h"
 #import "NKOColorPickerView.h"
-#import "NVHTarGzip.h"
+#import "NVHTarGzipLibrary/NVHTarGzipLibrary.h"
 #import "RangeSlider.h"
 #import "Reachability.h"
 #import "RNCryptorLibrary/RNCryptorLibrary.h"
