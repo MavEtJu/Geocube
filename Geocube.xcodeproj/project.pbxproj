@@ -35,7 +35,6 @@
 		E82342151EECCEEE00D2CDFD /* MHTabBarIndicator@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E823420A1EECCEEE00D2CDFD /* MHTabBarIndicator@3x.png */; };
 		E823421A1EECCF2600D2CDFD /* nko_colormap.png in Resources */ = {isa = PBXBuildFile; fileRef = E82342171EECCF2600D2CDFD /* nko_colormap.png */; };
 		E823421B1EECCF2600D2CDFD /* NKOColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342191EECCF2600D2CDFD /* NKOColorPickerView.m */; };
-		E82342301EECCF4500D2CDFD /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E823422F1EECCF4500D2CDFD /* Reachability.m */; };
 		E823423A1EECCF6E00D2CDFD /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = E82342321EECCF6E00D2CDFD /* ioapi.c */; };
 		E823423B1EECCF6E00D2CDFD /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = E82342341EECCF6E00D2CDFD /* mztools.c */; };
 		E823423C1EECCF6E00D2CDFD /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = E82342361EECCF6E00D2CDFD /* unzip.c */; };
@@ -48,9 +47,6 @@
 		E82342561EECCFA400D2CDFD /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342511EECCFA400D2CDFD /* TFHpple.m */; };
 		E82342571EECCFA400D2CDFD /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342531EECCFA400D2CDFD /* TFHppleElement.m */; };
 		E82342581EECCFA400D2CDFD /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342551EECCFA400D2CDFD /* XPathQuery.m */; };
-		E823425B1EECCFB200D2CDFD /* THLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E823425A1EECCFB200D2CDFD /* THLabel.m */; };
-		E823425E1EECCFC000D2CDFD /* VKSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E823425D1EECCFC000D2CDFD /* VKSideMenu.m */; };
-		E82342611EECCFCF00D2CDFD /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342601EECCFCF00D2CDFD /* XMLDictionary.m */; };
 		E82342691EECCFE700D2CDFD /* YIPopupTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342661EECCFE700D2CDFD /* YIPopupTextView.m */; };
 		E823426A1EECCFE700D2CDFD /* YISSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342681EECCFE700D2CDFD /* YISSTextView.m */; };
 		E82342AD1EECD0B100D2CDFD /* database-cache.m in Sources */ = {isa = PBXBuildFile; fileRef = E823426C1EECD0B000D2CDFD /* database-cache.m */; };
@@ -538,6 +534,7 @@
 		E84F35DD1F6A4A7200C7BD20 /* libSimpleKMLLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E84F35881F6A48E700C7BD20 /* libSimpleKMLLibrary.a */; };
 		E84F36251F6A56E800C7BD20 /* libActionSheetPickerLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E84F36071F6A567B00C7BD20 /* libActionSheetPickerLibrary.a */; };
 		E84F364A1F6A581900C7BD20 /* libKxIntroLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E84F36401F6A573200C7BD20 /* libKxIntroLibrary.a */; };
+		E84F367B1F6A5B5100C7BD20 /* libContribLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E84F36651F6A5A0900C7BD20 /* libContribLibrary.a */; };
 		E85653041F6797D700A415D0 /* GCTableViewCellWithSubtitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85653031F6797D700A415D0 /* GCTableViewCellWithSubtitle.xib */; };
 		E85653061F679EBA00A415D0 /* GCTableViewCellWithSubtitle~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85653051F679EBA00A415D0 /* GCTableViewCellWithSubtitle~ipad.xib */; };
 		E858F5991F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E858F5981F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib */; };
@@ -570,8 +567,6 @@
 		E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */; };
 		E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
-		E89D0D301EFA5ADD0019A411 /* PropertyUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E89D0D2F1EFA5ADD0019A411 /* PropertyUtil.m */; };
-		E8A271C21F6A1F72008D4370 /* libXMLReader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A271C11F6A1F38008D4370 /* libXMLReader.a */; };
 		E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */; };
 		E8AA149C1ED7988A0023000A /* Updates and changes.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8AA149B1ED7988A0023000A /* Updates and changes.txt */; };
 		E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */; };
@@ -745,13 +740,6 @@
 			remoteGlobalIDString = E84F352E1F6A438400C7BD20;
 			remoteInfo = TouchXMLLibrary;
 		};
-		E84F35E81F6A4AA800C7BD20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E8A271BC1F6A1F37008D4370 /* XMLReader.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = E8A271AF1F6A1F37008D4370;
-			remoteInfo = XMLReader;
-		};
 		E84F36061F6A567B00C7BD20 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E84F36021F6A567A00C7BD20 /* ActionSheetPickerLibrary.xcodeproj */;
@@ -766,12 +754,12 @@
 			remoteGlobalIDString = E84F362F1F6A573100C7BD20;
 			remoteInfo = KxIntroLibrary;
 		};
-		E8A271C01F6A1F38008D4370 /* PBXContainerItemProxy */ = {
+		E84F36641F6A5A0900C7BD20 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E8A271BC1F6A1F37008D4370 /* XMLReader.xcodeproj */;
+			containerPortal = E84F36601F6A5A0800C7BD20 /* ContribLibrary.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = E8A271B01F6A1F37008D4370;
-			remoteInfo = XMLReader;
+			remoteGlobalIDString = E84F36541F6A5A0800C7BD20;
+			remoteInfo = ContribLibrary;
 		};
 		E8A2727F1F6A343A008D4370 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -867,8 +855,6 @@
 		E82342171EECCF2600D2CDFD /* nko_colormap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nko_colormap.png; path = contrib/NKOColorPickerView/nko_colormap.png; sourceTree = "<group>"; };
 		E82342181EECCF2600D2CDFD /* NKOColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKOColorPickerView.h; path = contrib/NKOColorPickerView/NKOColorPickerView.h; sourceTree = "<group>"; };
 		E82342191EECCF2600D2CDFD /* NKOColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKOColorPickerView.m; path = contrib/NKOColorPickerView/NKOColorPickerView.m; sourceTree = "<group>"; };
-		E823422E1EECCF4500D2CDFD /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = contrib/Reachability/Reachability.h; sourceTree = "<group>"; };
-		E823422F1EECCF4500D2CDFD /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = contrib/Reachability/Reachability.m; sourceTree = "<group>"; };
 		E82342311EECCF6E00D2CDFD /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crypt.h; path = Geocube/contrib/SSZipArchive/minizip/crypt.h; sourceTree = SOURCE_ROOT; };
 		E82342321EECCF6E00D2CDFD /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ioapi.c; path = Geocube/contrib/SSZipArchive/minizip/ioapi.c; sourceTree = SOURCE_ROOT; };
 		E82342331EECCF6E00D2CDFD /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ioapi.h; path = Geocube/contrib/SSZipArchive/minizip/ioapi.h; sourceTree = SOURCE_ROOT; };
@@ -895,12 +881,6 @@
 		E82342531EECCFA400D2CDFD /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TFHppleElement.m; path = contrib/TFHpple/TFHppleElement.m; sourceTree = "<group>"; };
 		E82342541EECCFA400D2CDFD /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathQuery.h; path = contrib/TFHpple/XPathQuery.h; sourceTree = "<group>"; };
 		E82342551EECCFA400D2CDFD /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathQuery.m; path = contrib/TFHpple/XPathQuery.m; sourceTree = "<group>"; };
-		E82342591EECCFB200D2CDFD /* THLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THLabel.h; path = contrib/THLabel/THLabel.h; sourceTree = "<group>"; };
-		E823425A1EECCFB200D2CDFD /* THLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THLabel.m; path = contrib/THLabel/THLabel.m; sourceTree = "<group>"; };
-		E823425C1EECCFC000D2CDFD /* VKSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VKSideMenu.h; path = contrib/VKSideMenu/VKSideMenu.h; sourceTree = "<group>"; };
-		E823425D1EECCFC000D2CDFD /* VKSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VKSideMenu.m; path = contrib/VKSideMenu/VKSideMenu.m; sourceTree = "<group>"; };
-		E823425F1EECCFCF00D2CDFD /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLDictionary.h; path = contrib/XMLDictionary/XMLDictionary.h; sourceTree = "<group>"; };
-		E82342601EECCFCF00D2CDFD /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLDictionary.m; path = contrib/XMLDictionary/XMLDictionary.m; sourceTree = "<group>"; };
 		E82342651EECCFE600D2CDFD /* YIPopupTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YIPopupTextView.h; path = contrib/YIPopupTextView/YIPopupTextView.h; sourceTree = "<group>"; };
 		E82342661EECCFE700D2CDFD /* YIPopupTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YIPopupTextView.m; path = contrib/YIPopupTextView/YIPopupTextView.m; sourceTree = "<group>"; };
 		E82342671EECCFE700D2CDFD /* YISSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YISSTextView.h; path = contrib/YIPopupTextView/YISSTextView.h; sourceTree = "<group>"; };
@@ -1605,6 +1585,7 @@
 		E84F35831F6A48E600C7BD20 /* SimpleKMLLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SimpleKMLLibrary.xcodeproj; path = Contrib/SimpleKMLLibrary/SimpleKMLLibrary.xcodeproj; sourceTree = "<group>"; };
 		E84F36021F6A567A00C7BD20 /* ActionSheetPickerLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ActionSheetPickerLibrary.xcodeproj; path = Contrib/ActionSheetPickerLibrary/ActionSheetPickerLibrary.xcodeproj; sourceTree = "<group>"; };
 		E84F363B1F6A573100C7BD20 /* KxIntroLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KxIntroLibrary.xcodeproj; path = Contrib/KxIntroLibrary/KxIntroLibrary.xcodeproj; sourceTree = "<group>"; };
+		E84F36601F6A5A0800C7BD20 /* ContribLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ContribLibrary.xcodeproj; path = Contrib/ContribLibrary/ContribLibrary.xcodeproj; sourceTree = "<group>"; };
 		E85653031F6797D700A415D0 /* GCTableViewCellWithSubtitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GCTableViewCellWithSubtitle.xib; path = GCBaseObjects/GCTableViewCellWithSubtitle.xib; sourceTree = "<group>"; };
 		E85653051F679EBA00A415D0 /* GCTableViewCellWithSubtitle~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "GCTableViewCellWithSubtitle~ipad.xib"; path = "GCBaseObjects/GCTableViewCellWithSubtitle~ipad.xib"; sourceTree = "<group>"; };
 		E858F5981F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "KeepTrackBeeperView~ipad.xib"; path = "KeepTrack/KeepTrackBeeperView~ipad.xib"; sourceTree = "<group>"; };
@@ -1647,9 +1628,6 @@
 		E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - empty - 30x30.png"; path = "images/logs/log - empty - 30x30.png"; sourceTree = "<group>"; };
 		E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFUIKitMainThreadGuard.m; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
-		E89D0D2E1EFA5ADD0019A411 /* PropertyUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PropertyUtil.h; path = contrib/PropertyUtil/PropertyUtil.h; sourceTree = "<group>"; };
-		E89D0D2F1EFA5ADD0019A411 /* PropertyUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PropertyUtil.m; path = contrib/PropertyUtil/PropertyUtil.m; sourceTree = "<group>"; };
-		E8A271BC1F6A1F37008D4370 /* XMLReader.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XMLReader.xcodeproj; path = Contrib/XMLReader/XMLReader.xcodeproj; sourceTree = "<group>"; };
 		E8A2727B1F6A3438008D4370 /* RNCryptorLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCryptorLibrary.xcodeproj; path = Contrib/RNCryptorLibrary/RNCryptorLibrary.xcodeproj; sourceTree = "<group>"; };
 		E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesDownloadManager.h; sourceTree = "<group>"; };
 		E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesDownloadManager.m; sourceTree = "<group>"; };
@@ -1803,6 +1781,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E84F367B1F6A5B5100C7BD20 /* libContribLibrary.a in Frameworks */,
 				E84F364A1F6A581900C7BD20 /* libKxIntroLibrary.a in Frameworks */,
 				E84F36251F6A56E800C7BD20 /* libActionSheetPickerLibrary.a in Frameworks */,
 				E84F35DD1F6A4A7200C7BD20 /* libSimpleKMLLibrary.a in Frameworks */,
@@ -1810,7 +1789,6 @@
 				E8F553CA1F6A417A0054806E /* libNVHTarGzipLibrary.a in Frameworks */,
 				E8F5538D1F6A3AB00054806E /* libGMUGeometryLibrary.a in Frameworks */,
 				E8F5534D1F6A37610054806E /* libRNCryptorLibrary.a in Frameworks */,
-				E8A271C21F6A1F72008D4370 /* libXMLReader.a in Frameworks */,
 				E858F59B1F56610B002C1F9B /* ImageIO.framework in Frameworks */,
 				E8EC01A81F554C8F0032F168 /* MediaPlayer.framework in Frameworks */,
 				E823024E1DCD54520032C5C6 /* libxml2.tbd in Frameworks */,
@@ -1885,24 +1863,6 @@
 				E80732FA1B633A74007FDC29 /* main.m */,
 			);
 			path = objects;
-			sourceTree = "<group>";
-		};
-		E812CF531D01A07400C4E777 /* VKSideMenu */ = {
-			isa = PBXGroup;
-			children = (
-				E823425C1EECCFC000D2CDFD /* VKSideMenu.h */,
-				E823425D1EECCFC000D2CDFD /* VKSideMenu.m */,
-			);
-			name = VKSideMenu;
-			sourceTree = "<group>";
-		};
-		E81D242D1B9BDB80001E6027 /* XMLDictionary */ = {
-			isa = PBXGroup;
-			children = (
-				E823425F1EECCFCF00D2CDFD /* XMLDictionary.h */,
-				E82342601EECCFCF00D2CDFD /* XMLDictionary.m */,
-			);
-			name = XMLDictionary;
 			sourceTree = "<group>";
 		};
 		E82002261B7B1B8F009AE50F /* Notes and logs */ = {
@@ -2012,15 +1972,6 @@
 				E823447A1EECE09C00D2CDFD /* ListIgnoredViewController.m */,
 			);
 			name = Lists;
-			sourceTree = "<group>";
-		};
-		E8371D4E1D101F9400C2F174 /* THLabel */ = {
-			isa = PBXGroup;
-			children = (
-				E82342591EECCFB200D2CDFD /* THLabel.h */,
-				E823425A1EECCFB200D2CDFD /* THLabel.m */,
-			);
-			name = THLabel;
 			sourceTree = "<group>";
 		};
 		E83B10921EF4D7BD00F2C5FA /* Locationless */ = {
@@ -2337,6 +2288,14 @@
 			isa = PBXGroup;
 			children = (
 				E84F36401F6A573200C7BD20 /* libKxIntroLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E84F36611F6A5A0800C7BD20 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E84F36651F6A5A0900C7BD20 /* libContribLibrary.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2921,24 +2880,6 @@
 			name = Logging;
 			sourceTree = "<group>";
 		};
-		E895801F1C66E39500282177 /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				E823422E1EECCF4500D2CDFD /* Reachability.h */,
-				E823422F1EECCF4500D2CDFD /* Reachability.m */,
-			);
-			name = Reachability;
-			sourceTree = "<group>";
-		};
-		E89D0D2D1EFA5A930019A411 /* PropertyUtil */ = {
-			isa = PBXGroup;
-			children = (
-				E89D0D2E1EFA5ADD0019A411 /* PropertyUtil.h */,
-				E89D0D2F1EFA5ADD0019A411 /* PropertyUtil.m */,
-			);
-			name = PropertyUtil;
-			sourceTree = "<group>";
-		};
 		E89D15681DE55F4F00ED14B3 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -2948,14 +2889,6 @@
 				E82344AE1EECE0D500D2CDFD /* ToolsRot13ViewController.m */,
 			);
 			name = Tools;
-			sourceTree = "<group>";
-		};
-		E8A271BD1F6A1F37008D4370 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E8A271C11F6A1F38008D4370 /* libXMLReader.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		E8A2727C1F6A3438008D4370 /* Products */ = {
@@ -3290,13 +3223,13 @@
 				E8F570B91B3FF668003F020C /* System Libraries */,
 				B88F87C0C9D0E4A555CE980D /* Pods */,
 				E84F36021F6A567A00C7BD20 /* ActionSheetPickerLibrary.xcodeproj */,
+				E84F36601F6A5A0800C7BD20 /* ContribLibrary.xcodeproj */,
 				E8F553631F6A38EA0054806E /* GMUGeometryLibrary.xcodeproj */,
 				E84F363B1F6A573100C7BD20 /* KxIntroLibrary.xcodeproj */,
 				E8F553C41F6A415A0054806E /* NVHTarGzipLibrary.xcodeproj */,
 				E8A2727B1F6A3438008D4370 /* RNCryptorLibrary.xcodeproj */,
 				E84F35831F6A48E600C7BD20 /* SimpleKMLLibrary.xcodeproj */,
 				E84F353B1F6A438400C7BD20 /* TouchXMLLibrary.xcodeproj */,
-				E8A271BC1F6A1F37008D4370 /* XMLReader.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3367,14 +3300,9 @@
 				E8F6BE731BB8C77A009EA037 /* LXMapScale */,
 				E8A3B0AF1CD33BA500170D61 /* MHTabBarController */,
 				E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */,
-				E89D0D2D1EFA5A930019A411 /* PropertyUtil */,
-				E895801F1C66E39500282177 /* Reachability */,
 				E8F570961B3F7F6A003F020C /* SSZipArchive */,
 				E87DF7761D7EDFCC00F16B5A /* SVProgressHUD */,
 				E82302431DCD52370032C5C6 /* TFHpple */,
-				E8371D4E1D101F9400C2F174 /* THLabel */,
-				E812CF531D01A07400C4E777 /* VKSideMenu */,
-				E81D242D1B9BDB80001E6027 /* XMLDictionary */,
 				E8575FF61B8466AA00F34483 /* YIPopupTextView */,
 			);
 			name = "External modules";
@@ -3659,7 +3587,6 @@
 				E84F35E31F6A4AA800C7BD20 /* PBXTargetDependency */,
 				E84F35E51F6A4AA800C7BD20 /* PBXTargetDependency */,
 				E84F35E71F6A4AA800C7BD20 /* PBXTargetDependency */,
-				E84F35E91F6A4AA800C7BD20 /* PBXTargetDependency */,
 			);
 			name = Geocube;
 			productName = Geocube;
@@ -3740,6 +3667,10 @@
 					ProjectRef = E84F36021F6A567A00C7BD20 /* ActionSheetPickerLibrary.xcodeproj */;
 				},
 				{
+					ProductGroup = E84F36611F6A5A0800C7BD20 /* Products */;
+					ProjectRef = E84F36601F6A5A0800C7BD20 /* ContribLibrary.xcodeproj */;
+				},
+				{
 					ProductGroup = E8F553641F6A38EA0054806E /* Products */;
 					ProjectRef = E8F553631F6A38EA0054806E /* GMUGeometryLibrary.xcodeproj */;
 				},
@@ -3762,10 +3693,6 @@
 				{
 					ProductGroup = E84F353C1F6A438400C7BD20 /* Products */;
 					ProjectRef = E84F353B1F6A438400C7BD20 /* TouchXMLLibrary.xcodeproj */;
-				},
-				{
-					ProductGroup = E8A271BD1F6A1F37008D4370 /* Products */;
-					ProjectRef = E8A271BC1F6A1F37008D4370 /* XMLReader.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -3807,11 +3734,11 @@
 			remoteRef = E84F363F1F6A573200C7BD20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E8A271C11F6A1F38008D4370 /* libXMLReader.a */ = {
+		E84F36651F6A5A0900C7BD20 /* libContribLibrary.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libXMLReader.a;
-			remoteRef = E8A271C01F6A1F38008D4370 /* PBXContainerItemProxy */;
+			path = libContribLibrary.a;
+			remoteRef = E84F36641F6A5A0900C7BD20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E8A272801F6A343A008D4370 /* libRNCryptorLibrary.a */ = {
@@ -4357,7 +4284,6 @@
 				E82343FA1EECDF4400D2CDFD /* WaypointTrackablesViewController.m in Sources */,
 				E82344351EECDFB300D2CDFD /* FilterTextTableViewCell.m in Sources */,
 				E82342B91EECD0B100D2CDFD /* dbImage.m in Sources */,
-				E823425E1EECCFC000D2CDFD /* VKSideMenu.m in Sources */,
 				E82343F81EECDF4400D2CDFD /* WaypointPersonalNoteViewController.m in Sources */,
 				E82344BE1EECE0E800D2CDFD /* SettingsColoursViewController.m in Sources */,
 				E82344341EECDFB300D2CDFD /* FilterTerrainTableViewCell.m in Sources */,
@@ -4424,7 +4350,6 @@
 				E82344C01EECE0E800D2CDFD /* SettingsLogTemplatesViewController.m in Sources */,
 				E82342CC1EECD0B100D2CDFD /* dbType.m in Sources */,
 				E82342BD1EECD0B100D2CDFD /* dbLogMacro.m in Sources */,
-				E89D0D301EFA5ADD0019A411 /* PropertyUtil.m in Sources */,
 				E82344911EECE0AC00D2CDFD /* QueriesGCAViewController.m in Sources */,
 				E82342581EECCFA400D2CDFD /* XPathQuery.m in Sources */,
 				E82344841EECE09C00D2CDFD /* ListTemplateViewController.m in Sources */,
@@ -4496,7 +4421,6 @@
 				E83C6F221EEEA47900E303F5 /* GCTableViewCellRightImageDisclosure.m in Sources */,
 				E83C6F1B1EEEA36900E303F5 /* GCTableViewCellSubtitleRightImageDisclosure.m in Sources */,
 				E823430F1EECD97400D2CDFD /* GCURLRequest.m in Sources */,
-				E82342301EECCF4500D2CDFD /* Reachability.m in Sources */,
 				E82344AF1EECE0D500D2CDFD /* ToolsGNSSViewController.m in Sources */,
 				E82343FB1EECDF4400D2CDFD /* WaypointWaypointsTableViewCell.m in Sources */,
 				E82342B81EECD0B100D2CDFD /* dbGroup.m in Sources */,
@@ -4531,7 +4455,6 @@
 				E82345241EECE14A00D2CDFD /* DeveloperImagesViewController.m in Sources */,
 				E82344401EECE01500D2CDFD /* KeepTracksTrackTableViewCell.m in Sources */,
 				E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */,
-				E82342611EECCFCF00D2CDFD /* XMLDictionary.m in Sources */,
 				E83C6EEE1EECE1CB00E303F5 /* KeyManager.m in Sources */,
 				E841E15A1D88FC950050D4B4 /* InfoItem.m in Sources */,
 				E8F570591B3F7255003F020C /* main.m in Sources */,
@@ -4570,7 +4493,6 @@
 				E85BA88E1F544372008E708F /* KeepTrackBeeper.m in Sources */,
 				E82343781EECDB4500D2CDFD /* ThemeNight.m in Sources */,
 				E82341FF1EECCEDB00D2CDFD /* LXMapScaleView.m in Sources */,
-				E823425B1EECCFB200D2CDFD /* THLabel.m in Sources */,
 				E823447F1EECE09C00D2CDFD /* ListDNFViewController.m in Sources */,
 				E8EC01A61F551A990032F168 /* KeepTrackBeeperView.m in Sources */,
 				E82343DE1EECDEE200D2CDFD /* WaypointViewController.m in Sources */,
@@ -4628,11 +4550,6 @@
 			isa = PBXTargetDependency;
 			name = TouchXMLLibrary;
 			targetProxy = E84F35E61F6A4AA800C7BD20 /* PBXContainerItemProxy */;
-		};
-		E84F35E91F6A4AA800C7BD20 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = XMLReader;
-			targetProxy = E84F35E81F6A4AA800C7BD20 /* PBXContainerItemProxy */;
 		};
 		E8F5706E1B3F7255003F020C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

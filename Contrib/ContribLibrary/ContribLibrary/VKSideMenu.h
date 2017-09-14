@@ -39,13 +39,13 @@ typedef NS_ENUM(NSInteger, VKSideMenuDirection)
     VKSideMenuDirectionRightToLeft
 };
 
+@class VKSideMenu, VKSideMenuItem;
+
 /*!
  @protocol  VKSideMenuDataSource
  @abstract  This protocol represents the data model object
  @note      It's almost the same to UITableViewDataSource
  */
-
-@class VKSideMenu, VKSideMenuItem;
 @protocol VKSideMenuDataSource <NSObject>
 
 @required
@@ -59,8 +59,6 @@ typedef NS_ENUM(NSInteger, VKSideMenuDirection)
  @protocol  VKSideMenuDelegate
  @abstract  This protocol represents the behaviour of the <code>VKSideMenu</code>.
  */
-
-@class VKSideMenu, VKSideMenuItem;
 @protocol VKSideMenuDelegate <NSObject>
 
 @optional

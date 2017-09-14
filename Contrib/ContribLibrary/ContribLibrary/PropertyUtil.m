@@ -1,6 +1,8 @@
 // PropertyUtil.m
 // From https://stackoverflow.com/questions/754824/get-an-object-properties-list-in-objective-c
 
+#import <Foundation/Foundation.h>
+#import <string.h>
 #import "PropertyUtil.h"
 #import "objc/runtime.h"
 

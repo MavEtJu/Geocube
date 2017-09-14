@@ -5,7 +5,7 @@
 //  Copyright (c) 2012 LKXF. All rights reserved.
 //
 
-@import GoogleMaps;
+//@import GoogleMaps;
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
