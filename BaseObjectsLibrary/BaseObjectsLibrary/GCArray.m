@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "GCArray.h"
+
 @interface GCArray ()
 {
     NSMutableArray *a;

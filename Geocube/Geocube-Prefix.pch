@@ -130,7 +130,7 @@
 
 #import "WaypointManager.h"
 
-#import "GCArray.h"
+#import "BaseObjectsLibrary/BaseObjectsLibrary.h"
 #import "GCButton.h"
 #import "GCFilterButton.h"
 #import "GCCloseButton.h"
@@ -155,9 +155,6 @@
 #import "InfoViewer.h"
 #import "DownloadManager.h"
 
-#import "GCDataObjects.h"
-#import "GCDictionary.h"
-#import "GCString.h"
 #import "ImportTemplate.h"
 #import "ImportGCA2JSON.h"
 #import "ImportGGCWJSON.h"
@@ -294,7 +291,6 @@
 #import "GCWaypointAnnotation.h"
 #import "GCCircle.h"
 #import "GCGMSCircle.h"
-#import "GCLocationCoordinate2D.h"
 #import "MapWaypointInfoView.h"
 #import "MapTemplateViewController.h"
 #import "MapBrand.h"

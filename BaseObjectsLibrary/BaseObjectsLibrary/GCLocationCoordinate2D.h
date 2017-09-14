@@ -19,13 +19,13 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCData : NSObject
+#import <CoreLocation/CoreLocation.h>
 
-- (instancetype)initWithData:(NSData *)data;
-- (BOOL)writeToFile:(NSString *)path atomically:(BOOL)useAuxiliaryFile;
+@interface GCLocationCoordinate2D : NSObject
 
-@end
-
-@interface GCDataZIPFile : GCData
+@property (nonatomic) CLLocationDegrees lat;
+@property (nonatomic) CLLocationDegrees lon;
+@property (nonatomic) CLLocationAccuracy accuracy;
+@property (nonatomic) struct timeval tv;
 
 @end

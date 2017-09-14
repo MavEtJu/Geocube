@@ -19,18 +19,37 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCArray : NSObject
+#import "GCDataObjects.h"
 
-- (instancetype)initWithCapacity:(NSUInteger)size;
-- (instancetype)initWithArray:(NSArray *)array;
-- (NSMutableArray *)_array;
-- (void)addObject:(id)object;
-- (id)objectAtIndex:(NSUInteger)idx;
-- (NSUInteger)count;
-- (void)enumerateObjectsUsingBlock:(void (NS_NOESCAPE ^)(id key, NSUInteger idx, BOOL *stop))block;
+@interface GCData ()
+{
+    NSData *data;
+}
 
 @end
 
-@interface GCMutableArray : GCArray
+@implementation GCData
+
+- (instancetype)initWithData:(NSData *)_data
+{
+    self = [super init];
+
+    data = [NSData dataWithData:_data];
+
+    return self;
+}
+
+- (BOOL)writeToFile:(NSString *)path atomically:(BOOL)useAuxiliaryFile
+{
+    return [data writeToFile:path atomically:useAuxiliaryFile];
+}
+
+@end
+
+@interface GCDataZIPFile ()
+
+@end
+
+@implementation GCDataZIPFile
 
 @end

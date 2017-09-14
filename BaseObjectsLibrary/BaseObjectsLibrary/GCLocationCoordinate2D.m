@@ -19,11 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCLocationCoordinate2D : NSObject
+#import "GCLocationCoordinate2D.h"
 
-@property (nonatomic) CLLocationDegrees lat;
-@property (nonatomic) CLLocationDegrees lon;
-@property (nonatomic) CLLocationAccuracy accuracy;
-@property (nonatomic) struct timeval tv;
+@interface GCLocationCoordinate2D ()
+
+@end
+
+@implementation GCLocationCoordinate2D
 
 @end

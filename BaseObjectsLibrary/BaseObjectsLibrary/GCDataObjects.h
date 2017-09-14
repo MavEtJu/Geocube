@@ -19,25 +19,15 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCString : NSObject
+#import <Foundation/Foundation.h>
 
-- (instancetype)initWithString:(NSString *)s;
-- (instancetype)initWithData:(NSData *)data encoding:(NSStringEncoding)encoding;
-- (NSData *)dataUsingEncoding:(NSStringEncoding)encoding;
-- (NSUInteger)length;
-- (NSString *)description;
-- (NSString *)_string;
+@interface GCData : NSObject
+
+- (instancetype)initWithData:(NSData *)data;
+- (BOOL)writeToFile:(NSString *)path atomically:(BOOL)useAuxiliaryFile;
 
 @end
 
-@interface GCStringGPX : GCString
-
-@end
-
-@interface GCStringGPXGarmin : GCString
-
-@end
-
-@interface GCStringFilename : GCString
+@interface GCDataZIPFile : GCData
 
 @end

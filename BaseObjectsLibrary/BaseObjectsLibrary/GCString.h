@@ -19,10 +19,27 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCLocationCoordinate2D ()
+#import <Foundation/Foundation.h>
+
+@interface GCString : NSObject
+
+- (instancetype)initWithString:(NSString *)s;
+- (instancetype)initWithData:(NSData *)data encoding:(NSStringEncoding)encoding;
+- (NSData *)dataUsingEncoding:(NSStringEncoding)encoding;
+- (NSUInteger)length;
+- (NSString *)description;
+- (NSString *)_string;
 
 @end
 
-@implementation GCLocationCoordinate2D
+@interface GCStringGPX : GCString
+
+@end
+
+@interface GCStringGPXGarmin : GCString
+
+@end
+
+@interface GCStringFilename : GCString
 
 @end

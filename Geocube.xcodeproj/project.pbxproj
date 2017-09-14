@@ -100,11 +100,6 @@
 		E82343581EECDA4900D2CDFD /* ImportTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E823434D1EECDA4900D2CDFD /* ImportTemplate.m */; };
 		E823435D1EECDAEF00D2CDFD /* LocalMenuItems.m in Sources */ = {isa = PBXBuildFile; fileRef = E823435A1EECDAEF00D2CDFD /* LocalMenuItems.m */; };
 		E823435E1EECDAEF00D2CDFD /* SideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E823435C1EECDAEF00D2CDFD /* SideMenu.m */; };
-		E82343691EECDB2C00D2CDFD /* GCArray.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343601EECDB2C00D2CDFD /* GCArray.m */; };
-		E823436A1EECDB2C00D2CDFD /* GCDataObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343621EECDB2C00D2CDFD /* GCDataObjects.m */; };
-		E823436B1EECDB2C00D2CDFD /* GCDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343641EECDB2C00D2CDFD /* GCDictionary.m */; };
-		E823436C1EECDB2C00D2CDFD /* GCLocationCoordinate2D.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343661EECDB2C00D2CDFD /* GCLocationCoordinate2D.m */; };
-		E823436D1EECDB2C00D2CDFD /* GCString.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343681EECDB2C00D2CDFD /* GCString.m */; };
 		E82343761EECDB4500D2CDFD /* ThemeIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = E823436F1EECDB4500D2CDFD /* ThemeIOS.m */; };
 		E82343771EECDB4500D2CDFD /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343711EECDB4500D2CDFD /* ThemeManager.m */; };
 		E82343781EECDB4500D2CDFD /* ThemeNight.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343731EECDB4500D2CDFD /* ThemeNight.m */; };
@@ -569,6 +564,17 @@
 		E8EC01A81F554C8F0032F168 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EC01A71F554C8F0032F168 /* MediaPlayer.framework */; };
 		E8EC073F1D39D898009B8EB1 /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EC073E1D39D898009B8EB1 /* DownloadManager.m */; };
 		E8EC07421D39E887009B8EB1 /* ImportManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EC07411D39E887009B8EB1 /* ImportManager.m */; };
+		E8EE47AC1F6B473200AB13BC /* libActionSheetPickerLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE47311F6B429000AB13BC /* libActionSheetPickerLibrary.a */; };
+		E8EE47AE1F6B473200AB13BC /* libGMUGeometryLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE47581F6B429D00AB13BC /* libGMUGeometryLibrary.a */; };
+		E8EE47AF1F6B473200AB13BC /* libKxIntroLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE474C1F6B429C00AB13BC /* libKxIntroLibrary.a */; };
+		E8EE47B01F6B473200AB13BC /* libNVHTarGzipLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE475B1F6B429D00AB13BC /* libNVHTarGzipLibrary.a */; };
+		E8EE47B11F6B473200AB13BC /* libRNCryptorLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE475E1F6B429D00AB13BC /* libRNCryptorLibrary.a */; };
+		E8EE47B21F6B473200AB13BC /* libSimpleKMLLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE47451F6B429C00AB13BC /* libSimpleKMLLibrary.a */; };
+		E8EE47B31F6B473200AB13BC /* libSSZipArchiveLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE474F1F6B429C00AB13BC /* libSSZipArchiveLibrary.a */; };
+		E8EE47B41F6B473200AB13BC /* libTFHppleLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE473A1F6B429C00AB13BC /* libTFHppleLibrary.a */; };
+		E8EE47B51F6B473200AB13BC /* libTouchXMLLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE473D1F6B429C00AB13BC /* libTouchXMLLibrary.a */; };
+		E8EE47B61F6B473200AB13BC /* libYIPopupTextViewLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE47401F6B429C00AB13BC /* libYIPopupTextViewLibrary.a */; };
+		E8EE47B81F6B473200AB13BC /* libContribLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE47B71F6B473200AB13BC /* libContribLibrary.a */; };
 		E8F403E81DAF5B2600318CC6 /* cache - reverse - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */; };
 		E8F403EB1DAFA23600318CC6 /* cache - reverse - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */; };
 		E8F403EC1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */; };
@@ -742,6 +748,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = E8A2726F1F6A3438008D4370;
 			remoteInfo = RNCryptorLibrary;
+		};
+		E8EE47C81F6B488C00AB13BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8EE47991F6B457C00AB13BC /* BaseObjectsLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E8EE478D1F6B457C00AB13BC;
+			remoteInfo = BaseObjectsLibrary;
 		};
 		E8F5706D1B3F7255003F020C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -947,16 +960,6 @@
 		E823435A1EECDAEF00D2CDFD /* LocalMenuItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalMenuItems.m; path = Menus/LocalMenuItems.m; sourceTree = "<group>"; };
 		E823435B1EECDAEF00D2CDFD /* SideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SideMenu.h; path = Menus/SideMenu.h; sourceTree = "<group>"; };
 		E823435C1EECDAEF00D2CDFD /* SideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SideMenu.m; path = Menus/SideMenu.m; sourceTree = "<group>"; };
-		E823435F1EECDB2C00D2CDFD /* GCArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCArray.h; path = GCBaseObjects/GCArray.h; sourceTree = "<group>"; };
-		E82343601EECDB2C00D2CDFD /* GCArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCArray.m; path = GCBaseObjects/GCArray.m; sourceTree = "<group>"; };
-		E82343611EECDB2C00D2CDFD /* GCDataObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDataObjects.h; path = GCBaseObjects/GCDataObjects.h; sourceTree = "<group>"; };
-		E82343621EECDB2C00D2CDFD /* GCDataObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDataObjects.m; path = GCBaseObjects/GCDataObjects.m; sourceTree = "<group>"; };
-		E82343631EECDB2C00D2CDFD /* GCDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDictionary.h; path = GCBaseObjects/GCDictionary.h; sourceTree = "<group>"; };
-		E82343641EECDB2C00D2CDFD /* GCDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDictionary.m; path = GCBaseObjects/GCDictionary.m; sourceTree = "<group>"; };
-		E82343651EECDB2C00D2CDFD /* GCLocationCoordinate2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCLocationCoordinate2D.h; path = GCBaseObjects/GCLocationCoordinate2D.h; sourceTree = "<group>"; };
-		E82343661EECDB2C00D2CDFD /* GCLocationCoordinate2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCLocationCoordinate2D.m; path = GCBaseObjects/GCLocationCoordinate2D.m; sourceTree = "<group>"; };
-		E82343671EECDB2C00D2CDFD /* GCString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCString.h; path = GCBaseObjects/GCString.h; sourceTree = "<group>"; };
-		E82343681EECDB2C00D2CDFD /* GCString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCString.m; path = GCBaseObjects/GCString.m; sourceTree = "<group>"; };
 		E823436E1EECDB4500D2CDFD /* ThemeIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeIOS.h; path = Themes/ThemeIOS.h; sourceTree = "<group>"; };
 		E823436F1EECDB4500D2CDFD /* ThemeIOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeIOS.m; path = Themes/ThemeIOS.m; sourceTree = "<group>"; };
 		E82343701EECDB4500D2CDFD /* ThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeManager.h; path = Themes/ThemeManager.h; sourceTree = "<group>"; };
@@ -1596,6 +1599,8 @@
 		E8EC073E1D39D898009B8EB1 /* DownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadManager.m; sourceTree = "<group>"; };
 		E8EC07401D39E887009B8EB1 /* ImportManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportManager.h; sourceTree = "<group>"; };
 		E8EC07411D39E887009B8EB1 /* ImportManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportManager.m; sourceTree = "<group>"; };
+		E8EE47991F6B457C00AB13BC /* BaseObjectsLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BaseObjectsLibrary.xcodeproj; path = ../BaseObjectsLibrary/BaseObjectsLibrary.xcodeproj; sourceTree = "<group>"; };
+		E8EE47B71F6B473200AB13BC /* libContribLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libContribLibrary.a; path = "../../Library/Developer/Xcode/DerivedData/Geocube-bjprugvtqrcyrnatajlgnpwinftk/Build/Products/Debug-iphonesimulator/libContribLibrary.a"; sourceTree = "<group>"; };
 		E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30.png"; path = "images/caches/cache - reverse - 30x30.png"; sourceTree = "<group>"; };
 		E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@2x.png"; path = "images/caches/cache - reverse - 30x30@2x.png"; sourceTree = "<group>"; };
 		E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@3x.png"; path = "images/caches/cache - reverse - 30x30@3x.png"; sourceTree = "<group>"; };
@@ -1724,6 +1729,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8EE47B81F6B473200AB13BC /* libContribLibrary.a in Frameworks */,
+				E8EE47AC1F6B473200AB13BC /* libActionSheetPickerLibrary.a in Frameworks */,
+				E8EE47AE1F6B473200AB13BC /* libGMUGeometryLibrary.a in Frameworks */,
+				E8EE47AF1F6B473200AB13BC /* libKxIntroLibrary.a in Frameworks */,
+				E8EE47B01F6B473200AB13BC /* libNVHTarGzipLibrary.a in Frameworks */,
+				E8EE47B11F6B473200AB13BC /* libRNCryptorLibrary.a in Frameworks */,
+				E8EE47B21F6B473200AB13BC /* libSimpleKMLLibrary.a in Frameworks */,
+				E8EE47B31F6B473200AB13BC /* libSSZipArchiveLibrary.a in Frameworks */,
+				E8EE47B41F6B473200AB13BC /* libTFHppleLibrary.a in Frameworks */,
+				E8EE47B51F6B473200AB13BC /* libTouchXMLLibrary.a in Frameworks */,
+				E8EE47B61F6B473200AB13BC /* libYIPopupTextViewLibrary.a in Frameworks */,
 				E858F59B1F56610B002C1F9B /* ImageIO.framework in Frameworks */,
 				E8EC01A81F554C8F0032F168 /* MediaPlayer.framework in Frameworks */,
 				E823024E1DCD54520032C5C6 /* libxml2.tbd in Frameworks */,
@@ -1748,6 +1764,7 @@
 		6917C4AD2B052674BDDB3A0D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E8EE47B71F6B473200AB13BC /* libContribLibrary.a */,
 				E858F59A1F56610B002C1F9B /* ImageIO.framework */,
 				E8EC01A71F554C8F0032F168 /* MediaPlayer.framework */,
 				E823024D1DCD54520032C5C6 /* libxml2.tbd */,
@@ -1851,7 +1868,7 @@
 			name = menu;
 			sourceTree = "<group>";
 		};
-		E82FBB2B1B4613E90009AB6D /* Base objects */ = {
+		E82FBB2B1B4613E90009AB6D /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				E8E2F5541D02C4B4009170E3 /* Menus */,
@@ -1874,7 +1891,7 @@
 				E8EC019D1F54E7950032F168 /* AudioManager.h */,
 				E8EC019E1F54E7950032F168 /* AudioManager.m */,
 			);
-			name = "Base objects";
+			name = Managers;
 			sourceTree = "<group>";
 		};
 		E833B72F1C522E8D00B9FB45 /* Lists */ = {
@@ -1911,23 +1928,6 @@
 				E86D42741EF5484E00E4509F /* LocationlessTableViewCell~ipad.xib */,
 			);
 			name = Locationless;
-			sourceTree = "<group>";
-		};
-		E83B77851DD3C45F0059793C /* Base type objects */ = {
-			isa = PBXGroup;
-			children = (
-				E823435F1EECDB2C00D2CDFD /* GCArray.h */,
-				E82343601EECDB2C00D2CDFD /* GCArray.m */,
-				E82343611EECDB2C00D2CDFD /* GCDataObjects.h */,
-				E82343621EECDB2C00D2CDFD /* GCDataObjects.m */,
-				E82343631EECDB2C00D2CDFD /* GCDictionary.h */,
-				E82343641EECDB2C00D2CDFD /* GCDictionary.m */,
-				E82343651EECDB2C00D2CDFD /* GCLocationCoordinate2D.h */,
-				E82343661EECDB2C00D2CDFD /* GCLocationCoordinate2D.m */,
-				E82343671EECDB2C00D2CDFD /* GCString.h */,
-				E82343681EECDB2C00D2CDFD /* GCString.m */,
-			);
-			name = "Base type objects";
 			sourceTree = "<group>";
 		};
 		E83C204B1E2D84DD006C523E /* Waypoint Subviews */ = {
@@ -2956,8 +2956,8 @@
 		E8E4400B1D88A6D800BECB49 /* GUI - base */ = {
 			isa = PBXGroup;
 			children = (
-				E82FBB2B1B4613E90009AB6D /* Base objects */,
-				E83B77851DD3C45F0059793C /* Base type objects */,
+				E8EE47991F6B457C00AB13BC /* BaseObjectsLibrary.xcodeproj */,
+				E82FBB2B1B4613E90009AB6D /* Managers */,
 				E85760161B85E08F00F34483 /* Base GUI objects */,
 				E8740FE91B509540002527DA /* Base TableViewCells */,
 				E857600C1B85DF5600F34483 /* Themes */,
@@ -3136,6 +3136,14 @@
 			isa = PBXGroup;
 			children = (
 				E8EE47581F6B429D00AB13BC /* libGMUGeometryLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E8EE47C51F6B488C00AB13BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8EE47C91F6B488C00AB13BC /* libBaseObjectsLibrary.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3563,6 +3571,10 @@
 					ProjectRef = E84F36021F6A567A00C7BD20 /* ActionSheetPickerLibrary.xcodeproj */;
 				},
 				{
+					ProductGroup = E8EE47C51F6B488C00AB13BC /* Products */;
+					ProjectRef = E8EE47991F6B457C00AB13BC /* BaseObjectsLibrary.xcodeproj */;
+				},
+				{
 					ProductGroup = E8EE47541F6B429D00AB13BC /* Products */;
 					ProjectRef = E8F553631F6A38EA0054806E /* GMUGeometryLibrary.xcodeproj */;
 				},
@@ -3678,6 +3690,13 @@
 			fileType = archive.ar;
 			path = libRNCryptorLibrary.a;
 			remoteRef = E8EE475D1F6B429D00AB13BC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E8EE47C91F6B488C00AB13BC /* libBaseObjectsLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBaseObjectsLibrary.a;
+			remoteRef = E8EE47C81F6B488C00AB13BC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -4257,7 +4276,6 @@
 				E82343F91EECDF4400D2CDFD /* WaypointRawViewController.m in Sources */,
 				E82344A81EECE0C900D2CDFD /* BrowserAccountsViewController.m in Sources */,
 				E823439A1EECDBCF00D2CDFD /* MapESRIWorldTopo.m in Sources */,
-				E823436D1EECDB2C00D2CDFD /* GCString.m in Sources */,
 				E82343521EECDA4900D2CDFD /* ImportGGCWJSON.m in Sources */,
 				E82342B11EECD0B100D2CDFD /* dbBookmark.m in Sources */,
 				E82342C11EECD0B100D2CDFD /* dbNotice.m in Sources */,
@@ -4271,7 +4289,6 @@
 				E82345031EECE12B00D2CDFD /* GCTableViewCellSwitch.m in Sources */,
 				E82343D81EECDEE200D2CDFD /* WaypointHeaderTableViewCell.m in Sources */,
 				E823432A1EECD9BC00D2CDFD /* IOSFileTransfers.m in Sources */,
-				E823436C1EECDB2C00D2CDFD /* GCLocationCoordinate2D.m in Sources */,
 				E82341F21EECCEBB00D2CDFD /* RangeSlider.m in Sources */,
 				E823421B1EECCF2600D2CDFD /* NKOColorPickerView.m in Sources */,
 				E83C6F011EECE67100E303F5 /* FileObject.m in Sources */,
@@ -4334,7 +4351,6 @@
 				E82343FB1EECDF4400D2CDFD /* WaypointWaypointsTableViewCell.m in Sources */,
 				E82342B81EECD0B100D2CDFD /* dbGroup.m in Sources */,
 				E82345271EECE14A00D2CDFD /* NoticeTableViewCell.m in Sources */,
-				E823436B1EECDB2C00D2CDFD /* GCDictionary.m in Sources */,
 				E82344721EECE08A00D2CDFD /* GroupsUserViewController.m in Sources */,
 				E82344271EECDFB300D2CDFD /* FilterCategoryTableViewCell.m in Sources */,
 				E82344BF1EECE0E800D2CDFD /* SettingsColourViewController.m in Sources */,
@@ -4368,7 +4384,6 @@
 				E841E15A1D88FC950050D4B4 /* InfoItem.m in Sources */,
 				E8F570591B3F7255003F020C /* main.m in Sources */,
 				E823442F1EECDFB300D2CDFD /* FilterObject.m in Sources */,
-				E82343691EECDB2C00D2CDFD /* GCArray.m in Sources */,
 				E82344641EECE06E00D2CDFD /* TrackablesListViewController.m in Sources */,
 				E82343871EECDB9B00D2CDFD /* MapTemplateViewController.m in Sources */,
 				E823432D1EECD9BC00D2CDFD /* ProtocolLiveAPI.m in Sources */,
@@ -4416,7 +4431,6 @@
 				E823449E1EECE0BD00D2CDFD /* StatisticsTableViewCell.m in Sources */,
 				E82342C21EECD0B100D2CDFD /* dbObject.m in Sources */,
 				E823424F1EECCF9300D2CDFD /* SVRadialGradientLayer.m in Sources */,
-				E823436A1EECDB2C00D2CDFD /* GCDataObjects.m in Sources */,
 				E82345211EECE14A00D2CDFD /* HelpAboutViewController.m in Sources */,
 				E82342B71EECD0B100D2CDFD /* dbFilter.m in Sources */,
 				E82343971EECDBCE00D2CDFD /* MapApple.m in Sources */,
@@ -4629,6 +4643,7 @@
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"${SDKROOT}/usr/include/libxml2",
 					"${SRCROOT}/Contrib/**",
+					"${SRCROOT}/BaseObjectsLibrary",
 				);
 				INFOPLIST_FILE = Geocube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
@@ -4665,6 +4680,7 @@
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"${SDKROOT}/usr/include/libxml2",
 					"${SRCROOT}/Contrib/**",
+					"${SRCROOT}/BaseObjectsLibrary",
 				);
 				INFOPLIST_FILE = Geocube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
