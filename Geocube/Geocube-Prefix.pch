@@ -54,7 +54,7 @@
 #import "SSZipArchive.h"
 #import "SVProgressHUD.h"
 #import "TFHppleLibrary/TFHppleLibrary.h"
-#import "YIPopupTextView.h"
+#import "YIPopupTextViewLibrary/YIPopupTextViewLibrary.h"
 #import "LXMapScaleView.h"
 
 #import "Geocube-Classes.h"

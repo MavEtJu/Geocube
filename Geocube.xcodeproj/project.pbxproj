@@ -44,8 +44,6 @@
 		E823424C1EECCF9300D2CDFD /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342441EECCF9300D2CDFD /* SVProgressAnimatedView.m */; };
 		E823424E1EECCF9300D2CDFD /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342481EECCF9300D2CDFD /* SVProgressHUD.m */; };
 		E823424F1EECCF9300D2CDFD /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E823424A1EECCF9300D2CDFD /* SVRadialGradientLayer.m */; };
-		E82342691EECCFE700D2CDFD /* YIPopupTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342661EECCFE700D2CDFD /* YIPopupTextView.m */; };
-		E823426A1EECCFE700D2CDFD /* YISSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342681EECCFE700D2CDFD /* YISSTextView.m */; };
 		E82342AD1EECD0B100D2CDFD /* database-cache.m in Sources */ = {isa = PBXBuildFile; fileRef = E823426C1EECD0B000D2CDFD /* database-cache.m */; };
 		E82342AE1EECD0B100D2CDFD /* database.m in Sources */ = {isa = PBXBuildFile; fileRef = E823426E1EECD0B000D2CDFD /* database.m */; };
 		E82342AF1EECD0B100D2CDFD /* dbAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342701EECD0B000D2CDFD /* dbAccount.m */; };
@@ -565,6 +563,7 @@
 		E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
 		E8A658611F6A7E81004D56D5 /* libTFHppleLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A658571F6A7D45004D56D5 /* libTFHppleLibrary.a */; };
+		E8A658831F6A7FB3004D56D5 /* libYIPopupTextViewLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A6587C1F6A7F3B004D56D5 /* libYIPopupTextViewLibrary.a */; };
 		E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */; };
 		E8AA149C1ED7988A0023000A /* Updates and changes.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8AA149B1ED7988A0023000A /* Updates and changes.txt */; };
 		E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */; };
@@ -773,6 +772,13 @@
 			remoteGlobalIDString = E8A658431F6A7D43004D56D5;
 			remoteInfo = TFHppleLibrary;
 		};
+		E8A6587B1F6A7F3B004D56D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8A658771F6A7F3A004D56D5 /* YIPopupTextViewLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E8A6586B1F6A7F3A004D56D5;
+			remoteInfo = YIPopupTextViewLibrary;
+		};
 		E8F553671F6A38EB0054806E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E8F553631F6A38EA0054806E /* GMUGeometryLibrary.xcodeproj */;
@@ -880,10 +886,6 @@
 		E82342481EECCF9300D2CDFD /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = contrib/SVProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
 		E82342491EECCF9300D2CDFD /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVRadialGradientLayer.h; path = contrib/SVProgressHUD/SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		E823424A1EECCF9300D2CDFD /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = contrib/SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
-		E82342651EECCFE600D2CDFD /* YIPopupTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YIPopupTextView.h; path = contrib/YIPopupTextView/YIPopupTextView.h; sourceTree = "<group>"; };
-		E82342661EECCFE700D2CDFD /* YIPopupTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YIPopupTextView.m; path = contrib/YIPopupTextView/YIPopupTextView.m; sourceTree = "<group>"; };
-		E82342671EECCFE700D2CDFD /* YISSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YISSTextView.h; path = contrib/YIPopupTextView/YISSTextView.h; sourceTree = "<group>"; };
-		E82342681EECCFE700D2CDFD /* YISSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YISSTextView.m; path = contrib/YIPopupTextView/YISSTextView.m; sourceTree = "<group>"; };
 		E823426B1EECD0B000D2CDFD /* database-cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "database-cache.h"; path = "database/database-cache.h"; sourceTree = "<group>"; };
 		E823426C1EECD0B000D2CDFD /* database-cache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "database-cache.m"; path = "database/database-cache.m"; sourceTree = "<group>"; };
 		E823426D1EECD0B000D2CDFD /* database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = database.h; path = database/database.h; sourceTree = "<group>"; };
@@ -1629,6 +1631,7 @@
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
 		E8A2727B1F6A3438008D4370 /* RNCryptorLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCryptorLibrary.xcodeproj; path = Contrib/RNCryptorLibrary/RNCryptorLibrary.xcodeproj; sourceTree = "<group>"; };
 		E8A6584F1F6A7D44004D56D5 /* TFHppleLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TFHppleLibrary.xcodeproj; path = Contrib/TFHppleLibrary/TFHppleLibrary.xcodeproj; sourceTree = "<group>"; };
+		E8A658771F6A7F3A004D56D5 /* YIPopupTextViewLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = YIPopupTextViewLibrary.xcodeproj; path = Contrib/YIPopupTextViewLibrary/YIPopupTextViewLibrary.xcodeproj; sourceTree = "<group>"; };
 		E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesDownloadManager.h; sourceTree = "<group>"; };
 		E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesDownloadManager.m; sourceTree = "<group>"; };
 		E8AA149B1ED7988A0023000A /* Updates and changes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Updates and changes.txt"; sourceTree = "<group>"; };
@@ -1781,6 +1784,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8A658831F6A7FB3004D56D5 /* libYIPopupTextViewLibrary.a in Frameworks */,
 				E8A658611F6A7E81004D56D5 /* libTFHppleLibrary.a in Frameworks */,
 				E84F367B1F6A5B5100C7BD20 /* libContribLibrary.a in Frameworks */,
 				E84F364A1F6A581900C7BD20 /* libKxIntroLibrary.a in Frameworks */,
@@ -2372,17 +2376,6 @@
 				E83C204B1E2D84DD006C523E /* Waypoint Subviews */,
 			);
 			name = "Single Waypoint";
-			sourceTree = "<group>";
-		};
-		E8575FF61B8466AA00F34483 /* YIPopupTextView */ = {
-			isa = PBXGroup;
-			children = (
-				E82342651EECCFE600D2CDFD /* YIPopupTextView.h */,
-				E82342661EECCFE700D2CDFD /* YIPopupTextView.m */,
-				E82342671EECCFE700D2CDFD /* YISSTextView.h */,
-				E82342681EECCFE700D2CDFD /* YISSTextView.m */,
-			);
-			name = YIPopupTextView;
 			sourceTree = "<group>";
 		};
 		E857600C1B85DF5600F34483 /* Themes */ = {
@@ -2980,6 +2973,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E8A658781F6A7F3A004D56D5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8A6587C1F6A7F3B004D56D5 /* libYIPopupTextViewLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E8A7FA921B777616003F4132 /* Browser */ = {
 			isa = PBXGroup;
 			children = (
@@ -3212,7 +3213,7 @@
 		E8F5704A1B3F7255003F020C = {
 			isa = PBXGroup;
 			children = (
-				E8A6584F1F6A7D44004D56D5 /* TFHppleLibrary.xcodeproj */,
+				E8A658771F6A7F3A004D56D5 /* YIPopupTextViewLibrary.xcodeproj */,
 				E8F570551B3F7255003F020C /* Geocube */,
 				E80732F91B633A74007FDC29 /* objects */,
 				E8F570541B3F7255003F020C /* Products */,
@@ -3226,6 +3227,7 @@
 				E8F553C41F6A415A0054806E /* NVHTarGzipLibrary.xcodeproj */,
 				E8A2727B1F6A3438008D4370 /* RNCryptorLibrary.xcodeproj */,
 				E84F35831F6A48E600C7BD20 /* SimpleKMLLibrary.xcodeproj */,
+				E8A6584F1F6A7D44004D56D5 /* TFHppleLibrary.xcodeproj */,
 				E84F353B1F6A438400C7BD20 /* TouchXMLLibrary.xcodeproj */,
 			);
 			sourceTree = "<group>";
@@ -3299,7 +3301,6 @@
 				E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */,
 				E8F570961B3F7F6A003F020C /* SSZipArchive */,
 				E87DF7761D7EDFCC00F16B5A /* SVProgressHUD */,
-				E8575FF61B8466AA00F34483 /* YIPopupTextView */,
 			);
 			name = "External modules";
 			sourceTree = "<group>";
@@ -3694,6 +3695,10 @@
 					ProductGroup = E84F353C1F6A438400C7BD20 /* Products */;
 					ProjectRef = E84F353B1F6A438400C7BD20 /* TouchXMLLibrary.xcodeproj */;
 				},
+				{
+					ProductGroup = E8A658781F6A7F3A004D56D5 /* Products */;
+					ProjectRef = E8A658771F6A7F3A004D56D5 /* YIPopupTextViewLibrary.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -3753,6 +3758,13 @@
 			fileType = archive.ar;
 			path = libTFHppleLibrary.a;
 			remoteRef = E8A658561F6A7D45004D56D5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E8A6587C1F6A7F3B004D56D5 /* libYIPopupTextViewLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libYIPopupTextViewLibrary.a;
+			remoteRef = E8A6587B1F6A7F3B004D56D5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E8F553681F6A38EB0054806E /* libGMUGeometryLibrary.a */ = {
@@ -4295,13 +4307,11 @@
 				E82344BE1EECE0E800D2CDFD /* SettingsColoursViewController.m in Sources */,
 				E82344341EECDFB300D2CDFD /* FilterTerrainTableViewCell.m in Sources */,
 				E82343331EECD9BC00D2CDFD /* RemoteAPIOKAPI.m in Sources */,
-				E82342691EECCFE700D2CDFD /* YIPopupTextView.m in Sources */,
 				E82343531EECDA4900D2CDFD /* ImportGPX.m in Sources */,
 				E82343571EECDA4900D2CDFD /* ImportOKAPIJSON.m in Sources */,
 				E82345061EECE12B00D2CDFD /* GCTableViewCellWithSubtitle.m in Sources */,
 				E823432F1EECD9BC00D2CDFD /* ProtocolTemplate.m in Sources */,
 				E82343BD1EECDE6C00D2CDFD /* WaypointLogViewController.m in Sources */,
-				E823426A1EECCFE700D2CDFD /* YISSTextView.m in Sources */,
 				E82343A91EECDDD400D2CDFD /* GCCircle.m in Sources */,
 				E86C4AAF1E321822004526E2 /* CompassViewController.m in Sources */,
 				E82342C31EECD0B100D2CDFD /* dbPersonalNote.m in Sources */,
