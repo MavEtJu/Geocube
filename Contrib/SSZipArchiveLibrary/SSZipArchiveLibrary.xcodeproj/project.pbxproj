@@ -74,6 +74,9 @@
 		E8A658EF1F6A8518004D56D5 /* SSZipArchiveLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				E8A658F01F6A8518004D56D5 /* SSZipArchiveLibrary.h */,
+				E8A659041F6A8561004D56D5 /* SSZipArchive.h */,
+				E8A659051F6A8561004D56D5 /* SSZipArchive.m */,
 				E8A659071F6A8569004D56D5 /* crypt.h */,
 				E8A659081F6A8569004D56D5 /* ioapi.c */,
 				E8A659091F6A8569004D56D5 /* ioapi.h */,
@@ -83,9 +86,6 @@
 				E8A6590D1F6A8569004D56D5 /* unzip.h */,
 				E8A6590E1F6A8569004D56D5 /* zip.c */,
 				E8A6590F1F6A8569004D56D5 /* zip.h */,
-				E8A659041F6A8561004D56D5 /* SSZipArchive.h */,
-				E8A659051F6A8561004D56D5 /* SSZipArchive.m */,
-				E8A658F01F6A8518004D56D5 /* SSZipArchiveLibrary.h */,
 			);
 			path = SSZipArchiveLibrary;
 			sourceTree = "<group>";
@@ -288,6 +288,7 @@
 				E8A658F81F6A8518004D56D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -94,9 +94,10 @@
 		E8F553591F6A38E90054806E /* GMUGeometryLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				E8F5535A1F6A38EA0054806E /* GMUGeometryLibrary.h */,
 				E8F553731F6A39980054806E /* GMUFeature.h */,
-				E8F553741F6A39980054806E /* GMUFeature.m */,
 				E8F553751F6A39980054806E /* GMUGeometry.h */,
+				E8F553741F6A39980054806E /* GMUFeature.m */,
 				E8F553761F6A39980054806E /* GMUGeometryCollection.h */,
 				E8F553771F6A39980054806E /* GMUGeometryCollection.m */,
 				E8F553781F6A39980054806E /* GMUGeometryContainer.h */,
@@ -119,7 +120,6 @@
 				E8F5536D1F6A398B0054806E /* GMUGeometryRenderer+Testing.h */,
 				E8F5536E1F6A398B0054806E /* GMUKMLParser.h */,
 				E8F5536F1F6A398B0054806E /* GMUKMLParser.m */,
-				E8F5535A1F6A38EA0054806E /* GMUGeometryLibrary.h */,
 			);
 			path = GMUGeometryLibrary;
 			sourceTree = "<group>";
@@ -330,6 +330,7 @@
 				E8F553621F6A38EA0054806E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

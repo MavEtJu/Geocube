@@ -520,11 +520,6 @@
 		E84725E51DF774E200CFF99B /* menu icon - local - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725DF1DF774E200CFF99B /* menu icon - local - night.png */; };
 		E84725E61DF774E200CFF99B /* menu icon - local@2x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E01DF774E200CFF99B /* menu icon - local@2x - night.png */; };
 		E84725E71DF774E200CFF99B /* menu icon - local@3x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */; };
-		E84F356D1F6A450000C7BD20 /* libTouchXMLLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E84F35431F6A438500C7BD20 /* libTouchXMLLibrary.a */; };
-		E84F35DD1F6A4A7200C7BD20 /* libSimpleKMLLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E84F35881F6A48E700C7BD20 /* libSimpleKMLLibrary.a */; };
-		E84F36251F6A56E800C7BD20 /* libActionSheetPickerLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E84F36071F6A567B00C7BD20 /* libActionSheetPickerLibrary.a */; };
-		E84F364A1F6A581900C7BD20 /* libKxIntroLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E84F36401F6A573200C7BD20 /* libKxIntroLibrary.a */; };
-		E84F367B1F6A5B5100C7BD20 /* libContribLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E84F36651F6A5A0900C7BD20 /* libContribLibrary.a */; };
 		E85653041F6797D700A415D0 /* GCTableViewCellWithSubtitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85653031F6797D700A415D0 /* GCTableViewCellWithSubtitle.xib */; };
 		E85653061F679EBA00A415D0 /* GCTableViewCellWithSubtitle~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85653051F679EBA00A415D0 /* GCTableViewCellWithSubtitle~ipad.xib */; };
 		E858F5991F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E858F5981F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib */; };
@@ -557,9 +552,6 @@
 		E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */; };
 		E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
-		E8A658611F6A7E81004D56D5 /* libTFHppleLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A658571F6A7D45004D56D5 /* libTFHppleLibrary.a */; };
-		E8A658831F6A7FB3004D56D5 /* libYIPopupTextViewLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A6587C1F6A7F3B004D56D5 /* libYIPopupTextViewLibrary.a */; };
-		E8A659141F6A85BB004D56D5 /* libSSZipArchiveLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A659011F6A8519004D56D5 /* libSSZipArchiveLibrary.a */; };
 		E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */; };
 		E8AA149C1ED7988A0023000A /* Updates and changes.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8AA149B1ED7988A0023000A /* Updates and changes.txt */; };
 		E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */; };
@@ -580,9 +572,6 @@
 		E8F403E81DAF5B2600318CC6 /* cache - reverse - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */; };
 		E8F403EB1DAFA23600318CC6 /* cache - reverse - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */; };
 		E8F403EC1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */; };
-		E8F5534D1F6A37610054806E /* libRNCryptorLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A272801F6A343A008D4370 /* libRNCryptorLibrary.a */; };
-		E8F5538D1F6A3AB00054806E /* libGMUGeometryLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F553681F6A38EB0054806E /* libGMUGeometryLibrary.a */; };
-		E8F553CA1F6A417A0054806E /* libNVHTarGzipLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F553C91F6A415B0054806E /* libNVHTarGzipLibrary.a */; };
 		E8F570591B3F7255003F020C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570581B3F7255003F020C /* main.m */; };
 		E8F570621B3F7255003F020C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8F570601B3F7255003F020C /* Main.storyboard */; };
 		E8F570641B3F7255003F020C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8F570631B3F7255003F020C /* Images.xcassets */; };
@@ -684,117 +673,75 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E84F35421F6A438500C7BD20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E84F353B1F6A438400C7BD20 /* TouchXMLLibrary.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E84F352F1F6A438400C7BD20;
-			remoteInfo = TouchXMLLibrary;
-		};
-		E84F35871F6A48E700C7BD20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E84F35831F6A48E600C7BD20 /* SimpleKMLLibrary.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E84F35771F6A48E500C7BD20;
-			remoteInfo = SimpleKMLLibrary;
-		};
-		E84F35DE1F6A4AA800C7BD20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E84F35831F6A48E600C7BD20 /* SimpleKMLLibrary.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = E84F35761F6A48E500C7BD20;
-			remoteInfo = SimpleKMLLibrary;
-		};
-		E84F35E01F6A4AA800C7BD20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E8F553631F6A38EA0054806E /* GMUGeometryLibrary.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = E8F553561F6A38E90054806E;
-			remoteInfo = GMUGeometryLibrary;
-		};
-		E84F35E21F6A4AA800C7BD20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E8F553C41F6A415A0054806E /* NVHTarGzipLibrary.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = E8F553B71F6A415A0054806E;
-			remoteInfo = NVHTarGzipLibrary;
-		};
-		E84F35E41F6A4AA800C7BD20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E8A2727B1F6A3438008D4370 /* RNCryptorLibrary.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = E8A2726E1F6A3438008D4370;
-			remoteInfo = RNCryptorLibrary;
-		};
-		E84F35E61F6A4AA800C7BD20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E84F353B1F6A438400C7BD20 /* TouchXMLLibrary.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = E84F352E1F6A438400C7BD20;
-			remoteInfo = TouchXMLLibrary;
-		};
-		E84F36061F6A567B00C7BD20 /* PBXContainerItemProxy */ = {
+		E8EE47301F6B429000AB13BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E84F36021F6A567A00C7BD20 /* ActionSheetPickerLibrary.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E84F35F61F6A567A00C7BD20;
 			remoteInfo = ActionSheetPickerLibrary;
 		};
-		E84F363F1F6A573200C7BD20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E84F363B1F6A573100C7BD20 /* KxIntroLibrary.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E84F362F1F6A573100C7BD20;
-			remoteInfo = KxIntroLibrary;
-		};
-		E84F36641F6A5A0900C7BD20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E84F36601F6A5A0800C7BD20 /* ContribLibrary.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E84F36541F6A5A0800C7BD20;
-			remoteInfo = ContribLibrary;
-		};
-		E8A2727F1F6A343A008D4370 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E8A2727B1F6A3438008D4370 /* RNCryptorLibrary.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E8A2726F1F6A3438008D4370;
-			remoteInfo = RNCryptorLibrary;
-		};
-		E8A658561F6A7D45004D56D5 /* PBXContainerItemProxy */ = {
+		E8EE47391F6B429C00AB13BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E8A6584F1F6A7D44004D56D5 /* TFHppleLibrary.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E8A658431F6A7D43004D56D5;
 			remoteInfo = TFHppleLibrary;
 		};
-		E8A6587B1F6A7F3B004D56D5 /* PBXContainerItemProxy */ = {
+		E8EE473C1F6B429C00AB13BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E84F353B1F6A438400C7BD20 /* TouchXMLLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E84F352F1F6A438400C7BD20;
+			remoteInfo = TouchXMLLibrary;
+		};
+		E8EE473F1F6B429C00AB13BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E8A658771F6A7F3A004D56D5 /* YIPopupTextViewLibrary.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E8A6586B1F6A7F3A004D56D5;
 			remoteInfo = YIPopupTextViewLibrary;
 		};
-		E8A659001F6A8519004D56D5 /* PBXContainerItemProxy */ = {
+		E8EE47441F6B429C00AB13BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E84F35831F6A48E600C7BD20 /* SimpleKMLLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E84F35771F6A48E500C7BD20;
+			remoteInfo = SimpleKMLLibrary;
+		};
+		E8EE474B1F6B429C00AB13BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E84F363B1F6A573100C7BD20 /* KxIntroLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E84F362F1F6A573100C7BD20;
+			remoteInfo = KxIntroLibrary;
+		};
+		E8EE474E1F6B429C00AB13BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E8A658F91F6A8518004D56D5 /* SSZipArchiveLibrary.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E8A658ED1F6A8518004D56D5;
 			remoteInfo = SSZipArchiveLibrary;
 		};
-		E8F553671F6A38EB0054806E /* PBXContainerItemProxy */ = {
+		E8EE47571F6B429D00AB13BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E8F553631F6A38EA0054806E /* GMUGeometryLibrary.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E8F553571F6A38E90054806E;
 			remoteInfo = GMUGeometryLibrary;
 		};
-		E8F553C81F6A415B0054806E /* PBXContainerItemProxy */ = {
+		E8EE475A1F6B429D00AB13BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E8F553C41F6A415A0054806E /* NVHTarGzipLibrary.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E8F553B81F6A415A0054806E;
 			remoteInfo = NVHTarGzipLibrary;
+		};
+		E8EE475D1F6B429D00AB13BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8A2727B1F6A3438008D4370 /* RNCryptorLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E8A2726F1F6A3438008D4370;
+			remoteInfo = RNCryptorLibrary;
 		};
 		E8F5706D1B3F7255003F020C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1574,11 +1521,11 @@
 		E84725DF1DF774E200CFF99B /* menu icon - local - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local - night.png"; path = "images/menu/menu icon - local - night.png"; sourceTree = "<group>"; };
 		E84725E01DF774E200CFF99B /* menu icon - local@2x - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local@2x - night.png"; path = "images/menu/menu icon - local@2x - night.png"; sourceTree = "<group>"; };
 		E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local@3x - night.png"; path = "images/menu/menu icon - local@3x - night.png"; sourceTree = "<group>"; };
-		E84F353B1F6A438400C7BD20 /* TouchXMLLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TouchXMLLibrary.xcodeproj; path = Contrib/TouchXMLLibrary/TouchXMLLibrary.xcodeproj; sourceTree = "<group>"; };
-		E84F35831F6A48E600C7BD20 /* SimpleKMLLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SimpleKMLLibrary.xcodeproj; path = Contrib/SimpleKMLLibrary/SimpleKMLLibrary.xcodeproj; sourceTree = "<group>"; };
-		E84F36021F6A567A00C7BD20 /* ActionSheetPickerLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ActionSheetPickerLibrary.xcodeproj; path = Contrib/ActionSheetPickerLibrary/ActionSheetPickerLibrary.xcodeproj; sourceTree = "<group>"; };
-		E84F363B1F6A573100C7BD20 /* KxIntroLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KxIntroLibrary.xcodeproj; path = Contrib/KxIntroLibrary/KxIntroLibrary.xcodeproj; sourceTree = "<group>"; };
-		E84F36601F6A5A0800C7BD20 /* ContribLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ContribLibrary.xcodeproj; path = Contrib/ContribLibrary/ContribLibrary.xcodeproj; sourceTree = "<group>"; };
+		E84F353B1F6A438400C7BD20 /* TouchXMLLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TouchXMLLibrary.xcodeproj; path = ../Contrib/TouchXMLLibrary/TouchXMLLibrary.xcodeproj; sourceTree = "<group>"; };
+		E84F35831F6A48E600C7BD20 /* SimpleKMLLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SimpleKMLLibrary.xcodeproj; path = ../Contrib/SimpleKMLLibrary/SimpleKMLLibrary.xcodeproj; sourceTree = "<group>"; };
+		E84F36021F6A567A00C7BD20 /* ActionSheetPickerLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ActionSheetPickerLibrary.xcodeproj; path = ../Contrib/ActionSheetPickerLibrary/ActionSheetPickerLibrary.xcodeproj; sourceTree = "<group>"; };
+		E84F363B1F6A573100C7BD20 /* KxIntroLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KxIntroLibrary.xcodeproj; path = ../Contrib/KxIntroLibrary/KxIntroLibrary.xcodeproj; sourceTree = "<group>"; };
+		E84F36601F6A5A0800C7BD20 /* ContribLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ContribLibrary.xcodeproj; path = ../Contrib/ContribLibrary/ContribLibrary.xcodeproj; sourceTree = "<group>"; };
 		E85653031F6797D700A415D0 /* GCTableViewCellWithSubtitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GCTableViewCellWithSubtitle.xib; path = GCBaseObjects/GCTableViewCellWithSubtitle.xib; sourceTree = "<group>"; };
 		E85653051F679EBA00A415D0 /* GCTableViewCellWithSubtitle~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "GCTableViewCellWithSubtitle~ipad.xib"; path = "GCBaseObjects/GCTableViewCellWithSubtitle~ipad.xib"; sourceTree = "<group>"; };
 		E858F5981F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "KeepTrackBeeperView~ipad.xib"; path = "KeepTrack/KeepTrackBeeperView~ipad.xib"; sourceTree = "<group>"; };
@@ -1621,10 +1568,10 @@
 		E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - empty - 30x30.png"; path = "images/logs/log - empty - 30x30.png"; sourceTree = "<group>"; };
 		E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFUIKitMainThreadGuard.m; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
-		E8A2727B1F6A3438008D4370 /* RNCryptorLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCryptorLibrary.xcodeproj; path = Contrib/RNCryptorLibrary/RNCryptorLibrary.xcodeproj; sourceTree = "<group>"; };
-		E8A6584F1F6A7D44004D56D5 /* TFHppleLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TFHppleLibrary.xcodeproj; path = Contrib/TFHppleLibrary/TFHppleLibrary.xcodeproj; sourceTree = "<group>"; };
-		E8A658771F6A7F3A004D56D5 /* YIPopupTextViewLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = YIPopupTextViewLibrary.xcodeproj; path = Contrib/YIPopupTextViewLibrary/YIPopupTextViewLibrary.xcodeproj; sourceTree = "<group>"; };
-		E8A658F91F6A8518004D56D5 /* SSZipArchiveLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSZipArchiveLibrary.xcodeproj; path = Contrib/SSZipArchiveLibrary/SSZipArchiveLibrary.xcodeproj; sourceTree = "<group>"; };
+		E8A2727B1F6A3438008D4370 /* RNCryptorLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCryptorLibrary.xcodeproj; path = ../Contrib/RNCryptorLibrary/RNCryptorLibrary.xcodeproj; sourceTree = "<group>"; };
+		E8A6584F1F6A7D44004D56D5 /* TFHppleLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TFHppleLibrary.xcodeproj; path = ../Contrib/TFHppleLibrary/TFHppleLibrary.xcodeproj; sourceTree = "<group>"; };
+		E8A658771F6A7F3A004D56D5 /* YIPopupTextViewLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = YIPopupTextViewLibrary.xcodeproj; path = ../Contrib/YIPopupTextViewLibrary/YIPopupTextViewLibrary.xcodeproj; sourceTree = "<group>"; };
+		E8A658F91F6A8518004D56D5 /* SSZipArchiveLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSZipArchiveLibrary.xcodeproj; path = ../Contrib/SSZipArchiveLibrary/SSZipArchiveLibrary.xcodeproj; sourceTree = "<group>"; };
 		E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesDownloadManager.h; sourceTree = "<group>"; };
 		E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesDownloadManager.m; sourceTree = "<group>"; };
 		E8AA149B1ED7988A0023000A /* Updates and changes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Updates and changes.txt"; sourceTree = "<group>"; };
@@ -1652,8 +1599,8 @@
 		E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30.png"; path = "images/caches/cache - reverse - 30x30.png"; sourceTree = "<group>"; };
 		E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@2x.png"; path = "images/caches/cache - reverse - 30x30@2x.png"; sourceTree = "<group>"; };
 		E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@3x.png"; path = "images/caches/cache - reverse - 30x30@3x.png"; sourceTree = "<group>"; };
-		E8F553631F6A38EA0054806E /* GMUGeometryLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GMUGeometryLibrary.xcodeproj; path = Contrib/GMUGeometryLibrary/GMUGeometryLibrary.xcodeproj; sourceTree = "<group>"; };
-		E8F553C41F6A415A0054806E /* NVHTarGzipLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NVHTarGzipLibrary.xcodeproj; path = Contrib/NVHTarGzipLibrary/NVHTarGzipLibrary.xcodeproj; sourceTree = "<group>"; };
+		E8F553631F6A38EA0054806E /* GMUGeometryLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GMUGeometryLibrary.xcodeproj; path = ../Contrib/GMUGeometryLibrary/GMUGeometryLibrary.xcodeproj; sourceTree = "<group>"; };
+		E8F553C41F6A415A0054806E /* NVHTarGzipLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NVHTarGzipLibrary.xcodeproj; path = ../Contrib/NVHTarGzipLibrary/NVHTarGzipLibrary.xcodeproj; sourceTree = "<group>"; };
 		E8F570531B3F7255003F020C /* Geocube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F570571B3F7255003F020C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8F570581B3F7255003F020C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1777,17 +1724,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8A659141F6A85BB004D56D5 /* libSSZipArchiveLibrary.a in Frameworks */,
-				E8A658831F6A7FB3004D56D5 /* libYIPopupTextViewLibrary.a in Frameworks */,
-				E8A658611F6A7E81004D56D5 /* libTFHppleLibrary.a in Frameworks */,
-				E84F367B1F6A5B5100C7BD20 /* libContribLibrary.a in Frameworks */,
-				E84F364A1F6A581900C7BD20 /* libKxIntroLibrary.a in Frameworks */,
-				E84F36251F6A56E800C7BD20 /* libActionSheetPickerLibrary.a in Frameworks */,
-				E84F35DD1F6A4A7200C7BD20 /* libSimpleKMLLibrary.a in Frameworks */,
-				E84F356D1F6A450000C7BD20 /* libTouchXMLLibrary.a in Frameworks */,
-				E8F553CA1F6A417A0054806E /* libNVHTarGzipLibrary.a in Frameworks */,
-				E8F5538D1F6A3AB00054806E /* libGMUGeometryLibrary.a in Frameworks */,
-				E8F5534D1F6A37610054806E /* libRNCryptorLibrary.a in Frameworks */,
 				E858F59B1F56610B002C1F9B /* ImageIO.framework in Frameworks */,
 				E8EC01A81F554C8F0032F168 /* MediaPlayer.framework in Frameworks */,
 				E823024E1DCD54520032C5C6 /* libxml2.tbd in Frameworks */,
@@ -2244,46 +2180,6 @@
 				E82344861EECE0AC00D2CDFD /* QueriesGCAViewController.m */,
 			);
 			name = Queries;
-			sourceTree = "<group>";
-		};
-		E84F353C1F6A438400C7BD20 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E84F35431F6A438500C7BD20 /* libTouchXMLLibrary.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		E84F35841F6A48E600C7BD20 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E84F35881F6A48E700C7BD20 /* libSimpleKMLLibrary.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		E84F36031F6A567A00C7BD20 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E84F36071F6A567B00C7BD20 /* libActionSheetPickerLibrary.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		E84F363C1F6A573100C7BD20 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E84F36401F6A573200C7BD20 /* libKxIntroLibrary.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		E84F36611F6A5A0800C7BD20 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E84F36651F6A5A0900C7BD20 /* libContribLibrary.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		E857078A1CA1E67200467CE0 /* Groups */ = {
@@ -2866,14 +2762,6 @@
 			name = Tools;
 			sourceTree = "<group>";
 		};
-		E8A2727C1F6A3438008D4370 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E8A272801F6A343A008D4370 /* libRNCryptorLibrary.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2957,30 +2845,6 @@
 				E858F5981F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib */,
 			);
 			name = "Keep Track";
-			sourceTree = "<group>";
-		};
-		E8A658501F6A7D44004D56D5 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E8A658571F6A7D45004D56D5 /* libTFHppleLibrary.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		E8A658781F6A7F3A004D56D5 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E8A6587C1F6A7F3B004D56D5 /* libYIPopupTextViewLibrary.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		E8A658FA1F6A8518004D56D5 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E8A659011F6A8519004D56D5 /* libSSZipArchiveLibrary.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		E8A7FA921B777616003F4132 /* Browser */ = {
@@ -3196,18 +3060,82 @@
 			name = "Download managers";
 			sourceTree = "<group>";
 		};
-		E8F553641F6A38EA0054806E /* Products */ = {
+		E8EE472D1F6B429000AB13BC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E8F553681F6A38EB0054806E /* libGMUGeometryLibrary.a */,
+				E8EE47311F6B429000AB13BC /* libActionSheetPickerLibrary.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E8F553C51F6A415A0054806E /* Products */ = {
+		E8EE47321F6B429C00AB13BC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E8F553C91F6A415B0054806E /* libNVHTarGzipLibrary.a */,
+				E8EE473A1F6B429C00AB13BC /* libTFHppleLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E8EE47341F6B429C00AB13BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8EE473D1F6B429C00AB13BC /* libTouchXMLLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E8EE47361F6B429C00AB13BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8EE47401F6B429C00AB13BC /* libYIPopupTextViewLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E8EE47411F6B429C00AB13BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8EE47451F6B429C00AB13BC /* libSimpleKMLLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E8EE47461F6B429C00AB13BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8EE474F1F6B429C00AB13BC /* libSSZipArchiveLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E8EE47481F6B429C00AB13BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8EE474C1F6B429C00AB13BC /* libKxIntroLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E8EE47501F6B429D00AB13BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8EE475B1F6B429D00AB13BC /* libNVHTarGzipLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E8EE47521F6B429D00AB13BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8EE475E1F6B429D00AB13BC /* libRNCryptorLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E8EE47541F6B429D00AB13BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8EE47581F6B429D00AB13BC /* libGMUGeometryLibrary.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3221,17 +3149,6 @@
 				6917C4AD2B052674BDDB3A0D /* Frameworks */,
 				E8F570B91B3FF668003F020C /* System Libraries */,
 				B88F87C0C9D0E4A555CE980D /* Pods */,
-				E84F36021F6A567A00C7BD20 /* ActionSheetPickerLibrary.xcodeproj */,
-				E84F36601F6A5A0800C7BD20 /* ContribLibrary.xcodeproj */,
-				E8F553631F6A38EA0054806E /* GMUGeometryLibrary.xcodeproj */,
-				E84F363B1F6A573100C7BD20 /* KxIntroLibrary.xcodeproj */,
-				E8F553C41F6A415A0054806E /* NVHTarGzipLibrary.xcodeproj */,
-				E8A2727B1F6A3438008D4370 /* RNCryptorLibrary.xcodeproj */,
-				E84F35831F6A48E600C7BD20 /* SimpleKMLLibrary.xcodeproj */,
-				E8A658F91F6A8518004D56D5 /* SSZipArchiveLibrary.xcodeproj */,
-				E8A6584F1F6A7D44004D56D5 /* TFHppleLibrary.xcodeproj */,
-				E84F353B1F6A438400C7BD20 /* TouchXMLLibrary.xcodeproj */,
-				E8A658771F6A7F3A004D56D5 /* YIPopupTextViewLibrary.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3297,6 +3214,17 @@
 		E8F570931B3F7EE1003F020C /* External modules */ = {
 			isa = PBXGroup;
 			children = (
+				E84F36021F6A567A00C7BD20 /* ActionSheetPickerLibrary.xcodeproj */,
+				E84F36601F6A5A0800C7BD20 /* ContribLibrary.xcodeproj */,
+				E8F553631F6A38EA0054806E /* GMUGeometryLibrary.xcodeproj */,
+				E84F363B1F6A573100C7BD20 /* KxIntroLibrary.xcodeproj */,
+				E8F553C41F6A415A0054806E /* NVHTarGzipLibrary.xcodeproj */,
+				E8A2727B1F6A3438008D4370 /* RNCryptorLibrary.xcodeproj */,
+				E84F35831F6A48E600C7BD20 /* SimpleKMLLibrary.xcodeproj */,
+				E8A658F91F6A8518004D56D5 /* SSZipArchiveLibrary.xcodeproj */,
+				E8A6584F1F6A7D44004D56D5 /* TFHppleLibrary.xcodeproj */,
+				E84F353B1F6A438400C7BD20 /* TouchXMLLibrary.xcodeproj */,
+				E8A658771F6A7F3A004D56D5 /* YIPopupTextViewLibrary.xcodeproj */,
 				E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */,
 				E8E8D0171B66E74600CC741A /* CMRangeSlider */,
 				E8F6BE731BB8C77A009EA037 /* LXMapScale */,
@@ -3555,11 +3483,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				E84F35DF1F6A4AA800C7BD20 /* PBXTargetDependency */,
-				E84F35E11F6A4AA800C7BD20 /* PBXTargetDependency */,
-				E84F35E31F6A4AA800C7BD20 /* PBXTargetDependency */,
-				E84F35E51F6A4AA800C7BD20 /* PBXTargetDependency */,
-				E84F35E71F6A4AA800C7BD20 /* PBXTargetDependency */,
 			);
 			name = Geocube;
 			productName = Geocube;
@@ -3636,47 +3559,43 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = E84F36031F6A567A00C7BD20 /* Products */;
+					ProductGroup = E8EE472D1F6B429000AB13BC /* Products */;
 					ProjectRef = E84F36021F6A567A00C7BD20 /* ActionSheetPickerLibrary.xcodeproj */;
 				},
 				{
-					ProductGroup = E84F36611F6A5A0800C7BD20 /* Products */;
-					ProjectRef = E84F36601F6A5A0800C7BD20 /* ContribLibrary.xcodeproj */;
-				},
-				{
-					ProductGroup = E8F553641F6A38EA0054806E /* Products */;
+					ProductGroup = E8EE47541F6B429D00AB13BC /* Products */;
 					ProjectRef = E8F553631F6A38EA0054806E /* GMUGeometryLibrary.xcodeproj */;
 				},
 				{
-					ProductGroup = E84F363C1F6A573100C7BD20 /* Products */;
+					ProductGroup = E8EE47481F6B429C00AB13BC /* Products */;
 					ProjectRef = E84F363B1F6A573100C7BD20 /* KxIntroLibrary.xcodeproj */;
 				},
 				{
-					ProductGroup = E8F553C51F6A415A0054806E /* Products */;
+					ProductGroup = E8EE47501F6B429D00AB13BC /* Products */;
 					ProjectRef = E8F553C41F6A415A0054806E /* NVHTarGzipLibrary.xcodeproj */;
 				},
 				{
-					ProductGroup = E8A2727C1F6A3438008D4370 /* Products */;
+					ProductGroup = E8EE47521F6B429D00AB13BC /* Products */;
 					ProjectRef = E8A2727B1F6A3438008D4370 /* RNCryptorLibrary.xcodeproj */;
 				},
 				{
-					ProductGroup = E84F35841F6A48E600C7BD20 /* Products */;
+					ProductGroup = E8EE47411F6B429C00AB13BC /* Products */;
 					ProjectRef = E84F35831F6A48E600C7BD20 /* SimpleKMLLibrary.xcodeproj */;
 				},
 				{
-					ProductGroup = E8A658FA1F6A8518004D56D5 /* Products */;
+					ProductGroup = E8EE47461F6B429C00AB13BC /* Products */;
 					ProjectRef = E8A658F91F6A8518004D56D5 /* SSZipArchiveLibrary.xcodeproj */;
 				},
 				{
-					ProductGroup = E8A658501F6A7D44004D56D5 /* Products */;
+					ProductGroup = E8EE47321F6B429C00AB13BC /* Products */;
 					ProjectRef = E8A6584F1F6A7D44004D56D5 /* TFHppleLibrary.xcodeproj */;
 				},
 				{
-					ProductGroup = E84F353C1F6A438400C7BD20 /* Products */;
+					ProductGroup = E8EE47341F6B429C00AB13BC /* Products */;
 					ProjectRef = E84F353B1F6A438400C7BD20 /* TouchXMLLibrary.xcodeproj */;
 				},
 				{
-					ProductGroup = E8A658781F6A7F3A004D56D5 /* Products */;
+					ProductGroup = E8EE47361F6B429C00AB13BC /* Products */;
 					ProjectRef = E8A658771F6A7F3A004D56D5 /* YIPopupTextViewLibrary.xcodeproj */;
 				},
 			);
@@ -3691,81 +3610,74 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		E84F35431F6A438500C7BD20 /* libTouchXMLLibrary.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libTouchXMLLibrary.a;
-			remoteRef = E84F35421F6A438500C7BD20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E84F35881F6A48E700C7BD20 /* libSimpleKMLLibrary.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libSimpleKMLLibrary.a;
-			remoteRef = E84F35871F6A48E700C7BD20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E84F36071F6A567B00C7BD20 /* libActionSheetPickerLibrary.a */ = {
+		E8EE47311F6B429000AB13BC /* libActionSheetPickerLibrary.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libActionSheetPickerLibrary.a;
-			remoteRef = E84F36061F6A567B00C7BD20 /* PBXContainerItemProxy */;
+			remoteRef = E8EE47301F6B429000AB13BC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E84F36401F6A573200C7BD20 /* libKxIntroLibrary.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libKxIntroLibrary.a;
-			remoteRef = E84F363F1F6A573200C7BD20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E84F36651F6A5A0900C7BD20 /* libContribLibrary.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libContribLibrary.a;
-			remoteRef = E84F36641F6A5A0900C7BD20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E8A272801F6A343A008D4370 /* libRNCryptorLibrary.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNCryptorLibrary.a;
-			remoteRef = E8A2727F1F6A343A008D4370 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E8A658571F6A7D45004D56D5 /* libTFHppleLibrary.a */ = {
+		E8EE473A1F6B429C00AB13BC /* libTFHppleLibrary.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libTFHppleLibrary.a;
-			remoteRef = E8A658561F6A7D45004D56D5 /* PBXContainerItemProxy */;
+			remoteRef = E8EE47391F6B429C00AB13BC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E8A6587C1F6A7F3B004D56D5 /* libYIPopupTextViewLibrary.a */ = {
+		E8EE473D1F6B429C00AB13BC /* libTouchXMLLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTouchXMLLibrary.a;
+			remoteRef = E8EE473C1F6B429C00AB13BC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E8EE47401F6B429C00AB13BC /* libYIPopupTextViewLibrary.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libYIPopupTextViewLibrary.a;
-			remoteRef = E8A6587B1F6A7F3B004D56D5 /* PBXContainerItemProxy */;
+			remoteRef = E8EE473F1F6B429C00AB13BC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E8A659011F6A8519004D56D5 /* libSSZipArchiveLibrary.a */ = {
+		E8EE47451F6B429C00AB13BC /* libSimpleKMLLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSimpleKMLLibrary.a;
+			remoteRef = E8EE47441F6B429C00AB13BC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E8EE474C1F6B429C00AB13BC /* libKxIntroLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libKxIntroLibrary.a;
+			remoteRef = E8EE474B1F6B429C00AB13BC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E8EE474F1F6B429C00AB13BC /* libSSZipArchiveLibrary.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libSSZipArchiveLibrary.a;
-			remoteRef = E8A659001F6A8519004D56D5 /* PBXContainerItemProxy */;
+			remoteRef = E8EE474E1F6B429C00AB13BC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E8F553681F6A38EB0054806E /* libGMUGeometryLibrary.a */ = {
+		E8EE47581F6B429D00AB13BC /* libGMUGeometryLibrary.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libGMUGeometryLibrary.a;
-			remoteRef = E8F553671F6A38EB0054806E /* PBXContainerItemProxy */;
+			remoteRef = E8EE47571F6B429D00AB13BC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E8F553C91F6A415B0054806E /* libNVHTarGzipLibrary.a */ = {
+		E8EE475B1F6B429D00AB13BC /* libNVHTarGzipLibrary.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libNVHTarGzipLibrary.a;
-			remoteRef = E8F553C81F6A415B0054806E /* PBXContainerItemProxy */;
+			remoteRef = E8EE475A1F6B429D00AB13BC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E8EE475E1F6B429D00AB13BC /* libRNCryptorLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNCryptorLibrary.a;
+			remoteRef = E8EE475D1F6B429D00AB13BC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -4522,31 +4434,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E84F35DF1F6A4AA800C7BD20 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SimpleKMLLibrary;
-			targetProxy = E84F35DE1F6A4AA800C7BD20 /* PBXContainerItemProxy */;
-		};
-		E84F35E11F6A4AA800C7BD20 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GMUGeometryLibrary;
-			targetProxy = E84F35E01F6A4AA800C7BD20 /* PBXContainerItemProxy */;
-		};
-		E84F35E31F6A4AA800C7BD20 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = NVHTarGzipLibrary;
-			targetProxy = E84F35E21F6A4AA800C7BD20 /* PBXContainerItemProxy */;
-		};
-		E84F35E51F6A4AA800C7BD20 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RNCryptorLibrary;
-			targetProxy = E84F35E41F6A4AA800C7BD20 /* PBXContainerItemProxy */;
-		};
-		E84F35E71F6A4AA800C7BD20 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = TouchXMLLibrary;
-			targetProxy = E84F35E61F6A4AA800C7BD20 /* PBXContainerItemProxy */;
-		};
 		E8F5706E1B3F7255003F020C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E8F570521B3F7255003F020C /* Geocube */;

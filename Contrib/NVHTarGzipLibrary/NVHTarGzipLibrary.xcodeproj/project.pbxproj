@@ -76,6 +76,7 @@
 		E8F553BA1F6A415A0054806E /* NVHTarGzipLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				E8F553BB1F6A415A0054806E /* NVHTarGzipLibrary.h */,
 				E8F553CB1F6A41CD0054806E /* NSFileManager+NVHFileSize.h */,
 				E8F553CC1F6A41CD0054806E /* NSFileManager+NVHFileSize.m */,
 				E8F553CD1F6A41CD0054806E /* NVHFile.h */,
@@ -88,7 +89,6 @@
 				E8F553D41F6A41CD0054806E /* NVHTarFile.m */,
 				E8F553D51F6A41CD0054806E /* NVHTarGzip.h */,
 				E8F553D61F6A41CD0054806E /* NVHTarGzip.m */,
-				E8F553BB1F6A415A0054806E /* NVHTarGzipLibrary.h */,
 			);
 			path = NVHTarGzipLibrary;
 			sourceTree = "<group>";

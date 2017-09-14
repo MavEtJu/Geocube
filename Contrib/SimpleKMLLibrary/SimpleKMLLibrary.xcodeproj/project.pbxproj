@@ -146,11 +146,9 @@
 			children = (
 				E84F357A1F6A48E600C7BD20 /* SimpleKMLLibrary.h */,
 				E84F35891F6A49DE00C7BD20 /* SimpleKML.h */,
-				E84F358A1F6A49DE00C7BD20 /* SimpleKMLFeature.h */,
-				E84F358B1F6A49DE00C7BD20 /* SimpleKMLObject.h */,
+				E84F358E1F6A49DE00C7BD20 /* SimpleKML.m */,
 				E84F358C1F6A49DE00C7BD20 /* SimpleKML_UIImage.h */,
 				E84F358D1F6A49DE00C7BD20 /* SimpleKML_UIImage.m */,
-				E84F358E1F6A49DE00C7BD20 /* SimpleKML.m */,
 				E84F358F1F6A49DE00C7BD20 /* SimpleKMLBalloonStyle.h */,
 				E84F35901F6A49DE00C7BD20 /* SimpleKMLBalloonStyle.m */,
 				E84F35911F6A49DE00C7BD20 /* SimpleKMLColorStyle.h */,
@@ -163,6 +161,7 @@
 				E84F35981F6A49DE00C7BD20 /* SimpleKMLDocument.m */,
 				E84F35991F6A49DE00C7BD20 /* SimpleKMLExtendedData.h */,
 				E84F359A1F6A49DE00C7BD20 /* SimpleKMLExtendedData.m */,
+				E84F358A1F6A49DE00C7BD20 /* SimpleKMLFeature.h */,
 				E84F359B1F6A49DE00C7BD20 /* SimpleKMLFeature.m */,
 				E84F359C1F6A49DE00C7BD20 /* SimpleKMLFolder.h */,
 				E84F359D1F6A49DE00C7BD20 /* SimpleKMLFolder.m */,
@@ -180,6 +179,7 @@
 				E84F35A91F6A49DE00C7BD20 /* SimpleKMLLineStyle.m */,
 				E84F35AA1F6A49DE00C7BD20 /* SimpleKMLMultiGeometry.h */,
 				E84F35AB1F6A49DE00C7BD20 /* SimpleKMLMultiGeometry.m */,
+				E84F358B1F6A49DE00C7BD20 /* SimpleKMLObject.h */,
 				E84F35AC1F6A49DE00C7BD20 /* SimpleKMLObject.m */,
 				E84F35AD1F6A49DE00C7BD20 /* SimpleKMLOverlay.h */,
 				E84F35AE1F6A49DE00C7BD20 /* SimpleKMLOverlay.m */,
@@ -444,6 +444,7 @@
 				E84F35821F6A48E600C7BD20 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

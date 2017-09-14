@@ -87,8 +87,10 @@
 		E84F35F81F6A567A00C7BD20 /* ActionSheetPickerLibrary */ = {
 			isa = PBXGroup;
 			children = (
-				E84F36081F6A56CA00C7BD20 /* AbstractActionSheetPicker.m */,
+				E84F35F91F6A567A00C7BD20 /* ActionSheetPickerLibrary.h */,
+				E84F36151F6A56CA00C7BD20 /* ActionSheetPicker.h */,
 				E84F36091F6A56CA00C7BD20 /* AbstractActionSheetPicker.h */,
+				E84F36081F6A56CA00C7BD20 /* AbstractActionSheetPicker.m */,
 				E84F360A1F6A56CA00C7BD20 /* ActionSheetCustomPicker.h */,
 				E84F360B1F6A56CA00C7BD20 /* ActionSheetCustomPicker.m */,
 				E84F360C1F6A56CA00C7BD20 /* ActionSheetCustomPickerDelegate.h */,
@@ -100,14 +102,12 @@
 				E84F36121F6A56CA00C7BD20 /* ActionSheetLocalePicker.m */,
 				E84F36131F6A56CA00C7BD20 /* ActionSheetMultipleStringPicker.h */,
 				E84F36141F6A56CA00C7BD20 /* ActionSheetMultipleStringPicker.m */,
-				E84F36151F6A56CA00C7BD20 /* ActionSheetPicker.h */,
 				E84F36161F6A56CA00C7BD20 /* ActionSheetStringPicker.h */,
 				E84F36171F6A56CA00C7BD20 /* ActionSheetStringPicker.m */,
 				E84F36181F6A56CA00C7BD20 /* DistancePickerView.h */,
 				E84F36191F6A56CA00C7BD20 /* DistancePickerView.m */,
 				E84F361A1F6A56CA00C7BD20 /* SWActionSheet.h */,
 				E84F361B1F6A56CA00C7BD20 /* SWActionSheet.m */,
-				E84F35F91F6A567A00C7BD20 /* ActionSheetPickerLibrary.h */,
 			);
 			path = ActionSheetPickerLibrary;
 			sourceTree = "<group>";
@@ -314,6 +314,7 @@
 				E84F36011F6A567A00C7BD20 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -78,6 +78,7 @@
 		E8A272711F6A3438008D4370 /* RNCryptorLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				E8A272721F6A3438008D4370 /* RNCryptorLibrary.h */,
 				E8A272811F6A3472008D4370 /* RNCryptor-Prefix.pch */,
 				E8A272821F6A3472008D4370 /* RNCryptor.h */,
 				E8A272831F6A3472008D4370 /* RNCryptor.m */,
@@ -88,7 +89,6 @@
 				E8A272891F6A3472008D4370 /* RNDecryptor.m */,
 				E8A2728A1F6A3472008D4370 /* RNEncryptor.h */,
 				E8A2728B1F6A3472008D4370 /* RNEncryptor.m */,
-				E8A272721F6A3438008D4370 /* RNCryptorLibrary.h */,
 			);
 			path = RNCryptorLibrary;
 			sourceTree = "<group>";

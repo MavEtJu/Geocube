@@ -98,6 +98,7 @@
 		E84F35311F6A438400C7BD20 /* TouchXMLLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				E84F35321F6A438400C7BD20 /* TouchXMLLibrary.h */,
 				E84F35671F6A43F800C7BD20 /* CXMLDocument_CreationExtensions.h */,
 				E84F35681F6A43F800C7BD20 /* CXMLDocument_CreationExtensions.m */,
 				E84F35691F6A43F800C7BD20 /* CXMLNode_CreationExtensions.h */,
@@ -125,7 +126,6 @@
 				E84F35591F6A43C400C7BD20 /* CXMLUnsupportedNode.h */,
 				E84F355A1F6A43C400C7BD20 /* CXMLUnsupportedNode.m */,
 				E84F355B1F6A43C400C7BD20 /* TouchXML.h */,
-				E84F35321F6A438400C7BD20 /* TouchXMLLibrary.h */,
 			);
 			path = TouchXMLLibrary;
 			sourceTree = "<group>";
@@ -338,6 +338,7 @@
 				E84F353A1F6A438400C7BD20 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

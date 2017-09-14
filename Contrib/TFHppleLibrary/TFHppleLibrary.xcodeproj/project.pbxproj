@@ -67,13 +67,13 @@
 		E8A658451F6A7D43004D56D5 /* TFHppleLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				E8A658461F6A7D43004D56D5 /* TFHppleLibrary.h */,
 				E8A658581F6A7D7E004D56D5 /* TFHpple.h */,
 				E8A658591F6A7D7E004D56D5 /* TFHpple.m */,
 				E8A6585A1F6A7D7E004D56D5 /* TFHppleElement.h */,
 				E8A6585B1F6A7D7E004D56D5 /* TFHppleElement.m */,
 				E8A6585C1F6A7D7E004D56D5 /* XPathQuery.h */,
 				E8A6585D1F6A7D7E004D56D5 /* XPathQuery.m */,
-				E8A658461F6A7D43004D56D5 /* TFHppleLibrary.h */,
 			);
 			path = TFHppleLibrary;
 			sourceTree = "<group>";
@@ -276,6 +276,7 @@
 				E8A6584E1F6A7D44004D56D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
