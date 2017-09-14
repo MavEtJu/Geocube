@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,10 +20,6 @@
 		E823024E1DCD54520032C5C6 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E823024D1DCD54520032C5C6 /* libxml2.tbd */; };
 		E82341871EECA19300D2CDFD /* EncryptionKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E82341861EECA19300D2CDFD /* EncryptionKeys.plist */; };
 		E823419B1EECAF4F00D2CDFD /* EncryptionKeysExample.plist in Resources */ = {isa = PBXBuildFile; fileRef = E823419A1EECAF4F00D2CDFD /* EncryptionKeysExample.plist */; };
-		E82341A61EECCDDF00D2CDFD /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = E823419E1EECCDDE00D2CDFD /* RNCryptor.m */; };
-		E82341A71EECCDDF00D2CDFD /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341A11EECCDDE00D2CDFD /* RNCryptorEngine.m */; };
-		E82341A81EECCDDF00D2CDFD /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341A31EECCDDE00D2CDFD /* RNDecryptor.m */; };
-		E82341A91EECCDDF00D2CDFD /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341A51EECCDDE00D2CDFD /* RNEncryptor.m */; };
 		E82341BE1EECCE8300D2CDFD /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341AB1EECCE8300D2CDFD /* AbstractActionSheetPicker.m */; };
 		E82341BF1EECCE8300D2CDFD /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341AD1EECCE8300D2CDFD /* ActionSheetCustomPicker.m */; };
 		E82341C01EECCE8300D2CDFD /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341B01EECCE8300D2CDFD /* ActionSheetDatePicker.m */; };
@@ -673,6 +669,7 @@
 		E8F403E81DAF5B2600318CC6 /* cache - reverse - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */; };
 		E8F403EB1DAFA23600318CC6 /* cache - reverse - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */; };
 		E8F403EC1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */; };
+		E8F5534D1F6A37610054806E /* libRNCryptorLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A272801F6A343A008D4370 /* libRNCryptorLibrary.a */; };
 		E8F570591B3F7255003F020C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570581B3F7255003F020C /* main.m */; };
 		E8F570621B3F7255003F020C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8F570601B3F7255003F020C /* Main.storyboard */; };
 		E8F570641B3F7255003F020C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8F570631B3F7255003F020C /* Images.xcassets */; };
@@ -781,6 +778,13 @@
 			remoteGlobalIDString = E8A271B01F6A1F37008D4370;
 			remoteInfo = XMLReader;
 		};
+		E8A2727F1F6A343A008D4370 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8A2727B1F6A3438008D4370 /* RNCryptorLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E8A2726F1F6A3438008D4370;
+			remoteInfo = RNCryptorLibrary;
+		};
 		E8F5706D1B3F7255003F020C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E8F5704B1B3F7255003F020C /* Project object */;
@@ -835,16 +839,6 @@
 		E823024D1DCD54520032C5C6 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		E82341861EECA19300D2CDFD /* EncryptionKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EncryptionKeys.plist; sourceTree = "<group>"; };
 		E823419A1EECAF4F00D2CDFD /* EncryptionKeysExample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EncryptionKeysExample.plist; sourceTree = "<group>"; };
-		E823419C1EECCDDE00D2CDFD /* RNCryptor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RNCryptor-Prefix.pch"; path = "contrib/RNCryptor/RNCryptor-Prefix.pch"; sourceTree = "<group>"; };
-		E823419D1EECCDDE00D2CDFD /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNCryptor.h; path = contrib/RNCryptor/RNCryptor.h; sourceTree = "<group>"; };
-		E823419E1EECCDDE00D2CDFD /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RNCryptor.m; path = contrib/RNCryptor/RNCryptor.m; sourceTree = "<group>"; };
-		E823419F1EECCDDE00D2CDFD /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RNCryptor+Private.h"; path = "contrib/RNCryptor/RNCryptor+Private.h"; sourceTree = "<group>"; };
-		E82341A01EECCDDE00D2CDFD /* RNCryptorEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNCryptorEngine.h; path = contrib/RNCryptor/RNCryptorEngine.h; sourceTree = "<group>"; };
-		E82341A11EECCDDE00D2CDFD /* RNCryptorEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RNCryptorEngine.m; path = contrib/RNCryptor/RNCryptorEngine.m; sourceTree = "<group>"; };
-		E82341A21EECCDDE00D2CDFD /* RNDecryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNDecryptor.h; path = contrib/RNCryptor/RNDecryptor.h; sourceTree = "<group>"; };
-		E82341A31EECCDDE00D2CDFD /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RNDecryptor.m; path = contrib/RNCryptor/RNDecryptor.m; sourceTree = "<group>"; };
-		E82341A41EECCDDE00D2CDFD /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNEncryptor.h; path = contrib/RNCryptor/RNEncryptor.h; sourceTree = "<group>"; };
-		E82341A51EECCDDE00D2CDFD /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RNEncryptor.m; path = contrib/RNCryptor/RNEncryptor.m; sourceTree = "<group>"; };
 		E82341AA1EECCE8300D2CDFD /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractActionSheetPicker.h; path = contrib/ActionSheetPicker/AbstractActionSheetPicker.h; sourceTree = "<group>"; };
 		E82341AB1EECCE8300D2CDFD /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractActionSheetPicker.m; path = contrib/ActionSheetPicker/AbstractActionSheetPicker.m; sourceTree = "<group>"; };
 		E82341AC1EECCE8300D2CDFD /* ActionSheetCustomPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPicker.h; path = contrib/ActionSheetPicker/ActionSheetCustomPicker.h; sourceTree = "<group>"; };
@@ -1814,6 +1808,7 @@
 		E89D0D2E1EFA5ADD0019A411 /* PropertyUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PropertyUtil.h; path = contrib/PropertyUtil/PropertyUtil.h; sourceTree = "<group>"; };
 		E89D0D2F1EFA5ADD0019A411 /* PropertyUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PropertyUtil.m; path = contrib/PropertyUtil/PropertyUtil.m; sourceTree = "<group>"; };
 		E8A271BC1F6A1F37008D4370 /* XMLReader.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XMLReader.xcodeproj; path = Contrib/XMLReader/XMLReader.xcodeproj; sourceTree = "<group>"; };
+		E8A2727B1F6A3438008D4370 /* RNCryptorLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCryptorLibrary.xcodeproj; path = Contrib/RNCryptorLibrary/RNCryptorLibrary.xcodeproj; sourceTree = "<group>"; };
 		E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesDownloadManager.h; sourceTree = "<group>"; };
 		E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesDownloadManager.m; sourceTree = "<group>"; };
 		E8AA149B1ED7988A0023000A /* Updates and changes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Updates and changes.txt"; sourceTree = "<group>"; };
@@ -1964,6 +1959,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8F5534D1F6A37610054806E /* libRNCryptorLibrary.a in Frameworks */,
 				E8A271C21F6A1F72008D4370 /* libXMLReader.a in Frameworks */,
 				E858F59B1F56610B002C1F9B /* ImageIO.framework in Frameworks */,
 				E8EC01A81F554C8F0032F168 /* MediaPlayer.framework in Frameworks */,
@@ -2097,23 +2093,6 @@
 				E82342551EECCFA400D2CDFD /* XPathQuery.m */,
 			);
 			name = TFHpple;
-			sourceTree = "<group>";
-		};
-		E823418B1EECAB8E00D2CDFD /* RNCryptor */ = {
-			isa = PBXGroup;
-			children = (
-				E823419C1EECCDDE00D2CDFD /* RNCryptor-Prefix.pch */,
-				E823419D1EECCDDE00D2CDFD /* RNCryptor.h */,
-				E823419E1EECCDDE00D2CDFD /* RNCryptor.m */,
-				E823419F1EECCDDE00D2CDFD /* RNCryptor+Private.h */,
-				E82341A01EECCDDE00D2CDFD /* RNCryptorEngine.h */,
-				E82341A11EECCDDE00D2CDFD /* RNCryptorEngine.m */,
-				E82341A21EECCDDE00D2CDFD /* RNDecryptor.h */,
-				E82341A31EECCDDE00D2CDFD /* RNDecryptor.m */,
-				E82341A41EECCDDE00D2CDFD /* RNEncryptor.h */,
-				E82341A51EECCDDE00D2CDFD /* RNEncryptor.m */,
-			);
-			name = RNCryptor;
 			sourceTree = "<group>";
 		};
 		E82E660A1DA07A0300CFBDED /* menu */ = {
@@ -3239,6 +3218,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E8A2727C1F6A3438008D4370 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8A272801F6A343A008D4370 /* libRNCryptorLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3605,6 +3592,7 @@
 				6917C4AD2B052674BDDB3A0D /* Frameworks */,
 				E8F570B91B3FF668003F020C /* System Libraries */,
 				B88F87C0C9D0E4A555CE980D /* Pods */,
+				E8A2727B1F6A3438008D4370 /* RNCryptorLibrary.xcodeproj */,
 				E8A271BC1F6A1F37008D4370 /* XMLReader.xcodeproj */,
 			);
 			sourceTree = "<group>";
@@ -3685,7 +3673,6 @@
 				E8FD96B11EC8668600AFA7FA /* NVHTarGzip */,
 				E89D0D2D1EFA5A930019A411 /* PropertyUtil */,
 				E895801F1C66E39500282177 /* Reachability */,
-				E823418B1EECAB8E00D2CDFD /* RNCryptor */,
 				E8F570961B3F7F6A003F020C /* SSZipArchive */,
 				E87DF7761D7EDFCC00F16B5A /* SVProgressHUD */,
 				E82302431DCD52370032C5C6 /* TFHpple */,
@@ -4054,7 +4041,7 @@
 				};
 			};
 			buildConfigurationList = E8F5704E1B3F7255003F020C /* Build configuration list for PBXProject "Geocube" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -4065,6 +4052,10 @@
 			productRefGroup = E8F570541B3F7255003F020C /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = E8A2727C1F6A3438008D4370 /* Products */;
+					ProjectRef = E8A2727B1F6A3438008D4370 /* RNCryptorLibrary.xcodeproj */;
+				},
 				{
 					ProductGroup = E8A271BD1F6A1F37008D4370 /* Products */;
 					ProjectRef = E8A271BC1F6A1F37008D4370 /* XMLReader.xcodeproj */;
@@ -4086,6 +4077,13 @@
 			fileType = archive.ar;
 			path = libXMLReader.a;
 			remoteRef = E8A271C01F6A1F38008D4370 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E8A272801F6A343A008D4370 /* libRNCryptorLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNCryptorLibrary.a;
+			remoteRef = E8A2727F1F6A343A008D4370 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -4603,7 +4601,6 @@
 				E82344971EECE0AD00D2CDFD /* QueriesTemplateViewController.m in Sources */,
 				E823432C1EECD9BC00D2CDFD /* ProtocolGGCW.m in Sources */,
 				E8E3DC1C1E167C740066E903 /* AppDelegate.m in Sources */,
-				E82341A61EECCDDF00D2CDFD /* RNCryptor.m in Sources */,
 				E82344661EECE06E00D2CDFD /* TrackablesTemplateViewController.m in Sources */,
 				E823434E1EECDA4900D2CDFD /* ExportGPX.m in Sources */,
 				E82341C11EECCE8300D2CDFD /* ActionSheetDistancePicker.m in Sources */,
@@ -4620,13 +4617,11 @@
 				E82344BE1EECE0E800D2CDFD /* SettingsColoursViewController.m in Sources */,
 				E82344341EECDFB300D2CDFD /* FilterTerrainTableViewCell.m in Sources */,
 				E82343331EECD9BC00D2CDFD /* RemoteAPIOKAPI.m in Sources */,
-				E82341A71EECCDDF00D2CDFD /* RNCryptorEngine.m in Sources */,
 				E82342691EECCFE700D2CDFD /* YIPopupTextView.m in Sources */,
 				E82343531EECDA4900D2CDFD /* ImportGPX.m in Sources */,
 				E82343571EECDA4900D2CDFD /* ImportOKAPIJSON.m in Sources */,
 				E82345061EECE12B00D2CDFD /* GCTableViewCellWithSubtitle.m in Sources */,
 				E82341C61EECCE8300D2CDFD /* SWActionSheet.m in Sources */,
-				E82341A81EECCDDF00D2CDFD /* RNDecryptor.m in Sources */,
 				E85652E61F678AB600A415D0 /* SimpleKMLFolder.m in Sources */,
 				E823432F1EECD9BC00D2CDFD /* ProtocolTemplate.m in Sources */,
 				E82343BD1EECDE6C00D2CDFD /* WaypointLogViewController.m in Sources */,
@@ -4788,7 +4783,6 @@
 				E8EC019F1F54E7950032F168 /* AudioManager.m in Sources */,
 				E82343D51EECDEE200D2CDFD /* WaypointHeaderHeaderView.m in Sources */,
 				E82344061EECDF9C00D2CDFD /* WaypointsListViewController.m in Sources */,
-				E82341A91EECCDDF00D2CDFD /* RNEncryptor.m in Sources */,
 				E823442B1EECDFB300D2CDFD /* FilterDistanceTableViewCell.m in Sources */,
 				E82341BF1EECCE8300D2CDFD /* ActionSheetCustomPicker.m in Sources */,
 				E8EC07421D39E887009B8EB1 /* ImportManager.m in Sources */,
@@ -5136,6 +5130,7 @@
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"${SDKROOT}/usr/include/libxml2",
+					"${SRCROOT}/Contrib/RNCryptorLibrary",
 				);
 				INFOPLIST_FILE = Geocube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
@@ -5171,6 +5166,7 @@
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"${SDKROOT}/usr/include/libxml2",
+					"${SRCROOT}/Contrib/RNCryptorLibrary",
 				);
 				INFOPLIST_FILE = Geocube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
