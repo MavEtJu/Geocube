@@ -72,8 +72,7 @@
 #import "SimpleKMLLinearRing.h"
 #import "SimpleKMLLineString.h"
 
-#import "GMUKMLParser.h"
-#import "GMUGeometryRenderer.h"
+#import "GMUGeometryLibrary/GMUGeometryLibrary.h"
 
 #import "Geocube-Classes.h"
 #import "Geocube-defines.h"
