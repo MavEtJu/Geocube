@@ -53,7 +53,7 @@
 #import "RangeSlider.h"
 #import "SSZipArchive.h"
 #import "SVProgressHUD.h"
-#import "TFHpple.h"
+#import "TFHppleLibrary/TFHppleLibrary.h"
 #import "YIPopupTextView.h"
 #import "LXMapScaleView.h"
 

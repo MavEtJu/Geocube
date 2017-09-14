@@ -44,9 +44,6 @@
 		E823424C1EECCF9300D2CDFD /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342441EECCF9300D2CDFD /* SVProgressAnimatedView.m */; };
 		E823424E1EECCF9300D2CDFD /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342481EECCF9300D2CDFD /* SVProgressHUD.m */; };
 		E823424F1EECCF9300D2CDFD /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E823424A1EECCF9300D2CDFD /* SVRadialGradientLayer.m */; };
-		E82342561EECCFA400D2CDFD /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342511EECCFA400D2CDFD /* TFHpple.m */; };
-		E82342571EECCFA400D2CDFD /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342531EECCFA400D2CDFD /* TFHppleElement.m */; };
-		E82342581EECCFA400D2CDFD /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342551EECCFA400D2CDFD /* XPathQuery.m */; };
 		E82342691EECCFE700D2CDFD /* YIPopupTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342661EECCFE700D2CDFD /* YIPopupTextView.m */; };
 		E823426A1EECCFE700D2CDFD /* YISSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342681EECCFE700D2CDFD /* YISSTextView.m */; };
 		E82342AD1EECD0B100D2CDFD /* database-cache.m in Sources */ = {isa = PBXBuildFile; fileRef = E823426C1EECD0B000D2CDFD /* database-cache.m */; };
@@ -567,6 +564,7 @@
 		E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */; };
 		E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
+		E8A658611F6A7E81004D56D5 /* libTFHppleLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A658571F6A7D45004D56D5 /* libTFHppleLibrary.a */; };
 		E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */; };
 		E8AA149C1ED7988A0023000A /* Updates and changes.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8AA149B1ED7988A0023000A /* Updates and changes.txt */; };
 		E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */; };
@@ -768,6 +766,13 @@
 			remoteGlobalIDString = E8A2726F1F6A3438008D4370;
 			remoteInfo = RNCryptorLibrary;
 		};
+		E8A658561F6A7D45004D56D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8A6584F1F6A7D44004D56D5 /* TFHppleLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E8A658431F6A7D43004D56D5;
+			remoteInfo = TFHppleLibrary;
+		};
 		E8F553671F6A38EB0054806E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E8F553631F6A38EA0054806E /* GMUGeometryLibrary.xcodeproj */;
@@ -875,12 +880,6 @@
 		E82342481EECCF9300D2CDFD /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = contrib/SVProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
 		E82342491EECCF9300D2CDFD /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVRadialGradientLayer.h; path = contrib/SVProgressHUD/SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		E823424A1EECCF9300D2CDFD /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = contrib/SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
-		E82342501EECCFA400D2CDFD /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFHpple.h; path = contrib/TFHpple/TFHpple.h; sourceTree = "<group>"; };
-		E82342511EECCFA400D2CDFD /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TFHpple.m; path = contrib/TFHpple/TFHpple.m; sourceTree = "<group>"; };
-		E82342521EECCFA400D2CDFD /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFHppleElement.h; path = contrib/TFHpple/TFHppleElement.h; sourceTree = "<group>"; };
-		E82342531EECCFA400D2CDFD /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TFHppleElement.m; path = contrib/TFHpple/TFHppleElement.m; sourceTree = "<group>"; };
-		E82342541EECCFA400D2CDFD /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathQuery.h; path = contrib/TFHpple/XPathQuery.h; sourceTree = "<group>"; };
-		E82342551EECCFA400D2CDFD /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathQuery.m; path = contrib/TFHpple/XPathQuery.m; sourceTree = "<group>"; };
 		E82342651EECCFE600D2CDFD /* YIPopupTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YIPopupTextView.h; path = contrib/YIPopupTextView/YIPopupTextView.h; sourceTree = "<group>"; };
 		E82342661EECCFE700D2CDFD /* YIPopupTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YIPopupTextView.m; path = contrib/YIPopupTextView/YIPopupTextView.m; sourceTree = "<group>"; };
 		E82342671EECCFE700D2CDFD /* YISSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YISSTextView.h; path = contrib/YIPopupTextView/YISSTextView.h; sourceTree = "<group>"; };
@@ -1629,6 +1628,7 @@
 		E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFUIKitMainThreadGuard.m; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
 		E8A2727B1F6A3438008D4370 /* RNCryptorLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCryptorLibrary.xcodeproj; path = Contrib/RNCryptorLibrary/RNCryptorLibrary.xcodeproj; sourceTree = "<group>"; };
+		E8A6584F1F6A7D44004D56D5 /* TFHppleLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TFHppleLibrary.xcodeproj; path = Contrib/TFHppleLibrary/TFHppleLibrary.xcodeproj; sourceTree = "<group>"; };
 		E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesDownloadManager.h; sourceTree = "<group>"; };
 		E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesDownloadManager.m; sourceTree = "<group>"; };
 		E8AA149B1ED7988A0023000A /* Updates and changes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Updates and changes.txt"; sourceTree = "<group>"; };
@@ -1781,6 +1781,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8A658611F6A7E81004D56D5 /* libTFHppleLibrary.a in Frameworks */,
 				E84F367B1F6A5B5100C7BD20 /* libContribLibrary.a in Frameworks */,
 				E84F364A1F6A581900C7BD20 /* libKxIntroLibrary.a in Frameworks */,
 				E84F36251F6A56E800C7BD20 /* libActionSheetPickerLibrary.a in Frameworks */,
@@ -1877,19 +1878,6 @@
 				E83C6F271EEEAA7400E303F5 /* Personal Notes */,
 			);
 			name = "Notes and logs";
-			sourceTree = "<group>";
-		};
-		E82302431DCD52370032C5C6 /* TFHpple */ = {
-			isa = PBXGroup;
-			children = (
-				E82342501EECCFA400D2CDFD /* TFHpple.h */,
-				E82342511EECCFA400D2CDFD /* TFHpple.m */,
-				E82342521EECCFA400D2CDFD /* TFHppleElement.h */,
-				E82342531EECCFA400D2CDFD /* TFHppleElement.m */,
-				E82342541EECCFA400D2CDFD /* XPathQuery.h */,
-				E82342551EECCFA400D2CDFD /* XPathQuery.m */,
-			);
-			name = TFHpple;
 			sourceTree = "<group>";
 		};
 		E82E660A1DA07A0300CFBDED /* menu */ = {
@@ -2984,6 +2972,14 @@
 			name = "Keep Track";
 			sourceTree = "<group>";
 		};
+		E8A658501F6A7D44004D56D5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8A658571F6A7D45004D56D5 /* libTFHppleLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E8A7FA921B777616003F4132 /* Browser */ = {
 			isa = PBXGroup;
 			children = (
@@ -3216,6 +3212,7 @@
 		E8F5704A1B3F7255003F020C = {
 			isa = PBXGroup;
 			children = (
+				E8A6584F1F6A7D44004D56D5 /* TFHppleLibrary.xcodeproj */,
 				E8F570551B3F7255003F020C /* Geocube */,
 				E80732F91B633A74007FDC29 /* objects */,
 				E8F570541B3F7255003F020C /* Products */,
@@ -3302,7 +3299,6 @@
 				E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */,
 				E8F570961B3F7F6A003F020C /* SSZipArchive */,
 				E87DF7761D7EDFCC00F16B5A /* SVProgressHUD */,
-				E82302431DCD52370032C5C6 /* TFHpple */,
 				E8575FF61B8466AA00F34483 /* YIPopupTextView */,
 			);
 			name = "External modules";
@@ -3691,6 +3687,10 @@
 					ProjectRef = E84F35831F6A48E600C7BD20 /* SimpleKMLLibrary.xcodeproj */;
 				},
 				{
+					ProductGroup = E8A658501F6A7D44004D56D5 /* Products */;
+					ProjectRef = E8A6584F1F6A7D44004D56D5 /* TFHppleLibrary.xcodeproj */;
+				},
+				{
 					ProductGroup = E84F353C1F6A438400C7BD20 /* Products */;
 					ProjectRef = E84F353B1F6A438400C7BD20 /* TouchXMLLibrary.xcodeproj */;
 				},
@@ -3746,6 +3746,13 @@
 			fileType = archive.ar;
 			path = libRNCryptorLibrary.a;
 			remoteRef = E8A2727F1F6A343A008D4370 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E8A658571F6A7D45004D56D5 /* libTFHppleLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTFHppleLibrary.a;
+			remoteRef = E8A658561F6A7D45004D56D5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E8F553681F6A38EB0054806E /* libGMUGeometryLibrary.a */ = {
@@ -4351,7 +4358,6 @@
 				E82342CC1EECD0B100D2CDFD /* dbType.m in Sources */,
 				E82342BD1EECD0B100D2CDFD /* dbLogMacro.m in Sources */,
 				E82344911EECE0AC00D2CDFD /* QueriesGCAViewController.m in Sources */,
-				E82342581EECCFA400D2CDFD /* XPathQuery.m in Sources */,
 				E82344841EECE09C00D2CDFD /* ListTemplateViewController.m in Sources */,
 				E823442D1EECDFB300D2CDFD /* FilterFlagsTableViewCell.m in Sources */,
 				E823424C1EECCF9300D2CDFD /* SVProgressAnimatedView.m in Sources */,
@@ -4362,7 +4368,6 @@
 				E82341F21EECCEBB00D2CDFD /* RangeSlider.m in Sources */,
 				E823421B1EECCF2600D2CDFD /* NKOColorPickerView.m in Sources */,
 				E83C6F011EECE67100E303F5 /* FileObject.m in Sources */,
-				E82342561EECCFA400D2CDFD /* TFHpple.m in Sources */,
 				E82343511EECDA4900D2CDFD /* ImportGeocube.m in Sources */,
 				E82343C21EECDE8A00D2CDFD /* WaypointImagesViewController.m in Sources */,
 				E83C6EEF1EECE1CB00E303F5 /* LocationManager.m in Sources */,
@@ -4511,7 +4516,6 @@
 				E82345211EECE14A00D2CDFD /* HelpAboutViewController.m in Sources */,
 				E82342B71EECD0B100D2CDFD /* dbFilter.m in Sources */,
 				E82343971EECDBCE00D2CDFD /* MapApple.m in Sources */,
-				E82342571EECCFA400D2CDFD /* TFHppleElement.m in Sources */,
 				E82344F91EECE12A00D2CDFD /* GCTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
