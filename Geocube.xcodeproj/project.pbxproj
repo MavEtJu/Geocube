@@ -35,11 +35,6 @@
 		E82342151EECCEEE00D2CDFD /* MHTabBarIndicator@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E823420A1EECCEEE00D2CDFD /* MHTabBarIndicator@3x.png */; };
 		E823421A1EECCF2600D2CDFD /* nko_colormap.png in Resources */ = {isa = PBXBuildFile; fileRef = E82342171EECCF2600D2CDFD /* nko_colormap.png */; };
 		E823421B1EECCF2600D2CDFD /* NKOColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342191EECCF2600D2CDFD /* NKOColorPickerView.m */; };
-		E823423A1EECCF6E00D2CDFD /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = E82342321EECCF6E00D2CDFD /* ioapi.c */; };
-		E823423B1EECCF6E00D2CDFD /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = E82342341EECCF6E00D2CDFD /* mztools.c */; };
-		E823423C1EECCF6E00D2CDFD /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = E82342361EECCF6E00D2CDFD /* unzip.c */; };
-		E823423D1EECCF6E00D2CDFD /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = E82342381EECCF6E00D2CDFD /* zip.c */; };
-		E82342401EECCF7E00D2CDFD /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = E823423F1EECCF7E00D2CDFD /* SSZipArchive.m */; };
 		E823424B1EECCF9300D2CDFD /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342421EECCF9300D2CDFD /* SVIndefiniteAnimatedView.m */; };
 		E823424C1EECCF9300D2CDFD /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342441EECCF9300D2CDFD /* SVProgressAnimatedView.m */; };
 		E823424E1EECCF9300D2CDFD /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342481EECCF9300D2CDFD /* SVProgressHUD.m */; };
@@ -564,6 +559,7 @@
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
 		E8A658611F6A7E81004D56D5 /* libTFHppleLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A658571F6A7D45004D56D5 /* libTFHppleLibrary.a */; };
 		E8A658831F6A7FB3004D56D5 /* libYIPopupTextViewLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A6587C1F6A7F3B004D56D5 /* libYIPopupTextViewLibrary.a */; };
+		E8A659141F6A85BB004D56D5 /* libSSZipArchiveLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A659011F6A8519004D56D5 /* libSSZipArchiveLibrary.a */; };
 		E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */; };
 		E8AA149C1ED7988A0023000A /* Updates and changes.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8AA149B1ED7988A0023000A /* Updates and changes.txt */; };
 		E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */; };
@@ -779,6 +775,13 @@
 			remoteGlobalIDString = E8A6586B1F6A7F3A004D56D5;
 			remoteInfo = YIPopupTextViewLibrary;
 		};
+		E8A659001F6A8519004D56D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8A658F91F6A8518004D56D5 /* SSZipArchiveLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E8A658ED1F6A8518004D56D5;
+			remoteInfo = SSZipArchiveLibrary;
+		};
 		E8F553671F6A38EB0054806E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E8F553631F6A38EA0054806E /* GMUGeometryLibrary.xcodeproj */;
@@ -866,17 +869,6 @@
 		E82342171EECCF2600D2CDFD /* nko_colormap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nko_colormap.png; path = contrib/NKOColorPickerView/nko_colormap.png; sourceTree = "<group>"; };
 		E82342181EECCF2600D2CDFD /* NKOColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKOColorPickerView.h; path = contrib/NKOColorPickerView/NKOColorPickerView.h; sourceTree = "<group>"; };
 		E82342191EECCF2600D2CDFD /* NKOColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKOColorPickerView.m; path = contrib/NKOColorPickerView/NKOColorPickerView.m; sourceTree = "<group>"; };
-		E82342311EECCF6E00D2CDFD /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crypt.h; path = Geocube/contrib/SSZipArchive/minizip/crypt.h; sourceTree = SOURCE_ROOT; };
-		E82342321EECCF6E00D2CDFD /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ioapi.c; path = Geocube/contrib/SSZipArchive/minizip/ioapi.c; sourceTree = SOURCE_ROOT; };
-		E82342331EECCF6E00D2CDFD /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ioapi.h; path = Geocube/contrib/SSZipArchive/minizip/ioapi.h; sourceTree = SOURCE_ROOT; };
-		E82342341EECCF6E00D2CDFD /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mztools.c; path = Geocube/contrib/SSZipArchive/minizip/mztools.c; sourceTree = SOURCE_ROOT; };
-		E82342351EECCF6E00D2CDFD /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mztools.h; path = Geocube/contrib/SSZipArchive/minizip/mztools.h; sourceTree = SOURCE_ROOT; };
-		E82342361EECCF6E00D2CDFD /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = unzip.c; path = Geocube/contrib/SSZipArchive/minizip/unzip.c; sourceTree = SOURCE_ROOT; };
-		E82342371EECCF6E00D2CDFD /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = unzip.h; path = Geocube/contrib/SSZipArchive/minizip/unzip.h; sourceTree = SOURCE_ROOT; };
-		E82342381EECCF6E00D2CDFD /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zip.c; path = Geocube/contrib/SSZipArchive/minizip/zip.c; sourceTree = SOURCE_ROOT; };
-		E82342391EECCF6E00D2CDFD /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zip.h; path = Geocube/contrib/SSZipArchive/minizip/zip.h; sourceTree = SOURCE_ROOT; };
-		E823423E1EECCF7E00D2CDFD /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSZipArchive.h; path = Geocube/contrib/SSZipArchive/SSZipArchive.h; sourceTree = SOURCE_ROOT; };
-		E823423F1EECCF7E00D2CDFD /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSZipArchive.m; path = Geocube/contrib/SSZipArchive/SSZipArchive.m; sourceTree = SOURCE_ROOT; };
 		E82342411EECCF9300D2CDFD /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVIndefiniteAnimatedView.h; path = contrib/SVProgressHUD/SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
 		E82342421EECCF9300D2CDFD /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVIndefiniteAnimatedView.m; path = contrib/SVProgressHUD/SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
 		E82342431EECCF9300D2CDFD /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVProgressAnimatedView.h; path = contrib/SVProgressHUD/SVProgressAnimatedView.h; sourceTree = "<group>"; };
@@ -1632,6 +1624,7 @@
 		E8A2727B1F6A3438008D4370 /* RNCryptorLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCryptorLibrary.xcodeproj; path = Contrib/RNCryptorLibrary/RNCryptorLibrary.xcodeproj; sourceTree = "<group>"; };
 		E8A6584F1F6A7D44004D56D5 /* TFHppleLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TFHppleLibrary.xcodeproj; path = Contrib/TFHppleLibrary/TFHppleLibrary.xcodeproj; sourceTree = "<group>"; };
 		E8A658771F6A7F3A004D56D5 /* YIPopupTextViewLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = YIPopupTextViewLibrary.xcodeproj; path = Contrib/YIPopupTextViewLibrary/YIPopupTextViewLibrary.xcodeproj; sourceTree = "<group>"; };
+		E8A658F91F6A8518004D56D5 /* SSZipArchiveLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSZipArchiveLibrary.xcodeproj; path = Contrib/SSZipArchiveLibrary/SSZipArchiveLibrary.xcodeproj; sourceTree = "<group>"; };
 		E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesDownloadManager.h; sourceTree = "<group>"; };
 		E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesDownloadManager.m; sourceTree = "<group>"; };
 		E8AA149B1ED7988A0023000A /* Updates and changes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Updates and changes.txt"; sourceTree = "<group>"; };
@@ -1784,6 +1777,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8A659141F6A85BB004D56D5 /* libSSZipArchiveLibrary.a in Frameworks */,
 				E8A658831F6A7FB3004D56D5 /* libYIPopupTextViewLibrary.a in Frameworks */,
 				E8A658611F6A7E81004D56D5 /* libTFHppleLibrary.a in Frameworks */,
 				E84F367B1F6A5B5100C7BD20 /* libContribLibrary.a in Frameworks */,
@@ -2981,6 +2975,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E8A658FA1F6A8518004D56D5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8A659011F6A8519004D56D5 /* libSSZipArchiveLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E8A7FA921B777616003F4132 /* Browser */ = {
 			isa = PBXGroup;
 			children = (
@@ -3213,7 +3215,6 @@
 		E8F5704A1B3F7255003F020C = {
 			isa = PBXGroup;
 			children = (
-				E8A658771F6A7F3A004D56D5 /* YIPopupTextViewLibrary.xcodeproj */,
 				E8F570551B3F7255003F020C /* Geocube */,
 				E80732F91B633A74007FDC29 /* objects */,
 				E8F570541B3F7255003F020C /* Products */,
@@ -3227,8 +3228,10 @@
 				E8F553C41F6A415A0054806E /* NVHTarGzipLibrary.xcodeproj */,
 				E8A2727B1F6A3438008D4370 /* RNCryptorLibrary.xcodeproj */,
 				E84F35831F6A48E600C7BD20 /* SimpleKMLLibrary.xcodeproj */,
+				E8A658F91F6A8518004D56D5 /* SSZipArchiveLibrary.xcodeproj */,
 				E8A6584F1F6A7D44004D56D5 /* TFHppleLibrary.xcodeproj */,
 				E84F353B1F6A438400C7BD20 /* TouchXMLLibrary.xcodeproj */,
+				E8A658771F6A7F3A004D56D5 /* YIPopupTextViewLibrary.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3299,36 +3302,9 @@
 				E8F6BE731BB8C77A009EA037 /* LXMapScale */,
 				E8A3B0AF1CD33BA500170D61 /* MHTabBarController */,
 				E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */,
-				E8F570961B3F7F6A003F020C /* SSZipArchive */,
 				E87DF7761D7EDFCC00F16B5A /* SVProgressHUD */,
 			);
 			name = "External modules";
-			sourceTree = "<group>";
-		};
-		E8F570961B3F7F6A003F020C /* SSZipArchive */ = {
-			isa = PBXGroup;
-			children = (
-				E8F570971B3F7F6A003F020C /* minizip */,
-				E823423E1EECCF7E00D2CDFD /* SSZipArchive.h */,
-				E823423F1EECCF7E00D2CDFD /* SSZipArchive.m */,
-			);
-			path = SSZipArchive;
-			sourceTree = "<group>";
-		};
-		E8F570971B3F7F6A003F020C /* minizip */ = {
-			isa = PBXGroup;
-			children = (
-				E82342311EECCF6E00D2CDFD /* crypt.h */,
-				E82342321EECCF6E00D2CDFD /* ioapi.c */,
-				E82342331EECCF6E00D2CDFD /* ioapi.h */,
-				E82342341EECCF6E00D2CDFD /* mztools.c */,
-				E82342351EECCF6E00D2CDFD /* mztools.h */,
-				E82342361EECCF6E00D2CDFD /* unzip.c */,
-				E82342371EECCF6E00D2CDFD /* unzip.h */,
-				E82342381EECCF6E00D2CDFD /* zip.c */,
-				E82342391EECCF6E00D2CDFD /* zip.h */,
-			);
-			path = minizip;
 			sourceTree = "<group>";
 		};
 		E8F570A81B3FE522003F020C /* Database */ = {
@@ -3688,6 +3664,10 @@
 					ProjectRef = E84F35831F6A48E600C7BD20 /* SimpleKMLLibrary.xcodeproj */;
 				},
 				{
+					ProductGroup = E8A658FA1F6A8518004D56D5 /* Products */;
+					ProjectRef = E8A658F91F6A8518004D56D5 /* SSZipArchiveLibrary.xcodeproj */;
+				},
+				{
 					ProductGroup = E8A658501F6A7D44004D56D5 /* Products */;
 					ProjectRef = E8A6584F1F6A7D44004D56D5 /* TFHppleLibrary.xcodeproj */;
 				},
@@ -3765,6 +3745,13 @@
 			fileType = archive.ar;
 			path = libYIPopupTextViewLibrary.a;
 			remoteRef = E8A6587B1F6A7F3B004D56D5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E8A659011F6A8519004D56D5 /* libSSZipArchiveLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSSZipArchiveLibrary.a;
+			remoteRef = E8A659001F6A8519004D56D5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E8F553681F6A38EB0054806E /* libGMUGeometryLibrary.a */ = {
@@ -4283,7 +4270,6 @@
 				E85AE1C31F3DD9C500FA746C /* GCFilterButton.m in Sources */,
 				E82344711EECE08A00D2CDFD /* GroupsTemplateViewController.m in Sources */,
 				E83C6EEC1EECE1CB00E303F5 /* ConfigManager.m in Sources */,
-				E823423D1EECCF6E00D2CDFD /* zip.c in Sources */,
 				E82344831EECE09C00D2CDFD /* ListInProgressViewController.m in Sources */,
 				E82344811EECE09C00D2CDFD /* ListHighlightViewController.m in Sources */,
 				E82344921EECE0AC00D2CDFD /* QueriesGGCWViewController.m in Sources */,
@@ -4359,7 +4345,6 @@
 				E82343F91EECDF4400D2CDFD /* WaypointRawViewController.m in Sources */,
 				E82344A81EECE0C900D2CDFD /* BrowserAccountsViewController.m in Sources */,
 				E823439A1EECDBCF00D2CDFD /* MapESRIWorldTopo.m in Sources */,
-				E823423C1EECCF6E00D2CDFD /* unzip.c in Sources */,
 				E823436D1EECDB2C00D2CDFD /* GCString.m in Sources */,
 				E82343521EECDA4900D2CDFD /* ImportGGCWJSON.m in Sources */,
 				E82342B11EECD0B100D2CDFD /* dbBookmark.m in Sources */,
@@ -4405,7 +4390,6 @@
 				E82343BA1EECDE6C00D2CDFD /* WaypointLogEditViewController.m in Sources */,
 				E823432E1EECD9BC00D2CDFD /* ProtocolOKAPI.m in Sources */,
 				E82343BC1EECDE6C00D2CDFD /* WaypointLogTrackablesViewController.m in Sources */,
-				E82342401EECCF7E00D2CDFD /* SSZipArchive.m in Sources */,
 				E82342B31EECD0B100D2CDFD /* dbContainer.m in Sources */,
 				E8EC073F1D39D898009B8EB1 /* DownloadManager.m in Sources */,
 				E823435D1EECDAEF00D2CDFD /* LocalMenuItems.m in Sources */,
@@ -4416,7 +4400,6 @@
 				E82345081EECE12B00D2CDFD /* GCTableViewHeaderFooterView.m in Sources */,
 				E82343F31EECDF4400D2CDFD /* WaypointAttributesViewController.m in Sources */,
 				E823432B1EECD9BC00D2CDFD /* ProtocolGCA2.m in Sources */,
-				E823423A1EECCF6E00D2CDFD /* ioapi.c in Sources */,
 				E82343551EECDA4900D2CDFD /* ImportLiveAPIJSON.m in Sources */,
 				E823442C1EECDFB300D2CDFD /* FilterFavouritesTableViewCell.m in Sources */,
 				E823444D1EECE04B00D2CDFD /* NotesImagesViewController.m in Sources */,
@@ -4430,7 +4413,6 @@
 				E82344631EECE06E00D2CDFD /* TrackablesInventoryViewController.m in Sources */,
 				E823442A1EECDFB300D2CDFD /* FilterDirectionTableViewCell.m in Sources */,
 				E82343761EECDB4500D2CDFD /* ThemeIOS.m in Sources */,
-				E823423B1EECCF6E00D2CDFD /* mztools.c in Sources */,
 				E82343B11EECDDFD00D2CDFD /* WaypointSorter.m in Sources */,
 				E82342C71EECD0B100D2CDFD /* dbState.m in Sources */,
 				E83C6F221EEEA47900E303F5 /* GCTableViewCellRightImageDisclosure.m in Sources */,

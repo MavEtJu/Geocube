@@ -1,0 +1,295 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E8A658F31F6A8518004D56D5 /* SSZipArchiveLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E8A658F01F6A8518004D56D5 /* SSZipArchiveLibrary.h */; };
+		E8A659061F6A8561004D56D5 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A659051F6A8561004D56D5 /* SSZipArchive.m */; };
+		E8A659101F6A8569004D56D5 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = E8A659081F6A8569004D56D5 /* ioapi.c */; };
+		E8A659111F6A8569004D56D5 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = E8A6590A1F6A8569004D56D5 /* mztools.c */; };
+		E8A659121F6A8569004D56D5 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = E8A6590C1F6A8569004D56D5 /* unzip.c */; };
+		E8A659131F6A8569004D56D5 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = E8A6590E1F6A8569004D56D5 /* zip.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E8A658EB1F6A8518004D56D5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				E8A658F31F6A8518004D56D5 /* SSZipArchiveLibrary.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		E8A658ED1F6A8518004D56D5 /* libSSZipArchiveLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSSZipArchiveLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8A658F01F6A8518004D56D5 /* SSZipArchiveLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSZipArchiveLibrary.h; sourceTree = "<group>"; };
+		E8A659041F6A8561004D56D5 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
+		E8A659051F6A8561004D56D5 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
+		E8A659071F6A8569004D56D5 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crypt.h; path = minizip/crypt.h; sourceTree = "<group>"; };
+		E8A659081F6A8569004D56D5 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ioapi.c; path = minizip/ioapi.c; sourceTree = "<group>"; };
+		E8A659091F6A8569004D56D5 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ioapi.h; path = minizip/ioapi.h; sourceTree = "<group>"; };
+		E8A6590A1F6A8569004D56D5 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mztools.c; path = minizip/mztools.c; sourceTree = "<group>"; };
+		E8A6590B1F6A8569004D56D5 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mztools.h; path = minizip/mztools.h; sourceTree = "<group>"; };
+		E8A6590C1F6A8569004D56D5 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = unzip.c; path = minizip/unzip.c; sourceTree = "<group>"; };
+		E8A6590D1F6A8569004D56D5 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = unzip.h; path = minizip/unzip.h; sourceTree = "<group>"; };
+		E8A6590E1F6A8569004D56D5 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zip.c; path = minizip/zip.c; sourceTree = "<group>"; };
+		E8A6590F1F6A8569004D56D5 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zip.h; path = minizip/zip.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E8A658EA1F6A8518004D56D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E8A658E41F6A8518004D56D5 = {
+			isa = PBXGroup;
+			children = (
+				E8A658EF1F6A8518004D56D5 /* SSZipArchiveLibrary */,
+				E8A658EE1F6A8518004D56D5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E8A658EE1F6A8518004D56D5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8A658ED1F6A8518004D56D5 /* libSSZipArchiveLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E8A658EF1F6A8518004D56D5 /* SSZipArchiveLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				E8A659071F6A8569004D56D5 /* crypt.h */,
+				E8A659081F6A8569004D56D5 /* ioapi.c */,
+				E8A659091F6A8569004D56D5 /* ioapi.h */,
+				E8A6590A1F6A8569004D56D5 /* mztools.c */,
+				E8A6590B1F6A8569004D56D5 /* mztools.h */,
+				E8A6590C1F6A8569004D56D5 /* unzip.c */,
+				E8A6590D1F6A8569004D56D5 /* unzip.h */,
+				E8A6590E1F6A8569004D56D5 /* zip.c */,
+				E8A6590F1F6A8569004D56D5 /* zip.h */,
+				E8A659041F6A8561004D56D5 /* SSZipArchive.h */,
+				E8A659051F6A8561004D56D5 /* SSZipArchive.m */,
+				E8A658F01F6A8518004D56D5 /* SSZipArchiveLibrary.h */,
+			);
+			path = SSZipArchiveLibrary;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E8A658EC1F6A8518004D56D5 /* SSZipArchiveLibrary */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8A658F61F6A8518004D56D5 /* Build configuration list for PBXNativeTarget "SSZipArchiveLibrary" */;
+			buildPhases = (
+				E8A658E91F6A8518004D56D5 /* Sources */,
+				E8A658EA1F6A8518004D56D5 /* Frameworks */,
+				E8A658EB1F6A8518004D56D5 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SSZipArchiveLibrary;
+			productName = SSZipArchiveLibrary;
+			productReference = E8A658ED1F6A8518004D56D5 /* libSSZipArchiveLibrary.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E8A658E51F6A8518004D56D5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Edwin Groothuis";
+				TargetAttributes = {
+					E8A658EC1F6A8518004D56D5 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = NRQ2A5FE8M;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E8A658E81F6A8518004D56D5 /* Build configuration list for PBXProject "SSZipArchiveLibrary" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E8A658E41F6A8518004D56D5;
+			productRefGroup = E8A658EE1F6A8518004D56D5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E8A658EC1F6A8518004D56D5 /* SSZipArchiveLibrary */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E8A658E91F6A8518004D56D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8A659101F6A8569004D56D5 /* ioapi.c in Sources */,
+				E8A659061F6A8561004D56D5 /* SSZipArchive.m in Sources */,
+				E8A659121F6A8569004D56D5 /* unzip.c in Sources */,
+				E8A659131F6A8569004D56D5 /* zip.c in Sources */,
+				E8A659111F6A8569004D56D5 /* mztools.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E8A658F41F6A8518004D56D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E8A658F51F6A8518004D56D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E8A658F71F6A8518004D56D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = NRQ2A5FE8M;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E8A658F81F6A8518004D56D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = NRQ2A5FE8M;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E8A658E81F6A8518004D56D5 /* Build configuration list for PBXProject "SSZipArchiveLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8A658F41F6A8518004D56D5 /* Debug */,
+				E8A658F51F6A8518004D56D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8A658F61F6A8518004D56D5 /* Build configuration list for PBXNativeTarget "SSZipArchiveLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8A658F71F6A8518004D56D5 /* Debug */,
+				E8A658F81F6A8518004D56D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E8A658E51F6A8518004D56D5 /* Project object */;
+}
