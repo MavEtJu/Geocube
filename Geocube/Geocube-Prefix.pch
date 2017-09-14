@@ -287,7 +287,6 @@
 #import "StatisticsTableViewCell.h"
 #import "StatisticsViewController.h"
 
-#import "GCBoundingBox.h"
 #import "GCWaypointAnnotation.h"
 #import "GCCircle.h"
 #import "GCGMSCircle.h"

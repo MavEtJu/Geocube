@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import <BaseObjectsLibrary/GCArray.h>
+#import <BaseObjectsLibrary/GCBoundingBox.h>
 #import <BaseObjectsLibrary/GCDataObjects.h>
 #import <BaseObjectsLibrary/GCDictionary.h>
 #import <BaseObjectsLibrary/GCString.h>

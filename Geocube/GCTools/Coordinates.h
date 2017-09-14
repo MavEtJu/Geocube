@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <UIKit/UIKit.h>
+
 @interface Coordinates : NSObject
 
 #define CLLocationCoordinate2DZero  CLLocationCoordinate2DMake(0, 0)

@@ -19,17 +19,14 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCBoundingBox ()
+#import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
-@end
+@interface GCBoundingBox : NSObject
 
-@implementation GCBoundingBox
-
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"(%@)-(%@)",
-            [Coordinates niceCoordinates:self.bottomLat longitude:self.leftLon],
-            [Coordinates niceCoordinates:self.topLat longitude:self.rightLon]];
-}
+@property (nonatomic) CLLocationDegrees topLat;
+@property (nonatomic) CLLocationDegrees bottomLat;
+@property (nonatomic) CLLocationDegrees leftLon;
+@property (nonatomic) CLLocationDegrees rightLon;
 
 @end

@@ -220,7 +220,6 @@
 		E82344C01EECE0E800D2CDFD /* SettingsLogTemplatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344B81EECE0E800D2CDFD /* SettingsLogTemplatesViewController.m */; };
 		E82344C11EECE0E800D2CDFD /* SettingsMainColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344BA1EECE0E800D2CDFD /* SettingsMainColorPickerViewController.m */; };
 		E82344C21EECE0E800D2CDFD /* SettingsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344BC1EECE0E800D2CDFD /* SettingsMainViewController.m */; };
-		E82344F11EECE12A00D2CDFD /* GCBoundingBox.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344C41EECE12A00D2CDFD /* GCBoundingBox.m */; };
 		E82344F21EECE12A00D2CDFD /* GCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344C61EECE12A00D2CDFD /* GCButton.m */; };
 		E82344F31EECE12A00D2CDFD /* GCCloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344C81EECE12A00D2CDFD /* GCCloseButton.m */; };
 		E82344F41EECE12A00D2CDFD /* GCImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344CA1EECE12A00D2CDFD /* GCImageView.m */; };
@@ -575,6 +574,7 @@
 		E8EE47B51F6B473200AB13BC /* libTouchXMLLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE473D1F6B429C00AB13BC /* libTouchXMLLibrary.a */; };
 		E8EE47B61F6B473200AB13BC /* libYIPopupTextViewLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE47401F6B429C00AB13BC /* libYIPopupTextViewLibrary.a */; };
 		E8EE47B81F6B473200AB13BC /* libContribLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE47B71F6B473200AB13BC /* libContribLibrary.a */; };
+		E8EE47CD1F6B4B0800AB13BC /* libBaseObjectsLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE47C91F6B488C00AB13BC /* libBaseObjectsLibrary.a */; };
 		E8F403E81DAF5B2600318CC6 /* cache - reverse - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */; };
 		E8F403EB1DAFA23600318CC6 /* cache - reverse - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */; };
 		E8F403EC1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */; };
@@ -754,6 +754,83 @@
 			containerPortal = E8EE47991F6B457C00AB13BC /* BaseObjectsLibrary.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E8EE478D1F6B457C00AB13BC;
+			remoteInfo = BaseObjectsLibrary;
+		};
+		E8EE47CE1F6B4B7800AB13BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E84F36021F6A567A00C7BD20 /* ActionSheetPickerLibrary.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E84F35F51F6A567A00C7BD20;
+			remoteInfo = ActionSheetPickerLibrary;
+		};
+		E8EE47D01F6B4B7800AB13BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8F553631F6A38EA0054806E /* GMUGeometryLibrary.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E8F553561F6A38E90054806E;
+			remoteInfo = GMUGeometryLibrary;
+		};
+		E8EE47D21F6B4B7800AB13BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E84F363B1F6A573100C7BD20 /* KxIntroLibrary.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E84F362E1F6A573100C7BD20;
+			remoteInfo = KxIntroLibrary;
+		};
+		E8EE47D41F6B4B7800AB13BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8F553C41F6A415A0054806E /* NVHTarGzipLibrary.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E8F553B71F6A415A0054806E;
+			remoteInfo = NVHTarGzipLibrary;
+		};
+		E8EE47D61F6B4B7800AB13BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8A2727B1F6A3438008D4370 /* RNCryptorLibrary.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E8A2726E1F6A3438008D4370;
+			remoteInfo = RNCryptorLibrary;
+		};
+		E8EE47D81F6B4B7800AB13BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E84F35831F6A48E600C7BD20 /* SimpleKMLLibrary.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E84F35761F6A48E500C7BD20;
+			remoteInfo = SimpleKMLLibrary;
+		};
+		E8EE47DA1F6B4B7800AB13BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8A658F91F6A8518004D56D5 /* SSZipArchiveLibrary.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E8A658EC1F6A8518004D56D5;
+			remoteInfo = SSZipArchiveLibrary;
+		};
+		E8EE47DC1F6B4B7800AB13BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8A6584F1F6A7D44004D56D5 /* TFHppleLibrary.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E8A658421F6A7D43004D56D5;
+			remoteInfo = TFHppleLibrary;
+		};
+		E8EE47DE1F6B4B7800AB13BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E84F353B1F6A438400C7BD20 /* TouchXMLLibrary.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E84F352E1F6A438400C7BD20;
+			remoteInfo = TouchXMLLibrary;
+		};
+		E8EE47E01F6B4B7800AB13BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8A658771F6A7F3A004D56D5 /* YIPopupTextViewLibrary.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E8A6586A1F6A7F3A004D56D5;
+			remoteInfo = YIPopupTextViewLibrary;
+		};
+		E8EE47E21F6B4B7800AB13BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8EE47991F6B457C00AB13BC /* BaseObjectsLibrary.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E8EE478C1F6B457C00AB13BC;
 			remoteInfo = BaseObjectsLibrary;
 		};
 		E8F5706D1B3F7255003F020C /* PBXContainerItemProxy */ = {
@@ -1181,8 +1258,6 @@
 		E82344BA1EECE0E800D2CDFD /* SettingsMainColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsMainColorPickerViewController.m; path = Settings/SettingsMainColorPickerViewController.m; sourceTree = "<group>"; };
 		E82344BB1EECE0E800D2CDFD /* SettingsMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsMainViewController.h; path = Settings/SettingsMainViewController.h; sourceTree = "<group>"; };
 		E82344BC1EECE0E800D2CDFD /* SettingsMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsMainViewController.m; path = Settings/SettingsMainViewController.m; sourceTree = "<group>"; };
-		E82344C31EECE12A00D2CDFD /* GCBoundingBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCBoundingBox.h; path = GCBaseObjects/GCBoundingBox.h; sourceTree = "<group>"; };
-		E82344C41EECE12A00D2CDFD /* GCBoundingBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCBoundingBox.m; path = GCBaseObjects/GCBoundingBox.m; sourceTree = "<group>"; };
 		E82344C51EECE12A00D2CDFD /* GCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCButton.h; path = GCBaseObjects/GCButton.h; sourceTree = "<group>"; };
 		E82344C61EECE12A00D2CDFD /* GCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCButton.m; path = GCBaseObjects/GCButton.m; sourceTree = "<group>"; };
 		E82344C71EECE12A00D2CDFD /* GCCloseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCCloseButton.h; path = GCBaseObjects/GCCloseButton.h; sourceTree = "<group>"; };
@@ -1729,6 +1804,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8EE47CD1F6B4B0800AB13BC /* libBaseObjectsLibrary.a in Frameworks */,
 				E8EE47B81F6B473200AB13BC /* libContribLibrary.a in Frameworks */,
 				E8EE47AC1F6B473200AB13BC /* libActionSheetPickerLibrary.a in Frameworks */,
 				E8EE47AE1F6B473200AB13BC /* libGMUGeometryLibrary.a in Frameworks */,
@@ -2286,8 +2362,6 @@
 		E85760161B85E08F00F34483 /* Base GUI objects */ = {
 			isa = PBXGroup;
 			children = (
-				E82344C31EECE12A00D2CDFD /* GCBoundingBox.h */,
-				E82344C41EECE12A00D2CDFD /* GCBoundingBox.m */,
 				E82344C51EECE12A00D2CDFD /* GCButton.h */,
 				E82344C61EECE12A00D2CDFD /* GCButton.m */,
 				E85AE1C11F3DD9C500FA746C /* GCFilterButton.h */,
@@ -3491,6 +3565,17 @@
 			buildRules = (
 			);
 			dependencies = (
+				E8EE47CF1F6B4B7800AB13BC /* PBXTargetDependency */,
+				E8EE47D11F6B4B7800AB13BC /* PBXTargetDependency */,
+				E8EE47D31F6B4B7800AB13BC /* PBXTargetDependency */,
+				E8EE47D51F6B4B7800AB13BC /* PBXTargetDependency */,
+				E8EE47D71F6B4B7800AB13BC /* PBXTargetDependency */,
+				E8EE47D91F6B4B7800AB13BC /* PBXTargetDependency */,
+				E8EE47DB1F6B4B7800AB13BC /* PBXTargetDependency */,
+				E8EE47DD1F6B4B7800AB13BC /* PBXTargetDependency */,
+				E8EE47DF1F6B4B7800AB13BC /* PBXTargetDependency */,
+				E8EE47E11F6B4B7800AB13BC /* PBXTargetDependency */,
+				E8EE47E31F6B4B7800AB13BC /* PBXTargetDependency */,
 			);
 			name = Geocube;
 			productName = Geocube;
@@ -4261,7 +4346,6 @@
 				E82344FA1EECE12A00D2CDFD /* GCTableViewCellKeyValue.m in Sources */,
 				E82343AC1EECDDD400D2CDFD /* GCWaypointAnnotation.m in Sources */,
 				E82343111EECD97400D2CDFD /* MyTools.m in Sources */,
-				E82344F11EECE12A00D2CDFD /* GCBoundingBox.m in Sources */,
 				E82343AA1EECDDD400D2CDFD /* GCCoordsHistorical.m in Sources */,
 				E83C6F071EECE67100E303F5 /* FilesViewController.m in Sources */,
 				E82344F31EECE12A00D2CDFD /* GCCloseButton.m in Sources */,
@@ -4448,6 +4532,61 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E8EE47CF1F6B4B7800AB13BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ActionSheetPickerLibrary;
+			targetProxy = E8EE47CE1F6B4B7800AB13BC /* PBXContainerItemProxy */;
+		};
+		E8EE47D11F6B4B7800AB13BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GMUGeometryLibrary;
+			targetProxy = E8EE47D01F6B4B7800AB13BC /* PBXContainerItemProxy */;
+		};
+		E8EE47D31F6B4B7800AB13BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KxIntroLibrary;
+			targetProxy = E8EE47D21F6B4B7800AB13BC /* PBXContainerItemProxy */;
+		};
+		E8EE47D51F6B4B7800AB13BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NVHTarGzipLibrary;
+			targetProxy = E8EE47D41F6B4B7800AB13BC /* PBXContainerItemProxy */;
+		};
+		E8EE47D71F6B4B7800AB13BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RNCryptorLibrary;
+			targetProxy = E8EE47D61F6B4B7800AB13BC /* PBXContainerItemProxy */;
+		};
+		E8EE47D91F6B4B7800AB13BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SimpleKMLLibrary;
+			targetProxy = E8EE47D81F6B4B7800AB13BC /* PBXContainerItemProxy */;
+		};
+		E8EE47DB1F6B4B7800AB13BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SSZipArchiveLibrary;
+			targetProxy = E8EE47DA1F6B4B7800AB13BC /* PBXContainerItemProxy */;
+		};
+		E8EE47DD1F6B4B7800AB13BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TFHppleLibrary;
+			targetProxy = E8EE47DC1F6B4B7800AB13BC /* PBXContainerItemProxy */;
+		};
+		E8EE47DF1F6B4B7800AB13BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TouchXMLLibrary;
+			targetProxy = E8EE47DE1F6B4B7800AB13BC /* PBXContainerItemProxy */;
+		};
+		E8EE47E11F6B4B7800AB13BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = YIPopupTextViewLibrary;
+			targetProxy = E8EE47E01F6B4B7800AB13BC /* PBXContainerItemProxy */;
+		};
+		E8EE47E31F6B4B7800AB13BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BaseObjectsLibrary;
+			targetProxy = E8EE47E21F6B4B7800AB13BC /* PBXContainerItemProxy */;
+		};
 		E8F5706E1B3F7255003F020C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E8F570521B3F7255003F020C /* Geocube */;

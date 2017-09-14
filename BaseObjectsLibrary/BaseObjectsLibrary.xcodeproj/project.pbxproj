@@ -13,6 +13,7 @@
 		E8EE47C01F6B479B00AB13BC /* GCDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47BC1F6B479B00AB13BC /* GCDictionary.m */; };
 		E8EE47C11F6B479B00AB13BC /* GCString.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47BE1F6B479B00AB13BC /* GCString.m */; };
 		E8EE47C41F6B484200AB13BC /* GCLocationCoordinate2D.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47C31F6B484200AB13BC /* GCLocationCoordinate2D.m */; };
+		E8EE47CC1F6B4AA100AB13BC /* GCBoundingBox.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47CB1F6B4AA100AB13BC /* GCBoundingBox.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +42,8 @@
 		E8EE47BE1F6B479B00AB13BC /* GCString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCString.m; sourceTree = "<group>"; };
 		E8EE47C21F6B484200AB13BC /* GCLocationCoordinate2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCLocationCoordinate2D.h; sourceTree = "<group>"; };
 		E8EE47C31F6B484200AB13BC /* GCLocationCoordinate2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCLocationCoordinate2D.m; sourceTree = "<group>"; };
+		E8EE47CA1F6B4AA100AB13BC /* GCBoundingBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCBoundingBox.h; sourceTree = "<group>"; };
+		E8EE47CB1F6B4AA100AB13BC /* GCBoundingBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCBoundingBox.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +77,14 @@
 			isa = PBXGroup;
 			children = (
 				E8EE47901F6B457C00AB13BC /* BaseObjectsLibrary.h */,
+				E8EE47E41F6B4D6500AB13BC /* Classes */,
+			);
+			path = BaseObjectsLibrary;
+			sourceTree = "<group>";
+		};
+		E8EE47E41F6B4D6500AB13BC /* Classes */ = {
+			isa = PBXGroup;
+			children = (
 				E8EE47A91F6B45C700AB13BC /* GCArray.h */,
 				E8EE47AA1F6B45C700AB13BC /* GCArray.m */,
 				E8EE47B91F6B479B00AB13BC /* GCDataObjects.h */,
@@ -84,8 +95,10 @@
 				E8EE47C31F6B484200AB13BC /* GCLocationCoordinate2D.m */,
 				E8EE47BD1F6B479B00AB13BC /* GCString.h */,
 				E8EE47BE1F6B479B00AB13BC /* GCString.m */,
+				E8EE47CA1F6B4AA100AB13BC /* GCBoundingBox.h */,
+				E8EE47CB1F6B4AA100AB13BC /* GCBoundingBox.m */,
 			);
-			path = BaseObjectsLibrary;
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +162,7 @@
 				E8EE47BF1F6B479B00AB13BC /* GCDataObjects.m in Sources */,
 				E8EE47C01F6B479B00AB13BC /* GCDictionary.m in Sources */,
 				E8EE47C11F6B479B00AB13BC /* GCString.m in Sources */,
+				E8EE47CC1F6B4AA100AB13BC /* GCBoundingBox.m in Sources */,
 				E8EE47C41F6B484200AB13BC /* GCLocationCoordinate2D.m in Sources */,
 				E8EE47AB1F6B45C700AB13BC /* GCArray.m in Sources */,
 			);
@@ -286,6 +300,7 @@
 				E8EE47981F6B457C00AB13BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
