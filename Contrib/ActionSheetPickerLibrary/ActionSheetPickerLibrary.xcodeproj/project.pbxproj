@@ -1,0 +1,321 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E84F35FC1F6A567A00C7BD20 /* ActionSheetPickerLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E84F35F91F6A567A00C7BD20 /* ActionSheetPickerLibrary.h */; };
+		E84F361C1F6A56CA00C7BD20 /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E84F36081F6A56CA00C7BD20 /* AbstractActionSheetPicker.m */; };
+		E84F361D1F6A56CA00C7BD20 /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E84F360B1F6A56CA00C7BD20 /* ActionSheetCustomPicker.m */; };
+		E84F361E1F6A56CA00C7BD20 /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E84F360E1F6A56CA00C7BD20 /* ActionSheetDatePicker.m */; };
+		E84F361F1F6A56CA00C7BD20 /* ActionSheetDistancePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E84F36101F6A56CA00C7BD20 /* ActionSheetDistancePicker.m */; };
+		E84F36201F6A56CA00C7BD20 /* ActionSheetLocalePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E84F36121F6A56CA00C7BD20 /* ActionSheetLocalePicker.m */; };
+		E84F36211F6A56CA00C7BD20 /* ActionSheetMultipleStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E84F36141F6A56CA00C7BD20 /* ActionSheetMultipleStringPicker.m */; };
+		E84F36221F6A56CA00C7BD20 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E84F36171F6A56CA00C7BD20 /* ActionSheetStringPicker.m */; };
+		E84F36231F6A56CA00C7BD20 /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E84F36191F6A56CA00C7BD20 /* DistancePickerView.m */; };
+		E84F36241F6A56CA00C7BD20 /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = E84F361B1F6A56CA00C7BD20 /* SWActionSheet.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E84F35F41F6A567A00C7BD20 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				E84F35FC1F6A567A00C7BD20 /* ActionSheetPickerLibrary.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		E84F35F61F6A567A00C7BD20 /* libActionSheetPickerLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libActionSheetPickerLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E84F35F91F6A567A00C7BD20 /* ActionSheetPickerLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionSheetPickerLibrary.h; sourceTree = "<group>"; };
+		E84F36081F6A56CA00C7BD20 /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractActionSheetPicker.m; sourceTree = "<group>"; };
+		E84F36091F6A56CA00C7BD20 /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractActionSheetPicker.h; sourceTree = "<group>"; };
+		E84F360A1F6A56CA00C7BD20 /* ActionSheetCustomPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetCustomPicker.h; sourceTree = "<group>"; };
+		E84F360B1F6A56CA00C7BD20 /* ActionSheetCustomPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetCustomPicker.m; sourceTree = "<group>"; };
+		E84F360C1F6A56CA00C7BD20 /* ActionSheetCustomPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetCustomPickerDelegate.h; sourceTree = "<group>"; };
+		E84F360D1F6A56CA00C7BD20 /* ActionSheetDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetDatePicker.h; sourceTree = "<group>"; };
+		E84F360E1F6A56CA00C7BD20 /* ActionSheetDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetDatePicker.m; sourceTree = "<group>"; };
+		E84F360F1F6A56CA00C7BD20 /* ActionSheetDistancePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetDistancePicker.h; sourceTree = "<group>"; };
+		E84F36101F6A56CA00C7BD20 /* ActionSheetDistancePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetDistancePicker.m; sourceTree = "<group>"; };
+		E84F36111F6A56CA00C7BD20 /* ActionSheetLocalePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetLocalePicker.h; sourceTree = "<group>"; };
+		E84F36121F6A56CA00C7BD20 /* ActionSheetLocalePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetLocalePicker.m; sourceTree = "<group>"; };
+		E84F36131F6A56CA00C7BD20 /* ActionSheetMultipleStringPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetMultipleStringPicker.h; sourceTree = "<group>"; };
+		E84F36141F6A56CA00C7BD20 /* ActionSheetMultipleStringPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetMultipleStringPicker.m; sourceTree = "<group>"; };
+		E84F36151F6A56CA00C7BD20 /* ActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetPicker.h; sourceTree = "<group>"; };
+		E84F36161F6A56CA00C7BD20 /* ActionSheetStringPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetStringPicker.h; sourceTree = "<group>"; };
+		E84F36171F6A56CA00C7BD20 /* ActionSheetStringPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetStringPicker.m; sourceTree = "<group>"; };
+		E84F36181F6A56CA00C7BD20 /* DistancePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistancePickerView.h; sourceTree = "<group>"; };
+		E84F36191F6A56CA00C7BD20 /* DistancePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistancePickerView.m; sourceTree = "<group>"; };
+		E84F361A1F6A56CA00C7BD20 /* SWActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWActionSheet.h; sourceTree = "<group>"; };
+		E84F361B1F6A56CA00C7BD20 /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWActionSheet.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E84F35F31F6A567A00C7BD20 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E84F35ED1F6A567A00C7BD20 = {
+			isa = PBXGroup;
+			children = (
+				E84F35F81F6A567A00C7BD20 /* ActionSheetPickerLibrary */,
+				E84F35F71F6A567A00C7BD20 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E84F35F71F6A567A00C7BD20 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E84F35F61F6A567A00C7BD20 /* libActionSheetPickerLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E84F35F81F6A567A00C7BD20 /* ActionSheetPickerLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				E84F36081F6A56CA00C7BD20 /* AbstractActionSheetPicker.m */,
+				E84F36091F6A56CA00C7BD20 /* AbstractActionSheetPicker.h */,
+				E84F360A1F6A56CA00C7BD20 /* ActionSheetCustomPicker.h */,
+				E84F360B1F6A56CA00C7BD20 /* ActionSheetCustomPicker.m */,
+				E84F360C1F6A56CA00C7BD20 /* ActionSheetCustomPickerDelegate.h */,
+				E84F360D1F6A56CA00C7BD20 /* ActionSheetDatePicker.h */,
+				E84F360E1F6A56CA00C7BD20 /* ActionSheetDatePicker.m */,
+				E84F360F1F6A56CA00C7BD20 /* ActionSheetDistancePicker.h */,
+				E84F36101F6A56CA00C7BD20 /* ActionSheetDistancePicker.m */,
+				E84F36111F6A56CA00C7BD20 /* ActionSheetLocalePicker.h */,
+				E84F36121F6A56CA00C7BD20 /* ActionSheetLocalePicker.m */,
+				E84F36131F6A56CA00C7BD20 /* ActionSheetMultipleStringPicker.h */,
+				E84F36141F6A56CA00C7BD20 /* ActionSheetMultipleStringPicker.m */,
+				E84F36151F6A56CA00C7BD20 /* ActionSheetPicker.h */,
+				E84F36161F6A56CA00C7BD20 /* ActionSheetStringPicker.h */,
+				E84F36171F6A56CA00C7BD20 /* ActionSheetStringPicker.m */,
+				E84F36181F6A56CA00C7BD20 /* DistancePickerView.h */,
+				E84F36191F6A56CA00C7BD20 /* DistancePickerView.m */,
+				E84F361A1F6A56CA00C7BD20 /* SWActionSheet.h */,
+				E84F361B1F6A56CA00C7BD20 /* SWActionSheet.m */,
+				E84F35F91F6A567A00C7BD20 /* ActionSheetPickerLibrary.h */,
+			);
+			path = ActionSheetPickerLibrary;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E84F35F51F6A567A00C7BD20 /* ActionSheetPickerLibrary */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E84F35FF1F6A567A00C7BD20 /* Build configuration list for PBXNativeTarget "ActionSheetPickerLibrary" */;
+			buildPhases = (
+				E84F35F21F6A567A00C7BD20 /* Sources */,
+				E84F35F31F6A567A00C7BD20 /* Frameworks */,
+				E84F35F41F6A567A00C7BD20 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ActionSheetPickerLibrary;
+			productName = ActionSheetPickerLibrary;
+			productReference = E84F35F61F6A567A00C7BD20 /* libActionSheetPickerLibrary.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E84F35EE1F6A567A00C7BD20 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Edwin Groothuis";
+				TargetAttributes = {
+					E84F35F51F6A567A00C7BD20 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = NRQ2A5FE8M;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E84F35F11F6A567A00C7BD20 /* Build configuration list for PBXProject "ActionSheetPickerLibrary" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E84F35ED1F6A567A00C7BD20;
+			productRefGroup = E84F35F71F6A567A00C7BD20 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E84F35F51F6A567A00C7BD20 /* ActionSheetPickerLibrary */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E84F35F21F6A567A00C7BD20 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E84F361E1F6A56CA00C7BD20 /* ActionSheetDatePicker.m in Sources */,
+				E84F36201F6A56CA00C7BD20 /* ActionSheetLocalePicker.m in Sources */,
+				E84F361D1F6A56CA00C7BD20 /* ActionSheetCustomPicker.m in Sources */,
+				E84F36231F6A56CA00C7BD20 /* DistancePickerView.m in Sources */,
+				E84F361F1F6A56CA00C7BD20 /* ActionSheetDistancePicker.m in Sources */,
+				E84F36241F6A56CA00C7BD20 /* SWActionSheet.m in Sources */,
+				E84F36221F6A56CA00C7BD20 /* ActionSheetStringPicker.m in Sources */,
+				E84F36211F6A56CA00C7BD20 /* ActionSheetMultipleStringPicker.m in Sources */,
+				E84F361C1F6A56CA00C7BD20 /* AbstractActionSheetPicker.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E84F35FD1F6A567A00C7BD20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E84F35FE1F6A567A00C7BD20 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E84F36001F6A567A00C7BD20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = NRQ2A5FE8M;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E84F36011F6A567A00C7BD20 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = NRQ2A5FE8M;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E84F35F11F6A567A00C7BD20 /* Build configuration list for PBXProject "ActionSheetPickerLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E84F35FD1F6A567A00C7BD20 /* Debug */,
+				E84F35FE1F6A567A00C7BD20 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E84F35FF1F6A567A00C7BD20 /* Build configuration list for PBXNativeTarget "ActionSheetPickerLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E84F36001F6A567A00C7BD20 /* Debug */,
+				E84F36011F6A567A00C7BD20 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E84F35EE1F6A567A00C7BD20 /* Project object */;
+}

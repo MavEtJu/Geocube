@@ -40,13 +40,9 @@
 #import <math.h>
 #import <sqlite3.h>
 
-#import "ActionSheetDatePicker.h"
-#import "ActionSheetDistancePicker.h"
-#import "ActionSheetStringPicker.h"
-#import "KxIntroView.h"
-#import "KxIntroViewController.h"
-#import "KxIntroViewPage.h"
+#import "ActionSheetPickerLibrary/ActionSheetPickerLibrary.h"
 #import "LXMapScaleView.h"
+#import "KxIntroLibrary/KxIntroLibrary.h"
 #import "MHTabBarController.h"
 #import "NKOColorPickerView.h"
 #import "NVHTarGzipLibrary/NVHTarGzipLibrary.h"
