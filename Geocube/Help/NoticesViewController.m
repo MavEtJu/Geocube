@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "NoticesViewController.h"
+
+#import "ImportGeocube.h"
+
 @interface NoticesViewController ()
 {
     NSArray<dbNotice *> *notices;

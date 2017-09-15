@@ -19,7 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "WaypointsListViewController.h"
+
 #import "RemoteAPIProcessingGroup.h"
+#import "ExportGPX.h"
 
 @interface WaypointsListViewController ()
 {

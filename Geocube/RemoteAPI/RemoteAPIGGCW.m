@@ -21,6 +21,8 @@
 
 #import "RemoteAPIGGCW.h"
 
+#import "ImportGGCWJSON.h"
+
 @interface RemoteAPIGGCW ()
 
 @end

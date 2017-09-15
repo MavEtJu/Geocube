@@ -22,6 +22,7 @@
 #import "RemoteAPILiveAPI.h"
 
 #import "ProtocolLiveAPI.h"
+#import "ImportLiveAPIJSON.h"
 
 @interface RemoteAPILiveAPI ()
 

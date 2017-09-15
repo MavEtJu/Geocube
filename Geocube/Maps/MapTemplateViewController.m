@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "MapTemplateViewController.h"
+
+#import "ExportGPX.h"
+
 @interface MapTemplateViewController ()
 {
     THLabel *distanceLabel;

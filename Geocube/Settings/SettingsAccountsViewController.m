@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "SettingsAccountsViewController.h"
+
+#import "ImportGeocube.h"
+
 @interface SettingsAccountsViewController ()
 {
     NSArray<dbAccount *> *accounts;

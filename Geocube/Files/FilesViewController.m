@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "FilesViewController.h"
+
+#import "ImportGeocube.h"
+
 @interface FilesViewController ()
 {
     NSMutableArray<NSString *> *filesNames;

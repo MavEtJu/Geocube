@@ -19,6 +19,15 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "ImportManager.h"
+
+#import "ImportGGCWJSON.h"
+#import "ImportGPX.h"
+#import "ImportGPXGarmin.h"
+#import "ImportGCA2JSON.h"
+#import "ImportOKAPIJSON.h"
+#import "ImportLiveAPIJSON.h"
+
 @interface ImportManager ()
 {
     NSMutableArray<NSString *> *filenames;
