@@ -19,33 +19,13 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface BezelManager ()
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@end
+@interface BezelManager : NSObject
 
-@implementation BezelManager
-
-- (void)showBezel:(UIViewController *)vc
-{
-    MAINQUEUE(
-        [SVProgressHUD setDefaultStyle:currentTheme.svProgressHUDStyle];
-        [SVProgressHUD showWithStatus:@"Doing stuff"];
-    )
-}
-
-- (void)setText:(NSString *)text
-{
-    MAINQUEUE(
-        [SVProgressHUD setDefaultStyle:currentTheme.svProgressHUDStyle];
-        [SVProgressHUD showWithStatus:text];
-    )
-}
-
-- (void)removeBezel
-{
-    MAINQUEUE(
-        [SVProgressHUD dismiss];
-    )
-}
+- (void)showBezel:(UIViewController *)vc;
+- (void)removeBezel;
+- (void)setText:(NSString *)text;
 
 @end

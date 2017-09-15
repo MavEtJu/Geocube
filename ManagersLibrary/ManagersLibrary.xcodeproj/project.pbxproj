@@ -11,6 +11,7 @@
 		E881CAD71F6BB21700A17060 /* AudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CAD41F6BB21700A17060 /* AudioFeedback.m */; };
 		E881CAD81F6BB21700A17060 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CAD61F6BB21700A17060 /* AudioManager.m */; };
 		E881CADC1F6BB32600A17060 /* KeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CADA1F6BB32600A17060 /* KeyManager.m */; };
+		E881CADF1F6BB7D300A17060 /* BezelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CADD1F6BB7D300A17060 /* BezelManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,6 +36,8 @@
 		E881CAD61F6BB21700A17060 /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
 		E881CADA1F6BB32600A17060 /* KeyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyManager.m; sourceTree = "<group>"; };
 		E881CADB1F6BB32600A17060 /* KeyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyManager.h; sourceTree = "<group>"; };
+		E881CADD1F6BB7D300A17060 /* BezelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BezelManager.m; sourceTree = "<group>"; };
+		E881CADE1F6BB7D300A17060 /* BezelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BezelManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +75,8 @@
 				E881CAD41F6BB21700A17060 /* AudioFeedback.m */,
 				E881CAD51F6BB21700A17060 /* AudioManager.h */,
 				E881CAD61F6BB21700A17060 /* AudioManager.m */,
+				E881CADE1F6BB7D300A17060 /* BezelManager.h */,
+				E881CADD1F6BB7D300A17060 /* BezelManager.m */,
 				E881CADB1F6BB32600A17060 /* KeyManager.h */,
 				E881CADA1F6BB32600A17060 /* KeyManager.m */,
 			);
@@ -138,6 +143,7 @@
 			files = (
 				E881CADC1F6BB32600A17060 /* KeyManager.m in Sources */,
 				E881CAD81F6BB21700A17060 /* AudioManager.m in Sources */,
+				E881CADF1F6BB7D300A17060 /* BezelManager.m in Sources */,
 				E881CAD71F6BB21700A17060 /* AudioFeedback.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -186,7 +192,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "${SRCROOT}/../Contrib/RNCryptorLibrary";
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../Contrib/RNCryptorLibrary",
+					"${SRCROOT}/../Geocube",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -229,7 +238,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "${SRCROOT}/../Contrib/RNCryptorLibrary";
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../Contrib/RNCryptorLibrary",
+					"${SRCROOT}/../Geocube",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
