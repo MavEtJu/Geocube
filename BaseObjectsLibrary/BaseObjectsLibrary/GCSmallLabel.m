@@ -19,9 +19,39 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCLabel : UILabel
+#import "GCSmallLabel.h"
 
-- (void)bold:(BOOL)onoff;
-- (void)changeTheme;
+#import "ThemeManager.h"
+
+@interface GCSmallLabel ()
+
+@end
+
+@implementation GCSmallLabel
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+
+    self.font = currentTheme.GCSmallFont;
+    [self changeTheme];
+
+    return self;
+}
+
+- (void)changeTheme
+{
+    self.textColor = currentTheme.labelTextColor;
+
+    // [themeManager changeTheme:self.subviews];
+}
+
+- (void)bold:(BOOL)onoff
+{
+    if (onoff == YES)
+        self.font = [UIFont boldSystemFontOfSize:currentTheme.GCSmallFont.pointSize];
+    else
+        self.font = [UIFont systemFontOfSize:currentTheme.GCSmallFont.pointSize];
+}
 
 @end

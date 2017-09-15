@@ -19,8 +19,13 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCSwitch : UISwitch
+#import <UIKit/UIKit.h>
 
+#import "GCLabel.h"
+
+@interface GCSmallLabel : GCLabel
+
+- (void)bold:(BOOL)onoff;
 - (void)changeTheme;
 
 @end

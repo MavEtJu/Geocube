@@ -17,6 +17,11 @@
 		E8EE47E81F6B4ECC00AB13BC /* GCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47E71F6B4ECC00AB13BC /* GCButton.m */; };
 		E8EE47EB1F6B50A100AB13BC /* GCFilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47EA1F6B50A100AB13BC /* GCFilterButton.m */; };
 		E8EE47EE1F6B514800AB13BC /* GCCloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47ED1F6B514800AB13BC /* GCCloseButton.m */; };
+		E8EE47F21F6B548000AB13BC /* GCLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47F11F6B548000AB13BC /* GCLabel.m */; };
+		E8EE47F51F6B550600AB13BC /* GCSmallLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47F41F6B550600AB13BC /* GCSmallLabel.m */; };
+		E8EE47FC1F6B567F00AB13BC /* GCImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47F71F6B567F00AB13BC /* GCImageView.m */; };
+		E8EE47FD1F6B567F00AB13BC /* GCScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47F91F6B567F00AB13BC /* GCScrollView.m */; };
+		E8EE47FE1F6B567F00AB13BC /* GCSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47FB1F6B567F00AB13BC /* GCSwitch.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +58,16 @@
 		E8EE47EA1F6B50A100AB13BC /* GCFilterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCFilterButton.m; sourceTree = "<group>"; };
 		E8EE47EC1F6B514800AB13BC /* GCCloseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCCloseButton.h; sourceTree = "<group>"; };
 		E8EE47ED1F6B514800AB13BC /* GCCloseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCCloseButton.m; sourceTree = "<group>"; };
+		E8EE47F01F6B548000AB13BC /* GCLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCLabel.h; sourceTree = "<group>"; };
+		E8EE47F11F6B548000AB13BC /* GCLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCLabel.m; sourceTree = "<group>"; };
+		E8EE47F31F6B550600AB13BC /* GCSmallLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSmallLabel.h; sourceTree = "<group>"; };
+		E8EE47F41F6B550600AB13BC /* GCSmallLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSmallLabel.m; sourceTree = "<group>"; };
+		E8EE47F61F6B567F00AB13BC /* GCImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCImageView.h; sourceTree = "<group>"; };
+		E8EE47F71F6B567F00AB13BC /* GCImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCImageView.m; sourceTree = "<group>"; };
+		E8EE47F81F6B567F00AB13BC /* GCScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCScrollView.h; sourceTree = "<group>"; };
+		E8EE47F91F6B567F00AB13BC /* GCScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCScrollView.m; sourceTree = "<group>"; };
+		E8EE47FA1F6B567F00AB13BC /* GCSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSwitch.h; sourceTree = "<group>"; };
+		E8EE47FB1F6B567F00AB13BC /* GCSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSwitch.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +135,16 @@
 				E8EE47ED1F6B514800AB13BC /* GCCloseButton.m */,
 				E8EE47E91F6B50A100AB13BC /* GCFilterButton.h */,
 				E8EE47EA1F6B50A100AB13BC /* GCFilterButton.m */,
+				E8EE47F61F6B567F00AB13BC /* GCImageView.h */,
+				E8EE47F71F6B567F00AB13BC /* GCImageView.m */,
+				E8EE47F01F6B548000AB13BC /* GCLabel.h */,
+				E8EE47F11F6B548000AB13BC /* GCLabel.m */,
+				E8EE47F81F6B567F00AB13BC /* GCScrollView.h */,
+				E8EE47F91F6B567F00AB13BC /* GCScrollView.m */,
+				E8EE47F31F6B550600AB13BC /* GCSmallLabel.h */,
+				E8EE47F41F6B550600AB13BC /* GCSmallLabel.m */,
+				E8EE47FA1F6B567F00AB13BC /* GCSwitch.h */,
+				E8EE47FB1F6B567F00AB13BC /* GCSwitch.m */,
 			);
 			name = "GUI objects";
 			sourceTree = "<group>";
@@ -182,12 +207,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8EE47FC1F6B567F00AB13BC /* GCImageView.m in Sources */,
+				E8EE47FE1F6B567F00AB13BC /* GCSwitch.m in Sources */,
 				E8EE47E81F6B4ECC00AB13BC /* GCButton.m in Sources */,
+				E8EE47F51F6B550600AB13BC /* GCSmallLabel.m in Sources */,
 				E8EE47BF1F6B479B00AB13BC /* GCDataObjects.m in Sources */,
 				E8EE47C01F6B479B00AB13BC /* GCDictionary.m in Sources */,
+				E8EE47FD1F6B567F00AB13BC /* GCScrollView.m in Sources */,
 				E8EE47C11F6B479B00AB13BC /* GCString.m in Sources */,
 				E8EE47CC1F6B4AA100AB13BC /* GCBoundingBox.m in Sources */,
 				E8EE47C41F6B484200AB13BC /* GCLocationCoordinate2D.m in Sources */,
+				E8EE47F21F6B548000AB13BC /* GCLabel.m in Sources */,
 				E8EE47AB1F6B45C700AB13BC /* GCArray.m in Sources */,
 				E8EE47EE1F6B514800AB13BC /* GCCloseButton.m in Sources */,
 				E8EE47EB1F6B50A100AB13BC /* GCFilterButton.m in Sources */,
@@ -242,6 +272,7 @@
 					"${SRCROOT}/../Geocube/contrib/**",
 					"${SRCROOT}/../Geocube/database/",
 					"${SRCROOT}/../Geocube/",
+					"${SRCROOT}/../Geocube/Themes/",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -289,6 +320,7 @@
 					"${SRCROOT}/../Geocube/contrib/**",
 					"${SRCROOT}/../Geocube/database/",
 					"${SRCROOT}/../Geocube/",
+					"${SRCROOT}/../Geocube/Themes/",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;

@@ -19,9 +19,32 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCSmallLabel : GCLabel
+#import "GCSwitch.h"
 
-- (void)bold:(BOOL)onoff;
-- (void)changeTheme;
+#import "ThemeManager.h"
+
+@interface GCSwitch ()
+
+@end
+
+@implementation GCSwitch
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+
+    [self changeTheme];
+
+    return self;
+}
+
+- (void)changeTheme
+{
+    self.onTintColor = currentTheme.switchOnTintColor;
+    self.tintColor = currentTheme.switchTintColor;
+    self.thumbTintColor = currentTheme.switchThumbTintColor;
+
+    [themeManager changeThemeArray:self.subviews];
+}
 
 @end

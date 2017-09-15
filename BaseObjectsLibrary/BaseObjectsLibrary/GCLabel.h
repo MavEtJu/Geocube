@@ -19,33 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCLabel ()
+#import <UIKit/UIKit.h>
 
-@end
+@interface GCLabel : UILabel
 
-@implementation GCLabel
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-
-    self.font = currentTheme.GCLabelFont;
-    [self changeTheme];
-
-    return self;
-}
-
-- (void)changeTheme
-{
-    self.textColor = currentTheme.labelTextColor;
-}
-
-- (void)bold:(BOOL)onoff
-{
-    if (onoff == YES)
-        self.font = [UIFont boldSystemFontOfSize:currentTheme.GCLabelFont.pointSize];
-    else
-        self.font = [UIFont systemFontOfSize:currentTheme.GCLabelFont.pointSize];
-}
+- (void)bold:(BOOL)onoff;
+- (void)changeTheme;
 
 @end

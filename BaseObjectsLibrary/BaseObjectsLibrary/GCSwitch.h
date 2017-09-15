@@ -19,15 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCScrollView ()
+#import <UIKit/UIKit.h>
 
-@end
+@interface GCSwitch : UISwitch
 
-@implementation GCScrollView
-
-- (void)changeTheme
-{
-    [themeManager changeThemeArray:[self subviews]];
-}
+- (void)changeTheme;
 
 @end

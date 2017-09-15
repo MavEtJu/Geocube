@@ -19,8 +19,19 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCImageView : UIImageView
+#import "GCScrollView.h"
 
-- (void)changeTheme;
+#import "ThemeManager.h"
+
+@interface GCScrollView ()
+
+@end
+
+@implementation GCScrollView
+
+- (void)changeTheme
+{
+    [themeManager changeThemeArray:[self subviews]];
+}
 
 @end

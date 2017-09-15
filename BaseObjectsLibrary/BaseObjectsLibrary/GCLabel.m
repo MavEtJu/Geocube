@@ -19,8 +19,37 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCScrollView : UIScrollView
+#import "GCLabel.h"
 
-- (void)changeTheme;
+#import "ThemeManager.h"
+
+@interface GCLabel ()
+
+@end
+
+@implementation GCLabel
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+
+    self.font = currentTheme.GCLabelFont;
+    [self changeTheme];
+
+    return self;
+}
+
+- (void)changeTheme
+{
+    self.textColor = currentTheme.labelTextColor;
+}
+
+- (void)bold:(BOOL)onoff
+{
+    if (onoff == YES)
+        self.font = [UIFont boldSystemFontOfSize:currentTheme.GCLabelFont.pointSize];
+    else
+        self.font = [UIFont systemFontOfSize:currentTheme.GCLabelFont.pointSize];
+}
 
 @end

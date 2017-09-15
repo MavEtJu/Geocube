@@ -220,11 +220,6 @@
 		E82344C01EECE0E800D2CDFD /* SettingsLogTemplatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344B81EECE0E800D2CDFD /* SettingsLogTemplatesViewController.m */; };
 		E82344C11EECE0E800D2CDFD /* SettingsMainColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344BA1EECE0E800D2CDFD /* SettingsMainColorPickerViewController.m */; };
 		E82344C21EECE0E800D2CDFD /* SettingsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344BC1EECE0E800D2CDFD /* SettingsMainViewController.m */; };
-		E82344F41EECE12A00D2CDFD /* GCImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344CA1EECE12A00D2CDFD /* GCImageView.m */; };
-		E82344F51EECE12A00D2CDFD /* GCLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344CC1EECE12A00D2CDFD /* GCLabel.m */; };
-		E82344F61EECE12A00D2CDFD /* GCScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344CE1EECE12A00D2CDFD /* GCScrollView.m */; };
-		E82344F71EECE12A00D2CDFD /* GCSmallLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344D01EECE12A00D2CDFD /* GCSmallLabel.m */; };
-		E82344F81EECE12A00D2CDFD /* GCSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344D21EECE12A00D2CDFD /* GCSwitch.m */; };
 		E82344F91EECE12A00D2CDFD /* GCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344D41EECE12A00D2CDFD /* GCTableViewCell.m */; };
 		E82344FA1EECE12A00D2CDFD /* GCTableViewCellKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344D61EECE12A00D2CDFD /* GCTableViewCellKeyValue.m */; };
 		E82344FB1EECE12A00D2CDFD /* GCTableViewCellKeyValue.xib in Resources */ = {isa = PBXBuildFile; fileRef = E82344D71EECE12A00D2CDFD /* GCTableViewCellKeyValue.xib */; };
@@ -1255,16 +1250,6 @@
 		E82344BA1EECE0E800D2CDFD /* SettingsMainColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsMainColorPickerViewController.m; path = Settings/SettingsMainColorPickerViewController.m; sourceTree = "<group>"; };
 		E82344BB1EECE0E800D2CDFD /* SettingsMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsMainViewController.h; path = Settings/SettingsMainViewController.h; sourceTree = "<group>"; };
 		E82344BC1EECE0E800D2CDFD /* SettingsMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsMainViewController.m; path = Settings/SettingsMainViewController.m; sourceTree = "<group>"; };
-		E82344C91EECE12A00D2CDFD /* GCImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCImageView.h; path = GCBaseObjects/GCImageView.h; sourceTree = "<group>"; };
-		E82344CA1EECE12A00D2CDFD /* GCImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCImageView.m; path = GCBaseObjects/GCImageView.m; sourceTree = "<group>"; };
-		E82344CB1EECE12A00D2CDFD /* GCLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCLabel.h; path = GCBaseObjects/GCLabel.h; sourceTree = "<group>"; };
-		E82344CC1EECE12A00D2CDFD /* GCLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCLabel.m; path = GCBaseObjects/GCLabel.m; sourceTree = "<group>"; };
-		E82344CD1EECE12A00D2CDFD /* GCScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCScrollView.h; path = GCBaseObjects/GCScrollView.h; sourceTree = "<group>"; };
-		E82344CE1EECE12A00D2CDFD /* GCScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCScrollView.m; path = GCBaseObjects/GCScrollView.m; sourceTree = "<group>"; };
-		E82344CF1EECE12A00D2CDFD /* GCSmallLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCSmallLabel.h; path = GCBaseObjects/GCSmallLabel.h; sourceTree = "<group>"; };
-		E82344D01EECE12A00D2CDFD /* GCSmallLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCSmallLabel.m; path = GCBaseObjects/GCSmallLabel.m; sourceTree = "<group>"; };
-		E82344D11EECE12A00D2CDFD /* GCSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCSwitch.h; path = GCBaseObjects/GCSwitch.h; sourceTree = "<group>"; };
-		E82344D21EECE12A00D2CDFD /* GCSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCSwitch.m; path = GCBaseObjects/GCSwitch.m; sourceTree = "<group>"; };
 		E82344D31EECE12A00D2CDFD /* GCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCTableViewCell.h; path = GCBaseObjects/GCTableViewCell.h; sourceTree = "<group>"; };
 		E82344D41EECE12A00D2CDFD /* GCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCTableViewCell.m; path = GCBaseObjects/GCTableViewCell.m; sourceTree = "<group>"; };
 		E82344D51EECE12A00D2CDFD /* GCTableViewCellKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCTableViewCellKeyValue.h; path = GCBaseObjects/GCTableViewCellKeyValue.h; sourceTree = "<group>"; };
@@ -2354,16 +2339,6 @@
 		E85760161B85E08F00F34483 /* Base GUI objects */ = {
 			isa = PBXGroup;
 			children = (
-				E82344C91EECE12A00D2CDFD /* GCImageView.h */,
-				E82344CA1EECE12A00D2CDFD /* GCImageView.m */,
-				E82344CB1EECE12A00D2CDFD /* GCLabel.h */,
-				E82344CC1EECE12A00D2CDFD /* GCLabel.m */,
-				E82344CD1EECE12A00D2CDFD /* GCScrollView.h */,
-				E82344CE1EECE12A00D2CDFD /* GCScrollView.m */,
-				E82344CF1EECE12A00D2CDFD /* GCSmallLabel.h */,
-				E82344D01EECE12A00D2CDFD /* GCSmallLabel.m */,
-				E82344D11EECE12A00D2CDFD /* GCSwitch.h */,
-				E82344D21EECE12A00D2CDFD /* GCSwitch.m */,
 				E82344D31EECE12A00D2CDFD /* GCTableViewCell.h */,
 				E82344D41EECE12A00D2CDFD /* GCTableViewCell.m */,
 				E82344D51EECE12A00D2CDFD /* GCTableViewCellKeyValue.h */,
@@ -4269,7 +4244,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E82344F51EECE12A00D2CDFD /* GCLabel.m in Sources */,
 				E82344711EECE08A00D2CDFD /* GroupsTemplateViewController.m in Sources */,
 				E83C6EEC1EECE1CB00E303F5 /* ConfigManager.m in Sources */,
 				E82344831EECE09C00D2CDFD /* ListInProgressViewController.m in Sources */,
@@ -4327,7 +4301,6 @@
 				E823435E1EECDAEF00D2CDFD /* SideMenu.m in Sources */,
 				E83C6F001EECE67100E303F5 /* FileBrowserViewController.m in Sources */,
 				E823450B1EECE12B00D2CDFD /* GCViewController.m in Sources */,
-				E82344F41EECE12A00D2CDFD /* GCImageView.m in Sources */,
 				E82344801EECE09C00D2CDFD /* ListFoundViewController.m in Sources */,
 				E82344FA1EECE12A00D2CDFD /* GCTableViewCellKeyValue.m in Sources */,
 				E82343AC1EECDDD400D2CDFD /* GCWaypointAnnotation.m in Sources */,
@@ -4438,12 +4411,10 @@
 				E82343321EECD9BC00D2CDFD /* RemoteAPILiveAPI.m in Sources */,
 				E82344301EECDFB300D2CDFD /* FilterOthersTableViewCell.m in Sources */,
 				E823439B1EECDBCF00D2CDFD /* MapGoogle.m in Sources */,
-				E82344F71EECE12A00D2CDFD /* GCSmallLabel.m in Sources */,
 				E82344C21EECE0E800D2CDFD /* SettingsMainViewController.m in Sources */,
 				E83C6EF01EECE1CB00E303F5 /* WaypointManager.m in Sources */,
 				E82344A91EECE0C900D2CDFD /* BrowserBrowserViewController.m in Sources */,
 				E82342B41EECD0B100D2CDFD /* dbCountry.m in Sources */,
-				E82344F81EECE12A00D2CDFD /* GCSwitch.m in Sources */,
 				E82344361EECDFB300D2CDFD /* FilterTypesTableViewCell.m in Sources */,
 				E82345241EECE14A00D2CDFD /* DeveloperImagesViewController.m in Sources */,
 				E82344401EECE01500D2CDFD /* KeepTracksTrackTableViewCell.m in Sources */,
@@ -4481,7 +4452,6 @@
 				E87DF78E1D8564A800F16B5A /* InfoViewer.m in Sources */,
 				E82345091EECE12B00D2CDFD /* GCTextblock.m in Sources */,
 				E82343311EECD9BC00D2CDFD /* RemoteAPIGGCW.m in Sources */,
-				E82344F61EECE12A00D2CDFD /* GCScrollView.m in Sources */,
 				E85BA88E1F544372008E708F /* KeepTrackBeeper.m in Sources */,
 				E82343781EECDB4500D2CDFD /* ThemeNight.m in Sources */,
 				E82341FF1EECCEDB00D2CDFD /* LXMapScaleView.m in Sources */,

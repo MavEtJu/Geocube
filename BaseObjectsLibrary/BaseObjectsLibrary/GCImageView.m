@@ -19,11 +19,15 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCSwitch ()
+#import "GCImageView.h"
+
+#import "ThemeManager.h"
+
+@interface GCImageView ()
 
 @end
 
-@implementation GCSwitch
+@implementation GCImageView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -36,10 +40,6 @@
 
 - (void)changeTheme
 {
-    self.onTintColor = currentTheme.switchOnTintColor;
-    self.tintColor = currentTheme.switchTintColor;
-    self.thumbTintColor = currentTheme.switchThumbTintColor;
-
     [themeManager changeThemeArray:self.subviews];
 }
 

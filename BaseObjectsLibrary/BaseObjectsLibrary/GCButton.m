@@ -21,7 +21,7 @@
 
 #import "GCButton.h"
 
-#import "../../Geocube/Themes/ThemeManager.h"
+#import "ThemeManager.h"
 
 @interface GCButton ()
 

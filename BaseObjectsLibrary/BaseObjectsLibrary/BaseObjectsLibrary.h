@@ -18,3 +18,8 @@
 #import <BaseObjectsLibrary/GCButton.h>
 #import <BaseObjectsLibrary/GCCloseButton.h>
 #import <BaseObjectsLibrary/GCFilterButton.h>
+#import <BaseObjectsLibrary/GCImageView.h>
+#import <BaseObjectsLibrary/GCLabel.h>
+#import <BaseObjectsLibrary/GCScrollView.h>
+#import <BaseObjectsLibrary/GCSmallLabel.h>
+#import <BaseObjectsLibrary/GCSwitch.h>
