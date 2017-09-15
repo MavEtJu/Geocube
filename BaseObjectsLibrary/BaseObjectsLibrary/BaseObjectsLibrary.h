@@ -23,6 +23,8 @@
 #import "BaseObjectsLibrary/GCSmallLabel.h"
 #import "BaseObjectsLibrary/GCSwitch.h"
 #import "BaseObjectsLibrary/GCTableViewCell.h"
+#import "BaseObjectsLibrary/GCTableViewController.h"
 #import "BaseObjectsLibrary/GCTableViewHeaderFooterView.h"
 #import "BaseObjectsLibrary/GCTextblock.h"
 #import "BaseObjectsLibrary/GCView.h"
+#import "BaseObjectsLibrary/GCViewController.h"

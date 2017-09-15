@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E857843F1F6BE46D00D25EE6 /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E857843E1F6BE46D00D25EE6 /* GCViewController.m */; };
+		E85784421F6BE6C400D25EE6 /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85784411F6BE6C400D25EE6 /* GCTableViewController.m */; };
 		E881C9DB1F6B788200A17060 /* GCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E881C9DA1F6B788100A17060 /* GCTableViewCell.m */; };
 		E881CA881F6BB0A000A17060 /* GCURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CA871F6BB0A000A17060 /* GCURLRequest.m */; };
 		E8EE47931F6B457C00AB13BC /* BaseObjectsLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E8EE47901F6B457C00AB13BC /* BaseObjectsLibrary.h */; };
@@ -43,6 +45,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E857843D1F6BE46D00D25EE6 /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCViewController.h; sourceTree = "<group>"; };
+		E857843E1F6BE46D00D25EE6 /* GCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCViewController.m; sourceTree = "<group>"; };
+		E85784401F6BE6C400D25EE6 /* GCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewController.h; sourceTree = "<group>"; };
+		E85784411F6BE6C400D25EE6 /* GCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewController.m; sourceTree = "<group>"; };
 		E881C9D91F6B788100A17060 /* GCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCell.h; sourceTree = "<group>"; };
 		E881C9DA1F6B788100A17060 /* GCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCell.m; sourceTree = "<group>"; };
 		E881CA861F6BB0A000A17060 /* GCURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCURLRequest.h; sourceTree = "<group>"; };
@@ -170,6 +176,10 @@
 				E8EE48041F6B57DA00AB13BC /* GCTextblock.m */,
 				E8EE48051F6B57DA00AB13BC /* GCView.h */,
 				E8EE48061F6B57DA00AB13BC /* GCView.m */,
+				E857843D1F6BE46D00D25EE6 /* GCViewController.h */,
+				E857843E1F6BE46D00D25EE6 /* GCViewController.m */,
+				E85784401F6BE6C400D25EE6 /* GCTableViewController.h */,
+				E85784411F6BE6C400D25EE6 /* GCTableViewController.m */,
 			);
 			name = "GUI objects";
 			sourceTree = "<group>";
@@ -234,11 +244,13 @@
 			files = (
 				E881CA881F6BB0A000A17060 /* GCURLRequest.m in Sources */,
 				E8EE47FC1F6B567F00AB13BC /* GCImageView.m in Sources */,
+				E857843F1F6BE46D00D25EE6 /* GCViewController.m in Sources */,
 				E8EE47FE1F6B567F00AB13BC /* GCSwitch.m in Sources */,
 				E8EE480C1F6B57DA00AB13BC /* GCView.m in Sources */,
 				E8EE47E81F6B4ECC00AB13BC /* GCButton.m in Sources */,
 				E8EE47F51F6B550600AB13BC /* GCSmallLabel.m in Sources */,
 				E8EE47BF1F6B479B00AB13BC /* GCDataObjects.m in Sources */,
+				E85784421F6BE6C400D25EE6 /* GCTableViewController.m in Sources */,
 				E8EE47C01F6B479B00AB13BC /* GCDictionary.m in Sources */,
 				E8EE47FD1F6B567F00AB13BC /* GCScrollView.m in Sources */,
 				E8EE47C11F6B479B00AB13BC /* GCString.m in Sources */,
@@ -303,6 +315,8 @@
 					"${SRCROOT}/../ToolsLibrary",
 					"${SRCROOT}/../ManagersLibrary",
 					"${SRCROOT}/../ThemesLibrary",
+					"${SRCROOT}/../Contrib/ContribLibrary",
+					"${SRCROOT}/../BaseObjectsLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -351,6 +365,8 @@
 					"${SRCROOT}/../ToolsLibrary",
 					"${SRCROOT}/../ManagersLibrary",
 					"${SRCROOT}/../ThemesLibrary",
+					"${SRCROOT}/../Contrib/ContribLibrary",
+					"${SRCROOT}/../BaseObjectsLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;

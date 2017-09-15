@@ -19,7 +19,9 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <UIKit/UIKit.h>
+#import "contrib/MHTabBarController/MHTabBarController.h"
+#import "Menus/SideMenu.h"
+#import "InfoViewer.h"
 
 @interface GCTableViewController : UITableViewController <MHTabBarControllerDelegate, SideMenuDelegate>
 {

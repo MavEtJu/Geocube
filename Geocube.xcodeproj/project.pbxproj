@@ -547,8 +547,6 @@
 		E8EE47B61F6B473200AB13BC /* libYIPopupTextViewLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE47401F6B429C00AB13BC /* libYIPopupTextViewLibrary.a */; };
 		E8EE47B81F6B473200AB13BC /* libContribLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE47B71F6B473200AB13BC /* libContribLibrary.a */; };
 		E8EE47CD1F6B4B0800AB13BC /* libBaseObjectsLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE47C91F6B488C00AB13BC /* libBaseObjectsLibrary.a */; };
-		E8EE48121F6B772F00AB13BC /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE480F1F6B772F00AB13BC /* GCTableViewController.m */; };
-		E8EE48131F6B772F00AB13BC /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE48111F6B772F00AB13BC /* GCViewController.m */; };
 		E8F403E81DAF5B2600318CC6 /* cache - reverse - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */; };
 		E8F403EB1DAFA23600318CC6 /* cache - reverse - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */; };
 		E8F403EC1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */; };
@@ -1622,10 +1620,6 @@
 		E8EE47991F6B457C00AB13BC /* BaseObjectsLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BaseObjectsLibrary.xcodeproj; path = ../BaseObjectsLibrary/BaseObjectsLibrary.xcodeproj; sourceTree = "<group>"; };
 		E8EE47B71F6B473200AB13BC /* libContribLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libContribLibrary.a; path = "../../Library/Developer/Xcode/DerivedData/Geocube-bjprugvtqrcyrnatajlgnpwinftk/Build/Products/Debug-iphonesimulator/libContribLibrary.a"; sourceTree = "<group>"; };
 		E8EE47EF1F6B525000AB13BC /* DatabaseLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DatabaseLibrary.h; path = database/DatabaseLibrary.h; sourceTree = "<group>"; };
-		E8EE480E1F6B772F00AB13BC /* GCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCTableViewController.h; path = GCBaseObjects/GCTableViewController.h; sourceTree = "<group>"; };
-		E8EE480F1F6B772F00AB13BC /* GCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCTableViewController.m; path = GCBaseObjects/GCTableViewController.m; sourceTree = "<group>"; };
-		E8EE48101F6B772F00AB13BC /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCViewController.h; path = GCBaseObjects/GCViewController.h; sourceTree = "<group>"; };
-		E8EE48111F6B772F00AB13BC /* GCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCViewController.m; path = GCBaseObjects/GCViewController.m; sourceTree = "<group>"; };
 		E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30.png"; path = "images/caches/cache - reverse - 30x30.png"; sourceTree = "<group>"; };
 		E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@2x.png"; path = "images/caches/cache - reverse - 30x30@2x.png"; sourceTree = "<group>"; };
 		E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@3x.png"; path = "images/caches/cache - reverse - 30x30@3x.png"; sourceTree = "<group>"; };
@@ -2285,10 +2279,6 @@
 		E85760161B85E08F00F34483 /* Base GUI objects */ = {
 			isa = PBXGroup;
 			children = (
-				E8EE480E1F6B772F00AB13BC /* GCTableViewController.h */,
-				E8EE480F1F6B772F00AB13BC /* GCTableViewController.m */,
-				E8EE48101F6B772F00AB13BC /* GCViewController.h */,
-				E8EE48111F6B772F00AB13BC /* GCViewController.m */,
 				E82344D51EECE12A00D2CDFD /* GCTableViewCellKeyValue.h */,
 				E82344D61EECE12A00D2CDFD /* GCTableViewCellKeyValue.m */,
 				E82344D71EECE12A00D2CDFD /* GCTableViewCellKeyValue.xib */,
@@ -4303,7 +4293,6 @@
 				E82342C81EECD0B100D2CDFD /* dbSymbol.m in Sources */,
 				E82344331EECDFB300D2CDFD /* FilterTableViewCell.m in Sources */,
 				E82343F71EECDF4400D2CDFD /* WaypointLogsViewController.m in Sources */,
-				E8EE48131F6B772F00AB13BC /* GCViewController.m in Sources */,
 				E82343C61EECDEA100D2CDFD /* WaypointAddViewController.m in Sources */,
 				E815B7831F67FCB2003A6092 /* FileKMLViewController.m in Sources */,
 				E82343F91EECDF4400D2CDFD /* WaypointRawViewController.m in Sources */,
@@ -4338,7 +4327,6 @@
 				E82343BB1EECDE6C00D2CDFD /* WaypointLogImagesViewController.m in Sources */,
 				E82344291EECDFB300D2CDFD /* FilterDifficultyTableViewCell.m in Sources */,
 				E82343351EECD9BC00D2CDFD /* RemoteAPITemplate.m in Sources */,
-				E8EE48121F6B772F00AB13BC /* GCTableViewController.m in Sources */,
 				E823424E1EECCF9300D2CDFD /* SVProgressHUD.m in Sources */,
 				E82342C41EECD0B100D2CDFD /* dbPin.m in Sources */,
 				E83C6F041EECE67100E303F5 /* FilesTableViewCell.m in Sources */,

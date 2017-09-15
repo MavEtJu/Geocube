@@ -22,6 +22,11 @@
 #import "GCViewController.h"
 
 #import "ThemesLibrary/ThemeManager.h"
+#import "ToolsLibrary/MyTools.h"
+#import "GCCloseButton.h"
+#import "InfoViewer.h"
+
+#import "Geocube.h"
 
 @interface GCViewController ()
 {
