@@ -519,7 +519,7 @@
 		E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FEB1B509575002527DA /* LogTableViewCell.m */; };
 		E87DF78E1D8564A800F16B5A /* InfoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF78D1D8564A800F16B5A /* InfoViewer.m */; };
 		E87F58D11F46F0C200C90375 /* dbLogStringWaypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E87F58D01F46F0C200C90375 /* dbLogStringWaypoint.m */; };
-		E881CA4D1F6B9B9E00A17060 /* libLocalizationLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CA491F6B9AC600A17060 /* libLocalizationLibrary.a */; };
+		E881CA6E1F6BA08500A17060 /* libToolsLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CA6A1F6B9F9700A17060 /* libToolsLibrary.a */; };
 		E88258351E9FA03700FCF9B2 /* Close Window - 640x430.png in Resources */ = {isa = PBXBuildFile; fileRef = E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */; };
 		E88258371E9FA15F00FCF9B2 /* Map icons - 362x86.png in Resources */ = {isa = PBXBuildFile; fileRef = E88258361E9FA15F00FCF9B2 /* Map icons - 362x86.png */; };
 		E8845CA91EF3628900A47F5D /* FileObjectView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8845CA81EF3628900A47F5D /* FileObjectView~ipad.xib */; };
@@ -674,12 +674,12 @@
 			remoteGlobalIDString = E84F36541F6A5A0800C7BD20;
 			remoteInfo = ContribLibrary;
 		};
-		E881CA481F6B9AC600A17060 /* PBXContainerItemProxy */ = {
+		E881CA691F6B9F9700A17060 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E881CA441F6B9AC500A17060 /* LocalizationLibrary.xcodeproj */;
+			containerPortal = E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = E881CA381F6B9AC500A17060;
-			remoteInfo = LocalizationLibrary;
+			remoteGlobalIDString = E881CA591F6B9F9600A17060;
+			remoteInfo = ToolsLibrary;
 		};
 		E8EE47301F6B429000AB13BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1605,8 +1605,8 @@
 		E87F58CF1F46F0C200C90375 /* dbLogStringWaypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbLogStringWaypoint.h; path = database/dbLogStringWaypoint.h; sourceTree = "<group>"; };
 		E87F58D01F46F0C200C90375 /* dbLogStringWaypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbLogStringWaypoint.m; path = database/dbLogStringWaypoint.m; sourceTree = "<group>"; };
 		E87FE7951EFFD25F009FA65B /* Geocube-Defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Defines.h"; sourceTree = "<group>"; };
-		E881CA441F6B9AC500A17060 /* LocalizationLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LocalizationLibrary.xcodeproj; path = LocalizationLibrary/LocalizationLibrary.xcodeproj; sourceTree = "<group>"; };
 		E881CA4F1F6B9CC400A17060 /* Geocube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geocube.h; sourceTree = "<group>"; };
+		E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ToolsLibrary.xcodeproj; path = ToolsLibrary/ToolsLibrary.xcodeproj; sourceTree = "<group>"; };
 		E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Close Window - 640x430.png"; path = "images/introduction/Close Window - 640x430.png"; sourceTree = "<group>"; };
 		E88258361E9FA15F00FCF9B2 /* Map icons - 362x86.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Map icons - 362x86.png"; path = "images/introduction/Map icons - 362x86.png"; sourceTree = "<group>"; };
 		E8845CA81EF3628900A47F5D /* FileObjectView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "FileObjectView~ipad.xib"; path = "Files/FileObjectView~ipad.xib"; sourceTree = "<group>"; };
@@ -1783,7 +1783,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E881CA4D1F6B9B9E00A17060 /* libLocalizationLibrary.a in Frameworks */,
+				E881CA6E1F6BA08500A17060 /* libToolsLibrary.a in Frameworks */,
 				E8EE47CD1F6B4B0800AB13BC /* libBaseObjectsLibrary.a in Frameworks */,
 				E8EE47B81F6B473200AB13BC /* libContribLibrary.a in Frameworks */,
 				E8EE47AC1F6B473200AB13BC /* libActionSheetPickerLibrary.a in Frameworks */,
@@ -2743,10 +2743,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E881CA451F6B9AC500A17060 /* Products */ = {
+		E881CA661F6B9F9600A17060 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E881CA491F6B9AC600A17060 /* libLocalizationLibrary.a */,
+				E881CA6A1F6B9F9700A17060 /* libToolsLibrary.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3197,7 +3197,7 @@
 		E8F5704A1B3F7255003F020C = {
 			isa = PBXGroup;
 			children = (
-				E881CA441F6B9AC500A17060 /* LocalizationLibrary.xcodeproj */,
+				E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */,
 				E8F570551B3F7255003F020C /* Geocube */,
 				E80732F91B633A74007FDC29 /* objects */,
 				E8F570541B3F7255003F020C /* Products */,
@@ -3645,10 +3645,6 @@
 					ProjectRef = E84F363B1F6A573100C7BD20 /* KxIntroLibrary.xcodeproj */;
 				},
 				{
-					ProductGroup = E881CA451F6B9AC500A17060 /* Products */;
-					ProjectRef = E881CA441F6B9AC500A17060 /* LocalizationLibrary.xcodeproj */;
-				},
-				{
 					ProductGroup = E8EE47501F6B429D00AB13BC /* Products */;
 					ProjectRef = E8F553C41F6A415A0054806E /* NVHTarGzipLibrary.xcodeproj */;
 				},
@@ -3667,6 +3663,10 @@
 				{
 					ProductGroup = E8EE47321F6B429C00AB13BC /* Products */;
 					ProjectRef = E8A6584F1F6A7D44004D56D5 /* TFHppleLibrary.xcodeproj */;
+				},
+				{
+					ProductGroup = E881CA661F6B9F9600A17060 /* Products */;
+					ProjectRef = E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */;
 				},
 				{
 					ProductGroup = E8EE47341F6B429C00AB13BC /* Products */;
@@ -3695,11 +3695,11 @@
 			remoteRef = E881C9D71F6B77F400A17060 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E881CA491F6B9AC600A17060 /* libLocalizationLibrary.a */ = {
+		E881CA6A1F6B9F9700A17060 /* libToolsLibrary.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libLocalizationLibrary.a;
-			remoteRef = E881CA481F6B9AC600A17060 /* PBXContainerItemProxy */;
+			path = libToolsLibrary.a;
+			remoteRef = E881CA691F6B9F9700A17060 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E8EE47311F6B429000AB13BC /* libActionSheetPickerLibrary.a */ = {
@@ -4766,7 +4766,7 @@
 					"${SRCROOT}/Contrib/**",
 					"${SRCROOT}/Geocube",
 					"${SRCROOT}/BaseObjectsLibrary",
-					"${SRCROOT}/LocalizationLibrary",
+					"${SRCROOT}/ToolsLibrary",
 				);
 				INFOPLIST_FILE = Geocube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
@@ -4805,7 +4805,7 @@
 					"${SRCROOT}/Contrib/**",
 					"${SRCROOT}/Geocube",
 					"${SRCROOT}/BaseObjectsLibrary",
-					"${SRCROOT}/LocalizationLibrary",
+					"${SRCROOT}/ToolsLibrary",
 				);
 				INFOPLIST_FILE = Geocube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;

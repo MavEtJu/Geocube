@@ -60,7 +60,7 @@
 #import "Geocube-Defines.h"
 #import "Geocube-Globals.h"
 
-#import "LocalizationLibrary/LocalizationLibrary.h"
+#import "ToolsLibrary/ToolsLibrary.h"
 #import "GCTools/MyTools.h"
 #import "GCTools/MyClock.h"
 #import "GCTools/Coordinates.h"

@@ -7,32 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E881CA3E1F6B9AC500A17060 /* LocalizationLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E881CA3B1F6B9AC500A17060 /* LocalizationLibrary.h */; };
-		E881CA4C1F6B9AFB00A17060 /* LocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CA4B1F6B9AFB00A17060 /* LocalizationManager.m */; };
+		E881CA5F1F6B9F9600A17060 /* ToolsLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E881CA5C1F6B9F9600A17060 /* ToolsLibrary.h */; };
+		E881CA6D1F6BA00000A17060 /* LocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CA6C1F6BA00000A17060 /* LocalizationManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		E881CA361F6B9AC500A17060 /* CopyFiles */ = {
+		E881CA571F6B9F9600A17060 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				E881CA3E1F6B9AC500A17060 /* LocalizationLibrary.h in CopyFiles */,
+				E881CA5F1F6B9F9600A17060 /* ToolsLibrary.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		E881CA381F6B9AC500A17060 /* libLocalizationLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLocalizationLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		E881CA3B1F6B9AC500A17060 /* LocalizationLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalizationLibrary.h; sourceTree = "<group>"; };
-		E881CA4A1F6B9AFB00A17060 /* LocalizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizationManager.h; sourceTree = "<group>"; };
-		E881CA4B1F6B9AFB00A17060 /* LocalizationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizationManager.m; sourceTree = "<group>"; };
+		E881CA591F6B9F9600A17060 /* libToolsLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libToolsLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E881CA5C1F6B9F9600A17060 /* ToolsLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToolsLibrary.h; sourceTree = "<group>"; };
+		E881CA6B1F6BA00000A17060 /* LocalizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizationManager.h; sourceTree = "<group>"; };
+		E881CA6C1F6BA00000A17060 /* LocalizationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizationManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E881CA351F6B9AC500A17060 /* Frameworks */ = {
+		E881CA561F6B9F9600A17060 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,98 +42,98 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E881CA2F1F6B9AC500A17060 = {
+		E881CA501F6B9F9500A17060 = {
 			isa = PBXGroup;
 			children = (
-				E881CA3A1F6B9AC500A17060 /* LocalizationLibrary */,
-				E881CA391F6B9AC500A17060 /* Products */,
+				E881CA5B1F6B9F9600A17060 /* ToolsLibrary */,
+				E881CA5A1F6B9F9600A17060 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		E881CA391F6B9AC500A17060 /* Products */ = {
+		E881CA5A1F6B9F9600A17060 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E881CA381F6B9AC500A17060 /* libLocalizationLibrary.a */,
+				E881CA591F6B9F9600A17060 /* libToolsLibrary.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E881CA3A1F6B9AC500A17060 /* LocalizationLibrary */ = {
+		E881CA5B1F6B9F9600A17060 /* ToolsLibrary */ = {
 			isa = PBXGroup;
 			children = (
-				E881CA3B1F6B9AC500A17060 /* LocalizationLibrary.h */,
-				E881CA4A1F6B9AFB00A17060 /* LocalizationManager.h */,
-				E881CA4B1F6B9AFB00A17060 /* LocalizationManager.m */,
+				E881CA5C1F6B9F9600A17060 /* ToolsLibrary.h */,
+				E881CA6B1F6BA00000A17060 /* LocalizationManager.h */,
+				E881CA6C1F6BA00000A17060 /* LocalizationManager.m */,
 			);
-			path = LocalizationLibrary;
+			path = ToolsLibrary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E881CA371F6B9AC500A17060 /* LocalizationLibrary */ = {
+		E881CA581F6B9F9600A17060 /* ToolsLibrary */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E881CA411F6B9AC500A17060 /* Build configuration list for PBXNativeTarget "LocalizationLibrary" */;
+			buildConfigurationList = E881CA621F6B9F9600A17060 /* Build configuration list for PBXNativeTarget "ToolsLibrary" */;
 			buildPhases = (
-				E881CA341F6B9AC500A17060 /* Sources */,
-				E881CA351F6B9AC500A17060 /* Frameworks */,
-				E881CA361F6B9AC500A17060 /* CopyFiles */,
+				E881CA551F6B9F9600A17060 /* Sources */,
+				E881CA561F6B9F9600A17060 /* Frameworks */,
+				E881CA571F6B9F9600A17060 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = LocalizationLibrary;
-			productName = LocalizationLibrary;
-			productReference = E881CA381F6B9AC500A17060 /* libLocalizationLibrary.a */;
+			name = ToolsLibrary;
+			productName = ToolsLibrary;
+			productReference = E881CA591F6B9F9600A17060 /* libToolsLibrary.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		E881CA301F6B9AC500A17060 /* Project object */ = {
+		E881CA511F6B9F9500A17060 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Edwin Groothuis";
 				TargetAttributes = {
-					E881CA371F6B9AC500A17060 = {
+					E881CA581F6B9F9600A17060 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = NRQ2A5FE8M;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = E881CA331F6B9AC500A17060 /* Build configuration list for PBXProject "LocalizationLibrary" */;
+			buildConfigurationList = E881CA541F6B9F9500A17060 /* Build configuration list for PBXProject "ToolsLibrary" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = E881CA2F1F6B9AC500A17060;
-			productRefGroup = E881CA391F6B9AC500A17060 /* Products */;
+			mainGroup = E881CA501F6B9F9500A17060;
+			productRefGroup = E881CA5A1F6B9F9600A17060 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E881CA371F6B9AC500A17060 /* LocalizationLibrary */,
+				E881CA581F6B9F9600A17060 /* ToolsLibrary */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E881CA341F6B9AC500A17060 /* Sources */ = {
+		E881CA551F6B9F9600A17060 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E881CA4C1F6B9AFB00A17060 /* LocalizationManager.m in Sources */,
+				E881CA6D1F6BA00000A17060 /* LocalizationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		E881CA3F1F6B9AC500A17060 /* Debug */ = {
+		E881CA601F6B9F9600A17060 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -182,7 +182,7 @@
 			};
 			name = Debug;
 		};
-		E881CA401F6B9AC500A17060 /* Release */ = {
+		E881CA611F6B9F9600A17060 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -225,7 +225,7 @@
 			};
 			name = Release;
 		};
-		E881CA421F6B9AC500A17060 /* Debug */ = {
+		E881CA631F6B9F9600A17060 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = NRQ2A5FE8M;
@@ -235,7 +235,7 @@
 			};
 			name = Debug;
 		};
-		E881CA431F6B9AC500A17060 /* Release */ = {
+		E881CA641F6B9F9600A17060 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = NRQ2A5FE8M;
@@ -248,24 +248,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E881CA331F6B9AC500A17060 /* Build configuration list for PBXProject "LocalizationLibrary" */ = {
+		E881CA541F6B9F9500A17060 /* Build configuration list for PBXProject "ToolsLibrary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E881CA3F1F6B9AC500A17060 /* Debug */,
-				E881CA401F6B9AC500A17060 /* Release */,
+				E881CA601F6B9F9600A17060 /* Debug */,
+				E881CA611F6B9F9600A17060 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E881CA411F6B9AC500A17060 /* Build configuration list for PBXNativeTarget "LocalizationLibrary" */ = {
+		E881CA621F6B9F9600A17060 /* Build configuration list for PBXNativeTarget "ToolsLibrary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E881CA421F6B9AC500A17060 /* Debug */,
-				E881CA431F6B9AC500A17060 /* Release */,
+				E881CA631F6B9F9600A17060 /* Debug */,
+				E881CA641F6B9F9600A17060 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = E881CA301F6B9AC500A17060 /* Project object */;
+	rootObject = E881CA511F6B9F9500A17060 /* Project object */;
 }
