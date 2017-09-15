@@ -6,6 +6,4 @@
 //  Copyright © 2017 Edwin Groothuis. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-#import <NVHTarGzipLibrary/NVHTarGzip.h>
+#import "NVHTarGzipLibrary/NVHTarGzip.h"

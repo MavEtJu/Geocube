@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		E881CA5F1F6B9F9600A17060 /* ToolsLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E881CA5C1F6B9F9600A17060 /* ToolsLibrary.h */; };
 		E881CA6D1F6BA00000A17060 /* LocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CA6C1F6BA00000A17060 /* LocalizationManager.m */; };
+		E881CA751F6BA23600A17060 /* MyTools.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CA711F6BA23600A17060 /* MyTools.m */; };
+		E881CA761F6BA23600A17060 /* Coordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CA721F6BA23600A17060 /* Coordinates.m */; };
+		E881CA771F6BA23600A17060 /* MyClock.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CA741F6BA23600A17060 /* MyClock.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +32,12 @@
 		E881CA5C1F6B9F9600A17060 /* ToolsLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToolsLibrary.h; sourceTree = "<group>"; };
 		E881CA6B1F6BA00000A17060 /* LocalizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizationManager.h; sourceTree = "<group>"; };
 		E881CA6C1F6BA00000A17060 /* LocalizationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizationManager.m; sourceTree = "<group>"; };
+		E881CA6F1F6BA23600A17060 /* Coordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinates.h; sourceTree = "<group>"; };
+		E881CA701F6BA23600A17060 /* MyTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTools.h; sourceTree = "<group>"; };
+		E881CA711F6BA23600A17060 /* MyTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTools.m; sourceTree = "<group>"; };
+		E881CA721F6BA23600A17060 /* Coordinates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coordinates.m; sourceTree = "<group>"; };
+		E881CA731F6BA23600A17060 /* MyClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyClock.h; sourceTree = "<group>"; };
+		E881CA741F6BA23600A17060 /* MyClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClock.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +71,12 @@
 			isa = PBXGroup;
 			children = (
 				E881CA5C1F6B9F9600A17060 /* ToolsLibrary.h */,
+				E881CA6F1F6BA23600A17060 /* Coordinates.h */,
+				E881CA721F6BA23600A17060 /* Coordinates.m */,
+				E881CA701F6BA23600A17060 /* MyTools.h */,
+				E881CA711F6BA23600A17060 /* MyTools.m */,
+				E881CA731F6BA23600A17060 /* MyClock.h */,
+				E881CA741F6BA23600A17060 /* MyClock.m */,
 				E881CA6B1F6BA00000A17060 /* LocalizationManager.h */,
 				E881CA6C1F6BA00000A17060 /* LocalizationManager.m */,
 			);
@@ -126,7 +141,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E881CA761F6BA23600A17060 /* Coordinates.m in Sources */,
 				E881CA6D1F6BA00000A17060 /* LocalizationManager.m in Sources */,
+				E881CA771F6BA23600A17060 /* MyClock.m in Sources */,
+				E881CA751F6BA23600A17060 /* MyTools.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,7 +192,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "${SRCROOT}/../Geocube";
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../Geocube",
+					"${SRCROOT}/../Contrib/ContribLibrary",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -217,7 +238,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "${SRCROOT}/../Geocube";
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../Geocube",
+					"${SRCROOT}/../Contrib/ContribLibrary",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -264,6 +288,7 @@
 				E881CA641F6B9F9600A17060 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

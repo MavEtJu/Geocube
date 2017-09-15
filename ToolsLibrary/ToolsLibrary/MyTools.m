@@ -19,7 +19,18 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "MyTools.h"
+
 #import <sys/time.h>
+
+#import <ImageIO/ImageIO.h>
+#import <Social/Social.h>
+
+#import "LocalizationManager.h"
+#import "GCBase/ConfigManager.h"
+#import "database/DatabaseLibrary.h"
+#import "ContribLibrary/ContribLibrary.h"
+
 @interface MyTools ()
 
 @end
@@ -137,7 +148,7 @@
  * Return the number of seconds since Epoch from a Windows epoch string
  * The Windows string is in the format of "/Date(1413702000000-0700)/"
  *
- * @param datatime The windows epoch string
+ * @param datetime The windows epoch string
  * @return The Unix epoch string
  */
 + (NSInteger)secondsSinceEpochFromWindows:(NSString *)datetime

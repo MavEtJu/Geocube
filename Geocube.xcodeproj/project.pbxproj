@@ -72,10 +72,7 @@
 		E82342CB1EECD0B100D2CDFD /* dbTrackElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342A81EECD0B100D2CDFD /* dbTrackElement.m */; };
 		E82342CC1EECD0B100D2CDFD /* dbType.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342AA1EECD0B100D2CDFD /* dbType.m */; };
 		E82342CD1EECD0B100D2CDFD /* dbWaypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342AC1EECD0B100D2CDFD /* dbWaypoint.m */; };
-		E823430E1EECD97400D2CDFD /* Coordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343071EECD97400D2CDFD /* Coordinates.m */; };
 		E823430F1EECD97400D2CDFD /* GCURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343091EECD97400D2CDFD /* GCURLRequest.m */; };
-		E82343101EECD97400D2CDFD /* MyClock.m in Sources */ = {isa = PBXBuildFile; fileRef = E823430B1EECD97400D2CDFD /* MyClock.m */; };
-		E82343111EECD97400D2CDFD /* MyTools.m in Sources */ = {isa = PBXBuildFile; fileRef = E823430D1EECD97400D2CDFD /* MyTools.m */; };
 		E823432A1EECD9BC00D2CDFD /* IOSFileTransfers.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343131EECD9BC00D2CDFD /* IOSFileTransfers.m */; };
 		E823432B1EECD9BC00D2CDFD /* ProtocolGCA2.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343151EECD9BC00D2CDFD /* ProtocolGCA2.m */; };
 		E823432C1EECD9BC00D2CDFD /* ProtocolGGCW.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343171EECD9BC00D2CDFD /* ProtocolGGCW.m */; };
@@ -983,14 +980,8 @@
 		E82342AA1EECD0B100D2CDFD /* dbType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbType.m; path = database/dbType.m; sourceTree = "<group>"; };
 		E82342AB1EECD0B100D2CDFD /* dbWaypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbWaypoint.h; path = database/dbWaypoint.h; sourceTree = "<group>"; };
 		E82342AC1EECD0B100D2CDFD /* dbWaypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbWaypoint.m; path = database/dbWaypoint.m; sourceTree = "<group>"; };
-		E82343061EECD97400D2CDFD /* Coordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Coordinates.h; path = GCTools/Coordinates.h; sourceTree = "<group>"; };
-		E82343071EECD97400D2CDFD /* Coordinates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Coordinates.m; path = GCTools/Coordinates.m; sourceTree = "<group>"; };
 		E82343081EECD97400D2CDFD /* GCURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCURLRequest.h; path = GCTools/GCURLRequest.h; sourceTree = "<group>"; };
 		E82343091EECD97400D2CDFD /* GCURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCURLRequest.m; path = GCTools/GCURLRequest.m; sourceTree = "<group>"; };
-		E823430A1EECD97400D2CDFD /* MyClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyClock.h; path = GCTools/MyClock.h; sourceTree = "<group>"; };
-		E823430B1EECD97400D2CDFD /* MyClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyClock.m; path = GCTools/MyClock.m; sourceTree = "<group>"; };
-		E823430C1EECD97400D2CDFD /* MyTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyTools.h; path = GCTools/MyTools.h; sourceTree = "<group>"; };
-		E823430D1EECD97400D2CDFD /* MyTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyTools.m; path = GCTools/MyTools.m; sourceTree = "<group>"; };
 		E82343121EECD9BC00D2CDFD /* IOSFileTransfers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOSFileTransfers.h; path = RemoteAPI/IOSFileTransfers.h; sourceTree = "<group>"; };
 		E82343131EECD9BC00D2CDFD /* IOSFileTransfers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IOSFileTransfers.m; path = RemoteAPI/IOSFileTransfers.m; sourceTree = "<group>"; };
 		E82343141EECD9BC00D2CDFD /* ProtocolGCA2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProtocolGCA2.h; path = RemoteAPI/ProtocolGCA2.h; sourceTree = "<group>"; };
@@ -3398,14 +3389,8 @@
 		E8F570B21B3FECDF003F020C /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				E82343061EECD97400D2CDFD /* Coordinates.h */,
-				E82343071EECD97400D2CDFD /* Coordinates.m */,
 				E82343081EECD97400D2CDFD /* GCURLRequest.h */,
 				E82343091EECD97400D2CDFD /* GCURLRequest.m */,
-				E823430A1EECD97400D2CDFD /* MyClock.h */,
-				E823430B1EECD97400D2CDFD /* MyClock.m */,
-				E823430C1EECD97400D2CDFD /* MyTools.h */,
-				E823430D1EECD97400D2CDFD /* MyTools.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -4283,7 +4268,6 @@
 				E82344811EECE09C00D2CDFD /* ListHighlightViewController.m in Sources */,
 				E82344921EECE0AC00D2CDFD /* QueriesGGCWViewController.m in Sources */,
 				E82342C01EECD0B100D2CDFD /* dbName.m in Sources */,
-				E823430E1EECD97400D2CDFD /* Coordinates.m in Sources */,
 				E82343841EECDB9B00D2CDFD /* MapAllWPViewController.m in Sources */,
 				E8182F4C1C0E41CB004AC534 /* KeyboardCoordinateView.m in Sources */,
 				E82344971EECE0AD00D2CDFD /* QueriesTemplateViewController.m in Sources */,
@@ -4315,7 +4299,6 @@
 				E82344321EECDFB300D2CDFD /* FiltersViewController.m in Sources */,
 				E83B109C1EF4FC9500F2C5FA /* LocationlessPlannedViewController.m in Sources */,
 				E82342CD1EECD0B100D2CDFD /* dbWaypoint.m in Sources */,
-				E82343101EECD97400D2CDFD /* MyClock.m in Sources */,
 				E82342B01EECD0B100D2CDFD /* dbAttribute.m in Sources */,
 				E82342BF1EECD0B100D2CDFD /* dbLogTemplate.m in Sources */,
 				E82344671EECE06E00D2CDFD /* TrackableTableViewCell.m in Sources */,
@@ -4334,7 +4317,6 @@
 				E82344801EECE09C00D2CDFD /* ListFoundViewController.m in Sources */,
 				E82344FA1EECE12A00D2CDFD /* GCTableViewCellKeyValue.m in Sources */,
 				E82343AC1EECDDD400D2CDFD /* GCWaypointAnnotation.m in Sources */,
-				E82343111EECD97400D2CDFD /* MyTools.m in Sources */,
 				E82343AA1EECDDD400D2CDFD /* GCCoordsHistorical.m in Sources */,
 				E83C6F071EECE67100E303F5 /* FilesViewController.m in Sources */,
 				E83B10961EF4FC6000F2C5FA /* LocationlessListViewController.m in Sources */,

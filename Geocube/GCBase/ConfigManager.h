@@ -19,6 +19,9 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "Geocube.h"
+#import "LocationManager.h"
+
 @interface ConfigManager : NSObject
 
 #define PROTO_NR(__type__, __name__) \

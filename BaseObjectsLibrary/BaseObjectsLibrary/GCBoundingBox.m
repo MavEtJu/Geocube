@@ -21,7 +21,7 @@
 
 #import "GCBoundingBox.h"
 
-#import "../../Geocube/GCTools/Coordinates.h"
+#import <ToolsLibrary/ToolsLibrary.h>
 
 @interface GCBoundingBox ()
 

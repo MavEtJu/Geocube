@@ -6,7 +6,7 @@
 //
 
 #import "LXMapScaleView.h"
-#import "Coordinates.h"
+#import "ToolsLibrary/ToolsLibrary.h"
 
 
 static const CGRect kDefaultViewRect = {{0,0},{160,30}};

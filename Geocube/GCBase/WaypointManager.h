@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <Foundation/Foundation.h>
+
+#import "GCBase/LocationManager.h"
+
 @protocol WaypointManagerWaypointDelegate
 
 - (void)refreshWaypoints;

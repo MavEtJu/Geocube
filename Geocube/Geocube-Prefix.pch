@@ -61,9 +61,9 @@
 #import "Geocube-Globals.h"
 
 #import "ToolsLibrary/ToolsLibrary.h"
-#import "GCTools/MyTools.h"
-#import "GCTools/MyClock.h"
-#import "GCTools/Coordinates.h"
+//#import "GCTools/MyTools.h"
+//#import "GCTools/MyClock.h"
+//#import "GCTools/Coordinates.h"
 #import "KeyboardCoordinateView.h"
 
 #import "database/DatabaseLibrary.h"

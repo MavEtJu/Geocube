@@ -6,8 +6,6 @@
 //  Copyright © 2017 Edwin Groothuis. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 #import "KxIntroLibrary/KxIntroView.h"
 #import "KxIntroLibrary/KxIntroViewController.h"
 #import "KxIntroLibrary/KxIntroViewPage.h"
