@@ -463,7 +463,6 @@
 		E83C6EEB1EECE1CB00E303F5 /* BezelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C6EE01EECE1CB00E303F5 /* BezelManager.m */; };
 		E83C6EEC1EECE1CB00E303F5 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C6EE21EECE1CB00E303F5 /* ConfigManager.m */; };
 		E83C6EED1EECE1CB00E303F5 /* ImageLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C6EE41EECE1CB00E303F5 /* ImageLibrary.m */; };
-		E83C6EEE1EECE1CB00E303F5 /* KeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C6EE61EECE1CB00E303F5 /* KeyManager.m */; };
 		E83C6EEF1EECE1CB00E303F5 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C6EE81EECE1CB00E303F5 /* LocationManager.m */; };
 		E83C6EF01EECE1CB00E303F5 /* WaypointManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C6EEA1EECE1CB00E303F5 /* WaypointManager.m */; };
 		E83C6EF21EECE28100E303F5 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E83C6EF11EECE28100E303F5 /* SVProgressHUD.bundle */; };
@@ -516,6 +515,7 @@
 		E87DF78E1D8564A800F16B5A /* InfoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF78D1D8564A800F16B5A /* InfoViewer.m */; };
 		E87F58D11F46F0C200C90375 /* dbLogStringWaypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E87F58D01F46F0C200C90375 /* dbLogStringWaypoint.m */; };
 		E881CA8A1F6BB11B00A17060 /* libToolsLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CA891F6BB11A00A17060 /* libToolsLibrary.a */; };
+		E881CAD91F6BB2C200A17060 /* libManagersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CAD21F6BB1C600A17060 /* libManagersLibrary.a */; };
 		E88258351E9FA03700FCF9B2 /* Close Window - 640x430.png in Resources */ = {isa = PBXBuildFile; fileRef = E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */; };
 		E88258371E9FA15F00FCF9B2 /* Map icons - 362x86.png in Resources */ = {isa = PBXBuildFile; fileRef = E88258361E9FA15F00FCF9B2 /* Map icons - 362x86.png */; };
 		E8845CA91EF3628900A47F5D /* FileObjectView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8845CA81EF3628900A47F5D /* FileObjectView~ipad.xib */; };
@@ -530,7 +530,6 @@
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
 		E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */; };
 		E8AA149C1ED7988A0023000A /* Updates and changes.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8AA149B1ED7988A0023000A /* Updates and changes.txt */; };
-		E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */; };
 		E8C8C8C21EE26AAA00E2438D /* LogTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8C11EE26AAA00E2438D /* LogTableViewCell~ipad.xib */; };
 		E8D49D2F1F00F9C1005EB7BE /* container size - nano - 35x11.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */; };
 		E8D49D301F00F9C1005EB7BE /* container size - nano - 35x11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */; };
@@ -539,7 +538,6 @@
 		E8D49D361F0124F2005EB7BE /* container size - xlarge - 35x11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D331F0124F2005EB7BE /* container size - xlarge - 35x11@2x.png */; };
 		E8D49D371F0124F2005EB7BE /* container size - xlarge - 35x11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D341F0124F2005EB7BE /* container size - xlarge - 35x11@3x.png */; };
 		E8E3DC1C1E167C740066E903 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E3DC1B1E167C740066E903 /* AppDelegate.m */; };
-		E8EC019F1F54E7950032F168 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EC019E1F54E7950032F168 /* AudioManager.m */; };
 		E8EC01A31F5518840032F168 /* KeepTrackBeeperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8EC01A21F5518840032F168 /* KeepTrackBeeperView.xib */; };
 		E8EC01A61F551A990032F168 /* KeepTrackBeeperView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EC01A51F551A990032F168 /* KeepTrackBeeperView.m */; };
 		E8EC01A81F554C8F0032F168 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EC01A71F554C8F0032F168 /* MediaPlayer.framework */; };
@@ -669,6 +667,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = E84F36541F6A5A0800C7BD20;
 			remoteInfo = ContribLibrary;
+		};
+		E881CAB61F6BB1A600A17060 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E881CA591F6B9F9600A17060;
+			remoteInfo = ToolsLibrary;
+		};
+		E881CAD11F6BB1C600A17060 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E881CACD1F6BB1C500A17060 /* ManagersLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E881CAC11F6BB1C500A17060;
+			remoteInfo = ManagersLibrary;
 		};
 		E8EE47301F6B429000AB13BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1510,8 +1522,6 @@
 		E83C6EE21EECE1CB00E303F5 /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfigManager.m; path = GCBase/ConfigManager.m; sourceTree = "<group>"; };
 		E83C6EE31EECE1CB00E303F5 /* ImageLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageLibrary.h; path = GCBase/ImageLibrary.h; sourceTree = "<group>"; };
 		E83C6EE41EECE1CB00E303F5 /* ImageLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageLibrary.m; path = GCBase/ImageLibrary.m; sourceTree = "<group>"; };
-		E83C6EE51EECE1CB00E303F5 /* KeyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyManager.h; path = GCBase/KeyManager.h; sourceTree = "<group>"; };
-		E83C6EE61EECE1CB00E303F5 /* KeyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyManager.m; path = GCBase/KeyManager.m; sourceTree = "<group>"; };
 		E83C6EE71EECE1CB00E303F5 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationManager.h; path = GCBase/LocationManager.h; sourceTree = "<group>"; };
 		E83C6EE81EECE1CB00E303F5 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationManager.m; path = GCBase/LocationManager.m; sourceTree = "<group>"; };
 		E83C6EE91EECE1CB00E303F5 /* WaypointManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaypointManager.h; path = GCBase/WaypointManager.h; sourceTree = "<group>"; };
@@ -1589,6 +1599,7 @@
 		E881CA4F1F6B9CC400A17060 /* Geocube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geocube.h; sourceTree = "<group>"; };
 		E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ToolsLibrary.xcodeproj; path = ../ToolsLibrary/ToolsLibrary.xcodeproj; sourceTree = "<group>"; };
 		E881CA891F6BB11A00A17060 /* libToolsLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libToolsLibrary.a; path = "../../Library/Developer/Xcode/DerivedData/Geocube-bjprugvtqrcyrnatajlgnpwinftk/Build/Products/Debug-iphonesimulator/libToolsLibrary.a"; sourceTree = "<group>"; };
+		E881CACD1F6BB1C500A17060 /* ManagersLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ManagersLibrary.xcodeproj; path = ManagersLibrary/ManagersLibrary.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Close Window - 640x430.png"; path = "images/introduction/Close Window - 640x430.png"; sourceTree = "<group>"; };
 		E88258361E9FA15F00FCF9B2 /* Map icons - 362x86.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Map icons - 362x86.png"; path = "images/introduction/Map icons - 362x86.png"; sourceTree = "<group>"; };
 		E8845CA81EF3628900A47F5D /* FileObjectView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "FileObjectView~ipad.xib"; path = "Files/FileObjectView~ipad.xib"; sourceTree = "<group>"; };
@@ -1609,8 +1620,6 @@
 		E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesDownloadManager.h; sourceTree = "<group>"; };
 		E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesDownloadManager.m; sourceTree = "<group>"; };
 		E8AA149B1ED7988A0023000A /* Updates and changes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Updates and changes.txt"; sourceTree = "<group>"; };
-		E8BF17E21BAAE0CA008B5862 /* AudioFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFeedback.h; sourceTree = "<group>"; };
-		E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFeedback.m; sourceTree = "<group>"; };
 		E8C8C8C11EE26AAA00E2438D /* LogTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LogTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11.png"; path = "images/containers/container size - nano - 35x11.png"; sourceTree = "<group>"; };
 		E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11@2x.png"; path = "images/containers/container size - nano - 35x11@2x.png"; sourceTree = "<group>"; };
@@ -1620,8 +1629,6 @@
 		E8D49D341F0124F2005EB7BE /* container size - xlarge - 35x11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - xlarge - 35x11@3x.png"; path = "images/containers/container size - xlarge - 35x11@3x.png"; sourceTree = "<group>"; };
 		E8E3DC1B1E167C740066E903 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E8E8CFF11B64FAC900CC741A /* tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tests; sourceTree = BUILT_PRODUCTS_DIR; };
-		E8EC019D1F54E7950032F168 /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
-		E8EC019E1F54E7950032F168 /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
 		E8EC01A21F5518840032F168 /* KeepTrackBeeperView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KeepTrackBeeperView.xib; path = KeepTrack/KeepTrackBeeperView.xib; sourceTree = "<group>"; };
 		E8EC01A41F551A990032F168 /* KeepTrackBeeperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeepTrackBeeperView.h; path = KeepTrack/KeepTrackBeeperView.h; sourceTree = "<group>"; };
 		E8EC01A51F551A990032F168 /* KeepTrackBeeperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeepTrackBeeperView.m; path = KeepTrack/KeepTrackBeeperView.m; sourceTree = "<group>"; };
@@ -1765,6 +1772,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E881CAD91F6BB2C200A17060 /* libManagersLibrary.a in Frameworks */,
 				E881CA8A1F6BB11B00A17060 /* libToolsLibrary.a in Frameworks */,
 				E8EE47CD1F6B4B0800AB13BC /* libBaseObjectsLibrary.a in Frameworks */,
 				E8EE47B81F6B473200AB13BC /* libContribLibrary.a in Frameworks */,
@@ -1919,16 +1927,10 @@
 				E83C6EE21EECE1CB00E303F5 /* ConfigManager.m */,
 				E83C6EE31EECE1CB00E303F5 /* ImageLibrary.h */,
 				E83C6EE41EECE1CB00E303F5 /* ImageLibrary.m */,
-				E83C6EE51EECE1CB00E303F5 /* KeyManager.h */,
-				E83C6EE61EECE1CB00E303F5 /* KeyManager.m */,
 				E83C6EE71EECE1CB00E303F5 /* LocationManager.h */,
 				E83C6EE81EECE1CB00E303F5 /* LocationManager.m */,
 				E83C6EE91EECE1CB00E303F5 /* WaypointManager.h */,
 				E83C6EEA1EECE1CB00E303F5 /* WaypointManager.m */,
-				E8BF17E21BAAE0CA008B5862 /* AudioFeedback.h */,
-				E8BF17E31BAAE0CA008B5862 /* AudioFeedback.m */,
-				E8EC019D1F54E7950032F168 /* AudioManager.h */,
-				E8EC019E1F54E7950032F168 /* AudioManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -2726,6 +2728,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E881CAB21F6BB1A600A17060 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E881CAB71F6BB1A600A17060 /* libToolsLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E881CACE1F6BB1C500A17060 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E881CAD21F6BB1C600A17060 /* libManagersLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E887201C1B5EF5F300994BE0 /* icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -2977,6 +2995,7 @@
 		E8E4400B1D88A6D800BECB49 /* GUI - base */ = {
 			isa = PBXGroup;
 			children = (
+				E881CACD1F6BB1C500A17060 /* ManagersLibrary.xcodeproj */,
 				E8EE47991F6B457C00AB13BC /* BaseObjectsLibrary.xcodeproj */,
 				E82FBB2B1B4613E90009AB6D /* Managers */,
 				E85760161B85E08F00F34483 /* Base GUI objects */,
@@ -3604,6 +3623,10 @@
 					ProjectRef = E84F363B1F6A573100C7BD20 /* KxIntroLibrary.xcodeproj */;
 				},
 				{
+					ProductGroup = E881CACE1F6BB1C500A17060 /* Products */;
+					ProjectRef = E881CACD1F6BB1C500A17060 /* ManagersLibrary.xcodeproj */;
+				},
+				{
 					ProductGroup = E8EE47501F6B429D00AB13BC /* Products */;
 					ProjectRef = E8F553C41F6A415A0054806E /* NVHTarGzipLibrary.xcodeproj */;
 				},
@@ -3622,6 +3645,10 @@
 				{
 					ProductGroup = E8EE47321F6B429C00AB13BC /* Products */;
 					ProjectRef = E8A6584F1F6A7D44004D56D5 /* TFHppleLibrary.xcodeproj */;
+				},
+				{
+					ProductGroup = E881CAB21F6BB1A600A17060 /* Products */;
+					ProjectRef = E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */;
 				},
 				{
 					ProductGroup = E8EE47341F6B429C00AB13BC /* Products */;
@@ -3648,6 +3675,20 @@
 			fileType = archive.ar;
 			path = libContribLibrary.a;
 			remoteRef = E881C9D71F6B77F400A17060 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E881CAB71F6BB1A600A17060 /* libToolsLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libToolsLibrary.a;
+			remoteRef = E881CAB61F6BB1A600A17060 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E881CAD21F6BB1C600A17060 /* libManagersLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libManagersLibrary.a;
+			remoteRef = E881CAD11F6BB1C600A17060 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E8EE47311F6B429000AB13BC /* libActionSheetPickerLibrary.a */ = {
@@ -4350,7 +4391,6 @@
 				E823442C1EECDFB300D2CDFD /* FilterFavouritesTableViewCell.m in Sources */,
 				E823444D1EECE04B00D2CDFD /* NotesImagesViewController.m in Sources */,
 				E82343851EECDB9B00D2CDFD /* MapBrand.m in Sources */,
-				E8EC019F1F54E7950032F168 /* AudioManager.m in Sources */,
 				E82343D51EECDEE200D2CDFD /* WaypointHeaderHeaderView.m in Sources */,
 				E82344061EECDF9C00D2CDFD /* WaypointsListViewController.m in Sources */,
 				E823442B1EECDFB300D2CDFD /* FilterDistanceTableViewCell.m in Sources */,
@@ -4379,7 +4419,6 @@
 				E82343AB1EECDDD400D2CDFD /* GCGMSCircle.m in Sources */,
 				E82343881EECDB9B00D2CDFD /* MapTrackViewController.m in Sources */,
 				E83B10A21EF4FDDD00F2C5FA /* MapLogsViewController.m in Sources */,
-				E8BF17E41BAAE0CA008B5862 /* AudioFeedback.m in Sources */,
 				E82342AF1EECD0B100D2CDFD /* dbAccount.m in Sources */,
 				E82343991EECDBCF00D2CDFD /* MapAppleTemplate.m in Sources */,
 				E82343321EECD9BC00D2CDFD /* RemoteAPILiveAPI.m in Sources */,
@@ -4393,7 +4432,6 @@
 				E82345241EECE14A00D2CDFD /* DeveloperImagesViewController.m in Sources */,
 				E82344401EECE01500D2CDFD /* KeepTracksTrackTableViewCell.m in Sources */,
 				E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */,
-				E83C6EEE1EECE1CB00E303F5 /* KeyManager.m in Sources */,
 				E841E15A1D88FC950050D4B4 /* InfoItem.m in Sources */,
 				E8F570591B3F7255003F020C /* main.m in Sources */,
 				E823442F1EECDFB300D2CDFD /* FilterObject.m in Sources */,
@@ -4711,6 +4749,7 @@
 					"${SRCROOT}/Geocube",
 					"${SRCROOT}/BaseObjectsLibrary",
 					"${SRCROOT}/ToolsLibrary",
+					"${SRCROOT}/ManagersLibrary",
 				);
 				INFOPLIST_FILE = Geocube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
@@ -4750,6 +4789,7 @@
 					"${SRCROOT}/Geocube",
 					"${SRCROOT}/BaseObjectsLibrary",
 					"${SRCROOT}/ToolsLibrary",
+					"${SRCROOT}/ManagersLibrary",
 				);
 				INFOPLIST_FILE = Geocube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;

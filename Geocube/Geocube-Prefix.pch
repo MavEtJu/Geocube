@@ -68,7 +68,6 @@
 
 #import "database/DatabaseLibrary.h"
 
-
 #import "Themes/ThemeTemplate.h"
 #import "Themes/ThemeIOS.h"
 #import "Themes/ThemeNight.h"
@@ -81,12 +80,10 @@
 #import "Menus/LocalMenuItems.h"
 #import "ImageLibrary.h"
 #import "ImagesDownloadManager.h"
-#import "GCBase/KeyManager.h"
 #import "GCBase/LocationManager.h"
 #import "GCBase/ConfigManager.h"
-#import "AudioFeedback.h"
+#import "ManagersLibrary/ManagersLibrary.h"
 #import "Waypoints/WaypointSorter.h"
-#import "AudioManager.h"
 
 #import "Maps/GCCoordsHistorical.h"
 #import "GCBaseObjects/GCTableViewController.h"

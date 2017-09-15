@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <Foundation/Foundation.h>
+
 @interface KeyManager : NSObject
 
 @property (nonatomic, retain) NSString *gca_api;
@@ -29,3 +31,5 @@
 - (NSString *)encrypt:(NSString *)key data:(NSString *)plainText;
 
 @end
+
+extern KeyManager *keyManager;

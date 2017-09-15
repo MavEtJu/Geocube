@@ -19,6 +19,9 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
+
 @interface AudioManager : NSObject <AVAudioPlayerDelegate>
 
 typedef NS_ENUM(NSInteger, PlaySound) {

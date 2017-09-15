@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "KeyManager.h"
+
+#import "RNCryptorLibrary/RNCryptorLibrary.h"
+
 @interface KeyManager ()
 {
     NSDictionary *contentDict;

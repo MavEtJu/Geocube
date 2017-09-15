@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "AudioManager.h"
+
+#import <AVFoundation/AVFoundation.h>
+
 @interface AudioManager ()
 {
     AVAudioPlayer *audioPlayer;
