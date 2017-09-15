@@ -505,7 +505,6 @@
 		E85653061F679EBA00A415D0 /* GCTableViewCellWithSubtitle~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E85653051F679EBA00A415D0 /* GCTableViewCellWithSubtitle~ipad.xib */; };
 		E858F5991F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E858F5981F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib */; };
 		E858F59B1F56610B002C1F9B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E858F59A1F56610B002C1F9B /* ImageIO.framework */; };
-		E85AE1C01F39E96A00FA746C /* LocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E85AE1BF1F39E96A00FA746C /* LocalizationManager.m */; };
 		E85BA88E1F544372008E708F /* KeepTrackBeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = E85BA88D1F544372008E708F /* KeepTrackBeeper.m */; };
 		E85BA8901F5449F5008E708F /* Beeper.wav in Resources */ = {isa = PBXBuildFile; fileRef = E85BA88F1F5449F5008E708F /* Beeper.wav */; };
 		E861B97E1EE2E6D300BD82AC /* GC - logo - 1536×2048.png in Resources */ = {isa = PBXBuildFile; fileRef = E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */; };
@@ -520,6 +519,7 @@
 		E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FEB1B509575002527DA /* LogTableViewCell.m */; };
 		E87DF78E1D8564A800F16B5A /* InfoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF78D1D8564A800F16B5A /* InfoViewer.m */; };
 		E87F58D11F46F0C200C90375 /* dbLogStringWaypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E87F58D01F46F0C200C90375 /* dbLogStringWaypoint.m */; };
+		E881CA4D1F6B9B9E00A17060 /* libLocalizationLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CA491F6B9AC600A17060 /* libLocalizationLibrary.a */; };
 		E88258351E9FA03700FCF9B2 /* Close Window - 640x430.png in Resources */ = {isa = PBXBuildFile; fileRef = E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */; };
 		E88258371E9FA15F00FCF9B2 /* Map icons - 362x86.png in Resources */ = {isa = PBXBuildFile; fileRef = E88258361E9FA15F00FCF9B2 /* Map icons - 362x86.png */; };
 		E8845CA91EF3628900A47F5D /* FileObjectView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8845CA81EF3628900A47F5D /* FileObjectView~ipad.xib */; };
@@ -673,6 +673,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = E84F36541F6A5A0800C7BD20;
 			remoteInfo = ContribLibrary;
+		};
+		E881CA481F6B9AC600A17060 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E881CA441F6B9AC500A17060 /* LocalizationLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E881CA381F6B9AC500A17060;
+			remoteInfo = LocalizationLibrary;
 		};
 		E8EE47301F6B429000AB13BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1577,8 +1584,6 @@
 		E85653051F679EBA00A415D0 /* GCTableViewCellWithSubtitle~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "GCTableViewCellWithSubtitle~ipad.xib"; path = "GCBaseObjects/GCTableViewCellWithSubtitle~ipad.xib"; sourceTree = "<group>"; };
 		E858F5981F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "KeepTrackBeeperView~ipad.xib"; path = "KeepTrack/KeepTrackBeeperView~ipad.xib"; sourceTree = "<group>"; };
 		E858F59A1F56610B002C1F9B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
-		E85AE1BE1F39E96A00FA746C /* LocalizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalizationManager.h; path = GCTools/LocalizationManager.h; sourceTree = "<group>"; };
-		E85AE1BF1F39E96A00FA746C /* LocalizationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalizationManager.m; path = GCTools/LocalizationManager.m; sourceTree = "<group>"; };
 		E85BA88C1F544372008E708F /* KeepTrackBeeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeepTrackBeeper.h; path = KeepTrack/KeepTrackBeeper.h; sourceTree = "<group>"; };
 		E85BA88D1F544372008E708F /* KeepTrackBeeper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeepTrackBeeper.m; path = KeepTrack/KeepTrackBeeper.m; sourceTree = "<group>"; };
 		E85BA88F1F5449F5008E708F /* Beeper.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beeper.wav; sourceTree = "<group>"; };
@@ -1599,7 +1604,9 @@
 		E87DF78D1D8564A800F16B5A /* InfoViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewer.m; sourceTree = "<group>"; };
 		E87F58CF1F46F0C200C90375 /* dbLogStringWaypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbLogStringWaypoint.h; path = database/dbLogStringWaypoint.h; sourceTree = "<group>"; };
 		E87F58D01F46F0C200C90375 /* dbLogStringWaypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbLogStringWaypoint.m; path = database/dbLogStringWaypoint.m; sourceTree = "<group>"; };
-		E87FE7951EFFD25F009FA65B /* Geocube-defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-defines.h"; sourceTree = "<group>"; };
+		E87FE7951EFFD25F009FA65B /* Geocube-Defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Defines.h"; sourceTree = "<group>"; };
+		E881CA441F6B9AC500A17060 /* LocalizationLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LocalizationLibrary.xcodeproj; path = LocalizationLibrary/LocalizationLibrary.xcodeproj; sourceTree = "<group>"; };
+		E881CA4F1F6B9CC400A17060 /* Geocube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geocube.h; sourceTree = "<group>"; };
 		E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Close Window - 640x430.png"; path = "images/introduction/Close Window - 640x430.png"; sourceTree = "<group>"; };
 		E88258361E9FA15F00FCF9B2 /* Map icons - 362x86.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Map icons - 362x86.png"; path = "images/introduction/Map icons - 362x86.png"; sourceTree = "<group>"; };
 		E8845CA81EF3628900A47F5D /* FileObjectView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "FileObjectView~ipad.xib"; path = "Files/FileObjectView~ipad.xib"; sourceTree = "<group>"; };
@@ -1665,7 +1672,7 @@
 		E8F570B71B3FF4AA003F020C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		E8F570BB1B400124003F020C /* schema.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.sql; sourceTree = "<group>"; };
 		E8F570BD1B400137003F020C /* empty.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = empty.db; sourceTree = "<group>"; };
-		E8F570BF1B400166003F020C /* Geocube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geocube.h; sourceTree = "<group>"; };
+		E8F570BF1B400166003F020C /* Geocube-Globals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Globals.h"; sourceTree = "<group>"; };
 		E8FEDE381DA77F9D007C756B /* container size - large - 35x11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - large - 35x11.png"; path = "images/containers/container size - large - 35x11.png"; sourceTree = "<group>"; };
 		E8FEDE391DA77F9D007C756B /* container size - large - 35x11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - large - 35x11@2x.png"; path = "images/containers/container size - large - 35x11@2x.png"; sourceTree = "<group>"; };
 		E8FEDE3A1DA77F9D007C756B /* container size - large - 35x11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - large - 35x11@3x.png"; path = "images/containers/container size - large - 35x11@3x.png"; sourceTree = "<group>"; };
@@ -1776,6 +1783,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E881CA4D1F6B9B9E00A17060 /* libLocalizationLibrary.a in Frameworks */,
 				E8EE47CD1F6B4B0800AB13BC /* libBaseObjectsLibrary.a in Frameworks */,
 				E8EE47B81F6B473200AB13BC /* libContribLibrary.a in Frameworks */,
 				E8EE47AC1F6B473200AB13BC /* libActionSheetPickerLibrary.a in Frameworks */,
@@ -2735,6 +2743,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E881CA451F6B9AC500A17060 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E881CA491F6B9AC600A17060 /* libLocalizationLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E887201C1B5EF5F300994BE0 /* icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -3181,6 +3197,7 @@
 		E8F5704A1B3F7255003F020C = {
 			isa = PBXGroup;
 			children = (
+				E881CA441F6B9AC500A17060 /* LocalizationLibrary.xcodeproj */,
 				E8F570551B3F7255003F020C /* Geocube */,
 				E80732F91B633A74007FDC29 /* objects */,
 				E8F570541B3F7255003F020C /* Products */,
@@ -3206,8 +3223,9 @@
 			children = (
 				E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */,
 				E832E7D71B8D124900A3CCF6 /* Geocube-Classes.h */,
-				E87FE7951EFFD25F009FA65B /* Geocube-defines.h */,
-				E8F570BF1B400166003F020C /* Geocube.h */,
+				E87FE7951EFFD25F009FA65B /* Geocube-Defines.h */,
+				E8F570BF1B400166003F020C /* Geocube-Globals.h */,
+				E881CA4F1F6B9CC400A17060 /* Geocube.h */,
 				E8F570581B3F7255003F020C /* main.m */,
 				E8F570B21B3FECDF003F020C /* Tools */,
 				E8F570A91B3FE52C003F020C /* Network APIs */,
@@ -3388,8 +3406,6 @@
 				E823430B1EECD97400D2CDFD /* MyClock.m */,
 				E823430C1EECD97400D2CDFD /* MyTools.h */,
 				E823430D1EECD97400D2CDFD /* MyTools.m */,
-				E85AE1BE1F39E96A00FA746C /* LocalizationManager.h */,
-				E85AE1BF1F39E96A00FA746C /* LocalizationManager.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -3629,6 +3645,10 @@
 					ProjectRef = E84F363B1F6A573100C7BD20 /* KxIntroLibrary.xcodeproj */;
 				},
 				{
+					ProductGroup = E881CA451F6B9AC500A17060 /* Products */;
+					ProjectRef = E881CA441F6B9AC500A17060 /* LocalizationLibrary.xcodeproj */;
+				},
+				{
 					ProductGroup = E8EE47501F6B429D00AB13BC /* Products */;
 					ProjectRef = E8F553C41F6A415A0054806E /* NVHTarGzipLibrary.xcodeproj */;
 				},
@@ -3673,6 +3693,13 @@
 			fileType = archive.ar;
 			path = libContribLibrary.a;
 			remoteRef = E881C9D71F6B77F400A17060 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E881CA491F6B9AC600A17060 /* libLocalizationLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libLocalizationLibrary.a;
+			remoteRef = E881CA481F6B9AC600A17060 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E8EE47311F6B429000AB13BC /* libActionSheetPickerLibrary.a */ = {
@@ -4284,7 +4311,6 @@
 				E86C4AAF1E321822004526E2 /* CompassViewController.m in Sources */,
 				E82342C31EECD0B100D2CDFD /* dbPersonalNote.m in Sources */,
 				E83C6EEB1EECE1CB00E303F5 /* BezelManager.m in Sources */,
-				E85AE1C01F39E96A00FA746C /* LocalizationManager.m in Sources */,
 				E82343F41EECDF4400D2CDFD /* WaypointDescriptionViewController.m in Sources */,
 				E82344321EECDFB300D2CDFD /* FiltersViewController.m in Sources */,
 				E83B109C1EF4FC9500F2C5FA /* LocationlessPlannedViewController.m in Sources */,
@@ -4740,6 +4766,7 @@
 					"${SRCROOT}/Contrib/**",
 					"${SRCROOT}/Geocube",
 					"${SRCROOT}/BaseObjectsLibrary",
+					"${SRCROOT}/LocalizationLibrary",
 				);
 				INFOPLIST_FILE = Geocube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
@@ -4778,6 +4805,7 @@
 					"${SRCROOT}/Contrib/**",
 					"${SRCROOT}/Geocube",
 					"${SRCROOT}/BaseObjectsLibrary",
+					"${SRCROOT}/LocalizationLibrary",
 				);
 				INFOPLIST_FILE = Geocube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;

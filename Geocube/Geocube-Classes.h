@@ -156,6 +156,7 @@
 @class MapTemplateViewController;
 @class MapTrackViewController;
 @class MapWaypointInfoView;
+@class MHTabBarController;
 @class MyClock;
 @class MyTools;
 @class NotesFieldnotesViewController;

@@ -57,9 +57,10 @@
 #import "contrib/LXMapScaleView/LXMapScaleView.h"
 
 #import "Geocube-Classes.h"
-#import "Geocube-defines.h"
+#import "Geocube-Defines.h"
+#import "Geocube-Globals.h"
 
-#import "GCTools/LocalizationManager.h"
+#import "LocalizationLibrary/LocalizationLibrary.h"
 #import "GCTools/MyTools.h"
 #import "GCTools/MyClock.h"
 #import "GCTools/Coordinates.h"
