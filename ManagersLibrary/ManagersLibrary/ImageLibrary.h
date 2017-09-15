@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <Foundation/Foundation.h>
+
 #import "database/DatabaseLibrary.h"
 
 typedef NS_ENUM(NSInteger, ImageNumber) {

@@ -76,7 +76,6 @@
 #import "AppDelegate.h"
 #import "Menus/SideMenu.h"
 #import "Menus/LocalMenuItems.h"
-#import "ImageLibrary.h"
 #import "ImagesDownloadManager.h"
 #import "ManagersLibrary/ManagersLibrary.h"
 #import "Waypoints/WaypointSorter.h"

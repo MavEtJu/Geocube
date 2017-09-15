@@ -21,8 +21,8 @@
 
 #import "ConfigManager.h"
 
-#import "ToolsLibrary/ToolsLibrary.h"
-#import "GCBase/ImageLibrary.h"
+#import "ToolsLibrary/MyTools.h"
+#import "ImageLibrary.h"
 
 @interface ConfigManager ()
 

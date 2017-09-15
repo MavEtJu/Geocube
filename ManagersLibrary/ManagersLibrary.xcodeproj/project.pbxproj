@@ -15,6 +15,7 @@
 		E881CAE21F6BB9A400A17060 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CAE11F6BB9A400A17060 /* ConfigManager.m */; };
 		E881CAE51F6BBBBD00A17060 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CAE41F6BBBBD00A17060 /* LocationManager.m */; };
 		E881CAE81F6BBEBC00A17060 /* WaypointManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CAE71F6BBEBC00A17060 /* WaypointManager.m */; };
+		E881CAEB1F6BC0D700A17060 /* ImageLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CAEA1F6BC0D700A17060 /* ImageLibrary.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,6 +48,8 @@
 		E881CAE41F6BBBBD00A17060 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		E881CAE61F6BBEBC00A17060 /* WaypointManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaypointManager.h; sourceTree = "<group>"; };
 		E881CAE71F6BBEBC00A17060 /* WaypointManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaypointManager.m; sourceTree = "<group>"; };
+		E881CAE91F6BC0D700A17060 /* ImageLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLibrary.h; sourceTree = "<group>"; };
+		E881CAEA1F6BC0D700A17060 /* ImageLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageLibrary.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +91,8 @@
 				E881CADD1F6BB7D300A17060 /* BezelManager.m */,
 				E881CAE01F6BB9A400A17060 /* ConfigManager.h */,
 				E881CAE11F6BB9A400A17060 /* ConfigManager.m */,
+				E881CAE91F6BC0D700A17060 /* ImageLibrary.h */,
+				E881CAEA1F6BC0D700A17060 /* ImageLibrary.m */,
 				E881CADB1F6BB32600A17060 /* KeyManager.h */,
 				E881CADA1F6BB32600A17060 /* KeyManager.m */,
 				E881CAE31F6BBBBD00A17060 /* LocationManager.h */,
@@ -157,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E881CAE51F6BBBBD00A17060 /* LocationManager.m in Sources */,
+				E881CAEB1F6BC0D700A17060 /* ImageLibrary.m in Sources */,
 				E881CAE21F6BB9A400A17060 /* ConfigManager.m in Sources */,
 				E881CADC1F6BB32600A17060 /* KeyManager.m in Sources */,
 				E881CAD81F6BB21700A17060 /* AudioManager.m in Sources */,

@@ -19,6 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "ImageLibrary.h"
+
+#import "ToolsLibrary/MyTools.h"
+#import "Geocube.h"
+
 @interface ImageLibrary ()
 {
     UIImage *imgs[ImageLibraryImagesMax];

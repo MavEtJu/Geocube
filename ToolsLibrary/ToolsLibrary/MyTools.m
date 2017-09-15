@@ -28,9 +28,9 @@
 
 #import "Geocube.h"
 #import "LocalizationManager.h"
-#import "ManagersLibrary/ManagersLibrary.h"
+#import "ManagersLibrary/ConfigManager.h"
 #import "database/DatabaseLibrary.h"
-#import "ContribLibrary/ContribLibrary.h"
+#import "ContribLibrary/Reachability.h"
 
 @interface MyTools ()
 

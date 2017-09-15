@@ -23,8 +23,9 @@
 
 #import <CoreLocation/CoreLocation.h>
 
-#import "BaseObjectsLibrary/BaseObjectsLibrary.h"
-#import "ToolsLibrary/ToolsLibrary.h"
+#import "BaseObjectsLibrary/GCTableViewCell.h"
+#import "ToolsLibrary/Coordinates.h"
+#import "ToolsLibrary/MyClock.h"
 #import "Geocube.h"
 #import "ConfigManager.h"
 #import "Filters/FilterTableViewCell.h"

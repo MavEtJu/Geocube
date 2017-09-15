@@ -21,7 +21,7 @@
 
 #import "GCCloseButton.h"
 
-#import "../../Geocube/GCBase/ImageLibrary.h"
+#import "ManagersLibrary/ImageLibrary.h"
 
 @interface GCCloseButton ()
 
