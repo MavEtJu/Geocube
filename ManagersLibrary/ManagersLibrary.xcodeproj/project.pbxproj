@@ -221,6 +221,7 @@
 					"${SRCROOT}/../Geocube",
 					"${SRCROOT}/../ToolsLibrary",
 					"${SRCROOT}/../BaseObjectsLibrary",
+					"${SRCROOT}/../ThemesLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -269,6 +270,7 @@
 					"${SRCROOT}/../Geocube",
 					"${SRCROOT}/../ToolsLibrary",
 					"${SRCROOT}/../BaseObjectsLibrary",
+					"${SRCROOT}/../ThemesLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;

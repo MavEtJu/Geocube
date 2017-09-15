@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "Geocube-prefix.pch"
+#import "Geocube-Prefix.pch"
 
 @interface LocalMenuItems ()
 {

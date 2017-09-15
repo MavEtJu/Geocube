@@ -21,7 +21,7 @@
 
 #import "GCLabel.h"
 
-#import "Themes/ThemeManager.h"
+#import "ThemesLibrary/ThemeManager.h"
 
 @interface GCLabel ()
 

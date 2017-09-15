@@ -61,17 +61,11 @@
 #import "Geocube-Globals.h"
 
 #import "ToolsLibrary/ToolsLibrary.h"
-//#import "GCTools/MyTools.h"
-//#import "GCTools/MyClock.h"
-//#import "GCTools/Coordinates.h"
+#import "ThemesLibrary/ThemesLibrary.h"
+
 #import "KeyboardCoordinateView.h"
 
 #import "database/DatabaseLibrary.h"
-
-#import "Themes/ThemeTemplate.h"
-#import "Themes/ThemeIOS.h"
-#import "Themes/ThemeNight.h"
-#import "Themes/ThemeManager.h"
 
 #import "AppDelegate.h"
 #import "Menus/SideMenu.h"

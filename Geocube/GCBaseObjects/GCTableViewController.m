@@ -21,7 +21,7 @@
 
 #import "GCTableViewController.h"
 
-#import "ThemeManager.h"
+#import "ThemesLibrary/ThemeManager.h"
 
 @interface GCTableViewController ()
 {

@@ -96,10 +96,6 @@
 		E82343581EECDA4900D2CDFD /* ImportTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E823434D1EECDA4900D2CDFD /* ImportTemplate.m */; };
 		E823435D1EECDAEF00D2CDFD /* LocalMenuItems.m in Sources */ = {isa = PBXBuildFile; fileRef = E823435A1EECDAEF00D2CDFD /* LocalMenuItems.m */; };
 		E823435E1EECDAEF00D2CDFD /* SideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E823435C1EECDAEF00D2CDFD /* SideMenu.m */; };
-		E82343761EECDB4500D2CDFD /* ThemeIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = E823436F1EECDB4500D2CDFD /* ThemeIOS.m */; };
-		E82343771EECDB4500D2CDFD /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343711EECDB4500D2CDFD /* ThemeManager.m */; };
-		E82343781EECDB4500D2CDFD /* ThemeNight.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343731EECDB4500D2CDFD /* ThemeNight.m */; };
-		E82343791EECDB4500D2CDFD /* ThemeTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343751EECDB4500D2CDFD /* ThemeTemplate.m */; };
 		E82343841EECDB9B00D2CDFD /* MapAllWPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E823437B1EECDB9B00D2CDFD /* MapAllWPViewController.m */; };
 		E82343851EECDB9B00D2CDFD /* MapBrand.m in Sources */ = {isa = PBXBuildFile; fileRef = E823437D1EECDB9B00D2CDFD /* MapBrand.m */; };
 		E82343861EECDB9B00D2CDFD /* MapOneWPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E823437F1EECDB9B00D2CDFD /* MapOneWPViewController.m */; };
@@ -511,6 +507,7 @@
 		E87F58D11F46F0C200C90375 /* dbLogStringWaypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E87F58D01F46F0C200C90375 /* dbLogStringWaypoint.m */; };
 		E881CA8A1F6BB11B00A17060 /* libToolsLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CA891F6BB11A00A17060 /* libToolsLibrary.a */; };
 		E881CAD91F6BB2C200A17060 /* libManagersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CAD21F6BB1C600A17060 /* libManagersLibrary.a */; };
+		E881CB131F6BDC4D00A17060 /* libThemesLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CB061F6BDA7000A17060 /* libThemesLibrary.a */; };
 		E88258351E9FA03700FCF9B2 /* Close Window - 640x430.png in Resources */ = {isa = PBXBuildFile; fileRef = E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */; };
 		E88258371E9FA15F00FCF9B2 /* Map icons - 362x86.png in Resources */ = {isa = PBXBuildFile; fileRef = E88258361E9FA15F00FCF9B2 /* Map icons - 362x86.png */; };
 		E8845CA91EF3628900A47F5D /* FileObjectView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8845CA81EF3628900A47F5D /* FileObjectView~ipad.xib */; };
@@ -676,6 +673,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = E881CAC11F6BB1C500A17060;
 			remoteInfo = ManagersLibrary;
+		};
+		E881CB051F6BDA7000A17060 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E881CB011F6BDA6E00A17060 /* ThemesLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E881CAF51F6BDA6E00A17060;
+			remoteInfo = ThemesLibrary;
 		};
 		E8EE47301F6B429000AB13BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1027,14 +1031,6 @@
 		E823435A1EECDAEF00D2CDFD /* LocalMenuItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalMenuItems.m; path = Menus/LocalMenuItems.m; sourceTree = "<group>"; };
 		E823435B1EECDAEF00D2CDFD /* SideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SideMenu.h; path = Menus/SideMenu.h; sourceTree = "<group>"; };
 		E823435C1EECDAEF00D2CDFD /* SideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SideMenu.m; path = Menus/SideMenu.m; sourceTree = "<group>"; };
-		E823436E1EECDB4500D2CDFD /* ThemeIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeIOS.h; path = Themes/ThemeIOS.h; sourceTree = "<group>"; };
-		E823436F1EECDB4500D2CDFD /* ThemeIOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeIOS.m; path = Themes/ThemeIOS.m; sourceTree = "<group>"; };
-		E82343701EECDB4500D2CDFD /* ThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeManager.h; path = Themes/ThemeManager.h; sourceTree = "<group>"; };
-		E82343711EECDB4500D2CDFD /* ThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeManager.m; path = Themes/ThemeManager.m; sourceTree = "<group>"; };
-		E82343721EECDB4500D2CDFD /* ThemeNight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeNight.h; path = Themes/ThemeNight.h; sourceTree = "<group>"; };
-		E82343731EECDB4500D2CDFD /* ThemeNight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeNight.m; path = Themes/ThemeNight.m; sourceTree = "<group>"; };
-		E82343741EECDB4500D2CDFD /* ThemeTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeTemplate.h; path = Themes/ThemeTemplate.h; sourceTree = "<group>"; };
-		E82343751EECDB4500D2CDFD /* ThemeTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeTemplate.m; path = Themes/ThemeTemplate.m; sourceTree = "<group>"; };
 		E823437A1EECDB9B00D2CDFD /* MapAllWPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapAllWPViewController.h; path = Maps/MapAllWPViewController.h; sourceTree = "<group>"; };
 		E823437B1EECDB9B00D2CDFD /* MapAllWPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapAllWPViewController.m; path = Maps/MapAllWPViewController.m; sourceTree = "<group>"; };
 		E823437C1EECDB9B00D2CDFD /* MapBrand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapBrand.h; path = Maps/MapBrand.h; sourceTree = "<group>"; };
@@ -1585,6 +1581,7 @@
 		E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ToolsLibrary.xcodeproj; path = ../ToolsLibrary/ToolsLibrary.xcodeproj; sourceTree = "<group>"; };
 		E881CA891F6BB11A00A17060 /* libToolsLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libToolsLibrary.a; path = "../../Library/Developer/Xcode/DerivedData/Geocube-bjprugvtqrcyrnatajlgnpwinftk/Build/Products/Debug-iphonesimulator/libToolsLibrary.a"; sourceTree = "<group>"; };
 		E881CACD1F6BB1C500A17060 /* ManagersLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ManagersLibrary.xcodeproj; path = ManagersLibrary/ManagersLibrary.xcodeproj; sourceTree = SOURCE_ROOT; };
+		E881CB011F6BDA6E00A17060 /* ThemesLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ThemesLibrary.xcodeproj; path = ThemesLibrary/ThemesLibrary.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Close Window - 640x430.png"; path = "images/introduction/Close Window - 640x430.png"; sourceTree = "<group>"; };
 		E88258361E9FA15F00FCF9B2 /* Map icons - 362x86.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Map icons - 362x86.png"; path = "images/introduction/Map icons - 362x86.png"; sourceTree = "<group>"; };
 		E8845CA81EF3628900A47F5D /* FileObjectView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "FileObjectView~ipad.xib"; path = "Files/FileObjectView~ipad.xib"; sourceTree = "<group>"; };
@@ -1757,6 +1754,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E881CB131F6BDC4D00A17060 /* libThemesLibrary.a in Frameworks */,
 				E881CAD91F6BB2C200A17060 /* libManagersLibrary.a in Frameworks */,
 				E881CA8A1F6BB11B00A17060 /* libToolsLibrary.a in Frameworks */,
 				E8EE47CD1F6B4B0800AB13BC /* libBaseObjectsLibrary.a in Frameworks */,
@@ -2284,21 +2282,6 @@
 			name = "Single Waypoint";
 			sourceTree = "<group>";
 		};
-		E857600C1B85DF5600F34483 /* Themes */ = {
-			isa = PBXGroup;
-			children = (
-				E82343701EECDB4500D2CDFD /* ThemeManager.h */,
-				E82343711EECDB4500D2CDFD /* ThemeManager.m */,
-				E82343741EECDB4500D2CDFD /* ThemeTemplate.h */,
-				E82343751EECDB4500D2CDFD /* ThemeTemplate.m */,
-				E823436E1EECDB4500D2CDFD /* ThemeIOS.h */,
-				E823436F1EECDB4500D2CDFD /* ThemeIOS.m */,
-				E82343721EECDB4500D2CDFD /* ThemeNight.h */,
-				E82343731EECDB4500D2CDFD /* ThemeNight.m */,
-			);
-			name = Themes;
-			sourceTree = "<group>";
-		};
 		E85760161B85E08F00F34483 /* Base GUI objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -2719,6 +2702,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E881CB021F6BDA6E00A17060 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E881CB061F6BDA7000A17060 /* libThemesLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E887201C1B5EF5F300994BE0 /* icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -2972,10 +2963,10 @@
 			children = (
 				E881CACD1F6BB1C500A17060 /* ManagersLibrary.xcodeproj */,
 				E8EE47991F6B457C00AB13BC /* BaseObjectsLibrary.xcodeproj */,
+				E881CB011F6BDA6E00A17060 /* ThemesLibrary.xcodeproj */,
 				E82FBB2B1B4613E90009AB6D /* Managers */,
 				E85760161B85E08F00F34483 /* Base GUI objects */,
 				E8740FE91B509540002527DA /* Base TableViewCells */,
-				E857600C1B85DF5600F34483 /* Themes */,
 				E867E8381B535A3A00CB126A /* Maps */,
 				E8740F9C1B4E6645002527DA /* Waypoint Viewing */,
 				E8E4400D1D88A85700BECB49 /* InfoViewer */,
@@ -3622,6 +3613,10 @@
 					ProjectRef = E8A6584F1F6A7D44004D56D5 /* TFHppleLibrary.xcodeproj */;
 				},
 				{
+					ProductGroup = E881CB021F6BDA6E00A17060 /* Products */;
+					ProjectRef = E881CB011F6BDA6E00A17060 /* ThemesLibrary.xcodeproj */;
+				},
+				{
 					ProductGroup = E881CAB21F6BB1A600A17060 /* Products */;
 					ProjectRef = E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */;
 				},
@@ -3664,6 +3659,13 @@
 			fileType = archive.ar;
 			path = libManagersLibrary.a;
 			remoteRef = E881CAD11F6BB1C600A17060 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E881CB061F6BDA7000A17060 /* libThemesLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libThemesLibrary.a;
+			remoteRef = E881CB051F6BDA7000A17060 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E8EE47311F6B429000AB13BC /* libActionSheetPickerLibrary.a */ = {
@@ -4302,7 +4304,6 @@
 				E82344331EECDFB300D2CDFD /* FilterTableViewCell.m in Sources */,
 				E82343F71EECDF4400D2CDFD /* WaypointLogsViewController.m in Sources */,
 				E8EE48131F6B772F00AB13BC /* GCViewController.m in Sources */,
-				E82343791EECDB4500D2CDFD /* ThemeTemplate.m in Sources */,
 				E82343C61EECDEA100D2CDFD /* WaypointAddViewController.m in Sources */,
 				E815B7831F67FCB2003A6092 /* FileKMLViewController.m in Sources */,
 				E82343F91EECDF4400D2CDFD /* WaypointRawViewController.m in Sources */,
@@ -4337,7 +4338,6 @@
 				E82343BB1EECDE6C00D2CDFD /* WaypointLogImagesViewController.m in Sources */,
 				E82344291EECDFB300D2CDFD /* FilterDifficultyTableViewCell.m in Sources */,
 				E82343351EECD9BC00D2CDFD /* RemoteAPITemplate.m in Sources */,
-				E82343771EECDB4500D2CDFD /* ThemeManager.m in Sources */,
 				E8EE48121F6B772F00AB13BC /* GCTableViewController.m in Sources */,
 				E823424E1EECCF9300D2CDFD /* SVProgressHUD.m in Sources */,
 				E82342C41EECD0B100D2CDFD /* dbPin.m in Sources */,
@@ -4369,7 +4369,6 @@
 				E82344BD1EECE0E800D2CDFD /* SettingsAccountsViewController.m in Sources */,
 				E82344631EECE06E00D2CDFD /* TrackablesInventoryViewController.m in Sources */,
 				E823442A1EECDFB300D2CDFD /* FilterDirectionTableViewCell.m in Sources */,
-				E82343761EECDB4500D2CDFD /* ThemeIOS.m in Sources */,
 				E82343B11EECDDFD00D2CDFD /* WaypointSorter.m in Sources */,
 				E82342C71EECD0B100D2CDFD /* dbState.m in Sources */,
 				E83C6F221EEEA47900E303F5 /* GCTableViewCellRightImageDisclosure.m in Sources */,
@@ -4434,7 +4433,6 @@
 				E87DF78E1D8564A800F16B5A /* InfoViewer.m in Sources */,
 				E82343311EECD9BC00D2CDFD /* RemoteAPIGGCW.m in Sources */,
 				E85BA88E1F544372008E708F /* KeepTrackBeeper.m in Sources */,
-				E82343781EECDB4500D2CDFD /* ThemeNight.m in Sources */,
 				E82341FF1EECCEDB00D2CDFD /* LXMapScaleView.m in Sources */,
 				E823447F1EECE09C00D2CDFD /* ListDNFViewController.m in Sources */,
 				E8EC01A61F551A990032F168 /* KeepTrackBeeperView.m in Sources */,
@@ -4720,6 +4718,7 @@
 					"${SRCROOT}/BaseObjectsLibrary",
 					"${SRCROOT}/ToolsLibrary",
 					"${SRCROOT}/ManagersLibrary",
+					"${SRCROOT}/ThemesLibrary",
 				);
 				INFOPLIST_FILE = Geocube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
@@ -4760,6 +4759,7 @@
 					"${SRCROOT}/BaseObjectsLibrary",
 					"${SRCROOT}/ToolsLibrary",
 					"${SRCROOT}/ManagersLibrary",
+					"${SRCROOT}/ThemesLibrary",
 				);
 				INFOPLIST_FILE = Geocube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;

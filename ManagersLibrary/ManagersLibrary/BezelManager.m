@@ -23,7 +23,7 @@
 
 #import "Geocube-Defines.h"
 #import "contrib/SVProgressHUD/SVProgressHUD.h"
-#import "Themes/ThemeManager.h"
+#import "ThemesLibrary/ThemeManager.h"
 
 @interface BezelManager ()
 

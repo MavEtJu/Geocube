@@ -21,7 +21,7 @@
 
 #import "GCView.h"
 
-#import "Themes/ThemeManager.h"
+#import "ThemesLibrary/ThemesLibrary.h"
 
 @interface GCView ()
 

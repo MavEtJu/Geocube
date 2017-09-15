@@ -21,7 +21,7 @@
 
 #import "GCViewController.h"
 
-#import "ThemeManager.h"
+#import "ThemesLibrary/ThemeManager.h"
 
 @interface GCViewController ()
 {

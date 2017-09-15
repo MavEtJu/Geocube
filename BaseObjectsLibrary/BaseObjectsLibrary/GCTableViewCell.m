@@ -21,7 +21,7 @@
 
 #import "GCTableViewCell.h"
 
-#import "Themes/ThemeManager.h"
+#import "ThemesLibrary/ThemeManager.h"
 
 @interface GCTableViewCell ()
 
