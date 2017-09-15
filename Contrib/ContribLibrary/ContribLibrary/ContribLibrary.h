@@ -6,9 +6,9 @@
 //  Copyright © 2017 Edwin Groothuis. All rights reserved.
 //
 
-#import "ContribLibrary/PropertyUtil.h"
-#import "ContribLibrary/Reachability.h"
-#import "ContribLibrary/THLabel.h"
-#import "ContribLibrary/VKSideMenu.h"
-#import "ContribLibrary/XMLDictionary.h"
-#import "ContribLibrary/XMLReader.h"
+#import "ContribLibrary/Others/PropertyUtil.h"
+#import "ContribLibrary/Others/Reachability.h"
+#import "ContribLibrary/Others/THLabel.h"
+#import "ContribLibrary/Others/VKSideMenu.h"
+#import "ContribLibrary/Others/XMLDictionary.h"
+#import "ContribLibrary/Others/XMLReader.h"

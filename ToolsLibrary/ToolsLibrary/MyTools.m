@@ -30,7 +30,7 @@
 #import "LocalizationManager.h"
 #import "ManagersLibrary/ConfigManager.h"
 #import "database/DatabaseLibrary.h"
-#import "ContribLibrary/Reachability.h"
+#import "ContribLibrary/Others/Reachability.h"
 
 @interface MyTools ()
 

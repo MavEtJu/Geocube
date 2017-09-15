@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		E84F365A1F6A5A0800C7BD20 /* ContribLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E84F36571F6A5A0800C7BD20 /* ContribLibrary.h */; };
-		E84F36681F6A5A5B00C7BD20 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = E84F36671F6A5A5B00C7BD20 /* XMLReader.m */; };
-		E84F36761F6A5B0500C7BD20 /* PropertyUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E84F366A1F6A5B0500C7BD20 /* PropertyUtil.m */; };
-		E84F36771F6A5B0500C7BD20 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E84F366E1F6A5B0500C7BD20 /* Reachability.m */; };
-		E84F36781F6A5B0500C7BD20 /* THLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E84F36701F6A5B0500C7BD20 /* THLabel.m */; };
-		E84F36791F6A5B0500C7BD20 /* VKSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E84F36721F6A5B0500C7BD20 /* VKSideMenu.m */; };
-		E84F367A1F6A5B0500C7BD20 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E84F36741F6A5B0500C7BD20 /* XMLDictionary.m */; };
+		E895535B1F6BE8EA0026582B /* PropertyUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E89553501F6BE8EA0026582B /* PropertyUtil.m */; };
+		E895535C1F6BE8EA0026582B /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E89553521F6BE8EA0026582B /* Reachability.m */; };
+		E895535D1F6BE8EA0026582B /* THLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E89553541F6BE8EA0026582B /* THLabel.m */; };
+		E895535E1F6BE8EA0026582B /* VKSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E89553561F6BE8EA0026582B /* VKSideMenu.m */; };
+		E895535F1F6BE8EA0026582B /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E89553581F6BE8EA0026582B /* XMLDictionary.m */; };
+		E89553601F6BE8EA0026582B /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = E895535A1F6BE8EA0026582B /* XMLReader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,18 +32,18 @@
 /* Begin PBXFileReference section */
 		E84F36541F6A5A0800C7BD20 /* libContribLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libContribLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E84F36571F6A5A0800C7BD20 /* ContribLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContribLibrary.h; sourceTree = "<group>"; };
-		E84F36661F6A5A5B00C7BD20 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
-		E84F36671F6A5A5B00C7BD20 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
-		E84F366A1F6A5B0500C7BD20 /* PropertyUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyUtil.m; sourceTree = "<group>"; };
-		E84F366B1F6A5B0500C7BD20 /* PropertyUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyUtil.h; sourceTree = "<group>"; };
-		E84F366D1F6A5B0500C7BD20 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		E84F366E1F6A5B0500C7BD20 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		E84F366F1F6A5B0500C7BD20 /* THLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THLabel.h; sourceTree = "<group>"; };
-		E84F36701F6A5B0500C7BD20 /* THLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLabel.m; sourceTree = "<group>"; };
-		E84F36711F6A5B0500C7BD20 /* VKSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKSideMenu.h; sourceTree = "<group>"; };
-		E84F36721F6A5B0500C7BD20 /* VKSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKSideMenu.m; sourceTree = "<group>"; };
-		E84F36731F6A5B0500C7BD20 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
-		E84F36741F6A5B0500C7BD20 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
+		E895534F1F6BE8EA0026582B /* PropertyUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PropertyUtil.h; path = Others/PropertyUtil.h; sourceTree = "<group>"; };
+		E89553501F6BE8EA0026582B /* PropertyUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PropertyUtil.m; path = Others/PropertyUtil.m; sourceTree = "<group>"; };
+		E89553511F6BE8EA0026582B /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Others/Reachability.h; sourceTree = "<group>"; };
+		E89553521F6BE8EA0026582B /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Others/Reachability.m; sourceTree = "<group>"; };
+		E89553531F6BE8EA0026582B /* THLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = THLabel.h; path = Others/THLabel.h; sourceTree = "<group>"; };
+		E89553541F6BE8EA0026582B /* THLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THLabel.m; path = Others/THLabel.m; sourceTree = "<group>"; };
+		E89553551F6BE8EA0026582B /* VKSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VKSideMenu.h; path = Others/VKSideMenu.h; sourceTree = "<group>"; };
+		E89553561F6BE8EA0026582B /* VKSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VKSideMenu.m; path = Others/VKSideMenu.m; sourceTree = "<group>"; };
+		E89553571F6BE8EA0026582B /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLDictionary.h; path = Others/XMLDictionary.h; sourceTree = "<group>"; };
+		E89553581F6BE8EA0026582B /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLDictionary.m; path = Others/XMLDictionary.m; sourceTree = "<group>"; };
+		E89553591F6BE8EA0026582B /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = Others/XMLReader.h; sourceTree = "<group>"; };
+		E895535A1F6BE8EA0026582B /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = Others/XMLReader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,21 +76,101 @@
 		E84F36561F6A5A0800C7BD20 /* ContribLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				E89553691F6BEE970026582B /* TouchXML */,
+				E89553681F6BEE820026582B /* YIPopupTextView */,
+				E89553671F6BEE790026582B /* TFHppleLibrary */,
+				E89553661F6BEE6F0026582B /* SSZipArchive */,
+				E89553651F6BEE660026582B /* SimpleKML */,
+				E89553621F6BEE440026582B /* KxIntro */,
+				E89553631F6BEE4B0026582B /* NVHTarGzip */,
+				E89553641F6BEE5A0026582B /* RNCryptor */,
+				E89553611F6BEE370026582B /* GMUGeometry */,
 				E84F36571F6A5A0800C7BD20 /* ContribLibrary.h */,
-				E84F366B1F6A5B0500C7BD20 /* PropertyUtil.h */,
-				E84F366A1F6A5B0500C7BD20 /* PropertyUtil.m */,
-				E84F366D1F6A5B0500C7BD20 /* Reachability.h */,
-				E84F366E1F6A5B0500C7BD20 /* Reachability.m */,
-				E84F366F1F6A5B0500C7BD20 /* THLabel.h */,
-				E84F36701F6A5B0500C7BD20 /* THLabel.m */,
-				E84F36711F6A5B0500C7BD20 /* VKSideMenu.h */,
-				E84F36721F6A5B0500C7BD20 /* VKSideMenu.m */,
-				E84F36731F6A5B0500C7BD20 /* XMLDictionary.h */,
-				E84F36741F6A5B0500C7BD20 /* XMLDictionary.m */,
-				E84F36661F6A5A5B00C7BD20 /* XMLReader.h */,
-				E84F36671F6A5A5B00C7BD20 /* XMLReader.m */,
+				E895534E1F6BE8440026582B /* Others */,
 			);
 			path = ContribLibrary;
+			sourceTree = "<group>";
+		};
+		E895534E1F6BE8440026582B /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				E895534F1F6BE8EA0026582B /* PropertyUtil.h */,
+				E89553501F6BE8EA0026582B /* PropertyUtil.m */,
+				E89553511F6BE8EA0026582B /* Reachability.h */,
+				E89553521F6BE8EA0026582B /* Reachability.m */,
+				E89553531F6BE8EA0026582B /* THLabel.h */,
+				E89553541F6BE8EA0026582B /* THLabel.m */,
+				E89553551F6BE8EA0026582B /* VKSideMenu.h */,
+				E89553561F6BE8EA0026582B /* VKSideMenu.m */,
+				E89553571F6BE8EA0026582B /* XMLDictionary.h */,
+				E89553581F6BE8EA0026582B /* XMLDictionary.m */,
+				E89553591F6BE8EA0026582B /* XMLReader.h */,
+				E895535A1F6BE8EA0026582B /* XMLReader.m */,
+			);
+			name = Others;
+			sourceTree = "<group>";
+		};
+		E89553611F6BEE370026582B /* GMUGeometry */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = GMUGeometry;
+			sourceTree = "<group>";
+		};
+		E89553621F6BEE440026582B /* KxIntro */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = KxIntro;
+			sourceTree = "<group>";
+		};
+		E89553631F6BEE4B0026582B /* NVHTarGzip */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = NVHTarGzip;
+			sourceTree = "<group>";
+		};
+		E89553641F6BEE5A0026582B /* RNCryptor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = RNCryptor;
+			sourceTree = "<group>";
+		};
+		E89553651F6BEE660026582B /* SimpleKML */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SimpleKML;
+			sourceTree = "<group>";
+		};
+		E89553661F6BEE6F0026582B /* SSZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SSZipArchive;
+			sourceTree = "<group>";
+		};
+		E89553671F6BEE790026582B /* TFHppleLibrary */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = TFHppleLibrary;
+			sourceTree = "<group>";
+		};
+		E89553681F6BEE820026582B /* YIPopupTextView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = YIPopupTextView;
+			sourceTree = "<group>";
+		};
+		E89553691F6BEE970026582B /* TouchXML */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = TouchXML;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,12 +231,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E84F36681F6A5A5B00C7BD20 /* XMLReader.m in Sources */,
-				E84F36771F6A5B0500C7BD20 /* Reachability.m in Sources */,
-				E84F367A1F6A5B0500C7BD20 /* XMLDictionary.m in Sources */,
-				E84F36761F6A5B0500C7BD20 /* PropertyUtil.m in Sources */,
-				E84F36791F6A5B0500C7BD20 /* VKSideMenu.m in Sources */,
-				E84F36781F6A5B0500C7BD20 /* THLabel.m in Sources */,
+				E895535F1F6BE8EA0026582B /* XMLDictionary.m in Sources */,
+				E895535C1F6BE8EA0026582B /* Reachability.m in Sources */,
+				E895535D1F6BE8EA0026582B /* THLabel.m in Sources */,
+				E895535E1F6BE8EA0026582B /* VKSideMenu.m in Sources */,
+				E89553601F6BE8EA0026582B /* XMLReader.m in Sources */,
+				E895535B1F6BE8EA0026582B /* PropertyUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +372,7 @@
 				E84F365F1F6A5A0800C7BD20 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
