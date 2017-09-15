@@ -24,6 +24,8 @@
 #import "MapOneWPViewController.h"
 #import "MapAllWPViewController.h"
 #import "MapTrackViewController.h"
+#import "ToolsRot13ViewController.h"
+#import "ToolsGNSSViewController.h"
 
 @import GoogleMaps;
 

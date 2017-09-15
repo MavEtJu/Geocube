@@ -180,9 +180,6 @@
 #import "Locationless/LocationlessPlannedViewController.h"
 #import "Locationless/LocationlessTableViewCell.h"
 
-#import "Tools/ToolsRot13ViewController.h"
-#import "Tools/ToolsGNSSViewController.h"
-
 #import "Lists/ListTemplateViewController.h"
 #import "Lists/ListDNFViewController.h"
 #import "Lists/ListFoundViewController.h"
