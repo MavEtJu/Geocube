@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "MapWaypointInfoView.h"
+
+#import "MapTemplate.h"
+
 @interface MapWaypointInfoView ()
 {
     UIImage *imgFavourites, *imgSize;

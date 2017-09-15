@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "KeepTrackTracks.h"
+
+#import "MapTrackViewController.h"
+
 @interface KeepTrackTracks ()
 {
     NSMutableArray<dbTrack *> *tracks;

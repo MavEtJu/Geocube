@@ -23,6 +23,8 @@
 
 #import <sys/time.h>
 
+#import <CommonCrypto/CommonHMAC.h>
+
 @interface GCOAuthBlackbox ()
 {
     NSString *nonce;

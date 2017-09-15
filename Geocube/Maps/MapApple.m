@@ -19,6 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "MapApple.h"
+
+#import "GCWaypointAnnotation.h"
+#import "GCCircle.h"
+
 #define COORDHISTORYSIZE    100
 
 @interface MapApple ()

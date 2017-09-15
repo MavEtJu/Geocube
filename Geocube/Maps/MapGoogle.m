@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "MapGoogle.h"
+
+#import "GCGMSCircle.h"
+
 @import GoogleMaps;
 
 @interface MapGoogle ()

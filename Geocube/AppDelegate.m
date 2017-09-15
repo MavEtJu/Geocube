@@ -20,6 +20,10 @@
  */
 
 #import "OpenCageManager.h"
+#import "MapAppleCache.h"
+#import "MapOneWPViewController.h"
+#import "MapAllWPViewController.h"
+#import "MapTrackViewController.h"
 
 @import GoogleMaps;
 

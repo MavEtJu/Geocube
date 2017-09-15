@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "dbImage.h"
+
+#import <CommonCrypto/CommonDigest.h>
+
 @interface dbImage ()
 
 @end

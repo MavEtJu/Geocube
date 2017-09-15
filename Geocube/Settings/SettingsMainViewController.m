@@ -19,6 +19,9 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "SettingsMainViewController.h"
+#import "MapBrand.h"
+
 @interface SettingsMainViewController ()
 {
     NSArray<NSString *> *compassTypes;

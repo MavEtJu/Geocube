@@ -22,6 +22,12 @@
 #import "MapTemplateViewController.h"
 
 #import "ExportGPX.h"
+#import "MapGoogle.h"
+#import "MapApple.h"
+#import "MapBrand.h"
+#import "MapOSM.h"
+#import "MapESRIWorldTopo.h"
+#import "MapWaypointInfoView.h"
 
 @interface MapTemplateViewController ()
 {

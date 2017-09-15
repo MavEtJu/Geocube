@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "MapAppleTemplate.h"
+
 @interface MapESRIWorldTopo : MapAppleTemplate
 
 @end

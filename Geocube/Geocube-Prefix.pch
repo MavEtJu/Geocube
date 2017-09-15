@@ -24,17 +24,6 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
-#import <ImageIO/CGImageProperties.h>
-#import <ImageIO/CGImageSource.h>
-#import <MapKit/MapKit.h>
-#import <WebKit/WebKit.h>
-#import <CommonCrypto/CommonDigest.h>
-#import <CommonCrypto/CommonHMAC.h>
-#import <AudioToolbox/AudioToolbox.h>
-#import <AVFoundation/AVFoundation.h>
-#import <MediaPlayer/MediaPlayer.h>
-#import <Social/Social.h>
-#import <Photos/Photos.h>
 
 #import <math.h>
 
@@ -184,23 +173,6 @@
 
 #import "Statistics/StatisticsTableViewCell.h"
 #import "Statistics/StatisticsViewController.h"
-
-#import "Maps/GCWaypointAnnotation.h"
-#import "Maps/GCCircle.h"
-#import "Maps/GCGMSCircle.h"
-#import "Maps/MapWaypointInfoView.h"
-#import "Maps/MapTemplateViewController.h"
-#import "Maps/MapBrand.h"
-#import "Maps/MapAllWPViewController.h"
-#import "Maps/MapOneWPViewController.h"
-#import "Maps/MapTrackViewController.h"
-#import "Maps/MapTemplate.h"
-#import "Maps/MapApple.h"
-#import "Maps/MapGoogle.h"
-#import "Maps/MapAppleCache.h"
-#import "Maps/MapAppleTemplate.h"
-#import "Maps/MapOSM.h"
-#import "Maps/MapESRIWorldTopo.h"
 
 #import "Locationless/LocationlessTemplateViewController.h"
 #import "Locationless/LocationlessListViewController.h"

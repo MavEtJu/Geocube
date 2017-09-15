@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "MapAppleTemplate.h"
+
+#import "MapAppleCache.h"
+
 @interface MapAppleTemplate ()
 {
     MKTileOverlay *overlay;
