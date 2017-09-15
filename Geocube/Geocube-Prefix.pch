@@ -21,7 +21,6 @@
 
 #ifdef __OBJC__
 
-#import <sys/time.h>
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
@@ -40,7 +39,6 @@
 #import <math.h>
 
 #import "ContribLibrary/ContribLibrary.h"
-
 #import "contrib/MHTabBarController/MHTabBarController.h"
 #import "contrib/NKOColorPickerView/NKOColorPickerView.h"
 #import "contrib/CMRangeSlider/RangeSlider.h"
