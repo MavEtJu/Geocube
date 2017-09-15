@@ -21,7 +21,7 @@
 
 #import "GCSmallLabel.h"
 
-#import "ThemeManager.h"
+#import "Themes/ThemeManager.h"
 
 @interface GCSmallLabel ()
 

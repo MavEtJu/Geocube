@@ -4738,6 +4738,7 @@
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"${SDKROOT}/usr/include/libxml2",
 					"${SRCROOT}/Contrib/**",
+					"${SRCROOT}/Geocube",
 					"${SRCROOT}/BaseObjectsLibrary",
 				);
 				INFOPLIST_FILE = Geocube/Info.plist;
@@ -4775,6 +4776,7 @@
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"${SDKROOT}/usr/include/libxml2",
 					"${SRCROOT}/Contrib/**",
+					"${SRCROOT}/Geocube",
 					"${SRCROOT}/BaseObjectsLibrary",
 				);
 				INFOPLIST_FILE = Geocube/Info.plist;

@@ -21,7 +21,7 @@
 
 #import "GCTableViewHeaderFooterView.h"
 
-#import "ThemeManager.h"
+#import "Themes/ThemeManager.h"
 
 @interface GCTableViewHeaderFooterView ()
 

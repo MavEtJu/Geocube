@@ -104,8 +104,6 @@
 
 @end
 
-typedef sqlite3_int64 NSId;
-
 #define IS_IPAD \
     (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define IS_EMPTY(__s__) \

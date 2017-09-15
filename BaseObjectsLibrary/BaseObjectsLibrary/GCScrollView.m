@@ -21,7 +21,7 @@
 
 #import "GCScrollView.h"
 
-#import "ThemeManager.h"
+#import "Themes/ThemeManager.h"
 
 @interface GCScrollView ()
 

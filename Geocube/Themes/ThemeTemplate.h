@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "SVProgressHUD.h"
+#import "contrib/SVProgressHUD/SVProgressHUD.h"
 
 @interface ThemeTemplate : NSObject
 

@@ -21,7 +21,7 @@
 
 #import "GCTextblock.h"
 
-#import "ThemeManager.h"
+#import "Themes/ThemeManager.h"
 
 @interface GCTextblock ()
 
