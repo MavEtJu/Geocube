@@ -19,8 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCButton : UIButton
+#import "GCButton.h"
 
-- (void)changeTheme;
+@interface GCFilterButton : GCButton
+
+@property (nonatomic) NSInteger index;
 
 @end

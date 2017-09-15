@@ -29,9 +29,6 @@ extern SideMenu *menuGlobal;
 extern database *db;
 extern DatabaseCache *dbc;
 
-// Images
-extern ImageLibrary *imageLibrary;
-
 // Images Download Manager
 extern ImagesDownloadManager *imagesDownloadManager;
 

@@ -14,3 +14,7 @@
 #import <BaseObjectsLibrary/GCDictionary.h>
 #import <BaseObjectsLibrary/GCString.h>
 #import <BaseObjectsLibrary/GCLocationCoordinate2D.h>
+
+#import <BaseObjectsLibrary/GCButton.h>
+#import <BaseObjectsLibrary/GCCloseButton.h>
+#import <BaseObjectsLibrary/GCFilterButton.h>

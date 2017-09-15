@@ -220,8 +220,6 @@
 		E82344C01EECE0E800D2CDFD /* SettingsLogTemplatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344B81EECE0E800D2CDFD /* SettingsLogTemplatesViewController.m */; };
 		E82344C11EECE0E800D2CDFD /* SettingsMainColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344BA1EECE0E800D2CDFD /* SettingsMainColorPickerViewController.m */; };
 		E82344C21EECE0E800D2CDFD /* SettingsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344BC1EECE0E800D2CDFD /* SettingsMainViewController.m */; };
-		E82344F21EECE12A00D2CDFD /* GCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344C61EECE12A00D2CDFD /* GCButton.m */; };
-		E82344F31EECE12A00D2CDFD /* GCCloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344C81EECE12A00D2CDFD /* GCCloseButton.m */; };
 		E82344F41EECE12A00D2CDFD /* GCImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344CA1EECE12A00D2CDFD /* GCImageView.m */; };
 		E82344F51EECE12A00D2CDFD /* GCLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344CC1EECE12A00D2CDFD /* GCLabel.m */; };
 		E82344F61EECE12A00D2CDFD /* GCScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344CE1EECE12A00D2CDFD /* GCScrollView.m */; };
@@ -519,7 +517,6 @@
 		E858F5991F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E858F5981F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib */; };
 		E858F59B1F56610B002C1F9B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E858F59A1F56610B002C1F9B /* ImageIO.framework */; };
 		E85AE1C01F39E96A00FA746C /* LocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E85AE1BF1F39E96A00FA746C /* LocalizationManager.m */; };
-		E85AE1C31F3DD9C500FA746C /* GCFilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E85AE1C21F3DD9C500FA746C /* GCFilterButton.m */; };
 		E85BA88E1F544372008E708F /* KeepTrackBeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = E85BA88D1F544372008E708F /* KeepTrackBeeper.m */; };
 		E85BA8901F5449F5008E708F /* Beeper.wav in Resources */ = {isa = PBXBuildFile; fileRef = E85BA88F1F5449F5008E708F /* Beeper.wav */; };
 		E861B97E1EE2E6D300BD82AC /* GC - logo - 1536×2048.png in Resources */ = {isa = PBXBuildFile; fileRef = E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */; };
@@ -1258,10 +1255,6 @@
 		E82344BA1EECE0E800D2CDFD /* SettingsMainColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsMainColorPickerViewController.m; path = Settings/SettingsMainColorPickerViewController.m; sourceTree = "<group>"; };
 		E82344BB1EECE0E800D2CDFD /* SettingsMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsMainViewController.h; path = Settings/SettingsMainViewController.h; sourceTree = "<group>"; };
 		E82344BC1EECE0E800D2CDFD /* SettingsMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsMainViewController.m; path = Settings/SettingsMainViewController.m; sourceTree = "<group>"; };
-		E82344C51EECE12A00D2CDFD /* GCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCButton.h; path = GCBaseObjects/GCButton.h; sourceTree = "<group>"; };
-		E82344C61EECE12A00D2CDFD /* GCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCButton.m; path = GCBaseObjects/GCButton.m; sourceTree = "<group>"; };
-		E82344C71EECE12A00D2CDFD /* GCCloseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCCloseButton.h; path = GCBaseObjects/GCCloseButton.h; sourceTree = "<group>"; };
-		E82344C81EECE12A00D2CDFD /* GCCloseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCCloseButton.m; path = GCBaseObjects/GCCloseButton.m; sourceTree = "<group>"; };
 		E82344C91EECE12A00D2CDFD /* GCImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCImageView.h; path = GCBaseObjects/GCImageView.h; sourceTree = "<group>"; };
 		E82344CA1EECE12A00D2CDFD /* GCImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCImageView.m; path = GCBaseObjects/GCImageView.m; sourceTree = "<group>"; };
 		E82344CB1EECE12A00D2CDFD /* GCLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCLabel.h; path = GCBaseObjects/GCLabel.h; sourceTree = "<group>"; };
@@ -1610,8 +1603,6 @@
 		E858F59A1F56610B002C1F9B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		E85AE1BE1F39E96A00FA746C /* LocalizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalizationManager.h; path = GCTools/LocalizationManager.h; sourceTree = "<group>"; };
 		E85AE1BF1F39E96A00FA746C /* LocalizationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalizationManager.m; path = GCTools/LocalizationManager.m; sourceTree = "<group>"; };
-		E85AE1C11F3DD9C500FA746C /* GCFilterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCFilterButton.h; path = GCBaseObjects/GCFilterButton.h; sourceTree = "<group>"; };
-		E85AE1C21F3DD9C500FA746C /* GCFilterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCFilterButton.m; path = GCBaseObjects/GCFilterButton.m; sourceTree = "<group>"; };
 		E85BA88C1F544372008E708F /* KeepTrackBeeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeepTrackBeeper.h; path = KeepTrack/KeepTrackBeeper.h; sourceTree = "<group>"; };
 		E85BA88D1F544372008E708F /* KeepTrackBeeper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeepTrackBeeper.m; path = KeepTrack/KeepTrackBeeper.m; sourceTree = "<group>"; };
 		E85BA88F1F5449F5008E708F /* Beeper.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beeper.wav; sourceTree = "<group>"; };
@@ -1676,6 +1667,7 @@
 		E8EC07411D39E887009B8EB1 /* ImportManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportManager.m; sourceTree = "<group>"; };
 		E8EE47991F6B457C00AB13BC /* BaseObjectsLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BaseObjectsLibrary.xcodeproj; path = ../BaseObjectsLibrary/BaseObjectsLibrary.xcodeproj; sourceTree = "<group>"; };
 		E8EE47B71F6B473200AB13BC /* libContribLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libContribLibrary.a; path = "../../Library/Developer/Xcode/DerivedData/Geocube-bjprugvtqrcyrnatajlgnpwinftk/Build/Products/Debug-iphonesimulator/libContribLibrary.a"; sourceTree = "<group>"; };
+		E8EE47EF1F6B525000AB13BC /* DatabaseLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DatabaseLibrary.h; path = database/DatabaseLibrary.h; sourceTree = "<group>"; };
 		E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30.png"; path = "images/caches/cache - reverse - 30x30.png"; sourceTree = "<group>"; };
 		E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@2x.png"; path = "images/caches/cache - reverse - 30x30@2x.png"; sourceTree = "<group>"; };
 		E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@3x.png"; path = "images/caches/cache - reverse - 30x30@3x.png"; sourceTree = "<group>"; };
@@ -2362,12 +2354,6 @@
 		E85760161B85E08F00F34483 /* Base GUI objects */ = {
 			isa = PBXGroup;
 			children = (
-				E82344C51EECE12A00D2CDFD /* GCButton.h */,
-				E82344C61EECE12A00D2CDFD /* GCButton.m */,
-				E85AE1C11F3DD9C500FA746C /* GCFilterButton.h */,
-				E85AE1C21F3DD9C500FA746C /* GCFilterButton.m */,
-				E82344C71EECE12A00D2CDFD /* GCCloseButton.h */,
-				E82344C81EECE12A00D2CDFD /* GCCloseButton.m */,
 				E82344C91EECE12A00D2CDFD /* GCImageView.h */,
 				E82344CA1EECE12A00D2CDFD /* GCImageView.m */,
 				E82344CB1EECE12A00D2CDFD /* GCLabel.h */,
@@ -3320,6 +3306,7 @@
 		E8F570A81B3FE522003F020C /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				E8EE47EF1F6B525000AB13BC /* DatabaseLibrary.h */,
 				E823426B1EECD0B000D2CDFD /* database-cache.h */,
 				E823426C1EECD0B000D2CDFD /* database-cache.m */,
 				E823426D1EECD0B000D2CDFD /* database.h */,
@@ -4283,7 +4270,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E82344F51EECE12A00D2CDFD /* GCLabel.m in Sources */,
-				E85AE1C31F3DD9C500FA746C /* GCFilterButton.m in Sources */,
 				E82344711EECE08A00D2CDFD /* GroupsTemplateViewController.m in Sources */,
 				E83C6EEC1EECE1CB00E303F5 /* ConfigManager.m in Sources */,
 				E82344831EECE09C00D2CDFD /* ListInProgressViewController.m in Sources */,
@@ -4348,7 +4334,6 @@
 				E82343111EECD97400D2CDFD /* MyTools.m in Sources */,
 				E82343AA1EECDDD400D2CDFD /* GCCoordsHistorical.m in Sources */,
 				E83C6F071EECE67100E303F5 /* FilesViewController.m in Sources */,
-				E82344F31EECE12A00D2CDFD /* GCCloseButton.m in Sources */,
 				E83B10961EF4FC6000F2C5FA /* LocationlessListViewController.m in Sources */,
 				E82342CA1EECD0B100D2CDFD /* dbTrackable.m in Sources */,
 				E82342C81EECD0B100D2CDFD /* dbSymbol.m in Sources */,
@@ -4459,7 +4444,6 @@
 				E82344A91EECE0C900D2CDFD /* BrowserBrowserViewController.m in Sources */,
 				E82342B41EECD0B100D2CDFD /* dbCountry.m in Sources */,
 				E82344F81EECE12A00D2CDFD /* GCSwitch.m in Sources */,
-				E82344F21EECE12A00D2CDFD /* GCButton.m in Sources */,
 				E82344361EECDFB300D2CDFD /* FilterTypesTableViewCell.m in Sources */,
 				E82345241EECE14A00D2CDFD /* DeveloperImagesViewController.m in Sources */,
 				E82344401EECE01500D2CDFD /* KeepTracksTrackTableViewCell.m in Sources */,

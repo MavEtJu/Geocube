@@ -19,12 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "Geocube-prefix.pch"
+#import <UIKit/UIKit.h>
 
-@interface GCFilterButton ()
+@interface GCButton : UIButton
 
-@end
-
-@implementation GCFilterButton
+- (void)changeTheme;
 
 @end

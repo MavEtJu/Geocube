@@ -19,26 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "Geocube-prefix.pch"
+#import <UIKit/UIKit.h>
 
-@interface GCButton ()
-
-@end
-
-@implementation GCButton
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-
-    [self changeTheme];
-
-    return self;
-}
-
-- (void)changeTheme
-{
-    [themeManager changeThemeArray:self.subviews];
-}
+@interface GCCloseButton : UIButton
 
 @end

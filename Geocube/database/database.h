@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <sqlite3.h>
+
+typedef sqlite3_int64 NSId;
+
 #ifndef Geocube_database_h
 #define Geocube_database_h
 

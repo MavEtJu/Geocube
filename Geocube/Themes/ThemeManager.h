@@ -19,8 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-extern ThemeTemplate *currentTheme;
-extern ThemeManager *themeManager;
+#import "ThemeTemplate.h"
 
 typedef NS_ENUM(NSInteger, GCThemeType) {
     THEME_IOS = 0,
@@ -38,3 +37,6 @@ typedef NS_ENUM(NSInteger, GCThemeType) {
 - (void)changeThemeArray:(NSArray<UIView *> *)vs;
 
 @end
+
+extern ThemeTemplate *currentTheme;
+extern ThemeManager *themeManager;

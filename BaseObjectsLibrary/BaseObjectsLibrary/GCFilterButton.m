@@ -19,6 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCCloseButton : UIButton
+#import "GCFilterButton.h"
+
+@interface GCFilterButton ()
+
+@end
+
+@implementation GCFilterButton
 
 @end

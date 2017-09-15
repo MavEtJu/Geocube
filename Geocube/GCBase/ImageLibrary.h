@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "DatabaseLibrary.h"
+
 typedef NS_ENUM(NSInteger, ImageNumber) {
     ImageLibraryImagesMin = -1,
     Image_Nil = 0,
@@ -243,3 +245,5 @@ typedef NS_ENUM(NSInteger, ImageNumber) {
 + (UIImage *)circleWithColour:(UIColor *)c;
 
 @end
+
+extern ImageLibrary *imageLibrary;

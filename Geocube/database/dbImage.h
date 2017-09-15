@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <CoreLocation/CoreLocation.h>
+
 typedef NS_ENUM(NSInteger, ImageCategory) {
     IMAGECATEGORY_NONE = 0,
     IMAGECATEGORY_LOG = 1,
