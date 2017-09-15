@@ -220,7 +220,6 @@
 		E82344C01EECE0E800D2CDFD /* SettingsLogTemplatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344B81EECE0E800D2CDFD /* SettingsLogTemplatesViewController.m */; };
 		E82344C11EECE0E800D2CDFD /* SettingsMainColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344BA1EECE0E800D2CDFD /* SettingsMainColorPickerViewController.m */; };
 		E82344C21EECE0E800D2CDFD /* SettingsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344BC1EECE0E800D2CDFD /* SettingsMainViewController.m */; };
-		E82344F91EECE12A00D2CDFD /* GCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344D41EECE12A00D2CDFD /* GCTableViewCell.m */; };
 		E82344FA1EECE12A00D2CDFD /* GCTableViewCellKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344D61EECE12A00D2CDFD /* GCTableViewCellKeyValue.m */; };
 		E82344FB1EECE12A00D2CDFD /* GCTableViewCellKeyValue.xib in Resources */ = {isa = PBXBuildFile; fileRef = E82344D71EECE12A00D2CDFD /* GCTableViewCellKeyValue.xib */; };
 		E82344FC1EECE12A00D2CDFD /* GCTableViewCellKeyValue~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E82344D81EECE12A00D2CDFD /* GCTableViewCellKeyValue~ipad.xib */; };
@@ -1254,8 +1253,6 @@
 		E82344BA1EECE0E800D2CDFD /* SettingsMainColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsMainColorPickerViewController.m; path = Settings/SettingsMainColorPickerViewController.m; sourceTree = "<group>"; };
 		E82344BB1EECE0E800D2CDFD /* SettingsMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsMainViewController.h; path = Settings/SettingsMainViewController.h; sourceTree = "<group>"; };
 		E82344BC1EECE0E800D2CDFD /* SettingsMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsMainViewController.m; path = Settings/SettingsMainViewController.m; sourceTree = "<group>"; };
-		E82344D31EECE12A00D2CDFD /* GCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCTableViewCell.h; path = GCBaseObjects/GCTableViewCell.h; sourceTree = "<group>"; };
-		E82344D41EECE12A00D2CDFD /* GCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCTableViewCell.m; path = GCBaseObjects/GCTableViewCell.m; sourceTree = "<group>"; };
 		E82344D51EECE12A00D2CDFD /* GCTableViewCellKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCTableViewCellKeyValue.h; path = GCBaseObjects/GCTableViewCellKeyValue.h; sourceTree = "<group>"; };
 		E82344D61EECE12A00D2CDFD /* GCTableViewCellKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCTableViewCellKeyValue.m; path = GCBaseObjects/GCTableViewCellKeyValue.m; sourceTree = "<group>"; };
 		E82344D71EECE12A00D2CDFD /* GCTableViewCellKeyValue.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GCTableViewCellKeyValue.xib; path = GCBaseObjects/GCTableViewCellKeyValue.xib; sourceTree = "<group>"; };
@@ -2341,8 +2338,6 @@
 				E8EE480F1F6B772F00AB13BC /* GCTableViewController.m */,
 				E8EE48101F6B772F00AB13BC /* GCViewController.h */,
 				E8EE48111F6B772F00AB13BC /* GCViewController.m */,
-				E82344D31EECE12A00D2CDFD /* GCTableViewCell.h */,
-				E82344D41EECE12A00D2CDFD /* GCTableViewCell.m */,
 				E82344D51EECE12A00D2CDFD /* GCTableViewCellKeyValue.h */,
 				E82344D61EECE12A00D2CDFD /* GCTableViewCellKeyValue.m */,
 				E82344D71EECE12A00D2CDFD /* GCTableViewCellKeyValue.xib */,
@@ -4480,7 +4475,6 @@
 				E82345211EECE14A00D2CDFD /* HelpAboutViewController.m in Sources */,
 				E82342B71EECD0B100D2CDFD /* dbFilter.m in Sources */,
 				E82343971EECDBCE00D2CDFD /* MapApple.m in Sources */,
-				E82344F91EECE12A00D2CDFD /* GCTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E881C9DB1F6B788200A17060 /* GCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E881C9DA1F6B788100A17060 /* GCTableViewCell.m */; };
 		E8EE47931F6B457C00AB13BC /* BaseObjectsLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E8EE47901F6B457C00AB13BC /* BaseObjectsLibrary.h */; };
 		E8EE47AB1F6B45C700AB13BC /* GCArray.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47AA1F6B45C700AB13BC /* GCArray.m */; };
 		E8EE47BF1F6B479B00AB13BC /* GCDataObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47BA1F6B479B00AB13BC /* GCDataObjects.m */; };
@@ -41,6 +42,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E881C9D91F6B788100A17060 /* GCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCell.h; sourceTree = "<group>"; };
+		E881C9DA1F6B788100A17060 /* GCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCell.m; sourceTree = "<group>"; };
 		E8EE478D1F6B457C00AB13BC /* libBaseObjectsLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBaseObjectsLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EE47901F6B457C00AB13BC /* BaseObjectsLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseObjectsLibrary.h; sourceTree = "<group>"; };
 		E8EE47A91F6B45C700AB13BC /* GCArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCArray.h; sourceTree = "<group>"; };
@@ -154,6 +157,8 @@
 				E8EE47F41F6B550600AB13BC /* GCSmallLabel.m */,
 				E8EE47FA1F6B567F00AB13BC /* GCSwitch.h */,
 				E8EE47FB1F6B567F00AB13BC /* GCSwitch.m */,
+				E881C9D91F6B788100A17060 /* GCTableViewCell.h */,
+				E881C9DA1F6B788100A17060 /* GCTableViewCell.m */,
 				E8EE48011F6B57DA00AB13BC /* GCTableViewHeaderFooterView.h */,
 				E8EE48021F6B57DA00AB13BC /* GCTableViewHeaderFooterView.m */,
 				E8EE48031F6B57DA00AB13BC /* GCTextblock.h */,
@@ -233,6 +238,7 @@
 				E8EE47C11F6B479B00AB13BC /* GCString.m in Sources */,
 				E8EE480A1F6B57DA00AB13BC /* GCTableViewHeaderFooterView.m in Sources */,
 				E8EE47CC1F6B4AA100AB13BC /* GCBoundingBox.m in Sources */,
+				E881C9DB1F6B788200A17060 /* GCTableViewCell.m in Sources */,
 				E8EE47C41F6B484200AB13BC /* GCLocationCoordinate2D.m in Sources */,
 				E8EE47F21F6B548000AB13BC /* GCLabel.m in Sources */,
 				E8EE47AB1F6B45C700AB13BC /* GCArray.m in Sources */,

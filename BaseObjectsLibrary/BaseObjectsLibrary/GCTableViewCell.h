@@ -19,48 +19,13 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCTableViewCell ()
+#import <UIKit/UIKit.h>
 
-@end
+#define XIB_GCTABLEVIEWCELL @"GCTableViewCell"
 
-@implementation GCTableViewCell
+@interface GCTableViewCell : UITableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-
-    [self changeTheme];
-
-    return self;
-}
-
-- (void)prepareForReuse
-{
-    [self changeTheme];
-}
-
-- (void)changeTheme
-{
-    self.textLabel.textColor = currentTheme.labelTextColor;
-    self.detailTextLabel.textColor = currentTheme.labelTextColor;
-    self.backgroundColor = [UIColor clearColor];
-
-    [themeManager changeThemeArray:self.subviews];
-}
-
-- (void)calculateRects
-{
-    /* NOP */
-}
-
-- (void)calculateCellHeight
-{
-    /* NOP */
-}
-
-- (void)viewWillTransitionToSize
-{
-    /* NOP */
-}
+- (void)changeTheme;
+- (void)viewWillTransitionToSize;
 
 @end

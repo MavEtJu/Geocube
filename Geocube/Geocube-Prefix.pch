@@ -97,7 +97,6 @@
 #import "WaypointManager.h"
 
 #import "BaseObjectsLibrary/BaseObjectsLibrary.h"
-#import "GCTableViewCell.h"
 #import "GCTableViewCellRightImage.h"
 #import "GCTableViewCellRightImageDisclosure.h"
 #import "GCTableViewCellSubtitleRightImage.h"

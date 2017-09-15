@@ -23,6 +23,7 @@
 #import <BaseObjectsLibrary/GCScrollView.h>
 #import <BaseObjectsLibrary/GCSmallLabel.h>
 #import <BaseObjectsLibrary/GCSwitch.h>
+#import <BaseObjectsLibrary/GCTableViewCell.h>
 #import <BaseObjectsLibrary/GCTableViewHeaderFooterView.h>
 #import <BaseObjectsLibrary/GCTextblock.h>
 #import <BaseObjectsLibrary/GCView.h>
