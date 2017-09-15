@@ -105,9 +105,8 @@
 #import "GCTableViewCellSwitch.h"
 #import "GCTableViewCellWithSubtitle.h"
 #import "GCTableViewCellKeyValue.h"
-#import "GCTableViewHeaderFooterView.h"
-#import "GCTextblock.h"
-#import "GCView.h"
+#import "GCViewController.h"
+#import "GCTableViewController.h"
 
 #import "InfoItem.h"
 #import "InfoViewer.h"

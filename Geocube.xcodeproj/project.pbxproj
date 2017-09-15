@@ -234,11 +234,6 @@
 		E82345041EECE12B00D2CDFD /* GCTableViewCellSwitch.xib in Resources */ = {isa = PBXBuildFile; fileRef = E82344E31EECE12A00D2CDFD /* GCTableViewCellSwitch.xib */; };
 		E82345051EECE12B00D2CDFD /* GCTableViewCellSwitch~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E82344E41EECE12A00D2CDFD /* GCTableViewCellSwitch~ipad.xib */; };
 		E82345061EECE12B00D2CDFD /* GCTableViewCellWithSubtitle.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344E61EECE12A00D2CDFD /* GCTableViewCellWithSubtitle.m */; };
-		E82345071EECE12B00D2CDFD /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344E81EECE12A00D2CDFD /* GCTableViewController.m */; };
-		E82345081EECE12B00D2CDFD /* GCTableViewHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344EA1EECE12A00D2CDFD /* GCTableViewHeaderFooterView.m */; };
-		E82345091EECE12B00D2CDFD /* GCTextblock.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344EC1EECE12A00D2CDFD /* GCTextblock.m */; };
-		E823450A1EECE12B00D2CDFD /* GCView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344EE1EECE12A00D2CDFD /* GCView.m */; };
-		E823450B1EECE12B00D2CDFD /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344F01EECE12A00D2CDFD /* GCViewController.m */; };
 		E823451E1EECE14A00D2CDFD /* HelpAboutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E823450D1EECE14A00D2CDFD /* HelpAboutTableViewCell.m */; };
 		E823451F1EECE14A00D2CDFD /* HelpAboutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E823450E1EECE14A00D2CDFD /* HelpAboutTableViewCell.xib */; };
 		E82345201EECE14A00D2CDFD /* HelpAboutTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E823450F1EECE14A00D2CDFD /* HelpAboutTableViewCell~ipad.xib */; };
@@ -567,6 +562,8 @@
 		E8EE47B61F6B473200AB13BC /* libYIPopupTextViewLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE47401F6B429C00AB13BC /* libYIPopupTextViewLibrary.a */; };
 		E8EE47B81F6B473200AB13BC /* libContribLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE47B71F6B473200AB13BC /* libContribLibrary.a */; };
 		E8EE47CD1F6B4B0800AB13BC /* libBaseObjectsLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE47C91F6B488C00AB13BC /* libBaseObjectsLibrary.a */; };
+		E8EE48121F6B772F00AB13BC /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE480F1F6B772F00AB13BC /* GCTableViewController.m */; };
+		E8EE48131F6B772F00AB13BC /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE48111F6B772F00AB13BC /* GCViewController.m */; };
 		E8F403E81DAF5B2600318CC6 /* cache - reverse - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */; };
 		E8F403EB1DAFA23600318CC6 /* cache - reverse - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */; };
 		E8F403EC1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */; };
@@ -671,6 +668,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E881C9D71F6B77F400A17060 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E84F36601F6A5A0800C7BD20 /* ContribLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E84F36541F6A5A0800C7BD20;
+			remoteInfo = ContribLibrary;
+		};
 		E8EE47301F6B429000AB13BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E84F36021F6A567A00C7BD20 /* ActionSheetPickerLibrary.xcodeproj */;
@@ -1270,16 +1274,6 @@
 		E82344E41EECE12A00D2CDFD /* GCTableViewCellSwitch~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "GCTableViewCellSwitch~ipad.xib"; path = "GCBaseObjects/GCTableViewCellSwitch~ipad.xib"; sourceTree = "<group>"; };
 		E82344E51EECE12A00D2CDFD /* GCTableViewCellWithSubtitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCTableViewCellWithSubtitle.h; path = GCBaseObjects/GCTableViewCellWithSubtitle.h; sourceTree = "<group>"; };
 		E82344E61EECE12A00D2CDFD /* GCTableViewCellWithSubtitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCTableViewCellWithSubtitle.m; path = GCBaseObjects/GCTableViewCellWithSubtitle.m; sourceTree = "<group>"; };
-		E82344E71EECE12A00D2CDFD /* GCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCTableViewController.h; path = GCBaseObjects/GCTableViewController.h; sourceTree = "<group>"; };
-		E82344E81EECE12A00D2CDFD /* GCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCTableViewController.m; path = GCBaseObjects/GCTableViewController.m; sourceTree = "<group>"; };
-		E82344E91EECE12A00D2CDFD /* GCTableViewHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCTableViewHeaderFooterView.h; path = GCBaseObjects/GCTableViewHeaderFooterView.h; sourceTree = "<group>"; };
-		E82344EA1EECE12A00D2CDFD /* GCTableViewHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCTableViewHeaderFooterView.m; path = GCBaseObjects/GCTableViewHeaderFooterView.m; sourceTree = "<group>"; };
-		E82344EB1EECE12A00D2CDFD /* GCTextblock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCTextblock.h; path = GCBaseObjects/GCTextblock.h; sourceTree = "<group>"; };
-		E82344EC1EECE12A00D2CDFD /* GCTextblock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCTextblock.m; path = GCBaseObjects/GCTextblock.m; sourceTree = "<group>"; };
-		E82344ED1EECE12A00D2CDFD /* GCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCView.h; path = GCBaseObjects/GCView.h; sourceTree = "<group>"; };
-		E82344EE1EECE12A00D2CDFD /* GCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCView.m; path = GCBaseObjects/GCView.m; sourceTree = "<group>"; };
-		E82344EF1EECE12A00D2CDFD /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCViewController.h; path = GCBaseObjects/GCViewController.h; sourceTree = "<group>"; };
-		E82344F01EECE12A00D2CDFD /* GCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCViewController.m; path = GCBaseObjects/GCViewController.m; sourceTree = "<group>"; };
 		E823450C1EECE14A00D2CDFD /* HelpAboutTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelpAboutTableViewCell.h; path = Help/HelpAboutTableViewCell.h; sourceTree = "<group>"; };
 		E823450D1EECE14A00D2CDFD /* HelpAboutTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelpAboutTableViewCell.m; path = Help/HelpAboutTableViewCell.m; sourceTree = "<group>"; };
 		E823450E1EECE14A00D2CDFD /* HelpAboutTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HelpAboutTableViewCell.xib; path = Help/HelpAboutTableViewCell.xib; sourceTree = "<group>"; };
@@ -1653,6 +1647,10 @@
 		E8EE47991F6B457C00AB13BC /* BaseObjectsLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BaseObjectsLibrary.xcodeproj; path = ../BaseObjectsLibrary/BaseObjectsLibrary.xcodeproj; sourceTree = "<group>"; };
 		E8EE47B71F6B473200AB13BC /* libContribLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libContribLibrary.a; path = "../../Library/Developer/Xcode/DerivedData/Geocube-bjprugvtqrcyrnatajlgnpwinftk/Build/Products/Debug-iphonesimulator/libContribLibrary.a"; sourceTree = "<group>"; };
 		E8EE47EF1F6B525000AB13BC /* DatabaseLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DatabaseLibrary.h; path = database/DatabaseLibrary.h; sourceTree = "<group>"; };
+		E8EE480E1F6B772F00AB13BC /* GCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCTableViewController.h; path = GCBaseObjects/GCTableViewController.h; sourceTree = "<group>"; };
+		E8EE480F1F6B772F00AB13BC /* GCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCTableViewController.m; path = GCBaseObjects/GCTableViewController.m; sourceTree = "<group>"; };
+		E8EE48101F6B772F00AB13BC /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCViewController.h; path = GCBaseObjects/GCViewController.h; sourceTree = "<group>"; };
+		E8EE48111F6B772F00AB13BC /* GCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCViewController.m; path = GCBaseObjects/GCViewController.m; sourceTree = "<group>"; };
 		E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30.png"; path = "images/caches/cache - reverse - 30x30.png"; sourceTree = "<group>"; };
 		E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@2x.png"; path = "images/caches/cache - reverse - 30x30@2x.png"; sourceTree = "<group>"; };
 		E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@3x.png"; path = "images/caches/cache - reverse - 30x30@3x.png"; sourceTree = "<group>"; };
@@ -2339,6 +2337,10 @@
 		E85760161B85E08F00F34483 /* Base GUI objects */ = {
 			isa = PBXGroup;
 			children = (
+				E8EE480E1F6B772F00AB13BC /* GCTableViewController.h */,
+				E8EE480F1F6B772F00AB13BC /* GCTableViewController.m */,
+				E8EE48101F6B772F00AB13BC /* GCViewController.h */,
+				E8EE48111F6B772F00AB13BC /* GCViewController.m */,
 				E82344D31EECE12A00D2CDFD /* GCTableViewCell.h */,
 				E82344D41EECE12A00D2CDFD /* GCTableViewCell.m */,
 				E82344D51EECE12A00D2CDFD /* GCTableViewCellKeyValue.h */,
@@ -2369,16 +2371,6 @@
 				E82344E61EECE12A00D2CDFD /* GCTableViewCellWithSubtitle.m */,
 				E85653031F6797D700A415D0 /* GCTableViewCellWithSubtitle.xib */,
 				E85653051F679EBA00A415D0 /* GCTableViewCellWithSubtitle~ipad.xib */,
-				E82344E71EECE12A00D2CDFD /* GCTableViewController.h */,
-				E82344E81EECE12A00D2CDFD /* GCTableViewController.m */,
-				E82344E91EECE12A00D2CDFD /* GCTableViewHeaderFooterView.h */,
-				E82344EA1EECE12A00D2CDFD /* GCTableViewHeaderFooterView.m */,
-				E82344EB1EECE12A00D2CDFD /* GCTextblock.h */,
-				E82344EC1EECE12A00D2CDFD /* GCTextblock.m */,
-				E82344ED1EECE12A00D2CDFD /* GCView.h */,
-				E82344EE1EECE12A00D2CDFD /* GCView.m */,
-				E82344EF1EECE12A00D2CDFD /* GCViewController.h */,
-				E82344F01EECE12A00D2CDFD /* GCViewController.m */,
 			);
 			name = "Base GUI objects";
 			sourceTree = "<group>";
@@ -2738,6 +2730,14 @@
 				E82345171EECE14A00D2CDFD /* DeveloperImagesViewController.m */,
 			);
 			name = Developer;
+			sourceTree = "<group>";
+		};
+		E881C9D41F6B77F400A17060 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E881C9D81F6B77F400A17060 /* libContribLibrary.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		E887201C1B5EF5F300994BE0 /* icons */ = {
@@ -3622,6 +3622,10 @@
 					ProjectRef = E8EE47991F6B457C00AB13BC /* BaseObjectsLibrary.xcodeproj */;
 				},
 				{
+					ProductGroup = E881C9D41F6B77F400A17060 /* Products */;
+					ProjectRef = E84F36601F6A5A0800C7BD20 /* ContribLibrary.xcodeproj */;
+				},
+				{
 					ProductGroup = E8EE47541F6B429D00AB13BC /* Products */;
 					ProjectRef = E8F553631F6A38EA0054806E /* GMUGeometryLibrary.xcodeproj */;
 				},
@@ -3669,6 +3673,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		E881C9D81F6B77F400A17060 /* libContribLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libContribLibrary.a;
+			remoteRef = E881C9D71F6B77F400A17060 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		E8EE47311F6B429000AB13BC /* libActionSheetPickerLibrary.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -4294,13 +4305,11 @@
 				E82344821EECE09C00D2CDFD /* ListIgnoredViewController.m in Sources */,
 				E823442E1EECDFB300D2CDFD /* FilterGroupsTableViewCell.m in Sources */,
 				E823444F1EECE04B00D2CDFD /* NotesSavedViewController.m in Sources */,
-				E823450A1EECE12B00D2CDFD /* GCView.m in Sources */,
 				E82343581EECDA4900D2CDFD /* ImportTemplate.m in Sources */,
 				E82343861EECDB9B00D2CDFD /* MapOneWPViewController.m in Sources */,
 				E82344541EECE05E00D2CDFD /* PersonalNoteTableViewCell.m in Sources */,
 				E823435E1EECDAEF00D2CDFD /* SideMenu.m in Sources */,
 				E83C6F001EECE67100E303F5 /* FileBrowserViewController.m in Sources */,
-				E823450B1EECE12B00D2CDFD /* GCViewController.m in Sources */,
 				E82344801EECE09C00D2CDFD /* ListFoundViewController.m in Sources */,
 				E82344FA1EECE12A00D2CDFD /* GCTableViewCellKeyValue.m in Sources */,
 				E82343AC1EECDDD400D2CDFD /* GCWaypointAnnotation.m in Sources */,
@@ -4312,6 +4321,7 @@
 				E82342C81EECD0B100D2CDFD /* dbSymbol.m in Sources */,
 				E82344331EECDFB300D2CDFD /* FilterTableViewCell.m in Sources */,
 				E82343F71EECDF4400D2CDFD /* WaypointLogsViewController.m in Sources */,
+				E8EE48131F6B772F00AB13BC /* GCViewController.m in Sources */,
 				E82343791EECDB4500D2CDFD /* ThemeTemplate.m in Sources */,
 				E82343C61EECDEA100D2CDFD /* WaypointAddViewController.m in Sources */,
 				E815B7831F67FCB2003A6092 /* FileKMLViewController.m in Sources */,
@@ -4350,10 +4360,10 @@
 				E82344291EECDFB300D2CDFD /* FilterDifficultyTableViewCell.m in Sources */,
 				E82343351EECD9BC00D2CDFD /* RemoteAPITemplate.m in Sources */,
 				E82343771EECDB4500D2CDFD /* ThemeManager.m in Sources */,
+				E8EE48121F6B772F00AB13BC /* GCTableViewController.m in Sources */,
 				E823424E1EECCF9300D2CDFD /* SVProgressHUD.m in Sources */,
 				E82342C41EECD0B100D2CDFD /* dbPin.m in Sources */,
 				E83C6F041EECE67100E303F5 /* FilesTableViewCell.m in Sources */,
-				E82345071EECE12B00D2CDFD /* GCTableViewController.m in Sources */,
 				E82342CB1EECD0B100D2CDFD /* dbTrackElement.m in Sources */,
 				E82345261EECE14A00D2CDFD /* NoticesViewController.m in Sources */,
 				E82343F51EECDF4400D2CDFD /* WaypointGroupsViewController.m in Sources */,
@@ -4368,7 +4378,6 @@
 				E82344941EECE0AD00D2CDFD /* QueriesTableViewCell.m in Sources */,
 				E823420E1EECCEEE00D2CDFD /* MHTabBarController.m in Sources */,
 				E82342C91EECD0B100D2CDFD /* dbTrack.m in Sources */,
-				E82345081EECE12B00D2CDFD /* GCTableViewHeaderFooterView.m in Sources */,
 				E82343F31EECDF4400D2CDFD /* WaypointAttributesViewController.m in Sources */,
 				E823432B1EECD9BC00D2CDFD /* ProtocolGCA2.m in Sources */,
 				E82343551EECDA4900D2CDFD /* ImportLiveAPIJSON.m in Sources */,
@@ -4450,7 +4459,6 @@
 				E82342BB1EECD0B100D2CDFD /* dbLocality.m in Sources */,
 				E823444E1EECE04B00D2CDFD /* NotesPersonalNotesViewController.m in Sources */,
 				E87DF78E1D8564A800F16B5A /* InfoViewer.m in Sources */,
-				E82345091EECE12B00D2CDFD /* GCTextblock.m in Sources */,
 				E82343311EECD9BC00D2CDFD /* RemoteAPIGGCW.m in Sources */,
 				E85BA88E1F544372008E708F /* KeepTrackBeeper.m in Sources */,
 				E82343781EECDB4500D2CDFD /* ThemeNight.m in Sources */,

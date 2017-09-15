@@ -19,8 +19,28 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCTableViewHeaderFooterView : UITableViewHeaderFooterView
+#import "GCView.h"
 
-- (void)changeTheme;
+#import "ThemeManager.h"
+
+@interface GCView ()
+
+@end
+
+@implementation GCView
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+
+    [self changeTheme];
+
+    return self;
+}
+
+- (void)changeTheme
+{
+    [themeManager changeThemeArray:self.subviews];
+}
 
 @end

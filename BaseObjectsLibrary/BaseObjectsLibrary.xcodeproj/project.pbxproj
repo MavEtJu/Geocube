@@ -22,6 +22,9 @@
 		E8EE47FC1F6B567F00AB13BC /* GCImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47F71F6B567F00AB13BC /* GCImageView.m */; };
 		E8EE47FD1F6B567F00AB13BC /* GCScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47F91F6B567F00AB13BC /* GCScrollView.m */; };
 		E8EE47FE1F6B567F00AB13BC /* GCSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47FB1F6B567F00AB13BC /* GCSwitch.m */; };
+		E8EE480A1F6B57DA00AB13BC /* GCTableViewHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE48021F6B57DA00AB13BC /* GCTableViewHeaderFooterView.m */; };
+		E8EE480B1F6B57DA00AB13BC /* GCTextblock.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE48041F6B57DA00AB13BC /* GCTextblock.m */; };
+		E8EE480C1F6B57DA00AB13BC /* GCView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE48061F6B57DA00AB13BC /* GCView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -68,6 +71,12 @@
 		E8EE47F91F6B567F00AB13BC /* GCScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCScrollView.m; sourceTree = "<group>"; };
 		E8EE47FA1F6B567F00AB13BC /* GCSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCSwitch.h; sourceTree = "<group>"; };
 		E8EE47FB1F6B567F00AB13BC /* GCSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCSwitch.m; sourceTree = "<group>"; };
+		E8EE48011F6B57DA00AB13BC /* GCTableViewHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewHeaderFooterView.h; sourceTree = "<group>"; };
+		E8EE48021F6B57DA00AB13BC /* GCTableViewHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewHeaderFooterView.m; sourceTree = "<group>"; };
+		E8EE48031F6B57DA00AB13BC /* GCTextblock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTextblock.h; sourceTree = "<group>"; };
+		E8EE48041F6B57DA00AB13BC /* GCTextblock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTextblock.m; sourceTree = "<group>"; };
+		E8EE48051F6B57DA00AB13BC /* GCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCView.h; sourceTree = "<group>"; };
+		E8EE48061F6B57DA00AB13BC /* GCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +154,12 @@
 				E8EE47F41F6B550600AB13BC /* GCSmallLabel.m */,
 				E8EE47FA1F6B567F00AB13BC /* GCSwitch.h */,
 				E8EE47FB1F6B567F00AB13BC /* GCSwitch.m */,
+				E8EE48011F6B57DA00AB13BC /* GCTableViewHeaderFooterView.h */,
+				E8EE48021F6B57DA00AB13BC /* GCTableViewHeaderFooterView.m */,
+				E8EE48031F6B57DA00AB13BC /* GCTextblock.h */,
+				E8EE48041F6B57DA00AB13BC /* GCTextblock.m */,
+				E8EE48051F6B57DA00AB13BC /* GCView.h */,
+				E8EE48061F6B57DA00AB13BC /* GCView.m */,
 			);
 			name = "GUI objects";
 			sourceTree = "<group>";
@@ -209,17 +224,20 @@
 			files = (
 				E8EE47FC1F6B567F00AB13BC /* GCImageView.m in Sources */,
 				E8EE47FE1F6B567F00AB13BC /* GCSwitch.m in Sources */,
+				E8EE480C1F6B57DA00AB13BC /* GCView.m in Sources */,
 				E8EE47E81F6B4ECC00AB13BC /* GCButton.m in Sources */,
 				E8EE47F51F6B550600AB13BC /* GCSmallLabel.m in Sources */,
 				E8EE47BF1F6B479B00AB13BC /* GCDataObjects.m in Sources */,
 				E8EE47C01F6B479B00AB13BC /* GCDictionary.m in Sources */,
 				E8EE47FD1F6B567F00AB13BC /* GCScrollView.m in Sources */,
 				E8EE47C11F6B479B00AB13BC /* GCString.m in Sources */,
+				E8EE480A1F6B57DA00AB13BC /* GCTableViewHeaderFooterView.m in Sources */,
 				E8EE47CC1F6B4AA100AB13BC /* GCBoundingBox.m in Sources */,
 				E8EE47C41F6B484200AB13BC /* GCLocationCoordinate2D.m in Sources */,
 				E8EE47F21F6B548000AB13BC /* GCLabel.m in Sources */,
 				E8EE47AB1F6B45C700AB13BC /* GCArray.m in Sources */,
 				E8EE47EE1F6B514800AB13BC /* GCCloseButton.m in Sources */,
+				E8EE480B1F6B57DA00AB13BC /* GCTextblock.m in Sources */,
 				E8EE47EB1F6B50A100AB13BC /* GCFilterButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

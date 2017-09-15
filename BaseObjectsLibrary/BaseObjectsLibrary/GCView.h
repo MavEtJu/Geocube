@@ -19,24 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCView ()
+#import "UIKit/UIKit.h"
 
-@end
+@interface GCView : UIView
 
-@implementation GCView
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-
-    [self changeTheme];
-
-    return self;
-}
-
-- (void)changeTheme
-{
-    [themeManager changeThemeArray:self.subviews];
-}
+- (void)changeTheme;
 
 @end

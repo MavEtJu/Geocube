@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "GCTableViewController.h"
+
+#import "ThemeManager.h"
+
 @interface GCTableViewController ()
 {
     GCCloseButton *closeButton;

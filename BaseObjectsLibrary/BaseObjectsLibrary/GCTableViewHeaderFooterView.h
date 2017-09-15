@@ -19,36 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCTextblock ()
+#import "UIKit/UIKit.h"
 
-@end
+@interface GCTableViewHeaderFooterView : UITableViewHeaderFooterView
 
-@implementation GCTextblock
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-
-    self.font = currentTheme.GCTextblockFont;
-    self.numberOfLines = 0;
-    [self changeTheme];
-
-    return self;
-}
-
-- (void)changeTheme
-{
-    self.textColor = currentTheme.labelTextColor;
-
-    // [themeManager changeTheme:self.subviews];
-}
-
-- (void)bold:(BOOL)onoff
-{
-    if (onoff == YES)
-        self.font = [UIFont boldSystemFontOfSize:currentTheme.GCTextblockFont.pointSize];
-    else
-        self.font = [UIFont systemFontOfSize:currentTheme.GCTextblockFont.pointSize];
-}
+- (void)changeTheme;
 
 @end

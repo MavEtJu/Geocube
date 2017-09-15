@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "GCTableViewHeaderFooterView.h"
+
+#import "ThemeManager.h"
+
 @interface GCTableViewHeaderFooterView ()
 
 @end
