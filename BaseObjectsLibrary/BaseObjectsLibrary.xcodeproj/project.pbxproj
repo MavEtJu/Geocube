@@ -315,7 +315,7 @@
 					"${SRCROOT}/../ToolsLibrary",
 					"${SRCROOT}/../ManagersLibrary",
 					"${SRCROOT}/../ThemesLibrary",
-					"${SRCROOT}/../Contrib/ContribLibrary",
+					"${SRCROOT}/../ContribLibrary",
 					"${SRCROOT}/../BaseObjectsLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
@@ -365,7 +365,7 @@
 					"${SRCROOT}/../ToolsLibrary",
 					"${SRCROOT}/../ManagersLibrary",
 					"${SRCROOT}/../ThemesLibrary",
-					"${SRCROOT}/../Contrib/ContribLibrary",
+					"${SRCROOT}/../ContribLibrary",
 					"${SRCROOT}/../BaseObjectsLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;

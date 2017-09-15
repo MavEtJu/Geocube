@@ -194,7 +194,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"${SRCROOT}/../Geocube",
-					"${SRCROOT}/../Contrib/ContribLibrary",
+					"${SRCROOT}/../ContribLibrary",
 					"${SRCROOT}/../ManagersLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
@@ -241,7 +241,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"${SRCROOT}/../Geocube",
-					"${SRCROOT}/../Contrib/ContribLibrary",
+					"${SRCROOT}/../ContribLibrary",
 					"${SRCROOT}/../ManagersLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;

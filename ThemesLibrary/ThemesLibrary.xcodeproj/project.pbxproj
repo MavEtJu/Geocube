@@ -196,7 +196,7 @@
 					"${SRCROOT}/../Geocube",
 					"${SRCROOT}/../ManagersLibrary",
 					"${SRCROOT}/../ToolsLibrary",
-					"${SRCROOT}/../Contrib/ContribLibrary/",
+					"${SRCROOT}/../ContribLibrary/",
 					"${SRCROOT}/../BaseObjectsLibrary/",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
@@ -245,7 +245,7 @@
 					"${SRCROOT}/../Geocube",
 					"${SRCROOT}/../ManagersLibrary",
 					"${SRCROOT}/../ToolsLibrary",
-					"${SRCROOT}/../Contrib/ContribLibrary/",
+					"${SRCROOT}/../ContribLibrary/",
 					"${SRCROOT}/../BaseObjectsLibrary/",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
