@@ -21,6 +21,8 @@
 
 #import "ThemeNight.h"
 
+#import "ManagersLibrary/ImageLibrary.h"
+
 @interface ThemeNight ()
 
 @end

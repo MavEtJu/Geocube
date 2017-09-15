@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@class InfoViewer;
+
 typedef NSInteger InfoItemID;
 
 typedef NS_ENUM(NSInteger, InfoItemType) {

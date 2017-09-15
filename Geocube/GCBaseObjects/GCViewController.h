@@ -20,6 +20,9 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "Menus/SideMenu.h"
+#import "Menus/LocalMenuItems.h"
+#import "InfoViewer.h"
 
 @interface GCViewController : UIViewController <SideMenuDelegate, UIScrollViewDelegate>
 {

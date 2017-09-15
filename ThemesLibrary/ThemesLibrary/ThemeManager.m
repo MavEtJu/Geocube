@@ -21,6 +21,14 @@
 
 #import "ThemeManager.h"
 
+#import "ToolsLibrary/LocalizationManager.h"
+#import "GCBaseObjects/GCViewController.h"
+#import "ThemeTemplate.h"
+#import "ThemeIOS.h"
+#import "ThemeNight.h"
+#import "Geocube.h"
+#import "AppDelegate.h"
+
 @interface ThemeManager ()
 {
     GCThemeType themeNr;

@@ -19,6 +19,9 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "BaseObjectsLibrary/GCView.h"
+#import "InfoItem.h"
+
 @interface InfoViewer : GCView
 
 - (CGRect)rectFromBottom;

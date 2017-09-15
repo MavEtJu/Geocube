@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "contrib/MHTabBarController/MHTabBarController.h"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate, MHTabBarControllerDelegate>
 
 @property (nonatomic, retain) NSMutableArray<MHTabBarController *> *tabBars;

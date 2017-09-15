@@ -19,6 +19,9 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "ContribLibrary/VKSideMenu.h"
+#import "Menus/LocalMenuItems.h"
+
 @protocol SideMenuDelegate
 
 - (void)performLocalMenuAction:(NSInteger)idx;
