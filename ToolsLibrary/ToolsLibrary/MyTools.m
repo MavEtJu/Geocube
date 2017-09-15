@@ -26,8 +26,9 @@
 #import <ImageIO/ImageIO.h>
 #import <Social/Social.h>
 
+#import "Geocube.h"
 #import "LocalizationManager.h"
-#import "GCBase/ConfigManager.h"
+#import "ManagersLibrary/ManagersLibrary.h"
 #import "database/DatabaseLibrary.h"
 #import "ContribLibrary/ContribLibrary.h"
 

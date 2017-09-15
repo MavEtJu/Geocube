@@ -195,6 +195,7 @@
 				HEADER_SEARCH_PATHS = (
 					"${SRCROOT}/../Geocube",
 					"${SRCROOT}/../Contrib/ContribLibrary",
+					"${SRCROOT}/../ManagersLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -241,6 +242,7 @@
 				HEADER_SEARCH_PATHS = (
 					"${SRCROOT}/../Geocube",
 					"${SRCROOT}/../Contrib/ContribLibrary",
+					"${SRCROOT}/../ManagersLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;

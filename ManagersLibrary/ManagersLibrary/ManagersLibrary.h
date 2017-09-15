@@ -9,4 +9,5 @@
 #import "ManagersLibrary/AudioFeedback.h"
 #import "ManagersLibrary/AudioManager.h"
 #import "ManagersLibrary/BezelManager.h"
+#import "ManagersLibrary/ConfigManager.h"
 #import "ManagersLibrary/KeyManager.h"

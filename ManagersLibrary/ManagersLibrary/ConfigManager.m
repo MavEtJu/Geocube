@@ -19,6 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "ConfigManager.h"
+
+#import "ToolsLibrary/ToolsLibrary.h"
+#import "GCBase/ImageLibrary.h"
+
 @interface ConfigManager ()
 
 @end

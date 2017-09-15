@@ -19,8 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "Geocube.h"
-#import "LocationManager.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+#import "database/DatabaseLibrary.h"
+#import "GCBase/LocationManager.h"
 
 @interface ConfigManager : NSObject
 

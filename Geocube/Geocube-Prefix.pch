@@ -79,7 +79,6 @@
 #import "ImageLibrary.h"
 #import "ImagesDownloadManager.h"
 #import "GCBase/LocationManager.h"
-#import "GCBase/ConfigManager.h"
 #import "ManagersLibrary/ManagersLibrary.h"
 #import "Waypoints/WaypointSorter.h"
 
