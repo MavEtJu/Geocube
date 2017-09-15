@@ -10,8 +10,9 @@
 #import "BaseObjectsLibrary/GCBoundingBox.h"
 #import "BaseObjectsLibrary/GCDataObjects.h"
 #import "BaseObjectsLibrary/GCDictionary.h"
-#import "BaseObjectsLibrary/GCString.h"
 #import "BaseObjectsLibrary/GCLocationCoordinate2D.h"
+#import "BaseObjectsLibrary/GCString.h"
+#import "BaseObjectsLibrary/GCURLRequest.h"
 
 #import "BaseObjectsLibrary/GCButton.h"
 #import "BaseObjectsLibrary/GCCloseButton.h"

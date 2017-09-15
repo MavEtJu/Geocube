@@ -72,7 +72,6 @@
 		E82342CB1EECD0B100D2CDFD /* dbTrackElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342A81EECD0B100D2CDFD /* dbTrackElement.m */; };
 		E82342CC1EECD0B100D2CDFD /* dbType.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342AA1EECD0B100D2CDFD /* dbType.m */; };
 		E82342CD1EECD0B100D2CDFD /* dbWaypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342AC1EECD0B100D2CDFD /* dbWaypoint.m */; };
-		E823430F1EECD97400D2CDFD /* GCURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343091EECD97400D2CDFD /* GCURLRequest.m */; };
 		E823432A1EECD9BC00D2CDFD /* IOSFileTransfers.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343131EECD9BC00D2CDFD /* IOSFileTransfers.m */; };
 		E823432B1EECD9BC00D2CDFD /* ProtocolGCA2.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343151EECD9BC00D2CDFD /* ProtocolGCA2.m */; };
 		E823432C1EECD9BC00D2CDFD /* ProtocolGGCW.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343171EECD9BC00D2CDFD /* ProtocolGGCW.m */; };
@@ -516,7 +515,7 @@
 		E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FEB1B509575002527DA /* LogTableViewCell.m */; };
 		E87DF78E1D8564A800F16B5A /* InfoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF78D1D8564A800F16B5A /* InfoViewer.m */; };
 		E87F58D11F46F0C200C90375 /* dbLogStringWaypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E87F58D01F46F0C200C90375 /* dbLogStringWaypoint.m */; };
-		E881CA6E1F6BA08500A17060 /* libToolsLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CA6A1F6B9F9700A17060 /* libToolsLibrary.a */; };
+		E881CA8A1F6BB11B00A17060 /* libToolsLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CA891F6BB11A00A17060 /* libToolsLibrary.a */; };
 		E88258351E9FA03700FCF9B2 /* Close Window - 640x430.png in Resources */ = {isa = PBXBuildFile; fileRef = E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */; };
 		E88258371E9FA15F00FCF9B2 /* Map icons - 362x86.png in Resources */ = {isa = PBXBuildFile; fileRef = E88258361E9FA15F00FCF9B2 /* Map icons - 362x86.png */; };
 		E8845CA91EF3628900A47F5D /* FileObjectView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8845CA81EF3628900A47F5D /* FileObjectView~ipad.xib */; };
@@ -670,13 +669,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = E84F36541F6A5A0800C7BD20;
 			remoteInfo = ContribLibrary;
-		};
-		E881CA691F6B9F9700A17060 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E881CA591F6B9F9600A17060;
-			remoteInfo = ToolsLibrary;
 		};
 		E8EE47301F6B429000AB13BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -980,8 +972,6 @@
 		E82342AA1EECD0B100D2CDFD /* dbType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbType.m; path = database/dbType.m; sourceTree = "<group>"; };
 		E82342AB1EECD0B100D2CDFD /* dbWaypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbWaypoint.h; path = database/dbWaypoint.h; sourceTree = "<group>"; };
 		E82342AC1EECD0B100D2CDFD /* dbWaypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbWaypoint.m; path = database/dbWaypoint.m; sourceTree = "<group>"; };
-		E82343081EECD97400D2CDFD /* GCURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCURLRequest.h; path = GCTools/GCURLRequest.h; sourceTree = "<group>"; };
-		E82343091EECD97400D2CDFD /* GCURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCURLRequest.m; path = GCTools/GCURLRequest.m; sourceTree = "<group>"; };
 		E82343121EECD9BC00D2CDFD /* IOSFileTransfers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOSFileTransfers.h; path = RemoteAPI/IOSFileTransfers.h; sourceTree = "<group>"; };
 		E82343131EECD9BC00D2CDFD /* IOSFileTransfers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IOSFileTransfers.m; path = RemoteAPI/IOSFileTransfers.m; sourceTree = "<group>"; };
 		E82343141EECD9BC00D2CDFD /* ProtocolGCA2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProtocolGCA2.h; path = RemoteAPI/ProtocolGCA2.h; sourceTree = "<group>"; };
@@ -1597,7 +1587,8 @@
 		E87F58D01F46F0C200C90375 /* dbLogStringWaypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbLogStringWaypoint.m; path = database/dbLogStringWaypoint.m; sourceTree = "<group>"; };
 		E87FE7951EFFD25F009FA65B /* Geocube-Defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Defines.h"; sourceTree = "<group>"; };
 		E881CA4F1F6B9CC400A17060 /* Geocube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geocube.h; sourceTree = "<group>"; };
-		E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ToolsLibrary.xcodeproj; path = ToolsLibrary/ToolsLibrary.xcodeproj; sourceTree = "<group>"; };
+		E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ToolsLibrary.xcodeproj; path = ../ToolsLibrary/ToolsLibrary.xcodeproj; sourceTree = "<group>"; };
+		E881CA891F6BB11A00A17060 /* libToolsLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libToolsLibrary.a; path = "../../Library/Developer/Xcode/DerivedData/Geocube-bjprugvtqrcyrnatajlgnpwinftk/Build/Products/Debug-iphonesimulator/libToolsLibrary.a"; sourceTree = "<group>"; };
 		E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Close Window - 640x430.png"; path = "images/introduction/Close Window - 640x430.png"; sourceTree = "<group>"; };
 		E88258361E9FA15F00FCF9B2 /* Map icons - 362x86.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Map icons - 362x86.png"; path = "images/introduction/Map icons - 362x86.png"; sourceTree = "<group>"; };
 		E8845CA81EF3628900A47F5D /* FileObjectView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "FileObjectView~ipad.xib"; path = "Files/FileObjectView~ipad.xib"; sourceTree = "<group>"; };
@@ -1774,7 +1765,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E881CA6E1F6BA08500A17060 /* libToolsLibrary.a in Frameworks */,
+				E881CA8A1F6BB11B00A17060 /* libToolsLibrary.a in Frameworks */,
 				E8EE47CD1F6B4B0800AB13BC /* libBaseObjectsLibrary.a in Frameworks */,
 				E8EE47B81F6B473200AB13BC /* libContribLibrary.a in Frameworks */,
 				E8EE47AC1F6B473200AB13BC /* libActionSheetPickerLibrary.a in Frameworks */,
@@ -1811,6 +1802,7 @@
 		6917C4AD2B052674BDDB3A0D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E881CA891F6BB11A00A17060 /* libToolsLibrary.a */,
 				E8EE47B71F6B473200AB13BC /* libContribLibrary.a */,
 				E858F59A1F56610B002C1F9B /* ImageIO.framework */,
 				E8EC01A71F554C8F0032F168 /* MediaPlayer.framework */,
@@ -2734,14 +2726,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E881CA661F6B9F9600A17060 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E881CA6A1F6B9F9700A17060 /* libToolsLibrary.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		E887201C1B5EF5F300994BE0 /* icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -3188,7 +3172,6 @@
 		E8F5704A1B3F7255003F020C = {
 			isa = PBXGroup;
 			children = (
-				E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */,
 				E8F570551B3F7255003F020C /* Geocube */,
 				E80732F91B633A74007FDC29 /* objects */,
 				E8F570541B3F7255003F020C /* Products */,
@@ -3218,7 +3201,7 @@
 				E8F570BF1B400166003F020C /* Geocube-Globals.h */,
 				E881CA4F1F6B9CC400A17060 /* Geocube.h */,
 				E8F570581B3F7255003F020C /* main.m */,
-				E8F570B21B3FECDF003F020C /* Tools */,
+				E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */,
 				E8F570A91B3FE52C003F020C /* Network APIs */,
 				E8F570BA1B3FFB7F003F020C /* Convertors */,
 				E8F570A81B3FE522003F020C /* Database */,
@@ -3384,15 +3367,6 @@
 				E8E0A6591DEE225F004A885D /* OKAPI */,
 			);
 			name = "Network APIs";
-			sourceTree = "<group>";
-		};
-		E8F570B21B3FECDF003F020C /* Tools */ = {
-			isa = PBXGroup;
-			children = (
-				E82343081EECD97400D2CDFD /* GCURLRequest.h */,
-				E82343091EECD97400D2CDFD /* GCURLRequest.m */,
-			);
-			name = Tools;
 			sourceTree = "<group>";
 		};
 		E8F570B61B3FF266003F020C /* GUI - pages */ = {
@@ -3650,10 +3624,6 @@
 					ProjectRef = E8A6584F1F6A7D44004D56D5 /* TFHppleLibrary.xcodeproj */;
 				},
 				{
-					ProductGroup = E881CA661F6B9F9600A17060 /* Products */;
-					ProjectRef = E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */;
-				},
-				{
 					ProductGroup = E8EE47341F6B429C00AB13BC /* Products */;
 					ProjectRef = E84F353B1F6A438400C7BD20 /* TouchXMLLibrary.xcodeproj */;
 				},
@@ -3678,13 +3648,6 @@
 			fileType = archive.ar;
 			path = libContribLibrary.a;
 			remoteRef = E881C9D71F6B77F400A17060 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E881CA6A1F6B9F9700A17060 /* libToolsLibrary.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libToolsLibrary.a;
-			remoteRef = E881CA691F6B9F9700A17060 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E8EE47311F6B429000AB13BC /* libActionSheetPickerLibrary.a */ = {
@@ -4400,7 +4363,6 @@
 				E82342C71EECD0B100D2CDFD /* dbState.m in Sources */,
 				E83C6F221EEEA47900E303F5 /* GCTableViewCellRightImageDisclosure.m in Sources */,
 				E83C6F1B1EEEA36900E303F5 /* GCTableViewCellSubtitleRightImageDisclosure.m in Sources */,
-				E823430F1EECD97400D2CDFD /* GCURLRequest.m in Sources */,
 				E82344AF1EECE0D500D2CDFD /* ToolsGNSSViewController.m in Sources */,
 				E82343FB1EECDF4400D2CDFD /* WaypointWaypointsTableViewCell.m in Sources */,
 				E82342B81EECD0B100D2CDFD /* dbGroup.m in Sources */,

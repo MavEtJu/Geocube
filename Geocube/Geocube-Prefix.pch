@@ -90,7 +90,6 @@
 
 #import "Maps/GCCoordsHistorical.h"
 #import "GCBaseObjects/GCTableViewController.h"
-#import "GCTools/GCURLRequest.h"
 #import "GCBaseObjects/GCViewController.h"
 
 #import "GCBase/WaypointManager.h"

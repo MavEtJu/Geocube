@@ -19,30 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCURLRequest ()
+#import <Foundation/Foundation.h>
+
+@interface GCURLRequest : NSMutableURLRequest
 
 @end
 
-@implementation GCURLRequest
-
-+ (GCURLRequest *)requestWithURL:url
-{
-    // Stay out of the local cache as it sucks
-    return [GCURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:30];
-}
-
-@end
-
-@interface GCMutableURLRequest ()
-
-@end
-
-@implementation GCMutableURLRequest
-
-+ (GCMutableURLRequest *)requestWithURL:url
-{
-    // Stay out of the local cache as it sucks
-    return [GCMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:30];
-}
+@interface GCMutableURLRequest : NSMutableURLRequest
 
 @end
