@@ -23,7 +23,7 @@
 #import <UIKit/UIKit.h>
 
 #import "database/DatabaseLibrary.h"
-#import "GCBase/LocationManager.h"
+#import "LocationManager.h"
 
 @interface ConfigManager : NSObject
 

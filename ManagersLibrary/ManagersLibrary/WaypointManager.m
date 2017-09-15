@@ -19,6 +19,20 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "WaypointManager.h"
+
+#import <CoreLocation/CoreLocation.h>
+
+#import "BaseObjectsLibrary/BaseObjectsLibrary.h"
+#import "ToolsLibrary/ToolsLibrary.h"
+#import "Geocube.h"
+#import "ConfigManager.h"
+#import "Filters/FilterTableViewCell.h"
+#import "Filters/FilterDistanceTableViewCell.h"
+#import "Filters/FilterDateTableViewCell.h"
+#import "Filters/FilterFlagsTableViewCell.h"
+#import "Filters/FilterDirectionTableViewCell.h"
+
 @interface WaypointManager ()
 {
     CLLocationCoordinate2D lastCoordinates;

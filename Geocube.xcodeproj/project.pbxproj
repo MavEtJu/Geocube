@@ -461,8 +461,6 @@
 		E83B10A51EF4FDFA00F2C5FA /* LocationlessTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E83B10A41EF4FDFA00F2C5FA /* LocationlessTemplateViewController.m */; };
 		E83C205C1E2F0695006C523E /* LogTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C205B1E2F0695006C523E /* LogTableViewCell.xib */; };
 		E83C6EED1EECE1CB00E303F5 /* ImageLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C6EE41EECE1CB00E303F5 /* ImageLibrary.m */; };
-		E83C6EEF1EECE1CB00E303F5 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C6EE81EECE1CB00E303F5 /* LocationManager.m */; };
-		E83C6EF01EECE1CB00E303F5 /* WaypointManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C6EEA1EECE1CB00E303F5 /* WaypointManager.m */; };
 		E83C6EF21EECE28100E303F5 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E83C6EF11EECE28100E303F5 /* SVProgressHUD.bundle */; };
 		E83C6F001EECE67100E303F5 /* FileBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C6EF41EECE67100E303F5 /* FileBrowserViewController.m */; };
 		E83C6F011EECE67100E303F5 /* FileObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C6EF61EECE67100E303F5 /* FileObject.m */; };
@@ -1516,10 +1514,6 @@
 		E83C205B1E2F0695006C523E /* LogTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogTableViewCell.xib; sourceTree = "<group>"; };
 		E83C6EE31EECE1CB00E303F5 /* ImageLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageLibrary.h; path = GCBase/ImageLibrary.h; sourceTree = "<group>"; };
 		E83C6EE41EECE1CB00E303F5 /* ImageLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageLibrary.m; path = GCBase/ImageLibrary.m; sourceTree = "<group>"; };
-		E83C6EE71EECE1CB00E303F5 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationManager.h; path = GCBase/LocationManager.h; sourceTree = "<group>"; };
-		E83C6EE81EECE1CB00E303F5 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationManager.m; path = GCBase/LocationManager.m; sourceTree = "<group>"; };
-		E83C6EE91EECE1CB00E303F5 /* WaypointManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaypointManager.h; path = GCBase/WaypointManager.h; sourceTree = "<group>"; };
-		E83C6EEA1EECE1CB00E303F5 /* WaypointManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaypointManager.m; path = GCBase/WaypointManager.m; sourceTree = "<group>"; };
 		E83C6EF11EECE28100E303F5 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = contrib/SVProgressHUD/SVProgressHUD.bundle; sourceTree = "<group>"; };
 		E83C6EF31EECE67100E303F5 /* FileBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileBrowserViewController.h; path = Files/FileBrowserViewController.h; sourceTree = "<group>"; };
 		E83C6EF41EECE67100E303F5 /* FileBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileBrowserViewController.m; path = Files/FileBrowserViewController.m; sourceTree = "<group>"; };
@@ -1917,10 +1911,6 @@
 				E8E3DC1B1E167C740066E903 /* AppDelegate.m */,
 				E83C6EE31EECE1CB00E303F5 /* ImageLibrary.h */,
 				E83C6EE41EECE1CB00E303F5 /* ImageLibrary.m */,
-				E83C6EE71EECE1CB00E303F5 /* LocationManager.h */,
-				E83C6EE81EECE1CB00E303F5 /* LocationManager.m */,
-				E83C6EE91EECE1CB00E303F5 /* WaypointManager.h */,
-				E83C6EEA1EECE1CB00E303F5 /* WaypointManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -4341,7 +4331,6 @@
 				E83C6F011EECE67100E303F5 /* FileObject.m in Sources */,
 				E82343511EECDA4900D2CDFD /* ImportGeocube.m in Sources */,
 				E82343C21EECDE8A00D2CDFD /* WaypointImagesViewController.m in Sources */,
-				E83C6EEF1EECE1CB00E303F5 /* LocationManager.m in Sources */,
 				E82342BC1EECD0B100D2CDFD /* dbLog.m in Sources */,
 				E83B109F1EF4FCCC00F2C5FA /* LocationlessTableViewCell.m in Sources */,
 				E82345251EECE14A00D2CDFD /* HelpIntroduction.m in Sources */,
@@ -4413,7 +4402,6 @@
 				E82344301EECDFB300D2CDFD /* FilterOthersTableViewCell.m in Sources */,
 				E823439B1EECDBCF00D2CDFD /* MapGoogle.m in Sources */,
 				E82344C21EECE0E800D2CDFD /* SettingsMainViewController.m in Sources */,
-				E83C6EF01EECE1CB00E303F5 /* WaypointManager.m in Sources */,
 				E82344A91EECE0C900D2CDFD /* BrowserBrowserViewController.m in Sources */,
 				E82342B41EECD0B100D2CDFD /* dbCountry.m in Sources */,
 				E82344361EECDFB300D2CDFD /* FilterTypesTableViewCell.m in Sources */,

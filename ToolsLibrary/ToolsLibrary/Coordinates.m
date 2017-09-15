@@ -24,7 +24,7 @@
 #import "Geocube.h"
 #import "LocalizationManager.h"
 #import "database/DatabaseLibrary.h"
-#import "GCBase/WaypointManager.h"
+#import "ManagersLibrary/ManagersLibrary.h"
 #import "MyTools.h"
 
 @interface Coordinates ()

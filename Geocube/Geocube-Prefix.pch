@@ -78,15 +78,12 @@
 #import "Menus/LocalMenuItems.h"
 #import "ImageLibrary.h"
 #import "ImagesDownloadManager.h"
-#import "GCBase/LocationManager.h"
 #import "ManagersLibrary/ManagersLibrary.h"
 #import "Waypoints/WaypointSorter.h"
 
 #import "Maps/GCCoordsHistorical.h"
 #import "GCBaseObjects/GCTableViewController.h"
 #import "GCBaseObjects/GCViewController.h"
-
-#import "GCBase/WaypointManager.h"
 
 #import "BaseObjectsLibrary/BaseObjectsLibrary.h"
 #import "GCBaseObjects/GCTableViewCellRightImage.h"

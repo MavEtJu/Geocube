@@ -20,6 +20,7 @@
  */
 
 #import <CoreLocation/CoreLocation.h>
+#import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, ImageCategory) {
     IMAGECATEGORY_NONE = 0,

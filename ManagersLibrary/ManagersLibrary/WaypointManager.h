@@ -21,7 +21,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "GCBase/LocationManager.h"
+#import "database/DatabaseLibrary.h"
+#import "LocationManager.h"
 
 @protocol WaypointManagerWaypointDelegate
 
