@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "IOSFileTransfers.h"
+
 @interface IOSFileTransfers ()
 {
     NSInteger currentICloud;

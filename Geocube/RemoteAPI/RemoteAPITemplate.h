@@ -19,6 +19,9 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "GCOAuthBlackbox.h"
+#import "ProtocolGGCW.h"
+
 typedef NS_ENUM(NSInteger, RemoteAPIResult) {
     REMOTEAPI_OK = 0,
     REMOTEAPI_APIREFUSED,               // Couldn't connect to the API

@@ -19,6 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "RemoteAPITemplate.h"
+
+#import "ProtocolLiveAPI.h"
+#import "ProtocolOKAPI.h"
+#import "ProtocolGCA2.h"
+
 @interface RemoteAPITemplate ()
 {
     ProtocolTemplate *protocol;

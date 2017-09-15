@@ -19,6 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "RemoteAPIOKAPI.h"
+#import "RemoteAPILiveAPI.h"
+#import "RemoteAPIGCA2.h"
+#import "RemoteAPIGGCW.h"
+
 @interface dbAccount ()
 
 @property (nonatomic, readwrite) BOOL canDoRemoteStuff;

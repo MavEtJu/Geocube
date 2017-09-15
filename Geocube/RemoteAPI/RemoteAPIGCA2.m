@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "RemoteAPIGCA2.h"
+
+#import "ProtocolGCA2.h"
+
 @interface RemoteAPIGCA2 ()
 
 @end

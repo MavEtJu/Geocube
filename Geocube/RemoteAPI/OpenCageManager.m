@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "OpenCageManager.h"
+
 @interface OpenCageManager ()
 {
     NSArray<NSString *> *locale_order, *state_order, *country_order;
