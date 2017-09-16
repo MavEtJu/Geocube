@@ -34,7 +34,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TouchXML/TouchXML.h"
+#import "../TouchXML/TouchXML.h"
 
 static NSString *const SimpleKMLErrorDomain = @"SimpleKMLErrorDomain";
 

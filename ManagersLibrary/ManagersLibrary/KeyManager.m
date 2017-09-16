@@ -21,7 +21,8 @@
 
 #import "KeyManager.h"
 
-#import "RNCryptorLibrary/RNCryptorLibrary.h"
+#import "ContribLibrary/RNCryptor/RNEncryptor.h"
+#import "ContribLibrary/RNCryptor/RNDecryptor.h"
 
 @interface KeyManager ()
 {

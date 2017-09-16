@@ -605,6 +605,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E84E88511F6CF6C8004F4BE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E89554B51F6C8A870026582B /* DatabaseLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E89554A91F6C8A870026582B;
+			remoteInfo = DatabaseLibrary;
+		};
 		E881CAB61F6BB1A600A17060 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */;
@@ -1913,6 +1920,14 @@
 			name = Queries;
 			sourceTree = "<group>";
 		};
+		E84E884D1F6CF6C7004F4BE9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E84E88521F6CF6C8004F4BE9 /* libDatabaseLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E857078A1CA1E67200467CE0 /* Groups */ = {
 			isa = PBXGroup;
 			children = (
@@ -3108,6 +3123,10 @@
 					ProjectRef = E895536F1F6BEF9B0026582B /* ContribLibrary.xcodeproj */;
 				},
 				{
+					ProductGroup = E84E884D1F6CF6C7004F4BE9 /* Products */;
+					ProjectRef = E89554B51F6C8A870026582B /* DatabaseLibrary.xcodeproj */;
+				},
+				{
 					ProductGroup = E881CACE1F6BB1C500A17060 /* Products */;
 					ProjectRef = E881CACD1F6BB1C500A17060 /* ManagersLibrary.xcodeproj */;
 				},
@@ -3131,6 +3150,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		E84E88521F6CF6C8004F4BE9 /* libDatabaseLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDatabaseLibrary.a;
+			remoteRef = E84E88511F6CF6C8004F4BE9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		E881CAB71F6BB1A600A17060 /* libToolsLibrary.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
