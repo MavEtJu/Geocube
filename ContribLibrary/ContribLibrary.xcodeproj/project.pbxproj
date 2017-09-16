@@ -98,6 +98,7 @@
 		E89554821F6C01E30026582B /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E89554771F6C01E30026582B /* ActionSheetStringPicker.m */; };
 		E89554831F6C01E30026582B /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E89554791F6C01E30026582B /* DistancePickerView.m */; };
 		E89554841F6C01E30026582B /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = E895547B1F6C01E30026582B /* SWActionSheet.m */; };
+		E895552F1F6CAD560026582B /* LXMapScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E895552E1F6CAD560026582B /* LXMapScaleView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -305,6 +306,8 @@
 		E89554791F6C01E30026582B /* DistancePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DistancePickerView.m; path = ActionSheetPicker/DistancePickerView.m; sourceTree = "<group>"; };
 		E895547A1F6C01E30026582B /* SWActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWActionSheet.h; path = ActionSheetPicker/SWActionSheet.h; sourceTree = "<group>"; };
 		E895547B1F6C01E30026582B /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWActionSheet.m; path = ActionSheetPicker/SWActionSheet.m; sourceTree = "<group>"; };
+		E895552D1F6CAD560026582B /* LXMapScaleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXMapScaleView.h; path = LXMapScaleView/LXMapScaleView.h; sourceTree = "<group>"; };
+		E895552E1F6CAD560026582B /* LXMapScaleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXMapScaleView.m; path = LXMapScaleView/LXMapScaleView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -338,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				E84F36571F6A5A0800C7BD20 /* ContribLibrary.h */,
+				E895552C1F6CAD450026582B /* LXMapScaleView */,
 				E89554661F6C01AF0026582B /* ActionSheetPicker */,
 				E89553691F6BEE970026582B /* TouchXML */,
 				E89553681F6BEE820026582B /* YIPopupTextView */,
@@ -619,6 +623,15 @@
 			name = ActionSheetPicker;
 			sourceTree = "<group>";
 		};
+		E895552C1F6CAD450026582B /* LXMapScaleView */ = {
+			isa = PBXGroup;
+			children = (
+				E895552D1F6CAD560026582B /* LXMapScaleView.h */,
+				E895552E1F6CAD560026582B /* LXMapScaleView.m */,
+			);
+			name = LXMapScaleView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -687,6 +700,7 @@
 				E895538E1F6BF3870026582B /* CXMLDocument_PrivateExtensions.m in Sources */,
 				E895539C1F6BF3960026582B /* CXMLDocument_CreationExtensions.m in Sources */,
 				E89554011F6BF4420026582B /* SimpleKMLFeature.m in Sources */,
+				E895552F1F6CAD560026582B /* LXMapScaleView.m in Sources */,
 				E895535F1F6BE8EA0026582B /* XMLDictionary.m in Sources */,
 				E89553911F6BF3870026582B /* CXMLElement_ElementTreeExtensions.m in Sources */,
 				E895535C1F6BE8EA0026582B /* Reachability.m in Sources */,
@@ -817,6 +831,7 @@
 				HEADER_SEARCH_PATHS = (
 					"${SDKROOT}/usr/include/libxml2",
 					"${SRCROOT}/../Pods/Headers/Public/GoogleMaps",
+					"${SRCROOT}/../ToolsLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -863,6 +878,7 @@
 				HEADER_SEARCH_PATHS = (
 					"${SDKROOT}/usr/include/libxml2",
 					"${SRCROOT}/../Pods/Headers/Public/GoogleMaps",
+					"${SRCROOT}/../ToolsLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;

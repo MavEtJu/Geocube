@@ -22,7 +22,6 @@
 		E82341F11EECCEBB00D2CDFD /* fullrange.png in Resources */ = {isa = PBXBuildFile; fileRef = E82341EC1EECCEBB00D2CDFD /* fullrange.png */; };
 		E82341F21EECCEBB00D2CDFD /* RangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341EE1EECCEBB00D2CDFD /* RangeSlider.m */; };
 		E82341F31EECCEBB00D2CDFD /* rangethumb.png in Resources */ = {isa = PBXBuildFile; fileRef = E82341EF1EECCEBB00D2CDFD /* rangethumb.png */; };
-		E82341FF1EECCEDB00D2CDFD /* LXMapScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341FE1EECCEDB00D2CDFD /* LXMapScaleView.m */; };
 		E823420C1EECCEEE00D2CDFD /* MHTabBarActiveTab.png in Resources */ = {isa = PBXBuildFile; fileRef = E82342001EECCEEE00D2CDFD /* MHTabBarActiveTab.png */; };
 		E823420D1EECCEEE00D2CDFD /* MHTabBarActiveTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82342011EECCEEE00D2CDFD /* MHTabBarActiveTab@2x.png */; };
 		E823420E1EECCEEE00D2CDFD /* MHTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342031EECCEEE00D2CDFD /* MHTabBarController.m */; };
@@ -703,8 +702,6 @@
 		E82341ED1EECCEBB00D2CDFD /* RangeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RangeSlider.h; path = contrib/CMRangeSlider/RangeSlider.h; sourceTree = "<group>"; };
 		E82341EE1EECCEBB00D2CDFD /* RangeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RangeSlider.m; path = contrib/CMRangeSlider/RangeSlider.m; sourceTree = "<group>"; };
 		E82341EF1EECCEBB00D2CDFD /* rangethumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rangethumb.png; path = contrib/CMRangeSlider/rangethumb.png; sourceTree = "<group>"; };
-		E82341FD1EECCEDB00D2CDFD /* LXMapScaleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXMapScaleView.h; path = contrib/LXMapScaleView/LXMapScaleView.h; sourceTree = "<group>"; };
-		E82341FE1EECCEDB00D2CDFD /* LXMapScaleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXMapScaleView.m; path = contrib/LXMapScaleView/LXMapScaleView.m; sourceTree = "<group>"; };
 		E82342001EECCEEE00D2CDFD /* MHTabBarActiveTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MHTabBarActiveTab.png; path = contrib/MHTabBarController/MHTabBarActiveTab.png; sourceTree = "<group>"; };
 		E82342011EECCEEE00D2CDFD /* MHTabBarActiveTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MHTabBarActiveTab@2x.png"; path = "contrib/MHTabBarController/MHTabBarActiveTab@2x.png"; sourceTree = "<group>"; };
 		E82342021EECCEEE00D2CDFD /* MHTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHTabBarController.h; path = contrib/MHTabBarController/MHTabBarController.h; sourceTree = "<group>"; };
@@ -2869,7 +2866,6 @@
 				E895536F1F6BEF9B0026582B /* ContribLibrary.xcodeproj */,
 				E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */,
 				E8E8D0171B66E74600CC741A /* CMRangeSlider */,
-				E8F6BE731BB8C77A009EA037 /* LXMapScale */,
 				E8A3B0AF1CD33BA500170D61 /* MHTabBarController */,
 				E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */,
 				E87DF7761D7EDFCC00F16B5A /* SVProgressHUD */,
@@ -2963,15 +2959,6 @@
 				E823434D1EECDA4900D2CDFD /* ImportTemplate.m */,
 			);
 			name = Convertors;
-			sourceTree = "<group>";
-		};
-		E8F6BE731BB8C77A009EA037 /* LXMapScale */ = {
-			isa = PBXGroup;
-			children = (
-				E82341FD1EECCEDB00D2CDFD /* LXMapScaleView.h */,
-				E82341FE1EECCEDB00D2CDFD /* LXMapScaleView.m */,
-			);
-			name = LXMapScale;
 			sourceTree = "<group>";
 		};
 		E8FD610D1BE8C46100859A58 /* Files */ = {
@@ -3833,7 +3820,6 @@
 				E87DF78E1D8564A800F16B5A /* InfoViewer.m in Sources */,
 				E82343311EECD9BC00D2CDFD /* RemoteAPIGGCW.m in Sources */,
 				E85BA88E1F544372008E708F /* KeepTrackBeeper.m in Sources */,
-				E82341FF1EECCEDB00D2CDFD /* LXMapScaleView.m in Sources */,
 				E823447F1EECE09C00D2CDFD /* ListDNFViewController.m in Sources */,
 				E8EC01A61F551A990032F168 /* KeepTrackBeeperView.m in Sources */,
 				E82343DE1EECDEE200D2CDFD /* WaypointViewController.m in Sources */,

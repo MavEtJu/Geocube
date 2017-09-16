@@ -30,7 +30,6 @@
 #import "contrib/NKOColorPickerView/NKOColorPickerView.h"
 #import "contrib/CMRangeSlider/RangeSlider.h"
 #import "contrib/SVProgressHUD/SVProgressHUD.h"
-#import "contrib/LXMapScaleView/LXMapScaleView.h"
 
 #import "Geocube-Classes.h"
 #import "Geocube-Defines.h"

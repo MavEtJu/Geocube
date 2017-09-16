@@ -26,6 +26,7 @@
 #import "ContribLibrary/TFHpple/TFHpple.h"
 #import "ContribLibrary/SSZipArchive/SSZipArchive.h"
 #import "ContribLibrary/NVHTarGzip/NVHTarGzip.h"
+#import "ContribLibrary/LXMapScaleView/LXMapScaleView.h"
 
 #import "ContribLibrary/Others/PropertyUtil.h"
 #import "ContribLibrary/Others/Reachability.h"
