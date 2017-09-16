@@ -19,7 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
 #import "dbObject.h"
 
 @interface dbCountry : dbObject

@@ -20,7 +20,7 @@
  */
 
 #import "dbObject.h"
-#import "dbAccount.h"
+#import "database-classes.h"
 
 @interface dbName : dbObject
 

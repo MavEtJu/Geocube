@@ -23,6 +23,8 @@
 
 #import "Geocube-Defines.h"
 #import "dbName.h"
+#import "dbWaypoint.h"
+#import "dbAccount.h"
 #import "database-cache.h"
 
 @interface dbLog ()

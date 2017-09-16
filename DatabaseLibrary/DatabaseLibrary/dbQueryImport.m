@@ -23,6 +23,7 @@
 
 #import "Geocube-Defines.h"
 #import "database-cache.h"
+#import "dbAccount.h"
 
 @interface dbQueryImport ()
 

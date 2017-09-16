@@ -19,8 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <CoreLocation/CoreLocation.h>
+
 #import "dbObject.h"
-#import "dbWaypoint.h"
+#import "database-classes.h"
 
 @interface dbLog : dbObject
 

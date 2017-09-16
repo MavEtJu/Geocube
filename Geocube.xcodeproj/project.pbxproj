@@ -482,7 +482,7 @@
 		E88DB00B1F334E4300FEF795 /* cache - gadget - 30x30@2.png in Resources */ = {isa = PBXBuildFile; fileRef = E88DB0081F334E4300FEF795 /* cache - gadget - 30x30@2.png */; };
 		E88DB00C1F334E4300FEF795 /* cache - gadget - 30x30@3.png in Resources */ = {isa = PBXBuildFile; fileRef = E88DB0091F334E4300FEF795 /* cache - gadget - 30x30@3.png */; };
 		E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */; };
-		E89555291F6CA5FB0026582B /* libDatabaseLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E89554BA1F6C8A890026582B /* libDatabaseLibrary.a */; };
+		E895552B1F6CA70A0026582B /* libDatabaseLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E895552A1F6CA70A0026582B /* libDatabaseLibrary.a */; };
 		E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
 		E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */; };
@@ -633,13 +633,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = E84F36541F6A5A0800C7BD20;
 			remoteInfo = ContribLibrary;
-		};
-		E89554B91F6C8A890026582B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E89554B51F6C8A870026582B /* DatabaseLibrary.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E89554A91F6C8A870026582B;
-			remoteInfo = DatabaseLibrary;
 		};
 		E8EE47C81F6B488C00AB13BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1337,7 +1330,8 @@
 		E88DB0091F334E4300FEF795 /* cache - gadget - 30x30@3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - gadget - 30x30@3.png"; path = "images/caches/cache - gadget - 30x30@3.png"; sourceTree = "<group>"; };
 		E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - empty - 30x30.png"; path = "images/logs/log - empty - 30x30.png"; sourceTree = "<group>"; };
 		E895536F1F6BEF9B0026582B /* ContribLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ContribLibrary.xcodeproj; path = ContribLibrary/ContribLibrary.xcodeproj; sourceTree = SOURCE_ROOT; };
-		E89554B51F6C8A870026582B /* DatabaseLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DatabaseLibrary.xcodeproj; path = DatabaseLibrary/DatabaseLibrary.xcodeproj; sourceTree = "<group>"; };
+		E89554B51F6C8A870026582B /* DatabaseLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DatabaseLibrary.xcodeproj; path = ../DatabaseLibrary/DatabaseLibrary.xcodeproj; sourceTree = "<group>"; };
+		E895552A1F6CA70A0026582B /* libDatabaseLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libDatabaseLibrary.a; path = "../../Library/Developer/Xcode/DerivedData/Geocube-bjprugvtqrcyrnatajlgnpwinftk/Build/Products/Debug-iphonesimulator/libDatabaseLibrary.a"; sourceTree = "<group>"; };
 		E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFUIKitMainThreadGuard.m; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
 		E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesDownloadManager.h; sourceTree = "<group>"; };
@@ -1488,7 +1482,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E89555291F6CA5FB0026582B /* libDatabaseLibrary.a in Frameworks */,
+				E895552B1F6CA70A0026582B /* libDatabaseLibrary.a in Frameworks */,
 				E881CB131F6BDC4D00A17060 /* libThemesLibrary.a in Frameworks */,
 				E881CAD91F6BB2C200A17060 /* libManagersLibrary.a in Frameworks */,
 				E881CA8A1F6BB11B00A17060 /* libToolsLibrary.a in Frameworks */,
@@ -1518,6 +1512,7 @@
 		6917C4AD2B052674BDDB3A0D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E895552A1F6CA70A0026582B /* libDatabaseLibrary.a */,
 				E881CA891F6BB11A00A17060 /* libToolsLibrary.a */,
 				E8EE47B71F6B473200AB13BC /* libContribLibrary.a */,
 				E858F59A1F56610B002C1F9B /* ImageIO.framework */,
@@ -2477,14 +2472,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E89554B61F6C8A870026582B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E89554BA1F6C8A890026582B /* libDatabaseLibrary.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		E89D15681DE55F4F00ED14B3 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -2806,7 +2793,6 @@
 		E8F5704A1B3F7255003F020C = {
 			isa = PBXGroup;
 			children = (
-				E89554B51F6C8A870026582B /* DatabaseLibrary.xcodeproj */,
 				E8F570551B3F7255003F020C /* Geocube */,
 				E80732F91B633A74007FDC29 /* objects */,
 				E8F570541B3F7255003F020C /* Products */,
@@ -2837,6 +2823,7 @@
 				E881CA4F1F6B9CC400A17060 /* Geocube.h */,
 				E8F570581B3F7255003F020C /* main.m */,
 				E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */,
+				E89554B51F6C8A870026582B /* DatabaseLibrary.xcodeproj */,
 				E8F570A91B3FE52C003F020C /* Network APIs */,
 				E8F570BA1B3FFB7F003F020C /* Convertors */,
 				E8F570A81B3FE522003F020C /* Database */,
@@ -3134,10 +3121,6 @@
 					ProjectRef = E895536F1F6BEF9B0026582B /* ContribLibrary.xcodeproj */;
 				},
 				{
-					ProductGroup = E89554B61F6C8A870026582B /* Products */;
-					ProjectRef = E89554B51F6C8A870026582B /* DatabaseLibrary.xcodeproj */;
-				},
-				{
 					ProductGroup = E881CACE1F6BB1C500A17060 /* Products */;
 					ProjectRef = E881CACD1F6BB1C500A17060 /* ManagersLibrary.xcodeproj */;
 				},
@@ -3187,13 +3170,6 @@
 			fileType = archive.ar;
 			path = libContribLibrary.a;
 			remoteRef = E89553731F6BEF9B0026582B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E89554BA1F6C8A890026582B /* libDatabaseLibrary.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libDatabaseLibrary.a;
-			remoteRef = E89554B91F6C8A890026582B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E8EE47C91F6B488C00AB13BC /* libBaseObjectsLibrary.a */ = {

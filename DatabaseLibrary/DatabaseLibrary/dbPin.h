@@ -21,7 +21,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "database-classes.h"
 #import "dbObject.h"
 
 @interface dbPin : dbObject
