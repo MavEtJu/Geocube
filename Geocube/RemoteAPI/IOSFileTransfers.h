@@ -36,3 +36,5 @@
 - (void)importAirdropAttachment:(NSURL *)url;
 
 @end
+
+extern IOSFileTransfers *IOSFTM;

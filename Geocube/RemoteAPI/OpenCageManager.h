@@ -24,3 +24,5 @@
 - (void)addForProcessing:(dbWaypoint *)wp;
 
 @end
+
+extern OpenCageManager *opencageManager;

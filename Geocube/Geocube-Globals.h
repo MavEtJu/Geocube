@@ -30,20 +30,8 @@ extern ImagesDownloadManager *imagesDownloadManager;
 // Current dbWaypoint to navitate to
 extern WaypointManager *waypointManager;
 
-// Location Manager
-extern LocationManager *LM;
-
 // File manager
 extern NSFileManager *fileManager;
-
-// IOS FileTransfer Manager
-extern IOSFileTransfers *IOSFTM;
-
-// Bezel Manager
-extern BezelManager *bezelManager;
-
-// Configuration Manager
-extern ConfigManager *configManager;
 
 // Webbrowser
 extern MHTabBarController *browserTabController;
@@ -61,14 +49,4 @@ extern MapLogsViewController *locationlessMapViewController;
 extern DownloadManager *downloadManager;
 extern ImportManager *importManager;
 
-// Keymanager
-extern KeyManager *keyManager;
-
-// OpenCageManager
-extern OpenCageManager *opencageManager;
-
-// AudioManager
-extern AudioManager *audioManager;
-
-//
 extern AppDelegate *_AppDelegate;

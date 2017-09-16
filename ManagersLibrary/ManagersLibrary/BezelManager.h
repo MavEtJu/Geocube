@@ -29,3 +29,5 @@
 - (void)setText:(NSString *)text;
 
 @end
+
+extern BezelManager *bezelManager;

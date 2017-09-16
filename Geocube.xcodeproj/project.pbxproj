@@ -602,6 +602,41 @@
 			remoteGlobalIDString = E89554A91F6C8A870026582B;
 			remoteInfo = DatabaseLibrary;
 		};
+		E84E88A51F6D0025004F4BE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E881CA581F6B9F9600A17060;
+			remoteInfo = ToolsLibrary;
+		};
+		E84E88A71F6D0025004F4BE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E89554B51F6C8A870026582B /* DatabaseLibrary.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E89554A81F6C8A870026582B;
+			remoteInfo = DatabaseLibrary;
+		};
+		E84E88A91F6D0025004F4BE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E895536F1F6BEF9B0026582B /* ContribLibrary.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E84F36531F6A5A0800C7BD20;
+			remoteInfo = ContribLibrary;
+		};
+		E84E88AB1F6D0025004F4BE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E881CACD1F6BB1C500A17060 /* ManagersLibrary.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E881CAC01F6BB1C500A17060;
+			remoteInfo = ManagersLibrary;
+		};
+		E84E88AD1F6D0025004F4BE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E881CB011F6BDA6E00A17060 /* ThemesLibrary.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E881CAF41F6BDA6E00A17060;
+			remoteInfo = ThemesLibrary;
+		};
 		E881CAB61F6BB1A600A17060 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */;
@@ -2979,6 +3014,11 @@
 			buildRules = (
 			);
 			dependencies = (
+				E84E88A61F6D0025004F4BE9 /* PBXTargetDependency */,
+				E84E88A81F6D0025004F4BE9 /* PBXTargetDependency */,
+				E84E88AA1F6D0025004F4BE9 /* PBXTargetDependency */,
+				E84E88AC1F6D0025004F4BE9 /* PBXTargetDependency */,
+				E84E88AE1F6D0025004F4BE9 /* PBXTargetDependency */,
 				E8EE47E31F6B4B7800AB13BC /* PBXTargetDependency */,
 			);
 			name = Geocube;
@@ -3802,6 +3842,31 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E84E88A61F6D0025004F4BE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ToolsLibrary;
+			targetProxy = E84E88A51F6D0025004F4BE9 /* PBXContainerItemProxy */;
+		};
+		E84E88A81F6D0025004F4BE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DatabaseLibrary;
+			targetProxy = E84E88A71F6D0025004F4BE9 /* PBXContainerItemProxy */;
+		};
+		E84E88AA1F6D0025004F4BE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ContribLibrary;
+			targetProxy = E84E88A91F6D0025004F4BE9 /* PBXContainerItemProxy */;
+		};
+		E84E88AC1F6D0025004F4BE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ManagersLibrary;
+			targetProxy = E84E88AB1F6D0025004F4BE9 /* PBXContainerItemProxy */;
+		};
+		E84E88AE1F6D0025004F4BE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ThemesLibrary;
+			targetProxy = E84E88AD1F6D0025004F4BE9 /* PBXContainerItemProxy */;
+		};
 		E8EE47E31F6B4B7800AB13BC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BaseObjectsLibrary;

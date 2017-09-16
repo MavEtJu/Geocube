@@ -33,3 +33,5 @@ typedef NS_ENUM(NSInteger, PlaySound) {
 - (void)playSound:(PlaySound)reason;
 
 @end
+
+extern AudioManager *audioManager;
