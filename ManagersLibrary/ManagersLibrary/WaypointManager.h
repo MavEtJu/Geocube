@@ -21,7 +21,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "database/DatabaseLibrary.h"
+#import "DatabaseLibrary/DatabaseLibrary.h"
 #import "LocationManager.h"
 
 @protocol WaypointManagerWaypointDelegate

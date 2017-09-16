@@ -22,7 +22,7 @@
 #import "LocationManager.h"
 
 #import "ToolsLibrary/Coordinates.h"
-#import "database/DatabaseLibrary.h"
+#import "DatabaseLibrary/DatabaseLibrary.h"
 #import "Geocube.h"
 #import "ConfigManager.h"
 #import "WaypointManager.h"

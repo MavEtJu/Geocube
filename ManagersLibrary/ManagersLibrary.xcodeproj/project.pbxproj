@@ -217,11 +217,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"${SRCROOT}/../Contrib/RNCryptorLibrary",
+					"${SRCROOT}/../ContribLibrary",
 					"${SRCROOT}/../Geocube",
 					"${SRCROOT}/../ToolsLibrary",
 					"${SRCROOT}/../BaseObjectsLibrary",
 					"${SRCROOT}/../ThemesLibrary",
+					"${SRCROOT}/../DatabaseLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -266,11 +267,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"${SRCROOT}/../Contrib/RNCryptorLibrary",
+					"${SRCROOT}/../ContribLibrary",
 					"${SRCROOT}/../Geocube",
 					"${SRCROOT}/../ToolsLibrary",
 					"${SRCROOT}/../BaseObjectsLibrary",
 					"${SRCROOT}/../ThemesLibrary",
+					"${SRCROOT}/../DatabaseLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -318,6 +320,7 @@
 				E881CACC1F6BB1C500A17060 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

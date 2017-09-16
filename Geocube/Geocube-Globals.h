@@ -19,15 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef Geocube_Geocube_h
-#define Geocube_Geocube_h
+#import "Geocube-Classes.h"
 
 // Global menu management
 extern SideMenu *menuGlobal;
-
-// Database handle and cache
-extern database *db;
-extern DatabaseCache *dbc;
 
 // Images Download Manager
 extern ImagesDownloadManager *imagesDownloadManager;
@@ -77,5 +72,3 @@ extern AudioManager *audioManager;
 
 //
 extern AppDelegate *_AppDelegate;
-
-#endif

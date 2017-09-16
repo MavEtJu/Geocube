@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@class GCOAuthBlackbox;
+
+#import "Browser/BrowserBrowserViewController.h"
+
 @protocol GCOAuthBlackboxDelegate
 
 - (void)oauthdanced:(NSString *)token secret:(NSString *)secret;

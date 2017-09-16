@@ -198,6 +198,7 @@
 					"${SRCROOT}/../ToolsLibrary",
 					"${SRCROOT}/../ContribLibrary/",
 					"${SRCROOT}/../BaseObjectsLibrary/",
+					"${SRCROOT}/../DatabaseLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -247,6 +248,7 @@
 					"${SRCROOT}/../ToolsLibrary",
 					"${SRCROOT}/../ContribLibrary/",
 					"${SRCROOT}/../BaseObjectsLibrary/",
+					"${SRCROOT}/../DatabaseLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;

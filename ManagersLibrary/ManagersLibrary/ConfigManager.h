@@ -22,7 +22,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "database/DatabaseLibrary.h"
+#import "DatabaseLibrary/DatabaseLibrary.h"
 #import "LocationManager.h"
 
 @interface ConfigManager : NSObject
@@ -139,3 +139,5 @@ PROTO_N (NSInteger, speedMinimum);
 PROTO_N (NSInteger, orientationsAllowed);
 
 @end
+
+extern ConfigManager *configManager;

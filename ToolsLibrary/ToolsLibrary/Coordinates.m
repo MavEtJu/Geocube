@@ -23,7 +23,7 @@
 
 #import "Geocube.h"
 #import "LocalizationManager.h"
-#import "database/DatabaseLibrary.h"
+#import "DatabaseLibrary/dbWaypoint.h"
 #import "ManagersLibrary/WaypointManager.h"
 #import "MyTools.h"
 

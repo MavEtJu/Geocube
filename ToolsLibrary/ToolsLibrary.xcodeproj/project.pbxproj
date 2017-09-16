@@ -196,6 +196,8 @@
 					"${SRCROOT}/../Geocube",
 					"${SRCROOT}/../ContribLibrary",
 					"${SRCROOT}/../ManagersLibrary",
+					"${SRCROOT}/../DatabaseLibrary",
+					"${SRCROOT}/../BaseObjectsLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -243,6 +245,8 @@
 					"${SRCROOT}/../Geocube",
 					"${SRCROOT}/../ContribLibrary",
 					"${SRCROOT}/../ManagersLibrary",
+					"${SRCROOT}/../DatabaseLibrary",
+					"${SRCROOT}/../BaseObjectsLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;

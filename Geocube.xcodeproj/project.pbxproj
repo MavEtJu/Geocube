@@ -11,11 +11,9 @@
 		E804139F1E9F984E001FD7BF /* Menu - 640x623.png in Resources */ = {isa = PBXBuildFile; fileRef = E804139E1E9F984E001FD7BF /* Menu - 640x623.png */; };
 		E80732FB1B633A74007FDC29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732FA1B633A74007FDC29 /* main.m */; };
 		E80D7EE21EFA705900E25581 /* OpenCageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E80D7EE11EFA705900E25581 /* OpenCageManager.m */; };
-		E80D7EE51EFBE15700E25581 /* dbExternalMapURL.m in Sources */ = {isa = PBXBuildFile; fileRef = E80D7EE41EFBE15700E25581 /* dbExternalMapURL.m */; };
 		E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73741B533F4D00F35528 /* MapKit.framework */; };
 		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
 		E815B7831F67FCB2003A6092 /* FileKMLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E815B7821F67FCB2003A6092 /* FileKMLViewController.m */; };
-		E815B7861F6805C9003A6092 /* dbKMLFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E815B7851F6805C9003A6092 /* dbKMLFile.m */; };
 		E8182F4C1C0E41CB004AC534 /* KeyboardCoordinateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8182F4B1C0E41CB004AC534 /* KeyboardCoordinateView.m */; };
 		E823024E1DCD54520032C5C6 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E823024D1DCD54520032C5C6 /* libxml2.tbd */; };
 		E82341871EECA19300D2CDFD /* EncryptionKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E82341861EECA19300D2CDFD /* EncryptionKeys.plist */; };
@@ -39,39 +37,6 @@
 		E823424C1EECCF9300D2CDFD /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342441EECCF9300D2CDFD /* SVProgressAnimatedView.m */; };
 		E823424E1EECCF9300D2CDFD /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342481EECCF9300D2CDFD /* SVProgressHUD.m */; };
 		E823424F1EECCF9300D2CDFD /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E823424A1EECCF9300D2CDFD /* SVRadialGradientLayer.m */; };
-		E82342AD1EECD0B100D2CDFD /* database-cache.m in Sources */ = {isa = PBXBuildFile; fileRef = E823426C1EECD0B000D2CDFD /* database-cache.m */; };
-		E82342AE1EECD0B100D2CDFD /* database.m in Sources */ = {isa = PBXBuildFile; fileRef = E823426E1EECD0B000D2CDFD /* database.m */; };
-		E82342AF1EECD0B100D2CDFD /* dbAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342701EECD0B000D2CDFD /* dbAccount.m */; };
-		E82342B01EECD0B100D2CDFD /* dbAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342721EECD0B000D2CDFD /* dbAttribute.m */; };
-		E82342B11EECD0B100D2CDFD /* dbBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342741EECD0B000D2CDFD /* dbBookmark.m */; };
-		E82342B21EECD0B100D2CDFD /* dbConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342761EECD0B000D2CDFD /* dbConfig.m */; };
-		E82342B31EECD0B100D2CDFD /* dbContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342781EECD0B000D2CDFD /* dbContainer.m */; };
-		E82342B41EECD0B100D2CDFD /* dbCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = E823427A1EECD0B000D2CDFD /* dbCountry.m */; };
-		E82342B51EECD0B100D2CDFD /* dbExternalMap.m in Sources */ = {isa = PBXBuildFile; fileRef = E823427C1EECD0B000D2CDFD /* dbExternalMap.m */; };
-		E82342B61EECD0B100D2CDFD /* dbFileImport.m in Sources */ = {isa = PBXBuildFile; fileRef = E823427E1EECD0B000D2CDFD /* dbFileImport.m */; };
-		E82342B71EECD0B100D2CDFD /* dbFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342801EECD0B000D2CDFD /* dbFilter.m */; };
-		E82342B81EECD0B100D2CDFD /* dbGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342821EECD0B000D2CDFD /* dbGroup.m */; };
-		E82342B91EECD0B100D2CDFD /* dbImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342841EECD0B000D2CDFD /* dbImage.m */; };
-		E82342BA1EECD0B100D2CDFD /* dbListData.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342861EECD0B000D2CDFD /* dbListData.m */; };
-		E82342BB1EECD0B100D2CDFD /* dbLocality.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342881EECD0B000D2CDFD /* dbLocality.m */; };
-		E82342BC1EECD0B100D2CDFD /* dbLog.m in Sources */ = {isa = PBXBuildFile; fileRef = E823428A1EECD0B000D2CDFD /* dbLog.m */; };
-		E82342BD1EECD0B100D2CDFD /* dbLogMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = E823428C1EECD0B000D2CDFD /* dbLogMacro.m */; };
-		E82342BE1EECD0B100D2CDFD /* dbLogString.m in Sources */ = {isa = PBXBuildFile; fileRef = E823428E1EECD0B000D2CDFD /* dbLogString.m */; };
-		E82342BF1EECD0B100D2CDFD /* dbLogTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342901EECD0B000D2CDFD /* dbLogTemplate.m */; };
-		E82342C01EECD0B100D2CDFD /* dbName.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342921EECD0B000D2CDFD /* dbName.m */; };
-		E82342C11EECD0B100D2CDFD /* dbNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342941EECD0B000D2CDFD /* dbNotice.m */; };
-		E82342C21EECD0B100D2CDFD /* dbObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342961EECD0B000D2CDFD /* dbObject.m */; };
-		E82342C31EECD0B100D2CDFD /* dbPersonalNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342981EECD0B100D2CDFD /* dbPersonalNote.m */; };
-		E82342C41EECD0B100D2CDFD /* dbPin.m in Sources */ = {isa = PBXBuildFile; fileRef = E823429A1EECD0B100D2CDFD /* dbPin.m */; };
-		E82342C51EECD0B100D2CDFD /* dbProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = E823429C1EECD0B100D2CDFD /* dbProtocol.m */; };
-		E82342C61EECD0B100D2CDFD /* dbQueryImport.m in Sources */ = {isa = PBXBuildFile; fileRef = E823429E1EECD0B100D2CDFD /* dbQueryImport.m */; };
-		E82342C71EECD0B100D2CDFD /* dbState.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342A01EECD0B100D2CDFD /* dbState.m */; };
-		E82342C81EECD0B100D2CDFD /* dbSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342A21EECD0B100D2CDFD /* dbSymbol.m */; };
-		E82342C91EECD0B100D2CDFD /* dbTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342A41EECD0B100D2CDFD /* dbTrack.m */; };
-		E82342CA1EECD0B100D2CDFD /* dbTrackable.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342A61EECD0B100D2CDFD /* dbTrackable.m */; };
-		E82342CB1EECD0B100D2CDFD /* dbTrackElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342A81EECD0B100D2CDFD /* dbTrackElement.m */; };
-		E82342CC1EECD0B100D2CDFD /* dbType.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342AA1EECD0B100D2CDFD /* dbType.m */; };
-		E82342CD1EECD0B100D2CDFD /* dbWaypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342AC1EECD0B100D2CDFD /* dbWaypoint.m */; };
 		E823432A1EECD9BC00D2CDFD /* IOSFileTransfers.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343131EECD9BC00D2CDFD /* IOSFileTransfers.m */; };
 		E823432B1EECD9BC00D2CDFD /* ProtocolGCA2.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343151EECD9BC00D2CDFD /* ProtocolGCA2.m */; };
 		E823432C1EECD9BC00D2CDFD /* ProtocolGGCW.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343171EECD9BC00D2CDFD /* ProtocolGGCW.m */; };
@@ -504,7 +469,6 @@
 		E86D427F1EF68CC800E4509F /* container flag - planned - 24x21@3.png in Resources */ = {isa = PBXBuildFile; fileRef = E86D427C1EF68CC800E4509F /* container flag - planned - 24x21@3.png */; };
 		E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FEB1B509575002527DA /* LogTableViewCell.m */; };
 		E87DF78E1D8564A800F16B5A /* InfoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF78D1D8564A800F16B5A /* InfoViewer.m */; };
-		E87F58D11F46F0C200C90375 /* dbLogStringWaypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E87F58D01F46F0C200C90375 /* dbLogStringWaypoint.m */; };
 		E881CA8A1F6BB11B00A17060 /* libToolsLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CA891F6BB11A00A17060 /* libToolsLibrary.a */; };
 		E881CAD91F6BB2C200A17060 /* libManagersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CAD21F6BB1C600A17060 /* libManagersLibrary.a */; };
 		E881CB131F6BDC4D00A17060 /* libThemesLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CB061F6BDA7000A17060 /* libThemesLibrary.a */; };
@@ -518,6 +482,7 @@
 		E88DB00B1F334E4300FEF795 /* cache - gadget - 30x30@2.png in Resources */ = {isa = PBXBuildFile; fileRef = E88DB0081F334E4300FEF795 /* cache - gadget - 30x30@2.png */; };
 		E88DB00C1F334E4300FEF795 /* cache - gadget - 30x30@3.png in Resources */ = {isa = PBXBuildFile; fileRef = E88DB0091F334E4300FEF795 /* cache - gadget - 30x30@3.png */; };
 		E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */; };
+		E89555291F6CA5FB0026582B /* libDatabaseLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E89554BA1F6C8A890026582B /* libDatabaseLibrary.a */; };
 		E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
 		E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A7FAA11B78784F003F4132 /* ImagesDownloadManager.m */; };
@@ -669,6 +634,13 @@
 			remoteGlobalIDString = E84F36541F6A5A0800C7BD20;
 			remoteInfo = ContribLibrary;
 		};
+		E89554B91F6C8A890026582B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E89554B51F6C8A870026582B /* DatabaseLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E89554A91F6C8A870026582B;
+			remoteInfo = DatabaseLibrary;
+		};
 		E8EE47C81F6B488C00AB13BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E8EE47991F6B457C00AB13BC /* BaseObjectsLibrary.xcodeproj */;
@@ -724,14 +696,10 @@
 		E808DC7E1C3A405200B8A572 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		E80D7EE01EFA705900E25581 /* OpenCageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenCageManager.h; path = RemoteAPI/OpenCageManager.h; sourceTree = "<group>"; };
 		E80D7EE11EFA705900E25581 /* OpenCageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpenCageManager.m; path = RemoteAPI/OpenCageManager.m; sourceTree = "<group>"; };
-		E80D7EE31EFBE15700E25581 /* dbExternalMapURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbExternalMapURL.h; path = database/dbExternalMapURL.h; sourceTree = "<group>"; };
-		E80D7EE41EFBE15700E25581 /* dbExternalMapURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbExternalMapURL.m; path = database/dbExternalMapURL.m; sourceTree = "<group>"; };
 		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E80F73761B53443000F35528 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E815B7811F67FCB2003A6092 /* FileKMLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileKMLViewController.h; path = Files/FileKMLViewController.h; sourceTree = "<group>"; };
 		E815B7821F67FCB2003A6092 /* FileKMLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileKMLViewController.m; path = Files/FileKMLViewController.m; sourceTree = "<group>"; };
-		E815B7841F6805C9003A6092 /* dbKMLFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbKMLFile.h; path = database/dbKMLFile.h; sourceTree = "<group>"; };
-		E815B7851F6805C9003A6092 /* dbKMLFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbKMLFile.m; path = database/dbKMLFile.m; sourceTree = "<group>"; };
 		E8182F4A1C0E41CB004AC534 /* KeyboardCoordinateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardCoordinateView.h; sourceTree = "<group>"; };
 		E8182F4B1C0E41CB004AC534 /* KeyboardCoordinateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardCoordinateView.m; sourceTree = "<group>"; };
 		E823024D1DCD54520032C5C6 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
@@ -765,72 +733,6 @@
 		E82342481EECCF9300D2CDFD /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = contrib/SVProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
 		E82342491EECCF9300D2CDFD /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVRadialGradientLayer.h; path = contrib/SVProgressHUD/SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		E823424A1EECCF9300D2CDFD /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = contrib/SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
-		E823426B1EECD0B000D2CDFD /* database-cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "database-cache.h"; path = "database/database-cache.h"; sourceTree = "<group>"; };
-		E823426C1EECD0B000D2CDFD /* database-cache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "database-cache.m"; path = "database/database-cache.m"; sourceTree = "<group>"; };
-		E823426D1EECD0B000D2CDFD /* database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = database.h; path = database/database.h; sourceTree = "<group>"; };
-		E823426E1EECD0B000D2CDFD /* database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = database.m; path = database/database.m; sourceTree = "<group>"; };
-		E823426F1EECD0B000D2CDFD /* dbAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbAccount.h; path = database/dbAccount.h; sourceTree = "<group>"; };
-		E82342701EECD0B000D2CDFD /* dbAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbAccount.m; path = database/dbAccount.m; sourceTree = "<group>"; };
-		E82342711EECD0B000D2CDFD /* dbAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbAttribute.h; path = database/dbAttribute.h; sourceTree = "<group>"; };
-		E82342721EECD0B000D2CDFD /* dbAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbAttribute.m; path = database/dbAttribute.m; sourceTree = "<group>"; };
-		E82342731EECD0B000D2CDFD /* dbBookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbBookmark.h; path = database/dbBookmark.h; sourceTree = "<group>"; };
-		E82342741EECD0B000D2CDFD /* dbBookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbBookmark.m; path = database/dbBookmark.m; sourceTree = "<group>"; };
-		E82342751EECD0B000D2CDFD /* dbConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbConfig.h; path = database/dbConfig.h; sourceTree = "<group>"; };
-		E82342761EECD0B000D2CDFD /* dbConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbConfig.m; path = database/dbConfig.m; sourceTree = "<group>"; };
-		E82342771EECD0B000D2CDFD /* dbContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbContainer.h; path = database/dbContainer.h; sourceTree = "<group>"; };
-		E82342781EECD0B000D2CDFD /* dbContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbContainer.m; path = database/dbContainer.m; sourceTree = "<group>"; };
-		E82342791EECD0B000D2CDFD /* dbCountry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbCountry.h; path = database/dbCountry.h; sourceTree = "<group>"; };
-		E823427A1EECD0B000D2CDFD /* dbCountry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbCountry.m; path = database/dbCountry.m; sourceTree = "<group>"; };
-		E823427B1EECD0B000D2CDFD /* dbExternalMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbExternalMap.h; path = database/dbExternalMap.h; sourceTree = "<group>"; };
-		E823427C1EECD0B000D2CDFD /* dbExternalMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbExternalMap.m; path = database/dbExternalMap.m; sourceTree = "<group>"; };
-		E823427D1EECD0B000D2CDFD /* dbFileImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbFileImport.h; path = database/dbFileImport.h; sourceTree = "<group>"; };
-		E823427E1EECD0B000D2CDFD /* dbFileImport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbFileImport.m; path = database/dbFileImport.m; sourceTree = "<group>"; };
-		E823427F1EECD0B000D2CDFD /* dbFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbFilter.h; path = database/dbFilter.h; sourceTree = "<group>"; };
-		E82342801EECD0B000D2CDFD /* dbFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbFilter.m; path = database/dbFilter.m; sourceTree = "<group>"; };
-		E82342811EECD0B000D2CDFD /* dbGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbGroup.h; path = database/dbGroup.h; sourceTree = "<group>"; };
-		E82342821EECD0B000D2CDFD /* dbGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbGroup.m; path = database/dbGroup.m; sourceTree = "<group>"; };
-		E82342831EECD0B000D2CDFD /* dbImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbImage.h; path = database/dbImage.h; sourceTree = "<group>"; };
-		E82342841EECD0B000D2CDFD /* dbImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbImage.m; path = database/dbImage.m; sourceTree = "<group>"; };
-		E82342851EECD0B000D2CDFD /* dbListData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbListData.h; path = database/dbListData.h; sourceTree = "<group>"; };
-		E82342861EECD0B000D2CDFD /* dbListData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbListData.m; path = database/dbListData.m; sourceTree = "<group>"; };
-		E82342871EECD0B000D2CDFD /* dbLocality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbLocality.h; path = database/dbLocality.h; sourceTree = "<group>"; };
-		E82342881EECD0B000D2CDFD /* dbLocality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbLocality.m; path = database/dbLocality.m; sourceTree = "<group>"; };
-		E82342891EECD0B000D2CDFD /* dbLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbLog.h; path = database/dbLog.h; sourceTree = "<group>"; };
-		E823428A1EECD0B000D2CDFD /* dbLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbLog.m; path = database/dbLog.m; sourceTree = "<group>"; };
-		E823428B1EECD0B000D2CDFD /* dbLogMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbLogMacro.h; path = database/dbLogMacro.h; sourceTree = "<group>"; };
-		E823428C1EECD0B000D2CDFD /* dbLogMacro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbLogMacro.m; path = database/dbLogMacro.m; sourceTree = "<group>"; };
-		E823428D1EECD0B000D2CDFD /* dbLogString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbLogString.h; path = database/dbLogString.h; sourceTree = "<group>"; };
-		E823428E1EECD0B000D2CDFD /* dbLogString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbLogString.m; path = database/dbLogString.m; sourceTree = "<group>"; };
-		E823428F1EECD0B000D2CDFD /* dbLogTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbLogTemplate.h; path = database/dbLogTemplate.h; sourceTree = "<group>"; };
-		E82342901EECD0B000D2CDFD /* dbLogTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbLogTemplate.m; path = database/dbLogTemplate.m; sourceTree = "<group>"; };
-		E82342911EECD0B000D2CDFD /* dbName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbName.h; path = database/dbName.h; sourceTree = "<group>"; };
-		E82342921EECD0B000D2CDFD /* dbName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbName.m; path = database/dbName.m; sourceTree = "<group>"; };
-		E82342931EECD0B000D2CDFD /* dbNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbNotice.h; path = database/dbNotice.h; sourceTree = "<group>"; };
-		E82342941EECD0B000D2CDFD /* dbNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbNotice.m; path = database/dbNotice.m; sourceTree = "<group>"; };
-		E82342951EECD0B000D2CDFD /* dbObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbObject.h; path = database/dbObject.h; sourceTree = "<group>"; };
-		E82342961EECD0B000D2CDFD /* dbObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbObject.m; path = database/dbObject.m; sourceTree = "<group>"; };
-		E82342971EECD0B100D2CDFD /* dbPersonalNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbPersonalNote.h; path = database/dbPersonalNote.h; sourceTree = "<group>"; };
-		E82342981EECD0B100D2CDFD /* dbPersonalNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbPersonalNote.m; path = database/dbPersonalNote.m; sourceTree = "<group>"; };
-		E82342991EECD0B100D2CDFD /* dbPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbPin.h; path = database/dbPin.h; sourceTree = "<group>"; };
-		E823429A1EECD0B100D2CDFD /* dbPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbPin.m; path = database/dbPin.m; sourceTree = "<group>"; };
-		E823429B1EECD0B100D2CDFD /* dbProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbProtocol.h; path = database/dbProtocol.h; sourceTree = "<group>"; };
-		E823429C1EECD0B100D2CDFD /* dbProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbProtocol.m; path = database/dbProtocol.m; sourceTree = "<group>"; };
-		E823429D1EECD0B100D2CDFD /* dbQueryImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbQueryImport.h; path = database/dbQueryImport.h; sourceTree = "<group>"; };
-		E823429E1EECD0B100D2CDFD /* dbQueryImport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbQueryImport.m; path = database/dbQueryImport.m; sourceTree = "<group>"; };
-		E823429F1EECD0B100D2CDFD /* dbState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbState.h; path = database/dbState.h; sourceTree = "<group>"; };
-		E82342A01EECD0B100D2CDFD /* dbState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbState.m; path = database/dbState.m; sourceTree = "<group>"; };
-		E82342A11EECD0B100D2CDFD /* dbSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbSymbol.h; path = database/dbSymbol.h; sourceTree = "<group>"; };
-		E82342A21EECD0B100D2CDFD /* dbSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbSymbol.m; path = database/dbSymbol.m; sourceTree = "<group>"; };
-		E82342A31EECD0B100D2CDFD /* dbTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbTrack.h; path = database/dbTrack.h; sourceTree = "<group>"; };
-		E82342A41EECD0B100D2CDFD /* dbTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbTrack.m; path = database/dbTrack.m; sourceTree = "<group>"; };
-		E82342A51EECD0B100D2CDFD /* dbTrackable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbTrackable.h; path = database/dbTrackable.h; sourceTree = "<group>"; };
-		E82342A61EECD0B100D2CDFD /* dbTrackable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbTrackable.m; path = database/dbTrackable.m; sourceTree = "<group>"; };
-		E82342A71EECD0B100D2CDFD /* dbTrackElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbTrackElement.h; path = database/dbTrackElement.h; sourceTree = "<group>"; };
-		E82342A81EECD0B100D2CDFD /* dbTrackElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbTrackElement.m; path = database/dbTrackElement.m; sourceTree = "<group>"; };
-		E82342A91EECD0B100D2CDFD /* dbType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbType.h; path = database/dbType.h; sourceTree = "<group>"; };
-		E82342AA1EECD0B100D2CDFD /* dbType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbType.m; path = database/dbType.m; sourceTree = "<group>"; };
-		E82342AB1EECD0B100D2CDFD /* dbWaypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbWaypoint.h; path = database/dbWaypoint.h; sourceTree = "<group>"; };
-		E82342AC1EECD0B100D2CDFD /* dbWaypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbWaypoint.m; path = database/dbWaypoint.m; sourceTree = "<group>"; };
 		E82343121EECD9BC00D2CDFD /* IOSFileTransfers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOSFileTransfers.h; path = RemoteAPI/IOSFileTransfers.h; sourceTree = "<group>"; };
 		E82343131EECD9BC00D2CDFD /* IOSFileTransfers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IOSFileTransfers.m; path = RemoteAPI/IOSFileTransfers.m; sourceTree = "<group>"; };
 		E82343141EECD9BC00D2CDFD /* ProtocolGCA2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProtocolGCA2.h; path = RemoteAPI/ProtocolGCA2.h; sourceTree = "<group>"; };
@@ -1417,8 +1319,6 @@
 		E879F9CB1B7B527200220EA7 /* Geocube.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Geocube.entitlements; sourceTree = "<group>"; };
 		E87DF78C1D8564A800F16B5A /* InfoViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewer.h; sourceTree = "<group>"; };
 		E87DF78D1D8564A800F16B5A /* InfoViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewer.m; sourceTree = "<group>"; };
-		E87F58CF1F46F0C200C90375 /* dbLogStringWaypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbLogStringWaypoint.h; path = database/dbLogStringWaypoint.h; sourceTree = "<group>"; };
-		E87F58D01F46F0C200C90375 /* dbLogStringWaypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbLogStringWaypoint.m; path = database/dbLogStringWaypoint.m; sourceTree = "<group>"; };
 		E87FE7951EFFD25F009FA65B /* Geocube-Defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Defines.h"; sourceTree = "<group>"; };
 		E881CA4F1F6B9CC400A17060 /* Geocube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geocube.h; sourceTree = "<group>"; };
 		E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ToolsLibrary.xcodeproj; path = ../ToolsLibrary/ToolsLibrary.xcodeproj; sourceTree = "<group>"; };
@@ -1437,6 +1337,7 @@
 		E88DB0091F334E4300FEF795 /* cache - gadget - 30x30@3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - gadget - 30x30@3.png"; path = "images/caches/cache - gadget - 30x30@3.png"; sourceTree = "<group>"; };
 		E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - empty - 30x30.png"; path = "images/logs/log - empty - 30x30.png"; sourceTree = "<group>"; };
 		E895536F1F6BEF9B0026582B /* ContribLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ContribLibrary.xcodeproj; path = ContribLibrary/ContribLibrary.xcodeproj; sourceTree = SOURCE_ROOT; };
+		E89554B51F6C8A870026582B /* DatabaseLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DatabaseLibrary.xcodeproj; path = DatabaseLibrary/DatabaseLibrary.xcodeproj; sourceTree = "<group>"; };
 		E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFUIKitMainThreadGuard.m; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
 		E8A7FAA01B78784F003F4132 /* ImagesDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesDownloadManager.h; sourceTree = "<group>"; };
@@ -1461,7 +1362,6 @@
 		E8EC07411D39E887009B8EB1 /* ImportManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportManager.m; sourceTree = "<group>"; };
 		E8EE47991F6B457C00AB13BC /* BaseObjectsLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BaseObjectsLibrary.xcodeproj; path = ../BaseObjectsLibrary/BaseObjectsLibrary.xcodeproj; sourceTree = "<group>"; };
 		E8EE47B71F6B473200AB13BC /* libContribLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libContribLibrary.a; path = "../../Library/Developer/Xcode/DerivedData/Geocube-bjprugvtqrcyrnatajlgnpwinftk/Build/Products/Debug-iphonesimulator/libContribLibrary.a"; sourceTree = "<group>"; };
-		E8EE47EF1F6B525000AB13BC /* DatabaseLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DatabaseLibrary.h; path = database/DatabaseLibrary.h; sourceTree = "<group>"; };
 		E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30.png"; path = "images/caches/cache - reverse - 30x30.png"; sourceTree = "<group>"; };
 		E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@2x.png"; path = "images/caches/cache - reverse - 30x30@2x.png"; sourceTree = "<group>"; };
 		E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@3x.png"; path = "images/caches/cache - reverse - 30x30@3x.png"; sourceTree = "<group>"; };
@@ -1588,6 +1488,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E89555291F6CA5FB0026582B /* libDatabaseLibrary.a in Frameworks */,
 				E881CB131F6BDC4D00A17060 /* libThemesLibrary.a in Frameworks */,
 				E881CAD91F6BB2C200A17060 /* libManagersLibrary.a in Frameworks */,
 				E881CA8A1F6BB11B00A17060 /* libToolsLibrary.a in Frameworks */,
@@ -2576,6 +2477,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E89554B61F6C8A870026582B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E89554BA1F6C8A890026582B /* libDatabaseLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E89D15681DE55F4F00ED14B3 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -2897,6 +2806,7 @@
 		E8F5704A1B3F7255003F020C = {
 			isa = PBXGroup;
 			children = (
+				E89554B51F6C8A870026582B /* DatabaseLibrary.xcodeproj */,
 				E8F570551B3F7255003F020C /* Geocube */,
 				E80732F91B633A74007FDC29 /* objects */,
 				E8F570541B3F7255003F020C /* Products */,
@@ -2983,79 +2893,6 @@
 		E8F570A81B3FE522003F020C /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				E8EE47EF1F6B525000AB13BC /* DatabaseLibrary.h */,
-				E823426B1EECD0B000D2CDFD /* database-cache.h */,
-				E823426C1EECD0B000D2CDFD /* database-cache.m */,
-				E823426D1EECD0B000D2CDFD /* database.h */,
-				E823426E1EECD0B000D2CDFD /* database.m */,
-				E82342951EECD0B000D2CDFD /* dbObject.h */,
-				E82342961EECD0B000D2CDFD /* dbObject.m */,
-				E823426F1EECD0B000D2CDFD /* dbAccount.h */,
-				E82342701EECD0B000D2CDFD /* dbAccount.m */,
-				E82342711EECD0B000D2CDFD /* dbAttribute.h */,
-				E82342721EECD0B000D2CDFD /* dbAttribute.m */,
-				E82342731EECD0B000D2CDFD /* dbBookmark.h */,
-				E82342741EECD0B000D2CDFD /* dbBookmark.m */,
-				E82342751EECD0B000D2CDFD /* dbConfig.h */,
-				E82342761EECD0B000D2CDFD /* dbConfig.m */,
-				E82342771EECD0B000D2CDFD /* dbContainer.h */,
-				E82342781EECD0B000D2CDFD /* dbContainer.m */,
-				E82342791EECD0B000D2CDFD /* dbCountry.h */,
-				E823427A1EECD0B000D2CDFD /* dbCountry.m */,
-				E823427B1EECD0B000D2CDFD /* dbExternalMap.h */,
-				E823427C1EECD0B000D2CDFD /* dbExternalMap.m */,
-				E80D7EE31EFBE15700E25581 /* dbExternalMapURL.h */,
-				E80D7EE41EFBE15700E25581 /* dbExternalMapURL.m */,
-				E823427D1EECD0B000D2CDFD /* dbFileImport.h */,
-				E823427E1EECD0B000D2CDFD /* dbFileImport.m */,
-				E823427F1EECD0B000D2CDFD /* dbFilter.h */,
-				E82342801EECD0B000D2CDFD /* dbFilter.m */,
-				E82342811EECD0B000D2CDFD /* dbGroup.h */,
-				E82342821EECD0B000D2CDFD /* dbGroup.m */,
-				E82342831EECD0B000D2CDFD /* dbImage.h */,
-				E82342841EECD0B000D2CDFD /* dbImage.m */,
-				E815B7841F6805C9003A6092 /* dbKMLFile.h */,
-				E815B7851F6805C9003A6092 /* dbKMLFile.m */,
-				E82342851EECD0B000D2CDFD /* dbListData.h */,
-				E82342861EECD0B000D2CDFD /* dbListData.m */,
-				E82342871EECD0B000D2CDFD /* dbLocality.h */,
-				E82342881EECD0B000D2CDFD /* dbLocality.m */,
-				E82342891EECD0B000D2CDFD /* dbLog.h */,
-				E823428A1EECD0B000D2CDFD /* dbLog.m */,
-				E823428B1EECD0B000D2CDFD /* dbLogMacro.h */,
-				E823428C1EECD0B000D2CDFD /* dbLogMacro.m */,
-				E823428D1EECD0B000D2CDFD /* dbLogString.h */,
-				E823428E1EECD0B000D2CDFD /* dbLogString.m */,
-				E87F58CF1F46F0C200C90375 /* dbLogStringWaypoint.h */,
-				E87F58D01F46F0C200C90375 /* dbLogStringWaypoint.m */,
-				E823428F1EECD0B000D2CDFD /* dbLogTemplate.h */,
-				E82342901EECD0B000D2CDFD /* dbLogTemplate.m */,
-				E82342911EECD0B000D2CDFD /* dbName.h */,
-				E82342921EECD0B000D2CDFD /* dbName.m */,
-				E82342931EECD0B000D2CDFD /* dbNotice.h */,
-				E82342941EECD0B000D2CDFD /* dbNotice.m */,
-				E82342971EECD0B100D2CDFD /* dbPersonalNote.h */,
-				E82342981EECD0B100D2CDFD /* dbPersonalNote.m */,
-				E82342991EECD0B100D2CDFD /* dbPin.h */,
-				E823429A1EECD0B100D2CDFD /* dbPin.m */,
-				E823429B1EECD0B100D2CDFD /* dbProtocol.h */,
-				E823429C1EECD0B100D2CDFD /* dbProtocol.m */,
-				E823429D1EECD0B100D2CDFD /* dbQueryImport.h */,
-				E823429E1EECD0B100D2CDFD /* dbQueryImport.m */,
-				E823429F1EECD0B100D2CDFD /* dbState.h */,
-				E82342A01EECD0B100D2CDFD /* dbState.m */,
-				E82342A11EECD0B100D2CDFD /* dbSymbol.h */,
-				E82342A21EECD0B100D2CDFD /* dbSymbol.m */,
-				E82342A31EECD0B100D2CDFD /* dbTrack.h */,
-				E82342A41EECD0B100D2CDFD /* dbTrack.m */,
-				E82342A51EECD0B100D2CDFD /* dbTrackable.h */,
-				E82342A61EECD0B100D2CDFD /* dbTrackable.m */,
-				E82342A71EECD0B100D2CDFD /* dbTrackElement.h */,
-				E82342A81EECD0B100D2CDFD /* dbTrackElement.m */,
-				E82342A91EECD0B100D2CDFD /* dbType.h */,
-				E82342AA1EECD0B100D2CDFD /* dbType.m */,
-				E82342AB1EECD0B100D2CDFD /* dbWaypoint.h */,
-				E82342AC1EECD0B100D2CDFD /* dbWaypoint.m */,
 				E8F570BB1B400124003F020C /* schema.sql */,
 			);
 			name = Database;
@@ -3297,6 +3134,10 @@
 					ProjectRef = E895536F1F6BEF9B0026582B /* ContribLibrary.xcodeproj */;
 				},
 				{
+					ProductGroup = E89554B61F6C8A870026582B /* Products */;
+					ProjectRef = E89554B51F6C8A870026582B /* DatabaseLibrary.xcodeproj */;
+				},
+				{
 					ProductGroup = E881CACE1F6BB1C500A17060 /* Products */;
 					ProjectRef = E881CACD1F6BB1C500A17060 /* ManagersLibrary.xcodeproj */;
 				},
@@ -3346,6 +3187,13 @@
 			fileType = archive.ar;
 			path = libContribLibrary.a;
 			remoteRef = E89553731F6BEF9B0026582B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E89554BA1F6C8A890026582B /* libDatabaseLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDatabaseLibrary.a;
+			remoteRef = E89554B91F6C8A890026582B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E8EE47C91F6B488C00AB13BC /* libBaseObjectsLibrary.a */ = {
@@ -3857,7 +3705,6 @@
 				E82344831EECE09C00D2CDFD /* ListInProgressViewController.m in Sources */,
 				E82344811EECE09C00D2CDFD /* ListHighlightViewController.m in Sources */,
 				E82344921EECE0AC00D2CDFD /* QueriesGGCWViewController.m in Sources */,
-				E82342C01EECD0B100D2CDFD /* dbName.m in Sources */,
 				E82343841EECDB9B00D2CDFD /* MapAllWPViewController.m in Sources */,
 				E8182F4C1C0E41CB004AC534 /* KeyboardCoordinateView.m in Sources */,
 				E82344971EECE0AD00D2CDFD /* QueriesTemplateViewController.m in Sources */,
@@ -3871,7 +3718,6 @@
 				E823443F1EECE01500D2CDFD /* KeepTrackCar.m in Sources */,
 				E82343FA1EECDF4400D2CDFD /* WaypointTrackablesViewController.m in Sources */,
 				E82344351EECDFB300D2CDFD /* FilterTextTableViewCell.m in Sources */,
-				E82342B91EECD0B100D2CDFD /* dbImage.m in Sources */,
 				E82343F81EECDF4400D2CDFD /* WaypointPersonalNoteViewController.m in Sources */,
 				E82344BE1EECE0E800D2CDFD /* SettingsColoursViewController.m in Sources */,
 				E82344341EECDFB300D2CDFD /* FilterTerrainTableViewCell.m in Sources */,
@@ -3883,18 +3729,12 @@
 				E82343BD1EECDE6C00D2CDFD /* WaypointLogViewController.m in Sources */,
 				E82343A91EECDDD400D2CDFD /* GCCircle.m in Sources */,
 				E86C4AAF1E321822004526E2 /* CompassViewController.m in Sources */,
-				E82342C31EECD0B100D2CDFD /* dbPersonalNote.m in Sources */,
 				E82343F41EECDF4400D2CDFD /* WaypointDescriptionViewController.m in Sources */,
 				E82344321EECDFB300D2CDFD /* FiltersViewController.m in Sources */,
 				E83B109C1EF4FC9500F2C5FA /* LocationlessPlannedViewController.m in Sources */,
-				E82342CD1EECD0B100D2CDFD /* dbWaypoint.m in Sources */,
-				E82342B01EECD0B100D2CDFD /* dbAttribute.m in Sources */,
-				E82342BF1EECD0B100D2CDFD /* dbLogTemplate.m in Sources */,
 				E82344671EECE06E00D2CDFD /* TrackableTableViewCell.m in Sources */,
 				E82343381EECDA2900D2CDFD /* GCOAuthBlackbox.m in Sources */,
-				E82342C51EECD0B100D2CDFD /* dbProtocol.m in Sources */,
 				E82343F61EECDF4400D2CDFD /* WaypointHintViewController.m in Sources */,
-				E80D7EE51EFBE15700E25581 /* dbExternalMapURL.m in Sources */,
 				E82344821EECE09C00D2CDFD /* ListIgnoredViewController.m in Sources */,
 				E823442E1EECDFB300D2CDFD /* FilterGroupsTableViewCell.m in Sources */,
 				E823444F1EECE04B00D2CDFD /* NotesSavedViewController.m in Sources */,
@@ -3909,8 +3749,6 @@
 				E82343AA1EECDDD400D2CDFD /* GCCoordsHistorical.m in Sources */,
 				E83C6F071EECE67100E303F5 /* FilesViewController.m in Sources */,
 				E83B10961EF4FC6000F2C5FA /* LocationlessListViewController.m in Sources */,
-				E82342CA1EECD0B100D2CDFD /* dbTrackable.m in Sources */,
-				E82342C81EECD0B100D2CDFD /* dbSymbol.m in Sources */,
 				E82344331EECDFB300D2CDFD /* FilterTableViewCell.m in Sources */,
 				E82343F71EECDF4400D2CDFD /* WaypointLogsViewController.m in Sources */,
 				E82343C61EECDEA100D2CDFD /* WaypointAddViewController.m in Sources */,
@@ -3919,11 +3757,7 @@
 				E82344A81EECE0C900D2CDFD /* BrowserAccountsViewController.m in Sources */,
 				E823439A1EECDBCF00D2CDFD /* MapESRIWorldTopo.m in Sources */,
 				E82343521EECDA4900D2CDFD /* ImportGGCWJSON.m in Sources */,
-				E82342B11EECD0B100D2CDFD /* dbBookmark.m in Sources */,
-				E82342C11EECD0B100D2CDFD /* dbNotice.m in Sources */,
 				E82344C01EECE0E800D2CDFD /* SettingsLogTemplatesViewController.m in Sources */,
-				E82342CC1EECD0B100D2CDFD /* dbType.m in Sources */,
-				E82342BD1EECD0B100D2CDFD /* dbLogMacro.m in Sources */,
 				E82344911EECE0AC00D2CDFD /* QueriesGCAViewController.m in Sources */,
 				E82344841EECE09C00D2CDFD /* ListTemplateViewController.m in Sources */,
 				E823442D1EECDFB300D2CDFD /* FilterFlagsTableViewCell.m in Sources */,
@@ -3936,34 +3770,26 @@
 				E83C6F011EECE67100E303F5 /* FileObject.m in Sources */,
 				E82343511EECDA4900D2CDFD /* ImportGeocube.m in Sources */,
 				E82343C21EECDE8A00D2CDFD /* WaypointImagesViewController.m in Sources */,
-				E82342BC1EECD0B100D2CDFD /* dbLog.m in Sources */,
 				E83B109F1EF4FCCC00F2C5FA /* LocationlessTableViewCell.m in Sources */,
 				E82345251EECE14A00D2CDFD /* HelpIntroduction.m in Sources */,
-				E82342AE1EECD0B100D2CDFD /* database.m in Sources */,
 				E82343AD1EECDDD400D2CDFD /* MapWaypointInfoView.m in Sources */,
-				E82342AD1EECD0B100D2CDFD /* database-cache.m in Sources */,
 				E82343541EECDA4900D2CDFD /* ImportGPXGarmin.m in Sources */,
 				E82344FD1EECE12A00D2CDFD /* GCTableViewCellRightImage.m in Sources */,
 				E82343BB1EECDE6C00D2CDFD /* WaypointLogImagesViewController.m in Sources */,
 				E82344291EECDFB300D2CDFD /* FilterDifficultyTableViewCell.m in Sources */,
 				E82343351EECD9BC00D2CDFD /* RemoteAPITemplate.m in Sources */,
 				E823424E1EECCF9300D2CDFD /* SVProgressHUD.m in Sources */,
-				E82342C41EECD0B100D2CDFD /* dbPin.m in Sources */,
 				E83C6F041EECE67100E303F5 /* FilesTableViewCell.m in Sources */,
-				E82342CB1EECD0B100D2CDFD /* dbTrackElement.m in Sources */,
 				E82345261EECE14A00D2CDFD /* NoticesViewController.m in Sources */,
 				E82343F51EECDF4400D2CDFD /* WaypointGroupsViewController.m in Sources */,
 				E82344431EECE01500D2CDFD /* KeepTrackTracks.m in Sources */,
 				E82343BA1EECDE6C00D2CDFD /* WaypointLogEditViewController.m in Sources */,
 				E823432E1EECD9BC00D2CDFD /* ProtocolOKAPI.m in Sources */,
 				E82343BC1EECDE6C00D2CDFD /* WaypointLogTrackablesViewController.m in Sources */,
-				E82342B31EECD0B100D2CDFD /* dbContainer.m in Sources */,
 				E8EC073F1D39D898009B8EB1 /* DownloadManager.m in Sources */,
 				E823435D1EECDAEF00D2CDFD /* LocalMenuItems.m in Sources */,
-				E815B7861F6805C9003A6092 /* dbKMLFile.m in Sources */,
 				E82344941EECE0AD00D2CDFD /* QueriesTableViewCell.m in Sources */,
 				E823420E1EECCEEE00D2CDFD /* MHTabBarController.m in Sources */,
-				E82342C91EECD0B100D2CDFD /* dbTrack.m in Sources */,
 				E82343F31EECDF4400D2CDFD /* WaypointAttributesViewController.m in Sources */,
 				E823432B1EECD9BC00D2CDFD /* ProtocolGCA2.m in Sources */,
 				E82343551EECDA4900D2CDFD /* ImportLiveAPIJSON.m in Sources */,
@@ -3978,33 +3804,27 @@
 				E82344631EECE06E00D2CDFD /* TrackablesInventoryViewController.m in Sources */,
 				E823442A1EECDFB300D2CDFD /* FilterDirectionTableViewCell.m in Sources */,
 				E82343B11EECDDFD00D2CDFD /* WaypointSorter.m in Sources */,
-				E82342C71EECD0B100D2CDFD /* dbState.m in Sources */,
 				E83C6F221EEEA47900E303F5 /* GCTableViewCellRightImageDisclosure.m in Sources */,
 				E83C6F1B1EEEA36900E303F5 /* GCTableViewCellSubtitleRightImageDisclosure.m in Sources */,
 				E82344AF1EECE0D500D2CDFD /* ToolsGNSSViewController.m in Sources */,
 				E82343FB1EECDF4400D2CDFD /* WaypointWaypointsTableViewCell.m in Sources */,
-				E82342B81EECD0B100D2CDFD /* dbGroup.m in Sources */,
 				E82345271EECE14A00D2CDFD /* NoticeTableViewCell.m in Sources */,
 				E82344721EECE08A00D2CDFD /* GroupsUserViewController.m in Sources */,
 				E82344271EECDFB300D2CDFD /* FilterCategoryTableViewCell.m in Sources */,
 				E82344BF1EECE0E800D2CDFD /* SettingsColourViewController.m in Sources */,
 				E8845CB21EF493B200A47F5D /* FilterAccountsTableViewCell.m in Sources */,
 				E82344C11EECE0E800D2CDFD /* SettingsMainColorPickerViewController.m in Sources */,
-				E82342B61EECD0B100D2CDFD /* dbFileImport.m in Sources */,
 				E823439D1EECDBCF00D2CDFD /* MapTemplate.m in Sources */,
 				E823424B1EECCF9300D2CDFD /* SVIndefiniteAnimatedView.m in Sources */,
-				E82342C61EECD0B100D2CDFD /* dbQueryImport.m in Sources */,
 				E82343AB1EECDDD400D2CDFD /* GCGMSCircle.m in Sources */,
 				E82343881EECDB9B00D2CDFD /* MapTrackViewController.m in Sources */,
 				E83B10A21EF4FDDD00F2C5FA /* MapLogsViewController.m in Sources */,
-				E82342AF1EECD0B100D2CDFD /* dbAccount.m in Sources */,
 				E82343991EECDBCF00D2CDFD /* MapAppleTemplate.m in Sources */,
 				E82343321EECD9BC00D2CDFD /* RemoteAPILiveAPI.m in Sources */,
 				E82344301EECDFB300D2CDFD /* FilterOthersTableViewCell.m in Sources */,
 				E823439B1EECDBCF00D2CDFD /* MapGoogle.m in Sources */,
 				E82344C21EECE0E800D2CDFD /* SettingsMainViewController.m in Sources */,
 				E82344A91EECE0C900D2CDFD /* BrowserBrowserViewController.m in Sources */,
-				E82342B41EECD0B100D2CDFD /* dbCountry.m in Sources */,
 				E82344361EECDFB300D2CDFD /* FilterTypesTableViewCell.m in Sources */,
 				E82345241EECE14A00D2CDFD /* DeveloperImagesViewController.m in Sources */,
 				E82344401EECE01500D2CDFD /* KeepTracksTrackTableViewCell.m in Sources */,
@@ -4019,10 +3839,8 @@
 				E82343301EECD9BC00D2CDFD /* RemoteAPIGCA2.m in Sources */,
 				E82345221EECE14A00D2CDFD /* DeveloperDatabaseViewController.m in Sources */,
 				E82343501EECDA4900D2CDFD /* ImportGCA2JSON.m in Sources */,
-				E82342B21EECD0B100D2CDFD /* dbConfig.m in Sources */,
 				E82343C31EECDE8A00D2CDFD /* WaypointImageViewController.m in Sources */,
 				E82343981EECDBCE00D2CDFD /* MapAppleCache.m in Sources */,
-				E82342BA1EECD0B100D2CDFD /* dbListData.m in Sources */,
 				E823439C1EECDBCF00D2CDFD /* MapOSM.m in Sources */,
 				E82344AA1EECE0C900D2CDFD /* BrowserUserViewController.m in Sources */,
 				E82344931EECE0AD00D2CDFD /* QueriesGroundspeakViewController.m in Sources */,
@@ -4033,10 +3851,8 @@
 				E82344A11EECE0BD00D2CDFD /* StatisticsViewController.m in Sources */,
 				E82344B01EECE0D500D2CDFD /* ToolsRot13ViewController.m in Sources */,
 				E8A7FAA21B78784F003F4132 /* ImagesDownloadManager.m in Sources */,
-				E82342BE1EECD0B100D2CDFD /* dbLogString.m in Sources */,
 				E823451E1EECE14A00D2CDFD /* HelpAboutTableViewCell.m in Sources */,
 				E82344281EECDFB300D2CDFD /* FilterDateTableViewCell.m in Sources */,
-				E82342BB1EECD0B100D2CDFD /* dbLocality.m in Sources */,
 				E823444E1EECE04B00D2CDFD /* NotesPersonalNotesViewController.m in Sources */,
 				E87DF78E1D8564A800F16B5A /* InfoViewer.m in Sources */,
 				E82343311EECD9BC00D2CDFD /* RemoteAPIGGCW.m in Sources */,
@@ -4047,17 +3863,13 @@
 				E82343DE1EECDEE200D2CDFD /* WaypointViewController.m in Sources */,
 				E82344701EECE08A00D2CDFD /* GroupsSystemViewController.m in Sources */,
 				E82344311EECDFB300D2CDFD /* FilterSizesTableViewCell.m in Sources */,
-				E87F58D11F46F0C200C90375 /* dbLogStringWaypoint.m in Sources */,
 				E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */,
 				E82343FC1EECDF4400D2CDFD /* WaypointWaypointsViewController.m in Sources */,
-				E82342B51EECD0B100D2CDFD /* dbExternalMap.m in Sources */,
 				E82344011EECDF6C00D2CDFD /* WaypointTableViewCell.m in Sources */,
 				E80D7EE21EFA705900E25581 /* OpenCageManager.m in Sources */,
 				E823449E1EECE0BD00D2CDFD /* StatisticsTableViewCell.m in Sources */,
-				E82342C21EECD0B100D2CDFD /* dbObject.m in Sources */,
 				E823424F1EECCF9300D2CDFD /* SVRadialGradientLayer.m in Sources */,
 				E82345211EECE14A00D2CDFD /* HelpAboutViewController.m in Sources */,
-				E82342B71EECD0B100D2CDFD /* dbFilter.m in Sources */,
 				E82343971EECDBCE00D2CDFD /* MapApple.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4277,6 +4089,7 @@
 					"${SRCROOT}/ToolsLibrary",
 					"${SRCROOT}/ManagersLibrary",
 					"${SRCROOT}/ThemesLibrary",
+					"${SRCROOT}/DatabaseLibrary",
 				);
 				INFOPLIST_FILE = Geocube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
@@ -4318,6 +4131,7 @@
 					"${SRCROOT}/ToolsLibrary",
 					"${SRCROOT}/ManagersLibrary",
 					"${SRCROOT}/ThemesLibrary",
+					"${SRCROOT}/DatabaseLibrary",
 				);
 				INFOPLIST_FILE = Geocube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;

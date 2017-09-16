@@ -85,3 +85,5 @@ typedef NS_ENUM(NSInteger, LM_ACCURACY) {
 - (void)clearCoordsHistorical;
 
 @end
+
+extern LocationManager *LM;

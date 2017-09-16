@@ -41,7 +41,7 @@
 
 #import "KeyboardCoordinateView.h"
 
-#import "database/DatabaseLibrary.h"
+#import "DatabaseLibrary/DatabaseLibrary.h"
 
 #import "AppDelegate.h"
 #import "Menus/SideMenu.h"
