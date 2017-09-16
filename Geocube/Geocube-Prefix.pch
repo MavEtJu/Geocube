@@ -49,8 +49,6 @@
 #import "ManagersLibrary/ManagersLibrary.h"
 #import "Waypoints/WaypointSorter.h"
 
-#import "Maps/GCCoordsHistorical.h"
-
 #import "BaseObjectsLibrary/BaseObjectsLibrary.h"
 
 #import "InfoItem.h"

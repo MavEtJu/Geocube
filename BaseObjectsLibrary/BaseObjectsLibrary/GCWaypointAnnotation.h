@@ -19,6 +19,9 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <MapKit/MapKit.h>
+#import "DatabaseLibrary/dbWaypoint.h"
+
 @interface GCWaypointAnnotation : MKPointAnnotation
 
 @property (nonatomic, retain) dbWaypoint *waypoint;

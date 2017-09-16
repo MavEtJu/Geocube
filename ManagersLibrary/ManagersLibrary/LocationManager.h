@@ -22,7 +22,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-#import "Maps/GCCoordsHistorical.h"
+#import "BaseObjectsLibrary/GCCoordsHistorical.h"
 
 @protocol LocationManagerLocationDelegate
 

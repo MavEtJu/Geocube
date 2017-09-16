@@ -19,10 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCCoordsHistorical : NSObject
+#import <Foundation/Foundation.h>
+#import <GoogleMaps/GoogleMaps.h>
 
-@property (nonatomic) NSTimeInterval when;
-@property (nonatomic) CLLocationCoordinate2D coord;
-@property (nonatomic) BOOL restart;
+@interface GCGMSCircle : GMSCircle
+
+@property (nonatomic, retain) NSObject *userData;
 
 @end

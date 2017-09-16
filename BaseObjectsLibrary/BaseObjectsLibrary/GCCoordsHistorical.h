@@ -19,8 +19,13 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCGMSCircle : GMSCircle
+#import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
-@property (nonatomic, retain) NSObject *userData;
+@interface GCCoordsHistorical : NSObject
+
+@property (nonatomic) NSTimeInterval when;
+@property (nonatomic) CLLocationCoordinate2D coord;
+@property (nonatomic) BOOL restart;
 
 @end

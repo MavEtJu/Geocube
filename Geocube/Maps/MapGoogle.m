@@ -21,7 +21,7 @@
 
 #import "MapGoogle.h"
 
-#import "GCGMSCircle.h"
+#import "BaseObjectsLibrary/GCGMSCircle.h"
 
 @import GoogleMaps;
 

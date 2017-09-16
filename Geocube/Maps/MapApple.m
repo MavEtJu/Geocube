@@ -21,8 +21,8 @@
 
 #import "MapApple.h"
 
-#import "GCWaypointAnnotation.h"
-#import "GCCircle.h"
+#import "BaseObjectsLibrary/GCWaypointAnnotation.h"
+#import "BaseObjectsLibrary/GCCircle.h"
 
 #define COORDHISTORYSIZE    100
 

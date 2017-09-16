@@ -19,6 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/* Types */
 #import "BaseObjectsLibrary/GCArray.h"
 #import "BaseObjectsLibrary/GCBoundingBox.h"
 #import "BaseObjectsLibrary/GCDataObjects.h"
@@ -27,21 +28,31 @@
 #import "BaseObjectsLibrary/GCString.h"
 #import "BaseObjectsLibrary/GCURLRequest.h"
 
+/* Maps */
+#import "BaseObjectsLibrary/GCCircle.h"
+#import "BaseObjectsLibrary/GCCoordsHistorical.h"
+#import "BaseObjectsLibrary/GCGMSCircle.h"
+#import "BaseObjectsLibrary/GCWaypointAnnotation.h"
+
+/* View objects */
 #import "BaseObjectsLibrary/GCButton.h"
 #import "BaseObjectsLibrary/GCCloseButton.h"
 #import "BaseObjectsLibrary/GCFilterButton.h"
 #import "BaseObjectsLibrary/GCImageView.h"
 #import "BaseObjectsLibrary/GCLabel.h"
-#import "BaseObjectsLibrary/GCScrollView.h"
 #import "BaseObjectsLibrary/GCSmallLabel.h"
 #import "BaseObjectsLibrary/GCSwitch.h"
+#import "BaseObjectsLibrary/GCTextblock.h"
+
+/* Views */
+#import "BaseObjectsLibrary/GCTableViewHeaderFooterView.h"
+#import "BaseObjectsLibrary/GCScrollView.h"
 #import "BaseObjectsLibrary/GCTableViewCell.h"
 #import "BaseObjectsLibrary/GCTableViewController.h"
-#import "BaseObjectsLibrary/GCTableViewHeaderFooterView.h"
-#import "BaseObjectsLibrary/GCTextblock.h"
 #import "BaseObjectsLibrary/GCView.h"
 #import "BaseObjectsLibrary/GCViewController.h"
 
+/* TableViewCells */
 #import "BaseObjectsLibrary/GCTableViewCellKeyValue.h"
 #import "BaseObjectsLibrary/GCTableViewCellRightImage.h"
 #import "BaseObjectsLibrary/GCTableViewCellRightImageDisclosure.h"
