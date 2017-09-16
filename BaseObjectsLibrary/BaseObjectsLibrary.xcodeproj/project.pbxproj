@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E84E88731F6CF8E2004F4BE9 /* GCTableViewCellKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E88581F6CF8E2004F4BE9 /* GCTableViewCellKeyValue.m */; };
+		E84E88741F6CF8E2004F4BE9 /* GCTableViewCellRightImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E885C1F6CF8E2004F4BE9 /* GCTableViewCellRightImage.m */; };
+		E84E88751F6CF8E2004F4BE9 /* GCTableViewCellRightImageDisclosure.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E88601F6CF8E2004F4BE9 /* GCTableViewCellRightImageDisclosure.m */; };
+		E84E88761F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E88641F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImage.m */; };
+		E84E88771F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImageDisclosure.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E88681F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImageDisclosure.m */; };
+		E84E88781F6CF8E2004F4BE9 /* GCTableViewCellSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E886C1F6CF8E2004F4BE9 /* GCTableViewCellSwitch.m */; };
+		E84E88791F6CF8E2004F4BE9 /* GCTableViewCellWithSubtitle.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E88701F6CF8E2004F4BE9 /* GCTableViewCellWithSubtitle.m */; };
 		E857843F1F6BE46D00D25EE6 /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E857843E1F6BE46D00D25EE6 /* GCViewController.m */; };
 		E85784421F6BE6C400D25EE6 /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85784411F6BE6C400D25EE6 /* GCTableViewController.m */; };
 		E881C9DB1F6B788200A17060 /* GCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E881C9DA1F6B788100A17060 /* GCTableViewCell.m */; };
@@ -45,6 +52,34 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E84E88571F6CF8E2004F4BE9 /* GCTableViewCellKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellKeyValue.h; sourceTree = "<group>"; };
+		E84E88581F6CF8E2004F4BE9 /* GCTableViewCellKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCellKeyValue.m; sourceTree = "<group>"; };
+		E84E88591F6CF8E2004F4BE9 /* GCTableViewCellKeyValue.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GCTableViewCellKeyValue.xib; sourceTree = "<group>"; };
+		E84E885A1F6CF8E2004F4BE9 /* GCTableViewCellKeyValue~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GCTableViewCellKeyValue~ipad.xib"; sourceTree = "<group>"; };
+		E84E885B1F6CF8E2004F4BE9 /* GCTableViewCellRightImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellRightImage.h; sourceTree = "<group>"; };
+		E84E885C1F6CF8E2004F4BE9 /* GCTableViewCellRightImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCellRightImage.m; sourceTree = "<group>"; };
+		E84E885D1F6CF8E2004F4BE9 /* GCTableViewCellRightImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GCTableViewCellRightImage.xib; sourceTree = "<group>"; };
+		E84E885E1F6CF8E2004F4BE9 /* GCTableViewCellRightImage~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GCTableViewCellRightImage~ipad.xib"; sourceTree = "<group>"; };
+		E84E885F1F6CF8E2004F4BE9 /* GCTableViewCellRightImageDisclosure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellRightImageDisclosure.h; sourceTree = "<group>"; };
+		E84E88601F6CF8E2004F4BE9 /* GCTableViewCellRightImageDisclosure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCellRightImageDisclosure.m; sourceTree = "<group>"; };
+		E84E88611F6CF8E2004F4BE9 /* GCTableViewCellRightImageDisclosure.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GCTableViewCellRightImageDisclosure.xib; sourceTree = "<group>"; };
+		E84E88621F6CF8E2004F4BE9 /* GCTableViewCellRightImageDisclosure~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GCTableViewCellRightImageDisclosure~ipad.xib"; sourceTree = "<group>"; };
+		E84E88631F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellSubtitleRightImage.h; sourceTree = "<group>"; };
+		E84E88641F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCellSubtitleRightImage.m; sourceTree = "<group>"; };
+		E84E88651F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GCTableViewCellSubtitleRightImage.xib; sourceTree = "<group>"; };
+		E84E88661F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImage~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GCTableViewCellSubtitleRightImage~ipad.xib"; sourceTree = "<group>"; };
+		E84E88671F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImageDisclosure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellSubtitleRightImageDisclosure.h; sourceTree = "<group>"; };
+		E84E88681F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImageDisclosure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCellSubtitleRightImageDisclosure.m; sourceTree = "<group>"; };
+		E84E88691F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImageDisclosure.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GCTableViewCellSubtitleRightImageDisclosure.xib; sourceTree = "<group>"; };
+		E84E886A1F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImageDisclosure~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GCTableViewCellSubtitleRightImageDisclosure~ipad.xib"; sourceTree = "<group>"; };
+		E84E886B1F6CF8E2004F4BE9 /* GCTableViewCellSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellSwitch.h; sourceTree = "<group>"; };
+		E84E886C1F6CF8E2004F4BE9 /* GCTableViewCellSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCellSwitch.m; sourceTree = "<group>"; };
+		E84E886D1F6CF8E2004F4BE9 /* GCTableViewCellSwitch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GCTableViewCellSwitch.xib; sourceTree = "<group>"; };
+		E84E886E1F6CF8E2004F4BE9 /* GCTableViewCellSwitch~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GCTableViewCellSwitch~ipad.xib"; sourceTree = "<group>"; };
+		E84E886F1F6CF8E2004F4BE9 /* GCTableViewCellWithSubtitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCellWithSubtitle.h; sourceTree = "<group>"; };
+		E84E88701F6CF8E2004F4BE9 /* GCTableViewCellWithSubtitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCellWithSubtitle.m; sourceTree = "<group>"; };
+		E84E88711F6CF8E2004F4BE9 /* GCTableViewCellWithSubtitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GCTableViewCellWithSubtitle.xib; sourceTree = "<group>"; };
+		E84E88721F6CF8E2004F4BE9 /* GCTableViewCellWithSubtitle~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GCTableViewCellWithSubtitle~ipad.xib"; sourceTree = "<group>"; };
 		E857843D1F6BE46D00D25EE6 /* GCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCViewController.h; sourceTree = "<group>"; };
 		E857843E1F6BE46D00D25EE6 /* GCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCViewController.m; sourceTree = "<group>"; };
 		E85784401F6BE6C400D25EE6 /* GCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewController.h; sourceTree = "<group>"; };
@@ -102,6 +137,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E84E88561F6CF8CC004F4BE9 /* GUI objects with XIB */ = {
+			isa = PBXGroup;
+			children = (
+				E84E88571F6CF8E2004F4BE9 /* GCTableViewCellKeyValue.h */,
+				E84E88581F6CF8E2004F4BE9 /* GCTableViewCellKeyValue.m */,
+				E84E88591F6CF8E2004F4BE9 /* GCTableViewCellKeyValue.xib */,
+				E84E885A1F6CF8E2004F4BE9 /* GCTableViewCellKeyValue~ipad.xib */,
+				E84E885B1F6CF8E2004F4BE9 /* GCTableViewCellRightImage.h */,
+				E84E885C1F6CF8E2004F4BE9 /* GCTableViewCellRightImage.m */,
+				E84E885D1F6CF8E2004F4BE9 /* GCTableViewCellRightImage.xib */,
+				E84E885E1F6CF8E2004F4BE9 /* GCTableViewCellRightImage~ipad.xib */,
+				E84E885F1F6CF8E2004F4BE9 /* GCTableViewCellRightImageDisclosure.h */,
+				E84E88601F6CF8E2004F4BE9 /* GCTableViewCellRightImageDisclosure.m */,
+				E84E88611F6CF8E2004F4BE9 /* GCTableViewCellRightImageDisclosure.xib */,
+				E84E88621F6CF8E2004F4BE9 /* GCTableViewCellRightImageDisclosure~ipad.xib */,
+				E84E88631F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImage.h */,
+				E84E88641F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImage.m */,
+				E84E88651F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImage.xib */,
+				E84E88661F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImage~ipad.xib */,
+				E84E88671F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImageDisclosure.h */,
+				E84E88681F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImageDisclosure.m */,
+				E84E88691F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImageDisclosure.xib */,
+				E84E886A1F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImageDisclosure~ipad.xib */,
+				E84E886B1F6CF8E2004F4BE9 /* GCTableViewCellSwitch.h */,
+				E84E886C1F6CF8E2004F4BE9 /* GCTableViewCellSwitch.m */,
+				E84E886D1F6CF8E2004F4BE9 /* GCTableViewCellSwitch.xib */,
+				E84E886E1F6CF8E2004F4BE9 /* GCTableViewCellSwitch~ipad.xib */,
+				E84E886F1F6CF8E2004F4BE9 /* GCTableViewCellWithSubtitle.h */,
+				E84E88701F6CF8E2004F4BE9 /* GCTableViewCellWithSubtitle.m */,
+				E84E88711F6CF8E2004F4BE9 /* GCTableViewCellWithSubtitle.xib */,
+				E84E88721F6CF8E2004F4BE9 /* GCTableViewCellWithSubtitle~ipad.xib */,
+			);
+			name = "GUI objects with XIB";
+			sourceTree = "<group>";
+		};
 		E8EE47841F6B457C00AB13BC = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +193,7 @@
 			children = (
 				E8EE47901F6B457C00AB13BC /* BaseObjectsLibrary.h */,
 				E8EE47E41F6B4D6500AB13BC /* Classes */,
+				E84E88561F6CF8CC004F4BE9 /* GUI objects with XIB */,
 				E8EE47E51F6B4E2A00AB13BC /* GUI objects */,
 			);
 			path = BaseObjectsLibrary;
@@ -242,14 +313,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E84E88741F6CF8E2004F4BE9 /* GCTableViewCellRightImage.m in Sources */,
 				E881CA881F6BB0A000A17060 /* GCURLRequest.m in Sources */,
+				E84E88731F6CF8E2004F4BE9 /* GCTableViewCellKeyValue.m in Sources */,
+				E84E88781F6CF8E2004F4BE9 /* GCTableViewCellSwitch.m in Sources */,
+				E84E88751F6CF8E2004F4BE9 /* GCTableViewCellRightImageDisclosure.m in Sources */,
 				E8EE47FC1F6B567F00AB13BC /* GCImageView.m in Sources */,
 				E857843F1F6BE46D00D25EE6 /* GCViewController.m in Sources */,
 				E8EE47FE1F6B567F00AB13BC /* GCSwitch.m in Sources */,
+				E84E88771F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImageDisclosure.m in Sources */,
 				E8EE480C1F6B57DA00AB13BC /* GCView.m in Sources */,
 				E8EE47E81F6B4ECC00AB13BC /* GCButton.m in Sources */,
 				E8EE47F51F6B550600AB13BC /* GCSmallLabel.m in Sources */,
 				E8EE47BF1F6B479B00AB13BC /* GCDataObjects.m in Sources */,
+				E84E88791F6CF8E2004F4BE9 /* GCTableViewCellWithSubtitle.m in Sources */,
 				E85784421F6BE6C400D25EE6 /* GCTableViewController.m in Sources */,
 				E8EE47C01F6B479B00AB13BC /* GCDictionary.m in Sources */,
 				E8EE47FD1F6B567F00AB13BC /* GCScrollView.m in Sources */,
@@ -260,6 +337,7 @@
 				E8EE47C41F6B484200AB13BC /* GCLocationCoordinate2D.m in Sources */,
 				E8EE47F21F6B548000AB13BC /* GCLabel.m in Sources */,
 				E8EE47AB1F6B45C700AB13BC /* GCArray.m in Sources */,
+				E84E88761F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImage.m in Sources */,
 				E8EE47EE1F6B514800AB13BC /* GCCloseButton.m in Sources */,
 				E8EE480B1F6B57DA00AB13BC /* GCTextblock.m in Sources */,
 				E8EE47EB1F6B50A100AB13BC /* GCFilterButton.m in Sources */,

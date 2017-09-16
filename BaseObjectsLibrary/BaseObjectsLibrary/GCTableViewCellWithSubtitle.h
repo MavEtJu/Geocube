@@ -19,8 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define XIB_GCTABLEVIEWCELLSUBTITLERIGHTIMAGEDISCLOSURE @"GCTableViewCellSubtitleRightImageDisclosure"
+#import "GCTableViewCell.h"
 
-@interface GCTableViewCellSubtitleRightImageDisclosure : GCTableViewCell
+#define XIB_GCTABLEVIEWCELLWITHSUBTITLE @"GCTableViewCellWithSubtitle"
+
+@interface GCTableViewCellWithSubtitle : GCTableViewCell
 
 @end

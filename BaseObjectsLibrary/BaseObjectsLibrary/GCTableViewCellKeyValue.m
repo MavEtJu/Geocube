@@ -1,3 +1,4 @@
+//
 /*
  * Geocube
  * By Edwin Groothuis <geocube@mavetju.org>
@@ -19,8 +20,25 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define XIB_GCTABLEVIEWCELLSUBTITLERIGHTIMAGE @"GCTableViewCellSubtitleRightImage"
+#import "GCTableViewCellKeyValue.h"
 
-@interface GCTableViewCellSubtitleRightImage : GCTableViewCell
+@interface GCTableViewCellKeyValue ()
+
+@end
+
+@implementation GCTableViewCellKeyValue
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self changeTheme];
+}
+
+- (void)changeTheme
+{
+    [super changeTheme];
+    [self.keyLabel changeTheme];
+    [self.valueLabel changeTheme];
+}
 
 @end

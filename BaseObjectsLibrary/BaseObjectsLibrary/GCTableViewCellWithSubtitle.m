@@ -19,15 +19,28 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCTableViewCellSubtitleRightImageDisclosure ()
+#import "GCTableViewCellWithSubtitle.h"
+
+#import "GCLabel.h"
+
+@interface GCTableViewCellWithSubtitle ()
 
 @property (nonatomic, weak) IBOutlet GCLabel *myTextLabel;
-@property (nonatomic, weak) IBOutlet GCLabel *myDetailTextLabel;
-@property (nonatomic, weak) IBOutlet GCImageView *myImageView;
+@property (nonatomic, weak) IBOutlet GCLabel *myDetailLabel;
 
 @end
 
-@implementation GCTableViewCellSubtitleRightImageDisclosure
+@implementation GCTableViewCellWithSubtitle
+
+//- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+//{
+//    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
+//    self.textLabel.numberOfLines = 0;
+//    self.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//    self.detailTextLabel.numberOfLines = 0;
+//    self.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//    return self;
+//}
 
 - (void)awakeFromNib
 {
@@ -39,8 +52,7 @@
 {
     [super changeTheme];
     [self.myTextLabel changeTheme];
-    [self.myImageView changeTheme];
-    [self.myDetailTextLabel changeTheme];
+    [self.myDetailLabel changeTheme];
 }
 
 - (UILabel *)textLabel
@@ -50,12 +62,7 @@
 
 - (UILabel *)detailTextLabel
 {
-    return self.myDetailTextLabel;
-}
-
-- (UIImageView *)imageView
-{
-    return self.myImageView;
+    return self.myDetailLabel;
 }
 
 @end

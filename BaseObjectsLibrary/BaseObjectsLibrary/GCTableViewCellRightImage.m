@@ -19,8 +19,41 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define XIB_GCTABLEVIEWCELLRIGHTIMAGE @"GCTableViewCellRightImage"
+#import "GCTableViewCellRightImage.h"
 
-@interface GCTableViewCellRightImage : GCTableViewCell
+#import "GCLabel.h"
+#import "GCImageView.h"
+
+@interface GCTableViewCellRightImage ()
+
+@property (nonatomic, weak) IBOutlet GCLabel *myTextLabel;
+@property (nonatomic, weak) IBOutlet GCImageView *myImageView;
+
+@end
+
+@implementation GCTableViewCellRightImage
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self changeTheme];
+}
+
+- (void)changeTheme
+{
+    [super changeTheme];
+    [self.myTextLabel changeTheme];
+    [self.myImageView changeTheme];
+}
+
+- (UILabel *)textLabel
+{
+    return self.myTextLabel;
+}
+
+- (UIImageView *)imageView
+{
+    return self.myImageView;
+}
 
 @end

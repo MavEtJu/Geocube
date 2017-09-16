@@ -41,3 +41,11 @@
 #import "BaseObjectsLibrary/GCTextblock.h"
 #import "BaseObjectsLibrary/GCView.h"
 #import "BaseObjectsLibrary/GCViewController.h"
+
+#import "BaseObjectsLibrary/GCTableViewCellKeyValue.h"
+#import "BaseObjectsLibrary/GCTableViewCellRightImage.h"
+#import "BaseObjectsLibrary/GCTableViewCellRightImageDisclosure.h"
+#import "BaseObjectsLibrary/GCTableViewCellSubtitleRightImage.h"
+#import "BaseObjectsLibrary/GCTableViewCellSubtitleRightImageDisclosure.h"
+#import "BaseObjectsLibrary/GCTableViewCellSwitch.h"
+#import "BaseObjectsLibrary/GCTableViewCellWithSubtitle.h"

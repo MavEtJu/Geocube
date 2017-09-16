@@ -19,8 +19,14 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define XIB_GCTABLEVIEWCELLWITHSUBTITLE @"GCTableViewCellWithSubtitle"
+#import "GCTableViewCell.h"
+#import "GCLabel.h"
 
-@interface GCTableViewCellWithSubtitle : GCTableViewCell
+#define XIB_GCTABLEVIEWCELLKEYVALUE @"GCTableViewCellKeyValue"
+
+@interface GCTableViewCellKeyValue : GCTableViewCell
+
+@property (weak, nonatomic) IBOutlet GCLabel *keyLabel;
+@property (weak, nonatomic) IBOutlet GCLabel *valueLabel;
 
 @end

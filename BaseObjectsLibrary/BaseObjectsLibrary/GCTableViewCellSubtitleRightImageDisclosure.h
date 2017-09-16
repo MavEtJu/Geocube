@@ -19,10 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define XIB_GCTABLEVIEWCELLSWITCH @"GCTableViewCellSwitch"
+#import "GCTableViewCell.h"
 
-@interface GCTableViewCellSwitch : GCTableViewCell
+#define XIB_GCTABLEVIEWCELLSUBTITLERIGHTIMAGEDISCLOSURE @"GCTableViewCellSubtitleRightImageDisclosure"
 
-@property (nonatomic, weak) IBOutlet GCSwitch *optionSwitch;
+@interface GCTableViewCellSubtitleRightImageDisclosure : GCTableViewCell
 
 @end

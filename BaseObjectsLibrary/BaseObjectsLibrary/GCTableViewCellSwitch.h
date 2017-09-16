@@ -19,43 +19,13 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCTableViewCellSubtitleRightImage ()
+#import "GCTableViewCell.h"
+#import "GCSwitch.h"
 
-@property (nonatomic, weak) IBOutlet GCLabel *myTextLabel;
-@property (nonatomic, weak) IBOutlet GCLabel *myDetailTextLabel;
-@property (nonatomic, weak) IBOutlet GCImageView *myImageView;
+#define XIB_GCTABLEVIEWCELLSWITCH @"GCTableViewCellSwitch"
 
-@end
+@interface GCTableViewCellSwitch : GCTableViewCell
 
-@implementation GCTableViewCellSubtitleRightImage
-
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-    [self changeTheme];
-}
-
-- (void)changeTheme
-{
-    [super changeTheme];
-    [self.myTextLabel changeTheme];
-    [self.myImageView changeTheme];
-    [self.myDetailTextLabel changeTheme];
-}
-
-- (UILabel *)textLabel
-{
-    return self.myTextLabel;
-}
-
-- (UILabel *)detailTextLabel
-{
-    return self.myDetailTextLabel;
-}
-
-- (UIImageView *)imageView
-{
-    return self.myImageView;
-}
+@property (nonatomic, weak) IBOutlet GCSwitch *optionSwitch;
 
 @end

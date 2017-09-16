@@ -19,11 +19,34 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define XIB_GCTABLEVIEWCELLKEYVALUE @"GCTableViewCellKeyValue"
+#import "GCTableViewCellSwitch.h"
 
-@interface GCTableViewCellKeyValue : GCTableViewCell
+#import "GCLabel.h"
 
-@property (weak, nonatomic) IBOutlet GCLabel *keyLabel;
-@property (weak, nonatomic) IBOutlet GCLabel *valueLabel;
+@interface GCTableViewCellSwitch ()
+
+@property (nonatomic, weak) IBOutlet GCLabel *myTextLabel;
+
+@end
+
+@implementation GCTableViewCellSwitch
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self changeTheme];
+}
+
+- (void)changeTheme
+{
+    [super changeTheme];
+    [self.myTextLabel changeTheme];
+    [self.optionSwitch changeTheme];
+}
+
+- (UILabel *)textLabel
+{
+    return self.myTextLabel;
+}
 
 @end

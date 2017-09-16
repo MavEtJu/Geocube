@@ -19,13 +19,19 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCTableViewCellSwitch ()
+#import "GCTableViewCellRightImageDisclosure.h"
+
+#import "GCLabel.h"
+#import "GCImageView.h"
+
+@interface GCTableViewCellRightImageDisclosure ()
 
 @property (nonatomic, weak) IBOutlet GCLabel *myTextLabel;
+@property (nonatomic, weak) IBOutlet GCImageView *myImageView;
 
 @end
 
-@implementation GCTableViewCellSwitch
+@implementation GCTableViewCellRightImageDisclosure
 
 - (void)awakeFromNib
 {
@@ -37,12 +43,17 @@
 {
     [super changeTheme];
     [self.myTextLabel changeTheme];
-    [self.optionSwitch changeTheme];
+    [self.myImageView changeTheme];
 }
 
 - (UILabel *)textLabel
 {
     return self.myTextLabel;
+}
+
+- (UIImageView *)imageView
+{
+    return self.myImageView;
 }
 
 @end

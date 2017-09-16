@@ -52,13 +52,6 @@
 #import "Maps/GCCoordsHistorical.h"
 
 #import "BaseObjectsLibrary/BaseObjectsLibrary.h"
-#import "GCBaseObjects/GCTableViewCellRightImage.h"
-#import "GCBaseObjects/GCTableViewCellRightImageDisclosure.h"
-#import "GCBaseObjects/GCTableViewCellSubtitleRightImage.h"
-#import "GCBaseObjects/GCTableViewCellSubtitleRightImageDisclosure.h"
-#import "GCBaseObjects/GCTableViewCellSwitch.h"
-#import "GCBaseObjects/GCTableViewCellWithSubtitle.h"
-#import "GCBaseObjects/GCTableViewCellKeyValue.h"
 
 #import "InfoItem.h"
 #import "InfoViewer.h"
