@@ -50,9 +50,6 @@
 
 #import "BaseObjectsLibrary/BaseObjectsLibrary.h"
 
-#import "InfoItem.h"
-#import "InfoViewer.h"
-
 #import "Waypoints/WaypointHeaderTableViewCell.h"
 #import "Waypoints/WaypointTableViewCell.h"
 #import "Waypoints/WaypointLogsTableViewCell.h"

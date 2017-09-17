@@ -21,12 +21,13 @@
 
 #import "ThemeManager.h"
 
+#import "Geocube.h"
+
 #import "ManagersLibrary/LocalizationManager.h"
 #import "BaseObjectsLibrary/GCViewController.h"
-#import "ThemesManager/ThemeTemplate.h"
-#import "ThemesManager/ThemeIOS.h"
-#import "ThemesManager/ThemeNight.h"
-#import "ThemesManager/Geocube.h"
+#import "ThemesLibrary/ThemeTemplate.h"
+#import "ThemesLibrary/ThemeIOS.h"
+#import "ThemesLibrary/ThemeNight.h"
 
 #import "AppDelegate.h"
 

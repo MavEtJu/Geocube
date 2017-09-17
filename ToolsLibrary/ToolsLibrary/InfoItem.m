@@ -19,6 +19,15 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "InfoItem.h"
+
+#import "Geocube-Defines.h"
+
+#import "BaseObjectsLibrary/GCSmallLabel.h"
+#import "BaseObjectsLibrary/GCView.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ToolsLibrary/MyTools.h"
+
 @interface InfoItem ()
 {
     BOOL isLines;

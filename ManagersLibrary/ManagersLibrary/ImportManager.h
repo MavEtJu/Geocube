@@ -24,7 +24,7 @@
 #import "ContribLibrary/SSZipArchive/SSZipArchive.h"
 #import "Convertors/ImportTemplate-delegate.h"
 #import "Convertors/ImportTemplate-enum.h"
-#import "InfoItem.h"
+#import "ToolsLibrary/InfoItem.h"
 
 @class dbAccount;
 @class dbGroup;

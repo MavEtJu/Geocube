@@ -22,3 +22,5 @@
 #import "ToolsLibrary/MyTools.h"
 #import "ToolsLibrary/MyClock.h"
 #import "ToolsLibrary/Coordinates.h"
+#import "ToolsLibrary/InfoViewer.h"
+#import "ToolsLibrary/InfoItem.h"

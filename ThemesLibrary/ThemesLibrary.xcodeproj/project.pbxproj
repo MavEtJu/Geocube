@@ -202,6 +202,7 @@
 					"${SRCROOT}/../BaseObjectsLibrary/",
 					"${SRCROOT}/../DatabaseLibrary",
 					"${SRCROOT}/../Pods/Headers/Public/GoogleMaps",
+					"${SRCROOT}/../ThemesLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -253,6 +254,7 @@
 					"${SRCROOT}/../BaseObjectsLibrary/",
 					"${SRCROOT}/../DatabaseLibrary",
 					"${SRCROOT}/../Pods/Headers/Public/GoogleMaps",
+					"${SRCROOT}/../ThemesLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;

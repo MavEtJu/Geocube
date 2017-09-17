@@ -21,8 +21,8 @@
 
 #import "DownloadManager.h"
 
-#import "InfoViewer.h"
-#import "InfoItem.h"
+#import "ToolsLibrary/InfoViewer.h"
+#import "ToolsLibrary/InfoItem.h"
 
 @interface DownloadManager ()
 {

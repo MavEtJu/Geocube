@@ -23,7 +23,7 @@
 
 #import "ProtocolGGCW-delegate.h"
 
-#import "InfoItem.h"
+#import "ToolsLibrary/InfoItem.h"
 
 @class GCDictionaryGGCW;
 @class GCDataZIPFile;

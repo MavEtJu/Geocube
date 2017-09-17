@@ -26,8 +26,7 @@
 #import "ThemesLibrary/ThemeManager.h"
 #import "BaseObjectsLibrary/GCCloseButton.h"
 #import "ToolsLibrary/MyTools.h"
-
-#import "InfoViewer.h"
+#import "ToolsLibrary/InfoViewer.h"
 
 @interface GCTableViewController ()
 {

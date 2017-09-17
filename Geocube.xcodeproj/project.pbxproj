@@ -415,7 +415,6 @@
 		E83C6F101EED19DF00E303F5 /* MapWaypointInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C6F0F1EED19DF00E303F5 /* MapWaypointInfoView~ipad.xib */; };
 		E83C6F151EEE8B6C00E303F5 /* NoticeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C6F131EEE8B6C00E303F5 /* NoticeTableViewCell.xib */; };
 		E83C6F161EEE8B6C00E303F5 /* NoticeTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C6F141EEE8B6C00E303F5 /* NoticeTableViewCell~ipad.xib */; };
-		E841E15A1D88FC950050D4B4 /* InfoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E841E1591D88FC950050D4B4 /* InfoItem.m */; };
 		E84725D61DF770DA00CFF99B /* menu icon - global - default.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725D01DF770DA00CFF99B /* menu icon - global - default.png */; };
 		E84725D71DF770DA00CFF99B /* menu icon - global@2x - default.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725D11DF770DA00CFF99B /* menu icon - global@2x - default.png */; };
 		E84725D81DF770DA00CFF99B /* menu icon - global@3x - default.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725D21DF770DA00CFF99B /* menu icon - global@3x - default.png */; };
@@ -457,7 +456,6 @@
 		E86D427E1EF68CC800E4509F /* container flag - planned - 24x21@2.png in Resources */ = {isa = PBXBuildFile; fileRef = E86D427B1EF68CC800E4509F /* container flag - planned - 24x21@2.png */; };
 		E86D427F1EF68CC800E4509F /* container flag - planned - 24x21@3.png in Resources */ = {isa = PBXBuildFile; fileRef = E86D427C1EF68CC800E4509F /* container flag - planned - 24x21@3.png */; };
 		E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FEB1B509575002527DA /* LogTableViewCell.m */; };
-		E87DF78E1D8564A800F16B5A /* InfoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF78D1D8564A800F16B5A /* InfoViewer.m */; };
 		E881CA8A1F6BB11B00A17060 /* libToolsLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CA891F6BB11A00A17060 /* libToolsLibrary.a */; };
 		E881CAD91F6BB2C200A17060 /* libManagersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CAD21F6BB1C600A17060 /* libManagersLibrary.a */; };
 		E881CB131F6BDC4D00A17060 /* libThemesLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CB061F6BDA7000A17060 /* libThemesLibrary.a */; };
@@ -1265,8 +1263,6 @@
 		E83C6F0F1EED19DF00E303F5 /* MapWaypointInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "MapWaypointInfoView~ipad.xib"; path = "Maps/MapWaypointInfoView~ipad.xib"; sourceTree = "<group>"; };
 		E83C6F131EEE8B6C00E303F5 /* NoticeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoticeTableViewCell.xib; path = Help/NoticeTableViewCell.xib; sourceTree = "<group>"; };
 		E83C6F141EEE8B6C00E303F5 /* NoticeTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "NoticeTableViewCell~ipad.xib"; path = "Help/NoticeTableViewCell~ipad.xib"; sourceTree = "<group>"; };
-		E841E1581D88FC950050D4B4 /* InfoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoItem.h; sourceTree = "<group>"; };
-		E841E1591D88FC950050D4B4 /* InfoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoItem.m; sourceTree = "<group>"; };
 		E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Prefix.pch"; sourceTree = "<group>"; };
 		E84725D01DF770DA00CFF99B /* menu icon - global - default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - global - default.png"; path = "images/menu/menu icon - global - default.png"; sourceTree = "<group>"; };
 		E84725D11DF770DA00CFF99B /* menu icon - global@2x - default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - global@2x - default.png"; path = "images/menu/menu icon - global@2x - default.png"; sourceTree = "<group>"; };
@@ -1318,8 +1314,6 @@
 		E8740FEA1B509575002527DA /* LogTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogTableViewCell.h; sourceTree = "<group>"; };
 		E8740FEB1B509575002527DA /* LogTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogTableViewCell.m; sourceTree = "<group>"; };
 		E879F9CB1B7B527200220EA7 /* Geocube.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Geocube.entitlements; sourceTree = "<group>"; };
-		E87DF78C1D8564A800F16B5A /* InfoViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewer.h; sourceTree = "<group>"; };
-		E87DF78D1D8564A800F16B5A /* InfoViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewer.m; sourceTree = "<group>"; };
 		E87FE7951EFFD25F009FA65B /* Geocube-Defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Defines.h"; sourceTree = "<group>"; };
 		E881CA4F1F6B9CC400A17060 /* Geocube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geocube.h; sourceTree = "<group>"; };
 		E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ToolsLibrary.xcodeproj; path = ../ToolsLibrary/ToolsLibrary.xcodeproj; sourceTree = "<group>"; };
@@ -2665,20 +2659,8 @@
 				E8740FE91B509540002527DA /* GUI TableViewCells */,
 				E867E8381B535A3A00CB126A /* Maps */,
 				E8740F9C1B4E6645002527DA /* Waypoint Viewing */,
-				E8E4400D1D88A85700BECB49 /* InfoViewer */,
 			);
 			name = "GUI - base";
-			sourceTree = "<group>";
-		};
-		E8E4400D1D88A85700BECB49 /* InfoViewer */ = {
-			isa = PBXGroup;
-			children = (
-				E87DF78C1D8564A800F16B5A /* InfoViewer.h */,
-				E87DF78D1D8564A800F16B5A /* InfoViewer.m */,
-				E841E1581D88FC950050D4B4 /* InfoItem.h */,
-				E841E1591D88FC950050D4B4 /* InfoItem.m */,
-			);
-			name = InfoViewer;
 			sourceTree = "<group>";
 		};
 		E8E8CFE91B639A0400CC741A /* Settings */ = {
@@ -3758,7 +3740,6 @@
 				E82344361EECDFB300D2CDFD /* FilterTypesTableViewCell.m in Sources */,
 				E82345241EECE14A00D2CDFD /* DeveloperImagesViewController.m in Sources */,
 				E82344401EECE01500D2CDFD /* KeepTracksTrackTableViewCell.m in Sources */,
-				E841E15A1D88FC950050D4B4 /* InfoItem.m in Sources */,
 				E8F570591B3F7255003F020C /* main.m in Sources */,
 				E823442F1EECDFB300D2CDFD /* FilterObject.m in Sources */,
 				E82344641EECE06E00D2CDFD /* TrackablesListViewController.m in Sources */,
@@ -3781,7 +3762,6 @@
 				E823451E1EECE14A00D2CDFD /* HelpAboutTableViewCell.m in Sources */,
 				E82344281EECDFB300D2CDFD /* FilterDateTableViewCell.m in Sources */,
 				E823444E1EECE04B00D2CDFD /* NotesPersonalNotesViewController.m in Sources */,
-				E87DF78E1D8564A800F16B5A /* InfoViewer.m in Sources */,
 				E82343311EECD9BC00D2CDFD /* RemoteAPIGGCW.m in Sources */,
 				E85BA88E1F544372008E708F /* KeepTrackBeeper.m in Sources */,
 				E823447F1EECE09C00D2CDFD /* ListDNFViewController.m in Sources */,

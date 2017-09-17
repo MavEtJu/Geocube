@@ -19,6 +19,13 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "InfoViewer.h"
+
+#import "Geocube-Defines.h"
+
+#import "BaseObjectsLibrary/GCLabel.h"
+#import "ManagersLibrary/LocalizationManager.h"
+
 @interface InfoViewer ()
 {
     NSMutableArray<InfoItem *> *imageItems;

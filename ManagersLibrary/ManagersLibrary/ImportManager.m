@@ -24,6 +24,8 @@
 #import "Geocube-Globals.h"
 
 #import "ToolsLibrary/MyTools.h"
+#import "ToolsLibrary/InfoViewer.h"
+#import "ToolsLibrary/InfoItem.h"
 #import "ManagersLibrary/LocalizationManager.h"
 #import "Convertors/ImportGGCWJSON.h"
 #import "Convertors/ImportGPX.h"
@@ -36,9 +38,6 @@
 #import "BaseObjectsLibrary/GCDictionary.h"
 #import "DatabaseLibrary/dbWaypoint.h"
 #import "ManagersLibrary/WaypointManager.h"
-
-#import "InfoViewer.h"
-#import "InfoItem.h"
 
 @interface ImportManager ()
 {

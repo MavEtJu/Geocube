@@ -836,6 +836,7 @@
 					"${SDKROOT}/usr/include/libxml2",
 					"${SRCROOT}/../Pods/Headers/Public/GoogleMaps",
 					"${SRCROOT}/../ToolsLibrary",
+					"${SRCROOT}/../ManagersLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -883,6 +884,7 @@
 					"${SDKROOT}/usr/include/libxml2",
 					"${SRCROOT}/../Pods/Headers/Public/GoogleMaps",
 					"${SRCROOT}/../ToolsLibrary",
+					"${SRCROOT}/../ManagersLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;

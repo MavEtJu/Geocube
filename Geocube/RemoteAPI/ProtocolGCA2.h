@@ -21,7 +21,7 @@
 
 #import "ProtocolTemplate.h"
 
-#import "InfoItem.h"
+#import "ToolsLibrary/InfoItem.h"
 
 @class GCDictionaryGCA2;
 @class InfoViewer;

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E84E892D1F6EA1F4004F4BE9 /* InfoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E892A1F6EA1F4004F4BE9 /* InfoItem.m */; };
+		E84E892E1F6EA1F4004F4BE9 /* InfoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E892C1F6EA1F4004F4BE9 /* InfoViewer.m */; };
 		E881CA5F1F6B9F9600A17060 /* ToolsLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E881CA5C1F6B9F9600A17060 /* ToolsLibrary.h */; };
 		E881CA751F6BA23600A17060 /* MyTools.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CA711F6BA23600A17060 /* MyTools.m */; };
 		E881CA761F6BA23600A17060 /* Coordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CA721F6BA23600A17060 /* Coordinates.m */; };
@@ -27,6 +29,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E84E89291F6EA1F4004F4BE9 /* InfoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoItem.h; sourceTree = "<group>"; };
+		E84E892A1F6EA1F4004F4BE9 /* InfoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoItem.m; sourceTree = "<group>"; };
+		E84E892B1F6EA1F4004F4BE9 /* InfoViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewer.h; sourceTree = "<group>"; };
+		E84E892C1F6EA1F4004F4BE9 /* InfoViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewer.m; sourceTree = "<group>"; };
+		E84E892F1F6EA223004F4BE9 /* InfoItem-enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InfoItem-enum.h"; sourceTree = "<group>"; };
 		E881CA591F6B9F9600A17060 /* libToolsLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libToolsLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E881CA5C1F6B9F9600A17060 /* ToolsLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToolsLibrary.h; sourceTree = "<group>"; };
 		E881CA6F1F6BA23600A17060 /* Coordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinates.h; sourceTree = "<group>"; };
@@ -74,6 +81,11 @@
 				E881CA711F6BA23600A17060 /* MyTools.m */,
 				E881CA731F6BA23600A17060 /* MyClock.h */,
 				E881CA741F6BA23600A17060 /* MyClock.m */,
+				E84E89291F6EA1F4004F4BE9 /* InfoItem.h */,
+				E84E892F1F6EA223004F4BE9 /* InfoItem-enum.h */,
+				E84E892A1F6EA1F4004F4BE9 /* InfoItem.m */,
+				E84E892B1F6EA1F4004F4BE9 /* InfoViewer.h */,
+				E84E892C1F6EA1F4004F4BE9 /* InfoViewer.m */,
 			);
 			path = ToolsLibrary;
 			sourceTree = "<group>";
@@ -136,6 +148,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E84E892E1F6EA1F4004F4BE9 /* InfoViewer.m in Sources */,
+				E84E892D1F6EA1F4004F4BE9 /* InfoItem.m in Sources */,
 				E881CA761F6BA23600A17060 /* Coordinates.m in Sources */,
 				E881CA771F6BA23600A17060 /* MyClock.m in Sources */,
 				E881CA751F6BA23600A17060 /* MyTools.m in Sources */,

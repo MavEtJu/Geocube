@@ -20,7 +20,7 @@
  */
 
 #import "BaseObjectsLibrary/GCView.h"
-#import "InfoItem.h"
+#import "ToolsLibrary/InfoItem.h"
 
 @interface InfoViewer : GCView
 

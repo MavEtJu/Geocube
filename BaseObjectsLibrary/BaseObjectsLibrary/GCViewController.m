@@ -25,9 +25,9 @@
 
 #import "ThemesLibrary/ThemeManager.h"
 #import "ToolsLibrary/MyTools.h"
+#import "ToolsLibrary/InfoViewer.h"
 #import "BaseObjectsLibrary/GCCloseButton.h"
 
-#import "InfoViewer.h"
 
 @interface GCViewController ()
 {

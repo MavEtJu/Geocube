@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "InfoItem.h"
+#import "ToolsLibrary/InfoItem.h"
 
 #import "ImportTemplate-delegate.h"
 #import "ImportTemplate-enum.h"

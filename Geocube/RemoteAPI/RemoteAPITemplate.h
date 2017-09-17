@@ -24,8 +24,7 @@
 #import "RemoteAPI/GCOAuthBlackbox-delegate.h"
 #import "RemoteAPI/ProtocolGGCW-delegate.h"
 #import "RemoteAPI/RemoteAPITemplate-enum.h"
-
-#import "InfoItem.h"
+#import "ToolsLibrary/InfoItem.h"
 
 @class RemoteAPITemplate;
 @class GCBoundingBox;

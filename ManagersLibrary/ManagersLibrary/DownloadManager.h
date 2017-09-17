@@ -21,7 +21,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "InfoItem.h"
+#import "ToolsLibrary/InfoItem.h"
 
 @class InfoViewer;
 
