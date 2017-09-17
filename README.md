@@ -153,6 +153,12 @@ files for .h files should be:
     #include "ToolsLibrary/MyTools.h"
     ```
 
+- The Various Geocube class files:
+
+    ```
+    #include "something.h"
+    ```
+
 ### Global variables
 
 Global variables are externally defined under the class prototype
