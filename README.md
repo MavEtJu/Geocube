@@ -1,12 +1,12 @@
 # Geocube development
 
-## Obtain the source and get it read:
+## Obtain the source and get it ready
 
-   $ git clone
+    $ git clone
 
 Install the Google Maps POD, run:
 
-   $ pod update GoogleMaps
+    $ pod update GoogleMaps
 
 After that, open Geocube.xcworkspace in Xcode and under Supporting
 Files, copy the file EncryptionKeysExample.plist to EncryptionKeys.plist
@@ -36,6 +36,8 @@ After you have made changes, run ./lint.sh. It will check for style
 and completeness issues like configuration, localization etc.
 
 ## Developer Style Guide
+
+The lint.sh shell script will check for the following:
 
 - Every Geocube .m and .h file needs to have a license. This excludes
   the parts of the ContribLibrary ask they are not part of Geocube.
