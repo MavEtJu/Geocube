@@ -21,13 +21,16 @@
 
 #import "ProtocolTemplate.h"
 
-#import "DatabaseLibrary/dbTrackable.h"
+#import "ProtocolGGCW-delegate.h"
 
-@protocol ProtocolGGCWDelegate
+#import "InfoItem.h"
 
-- (void)GGCWAuthSuccessful:(NSHTTPCookie *)cookie;
-
-@end
+@class GCDictionaryGGCW;
+@class GCDataZIPFile;
+@class GCStringGPX;
+@class GCStringGPXGarmin;
+@class dbTrackable;
+@class InfoViewer;
 
 @interface ProtocolGGCW : ProtocolTemplate <NSURLConnectionDataDelegate>
 

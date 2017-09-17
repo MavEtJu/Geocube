@@ -27,7 +27,8 @@
 #import <Social/Social.h>
 
 #import "Geocube.h"
-#import "LocalizationManager.h"
+
+#import "ToolsLibrary/LocalizationManager.h"
 #import "ManagersLibrary/ConfigManager.h"
 #import "DatabaseLibrary/DatabaseLibrary.h"
 #import "ContribLibrary/Others/Reachability.h"

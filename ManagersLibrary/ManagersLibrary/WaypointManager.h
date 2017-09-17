@@ -20,24 +20,14 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
-#import "DatabaseLibrary/DatabaseLibrary.h"
-#import "LocationManager.h"
+#import "LocationManager-delegate.h"
+#import "WaypointManager-delegate.h"
 
-@protocol WaypointManagerWaypointDelegate
+#import "DatabaseLibrary/database.h"
 
-- (void)refreshWaypoints;
-- (void)removeWaypoint:(dbWaypoint *)wp;
-- (void)addWaypoint:(dbWaypoint *)wp;
-- (void)updateWaypoint:(dbWaypoint *)wp;
-
-@end
-
-@protocol WaypointManagerKMLDelegate
-
-- (void)reloadKMLFiles;
-
-@end
+@class dbWaypoint;
 
 @interface WaypointManager : NSObject <LocationManagerLocationDelegate>
 

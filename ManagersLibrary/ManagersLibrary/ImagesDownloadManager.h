@@ -21,8 +21,10 @@
 
 #import <Foundation/Foundation.h>
 
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/dbImage.h"
+#import "DatabaseLibrary/dbImage-enum.h"
+
+@class dbWaypoint;
+@class dbImage;
 
 @interface ImagesDownloadManager : NSObject
 

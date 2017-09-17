@@ -19,11 +19,15 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ImportManager.h"
+#import <Foundation/Foundation.h>
 
 #import "ContribLibrary/SSZipArchive/SSZipArchive.h"
-
 #import "Convertors/ImportTemplate.h"
+#import "InfoItem.h"
+
+@class dbAccount;
+@class dbGroup;
+@class InfoViewer;
 
 @interface ImportManager : NSObject <SSZipArchiveDelegate, ImportDelegate>
 

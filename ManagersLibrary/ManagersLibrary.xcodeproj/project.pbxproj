@@ -44,6 +44,8 @@
 		E84E89181F6E8A8E004F4BE9 /* AudioManager-enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AudioManager-enum.h"; sourceTree = "<group>"; };
 		E84E89191F6E8B34004F4BE9 /* LocationManager-enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LocationManager-enum.h"; sourceTree = "<group>"; };
 		E84E891A1F6E8C2F004F4BE9 /* ImageLibrary-enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ImageLibrary-enum.h"; sourceTree = "<group>"; };
+		E84E891D1F6E94F4004F4BE9 /* LocationManager-delegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LocationManager-delegate.h"; sourceTree = "<group>"; };
+		E84E891E1F6E966B004F4BE9 /* WaypointManager-delegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WaypointManager-delegate.h"; sourceTree = "<group>"; };
 		E881CAC11F6BB1C500A17060 /* libManagersLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libManagersLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E881CAC41F6BB1C500A17060 /* ManagersLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManagersLibrary.h; sourceTree = "<group>"; };
 		E881CAD31F6BB21700A17060 /* AudioFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFeedback.h; sourceTree = "<group>"; };
@@ -116,9 +118,11 @@
 				E881CADB1F6BB32600A17060 /* KeyManager.h */,
 				E881CADA1F6BB32600A17060 /* KeyManager.m */,
 				E881CAE31F6BBBBD00A17060 /* LocationManager.h */,
+				E84E891D1F6E94F4004F4BE9 /* LocationManager-delegate.h */,
 				E84E89191F6E8B34004F4BE9 /* LocationManager-enum.h */,
 				E881CAE41F6BBBBD00A17060 /* LocationManager.m */,
 				E881CAE61F6BBEBC00A17060 /* WaypointManager.h */,
+				E84E891E1F6E966B004F4BE9 /* WaypointManager-delegate.h */,
 				E881CAE71F6BBEBC00A17060 /* WaypointManager.m */,
 			);
 			path = ManagersLibrary;
@@ -248,6 +252,7 @@
 					"${SRCROOT}/../ThemesLibrary",
 					"${SRCROOT}/../DatabaseLibrary",
 					"${SRCROOT}/../Pods/Headers/Public/GoogleMaps",
+					"${SRCROOT}/../ManagersLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -299,6 +304,7 @@
 					"${SRCROOT}/../ThemesLibrary",
 					"${SRCROOT}/../DatabaseLibrary",
 					"${SRCROOT}/../Pods/Headers/Public/GoogleMaps",
+					"${SRCROOT}/../ManagersLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;

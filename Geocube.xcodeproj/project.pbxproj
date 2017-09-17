@@ -1295,8 +1295,10 @@
 		E84E888B1F6CF956004F4BE9 /* GCTableViewCellWithSubtitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GCTableViewCellWithSubtitle.xib; path = ../BaseObjectsLibrary/BaseObjectsLibrary/GCTableViewCellWithSubtitle.xib; sourceTree = "<group>"; };
 		E84E888C1F6CF956004F4BE9 /* GCTableViewCellWithSubtitle~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "GCTableViewCellWithSubtitle~ipad.xib"; path = "../BaseObjectsLibrary/BaseObjectsLibrary/GCTableViewCellWithSubtitle~ipad.xib"; sourceTree = "<group>"; };
 		E84E88A31F6CFFD0004F4BE9 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		E84E89161F6E84D7004F4BE9 /* ImportTemplate-enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ImportTemplate-enum.h"; sourceTree = "<group>"; };
-		E84E891C1F6E8E8F004F4BE9 /* RemoteAPITemplate-enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RemoteAPITemplate-enum.h"; sourceTree = "<group>"; };
+		E84E89211F6E9C6E004F4BE9 /* GCOAuthBlackbox-delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GCOAuthBlackbox-delegate.h"; path = "RemoteAPI/GCOAuthBlackbox-delegate.h"; sourceTree = "<group>"; };
+		E84E89221F6E9C9D004F4BE9 /* ProtocolGGCW-delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ProtocolGGCW-delegate.h"; path = "RemoteAPI/ProtocolGGCW-delegate.h"; sourceTree = "<group>"; };
+		E84E89231F6E9CCE004F4BE9 /* RemoteAPITemplate-enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RemoteAPITemplate-enum.h"; path = "RemoteAPI/RemoteAPITemplate-enum.h"; sourceTree = "<group>"; };
+		E84E89241F6E9CFF004F4BE9 /* ImportTemplate-enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ImportTemplate-enum.h"; path = "Convertors/ImportTemplate-enum.h"; sourceTree = "<group>"; };
 		E858F5981F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "KeepTrackBeeperView~ipad.xib"; path = "KeepTrack/KeepTrackBeeperView~ipad.xib"; sourceTree = "<group>"; };
 		E858F59A1F56610B002C1F9B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		E85BA88C1F544372008E708F /* KeepTrackBeeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeepTrackBeeper.h; path = KeepTrack/KeepTrackBeeper.h; sourceTree = "<group>"; };
@@ -2611,6 +2613,7 @@
 				E82343201EECD9BC00D2CDFD /* RemoteAPIGGCW.h */,
 				E82343211EECD9BC00D2CDFD /* RemoteAPIGGCW.m */,
 				E82343161EECD9BC00D2CDFD /* ProtocolGGCW.h */,
+				E84E89221F6E9C9D004F4BE9 /* ProtocolGGCW-delegate.h */,
 				E82343171EECD9BC00D2CDFD /* ProtocolGGCW.m */,
 			);
 			name = GGCW;
@@ -2841,6 +2844,7 @@
 			isa = PBXGroup;
 			children = (
 				E82343361EECDA2900D2CDFD /* GCOAuthBlackbox.h */,
+				E84E89211F6E9C6E004F4BE9 /* GCOAuthBlackbox-delegate.h */,
 				E82343371EECDA2900D2CDFD /* GCOAuthBlackbox.m */,
 				E82343121EECD9BC00D2CDFD /* IOSFileTransfers.h */,
 				E82343131EECD9BC00D2CDFD /* IOSFileTransfers.m */,
@@ -2851,7 +2855,7 @@
 				E82343261EECD9BC00D2CDFD /* RemoteAPIProcessingGroup.h */,
 				E82343271EECD9BC00D2CDFD /* RemoteAPIProcessingGroup.m */,
 				E82343281EECD9BC00D2CDFD /* RemoteAPITemplate.h */,
-				E84E891C1F6E8E8F004F4BE9 /* RemoteAPITemplate-enum.h */,
+				E84E89231F6E9CCE004F4BE9 /* RemoteAPITemplate-enum.h */,
 				E82343291EECD9BC00D2CDFD /* RemoteAPITemplate.m */,
 				E8E0A6571DEE2255004A885D /* GCA2 */,
 				E8E0A6581DEE225A004A885D /* GGCW */,
@@ -2913,7 +2917,7 @@
 				E823434A1EECDA4900D2CDFD /* ImportOKAPIJSON.h */,
 				E823434B1EECDA4900D2CDFD /* ImportOKAPIJSON.m */,
 				E823434C1EECDA4900D2CDFD /* ImportTemplate.h */,
-				E84E89161F6E84D7004F4BE9 /* ImportTemplate-enum.h */,
+				E84E89241F6E9CFF004F4BE9 /* ImportTemplate-enum.h */,
 				E823434D1EECDA4900D2CDFD /* ImportTemplate.m */,
 			);
 			name = Convertors;

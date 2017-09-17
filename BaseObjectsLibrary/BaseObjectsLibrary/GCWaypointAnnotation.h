@@ -20,7 +20,8 @@
  */
 
 #import <MapKit/MapKit.h>
-#import "DatabaseLibrary/dbWaypoint.h"
+
+@class dbWaypoint;
 
 @interface GCWaypointAnnotation : MKPointAnnotation
 

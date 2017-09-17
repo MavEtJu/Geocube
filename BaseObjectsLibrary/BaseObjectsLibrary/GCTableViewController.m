@@ -21,11 +21,13 @@
 
 #import "GCTableViewController.h"
 
+#import "Geocube.h"
+
 #import "ThemesLibrary/ThemeManager.h"
 #import "BaseObjectsLibrary/GCCloseButton.h"
 #import "ToolsLibrary/MyTools.h"
 
-#import "Geocube.h"
+#import "InfoViewer.h"
 
 @interface GCTableViewController ()
 {

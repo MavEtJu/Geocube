@@ -22,7 +22,8 @@
 #import "LocalizationManager.h"
 
 #import "Geocube.h"
-#import "MyTools.h"
+
+#import "ToolsLibrary/MyTools.h"
 
 @interface LocalizationManager ()
 

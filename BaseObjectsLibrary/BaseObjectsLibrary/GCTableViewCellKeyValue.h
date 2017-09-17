@@ -20,7 +20,8 @@
  */
 
 #import "GCTableViewCell.h"
-#import "GCLabel.h"
+
+@class GCLabel;
 
 #define XIB_GCTABLEVIEWCELLKEYVALUE @"GCTableViewCellKeyValue"
 

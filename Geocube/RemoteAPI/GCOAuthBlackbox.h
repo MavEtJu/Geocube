@@ -23,12 +23,7 @@
 
 #import "Browser/BrowserBrowserViewController.h"
 
-@protocol GCOAuthBlackboxDelegate
-
-- (void)oauthdanced:(NSString *)token secret:(NSString *)secret;
-- (void)oauthtripped:(NSString *)reason error:(NSError *)error;
-
-@end
+#import "GCOAuthBlackbox-delegate.h"
 
 /*
  * myConsumerKey = @"S2g[...]";

@@ -20,8 +20,11 @@
  */
 
 #import "contrib/MHTabBarController/MHTabBarController.h"
+
 #import "Menus/SideMenu.h"
-#import "InfoViewer.h"
+
+@class InfoViewer;
+@class LocalMenuItems;
 
 @interface GCTableViewController : UITableViewController <MHTabBarControllerDelegate, SideMenuDelegate>
 {

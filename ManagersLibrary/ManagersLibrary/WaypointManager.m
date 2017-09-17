@@ -23,11 +23,26 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+#import "Geocube.h"
+
 #import "BaseObjectsLibrary/GCTableViewCell.h"
 #import "ToolsLibrary/Coordinates.h"
 #import "ToolsLibrary/MyClock.h"
-#import "Geocube.h"
-#import "ConfigManager.h"
+#import "ManagersLibrary/ConfigManager.h"
+#import "ManagersLibrary/LocationManager.h"
+#import "DatabaseLibrary/dbWaypoint.h"
+#import "DatabaseLibrary/database-cache.h"
+#import "DatabaseLibrary/dbLog.h"
+#import "DatabaseLibrary/dbName.h"
+#import "DatabaseLibrary/dbAccount.h"
+#import "DatabaseLibrary/dbType.h"
+#import "DatabaseLibrary/dbContainer.h"
+#import "DatabaseLibrary/dbCountry.h"
+#import "DatabaseLibrary/dbState.h"
+#import "DatabaseLibrary/dbLocality.h"
+#import "DatabaseLibrary/dbGroup.h"
+#import "DatabaseLibrary/dbFilter.h"
+
 #import "Filters/FilterTableViewCell.h"
 #import "Filters/FilterDistanceTableViewCell.h"
 #import "Filters/FilterDateTableViewCell.h"

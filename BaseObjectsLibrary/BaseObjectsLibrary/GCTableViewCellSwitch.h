@@ -20,7 +20,8 @@
  */
 
 #import "GCTableViewCell.h"
-#import "GCSwitch.h"
+
+@class GCSwitch;
 
 #define XIB_GCTABLEVIEWCELLSWITCH @"GCTableViewCellSwitch"
 

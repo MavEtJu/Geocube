@@ -22,6 +22,7 @@
 #import "GCTableViewCellSwitch.h"
 
 #import "GCLabel.h"
+#import "GCSwitch.h"
 
 @interface GCTableViewCellSwitch ()
 

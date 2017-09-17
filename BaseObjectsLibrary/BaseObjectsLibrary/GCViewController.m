@@ -21,12 +21,13 @@
 
 #import "GCViewController.h"
 
+#import "Geocube.h"
+
 #import "ThemesLibrary/ThemeManager.h"
 #import "ToolsLibrary/MyTools.h"
-#import "GCCloseButton.h"
-#import "InfoViewer.h"
+#import "BaseObjectsLibrary/GCCloseButton.h"
 
-#import "Geocube.h"
+#import "InfoViewer.h"
 
 @interface GCViewController ()
 {

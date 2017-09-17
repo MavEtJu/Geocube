@@ -21,13 +21,14 @@
 
 #import "ImagesDownloadManager.h"
 
+#import "Geocube-Globals.h"
+#import "Geocube-Defines.h"
+
 #import "BaseObjectsLibrary/GCURLRequest.h"
 #import "ToolsLibrary/MyTools.h"
 #import "DatabaseLibrary/dbImage.h"
 #import "ConfigManager.h"
 #import "DownloadManager.h"
-#import "Geocube-Globals.h"
-#import "Geocube-Defines.h"
 
 @interface ImagesDownloadManager ()
 {

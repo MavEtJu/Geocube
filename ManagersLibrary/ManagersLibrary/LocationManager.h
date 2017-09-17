@@ -22,33 +22,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-#import "BaseObjectsLibrary/GCCoordsHistorical.h"
-
 #import "LocationManager-enum.h"
+#import "LocationManager-delegate.h"
 
-@protocol LocationManagerLocationDelegate
-
-- (void)updateLocationManagerLocation;
-
-@end
-
-@protocol LocationManagerHeadingDelegate
-
-- (void)updateLocationManagerHeading;
-
-@end
-
-@protocol LocationManagerSpeedDelegate
-
-- (void)updateLocationManagerSpeed;
-
-@end
-
-@protocol LocationManagerHistoryDelegate
-
-- (void)updateLocationManagerHistory:(GCCoordsHistorical *)ch;
-
-@end
+@class GCCoordsHistorical;
 
 @interface LocationManager : NSObject <CLLocationManagerDelegate>
 

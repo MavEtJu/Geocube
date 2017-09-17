@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <UIKit/UIKit.h>
-
 #import "GCLabel.h"
 
 @interface GCSmallLabel : GCLabel

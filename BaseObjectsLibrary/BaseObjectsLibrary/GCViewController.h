@@ -20,9 +20,10 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "Menus/SideMenu.h"
-#import "Menus/LocalMenuItems.h"
 
+#import "Menus/SideMenu.h"
+
+@class LocalMenuItems;
 @class InfoViewer;
 
 @interface GCViewController : UIViewController <SideMenuDelegate, UIScrollViewDelegate>

@@ -22,10 +22,13 @@
 #import "Coordinates.h"
 
 #import "Geocube.h"
-#import "LocalizationManager.h"
+
+#import "ToolsLibrary/LocalizationManager.h"
+#import "DatabaseLibrary/database-cache.h"
 #import "DatabaseLibrary/dbWaypoint.h"
+#import "DatabaseLibrary/dbGroup.h"
 #import "ManagersLibrary/WaypointManager.h"
-#import "MyTools.h"
+#import "ToolsLibrary/MyTools.h"
 
 @interface Coordinates ()
 {

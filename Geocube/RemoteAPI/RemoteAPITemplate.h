@@ -19,18 +19,29 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "RemoteAPI/GCOAuthBlackbox.h"
-#import "RemoteAPI/ProtocolGGCW.h"
-#import "RemoteAPI/ProtocolGCA2.h"
-#import "RemoteAPI/ProtocolOKAPI.h"
-#import "RemoteAPI/ProtocolLiveAPI.h"
+#import <CoreLocation/CoreLocation.h>
 
-#import "RemoteAPITemplate-enum.h"
+#import "RemoteAPI/ProtocolGGCW.h"
+
+#import "RemoteAPI/GCOAuthBlackbox-delegate.h"
+#import "RemoteAPI/RemoteAPITemplate-enum.h"
+
+#import "InfoItem.h"
 
 @class RemoteAPITemplate;
+@class GCBoundingBox;
 @class dbLogString;
 @class dbImage;
 @class dbPersonalNote;
+@class dbAccount;
+@class dbGroup;
+@class dbWaypoint;
+@class dbTrackable;
+@class ProtocolLiveAPI;
+@class ProtocolOKAPI;
+@class ProtocolGCA2;
+@class ProtocolGGCW;
+@class GCOAuthBlackbox;
 
 @protocol RemoteAPIAuthenticationDelegate
 
