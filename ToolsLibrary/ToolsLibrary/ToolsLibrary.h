@@ -24,3 +24,5 @@
 #import "ToolsLibrary/Coordinates.h"
 #import "ToolsLibrary/InfoViewer.h"
 #import "ToolsLibrary/InfoItem.h"
+#import "ToolsLibrary/LocalMenuItems.h"
+#import "ToolsLibrary/SideMenu.h"

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		E84E892D1F6EA1F4004F4BE9 /* InfoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E892A1F6EA1F4004F4BE9 /* InfoItem.m */; };
 		E84E892E1F6EA1F4004F4BE9 /* InfoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E892C1F6EA1F4004F4BE9 /* InfoViewer.m */; };
+		E84E89361F6EA570004F4BE9 /* LocalMenuItems.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E89331F6EA570004F4BE9 /* LocalMenuItems.m */; };
+		E84E89371F6EA570004F4BE9 /* SideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E89351F6EA570004F4BE9 /* SideMenu.m */; };
 		E881CA5F1F6B9F9600A17060 /* ToolsLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E881CA5C1F6B9F9600A17060 /* ToolsLibrary.h */; };
 		E881CA751F6BA23600A17060 /* MyTools.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CA711F6BA23600A17060 /* MyTools.m */; };
 		E881CA761F6BA23600A17060 /* Coordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CA721F6BA23600A17060 /* Coordinates.m */; };
@@ -34,6 +36,11 @@
 		E84E892B1F6EA1F4004F4BE9 /* InfoViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewer.h; sourceTree = "<group>"; };
 		E84E892C1F6EA1F4004F4BE9 /* InfoViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewer.m; sourceTree = "<group>"; };
 		E84E892F1F6EA223004F4BE9 /* InfoItem-enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InfoItem-enum.h"; sourceTree = "<group>"; };
+		E84E89321F6EA570004F4BE9 /* LocalMenuItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalMenuItems.h; sourceTree = "<group>"; };
+		E84E89331F6EA570004F4BE9 /* LocalMenuItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalMenuItems.m; sourceTree = "<group>"; };
+		E84E89341F6EA570004F4BE9 /* SideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenu.h; sourceTree = "<group>"; };
+		E84E89351F6EA570004F4BE9 /* SideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenu.m; sourceTree = "<group>"; };
+		E84E89381F6EA58C004F4BE9 /* SideMenu-delegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SideMenu-delegate.h"; sourceTree = "<group>"; };
 		E881CA591F6B9F9600A17060 /* libToolsLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libToolsLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E881CA5C1F6B9F9600A17060 /* ToolsLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToolsLibrary.h; sourceTree = "<group>"; };
 		E881CA6F1F6BA23600A17060 /* Coordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinates.h; sourceTree = "<group>"; };
@@ -55,6 +62,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E84E89301F6EA539004F4BE9 /* InfoViewer */ = {
+			isa = PBXGroup;
+			children = (
+				E84E89291F6EA1F4004F4BE9 /* InfoItem.h */,
+				E84E892F1F6EA223004F4BE9 /* InfoItem-enum.h */,
+				E84E892A1F6EA1F4004F4BE9 /* InfoItem.m */,
+				E84E892B1F6EA1F4004F4BE9 /* InfoViewer.h */,
+				E84E892C1F6EA1F4004F4BE9 /* InfoViewer.m */,
+			);
+			name = InfoViewer;
+			sourceTree = "<group>";
+		};
+		E84E89311F6EA549004F4BE9 /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				E84E89321F6EA570004F4BE9 /* LocalMenuItems.h */,
+				E84E89331F6EA570004F4BE9 /* LocalMenuItems.m */,
+				E84E89341F6EA570004F4BE9 /* SideMenu.h */,
+				E84E89381F6EA58C004F4BE9 /* SideMenu-delegate.h */,
+				E84E89351F6EA570004F4BE9 /* SideMenu.m */,
+			);
+			name = Menus;
+			sourceTree = "<group>";
+		};
 		E881CA501F6B9F9500A17060 = {
 			isa = PBXGroup;
 			children = (
@@ -81,11 +112,8 @@
 				E881CA711F6BA23600A17060 /* MyTools.m */,
 				E881CA731F6BA23600A17060 /* MyClock.h */,
 				E881CA741F6BA23600A17060 /* MyClock.m */,
-				E84E89291F6EA1F4004F4BE9 /* InfoItem.h */,
-				E84E892F1F6EA223004F4BE9 /* InfoItem-enum.h */,
-				E84E892A1F6EA1F4004F4BE9 /* InfoItem.m */,
-				E84E892B1F6EA1F4004F4BE9 /* InfoViewer.h */,
-				E84E892C1F6EA1F4004F4BE9 /* InfoViewer.m */,
+				E84E89311F6EA549004F4BE9 /* Menus */,
+				E84E89301F6EA539004F4BE9 /* InfoViewer */,
 			);
 			path = ToolsLibrary;
 			sourceTree = "<group>";
@@ -149,10 +177,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E84E892E1F6EA1F4004F4BE9 /* InfoViewer.m in Sources */,
+				E84E89361F6EA570004F4BE9 /* LocalMenuItems.m in Sources */,
 				E84E892D1F6EA1F4004F4BE9 /* InfoItem.m in Sources */,
 				E881CA761F6BA23600A17060 /* Coordinates.m in Sources */,
 				E881CA771F6BA23600A17060 /* MyClock.m in Sources */,
 				E881CA751F6BA23600A17060 /* MyTools.m in Sources */,
+				E84E89371F6EA570004F4BE9 /* SideMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +238,7 @@
 					"${SRCROOT}/../BaseObjectsLibrary",
 					"${SRCROOT}/../Pods/Headers/Public/GoogleMaps",
 					"${SRCROOT}/../ToolsLibrary",
+					"${SDKROOT}/usr/include/libxml2",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -259,6 +290,7 @@
 					"${SRCROOT}/../BaseObjectsLibrary",
 					"${SRCROOT}/../Pods/Headers/Public/GoogleMaps",
 					"${SRCROOT}/../ToolsLibrary",
+					"${SDKROOT}/usr/include/libxml2",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;

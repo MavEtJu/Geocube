@@ -43,8 +43,6 @@
 #import "DatabaseLibrary/DatabaseLibrary.h"
 
 #import "AppDelegate.h"
-#import "Menus/SideMenu.h"
-#import "Menus/LocalMenuItems.h"
 #import "ManagersLibrary/ManagersLibrary.h"
 #import "Waypoints/WaypointSorter.h"
 

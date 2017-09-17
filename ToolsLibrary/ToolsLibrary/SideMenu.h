@@ -20,13 +20,8 @@
  */
 
 #import "ContribLibrary/Others/VKSideMenu.h"
-#import "Menus/LocalMenuItems.h"
-
-@protocol SideMenuDelegate
-
-- (void)performLocalMenuAction:(NSInteger)idx;
-
-@end
+#import "ToolsLibrary/LocalMenuItems.h"
+#import "ToolsLibrary/SideMenu-delegate.h"
 
 @interface SideMenu : NSObject <VKSideMenuDelegate, VKSideMenuDataSource>
 

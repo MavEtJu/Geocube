@@ -21,7 +21,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "Menus/SideMenu.h"
+#import "ToolsLibrary/SideMenu.h"
 
 @class LocalMenuItems;
 @class InfoViewer;

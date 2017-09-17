@@ -19,7 +19,9 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "Geocube-Prefix.pch"
+#import "LocalMenuItems.h"
+
+#import "ContribLibrary/Others/VKSideMenu.h"
 
 @interface LocalMenuItems ()
 {

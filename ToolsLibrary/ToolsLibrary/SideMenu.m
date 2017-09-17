@@ -19,6 +19,14 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "SideMenu.h"
+
+#import "ToolsLibrary/LocalMenuItems.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/ConfigManager.h"
+
+#import "AppDelegate.h"
+
 @interface SideMenu ()
 {
     NSMutableArray<NSString *> *items;

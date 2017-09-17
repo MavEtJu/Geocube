@@ -58,8 +58,6 @@
 		E82343551EECDA4900D2CDFD /* ImportLiveAPIJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343471EECDA4900D2CDFD /* ImportLiveAPIJSON.m */; };
 		E82343571EECDA4900D2CDFD /* ImportOKAPIJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E823434B1EECDA4900D2CDFD /* ImportOKAPIJSON.m */; };
 		E82343581EECDA4900D2CDFD /* ImportTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E823434D1EECDA4900D2CDFD /* ImportTemplate.m */; };
-		E823435D1EECDAEF00D2CDFD /* LocalMenuItems.m in Sources */ = {isa = PBXBuildFile; fileRef = E823435A1EECDAEF00D2CDFD /* LocalMenuItems.m */; };
-		E823435E1EECDAEF00D2CDFD /* SideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E823435C1EECDAEF00D2CDFD /* SideMenu.m */; };
 		E82343841EECDB9B00D2CDFD /* MapAllWPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E823437B1EECDB9B00D2CDFD /* MapAllWPViewController.m */; };
 		E82343851EECDB9B00D2CDFD /* MapBrand.m in Sources */ = {isa = PBXBuildFile; fileRef = E823437D1EECDB9B00D2CDFD /* MapBrand.m */; };
 		E82343861EECDB9B00D2CDFD /* MapOneWPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E823437F1EECDB9B00D2CDFD /* MapOneWPViewController.m */; };
@@ -792,10 +790,6 @@
 		E823434B1EECDA4900D2CDFD /* ImportOKAPIJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImportOKAPIJSON.m; path = Convertors/ImportOKAPIJSON.m; sourceTree = "<group>"; };
 		E823434C1EECDA4900D2CDFD /* ImportTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImportTemplate.h; path = Convertors/ImportTemplate.h; sourceTree = "<group>"; };
 		E823434D1EECDA4900D2CDFD /* ImportTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImportTemplate.m; path = Convertors/ImportTemplate.m; sourceTree = "<group>"; };
-		E82343591EECDAEF00D2CDFD /* LocalMenuItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalMenuItems.h; path = Menus/LocalMenuItems.h; sourceTree = "<group>"; };
-		E823435A1EECDAEF00D2CDFD /* LocalMenuItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalMenuItems.m; path = Menus/LocalMenuItems.m; sourceTree = "<group>"; };
-		E823435B1EECDAEF00D2CDFD /* SideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SideMenu.h; path = Menus/SideMenu.h; sourceTree = "<group>"; };
-		E823435C1EECDAEF00D2CDFD /* SideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SideMenu.m; path = Menus/SideMenu.m; sourceTree = "<group>"; };
 		E823437A1EECDB9B00D2CDFD /* MapAllWPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapAllWPViewController.h; path = Maps/MapAllWPViewController.h; sourceTree = "<group>"; };
 		E823437B1EECDB9B00D2CDFD /* MapAllWPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapAllWPViewController.m; path = Maps/MapAllWPViewController.m; sourceTree = "<group>"; };
 		E823437C1EECDB9B00D2CDFD /* MapBrand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapBrand.h; path = Maps/MapBrand.h; sourceTree = "<group>"; };
@@ -2636,17 +2630,6 @@
 			name = LiveAPI;
 			sourceTree = "<group>";
 		};
-		E8E2F5541D02C4B4009170E3 /* Menus */ = {
-			isa = PBXGroup;
-			children = (
-				E82343591EECDAEF00D2CDFD /* LocalMenuItems.h */,
-				E823435A1EECDAEF00D2CDFD /* LocalMenuItems.m */,
-				E823435B1EECDAEF00D2CDFD /* SideMenu.h */,
-				E823435C1EECDAEF00D2CDFD /* SideMenu.m */,
-			);
-			name = Menus;
-			sourceTree = "<group>";
-		};
 		E8E4400B1D88A6D800BECB49 /* GUI - base */ = {
 			isa = PBXGroup;
 			children = (
@@ -2655,7 +2638,6 @@
 				E881CACD1F6BB1C500A17060 /* ManagersLibrary.xcodeproj */,
 				E8EE47991F6B457C00AB13BC /* BaseObjectsLibrary.xcodeproj */,
 				E881CB011F6BDA6E00A17060 /* ThemesLibrary.xcodeproj */,
-				E8E2F5541D02C4B4009170E3 /* Menus */,
 				E8740FE91B509540002527DA /* GUI TableViewCells */,
 				E867E8381B535A3A00CB126A /* Maps */,
 				E8740F9C1B4E6645002527DA /* Waypoint Viewing */,
@@ -3663,7 +3645,6 @@
 				E82343581EECDA4900D2CDFD /* ImportTemplate.m in Sources */,
 				E82343861EECDB9B00D2CDFD /* MapOneWPViewController.m in Sources */,
 				E82344541EECE05E00D2CDFD /* PersonalNoteTableViewCell.m in Sources */,
-				E823435E1EECDAEF00D2CDFD /* SideMenu.m in Sources */,
 				E83C6F001EECE67100E303F5 /* FileBrowserViewController.m in Sources */,
 				E82344801EECE09C00D2CDFD /* ListFoundViewController.m in Sources */,
 				E83C6F071EECE67100E303F5 /* FilesViewController.m in Sources */,
@@ -3703,7 +3684,6 @@
 				E82343BA1EECDE6C00D2CDFD /* WaypointLogEditViewController.m in Sources */,
 				E823432E1EECD9BC00D2CDFD /* ProtocolOKAPI.m in Sources */,
 				E82343BC1EECDE6C00D2CDFD /* WaypointLogTrackablesViewController.m in Sources */,
-				E823435D1EECDAEF00D2CDFD /* LocalMenuItems.m in Sources */,
 				E82344941EECE0AD00D2CDFD /* QueriesTableViewCell.m in Sources */,
 				E823420E1EECCEEE00D2CDFD /* MHTabBarController.m in Sources */,
 				E82343F31EECDF4400D2CDFD /* WaypointAttributesViewController.m in Sources */,

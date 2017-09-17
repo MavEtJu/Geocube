@@ -21,7 +21,7 @@
 
 #import "contrib/MHTabBarController/MHTabBarController.h"
 
-#import "Menus/SideMenu.h"
+#import "ToolsLibrary/SideMenu.h"
 
 @class InfoViewer;
 @class LocalMenuItems;
