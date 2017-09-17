@@ -23,10 +23,10 @@
 
 #import "DatabaseLibrary/dbTrack.h"
 #import "DatabaseLibrary/dbConfig.h"
-#import "LocationManager.h"
 #import "ToolsLibrary/MyTools.h"
-#import "ConfigManager.h"
-#import "ImageLibrary.h"
+#import "ManagersLibrary/LocationManager.h"
+#import "ManagersLibrary/ConfigManager.h"
+#import "ManagersLibrary/ImageLibrary.h"
 
 @interface ConfigManager ()
 

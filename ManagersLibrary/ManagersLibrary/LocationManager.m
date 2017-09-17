@@ -21,12 +21,13 @@
 
 #import "LocationManager.h"
 
+#import "Geocube.h"
+
 #import "BaseObjectsLibrary/GCCoordsHistorical.h"
 #import "ToolsLibrary/Coordinates.h"
 #import "DatabaseLibrary/DatabaseLibrary.h"
-#import "Geocube.h"
-#import "ConfigManager.h"
-#import "WaypointManager.h"
+#import "ManagersLibrary/ConfigManager.h"
+#import "ManagersLibrary/WaypointManager.h"
 
 @interface LocationManager ()
 {

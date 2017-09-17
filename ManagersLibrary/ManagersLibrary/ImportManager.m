@@ -35,7 +35,8 @@
 #import "BaseObjectsLibrary/GCArray.h"
 #import "BaseObjectsLibrary/GCDictionary.h"
 #import "DatabaseLibrary/dbWaypoint.h"
-#import "WaypointManager.h"
+#import "ManagersLibrary/WaypointManager.h"
+
 #import "InfoViewer.h"
 #import "InfoItem.h"
 

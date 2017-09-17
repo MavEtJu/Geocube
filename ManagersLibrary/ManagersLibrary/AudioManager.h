@@ -22,7 +22,7 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 
-#import "AudioManager-enum.h"
+#import "ManagersLibrary/AudioManager-enum.h"
 
 @interface AudioManager : NSObject <AVAudioPlayerDelegate>
 
