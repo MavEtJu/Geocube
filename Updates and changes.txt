@@ -9,6 +9,9 @@ Version 1.6(x)
 
   Fixes:
   - Remove "rotate to bearing" for the map as it was never implemented.
+  - Modularize the design by creating a lot of libraries. This will
+    reduce the compile time when adjusting include files and source
+    files.
 
 Version 1.5(x)
 

@@ -60,6 +60,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E84E89101F6E801E004F4BE9 /* dbLogString-enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dbLogString-enum.h"; sourceTree = "<group>"; };
+		E84E89111F6E80C3004F4BE9 /* dbListData-enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dbListData-enum.h"; sourceTree = "<group>"; };
+		E84E89121F6E8263004F4BE9 /* dbImage-enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dbImage-enum.h"; sourceTree = "<group>"; };
+		E84E89131F6E82B9004F4BE9 /* dbProtocol-enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dbProtocol-enum.h"; sourceTree = "<group>"; };
+		E84E89141F6E82DF004F4BE9 /* dbTrackable-enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dbTrackable-enum.h"; sourceTree = "<group>"; };
+		E84E89151F6E8301004F4BE9 /* dbWaypoint-enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dbWaypoint-enum.h"; sourceTree = "<group>"; };
 		E89554A91F6C8A870026582B /* libDatabaseLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDatabaseLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E89554AC1F6C8A870026582B /* DatabaseLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatabaseLibrary.h; sourceTree = "<group>"; };
 		E89554BB1F6C8AC40026582B /* database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database.h; sourceTree = "<group>"; };
@@ -134,8 +140,7 @@
 		E89555001F6C8AC40026582B /* dbType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbType.m; sourceTree = "<group>"; };
 		E89555011F6C8AC40026582B /* dbWaypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbWaypoint.h; sourceTree = "<group>"; };
 		E89555021F6C8AC40026582B /* dbWaypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbWaypoint.m; sourceTree = "<group>"; };
-		E89555271F6C8F200026582B /* database-classes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "database-classes.h"; sourceTree = "<group>"; };
-		E89555281F6CA1A00026582B /* database-defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "database-defines.h"; sourceTree = "<group>"; };
+		E89555281F6CA1A00026582B /* DatabaseLibrary-Defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DatabaseLibrary-Defines.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,8 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				E89554AC1F6C8A870026582B /* DatabaseLibrary.h */,
-				E89555271F6C8F200026582B /* database-classes.h */,
-				E89555281F6CA1A00026582B /* database-defines.h */,
+				E89555281F6CA1A00026582B /* DatabaseLibrary-Defines.h */,
 				E89554BB1F6C8AC40026582B /* database.h */,
 				E89554BC1F6C8AC40026582B /* database.m */,
 				E89554C01F6C8AC40026582B /* database-cache.h */,
@@ -200,10 +204,12 @@
 				E89554D51F6C8AC40026582B /* dbGroup.h */,
 				E89554D61F6C8AC40026582B /* dbGroup.m */,
 				E89554BE1F6C8AC40026582B /* dbImage.h */,
+				E84E89121F6E8263004F4BE9 /* dbImage-enum.h */,
 				E89554BF1F6C8AC40026582B /* dbImage.m */,
 				E89554D71F6C8AC40026582B /* dbKMLFile.h */,
 				E89554D81F6C8AC40026582B /* dbKMLFile.m */,
 				E89554D91F6C8AC40026582B /* dbListData.h */,
+				E84E89111F6E80C3004F4BE9 /* dbListData-enum.h */,
 				E89554DA1F6C8AC40026582B /* dbListData.m */,
 				E89554DB1F6C8AC40026582B /* dbLocality.h */,
 				E89554DC1F6C8AC40026582B /* dbLocality.m */,
@@ -212,6 +218,7 @@
 				E89554DF1F6C8AC40026582B /* dbLogMacro.h */,
 				E89554E01F6C8AC40026582B /* dbLogMacro.m */,
 				E89554E11F6C8AC40026582B /* dbLogString.h */,
+				E84E89101F6E801E004F4BE9 /* dbLogString-enum.h */,
 				E89554E21F6C8AC40026582B /* dbLogString.m */,
 				E89554E31F6C8AC40026582B /* dbLogStringWaypoint.h */,
 				E89554E41F6C8AC40026582B /* dbLogStringWaypoint.m */,
@@ -226,6 +233,7 @@
 				E89554EF1F6C8AC40026582B /* dbPin.h */,
 				E89554F01F6C8AC40026582B /* dbPin.m */,
 				E89554F11F6C8AC40026582B /* dbProtocol.h */,
+				E84E89131F6E82B9004F4BE9 /* dbProtocol-enum.h */,
 				E89554F21F6C8AC40026582B /* dbProtocol.m */,
 				E89554F31F6C8AC40026582B /* dbQueryImport.h */,
 				E89554F41F6C8AC40026582B /* dbQueryImport.m */,
@@ -236,12 +244,14 @@
 				E89554F91F6C8AC40026582B /* dbTrack.h */,
 				E89554FA1F6C8AC40026582B /* dbTrack.m */,
 				E89554FB1F6C8AC40026582B /* dbTrackable.h */,
+				E84E89141F6E82DF004F4BE9 /* dbTrackable-enum.h */,
 				E89554FC1F6C8AC40026582B /* dbTrackable.m */,
 				E89554FD1F6C8AC40026582B /* dbTrackElement.h */,
 				E89554FE1F6C8AC40026582B /* dbTrackElement.m */,
 				E89554FF1F6C8AC40026582B /* dbType.h */,
 				E89555001F6C8AC40026582B /* dbType.m */,
 				E89555011F6C8AC40026582B /* dbWaypoint.h */,
+				E84E89151F6E8301004F4BE9 /* dbWaypoint-enum.h */,
 				E89555021F6C8AC40026582B /* dbWaypoint.m */,
 			);
 			path = DatabaseLibrary;

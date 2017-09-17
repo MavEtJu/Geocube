@@ -19,19 +19,13 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "database-classes.h"
 #import "dbObject.h"
 
-@interface dbListData : dbObject
+#import "dbListData-enum.h"
 
-typedef NS_ENUM(NSInteger, Flag) {
-    FLAGS_HIGHLIGHTED,
-    FLAGS_IGNORED,
-    FLAGS_MARKEDFOUND,
-    FLAGS_INPROGRESS,
-    FLAGS_MARKEDDNF,
-    FLAGS_PLANNED,
-};
+@class dbWaypoint;
+
+@interface dbListData : dbObject
 
 @property (nonatomic, retain) dbWaypoint *waypoint;
 @property (nonatomic) Flag type;

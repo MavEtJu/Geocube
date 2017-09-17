@@ -20,6 +20,7 @@
  */
 
 @class InfoViewer;
+@class GCView;
 
 typedef NSInteger InfoItemID;
 

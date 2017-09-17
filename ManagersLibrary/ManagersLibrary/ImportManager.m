@@ -21,18 +21,22 @@
 
 #import "ImportManager.h"
 
+#import "Geocube-Globals.h"
+
 #import "ToolsLibrary/MyTools.h"
 #import "ToolsLibrary/LocalizationManager.h"
-
-#import "Geocube-Globals.h"
-#import "WaypointManager.h"
-
 #import "Convertors/ImportGGCWJSON.h"
 #import "Convertors/ImportGPX.h"
 #import "Convertors/ImportGPXGarmin.h"
 #import "Convertors/ImportGCA2JSON.h"
 #import "Convertors/ImportOKAPIJSON.h"
 #import "Convertors/ImportLiveAPIJSON.h"
+#import "BaseObjectsLibrary/GCString.h"
+#import "BaseObjectsLibrary/GCArray.h"
+#import "BaseObjectsLibrary/GCDictionary.h"
+#import "WaypointManager.h"
+#import "InfoViewer.h"
+#import "InfoItem.h"
 
 @interface ImportManager ()
 {

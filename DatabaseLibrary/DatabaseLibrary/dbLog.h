@@ -22,7 +22,11 @@
 #import <CoreLocation/CoreLocation.h>
 
 #import "dbObject.h"
-#import "database-classes.h"
+
+@class dbAccount;
+@class dbLogString;
+@class dbName;
+@class dbWaypoint;
 
 @interface dbLog : dbObject
 

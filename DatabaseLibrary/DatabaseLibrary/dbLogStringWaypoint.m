@@ -24,6 +24,8 @@
 #import "database.h"
 #import "Geocube-Defines.h"
 
+#import "dbLogString.h"
+
 @interface dbLogStringWaypoint ()
 
 @end

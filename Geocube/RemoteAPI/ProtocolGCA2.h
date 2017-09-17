@@ -19,6 +19,13 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "ProtocolTemplate.h"
+
+#import "InfoItem.h"
+
+@class GCDictionaryGCA2;
+@class InfoViewer;
+
 @interface ProtocolGCA2 : ProtocolTemplate
 
 - (BOOL)authenticate:(dbAccount *)account;

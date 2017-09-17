@@ -19,8 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "Foundation/Foundation.h"
-#import "database-defines.h"
+#import <Foundation/Foundation.h>
+#import "DatabaseLibrary-Defines.h"
 #import "database.h"
 
 @interface dbObject : NSObject

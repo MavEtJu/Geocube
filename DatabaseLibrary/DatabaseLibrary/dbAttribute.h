@@ -19,8 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "database-classes.h"
 #import "dbObject.h"
+
+@class dbAttribute;
+@class dbWaypoint;
 
 @interface dbAttribute : dbObject
 

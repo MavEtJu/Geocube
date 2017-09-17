@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "RemoteAPIOKAPI.h"
+#import "RemoteAPITemplate.h"
 
 @interface RemoteAPIOKAPI : RemoteAPITemplate
 

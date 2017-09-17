@@ -21,18 +21,23 @@
 
 #import <CoreLocation/CoreLocation.h>
 
-#import "database-classes.h"
 #import "dbObject.h"
-#import "dbLogString.h"
-#import "dbListData.h"
+
+#import "dbWaypoint-enum.h"
+#import "dbLogString-enum.h"
+#import "dbListData-enum.h"
+
+@class dbSymbol;
+@class dbType;
+@class dbCountry;
+@class dbState;
+@class dbGroup;
+@class dbName;
+@class dbLocality;
+@class dbContainer;
+@class dbAccount;
 
 @interface dbWaypoint : dbObject
-
-typedef NS_ENUM(NSInteger, LogStatus) {
-    LOGSTATUS_NOTLOGGED = 0,
-    LOGSTATUS_NOTFOUND,
-    LOGSTATUS_FOUND,
-};
 
 @property (nonatomic, retain) NSString *wpt_name;
 @property (nonatomic, retain) NSString *wpt_description;

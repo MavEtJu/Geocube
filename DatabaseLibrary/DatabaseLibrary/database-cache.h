@@ -21,8 +21,22 @@
 
 #import <Foundation/Foundation.h>
 
-#import "database-classes.h"
 #import "database.h"
+
+@class dbAccount;
+@class dbProtocol;
+@class dbPin;
+@class dbType;
+@class dbGroup;
+@class dbContainer;
+@class dbCountry;
+@class dbState;
+@class dbLocality;
+@class dbSymbol;
+@class dbAttribute;
+@class dbLogString;
+@class dbWaypoint;
+@class dbName;
 
 @interface DatabaseCache : NSObject
 

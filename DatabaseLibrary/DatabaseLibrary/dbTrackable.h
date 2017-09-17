@@ -19,19 +19,15 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "database-classes.h"
 #import "dbObject.h"
 
-@interface dbTrackable : dbObject
+#import "dbTrackable-enum.h"
 
-typedef NS_ENUM(NSInteger, TrackableLog) {
-    TRACKABLE_LOG_NONE = 0,
-    TRACKABLE_LOG_VISIT,
-    TRACKABLE_LOG_DROPOFF,
-    TRACKABLE_LOG_PICKUP,
-    TRACKABLE_LOG_DISCOVER,
-    TRACKABLE_LOG_MAX
-};
+@class dbName;
+@class dbAccount;
+@class dbWaypoint;
+
+@interface dbTrackable : dbObject
 
 @property (nonatomic, retain) NSString *code;
 @property (nonatomic, retain) NSString *name;

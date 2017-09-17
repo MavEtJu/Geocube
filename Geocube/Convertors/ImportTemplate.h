@@ -19,9 +19,15 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/dbGroup.h"
-#import "DatabaseLibrary/dbAccount.h"
+#import "InfoItem.h"
+#import "ImportTemplate-enum.h"
+
+@class InfoViewer;
+@class dbGroup;
+@class dbWaypoint;
+@class dbAccount;
+@class GCDictionary;
+@class GCStringGPX;
 
 @protocol ImportDelegate
 
@@ -47,15 +53,6 @@
 
     InfoViewer *infoViewer;
     InfoItemID iiImport;
-};
-
-// Needs to be defined here instead of in ImportManager.
-typedef NS_ENUM(NSInteger, ImportOptions) {
-    IMPORTOPTION_NONE = 0,
-    IMPORTOPTION_LOGSONLY = 1,
-    IMPORTOPTION_NOPOST = 2,
-    IMPORTOPTION_NOPRE = 4,
-    IMPORTOPTION_NOPARSE = 8,
 };
 
 @property (nonatomic) ImportOptions run_options;

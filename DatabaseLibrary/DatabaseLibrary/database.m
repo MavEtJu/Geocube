@@ -22,10 +22,12 @@
 #import "database.h"
 
 #import "ToolsLibrary/MyTools.h"
+#import "ManagersLibrary/ConfigManager.h"
+
 #import "Geocube-Defines.h"
 #import "Geocube-Globals.h"
+
 #import "dbConfig.h"
-#import "ManagersLibrary/ConfigManager.h"
 
 @interface database ()
 {

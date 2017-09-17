@@ -22,15 +22,10 @@
 #import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
 
-#import "database-classes.h"
 #import "dbObject.h"
+#import "dbImage-enum.h"
 
-typedef NS_ENUM(NSInteger, ImageCategory) {
-    IMAGECATEGORY_NONE = 0,
-    IMAGECATEGORY_LOG = 1,
-    IMAGECATEGORY_CACHE = 2,
-    IMAGECATEGORY_USER = 3,
-};
+@class dbWaypoint;
 
 @interface dbImage : dbObject
 

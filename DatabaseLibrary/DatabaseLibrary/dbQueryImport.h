@@ -20,7 +20,8 @@
  */
 
 #import "dbObject.h"
-#import "database-classes.h"
+
+@class dbAccount;
 
 @interface dbQueryImport : dbObject
 

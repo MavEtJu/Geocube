@@ -21,14 +21,7 @@
 
 #import "dbObject.h"
 
-typedef NS_ENUM(NSInteger, ProtocolId) {
-    PROTOCOL_NONE = 0,
-    PROTOCOL_LIVEAPI = 1,
-    PROTOCOL_OKAPI = 2,
-    PROTOCOL_GCA = 3,
-    PROTOCOL_GCA2 = 4,
-    PROTOCOL_GGCW = 5,
-};
+#import "dbProtocol-enum.h"
 
 @interface dbProtocol : dbObject
 

@@ -20,7 +20,10 @@
  */
 
 #import "dbObject.h"
-#import "dbLogString.h"
+
+#import "dbLogString-enum.h"
+
+@class dbLogString;
 
 @interface dbLogStringWaypoint : dbObject
 
