@@ -95,18 +95,22 @@ All sections are seperated by an empty line. The order of include
 files for .h files should be:
 
 - The Cocoa headers:
+
     #include <Foundation/Foundation.h>
     #include <....>
 
 - The Geocube headers:
+
     #include "Geocube-Defines.h"
     #include "Geocube-Globals.h"
 
 - The Various Geocube Library enum files:
+
     #include "DatabaseLibrary/dbWaypoint-enum.h"
     #include "ToolsLibrary/MyTools-enum.h"
 
 - @class statements for the classes needed in the function prototypes:
+
     @class dbWaypoint;
 
 ### Include block for .m files
@@ -115,17 +119,21 @@ All sections are seperated by an empty line. The order of include
 files for .h files should be:
 
 - Class definition:
+
     #include "FooBar.h"
 
 - The Cocoa headers:
+
     #include <Foundation/Foundation.h>
     #include <....>
 
 - The Geocube headers:
+
     #include "Geocube-Defines.h"
     #include "Geocube-Globals.h"
 
 - The Various Geocube Library class files:
+
     #include "DatabaseLibrary/dbWaypoint.h"
     #include "ToolsLibrary/MyTools.h"
 
