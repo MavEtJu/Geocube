@@ -158,17 +158,13 @@ files for .h files should be:
 Global variables are externally defined under the class prototype
 in the .h file.
 
-    ```
     @end
 
     extern FooBar *fooBar;
-    ```
 
 Global variables are internally defined in main.m:
 
-    ```
     FooBar *fooBar;
-    ```
 
 For global variables which are not a class in the source code, they
 are put in Geocube-Globals.h.
