@@ -96,22 +96,30 @@ files for .h files should be:
 
 - The Cocoa headers:
 
+    ```
     #include <Foundation/Foundation.h>
     #include <....>
+    ```
 
 - The Geocube headers:
 
+    ```
     #include "Geocube-Defines.h"
     #include "Geocube-Globals.h"
+    ```
 
 - The Various Geocube Library enum files:
 
+    ```
     #include "DatabaseLibrary/dbWaypoint-enum.h"
     #include "ToolsLibrary/MyTools-enum.h"
+    ```
 
 - @class statements for the classes needed in the function prototypes:
 
+    ```
     @class dbWaypoint;
+    ```
 
 ### Include block for .m files
 
@@ -120,35 +128,47 @@ files for .h files should be:
 
 - Class definition:
 
+    ```
     #include "FooBar.h"
+    ```
 
 - The Cocoa headers:
 
+    ```
     #include <Foundation/Foundation.h>
     #include <....>
+    ```
 
 - The Geocube headers:
 
+    ```
     #include "Geocube-Defines.h"
     #include "Geocube-Globals.h"
+    ```
 
 - The Various Geocube Library class files:
 
+    ```
     #include "DatabaseLibrary/dbWaypoint.h"
     #include "ToolsLibrary/MyTools.h"
+    ```
 
 ### Global variables
 
 Global variables are externally defined under the class prototype
 in the .h file.
 
+    ```
     @end
 
     extern FooBar *fooBar;
+    ```
 
 Global variables are internally defined in main.m:
 
+    ```
     FooBar *fooBar;
+    ```
 
 For global variables which are not a class in the source code, they
 are put in Geocube-Globals.h.
