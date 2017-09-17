@@ -31,7 +31,7 @@ Then build and run!
 After you have made changes, run ./lint.sh. It will check for style
 and completeness issues like configuration, localization etc.
 
-* Developer Style Guide *
+# Developer Style Guide
 
 - Every Geocube .m and .h file needs to have a license. This excludes
   the parts of the ContribLibrary ask they are not part of Geocube.
@@ -75,7 +75,7 @@ and completeness issues like configuration, localization etc.
 - Subclassing is space-colon-space.
 - Classes must have @interface (), even if empty.
 
-- Array enumeration should have _Nonnull before object and *stop.
+- Array enumeration should have \_Nonnull before object and \*stop.
 - Arrays should have their class defined.
 
 - XIBs must be there for iPhone and iPad.
