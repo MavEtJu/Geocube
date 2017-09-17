@@ -21,6 +21,8 @@
 
 #import "ProtocolGGCW.h"
 
+#import "ManagersLibrary/DownloadManager.h"
+
 @interface ProtocolGGCW ()
 {
     RemoteAPITemplate *remoteAPI;

@@ -21,6 +21,8 @@
 
 #import "OpenCageManager.h"
 
+#import "ManagersLibrary/DownloadManager.h"
+
 @interface OpenCageManager ()
 {
     NSArray<NSString *> *locale_order, *state_order, *country_order;

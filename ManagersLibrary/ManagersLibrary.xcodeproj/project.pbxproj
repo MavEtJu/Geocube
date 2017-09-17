@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E84E88B51F6E0A01004F4BE9 /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E88B01F6E0A01004F4BE9 /* DownloadManager.m */; };
+		E84E88B61F6E0A01004F4BE9 /* ImagesDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E88B21F6E0A01004F4BE9 /* ImagesDownloadManager.m */; };
+		E84E88B71F6E0A01004F4BE9 /* ImportManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E88B41F6E0A01004F4BE9 /* ImportManager.m */; };
 		E881CAC71F6BB1C500A17060 /* ManagersLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E881CAC41F6BB1C500A17060 /* ManagersLibrary.h */; };
 		E881CAD71F6BB21700A17060 /* AudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CAD41F6BB21700A17060 /* AudioFeedback.m */; };
 		E881CAD81F6BB21700A17060 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CAD61F6BB21700A17060 /* AudioManager.m */; };
@@ -32,6 +35,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E84E88AF1F6E0A01004F4BE9 /* DownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManager.h; sourceTree = "<group>"; };
+		E84E88B01F6E0A01004F4BE9 /* DownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadManager.m; sourceTree = "<group>"; };
+		E84E88B11F6E0A01004F4BE9 /* ImagesDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesDownloadManager.h; sourceTree = "<group>"; };
+		E84E88B21F6E0A01004F4BE9 /* ImagesDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesDownloadManager.m; sourceTree = "<group>"; };
+		E84E88B31F6E0A01004F4BE9 /* ImportManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportManager.h; sourceTree = "<group>"; };
+		E84E88B41F6E0A01004F4BE9 /* ImportManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportManager.m; sourceTree = "<group>"; };
 		E881CAC11F6BB1C500A17060 /* libManagersLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libManagersLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E881CAC41F6BB1C500A17060 /* ManagersLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManagersLibrary.h; sourceTree = "<group>"; };
 		E881CAD31F6BB21700A17060 /* AudioFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFeedback.h; sourceTree = "<group>"; };
@@ -91,8 +100,14 @@
 				E881CADD1F6BB7D300A17060 /* BezelManager.m */,
 				E881CAE01F6BB9A400A17060 /* ConfigManager.h */,
 				E881CAE11F6BB9A400A17060 /* ConfigManager.m */,
+				E84E88AF1F6E0A01004F4BE9 /* DownloadManager.h */,
+				E84E88B01F6E0A01004F4BE9 /* DownloadManager.m */,
 				E881CAE91F6BC0D700A17060 /* ImageLibrary.h */,
 				E881CAEA1F6BC0D700A17060 /* ImageLibrary.m */,
+				E84E88B11F6E0A01004F4BE9 /* ImagesDownloadManager.h */,
+				E84E88B21F6E0A01004F4BE9 /* ImagesDownloadManager.m */,
+				E84E88B31F6E0A01004F4BE9 /* ImportManager.h */,
+				E84E88B41F6E0A01004F4BE9 /* ImportManager.m */,
 				E881CADB1F6BB32600A17060 /* KeyManager.h */,
 				E881CADA1F6BB32600A17060 /* KeyManager.m */,
 				E881CAE31F6BBBBD00A17060 /* LocationManager.h */,
@@ -166,9 +181,12 @@
 				E881CAE21F6BB9A400A17060 /* ConfigManager.m in Sources */,
 				E881CADC1F6BB32600A17060 /* KeyManager.m in Sources */,
 				E881CAD81F6BB21700A17060 /* AudioManager.m in Sources */,
+				E84E88B71F6E0A01004F4BE9 /* ImportManager.m in Sources */,
 				E881CADF1F6BB7D300A17060 /* BezelManager.m in Sources */,
 				E881CAD71F6BB21700A17060 /* AudioFeedback.m in Sources */,
 				E881CAE81F6BBEBC00A17060 /* WaypointManager.m in Sources */,
+				E84E88B51F6E0A01004F4BE9 /* DownloadManager.m in Sources */,
+				E84E88B61F6E0A01004F4BE9 /* ImagesDownloadManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

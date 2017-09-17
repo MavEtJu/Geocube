@@ -23,6 +23,8 @@
 
 #import <Photos/Photos.h>
 
+#import "ManagersLibrary/DownloadManager.h"
+
 @interface WaypointImagesViewController ()
 {
     dbWaypoint *waypoint;

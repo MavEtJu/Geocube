@@ -65,3 +65,5 @@
 - (void)refreshKMLs;
 
 @end
+
+extern WaypointManager *waypointManager;

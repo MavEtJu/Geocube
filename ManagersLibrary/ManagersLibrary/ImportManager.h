@@ -19,11 +19,19 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ImagesDownloadManager : NSObject
+#import "ImportManager.h"
 
-+ (NSInteger)findImagesInDescription:(dbWaypoint *)wp text:(NSString *)desc type:(NSInteger)type;
-+ (BOOL)downloadImage:(dbWaypoint *)wp url:(NSString *)url name:(NSString *)name type:(NSInteger)type;
-+ (void)addToQueue:(dbImage *)img imageType:(ImageCategory)imageType;
-+ (void)addToQueueImmediately:(dbImage *)img;
+#import "ContribLibrary/SSZipArchive/SSZipArchive.h"
+
+#import "Convertors/ImportTemplate.h"
+
+@interface ImportManager : NSObject <SSZipArchiveDelegate, ImportDelegate>
+
+- (void)addToQueue:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions;
+- (NSArray<NSString *> *)process:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(ImportOptions)runoptions infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii;
+
+- (void)resetImports;
 
 @end
+
+extern ImportManager *importManager;

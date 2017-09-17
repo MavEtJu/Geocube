@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <Foundation/Foundation.h>
+
+#import "InfoViewer.h"
+
 @interface DownloadManager : NSObject <NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate>
 
 /*
@@ -37,3 +41,5 @@
 - (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 
 @end
+
+extern DownloadManager *downloadManager;

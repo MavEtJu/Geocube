@@ -21,6 +21,8 @@
 
 #import "ProtocolLiveAPI.h"
 
+#import "ManagersLibrary/DownloadManager.h"
+
 @interface ProtocolLiveAPI ()
 {
     RemoteAPITemplate *remoteAPI;

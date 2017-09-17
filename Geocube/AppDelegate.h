@@ -32,6 +32,8 @@
 
 @end
 
+extern AppDelegate *_AppDelegate;
+
 enum {
     RC_NAVIGATE = 0,
     RC_WAYPOINTS,

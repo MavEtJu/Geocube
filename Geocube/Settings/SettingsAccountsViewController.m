@@ -21,6 +21,8 @@
 
 #import "SettingsAccountsViewController.h"
 
+#import "ManagersLibrary/DownloadManager.h"
+
 #import "ImportGeocube.h"
 
 @interface SettingsAccountsViewController ()

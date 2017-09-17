@@ -21,6 +21,8 @@
 
 #import "ProtocolGCA2.h"
 
+#import "ManagersLibrary/DownloadManager.h"
+
 @interface ProtocolGCA2 ()
 {
     RemoteAPITemplate *remoteAPI;

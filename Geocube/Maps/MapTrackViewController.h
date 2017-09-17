@@ -25,3 +25,5 @@
 - (void)showTrack;
 
 @end
+
+extern MapTrackViewController *keepTrackMapViewController;

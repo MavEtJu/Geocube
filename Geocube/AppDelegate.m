@@ -19,13 +19,16 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "OpenCageManager.h"
-#import "MapAppleCache.h"
-#import "MapOneWPViewController.h"
-#import "MapAllWPViewController.h"
-#import "MapTrackViewController.h"
-#import "ToolsRot13ViewController.h"
-#import "ToolsGNSSViewController.h"
+#import "ManagersLibrary/DownloadManager.h"
+
+#import "RemoteAPI/OpenCageManager.h"
+
+#import "Maps/MapAppleCache.h"
+#import "Maps/MapOneWPViewController.h"
+#import "Maps/MapAllWPViewController.h"
+#import "Maps/MapTrackViewController.h"
+#import "Tools/ToolsRot13ViewController.h"
+#import "Tools/ToolsGNSSViewController.h"
 
 @import GoogleMaps;
 

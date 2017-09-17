@@ -25,6 +25,8 @@
 
 #import <CommonCrypto/CommonHMAC.h>
 
+#import "ManagersLibrary/DownloadManager.h"
+
 @interface GCOAuthBlackbox ()
 {
     NSString *nonce;

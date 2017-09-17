@@ -44,3 +44,5 @@
 - (void)enableMenus:(BOOL)YESNO;
 
 @end
+
+extern SideMenu *menuGlobal;

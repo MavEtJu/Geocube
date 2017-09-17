@@ -45,7 +45,6 @@
 #import "AppDelegate.h"
 #import "Menus/SideMenu.h"
 #import "Menus/LocalMenuItems.h"
-#import "ImagesDownloadManager.h"
 #import "ManagersLibrary/ManagersLibrary.h"
 #import "Waypoints/WaypointSorter.h"
 
@@ -53,9 +52,6 @@
 
 #import "InfoItem.h"
 #import "InfoViewer.h"
-#import "DownloadManager.h"
-
-#import "ImportManager.h"
 
 #import "Waypoints/WaypointHeaderTableViewCell.h"
 #import "Waypoints/WaypointTableViewCell.h"

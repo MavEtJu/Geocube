@@ -22,6 +22,7 @@
 #import "NoticesViewController.h"
 
 #import "ImportGeocube.h"
+#import "ManagersLibrary/DownloadManager.h"
 
 @interface NoticesViewController ()
 {

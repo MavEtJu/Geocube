@@ -34,3 +34,5 @@
 - (void)prepare_ggcw:(ProtocolGGCW *)ggcw;
 
 @end
+
+extern BrowserBrowserViewController *browserViewController;

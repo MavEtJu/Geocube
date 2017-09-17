@@ -26,3 +26,5 @@
 - (void)showLogLocations:(dbWaypoint *)wp;
 
 @end
+
+extern MapLogsViewController *locationlessMapViewController;

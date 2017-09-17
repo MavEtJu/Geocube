@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "DatabaseLibrary/dbWaypoint.h"
+#import "DatabaseLibrary/dbGroup.h"
+#import "DatabaseLibrary/dbAccount.h"
+
 @protocol ImportDelegate
 
 - (void)Import_WaypointProcessed:(dbWaypoint *)wp;

@@ -21,6 +21,8 @@
 
 #import "ProtocolOKAPI.h"
 
+#import "ManagersLibrary/DownloadManager.h"
+
 @interface ProtocolOKAPI ()
 {
     RemoteAPITemplate *remoteAPI;

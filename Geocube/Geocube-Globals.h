@@ -21,32 +21,5 @@
 
 #import "Geocube-Classes.h"
 
-// Global menu management
-extern SideMenu *menuGlobal;
-
-// Images Download Manager
-extern ImagesDownloadManager *imagesDownloadManager;
-
-// Current dbWaypoint to navitate to
-extern WaypointManager *waypointManager;
-
 // File manager
 extern NSFileManager *fileManager;
-
-// Webbrowser
-extern MHTabBarController *browserTabController;
-extern BrowserBrowserViewController *browserViewController;
-
-// Keep Track Map
-extern MHTabBarController *keepTrackTabController;
-extern MapTrackViewController *keepTrackMapViewController;
-
-// Locationless Map
-extern MHTabBarController *locationlessMapTabController;
-extern MapLogsViewController *locationlessMapViewController;
-
-// Download and Import manager
-extern DownloadManager *downloadManager;
-extern ImportManager *importManager;
-
-extern AppDelegate *_AppDelegate;
