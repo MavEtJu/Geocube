@@ -1,3 +1,81 @@
-# Geocube
+Usage:
 
-See Geocube/README.md for build instrutions.
+Install the Google Maps POD, run:
+
+   pod update GoogleMaps
+
+After that, open Geocube.xcworkspace in Xcode and under Supporting
+Files, copy the file EncryptionKeysExample.plist to EncryptionKeys.plist
+and populate with the information you have (Google Maps key,
+Geocaching Australia API consumer, shared secrets). This file is
+not supposed to be in the SCCS as it contains secret information.
+
+To obtain the keys: 
+- Geocaching Australia key: http://geocaching.com.au/api/services/
+- Google Maps key: https://developers.google.com/maps/documentation/ios-sdk/start
+- Mapbox key: https://www.mapbox.com/studio/
+
+The shared secrets are (currently only) used to hide the API keys
+hidden downloaded via geocube_sites.geocube:
+
+    <oauth_key_public sharedsecret="1">
+
+is encoded with "shared_secret_1":
+
+    <key>sharedsecret_1</key>
+    <string>foobar</string>
+
+
+Then build and run!
+
+After you have made changes, run ./lint.sh. It will check for style
+and completeness issues like configuration, localization etc.
+
+* Developer Style Guide *
+
+- Every Geocube .m and .h file needs to have a license. This excludes
+  the parts of the ContribLibrary ask they are not part of Geocube.
+
+- Every license should have the current year in the Copyright statement.
+
+- All strings in _("xxx") need to have a localized version. All
+  strings in the location database should exist in the source files.
+
+- In the DatabaseLibrary: Every DB_PREPARE needs to finish with a
+  DB_FINISH to prevent locking of the database.
+
+- Every DatabaseLibrary object db* should show up in the
+  DeveloperDatabaseViewController.
+
+- Every DatabaseLibrary object db* should have a TABLENAME defined.
+
+- Every DatabaseLibrary object db* should be in the order:
+  - init
+  - finish
+  - dbCount
+  - dbCreate
+  - dbUpdate
+  - dbAllXXX
+  - dbAll
+  - dbGet
+  - dbDelete
+
+- No tabs in the code.
+- No dangling spaces at the end.
+- No spaces before a ] method closer.
+- No empty lines at the end of a file.
+- No empty lines after the beginning of a method.
+- No double empty lines.
+- No space between parent class and delegates.
+- No { on the same line line of @interface.
+- No { on the same line line as the method definition.
+- No double ;;'s
+
+- Method definition should have a space between -/+ and name.
+- Subclassing is space-colon-space.
+- Classes must have @interface (), even if empty.
+
+- Array enumeration should have _Nonnull before object and *stop.
+- Arrays should have their class defined.
+
+- XIBs must be there for iPhone and iPad.
