@@ -22,4 +22,3 @@
 #import "ToolsLibrary/MyTools.h"
 #import "ToolsLibrary/MyClock.h"
 #import "ToolsLibrary/Coordinates.h"
-#import "ToolsLibrary/LocalizationManager.h"

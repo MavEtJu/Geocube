@@ -24,7 +24,7 @@
 #import "Geocube-Globals.h"
 
 #import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/LocalizationManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
 #import "Convertors/ImportGGCWJSON.h"
 #import "Convertors/ImportGPX.h"
 #import "Convertors/ImportGPXGarmin.h"

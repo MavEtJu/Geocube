@@ -24,7 +24,7 @@
 #import "ToolsLibrary/MyTools.h"
 #import "ToolsLibrary/Coordinates.h"
 #import "ToolsLibrary/MyClock.h"
-#import "ToolsLibrary/LocalizationManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
 #import "ManagersLibrary/ConfigManager.h"
 
 #import "Geocube-Defines.h"

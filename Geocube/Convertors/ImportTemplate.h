@@ -20,6 +20,8 @@
  */
 
 #import "InfoItem.h"
+
+#import "ImportTemplate-delegate.h"
 #import "ImportTemplate-enum.h"
 
 @class InfoViewer;
@@ -28,12 +30,6 @@
 @class dbAccount;
 @class GCDictionary;
 @class GCStringGPX;
-
-@protocol ImportDelegate
-
-- (void)Import_WaypointProcessed:(dbWaypoint *)wp;
-
-@end
 
 @interface ImportTemplate : NSObject
 {

@@ -28,7 +28,7 @@
 
 #import "Geocube.h"
 
-#import "ToolsLibrary/LocalizationManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
 #import "ManagersLibrary/ConfigManager.h"
 #import "DatabaseLibrary/DatabaseLibrary.h"
 #import "ContribLibrary/Others/Reachability.h"

@@ -21,7 +21,7 @@
 
 #import "ThemeManager.h"
 
-#import "ToolsLibrary/LocalizationManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
 #import "BaseObjectsLibrary/GCViewController.h"
 #import "ThemeTemplate.h"
 #import "ThemeIOS.h"

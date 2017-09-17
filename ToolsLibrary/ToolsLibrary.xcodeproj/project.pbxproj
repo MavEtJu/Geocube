@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		E881CA5F1F6B9F9600A17060 /* ToolsLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E881CA5C1F6B9F9600A17060 /* ToolsLibrary.h */; };
-		E881CA6D1F6BA00000A17060 /* LocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CA6C1F6BA00000A17060 /* LocalizationManager.m */; };
 		E881CA751F6BA23600A17060 /* MyTools.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CA711F6BA23600A17060 /* MyTools.m */; };
 		E881CA761F6BA23600A17060 /* Coordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CA721F6BA23600A17060 /* Coordinates.m */; };
 		E881CA771F6BA23600A17060 /* MyClock.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CA741F6BA23600A17060 /* MyClock.m */; };
@@ -30,8 +29,6 @@
 /* Begin PBXFileReference section */
 		E881CA591F6B9F9600A17060 /* libToolsLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libToolsLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E881CA5C1F6B9F9600A17060 /* ToolsLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToolsLibrary.h; sourceTree = "<group>"; };
-		E881CA6B1F6BA00000A17060 /* LocalizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizationManager.h; sourceTree = "<group>"; };
-		E881CA6C1F6BA00000A17060 /* LocalizationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizationManager.m; sourceTree = "<group>"; };
 		E881CA6F1F6BA23600A17060 /* Coordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coordinates.h; sourceTree = "<group>"; };
 		E881CA701F6BA23600A17060 /* MyTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTools.h; sourceTree = "<group>"; };
 		E881CA711F6BA23600A17060 /* MyTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTools.m; sourceTree = "<group>"; };
@@ -77,8 +74,6 @@
 				E881CA711F6BA23600A17060 /* MyTools.m */,
 				E881CA731F6BA23600A17060 /* MyClock.h */,
 				E881CA741F6BA23600A17060 /* MyClock.m */,
-				E881CA6B1F6BA00000A17060 /* LocalizationManager.h */,
-				E881CA6C1F6BA00000A17060 /* LocalizationManager.m */,
 			);
 			path = ToolsLibrary;
 			sourceTree = "<group>";
@@ -142,7 +137,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E881CA761F6BA23600A17060 /* Coordinates.m in Sources */,
-				E881CA6D1F6BA00000A17060 /* LocalizationManager.m in Sources */,
 				E881CA771F6BA23600A17060 /* MyClock.m in Sources */,
 				E881CA751F6BA23600A17060 /* MyTools.m in Sources */,
 			);

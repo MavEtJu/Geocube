@@ -28,5 +28,6 @@
 #import "ManagersLibrary/ImagesDownloadManager.h"
 #import "ManagersLibrary/ImportManager.h"
 #import "ManagersLibrary/KeyManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
 #import "ManagersLibrary/LocationManager.h"
 #import "ManagersLibrary/WaypointManager.h"

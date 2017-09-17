@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "Convertors/ImportTemplate.h"
+
 @interface ImportGeocube : ImportTemplate
 
 #define KEY_REVISION_ATTRIBUTES     @"attributes_revision"

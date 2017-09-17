@@ -21,9 +21,8 @@
 
 #import <CoreLocation/CoreLocation.h>
 
-#import "RemoteAPI/ProtocolGGCW.h"
-
 #import "RemoteAPI/GCOAuthBlackbox-delegate.h"
+#import "RemoteAPI/ProtocolGGCW-delegate.h"
 #import "RemoteAPI/RemoteAPITemplate-enum.h"
 
 #import "InfoItem.h"
