@@ -11,8 +11,9 @@ Install the Google Maps POD, run:
 After that, open Geocube.xcworkspace in Xcode and under Supporting
 Files, copy the file EncryptionKeysExample.plist to EncryptionKeys.plist
 and populate with the information you have (Google Maps key,
-Geocaching Australia API consumer, shared secrets). This file is
-not supposed to be in the SCCS as it contains secret information.
+Geocaching Australia API consumer, LiveAPI keys, shared secrets).
+This file is not supposed to be in the SCM as it contains secret
+information.
 
 To obtain the keys: 
 * Geocaching Australia key: http://geocaching.com.au/api/services/
