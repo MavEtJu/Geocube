@@ -21,10 +21,7 @@
 
 #import "ThemeTemplate.h"
 
-typedef NS_ENUM(NSInteger, GCThemeType) {
-    THEME_IOS = 0,
-    THEME_NIGHT,
-};
+#import "ThemeManager-enum.h"
 
 @interface ThemeManager : NSObject
 

@@ -19,36 +19,18 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@class RemoteAPITemplate;
-
 #import "RemoteAPI/GCOAuthBlackbox.h"
 #import "RemoteAPI/ProtocolGGCW.h"
 #import "RemoteAPI/ProtocolGCA2.h"
 #import "RemoteAPI/ProtocolOKAPI.h"
 #import "RemoteAPI/ProtocolLiveAPI.h"
 
-typedef NS_ENUM(NSInteger, RemoteAPIResult) {
-    REMOTEAPI_OK = 0,
-    REMOTEAPI_APIREFUSED,               // Couldn't connect to the API
-    REMOTEAPI_APIFAILED,                // Invalid values returned
-    REMOTEAPI_APIDISABLED,              // No authentication details
+#import "RemoteAPITemplate-enum.h"
 
-    REMOTEAPI_JSONINVALID,              // JSON couldn't be parsed cleanly
-
-    REMOTEAPI_NOTPROCESSED,             // Not supported in this protocol
-
-    REMOTEAPI_USERSTATISTICS_LOADFAILED,    // Unable to load user statistics
-    REMOTEAPI_CREATELOG_LOGFAILED,          // Unable to create the log
-    REMOTEAPI_CREATELOG_IMAGEFAILED,        // Unable to upload the image
-    REMOTEAPI_LOADWAYPOINT_LOADFAILED,      // Unable to load the waypoint
-    REMOTEAPI_LOADWAYPOINTS_LOADFAILED,     // Unable to load the waypoints
-    REMOTEAPI_LISTQUERIES_LOADFAILED,       // Unable to load the list of queries
-    REMOTEAPI_PERSONALNOTE_UPDATEFAILED,    // Unable to update the personal note
-    REMOTEAPI_RETRIEVEQUERY_LOADFAILED,     // Unable to load the query
-    REMOTEAPI_TRACKABLES_FINDFAILED,        // Unable to find the trackable
-    REMOTEAPI_TRACKABLES_INVENTORYLOADFAILED,// Unable to load the trackables inventory
-    REMOTEAPI_TRACKABLES_OWNEDLOADFAILED,   // Unable to load the trackables owned
-};
+@class RemoteAPITemplate;
+@class dbLogString;
+@class dbImage;
+@class dbPersonalNote;
 
 @protocol RemoteAPIAuthenticationDelegate
 

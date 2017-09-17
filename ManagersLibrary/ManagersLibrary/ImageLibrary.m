@@ -21,8 +21,16 @@
 
 #import "ImageLibrary.h"
 
-#import "ToolsLibrary/MyTools.h"
 #import "Geocube.h"
+
+#import "ToolsLibrary/MyTools.h"
+#import "DatabaseLibrary/dbObject.h"
+#import "DatabaseLibrary/dbWaypoint.h"
+#import "DatabaseLibrary/dbPin.h"
+#import "DatabaseLibrary/dbType.h"
+#import "DatabaseLibrary/dbAccount.h"
+#import "DatabaseLibrary/dbName.h"
+#import "DatabaseLibrary/database-cache.h"
 
 @interface ImageLibrary ()
 {

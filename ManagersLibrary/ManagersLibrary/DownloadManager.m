@@ -21,6 +21,9 @@
 
 #import "DownloadManager.h"
 
+#import "InfoViewer.h"
+#import "InfoItem.h"
+
 @interface DownloadManager ()
 {
     NSMutableArray<NSMutableDictionary *> *asyncRequests;

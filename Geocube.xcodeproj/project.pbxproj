@@ -1296,6 +1296,7 @@
 		E84E888C1F6CF956004F4BE9 /* GCTableViewCellWithSubtitle~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "GCTableViewCellWithSubtitle~ipad.xib"; path = "../BaseObjectsLibrary/BaseObjectsLibrary/GCTableViewCellWithSubtitle~ipad.xib"; sourceTree = "<group>"; };
 		E84E88A31F6CFFD0004F4BE9 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		E84E89161F6E84D7004F4BE9 /* ImportTemplate-enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ImportTemplate-enum.h"; sourceTree = "<group>"; };
+		E84E891C1F6E8E8F004F4BE9 /* RemoteAPITemplate-enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RemoteAPITemplate-enum.h"; sourceTree = "<group>"; };
 		E858F5981F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "KeepTrackBeeperView~ipad.xib"; path = "KeepTrack/KeepTrackBeeperView~ipad.xib"; sourceTree = "<group>"; };
 		E858F59A1F56610B002C1F9B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		E85BA88C1F544372008E708F /* KeepTrackBeeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeepTrackBeeper.h; path = KeepTrack/KeepTrackBeeper.h; sourceTree = "<group>"; };
@@ -2850,6 +2851,7 @@
 				E82343261EECD9BC00D2CDFD /* RemoteAPIProcessingGroup.h */,
 				E82343271EECD9BC00D2CDFD /* RemoteAPIProcessingGroup.m */,
 				E82343281EECD9BC00D2CDFD /* RemoteAPITemplate.h */,
+				E84E891C1F6E8E8F004F4BE9 /* RemoteAPITemplate-enum.h */,
 				E82343291EECD9BC00D2CDFD /* RemoteAPITemplate.m */,
 				E8E0A6571DEE2255004A885D /* GCA2 */,
 				E8E0A6581DEE225A004A885D /* GGCW */,

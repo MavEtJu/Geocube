@@ -21,7 +21,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "InfoViewer.h"
+#import "InfoItem.h"
+
+@class InfoViewer;
 
 @interface DownloadManager : NSObject <NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate>
 

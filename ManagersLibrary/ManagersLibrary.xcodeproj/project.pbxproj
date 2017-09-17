@@ -41,6 +41,9 @@
 		E84E88B21F6E0A01004F4BE9 /* ImagesDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesDownloadManager.m; sourceTree = "<group>"; };
 		E84E88B31F6E0A01004F4BE9 /* ImportManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportManager.h; sourceTree = "<group>"; };
 		E84E88B41F6E0A01004F4BE9 /* ImportManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportManager.m; sourceTree = "<group>"; };
+		E84E89181F6E8A8E004F4BE9 /* AudioManager-enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AudioManager-enum.h"; sourceTree = "<group>"; };
+		E84E89191F6E8B34004F4BE9 /* LocationManager-enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LocationManager-enum.h"; sourceTree = "<group>"; };
+		E84E891A1F6E8C2F004F4BE9 /* ImageLibrary-enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ImageLibrary-enum.h"; sourceTree = "<group>"; };
 		E881CAC11F6BB1C500A17060 /* libManagersLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libManagersLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E881CAC41F6BB1C500A17060 /* ManagersLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManagersLibrary.h; sourceTree = "<group>"; };
 		E881CAD31F6BB21700A17060 /* AudioFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFeedback.h; sourceTree = "<group>"; };
@@ -95,6 +98,7 @@
 				E881CAD31F6BB21700A17060 /* AudioFeedback.h */,
 				E881CAD41F6BB21700A17060 /* AudioFeedback.m */,
 				E881CAD51F6BB21700A17060 /* AudioManager.h */,
+				E84E89181F6E8A8E004F4BE9 /* AudioManager-enum.h */,
 				E881CAD61F6BB21700A17060 /* AudioManager.m */,
 				E881CADE1F6BB7D300A17060 /* BezelManager.h */,
 				E881CADD1F6BB7D300A17060 /* BezelManager.m */,
@@ -103,6 +107,7 @@
 				E84E88AF1F6E0A01004F4BE9 /* DownloadManager.h */,
 				E84E88B01F6E0A01004F4BE9 /* DownloadManager.m */,
 				E881CAE91F6BC0D700A17060 /* ImageLibrary.h */,
+				E84E891A1F6E8C2F004F4BE9 /* ImageLibrary-enum.h */,
 				E881CAEA1F6BC0D700A17060 /* ImageLibrary.m */,
 				E84E88B11F6E0A01004F4BE9 /* ImagesDownloadManager.h */,
 				E84E88B21F6E0A01004F4BE9 /* ImagesDownloadManager.m */,
@@ -111,6 +116,7 @@
 				E881CADB1F6BB32600A17060 /* KeyManager.h */,
 				E881CADA1F6BB32600A17060 /* KeyManager.m */,
 				E881CAE31F6BBBBD00A17060 /* LocationManager.h */,
+				E84E89191F6E8B34004F4BE9 /* LocationManager-enum.h */,
 				E881CAE41F6BBBBD00A17060 /* LocationManager.m */,
 				E881CAE61F6BBEBC00A17060 /* WaypointManager.h */,
 				E881CAE71F6BBEBC00A17060 /* WaypointManager.m */,

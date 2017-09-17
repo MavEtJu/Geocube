@@ -21,6 +21,8 @@
 
 #import "ProtocolTemplate.h"
 
+#import "DatabaseLibrary/dbTrackable.h"
+
 @protocol ProtocolGGCWDelegate
 
 - (void)GGCWAuthSuccessful:(NSHTTPCookie *)cookie;

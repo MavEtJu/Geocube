@@ -22,13 +22,9 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface AudioManager : NSObject <AVAudioPlayerDelegate>
+#import "AudioManager-enum.h"
 
-typedef NS_ENUM(NSInteger, PlaySound) {
-    PLAYSOUND_IMPORTCOMPLETE,
-    PLAYSOUND_BEEPER,
-    PLAYSOUND_MAX
-};
+@interface AudioManager : NSObject <AVAudioPlayerDelegate>
 
 - (void)playSound:(PlaySound)reason;
 

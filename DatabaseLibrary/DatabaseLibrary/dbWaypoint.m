@@ -45,6 +45,7 @@
 #import "dbTrackable.h"
 #import "dbImage.h"
 #import "dbWaypoint.h"
+#import "dbListData.h"
 
 @interface dbWaypoint ()
 

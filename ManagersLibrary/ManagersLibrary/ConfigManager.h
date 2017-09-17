@@ -22,8 +22,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "DatabaseLibrary/DatabaseLibrary.h"
-#import "LocationManager.h"
+#import "LocationManager-enum.h"
+
+@class dbTrack;
 
 @interface ConfigManager : NSObject
 

@@ -28,6 +28,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E84E89171F6E8A06004F4BE9 /* ThemeManager-enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ThemeManager-enum.h"; sourceTree = "<group>"; };
 		E881CAF51F6BDA6E00A17060 /* libThemesLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libThemesLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E881CAF81F6BDA6E00A17060 /* ThemesLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemesLibrary.h; sourceTree = "<group>"; };
 		E881CB071F6BDAB800A17060 /* ThemeIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeIOS.h; sourceTree = "<group>"; };
@@ -72,6 +73,7 @@
 			children = (
 				E881CAF81F6BDA6E00A17060 /* ThemesLibrary.h */,
 				E881CB091F6BDAB800A17060 /* ThemeManager.h */,
+				E84E89171F6E8A06004F4BE9 /* ThemeManager-enum.h */,
 				E881CB0A1F6BDAB800A17060 /* ThemeManager.m */,
 				E881CB0D1F6BDAB800A17060 /* ThemeTemplate.h */,
 				E881CB0E1F6BDAB800A17060 /* ThemeTemplate.m */,

@@ -20,6 +20,7 @@
  */
 
 #import "dbObject.h"
+
 #import "Geocube-Defines.h"
 
 @interface dbObject ()
