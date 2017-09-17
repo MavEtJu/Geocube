@@ -101,6 +101,13 @@ files for .h files should be:
     #include <....>
     ```
 
+- The system headers:
+
+    ```
+    #include <sys/time.h>
+    #include <sqlite3.h
+    ```
+
 - The Geocube headers:
 
     ```
@@ -137,6 +144,13 @@ files for .h files should be:
     ```
     #include <Foundation/Foundation.h>
     #include <....>
+    ```
+
+- The system headers:
+
+    ```
+    #include <sys/time.h>
+    #include <sqlite3.h
     ```
 
 - The Geocube headers:
