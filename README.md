@@ -1,8 +1,12 @@
-Usage:
+# Geocube development
+
+## Obtain the source and get it read:
+
+   $ git clone
 
 Install the Google Maps POD, run:
 
-   pod update GoogleMaps
+   $ pod update GoogleMaps
 
 After that, open Geocube.xcworkspace in Xcode and under Supporting
 Files, copy the file EncryptionKeysExample.plist to EncryptionKeys.plist
@@ -11,9 +15,9 @@ Geocaching Australia API consumer, shared secrets). This file is
 not supposed to be in the SCCS as it contains secret information.
 
 To obtain the keys: 
-- Geocaching Australia key: http://geocaching.com.au/api/services/
-- Google Maps key: https://developers.google.com/maps/documentation/ios-sdk/start
-- Mapbox key: https://www.mapbox.com/studio/
+* Geocaching Australia key: http://geocaching.com.au/api/services/
+* Google Maps key: https://developers.google.com/maps/documentation/ios-sdk/start
+* Mapbox key: https://www.mapbox.com/studio/
 
 The shared secrets are (currently only) used to hide the API keys
 hidden downloaded via geocube_sites.geocube:
@@ -31,7 +35,7 @@ Then build and run!
 After you have made changes, run ./lint.sh. It will check for style
 and completeness issues like configuration, localization etc.
 
-# Developer Style Guide
+## Developer Style Guide
 
 - Every Geocube .m and .h file needs to have a license. This excludes
   the parts of the ContribLibrary ask they are not part of Geocube.
