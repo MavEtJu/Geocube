@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E84E88B91F6E0ED2004F4BE9 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E88B81F6E0ED2004F4BE9 /* PSPDFUIKitMainThreadGuard.m */; };
 		E84F365A1F6A5A0800C7BD20 /* ContribLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E84F36571F6A5A0800C7BD20 /* ContribLibrary.h */; };
 		E895535B1F6BE8EA0026582B /* PropertyUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E89553501F6BE8EA0026582B /* PropertyUtil.m */; };
 		E895535C1F6BE8EA0026582B /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E89553521F6BE8EA0026582B /* Reachability.m */; };
@@ -115,6 +116,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E84E88B81F6E0ED2004F4BE9 /* PSPDFUIKitMainThreadGuard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFUIKitMainThreadGuard.m; sourceTree = "<group>"; };
 		E84F36541F6A5A0800C7BD20 /* libContribLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libContribLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E84F36571F6A5A0800C7BD20 /* ContribLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContribLibrary.h; sourceTree = "<group>"; };
 		E895534F1F6BE8EA0026582B /* PropertyUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PropertyUtil.h; path = Others/PropertyUtil.h; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				E84F36571F6A5A0800C7BD20 /* ContribLibrary.h */,
+				E84E88B81F6E0ED2004F4BE9 /* PSPDFUIKitMainThreadGuard.m */,
 				E895552C1F6CAD450026582B /* LXMapScaleView */,
 				E89554661F6C01AF0026582B /* ActionSheetPicker */,
 				E89553691F6BEE970026582B /* TouchXML */,
@@ -771,6 +774,7 @@
 				E89553931F6BF3870026582B /* CXMLNamespaceNode.m in Sources */,
 				E895543D1F6BF4B00026582B /* RNCryptor.m in Sources */,
 				E89553FF1F6BF4420026582B /* SimpleKMLDocument.m in Sources */,
+				E84E88B91F6E0ED2004F4BE9 /* PSPDFUIKitMainThreadGuard.m in Sources */,
 				E895542C1F6BF4920026582B /* NSFileManager+NVHFileSize.m in Sources */,
 				E895535B1F6BE8EA0026582B /* PropertyUtil.m in Sources */,
 				E89554571F6BF4EE0026582B /* GMUPlacemark.m in Sources */,

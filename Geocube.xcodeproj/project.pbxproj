@@ -472,7 +472,6 @@
 		E88DB00C1F334E4300FEF795 /* cache - gadget - 30x30@3.png in Resources */ = {isa = PBXBuildFile; fileRef = E88DB0091F334E4300FEF795 /* cache - gadget - 30x30@3.png */; };
 		E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */; };
 		E895552B1F6CA70A0026582B /* libDatabaseLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E895552A1F6CA70A0026582B /* libDatabaseLibrary.a */; };
-		E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
 		E8AA149C1ED7988A0023000A /* Updates and changes.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8AA149B1ED7988A0023000A /* Updates and changes.txt */; };
 		E8C8C8C21EE26AAA00E2438D /* LogTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8C11EE26AAA00E2438D /* LogTableViewCell~ipad.xib */; };
@@ -1337,7 +1336,6 @@
 		E895536F1F6BEF9B0026582B /* ContribLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ContribLibrary.xcodeproj; path = ContribLibrary/ContribLibrary.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E89554B51F6C8A870026582B /* DatabaseLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DatabaseLibrary.xcodeproj; path = ../DatabaseLibrary/DatabaseLibrary.xcodeproj; sourceTree = "<group>"; };
 		E895552A1F6CA70A0026582B /* libDatabaseLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libDatabaseLibrary.a; path = "../../Library/Developer/Xcode/DerivedData/Geocube-bjprugvtqrcyrnatajlgnpwinftk/Build/Products/Debug-iphonesimulator/libDatabaseLibrary.a"; sourceTree = "<group>"; };
-		E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFUIKitMainThreadGuard.m; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
 		E8AA149B1ED7988A0023000A /* Updates and changes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Updates and changes.txt"; sourceTree = "<group>"; };
 		E8C8C8C11EE26AAA00E2438D /* LogTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LogTableViewCell~ipad.xib"; sourceTree = "<group>"; };
@@ -2832,7 +2830,6 @@
 		E8F570931B3F7EE1003F020C /* External modules */ = {
 			isa = PBXGroup;
 			children = (
-				E89580261C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m */,
 				E8E8D0171B66E74600CC741A /* CMRangeSlider */,
 				E8A3B0AF1CD33BA500170D61 /* MHTabBarController */,
 				E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */,
@@ -3755,7 +3752,6 @@
 				E82344361EECDFB300D2CDFD /* FilterTypesTableViewCell.m in Sources */,
 				E82345241EECE14A00D2CDFD /* DeveloperImagesViewController.m in Sources */,
 				E82344401EECE01500D2CDFD /* KeepTracksTrackTableViewCell.m in Sources */,
-				E89580271C6747AD00282177 /* PSPDFUIKitMainThreadGuard.m in Sources */,
 				E841E15A1D88FC950050D4B4 /* InfoItem.m in Sources */,
 				E8F570591B3F7255003F020C /* main.m in Sources */,
 				E823442F1EECDFB300D2CDFD /* FilterObject.m in Sources */,
