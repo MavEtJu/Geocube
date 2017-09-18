@@ -27,7 +27,7 @@
 #import "NetworkLibrary/RemoteAPITemplate.h"
 #import "DatabaseLibrary/dbAccount.h"
 #import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/database-cache.h"
+#import "DatabaseLibrary/DatabaseCache.h"
 #import "ManagersLibrary/BezelManager.h"
 #import "ManagersLibrary/LocalizationManager.h"
 #import "ManagersLibrary/WaypointManager.h"

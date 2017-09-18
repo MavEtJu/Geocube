@@ -27,7 +27,7 @@
 #import "DatabaseLibrary/dbLogString.h"
 #import "DatabaseLibrary/dbWaypoint.h"
 #import "DatabaseLibrary/dbAccount.h"
-#import "DatabaseLibrary/database-cache.h"
+#import "DatabaseLibrary/DatabaseCache.h"
 
 #import "ProtocolOKAPI.h"
 

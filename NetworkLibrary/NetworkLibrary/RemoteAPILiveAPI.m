@@ -36,7 +36,7 @@
 #import "DatabaseLibrary/dbLogString.h"
 #import "DatabaseLibrary/dbWaypoint.h"
 #import "DatabaseLibrary/dbImage.h"
-#import "DatabaseLibrary/database-cache.h"
+#import "DatabaseLibrary/DatabaseCache.h"
 
 @interface RemoteAPILiveAPI ()
 

@@ -30,7 +30,7 @@
 #import "NetworkLibrary/RemoteAPIGCA2.h"
 #import "NetworkLibrary/RemoteAPIGGCW.h"
 
-#import "database-cache.h"
+#import "DatabaseCache.h"
 #import "dbProtocol.h"
 #import "dbName.h"
 

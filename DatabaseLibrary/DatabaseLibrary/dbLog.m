@@ -26,7 +26,7 @@
 #import "dbWaypoint.h"
 #import "dbAccount.h"
 #import "dbLogString.h"
-#import "database-cache.h"
+#import "DatabaseCache.h"
 
 @interface dbLog ()
 

@@ -21,7 +21,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DatabaseLibrary-defines.h"
-#import "database.h"
+#import "Database.h"
 
 @interface dbObject : NSObject
 {

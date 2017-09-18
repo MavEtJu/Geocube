@@ -29,7 +29,7 @@
 #import "DatabaseLibrary/dbLogString.h"
 #import "DatabaseLibrary/dbAccount.h"
 #import "DatabaseLibrary/dbImage.h"
-#import "DatabaseLibrary/database-cache.h"
+#import "DatabaseLibrary/DatabaseCache.h"
 #import "ToolsLibrary/InfoViewer.h"
 #import "ToolsLibrary/InfoItem.h"
 #import "ToolsLibrary/MyTools.h"

@@ -23,8 +23,8 @@
 
 #import "Geocube-defines.h"
 
-#import "DatabaseLibrary/database-cache.h"
-#import "DatabaseLibrary/database.h"
+#import "DatabaseLibrary/DatabaseCache.h"
+#import "DatabaseLibrary/Database.h"
 #import "DatabaseLibrary/dbGroup.h"
 #import "DatabaseLibrary/dbWaypoint.h"
 #import "BaseObjectsLibrary/GCStringObjects.h"

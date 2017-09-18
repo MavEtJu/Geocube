@@ -31,7 +31,7 @@
 #import "ManagersLibrary/ConfigManager.h"
 #import "ManagersLibrary/LocationManager.h"
 #import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/database-cache.h"
+#import "DatabaseLibrary/DatabaseCache.h"
 #import "DatabaseLibrary/dbLog.h"
 #import "DatabaseLibrary/dbName.h"
 #import "DatabaseLibrary/dbAccount.h"

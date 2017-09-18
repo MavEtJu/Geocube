@@ -27,7 +27,7 @@
 #import "DatabaseLibrary/dbLog.h"
 #import "DatabaseLibrary/dbWaypoint.h"
 #import "DatabaseLibrary/dbName.h"
-#import "DatabaseLibrary/database-cache.h"
+#import "DatabaseLibrary/DatabaseCache.h"
 #import "ToolsLibrary/MyTools.h"
 
 @interface MapLogsViewController ()

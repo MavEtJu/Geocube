@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "database.h"
+#import "Database.h"
 
 #import "Geocube-defines.h"
 #import "Geocube-globals.h"

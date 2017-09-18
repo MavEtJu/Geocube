@@ -21,7 +21,7 @@
 
 #import "dbSymbol.h"
 
-#import "database.h"
+#import "Database.h"
 
 @interface dbSymbol ()
 

@@ -39,7 +39,7 @@
 #import "DatabaseLibrary/dbGroup.h"
 #import "DatabaseLibrary/dbTrackable.h"
 #import "DatabaseLibrary/dbImage.h"
-#import "DatabaseLibrary/database-cache.h"
+#import "DatabaseLibrary/DatabaseCache.h"
 
 @interface ImportLiveAPIJSON ()
 

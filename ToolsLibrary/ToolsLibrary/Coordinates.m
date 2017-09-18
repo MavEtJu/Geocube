@@ -24,7 +24,7 @@
 #import "Geocube.h"
 
 #import "ManagersLibrary/LocalizationManager.h"
-#import "DatabaseLibrary/database-cache.h"
+#import "DatabaseLibrary/DatabaseCache.h"
 #import "DatabaseLibrary/dbWaypoint.h"
 #import "DatabaseLibrary/dbGroup.h"
 #import "ManagersLibrary/WaypointManager.h"

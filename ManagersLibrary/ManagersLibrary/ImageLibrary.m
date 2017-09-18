@@ -30,7 +30,7 @@
 #import "DatabaseLibrary/dbType.h"
 #import "DatabaseLibrary/dbAccount.h"
 #import "DatabaseLibrary/dbName.h"
-#import "DatabaseLibrary/database-cache.h"
+#import "DatabaseLibrary/DatabaseCache.h"
 
 @interface ImageLibrary ()
 {

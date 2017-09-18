@@ -25,7 +25,7 @@
 #import "LocationManager-delegate.h"
 #import "WaypointManager-delegate.h"
 
-#import "DatabaseLibrary/database.h"
+#import "DatabaseLibrary/Database.h"
 
 @class dbWaypoint;
 

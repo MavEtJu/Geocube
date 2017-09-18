@@ -35,7 +35,7 @@
 #import "DatabaseLibrary/dbName.h"
 #import "DatabaseLibrary/dbCountry.h"
 #import "DatabaseLibrary/dbState.h"
-#import "DatabaseLibrary/database-cache.h"
+#import "DatabaseLibrary/DatabaseCache.h"
 #import "ToolsLibrary/MyTools.h"
 #import "ToolsLibrary/InfoViewer.h"
 #import "ToolsLibrary/InfoItem.h"

@@ -27,7 +27,7 @@
 #import "DatabaseLibrary/dbPersonalNote.h"
 #import "DatabaseLibrary/dbAccount.h"
 #import "DatabaseLibrary/dbName.h"
-#import "DatabaseLibrary/database-cache.h"
+#import "DatabaseLibrary/DatabaseCache.h"
 #import "ToolsLibrary/InfoViewer.h"
 #import "ToolsLibrary/InfoItem.h"
 #import "ToolsLibrary/MyTools.h"

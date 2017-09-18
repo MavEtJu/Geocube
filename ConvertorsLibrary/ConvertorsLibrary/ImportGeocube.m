@@ -43,7 +43,7 @@
 #import "DatabaseLibrary/dbContainer.h"
 #import "DatabaseLibrary/dbBookmark.h"
 #import "DatabaseLibrary/dbFileImport.h"
-#import "DatabaseLibrary/database-cache.h"
+#import "DatabaseLibrary/DatabaseCache.h"
 
 @interface ImportGeocube ()
 

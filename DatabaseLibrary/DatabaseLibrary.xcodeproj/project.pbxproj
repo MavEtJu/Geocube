@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		E89554AF1F6C8A870026582B /* DatabaseLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E89554AC1F6C8A870026582B /* DatabaseLibrary.h */; };
-		E89555031F6C8AC40026582B /* database.m in Sources */ = {isa = PBXBuildFile; fileRef = E89554BC1F6C8AC40026582B /* database.m */; };
+		E89555031F6C8AC40026582B /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = E89554BC1F6C8AC40026582B /* Database.m */; };
 		E89555041F6C8AC40026582B /* dbAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = E89554BD1F6C8AC40026582B /* dbAccount.m */; };
 		E89555051F6C8AC40026582B /* dbImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E89554BF1F6C8AC40026582B /* dbImage.m */; };
-		E89555061F6C8AC40026582B /* database-cache.m in Sources */ = {isa = PBXBuildFile; fileRef = E89554C11F6C8AC40026582B /* database-cache.m */; };
+		E89555061F6C8AC40026582B /* DatabaseCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E89554C11F6C8AC40026582B /* DatabaseCache.m */; };
 		E89555071F6C8AC40026582B /* dbAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = E89554C41F6C8AC40026582B /* dbAttribute.m */; };
 		E89555081F6C8AC40026582B /* dbBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = E89554C61F6C8AC40026582B /* dbBookmark.m */; };
 		E89555091F6C8AC40026582B /* dbConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E89554C81F6C8AC40026582B /* dbConfig.m */; };
@@ -68,13 +68,13 @@
 		E84E89151F6E8301004F4BE9 /* dbWaypoint-enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dbWaypoint-enum.h"; sourceTree = "<group>"; };
 		E89554A91F6C8A870026582B /* libDatabaseLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDatabaseLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E89554AC1F6C8A870026582B /* DatabaseLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatabaseLibrary.h; sourceTree = "<group>"; };
-		E89554BB1F6C8AC40026582B /* database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database.h; sourceTree = "<group>"; };
-		E89554BC1F6C8AC40026582B /* database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = database.m; sourceTree = "<group>"; };
+		E89554BB1F6C8AC40026582B /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
+		E89554BC1F6C8AC40026582B /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
 		E89554BD1F6C8AC40026582B /* dbAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbAccount.m; sourceTree = "<group>"; };
 		E89554BE1F6C8AC40026582B /* dbImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbImage.h; sourceTree = "<group>"; };
 		E89554BF1F6C8AC40026582B /* dbImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbImage.m; sourceTree = "<group>"; };
-		E89554C01F6C8AC40026582B /* database-cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "database-cache.h"; sourceTree = "<group>"; };
-		E89554C11F6C8AC40026582B /* database-cache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "database-cache.m"; sourceTree = "<group>"; };
+		E89554C01F6C8AC40026582B /* DatabaseCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseCache.h; sourceTree = "<group>"; };
+		E89554C11F6C8AC40026582B /* DatabaseCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseCache.m; sourceTree = "<group>"; };
 		E89554C21F6C8AC40026582B /* dbAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbAccount.h; sourceTree = "<group>"; };
 		E89554C31F6C8AC40026582B /* dbAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbAttribute.h; sourceTree = "<group>"; };
 		E89554C41F6C8AC40026582B /* dbAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbAttribute.m; sourceTree = "<group>"; };
@@ -175,10 +175,10 @@
 			children = (
 				E89554AC1F6C8A870026582B /* DatabaseLibrary.h */,
 				E89555281F6CA1A00026582B /* DatabaseLibrary-defines.h */,
-				E89554BB1F6C8AC40026582B /* database.h */,
-				E89554BC1F6C8AC40026582B /* database.m */,
-				E89554C01F6C8AC40026582B /* database-cache.h */,
-				E89554C11F6C8AC40026582B /* database-cache.m */,
+				E89554BB1F6C8AC40026582B /* Database.h */,
+				E89554BC1F6C8AC40026582B /* Database.m */,
+				E89554C01F6C8AC40026582B /* DatabaseCache.h */,
+				E89554C11F6C8AC40026582B /* DatabaseCache.m */,
 				E89554EB1F6C8AC40026582B /* dbObject.h */,
 				E89554EC1F6C8AC40026582B /* dbObject.m */,
 				E89554C21F6C8AC40026582B /* dbAccount.h */,
@@ -329,8 +329,8 @@
 				E89555171F6C8AC40026582B /* dbLogStringWaypoint.m in Sources */,
 				E89555101F6C8AC40026582B /* dbGroup.m in Sources */,
 				E89555071F6C8AC40026582B /* dbAttribute.m in Sources */,
-				E89555031F6C8AC40026582B /* database.m in Sources */,
-				E89555061F6C8AC40026582B /* database-cache.m in Sources */,
+				E89555031F6C8AC40026582B /* Database.m in Sources */,
+				E89555061F6C8AC40026582B /* DatabaseCache.m in Sources */,
 				E895550F1F6C8AC40026582B /* dbFilter.m in Sources */,
 				E89555051F6C8AC40026582B /* dbImage.m in Sources */,
 				E895550B1F6C8AC40026582B /* dbCountry.m in Sources */,

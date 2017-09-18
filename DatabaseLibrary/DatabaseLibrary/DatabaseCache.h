@@ -21,7 +21,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "database.h"
+#import "Database.h"
 
 @class dbAccount;
 @class dbProtocol;

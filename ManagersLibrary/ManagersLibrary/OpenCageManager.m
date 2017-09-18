@@ -31,7 +31,7 @@
 #import "DatabaseLibrary/dbLocality.h"
 #import "DatabaseLibrary/dbState.h"
 #import "DatabaseLibrary/dbCountry.h"
-#import "DatabaseLibrary/database-cache.h"
+#import "DatabaseLibrary/DatabaseCache.h"
 #import "ToolsLibrary/MyTools.h"
 
 @interface OpenCageManager ()

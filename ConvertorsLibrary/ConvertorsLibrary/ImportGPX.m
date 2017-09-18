@@ -35,7 +35,7 @@
 #import "DatabaseLibrary/dbState.h"
 #import "DatabaseLibrary/dbCountry.h"
 #import "DatabaseLibrary/dbLocality.h"
-#import "DatabaseLibrary/database-cache.h"
+#import "DatabaseLibrary/DatabaseCache.h"
 #import "DatabaseLibrary/dbAttribute.h"
 #import "DatabaseLibrary/dbGroup.h"
 #import "DatabaseLibrary/dbName.h"

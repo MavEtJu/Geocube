@@ -24,8 +24,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 
-#import "database.h"
-#import "database-cache.h"
+#import "Database.h"
+#import "DatabaseCache.h"
 #import "Geocube-defines.h"
 #import "dbPin.h"
 

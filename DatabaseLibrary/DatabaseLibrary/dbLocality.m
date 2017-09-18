@@ -21,7 +21,7 @@
 
 #import "dbLocality.h"
 
-#import "database-cache.h"
+#import "DatabaseCache.h"
 
 @interface dbLocality ()
 

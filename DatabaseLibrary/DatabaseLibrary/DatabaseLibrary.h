@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "DatabaseLibrary/database.h"
+#import "DatabaseLibrary/Database.h"
 #import "DatabaseLibrary/dbObject.h"
 #import "DatabaseLibrary/dbAccount.h"
 #import "DatabaseLibrary/dbAttribute.h"
@@ -54,4 +54,4 @@
 #import "DatabaseLibrary/dbTrackElement.h"
 #import "DatabaseLibrary/dbTrackable.h"
 #import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/database-cache.h"
+#import "DatabaseLibrary/DatabaseCache.h"
