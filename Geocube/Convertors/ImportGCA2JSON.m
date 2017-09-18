@@ -21,7 +21,7 @@
 
 #import "ImportGCA2JSON.h"
 
-#import "NetworkLibrary/OpenCageManager.h"
+#import "ManagersLibrary/OpenCageManager.h"
 
 @interface ImportGCA2JSON ()
 

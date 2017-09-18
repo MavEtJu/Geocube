@@ -30,4 +30,5 @@
 #import "ManagersLibrary/KeyManager.h"
 #import "ManagersLibrary/LocalizationManager.h"
 #import "ManagersLibrary/LocationManager.h"
+#import "ManagersLibrary/OpenCageManager.h"
 #import "ManagersLibrary/WaypointManager.h"

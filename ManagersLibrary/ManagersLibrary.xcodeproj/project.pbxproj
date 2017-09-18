@@ -11,6 +11,7 @@
 		E84E88B61F6E0A01004F4BE9 /* ImagesDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E88B21F6E0A01004F4BE9 /* ImagesDownloadManager.m */; };
 		E84E88B71F6E0A01004F4BE9 /* ImportManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E88B41F6E0A01004F4BE9 /* ImportManager.m */; };
 		E84E89281F6EA011004F4BE9 /* LocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E89271F6EA011004F4BE9 /* LocalizationManager.m */; };
+		E84E898C1F6F4B11004F4BE9 /* OpenCageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E898B1F6F4B11004F4BE9 /* OpenCageManager.m */; };
 		E881CAC71F6BB1C500A17060 /* ManagersLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E881CAC41F6BB1C500A17060 /* ManagersLibrary.h */; };
 		E881CAD71F6BB21700A17060 /* AudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CAD41F6BB21700A17060 /* AudioFeedback.m */; };
 		E881CAD81F6BB21700A17060 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CAD61F6BB21700A17060 /* AudioManager.m */; };
@@ -49,6 +50,8 @@
 		E84E891E1F6E966B004F4BE9 /* WaypointManager-delegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WaypointManager-delegate.h"; sourceTree = "<group>"; };
 		E84E89261F6EA011004F4BE9 /* LocalizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizationManager.h; sourceTree = "<group>"; };
 		E84E89271F6EA011004F4BE9 /* LocalizationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizationManager.m; sourceTree = "<group>"; };
+		E84E898A1F6F4B11004F4BE9 /* OpenCageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCageManager.h; sourceTree = "<group>"; };
+		E84E898B1F6F4B11004F4BE9 /* OpenCageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenCageManager.m; sourceTree = "<group>"; };
 		E881CAC11F6BB1C500A17060 /* libManagersLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libManagersLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E881CAC41F6BB1C500A17060 /* ManagersLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManagersLibrary.h; sourceTree = "<group>"; };
 		E881CAD31F6BB21700A17060 /* AudioFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFeedback.h; sourceTree = "<group>"; };
@@ -126,6 +129,8 @@
 				E84E891D1F6E94F4004F4BE9 /* LocationManager-delegate.h */,
 				E84E89191F6E8B34004F4BE9 /* LocationManager-enum.h */,
 				E881CAE41F6BBBBD00A17060 /* LocationManager.m */,
+				E84E898A1F6F4B11004F4BE9 /* OpenCageManager.h */,
+				E84E898B1F6F4B11004F4BE9 /* OpenCageManager.m */,
 				E881CAE61F6BBEBC00A17060 /* WaypointManager.h */,
 				E84E891E1F6E966B004F4BE9 /* WaypointManager-delegate.h */,
 				E881CAE71F6BBEBC00A17060 /* WaypointManager.m */,
@@ -193,6 +198,7 @@
 			files = (
 				E881CAE51F6BBBBD00A17060 /* LocationManager.m in Sources */,
 				E881CAEB1F6BC0D700A17060 /* ImageLibrary.m in Sources */,
+				E84E898C1F6F4B11004F4BE9 /* OpenCageManager.m in Sources */,
 				E881CAE21F6BB9A400A17060 /* ConfigManager.m in Sources */,
 				E881CADC1F6BB32600A17060 /* KeyManager.m in Sources */,
 				E84E89281F6EA011004F4BE9 /* LocalizationManager.m in Sources */,

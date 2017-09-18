@@ -21,7 +21,7 @@
 
 #import "ImportGPXGarmin.h"
 
-#import "NetworkLibrary/OpenCageManager.h"
+#import "ManagersLibrary/OpenCageManager.h"
 
 @interface ImportGPXGarmin ()
 {

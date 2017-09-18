@@ -22,7 +22,7 @@
 #import "AppDelegate.h"
 
 #import "ManagersLibrary/DownloadManager.h"
-#import "NetworkLibrary/OpenCageManager.h"
+#import "ManagersLibrary/OpenCageManager.h"
 #import "NetworkLibrary/IOSFileTransfers.h"
 
 #import "Maps/MapAppleCache.h"

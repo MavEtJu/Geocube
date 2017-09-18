@@ -21,7 +21,7 @@
 
 #import "WaypointAddViewController.h"
 
-#import "NetworkLibrary/OpenCageManager.h"
+#import "ManagersLibrary/OpenCageManager.h"
 
 @interface WaypointAddViewController ()
 {

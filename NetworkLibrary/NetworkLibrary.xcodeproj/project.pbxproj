@@ -10,7 +10,6 @@
 		E84E89481F6F27E4004F4BE9 /* NetworkLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E84E89451F6F27E4004F4BE9 /* NetworkLibrary.h */; };
 		E84E89771F6F2860004F4BE9 /* GCOAuthBlackbox.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E895A1F6F2860004F4BE9 /* GCOAuthBlackbox.m */; };
 		E84E89781F6F2860004F4BE9 /* IOSFileTransfers.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E895C1F6F2860004F4BE9 /* IOSFileTransfers.m */; };
-		E84E89791F6F2860004F4BE9 /* OpenCageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E895E1F6F2860004F4BE9 /* OpenCageManager.m */; };
 		E84E897A1F6F2860004F4BE9 /* ProtocolGCA2.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E89601F6F2860004F4BE9 /* ProtocolGCA2.m */; };
 		E84E897B1F6F2860004F4BE9 /* ProtocolGGCW.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E89631F6F2860004F4BE9 /* ProtocolGGCW.m */; };
 		E84E897C1F6F2860004F4BE9 /* ProtocolLiveAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E89651F6F2860004F4BE9 /* ProtocolLiveAPI.m */; };
@@ -45,8 +44,6 @@
 		E84E895A1F6F2860004F4BE9 /* GCOAuthBlackbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCOAuthBlackbox.m; sourceTree = "<group>"; };
 		E84E895B1F6F2860004F4BE9 /* IOSFileTransfers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSFileTransfers.h; sourceTree = "<group>"; };
 		E84E895C1F6F2860004F4BE9 /* IOSFileTransfers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOSFileTransfers.m; sourceTree = "<group>"; };
-		E84E895D1F6F2860004F4BE9 /* OpenCageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCageManager.h; sourceTree = "<group>"; };
-		E84E895E1F6F2860004F4BE9 /* OpenCageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenCageManager.m; sourceTree = "<group>"; };
 		E84E895F1F6F2860004F4BE9 /* ProtocolGCA2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolGCA2.h; sourceTree = "<group>"; };
 		E84E89601F6F2860004F4BE9 /* ProtocolGCA2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolGCA2.m; sourceTree = "<group>"; };
 		E84E89611F6F2860004F4BE9 /* ProtocolGGCW-delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ProtocolGGCW-delegate.h"; sourceTree = "<group>"; };
@@ -112,8 +109,6 @@
 				E84E895B1F6F2860004F4BE9 /* IOSFileTransfers.h */,
 				E84E89861F6F2B10004F4BE9 /* IOSFileTransfers-delegate.h */,
 				E84E895C1F6F2860004F4BE9 /* IOSFileTransfers.m */,
-				E84E895D1F6F2860004F4BE9 /* OpenCageManager.h */,
-				E84E895E1F6F2860004F4BE9 /* OpenCageManager.m */,
 				E84E89721F6F2860004F4BE9 /* RemoteAPIProcessingGroup.h */,
 				E84E89731F6F2860004F4BE9 /* RemoteAPIProcessingGroup.m */,
 				E84E89751F6F2860004F4BE9 /* RemoteAPITemplate.h */,
@@ -245,7 +240,6 @@
 				E84E897C1F6F2860004F4BE9 /* ProtocolLiveAPI.m in Sources */,
 				E84E89841F6F2860004F4BE9 /* RemoteAPITemplate.m in Sources */,
 				E84E89771F6F2860004F4BE9 /* GCOAuthBlackbox.m in Sources */,
-				E84E89791F6F2860004F4BE9 /* OpenCageManager.m in Sources */,
 				E84E897B1F6F2860004F4BE9 /* ProtocolGGCW.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
