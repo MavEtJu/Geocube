@@ -19,11 +19,14 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@class GCOAuthBlackbox;
-
-#import "Browser/BrowserBrowserViewController.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #import "GCOAuthBlackbox-delegate.h"
+
+@class GCOAuthBlackbox;
+@class GCMutableURLRequest;
+@class BrowserBrowserViewController;
 
 /*
  * myConsumerKey = @"S2g[...]";

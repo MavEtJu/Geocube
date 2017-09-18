@@ -6,6 +6,8 @@
 //  Copyright © 2017 Edwin Groothuis. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 @protocol GCOAuthBlackboxDelegate
 
 - (void)oauthdanced:(NSString *)token secret:(NSString *)secret;

@@ -19,14 +19,22 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ProtocolTemplate.h"
+#import <Foundation/Foundation.h>
 
-@interface ProtocolTemplate ()
+@interface RemoteAPIProcessingGroup : NSObject
 
-@end
+- (void)clearAll;
+- (void)addIdentifier:(NSInteger)identifier;
+- (void)removeIdentifier:(NSInteger)identifier;
+- (BOOL)hasIdentifier:(NSInteger)identifier;
+- (BOOL)hasIdentifiers;
 
-@implementation ProtocolTemplate
-
-- (instancetype)init:(RemoteAPITemplate *)remoteAPI { NEEDS_OVERLOADING_ASSERT; return nil; }
+- (void)expectedChunks:(NSInteger)identifier chunks:(NSInteger)chunks;
+- (void)increaseDownloadedChunks:(NSInteger)identifier;
+- (void)increaseProcessedChunks:(NSInteger)identifier;
+- (NSInteger)expectedChunks:(NSInteger)identifier;
+- (NSInteger)downloadedChunks:(NSInteger)identifier;
+- (NSInteger)processedChunks:(NSInteger)identifier;
+- (BOOL)hasAllProcessed:(NSInteger)identifier;
 
 @end

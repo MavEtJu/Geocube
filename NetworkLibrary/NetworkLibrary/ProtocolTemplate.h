@@ -19,6 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface RemoteAPIGGCW : RemoteAPITemplate
+#import <Foundation/Foundation.h>
+
+@class RemoteAPITemplate;
+
+@interface ProtocolTemplate : NSObject
+
+- (instancetype)init:(RemoteAPITemplate *)remoteAPI;
 
 @end

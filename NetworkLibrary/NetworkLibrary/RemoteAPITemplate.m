@@ -21,9 +21,24 @@
 
 #import "RemoteAPITemplate.h"
 
-#import "ProtocolLiveAPI.h"
-#import "ProtocolOKAPI.h"
-#import "ProtocolGCA2.h"
+#import "Geocube-Defines.h"
+
+#import "ManagersLibrary/LocalizationManager.h"
+#import "NetworkLibrary/GCOAuthBlackbox.h"
+#import "NetworkLibrary/ProtocolLiveAPI.h"
+#import "NetworkLibrary/ProtocolOKAPI.h"
+#import "NetworkLibrary/ProtocolGCA2.h"
+#import "NetworkLibrary/ProtocolGGCW.h"
+#import "DatabaseLibrary/dbAccount.h"
+#import "DatabaseLibrary/dbProtocol.h"
+#import "DatabaseLibrary/dbName.h"
+#import "BaseObjectsLibrary/GCURLRequest.h"
+#import "BaseObjectsLibrary/GCDictionary.h"
+#import "ToolsLibrary/MyTools.h"
+#import "ToolsLibrary/Coordinates.h"
+
+#import "AppDelegate.h"
+#import "Browser/BrowserBrowserViewController.h"
 
 @interface RemoteAPITemplate ()
 {

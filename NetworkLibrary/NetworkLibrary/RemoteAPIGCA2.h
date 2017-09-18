@@ -19,22 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol IOSFileTransfersDelegate
+#import "RemoteAPITemplate.h"
 
-- (void)refreshFilelist;
-
-@end
-
-@interface IOSFileTransfers : NSObject <UIDocumentMenuDelegate, UIDocumentPickerDelegate>
-
-@property (nonatomic, retain) id<IOSFileTransfersDelegate> delegate;
-
-- (void)cleanupITunes;
-- (void)uploadAirdrop:(NSString *)path vc:(UIViewController *)vc;
-- (void)uploadICloud:(NSString *)path vc:(UIViewController *)vc;
-- (void)downloadICloud:(UIViewController *)vc;
-- (void)importAirdropAttachment:(NSURL *)url;
+@interface RemoteAPIGCA2 : RemoteAPITemplate
 
 @end
-
-extern IOSFileTransfers *IOSFTM;

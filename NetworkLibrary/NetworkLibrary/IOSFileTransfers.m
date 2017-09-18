@@ -21,6 +21,12 @@
 
 #import "IOSFileTransfers.h"
 
+#import "Geocube-Defines.h"
+#import "Geocube-Globals.h"
+
+#import "ToolsLibrary/MyTools.h"
+#import "ManagersLibrary/LocalizationManager.h"
+
 @interface IOSFileTransfers ()
 {
     NSInteger currentICloud;

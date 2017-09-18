@@ -21,7 +21,19 @@
 
 #import "ProtocolGGCW.h"
 
+#import "Geocube-Defines.h"
+
 #import "ManagersLibrary/DownloadManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "NetworkLibrary/RemoteAPITemplate.h"
+#import "DatabaseLibrary/dbAccount.h"
+#import "DatabaseLibrary/dbTrackable.h"
+#import "DatabaseLibrary/dbLogString.h"
+#import "ToolsLibrary/MyTools.h"
+#import "ContribLibrary/TFHpple/TFHpple.h"
+#import "BaseObjectsLibrary/GCDictionary.h"
+#import "BaseObjectsLibrary/GCString.h"
+#import "BaseObjectsLibrary/GCDataObjects.h"
 
 @interface ProtocolGGCW ()
 {

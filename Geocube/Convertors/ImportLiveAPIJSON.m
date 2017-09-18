@@ -21,7 +21,7 @@
 
 #import "ImportLiveAPIJSON.h"
 
-#import "OpenCageManager.h"
+#import "NetworkLibrary/OpenCageManager.h"
 
 @interface ImportLiveAPIJSON ()
 

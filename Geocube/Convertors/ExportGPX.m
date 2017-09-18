@@ -21,6 +21,9 @@
 
 #import "ExportGPX.h"
 
+#import "DatabaseLibrary/dbWaypoint.h"
+#import "ToolsLibrary/MyTools.h"
+
 @interface ExportGPX ()
 {
     NSMutableArray<NSString *> *lines;

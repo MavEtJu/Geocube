@@ -21,8 +21,22 @@
 
 #import "RemoteAPILiveAPI.h"
 
-#import "ProtocolLiveAPI.h"
-#import "ImportLiveAPIJSON.h"
+#import "Geocube-Defines.h"
+
+#import "NetworkLibrary/ProtocolLiveAPI.h"
+#import "Convertors/ImportLiveAPIJSON.h"
+#import "ToolsLibrary/InfoViewer.h"
+#import "ToolsLibrary/InfoItem.h"
+#import "ToolsLibrary/MyTools.h"
+#import "BaseObjectsLibrary/GCDictionary.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "DatabaseLibrary/dbAccount.h"
+#import "DatabaseLibrary/dbTrackable.h"
+#import "DatabaseLibrary/dbPersonalNote.h"
+#import "DatabaseLibrary/dbLogString.h"
+#import "DatabaseLibrary/dbWaypoint.h"
+#import "DatabaseLibrary/dbImage.h"
+#import "DatabaseLibrary/database-cache.h"
 
 @interface RemoteAPILiveAPI ()
 

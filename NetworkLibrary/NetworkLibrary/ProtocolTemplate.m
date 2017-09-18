@@ -19,10 +19,17 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@class RemoteAPITemplate;
 
-@interface ProtocolTemplate : NSObject
+#import "ProtocolTemplate.h"
 
-- (instancetype)init:(RemoteAPITemplate *)remoteAPI;
+#import "Geocube-Defines.h"
+
+@interface ProtocolTemplate ()
+
+@end
+
+@implementation ProtocolTemplate
+
+- (instancetype)init:(RemoteAPITemplate *)remoteAPI { NEEDS_OVERLOADING_ASSERT; return nil; }
 
 @end

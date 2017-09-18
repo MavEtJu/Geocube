@@ -26,6 +26,10 @@
 #import <CommonCrypto/CommonHMAC.h>
 
 #import "ManagersLibrary/DownloadManager.h"
+#import "ToolsLibrary/MyTools.h"
+#import "BaseObjectsLibrary/GCURLRequest.h"
+
+#import "Browser/BrowserBrowserViewController.h"
 
 @interface GCOAuthBlackbox ()
 {

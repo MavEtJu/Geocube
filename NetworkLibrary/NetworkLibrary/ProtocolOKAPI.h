@@ -19,6 +19,16 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <CoreLocation/CoreLocation.h>
+
+#import "ProtocolTemplate.h"
+
+#import "ToolsLibrary/InfoItem.h"
+
+@class GCDictionaryOKAPI;
+@class InfoViewer;
+@class GCBoundingBox;
+
 @interface ProtocolOKAPI : ProtocolTemplate
 
 - (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;

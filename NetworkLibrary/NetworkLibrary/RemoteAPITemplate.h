@@ -21,9 +21,10 @@
 
 #import <CoreLocation/CoreLocation.h>
 
-#import "RemoteAPI/GCOAuthBlackbox-delegate.h"
-#import "RemoteAPI/ProtocolGGCW-delegate.h"
-#import "RemoteAPI/RemoteAPITemplate-enum.h"
+#import "NetworkLibrary/GCOAuthBlackbox-delegate.h"
+#import "NetworkLibrary/ProtocolGGCW-delegate.h"
+#import "NetworkLibrary/RemoteAPITemplate-enum.h"
+#import "NetworkLibrary/RemoteAPITemplate-delegate.h"
 #import "ToolsLibrary/InfoItem.h"
 
 @class RemoteAPITemplate;
@@ -40,21 +41,6 @@
 @class ProtocolGCA2;
 @class ProtocolGGCW;
 @class GCOAuthBlackbox;
-
-@protocol RemoteAPIAuthenticationDelegate
-
-- (void)remoteAPI:(RemoteAPITemplate *)api failure:(NSString *)failure error:(NSError *)error;
-- (void)remoteAPI:(RemoteAPITemplate *)api success:(NSString *)success;
-
-@end
-
-@protocol RemoteAPIDownloadDelegate
-
-- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier iiImport:(InfoItemID)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account;
-- (void)remoteAPI_finishedDownloads:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks;
-- (void)remoteAPI_failed:(NSInteger)identifier;
-
-@end
 
 @interface RemoteAPITemplate : NSObject <GCOAuthBlackboxDelegate, ProtocolGGCWDelegate>
 {

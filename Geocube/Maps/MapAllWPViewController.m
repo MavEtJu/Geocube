@@ -21,7 +21,11 @@
 
 #import "MapAllWPViewController.h"
 
-#import "RemoteAPIProcessingGroup.h"
+#import "NetworkLibrary/RemoteAPIProcessingGroup.h"
+#import "NetworkLibrary/RemoteAPITemplate.h"
+#import "DatabaseLibrary/dbAccount.h"
+#import "DatabaseLibrary/dbAccount.h"
+
 #import "MapTemplate.h"
 
 @interface MapAllWPViewController ()

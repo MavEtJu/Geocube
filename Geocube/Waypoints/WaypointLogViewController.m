@@ -19,6 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "WaypointLogViewController.h"
+
+#import "NetworkLibrary/RemoteAPITemplate.h"
+#import "DatabaseLibrary/dbAccount.h"
+
 @interface WaypointLogViewController ()
 {
     dbWaypoint *waypoint;

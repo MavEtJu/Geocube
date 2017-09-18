@@ -21,7 +21,24 @@
 
 #import "RemoteAPIGGCW.h"
 
-#import "ImportGGCWJSON.h"
+#import "DatabaseLibrary/dbWaypoint.h"
+#import "DatabaseLibrary/dbTrackable.h"
+#import "DatabaseLibrary/dbLogString.h"
+#import "DatabaseLibrary/dbPersonalNote.h"
+#import "DatabaseLibrary/dbAccount.h"
+#import "DatabaseLibrary/dbName.h"
+#import "DatabaseLibrary/database-cache.h"
+#import "ToolsLibrary/InfoViewer.h"
+#import "ToolsLibrary/InfoItem.h"
+#import "ToolsLibrary/MyTools.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "BaseObjectsLibrary/GCArray.h"
+#import "BaseObjectsLibrary/GCDictionary.h"
+#import "BaseObjectsLibrary/GCString.h"
+#import "BaseObjectsLibrary/GCDataObjects.h"
+#import "NetworkLibrary/ProtocolGGCW.h"
+
+#import "Convertors/ImportGGCWJSON.h"
 
 @interface RemoteAPIGGCW ()
 

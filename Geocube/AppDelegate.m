@@ -19,9 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ManagersLibrary/DownloadManager.h"
+#import "AppDelegate.h"
 
-#import "RemoteAPI/OpenCageManager.h"
+#import "ManagersLibrary/DownloadManager.h"
+#import "NetworkLibrary/OpenCageManager.h"
+#import "NetworkLibrary/IOSFileTransfers.h"
 
 #import "Maps/MapAppleCache.h"
 #import "Maps/MapOneWPViewController.h"

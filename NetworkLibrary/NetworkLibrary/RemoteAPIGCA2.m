@@ -21,7 +21,19 @@
 
 #import "RemoteAPIGCA2.h"
 
-#import "ProtocolGCA2.h"
+#import "Geocube-Defines.h"
+
+#import "NetworkLibrary/ProtocolGCA2.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "DatabaseLibrary/dbWaypoint.h"
+#import "DatabaseLibrary/dbLogString.h"
+#import "DatabaseLibrary/dbAccount.h"
+#import "DatabaseLibrary/dbImage.h"
+#import "DatabaseLibrary/database-cache.h"
+#import "ToolsLibrary/InfoViewer.h"
+#import "ToolsLibrary/InfoItem.h"
+#import "ToolsLibrary/MyTools.h"
+#import "BaseObjectsLibrary/GCDictionary.h"
 
 @interface RemoteAPIGCA2 ()
 

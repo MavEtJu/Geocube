@@ -19,20 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface RemoteAPIProcessingGroup : NSObject
+#import "RemoteAPITemplate.h"
 
-- (void)clearAll;
-- (void)addIdentifier:(NSInteger)identifier;
-- (void)removeIdentifier:(NSInteger)identifier;
-- (BOOL)hasIdentifier:(NSInteger)identifier;
-- (BOOL)hasIdentifiers;
-
-- (void)expectedChunks:(NSInteger)identifier chunks:(NSInteger)chunks;
-- (void)increaseDownloadedChunks:(NSInteger)identifier;
-- (void)increaseProcessedChunks:(NSInteger)identifier;
-- (NSInteger)expectedChunks:(NSInteger)identifier;
-- (NSInteger)downloadedChunks:(NSInteger)identifier;
-- (NSInteger)processedChunks:(NSInteger)identifier;
-- (BOOL)hasAllProcessed:(NSInteger)identifier;
+@interface RemoteAPIGGCW : RemoteAPITemplate
 
 @end

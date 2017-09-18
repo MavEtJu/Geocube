@@ -21,7 +21,7 @@
 
 #import "ImportOKAPIJSON.h"
 
-#import "OpenCageManager.h"
+#import "NetworkLibrary/OpenCageManager.h"
 
 @interface ImportOKAPIJSON ()
 

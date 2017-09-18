@@ -21,7 +21,10 @@
 
 #import "ListTemplateViewController.h"
 
-#import "RemoteAPIProcessingGroup.h"
+#import "NetworkLibrary/RemoteAPIProcessingGroup.h"
+#import "NetworkLibrary/RemoteAPITemplate.h"
+#import "DatabaseLibrary/dbAccount.h"
+
 #import "ExportGPX.h"
 
 @interface ListTemplateViewController ()

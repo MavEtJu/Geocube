@@ -21,7 +21,7 @@
 
 #import "ImportGPX.h"
 
-#import "OpenCageManager.h"
+#import "NetworkLibrary/OpenCageManager.h"
 
 @interface ImportGPX ()
 {

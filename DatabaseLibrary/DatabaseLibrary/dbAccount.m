@@ -21,14 +21,14 @@
 
 #import "dbAccount.h"
 
+#import "Geocube-Defines.h"
+
 #import "ManagersLibrary/KeyManager.h"
 #import "ManagersLibrary/ConfigManager.h"
-
-#import "Geocube-Defines.h"
-#import "RemoteAPI/RemoteAPIOKAPI.h"
-#import "RemoteAPI/RemoteAPILiveAPI.h"
-#import "RemoteAPI/RemoteAPIGCA2.h"
-#import "RemoteAPI/RemoteAPIGGCW.h"
+#import "NetworkLibrary/RemoteAPIOKAPI.h"
+#import "NetworkLibrary/RemoteAPILiveAPI.h"
+#import "NetworkLibrary/RemoteAPIGCA2.h"
+#import "NetworkLibrary/RemoteAPIGGCW.h"
 
 #import "database-cache.h"
 #import "dbProtocol.h"

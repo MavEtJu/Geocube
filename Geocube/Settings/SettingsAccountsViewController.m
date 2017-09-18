@@ -22,6 +22,7 @@
 #import "SettingsAccountsViewController.h"
 
 #import "ManagersLibrary/DownloadManager.h"
+#import "NetworkLibrary/RemoteAPITemplate.h"
 
 #import "ImportGeocube.h"
 

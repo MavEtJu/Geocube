@@ -21,6 +21,14 @@
 
 #import "RemoteAPIOKAPI.h"
 
+#import "BaseObjectsLibrary/GCDictionary.h"
+#import "ToolsLibrary/InfoViewer.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "DatabaseLibrary/dbLogString.h"
+#import "DatabaseLibrary/dbWaypoint.h"
+#import "DatabaseLibrary/dbAccount.h"
+#import "DatabaseLibrary/database-cache.h"
+
 #import "ProtocolOKAPI.h"
 
 @interface RemoteAPIOKAPI ()

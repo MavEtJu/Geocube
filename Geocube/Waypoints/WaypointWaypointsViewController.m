@@ -19,7 +19,9 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "OpenCageManager.h"
+#import "WaypointWaypointsViewController.h"
+
+#import "NetworkLibrary/OpenCageManager.h"
 
 @interface WaypointWaypointsViewController ()
 {

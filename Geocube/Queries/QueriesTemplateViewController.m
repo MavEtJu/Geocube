@@ -19,7 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "RemoteAPIProcessingGroup.h"
+#import "QueriesTemplateViewController.h"
+
+#import "NetworkLibrary/RemoteAPIProcessingGroup.h"
+#import "NetworkLibrary/RemoteAPITemplate.h"
 
 @interface QueriesTemplateViewController ()
 {

@@ -22,6 +22,17 @@
 #import "ProtocolGCA2.h"
 
 #import "ManagersLibrary/DownloadManager.h"
+#import "ManagersLibrary/KeyManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/ConfigManager.h"
+#import "DatabaseLibrary/dbAccount.h"
+#import "DatabaseLibrary/dbWaypoint.h"
+#import "NetworkLibrary/RemoteAPITemplate.h"
+#import "ToolsLibrary/MyTools.h"
+#import "ToolsLibrary/Coordinates.h"
+#import "BaseObjectsLibrary/GCString.h"
+#import "BaseObjectsLibrary/GCDictionary.h"
+#import "BaseObjectsLibrary/GCBoundingBox.h"
 
 @interface ProtocolGCA2 ()
 {

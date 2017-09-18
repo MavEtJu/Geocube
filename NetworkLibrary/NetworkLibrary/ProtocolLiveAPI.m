@@ -21,7 +21,19 @@
 
 #import "ProtocolLiveAPI.h"
 
+#import "NetworkLibrary/RemoteAPITemplate.h"
+#import "NetworkLibrary/GCOAuthBlackbox.h"
 #import "ManagersLibrary/DownloadManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/ConfigManager.h"
+#import "BaseObjectsLibrary/GCURLRequest.h"
+#import "BaseObjectsLibrary/GCDictionary.h"
+#import "BaseObjectsLibrary/GCBoundingBox.h"
+#import "ToolsLibrary/MyTools.h"
+#import "ToolsLibrary/Coordinates.h"
+#import "DatabaseLibrary/dbAccount.h"
+#import "DatabaseLibrary/dbWaypoint.h"
+#import "DatabaseLibrary/dbTrackable.h"
 
 @interface ProtocolLiveAPI ()
 {

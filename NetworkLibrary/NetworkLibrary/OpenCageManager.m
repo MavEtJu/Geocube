@@ -21,7 +21,18 @@
 
 #import "OpenCageManager.h"
 
+#import "Geocube-Defines.h"
+
 #import "ManagersLibrary/DownloadManager.h"
+#import "ManagersLibrary/ConfigManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "BaseObjectsLibrary/GCURLRequest.h"
+#import "DatabaseLibrary/dbWaypoint.h"
+#import "DatabaseLibrary/dbLocality.h"
+#import "DatabaseLibrary/dbState.h"
+#import "DatabaseLibrary/dbCountry.h"
+#import "DatabaseLibrary/database-cache.h"
+#import "ToolsLibrary/MyTools.h"
 
 @interface OpenCageManager ()
 {

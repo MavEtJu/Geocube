@@ -22,6 +22,17 @@
 #import "ProtocolOKAPI.h"
 
 #import "ManagersLibrary/DownloadManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/ConfigManager.h"
+#import "ToolsLibrary/MyTools.h"
+#import "ToolsLibrary/Coordinates.h"
+#import "NetworkLibrary/RemoteAPITemplate.h"
+#import "NetworkLibrary/GCOAuthBlackbox.h"
+#import "BaseObjectsLibrary/GCDictionary.h"
+#import "BaseObjectsLibrary/GCURLRequest.h"
+#import "BaseObjectsLibrary/GCBoundingBox.h"
+#import "DatabaseLibrary/dbAccount.h"
+#import "DatabaseLibrary/dbName.h"
 
 @interface ProtocolOKAPI ()
 {
