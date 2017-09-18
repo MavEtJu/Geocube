@@ -62,8 +62,8 @@
 
     NKOColorPickerDidChangeColorBlock colorDidChangeBlock = ^(UIColor *colour){
         pin.colour = colour;
-        pin.rgb = [ImageLibrary ColorToRGB:colour];
-        pin.img = [ImageLibrary newPinHead:colour];
+        pin.rgb = [ImageManager ColorToRGB:colour];
+        pin.img = [ImageManager newPinHead:colour];
         hexLabel.text = pin.rgb;
         previewColour.image = pin.img;
     };
@@ -101,7 +101,7 @@
 
 - (void)chooseColour
 {
-    NSString *hexString = [ImageLibrary ColorToRGB:pin.colour];
+    NSString *hexString = [ImageManager ColorToRGB:pin.colour];
 
     pin.rgb = hexString;
     [pin dbUpdateRGB];

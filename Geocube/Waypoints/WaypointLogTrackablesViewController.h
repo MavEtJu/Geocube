@@ -19,6 +19,9 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@class dbTrackable;
+@class dbWaypoint;
+
 @protocol WaypointLogTrackablesDelegate
 
 - (void)refreshTable;

@@ -19,6 +19,20 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "AppDelegate.h"
+
+#import "ManagersLibrary/DownloadManager.h"
+#import "ManagersLibrary/OpenCageManager.h"
+#import "NetworkLibrary/IOSFileTransfers.h"
+#import "MapsLibrary/MapAppleCache.h"
+#import "MapsLibrary/MapOneWPViewController.h"
+#import "MapsLibrary/MapAllWPViewController.h"
+#import "MapsLibrary/MapTrackViewController.h"
+#import "MapsLibrary/MapLogsViewController.h"
+
+#import "Tools/ToolsRot13ViewController.h"
+#import "Tools/ToolsGNSSViewController.h"
+
 @import GoogleMaps;
 
 @interface AppDelegate ()
@@ -109,7 +123,7 @@
     [audioFeedback togglePlay:configManager.soundDirection];
 
     // Initialize the image library
-    imageLibrary = [[ImageLibrary alloc] init];
+    imageLibrary = [[ImageManager alloc] init];
 
     // Initialize the theme - after configurationManager, imageLibrary
     themeManager = [[ThemeManager alloc] init];

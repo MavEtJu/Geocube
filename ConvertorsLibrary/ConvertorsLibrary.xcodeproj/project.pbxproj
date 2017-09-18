@@ -1,0 +1,342 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E84E89C21F6F4CB8004F4BE9 /* ConvertorsLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E84E89BF1F6F4CB8004F4BE9 /* ConvertorsLibrary.h */; };
+		E84E89E21F6F4CF0004F4BE9 /* ExportGPX.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E89CF1F6F4CF0004F4BE9 /* ExportGPX.m */; };
+		E84E89E31F6F4CF0004F4BE9 /* ImportGCA2JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E89D11F6F4CF0004F4BE9 /* ImportGCA2JSON.m */; };
+		E84E89E41F6F4CF0004F4BE9 /* ImportGeocube.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E89D31F6F4CF0004F4BE9 /* ImportGeocube.m */; };
+		E84E89E51F6F4CF0004F4BE9 /* ImportGGCWJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E89D51F6F4CF0004F4BE9 /* ImportGGCWJSON.m */; };
+		E84E89E61F6F4CF0004F4BE9 /* ImportGPX.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E89D71F6F4CF0004F4BE9 /* ImportGPX.m */; };
+		E84E89E71F6F4CF0004F4BE9 /* ImportGPXGarmin.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E89D91F6F4CF0004F4BE9 /* ImportGPXGarmin.m */; };
+		E84E89E81F6F4CF0004F4BE9 /* ImportLiveAPIJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E89DB1F6F4CF0004F4BE9 /* ImportLiveAPIJSON.m */; };
+		E84E89E91F6F4CF0004F4BE9 /* ImportOKAPIJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E89DD1F6F4CF0004F4BE9 /* ImportOKAPIJSON.m */; };
+		E84E89EA1F6F4CF0004F4BE9 /* ImportTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E84E89E11F6F4CF0004F4BE9 /* ImportTemplate.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E84E89BA1F6F4CB8004F4BE9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				E84E89C21F6F4CB8004F4BE9 /* ConvertorsLibrary.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		E84E89BC1F6F4CB8004F4BE9 /* libConvertorsLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libConvertorsLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E84E89BF1F6F4CB8004F4BE9 /* ConvertorsLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertorsLibrary.h; sourceTree = "<group>"; };
+		E84E89CE1F6F4CF0004F4BE9 /* ExportGPX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportGPX.h; sourceTree = "<group>"; };
+		E84E89CF1F6F4CF0004F4BE9 /* ExportGPX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportGPX.m; sourceTree = "<group>"; };
+		E84E89D01F6F4CF0004F4BE9 /* ImportGCA2JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGCA2JSON.h; sourceTree = "<group>"; };
+		E84E89D11F6F4CF0004F4BE9 /* ImportGCA2JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGCA2JSON.m; sourceTree = "<group>"; };
+		E84E89D21F6F4CF0004F4BE9 /* ImportGeocube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGeocube.h; sourceTree = "<group>"; };
+		E84E89D31F6F4CF0004F4BE9 /* ImportGeocube.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGeocube.m; sourceTree = "<group>"; };
+		E84E89D41F6F4CF0004F4BE9 /* ImportGGCWJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGGCWJSON.h; sourceTree = "<group>"; };
+		E84E89D51F6F4CF0004F4BE9 /* ImportGGCWJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGGCWJSON.m; sourceTree = "<group>"; };
+		E84E89D61F6F4CF0004F4BE9 /* ImportGPX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGPX.h; sourceTree = "<group>"; };
+		E84E89D71F6F4CF0004F4BE9 /* ImportGPX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGPX.m; sourceTree = "<group>"; };
+		E84E89D81F6F4CF0004F4BE9 /* ImportGPXGarmin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportGPXGarmin.h; sourceTree = "<group>"; };
+		E84E89D91F6F4CF0004F4BE9 /* ImportGPXGarmin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportGPXGarmin.m; sourceTree = "<group>"; };
+		E84E89DA1F6F4CF0004F4BE9 /* ImportLiveAPIJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportLiveAPIJSON.h; sourceTree = "<group>"; };
+		E84E89DB1F6F4CF0004F4BE9 /* ImportLiveAPIJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportLiveAPIJSON.m; sourceTree = "<group>"; };
+		E84E89DC1F6F4CF0004F4BE9 /* ImportOKAPIJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportOKAPIJSON.h; sourceTree = "<group>"; };
+		E84E89DD1F6F4CF0004F4BE9 /* ImportOKAPIJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportOKAPIJSON.m; sourceTree = "<group>"; };
+		E84E89DE1F6F4CF0004F4BE9 /* ImportTemplate-delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImportTemplate-delegate.h"; sourceTree = "<group>"; };
+		E84E89DF1F6F4CF0004F4BE9 /* ImportTemplate-enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImportTemplate-enum.h"; sourceTree = "<group>"; };
+		E84E89E01F6F4CF0004F4BE9 /* ImportTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportTemplate.h; sourceTree = "<group>"; };
+		E84E89E11F6F4CF0004F4BE9 /* ImportTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportTemplate.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E84E89B91F6F4CB8004F4BE9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E84E89B31F6F4CB8004F4BE9 = {
+			isa = PBXGroup;
+			children = (
+				E84E89BE1F6F4CB8004F4BE9 /* ConvertorsLibrary */,
+				E84E89BD1F6F4CB8004F4BE9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E84E89BD1F6F4CB8004F4BE9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E84E89BC1F6F4CB8004F4BE9 /* libConvertorsLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E84E89BE1F6F4CB8004F4BE9 /* ConvertorsLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				E84E89BF1F6F4CB8004F4BE9 /* ConvertorsLibrary.h */,
+				E84E89CE1F6F4CF0004F4BE9 /* ExportGPX.h */,
+				E84E89CF1F6F4CF0004F4BE9 /* ExportGPX.m */,
+				E84E89DE1F6F4CF0004F4BE9 /* ImportTemplate-delegate.h */,
+				E84E89DF1F6F4CF0004F4BE9 /* ImportTemplate-enum.h */,
+				E84E89E01F6F4CF0004F4BE9 /* ImportTemplate.h */,
+				E84E89E11F6F4CF0004F4BE9 /* ImportTemplate.m */,
+				E84E89D01F6F4CF0004F4BE9 /* ImportGCA2JSON.h */,
+				E84E89D11F6F4CF0004F4BE9 /* ImportGCA2JSON.m */,
+				E84E89D21F6F4CF0004F4BE9 /* ImportGeocube.h */,
+				E84E89D31F6F4CF0004F4BE9 /* ImportGeocube.m */,
+				E84E89D41F6F4CF0004F4BE9 /* ImportGGCWJSON.h */,
+				E84E89D51F6F4CF0004F4BE9 /* ImportGGCWJSON.m */,
+				E84E89D61F6F4CF0004F4BE9 /* ImportGPX.h */,
+				E84E89D71F6F4CF0004F4BE9 /* ImportGPX.m */,
+				E84E89D81F6F4CF0004F4BE9 /* ImportGPXGarmin.h */,
+				E84E89D91F6F4CF0004F4BE9 /* ImportGPXGarmin.m */,
+				E84E89DA1F6F4CF0004F4BE9 /* ImportLiveAPIJSON.h */,
+				E84E89DB1F6F4CF0004F4BE9 /* ImportLiveAPIJSON.m */,
+				E84E89DC1F6F4CF0004F4BE9 /* ImportOKAPIJSON.h */,
+				E84E89DD1F6F4CF0004F4BE9 /* ImportOKAPIJSON.m */,
+			);
+			path = ConvertorsLibrary;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E84E89BB1F6F4CB8004F4BE9 /* ConvertorsLibrary */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E84E89C51F6F4CB8004F4BE9 /* Build configuration list for PBXNativeTarget "ConvertorsLibrary" */;
+			buildPhases = (
+				E84E89B81F6F4CB8004F4BE9 /* Sources */,
+				E84E89B91F6F4CB8004F4BE9 /* Frameworks */,
+				E84E89BA1F6F4CB8004F4BE9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ConvertorsLibrary;
+			productName = ConvertorsLibrary;
+			productReference = E84E89BC1F6F4CB8004F4BE9 /* libConvertorsLibrary.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E84E89B41F6F4CB8004F4BE9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Edwin Groothuis";
+				TargetAttributes = {
+					E84E89BB1F6F4CB8004F4BE9 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = NRQ2A5FE8M;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E84E89B71F6F4CB8004F4BE9 /* Build configuration list for PBXProject "ConvertorsLibrary" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E84E89B31F6F4CB8004F4BE9;
+			productRefGroup = E84E89BD1F6F4CB8004F4BE9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E84E89BB1F6F4CB8004F4BE9 /* ConvertorsLibrary */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E84E89B81F6F4CB8004F4BE9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E84E89E71F6F4CF0004F4BE9 /* ImportGPXGarmin.m in Sources */,
+				E84E89E51F6F4CF0004F4BE9 /* ImportGGCWJSON.m in Sources */,
+				E84E89EA1F6F4CF0004F4BE9 /* ImportTemplate.m in Sources */,
+				E84E89E41F6F4CF0004F4BE9 /* ImportGeocube.m in Sources */,
+				E84E89E21F6F4CF0004F4BE9 /* ExportGPX.m in Sources */,
+				E84E89E61F6F4CF0004F4BE9 /* ImportGPX.m in Sources */,
+				E84E89E91F6F4CF0004F4BE9 /* ImportOKAPIJSON.m in Sources */,
+				E84E89E31F6F4CF0004F4BE9 /* ImportGCA2JSON.m in Sources */,
+				E84E89E81F6F4CF0004F4BE9 /* ImportLiveAPIJSON.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E84E89C31F6F4CB8004F4BE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../ToolsLibrary",
+					"${SRCROOT}/../DatabaseLibrary",
+					"${SRCROOT}/../ManagersLibrary",
+					"${SRCROOT}/../BaseObjectsLibrary",
+					"${SRCROOT}/../Geocube",
+					"${SRCROOT}/../ContribLibrary",
+					"${SRCROOT}/../ConvertorsLibrary",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E84E89C41F6F4CB8004F4BE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../ToolsLibrary",
+					"${SRCROOT}/../DatabaseLibrary",
+					"${SRCROOT}/../ManagersLibrary",
+					"${SRCROOT}/../BaseObjectsLibrary",
+					"${SRCROOT}/../Geocube",
+					"${SRCROOT}/../ContribLibrary",
+					"${SRCROOT}/../ConvertorsLibrary",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E84E89C61F6F4CB8004F4BE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = NRQ2A5FE8M;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E84E89C71F6F4CB8004F4BE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = NRQ2A5FE8M;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E84E89B71F6F4CB8004F4BE9 /* Build configuration list for PBXProject "ConvertorsLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E84E89C31F6F4CB8004F4BE9 /* Debug */,
+				E84E89C41F6F4CB8004F4BE9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E84E89C51F6F4CB8004F4BE9 /* Build configuration list for PBXNativeTarget "ConvertorsLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E84E89C61F6F4CB8004F4BE9 /* Debug */,
+				E84E89C71F6F4CB8004F4BE9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E84E89B41F6F4CB8004F4BE9 /* Project object */;
+}

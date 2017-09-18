@@ -19,11 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol WaypointPersonalNoteDelegate
+#import "BaseObjectsLibrary/GCViewController.h"
+#import "DatabaseLibrary/dbWaypoint.h"
 
-- (void)WaypointPersonalNote_refreshTable;
-
-@end
+#import "WaypointPersonalNoteViewController-delegate.h"
 
 @interface WaypointPersonalNoteViewController : GCViewController <YIPopupTextViewDelegate>
 

@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "NotesSavedViewController.h"
+
+#import "NetworkLibrary/RemoteAPITemplate.h"
+
 @interface NotesSavedViewController ()
 {
     NSArray<dbWaypoint *> *waypointsWithLogs;

@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "BaseObjectsLibrary/GCTableViewCell.h"
+
+@class dbLog;
+
 #define XIB_LOGTABLEVIEWCELL @"LogTableViewCell"
 
 @interface LogTableViewCell : GCTableViewCell

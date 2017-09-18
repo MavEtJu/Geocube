@@ -19,6 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "BaseObjectsLibrary/GCViewController.h"
+
+@class GCOAuthBlackbox;
+@class ProtocolGGCW;
+
 @interface BrowserBrowserViewController : GCViewController <UIWebViewDelegate>
 
 - (void)showBrowser;
@@ -30,3 +35,5 @@
 - (void)prepare_ggcw:(ProtocolGGCW *)ggcw;
 
 @end
+
+extern BrowserBrowserViewController *browserViewController;

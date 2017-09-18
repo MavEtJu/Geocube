@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "BaseObjectsLibrary/GCTableViewCell.h"
+
+@class dbWaypoint;
+
 #define XIB_WAYPOINTTABLEVIEWCELL @"WaypointTableViewCell"
 
 @interface WaypointTableViewCell : GCTableViewCell

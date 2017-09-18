@@ -74,13 +74,13 @@
     /* Create pin data */
 
     dummyPin = [[dbPin alloc] init];
-    dummyPin.rgb_default = [ImageLibrary ColorToRGB:currentColour];
+    dummyPin.rgb_default = [ImageManager ColorToRGB:currentColour];
     [dummyPin finish];
-    dummyPin.img = [ImageLibrary newPinHead:dummyPin.colour];
+    dummyPin.img = [ImageManager newPinHead:dummyPin.colour];
 
     NKOColorPickerDidChangeColorBlock colorDidChangeBlock = ^(UIColor *colour){
-        dummyPin.img = [ImageLibrary newPinHead:colour];
-        dummyPin.rgb = [ImageLibrary ColorToRGB:colour];
+        dummyPin.img = [ImageManager newPinHead:colour];
+        dummyPin.rgb = [ImageManager ColorToRGB:colour];
         hexLabel.text = dummyPin.rgb;
         currentColour = colour;
         previewColour.image = dummyPin.img;
@@ -119,7 +119,7 @@
 
 - (void)chooseColour
 {
-    NSString *hexString = [ImageLibrary ColorToRGB:currentColour];
+    NSString *hexString = [ImageManager ColorToRGB:currentColour];
 
     /* Write to database */
     switch (type) {

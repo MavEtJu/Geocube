@@ -19,6 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "BrowserBrowserViewController.h"
+
+#import "ManagersLibrary/DownloadManager.h"
+#import "NetworkLibrary/GCOAuthBlackbox.h"
+#import "NetworkLibrary/ProtocolGGCW.h"
+
 @interface BrowserBrowserViewController ()
 {
     UIWebView *webView;

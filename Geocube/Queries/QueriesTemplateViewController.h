@@ -19,6 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <Foundation/Foundation.h>
+
+#import "BaseObjectsLibrary/GCTableViewController.h"
+
+#import "NetworkLibrary/RemoteAPITemplate-delegate.h"
+
 @interface QueriesTemplateViewController : GCTableViewController <RemoteAPIDownloadDelegate>
 {
     dbAccount *account;

@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "WaypointWaypointsViewController.h"
+
+#import "ManagersLibrary/OpenCageManager.h"
+
 @interface WaypointWaypointsViewController ()
 {
     NSArray<dbWaypoint *> *wps;

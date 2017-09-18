@@ -55,3 +55,7 @@
 - (void)mh_tabBarController:(MHTabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController atIndex:(NSUInteger)index;
 @end
 
+extern MHTabBarController *browserTabController;
+extern MHTabBarController *keepTrackTabController;
+extern MHTabBarController *locationlessMapTabController;
+

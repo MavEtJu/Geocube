@@ -19,6 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "TrackablesInventoryViewController.h"
+
+#import "DatabaseLibrary/dbAccount.h"
+#import "NetworkLibrary/RemoteAPITemplate.h"
+
 @interface TrackablesInventoryViewController ()
 
 @property (strong, nonatomic) UISearchController *searchController;

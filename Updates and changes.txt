@@ -1,0 +1,150 @@
+Interesting additions and changes to Geocube
+
+Version 1.6(x)
+
+  Features:
+  - Add button to enable/disable OpenCage support.
+  - EXIF GPS data for the images imported from the library and for
+    the images made by the camera is now captured.
+
+  Fixes:
+  - Remove "rotate to bearing" for the map as it was never implemented.
+  - Modularize the design by creating a lot of libraries. This will
+    reduce the compile time when adjusting include files and source
+    files.
+
+Version 1.5(x)
+
+  Features:
+  - Search option in the Waypoints list, trackables and Locationless
+    lists.
+  - When tapping on a place on the map, it will draw a line and show
+    the distance. Google Maps only.
+  - Accuracy of the location services can be set to static (navigating
+    / non-navigating) or dynamic (near, midrange, far).
+  - Add a private account for importing of waypoints unrelated to
+    listing services.
+  - Show speed on the compass.
+  - Keep Tracks can be disabled, but still can be done in memory.
+  - Be able to show KML files.
+
+  Fixes:
+  - If the locale doesn't use the metric system, then default to
+    non-metric distances.
+  - Fixed background colour of Keep Track -> Beeper.
+  - Fix initial display of coordinates while editing waypoints.
+  - Keep Track "remember location" didn't work anymore.
+  - Subtitled tableview cells now properly adjust their height.
+
+Version 1.4(27)
+
+  Features:
+  - Waypoint filters can filter on account.
+  - Add support for locationless caches: You can see them and
+    tag them for planning.
+  - Logs with coordinates can now be mapped. This is most likely
+    only for moveables and locationless caches.
+  - GCA: Logs now can contain coordinates.
+  - When downloading configuration only the changed parts are
+    downloaded instead of everything.
+  - Auto-populate locaties (suburb, town, city) based on Geodata
+    of the OpenCage Data project.
+  - Add Gadget cache type.
+  - At startup after an upgrade, you will get a heads-up that the
+    configuration needs to be reloaded.
+  - At startup it will check for updates in the configuration.
+  - Localization to the Dutch language.
+  - Automatic creation of backups of the database.
+  - Be able to strip the HTML code from the description.
+  - Add beeper to be able to find out where the phone was left.
+  - Be able to extra EXIF GNSS data from images into a waypoint.
+
+  Fixes:
+  - Made the UI for a waypoint more sane with regards to "what is
+    disabled and what is not".
+  - Checkers for input of coordinates don't complain about trailing
+    's anymore.
+  - Fix waypoint info vertical position after having submitted the
+    logs of a waypoint.
+  - Not all logtypes were recognized on GCA.
+  - Removed some duplicate/obsolete fields from the database tables.
+  - GPS -> GNNS.
+  - Fixed the sometimes disappearance of the Local Menu button.
+  - Refresh of trackables won't show doubles anymore.
+  - Moved several developer tabs to the Developer menu.
+  - Refresh waypoints on the map will not hang forever anymore if
+    there are more than 1 records to be returned via the LiveAPI.
+  - When the interface was landscape before the map was loaded, the
+    waypoint infoviewer wouldn't resize properly when the interface
+    was set back to portrait. That is now fixed.
+  - When opening a non-downloaded image, download it.
+  - Waypoints added as the first sub waypoint of a waypoint would
+    not be in an usergroup and removed at the next cleanup. Fixed
+    now.
+
+Version 1.3(26)
+
+  Features:
+  - Geocaching.com website account type. While it doesn't support
+    the LiveAPI or the "Reload Waypoints" feature on the map, you
+    can download Pocket Queries, "Refresh Waypoint", Trackables.
+  - In the Tools -> GPS section, be able to create a waypoint on
+    the average coordinates.
+  - Added log templates and log macros.
+  - The logs can be prepopulated with templates.
+  - Saved logs can be seen in the Saved Logs overview under Notes.
+  - Groundspeak geocaching.com: Corrected Coordinates are now imported
+    properly.
+
+  Fixes:
+  - iPad: The query table cells are now properly resized.
+  - iPad: The picker dialog box are now working properly.
+  - "Waypoint disabled" log image is now 30x30.
+  - Queries: A better way to display that there is nothing.
+  - Improved fonts, indents on views on the iPad.
+  - Made Geocaching Australia authentication more obvious.
+  - Statistics screen is now a proper table.
+  - Waypoint Info view under the map for the iPad now looks better.
+  - When downloading a lot the InfoViewer at the bottom now should
+    show up properly even if there is a lot of delay.
+  - When a GPX import fails, be noisy about it instead of going
+    from "yeah all is fine".
+  - During the very first run, the Application Support directory
+    doesn't exist on the sandbox on a hardware device, despite it
+    being a system directory. This would cause the initial
+    download of the configuration to fail as there was no database
+    yet. During a second run it did exist because of a file cache
+    was created in the Application Support directory.
+  - File Browser now works with the Application Support Directory.
+  - Download and import infoviewer now starts properly at bottom
+    of screen.
+  - Themes: Properly deal tableview headers.
+
+Version 1.2(20)
+
+  Features:
+  - Proper map on the Keep Track section.
+  - Being able to load/save filter collections.
+  - Filter additions: enabled and archived.
+  - Lists now can be sorted on "date/time added to the list".
+  - Show icons of the last six logs in the waypoint view.
+  - Logs not imported but written by the app are now marked as such.
+  - Able to delete log entries.
+
+  Fixes:
+  - The Waypoint header now works in the Night Theme.
+  - A waypoint marked as highlighted is now shown properly in the Night Theme.
+  - Fix problem with swipe-left on waypoint images.
+  - Close button area is now bigger than before.
+  - Add iPad support in the app, not yet in the workflow and not yet in landscape mode.
+
+Version 1.1(15)
+
+  Features:
+  - Added ESRi WorldTopoMap.
+  - Now using the Geocaching Australia API.
+  - Add toolbox.
+
+Version 1.0(9)
+
+- Initial release.

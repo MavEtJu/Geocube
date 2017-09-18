@@ -27,7 +27,7 @@ database *db = nil;
 DatabaseCache *dbc = nil;
 
 // Image Library
-ImageLibrary *imageLibrary = nil;
+ImageManager *imageLibrary = nil;
 
 // Images Download Manager
 ImagesDownloadManager *imagesDownloadManager = nil;

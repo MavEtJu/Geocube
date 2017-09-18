@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "ToolsRot13ViewController.h"
+
 @interface ToolsRot13ViewController ()
 {
     UITextView *labelInput;

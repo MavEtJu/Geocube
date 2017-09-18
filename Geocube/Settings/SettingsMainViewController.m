@@ -19,6 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "SettingsMainViewController.h"
+
+#import "MapsLibrary/MapBrand.h"
+#import "MapsLibrary/MapTemplateViewController.h"
+
 @interface SettingsMainViewController ()
 {
     NSArray<NSString *> *compassTypes;
@@ -567,9 +572,9 @@ enum sections {
         case SECTION_MAPCOLOURS: {
             switch (indexPath.row) {
                 case SECTION_MAPCOLOURS_DESTINATION:
-                    CELL_RIGHTIMAGE(_(@"settingsmainviewcontroller-Destination line"), [ImageLibrary circleWithColour:configManager.mapDestinationColour])
+                    CELL_RIGHTIMAGE(_(@"settingsmainviewcontroller-Destination line"), [ImageManager circleWithColour:configManager.mapDestinationColour])
                 case SECTION_MAPCOLOURS_TRACK:
-                    CELL_RIGHTIMAGE(_(@"settingsmainviewcontroller-Track line"), [ImageLibrary circleWithColour:configManager.mapTrackColour])
+                    CELL_RIGHTIMAGE(_(@"settingsmainviewcontroller-Track line"), [ImageManager circleWithColour:configManager.mapTrackColour])
             }
             abort();
         }

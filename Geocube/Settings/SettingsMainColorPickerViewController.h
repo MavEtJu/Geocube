@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "GCViewController.h"
+#import "BaseObjectsLibrary/GCViewController.h"
 
 @interface SettingsMainColorPickerViewController : GCViewController
 
