@@ -140,7 +140,7 @@
 		E89555001F6C8AC40026582B /* dbType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbType.m; sourceTree = "<group>"; };
 		E89555011F6C8AC40026582B /* dbWaypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbWaypoint.h; sourceTree = "<group>"; };
 		E89555021F6C8AC40026582B /* dbWaypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbWaypoint.m; sourceTree = "<group>"; };
-		E89555281F6CA1A00026582B /* DatabaseLibrary-Defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DatabaseLibrary-Defines.h"; sourceTree = "<group>"; };
+		E89555281F6CA1A00026582B /* DatabaseLibrary-defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DatabaseLibrary-defines.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,7 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				E89554AC1F6C8A870026582B /* DatabaseLibrary.h */,
-				E89555281F6CA1A00026582B /* DatabaseLibrary-Defines.h */,
+				E89555281F6CA1A00026582B /* DatabaseLibrary-defines.h */,
 				E89554BB1F6C8AC40026582B /* database.h */,
 				E89554BC1F6C8AC40026582B /* database.m */,
 				E89554C01F6C8AC40026582B /* database-cache.h */,
