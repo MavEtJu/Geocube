@@ -20,13 +20,13 @@
  */
 
 /* Types */
-#import "BaseObjectsLibrary/GCArray.h"
+#import "BaseObjectsLibrary/GCArrayObjects.h"
 #import "BaseObjectsLibrary/GCBoundingBox.h"
 #import "BaseObjectsLibrary/GCDataObjects.h"
-#import "BaseObjectsLibrary/GCDictionary.h"
+#import "BaseObjectsLibrary/GCDictionaryObjects.h"
 #import "BaseObjectsLibrary/GCLocationCoordinate2D.h"
-#import "BaseObjectsLibrary/GCString.h"
-#import "BaseObjectsLibrary/GCURLRequest.h"
+#import "BaseObjectsLibrary/GCStringObjects.h"
+#import "BaseObjectsLibrary/GCURLRequestObjects.h"
 
 /* Maps */
 #import "BaseObjectsLibrary/GCCircle.h"

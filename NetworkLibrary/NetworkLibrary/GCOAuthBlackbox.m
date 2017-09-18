@@ -27,7 +27,7 @@
 
 #import "ManagersLibrary/DownloadManager.h"
 #import "ToolsLibrary/MyTools.h"
-#import "BaseObjectsLibrary/GCURLRequest.h"
+#import "BaseObjectsLibrary/GCURLRequestObjects.h"
 
 #import "Browser/BrowserBrowserViewController.h"
 

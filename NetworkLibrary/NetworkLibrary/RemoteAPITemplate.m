@@ -32,8 +32,8 @@
 #import "DatabaseLibrary/dbAccount.h"
 #import "DatabaseLibrary/dbProtocol.h"
 #import "DatabaseLibrary/dbName.h"
-#import "BaseObjectsLibrary/GCURLRequest.h"
-#import "BaseObjectsLibrary/GCDictionary.h"
+#import "BaseObjectsLibrary/GCURLRequestObjects.h"
+#import "BaseObjectsLibrary/GCDictionaryObjects.h"
 #import "ToolsLibrary/MyTools.h"
 #import "ToolsLibrary/Coordinates.h"
 

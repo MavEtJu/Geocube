@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "GCURLRequest.h"
+#import "GCURLRequestObjects.h"
 
 @interface GCURLRequest ()
 

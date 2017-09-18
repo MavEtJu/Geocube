@@ -33,9 +33,9 @@
 #import "Convertors/ImportGCA2JSON.h"
 #import "Convertors/ImportOKAPIJSON.h"
 #import "Convertors/ImportLiveAPIJSON.h"
-#import "BaseObjectsLibrary/GCString.h"
-#import "BaseObjectsLibrary/GCArray.h"
-#import "BaseObjectsLibrary/GCDictionary.h"
+#import "BaseObjectsLibrary/GCStringObjects.h"
+#import "BaseObjectsLibrary/GCArrayObjects.h"
+#import "BaseObjectsLibrary/GCDictionaryObjects.h"
 #import "DatabaseLibrary/dbWaypoint.h"
 #import "ManagersLibrary/WaypointManager.h"
 

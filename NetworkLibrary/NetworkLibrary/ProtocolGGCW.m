@@ -31,8 +31,8 @@
 #import "DatabaseLibrary/dbLogString.h"
 #import "ToolsLibrary/MyTools.h"
 #import "ContribLibrary/TFHpple/TFHpple.h"
-#import "BaseObjectsLibrary/GCDictionary.h"
-#import "BaseObjectsLibrary/GCString.h"
+#import "BaseObjectsLibrary/GCDictionaryObjects.h"
+#import "BaseObjectsLibrary/GCStringObjects.h"
 #import "BaseObjectsLibrary/GCDataObjects.h"
 
 @interface ProtocolGGCW ()

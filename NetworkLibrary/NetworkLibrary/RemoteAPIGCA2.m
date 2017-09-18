@@ -33,7 +33,7 @@
 #import "ToolsLibrary/InfoViewer.h"
 #import "ToolsLibrary/InfoItem.h"
 #import "ToolsLibrary/MyTools.h"
-#import "BaseObjectsLibrary/GCDictionary.h"
+#import "BaseObjectsLibrary/GCDictionaryObjects.h"
 
 @interface RemoteAPIGCA2 ()
 

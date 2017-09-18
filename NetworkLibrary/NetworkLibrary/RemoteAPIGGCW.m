@@ -32,9 +32,9 @@
 #import "ToolsLibrary/InfoItem.h"
 #import "ToolsLibrary/MyTools.h"
 #import "ManagersLibrary/LocalizationManager.h"
-#import "BaseObjectsLibrary/GCArray.h"
-#import "BaseObjectsLibrary/GCDictionary.h"
-#import "BaseObjectsLibrary/GCString.h"
+#import "BaseObjectsLibrary/GCArrayObjects.h"
+#import "BaseObjectsLibrary/GCDictionaryObjects.h"
+#import "BaseObjectsLibrary/GCStringObjects.h"
 #import "BaseObjectsLibrary/GCDataObjects.h"
 #import "NetworkLibrary/ProtocolGGCW.h"
 

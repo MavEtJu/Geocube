@@ -24,7 +24,7 @@
 #import "Geocube-Globals.h"
 #import "Geocube-Defines.h"
 
-#import "BaseObjectsLibrary/GCURLRequest.h"
+#import "BaseObjectsLibrary/GCURLRequestObjects.h"
 #import "ToolsLibrary/MyTools.h"
 #import "DatabaseLibrary/dbImage.h"
 #import "ManagersLibrary/ConfigManager.h"

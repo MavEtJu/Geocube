@@ -30,8 +30,8 @@
 #import "NetworkLibrary/RemoteAPITemplate.h"
 #import "ToolsLibrary/MyTools.h"
 #import "ToolsLibrary/Coordinates.h"
-#import "BaseObjectsLibrary/GCString.h"
-#import "BaseObjectsLibrary/GCDictionary.h"
+#import "BaseObjectsLibrary/GCStringObjects.h"
+#import "BaseObjectsLibrary/GCDictionaryObjects.h"
 #import "BaseObjectsLibrary/GCBoundingBox.h"
 
 @interface ProtocolGCA2 ()

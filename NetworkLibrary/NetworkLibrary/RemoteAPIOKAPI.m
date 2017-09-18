@@ -21,7 +21,7 @@
 
 #import "RemoteAPIOKAPI.h"
 
-#import "BaseObjectsLibrary/GCDictionary.h"
+#import "BaseObjectsLibrary/GCDictionaryObjects.h"
 #import "ToolsLibrary/InfoViewer.h"
 #import "ManagersLibrary/LocalizationManager.h"
 #import "DatabaseLibrary/dbLogString.h"

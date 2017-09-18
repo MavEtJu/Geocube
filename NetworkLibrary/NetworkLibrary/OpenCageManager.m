@@ -26,7 +26,7 @@
 #import "ManagersLibrary/DownloadManager.h"
 #import "ManagersLibrary/ConfigManager.h"
 #import "ManagersLibrary/LocalizationManager.h"
-#import "BaseObjectsLibrary/GCURLRequest.h"
+#import "BaseObjectsLibrary/GCURLRequestObjects.h"
 #import "DatabaseLibrary/dbWaypoint.h"
 #import "DatabaseLibrary/dbLocality.h"
 #import "DatabaseLibrary/dbState.h"

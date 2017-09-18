@@ -21,12 +21,12 @@
 		E857843F1F6BE46D00D25EE6 /* GCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E857843E1F6BE46D00D25EE6 /* GCViewController.m */; };
 		E85784421F6BE6C400D25EE6 /* GCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85784411F6BE6C400D25EE6 /* GCTableViewController.m */; };
 		E881C9DB1F6B788200A17060 /* GCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E881C9DA1F6B788100A17060 /* GCTableViewCell.m */; };
-		E881CA881F6BB0A000A17060 /* GCURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CA871F6BB0A000A17060 /* GCURLRequest.m */; };
+		E881CA881F6BB0A000A17060 /* GCURLRequestObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E881CA871F6BB0A000A17060 /* GCURLRequestObjects.m */; };
 		E8EE47931F6B457C00AB13BC /* BaseObjectsLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E8EE47901F6B457C00AB13BC /* BaseObjectsLibrary.h */; };
-		E8EE47AB1F6B45C700AB13BC /* GCArray.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47AA1F6B45C700AB13BC /* GCArray.m */; };
+		E8EE47AB1F6B45C700AB13BC /* GCArrayObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47AA1F6B45C700AB13BC /* GCArrayObjects.m */; };
 		E8EE47BF1F6B479B00AB13BC /* GCDataObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47BA1F6B479B00AB13BC /* GCDataObjects.m */; };
-		E8EE47C01F6B479B00AB13BC /* GCDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47BC1F6B479B00AB13BC /* GCDictionary.m */; };
-		E8EE47C11F6B479B00AB13BC /* GCString.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47BE1F6B479B00AB13BC /* GCString.m */; };
+		E8EE47C01F6B479B00AB13BC /* GCDictionaryObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47BC1F6B479B00AB13BC /* GCDictionaryObjects.m */; };
+		E8EE47C11F6B479B00AB13BC /* GCStringObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47BE1F6B479B00AB13BC /* GCStringObjects.m */; };
 		E8EE47C41F6B484200AB13BC /* GCLocationCoordinate2D.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47C31F6B484200AB13BC /* GCLocationCoordinate2D.m */; };
 		E8EE47CC1F6B4AA100AB13BC /* GCBoundingBox.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47CB1F6B4AA100AB13BC /* GCBoundingBox.m */; };
 		E8EE47E81F6B4ECC00AB13BC /* GCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE47E71F6B4ECC00AB13BC /* GCButton.m */; };
@@ -98,18 +98,18 @@
 		E85784411F6BE6C400D25EE6 /* GCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewController.m; sourceTree = "<group>"; };
 		E881C9D91F6B788100A17060 /* GCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTableViewCell.h; sourceTree = "<group>"; };
 		E881C9DA1F6B788100A17060 /* GCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTableViewCell.m; sourceTree = "<group>"; };
-		E881CA861F6BB0A000A17060 /* GCURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCURLRequest.h; sourceTree = "<group>"; };
-		E881CA871F6BB0A000A17060 /* GCURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCURLRequest.m; sourceTree = "<group>"; };
+		E881CA861F6BB0A000A17060 /* GCURLRequestObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCURLRequestObjects.h; sourceTree = "<group>"; };
+		E881CA871F6BB0A000A17060 /* GCURLRequestObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCURLRequestObjects.m; sourceTree = "<group>"; };
 		E8EE478D1F6B457C00AB13BC /* libBaseObjectsLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBaseObjectsLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EE47901F6B457C00AB13BC /* BaseObjectsLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseObjectsLibrary.h; sourceTree = "<group>"; };
-		E8EE47A91F6B45C700AB13BC /* GCArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCArray.h; sourceTree = "<group>"; };
-		E8EE47AA1F6B45C700AB13BC /* GCArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCArray.m; sourceTree = "<group>"; };
+		E8EE47A91F6B45C700AB13BC /* GCArrayObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCArrayObjects.h; sourceTree = "<group>"; };
+		E8EE47AA1F6B45C700AB13BC /* GCArrayObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCArrayObjects.m; sourceTree = "<group>"; };
 		E8EE47B91F6B479B00AB13BC /* GCDataObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDataObjects.h; sourceTree = "<group>"; };
 		E8EE47BA1F6B479B00AB13BC /* GCDataObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDataObjects.m; sourceTree = "<group>"; };
-		E8EE47BB1F6B479B00AB13BC /* GCDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDictionary.h; sourceTree = "<group>"; };
-		E8EE47BC1F6B479B00AB13BC /* GCDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDictionary.m; sourceTree = "<group>"; };
-		E8EE47BD1F6B479B00AB13BC /* GCString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCString.h; sourceTree = "<group>"; };
-		E8EE47BE1F6B479B00AB13BC /* GCString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCString.m; sourceTree = "<group>"; };
+		E8EE47BB1F6B479B00AB13BC /* GCDictionaryObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDictionaryObjects.h; sourceTree = "<group>"; };
+		E8EE47BC1F6B479B00AB13BC /* GCDictionaryObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDictionaryObjects.m; sourceTree = "<group>"; };
+		E8EE47BD1F6B479B00AB13BC /* GCStringObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCStringObjects.h; sourceTree = "<group>"; };
+		E8EE47BE1F6B479B00AB13BC /* GCStringObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCStringObjects.m; sourceTree = "<group>"; };
 		E8EE47C21F6B484200AB13BC /* GCLocationCoordinate2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCLocationCoordinate2D.h; sourceTree = "<group>"; };
 		E8EE47C31F6B484200AB13BC /* GCLocationCoordinate2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCLocationCoordinate2D.m; sourceTree = "<group>"; };
 		E8EE47CA1F6B4AA100AB13BC /* GCBoundingBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCBoundingBox.h; sourceTree = "<group>"; };
@@ -214,20 +214,20 @@
 		E8EE47E41F6B4D6500AB13BC /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				E8EE47A91F6B45C700AB13BC /* GCArray.h */,
-				E8EE47AA1F6B45C700AB13BC /* GCArray.m */,
+				E8EE47A91F6B45C700AB13BC /* GCArrayObjects.h */,
+				E8EE47AA1F6B45C700AB13BC /* GCArrayObjects.m */,
 				E8EE47CA1F6B4AA100AB13BC /* GCBoundingBox.h */,
 				E8EE47CB1F6B4AA100AB13BC /* GCBoundingBox.m */,
 				E8EE47B91F6B479B00AB13BC /* GCDataObjects.h */,
 				E8EE47BA1F6B479B00AB13BC /* GCDataObjects.m */,
-				E8EE47BB1F6B479B00AB13BC /* GCDictionary.h */,
-				E8EE47BC1F6B479B00AB13BC /* GCDictionary.m */,
+				E8EE47BB1F6B479B00AB13BC /* GCDictionaryObjects.h */,
+				E8EE47BC1F6B479B00AB13BC /* GCDictionaryObjects.m */,
 				E8EE47C21F6B484200AB13BC /* GCLocationCoordinate2D.h */,
 				E8EE47C31F6B484200AB13BC /* GCLocationCoordinate2D.m */,
-				E8EE47BD1F6B479B00AB13BC /* GCString.h */,
-				E8EE47BE1F6B479B00AB13BC /* GCString.m */,
-				E881CA861F6BB0A000A17060 /* GCURLRequest.h */,
-				E881CA871F6BB0A000A17060 /* GCURLRequest.m */,
+				E8EE47BD1F6B479B00AB13BC /* GCStringObjects.h */,
+				E8EE47BE1F6B479B00AB13BC /* GCStringObjects.m */,
+				E881CA861F6BB0A000A17060 /* GCURLRequestObjects.h */,
+				E881CA871F6BB0A000A17060 /* GCURLRequestObjects.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -335,7 +335,7 @@
 			files = (
 				E84E88741F6CF8E2004F4BE9 /* GCTableViewCellRightImage.m in Sources */,
 				E84E88A11F6CFCFA004F4BE9 /* GCGMSCircle.m in Sources */,
-				E881CA881F6BB0A000A17060 /* GCURLRequest.m in Sources */,
+				E881CA881F6BB0A000A17060 /* GCURLRequestObjects.m in Sources */,
 				E84E88731F6CF8E2004F4BE9 /* GCTableViewCellKeyValue.m in Sources */,
 				E84E88781F6CF8E2004F4BE9 /* GCTableViewCellSwitch.m in Sources */,
 				E84E88751F6CF8E2004F4BE9 /* GCTableViewCellRightImageDisclosure.m in Sources */,
@@ -349,16 +349,16 @@
 				E8EE47BF1F6B479B00AB13BC /* GCDataObjects.m in Sources */,
 				E84E88791F6CF8E2004F4BE9 /* GCTableViewCellWithSubtitle.m in Sources */,
 				E85784421F6BE6C400D25EE6 /* GCTableViewController.m in Sources */,
-				E8EE47C01F6B479B00AB13BC /* GCDictionary.m in Sources */,
+				E8EE47C01F6B479B00AB13BC /* GCDictionaryObjects.m in Sources */,
 				E84E88A21F6CFCFA004F4BE9 /* GCWaypointAnnotation.m in Sources */,
 				E8EE47FD1F6B567F00AB13BC /* GCScrollView.m in Sources */,
-				E8EE47C11F6B479B00AB13BC /* GCString.m in Sources */,
+				E8EE47C11F6B479B00AB13BC /* GCStringObjects.m in Sources */,
 				E8EE480A1F6B57DA00AB13BC /* GCTableViewHeaderFooterView.m in Sources */,
 				E8EE47CC1F6B4AA100AB13BC /* GCBoundingBox.m in Sources */,
 				E881C9DB1F6B788200A17060 /* GCTableViewCell.m in Sources */,
 				E8EE47C41F6B484200AB13BC /* GCLocationCoordinate2D.m in Sources */,
 				E8EE47F21F6B548000AB13BC /* GCLabel.m in Sources */,
-				E8EE47AB1F6B45C700AB13BC /* GCArray.m in Sources */,
+				E8EE47AB1F6B45C700AB13BC /* GCArrayObjects.m in Sources */,
 				E84E88761F6CF8E2004F4BE9 /* GCTableViewCellSubtitleRightImage.m in Sources */,
 				E84E88A01F6CFCFA004F4BE9 /* GCCoordsHistorical.m in Sources */,
 				E8EE47EE1F6B514800AB13BC /* GCCloseButton.m in Sources */,

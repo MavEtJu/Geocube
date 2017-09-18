@@ -28,7 +28,7 @@
 #import "ToolsLibrary/InfoViewer.h"
 #import "ToolsLibrary/InfoItem.h"
 #import "ToolsLibrary/MyTools.h"
-#import "BaseObjectsLibrary/GCDictionary.h"
+#import "BaseObjectsLibrary/GCDictionaryObjects.h"
 #import "ManagersLibrary/LocalizationManager.h"
 #import "DatabaseLibrary/dbAccount.h"
 #import "DatabaseLibrary/dbTrackable.h"
