@@ -22,7 +22,8 @@
 #import "dbTrackElement.h"
 
 #import "Geocube-defines.h"
-#import "dbTrack.h"
+
+#import "DatabaseLibrary/dbTrack.h"
 
 @interface dbTrackElement ()
 

@@ -22,11 +22,12 @@
 #import "dbLog.h"
 
 #import "Geocube-defines.h"
-#import "dbName.h"
-#import "dbWaypoint.h"
-#import "dbAccount.h"
-#import "dbLogString.h"
-#import "DatabaseCache.h"
+
+#import "DatabaseLibrary/dbName.h"
+#import "DatabaseLibrary/dbWaypoint.h"
+#import "DatabaseLibrary/dbAccount.h"
+#import "DatabaseLibrary/dbLogString.h"
+#import "DatabaseLibrary/DatabaseCache.h"
 
 @interface dbLog ()
 

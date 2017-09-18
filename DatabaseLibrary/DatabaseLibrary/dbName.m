@@ -22,8 +22,9 @@
 #import "dbName.h"
 
 #import "Geocube-defines.h"
-#import "DatabaseCache.h"
-#import "dbAccount.h"
+
+#import "DatabaseLibrary/DatabaseCache.h"
+#import "DatabaseLibrary/dbAccount.h"
 
 @interface dbName ()
 

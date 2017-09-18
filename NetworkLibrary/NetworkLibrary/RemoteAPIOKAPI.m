@@ -28,8 +28,7 @@
 #import "DatabaseLibrary/dbWaypoint.h"
 #import "DatabaseLibrary/dbAccount.h"
 #import "DatabaseLibrary/DatabaseCache.h"
-
-#import "ProtocolOKAPI.h"
+#import "NetworkLibrary/ProtocolOKAPI.h"
 
 @interface RemoteAPIOKAPI ()
 

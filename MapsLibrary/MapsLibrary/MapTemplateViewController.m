@@ -21,7 +21,7 @@
 
 #import "MapTemplateViewController.h"
 
-#import "GoogleMaps/GMSServices.h"
+#import <GoogleMaps/GMSServices.h>
 
 #import "Geocube-defines.h"
 

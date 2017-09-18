@@ -21,8 +21,8 @@
 
 #import "ToolsLibrary/InfoItem.h"
 
-#import "ImportTemplate-delegate.h"
-#import "ImportTemplate-enum.h"
+#import "ConvertorsLibrary/ImportTemplate-delegate.h"
+#import "ConvertorsLibrary/ImportTemplate-enum.h"
 
 @class InfoViewer;
 @class dbGroup;

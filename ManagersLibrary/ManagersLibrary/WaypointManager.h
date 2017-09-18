@@ -22,9 +22,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-#import "LocationManager-delegate.h"
-#import "WaypointManager-delegate.h"
-
+#import "ManagersLibrary/LocationManager-delegate.h"
+#import "ManagersLibrary/WaypointManager-delegate.h"
 #import "DatabaseLibrary/Database.h"
 
 @class dbWaypoint;

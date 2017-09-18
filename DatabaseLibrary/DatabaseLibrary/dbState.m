@@ -21,7 +21,7 @@
 
 #import "dbState.h"
 
-#import "DatabaseCache.h"
+#import "DatabaseLibrary/DatabaseCache.h"
 
 @interface dbState ()
 

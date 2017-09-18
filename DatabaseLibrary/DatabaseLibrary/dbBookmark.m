@@ -21,7 +21,7 @@
 
 #import "dbBookmark.h"
 
-#import "dbFileImport.h"
+#import "DatabaseLibrary/dbFileImport.h"
 
 @interface dbBookmark ()
 

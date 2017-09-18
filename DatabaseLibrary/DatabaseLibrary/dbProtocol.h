@@ -21,7 +21,7 @@
 
 #import "dbObject.h"
 
-#import "dbProtocol-enum.h"
+#import "DatabaseLibrary/dbProtocol-enum.h"
 
 @interface dbProtocol : dbObject
 

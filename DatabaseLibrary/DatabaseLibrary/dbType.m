@@ -24,10 +24,11 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 
-#import "Database.h"
-#import "DatabaseCache.h"
 #import "Geocube-defines.h"
-#import "dbPin.h"
+
+#import "DatabaseLibrary/Database.h"
+#import "DatabaseLibrary/DatabaseCache.h"
+#import "DatabaseLibrary/dbPin.h"
 
 @interface dbType ()
 

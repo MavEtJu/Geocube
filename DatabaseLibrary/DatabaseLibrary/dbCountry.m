@@ -21,7 +21,7 @@
 
 #import "dbCountry.h"
 
-#import "DatabaseCache.h"
+#import "DatabaseLibrary/DatabaseCache.h"
 
 @interface dbCountry ()
 

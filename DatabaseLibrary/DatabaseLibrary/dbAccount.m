@@ -29,10 +29,9 @@
 #import "NetworkLibrary/RemoteAPILiveAPI.h"
 #import "NetworkLibrary/RemoteAPIGCA2.h"
 #import "NetworkLibrary/RemoteAPIGGCW.h"
-
-#import "DatabaseCache.h"
-#import "dbProtocol.h"
-#import "dbName.h"
+#import "DatabaseLibrary/DatabaseCache.h"
+#import "DatabaseLibrary/dbProtocol.h"
+#import "DatabaseLibrary/dbName.h"
 
 @interface dbAccount ()
 

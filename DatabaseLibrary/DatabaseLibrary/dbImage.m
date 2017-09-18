@@ -23,10 +23,10 @@
 
 #import <CommonCrypto/CommonDigest.h>
 
-#import <ToolsLibrary/MyTools.h>
-
 #import "Geocube-globals.h"
-#import "dbWaypoint.h"
+
+#import "ToolsLibrary/MyTools.h"
+#import "DatabaseLibrary/dbWaypoint.h"
 
 @interface dbImage ()
 

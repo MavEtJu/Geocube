@@ -23,7 +23,7 @@
 
 #import "Geocube-defines.h"
 
-#import "dbExternalMap.h"
+#import "DatabaseLibrary/dbExternalMap.h"
 
 @interface dbExternalMapURL ()
 

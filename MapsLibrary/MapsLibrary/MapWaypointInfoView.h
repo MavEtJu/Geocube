@@ -20,6 +20,7 @@
  */
 
 #import "BaseObjectsLibrary/GCView.h"
+
 #import "ManagersLibrary/WaypointManager-delegate.h"
 
 @class MapTemplate;

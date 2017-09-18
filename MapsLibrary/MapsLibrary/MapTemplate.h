@@ -24,7 +24,6 @@
 #import <CoreLocation/CoreLocation.h>
 
 #import "ManagersLibrary/WaypointManager-delegate.h"
-
 #import "MapsLibrary/MapTemplateViewController-enum.h"
 
 @class dbWaypoint;

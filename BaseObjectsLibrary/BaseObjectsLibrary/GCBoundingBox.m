@@ -21,7 +21,7 @@
 
 #import "GCBoundingBox.h"
 
-#import <ToolsLibrary/Coordinates.h>
+#import "ToolsLibrary/Coordinates.h"
 
 @interface GCBoundingBox ()
 

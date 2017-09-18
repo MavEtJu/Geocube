@@ -23,9 +23,9 @@
 
 #import "dbObject.h"
 
-#import "dbWaypoint-enum.h"
-#import "dbLogString-enum.h"
-#import "dbListData-enum.h"
+#import "DatabaseLibrary/dbWaypoint-enum.h"
+#import "DatabaseLibrary/dbLogString-enum.h"
+#import "DatabaseLibrary/dbListData-enum.h"
 
 @class dbSymbol;
 @class dbType;

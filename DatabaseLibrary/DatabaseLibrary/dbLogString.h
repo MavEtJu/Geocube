@@ -21,7 +21,7 @@
 
 #import "dbObject.h"
 
-#import "dbLogString-enum.h"
+#import "DatabaseLibrary/dbLogString-enum.h"
 
 @class dbProtocol;
 

@@ -22,7 +22,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "LocationManager-enum.h"
+#import "ManagersLibrary/LocationManager-enum.h"
 
 @class dbTrack;
 

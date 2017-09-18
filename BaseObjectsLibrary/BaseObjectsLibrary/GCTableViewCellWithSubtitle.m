@@ -21,7 +21,7 @@
 
 #import "GCTableViewCellWithSubtitle.h"
 
-#import "GCLabel.h"
+#import "BaseObjectsLibrary/GCLabel.h"
 
 @interface GCTableViewCellWithSubtitle ()
 

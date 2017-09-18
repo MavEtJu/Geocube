@@ -26,8 +26,7 @@
 
 #import "ToolsLibrary/MyTools.h"
 #import "ManagersLibrary/ConfigManager.h"
-
-#import "dbConfig.h"
+#import "DatabaseLibrary/dbConfig.h"
 
 @interface database ()
 {

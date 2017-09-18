@@ -22,7 +22,7 @@
 #include <Foundation/Foundation.h>
 #include <UIKit/UIKit.h>
 
-#import "IOSFileTransfers-delegate.h"
+#import "NetworkLibrary/IOSFileTransfers-delegate.h"
 
 @interface IOSFileTransfers : NSObject <UIDocumentMenuDelegate, UIDocumentPickerDelegate>
 

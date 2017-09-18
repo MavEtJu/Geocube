@@ -21,7 +21,7 @@
 
 #import "dbGroup.h"
 
-#import "dbWaypoint.h"
+#import "DatabaseLibrary/dbWaypoint.h"
 
 @interface dbGroup ()
 

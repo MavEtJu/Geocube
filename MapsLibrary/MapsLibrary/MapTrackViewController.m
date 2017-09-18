@@ -21,7 +21,7 @@
 
 #import "MapTrackViewController.h"
 
-#import "MapTemplate.h"
+#import "MapsLibrary/MapTemplate.h"
 
 @interface MapTrackViewController ()
 {

@@ -22,7 +22,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "GCOAuthBlackbox-delegate.h"
+#import "NetworkLibrary/GCOAuthBlackbox-delegate.h"
 
 @class GCOAuthBlackbox;
 @class GCMutableURLRequest;

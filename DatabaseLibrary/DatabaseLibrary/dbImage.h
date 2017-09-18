@@ -23,7 +23,8 @@
 #import <UIKit/UIKit.h>
 
 #import "dbObject.h"
-#import "dbImage-enum.h"
+
+#import "DatabaseLibrary/dbImage-enum.h"
 
 @class dbWaypoint;
 

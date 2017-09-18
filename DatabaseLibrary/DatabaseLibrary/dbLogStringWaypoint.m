@@ -21,10 +21,10 @@
 
 #import "dbLogStringWaypoint.h"
 
-#import "Database.h"
 #import "Geocube-defines.h"
 
-#import "dbLogString.h"
+#import "DatabaseLibrary/Database.h"
+#import "DatabaseLibrary/dbLogString.h"
 
 @interface dbLogStringWaypoint ()
 

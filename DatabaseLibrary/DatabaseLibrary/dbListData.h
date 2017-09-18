@@ -21,7 +21,7 @@
 
 #import "dbObject.h"
 
-#import "dbListData-enum.h"
+#import "DatabaseLibrary/dbListData-enum.h"
 
 @class dbWaypoint;
 

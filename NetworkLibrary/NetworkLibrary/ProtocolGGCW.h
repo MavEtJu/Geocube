@@ -21,7 +21,7 @@
 
 #import "ProtocolTemplate.h"
 
-#import "ProtocolGGCW-delegate.h"
+#import "NetworkLibrary/ProtocolGGCW-delegate.h"
 
 #import "ToolsLibrary/InfoItem.h"
 

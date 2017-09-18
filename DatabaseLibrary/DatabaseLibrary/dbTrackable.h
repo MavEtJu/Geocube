@@ -21,7 +21,7 @@
 
 #import "dbObject.h"
 
-#import "dbTrackable-enum.h"
+#import "DatabaseLibrary/dbTrackable-enum.h"
 
 @class dbName;
 @class dbAccount;

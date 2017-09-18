@@ -21,7 +21,7 @@
 
 #import "ThemeTemplate.h"
 
-#import "ThemeManager-enum.h"
+#import "ThemesLibrary/ThemeManager-enum.h"
 
 @interface ThemeManager : NSObject
 

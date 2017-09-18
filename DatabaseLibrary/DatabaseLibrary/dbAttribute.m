@@ -21,8 +21,8 @@
 
 #import "dbAttribute.h"
 
-#import "Database.h"
-#import "dbWaypoint.h"
+#import "DatabaseLibrary/Database.h"
+#import "DatabaseLibrary/dbWaypoint.h"
 
 @interface dbAttribute ()
 

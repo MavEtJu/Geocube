@@ -22,8 +22,9 @@
 #import "dbTrackable.h"
 
 #import "Geocube-defines.h"
-#import "dbName.h"
-#import "dbWaypoint.h"
+
+#import "DatabaseLibrary/dbName.h"
+#import "DatabaseLibrary/dbWaypoint.h"
 
 @interface dbTrackable ()
 

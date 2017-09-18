@@ -21,8 +21,8 @@
 
 #import "GCTableViewCellRightImage.h"
 
-#import "GCLabel.h"
-#import "GCImageView.h"
+#import "BaseObjectsLibrary/GCLabel.h"
+#import "BaseObjectsLibrary/GCImageView.h"
 
 @interface GCTableViewCellRightImage ()
 
