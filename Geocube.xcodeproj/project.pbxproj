@@ -2472,7 +2472,7 @@
 				E8E3DC1B1E167C740066E903 /* AppDelegate.m */,
 				E8740FE91B509540002527DA /* GUI TableViewCells */,
 				E8740F9C1B4E6645002527DA /* Waypoint Viewing */,
-				E8F570B61B3FF266003F020C /* Tabs */,
+				E8F570B61B3FF266003F020C /* Pages */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
@@ -2632,7 +2632,7 @@
 			name = "External modules";
 			sourceTree = "<group>";
 		};
-		E8F570B61B3FF266003F020C /* Tabs */ = {
+		E8F570B61B3FF266003F020C /* Pages */ = {
 			isa = PBXGroup;
 			children = (
 				E857078F1CA1E77B00467CE0 /* Navigate */,
@@ -2652,7 +2652,7 @@
 				E8A7FA9C1B784065003F4132 /* Help */,
 				E87F58D21F48611700C90375 /* Developer */,
 			);
-			name = Tabs;
+			name = Pages;
 			sourceTree = "<group>";
 		};
 		E8F570B91B3FF668003F020C /* System Libraries */ = {
