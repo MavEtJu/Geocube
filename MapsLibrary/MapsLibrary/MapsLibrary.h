@@ -6,8 +6,8 @@
 //  Copyright © 2017 Edwin Groothuis. All rights reserved.
 //
 
-#import "MapsLibrary/TemplateViewController.h"
-#import "MapsLibrary/MapAlWPViewController.h"
+#import "MapsLibrary/MapTemplateViewController.h"
+#import "MapsLibrary/MapAllWPViewController.h"
 #import "MapsLibrary/MapOneWPViewController.h"
 #import "MapsLibrary/MapTrackViewController.h"
 #import "MapsLibrary/MapLogsViewController.h"

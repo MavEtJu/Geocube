@@ -2465,15 +2465,16 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		E8E4400B1D88A6D800BECB49 /* GUI - base */ = {
+		E8E4400B1D88A6D800BECB49 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
 				E8F5705A1B3F7255003F020C /* AppDelegate.h */,
 				E8E3DC1B1E167C740066E903 /* AppDelegate.m */,
 				E8740FE91B509540002527DA /* GUI TableViewCells */,
 				E8740F9C1B4E6645002527DA /* Waypoint Viewing */,
+				E8F570B61B3FF266003F020C /* Tabs */,
 			);
-			name = "GUI - base";
+			name = GUI;
 			sourceTree = "<group>";
 		};
 		E8E8CFE91B639A0400CC741A /* Settings */ = {
@@ -2587,8 +2588,7 @@
 				E8F570581B3F7255003F020C /* main.m */,
 				E8F570BB1B400124003F020C /* schema.sql */,
 				E8F570931B3F7EE1003F020C /* External modules */,
-				E8E4400B1D88A6D800BECB49 /* GUI - base */,
-				E8F570B61B3FF266003F020C /* GUI - pages */,
+				E8E4400B1D88A6D800BECB49 /* GUI */,
 				E8F570601B3F7255003F020C /* Main.storyboard */,
 				E8F570631B3F7255003F020C /* Images.xcassets */,
 				E8F5707C1B3F75D1003F020C /* Data files */,
@@ -2632,7 +2632,7 @@
 			name = "External modules";
 			sourceTree = "<group>";
 		};
-		E8F570B61B3FF266003F020C /* GUI - pages */ = {
+		E8F570B61B3FF266003F020C /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
 				E857078F1CA1E77B00467CE0 /* Navigate */,
@@ -2652,7 +2652,7 @@
 				E8A7FA9C1B784065003F4132 /* Help */,
 				E87F58D21F48611700C90375 /* Developer */,
 			);
-			name = "GUI - pages";
+			name = Tabs;
 			sourceTree = "<group>";
 		};
 		E8F570B91B3FF668003F020C /* System Libraries */ = {
