@@ -21,6 +21,7 @@
 
 #import "WaypointViewController.h"
 
+#import "MapsLibrary/MapTemplateViewController.h"
 #import "NetworkLibrary/RemoteAPITemplate.h"
 #import "ConvertorsLibrary/ExportGPX.h"
 

@@ -21,7 +21,11 @@
 
 #import "MapAppleTemplate.h"
 
-#import "MapAppleCache.h"
+#import "Geocube-Defines.h"
+
+#import "MapsLibrary/MapAppleCache.h"
+#import "MapsLibrary/MapTemplateViewController.h"
+#import "ToolsLibrary/MyTools.h"
 
 @interface MapAppleTemplate ()
 {

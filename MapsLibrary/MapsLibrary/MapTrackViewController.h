@@ -19,15 +19,15 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define XIB_MAPWAYPOINTINFOVIEW @"MapWaypointInfoView"
+#import "MapTemplateViewController.h"
 
-@interface MapWaypointInfoView : GCView <WaypointManagerWaypointDelegate>
+@class dbTrack;
 
-@property (nonatomic, retain) MapTemplate *parentMap;
-@property (nonatomic, retain) UIView *firstView;
-@property (nonatomic, retain) dbWaypoint *waypoint;
+@interface MapTrackViewController : MapTemplateViewController
 
-- (void)showWaypoint:(dbWaypoint *)wp;
-+ (NSInteger)viewHeight;
+- (void)showTrack:(dbTrack *)track;
+- (void)showTrack;
 
 @end
+
+extern MapTrackViewController *keepTrackMapViewController;

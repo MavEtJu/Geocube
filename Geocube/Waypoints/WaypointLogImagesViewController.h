@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <Foundation/Foundation.h>
+
+@class dbImage;
+
 @protocol WaypointLogImagesDelegate
 
 - (void)imageSelected:(dbImage *)image caption:(NSString *)caption longtext:(NSString *)longtext;

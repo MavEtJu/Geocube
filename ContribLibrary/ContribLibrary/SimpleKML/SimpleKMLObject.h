@@ -34,11 +34,7 @@
 //
 
 #import "SimpleKML.h"
-#ifdef CONTRIBLIBRARY_H
-    #import "ContribLibrary/TouchXML/TouchXML.h"
-#else
-    #import "TouchXML.h"
-#endif
+#import "ContribLibrary/TouchXML/TouchXML.h"
 
 @interface SimpleKMLObject : NSObject
 

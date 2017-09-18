@@ -90,6 +90,10 @@
 				E84E89BF1F6F4CB8004F4BE9 /* ConvertorsLibrary.h */,
 				E84E89CE1F6F4CF0004F4BE9 /* ExportGPX.h */,
 				E84E89CF1F6F4CF0004F4BE9 /* ExportGPX.m */,
+				E84E89DE1F6F4CF0004F4BE9 /* ImportTemplate-delegate.h */,
+				E84E89DF1F6F4CF0004F4BE9 /* ImportTemplate-enum.h */,
+				E84E89E01F6F4CF0004F4BE9 /* ImportTemplate.h */,
+				E84E89E11F6F4CF0004F4BE9 /* ImportTemplate.m */,
 				E84E89D01F6F4CF0004F4BE9 /* ImportGCA2JSON.h */,
 				E84E89D11F6F4CF0004F4BE9 /* ImportGCA2JSON.m */,
 				E84E89D21F6F4CF0004F4BE9 /* ImportGeocube.h */,
@@ -104,10 +108,6 @@
 				E84E89DB1F6F4CF0004F4BE9 /* ImportLiveAPIJSON.m */,
 				E84E89DC1F6F4CF0004F4BE9 /* ImportOKAPIJSON.h */,
 				E84E89DD1F6F4CF0004F4BE9 /* ImportOKAPIJSON.m */,
-				E84E89DE1F6F4CF0004F4BE9 /* ImportTemplate-delegate.h */,
-				E84E89DF1F6F4CF0004F4BE9 /* ImportTemplate-enum.h */,
-				E84E89E01F6F4CF0004F4BE9 /* ImportTemplate.h */,
-				E84E89E11F6F4CF0004F4BE9 /* ImportTemplate.m */,
 			);
 			path = ConvertorsLibrary;
 			sourceTree = "<group>";
@@ -238,6 +238,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -287,6 +288,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -330,6 +332,7 @@
 				E84E89C71F6F4CB8004F4BE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

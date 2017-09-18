@@ -38,11 +38,11 @@ FOUNDATION_EXPORT const unsigned char TouchXMLVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <TouchXML/PublicHeader.h>
 
 #import "CXMLDocument.h"
-#import "Creation/CXMLDocument_CreationExtensions.h"
+#import "ContribLibrary/TouchXML/Creation/CXMLDocument_CreationExtensions.h"
 #import "CXMLElement.h"
 #import "CXMLElement_CreationExtensions.h"
 #import "CXMLElement_ElementTreeExtensions.h"
 #import "CXMLNode.h"
-#import "Creation/CXMLNode_CreationExtensions.h"
+#import "ContribLibrary/TouchXML/Creation/CXMLNode_CreationExtensions.h"
 #import "CXMLNode_XPathExtensions.h"
 #import "CXMLUnsupportedNode.h"

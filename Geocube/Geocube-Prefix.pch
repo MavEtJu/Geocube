@@ -155,7 +155,6 @@
 
 #import "Locationless/LocationlessTemplateViewController.h"
 #import "Locationless/LocationlessListViewController.h"
-#import "Locationless/MapLogsViewController.h"
 #import "Locationless/LocationlessPlannedViewController.h"
 #import "Locationless/LocationlessTableViewCell.h"
 

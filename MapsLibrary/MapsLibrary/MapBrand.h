@@ -19,11 +19,18 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapTrackViewController : MapTemplateViewController
+#import <Foundation/Foundation.h>
 
-- (void)showTrack:(dbTrack *)track;
-- (void)showTrack;
+@class MapBrand;
+
+@interface MapBrand : NSObject
+
+@property (nonatomic, retain) NSString *key;
+@property (nonatomic, retain) Class mapObject;
+@property (nonatomic, retain) NSString *defaultString;
+@property (nonatomic, retain) NSString *menuLabel;
+
++ (MapBrand *)mapBrandWithData:(Class)mapClass defaultString:(NSString *)defaultString menuLabel:(NSString *)menuLabel key:(NSString *)key;
++ (MapBrand *)findMapBrand:(NSString *)key brands:(NSArray<MapBrand *> *)brands;
 
 @end
-
-extern MapTrackViewController *keepTrackMapViewController;

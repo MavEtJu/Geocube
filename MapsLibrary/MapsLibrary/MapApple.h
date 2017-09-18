@@ -19,14 +19,15 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapBrand : NSObject
+#import <MapKit/MapKit.h>
 
-@property (nonatomic, retain) NSString *key;
-@property (nonatomic, retain) Class mapObject;
-@property (nonatomic, retain) NSString *defaultString;
-@property (nonatomic, retain) NSString *menuLabel;
+#import "MapTemplate.h"
 
-+ (MapBrand *)mapBrandWithData:(Class)mapClass defaultString:(NSString *)defaultString menuLabel:(NSString *)menuLabel key:(NSString *)key;
-+ (MapBrand *)findMapBrand:(NSString *)key brands:(NSArray<MapBrand *> *)brands;
+@interface MapApple : MapTemplate <MKMapViewDelegate>
+{
+    MKMapView *mapView;
+}
+
+@property (nonatomic) double minimumAltitude;
 
 @end

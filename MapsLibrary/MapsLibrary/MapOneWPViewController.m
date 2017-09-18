@@ -21,6 +21,15 @@
 
 #import "MapOneWPViewController.h"
 
+#import "Geocube-Defines.h"
+
+#import "ManagersLibrary/BezelManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/WaypointManager.h"
+#import "ManagersLibrary/LocationManager.h"
+#import "DatabaseLibrary/dbWaypoint.h"
+#import "ToolsLibrary/Coordinates.h"
+
 #import "MapTemplate.h"
 
 @interface MapOneWPViewController ()

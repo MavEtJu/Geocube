@@ -19,7 +19,27 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <CoreLocation/CoreLocation.h>
+
 #import "MapTemplate.h"
+
+#import "Geocube-Defines.h"
+
+#import "ToolsLibrary/Coordinates.h"
+#import "ToolsLibrary/MyTools.h"
+#import "ContribLibrary/LXMapScaleView/LXMapScaleView.h"
+#import "ContribLibrary/ActionSheetPicker/ActionSheetPicker.h"
+#import "ManagersLibrary/WaypointManager.h"
+#import "ManagersLibrary/ImageLibrary.h"
+#import "ManagersLibrary/ConfigManager.h"
+#import "ManagersLibrary/LocationManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "MapsLibrary/MapTemplateViewController.h"
+#import "DatabaseLibrary/dbKMLFile.h"
+
+#import "AppDelegate.h"
+#import "Waypoints/WaypointViewController.h"
+
 
 @interface MapTemplate ()
 

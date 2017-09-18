@@ -21,6 +21,12 @@
 
 #import "MapAppleCache.h"
 
+#import "Geocube-Globals.h"
+
+#import "ToolsLibrary/MyTools.h"
+#import "ToolsLibrary/MyClock.h"
+#import "ManagersLibrary/ConfigManager.h"
+
 @interface MapAppleCache ()
 {
     NSString *shortprefix;

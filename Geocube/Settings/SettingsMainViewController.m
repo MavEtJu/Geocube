@@ -20,7 +20,9 @@
  */
 
 #import "SettingsMainViewController.h"
-#import "MapBrand.h"
+
+#import "MapsLibrary/MapBrand.h"
+#import "MapsLibrary/MapTemplateViewController.h"
 
 @interface SettingsMainViewController ()
 {

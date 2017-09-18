@@ -21,8 +21,9 @@
 
 #import "DeveloperDatabaseViewController.m"
 
-#import "MapBrand.h"
-#import "MapAppleTemplate.h"
+#import "MapsLibrary/MapBrand.h"
+#import "MapsLibrary/MapAppleTemplate.h"
+#import "MapsLibrary/MapTemplateViewController.h"
 
 @interface DeveloperDatabaseViewController ()
 {

@@ -24,11 +24,12 @@
 #import "ManagersLibrary/DownloadManager.h"
 #import "ManagersLibrary/OpenCageManager.h"
 #import "NetworkLibrary/IOSFileTransfers.h"
+#import "MapsLibrary/MapAppleCache.h"
+#import "MapsLibrary/MapOneWPViewController.h"
+#import "MapsLibrary/MapAllWPViewController.h"
+#import "MapsLibrary/MapTrackViewController.h"
+#import "MapsLibrary/MapLogsViewController.h"
 
-#import "Maps/MapAppleCache.h"
-#import "Maps/MapOneWPViewController.h"
-#import "Maps/MapAllWPViewController.h"
-#import "Maps/MapTrackViewController.h"
 #import "Tools/ToolsRot13ViewController.h"
 #import "Tools/ToolsGNSSViewController.h"
 

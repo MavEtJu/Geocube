@@ -19,6 +19,20 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
+
+#import "ManagersLibrary/WaypointManager-delegate.h"
+
+#import "MapsLibrary/MapTemplateViewController-enum.h"
+
+@class dbWaypoint;
+@class LXMapScaleView;
+@class MapTemplateViewController;
+@class GCCoordsHistorical;
+@class dbTrack;
+
 @interface MapTemplate : NSObject <WaypointManagerKMLDelegate>
 {
     LXMapScaleView *mapScaleView;

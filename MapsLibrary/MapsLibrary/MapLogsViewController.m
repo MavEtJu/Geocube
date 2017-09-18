@@ -21,7 +21,14 @@
 
 #import "MapLogsViewController.h"
 
-#import "MapTemplate.h"
+#import "Geocube-Defines.h"
+
+#import "MapsLibrary/MapTemplate.h"
+#import "DatabaseLibrary/dbLog.h"
+#import "DatabaseLibrary/dbWaypoint.h"
+#import "DatabaseLibrary/dbName.h"
+#import "DatabaseLibrary/database-cache.h"
+#import "ToolsLibrary/MyTools.h"
 
 @interface MapLogsViewController ()
 {

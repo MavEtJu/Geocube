@@ -19,6 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapOneWPViewController : MapTemplateViewController
+#import "MapTemplate.h"
+
+#import <GoogleMapsBase/GoogleMapsBase.h>
+#import <GoogleMaps/GMSMapView.h>
+
+@interface MapGoogle : MapTemplate <GMSMapViewDelegate>
 
 @end

@@ -17,13 +17,8 @@
 
 #import <GoogleMaps/GoogleMaps.h>
 
-#ifdef CONTRIBLIBRARY_H
-    #import "ContribLibrary/GMUGeometry/Model/GMUGeometryContainer.h"
-    #import "ContribLibrary/GMUGeometry/Model/GMUStyle.h"
-#else
-    #import "GMUGeometryContainer.h"
-    #import "GMUStyle.h"
-#endif
+#import "ContribLibrary/GMUGeometry/Model/GMUGeometryContainer.h"
+#import "ContribLibrary/GMUGeometry/Model/GMUStyle.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -29,11 +29,7 @@
 //  authors and should not be interpreted as representing official policies, either expressed
 //  or implied, of toxicsoftware.com.
 
-#ifdef CONTRIBLIBRARY_H
-    #import "ContribLibrary/TouchXML/CXMLDocument.h"
-#else
-    #import "CXMLDocument.h"
-#endif
+#import "ContribLibrary/TouchXML/CXMLDocument.h"
 
 @interface CXMLDocument (CXMLDocument_CreationExtensions)
 

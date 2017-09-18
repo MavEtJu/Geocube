@@ -19,10 +19,20 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "MapTemplate.h"
+#import "BaseObjectsLibrary/GCView.h"
+#import "ManagersLibrary/WaypointManager-delegate.h"
 
-@import GoogleMaps;
+@class MapTemplate;
 
-@interface MapGoogle : MapTemplate <GMSMapViewDelegate>
+#define XIB_MAPWAYPOINTINFOVIEW @"MapWaypointInfoView"
+
+@interface MapWaypointInfoView : GCView <WaypointManagerWaypointDelegate>
+
+@property (nonatomic, retain) MapTemplate *parentMap;
+@property (nonatomic, retain) UIView *firstView;
+@property (nonatomic, retain) dbWaypoint *waypoint;
+
+- (void)showWaypoint:(dbWaypoint *)wp;
++ (NSInteger)viewHeight;
 
 @end

@@ -19,13 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "MapTemplate.h"
+#import "MapTemplateViewController.h"
 
-@interface MapApple : MapTemplate <MKMapViewDelegate>
-{
-    MKMapView *mapView;
-}
-
-@property (nonatomic) double minimumAltitude;
+@interface MapOneWPViewController : MapTemplateViewController
 
 @end

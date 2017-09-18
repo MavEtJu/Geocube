@@ -19,43 +19,18 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <CoreLocation/CoreLocation.h>
+
+#import "BaseObjectsLibrary/GCViewController.h"
+#import "ManagersLibrary/LocationManager-delegate.h"
+#import "ManagersLibrary/WaypointManager-delegate.h"
+
+#import "MapsLibrary/MapTemplateViewController-enum.h"
+
+@class MapBrand;
+@class MapTemplate;
+
 @interface MapTemplateViewController : GCViewController <LocationManagerLocationDelegate, LocationManagerHistoryDelegate, WaypointManagerWaypointDelegate>
-
-typedef NS_ENUM(NSInteger, MVMenuItem) {
-    MVCmenuBrandChange,
-    MVCmenuMapType,
-    MVCmenuLoadWaypoints,
-    MVCmenuDirections,
-    MVCmenuAutoZoom,
-    MVCmenuRecenter,
-    MVCmenuUseGNSS,
-    MVCmenuRemoveTarget,
-    MVCmenuShowBoundaries,
-    MVCmenuExportVisible,
-    MVCmenuRemoveHistory,
-    MVCmenuMax,
-};
-
-typedef NS_ENUM(NSInteger, GCMapHowMany) {
-    SHOW_ONEWAYPOINT = 1,
-    SHOW_ALLWAYPOINTS,
-    SHOW_LIVEMAPS,
-};
-
-typedef NS_ENUM(NSInteger, GCMapFollow) {
-    SHOW_NEITHER = 0,
-    SHOW_SEETARGET,
-    SHOW_FOLLOWME,
-    SHOW_FOLLOWMEZOOM,
-    SHOW_SHOWBOTH,
-};
-
-typedef NS_ENUM(NSInteger, GCMapType) {
-    MAPTYPE_NORMAL = 0,
-    MAPTYPE_AERIAL,
-    MAPTYPE_HYBRIDMAPAERIAL,
-    MAPTYPE_TERRAIN,
-};
 
 #define MAPBRAND_APPLEMAPS  @"Apple Maps"
 #define MAPBRAND_GOOGLEMAPS @"Google Maps"
