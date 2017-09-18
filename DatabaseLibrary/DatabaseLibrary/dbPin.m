@@ -23,7 +23,7 @@
 
 #import "Geocube-defines.h"
 
-#import "ManagersLibrary/ImageLibrary.h"
+#import "ManagersLibrary/ImageManager.h"
 
 @interface dbPin ()
 
@@ -37,8 +37,8 @@ TABLENAME(@"pins")
 {
     if (self.rgb == nil || [self.rgb isEqualToString:@""] == YES)
         self.rgb = self.rgb_default;
-    self.colour = [ImageLibrary RGBtoColor:self.rgb];
-    self.img = [ImageLibrary newPinHead:self.colour];
+    self.colour = [ImageManager RGBtoColor:self.rgb];
+    self.img = [ImageManager newPinHead:self.colour];
 
     [super finish];
 }
@@ -89,8 +89,8 @@ TABLENAME(@"pins")
         DB_FINISH;
     }
 
-    self.colour = [ImageLibrary RGBtoColor:self.rgb];
-    self.img = [ImageLibrary newPinHead:self.colour];
+    self.colour = [ImageManager RGBtoColor:self.rgb];
+    self.img = [ImageManager newPinHead:self.colour];
 }
 
 + (NSArray<dbPin *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values

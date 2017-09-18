@@ -21,7 +21,7 @@
 
 #import "GCCloseButton.h"
 
-#import "ManagersLibrary/ImageLibrary.h"
+#import "ManagersLibrary/ImageManager.h"
 
 @interface GCCloseButton ()
 

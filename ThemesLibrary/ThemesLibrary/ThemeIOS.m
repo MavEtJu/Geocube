@@ -21,7 +21,7 @@
 
 #import "ThemeIOS.h"
 
-#import "ManagersLibrary/ImageLibrary.h"
+#import "ManagersLibrary/ImageManager.h"
 
 @interface ThemeIOS ()
 

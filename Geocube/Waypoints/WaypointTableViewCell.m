@@ -23,7 +23,7 @@
 
 #import "BaseObjectsLibrary/GCLabel.h"
 #import "BaseObjectsLibrary/GCImageView.h"
-#import "ManagersLibrary/ImageLibrary.h"
+#import "ManagersLibrary/ImageManager.h"
 #import "DatabaseLibrary/dbWaypoint.h"
 #import "DatabaseLibrary/dbName.h"
 #import "ToolsLibrary/MyTools.h"

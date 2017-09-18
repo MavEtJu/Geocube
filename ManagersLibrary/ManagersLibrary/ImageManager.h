@@ -22,13 +22,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "ImageLibrary-enum.h"
+#import "ImageManager-enum.h"
 
 @class dbWaypoint;
 @class dbPin;
 @class dbType;
 
-@interface ImageLibrary : NSObject
+@interface ImageManager : NSObject
 
 - (instancetype)init;
 - (UIImage *)get:(ImageNumber)imgnum;
@@ -51,4 +51,4 @@
 
 @end
 
-extern ImageLibrary *imageLibrary;
+extern ImageManager *imageLibrary;

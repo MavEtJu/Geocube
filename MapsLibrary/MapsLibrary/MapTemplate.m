@@ -30,7 +30,7 @@
 #import "ContribLibrary/LXMapScaleView/LXMapScaleView.h"
 #import "ContribLibrary/ActionSheetPicker/ActionSheetPicker.h"
 #import "ManagersLibrary/WaypointManager.h"
-#import "ManagersLibrary/ImageLibrary.h"
+#import "ManagersLibrary/ImageManager.h"
 #import "ManagersLibrary/ConfigManager.h"
 #import "ManagersLibrary/LocationManager.h"
 #import "ManagersLibrary/LocalizationManager.h"

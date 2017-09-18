@@ -32,7 +32,7 @@
 #import "ManagersLibrary/LocalizationManager.h"
 #import "ManagersLibrary/WaypointManager.h"
 #import "ManagersLibrary/LocationManager.h"
-#import "ManagersLibrary/ImageLibrary.h"
+#import "ManagersLibrary/ImageManager.h"
 #import "ToolsLibrary/MyTools.h"
 #import "ToolsLibrary/Coordinates.h"
 #import "DatabaseLibrary/dbWaypoint.h"

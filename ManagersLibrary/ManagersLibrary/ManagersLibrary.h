@@ -24,7 +24,7 @@
 #import "ManagersLibrary/BezelManager.h"
 #import "ManagersLibrary/ConfigManager.h"
 #import "ManagersLibrary/DownloadManager.h"
-#import "ManagersLibrary/ImageLibrary.h"
+#import "ManagersLibrary/ImageManager.h"
 #import "ManagersLibrary/ImagesDownloadManager.h"
 #import "ManagersLibrary/ImportManager.h"
 #import "ManagersLibrary/KeyManager.h"

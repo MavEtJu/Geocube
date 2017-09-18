@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ImageLibrary.h"
+#import "ImageManager.h"
 
 #import "Geocube.h"
 
@@ -32,7 +32,7 @@
 #import "DatabaseLibrary/dbName.h"
 #import "DatabaseLibrary/DatabaseCache.h"
 
-@interface ImageLibrary ()
+@interface ImageManager ()
 {
     UIImage *imgs[ImageLibraryImagesMax];
     NSString *names[ImageLibraryImagesMax];
@@ -41,7 +41,7 @@
 
 @end
 
-@implementation ImageLibrary
+@implementation ImageManager
 
 - (instancetype)init
 {

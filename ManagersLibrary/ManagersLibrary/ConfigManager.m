@@ -26,7 +26,7 @@
 #import "ToolsLibrary/MyTools.h"
 #import "ManagersLibrary/LocationManager.h"
 #import "ManagersLibrary/ConfigManager.h"
-#import "ManagersLibrary/ImageLibrary.h"
+#import "ManagersLibrary/ImageManager.h"
 
 @interface ConfigManager ()
 
@@ -281,8 +281,8 @@
 
     /* Leftovers */
     self.currentTrack = [dbTrack dbGet:[[dbConfig dbGetByKey:@"track_current"].value integerValue]];
-    self.mapTrackColour = [ImageLibrary RGBtoColor:[dbConfig dbGetByKey:@"map_track_colour"].value];
-    self.mapDestinationColour = [ImageLibrary RGBtoColor:[dbConfig dbGetByKey:@"map_destination_colour"].value];
+    self.mapTrackColour = [ImageManager RGBtoColor:[dbConfig dbGetByKey:@"map_track_colour"].value];
+    self.mapDestinationColour = [ImageManager RGBtoColor:[dbConfig dbGetByKey:@"map_destination_colour"].value];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -458,12 +458,12 @@ UPDATE5(dbTrack *, NSId, currentTrack, @"track_current", _id)
 
 - (void)mapTrackColourUpdate:(NSString *)value
 {
-    self.mapTrackColour = [ImageLibrary RGBtoColor:value];
+    self.mapTrackColour = [ImageManager RGBtoColor:value];
     [self NSStringUpdate:@"map_track_colour" value:value];
 }
 - (void)mapDestinationColourUpdate:(NSString *)value
 {
-    self.mapDestinationColour = [ImageLibrary RGBtoColor:value];
+    self.mapDestinationColour = [ImageManager RGBtoColor:value];
     [self NSStringUpdate:@"map_destination_colour" value:value];
 }
 
