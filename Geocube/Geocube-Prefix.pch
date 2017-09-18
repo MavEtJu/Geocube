@@ -25,9 +25,9 @@
 #import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
 
-#import "Geocube-Classes.h"
-#import "Geocube-Defines.h"
-#import "Geocube-Globals.h"
+#import "Geocube-classes.h"
+#import "Geocube-defines.h"
+#import "Geocube-globals.h"
 
 #import "ContribLibrary/ContribLibrary.h"
 #import "contrib/MHTabBarController/MHTabBarController.h"

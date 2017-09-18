@@ -21,7 +21,7 @@
 
 #import "MapGoogle.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 
 #import "BaseObjectsLibrary/GCGMSCircle.h"
 #import "BaseObjectsLibrary/GCCoordsHistorical.h"

@@ -23,7 +23,7 @@
 
 #import "GoogleMaps/GMSServices.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 
 #import "ConvertorsLibrary/ExportGPX.h"
 #import "ContribLibrary/Others/THLabel.h"

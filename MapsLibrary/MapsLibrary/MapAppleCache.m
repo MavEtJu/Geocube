@@ -21,7 +21,7 @@
 
 #import "MapAppleCache.h"
 
-#import "Geocube-Globals.h"
+#import "Geocube-globals.h"
 
 #import "ToolsLibrary/MyTools.h"
 #import "ToolsLibrary/MyClock.h"

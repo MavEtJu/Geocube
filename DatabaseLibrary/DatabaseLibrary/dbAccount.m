@@ -21,7 +21,7 @@
 
 #import "dbAccount.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 
 #import "ManagersLibrary/KeyManager.h"
 #import "ManagersLibrary/ConfigManager.h"

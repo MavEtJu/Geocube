@@ -21,8 +21,8 @@
 
 #import "ImagesDownloadManager.h"
 
-#import "Geocube-Globals.h"
-#import "Geocube-Defines.h"
+#import "Geocube-globals.h"
+#import "Geocube-defines.h"
 
 #import "BaseObjectsLibrary/GCURLRequestObjects.h"
 #import "ToolsLibrary/MyTools.h"

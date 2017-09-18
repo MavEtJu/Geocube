@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "Geocube-Classes.h"
+#import "Geocube-classes.h"
 
 // File manager
 extern NSFileManager *fileManager;

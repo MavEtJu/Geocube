@@ -21,7 +21,7 @@
 
 #import "ImportLiveAPIJSON.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 
 #import "ManagersLibrary/OpenCageManager.h"
 #import "ManagersLibrary/ImagesDownloadManager.h"

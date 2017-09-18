@@ -21,7 +21,7 @@
 
 #import "ImportTemplate.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 
 #import "DatabaseLibrary/database-cache.h"
 #import "DatabaseLibrary/database.h"

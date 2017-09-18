@@ -21,7 +21,7 @@
 
 #import "dbTrackable.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 #import "dbName.h"
 #import "dbWaypoint.h"
 

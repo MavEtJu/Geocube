@@ -26,7 +26,7 @@
 
 #import "database.h"
 #import "database-cache.h"
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 #import "dbPin.h"
 
 @interface dbType ()

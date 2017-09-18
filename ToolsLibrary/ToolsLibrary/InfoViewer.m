@@ -21,7 +21,7 @@
 
 #import "InfoViewer.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 
 #import "BaseObjectsLibrary/GCLabel.h"
 #import "ManagersLibrary/LocalizationManager.h"

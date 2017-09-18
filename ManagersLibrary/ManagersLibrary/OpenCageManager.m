@@ -21,7 +21,7 @@
 
 #import "OpenCageManager.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 
 #import "ManagersLibrary/DownloadManager.h"
 #import "ManagersLibrary/ConfigManager.h"

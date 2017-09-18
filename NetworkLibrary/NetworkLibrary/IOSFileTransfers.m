@@ -21,8 +21,8 @@
 
 #import "IOSFileTransfers.h"
 
-#import "Geocube-Defines.h"
-#import "Geocube-Globals.h"
+#import "Geocube-defines.h"
+#import "Geocube-globals.h"
 
 #import "ToolsLibrary/MyTools.h"
 #import "ManagersLibrary/LocalizationManager.h"

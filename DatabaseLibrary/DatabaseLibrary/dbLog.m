@@ -21,7 +21,7 @@
 
 #import "dbLog.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 #import "dbName.h"
 #import "dbWaypoint.h"
 #import "dbAccount.h"

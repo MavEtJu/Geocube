@@ -21,7 +21,7 @@
 
 #import "RemoteAPITemplate.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 
 #import "ManagersLibrary/LocalizationManager.h"
 #import "NetworkLibrary/GCOAuthBlackbox.h"

@@ -25,7 +25,7 @@
 
 #import <ToolsLibrary/MyTools.h>
 
-#import "Geocube-Globals.h"
+#import "Geocube-globals.h"
 #import "dbWaypoint.h"
 
 @interface dbImage ()

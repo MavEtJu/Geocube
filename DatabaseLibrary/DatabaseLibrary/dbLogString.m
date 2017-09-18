@@ -21,7 +21,7 @@
 
 #import "dbLogString.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 #import "database-cache.h"
 #import "dbProtocol.h"
 

@@ -21,7 +21,7 @@
 
 #import "RemoteAPIGCA2.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 
 #import "NetworkLibrary/ProtocolGCA2.h"
 #import "ManagersLibrary/LocalizationManager.h"

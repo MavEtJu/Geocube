@@ -27,7 +27,7 @@
 #import "ManagersLibrary/LocalizationManager.h"
 #import "ManagersLibrary/ConfigManager.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 #import "database-cache.h"
 #import "dbLogString.h"
 #import "dbType.h"

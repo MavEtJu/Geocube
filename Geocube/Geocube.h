@@ -6,6 +6,6 @@
 //  Copyright © 2017 Edwin Groothuis. All rights reserved.
 //
 
-#import "Geocube-Defines.h"
-#import "Geocube-Classes.h"
-#import "Geocube-Globals.h"
+#import "Geocube-defines.h"
+#import "Geocube-classes.h"
+#import "Geocube-globals.h"

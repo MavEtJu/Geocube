@@ -21,7 +21,7 @@
 
 #import "dbExternalMapURL.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 
 #import "dbExternalMap.h"
 

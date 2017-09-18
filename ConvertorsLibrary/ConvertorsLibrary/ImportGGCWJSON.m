@@ -21,7 +21,7 @@
 
 #import "ImportGGCWJSON.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 
 #import "ManagersLibrary/OpenCageManager.h"
 #import "ToolsLibrary/InfoViewer.h"

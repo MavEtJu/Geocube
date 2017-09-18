@@ -21,7 +21,7 @@
 
 #import "MapOneWPViewController.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 
 #import "ManagersLibrary/BezelManager.h"
 #import "ManagersLibrary/LocalizationManager.h"

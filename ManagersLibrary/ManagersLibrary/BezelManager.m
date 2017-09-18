@@ -21,7 +21,7 @@
 
 #import "BezelManager.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 
 #import "ThemesLibrary/ThemeManager.h"
 

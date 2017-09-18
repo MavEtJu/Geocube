@@ -1121,7 +1121,7 @@
 		E82E67841DA0DD0700CFBDED /* menu icon - see target@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - see target@3x.png"; path = "images/menu/menu icon - see target@3x.png"; sourceTree = "<group>"; };
 		E82E67871DA0F42200CFBDED /* menu icon - show both@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - show both@2x.png"; path = "images/menu/menu icon - show both@2x.png"; sourceTree = "<group>"; };
 		E82E67881DA0F42200CFBDED /* menu icon - show both@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - show both@3x.png"; path = "images/menu/menu icon - show both@3x.png"; sourceTree = "<group>"; };
-		E832E7D71B8D124900A3CCF6 /* Geocube-Classes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Classes.h"; sourceTree = "<group>"; };
+		E832E7D71B8D124900A3CCF6 /* Geocube-classes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-classes.h"; sourceTree = "<group>"; };
 		E83B10941EF4FC6000F2C5FA /* LocationlessListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationlessListViewController.h; path = Locationless/LocationlessListViewController.h; sourceTree = "<group>"; };
 		E83B10951EF4FC6000F2C5FA /* LocationlessListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationlessListViewController.m; path = Locationless/LocationlessListViewController.m; sourceTree = "<group>"; };
 		E83B109A1EF4FC9500F2C5FA /* LocationlessPlannedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationlessPlannedViewController.h; path = Locationless/LocationlessPlannedViewController.h; sourceTree = "<group>"; };
@@ -1201,7 +1201,7 @@
 		E8740FEA1B509575002527DA /* LogTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogTableViewCell.h; sourceTree = "<group>"; };
 		E8740FEB1B509575002527DA /* LogTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogTableViewCell.m; sourceTree = "<group>"; };
 		E879F9CB1B7B527200220EA7 /* Geocube.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Geocube.entitlements; sourceTree = "<group>"; };
-		E87FE7951EFFD25F009FA65B /* Geocube-Defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Defines.h"; sourceTree = "<group>"; };
+		E87FE7951EFFD25F009FA65B /* Geocube-defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-defines.h"; sourceTree = "<group>"; };
 		E881CA4F1F6B9CC400A17060 /* Geocube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geocube.h; sourceTree = "<group>"; };
 		E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ToolsLibrary.xcodeproj; path = ToolsLibrary/ToolsLibrary.xcodeproj; sourceTree = "<group>"; };
 		E881CA891F6BB11A00A17060 /* libToolsLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libToolsLibrary.a; path = "../../Library/Developer/Xcode/DerivedData/Geocube-bjprugvtqrcyrnatajlgnpwinftk/Build/Products/Debug-iphonesimulator/libToolsLibrary.a"; sourceTree = "<group>"; };
@@ -1252,7 +1252,7 @@
 		E8F570B71B3FF4AA003F020C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		E8F570BB1B400124003F020C /* schema.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.sql; sourceTree = "<group>"; };
 		E8F570BD1B400137003F020C /* empty.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = empty.db; sourceTree = "<group>"; };
-		E8F570BF1B400166003F020C /* Geocube-Globals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Globals.h"; sourceTree = "<group>"; };
+		E8F570BF1B400166003F020C /* Geocube-globals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-globals.h"; sourceTree = "<group>"; };
 		E8FEDE381DA77F9D007C756B /* container size - large - 35x11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - large - 35x11.png"; path = "images/containers/container size - large - 35x11.png"; sourceTree = "<group>"; };
 		E8FEDE391DA77F9D007C756B /* container size - large - 35x11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - large - 35x11@2x.png"; path = "images/containers/container size - large - 35x11@2x.png"; sourceTree = "<group>"; };
 		E8FEDE3A1DA77F9D007C756B /* container size - large - 35x11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - large - 35x11@3x.png"; path = "images/containers/container size - large - 35x11@3x.png"; sourceTree = "<group>"; };
@@ -2581,9 +2581,9 @@
 			children = (
 				E84E887A1F6CF8F4004F4BE9 /* XIBs (Read only, use folder references) */,
 				E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */,
-				E832E7D71B8D124900A3CCF6 /* Geocube-Classes.h */,
-				E87FE7951EFFD25F009FA65B /* Geocube-Defines.h */,
-				E8F570BF1B400166003F020C /* Geocube-Globals.h */,
+				E832E7D71B8D124900A3CCF6 /* Geocube-classes.h */,
+				E87FE7951EFFD25F009FA65B /* Geocube-defines.h */,
+				E8F570BF1B400166003F020C /* Geocube-globals.h */,
 				E881CA4F1F6B9CC400A17060 /* Geocube.h */,
 				E8F570581B3F7255003F020C /* main.m */,
 				E8F570BB1B400124003F020C /* schema.sql */,

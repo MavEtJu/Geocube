@@ -22,7 +22,7 @@
 #import "dbPin.h"
 
 #import "ManagersLibrary/ImageLibrary.h"
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 
 @interface dbPin ()
 

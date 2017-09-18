@@ -21,7 +21,7 @@
 
 #import "MapWaypointInfoView.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 
 #import "ManagersLibrary/ImageLibrary.h"
 #import "ManagersLibrary/WaypointManager.h"

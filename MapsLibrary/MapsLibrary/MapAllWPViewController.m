@@ -21,7 +21,7 @@
 
 #import "MapAllWPViewController.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 
 #import "NetworkLibrary/RemoteAPIProcessingGroup.h"
 #import "NetworkLibrary/RemoteAPITemplate.h"

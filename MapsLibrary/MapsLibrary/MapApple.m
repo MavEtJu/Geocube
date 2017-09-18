@@ -23,7 +23,7 @@
 
 #import <MapKit/MapKit.h>
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 
 #import "BaseObjectsLibrary/GCWaypointAnnotation.h"
 #import "BaseObjectsLibrary/GCCircle.h"

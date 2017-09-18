@@ -22,7 +22,7 @@
 
 #import "ProtocolTemplate.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 
 @interface ProtocolTemplate ()
 

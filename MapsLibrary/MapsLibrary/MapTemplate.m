@@ -23,7 +23,7 @@
 
 #import "MapTemplate.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 
 #import "ToolsLibrary/Coordinates.h"
 #import "ToolsLibrary/MyTools.h"

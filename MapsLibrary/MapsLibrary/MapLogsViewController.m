@@ -21,7 +21,7 @@
 
 #import "MapLogsViewController.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 
 #import "MapsLibrary/MapTemplate.h"
 #import "DatabaseLibrary/dbLog.h"

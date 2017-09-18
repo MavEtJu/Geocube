@@ -21,7 +21,7 @@
 
 #import "InfoItem.h"
 
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 
 #import "BaseObjectsLibrary/GCSmallLabel.h"
 #import "BaseObjectsLibrary/GCView.h"

@@ -22,7 +22,7 @@
 #import "dbLogStringWaypoint.h"
 
 #import "database.h"
-#import "Geocube-Defines.h"
+#import "Geocube-defines.h"
 
 #import "dbLogString.h"
 
