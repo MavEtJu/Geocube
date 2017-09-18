@@ -37,8 +37,7 @@
 #import "BaseObjectsLibrary/GCStringObjects.h"
 #import "BaseObjectsLibrary/GCDataObjects.h"
 #import "NetworkLibrary/ProtocolGGCW.h"
-
-#import "Convertors/ImportGGCWJSON.h"
+#import "ConvertorsLibrary/ImportGGCWJSON.h"
 
 @interface RemoteAPIGGCW ()
 

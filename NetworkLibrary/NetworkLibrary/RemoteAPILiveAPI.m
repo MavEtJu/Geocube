@@ -24,7 +24,7 @@
 #import "Geocube-Defines.h"
 
 #import "NetworkLibrary/ProtocolLiveAPI.h"
-#import "Convertors/ImportLiveAPIJSON.h"
+#import "ConvertorsLibrary/ImportLiveAPIJSON.h"
 #import "ToolsLibrary/InfoViewer.h"
 #import "ToolsLibrary/InfoItem.h"
 #import "ToolsLibrary/MyTools.h"

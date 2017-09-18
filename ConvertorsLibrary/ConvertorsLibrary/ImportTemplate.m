@@ -21,6 +21,14 @@
 
 #import "ImportTemplate.h"
 
+#import "Geocube-Defines.h"
+
+#import "DatabaseLibrary/database-cache.h"
+#import "DatabaseLibrary/database.h"
+#import "DatabaseLibrary/dbGroup.h"
+#import "DatabaseLibrary/dbWaypoint.h"
+#import "BaseObjectsLibrary/GCStringObjects.h"
+
 @interface ImportTemplate ()
 
 @end

@@ -35,15 +35,6 @@
 		E823424C1EECCF9300D2CDFD /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342441EECCF9300D2CDFD /* SVProgressAnimatedView.m */; };
 		E823424E1EECCF9300D2CDFD /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342481EECCF9300D2CDFD /* SVProgressHUD.m */; };
 		E823424F1EECCF9300D2CDFD /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E823424A1EECCF9300D2CDFD /* SVRadialGradientLayer.m */; };
-		E823434E1EECDA4900D2CDFD /* ExportGPX.m in Sources */ = {isa = PBXBuildFile; fileRef = E823433A1EECDA4900D2CDFD /* ExportGPX.m */; };
-		E82343501EECDA4900D2CDFD /* ImportGCA2JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E823433D1EECDA4900D2CDFD /* ImportGCA2JSON.m */; };
-		E82343511EECDA4900D2CDFD /* ImportGeocube.m in Sources */ = {isa = PBXBuildFile; fileRef = E823433F1EECDA4900D2CDFD /* ImportGeocube.m */; };
-		E82343521EECDA4900D2CDFD /* ImportGGCWJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343411EECDA4900D2CDFD /* ImportGGCWJSON.m */; };
-		E82343531EECDA4900D2CDFD /* ImportGPX.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343431EECDA4900D2CDFD /* ImportGPX.m */; };
-		E82343541EECDA4900D2CDFD /* ImportGPXGarmin.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343451EECDA4900D2CDFD /* ImportGPXGarmin.m */; };
-		E82343551EECDA4900D2CDFD /* ImportLiveAPIJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343471EECDA4900D2CDFD /* ImportLiveAPIJSON.m */; };
-		E82343571EECDA4900D2CDFD /* ImportOKAPIJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E823434B1EECDA4900D2CDFD /* ImportOKAPIJSON.m */; };
-		E82343581EECDA4900D2CDFD /* ImportTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E823434D1EECDA4900D2CDFD /* ImportTemplate.m */; };
 		E82343841EECDB9B00D2CDFD /* MapAllWPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E823437B1EECDB9B00D2CDFD /* MapAllWPViewController.m */; };
 		E82343851EECDB9B00D2CDFD /* MapBrand.m in Sources */ = {isa = PBXBuildFile; fileRef = E823437D1EECDB9B00D2CDFD /* MapBrand.m */; };
 		E82343861EECDB9B00D2CDFD /* MapOneWPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E823437F1EECDB9B00D2CDFD /* MapOneWPViewController.m */; };
@@ -427,6 +418,7 @@
 		E84E88961F6CF956004F4BE9 /* GCTableViewCellWithSubtitle~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E84E888C1F6CF956004F4BE9 /* GCTableViewCellWithSubtitle~ipad.xib */; };
 		E84E88A41F6CFFD0004F4BE9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E84E88A31F6CFFD0004F4BE9 /* Social.framework */; };
 		E84E89891F6F30D4004F4BE9 /* libNetworkLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E84E89881F6F30D4004F4BE9 /* libNetworkLibrary.a */; };
+		E84E89EC1F6F5547004F4BE9 /* libConvertorsLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E84E89EB1F6F5547004F4BE9 /* libConvertorsLibrary.a */; };
 		E858F5991F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E858F5981F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib */; };
 		E858F59B1F56610B002C1F9B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E858F59A1F56610B002C1F9B /* ImageIO.framework */; };
 		E85BA88E1F544372008E708F /* KeepTrackBeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = E85BA88D1F544372008E708F /* KeepTrackBeeper.m */; };
@@ -615,6 +607,13 @@
 			remoteGlobalIDString = E881CAF41F6BDA6E00A17060;
 			remoteInfo = ThemesLibrary;
 		};
+		E84E89B11F6F4C9E004F4BE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E84E894E1F6F27E4004F4BE9 /* NetworkLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E84E89421F6F27E4004F4BE9;
+			remoteInfo = NetworkLibrary;
+		};
 		E881CAB61F6BB1A600A17060 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */;
@@ -731,24 +730,6 @@
 		E82342481EECCF9300D2CDFD /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = contrib/SVProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
 		E82342491EECCF9300D2CDFD /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVRadialGradientLayer.h; path = contrib/SVProgressHUD/SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		E823424A1EECCF9300D2CDFD /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = contrib/SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
-		E82343391EECDA4900D2CDFD /* ExportGPX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExportGPX.h; path = Convertors/ExportGPX.h; sourceTree = "<group>"; };
-		E823433A1EECDA4900D2CDFD /* ExportGPX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExportGPX.m; path = Convertors/ExportGPX.m; sourceTree = "<group>"; };
-		E823433C1EECDA4900D2CDFD /* ImportGCA2JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImportGCA2JSON.h; path = Convertors/ImportGCA2JSON.h; sourceTree = "<group>"; };
-		E823433D1EECDA4900D2CDFD /* ImportGCA2JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImportGCA2JSON.m; path = Convertors/ImportGCA2JSON.m; sourceTree = "<group>"; };
-		E823433E1EECDA4900D2CDFD /* ImportGeocube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImportGeocube.h; path = Convertors/ImportGeocube.h; sourceTree = "<group>"; };
-		E823433F1EECDA4900D2CDFD /* ImportGeocube.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImportGeocube.m; path = Convertors/ImportGeocube.m; sourceTree = "<group>"; };
-		E82343401EECDA4900D2CDFD /* ImportGGCWJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImportGGCWJSON.h; path = Convertors/ImportGGCWJSON.h; sourceTree = "<group>"; };
-		E82343411EECDA4900D2CDFD /* ImportGGCWJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImportGGCWJSON.m; path = Convertors/ImportGGCWJSON.m; sourceTree = "<group>"; };
-		E82343421EECDA4900D2CDFD /* ImportGPX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImportGPX.h; path = Convertors/ImportGPX.h; sourceTree = "<group>"; };
-		E82343431EECDA4900D2CDFD /* ImportGPX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImportGPX.m; path = Convertors/ImportGPX.m; sourceTree = "<group>"; };
-		E82343441EECDA4900D2CDFD /* ImportGPXGarmin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImportGPXGarmin.h; path = Convertors/ImportGPXGarmin.h; sourceTree = "<group>"; };
-		E82343451EECDA4900D2CDFD /* ImportGPXGarmin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImportGPXGarmin.m; path = Convertors/ImportGPXGarmin.m; sourceTree = "<group>"; };
-		E82343461EECDA4900D2CDFD /* ImportLiveAPIJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImportLiveAPIJSON.h; path = Convertors/ImportLiveAPIJSON.h; sourceTree = "<group>"; };
-		E82343471EECDA4900D2CDFD /* ImportLiveAPIJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImportLiveAPIJSON.m; path = Convertors/ImportLiveAPIJSON.m; sourceTree = "<group>"; };
-		E823434A1EECDA4900D2CDFD /* ImportOKAPIJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImportOKAPIJSON.h; path = Convertors/ImportOKAPIJSON.h; sourceTree = "<group>"; };
-		E823434B1EECDA4900D2CDFD /* ImportOKAPIJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImportOKAPIJSON.m; path = Convertors/ImportOKAPIJSON.m; sourceTree = "<group>"; };
-		E823434C1EECDA4900D2CDFD /* ImportTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImportTemplate.h; path = Convertors/ImportTemplate.h; sourceTree = "<group>"; };
-		E823434D1EECDA4900D2CDFD /* ImportTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImportTemplate.m; path = Convertors/ImportTemplate.m; sourceTree = "<group>"; };
 		E823437A1EECDB9B00D2CDFD /* MapAllWPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapAllWPViewController.h; path = Maps/MapAllWPViewController.h; sourceTree = "<group>"; };
 		E823437B1EECDB9B00D2CDFD /* MapAllWPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapAllWPViewController.m; path = Maps/MapAllWPViewController.m; sourceTree = "<group>"; };
 		E823437C1EECDB9B00D2CDFD /* MapBrand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapBrand.h; path = Maps/MapBrand.h; sourceTree = "<group>"; };
@@ -1244,11 +1225,11 @@
 		E84E888B1F6CF956004F4BE9 /* GCTableViewCellWithSubtitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GCTableViewCellWithSubtitle.xib; path = ../BaseObjectsLibrary/BaseObjectsLibrary/GCTableViewCellWithSubtitle.xib; sourceTree = "<group>"; };
 		E84E888C1F6CF956004F4BE9 /* GCTableViewCellWithSubtitle~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "GCTableViewCellWithSubtitle~ipad.xib"; path = "../BaseObjectsLibrary/BaseObjectsLibrary/GCTableViewCellWithSubtitle~ipad.xib"; sourceTree = "<group>"; };
 		E84E88A31F6CFFD0004F4BE9 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		E84E89241F6E9CFF004F4BE9 /* ImportTemplate-enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ImportTemplate-enum.h"; path = "Convertors/ImportTemplate-enum.h"; sourceTree = "<group>"; };
-		E84E89251F6E9E31004F4BE9 /* ImportTemplate-delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ImportTemplate-delegate.h"; path = "Convertors/ImportTemplate-delegate.h"; sourceTree = "<group>"; };
 		E84E894E1F6F27E4004F4BE9 /* NetworkLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NetworkLibrary.xcodeproj; path = ../NetworkLibrary/NetworkLibrary.xcodeproj; sourceTree = "<group>"; };
 		E84E89871F6F2E13004F4BE9 /* WaypointPersonalNoteViewController-delegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "WaypointPersonalNoteViewController-delegate.h"; path = "Waypoints/WaypointPersonalNoteViewController-delegate.h"; sourceTree = "<group>"; };
 		E84E89881F6F30D4004F4BE9 /* libNetworkLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNetworkLibrary.a; path = "NetworkLibrary/build/Debug-iphoneos/libNetworkLibrary.a"; sourceTree = "<group>"; };
+		E84E89C81F6F4CB8004F4BE9 /* ConvertorsLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ConvertorsLibrary.xcodeproj; path = ../ConvertorsLibrary/ConvertorsLibrary.xcodeproj; sourceTree = "<group>"; };
+		E84E89EB1F6F5547004F4BE9 /* libConvertorsLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libConvertorsLibrary.a; path = "../../Library/Developer/Xcode/DerivedData/Geocube-bjprugvtqrcyrnatajlgnpwinftk/Build/Products/Debug-iphonesimulator/libConvertorsLibrary.a"; sourceTree = "<group>"; };
 		E858F5981F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "KeepTrackBeeperView~ipad.xib"; path = "KeepTrack/KeepTrackBeeperView~ipad.xib"; sourceTree = "<group>"; };
 		E858F59A1F56610B002C1F9B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		E85BA88C1F544372008E708F /* KeepTrackBeeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeepTrackBeeper.h; path = KeepTrack/KeepTrackBeeper.h; sourceTree = "<group>"; };
@@ -1429,6 +1410,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E84E89EC1F6F5547004F4BE9 /* libConvertorsLibrary.a in Frameworks */,
 				E84E89891F6F30D4004F4BE9 /* libNetworkLibrary.a in Frameworks */,
 				E84E88A41F6CFFD0004F4BE9 /* Social.framework in Frameworks */,
 				E895552B1F6CA70A0026582B /* libDatabaseLibrary.a in Frameworks */,
@@ -1461,6 +1443,7 @@
 		6917C4AD2B052674BDDB3A0D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E84E89EB1F6F5547004F4BE9 /* libConvertorsLibrary.a */,
 				E84E89881F6F30D4004F4BE9 /* libNetworkLibrary.a */,
 				E84E88A31F6CFFD0004F4BE9 /* Social.framework */,
 				E895552A1F6CA70A0026582B /* libDatabaseLibrary.a */,
@@ -1885,6 +1868,14 @@
 				E84E888C1F6CF956004F4BE9 /* GCTableViewCellWithSubtitle~ipad.xib */,
 			);
 			name = "XIBs (Read only, use folder references)";
+			sourceTree = "<group>";
+		};
+		E84E89AE1F6F4C9E004F4BE9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E84E89B21F6F4C9E004F4BE9 /* libNetworkLibrary.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		E857078A1CA1E67200467CE0 /* Groups */ = {
@@ -2675,7 +2666,7 @@
 				E881CACD1F6BB1C500A17060 /* ManagersLibrary.xcodeproj */,
 				E8EE47991F6B457C00AB13BC /* BaseObjectsLibrary.xcodeproj */,
 				E881CB011F6BDA6E00A17060 /* ThemesLibrary.xcodeproj */,
-				E8F570BA1B3FFB7F003F020C /* Convertors */,
+				E84E89C81F6F4CB8004F4BE9 /* ConvertorsLibrary.xcodeproj */,
 				E8F570931B3F7EE1003F020C /* External modules */,
 				E8E4400B1D88A6D800BECB49 /* GUI - base */,
 				E8F570B61B3FF266003F020C /* GUI - pages */,
@@ -2752,33 +2743,6 @@
 				E8F570911B3F7CAE003F020C /* libz.dylib */,
 			);
 			name = "System Libraries";
-			sourceTree = "<group>";
-		};
-		E8F570BA1B3FFB7F003F020C /* Convertors */ = {
-			isa = PBXGroup;
-			children = (
-				E82343391EECDA4900D2CDFD /* ExportGPX.h */,
-				E823433A1EECDA4900D2CDFD /* ExportGPX.m */,
-				E823433C1EECDA4900D2CDFD /* ImportGCA2JSON.h */,
-				E823433D1EECDA4900D2CDFD /* ImportGCA2JSON.m */,
-				E823433E1EECDA4900D2CDFD /* ImportGeocube.h */,
-				E823433F1EECDA4900D2CDFD /* ImportGeocube.m */,
-				E82343401EECDA4900D2CDFD /* ImportGGCWJSON.h */,
-				E82343411EECDA4900D2CDFD /* ImportGGCWJSON.m */,
-				E82343421EECDA4900D2CDFD /* ImportGPX.h */,
-				E82343431EECDA4900D2CDFD /* ImportGPX.m */,
-				E82343441EECDA4900D2CDFD /* ImportGPXGarmin.h */,
-				E82343451EECDA4900D2CDFD /* ImportGPXGarmin.m */,
-				E82343461EECDA4900D2CDFD /* ImportLiveAPIJSON.h */,
-				E82343471EECDA4900D2CDFD /* ImportLiveAPIJSON.m */,
-				E823434A1EECDA4900D2CDFD /* ImportOKAPIJSON.h */,
-				E823434B1EECDA4900D2CDFD /* ImportOKAPIJSON.m */,
-				E823434C1EECDA4900D2CDFD /* ImportTemplate.h */,
-				E84E89251F6E9E31004F4BE9 /* ImportTemplate-delegate.h */,
-				E84E89241F6E9CFF004F4BE9 /* ImportTemplate-enum.h */,
-				E823434D1EECDA4900D2CDFD /* ImportTemplate.m */,
-			);
-			name = Convertors;
 			sourceTree = "<group>";
 		};
 		E8FD610D1BE8C46100859A58 /* Files */ = {
@@ -2941,6 +2905,10 @@
 					ProjectRef = E881CACD1F6BB1C500A17060 /* ManagersLibrary.xcodeproj */;
 				},
 				{
+					ProductGroup = E84E89AE1F6F4C9E004F4BE9 /* Products */;
+					ProjectRef = E84E894E1F6F27E4004F4BE9 /* NetworkLibrary.xcodeproj */;
+				},
+				{
 					ProductGroup = E881CB021F6BDA6E00A17060 /* Products */;
 					ProjectRef = E881CB011F6BDA6E00A17060 /* ThemesLibrary.xcodeproj */;
 				},
@@ -2965,6 +2933,13 @@
 			fileType = archive.ar;
 			path = libDatabaseLibrary.a;
 			remoteRef = E84E88511F6CF6C8004F4BE9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E84E89B21F6F4C9E004F4BE9 /* libNetworkLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNetworkLibrary.a;
+			remoteRef = E84E89B11F6F4C9E004F4BE9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E881CAB71F6BB1A600A17060 /* libToolsLibrary.a */ = {
@@ -3508,7 +3483,6 @@
 				E82344971EECE0AD00D2CDFD /* QueriesTemplateViewController.m in Sources */,
 				E8E3DC1C1E167C740066E903 /* AppDelegate.m in Sources */,
 				E82344661EECE06E00D2CDFD /* TrackablesTemplateViewController.m in Sources */,
-				E823434E1EECDA4900D2CDFD /* ExportGPX.m in Sources */,
 				E82345231EECE14A00D2CDFD /* HelpHelpViewController.m in Sources */,
 				E82344651EECE06E00D2CDFD /* TrackablesMineViewController.m in Sources */,
 				E823443F1EECE01500D2CDFD /* KeepTrackCar.m in Sources */,
@@ -3517,8 +3491,6 @@
 				E82343F81EECDF4400D2CDFD /* WaypointPersonalNoteViewController.m in Sources */,
 				E82344BE1EECE0E800D2CDFD /* SettingsColoursViewController.m in Sources */,
 				E82344341EECDFB300D2CDFD /* FilterTerrainTableViewCell.m in Sources */,
-				E82343531EECDA4900D2CDFD /* ImportGPX.m in Sources */,
-				E82343571EECDA4900D2CDFD /* ImportOKAPIJSON.m in Sources */,
 				E82343BD1EECDE6C00D2CDFD /* WaypointLogViewController.m in Sources */,
 				E86C4AAF1E321822004526E2 /* CompassViewController.m in Sources */,
 				E82343F41EECDF4400D2CDFD /* WaypointDescriptionViewController.m in Sources */,
@@ -3529,7 +3501,6 @@
 				E82344821EECE09C00D2CDFD /* ListIgnoredViewController.m in Sources */,
 				E823442E1EECDFB300D2CDFD /* FilterGroupsTableViewCell.m in Sources */,
 				E823444F1EECE04B00D2CDFD /* NotesSavedViewController.m in Sources */,
-				E82343581EECDA4900D2CDFD /* ImportTemplate.m in Sources */,
 				E82343861EECDB9B00D2CDFD /* MapOneWPViewController.m in Sources */,
 				E82344541EECE05E00D2CDFD /* PersonalNoteTableViewCell.m in Sources */,
 				E83C6F001EECE67100E303F5 /* FileBrowserViewController.m in Sources */,
@@ -3543,7 +3514,6 @@
 				E82343F91EECDF4400D2CDFD /* WaypointRawViewController.m in Sources */,
 				E82344A81EECE0C900D2CDFD /* BrowserAccountsViewController.m in Sources */,
 				E823439A1EECDBCF00D2CDFD /* MapESRIWorldTopo.m in Sources */,
-				E82343521EECDA4900D2CDFD /* ImportGGCWJSON.m in Sources */,
 				E82344C01EECE0E800D2CDFD /* SettingsLogTemplatesViewController.m in Sources */,
 				E82344911EECE0AC00D2CDFD /* QueriesGCAViewController.m in Sources */,
 				E82344841EECE09C00D2CDFD /* ListTemplateViewController.m in Sources */,
@@ -3553,12 +3523,10 @@
 				E82341F21EECCEBB00D2CDFD /* RangeSlider.m in Sources */,
 				E823421B1EECCF2600D2CDFD /* NKOColorPickerView.m in Sources */,
 				E83C6F011EECE67100E303F5 /* FileObject.m in Sources */,
-				E82343511EECDA4900D2CDFD /* ImportGeocube.m in Sources */,
 				E82343C21EECDE8A00D2CDFD /* WaypointImagesViewController.m in Sources */,
 				E83B109F1EF4FCCC00F2C5FA /* LocationlessTableViewCell.m in Sources */,
 				E82345251EECE14A00D2CDFD /* HelpIntroduction.m in Sources */,
 				E82343AD1EECDDD400D2CDFD /* MapWaypointInfoView.m in Sources */,
-				E82343541EECDA4900D2CDFD /* ImportGPXGarmin.m in Sources */,
 				E82343BB1EECDE6C00D2CDFD /* WaypointLogImagesViewController.m in Sources */,
 				E82344291EECDFB300D2CDFD /* FilterDifficultyTableViewCell.m in Sources */,
 				E823424E1EECCF9300D2CDFD /* SVProgressHUD.m in Sources */,
@@ -3571,7 +3539,6 @@
 				E82344941EECE0AD00D2CDFD /* QueriesTableViewCell.m in Sources */,
 				E823420E1EECCEEE00D2CDFD /* MHTabBarController.m in Sources */,
 				E82343F31EECDF4400D2CDFD /* WaypointAttributesViewController.m in Sources */,
-				E82343551EECDA4900D2CDFD /* ImportLiveAPIJSON.m in Sources */,
 				E823442C1EECDFB300D2CDFD /* FilterFavouritesTableViewCell.m in Sources */,
 				E823444D1EECE04B00D2CDFD /* NotesImagesViewController.m in Sources */,
 				E82343851EECDB9B00D2CDFD /* MapBrand.m in Sources */,
@@ -3608,7 +3575,6 @@
 				E82343871EECDB9B00D2CDFD /* MapTemplateViewController.m in Sources */,
 				E83C6F021EECE67100E303F5 /* FileObjectView.m in Sources */,
 				E82345221EECE14A00D2CDFD /* DeveloperDatabaseViewController.m in Sources */,
-				E82343501EECDA4900D2CDFD /* ImportGCA2JSON.m in Sources */,
 				E82343C31EECDE8A00D2CDFD /* WaypointImageViewController.m in Sources */,
 				E82343981EECDBCE00D2CDFD /* MapAppleCache.m in Sources */,
 				E823439C1EECDBCF00D2CDFD /* MapOSM.m in Sources */,
@@ -3881,6 +3847,7 @@
 					"${SRCROOT}/DatabaseLibrary",
 					"${SRCROOT}/Geocube",
 					"${SRCROOT}/NetworkLibrary",
+					"${SRCROOT}/ConvertorsLibrary",
 				);
 				INFOPLIST_FILE = Geocube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
@@ -3926,6 +3893,7 @@
 					"${SRCROOT}/DatabaseLibrary",
 					"${SRCROOT}/Geocube",
 					"${SRCROOT}/NetworkLibrary",
+					"${SRCROOT}/ConvertorsLibrary",
 				);
 				INFOPLIST_FILE = Geocube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;

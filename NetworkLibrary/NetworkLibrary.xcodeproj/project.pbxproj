@@ -297,6 +297,7 @@
 					"${SRCROOT}/../DatabaseLibrary",
 					"${SRCROOT}/../Pods/Headers/Public/GoogleMaps",
 					"${SRCROOT}/../ContribLibrary",
+					"${SRCROOT}/../ConvertorsLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -349,6 +350,7 @@
 					"${SRCROOT}/../DatabaseLibrary",
 					"${SRCROOT}/../Pods/Headers/Public/GoogleMaps",
 					"${SRCROOT}/../ContribLibrary",
+					"${SRCROOT}/../ConvertorsLibrary",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -396,6 +398,7 @@
 				E84E894D1F6F27E4004F4BE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

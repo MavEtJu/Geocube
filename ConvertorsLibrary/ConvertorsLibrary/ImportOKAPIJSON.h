@@ -19,8 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "Convertors/ImportTemplate.h"
+#import "ImportTemplate.h"
 
-@interface ImportGCA2JSON : ImportTemplate
+@interface ImportOKAPIJSON : ImportTemplate
 
 @end

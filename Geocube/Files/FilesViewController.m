@@ -22,8 +22,7 @@
 #import "FilesViewController.h"
 
 #import "NetworkLibrary/IOSFileTransfers.h"
-
-#import "ImportGeocube.h"
+#import "ConvertorsLibrary/ImportGeocube.h"
 
 @interface FilesViewController ()
 {

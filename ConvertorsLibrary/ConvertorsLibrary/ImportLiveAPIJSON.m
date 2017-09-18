@@ -21,7 +21,25 @@
 
 #import "ImportLiveAPIJSON.h"
 
+#import "Geocube-Defines.h"
+
 #import "ManagersLibrary/OpenCageManager.h"
+#import "ManagersLibrary/ImagesDownloadManager.h"
+#import "ToolsLibrary/MyTools.h"
+#import "ToolsLibrary/InfoViewer.h"
+#import "ToolsLibrary/InfoItem.h"
+#import "DatabaseLibrary/dbLog.h"
+#import "DatabaseLibrary/dbLogString.h"
+#import "DatabaseLibrary/dbWaypoint.h"
+#import "DatabaseLibrary/dbName.h"
+#import "DatabaseLibrary/dbState.h"
+#import "DatabaseLibrary/dbCountry.h"
+#import "DatabaseLibrary/dbAttribute.h"
+#import "DatabaseLibrary/dbPersonalNote.h"
+#import "DatabaseLibrary/dbGroup.h"
+#import "DatabaseLibrary/dbTrackable.h"
+#import "DatabaseLibrary/dbImage.h"
+#import "DatabaseLibrary/database-cache.h"
 
 @interface ImportLiveAPIJSON ()
 

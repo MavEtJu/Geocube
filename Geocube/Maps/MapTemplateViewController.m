@@ -21,7 +21,8 @@
 
 #import "MapTemplateViewController.h"
 
-#import "ExportGPX.h"
+#import "ConvertorsLibrary/ExportGPX.h"
+
 #import "MapGoogle.h"
 #import "MapApple.h"
 #import "MapBrand.h"

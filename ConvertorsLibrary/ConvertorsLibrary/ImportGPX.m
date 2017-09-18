@@ -19,11 +19,32 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ImportGPXGarmin.h"
+#import "ImportGPX.h"
 
 #import "ManagersLibrary/OpenCageManager.h"
+#import "ManagersLibrary/ImagesDownloadManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ToolsLibrary/InfoViewer.h"
+#import "ToolsLibrary/InfoItem.h"
+#import "ToolsLibrary/MyTools.h"
+#import "DatabaseLibrary/dbAttribute.h"
+#import "DatabaseLibrary/dbLog.h"
+#import "DatabaseLibrary/dbTrackable.h"
+#import "DatabaseLibrary/dbImage.h"
+#import "DatabaseLibrary/dbWaypoint.h"
+#import "DatabaseLibrary/dbState.h"
+#import "DatabaseLibrary/dbCountry.h"
+#import "DatabaseLibrary/dbLocality.h"
+#import "DatabaseLibrary/database-cache.h"
+#import "DatabaseLibrary/dbAttribute.h"
+#import "DatabaseLibrary/dbGroup.h"
+#import "DatabaseLibrary/dbName.h"
+#import "DatabaseLibrary/dbType.h"
+#import "DatabaseLibrary/dbSymbol.h"
+#import "DatabaseLibrary/dbPersonalNote.h"
+#import "DatabaseLibrary/dbLogString.h"
 
-@interface ImportGPXGarmin ()
+@interface ImportGPX ()
 {
     NSArray<NSString *> *files;
 
@@ -48,7 +69,7 @@
 
 @end
 
-@implementation ImportGPXGarmin
+@implementation ImportGPX
 
 - (void)parseFile:(NSString *)filename infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii
 {
@@ -126,7 +147,7 @@
             return;
         }
 
-        if ([currentElement isEqualToString:@"cache"] == YES) {
+        if ([currentElement isEqualToString:@"groundspeak:cache"] == YES) {
             [currentWP setGs_archived:[[attributeDict objectForKey:@"archived"] boolValue]];
             [currentWP setGs_available:[[attributeDict objectForKey:@"available"] boolValue]];
 
@@ -134,17 +155,17 @@
             return;
         }
 
-        if ([currentElement isEqualToString:@"long_description"] == YES) {
+        if ([currentElement isEqualToString:@"groundspeak:long_description"] == YES) {
             [currentWP setGs_long_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
             return;
         }
 
-        if ([currentElement isEqualToString:@"short_description"] == YES) {
+        if ([currentElement isEqualToString:@"groundspeak:short_description"] == YES) {
             [currentWP setGs_short_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
             return;
         }
 
-        if ([currentElement isEqualToString:@"log"] == YES) {
+        if ([currentElement isEqualToString:@"groundspeak:log"] == YES) {
             currentLog = [[dbLog alloc] init];
             [currentLog setGc_id:[[attributeDict objectForKey:@"id"] integerValue]];
 
@@ -152,18 +173,26 @@
             return;
         }
 
-        if ([currentElement isEqualToString:@"finder"] == YES) {
+        if ([currentElement isEqualToString:@"groundspeak:log_wpt"] == YES) {
+            currentLog.latitude = [[attributeDict objectForKey:@"lat"] floatValue];
+            currentLog.longitude = [[attributeDict objectForKey:@"lon"] floatValue];
+
+            inLog = YES;
+            return;
+        }
+
+        if ([currentElement isEqualToString:@"groundspeak:finder"] == YES) {
             logFinderNameId = [attributeDict objectForKey:@"id"];
             [currentLog setLogger_gsid:logFinderNameId];
             return;
         }
-        if ([currentElement isEqualToString:@"owner"] == YES) {
+        if ([currentElement isEqualToString:@"groundspeak:owner"] == YES) {
             gsOwnerNameId = [attributeDict objectForKey:@"id"];
             [currentWP setGs_owner_gsid:gsOwnerNameId];
             return;
         }
 
-        if ([currentElement isEqualToString:@"travelbug"] == YES) {
+        if ([currentElement isEqualToString:@"groundspeak:travelbug"] == YES) {
             currentTB = [[dbTrackable alloc] init];
             [currentTB setGc_id:[[attributeDict objectForKey:@"id"] integerValue]];
             [currentTB setRef:[attributeDict objectForKey:@"ref"]];
@@ -173,7 +202,7 @@
             return;
         }
 
-        if ([currentElement isEqualToString:@"attribute"] == YES) {
+        if ([currentElement isEqualToString:@"groundspeak:attribute"] == YES) {
             NSId _id = [[attributeDict objectForKey:@"id"] integerValue];
             BOOL YesNo = [[attributeDict objectForKey:@"inc"] boolValue];
             dbAttribute *a = [dbc attributeGetByGCId:_id];
@@ -182,6 +211,18 @@
                 [attributesYES addObject:[dbc attributeGetByGCId:_id]];
             else
                 [attributesNO addObject:[dbc attributeGetByGCId:_id]];
+            return;
+        }
+
+        if ([currentElement isEqualToString:@"gsak:CacheImage"] == YES) {
+            currentImage = [[dbImage alloc] init];
+            inImageCache = YES;
+            return;
+        }
+
+        if ([currentElement isEqualToString:@"gsak:LogImage"] == YES) {
+            currentImage = [[dbImage alloc] init];
+            inImageLog = YES;
             return;
         }
 
@@ -303,13 +344,13 @@
             goto bye;
         }
 
-        if (index == 2 && [currentElement isEqualToString:@"cache"] == YES) {
+        if (index == 2 && [currentElement isEqualToString:@"groundspeak:cache"] == YES) {
             inGroundspeak = NO;
             goto bye;
         }
 
         // Deal with the completion of the travelbug
-        if (index == 4 && inTrackable == YES && [elementName isEqualToString:@"travelbug"] == YES) {
+        if (index == 4 && inTrackable == YES && [elementName isEqualToString:@"groundspeak:travelbug"] == YES) {
             [trackables addObject:currentTB];
 
             inTrackable = NO;
@@ -317,17 +358,32 @@
         }
 
         // Deal with the completion of the log
-        if (index == 4 && inLog == YES && [elementName isEqualToString:@"log"] == YES) {
+        if (index == 4 && inLog == YES && [elementName isEqualToString:@"groundspeak:log"] == YES) {
             [logs addObject:currentLog];
 
             inLog = NO;
             goto bye;
         }
 
+        // Deal with the completion of the image
+        if (index == 4 && inImageCache  == YES && [elementName isEqualToString:@"gsak:CacheImage"] == YES) {
+            [imagesCache addObject:currentImage];
+
+            inImageCache = NO;
+            goto bye;
+        }
+
+        if (index == 4 && inImageLog == YES && [elementName isEqualToString:@"gsak:LogImage"] == YES) {
+            [imagesLog addObject:currentImage];
+
+            inImageLog = NO;
+            goto bye;
+        }
+
         // Deal with the data of the travelbug
         if (inTrackable == YES) {
             if (index == 5) {
-                if ([elementName isEqualToString:@"name"] == YES) {
+                if ([elementName isEqualToString:@"groundspeak:name"] == YES) {
                     [currentTB setName:cleanText];
                     goto bye;
                 }
@@ -339,26 +395,44 @@
         // Deal with the data of the log
         if (inLog == YES) {
             if (index == 5) {
-                if ([elementName isEqualToString:@"date"] == YES) {
+                if ([elementName isEqualToString:@"groundspeak:date"] == YES) {
                     currentLog.datetime_epoch = [MyTools secondsSinceEpochFromISO8601:cleanText];
                     goto bye;
                 }
-                if ([elementName isEqualToString:@"type"] == YES) {
-                    [currentLog set_logstring_str:cleanText account:account];
+                if ([elementName isEqualToString:@"groundspeak:type"] == YES) {
+                    LogStringWPType wptype = [dbLogString wptTypeToWPType:currentWP.wpt_type.type_full];
+                    NSAssert(wptype != 0, @"wptype != 0");
+                    currentLog.logstring = [dbc logStringGetByDisplayString:account displayString:cleanText];
+                    NSAssert(currentLog.logstring != nil, @"currentLog.logstring != nil");
                     goto bye;
                 }
-                if ([elementName isEqualToString:@"finder"] == YES) {
+                if ([elementName isEqualToString:@"groundspeak:finder"] == YES) {
                     [dbName makeNameExist:cleanText code:logFinderNameId account:account];
                     currentLog.logger = [dbName dbGetByName:cleanText account:account];
                     goto bye;
                 }
-                if ([elementName isEqualToString:@"text"] == YES) {
+                if ([elementName isEqualToString:@"groundspeak:text"] == YES) {
                     [currentLog setLog:currentText]; // Can contain newlines
                     goto bye;
                 }
                 goto bye;
             }
             goto bye;
+        }
+
+        // Deal with the data of the GSAK image
+        if (inImageLog == YES || inImageCache == YES) {
+            if (index == 5 && cleanText != nil) {
+                if ([elementName isEqualToString:@"gsak:iimage"] == YES) {
+                    [currentImage setUrl:cleanText];
+                    goto bye;
+                }
+                if ([elementName isEqualToString:@"gsak:iname"] == YES) {
+                    [currentImage setName:cleanText];
+                    goto bye;
+                }
+                goto bye;
+            }
         }
 
         // Deal with the data of the cache. Always the last one!
@@ -402,47 +476,78 @@
                 goto bye;
             }
             if (index == 3 && cleanText != nil) {
-                if ([elementName isEqualToString:@"difficulty"] == YES) {
+                if ([elementName isEqualToString:@"groundspeak:difficulty"] == YES) {
                     [currentWP setGs_rating_difficulty:[cleanText floatValue]];
                     goto bye;
                 }
-                if ([elementName isEqualToString:@"terrain"] == YES) {
+                if ([elementName isEqualToString:@"groundspeak:terrain"] == YES) {
                     [currentWP setGs_rating_terrain:[cleanText floatValue]];
                     goto bye;
                 }
-                if ([elementName isEqualToString:@"country"] == YES) {
+                if ([elementName isEqualToString:@"groundspeak:country"] == YES) {
                     [dbCountry makeNameExist:cleanText];
                     [currentWP set_gs_country_str:cleanText];
                     goto bye;
                 }
-                if ([elementName isEqualToString:@"state"] == YES) {
+                if ([elementName isEqualToString:@"groundspeak:state"] == YES) {
                     [dbState makeNameExist:cleanText];
                     [currentWP set_gs_state_str:cleanText];
                     goto bye;
                 }
-                if ([elementName isEqualToString:@"container"] == YES) {
+                if ([elementName isEqualToString:@"groundspeak:container"] == YES) {
                     [currentWP set_gs_container_str:cleanText];
                     goto bye;
                 }
-                if ([elementName isEqualToString:@"short_description"] == YES) {
-                    [currentWP setGs_short_desc:[MyTools HTMLUnescape:currentText]]; // Can contain newlines
+                if ([elementName isEqualToString:@"groundspeak:short_description"] == YES) {
+                    [currentWP setGs_short_desc:currentText]; // Can contain newlines
                     goto bye;
                 }
-                if ([elementName isEqualToString:@"long_description"] == YES) {
-                    [currentWP setGs_long_desc:[MyTools HTMLUnescape:currentText]]; // Can contain newlines
+                if ([elementName isEqualToString:@"groundspeak:long_description"] == YES) {
+                    [currentWP setGs_long_desc:currentText]; // Can contain newlines
                     goto bye;
                 }
-                if ([elementName isEqualToString:@"encoded_hints"] == YES) {
-                    [currentWP setGs_hint:[MyTools HTMLUnescape:currentText]]; // Can contain newlines
+                if ([elementName isEqualToString:@"groundspeak:encoded_hints"] == YES) {
+                    [currentWP setGs_hint:currentText]; // Can contain newlines
                     goto bye;
                 }
-                if ([elementName isEqualToString:@"owner"] == YES) {
+                if ([elementName isEqualToString:@"groundspeak:owner"] == YES) {
                     [dbName makeNameExist:cleanText code:gsOwnerNameId account:account];
                     [currentWP set_gs_owner_str:cleanText];
                     goto bye;
                 }
-                if ([elementName isEqualToString:@"placed_by"] == YES) {
+                if ([elementName isEqualToString:@"groundspeak:placed_by"] == YES) {
                     [currentWP setGs_placed_by:cleanText];
+                    goto bye;
+                }
+
+                if ([elementName isEqualToString:@"gsak:County"] == YES) {
+                    [currentWP set_gca_locality_str:cleanText];
+                    goto bye;
+                }
+                if ([elementName isEqualToString:@"gsak:FavPoints"] == YES) {
+                    [currentWP setGs_favourites:[cleanText integerValue]];
+                    goto bye;
+                }
+                if ([elementName isEqualToString:@"gsak:GcNote"] == YES) {
+                    NSString *personal_note = currentText;  // Can contain newlines
+                    dbPersonalNote *pn = [dbPersonalNote dbGetByWaypointName:currentWP.wpt_name];
+                    if (pn != nil) {
+                        if (personal_note == nil || [personal_note isEqualToString:@""] == YES) {
+                            [pn dbDelete];
+                            pn = nil;
+                        } else {
+                            pn.note = personal_note;
+                            [pn dbUpdate];
+                        }
+                    } else {
+                        if (personal_note != nil && [personal_note isEqualToString:@""] == NO) {
+                            pn = [[dbPersonalNote alloc] init];
+                            pn.wp_name = currentWP.wpt_name;
+                            pn.note = personal_note;
+                            [pn dbCreate];
+                        }
+                    }
+
                     goto bye;
                 }
 
@@ -478,6 +583,7 @@ bye:
 {
     NSString *errorString = [NSString stringWithFormat:@"%@ error (Error code %ld)", [self class], (long)[parseError code]];
     NSLog(@"Error parsing XML: %@ (%@)", errorString, parseError);
+    [MyTools messageBox:[MyTools topMostController] header:_(@"importgpx-Error parsing XML code") text:_(@"importgpx-An error occured while importing the GPX file.") error:[parseError.userInfo description]];
 }
 
 @end

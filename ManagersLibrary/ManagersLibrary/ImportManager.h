@@ -22,8 +22,8 @@
 #import <Foundation/Foundation.h>
 
 #import "ContribLibrary/SSZipArchive/SSZipArchive.h"
-#import "Convertors/ImportTemplate-delegate.h"
-#import "Convertors/ImportTemplate-enum.h"
+#import "ConvertorsLibrary/ImportTemplate-delegate.h"
+#import "ConvertorsLibrary/ImportTemplate-enum.h"
 #import "ToolsLibrary/InfoItem.h"
 
 @class dbAccount;

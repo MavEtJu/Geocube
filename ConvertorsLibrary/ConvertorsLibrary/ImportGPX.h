@@ -19,8 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "Convertors/ImportTemplate.h"
+#import "ImportTemplate.h"
 
-@interface ImportLiveAPIJSON : ImportTemplate
+@interface ImportGPX : ImportTemplate <NSXMLParserDelegate>
 
 @end

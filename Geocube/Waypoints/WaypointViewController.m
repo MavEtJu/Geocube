@@ -22,8 +22,7 @@
 #import "WaypointViewController.h"
 
 #import "NetworkLibrary/RemoteAPITemplate.h"
-
-#import "ExportGPX.h"
+#import "ConvertorsLibrary/ExportGPX.h"
 
 @interface WaypointViewController ()
 {
