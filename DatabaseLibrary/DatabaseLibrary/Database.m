@@ -837,8 +837,8 @@
     @synchronized(db) {
         sqlite3_stmt *req;
 
-        // Delete all logs from waypoints not longer in an usergroup (should be zero)
-        DB_PREPARE(@"delete from group2waypoints where waypoint_id not in (select waypoint_id from group2waypoints where group_id in (select id from groups where usergroup != 0))");
+        // Delete all group combinations from non-existing waypoints
+        DB_PREPARE(@"delete from group2waypoints where waypoint_id not in (select id from waypoints)");
         DB_CHECK_OKAY;
         DB_FINISH;
 
