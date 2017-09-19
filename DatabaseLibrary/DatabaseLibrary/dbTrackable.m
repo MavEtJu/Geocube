@@ -45,6 +45,20 @@ TABLENAME(@"travelbugs")
     self.owner = [dbName dbGetByName:name account:account];
 }
 
+- (void)finish
+{
+    if (self.carrier == nil) {
+        dbName *c = [[dbName alloc] init];
+        self.carrier = c;
+    }
+    if (self.owner == nil) {
+        dbName *c = [[dbName alloc] init];
+        self.owner = c;
+    }
+
+    [super finish];
+}
+
 - (NSId)dbCreate
 {
     ASSERT_SELF_FIELD_EXISTS(carrier);
