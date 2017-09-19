@@ -76,6 +76,8 @@
 + (NSString *)niceSpeed:(NSInteger)kmph isMetric:(BOOL)isMetric;
 + (NSString *)nicePercentage:(NSInteger)value total:(NSInteger)total;
 
++ (NSString *)strippedFloat:(NSString *)fmt f:(float)f;
+
 + (NSString *)urlEncode:(NSString *)in;
 + (NSString *)urlDecode:(NSString *)in;
 + (NSString *)urlParameterJoin:(NSDictionary *)in;
@@ -93,6 +95,8 @@
 + (BOOL)hasWifiNetwork;
 + (BOOL)hasMobileNetwork;
 + (BOOL)hasAnyNetwork;
+
++ (NSInteger)ThreadCount;
 
 //+ (NSData *)sendSynchronousRequest:(NSURLRequest *)request returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr;
 

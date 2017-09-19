@@ -21,7 +21,9 @@
 
 #import "MyTools.h"
 
+#include <mach/mach.h>
 #import <sys/time.h>
+#include <pthread.h>
 
 #import <ImageIO/ImageIO.h>
 #import <Social/Social.h>
@@ -421,6 +423,39 @@ TIME(dateTimeString_dow, @"EEEE")
 {
     return [NSString stringWithFormat:@"%0.0f%%", 100.0 * value / total];
 }
+
+///////////////////////////////////////////
+
++ (NSString *)strippedFloat:(NSString *)fmt f:(float)f
+{
+    NSString *s = [NSString stringWithFormat:fmt, f];
+    while ([[s substringFromIndex:[s length] - 1] isEqualToString:@"0"] == YES)
+        s = [s substringToIndex:[s length] - 1];
+    return s;
+}
+
++ (NSInteger)ThreadCount
+{
+    thread_act_array_t threads;
+    mach_msg_type_number_t thread_count = 0;
+
+    const task_t    this_task = mach_task_self();
+    const thread_t  this_thread = mach_thread_self();
+
+    // 1. Get a list of all threads (with count):
+    kern_return_t kr = task_threads(this_task, &threads, &thread_count);
+
+    if (kr != KERN_SUCCESS) {
+        printf("error getting threads: %s", mach_error_string(kr));
+        return NO;
+    }
+
+    mach_port_deallocate(this_task, this_thread);
+    vm_deallocate(this_task, (vm_address_t)threads, sizeof(thread_t) * thread_count);
+
+    return thread_count;
+}
+
 
 ///////////////////////////////////////////
 
