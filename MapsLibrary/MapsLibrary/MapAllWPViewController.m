@@ -241,6 +241,9 @@ enum {
     NSLog(@"PROCESSING: Downloaded %ld", (long)identifier);
     [processing increaseDownloadedChunks:identifier];
 
+    if (o == nil)
+        o = [NSNull null];
+
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
     [dict setObject:[NSNumber numberWithInteger:iii] forKey:@"iii"];
     [dict setObject:o forKey:@"object"];
@@ -258,9 +261,11 @@ enum {
     InfoItemID iii = [[dict objectForKey:@"iii"] integerValue];
     NSInteger identifier = [[dict objectForKey:@"identifier"] integerValue];
 
-    NSArray<NSString *> *wps = [importManager process:o group:g account:a options:IMPORTOPTION_NOPOST|IMPORTOPTION_NOPRE infoViewer:infoView iiImport:iii];
-    @synchronized (newWaypoints) {
-        [newWaypoints addObjectsFromArray:wps];
+    if ([o isKindOfClass:[NSNull class]] == NO) {
+        NSArray<NSString *> *wps = [importManager process:o group:g account:a options:IMPORTOPTION_NOPOST|IMPORTOPTION_NOPRE infoViewer:infoView iiImport:iii];
+        @synchronized (newWaypoints) {
+            [newWaypoints addObjectsFromArray:wps];
+        }
     }
 
     NSLog(@"PROCESSING: Processed %ld", (long)identifier);
