@@ -115,7 +115,7 @@ files for .h files should be:
     #include "Geocube-Globals.h"
     ```
 
-- The Various Geocube Library enum files:
+- The various Geocube Library enum and delegate files:
 
     ```
     #include "DatabaseLibrary/dbWaypoint-enum.h"
@@ -160,14 +160,14 @@ files for .h files should be:
     #include "Geocube-Globals.h"
     ```
 
-- The Various Geocube Library class files:
+- The various Geocube Library class files:
 
     ```
     #include "DatabaseLibrary/dbWaypoint.h"
     #include "ToolsLibrary/MyTools.h"
     ```
 
-- The Various Geocube class files:
+- The various Geocube class files:
 
     ```
     #include "something.h"
