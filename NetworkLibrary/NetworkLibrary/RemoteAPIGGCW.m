@@ -21,6 +21,8 @@
 
 #import "RemoteAPIGGCW.h"
 
+#import "Geocube-defines.h"
+
 #import "DatabaseLibrary/dbWaypoint.h"
 #import "DatabaseLibrary/dbTrackable.h"
 #import "DatabaseLibrary/dbLogString.h"
@@ -218,6 +220,7 @@
     return REMOTEAPI_OK;
 }
 
+NSInteger threadcounter = 0;
 - (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     [iv setChunksTotal:iid total:1];
@@ -232,14 +235,38 @@
 
     [wptnames enumerateObjectsUsingBlock:^(NSString * _Nonnull wptname, NSUInteger idx, BOOL * _Nonnull stop) {
         [iv setChunksCount:iid count:idx + 1];
-        GCStringGPX *gpx = [ggcw geocache_gpx:wptname infoViewer:iv iiDownload:iid];
 
-        InfoItemID iii = [iv addImport:NO];
-        [callback remoteAPI_objectReadyToImport:identifier iiImport:iii object:gpx group:dbc.groupManualWaypoints account:self.account];
+        while (threadcounter > 10)
+            [NSThread sleepForTimeInterval:1];
+
+        @synchronized(self) { threadcounter++; }
+        NSDictionary *d = @{@"wptname":wptname,
+                            @"infoviewer":iv,
+                            @"infoitem":[NSNumber numberWithInteger:iid],
+                            @"callback":callback,
+                            @"identifier":[NSNumber numberWithInteger:identifier],
+                            };
+        BACKGROUND(loadWaypointsByBoundingBox_BG:, d);
+        
     }];
     [callback remoteAPI_finishedDownloads:identifier numberOfChunks:[wptnames count]];
 
     return REMOTEAPI_OK;
+}
+
+- (void)loadWaypointsByBoundingBox_BG:(NSDictionary *)d
+{
+    NSInteger identifier = [[d objectForKey:@"identifier"] integerValue];
+    InfoItemID iid = [[d objectForKey:@"infoitem"] integerValue];
+    InfoViewer *iv = [d objectForKey:@"infoviewer"];
+    NSString *wptname = [d objectForKey:@"wptname"];
+
+    id<RemoteAPIDownloadDelegate> callback = [d objectForKey:@"callback"];
+    GCStringGPX *gpx = [ggcw geocache_gpx:wptname infoViewer:iv iiDownload:iid];
+    InfoItemID iii = [iv addImport:NO];
+
+    [callback remoteAPI_objectReadyToImport:identifier iiImport:iii object:gpx group:dbc.groupManualWaypoints account:self.account];
+    @synchronized (self) { threadcounter--; }
 }
 
 - (RemoteAPIResult)trackablesMine:(InfoViewer *)iv iiDownload:(InfoItemID)iid
