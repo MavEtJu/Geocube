@@ -21,6 +21,8 @@
 
 #import "ProtocolTemplate.h"
 
+#import <CoreLocation/CoreLocation.h>
+
 #import "NetworkLibrary/ProtocolGGCW-delegate.h"
 
 #import "ToolsLibrary/InfoItem.h"
@@ -45,10 +47,6 @@
 - (NSDictionary *)geocache:(NSString *)wptname infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (GCStringGPX *)geocache_gpx:(NSString *)wptname infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (GCDictionaryGGCW *)account_oauth_token:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
-- (GCDictionaryGGCW *)map:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
-- (GCDictionaryGGCW *)map_info:(NSInteger)x y:(NSInteger)y z:(NSInteger)z infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
-- (GCDictionaryGGCW *)map_png:(NSInteger)x y:(NSInteger)y z:(NSInteger)z infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
-- (GCDictionaryGGCW *)map_details:(NSString *)wpcode infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (GCStringGPXGarmin *)seek_sendtogps:(NSString *)guid infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (NSArray<NSDictionary *> *)my_inventory:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (NSDictionary *)track_details:(NSString *)guid id:(NSString *)_id infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
@@ -58,6 +56,7 @@
 - (NSDictionary *)play_geocache_log__form:(NSString *)gccode infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (NSString *)play_geocache_log__submit:(NSString *)gccode dict:(NSDictionary *)dict logstring:(NSString *)logstring_type dateLogged:(NSString *)dateLogged note:(NSString *)note favpoint:(BOOL)favpoint infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (NSDictionary *)api_proxy_trackable_activities:(NSString *)gccode trackables:(NSArray<dbTrackable *> *)tbs dateLogged:(NSString *)dateLogged infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
+- (NSArray *)play_search:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 
 - (GCDictionaryGGCW *)my_statistics:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 

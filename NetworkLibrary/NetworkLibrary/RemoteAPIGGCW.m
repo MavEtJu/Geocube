@@ -36,6 +36,7 @@
 #import "BaseObjectsLibrary/GCDictionaryObjects.h"
 #import "BaseObjectsLibrary/GCStringObjects.h"
 #import "BaseObjectsLibrary/GCDataObjects.h"
+#import "BaseObjectsLibrary/GCBoundingBox.h"
 #import "NetworkLibrary/ProtocolGGCW.h"
 #import "ConvertorsLibrary/ImportGGCWJSON.h"
 
@@ -61,7 +62,7 @@
 
 - (BOOL)supportsLoadWaypoint { return YES; }
 - (BOOL)supportsLoadWaypointsByCodes { return NO; }
-- (BOOL)supportsLoadWaypointsByBoundaryBox { return NO; }
+- (BOOL)supportsLoadWaypointsByBoundaryBox { return YES; }
 
 - (BOOL)supportsListQueries { return YES; }
 - (BOOL)supportsRetrieveQueries { return YES; }
@@ -136,74 +137,6 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
-{
-    dbAccount *a = waypoint.account;
-    dbGroup *g = dbc.groupLiveImport;
-
-    [iv setChunksTotal:iid total:1];
-    [iv setChunksCount:iid count:1];
-
-    GCStringGPX *gpx = [ggcw geocache_gpx:waypoint.wpt_name infoViewer:iv iiDownload:iid];
-
-    InfoItemID iii = [iv addImport:NO];
-    [iv setDescription:iii description:IMPORTMSG_GPX];
-    [callback remoteAPI_objectReadyToImport:identifier iiImport:iii object:gpx group:g account:a];
-
-    [callback remoteAPI_finishedDownloads:identifier numberOfChunks:1];
-    return REMOTEAPI_OK;
-}
-
-- (void)loadWaypoints_GGCWBackground:(NSMutableDictionary *)wpcodes
-{
-    id<RemoteAPIDownloadDelegate> callback = [wpcodes objectForKey:@"callback"];
-    InfoItemID iid = [[wpcodes objectForKey:@"iid"] integerValue];
-    InfoViewer *iv = [wpcodes objectForKey:@"iv"];
-    dbGroup *group = [wpcodes objectForKey:@"group"];
-    NSInteger identifier = [[wpcodes objectForKey:@"identifier"] integerValue];
-    [wpcodes removeObjectForKey:@"iid"];
-    [wpcodes removeObjectForKey:@"iv"];
-    [wpcodes removeObjectForKey:@"callback"];
-    [wpcodes removeObjectForKey:@"group"];
-    [wpcodes removeObjectForKey:@"identifier"];
-
-    GCMutableArray *gpxarray = [[GCMutableArray alloc] initWithCapacity:[wpcodes count]];
-
-    [iv setChunksTotal:iid total:[wpcodes count]];
-    [[wpcodes allKeys] enumerateObjectsUsingBlock:^(NSString * _Nonnull wpcode, NSUInteger idx, BOOL * _Nonnull stop) {
-        [iv setChunksCount:iid count:idx + 1];
-        [iv resetBytes:iid];
-
-        GCDictionaryGGCW *d = [ggcw map_details:wpcode infoViewer:iv iiDownload:iid];
-        if (d == nil) {
-            [callback remoteAPI_failed:identifier];
-            return;
-        }
-        NSArray<NSDictionary *> *data = [d objectForKey:@"data"];
-        NSDictionary *dict = [data objectAtIndex:0];
-
-        GCStringGPXGarmin *gpx = [ggcw seek_sendtogps:[dict objectForKey:@"g"] infoViewer:iv iiDownload:iid];
-        if (gpx == nil) {
-            [callback remoteAPI_failed:identifier];
-            return;
-        }
-
-        [gpxarray addObject:gpx];
-    }];
-
-    if ([gpxarray count] == 0) {
-        [iv removeItem:iid];
-        [callback remoteAPI_finishedDownloads:identifier numberOfChunks:0];
-        return;
-    }
-
-    InfoItemID iii = [iv addImport:NO];
-    [iv setDescription:iii description:IMPORTMSG_GPX];
-    [callback remoteAPI_objectReadyToImport:identifier iiImport:iii object:gpxarray group:group account:self.account];
-
-    [iv removeItem:iid];
-}
-
 - (RemoteAPIResult)updatePersonalNote:(dbPersonalNote *)note infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     NSDictionary *gc = [ggcw geocache:note.wp_name infoViewer:iv iiDownload:iid];
@@ -270,6 +203,42 @@
     [callback remoteAPI_objectReadyToImport:0 iiImport:iii object:zipfilename group:group account:self.account];
 
     [callback remoteAPI_finishedDownloads:0 numberOfChunks:1];
+    return REMOTEAPI_OK;
+}
+
+- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
+{
+    [iv setChunksTotal:iid total:1];
+    [iv setChunksCount:iid count:1];
+    
+    GCStringGPX *gpx = [ggcw geocache_gpx:waypoint.wpt_name infoViewer:iv iiDownload:iid];
+    [callback remoteAPI_objectReadyToImport:identifier iiImport:iid object:gpx group:dbc.groupManualWaypoints account:self.account];
+    [callback remoteAPI_finishedDownloads:identifier numberOfChunks:1];
+
+    return REMOTEAPI_OK;
+}
+
+- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
+{
+    [iv setChunksTotal:iid total:1];
+    [iv setChunksCount:iid count:1];
+
+    /* Not really a bounding box... */
+    CLLocationCoordinate2D c = CLLocationCoordinate2DMake((bb.topLat + bb.bottomLat) / 2, (bb.leftLon + bb.rightLon) / 2);
+    NSArray<NSString *> *wptnames = [ggcw play_search:c infoViewer:iv iiDownload:iid];
+
+    [iv setChunksTotal:iid total:[wptnames count]];
+    [iv setChunksCount:iid count:1];
+
+    [wptnames enumerateObjectsUsingBlock:^(NSString * _Nonnull wptname, NSUInteger idx, BOOL * _Nonnull stop) {
+        [iv setChunksCount:iid count:idx + 1];
+        GCStringGPX *gpx = [ggcw geocache_gpx:wptname infoViewer:iv iiDownload:iid];
+
+        InfoItemID iii = [iv addImport:NO];
+        [callback remoteAPI_objectReadyToImport:identifier iiImport:iii object:gpx group:dbc.groupManualWaypoints account:self.account];
+    }];
+    [callback remoteAPI_finishedDownloads:identifier numberOfChunks:[wptnames count]];
+
     return REMOTEAPI_OK;
 }
 
