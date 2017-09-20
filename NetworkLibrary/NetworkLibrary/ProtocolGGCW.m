@@ -630,6 +630,32 @@ bail2:
     return gpx;
 }
 
+- (NSString *)seek_cache__details_guid2wptname:(NSString *)guid
+{
+    /*
+     * When requesting /seek/cache_details.aspx?guid=e76266c6-058d-4f2f-867e-ce3d8b004fc5,
+     * it will return a 301 response to the full URL.
+     *
+     */
+    NSDictionary *params = @{@"guid":guid};
+    NSString *urlString = [self prepareURLString:@"/seek/cache_details.aspx" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+    [req setHTTPMethod:@"HEAD"];
+
+    NSHTTPURLResponse *resp;
+    [self performURLRequest:req returnRespose:&resp infoViewer:nil iiDownload:0];
+
+    NSMutableString *location = [NSMutableString stringWithString:[resp.allHeaderFields objectForKey:@"location"]];
+    if (location == nil)
+        return nil;
+
+    /* /geocache/GC7AYEC_het-groot-dictee-der-n */
+    [location replaceOccurrencesOfString:@"^.*/geocache/" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [location length])];
+    [location replaceOccurrencesOfString:@"_.*$" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [location length])];
+    return location;
+}
+
 - (GCDictionaryGGCW *)account_oauth_token:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     NSLog(@"account_oauth_token:");
@@ -640,7 +666,6 @@ bail2:
      * When requesting /geocache/GCxxxx, it will return a 301 response to the full URL.
      *
      */
-
     NSString *urlString = [self prepareURLString:@"/account/oauth/token" params:params];
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
@@ -801,6 +826,8 @@ bail:
     NSString *owner;
     NSString *href;
     NSString *u;
+    NSString *carrier;
+    NSString *location;
     NSRange r;
     TFHppleElement *e;
 
@@ -833,6 +860,28 @@ bail:
     owner = e.content;
 
     /*
+    <a id="ctl00_ContentBody_BugDetails_BugLocation" href="https://www.geocaching.com/profile/?guid=c094b3f5-603e-46da-915d-ba9314f3bbff">In the hands of Brasgordel.</a></dd>
+    <a id="ctl00_ContentBody_BugDetails_BugLocation" title="Visit&#32;Listing" href="https://www.geocaching.com/seek/cache_details.aspx?guid=e76266c6-058d-4f2f-867e-ce3d8b004fc5">In Kiddies Treasure</a></dd>
+     */
+    re = @"//a[@id='ctl00_ContentBody_BugDetails_BugLocation']";
+    nodes = [parser searchWithXPathQuery:re];
+    CHECK_ARRAY(nodes, 1, bail);
+    e = [nodes objectAtIndex:0];
+    href = [e.attributes objectForKey:@"href"];
+    if (href == nil) {
+        carrier = owner;
+    } else if ([href containsString:@"cache_details"] == YES) {
+        NSMutableString *l = [NSMutableString stringWithString:href];
+        [l replaceOccurrencesOfString:@"^.*guid=" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [href length])];
+        location = [self seek_cache__details_guid2wptname:l];
+    } else if ([href containsString:@"profile"] == YES) {
+        NSMutableString *c = [NSMutableString stringWithString:e.content];
+        [c replaceOccurrencesOfString:@"^In the hands of " withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [c length])];
+        [c replaceOccurrencesOfString:@"\\.$" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [c length])];
+        carrier = c;
+    }
+
+    /*
       <a id="ctl00_ContentBody_LogLink" title="Found&#32;it?&#32;Log&#32;it!" href="log.aspx?wid=a860f59b-7c62-458b-9ddd-adc5dade167b">Add a Log Entry</a></td>
      */
     re = @"//a[@id='ctl00_ContentBody_LogLink']";
@@ -849,6 +898,10 @@ bail:
     [dict setObject:_id forKey:@"id"];
     [dict setObject:guid forKey:@"guid"];
     [dict setObject:owner forKey:@"owner"];
+    if (location != nil)
+        [dict setObject:location forKey:@"location"];
+    if (carrier != nil)
+        [dict setObject:carrier forKey:@"carrier"];
 
 bail:
     return dict;
