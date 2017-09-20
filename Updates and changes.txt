@@ -7,6 +7,7 @@ Version 1.6(x)
   - EXIF GPS data for the images imported from the library and for
     the images made by the camera is now captured.
   - "Load Waypoints" works for GGCW! Yay!
+  - "Trackables" works for GGCW!
 
   Fixes:
   - Remove "rotate to bearing" for the map as it was never implemented.
