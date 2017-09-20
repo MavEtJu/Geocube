@@ -43,6 +43,7 @@
     NSMutableArray<dbSymbol *> *symbols;
     NSMutableArray<dbLogString *> *logStrings;
     NSMutableDictionary *names;
+    NSMutableArray<dbName *> *noNameNames;
 }
 
 @end
@@ -185,6 +186,13 @@
     names = [NSMutableDictionary dictionaryWithCapacity:200];
     [[dbName dbAll] enumerateObjectsUsingBlock:^(dbName * _Nonnull name, NSUInteger idx, BOOL * _Nonnull stop) {
         [names setObject:name forKey:[NSNumber numberWithLongLong:name._id]];
+    }];
+
+    noNameNames = [NSMutableArray arrayWithCapacity:[dbc.accounts count]];
+    [[dbName dbAll] enumerateObjectsUsingBlock:^(dbName * _Nonnull name, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([name.name isEqualToString:@"(no name supplied)"] == NO)
+            return;
+        [noNameNames addObject:name];
     }];
 }
 
@@ -603,6 +611,18 @@
 {
     NSNumber *n = [NSNumber numberWithLongLong:name._id];
     [names setObject:name forKey:n];
+}
+
+- (dbName *)nameGetNoName:(dbAccount *)account
+{
+    __block dbName *name;
+    [noNameNames enumerateObjectsUsingBlock:^(dbName * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (n.account._id == account._id) {
+            name = n;
+            *stop = YES;
+        }
+    }];
+    return name;
 }
 
 @end

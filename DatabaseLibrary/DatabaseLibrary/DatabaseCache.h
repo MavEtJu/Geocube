@@ -131,6 +131,7 @@
 
 - (dbName *)nameGet:(NSId)_id;
 - (void)nameAdd:(dbName *)name;
+- (dbName *)nameGetNoName:(dbAccount *)account;
 
 - (dbProtocol *)protocolGet:(NSId)_id;
 
