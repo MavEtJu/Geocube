@@ -27,6 +27,7 @@
 #import "ToolsLibrary/MyTools.h"
 #import "ManagersLibrary/ConfigManager.h"
 #import "DatabaseLibrary/dbConfig.h"
+#import "DatabaseLibrary/dbName.h"
 
 @interface database ()
 {
@@ -810,6 +811,12 @@
     @"alter table images add column lat float",
     @"alter table images add column lon float",
     @"update images set lat = 0, lon = 0",
+    ];
+    [upgradeSteps addObject:a];
+
+    // Version 62
+    a = @[
+          [NSString stringWithFormat:@"insert into names(account_id, name, code) select id, '%@', '' from accounts", NAME_NONAMESUPPLIED],
     ];
     [upgradeSteps addObject:a];
 }
