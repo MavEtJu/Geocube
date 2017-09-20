@@ -177,27 +177,6 @@
     return [self services_caches_geocaches:@[wpname] infoViewer:iv iiDownload:iid];
 }
 
-- (GCDictionaryOKAPI *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
-{
-    NSLog(@"services_caches_search_nearest: %@ at %ld", [Coordinates niceCoordinates:center], (long)offset);
-
-    float radius = configManager.mapSearchMaximumDistanceOKAPI / 1000;
-    NSString *centerString = [NSString stringWithFormat:@"%f|%f", center.latitude, center.longitude];
-
-    NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
-    [_dict setObject:[MyTools urlEncode:centerString] forKey:@"center"];
-    [_dict setObject:[NSNumber numberWithFloat:radius] forKey:@"radius"];
-    [_dict setObject:[NSNumber numberWithInteger:offset] forKey:@"offset"];
-    [_dict setObject:@"20" forKey:@"limit"];
-    NSString *params = [MyTools urlParameterJoin:_dict];
-
-    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"/caches/search/nearest" parameters:params];
-
-    GCDictionaryOKAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
-
-    return json;
-}
-
 - (GCDictionaryOKAPI *)services_caches_search_bbox:(GCBoundingBox *)bbox infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     NSLog(@"services_caches_search_bbox:%@", [bbox description]);

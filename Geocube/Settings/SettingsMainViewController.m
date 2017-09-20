@@ -250,7 +250,6 @@ enum sections {
     SECTION_SOUNDS,
     SECTION_COMPASS,
     SECTION_MAPCOLOURS,
-    SECTION_MAPSEARCHMAXIMUM,
     SECTION_MAPS,
     SECTION_ACCURACY,
     SECTION_MAPCACHE,
@@ -295,12 +294,6 @@ enum sections {
     SECTION_MAPCACHE_MAXAGE,
     SECTION_MAPCACHE_MAXSIZE,
     SECTION_MAPCACHE_MAX,
-
-    SECTION_MAPSEARCHMAXIMUM_DISTANCE_GS = 0,
-    SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA,
-    SECTION_MAPSEARCHMAXIMUM_DISTANCE_OKAPI,
-    SECTION_MAPSEARCHMAXIMUM_DISTANCE_GCA,
-    SECTION_MAPSEARCHMAXIMUM_MAX,
 
     SECTION_DYNAMICMAP_ENABLED = 0,
     SECTION_DYNAMICMAP_SPEED_WALKING,
@@ -406,7 +399,6 @@ enum sections {
         SECTION_MAX(KEEPTRACK);
         SECTION_MAX(MAPCACHE);
         SECTION_MAX(IMPORTS);
-        SECTION_MAX(MAPSEARCHMAXIMUM);
         SECTION_MAX(MARKAS);
         SECTION_MAX(WAYPOINTS);
         SECTION_MAX(LISTS);
@@ -447,8 +439,6 @@ enum sections {
             return _(@"settingsmainviewcontroller-Map cache");
         case SECTION_IMPORTS:
             return _(@"settingsmainviewcontroller-Import options");
-        case SECTION_MAPSEARCHMAXIMUM:
-            return _(@"settingsmainviewcontroller-Map search maximums");
         case SECTION_MARKAS:
             return _(@"settingsmainviewcontroller-Mark as...");
         case SECTION_WAYPOINTS:
@@ -592,20 +582,6 @@ enum sections {
                     }];
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-Default map"), value);
                 }
-            }
-            abort();
-        }
-
-        case SECTION_MAPSEARCHMAXIMUM: {
-            switch (indexPath.row) {
-                case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GS:
-                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Distance in GroundSpeak geocaching.com search radius"), [MyTools niceDistance:configManager.mapSearchMaximumDistanceGS]);
-                case SECTION_MAPSEARCHMAXIMUM_DISTANCE_OKAPI:
-                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Distance in OKAPI search radius"), [MyTools niceDistance:configManager.mapSearchMaximumDistanceOKAPI]);
-                case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GCA:
-                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Distance in GCA search radius"), [MyTools niceDistance:configManager.mapSearchMaximumDistanceGCA]);
-                case SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA:
-                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Number of waypoints in GCA search"), [MyTools niceDistance:configManager.mapSearchMaximumNumberGCA]);
             }
             abort();
         }
@@ -924,22 +900,6 @@ SWITCH_UPDATE(updateSpeedEnable, speedEnable)
             switch (indexPath.row) {
                 case SECTION_APPS_EXTERNALMAP:
                     [self changeAppsExternalMap];
-                    break;
-            }
-            break;
-        case SECTION_MAPSEARCHMAXIMUM:
-            switch (indexPath.row) {
-                case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GS:
-                    [self changeMapSearchMaximumDistanceGS];
-                    break;
-                case SECTION_MAPSEARCHMAXIMUM_DISTANCE_OKAPI:
-                    [self changeMapSearchMaximumDistanceOKAPI];
-                    break;
-                case SECTION_MAPSEARCHMAXIMUM_DISTANCE_GCA:
-                    [self changeMapSearchMaximumDistanceGCA];
-                    break;
-                case SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA:
-                    [self changeMapSearchMaximumNumberGCA];
                     break;
             }
             break;
@@ -1541,96 +1501,6 @@ SWITCH_UPDATE(updateSpeedEnable, speedEnable)
                                      cancelBlock:nil
                                           origin:cell.contentView
      ];
-}
-
-/* ********************************************************************************* */
-
-- (void)changeMapSearchMaximumDistanceGS
-{
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_MAPSEARCHMAXIMUM_DISTANCE_GS inSection:SECTION_MAPSEARCHMAXIMUM]];
-
-    NSMutableArray<NSString *> *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
-    for (NSInteger d = 250; d < 10000; d += 250) {
-        [distances addObject:[MyTools niceDistance:d]];
-    }
-    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select Maximum Distance")
-                                            rows:distances
-                                initialSelection:(configManager.mapSearchMaximumDistanceGS / 250) - 1
-                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                           NSInteger d = (1 + selectedIndex) * 250;
-                                           [configManager mapSearchMaximumDistanceGSUpdate:d];
-                                           [self.tableView reloadData];
-                                       }
-                                     cancelBlock:nil
-                                          origin:cell.contentView
-     ];
-}
-
-- (void)changeMapSearchMaximumDistanceGCA
-{
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_MAPSEARCHMAXIMUM_DISTANCE_GCA inSection:SECTION_MAPSEARCHMAXIMUM]];
-
-    NSMutableArray<NSString *> *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
-    for (NSInteger d = 250; d < 10000; d += 250) {
-        [distances addObject:[MyTools niceDistance:d]];
-    }
-    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select Maximum Distance")
-                                            rows:distances
-                                initialSelection:(configManager.mapSearchMaximumDistanceGCA / 250) - 1
-                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                           NSInteger d = (1 + selectedIndex) * 250;
-                                           [configManager mapSearchMaximumDistanceGCAUpdate:d];
-                                           [self.tableView reloadData];
-                                       }
-                                     cancelBlock:nil
-                                          origin:cell.contentView
-     ];
-}
-
-- (void)changeMapSearchMaximumDistanceOKAPI
-{
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_MAPSEARCHMAXIMUM_DISTANCE_OKAPI inSection:SECTION_MAPSEARCHMAXIMUM]];
-
-    NSMutableArray<NSString *> *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
-    for (NSInteger d = 250; d < 10000; d += 250) {
-        [distances addObject:[MyTools niceDistance:d]];
-    }
-    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select Maximum Distance")
-                                            rows:distances
-                                initialSelection:(configManager.mapSearchMaximumDistanceOKAPI / 250) - 1
-                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                           NSInteger d = (1 + selectedIndex) * 250;
-                                           [configManager mapSearchMaximumDistanceOKAPIUpdate:d];
-                                           [self.tableView reloadData];
-                                       }
-                                     cancelBlock:nil
-                                          origin:cell.contentView
-     ];
-}
-
-- (void)changeMapSearchMaximumNumberGCA
-{
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_MAPSEARCHMAXIMUM_NUMBER_GCA inSection:SECTION_MAPSEARCHMAXIMUM]];
-
-    NSMutableArray<NSNumber *> *distances = [NSMutableArray arrayWithCapacity:10000 / 250];
-    for (NSInteger d = 10; d < 200; d += 10) {
-        [distances addObject:[NSNumber numberWithInteger:d]];
-    }
-    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select Maximum Waypoints")
-                                            rows:distances
-                                initialSelection:(configManager.mapSearchMaximumNumberGCA / 10) - 1
-                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                           NSInteger d = (1 + selectedIndex) * 10;
-                                           [configManager mapSearchMaximumNumberGCAUpdate:d];
-                                           [self.tableView reloadData];
-                                       }
-                                     cancelBlock:nil
-                                          origin:cell.contentView
-     ];
-}
-
-- (void)updateMapSearchMaximumNumberGCA:(NSNumber *)selectedIndex element:(id)element
-{
 }
 
 /* ********************************************************************************* */

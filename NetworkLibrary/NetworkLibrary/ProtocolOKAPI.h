@@ -35,7 +35,6 @@
 - (GCDictionaryOKAPI *)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (GCDictionaryOKAPI *)services_caches_geocache:(NSString *)wpname infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (GCDictionaryOKAPI *)services_caches_geocaches:(NSArray<NSString *> *)wpcode infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
-- (GCDictionaryOKAPI *)services_caches_search_nearest:(CLLocationCoordinate2D)center offset:(NSInteger)offset infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (GCDictionaryOKAPI *)services_caches_search_bbox:(GCBoundingBox *)bbox infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 
 @end

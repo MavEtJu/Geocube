@@ -322,25 +322,6 @@
     return [self performURLRequest:req infoViewer:iv iiDownload:iid];
 }
 
-- (GCDictionaryGCA2 *)api_services_caches_search_nearest:(CLLocationCoordinate2D)coords infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
-{
-    NSLog(@"api_services_caches_search_nearest:%@", [Coordinates niceCoordinates:coords]);
-
-    float radius = configManager.mapSearchMaximumDistanceGCA / 1000;
-
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
-    NSString *c = [NSString stringWithFormat:@"%f|%f", coords.latitude, coords.longitude];
-    [params setObject:[MyTools urlEncode:c] forKey:@"center"];
-    [params setObject:[NSNumber numberWithFloat:radius] forKey:@"radius"];
-    [params setObject:[MyTools urlEncode:@"Temporarily unavailable|Available"] forKey:@"status"];
-
-    NSString *urlString = [self prepareURLString:@"/search/nearest/" params:params];
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
-
-    return [self performURLRequest:req infoViewer:iv iiDownload:iid];
-}
-
 - (GCDictionaryGCA2 *)api_services_search_bbox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     NSLog(@"api_services_search_bbox:%@", [bb description]);

@@ -382,54 +382,6 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)SearchForGeocaches_pointradius:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
-{
-    NSLog(@"SearchForGeocaches_pointradius:%@", [Coordinates niceCoordinates:center]);
-
-    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"SearchForGeocaches" method:@"POST"];
-    [urlRequest setTimeoutInterval:configManager.downloadTimeoutQuery];
-
-    /*
-     * {
-     *  "AccessToken": "SUJK5WNyq865waiqrZrfjSfO0XU=",
-     *  "PointRadius":{
-     *      DistanceInMeters":9223372036854775807,
-     *      Point":{
-     *          Latitude":1.26743233E+15,
-     *          Longitude":1.26743233E+15
-     *      },
-     *  },
-     *  "GeocacheLogCount": 20,
-     *  "IsLite": false,
-     *  "MaxPerPage": 20,
-     *  "TrackableLogCount": 1
-     * }
-     */
-    NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
-
-    [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
-    [_dict setValue:[NSNumber numberWithInteger:20] forKey:@"GeocacheLogCount"];
-    [_dict setValue:[NSNumber numberWithInteger:20] forKey:@"MaxPerPage"];
-    [_dict setValue:[NSNumber numberWithInteger:1] forKey:@"TrackableLogCount"];
-    [_dict setValue:[NSNumber numberWithBool:FALSE] forKey:@"IsLite"];
-
-    NSDictionary *dd = [NSMutableDictionary dictionaryWithCapacity:20];
-    [dd setValue:[NSNumber numberWithFloat:configManager.mapSearchMaximumDistanceGS] forKey:@"DistanceInMeters"];
-
-    NSDictionary *p = [NSMutableDictionary dictionaryWithCapacity:20];
-    [p setValue:[NSNumber numberWithFloat:center.latitude] forKey:@"Latitude"];
-    [p setValue:[NSNumber numberWithFloat:center.longitude] forKey:@"Longitude"];
-    [dd setValue:p forKey:@"Point"];
-    [_dict setValue:dd forKey:@"PointRadius"];
-
-    NSError *error = nil;
-    NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
-    urlRequest.HTTPBody = body;
-
-    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
-    return json;
-}
-
 - (GCDictionaryLiveAPI *)SearchForGeocaches_boundbox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     NSLog(@"SearchForGeocaches_boundbox:%@", [bb description]);

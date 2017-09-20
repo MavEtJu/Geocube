@@ -233,10 +233,6 @@
     LOAD_BOOL   (self.downloadQueriesMobile, @"download_queries_mobile");
     LOAD_INTEGER(self.downloadTimeoutSimple, @"download_timeout_simple");
     LOAD_INTEGER(self.downloadTimeoutQuery, @"download_timeout_query");
-    LOAD_INTEGER(self.mapSearchMaximumNumberGCA, @"mapsearchmaximum_numbergca");
-    LOAD_INTEGER(self.mapSearchMaximumDistanceGS, @"mapsearchmaximum_distancegs");
-    LOAD_INTEGER(self.mapSearchMaximumDistanceOKAPI, @"mapsearchmaximum_distanceokapi");
-    LOAD_INTEGER(self.mapSearchMaximumDistanceGCA, @"mapsearchmaximum_distancegca");
     LOAD_BOOL   (self.markasFoundDNFClearsTarget, @"markas_founddnf_clearstarget");
     LOAD_BOOL   (self.markasFoundMarksAllWaypoints, @"markas_foundmarksallwaypoints");
     LOAD_BOOL   (self.loggingRemovesMarkedAsFoundDNF, @"logging_removesmarkedasfounddnf");
@@ -428,10 +424,6 @@ UPDATE3(NSInteger, mapcacheMaxSize, @"mapcache_maxsize")
 UPDATE3(NSInteger, mapcacheMaxAge, @"mapcache_maxage")
 UPDATE3(NSInteger, downloadTimeoutSimple, @"download_timeout_simple")
 UPDATE3(NSInteger, downloadTimeoutQuery, @"download_timeout_query")
-UPDATE3(NSInteger, mapSearchMaximumNumberGCA, @"mapsearchmaximum_numbergca")
-UPDATE3(NSInteger, mapSearchMaximumDistanceGS, @"mapsearchmaximum_distancegs")
-UPDATE3(NSInteger, mapSearchMaximumDistanceOKAPI, @"mapsearchmaximum_distanceokapi")
-UPDATE3(NSInteger, mapSearchMaximumDistanceGCA, @"mapsearchmaximum_distancegca")
 UPDATE3(NSInteger, waypointListSortBy, @"waypointlist_sortby")
 UPDATE3(NSInteger, listSortBy, @"list_sortby")
 UPDATE3(NSInteger, locationlessListSortBy, @"locationless_sortby")
