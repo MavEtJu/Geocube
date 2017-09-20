@@ -122,6 +122,8 @@ TABLENAME(@"accounts")
         DB_GET_LAST_ID(self._id);
         DB_FINISH;
     }
+
+    [dbName makeNameExist:NAME_NONAMESUPPLIED code:@"" account:self];
     return self._id;
 }
 
