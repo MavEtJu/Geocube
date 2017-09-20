@@ -55,6 +55,7 @@ enum {
         // Hide the search window by default
         if ([self.tbs count] != 0) {
             MAINQUEUE(
+                [self.tableView reloadData];
                 [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
             )
         }
