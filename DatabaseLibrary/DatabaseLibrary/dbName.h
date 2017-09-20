@@ -21,6 +21,8 @@
 
 #import "dbObject.h"
 
+#define NAME_NONAMESUPPLIED @"(no name supplied)"
+
 @class dbAccount;
 
 @interface dbName : dbObject
