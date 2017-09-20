@@ -43,6 +43,9 @@
 #import "ConvertorsLibrary/ImportGGCWJSON.h"
 
 @interface RemoteAPIGGCW ()
+{
+    NSInteger threadcounter;
+}
 
 @end
 
@@ -52,7 +55,7 @@
 #define IMPORTMSG_PQ    _(@"remoteapiggcw-Geocaching.com Pocket Query data (queued)")
 
 - (BOOL)supportsWaypointPersonalNotes { return NO; }
-- (BOOL)supportsTrackables { return NO; }
+- (BOOL)supportsTrackables { return YES; }
 - (BOOL)supportsUserStatistics { return YES; }
 
 - (BOOL)supportsLogging { return NO; }
@@ -220,7 +223,6 @@
     return REMOTEAPI_OK;
 }
 
-NSInteger threadcounter = 0;
 - (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     [iv setChunksTotal:iid total:1];
@@ -286,9 +288,13 @@ NSInteger threadcounter = 0;
         [dict setObject:[tb objectForKey:@"id"] forKey:@"id"];
         [dict setObject:[d objectForKey:@"gccode"] forKey:@"gccode"];
         [dict setObject:[d objectForKey:@"owner"] forKey:@"owner"];
-        if ([tb objectForKey:@"carrier"] != nil)
+        if ([d objectForKey:@"carrier"] != nil)
+            [dict setObject:[d objectForKey:@"carrier"] forKey:@"carrier"];
+        else if ([tb objectForKey:@"carrier"] != nil)
             [dict setObject:[tb objectForKey:@"carrier"] forKey:@"carrier"];
-        if ([tb objectForKey:@"location"] != nil)
+        if ([d objectForKey:@"location"] != nil)
+            [dict setObject:[d objectForKey:@"location"] forKey:@"location"];
+        else if ([tb objectForKey:@"location"] != nil)
             [dict setObject:[tb objectForKey:@"location"] forKey:@"location"];
         [tbstot addObject:dict];
     }];
@@ -321,7 +327,7 @@ NSInteger threadcounter = 0;
         [dict setObject:[d objectForKey:@"id"] forKey:@"id"];
         [dict setObject:[d objectForKey:@"gccode"] forKey:@"gccode"];
         [dict setObject:[d objectForKey:@"owner"] forKey:@"owner"];
-        [dict setObject:[NSNumber numberWithLongLong:self.account.accountname._id] forKey:@"carrier_id"];
+        [dict setObject:[d objectForKey:@"carrier"] forKey:@"carrier"];
         [tbstot addObject:dict];
     }];
 
