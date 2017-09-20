@@ -120,8 +120,8 @@
 #import "HelpHelpViewController.h"
 #import "Help/HelpIntroduction.h"
 
-#import "Help/DeveloperDatabaseViewController.h"
-#import "Help/DeveloperImagesViewController.h"
+#import "Developer/DeveloperDatabaseViewController.h"
+#import "Developer/DeveloperImagesViewController.h"
 
 #import "KeepTrack/KeepTracksTrackTableViewCell.h"
 #import "KeepTrack/KeepTrackCar.h"

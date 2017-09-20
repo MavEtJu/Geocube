@@ -139,9 +139,7 @@
 		E823451F1EECE14A00D2CDFD /* HelpAboutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E823450E1EECE14A00D2CDFD /* HelpAboutTableViewCell.xib */; };
 		E82345201EECE14A00D2CDFD /* HelpAboutTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E823450F1EECE14A00D2CDFD /* HelpAboutTableViewCell~ipad.xib */; };
 		E82345211EECE14A00D2CDFD /* HelpAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82345111EECE14A00D2CDFD /* HelpAboutViewController.m */; };
-		E82345221EECE14A00D2CDFD /* DeveloperDatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82345131EECE14A00D2CDFD /* DeveloperDatabaseViewController.m */; };
 		E82345231EECE14A00D2CDFD /* HelpHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82345151EECE14A00D2CDFD /* HelpHelpViewController.m */; };
-		E82345241EECE14A00D2CDFD /* DeveloperImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82345171EECE14A00D2CDFD /* DeveloperImagesViewController.m */; };
 		E82345251EECE14A00D2CDFD /* HelpIntroduction.m in Sources */ = {isa = PBXBuildFile; fileRef = E82345191EECE14A00D2CDFD /* HelpIntroduction.m */; };
 		E82345261EECE14A00D2CDFD /* NoticesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E823451B1EECE14A00D2CDFD /* NoticesViewController.m */; };
 		E82345271EECE14A00D2CDFD /* NoticeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E823451D1EECE14A00D2CDFD /* NoticeTableViewCell.m */; };
@@ -409,6 +407,8 @@
 		E84E8A4F1F6F5CCE004F4BE9 /* MapWaypointInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E84E8A4D1F6F5CCE004F4BE9 /* MapWaypointInfoView~ipad.xib */; };
 		E858F5991F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E858F5981F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib */; };
 		E858F59B1F56610B002C1F9B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E858F59A1F56610B002C1F9B /* ImageIO.framework */; };
+		E8596ACD1F73174100E26495 /* DeveloperDatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8596ACA1F73174100E26495 /* DeveloperDatabaseViewController.m */; };
+		E8596ACE1F73174100E26495 /* DeveloperImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8596ACC1F73174100E26495 /* DeveloperImagesViewController.m */; };
 		E85BA88E1F544372008E708F /* KeepTrackBeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = E85BA88D1F544372008E708F /* KeepTrackBeeper.m */; };
 		E85BA8901F5449F5008E708F /* Beeper.wav in Resources */ = {isa = PBXBuildFile; fileRef = E85BA88F1F5449F5008E708F /* Beeper.wav */; };
 		E861B97E1EE2E6D300BD82AC /* GC - logo - 1536×2048.png in Resources */ = {isa = PBXBuildFile; fileRef = E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */; };
@@ -936,12 +936,8 @@
 		E823450F1EECE14A00D2CDFD /* HelpAboutTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "HelpAboutTableViewCell~ipad.xib"; path = "Help/HelpAboutTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E82345101EECE14A00D2CDFD /* HelpAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelpAboutViewController.h; path = Help/HelpAboutViewController.h; sourceTree = "<group>"; };
 		E82345111EECE14A00D2CDFD /* HelpAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelpAboutViewController.m; path = Help/HelpAboutViewController.m; sourceTree = "<group>"; };
-		E82345121EECE14A00D2CDFD /* DeveloperDatabaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeveloperDatabaseViewController.h; path = Help/DeveloperDatabaseViewController.h; sourceTree = "<group>"; };
-		E82345131EECE14A00D2CDFD /* DeveloperDatabaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeveloperDatabaseViewController.m; path = Help/DeveloperDatabaseViewController.m; sourceTree = "<group>"; };
 		E82345141EECE14A00D2CDFD /* HelpHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelpHelpViewController.h; path = Help/HelpHelpViewController.h; sourceTree = "<group>"; };
 		E82345151EECE14A00D2CDFD /* HelpHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelpHelpViewController.m; path = Help/HelpHelpViewController.m; sourceTree = "<group>"; };
-		E82345161EECE14A00D2CDFD /* DeveloperImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeveloperImagesViewController.h; path = Help/DeveloperImagesViewController.h; sourceTree = "<group>"; };
-		E82345171EECE14A00D2CDFD /* DeveloperImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeveloperImagesViewController.m; path = Help/DeveloperImagesViewController.m; sourceTree = "<group>"; };
 		E82345181EECE14A00D2CDFD /* HelpIntroduction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelpIntroduction.h; path = Help/HelpIntroduction.h; sourceTree = "<group>"; };
 		E82345191EECE14A00D2CDFD /* HelpIntroduction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelpIntroduction.m; path = Help/HelpIntroduction.m; sourceTree = "<group>"; };
 		E823451A1EECE14A00D2CDFD /* NoticesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoticesViewController.h; path = Help/NoticesViewController.h; sourceTree = "<group>"; };
@@ -1227,6 +1223,10 @@
 		E84E8A4D1F6F5CCE004F4BE9 /* MapWaypointInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "MapWaypointInfoView~ipad.xib"; path = "../MapsLibrary/MapsLibrary/MapWaypointInfoView~ipad.xib"; sourceTree = "<group>"; };
 		E858F5981F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "KeepTrackBeeperView~ipad.xib"; path = "KeepTrack/KeepTrackBeeperView~ipad.xib"; sourceTree = "<group>"; };
 		E858F59A1F56610B002C1F9B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		E8596AC91F73174100E26495 /* DeveloperDatabaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeveloperDatabaseViewController.h; path = Developer/DeveloperDatabaseViewController.h; sourceTree = "<group>"; };
+		E8596ACA1F73174100E26495 /* DeveloperDatabaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeveloperDatabaseViewController.m; path = Developer/DeveloperDatabaseViewController.m; sourceTree = "<group>"; };
+		E8596ACB1F73174100E26495 /* DeveloperImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeveloperImagesViewController.h; path = Developer/DeveloperImagesViewController.h; sourceTree = "<group>"; };
+		E8596ACC1F73174100E26495 /* DeveloperImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeveloperImagesViewController.m; path = Developer/DeveloperImagesViewController.m; sourceTree = "<group>"; };
 		E85BA88C1F544372008E708F /* KeepTrackBeeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeepTrackBeeper.h; path = KeepTrack/KeepTrackBeeper.h; sourceTree = "<group>"; };
 		E85BA88D1F544372008E708F /* KeepTrackBeeper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeepTrackBeeper.m; path = KeepTrack/KeepTrackBeeper.m; sourceTree = "<group>"; };
 		E85BA88F1F5449F5008E708F /* Beeper.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beeper.wav; sourceTree = "<group>"; };
@@ -2282,10 +2282,10 @@
 		E87F58D21F48611700C90375 /* Developer */ = {
 			isa = PBXGroup;
 			children = (
-				E82345121EECE14A00D2CDFD /* DeveloperDatabaseViewController.h */,
-				E82345131EECE14A00D2CDFD /* DeveloperDatabaseViewController.m */,
-				E82345161EECE14A00D2CDFD /* DeveloperImagesViewController.h */,
-				E82345171EECE14A00D2CDFD /* DeveloperImagesViewController.m */,
+				E8596AC91F73174100E26495 /* DeveloperDatabaseViewController.h */,
+				E8596ACA1F73174100E26495 /* DeveloperDatabaseViewController.m */,
+				E8596ACB1F73174100E26495 /* DeveloperImagesViewController.h */,
+				E8596ACC1F73174100E26495 /* DeveloperImagesViewController.m */,
 			);
 			name = Developer;
 			sourceTree = "<group>";
@@ -3476,6 +3476,7 @@
 				E82343F81EECDF4400D2CDFD /* WaypointPersonalNoteViewController.m in Sources */,
 				E82344BE1EECE0E800D2CDFD /* SettingsColoursViewController.m in Sources */,
 				E82344341EECDFB300D2CDFD /* FilterTerrainTableViewCell.m in Sources */,
+				E8596ACE1F73174100E26495 /* DeveloperImagesViewController.m in Sources */,
 				E82343BD1EECDE6C00D2CDFD /* WaypointLogViewController.m in Sources */,
 				E86C4AAF1E321822004526E2 /* CompassViewController.m in Sources */,
 				E82343F41EECDF4400D2CDFD /* WaypointDescriptionViewController.m in Sources */,
@@ -3484,6 +3485,7 @@
 				E82344671EECE06E00D2CDFD /* TrackableTableViewCell.m in Sources */,
 				E82343F61EECDF4400D2CDFD /* WaypointHintViewController.m in Sources */,
 				E82344821EECE09C00D2CDFD /* ListIgnoredViewController.m in Sources */,
+				E8596ACD1F73174100E26495 /* DeveloperDatabaseViewController.m in Sources */,
 				E823442E1EECDFB300D2CDFD /* FilterGroupsTableViewCell.m in Sources */,
 				E823444F1EECE04B00D2CDFD /* NotesSavedViewController.m in Sources */,
 				E82344541EECE05E00D2CDFD /* PersonalNoteTableViewCell.m in Sources */,
@@ -3543,13 +3545,11 @@
 				E82344C21EECE0E800D2CDFD /* SettingsMainViewController.m in Sources */,
 				E82344A91EECE0C900D2CDFD /* BrowserBrowserViewController.m in Sources */,
 				E82344361EECDFB300D2CDFD /* FilterTypesTableViewCell.m in Sources */,
-				E82345241EECE14A00D2CDFD /* DeveloperImagesViewController.m in Sources */,
 				E82344401EECE01500D2CDFD /* KeepTracksTrackTableViewCell.m in Sources */,
 				E8F570591B3F7255003F020C /* main.m in Sources */,
 				E823442F1EECDFB300D2CDFD /* FilterObject.m in Sources */,
 				E82344641EECE06E00D2CDFD /* TrackablesListViewController.m in Sources */,
 				E83C6F021EECE67100E303F5 /* FileObjectView.m in Sources */,
-				E82345221EECE14A00D2CDFD /* DeveloperDatabaseViewController.m in Sources */,
 				E82343C31EECDE8A00D2CDFD /* WaypointImageViewController.m in Sources */,
 				E82344AA1EECE0C900D2CDFD /* BrowserUserViewController.m in Sources */,
 				E82344931EECE0AD00D2CDFD /* QueriesGroundspeakViewController.m in Sources */,
