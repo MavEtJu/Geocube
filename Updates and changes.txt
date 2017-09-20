@@ -13,6 +13,8 @@ Version 1.6(x)
   - Modularize the design by creating a lot of libraries. This will
     reduce the compile time when adjusting include files and source
     files.
+  - Empty screens for locationless waypoints and trackables don't crash
+    anymore.
 
 Version 1.5(x)
 
