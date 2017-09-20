@@ -187,6 +187,7 @@
     owner = "Delta_03";
     id = 6140957;
     name = "Team MavEtJu Goes Geocaching - Try 2";
+    location = "This cache";
 }
  */
 
@@ -200,10 +201,13 @@
     NSString *dummy;
 
     DICT_INTEGER_KEY(tbdata, tb.gc_id, @"id");
+    DICT_NSSTRING_KEY(tbdata, tb.waypoint_name, @"location");
     DICT_NSSTRING_KEY(tbdata, tb.name, @"name");
     DICT_NSSTRING_KEY(tbdata, dummy, @"carrier");
-    [dbName makeNameExist:dummy code:nil account:account];
-    [tb set_carrier_str:dummy account:account];
+    if (dummy != nil) {
+        [dbName makeNameExist:dummy code:nil account:account];
+        [tb set_carrier_str:dummy account:account];
+    }
     DICT_NSSTRING_KEY(tbdata, dummy, @"owner");
     [dbName makeNameExist:dummy code:nil account:account];
     [tb set_owner_str:dummy account:account];
