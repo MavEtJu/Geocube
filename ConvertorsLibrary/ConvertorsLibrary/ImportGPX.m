@@ -21,6 +21,8 @@
 
 #import "ImportGPX.h"
 
+#import "Geocube-defines.h"
+
 #import "ManagersLibrary/OpenCageManager.h"
 #import "ManagersLibrary/ImagesDownloadManager.h"
 #import "ManagersLibrary/LocalizationManager.h"
@@ -325,6 +327,8 @@
                 [dbTrackable dbUnlinkAllFromWaypoint:currentWP];
                 [trackables enumerateObjectsUsingBlock:^(dbTrackable * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {
                     NSId _id = [dbTrackable dbGetIdByGC:tb.gc_id];
+                    if (tb.owner == nil)
+                        tb.owner = [dbc nameGetNoName:account];
                     [tb finish];
                     if (_id == 0) {
                         newTrackablesCount++;
@@ -402,11 +406,16 @@
                 if ([elementName isEqualToString:@"groundspeak:type"] == YES) {
                     LogStringWPType wptype = [dbLogString wptTypeToWPType:currentWP.wpt_type.type_full];
                     NSAssert(wptype != 0, @"wptype != 0");
+                    // In case there is no text provided, make it a note.
+                    if (IS_EMPTY(cleanText) == YES)
+                        cleanText = [NSMutableString stringWithString:@"Write Note"];
                     currentLog.logstring = [dbc logStringGetByDisplayString:account displayString:cleanText];
                     NSAssert(currentLog.logstring != nil, @"currentLog.logstring != nil");
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:finder"] == YES) {
+                    if (cleanText == nil)
+                        cleanText = [NSMutableString stringWithString:NAME_NONAMESUPPLIED];
                     [dbName makeNameExist:cleanText code:logFinderNameId account:account];
                     currentLog.logger = [dbName dbGetByName:cleanText account:account];
                     goto bye;
@@ -532,7 +541,7 @@
                     NSString *personal_note = currentText;  // Can contain newlines
                     dbPersonalNote *pn = [dbPersonalNote dbGetByWaypointName:currentWP.wpt_name];
                     if (pn != nil) {
-                        if (personal_note == nil || [personal_note isEqualToString:@""] == YES) {
+                        if (IS_EMPTY(personal_note) == YES) {
                             [pn dbDelete];
                             pn = nil;
                         } else {
@@ -540,7 +549,7 @@
                             [pn dbUpdate];
                         }
                     } else {
-                        if (personal_note != nil && [personal_note isEqualToString:@""] == NO) {
+                        if (IS_EMPTY(personal_note) == NO) {
                             pn = [[dbPersonalNote alloc] init];
                             pn.wp_name = currentWP.wpt_name;
                             pn.note = personal_note;
