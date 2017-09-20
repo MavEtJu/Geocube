@@ -70,9 +70,11 @@ enum {
         self.waypoints = wps;
     } else {
         // Hide the search window by default
-        MAINQUEUE(
-            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-        )
+        if ([self.waypoints count] != 0) {
+            MAINQUEUE(
+                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+            )
+        }
     }
 }
 
