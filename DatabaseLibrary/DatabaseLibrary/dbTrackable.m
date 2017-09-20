@@ -25,6 +25,7 @@
 
 #import "DatabaseLibrary/dbName.h"
 #import "DatabaseLibrary/dbWaypoint.h"
+#import "DatabaseLibrary/DatabaseCache.h"
 
 @interface dbTrackable ()
 
@@ -45,23 +46,8 @@ TABLENAME(@"travelbugs")
     self.owner = [dbName dbGetByName:name account:account];
 }
 
-- (void)finish
-{
-    if (self.carrier == nil) {
-        dbName *c = [[dbName alloc] init];
-        self.carrier = c;
-    }
-    if (self.owner == nil) {
-        dbName *c = [[dbName alloc] init];
-        self.owner = c;
-    }
-
-    [super finish];
-}
-
 - (NSId)dbCreate
 {
-    ASSERT_SELF_FIELD_EXISTS(carrier);
     ASSERT_SELF_FIELD_EXISTS(owner);
     @synchronized(db) {
         DB_PREPARE(@"insert into travelbugs(gc_id, ref, name, carrier_id, owner_id, waypoint_name, log_type, code) values(?, ?, ?, ?, ?, ?, ?, ?)");
