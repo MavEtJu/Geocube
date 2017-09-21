@@ -40,7 +40,6 @@
 #import "AppDelegate.h"
 #import "Waypoints/WaypointViewController.h"
 
-
 @interface MapTemplate ()
 
 @end

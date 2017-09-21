@@ -28,7 +28,6 @@
 #import "ToolsLibrary/InfoViewer.h"
 #import "BaseObjectsLibrary/GCCloseButton.h"
 
-
 @interface GCViewController ()
 {
     GCCloseButton *closeButton;

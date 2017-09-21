@@ -112,11 +112,6 @@
     CHECK(@"download_timeout_query", @"600");
     CHECK(@"download_timeout_simple", @"120");
 
-    CHECK(@"mapsearchmaximum_distancegs", @"5000");
-    CHECK(@"mapsearchmaximum_distanceokapi", @"5000");
-    CHECK(@"mapsearchmaximum_distancegca", @"5000");
-    CHECK(@"mapsearchmaximum_numbergca", @"50");
-
     CHECK(@"markas_founddnf_clearstarget", @"1");
     CHECK(@"markas_foundmarksallwaypoints", @"1");
     CHECK(@"logging_removesmarkedasfounddnf", @"1");

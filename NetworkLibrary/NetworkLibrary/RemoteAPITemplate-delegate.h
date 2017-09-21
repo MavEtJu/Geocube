@@ -28,5 +28,3 @@
 - (void)remoteAPI_failed:(NSInteger)identifier;
 
 @end
-
-

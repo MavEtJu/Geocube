@@ -216,7 +216,7 @@
 {
     [iv setChunksTotal:iid total:1];
     [iv setChunksCount:iid count:1];
-    
+
     GCStringGPX *gpx = [ggcw geocache_gpx:waypoint.wpt_name infoViewer:iv iiDownload:iid];
     [callback remoteAPI_objectReadyToImport:identifier iiImport:iid object:gpx group:dbc.groupManualWaypoints account:self.account];
     [callback remoteAPI_finishedDownloads:identifier numberOfChunks:1];
@@ -250,7 +250,6 @@
                             @"identifier":[NSNumber numberWithInteger:identifier],
                             };
         BACKGROUND(loadWaypointsByBoundingBox_BG:, d);
-        
     }];
     [callback remoteAPI_finishedDownloads:identifier numberOfChunks:[wptnames count]];
 

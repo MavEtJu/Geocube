@@ -1,13 +1,13 @@
 #!/bin/sh
 
-MHFILES=$(find . -name '*.[mh]' | grep -Ev '(Geocube/contrib|Pods|ContribLibrary)')
-MFILES=$(find . -name '*.m' | grep -Ev '(Geocube/contrib|Pods|ContribLibrary)')
-HFILES=$(find . -name '*.h' | grep -Ev '(Geocube/contrib|Pods|ContribLibrary)')
+MHFILES=$(find . -name '*.[mh]' | grep -Ev '(Geocube/contrib|GeocubeTests|Pods|ContribLibrary)')
+MFILES=$(find . -name '*.m' | grep -Ev '(Geocube/contrib|GeocubeTests|Pods|ContribLibrary)')
+HFILES=$(find . -name '*.h' | grep -Ev '(Geocube/contrib|GeocubeTests|Pods|ContribLibrary)')
 DBFILES=DatabaseLibrary/DatabaseLibrary/db*.m
 
 echo
 echo "Licenses:"
-grep -c GNU $MFILES | grep -v PSPDFUIKitMainThreadGuard.m | grep -v 3$
+grep -c GNU $MHFILES | grep -v PSPDFUIKitMainThreadGuard.m | grep -v 3$
 
 echo
 echo "DB_PREPARE / DB_FINISH:"

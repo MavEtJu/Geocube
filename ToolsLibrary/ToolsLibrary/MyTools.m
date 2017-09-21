@@ -456,7 +456,6 @@ TIME(dateTimeString_dow, @"EEEE")
     return thread_count;
 }
 
-
 ///////////////////////////////////////////
 
 /// Return an percent encoded URL with %xx for non-alphanumeric characters

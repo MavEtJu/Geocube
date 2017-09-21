@@ -111,5 +111,3 @@
 + (BOOL)iOSVersionAtLeast_10_0_0;
 
 @end
-
-

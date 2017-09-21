@@ -12,5 +12,3 @@ typedef NS_ENUM(NSInteger, ImageCategory) {
     IMAGECATEGORY_CACHE = 2,
     IMAGECATEGORY_USER = 3,
 };
-
-

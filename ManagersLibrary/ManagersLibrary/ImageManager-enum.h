@@ -204,6 +204,6 @@ typedef NS_ENUM(NSInteger, ImageNumber) {
     ImageCompass_RedArrowOnBlack,
     ImageCompass_AirplaneAirplane,
     ImageCompass_AirplaneCompass,
-    
+
     ImageLibraryImagesMax
 };

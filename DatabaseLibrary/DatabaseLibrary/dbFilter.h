@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbObject.h" 
+#import "dbObject.h"
 
 @interface dbFilter : dbObject
 
