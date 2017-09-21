@@ -20,6 +20,7 @@ Version 1.6(30)
     button at the top left didn't register.
   - In the log, when coordinates were not enabled it would dispay
     some rubbish in the details view.
+  - Fix menu issue on iOS 11.x
 
 Version 1.5(29)
 
