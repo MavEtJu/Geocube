@@ -131,8 +131,7 @@
     self.tableView.separatorColor   = [UIColor clearColor];
     self.tableView.backgroundColor  = [UIColor clearColor];
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
-    [self.view addSubview:self.tableView];
+    self.tableView.frame            = frame;
 }
 
 #pragma mark - Appearance
@@ -143,13 +142,15 @@
     
     [ROOTVC.view addSubview:self.overlay];
     [ROOTVC.view addSubview:self.view];
-    
+    [ROOTVC.view addSubview:self.tableView];
+
     CGRect frame = [self frameShowed];
-    
+
     [UIView animateWithDuration:0.275 animations:^
      {
          self.view.frame = frame;
          self.overlay.alpha = 1.0;
+         self.tableView.frame = frame;
      }
                      completion:^(BOOL finished)
      {
@@ -169,13 +170,15 @@
     [UIView animateWithDuration:0.275 animations:^
      {
          self.view.frame = [self frameHidden];
+         self.tableView.frame = [self frameHidden];
          self.overlay.alpha = 0.;
      }
                      completion:^(BOOL finished)
      {
          if (_delegate && [_delegate respondsToSelector:@selector(sideMenuDidHide:)])
              [_delegate sideMenuDidHide:self];
-         
+
+         [self.tableView removeFromSuperview];
          [self.view removeFromSuperview];
          [self.overlay removeFromSuperview];
          [self.overlay removeGestureRecognizer:tapGesture];
