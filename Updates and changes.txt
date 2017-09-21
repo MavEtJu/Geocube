@@ -1,6 +1,6 @@
 Interesting additions and changes to Geocube
 
-Version 1.6(x)
+Version 1.6(30)
 
   Features:
   - Add button to enable/disable OpenCage support.
@@ -21,7 +21,7 @@ Version 1.6(x)
   - In the log, when coordinates were not enabled it would dispay
     some rubbish in the details view.
 
-Version 1.5(x)
+Version 1.5(29)
 
   Features:
   - Search option in the Waypoints list, trackables and Locationless
