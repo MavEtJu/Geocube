@@ -292,6 +292,7 @@ enum {
                     if ([waypoint.account.remoteAPI supportsLoggingCoordinates] == NO) {
                         c.userInteractionEnabled = NO;
                         c.textLabel.textColor = currentTheme.labelTextColorDisabled;
+                        c.detailTextLabel.text = @"";
                     } else {
                         if (coordinates.latitude == 0 && coordinates.longitude == 0)
                             c.detailTextLabel.text = _(@"waypointlogviewcontroller-(None set)");
