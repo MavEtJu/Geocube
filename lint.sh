@@ -7,7 +7,7 @@ DBFILES=DatabaseLibrary/DatabaseLibrary/db*.m
 
 echo
 echo "Licenses:"
-grep -c GNU $MHFILES | grep -v PSPDFUIKitMainThreadGuard.m | grep -v 3$
+grep -c GNU $MHFILES | grep -v PSPDFUIKitMainThreadGuard.m | grep -v 3$ | sed -e 's/:.*$//'
 
 echo
 echo "DB_PREPARE / DB_FINISH:"
@@ -100,12 +100,12 @@ grep -n enumerate $MFILES | grep -v _Nonnull.*_Nonnull | grep -v "(id " | grep "
 
 echo
 echo "Make sure that NSArray knows which class it represent:"
-grep 'NSArray ' $(ls -1 *.h */*.h | grep -v GCArray.h)
-grep 'NSMutableArray ' $(ls -1 *.h */*.h | grep -v GCArray.h)
-grep -n "^[-+].*NSArray " $(ls -1 *.m */*.m | grep -v GCArray.m)
-grep -n "^[-+].*NSMutableArray " $(ls -1 *.m */*.m | grep -v GCArray.m)
-grep -n " NSMutableArray " $(ls -1 *.m */*.m | grep -v GCArray.m)
-grep -n " NSArray " $(ls -1 *.m */*.m | grep -v GCArray.m)
+grep 'NSArray ' $HFILES
+grep 'NSMutableArray ' $HFILES
+grep -n "^[-+].*NSArray " $MFILES
+grep -n "^[-+].*NSMutableArray " $MFILES
+grep -n " NSMutableArray " $MFILES
+grep -n " NSArray " $MFILES
 
 echo
 echo "Empty lines after beginning of a function:"

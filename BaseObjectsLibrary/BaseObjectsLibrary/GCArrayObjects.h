@@ -24,8 +24,8 @@
 @interface GCArray : NSObject
 
 - (instancetype)initWithCapacity:(NSUInteger)size;
-- (instancetype)initWithArray:(NSArray *)array;
-- (NSMutableArray *)_array;
+- (instancetype)initWithArray:(NSArray<id> *)array;
+- (NSMutableArray<id> *)_array;
 - (void)addObject:(id)object;
 - (id)objectAtIndex:(NSUInteger)idx;
 - (NSUInteger)count;

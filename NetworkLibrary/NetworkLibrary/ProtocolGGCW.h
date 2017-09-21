@@ -56,7 +56,7 @@
 - (NSDictionary *)play_geocache_log__form:(NSString *)gccode infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (NSString *)play_geocache_log__submit:(NSString *)gccode dict:(NSDictionary *)dict logstring:(NSString *)logstring_type dateLogged:(NSString *)dateLogged note:(NSString *)note favpoint:(BOOL)favpoint infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (NSDictionary *)api_proxy_trackable_activities:(NSString *)gccode trackables:(NSArray<dbTrackable *> *)tbs dateLogged:(NSString *)dateLogged infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
-- (NSArray *)play_search:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
+- (NSArray<NSString *> *)play_search:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 
 - (GCDictionaryGGCW *)my_statistics:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 

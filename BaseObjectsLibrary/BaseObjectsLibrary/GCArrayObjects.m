@@ -23,7 +23,7 @@
 
 @interface GCArray ()
 {
-    NSMutableArray *a;
+    NSMutableArray<id> *a;
 }
 
 @end
@@ -37,7 +37,7 @@
     return self;
 }
 
-- (instancetype)initWithArray:(NSArray *)array
+- (instancetype)initWithArray:(NSArray<id> *)array
 {
     self = [super init];
     a = [NSMutableArray arrayWithArray:array];
@@ -49,7 +49,7 @@
     return [a count];
 }
 
-- (NSMutableArray *)_array
+- (NSMutableArray<id> *)_array
 {
     return a;
 }
