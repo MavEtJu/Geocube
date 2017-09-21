@@ -1,12 +1,17 @@
 #!/bin/sh
 
+MHFILES=$(find . -name '*.[mh]' | grep -Ev '(Geocube/contrib|Pods|ContribLibrary)')
+MFILES=$(find . -name '*.m' | grep -Ev '(Geocube/contrib|Pods|ContribLibrary)')
+HFILES=$(find . -name '*.h' | grep -Ev '(Geocube/contrib|Pods|ContribLibrary)')
+DBFILES=DatabaseLibrary/DatabaseLibrary/db*.m
+
 echo
 echo "Licenses:"
-grep -c GNU $(ls -1 *.[mh] */*.[mh] | grep -v PSPDFUIKitMainThreadGuard.m) | grep -v 3$
+grep -c GNU $MFILES | grep -v PSPDFUIKitMainThreadGuard.m | grep -v 3$
 
 echo
 echo "DB_PREPARE / DB_FINISH:"
-for fn in database/db*.m; do
+for fn in ${DBFILES}; do
 	p=$(grep -c DB_PREPARE $fn)
 	f=$(grep -c DB_FINISH $fn)
 	if [ "$p" != "$f" ]; then
@@ -16,19 +21,19 @@ done
 
 echo
 echo "Untranslated strings:"
-find . -name '*.m' | xargs grep -h "_(" | perl findMissingLocalizations.pl
+grep -h "_(" $MFILES | perl findMissingLocalizations.pl
 
 echo
 echo "HelpDatabaseViewController:"
-for class in $(grep implementation database/db*.m | awk '{ print $2 }' | grep -v dbObject); do
-	if [ $(grep -c "$class dbCount" Help/DeveloperDatabaseViewController.m) == 0 ]; then
+for class in $(grep implementation $DBFILES | awk '{ print $2 }' | grep -v dbObject); do
+	if [ $(grep -c "$class dbCount" Geocube/Developer/DeveloperDatabaseViewController.m) == 0 ]; then
 		echo "Not found: $class"
 	fi
 done
 
 echo
 echo "db*.m - TABLENAME:"
-for f in database/db*.m; do
+for f in $BDFILES; do
 	c=$(grep -wc "TABLENAME" $f)
 	if [ $c != 1 ]; then
 		echo "Missing TABLENAME: $f"
@@ -37,7 +42,7 @@ done
 
 echo
 echo "db*.m - order:"
-for f in database/db*.m; do
+for f in $DBFILES; do
 	for word in init finish dbCount dbCreate dbUpdate dbAll dbGet dbDelete; do
 		true
 	done
@@ -45,53 +50,53 @@ done
 
 echo
 echo "Classes:"
-grep -h @implementation *.m */*.m | sed -e 's/implementation/class/' -e 's/$/;/'| sort > /tmp/a
-grep @class Geocube-Classes.h > /tmp/b
+grep -h @implementation $MFILES | sed -e 's/implementation/class/' -e 's/$/;/'| sort > /tmp/a
+grep @class Geocube/Geocube-Classes.h > /tmp/b
 diff /tmp/[ab]
 
 echo
 echo "Copyright:"
-grep -c "Copyright .*$(date +%Y)" $(ls -1 *.m */*.m | grep -v PSPDFUIKitMainThreadGuard.m) | sed -e 's/:/ /' | grep -v " 1$"
+grep -c "Copyright .*$(date +%Y)" $MFILES | sed -e 's/:/ /' | grep -v " 1$"
 
 echo
 echo "Tabs:"
-grep -n "[	]$" *.[mh] */*.[mh]
+grep -n "[	]$" $MHFILES
 
 echo
 echo "Spaces at the end:"
-grep -n "[	 ]$" *.[mh] */*.[mh]
+grep -n "[	 ]$" $MHFILES
 
 echo
 echo "Spaces before ]:"
-grep -n "[^ ] ]" *.m */*.m
+grep -n "[^ ] ]" $MFILES
 
 echo
 echo "Empty lines at the end:"
-for i in *.[mh] */*.[mh]; do if [ -z "$(tail -1 $i)" ]; then echo $i; fi; done
+for i in $MHFILES; do if [ -z "$(tail -1 $i)" ]; then echo $i; fi; done
 
 echo
 echo "No space between parent class and delegates:"
-grep "@interface.*\w<" *.h */*.h
+grep "@interface.*\w<" $HFILES
 
 echo
 echo "Subclassing space-colon-space:"
-grep @interface *.h */*.h | grep -v "\w\s:\s\w"
+grep @interface $HFILES | grep -v "\w\s:\s\w"
 
 echo
 echo "No { after @interface:"
-grep @interface *.[mh] */*.[mh] | grep \{
+grep @interface $MHFILES | grep \{
 
 echo
 echo "Method definitions should have the { on the next line:"
-grep "^[-+].*{\s*$" *.m */*.m
+grep "^[-+].*{\s*$" $MFILES
 
 echo
 echo "Method definitions should have a space between [-+] and name:"
-grep "^[-+]\S" *.m */*.m
+grep "^[-+]\S" $MFILES
 
 echo
 echo "enumeration:"
-grep -n enumerate *.m */*.m | grep -v _Nonnull.*_Nonnull | grep -v "(id " | grep ":^"
+grep -n enumerate $MFILES | grep -v _Nonnull.*_Nonnull | grep -v "(id " | grep ":^"
 
 echo
 echo "Make sure that NSArray knows which class it represent:"
@@ -104,19 +109,19 @@ grep -n " NSArray " $(ls -1 *.m */*.m | grep -v GCArray.m)
 
 echo
 echo "Empty lines after beginning of a function:"
-grep -n -A 1 ^{ *.m */*.m | grep -v '^--$' | grep -- -$
+grep -n -A 1 ^{ $MFILES | grep -v '^--$' | grep -- -$
 
 echo
 echo "Double empty lines:"
-for i in *.[hm] */*.[hm]; do perl -e '$f=$ARGV[0];@a=<>;chomp(@a);$i=-1;$c=0;foreach $l (@a) { $c++; if ($l eq "") { print "$f:$c\n" if ($i==$c-1); $i=$c; }}' $i; done
+for i in $MHFILES; do perl -e '$f=$ARGV[0];@a=<>;chomp(@a);$i=-1;$c=0;foreach $l (@a) { $c++; if ($l eq "") { print "$f:$c\n" if ($i==$c-1); $i=$c; }}' $i; done
 
 echo
 echo "Double ;;'s:"
-grep ";;" *.[hm] */*.[hm]
+grep ";;" $MHFILES
 
 echo
 echo "ConfigManager:"
-./checkConfigManager.pl GCBase/ConfigManager
+./checkConfigManager.pl ManagersLibrary/ManagersLibrary/ConfigManager
 
 echo
 echo "XIB for iPhone/iPad"
@@ -135,14 +140,14 @@ done
 
 echo
 echo "Missing interface()"
-for i in $(grep '@class' Geocube-Classes.h | awk '{ print $2 }' | sed -e 's/;$//'); do
-	if [ -z "$(grep @interface\ $i\  *.h */*.h)" ]; then
+for i in $(grep '@class' Geocube/Geocube-Classes.h | awk '{ print $2 }' | sed -e 's/;$//'); do
+	if [ -z "$(grep @interface\ $i\  $HFILES)" ]; then
 		echo "Missing @interface for $i in .h"
 	fi
-	if [ -z "$(grep @interface\ $i\  *.m */*.m)" ]; then
+	if [ -z "$(grep @interface\ $i\  $MFILES)" ]; then
 		echo "Missing @interface for $i in .m"
 	fi
-	if [ -z "$(grep @implementation\ $i\$ *.m */*.m)" ]; then
+	if [ -z "$(grep @implementation\ $i\$ $MFILES)" ]; then
 		echo "Missing @implementation for $i in .m"
 	fi
 done

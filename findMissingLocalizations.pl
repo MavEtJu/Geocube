@@ -25,7 +25,7 @@ while (my $line = <>) {
 
 # Find all languages, *.lproj for now
 my @langs = ();
-opendir(my $dh, "Settings.bundle");
+opendir(my $dh, "Geocube/Settings.bundle");
 @langs = grep { /^.*.lproj/} readdir($dh);
 closedir $dh;
 
@@ -122,7 +122,7 @@ sub findfiles {
 	my $lang = shift;
 
 	@files = ();
-	open(FIN, "find Settings.bundle/$lang -name Localizable-*strings |");
+	open(FIN, "find Geocube/Settings.bundle/$lang -name Localizable-*strings |");
 	while (my $line = <FIN>) {
 		chomp($line);
 		push(@files, $line);
