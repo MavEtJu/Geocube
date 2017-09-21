@@ -211,3 +211,13 @@
 "settingsmainviewcontroller-Speed" = "Speed";
 "settingsmainviewcontroller-Speed sample time" = "Speed sample time";
 "settingsmainviewcontroller-Keep tracks in memory only" = "Keep tracks in memory only";
+
+"settingsmainviewcontroller-Map search" = "Map search";
+"settingsmainviewcontroller-%ld waypoints" = "%ld waypoints";
+"settingsmainviewcontroller-Geocaching.com website: Maximum number of waypoints returned by 'load waypoints'" = "Geocaching.com website: Maximum number of waypoints returned by 'load waypoints'";
+"settingsmainviewcontroller-%ld threads" = "%ld threads";
+"settingsmainviewcontroller-Geocaching.com website: Maximum number of simultanuous downloads" = "Geocaching.com website: Maximum number of simultanuous downloads";
+"settingsmainviewcontroller-Maximum threads" = "Maximum threads";
+"settingsmainviewcontroller-Maximum number of concurrent downloads for the Geocaching.com Website with 'Load Waypoints'." = "Maximum number of concurrent downloads for the Geocaching.com Website with 'Load Waypoints'.";
+"settingsmainviewcontroller-Maximum waypoints" = "Maximum waypoints";
+"settingsmainviewcontroller-Maximum number of waypoints to download, maximum of 50, for the Geocaching.com Website with 'Load Waypoints'." = "Maximum number of waypoints to download, maximum of 50, for the Geocaching.com Website with 'Load Waypoints'.";

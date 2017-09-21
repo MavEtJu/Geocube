@@ -213,3 +213,13 @@
 "settingsmainviewcontroller-Minimum speed to show" = "Minimum zichtbare snelheid";
 "settingsmainviewcontroller-Speed" = "Snelheid";
 "settingsmainviewcontroller-Speed sample time" = "Berekend over";
+
+"settingsmainviewcontroller-Map search" = "Kaart zoek opties";
+"settingsmainviewcontroller-%ld waypoints" = "%ld waypoints";
+"settingsmainviewcontroller-Geocaching.com website: Maximum number of waypoints returned by 'load waypoints'" = "Geocaching.com website: Maximaal aantal waypoints ophalen met 'Laad waypoints'";
+"settingsmainviewcontroller-%ld threads" = "%ld threads";
+"settingsmainviewcontroller-Geocaching.com website: Maximum number of simultanuous downloads" = "Geocaching.com website: Maximaal aantal simultane downloads";
+"settingsmainviewcontroller-Maximum threads" = "Maximumaal simultane downloads";
+"settingsmainviewcontroller-Maximum number of concurrent downloads for the Geocaching.com Website with 'Load Waypoints'." = "Maximaal aantal simultane downloads voor de Geocaching.com Website voor 'Laad waypoints'.";
+"settingsmainviewcontroller-Maximum waypoints" = "Maximaal aantal waypoints";
+"settingsmainviewcontroller-Maximum number of waypoints to download, maximum of 50, for the Geocaching.com Website with 'Load Waypoints'." = "Maximaal aantal waypoints op te halen voor de Geocaching.com Website met 'Laad Waypoints' (50 maximaal).";

@@ -34,6 +34,7 @@
 #import "ToolsLibrary/InfoItem.h"
 #import "ToolsLibrary/MyTools.h"
 #import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/ConfigManager.h"
 #import "BaseObjectsLibrary/GCArrayObjects.h"
 #import "BaseObjectsLibrary/GCDictionaryObjects.h"
 #import "BaseObjectsLibrary/GCStringObjects.h"
@@ -238,8 +239,8 @@
     [wptnames enumerateObjectsUsingBlock:^(NSString * _Nonnull wptname, NSUInteger idx, BOOL * _Nonnull stop) {
         [iv setChunksCount:iid count:idx + 1];
 
-        while (threadcounter > 10)
-            [NSThread sleepForTimeInterval:1];
+        while (threadcounter > configManager.mapsearchGGCWNumberThreads)
+            [NSThread sleepForTimeInterval:0.5];
 
         @synchronized(self) { threadcounter++; }
         NSDictionary *d = @{@"wptname":wptname,

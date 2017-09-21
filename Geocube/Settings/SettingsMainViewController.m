@@ -251,6 +251,7 @@ enum sections {
     SECTION_COMPASS,
     SECTION_MAPCOLOURS,
     SECTION_MAPS,
+    SECTION_MAPSEARCH,
     SECTION_ACCURACY,
     SECTION_MAPCACHE,
     SECTION_DYNAMICMAP,
@@ -373,6 +374,10 @@ enum sections {
     SECTION_SPEED_SAMPLES,
     SECTION_SPEED_MINIMUM,
     SECTION_SPEED_MAX,
+
+    SECTION_MAPSEARCH_GGCW_MAXIMUMLOADED = 0,
+    SECTION_MAPSEARCH_GGCW_NUMBERTHREADS,
+    SECTION_MAPSEARCH_MAX,
 };
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -406,6 +411,7 @@ enum sections {
         SECTION_MAX(LOCATIONLESS);
         SECTION_MAX(BACKUPS);
         SECTION_MAX(ACCURACY);
+        SECTION_MAX(MAPSEARCH);
         default:
             NSAssert1(0, @"Unknown section %ld", (long)section);
     }
@@ -455,6 +461,8 @@ enum sections {
             return _(@"settingsmainviewcontroller-Accuracy");
         case SECTION_SPEED:
             return _(@"settingsmainviewcontroller-Speed");
+        case SECTION_MAPSEARCH:
+            return _(@"settingsmainviewcontroller-Map search");
         default:
             NSAssert1(0, @"Unknown section %ld", (long)section);
     }
@@ -581,6 +589,20 @@ enum sections {
                         }
                     }];
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-Default map"), value);
+                }
+            }
+            abort();
+        }
+
+        case SECTION_MAPSEARCH: {
+            switch (indexPath.row) {
+                case SECTION_MAPSEARCH_GGCW_MAXIMUMLOADED: {
+                    NSString *s = [NSString stringWithFormat:_(@"settingsmainviewcontroller-%ld waypoints"), (long)configManager.mapsearchGGCWMaximumNumber];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Geocaching.com website: Maximum number of waypoints returned by 'load waypoints'"), s);
+                }
+                case SECTION_MAPSEARCH_GGCW_NUMBERTHREADS: {
+                    NSString *s = [NSString stringWithFormat:_(@"settingsmainviewcontroller-%ld threads"), (long)configManager.mapsearchGGCWNumberThreads];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Geocaching.com website: Maximum number of simultanuous downloads"), s)
                 }
             }
             abort();
@@ -924,6 +946,17 @@ SWITCH_UPDATE(updateSpeedEnable, speedEnable)
                     break;
             }
             break;
+        case SECTION_MAPSEARCH:
+            switch (indexPath.row) {
+                case SECTION_MAPSEARCH_GGCW_MAXIMUMLOADED:
+                    [self changeMapSearchGGCWMaximumLoaded];
+                    break;
+                case SECTION_MAPSEARCH_GGCW_NUMBERTHREADS:
+                    [self changeMapSearchGGCWNumberThreads];
+                    break;
+            }
+            break;
+
         case SECTION_MAPCOLOURS:
             switch (indexPath.row) {
                 case SECTION_MAPCOLOURS_TRACK: {
@@ -1592,6 +1625,80 @@ SWITCH_UPDATE(updateSpeedEnable, speedEnable)
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.text = configManager.opencageKey;
         textField.placeholder = _(@"settingsmainviewcontroller-Number of days between backups");
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+/* ********************************************************************************* */
+
+- (void)changeMapSearchGGCWMaximumLoaded
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:_(@"settingsmainviewcontroller-Maximum waypoints")
+                                message:_(@"settingsmainviewcontroller-Maximum number of waypoints to download, maximum of 50, for the Geocaching.com Website with 'Load Waypoints'.")
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:_(@"OK")
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *value = tf.text;
+                             NSInteger i = [value integerValue];
+                             if (i >=0 && i <= 50)
+                                 [configManager mapsearchGGCWMaximumNumberUpdate:i];
+                             [self.tableView reloadData];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = [NSString stringWithFormat:@"%ld", (long)configManager.mapsearchGGCWMaximumNumber];
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)changeMapSearchGGCWNumberThreads
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:_(@"settingsmainviewcontroller-Maximum threads")
+                                message:_(@"settingsmainviewcontroller-Maximum number of concurrent downloads for the Geocaching.com Website with 'Load Waypoints'.")
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:_(@"OK")
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *value = tf.text;
+                             NSInteger i = [value integerValue];
+                             if (i >=0)
+                                 [configManager mapsearchGGCWNumberThreadsUpdate:i];
+                             [self.tableView reloadData];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = [NSString stringWithFormat:@"%ld", (long)configManager.mapsearchGGCWNumberThreads];
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];

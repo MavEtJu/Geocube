@@ -129,6 +129,8 @@ PROTO_N (NSInteger, accuracyStaticDeltaDNonNavigating);
 PROTO_N (BOOL, speedEnable);
 PROTO_N (NSInteger, speedSamples);
 PROTO_N (NSInteger, speedMinimum);
+PROTO_N (NSInteger, mapsearchGGCWMaximumNumber)
+PROTO_N (NSInteger, mapsearchGGCWNumberThreads)
 
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown

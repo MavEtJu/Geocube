@@ -25,6 +25,7 @@
 
 #import "ManagersLibrary/DownloadManager.h"
 #import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/ConfigManager.h"
 #import "NetworkLibrary/RemoteAPITemplate.h"
 #import "DatabaseLibrary/dbAccount.h"
 #import "DatabaseLibrary/dbTrackable.h"
@@ -1480,6 +1481,8 @@ bail:
         NSString *wptname = [tr.attributes objectForKey:@"data-id"];
         if (wptname != nil)
             [wptnames addObject:wptname];
+        if ([wptnames count] >= configManager.mapsearchGGCWMaximumNumber)
+            *stop = YES;
     }];
 
     return wptnames;

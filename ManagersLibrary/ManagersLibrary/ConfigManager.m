@@ -177,6 +177,9 @@
     CHECK(@"speed_enable", @"1");
     CHECK(@"speed_samples", @"10");
     CHECK(@"speed_minimum", @"3");
+
+    CHECK(@"mapsearch_ggcw_maximumnumber", @"50");
+    CHECK(@"mapsearch_ggcw_numberthreads", @"10");
 }
 
 - (void)loadValues
@@ -274,6 +277,8 @@
     LOAD_BOOL   (self.speedEnable, @"speed_enable");
     LOAD_INTEGER(self.speedMinimum, @"speed_minimum");
     LOAD_INTEGER(self.speedSamples, @"speed_samples");
+    LOAD_INTEGER(self.mapsearchGGCWMaximumNumber, @"mapsearch_ggcw_maximumnumber");
+    LOAD_INTEGER(self.mapsearchGGCWNumberThreads, @"mapsearch_ggcw_numberthreads");
 
     /* Leftovers */
     self.currentTrack = [dbTrack dbGet:[[dbConfig dbGetByKey:@"track_current"].value integerValue]];
@@ -432,6 +437,8 @@ UPDATE3(NSInteger, automaticDatabaseBackupPeriod, @"automaticdatabasebackup_peri
 UPDATE3(NSInteger, automaticDatabaseBackupRotate, @"automaticdatabasebackup_rotate")
 UPDATE3(NSInteger, speedSamples, @"speed_samples")
 UPDATE3(NSInteger, speedMinimum, @"speed_minimum")
+UPDATE3(NSInteger, mapsearchGGCWMaximumNumber, @"mapsearch_ggcw_maximumnumber");
+UPDATE3(NSInteger, mapsearchGGCWNumberThreads, @"mapsearch_ggcw_numberthreads");
 
 UPDATE3(float, keeptrackTimeDeltaMin, @"keeptrack_timedelta_min")
 UPDATE3(float, keeptrackTimeDeltaMax, @"keeptrack_timedelta_max")
