@@ -24,6 +24,7 @@
 @interface RemoteAPIProcessingGroup : NSObject
 
 - (void)clearAll;
+- (NSString *)description:(NSInteger)identifier;
 - (void)addIdentifier:(NSInteger)identifier;
 - (void)removeIdentifier:(NSInteger)identifier;
 - (BOOL)hasIdentifier:(NSInteger)identifier;

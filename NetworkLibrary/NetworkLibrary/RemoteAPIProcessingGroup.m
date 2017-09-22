@@ -45,6 +45,15 @@
     return self;
 }
 
+- (NSString *)description:(NSInteger)identifier
+{
+    return [NSString stringWithFormat:@"expected:%@ processed:%@ downloaded:%@",
+            [expected objectForKey:[NSNumber numberWithInteger:identifier]],
+            [processed objectForKey:[NSNumber numberWithInteger:identifier]],
+            [downloaded objectForKey:[NSNumber numberWithInteger:identifier]]
+            ];
+}
+
 - (void)clearAll
 {
     @synchronized (self) {
