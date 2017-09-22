@@ -170,10 +170,10 @@ enum {
 
 - (NSData *)performURLRequest:(NSURLRequest *)urlRequest infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    return [self performURLRequest:urlRequest returnRespose:nil infoViewer:iv iiDownload:iid];
+    return [self performURLRequest:urlRequest returnResponse:nil infoViewer:iv iiDownload:iid];
 }
 
-- (NSData *)performURLRequest:(NSURLRequest *)urlRequest returnRespose:(NSHTTPURLResponse **)returnHeader infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (NSData *)performURLRequest:(NSURLRequest *)urlRequest returnResponse:(NSHTTPURLResponse **)returnHeader infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
     NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem infoViewer:iv iiDownload:iid];
@@ -456,7 +456,7 @@ bail:
     req.HTTPMethod = @"POST";
 
     NSHTTPURLResponse *resp = nil;
-    NSData *data = [self performURLRequest:req returnRespose:&resp infoViewer:iv iiDownload:iid];
+    NSData *data = [self performURLRequest:req returnResponse:&resp infoViewer:iv iiDownload:iid];
 
     // Expecting a 301.
     if (resp.statusCode != 301)
@@ -466,7 +466,7 @@ bail:
     // Request the page with the data for the GPX file
     url = [NSURL URLWithString:location];
     req = [NSMutableURLRequest requestWithURL:url];
-    data = [self performURLRequest:req returnRespose:&resp infoViewer:iv iiDownload:iid];
+    data = [self performURLRequest:req returnResponse:&resp infoViewer:iv iiDownload:iid];
     if (data == nil)
         return nil;
 
@@ -602,7 +602,7 @@ bail2:
     req.HTTPMethod = @"HEAD";
 
     NSHTTPURLResponse *resp = nil;
-    [self performURLRequest:req returnRespose:&resp infoViewer:iv iiDownload:iid];
+    [self performURLRequest:req returnResponse:&resp infoViewer:iv iiDownload:iid];
 
     NSString *loc = [[resp allHeaderFields] objectForKey:@"location"];
     if (loc == nil)
@@ -623,6 +623,8 @@ bail2:
     [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATEFIELDCOUNT"], [MyTools urlEncode:@"0"]];
     req.HTTPBody = [ps dataUsingEncoding:NSUTF8StringEncoding];
 
+    resp = nil;
+//    NSData *data = [self performURLRequest:req returnResponse:&resp infoViewer:iv iiDownload:iid];
     NSData *data = [self performURLRequest:req infoViewer:iv iiDownload:iid];
     if (data == nil)
         return nil;
@@ -645,7 +647,7 @@ bail2:
     [req setHTTPMethod:@"HEAD"];
 
     NSHTTPURLResponse *resp;
-    [self performURLRequest:req returnRespose:&resp infoViewer:nil iiDownload:0];
+    [self performURLRequest:req returnResponse:&resp infoViewer:nil iiDownload:0];
 
     NSMutableString *location = [NSMutableString stringWithString:[resp.allHeaderFields objectForKey:@"location"]];
     if (location == nil)
@@ -1177,7 +1179,7 @@ bail:
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
     NSHTTPURLResponse *resp = nil;
-    NSData *data = [self performURLRequest:req returnRespose:&resp infoViewer:iv iiDownload:iid];
+    NSData *data = [self performURLRequest:req returnResponse:&resp infoViewer:iv iiDownload:iid];
     if (data == nil)
         return nil;
 
@@ -1456,7 +1458,7 @@ bail:
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
     NSHTTPURLResponse *resp = nil;
-    NSData *data = [self performURLRequest:req returnRespose:&resp infoViewer:iv iiDownload:iid];
+    NSData *data = [self performURLRequest:req returnResponse:&resp infoViewer:iv iiDownload:iid];
     if (data == nil)
         return nil;
 
