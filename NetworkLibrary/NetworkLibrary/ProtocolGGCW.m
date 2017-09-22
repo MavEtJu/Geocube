@@ -667,10 +667,6 @@ bail2:
 
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
 
-    /*
-     * When requesting /geocache/GCxxxx, it will return a 301 response to the full URL.
-     *
-     */
     NSString *urlString = [self prepareURLString:@"/account/oauth/token" params:params];
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
