@@ -5,6 +5,8 @@ Version 1.7(x)
   Features:
 
   Fixes:
+  - GGCW: No more message boxes about unable to parse the XML data
+    for GPX files which are of premium caches.
 
 Version 1.6(30)
 
