@@ -624,8 +624,10 @@ bail2:
     req.HTTPBody = [ps dataUsingEncoding:NSUTF8StringEncoding];
 
     resp = nil;
-//    NSData *data = [self performURLRequest:req returnResponse:&resp infoViewer:iv iiDownload:iid];
-    NSData *data = [self performURLRequest:req infoViewer:iv iiDownload:iid];
+    NSData *data = [self performURLRequest:req returnResponse:&resp infoViewer:iv iiDownload:iid];
+    // When the waypoint is premium only it will return as text/html
+    if ([[resp.allHeaderFields objectForKey:@"Content-Type"] isEqualToString:@"application/gpx"] == NO)
+        return nil;
     if (data == nil)
         return nil;
 
