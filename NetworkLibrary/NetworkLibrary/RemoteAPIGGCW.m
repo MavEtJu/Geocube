@@ -59,7 +59,7 @@
 - (BOOL)supportsTrackables { return YES; }
 - (BOOL)supportsUserStatistics { return YES; }
 
-- (BOOL)supportsLogging { return NO; }
+- (BOOL)supportsLogging { return YES; }
 - (BOOL)supportsLoggingFavouritePoint { return NO; }
 - (BOOL)supportsLoggingPhotos { return NO; }
 - (BOOL)supportsLoggingCoordinates { return NO; }
@@ -112,45 +112,6 @@
 
 - (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables coordinates:(CLLocationCoordinate2D)coordinates infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    NSMutableDictionary *tbs = [NSMutableDictionary dictionaryWithCapacity:[trackables count]];
-    [trackables enumerateObjectsUsingBlock:^(dbTrackable * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (tb.logtype == TRACKABLE_LOG_NONE)
-            return;
-        NSString *note = nil;
-        switch (tb.logtype) {
-            case TRACKABLE_LOG_VISIT:
-                note = @"Visited";
-                break;
-            case TRACKABLE_LOG_DROPOFF:
-                note = @"DroppedOff";
-                break;
-            default:
-                note = nil;
-                break;
-        }
-        if (note == nil)
-            return;
-        [tbs setObject:note forKey:[NSNumber numberWithLongLong:tb.gc_id]];
-    }];
-
-//    NSDictionary *dict = [ggcw geocache:waypoint.wpt_name infoViewer:iv iiDownload:iid];
-//    NSString *gc_id = [dict objectForKey:@"gc_id"];
-    NSDictionary *dict = [ggcw play_geocache_log__form:waypoint.wpt_name infoViewer:iv iiDownload:iid];
-    [ggcw play_geocache_log__submit:waypoint.wpt_name dict:dict logstring:logstring.logString dateLogged:dateLogged note:note favpoint:favourite infoViewer:iv iiDownload:iid];
-    if ([trackables count] > 0)
-        [ggcw api_proxy_trackable_activities:waypoint.wpt_name trackables:trackables dateLogged:dateLogged infoViewer:iv iiDownload:iid];
-
-    return REMOTEAPI_OK;
-}
-
-- (RemoteAPIResult)updatePersonalNote:(dbPersonalNote *)note infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
-{
-    NSDictionary *gc = [ggcw geocache:note.wp_name infoViewer:iv iiDownload:iid];
-    GCDictionaryGGCW *json = [ggcw seek_cache__details_SetUserCacheNote:gc text:note.note infoViewer:iv iiDownload:iid];
-    NSNumber *success = [json objectForKey:@"success"];
-    if ([success boolValue] == NO)
-        return REMOTEAPI_PERSONALNOTE_UPDATEFAILED;
-
     return REMOTEAPI_OK;
 }
 
@@ -226,6 +187,12 @@
 
 - (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
+
+    /*
+     * Use /play/search with the current coordinates to obtain the list of names of nearby waypoints.
+     * Use /geocaching/GC1234, expect a redirect to /geocube/GC1234-foobar, obtain the GPX file from there.
+     */
+
     [iv setChunksTotal:iid total:1];
     [iv setChunksCount:iid count:1];
 
