@@ -238,8 +238,8 @@ enum {
 {
     // We are already in a background thread, but don't want to delay the next request until this one is processed.
 
-    NSLog(@"PROCESSING: Downloaded %ld", (long)identifier);
     [processing increaseDownloadedChunks:identifier];
+    NSLog(@"PROCESSING: Downloaded #%ld - %@", (long)identifier, [processing description:identifier]);
 
     if (o == nil)
         o = [NSNull null];
@@ -268,12 +268,12 @@ enum {
         }
     }
 
-    NSLog(@"PROCESSING: Processed %ld", (long)identifier);
     [processing increaseProcessedChunks:identifier];
+    NSLog(@"PROCESSING: Processed #%ld - %@", (long)identifier, [processing description:identifier]);
     [infoView removeItem:iii];
 
     if ([processing hasAllProcessed:identifier] == YES) {
-        NSLog(@"PROCESSING: All seen for %ld", (long)identifier);
+        NSLog(@"PROCESSING: All seen for #%ld", (long)identifier);
         [processing removeIdentifier:identifier];
     }
 }
@@ -298,10 +298,10 @@ enum {
 
 - (void)remoteAPI_finishedDownloads:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
 {
-    NSLog(@"PROCESSING: Expecting %ld for %ld", (long)numberOfChunks, (long)identifier);
     [processing expectedChunks:identifier chunks:numberOfChunks];
+    NSLog(@"PROCESSING: Expecting %ld for #%ld - %@", (long)numberOfChunks, (long)identifier, [processing description:identifier]);
     if ([processing hasAllProcessed:identifier] == YES) {
-        NSLog(@"PROCESSING: All seen for %ld", (long)identifier);
+        NSLog(@"PROCESSING: All seen for #%ld", (long)identifier);
         [processing removeIdentifier:identifier];
     }
 }
