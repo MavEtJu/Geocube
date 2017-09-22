@@ -265,9 +265,10 @@
 
     id<RemoteAPIDownloadDelegate> callback = [d objectForKey:@"callback"];
     GCStringGPX *gpx = [ggcw geocache_gpx:wptname infoViewer:iv iiDownload:iid];
-    InfoItemID iii = [iv addImport:NO];
 
+    InfoItemID iii = [iv addImport:NO];
     [callback remoteAPI_objectReadyToImport:identifier iiImport:iii object:gpx group:dbc.groupManualWaypoints account:self.account];
+
     @synchronized (self) { threadcounter--; }
 }
 
