@@ -1342,12 +1342,15 @@ bail:
    | logDate:                        2017-09-22
    | logText:                        Foo
      isWaiting:                      true
+   | usedFavoritePoint:              true
     */
     [ps appendFormat:@"%@=%@",  [MyTools urlEncode:@"geocache[id]"], [MyTools urlEncode:[dict objectForKey:@"geocache_id"]]];
     [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"geocache[referenceCode]"], [MyTools urlEncode:[dict objectForKey:@"geocache_wptname"]]];
-    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"logType"], [MyTools urlEncode:@"2"]];
-    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"logDate"], [MyTools urlEncode:@"2017-09-22"]];
-    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"logText"], [MyTools urlEncode:@"Foo bar quux"]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"logType"], [MyTools urlEncode:[dict objectForKey:@"log_type"]]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"logDate"], [MyTools urlEncode:[dict objectForKey:@"log_date"]]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"logText"], [MyTools urlEncode:[dict objectForKey:@"log_text"]]];
+    if ([[dict objectForKey:@"favourite_point"] boolValue] == YES)
+        [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"usedFavoritePoint"], [MyTools urlEncode:@"true"]];
     req.HTTPBody = [ps dataUsingEncoding:NSUTF8StringEncoding];
 
     NSHTTPURLResponse *resp = nil;

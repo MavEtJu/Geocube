@@ -131,6 +131,8 @@
     NSString *geocacheState_isAvailable = [[[geocache objectForKey:@"state"] objectForKey:@"isAvailable"] stringValue];
     NSString *geocacheState_isLocked = [[[geocache objectForKey:@"state"] objectForKey:@"isLocked"] stringValue];
 
+    NSNumber *favpoint = [NSNumber numberWithBool:favourite];
+
     NSDictionary *dict = @{
                            @"geocache_id":geocache_id,
                            @"geocache_wptname":waypoint.wpt_name,
@@ -144,6 +146,7 @@
                            @"log_type":logstring.logString,
                            @"log_date":dateLogged,
                            @"log_text":note,
+                           @"favourite_point":favpoint,
                            };
 
     GCDictionaryGGCW *log = [ggcw api_proxy_web_v1_Geocache_GeocacheLog:waypoint.wpt_name dict:dict accessToken:access_token];
