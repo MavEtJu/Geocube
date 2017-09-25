@@ -60,7 +60,7 @@
 - (BOOL)supportsUserStatistics { return YES; }
 
 - (BOOL)supportsLogging { return YES; }
-- (BOOL)supportsLoggingFavouritePoint { return NO; }
+- (BOOL)supportsLoggingFavouritePoint { return YES; }
 - (BOOL)supportsLoggingPhotos { return NO; }
 - (BOOL)supportsLoggingCoordinates { return NO; }
 - (BOOL)supportsLoggingTrackables { return NO; }
@@ -155,7 +155,7 @@
     if (errormsg == nil)
         return REMOTEAPI_OK;
 
-    [self setAPIError:@"Unable to upoad the log" error:REMOTEAPI_CREATELOG_LOGFAILED];
+    [self setAPIError:@"Unable to upload the log" error:REMOTEAPI_CREATELOG_LOGFAILED];
     return REMOTEAPI_CREATELOG_LOGFAILED;
 }
 
