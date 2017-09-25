@@ -256,6 +256,7 @@ enum {
                     if ([waypoint.account.remoteAPI supportsLoggingTrackables] == NO) {
                         c.userInteractionEnabled = NO;
                         c.textLabel.textColor = currentTheme.labelTextColorDisabled;
+                        c.detailTextLabel.text = @"";
                     } else {
                         __block NSInteger visited = 0;
                         __block NSInteger discovered = 0;
