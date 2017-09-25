@@ -59,4 +59,10 @@
 - (GCDictionaryGGCW *)account_oauth_token:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (GCStringGPXGarmin *)seek_sendtogps:(NSString *)guid infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 
+- (GCDictionaryGGCW *)play_serverparameters_params;
+- (GCDictionaryGGCW *)account_oauth_token;
+- (GCDictionaryGGCW *)api_proxy_web_v1_users_settings:(NSString *)referenceCode accessToken:(NSString *)accessToken;
+- (GCDictionaryGGCW *)api_proxy_web_v1_geocache:(NSString *)wptname accessToken:(NSString *)accessToken;
+- (GCDictionaryGGCW *)api_proxy_web_v1_Geocache_GeocacheLog:(NSString *)wptname dict:(NSDictionary *)dict accessToken:(NSString *)accessToken;
+
 @end

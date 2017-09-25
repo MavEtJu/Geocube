@@ -69,6 +69,7 @@
 - (BOOL)supportsLoggingFavouritePoint;
 - (BOOL)supportsLoggingPhotos;
 - (BOOL)supportsLoggingCoordinates;
+- (BOOL)supportsLoggingTrackables;
 - (BOOL)supportsLoggingRating;
 - (NSRange)supportsLoggingRatingRange;
 

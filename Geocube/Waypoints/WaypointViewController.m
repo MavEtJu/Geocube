@@ -25,6 +25,9 @@
 #import "NetworkLibrary/RemoteAPITemplate.h"
 #import "ConvertorsLibrary/ExportGPX.h"
 
+#define TESTLOGJE
+#undef TESTLOGJE
+
 @interface WaypointViewController ()
 {
     dbWaypoint *waypoint;
@@ -47,6 +50,9 @@ enum {
     WAYPOINT_HEADER_MAX,
 
     WAYPOINT_DATA_DESCRIPTION = 0,
+#ifdef TESTLOGJE
+    WAYPOINT_DATA_LOGJE,
+#endif
     WAYPOINT_DATA_HINT,
     WAYPOINT_DATA_PERSONALNOTE,
     WAYPOINT_DATA_FIELDNOTES,
@@ -275,6 +281,11 @@ enum {
 
             UIColor *tc = currentTheme.labelTextColor;
             switch (indexPath.row) {
+#ifdef TESTLOGJE
+                case WAYPOINT_DATA_LOGJE:
+                    cell.textLabel.text = @"Logje";
+                    break;
+#endif
 
                case WAYPOINT_DATA_DESCRIPTION:
                     cell.textLabel.text = _(@"waypointviewcontroller-Description");
@@ -478,6 +489,12 @@ enum {
 
         case WAYPOINT_DATA:
             switch (indexPath.row) {
+#ifdef TESTLOGJE
+                case WAYPOINT_DATA_LOGJE:
+                    [self menuLogjeThisWaypoint];
+                    return;
+#endif
+
                 case WAYPOINT_DATA_DESCRIPTION: {
                     UIViewController *newController = [[WaypointDescriptionViewController alloc] init:waypoint webview:YES];
                     newController.edgesForExtendedLayout = UIRectEdgeNone;
@@ -624,6 +641,17 @@ enum {
     newController.delegateWaypoint = self;
     [self.navigationController pushViewController:newController animated:YES];
 }
+
+#ifdef TESTLOGJE
+- (void)menuLogjeThisWaypoint
+{
+    WaypointLogViewController *newController = [[WaypointLogViewController alloc] init:waypoint];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    newController.delegateWaypoint = self;
+    [newController fakeLog];
+    [self.navigationController pushViewController:newController animated:YES];
+}
+#endif
 
 - (void)menuSetAsTarget
 {

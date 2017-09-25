@@ -65,6 +65,7 @@
 - NEEDS_OVERLOADING_BOOL(supportsLoggingFavouritePoint)
 - NEEDS_OVERLOADING_BOOL(supportsLoggingPhotos)
 - NEEDS_OVERLOADING_BOOL(supportsLoggingCoordinates)
+- NEEDS_OVERLOADING_BOOL(supportsLoggingTrackables)
 - NEEDS_OVERLOADING_BOOL(supportsLoggingRating)
 - NEEDS_OVERLOADING_NSRANGE(supportsLoggingRatingRange)
 - NEEDS_OVERLOADING_BOOL(supportsLoadWaypoint)

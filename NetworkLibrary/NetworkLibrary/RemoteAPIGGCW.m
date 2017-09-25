@@ -63,6 +63,7 @@
 - (BOOL)supportsLoggingFavouritePoint { return NO; }
 - (BOOL)supportsLoggingPhotos { return NO; }
 - (BOOL)supportsLoggingCoordinates { return NO; }
+- (BOOL)supportsLoggingTrackables { return NO; }
 - (BOOL)supportsLoggingRating { return NO; }
 - (NSRange)supportsLoggingRatingRange { return NSMakeRange(0, 0); }
 
@@ -112,7 +113,47 @@
 
 - (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables coordinates:(CLLocationCoordinate2D)coordinates infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    return REMOTEAPI_OK;
+    GCDictionaryGGCW *params = [ggcw play_serverparameters_params];
+    NSString *ownerReferenceCode = [[params objectForKey:@"user:info"] objectForKey:@"referenceCode"];
+//  NSString *ownerUsername = [[params objectForKey:@"user:info"] objectForKey:@"username"];
+//  NSString *ownerLocalRegion = [[params objectForKey:@"app:options"] objectForKey:@"localRegion"];
+
+    GCDictionaryGGCW *tokens = [ggcw account_oauth_token];
+    NSString *access_token = [tokens objectForKey:@"access_token"];
+
+//  GCDictionaryGGCW *settings = [ggcw api_proxy_web_v1_users_settings:ownerReferenceCode accessToken:access_token];
+    GCDictionaryGGCW *geocache = [ggcw api_proxy_web_v1_geocache:waypoint.wpt_name accessToken:access_token];
+    NSString *geocache_id = [[geocache objectForKey:@"id"] stringValue];
+    NSString *ownerId = [[[geocache objectForKey:@"owner"] objectForKey:@"id"] stringValue];
+    NSString *geocacheType_id = [[[geocache objectForKey:@"geocacheType"] objectForKey:@"id"] stringValue];
+    NSString *geocacheType_name = [[geocache objectForKey:@"geocacheType"] objectForKey:@"name"];
+    NSString *geocacheState_isArchived = [[[geocache objectForKey:@"state"] objectForKey:@"isArchived"] stringValue];
+    NSString *geocacheState_isAvailable = [[[geocache objectForKey:@"state"] objectForKey:@"isAvailable"] stringValue];
+    NSString *geocacheState_isLocked = [[[geocache objectForKey:@"state"] objectForKey:@"isLocked"] stringValue];
+
+    NSDictionary *dict = @{
+                           @"geocache_id":geocache_id,
+                           @"geocache_wptname":waypoint.wpt_name,
+                           @"owner_referencecode":ownerReferenceCode,
+                           @"owner_id":ownerId,
+                           @"geocacheType_id":geocacheType_id,
+                           @"geocacheType_name":geocacheType_name,
+                           @"geocacheState_isArchived":geocacheState_isArchived,
+                           @"geocacheState_isAvailable":geocacheState_isAvailable,
+                           @"geocacheState_isLocked":geocacheState_isLocked,
+                           @"log_type":logstring.logString,
+                           @"log_date":dateLogged,
+                           @"log_text":note,
+                           };
+
+    GCDictionaryGGCW *log = [ggcw api_proxy_web_v1_Geocache_GeocacheLog:waypoint.wpt_name dict:dict accessToken:access_token];
+
+    NSString *errormsg = [log objectForKey:@"errorMessage"];
+    if (errormsg == nil)
+        return REMOTEAPI_OK;
+
+    [self setAPIError:@"Unable to upoad the log" error:REMOTEAPI_CREATELOG_LOGFAILED];
+    return REMOTEAPI_CREATELOG_LOGFAILED;
 }
 
 - (RemoteAPIResult)listQueries:(NSArray<NSDictionary *> **)qs infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid

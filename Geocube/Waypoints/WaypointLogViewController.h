@@ -38,6 +38,7 @@
 
 - (instancetype)init:(dbWaypoint *)waypoint;
 - (void)importLog:(dbLog *)log;
+- (void)fakeLog;
 
 @property (nonatomic, retain) id<WaypointLogDelegate> delegateWaypoint;
 

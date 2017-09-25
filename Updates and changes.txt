@@ -3,6 +3,7 @@ Interesting additions and changes to Geocube
 Version 1.7(x)
 
   Features:
+  - Be able to log GGCW caches.
 
   Fixes:
   - GGCW: No more message boxes about unable to parse the XML data

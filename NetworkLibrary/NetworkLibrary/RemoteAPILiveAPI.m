@@ -54,6 +54,7 @@
 - (BOOL)supportsLoggingFavouritePoint { return YES; }
 - (BOOL)supportsLoggingPhotos { return YES; }
 - (BOOL)supportsLoggingCoordinates { return YES; }
+- (BOOL)supportsLoggingTrackables { return YES; }
 - (BOOL)supportsLoggingRating { return NO; }
 - (NSRange)supportsLoggingRatingRange { return NSMakeRange(0, 0); }
 

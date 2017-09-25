@@ -119,6 +119,13 @@ enum {
     [self reloadDataMainQueue];
 }
 
+- (void)fakeLog
+{
+    note = @"Foo bar\nQuux";
+    date = [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:time(NULL)];
+    [self submitLog];
+}
+
 - (void)viewDidLoad
 {
     self.hasCloseButton = YES;
@@ -246,7 +253,7 @@ enum {
                 case SECTION_EXTRADETAILS_TRACKABLE: {
                     GCTableViewCellWithSubtitle *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
                     c.textLabel.text = _(@"waypointlogviewcontroller-Trackables");
-                    if ([waypoint.account.remoteAPI supportsTrackables] == NO) {
+                    if ([waypoint.account.remoteAPI supportsLoggingTrackables] == NO) {
                         c.userInteractionEnabled = NO;
                         c.textLabel.textColor = currentTheme.labelTextColorDisabled;
                     } else {

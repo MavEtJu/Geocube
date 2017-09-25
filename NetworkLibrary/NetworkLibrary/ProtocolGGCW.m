@@ -197,11 +197,14 @@ enum {
         return nil;
     }
     if (response.statusCode != 200) {
-        NSLog(@"statusCode: %ld", (long)response.statusCode);
-        NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"retbody: %@", retbody);
-        [remoteAPI setAPIError:[NSString stringWithFormat:_(@"protocolggcw-HTTP Response was %ld"), (long)response.statusCode] error:REMOTEAPI_APIFAILED];
-        return nil;
+        // https://www.geocaching.com/api/proxy/web/v1/Geocache/XXXX/GeocacheLog returns 422 when you enter two Found logs....
+        if (!(response.statusCode == 422 && [urlRequest.URL.absoluteString containsString:@"GeocacheLog"] == YES)) {
+            NSLog(@"statusCode: %ld", (long)response.statusCode);
+            NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+            NSLog(@"retbody: %@", retbody);
+            [remoteAPI setAPIError:[NSString stringWithFormat:_(@"protocolggcw-HTTP Response was %ld"), (long)response.statusCode] error:REMOTEAPI_APIFAILED];
+            return nil;
+        }
     }
 
     if ([data length] == 0) {
@@ -1171,5 +1174,195 @@ bail:
 
     return wptnames;
 }
+
+- (GCDictionaryGGCW *)play_serverparameters_params
+{
+    NSString *urlString = [self prepareURLString:@"/play/serverparameters/params" params:nil];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    NSHTTPURLResponse *resp = nil;
+    NSData *data = [self performURLRequest:req returnResponse:&resp infoViewer:nil iiDownload:0];
+    if (data == nil)
+        return nil;
+
+    /*
+    var serverParameters = {
+        "user:info": {
+            "username": "DirkieQuirkie",
+            "referenceCode": "PRD5XPG",
+            "userType": "Basic",
+            "isLoggedIn": true,
+            "dateFormat": "d. M. yyyy",
+            "unitSetName": "Metric",
+            "roles": [
+                "Public",
+                "Basic"
+            ]
+        },
+        "app:options": {
+            "localRegion": "en-US",
+            "endpoints": null,
+            "coordInfoUrl": "https://coord.info",
+            "paymentUrl": "https://payments.geocaching.com"
+        }
+    };
+    */
+
+    NSString *s = @"var serverParameters = ";
+    data = [data subdataWithRange:NSMakeRange([s length], [data length] - [s length])];
+    data = [data subdataWithRange:NSMakeRange(0, [data length] - 1)];
+
+    NSError *error = nil;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if (error != nil)
+        return nil;
+
+    GCDictionaryGGCW *d = [[GCDictionaryGGCW alloc] initWithDictionary:json];
+    return d;
+}
+
+- (GCDictionaryGGCW *)account_oauth_token
+{
+    NSString *urlString = [self prepareURLString:@"/account/oauth/token" params:nil];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    NSHTTPURLResponse *resp = nil;
+    NSData *data = [self performURLRequest:req returnResponse:&resp infoViewer:nil iiDownload:0];
+    if (data == nil)
+        return nil;
+
+    NSError *error = nil;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if (error != nil)
+        return nil;
+
+    GCDictionaryGGCW *d = [[GCDictionaryGGCW alloc] initWithDictionary:json];
+    return d;
+}
+
+- (GCDictionaryGGCW *)api_proxy_web_v1_users_settings:(NSString *)referenceCode accessToken:(NSString *)accessToken
+{
+    // https://www.geocaching.com/api/proxy/web/v1/users/PRD5XPG/settings/
+    NSString *urlString = [self prepareURLString:[NSString stringWithFormat:@"/api/proxy/web/v1/users/%@/settings/", referenceCode] params:nil];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+    [req setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
+    [req setValue:[NSString stringWithFormat:@"bearer %@", accessToken] forHTTPHeaderField:@"Authorization"];
+
+    NSHTTPURLResponse *resp = nil;
+    NSData *data = [self performURLRequest:req returnResponse:&resp infoViewer:nil iiDownload:0];
+    if (data == nil)
+        return nil;
+
+    NSError *error = nil;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if (error != nil)
+        return nil;
+
+    GCDictionaryGGCW *d = [[GCDictionaryGGCW alloc] initWithDictionary:json];
+    return d;
+}
+
+- (GCDictionaryGGCW *)api_proxy_web_v1_geocache:(NSString *)wptname accessToken:(NSString *)accessToken
+{
+    // https://www.geocaching.com/api/proxy/web/v1/users/PRD5XPG/settings/
+    NSString *urlString = [self prepareURLString:[NSString stringWithFormat:@"/api/proxy/web/v1/geocache/%@", [wptname lowercaseString]] params:nil];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+    [req setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
+    [req setValue:[NSString stringWithFormat:@"bearer %@", accessToken] forHTTPHeaderField:@"Authorization"];
+
+    NSHTTPURLResponse *resp = nil;
+    NSData *data = [self performURLRequest:req returnResponse:&resp infoViewer:nil iiDownload:0];
+    if (data == nil)
+        return nil;
+
+    NSError *error = nil;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if (error != nil)
+        return nil;
+
+    GCDictionaryGGCW *d = [[GCDictionaryGGCW alloc] initWithDictionary:json];
+    return d;
+}
+
+- (GCDictionaryGGCW *)api_proxy_web_v1_Geocache_GeocacheLog:(NSString *)wptname dict:(NSDictionary *)dict accessToken:(NSString *)accessToken
+{
+    // https://www.geocaching.com/api/proxy/web/v1/Geocache/GC5F521/GeocacheLog
+    NSString *urlString = [self prepareURLString:[NSString stringWithFormat:@"/api/proxy/web/v1/Geocache/%@/GeocacheLog", wptname] params:nil];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+    [req setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
+    [req setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [req setValue:[NSString stringWithFormat:@"bearer %@", accessToken] forHTTPHeaderField:@"Authorization"];
+    [req setHTTPMethod:@"POST"];
+
+    NSMutableString *ps = [NSMutableString stringWithString:@""];
+    /*
+     dict:
+     geocache_id
+     geocache_wptname
+     owner_referencecode
+     owner_id
+     geocacheType_id
+     geocacheType_name
+     geocacheState_isArchived
+     geocacheState_isAvailable
+     geocacheState_isLocked
+
+     req:
+     logTextMaxLength:               4000
+     maxImages:                      1
+   | geocache[id]:                   4658218
+   | geocache[referenceCode]:        GC5F521
+     geocache[postedCoordinates][latitude]:-34.045667
+     geocache[postedCoordinates][longitude]:151.12505
+     geocache[callerSpecific][favorited]:false
+     geocache[owner][id]:            8305738
+     geocache[owner][referenceCode]: PR9DJJZ
+     geocache[geocacheType][id]:     2
+     geocache[geocacheType][name]:   Traditional Cache
+     geocache[state][isArchived]:    false
+     geocache[state][isAvailable]:   true
+     geocache[state][isLocked]:      false
+     geocache[isEvent]:              false
+     logTypes[0][value]:             2
+     logTypes[0][name]:              Found It
+     logTypes[0][selected]:          true
+     logTypes[1][value]:             3
+     logTypes[1][name]:              Didn't Find It
+     logTypes[1][selected]:          false
+     logTypes[2][value]:             4
+     logTypes[2][name]:              Write note
+     logTypes[2][selected]:          false
+   | logType:                        2
+     ownerIsViewing:                 false
+   | logDate:                        2017-09-22
+   | logText:                        Foo
+     isWaiting:                      true
+    */
+    [ps appendFormat:@"%@=%@",  [MyTools urlEncode:@"geocache[id]"], [MyTools urlEncode:[dict objectForKey:@"geocache_id"]]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"geocache[referenceCode]"], [MyTools urlEncode:[dict objectForKey:@"geocache_wptname"]]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"logType"], [MyTools urlEncode:@"2"]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"logDate"], [MyTools urlEncode:@"2017-09-22"]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"logText"], [MyTools urlEncode:@"Foo bar quux"]];
+    req.HTTPBody = [ps dataUsingEncoding:NSUTF8StringEncoding];
+
+    NSHTTPURLResponse *resp = nil;
+    NSData *data = [self performURLRequest:req returnResponse:&resp infoViewer:nil iiDownload:0];
+    if (data == nil)
+        return nil;
+
+    NSError *error = nil;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if (error != nil)
+        return nil;
+
+    GCDictionaryGGCW *d = [[GCDictionaryGGCW alloc] initWithDictionary:json];
+    return d;
+}
+
 
 @end
