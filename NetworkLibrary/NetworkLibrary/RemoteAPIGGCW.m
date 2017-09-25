@@ -231,7 +231,6 @@
 
 - (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
-
     /*
      * Use /play/search with the current coordinates to obtain the list of names of nearby waypoints.
      * Use /geocaching/GC1234, expect a redirect to /geocube/GC1234-foobar, obtain the GPX file from there.

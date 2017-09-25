@@ -222,7 +222,16 @@ enum {
                     GCTableViewCellSwitch *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSWITCH];
                     c.textLabel.text = _(@"waypointlogviewcontroller-Favourite Point");
                     c.optionSwitch.on = fp;
-                    if ([waypoint.account.remoteAPI supportsLoggingFavouritePoint] == NO) {
+
+                    BOOL supported = YES;
+                    if ([waypoint.account.remoteAPI supportsLoggingFavouritePoint] == NO)
+                        supported = NO;
+                    if (waypoint.account.protocol._id == PROTOCOL_GGCW && configManager.loggingGGCWOfferFavourites == NO)
+                        supported = NO;
+                    if (waypoint.account.protocol._id == PROTOCOL_LIVEAPI && configManager.loggingGGCWOfferFavourites == NO)
+                        supported = NO;
+
+                    if (supported == NO) {
                         c.userInteractionEnabled = NO;
                         c.textLabel.textColor = currentTheme.labelTextColorDisabled;
                     } else {

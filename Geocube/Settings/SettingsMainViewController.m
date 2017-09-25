@@ -327,6 +327,7 @@ enum sections {
     SECTION_MARKAS_FOUNDDNFCLEARSTARGET = 0,
     SECTION_MARKAS_FOUNDMARKSALLWAYPOINTS,
     SECTION_LOG_REMOVEMARKASFOUNDDNF,
+    SECTION_LOG_GGCWOFFERFAVOURITE,
     SECTION_MARKAS_MAX,
 
     SECTION_WAYPOINTS_SORTBY = 0,
@@ -712,6 +713,8 @@ enum sections {
                     CELL_SWITCH(_(@"settingsmainviewcontroller-Mark all related waypoints when marked as found"), markasFoundMarksAllWaypoints, updateMarkasFoundMarksAllWaypoints)
                 case SECTION_LOG_REMOVEMARKASFOUNDDNF:
                     CELL_SWITCH(_(@"settingsmainviewcontroller-Remove Marked as Found/DNF when logging"), loggingRemovesMarkedAsFoundDNF, updateLoggingRemovesMarkedAsFoundDNF)
+                case SECTION_LOG_GGCWOFFERFAVOURITE:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Offer favourites for LiveAPI / GGCW logging"), loggingGGCWOfferFavourites, updateLoggingGGCWOfferFavourites)
             }
             abort();
         }
@@ -886,6 +889,7 @@ SWITCH_UPDATE(updateShowStateAsAbbrevation, showStateAsAbbrevation)
 SWITCH_UPDATE(updateShowStateAsAbbrevationWithLocality, showStateAsAbbrevationIfLocalityExists)
 SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
 SWITCH_UPDATE(updateSpeedEnable, speedEnable)
+SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
 
 - (void)updateDistanceMetric:(GCSwitch *)s
 {

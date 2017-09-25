@@ -91,6 +91,7 @@ PROTO_N (NSInteger, downloadTimeoutQuery);
 PROTO_N (BOOL, markasFoundDNFClearsTarget);
 PROTO_N (BOOL, markasFoundMarksAllWaypoints);
 PROTO_N (BOOL, loggingRemovesMarkedAsFoundDNF);
+PROTO_N (BOOL, loggingGGCWOfferFavourites);
 PROTO_N (BOOL, compassAlwaysInPortraitMode);
 PROTO_N (BOOL, showCountryAsAbbrevation);
 PROTO_N (BOOL, showStateAsAbbrevation);

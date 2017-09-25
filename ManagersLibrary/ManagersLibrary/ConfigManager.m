@@ -115,6 +115,7 @@
     CHECK(@"markas_founddnf_clearstarget", @"1");
     CHECK(@"markas_foundmarksallwaypoints", @"1");
     CHECK(@"logging_removesmarkedasfounddnf", @"1");
+    CHECK(@"logging_ggcwofferfavourites", @"0");
 
     CHECK(@"compass_alwaysinportraitmode", @"1");
     CHECK(@"showasabbrevation_country", @"1");
@@ -234,6 +235,7 @@
     LOAD_BOOL   (self.markasFoundDNFClearsTarget, @"markas_founddnf_clearstarget");
     LOAD_BOOL   (self.markasFoundMarksAllWaypoints, @"markas_foundmarksallwaypoints");
     LOAD_BOOL   (self.loggingRemovesMarkedAsFoundDNF, @"logging_removesmarkedasfounddnf");
+    LOAD_BOOL   (self.loggingGGCWOfferFavourites, @"logging_ggcwofferfavourites");
     LOAD_BOOL   (self.compassAlwaysInPortraitMode, @"compass_alwaysinportraitmode");
     LOAD_BOOL   (self.showCountryAsAbbrevation, @"showasabbrevation_country");
     LOAD_BOOL   (self.showStateAsAbbrevation, @"showasabbrevation_state");
@@ -373,6 +375,7 @@ UPDATE3(BOOL, downloadQueriesMobile, @"download_queries_mobile")
 UPDATE3(BOOL, markasFoundDNFClearsTarget, @"markas_founddnf_clearstarget")
 UPDATE3(BOOL, markasFoundMarksAllWaypoints, @"markas_foundmarksallwaypoints")
 UPDATE3(BOOL, loggingRemovesMarkedAsFoundDNF, @"logging_removesmarkedasfounddnf")
+UPDATE3(BOOL, loggingGGCWOfferFavourites, @"logging_ggcwofferfavourites")
 UPDATE3(BOOL, compassAlwaysInPortraitMode, @"compass_alwaysinportraitmode")
 UPDATE3(BOOL, showStateAsAbbrevation, @"showasabbrevation_state")
 UPDATE3(BOOL, showStateAsAbbrevationIfLocalityExists, @"showasabbrevation_statewithlocale")

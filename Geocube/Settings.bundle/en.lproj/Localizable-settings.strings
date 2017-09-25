@@ -195,6 +195,7 @@
 "settingsmainviewcontroller-Update distance for static 'navigating' pages" = "Update distance for static 'navigating' pages";
 "settingsmainviewcontroller-Update distance for static 'non-navigating' pages" = "Update distance for static 'non-navigating' pages";
 "settingsmainviewcontroller-Enable keeping track" = "Enable keeping track";
+"settingsmainviewcontroller-Offer favourites for LiveAPI / GGCW logging" = "Offer favourites for LiveAPI / GGCW logging";
 
 "settingsmainviewcontroller-%ld seconds" = "%ld seconds";
 "settingsmainviewcontroller-Averaged over X seconds" = "Averaged over X seconds";
