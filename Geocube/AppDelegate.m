@@ -370,6 +370,10 @@
     else
         [SettingsAccountsViewController needsToDownloadFiles];
 
+    // Ask for notifications
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+
     return YES;
 }
 

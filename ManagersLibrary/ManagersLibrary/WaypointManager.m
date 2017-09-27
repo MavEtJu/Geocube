@@ -82,6 +82,7 @@
     delegatesWaypoints = [NSMutableArray arrayWithCapacity:5];
     delegatesKML = [NSMutableArray arrayWithCapacity:5];
     [self needsRefreshAll];
+    [self updateBadges];
 
     return self;
 }
@@ -112,6 +113,12 @@
     [delegatesKML removeObject:_delegate];
 }
 
+- (void)updateBadges
+{
+    NSArray<dbWaypoint *> *wps = [dbWaypoint dbAllByFlag:FLAGS_MARKEDFOUND];
+    [UIApplication sharedApplication].applicationIconBadgeNumber = [wps count];;
+}
+
 - (void)needsRefreshAll
 {
     if (needsRefresh == NO) {
@@ -125,6 +132,7 @@
             )
         }];
     }
+    [self updateBadges];
 }
 
 - (void)needsRefreshAdd:(dbWaypoint *)wp
@@ -138,6 +146,7 @@
             [delegate addWaypoint:wp];
         )
     }];
+    [self updateBadges];
 }
 
 - (void)needsRefreshRemove:(dbWaypoint *)wp
@@ -151,6 +160,7 @@
             [delegate removeWaypoint:wp];
         )
     }];
+    [self updateBadges];
 }
 
 - (void)needsRefreshUpdate:(dbWaypoint *)wp
@@ -166,6 +176,7 @@
             [delegate updateWaypoint:wp];
         )
     }];
+    [self updateBadges];
 }
 
 - (void)applyFilters:(CLLocationCoordinate2D)coords
