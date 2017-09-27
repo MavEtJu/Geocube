@@ -134,7 +134,7 @@ enum {
         textField.autocorrectionType = UITextAutocorrectionTypeYes;
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = _(@"waypointlogimagesviewcontroller-Long descritption");
+        textField.placeholder = _(@"waypointlogimagesviewcontroller-Long description");
         textField.keyboardType = UIKeyboardTypeDefault;
         textField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
         textField.autocorrectionType = UITextAutocorrectionTypeYes;

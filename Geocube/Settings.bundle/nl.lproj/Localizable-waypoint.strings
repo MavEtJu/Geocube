@@ -124,7 +124,7 @@
 /* WaypointLogImages viewcontroller */
 "waypointlogimagesviewcontroller-Caption" = "Ondertitel";
 "waypointlogimagesviewcontroller-Edit the photo caption and description" = "Wijzig de foto ondertitel en omschrijving";
-"waypointlogimagesviewcontroller-Long descritption" = "Lange omschrijving";
+"waypointlogimagesviewcontroller-Long description" = "Lange omschrijving";
 "waypointlogimagesviewcontroller-Photo details" = "Foto gegevens";
 
 /* WaypointLogs viewcontroller */
