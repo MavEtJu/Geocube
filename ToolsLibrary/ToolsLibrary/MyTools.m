@@ -244,6 +244,7 @@ TIME(dateTimeString_YYYYMMDD, @"yyyyMMdd")
 TIME(dateTimeString_YYYYMMDD_hhmmss, @"yyyyMMdd-HHmmss")
 TIME(dateTimeString_hh_mm_ss, @"HH:mm:ss")
 TIME(dateTimeString_dow, @"EEEE")
+TIME(dateTimeString_DD_MM_YYYY_dotspace, @"d. M. yyyy")
 
 ///////////////////////////////////////////
 
