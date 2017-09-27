@@ -214,10 +214,10 @@ TABLENAME(@"log_strings")
         [type_full isEqualToString:@"Lost and Found Event Caches"] == YES ||
         [type_full isEqualToString:@"Geocache|Mega"] == YES)
         return LOGSTRING_WPTYPE_EVENT;
-    if ([type_full isEqualToString:@"Geocache|Moveable] == YES"])
+    if ([type_full isEqualToString:@"Geocache|Moveable"] == YES)
         return LOGSTRING_WPTYPE_MOVEABLE;
-    if ([type_full isEqualToString:@"Geocache|Webcam] == YES"] ||
-        [type_full isEqualToString:@"Geocache|Webcam Cache] == YES"])
+    if ([type_full isEqualToString:@"Geocache|Webcam"] == YES ||
+        [type_full isEqualToString:@"Geocache|Webcam Cache"] == YES)
         return LOGSTRING_WPTYPE_WEBCAM;
     return LOGSTRING_WPTYPE_WAYPOINT;
 }
