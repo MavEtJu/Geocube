@@ -50,16 +50,17 @@ TABLENAME(@"travelbugs")
 {
     ASSERT_SELF_FIELD_EXISTS(owner);
     @synchronized(db) {
-        DB_PREPARE(@"insert into travelbugs(gc_id, ref, name, carrier_id, owner_id, waypoint_name, log_type, code) values(?, ?, ?, ?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into travelbugs(gc_id, tbcode, name, carrier_id, owner_id, waypoint_name, log_type, pin, guid) values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_INT (1, self.gc_id);
-        SET_VAR_TEXT(2, self.ref);
+        SET_VAR_TEXT(2, self.tbcode);
         SET_VAR_TEXT(3, self.name);
         SET_VAR_INT (4, self.carrier._id);
         SET_VAR_INT (5, self.owner._id);
         SET_VAR_TEXT(6, self.waypoint_name);
         SET_VAR_INT (7, self.logtype);
-        SET_VAR_TEXT(8, self.code);
+        SET_VAR_TEXT(8, self.pin);
+        SET_VAR_TEXT(9, self.guid);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(self._id);
@@ -71,17 +72,18 @@ TABLENAME(@"travelbugs")
 - (void)dbUpdate
 {
     @synchronized(db) {
-        DB_PREPARE(@"update travelbugs set gc_id = ?, ref = ?, name = ?, carrier_id = ?, owner_id = ?, waypoint_name = ?, log_type = ?, code = ? where id = ?");
+        DB_PREPARE(@"update travelbugs set gc_id = ?, tbcode = ?, name = ?, carrier_id = ?, owner_id = ?, waypoint_name = ?, log_type = ?, pin = ?, guid = ? where id = ?");
 
-        SET_VAR_INT (1, self.gc_id);
-        SET_VAR_TEXT(2, self.ref);
-        SET_VAR_TEXT(3, self.name);
-        SET_VAR_INT (4, self.carrier._id);
-        SET_VAR_INT (5, self.owner._id);
-        SET_VAR_TEXT(6, self.waypoint_name);
-        SET_VAR_INT (7, self.logtype);
-        SET_VAR_TEXT(8, self.code);
-        SET_VAR_INT (9, self._id);
+        SET_VAR_INT ( 1, self.gc_id);
+        SET_VAR_TEXT( 2, self.tbcode);
+        SET_VAR_TEXT( 3, self.name);
+        SET_VAR_INT ( 4, self.carrier._id);
+        SET_VAR_INT ( 5, self.owner._id);
+        SET_VAR_TEXT( 6, self.waypoint_name);
+        SET_VAR_INT ( 7, self.logtype);
+        SET_VAR_TEXT( 8, self.pin);
+        SET_VAR_TEXT( 9, self.guid);
+        SET_VAR_INT (10, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -111,7 +113,7 @@ TABLENAME(@"travelbugs")
     NSMutableArray<dbTrackable *> *tbs = [NSMutableArray arrayWithCapacity:20];
     NSId i;
 
-    NSMutableString *sql = [NSMutableString stringWithString:@"select id, name, ref, gc_id, carrier_id, owner_id, waypoint_name, log_type, code from travelbugs "];
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, name, tbcode, gc_id, carrier_id, owner_id, waypoint_name, log_type, pin, guid from travelbugs "];
     if (where != nil)
         [sql appendString:where];
 
@@ -122,7 +124,7 @@ TABLENAME(@"travelbugs")
             dbTrackable *tb = [[dbTrackable alloc] init];
             INT_FETCH (0, tb._id);
             TEXT_FETCH(1, tb.name);
-            TEXT_FETCH(2, tb.ref);
+            TEXT_FETCH(2, tb.tbcode);
             INT_FETCH (3, tb.gc_id);
             INT_FETCH (4, i);
             tb.carrier = [dbName dbGet:i];
@@ -130,7 +132,8 @@ TABLENAME(@"travelbugs")
             tb.owner = [dbName dbGet:i];
             TEXT_FETCH(6, tb.waypoint_name);
             INT_FETCH (7, tb.logtype);
-            TEXT_FETCH(8, tb.code);
+            TEXT_FETCH(8, tb.pin);
+            TEXT_FETCH(9, tb.guid);
             [tb finish];
             [tbs addObject:tb];
         }
@@ -169,14 +172,14 @@ TABLENAME(@"travelbugs")
     return [[self dbAllXXX:@"where gc_id = ?" keys:@"i" values:@[[NSNumber numberWithLongLong:gc_id]]] firstObject]._id;
 }
 
-+ (dbTrackable *)dbGetByCode:(NSString *)code
++ (dbTrackable *)dbGetByPin:(NSString *)pin
 {
-    return [[self dbAllXXX:@"where code = ?" keys:@"s" values:@[code]] firstObject];
+    return [[self dbAllXXX:@"where pin like ?" keys:@"s" values:@[pin]] firstObject];
 }
 
-+ (dbTrackable *)dbGetByRef:(NSString *)ref
++ (dbTrackable *)dbGetByTBCode:(NSString *)tbcode
 {
-    return [[self dbAllXXX:@"where ref = ?" keys:@"s" values:@[ref]] firstObject];
+    return [[self dbAllXXX:@"where tbcode like ?" keys:@"s" values:@[tbcode]] firstObject];
 }
 
 /* Other methods */

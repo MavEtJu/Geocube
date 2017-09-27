@@ -819,6 +819,21 @@
           [NSString stringWithFormat:@"insert into names(account_id, name, code) select id, '%@', '' from accounts", NAME_NONAMESUPPLIED],
     ];
     [upgradeSteps addObject:a];
+
+    // Version 63
+    a = @[
+    @"alter table travelbugs add column guid text",
+    ];
+    [upgradeSteps addObject:a];
+
+    // Version 64
+    a = @[
+    @"alter table travelbugs add column pin text",
+    @"alter table travelbugs add column tbcode text",
+    @"update travelbugs set pin = code, tbcode = ref",
+    @"update travelbugs set code = '', ref = ''",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

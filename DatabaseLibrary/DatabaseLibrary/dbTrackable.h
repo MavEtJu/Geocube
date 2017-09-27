@@ -29,13 +29,14 @@
 
 @interface dbTrackable : dbObject
 
-@property (nonatomic, retain) NSString *code;
+@property (nonatomic, retain) NSString *pin;
 @property (nonatomic, retain) NSString *name;
-@property (nonatomic, retain) NSString *ref;
+@property (nonatomic, retain) NSString *tbcode;
 @property (nonatomic) NSInteger gc_id;
 @property (nonatomic, retain) dbName *carrier;
 @property (nonatomic, retain) dbName *owner;
 @property (nonatomic, retain) NSString *waypoint_name;
+@property (nonatomic, retain) NSString *guid;
 @property (nonatomic) TrackableLog logtype;
 
 - (void)set_carrier_str:(NSString *)name account:(dbAccount *)account;
@@ -48,8 +49,8 @@
 - (void)dbLinkToWaypoint:(dbWaypoint *)wp;
 + (dbTrackable *)dbGet:(NSId)_id;
 + (NSId)dbGetIdByGC:(NSInteger)_gc_id;
-+ (dbTrackable *)dbGetByCode:(NSString *)code;
-+ (dbTrackable *)dbGetByRef:(NSString *)ref;
++ (dbTrackable *)dbGetByTBCode:(NSString *)tbcode;
++ (dbTrackable *)dbGetByPin:(NSString *)pin;
 + (NSInteger)dbCountByWaypoint:(dbWaypoint *)wp_id;
 + (NSArray<dbTrackable *> *)dbAllByWaypoint:(dbWaypoint *)wp;
 

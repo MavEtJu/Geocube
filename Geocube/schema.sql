@@ -18,7 +18,7 @@ insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.5.geocube");
 insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.5.geocube");
 insert into config(key, value) values("url_versions", "https://geocube.mavetju.org/geocube_versions.geocube");
-insert into config(key, value) values("version", "62");
+insert into config(key, value) values("version", "64");
 
 create table filters (
     id integer primary key,
@@ -230,13 +230,14 @@ create index images_idx_url on images(url);
 create table travelbugs (
     id integer primary key,
     gc_id integer,			-- Not a pointer
-    ref text,
+    tbcode text,
     name text,
     owner_id integer,			-- points to names(id)
     carrier_id integer,			-- points to names(id)
     waypoint_name string,
     log_type integer,			-- 0 not, 1 visited
-    code text
+    guid string,
+    pin text
 );
 create index travelbugs_idx_gc_id on travelbugs(gc_id);
 create index travelbugs_idx_id on travelbugs(id);
