@@ -581,7 +581,7 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetTrackablesByTrackingNumber:(NSString *)code infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (GCDictionaryLiveAPI *)GetTrackablesByPin:(NSString *)code infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     NSLog(@"GetTrackablesByTrackingNumber:%@", code);
 
@@ -597,9 +597,9 @@
     return json;
 }
 
-- (GCDictionaryLiveAPI *)CreateTrackableLog:(dbWaypoint *)wp logtype:(NSString *)logtype trackable:(dbTrackable *)tb note:(NSString *)note dateLogged:(NSString *)dateLogged infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (GCDictionaryLiveAPI *)CreateTrackableLog:(NSString *)wpt_name logtype:(NSString *)logtype trackable:(dbTrackable *)tb note:(NSString *)note dateLogged:(NSString *)dateLogged infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    NSLog(@"CreateTrackableLog:%@", tb.ref);
+    NSLog(@"CreateTrackableLog:%@", tb.tbcode);
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"CreateTrackableLog" method:@"POST"];
 
@@ -623,9 +623,10 @@
     NSTimeInterval date = [todayDate timeIntervalSince1970];
 
     [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
-    [_dict setValue:wp.wpt_name forKey:@"CacheCode"];
-    [_dict setValue:tb.code forKey:@"TrackingNumber"];
-    [_dict setValue:tb.ref forKey:@"TravelBugCode"];
+    if (wpt_name != nil)
+        [_dict setValue:wpt_name forKey:@"CacheCode"];
+    [_dict setValue:tb.pin forKey:@"TrackingNumber"];
+    [_dict setValue:tb.tbcode forKey:@"TravelBugCode"];
     [_dict setValue:[NSString stringWithFormat:@"/Date(%lld)/", (long long)(1000 * date)] forKey:@"UTCDateLogged"];
     [_dict setValue:logtype forKey:@"LogType"];
     [_dict setValue:note forKey:@"Note"];

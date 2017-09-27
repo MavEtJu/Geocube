@@ -25,12 +25,6 @@
 
 @implementation TrackablesListViewController
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    lmi = nil;
-}
-
 - (void)loadTrackables
 {
     self.tbs = [dbTrackable dbAll];
@@ -39,6 +33,14 @@
 - (void)remoteAPILoadTrackables:(dbAccount *)a infoView:(InfoViewer *)iv infoItemID:(InfoItemID)iid
 {
     return;
+}
+
+- (void)adjustMenus
+{
+    [lmi enableItem:trackablesMenuDiscover];
+    [lmi enableItem:trackablesMenuGrab];
+    [lmi disableItem:trackablesMenuDrop];
+    [lmi disableItem:trackablesMenuUpdate];
 }
 
 @end

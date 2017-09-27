@@ -62,7 +62,8 @@
 
 // Supported features
 - (BOOL)supportsWaypointPersonalNotes;
-- (BOOL)supportsTrackables;
+- (BOOL)supportsTrackablesLog;
+- (BOOL)supportsTrackablesRetrieve;
 - (BOOL)supportsUserStatistics;
 
 - (BOOL)supportsLogging;
@@ -112,5 +113,8 @@
 - (RemoteAPIResult)trackablesMine:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (RemoteAPIResult)trackablesInventory:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 - (RemoteAPIResult)trackableFind:(NSString *)code trackable:(dbTrackable **)t infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
+- (RemoteAPIResult)trackableDrop:(dbTrackable *)trackable waypoint:(NSString *)wptname infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
+- (RemoteAPIResult)trackableGrab:(NSString *)tbpin infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
+- (RemoteAPIResult)trackableDiscover:(NSString *)tbpin infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
 
 @end

@@ -6,3 +6,18 @@
 "trackablestemplateviewcontroller-Download trackables information" = "Download trackables information";
 "trackablestemplateviewcontroller-Owned by %@" = "Owned by %@";
 "trackablestemplateviewcontroller-Stored in %@" = "Stored in %@";
+
+"trackablestemplateviewcontroller-Discover A Trackable" = "Discover A Trackable";
+"trackablestemplateviewcontroller-Discover trackable" = "Discover trackable";
+"trackablestemplateviewcontroller-Drop trackable" = "Drop trackable";
+"trackablestemplateviewcontroller-Enter the TBxxx code on the trackable" = "Enter the TBxxx code on the trackable";
+"trackablestemplateviewcontroller-Enter the code on the trackable" = "Enter the code on the trackable";
+"trackablestemplateviewcontroller-Grab A Trackable" = "Grab A Trackable";
+"trackablestemplateviewcontroller-Grab trackable" = "Grab trackable";
+"trackablestemplateviewcontroller-No capable Remote API has been found to log this trackable." = "No capable Remote API has been found to log this trackable.";
+"trackablestemplateviewcontroller-The trackable '%@' has been logged as discovered." = "The trackable '%@' has been logged as discovered.";
+"trackablestemplateviewcontroller-The trackable '%@' has been logged as dropped." = "The trackable '%@' has been logged as dropped.";
+"trackablestemplateviewcontroller-The trackable '%@' has been logged as grabbed." = "The trackable '%@' has been logged as grabbed.";
+"trackablestemplateviewcontroller-Trackable code" = "Trackable code";
+"trackablestemplateviewcontroller-Unable to log trackable" = "Unable to log trackable";
+"trackablestemplateviewcontroller-Waypoint code" = "Waypoint code";

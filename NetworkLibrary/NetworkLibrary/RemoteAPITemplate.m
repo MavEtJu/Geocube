@@ -59,7 +59,8 @@
 @implementation RemoteAPITemplate
 
 - NEEDS_OVERLOADING_BOOL(supportsWaypointPersonalNotes)
-- NEEDS_OVERLOADING_BOOL(supportsTrackables)
+- NEEDS_OVERLOADING_BOOL(supportsTrackablesRetrieve)
+- NEEDS_OVERLOADING_BOOL(supportsTrackablesLog)
 - NEEDS_OVERLOADING_BOOL(supportsUserStatistics)
 - NEEDS_OVERLOADING_BOOL(supportsLogging)
 - NEEDS_OVERLOADING_BOOL(supportsLoggingFavouritePoint)
@@ -417,6 +418,24 @@
 }
 
 - (RemoteAPIResult)trackableFind:(NSString *)code trackable:(dbTrackable **)t infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+{
+    [self setAPIError:@"Not implemented" error:REMOTEAPI_NOTPROCESSED];
+    return REMOTEAPI_NOTPROCESSED;
+}
+
+- (RemoteAPIResult)trackableDrop:(dbTrackable *)trackable waypoint:(NSString *)wptname infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+{
+    [self setAPIError:@"Not implemented" error:REMOTEAPI_NOTPROCESSED];
+    return REMOTEAPI_NOTPROCESSED;
+}
+
+- (RemoteAPIResult)trackableGrab:(NSString *)tbpin infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+{
+    [self setAPIError:@"Not implemented" error:REMOTEAPI_NOTPROCESSED];
+    return REMOTEAPI_NOTPROCESSED;
+}
+
+- (RemoteAPIResult)trackableDiscover:(NSString *)tbpin infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
     [self setAPIError:@"Not implemented" error:REMOTEAPI_NOTPROCESSED];
     return REMOTEAPI_NOTPROCESSED;

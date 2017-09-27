@@ -6,3 +6,15 @@
 "trackablestemplateviewcontroller-Download trackables information" = "Downloaden van trackables informatie";
 "trackablestemplateviewcontroller-Owned by %@" = "De eigenaar is %@";
 "trackablestemplateviewcontroller-Stored in %@" = "Geplaatst in %@";
+
+"trackablestemplateviewcontroller-Discover A Trackable" = "Ontdek een trackable";
+"trackablestemplateviewcontroller-Enter the TBxxx code on the trackable" = "Voer de TBxxx code van de trackable in";
+"trackablestemplateviewcontroller-Enter the code on the trackable" = "Voer de code van de trackable in";
+"trackablestemplateviewcontroller-Grab A Trackable" = "Grijp een trackable";
+"trackablestemplateviewcontroller-No capable Remote API has been found to log this trackable." = "Er was geen Remote API gevonden waarmee de trackable gelogd kon worden.";
+"trackablestemplateviewcontroller-The trackable '%@' has been logged as discovered." = "De trackable '%@' is nu ontdekt.";
+"trackablestemplateviewcontroller-The trackable '%@' has been logged as dropped." = "De trackable '%@' is nu geplaatst.";
+"trackablestemplateviewcontroller-The trackable '%@' has been logged as grabbed." = "De trackable '%@' is nu gegrijpt.";
+"trackablestemplateviewcontroller-Trackable code" = "Trackable code";
+"trackablestemplateviewcontroller-Unable to log trackable" = "Het was niet mogelijk om de trackable te loggen";
+"trackablestemplateviewcontroller-Waypoint code" = "Waypoint code";

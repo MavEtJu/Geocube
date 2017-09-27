@@ -107,26 +107,25 @@
 
 /* WaypointLogImages viewcontroller */
 "waypointlogimagesviewcontroller-Caption" = "Caption";
-"waypointlogimagesviewcontroller-Code" = "Code";
-"waypointlogimagesviewcontroller-Discover" = "Discover";
-"waypointlogimagesviewcontroller-Discover a trackable" = "Discover a trackable";
-"waypointlogimagesviewcontroller-Discovered" = "Discovered";
-"waypointlogimagesviewcontroller-Dropped off" = "Dropped off";
+"waypointlogtrackablesviewcontroller-Code" = "Code";
+"waypointlogtrackablesviewcontroller-Discover a trackable" = "Discover a trackable";
+"waypointlogtrackablesviewcontroller-Discovered" = "Discovered";
+"waypointlogtrackablesviewcontroller-Dropped off" = "Dropped off";
 "waypointlogimagesviewcontroller-Edit the photo caption and description" = "Edit the photo caption and description";
-"waypointlogimagesviewcontroller-Enter the code as found on the trackable" = "Enter the code as found on the trackable";
-"waypointlogimagesviewcontroller-Ignore" = "Ignore";
+"waypointlogtrackablesviewcontroller-Enter the code as found on the trackable" = "Enter the code as found on the trackable";
+"waypointlogtrackablesviewcontroller-Ignore" = "Ignore";
 "waypointlogimagesviewcontroller-Long descritption" = "Long descritption";
-"waypointlogimagesviewcontroller-No action" = "No action";
-"waypointlogimagesviewcontroller-No action (automatic)" = "No action (automatic)";
+"waypointlogtrackablesviewcontroller-No action" = "No action";
+"waypointlogtrackablesviewcontroller-No action (automatic)" = "No action (automatic)";
 "waypointlogimagesviewcontroller-Photo details" = "Photo details";
-"waypointlogimagesviewcontroller-Pick up" = "Pick up";
-"waypointlogimagesviewcontroller-Pick up a trackable" = "Pick up a trackable";
-"waypointlogimagesviewcontroller-Picked up" = "Picked up";
-"waypointlogimagesviewcontroller-There was no travelbug found with the code '%@'" = "There was no travelbug found with the code '%@'";
-"waypointlogimagesviewcontroller-Trackable action" = "Trackable action";
-"waypointlogimagesviewcontroller-Trackable not found" = "Trackable not found";
-"waypointlogimagesviewcontroller-Visited" = "Visited";
-"waypointlogimagesviewcontroller-Visited (automatic)" = "Visited (automatic)";
+"waypointlogtrackablesviewcontroller-Pick up" = "Pick up";
+"waypointlogtrackablesviewcontroller-Pick up a trackable" = "Pick up a trackable";
+"waypointlogtrackablesviewcontroller-Picked up" = "Picked up";
+"waypointlogtrackablesviewcontroller-There was no trackable found with the pin '%@'" = "There was no trackable found with the pin '%@'";
+"waypointlogtrackablesviewcontroller-Trackable action" = "Trackable action";
+"waypointlogtrackablesviewcontroller-Trackable not found" = "Trackable not found";
+"waypointlogtrackablesviewcontroller-Visited" = "Visited";
+"waypointlogtrackablesviewcontroller-Visited (automatic)" = "Visited (automatic)";
 
 /* WaypointLogs viewcontroller */
 "waypointlogsviewcontroller-Copy successful" = "Copy successful";

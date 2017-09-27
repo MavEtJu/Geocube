@@ -253,14 +253,14 @@ enum {
     <script type="text/javascript">
     var serverParameters = {
         'user:info': {
-        isLoggedIn: true,
-        username: "Team MavEtJu",
-        userType: "Premium",
-        publicGuid: "7d657fb4-351b-4321-8f39-a96fe85309a6",
-        avatarUrl: "https://img.geocaching.com/avatar/abdbf2c2-efdf-4e2b-8377-9d12c0bbc802.jpg"
+            isLoggedIn: true,
+            username: "Team MavEtJu",
+            userType: "Premium",
+            publicGuid: "7d657fb4-351b-4321-8f39-a96fe85309a6",
+            avatarUrl: "https://img.geocaching.com/avatar/abdbf2c2-efdf-4e2b-8377-9d12c0bbc802.jpg"
         },
         'app:options': {
-        localRegion: "en-US"
+            localRegion: "en-US"
         }
     }
      */
@@ -282,6 +282,68 @@ enum {
     }];
 
     return nil;
+}
+
+// Needed to get the publicGuid
+- (GCDictionaryGGCW *)my_default:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+
+    NSString *urlString = [self prepareURLString:@"/my/default.aspx" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    NSData *data = [self performURLRequest:req infoViewer:iv iiDownload:iid];
+    if (data == nil)
+        return nil;
+
+    //
+    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+
+    // Find the data for thea publicGuid
+    /*
+     <script type="text/javascript">
+     var serverParameters = {
+     'user:info': {
+         isLoggedIn: true,
+         username: "Team MavEtJu",
+         userType: "Premium",
+         publicGuid: "7d657fb4-351b-4321-8f39-a96fe85309a6",
+         avatarUrl: "https://img.geocaching.com/avatar/abdbf2c2-efdf-4e2b-8377-9d12c0bbc802.jpg"
+     },
+     'app:options': {
+         localRegion: "en-US"
+     }
+     }
+     */
+    NSString *re = @"//script";
+    NSArray<TFHppleElement *> *nodes = [parser searchWithXPathQuery:re];
+    [nodes enumerateObjectsUsingBlock:^(TFHppleElement * _Nonnull e, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSRange r = [e.content rangeOfString:@"publicGuid: \""];
+        if (r.location == NSNotFound)
+            return;
+        NSString *s = [e.content substringFromIndex:r.location + r.length];
+        r = [s rangeOfString:@"\","];
+        CHECK_RANGE(r, bail);
+        s = [s substringToIndex:r.location];
+        uid = s;
+
+        *stop = YES;
+    bail:
+        return;
+    }];
+
+    return nil;
+}
+
+- (void)determine_uid
+{
+    if (uid == nil) {
+        [self account_dashboard:nil iiDownload:0];
+        if (uid == nil)
+            [self my_default:nil iiDownload:0];
+        return;
+    }
 }
 
 - (GCDictionaryGGCW *)my_statistics:(InfoViewer *)iv iiDownload:(InfoItemID)iid
@@ -825,7 +887,7 @@ bail:
      */
     NSString *re;
     NSArray<TFHppleElement *> *nodes;
-    NSString *gccode;
+    NSString *tbcode;
     NSMutableDictionary *dict;
     NSString *owner;
     NSString *href;
@@ -838,7 +900,7 @@ bail:
     re = @"//span[@id='ctl00_ContentBody_CoordInfoLinkControl1_uxCoordInfoCode']";
     nodes = [parser searchWithXPathQuery:re];
     CHECK_ARRAY(nodes, 1, bail);
-    gccode = [[nodes objectAtIndex:0] content];
+    tbcode = [[nodes objectAtIndex:0] content];
 
     /*
      <h4 class="BottomSpacing">
@@ -898,7 +960,7 @@ bail:
     guid = [href substringFromIndex:r.location + r.length];
 
     dict = [NSMutableDictionary dictionaryWithCapacity:1];
-    [dict setObject:gccode forKey:@"gccode"];
+    [dict setObject:tbcode forKey:@"tbcode"];
     [dict setObject:_id forKey:@"id"];
     [dict setObject:guid forKey:@"guid"];
     [dict setObject:owner forKey:@"owner"];
@@ -911,15 +973,15 @@ bail:
     return dict;
 }
 
-- (NSDictionary *)track_details:(NSString *)tracker infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (NSDictionary *)track_details:(NSString *)pin infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    NSLog(@"track_details:%@", tracker);
+    NSLog(@"track_details:%@", pin);
     /*
     https://www.geocaching.com/track/details.aspx?tracker=PC7XXX
      */
 
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
-    [params setObject:tracker forKey:@"tracker"];
+    [params setObject:pin forKey:@"tracker"];
 
     NSString *urlString = [self prepareURLString:@"/track/details.aspx" params:params];
     NSURL *url = [NSURL URLWithString:urlString];
@@ -941,7 +1003,7 @@ bail:
     TFHppleElement *e;
     NSString *name;
     NSString *owner;
-    NSString *gccode;
+    NSString *tbcode;
     NSString *_id;
     NSString *guid;
     NSString *href;
@@ -973,7 +1035,7 @@ bail:
      */
     re = @"//span[@id='ctl00_ContentBody_CoordInfoLinkControl1_uxCoordInfoCode']";
     nodes = [parser searchWithXPathQuery:re];
-    gccode = [[nodes objectAtIndex:0] content];
+    tbcode = [[nodes objectAtIndex:0] content];
 
     /*
      <a id="ctl00_ContentBody_WatchLink" title="Watch This Trackable Item"
@@ -999,14 +1061,18 @@ bail:
     r = [href rangeOfString:@"wid="];
     CHECK_RANGE(r, bail);
     guid = [href substringFromIndex:r.location + r.length];
+    r = [guid rangeOfString:@"&"];
+    CHECK_RANGE(r, bail);
+    guid = [guid substringToIndex:r.location];
 
     dict = [[NSMutableDictionary alloc] initWithCapacity:5];
     [dict setObject:name forKey:@"name"];
     [dict setObject:owner forKey:@"owner"];
-    [dict setObject:gccode forKey:@"gccode"];
-    [dict setObject:tracker forKey:@"code"];
+    [dict setObject:tbcode forKey:@"tbcode"];
+    [dict setObject:pin forKey:@"code"];
     [dict setObject:_id forKey:@"id"];
     [dict setObject:guid forKey:@"guid"];
+    [dict setObject:pin forKey:@"pin"];
 
 bail:
     return dict;
@@ -1014,8 +1080,7 @@ bail:
 
 - (NSArray<NSDictionary *> *)track_search:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    if (uid == nil)
-        [self account_dashboard:iv iiDownload:iid];
+    [self determine_uid];
 
     NSLog(@"track_search:%@", uid);
     /*
@@ -1128,6 +1193,45 @@ bail:
     }];
 
     return tbs;
+}
+
+- (NSDictionary *)track_log:(NSDictionary *)dict infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+{
+    NSString *urlString = [self prepareURLString:@"/track/log.aspx"
+                                          params:@{@"wid":[MyTools urlEncode:[dict objectForKey:@"guid"]],
+                                                   @"c":[MyTools urlEncode:[dict objectForKey:@"tbCode"]]}];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+    [self performURLRequest:req infoViewer:iv iiDownload:iid];
+
+    req.HTTPMethod = @"POST";
+    [req addValue:urlString forHTTPHeaderField:@"Referer"];
+
+    NSMutableString *ps = [NSMutableString stringWithString:@""];
+    [ps appendFormat:@"%@=%@", [MyTools urlEncode:@"__EVENTTARGET"], @""];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__EVENTARGUMENT"], @""];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATEFIELDCOUNT"], @"0"];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"__VIEWSTATEGENERATOR"], @"C429A7BC"];
+
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"ctl00$ContentBody$LogBookPanel1$uxLogCreationSource"], @"Old"];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"ctl00$ContentBody$LogBookPanel1$LogContainsHtml"], @""];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"ctl00$ContentBody$LogBookPanel1$LogContainsUbb"], @""];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"ctl00$ContentBody$LogBookPanel1$uxRawLogText"], @""];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"ctl00$ContentBody$LogBookPanel1$IsEditLog"], @"False"];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"ctl00$ContentBody$uxVistOtherTrackableTB"], @""];
+
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"ctl00$ContentBody$LogBookPanel1$ddLogType"], [MyTools urlEncode:[dict objectForKey:@"logType"]]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"ctl00$ContentBody$LogBookPanel1$uxDateVisited"], [MyTools urlEncode:[dict objectForKey:@"logDate"]]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"ctl00$ContentBody$LogBookPanel1$tbCode"], [MyTools urlEncode:[dict objectForKey:@"tbCode"]]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"ctl00$ContentBody$LogBookPanel1$uxLogInfo"], [MyTools urlEncode:[dict objectForKey:@"logText"]]];
+    [ps appendFormat:@"&%@=%@", [MyTools urlEncode:@"ctl00$ContentBody$LogBookPanel1$btnSubmitLog"], [MyTools urlEncode:@"Submit Log Entry"]];
+    req.HTTPBody = [ps dataUsingEncoding:NSUTF8StringEncoding];
+
+    NSData *data = [self performURLRequest:req infoViewer:iv iiDownload:iid];
+    if (data == nil)
+        return nil;
+
+    return nil;
 }
 
 - (NSArray<NSString *> *)play_search:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid

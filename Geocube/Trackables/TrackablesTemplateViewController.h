@@ -19,11 +19,20 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+enum {
+    trackablesMenuUpdate = 0,
+    trackablesMenuDiscover,
+    trackablesMenuGrab,
+    trackablesMenuDrop,
+    trackablesMenuMax,
+};
+
 @interface TrackablesTemplateViewController : GCTableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UISearchResultsUpdating>
 
 @property (nonatomic, retain) NSArray<dbTrackable *> *tbs;
 
 - (void)remoteAPILoadTrackables:(dbAccount *)a infoView:(InfoViewer *)iv infoItemID:(InfoItemID)iid;
 - (void)loadTrackables;
+- (void)adjustMenus;
 
 @end

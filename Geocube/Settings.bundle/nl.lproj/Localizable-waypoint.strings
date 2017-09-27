@@ -70,6 +70,23 @@
 /* WaypointTrackables viewcontroller */
 "waypointtrackablesviewcontroller-Trackables" = "Trackables";
 
+"waypointlogtrackablesviewcontroller-Code" = "Code";
+"waypointlogtrackablesviewcontroller-Discover a trackable" = "Ontdek een trackable";
+"waypointlogtrackablesviewcontroller-Discovered" = "Ontdekt";
+"waypointlogtrackablesviewcontroller-Dropped off" = "Geplaatst";
+"waypointlogtrackablesviewcontroller-Enter the code as found on the trackable" = "Vul de trackable code in";
+"waypointlogtrackablesviewcontroller-Ignore" = "Genegeerd";
+"waypointlogtrackablesviewcontroller-No action" = "Geen aktie";
+"waypointlogtrackablesviewcontroller-No action (automatic)" = "Geen aktie (automatisch)";
+"waypointlogtrackablesviewcontroller-Pick up" = "Pak op";
+"waypointlogtrackablesviewcontroller-Pick up a trackable" = "Pak een trackable op";
+"waypointlogtrackablesviewcontroller-Picked up" = "Opgepakt";
+"waypointlogtrackablesviewcontroller-There was no trackable found with the pin '%@'" = "Er was geen trackable gevonden met de pin '%@'";
+"waypointlogtrackablesviewcontroller-Trackable action" = "Trackable aktie";
+"waypointlogtrackablesviewcontroller-Trackable not found" = "Trackable niet gevonden";
+"waypointlogtrackablesviewcontroller-Visited" = "Bezocht";
+"waypointlogtrackablesviewcontroller-Visited (automatic)" = "Bezocht (automatisch)";
+
 /* WaypointPersonalNote viewcontroller */
 "waypointpersonalnoteviewcontroller-Copy successful" = "Kopie gelukt";
 "waypointpersonalnoteviewcontroller-Enter your personal note here" = "Start je persoonlijke aantekening hier.";
@@ -106,26 +123,9 @@
 
 /* WaypointLogImages viewcontroller */
 "waypointlogimagesviewcontroller-Caption" = "Ondertitel";
-"waypointlogimagesviewcontroller-Code" = "Code";
-"waypointlogimagesviewcontroller-Discover" = "Ontdek";
-"waypointlogimagesviewcontroller-Discover a trackable" = "Ontdek een trackable";
-"waypointlogimagesviewcontroller-Discovered" = "Ontdekt";
-"waypointlogimagesviewcontroller-Dropped off" = "Geplaatst";
 "waypointlogimagesviewcontroller-Edit the photo caption and description" = "Wijzig de foto ondertitel en omschrijving";
-"waypointlogimagesviewcontroller-Enter the code as found on the trackable" = "Vul de trackable code in";
-"waypointlogimagesviewcontroller-Ignore" = "Genegeerd";
 "waypointlogimagesviewcontroller-Long descritption" = "Lange omschrijving";
-"waypointlogimagesviewcontroller-No action" = "Geen aktie";
-"waypointlogimagesviewcontroller-No action (automatic)" = "Geen aktie (automatisch)";
 "waypointlogimagesviewcontroller-Photo details" = "Foto gegevens";
-"waypointlogimagesviewcontroller-Pick up" = "Pak op";
-"waypointlogimagesviewcontroller-Pick up a trackable" = "Pak een trackable op";
-"waypointlogimagesviewcontroller-Picked up" = "Opgepakt";
-"waypointlogimagesviewcontroller-There was no travelbug found with the code '%@'" = "Er was geen travelbug gevonden met de code '%@'";
-"waypointlogimagesviewcontroller-Trackable action" = "Trackable aktie";
-"waypointlogimagesviewcontroller-Trackable not found" = "Trackable niet gevonden";
-"waypointlogimagesviewcontroller-Visited" = "Bezocht";
-"waypointlogimagesviewcontroller-Visited (automatic)" = "Bezocht (automatisch)";
 
 /* WaypointLogs viewcontroller */
 "waypointlogsviewcontroller-Copy successful" = "Kopie was gelukt";

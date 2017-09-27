@@ -31,13 +31,9 @@
 
 @implementation TrackablesTemplateViewController
 
-enum {
-    menuUpdate = 0,
-    menuMax,
-};
-
 - NEEDS_OVERLOADING_VOID(remoteAPILoadTrackables:(dbAccount *)a infoView:(InfoViewer *)iv infoItemID:(InfoItemID)iid)
 - NEEDS_OVERLOADING_VOID(loadTrackables)
+- NEEDS_OVERLOADING_VOID(adjustMenus)
 
 - (void)refreshTrackables:(NSString *)searchString
 {
@@ -73,8 +69,12 @@ enum {
 
     [self makeInfoView];
 
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuUpdate label:_(@"trackablestemplateviewcontroller-Update")];
+    lmi = [[LocalMenuItems alloc] init:trackablesMenuMax];
+    [lmi addItem:trackablesMenuUpdate label:_(@"trackablestemplateviewcontroller-Update List")];
+    [lmi addItem:trackablesMenuDrop label:_(@"trackablestemplateviewcontroller-Drop trackable")];
+    [lmi addItem:trackablesMenuGrab label:_(@"trackablestemplateviewcontroller-Grab trackable")];
+    [lmi addItem:trackablesMenuDiscover label:_(@"trackablestemplateviewcontroller-Discover trackable")];
+    [self adjustMenus];
 
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
@@ -120,12 +120,12 @@ enum {
     cell.owner.text = nil;
 
     cell.name.text = tb.name;
-    if (!IS_EMPTY(tb.ref) && !IS_EMPTY(tb.code))
-        cell.code.text = [NSString stringWithFormat:_(@"trackablestemplateviewcontroller-Code: %@ / %@"), tb.ref, tb.code];
-    if ( IS_EMPTY(tb.ref) && !IS_EMPTY(tb.code))
-        cell.code.text = [NSString stringWithFormat:_(@"trackablestemplateviewcontroller-Code: %@"), tb.code];
-    if (!IS_EMPTY(tb.ref) &&  IS_EMPTY(tb.code))
-        cell.code.text = [NSString stringWithFormat:_(@"trackablestemplateviewcontroller-Code: %@"), tb.ref];
+    if (!IS_EMPTY(tb.tbcode) && !IS_EMPTY(tb.pin))
+        cell.code.text = [NSString stringWithFormat:_(@"trackablestemplateviewcontroller-Code: %@ / %@"), tb.tbcode, tb.pin];
+    if ( IS_EMPTY(tb.tbcode) && !IS_EMPTY(tb.pin))
+        cell.code.text = [NSString stringWithFormat:_(@"trackablestemplateviewcontroller-Code: %@"), tb.pin];
+    if (!IS_EMPTY(tb.tbcode) &&  IS_EMPTY(tb.pin))
+        cell.code.text = [NSString stringWithFormat:_(@"trackablestemplateviewcontroller-Code: %@"), tb.tbcode];
     if (tb.carrier != nil)
         cell.carrier.text = [NSString stringWithFormat:_(@"trackablestemplateviewcontroller-Carried by %@"), tb.carrier.name];
     if (!IS_EMPTY(tb.waypoint_name))
@@ -142,12 +142,17 @@ enum {
 
 - (void)menuUpdate
 {
+    BACKGROUND(menuUpdate_BG, nil)
+}
+
+- (void)menuUpdate_BG
+{
     [self showInfoView];
     InfoItemID iid = [infoView addDownload];
     [infoView setDescription:iid description:_(@"trackablestemplateviewcontroller-Download trackables information")];
 
     [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (a.remoteAPI.supportsTrackables == YES && a.canDoRemoteStuff == YES) {
+        if (a.remoteAPI.supportsTrackablesRetrieve == YES && a.canDoRemoteStuff == YES) {
             // Get rid of any old data
             [self.tbs enumerateObjectsUsingBlock:^(dbTrackable * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {
                 tb.carrier = nil;
@@ -165,11 +170,188 @@ enum {
     [self hideInfoView];
 }
 
+- (void)menuDiscover
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:_(@"trackablestemplateviewcontroller-Discover A Trackable")
+                                message:_(@"trackablestemplateviewcontroller-Enter the code on the trackable")
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:_(@"OK")
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *value = tf.text;
+
+                             __block BOOL tried = NO;
+                             __block RemoteAPIResult rv;
+                             __block NSString *error = nil;
+                             [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+                                 if (a.remoteAPI.supportsTrackablesLog == NO || a.canDoRemoteStuff == NO)
+                                     return;
+                                 rv = [a.remoteAPI trackableDiscover:value infoViewer:nil iiDownload:0];
+                                 tried = YES;
+                                 *stop = YES;
+                                 error = a.remoteAPI.lastError;
+                             }];
+                             if (tried == NO) {
+                                 [MyTools messageBox:self header:_(@"Error") text:_(@"trackablestemplateviewcontroller-No capable Remote API has been found to log this trackable.")];
+                                 return;
+                             }
+                             if (rv == REMOTEAPI_OK) {
+                                 dbTrackable *t = [dbTrackable dbGetByPin:value];
+                                 [MyTools messageBox:self header:_(@"trackablestemplateviewcontroller-Discover trackable") text:[NSString stringWithFormat:_(@"trackablestemplateviewcontroller-The trackable '%@' has been logged as discovered."), t.name]];
+                                 return;
+                             }
+                             [MyTools messageBox:self header:_(@"trackablestemplateviewcontroller-Unable to log trackable") text:error];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addTextFieldWithConfigurationHandler:nil];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)menuGrab
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:_(@"trackablestemplateviewcontroller-Grab A Trackable")
+                                message:_(@"trackablestemplateviewcontroller-Enter the code on the trackable")
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:_(@"OK")
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *value = tf.text;
+
+                             __block BOOL tried = NO;
+                             __block RemoteAPIResult rv;
+                             __block NSString *error = nil;
+                             [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+                                 if (a.remoteAPI.supportsTrackablesLog == NO || a.canDoRemoteStuff == NO)
+                                     return;
+                                 rv = [a.remoteAPI trackableGrab:value infoViewer:nil iiDownload:0];
+                                 tried = YES;
+                                 *stop = YES;
+                                 error = a.remoteAPI.lastError;
+                             }];
+                             if (tried == NO) {
+                                 [MyTools messageBox:self header:_(@"Error") text:_(@"trackablestemplateviewcontroller-No capable Remote API has been found to log this trackable.")];
+                                 return;
+                             }
+                             if (rv == REMOTEAPI_OK) {
+                                 dbTrackable *t = [dbTrackable dbGetByPin:value];
+                                 [MyTools messageBox:self header:_(@"trackablestemplateviewcontroller-Grab trackable") text:[NSString stringWithFormat:_(@"trackablestemplateviewcontroller-The trackable '%@' has been logged as grabbed."), t.name]];
+                                 [self menuUpdate];
+                                 return;
+                             }
+                             [MyTools messageBox:self header:_(@"trackablestemplateviewcontroller-Unable to log trackable") text:error];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addTextFieldWithConfigurationHandler:nil];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)menuDrop
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:_(@"trackablestemplateviewcontroller-Discover A Trackable")
+                                message:_(@"trackablestemplateviewcontroller-Enter the TBxxx code on the trackable")
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:_(@"OK")
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *value = tf.text;
+                             tf = [alert.textFields objectAtIndex:1];
+                             NSString *wptname = tf.text;
+
+                             dbTrackable *tb = [dbTrackable dbGetByTBCode:value];
+
+                             __block BOOL tried = NO;
+                             __block RemoteAPIResult rv;
+                             __block NSString *error = nil;
+                             [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+                                 if (a.remoteAPI.supportsTrackablesLog == NO || a.canDoRemoteStuff == NO)
+                                     return;
+                                 rv = [a.remoteAPI trackableDrop:tb waypoint:wptname infoViewer:nil iiDownload:0];
+                                 tried = YES;
+                                 *stop = YES;
+                                 error = a.remoteAPI.lastError;
+                             }];
+                             if (tried == NO) {
+                                 [MyTools messageBox:self header:_(@"Error") text:_(@"trackablestemplateviewcontroller-No capable Remote API has been found to log this trackable.")];
+                                 return;
+                             }
+                             if (rv == REMOTEAPI_OK) {
+                                 [MyTools messageBox:self header:_(@"trackablestemplateviewcontroller-Drop trackable") text:[NSString stringWithFormat:_(@"trackablestemplateviewcontroller-The trackable '%@' has been logged as dropped."), tb.name]];
+                                 [self menuUpdate];
+                                 return;
+                             }
+                             [MyTools messageBox:self header:_(@"trackablestemplateviewcontroller-Unable to log trackable") text:error];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = @"";
+        textField.placeholder = _(@"trackablestemplateviewcontroller-Trackable code");
+    }];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = @"";
+        textField.placeholder = _(@"trackablestemplateviewcontroller-Waypoint code");
+    }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
 - (void)performLocalMenuAction:(NSInteger)index
 {
     switch (index) {
-        case menuUpdate:
-            BACKGROUND(menuUpdate, nil);
+        case trackablesMenuUpdate:
+            [self menuUpdate];
+            return;
+        case trackablesMenuDiscover:
+            [self menuDiscover];
+            return;
+        case trackablesMenuGrab:
+            [self menuGrab];
+            return;
+        case trackablesMenuDrop:
+            [self menuDrop];
             return;
     }
 

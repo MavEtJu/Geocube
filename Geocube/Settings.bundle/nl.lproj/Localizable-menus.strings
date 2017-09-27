@@ -133,7 +133,10 @@
 "toolsgnssviewcontroller-Copy last coords" = "Kopiëer laatste coördinaten";
 "toolsgnssviewcontroller-Create waypoint" = "Maak een waypoint";
 "toolsgnssviewcontroller-Restart" = "Herstart";
-"trackablestemplateviewcontroller-Update" = "Ververs";
+"trackablestemplateviewcontroller-Discover trackable" = "Ontdek trackable";
+"trackablestemplateviewcontroller-Drop trackable" = "Laat trackable achter";
+"trackablestemplateviewcontroller-Grab trackable" = "Pak trackable op";
+"trackablestemplateviewcontroller-Update List" = "Ververs de lijst";
 "waypointimagesviewcontroller-Delete all photos" = "Verwijder alle fotos";
 "waypointimagesviewcontroller-Download photos" = "Download alle fotos";
 "waypointimagesviewcontroller-Import photo" = "Importeer een foto";

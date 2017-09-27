@@ -47,7 +47,8 @@
 #define IMPORTMSG   _(@"remoteapiliveapi-LiveAPI JSON data (queued)")
 
 - (BOOL)supportsWaypointPersonalNotes { return YES; }
-- (BOOL)supportsTrackables { return YES; }
+- (BOOL)supportsTrackablesRetrieve { return YES; }
+- (BOOL)supportsTrackablesLog { return YES; }
 - (BOOL)supportsUserStatistics { return YES; }
 
 - (BOOL)supportsLogging { return YES; }
@@ -265,7 +266,7 @@
                 NSAssert(NO, @"Unknown tb.logtype");
         }
         dbLogString *ls = [dbLogString dbGetByProtocolWPTypeDefault:self.account.protocol wptype:wptype default:dflt];
-        GCDictionaryLiveAPI *json = [liveAPI CreateTrackableLog:waypoint logtype:ls.logString trackable:tb note:note dateLogged:dateLogged infoViewer:iv iiDownload:iid];
+        GCDictionaryLiveAPI *json = [liveAPI CreateTrackableLog:waypoint.wpt_name logtype:ls.logString trackable:tb note:note dateLogged:dateLogged infoViewer:iv iiDownload:iid];
         LIVEAPI_CHECK_STATUS_ENUM(json, @"CreateTrackableLog", REMOTEAPI_CREATELOG_LOGFAILED);
     }];
     return errorCode;
@@ -459,9 +460,9 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)trackableFind:(NSString *)code trackable:(dbTrackable **)t infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (RemoteAPIResult)trackableFind:(NSString *)pin trackable:(dbTrackable **)t infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    GCDictionaryLiveAPI *json = [liveAPI GetTrackablesByTrackingNumber:code infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [liveAPI GetTrackablesByPin:pin infoViewer:iv iiDownload:iid];
     LIVEAPI_CHECK_STATUS(json, @"trackableFind", REMOTEAPI_TRACKABLES_FINDFAILED);
 
     ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:self.account];
@@ -475,11 +476,62 @@
     if (ref == nil)
         return REMOTEAPI_OK;
 
-    *t = [dbTrackable dbGetByRef:ref];
-    if ([(*t).code isEqualToString:@""] == YES ) {
-        (*t).code = code;
+    *t = [dbTrackable dbGetByTBCode:ref];
+    if ([(*t).pin isEqualToString:@""] == YES ) {
+        (*t).pin = pin;
         [*t dbUpdate];
     }
+    return REMOTEAPI_OK;
+}
+
+- (RemoteAPIResult)trackableDiscover:(NSString *)tbpin infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+{
+    dbTrackable *tb = nil;
+    RemoteAPIResult r = [self trackableFind:tbpin trackable:&tb infoViewer:iv iiDownload:iid];
+    if (r != REMOTEAPI_OK)
+        return r;
+    if (tb == nil) {
+        [self setAPIError:[NSString stringWithFormat:@"Unable to find '%@'", tbpin] error:REMOTEAPI_TRACKABLES_FINDFAILED];
+        return REMOTEAPI_TRACKABLES_FINDFAILED;
+    }
+
+    NSString *note = @"Discovered";
+
+    dbLogString *ls = [dbLogString dbGetByProtocolWPTypeDefault:self.account.protocol wptype:LOGSTRING_WPTYPE_TRACKABLEWAYPOINT default:LOGSTRING_DEFAULT_DISCOVER];
+    GCDictionaryLiveAPI *json = [liveAPI CreateTrackableLog:nil logtype:ls.logString trackable:tb note:note dateLogged:[MyTools dateTimeString_YYYY_MM_DD] infoViewer:iv iiDownload:iid];
+    LIVEAPI_CHECK_STATUS(json, @"CreateTrackableLog", REMOTEAPI_CREATELOG_LOGFAILED);
+
+    return REMOTEAPI_OK;
+}
+
+- (RemoteAPIResult)trackableGrab:(NSString *)tbpin infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+{
+    dbTrackable *tb = nil;
+    RemoteAPIResult r = [self trackableFind:tbpin trackable:&tb infoViewer:iv iiDownload:iid];
+    if (r != REMOTEAPI_OK)
+        return r;
+    if (tb == nil) {
+        [self setAPIError:[NSString stringWithFormat:@"Unable to find '%@'", tbpin] error:REMOTEAPI_TRACKABLES_FINDFAILED];
+        return REMOTEAPI_TRACKABLES_FINDFAILED;
+    }
+
+    NSString *note = @"Grabbed";
+
+    dbLogString *ls = [dbLogString dbGetByProtocolWPTypeDefault:self.account.protocol wptype:LOGSTRING_WPTYPE_TRACKABLEPERSON default:LOGSTRING_DEFAULT_PICKUP];
+    GCDictionaryLiveAPI *json = [liveAPI CreateTrackableLog:nil logtype:ls.logString trackable:tb note:note dateLogged:[MyTools dateTimeString_YYYY_MM_DD] infoViewer:iv iiDownload:iid];
+    LIVEAPI_CHECK_STATUS(json, @"CreateTrackableLog", REMOTEAPI_CREATELOG_LOGFAILED);
+
+    return REMOTEAPI_OK;
+}
+
+- (RemoteAPIResult)trackableDrop:(dbTrackable *)tb waypoint:(NSString *)wptname infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+{
+    NSString *note = @"Dropped";
+
+    dbLogString *ls = [dbLogString dbGetByProtocolWPTypeDefault:self.account.protocol wptype:LOGSTRING_WPTYPE_TRACKABLEWAYPOINT default:LOGSTRING_DEFAULT_DROPOFF];
+    GCDictionaryLiveAPI *json = [liveAPI CreateTrackableLog:wptname logtype:ls.logString trackable:tb note:note dateLogged:[MyTools dateTimeString_YYYY_MM_DD] infoViewer:iv iiDownload:iid];
+    LIVEAPI_CHECK_STATUS(json, @"CreateTrackableLog", REMOTEAPI_CREATELOG_LOGFAILED);
+
     return REMOTEAPI_OK;
 }
 

@@ -56,14 +56,15 @@
 #define IMPORTMSG_PQ    _(@"remoteapiggcw-Geocaching.com Pocket Query data (queued)")
 
 - (BOOL)supportsWaypointPersonalNotes { return NO; }
-- (BOOL)supportsTrackables { return YES; }
+- (BOOL)supportsTrackablesRetrieve { return YES; }
+- (BOOL)supportsTrackablesLog { return NO; }
 - (BOOL)supportsUserStatistics { return YES; }
 
 - (BOOL)supportsLogging { return YES; }
 - (BOOL)supportsLoggingFavouritePoint { return YES; }
 - (BOOL)supportsLoggingPhotos { return NO; }
 - (BOOL)supportsLoggingCoordinates { return NO; }
-- (BOOL)supportsLoggingTrackables { return NO; }
+- (BOOL)supportsLoggingTrackables { return YES; }
 - (BOOL)supportsLoggingRating { return NO; }
 - (NSRange)supportsLoggingRatingRange { return NSMakeRange(0, 0); }
 
@@ -297,7 +298,7 @@
         [dict setObject:[d objectForKey:@"guid"] forKey:@"guid"];
         [dict setObject:[tb objectForKey:@"name"] forKey:@"name"];
         [dict setObject:[tb objectForKey:@"id"] forKey:@"id"];
-        [dict setObject:[d objectForKey:@"gccode"] forKey:@"gccode"];
+        [dict setObject:[d objectForKey:@"tbcode"] forKey:@"tbcode"];
         [dict setObject:[d objectForKey:@"owner"] forKey:@"owner"];
         if ([d objectForKey:@"carrier"] != nil)
             [dict setObject:[d objectForKey:@"carrier"] forKey:@"carrier"];
@@ -336,7 +337,7 @@
         [dict setObject:[tb objectForKey:@"guid"] forKey:@"guid"];
         [dict setObject:[tb objectForKey:@"name"] forKey:@"name"];
         [dict setObject:[d objectForKey:@"id"] forKey:@"id"];
-        [dict setObject:[d objectForKey:@"gccode"] forKey:@"gccode"];
+        [dict setObject:[d objectForKey:@"tbcode"] forKey:@"tbcode"];
         [dict setObject:[d objectForKey:@"owner"] forKey:@"owner"];
         [dict setObject:[d objectForKey:@"carrier"] forKey:@"carrier"];
         [tbstot addObject:dict];
@@ -353,18 +354,21 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)trackableFind:(NSString *)code trackable:(dbTrackable **)t infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (RemoteAPIResult)trackableFind:(NSString *)pin trackable:(dbTrackable **)t infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    NSDictionary *d = [ggcw track_details:code infoViewer:iv iiDownload:iid];
+    NSDictionary *d = [ggcw track_details:pin infoViewer:iv iiDownload:iid];
+
+    if (d == nil)
+        return REMOTEAPI_TRACKABLES_FINDFAILED;
 
     NSMutableArray<NSDictionary *> *tbs = [NSMutableArray arrayWithCapacity:1];
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:4];
     [dict setObject:[d objectForKey:@"guid"] forKey:@"guid"];
     [dict setObject:[d objectForKey:@"name"] forKey:@"name"];
     [dict setObject:[d objectForKey:@"id"] forKey:@"id"];
-    [dict setObject:[d objectForKey:@"gccode"] forKey:@"gccode"];
+    [dict setObject:[d objectForKey:@"tbcode"] forKey:@"tbcode"];
     [dict setObject:[d objectForKey:@"owner"] forKey:@"owner"];
-    [dict setObject:[d objectForKey:@"code"] forKey:@"code"];
+    [dict setObject:[d objectForKey:@"pin"] forKey:@"pin"];
     [tbs addObject:dict];
 
     NSMutableDictionary *dd = [NSMutableDictionary dictionaryWithCapacity:1];
@@ -375,9 +379,9 @@
     ImportGGCWJSON *imp = [[ImportGGCWJSON alloc] init:nil account:self.account];
     [imp parseDictionary:dictggcw];
 
-    *t = [dbTrackable dbGetByRef:[d objectForKey:@"gccode"]];
-    if ([(*t).code isEqualToString:@""] == YES ) {
-        (*t).code = code;
+    *t = [dbTrackable dbGetByTBCode:[d objectForKey:@"tbcode"]];
+    if (IS_EMPTY((*t).pin) == YES) {
+        (*t).pin = pin;
         [*t dbUpdate];
     }
 

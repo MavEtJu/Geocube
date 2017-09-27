@@ -42,4 +42,12 @@
     [a.remoteAPI trackablesInventory:iv iiDownload:iid];
 }
 
+- (void)adjustMenus
+{
+    [lmi enableItem:trackablesMenuDiscover];
+    [lmi enableItem:trackablesMenuGrab];
+    [lmi enableItem:trackablesMenuDrop];
+    [lmi enableItem:trackablesMenuUpdate];
+}
+
 @end

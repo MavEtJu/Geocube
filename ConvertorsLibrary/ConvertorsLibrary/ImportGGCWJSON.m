@@ -182,7 +182,7 @@
 {
     "carrier_id" = 19971;
     carrier = lillieb05;
-    gccode = TB72XZA;
+    tbcode = TB72XZA;
     guid = "bc97d29d-facc-4818-8a49-4351602a37f5";
     owner = "Delta_03";
     id = 6140957;
@@ -191,11 +191,11 @@
 }
  */
 
-    NSString *gccode = [tbdata objectForKey:@"gccode"];
-    dbTrackable *tb = [dbTrackable dbGetByRef:gccode];
+    NSString *tbcode = [tbdata objectForKey:@"tbcode"];
+    dbTrackable *tb = [dbTrackable dbGetByTBCode:tbcode];
     if (tb == nil) {
         tb = [[dbTrackable alloc] init];
-        tb.ref = gccode;
+        tb.tbcode = tbcode;
     }
 
     NSString *dummy;
@@ -208,13 +208,14 @@
         [dbName makeNameExist:dummy code:nil account:account];
         [tb set_carrier_str:dummy account:account];
     }
+    DICT_NSSTRING_KEY(tbdata, tb.guid, @"guid");
     DICT_NSSTRING_KEY(tbdata, dummy, @"owner");
     [dbName makeNameExist:dummy code:nil account:account];
     [tb set_owner_str:dummy account:account];
     [tb finish];
 
     if (tb._id == 0) {
-        NSLog(@"Created trackable %@", tb.ref);
+        NSLog(@"Created trackable %@", tb.tbcode);
         [tb dbCreate];
         newTrackablesCount++;
         [infoViewer setTrackablesNew:iiImport new:newTrackablesCount];

@@ -80,7 +80,7 @@
     dbTrackable *tb = [tbs objectAtIndex:indexPath.row];
 
     cell.textLabel.text = tb.name;
-    cell.detailTextLabel.text = tb.ref;
+    cell.detailTextLabel.text = tb.tbcode;
     cell.userInteractionEnabled = NO;
     cell.imageView.image = nil;
 

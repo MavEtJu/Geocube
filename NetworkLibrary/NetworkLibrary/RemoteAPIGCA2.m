@@ -44,7 +44,8 @@
 #define IMPORTMSG   _(@"remoteapigca2-Geocaching Australia JSON data (queued)")
 
 - (BOOL)supportsWaypointPersonalNotes { return NO; }
-- (BOOL)supportsTrackables { return NO; }
+- (BOOL)supportsTrackablesRetrieve { return NO; }
+- (BOOL)supportsTrackablesLog { return NO; }
 - (BOOL)supportsUserStatistics { return YES; }
 
 - (BOOL)supportsLogging { return YES; }

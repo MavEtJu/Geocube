@@ -182,9 +182,9 @@
 
         if ([currentElement isEqualToString:@"travelbug"] == YES) {
             currentTB = [[dbTrackable alloc] init];
-            [currentTB setGc_id:[[attributeDict objectForKey:@"id"] integerValue]];
-            [currentTB setRef:[attributeDict objectForKey:@"ref"]];
-            [currentTB setWaypoint_name:currentWP.wpt_name];
+            currentTB.gc_id = [[attributeDict objectForKey:@"id"] integerValue];
+            currentTB.tbcode = [attributeDict objectForKey:@"ref"];
+            currentTB.waypoint_name = currentWP.wpt_name;
 
             inTrackable = YES;
             return;

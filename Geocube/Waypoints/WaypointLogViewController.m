@@ -615,7 +615,7 @@ enum {
 
 - (void)changeTrackable
 {
-    if (waypoint.account.remoteAPI.supportsTrackables == YES && waypoint.account.canDoRemoteStuff == YES) {
+    if (waypoint.account.remoteAPI.supportsTrackablesLog == YES && waypoint.account.canDoRemoteStuff == YES) {
         WaypointLogTrackablesViewController *newController = [[WaypointLogTrackablesViewController alloc] init:waypoint trackables:trackables];
         newController.edgesForExtendedLayout = UIRectEdgeNone;
         [self.navigationController pushViewController:newController animated:YES];
@@ -656,7 +656,7 @@ enum {
 
     [bezelManager removeBezel];
 
-    if ([waypoint.account.remoteAPI supportsTrackables] == YES) {
+    if ([waypoint.account.remoteAPI supportsTrackablesLog] == YES) {
         [trackables enumerateObjectsUsingBlock:^(dbTrackable * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {
             if (tb.logtype == TRACKABLE_LOG_DROPOFF) {
                 tb.logtype = TRACKABLE_LOG_NONE;

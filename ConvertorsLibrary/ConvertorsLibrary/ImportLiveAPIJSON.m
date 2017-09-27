@@ -431,7 +431,7 @@
     dbTrackable *tb = [[dbTrackable alloc] init];
     DICT_NSSTRING_KEY(dict, tb.name, @"Name");
     DICT_INTEGER_KEY(dict, tb.gc_id, @"Id");
-    DICT_NSSTRING_KEY(dict, tb.ref, @"Code");
+    DICT_NSSTRING_KEY(dict, tb.tbcode, @"Code");
     DICT_NSSTRING_KEY(dict, tb.waypoint_name, @"CurrentGeocacheCode");
     DICT_NSSTRING_PATH(dict, dummy, @"OriginalOwner.UserName");
     [dbName makeNameExist:dummy code:0 account:account];
@@ -439,7 +439,7 @@
     DICT_NSSTRING_PATH(dict, dummy, @"CurrentOwner.UserName");
     [dbName makeNameExist:dummy code:0 account:account];
     [tb set_carrier_str:dummy account:account];
-    DICT_NSSTRING_KEY(dict, tb.code, @"TrackingCode");
+    DICT_NSSTRING_KEY(dict, tb.pin, @"TrackingCode");
 
     [tb finish];
 
@@ -451,9 +451,9 @@
     } else {
         // The code isn't always updated while we do have it.
         // In that case save it from the previous one.
-        if ([tb.code isEqualToString:@""] == YES) {
+        if ([tb.pin isEqualToString:@""] == YES) {
             dbTrackable *prevtb = [dbTrackable dbGet:_id];
-            tb.code = prevtb.code;
+            tb.pin = prevtb.pin;
         }
         tb._id = _id;
         [tb dbUpdate];
