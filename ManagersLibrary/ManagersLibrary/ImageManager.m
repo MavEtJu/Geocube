@@ -105,7 +105,7 @@
     [self addToLibrary:@"log - disabled - 30x30" index:ImageLog_Disabled];
     [self addToLibrary:@"log - unarchived - 30x30" index:ImageLog_Unarchived];
     [self addToLibrary:@"log - coordinates - 30x30" index:ImageLog_Coordinates];
-    [self addToLibrary:@"log - unknown - 30x30" index:ImageLog_WebcamPhoto];
+    [self addToLibrary:@"log - photographed - 30x30" index:ImageLog_WebcamPhoto];
     [self addToLibrary:@"log - note - 30x30" index:ImageLog_Note];
     [self addToLibrary:@"log - attended - 30x30" index:ImageLog_Attended];
     [self addToLibrary:@"log - willattend - 30x30" index:ImageLog_WillAttend];
