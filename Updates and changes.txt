@@ -4,6 +4,7 @@ Version 1.7(x)
 
   Features:
   - Be able to log GGCW caches, with favourites.
+  - In the LiveAPI, be able to discover, grab and drop trackables.
 
   Fixes:
   - GGCW: No more message boxes about unable to parse the XML data
