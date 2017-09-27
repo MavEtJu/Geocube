@@ -132,8 +132,8 @@
 "waypointlogsviewcontroller-The text of the selected log has been copied to the clipboard" = "The text of the selected log has been copied to the clipboard";
 
 /* WaypointLog viewcontroller */
-"waypointlogviewcontroller-%ld out of %ld" = "ld out of %ld";
-"waypointlogviewcontroller-%ld out of %lu" = "ld out of %lu";
+"waypointlogviewcontroller-%ld out of %ld" = "%ld out of %ld";
+"waypointlogviewcontroller-%ld out of %lu" = "%ld out of %lu";
 "waypointlogviewcontroller-(None set)" = "(None set)";
 "waypointlogviewcontroller-Actions: " = "Actions: ";
 "waypointlogviewcontroller-Comment" = "Comment";
