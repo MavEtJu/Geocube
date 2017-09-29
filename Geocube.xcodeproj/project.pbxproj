@@ -430,6 +430,9 @@
 		E876ECA11F7C8B66002A368E /* menu icon - gnss-on.png in Resources */ = {isa = PBXBuildFile; fileRef = E876EC9B1F7C8B66002A368E /* menu icon - gnss-on.png */; };
 		E876ECA21F7C8B66002A368E /* menu icon - gnss-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E876EC9C1F7C8B66002A368E /* menu icon - gnss-on@2x.png */; };
 		E876ECA31F7C8B66002A368E /* menu icon - gnss-on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E876EC9D1F7C8B66002A368E /* menu icon - gnss-on@3x.png */; };
+		E876ECA51F7DECBD002A368E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E876ECA41F7DECBD002A368E /* Launch Screen.storyboard */; };
+		E876ECAD1F7E0391002A368E /* launchscreen - background.png in Resources */ = {isa = PBXBuildFile; fileRef = E876ECAB1F7E0391002A368E /* launchscreen - background.png */; };
+		E876ECAE1F7E0391002A368E /* launchscreen - logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E876ECAC1F7E0391002A368E /* launchscreen - logo.png */; };
 		E881CA8A1F6BB11B00A17060 /* libToolsLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CA891F6BB11A00A17060 /* libToolsLibrary.a */; };
 		E881CAD91F6BB2C200A17060 /* libManagersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CAD21F6BB1C600A17060 /* libManagersLibrary.a */; };
 		E881CB131F6BDC4D00A17060 /* libThemesLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CB061F6BDA7000A17060 /* libThemesLibrary.a */; };
@@ -1260,6 +1263,9 @@
 		E876EC9B1F7C8B66002A368E /* menu icon - gnss-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - gnss-on.png"; path = "images/menu/menu icon - gnss-on.png"; sourceTree = "<group>"; };
 		E876EC9C1F7C8B66002A368E /* menu icon - gnss-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - gnss-on@2x.png"; path = "images/menu/menu icon - gnss-on@2x.png"; sourceTree = "<group>"; };
 		E876EC9D1F7C8B66002A368E /* menu icon - gnss-on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - gnss-on@3x.png"; path = "images/menu/menu icon - gnss-on@3x.png"; sourceTree = "<group>"; };
+		E876ECA41F7DECBD002A368E /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		E876ECAB1F7E0391002A368E /* launchscreen - background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launchscreen - background.png"; path = "images/launchscreen/launchscreen - background.png"; sourceTree = "<group>"; };
+		E876ECAC1F7E0391002A368E /* launchscreen - logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launchscreen - logo.png"; path = "images/launchscreen/launchscreen - logo.png"; sourceTree = "<group>"; };
 		E879F9CB1B7B527200220EA7 /* Geocube.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Geocube.entitlements; sourceTree = "<group>"; };
 		E87FE7951EFFD25F009FA65B /* Geocube-defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-defines.h"; sourceTree = "<group>"; };
 		E881CA4F1F6B9CC400A17060 /* Geocube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geocube.h; sourceTree = "<group>"; };
@@ -2289,6 +2295,15 @@
 			name = "GUI TableViewCells";
 			sourceTree = "<group>";
 		};
+		E876ECA61F7E0340002A368E /* launchscreen */ = {
+			isa = PBXGroup;
+			children = (
+				E876ECAB1F7E0391002A368E /* launchscreen - background.png */,
+				E876ECAC1F7E0391002A368E /* launchscreen - logo.png */,
+			);
+			name = launchscreen;
+			sourceTree = "<group>";
+		};
 		E87DF7761D7EDFCC00F16B5A /* SVProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -2512,6 +2527,7 @@
 		E8BD82481B46A4CB0029CDC9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E876ECA61F7E0340002A368E /* launchscreen */,
 				E82E676F1DA07D1A00CFBDED /* image - nil - 1x1.png */,
 				E8FEDEB61DA887A7007C756B /* image - nil - 1x1@2x.png */,
 				E8FEDEB71DA887A7007C756B /* image - nil - 1x1@3x.png */,
@@ -2542,6 +2558,7 @@
 				E8740FE91B509540002527DA /* GUI TableViewCells */,
 				E8740F9C1B4E6645002527DA /* Waypoint Viewing */,
 				E8F570B61B3FF266003F020C /* Pages */,
+				E876ECA41F7DECBD002A368E /* Launch Screen.storyboard */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
@@ -3174,6 +3191,7 @@
 				E82E67301DA07D0200CFBDED /* attributes - 05.png in Resources */,
 				E82344961EECE0AD00D2CDFD /* QueriesTableViewCell~ipad.xib in Resources */,
 				E82E67651DA07D0200CFBDED /* attributes - 59.png in Resources */,
+				E876ECAD1F7E0391002A368E /* launchscreen - background.png in Resources */,
 				E8FEDEE91DA8EEE9007C756B /* cache - webcam - 30x30@3x.png in Resources */,
 				E82341F31EECCEBB00D2CDFD /* rangethumb.png in Resources */,
 				E82E66C01DA07CBE00CFBDED /* cache - history - 30x30@3x.png in Resources */,
@@ -3255,6 +3273,7 @@
 				E86D427D1EF68CC800E4509F /* container flag - planned - 24x21.png in Resources */,
 				E84E88931F6CF956004F4BE9 /* GCTableViewCellSwitch.xib in Resources */,
 				E86D427F1EF68CC800E4509F /* container flag - planned - 24x21@3.png in Resources */,
+				E876ECA51F7DECBD002A368E /* Launch Screen.storyboard in Resources */,
 				E83C6EF21EECE28100E303F5 /* SVProgressHUD.bundle in Resources */,
 				E84E88961F6CF956004F4BE9 /* GCTableViewCellWithSubtitle~ipad.xib in Resources */,
 				E8FEDEE31DA8EEE9007C756B /* cache - maze - 30x30@3x.png in Resources */,
@@ -3268,6 +3287,7 @@
 				E84725E21DF774E200CFF99B /* menu icon - global - night.png in Resources */,
 				E8FEDEE51DA8EEE9007C756B /* cache - mega - 30x30@3x.png in Resources */,
 				E82E66D41DA07CBE00CFBDED /* cache - podcast - 30x30@3x.png in Resources */,
+				E876ECAE1F7E0391002A368E /* launchscreen - logo.png in Resources */,
 				E8FEDEA41DA7C08A007C756B /* waypoint - parking - 30x30@2x.png in Resources */,
 				E82E67431DA07D0200CFBDED /* attributes - 25.png in Resources */,
 				E82E66DC1DA07CBE00CFBDED /* cache - unknown - 30x30@2x.png in Resources */,

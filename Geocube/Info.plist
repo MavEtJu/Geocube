@@ -103,6 +103,8 @@
 	<true/>
 	<key>UILaunchImageFile</key>
 	<string>GC - logo - 640x960.png</string>
+	<key>UILaunchStoryboardName</key>
+	<string>Launch Screen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv6</string>
@@ -163,10 +165,14 @@
 			</dict>
 		</dict>
 		<dict>
-			<key>UTTypeIdentifier</key>
-			<string>com.google.earth.kml</string>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.xml</string>
+			</array>
 			<key>UTTypeDescription</key>
 			<string>Google Earth KML</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.google.earth.kml</string>
 			<key>UTTypeReferenceURL</key>
 			<string>http://earth.google.com/kmz/</string>
 			<key>UTTypeTagSpecification</key>
@@ -180,10 +186,6 @@
 				<key>public.mime-type</key>
 				<string>application/vnd.google-earth.kml+xml</string>
 			</dict>
-			<key>UTTypeConformsTo</key>
-			<array>
-				<string>public.xml</string>
-			</array>
 		</dict>
 	</array>
 </dict>

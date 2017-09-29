@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchscreen - background.png" translatesAutoresizingMaskIntoConstraints="NO" id="nIX-9d-peA" userLabel="Background">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geocube" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
+                                <rect key="frame" x="82.5" y="52.5" width="155" height="43"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8iF-EH-GQa">
+                                <rect key="frame" x="119" y="103.5" width="82.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchscreen - logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zkw-if-JQD">
+                                <rect key="frame" x="0.0" y="124" width="320" height="320"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Zkw-if-JQD" secondAttribute="height" multiplier="1:1" id="l8f-uh-pIH"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Website: https://geocube.mavetju.org Twitter: @geocubecaching Facebook: Geocube Geocaching Email: geocube@mavetju.org" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKV-UY-DRZ">
+                                <rect key="frame" x="16" y="444" width="288" height="81.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright © 2017 Edwin `MavEtJu' Groothuis. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="obG-Y5-kRd">
+                                <rect key="frame" x="0.0" y="544" width="320" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Zkw-if-JQD" firstAttribute="top" secondItem="8iF-EH-GQa" secondAttribute="bottom" id="1tb-ei-RUO"/>
+                            <constraint firstItem="8iF-EH-GQa" firstAttribute="top" secondItem="GJd-Yh-RWb" secondAttribute="bottom" constant="8" id="7MI-5a-uHr"/>
+                            <constraint firstItem="nIX-9d-peA" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="AR7-Gz-vx9"/>
+                            <constraint firstAttribute="bottom" secondItem="obG-Y5-kRd" secondAttribute="bottom" id="ETO-Yj-cs4"/>
+                            <constraint firstItem="obG-Y5-kRd" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="HYe-Yj-fzz"/>
+                            <constraint firstAttribute="bottom" secondItem="nIX-9d-peA" secondAttribute="bottom" id="K5U-ir-HjT"/>
+                            <constraint firstItem="Zkw-if-JQD" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Q4z-Bz-qhM"/>
+                            <constraint firstItem="Zkw-if-JQD" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="Ukl-9o-sHU"/>
+                            <constraint firstAttribute="trailing" secondItem="Zkw-if-JQD" secondAttribute="trailing" id="Usf-2r-GXh"/>
+                            <constraint firstItem="obG-Y5-kRd" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="V1R-dx-UEY"/>
+                            <constraint firstItem="8iF-EH-GQa" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="YvJ-ic-eof"/>
+                            <constraint firstItem="MKV-UY-DRZ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ZVe-83-dcJ"/>
+                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="hDq-HL-Kg2"/>
+                            <constraint firstItem="nIX-9d-peA" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="kVo-jt-5FN"/>
+                            <constraint firstItem="Zkw-if-JQD" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="nba-Qo-T7B"/>
+                            <constraint firstAttribute="trailing" secondItem="obG-Y5-kRd" secondAttribute="trailing" id="szE-mv-DWC"/>
+                            <constraint firstAttribute="trailing" secondItem="nIX-9d-peA" secondAttribute="trailing" id="tfU-Ir-wWS"/>
+                            <constraint firstItem="MKV-UY-DRZ" firstAttribute="top" secondItem="Zkw-if-JQD" secondAttribute="bottom" id="wV3-df-dY0"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="103.125" y="307.3943661971831"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="launchscreen - background.png" width="1536" height="2048"/>
+        <image name="launchscreen - logo.png" width="1024" height="1020"/>
+    </resources>
+</document>
