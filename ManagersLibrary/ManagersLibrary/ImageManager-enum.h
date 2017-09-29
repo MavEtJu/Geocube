@@ -208,6 +208,8 @@ typedef NS_ENUM(NSInteger, ImageNumber) {
     ImageIcon_FollowMe,
     ImageIcon_FindMe,
     ImageIcon_FindTarget,
+    ImageIcon_GNSSOn,
+    ImageIcon_GNSSOff,
 
     Image_NoImageFile,
 

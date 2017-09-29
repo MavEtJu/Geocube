@@ -59,6 +59,7 @@
     UIButton *labelMapSeeTarget;
     UIButton *labelMapFindMe;
     UIButton *labelMapFindTarget;
+    UIButton *labelMapGPS;
     MapWaypointInfoView *wpInfoView;
 
     CLLocationCoordinate2D meLocation;
@@ -129,7 +130,6 @@
     [lmi addItem:MVCmenuDirections label:_(@"maptemplateviewcontroller-Directions")];
     [lmi addItem:MVCmenuRemoveTarget label:_(@"maptemplateviewcontroller-Remove target")];
     [lmi addItem:MVCmenuRecenter label:_(@"maptemplateviewcontroller-Recenter")];
-    [lmi addItem:MVCmenuUseGNSS label:_(@"maptemplateviewcontroller-Use GNSS")];
     [lmi addItem:MVCmenuExportVisible label:_(@"maptemplateviewcontroller-Export visible")];
 
     showBoundaries = NO;
@@ -151,9 +151,9 @@
 
     useGNSS = LM.useGNSS;
     if (useGNSS == YES)
-        [lmi disableItem:MVCmenuUseGNSS];
+        [labelMapGPS setImage:[imageLibrary get:ImageIcon_GNSSOn] forState:UIControlStateNormal];
     else
-        [lmi disableItem:MVCmenuUseGNSS];
+        [labelMapGPS setImage:[imageLibrary get:ImageIcon_GNSSOff] forState:UIControlStateNormal];
 
     self.waypointsArray = nil;
 
@@ -196,9 +196,9 @@
     // Enable GNSS Menu?
     useGNSS = LM.useGNSS;
     if (useGNSS == YES)
-        [lmi disableItem:MVCmenuUseGNSS];
+        [labelMapGPS setImage:[imageLibrary get:ImageIcon_GNSSOn] forState:UIControlStateNormal];
     else
-        [lmi enableItem:MVCmenuUseGNSS];
+        [labelMapGPS setImage:[imageLibrary get:ImageIcon_GNSSOff] forState:UIControlStateNormal];
 
     // Enable Remove Target menu only if there is a target
     if (waypointManager.currentWaypoint == nil)
@@ -294,6 +294,7 @@
     NSInteger imgwidth = img.size.width;
     NSInteger imgheight = img.size.height;
 
+    labelMapGPS.frame = CGRectMake(width - 7.5 * 28 - 3, 3, imgwidth, imgheight);
     labelMapFindMe.frame = CGRectMake(width - 6 * 28 - 3, 3, imgwidth, imgheight);
 
     labelMapFollowMe.frame = CGRectMake(width - 4.5 * 28 - 3, 3, imgwidth, imgheight);
@@ -320,6 +321,14 @@
 
 - (void)initMapIcons
 {
+    labelMapGPS = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    labelMapGPS.layer.borderWidth = 1;
+    labelMapGPS.layer.borderColor = [UIColor blackColor].CGColor;
+    [labelMapGPS addTarget:self action:@selector(menuTapGNSS:) forControlEvents:UIControlEventTouchDown];
+    labelMapGPS.userInteractionEnabled = YES;
+    [labelMapGPS setImage:[imageLibrary get:ImageIcon_GNSSOn] forState:UIControlStateNormal];
+    [self.view addSubview:labelMapGPS];
+
     labelMapFollowMe = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     labelMapFollowMe.layer.borderWidth = 1;
     labelMapFollowMe.layer.borderColor = [UIColor blackColor].CGColor;
@@ -917,25 +926,35 @@
 
 - (void)menuRecenter
 {
-    [lmi enableItem:MVCmenuUseGNSS];
-
     useGNSS = NO;
     [LM useGNSS:NO coordinates:[self.map currentCenter]];
+
+    [labelMapGPS setImage:[imageLibrary get:ImageIcon_GNSSOff] forState:UIControlStateNormal];
 
     meLocation = [self.map currentCenter];
     self.followWhom = SHOW_NEITHER;
     [waypointManager needsRefreshAll];
 }
 
-- (void)menuUseGNSS
+- (void)menuTapGNSS:(UIButton *)b
 {
-    [lmi disableItem:MVCmenuUseGNSS];
+    if (useGNSS == NO) {
+        useGNSS = YES;
+        [LM useGNSS:YES coordinates:CLLocationCoordinate2DZero];
 
-    useGNSS = YES;
-    [LM useGNSS:YES coordinates:CLLocationCoordinate2DZero];
+        [labelMapGPS setImage:[imageLibrary get:ImageIcon_GNSSOn] forState:UIControlStateNormal];
 
-    meLocation = [self.map currentCenter];
-    self.followWhom = SHOW_NEITHER;
+        meLocation = LM.coords;
+        self.followWhom = SHOW_NEITHER;
+    } else {
+        useGNSS = NO;
+        [LM useGNSS:NO coordinates:[self.map currentCenter]];
+
+        [labelMapGPS setImage:[imageLibrary get:ImageIcon_GNSSOff] forState:UIControlStateNormal];
+
+        meLocation = [self.map currentCenter];
+        self.followWhom = SHOW_FOLLOWME;
+    }
     [waypointManager needsRefreshAll];
 }
 
@@ -1006,9 +1025,6 @@
 
         case MVCmenuRecenter:
             [self menuRecenter];
-            return;
-        case MVCmenuUseGNSS:
-            [self menuUseGNSS];
             return;
 
         case MVCmenuShowBoundaries:

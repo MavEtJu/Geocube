@@ -26,7 +26,6 @@ typedef NS_ENUM(NSInteger, MVMenuItem) {
     MVCmenuDirections,
     MVCmenuAutoZoom,
     MVCmenuRecenter,
-    MVCmenuUseGNSS,
     MVCmenuRemoveTarget,
     MVCmenuShowBoundaries,
     MVCmenuExportVisible,

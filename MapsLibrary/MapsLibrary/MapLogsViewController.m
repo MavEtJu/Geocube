@@ -51,7 +51,6 @@
     [lmi disableItem:MVCmenuDirections];
     [lmi disableItem:MVCmenuAutoZoom];
     [lmi disableItem:MVCmenuRecenter];
-    [lmi disableItem:MVCmenuUseGNSS];
     [lmi disableItem:MVCmenuRemoveTarget];
     [lmi disableItem:MVCmenuShowBoundaries];
     [lmi disableItem:MVCmenuExportVisible];

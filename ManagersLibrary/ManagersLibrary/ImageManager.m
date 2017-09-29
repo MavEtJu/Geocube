@@ -163,6 +163,8 @@
     [self addToLibrary:@"menu icon - follow me" index:ImageIcon_FollowMe];
     [self addToLibrary:@"menu icon - find me" index:ImageIcon_FindMe];
     [self addToLibrary:@"menu icon - find target" index:ImageIcon_FindTarget];
+    [self addToLibrary:@"menu icon - gnss-on" index:ImageIcon_GNSSOn];
+    [self addToLibrary:@"menu icon - gnss-off" index:ImageIcon_GNSSOff];
 
     [self addToLibrary:@"compass - red on blue compass - compass" index:ImageCompass_RedArrowOnBlueCompass];
     [self addToLibrary:@"compass - red on blue compass - arrow" index:ImageCompass_RedArrowOnBlueArrow];
