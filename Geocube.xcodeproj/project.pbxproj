@@ -2527,7 +2527,6 @@
 		E8BD82481B46A4CB0029CDC9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				E876ECA61F7E0340002A368E /* launchscreen */,
 				E82E676F1DA07D1A00CFBDED /* image - nil - 1x1.png */,
 				E8FEDEB61DA887A7007C756B /* image - nil - 1x1@2x.png */,
 				E8FEDEB71DA887A7007C756B /* image - nil - 1x1@3x.png */,
@@ -2540,6 +2539,7 @@
 				E8740FCE1B4E9D49002527DA /* containers */,
 				E887201C1B5EF5F300994BE0 /* icons */,
 				E80413971E9EFCB4001FD7BF /* introduction */,
+				E876ECA61F7E0340002A368E /* launchscreen */,
 				E843A4E31BAD3F7800C58F1F /* logos */,
 				E8740FA31B4E86BB002527DA /* logs */,
 				E8A3F44F1B51D932009F2F46 /* map */,
