@@ -7,6 +7,7 @@ Version 1.7(x)
   - In the LiveAPI, be able to discover, grab and drop trackables.
   - Proper icon for 'Photographed' log entry.
   - In the home screen, the icon badge show how many waypoints are "marked as found".
+  - Improve icons on the map with a white line around the black areas.
 
   Fixes:
   - GGCW: No more message boxes about unable to parse the XML data
