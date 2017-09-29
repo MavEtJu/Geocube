@@ -94,6 +94,11 @@
     return self;
 }
 
+- (void)removeSelf
+{
+    [waypointManager stopDelegationWaypoints:self];
+}
+
 - (void)recalculateRects:(CGRect)rect
 {
     CGRect r = CGRectMake((rect.size.width - self.firstView.frame.size.width) / 2, 0, self.firstView.frame.size.width, self.firstView.frame.size.height);

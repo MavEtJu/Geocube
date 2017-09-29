@@ -33,6 +33,7 @@
 @property (nonatomic, retain) UIView *firstView;
 @property (nonatomic, retain) dbWaypoint *waypoint;
 
+- (void)removeSelf;
 - (void)showWaypoint:(dbWaypoint *)wp;
 + (NSInteger)viewHeight;
 

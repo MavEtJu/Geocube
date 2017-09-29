@@ -638,6 +638,7 @@
 
 - (void)removeWaypointInfo
 {
+    [wpInfoView removeSelf];
     [wpInfoView removeFromSuperview];
     wpInfoView = nil;
 }
