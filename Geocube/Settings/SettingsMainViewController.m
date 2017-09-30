@@ -263,6 +263,7 @@ enum sections {
     SECTION_LOCATIONLESS,
     SECTION_SPEED,
     SECTION_BACKUPS,
+    SECTION_FONTS,
     SECTION_MAX,
 
     SECTION_DISTANCE_METRIC = 0,
@@ -379,6 +380,10 @@ enum sections {
     SECTION_MAPSEARCH_GGCW_MAXIMUMLOADED = 0,
     SECTION_MAPSEARCH_GGCW_NUMBERTHREADS,
     SECTION_MAPSEARCH_MAX,
+
+    SECTION_FONTS_SMALLTEXT_SIZE = 0,
+    SECTION_FONTS_NORMALTEXT_SIZE,
+    SECTION_FONTS_MAX,
 };
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -413,6 +418,7 @@ enum sections {
         SECTION_MAX(BACKUPS);
         SECTION_MAX(ACCURACY);
         SECTION_MAX(MAPSEARCH);
+        SECTION_MAX(FONTS);
         default:
             NSAssert1(0, @"Unknown section %ld", (long)section);
     }
@@ -464,6 +470,8 @@ enum sections {
             return _(@"settingsmainviewcontroller-Speed");
         case SECTION_MAPSEARCH:
             return _(@"settingsmainviewcontroller-Map search");
+        case SECTION_FONTS:
+            return _(@"settingsmainviewcontroller-Fonts");
         default:
             NSAssert1(0, @"Unknown section %ld", (long)section);
     }
@@ -850,6 +858,20 @@ enum sections {
             }
             abort();
         }
+    
+        case SECTION_FONTS: {
+            switch (indexPath.row) {
+                case SECTION_FONTS_SMALLTEXT_SIZE: {
+                    NSString *s = [NSString stringWithFormat:@"%ld %@", (long)configManager.fontSmallTextSize, _(@"pixels")];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Small text font size"), s)
+                }
+                case SECTION_FONTS_NORMALTEXT_SIZE: {
+                    NSString *s = [NSString stringWithFormat:@"%ld %@", (long)configManager.fontNormalTextSize, _(@"pixels")];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Normal text font size"), s)
+                }
+            }
+            abort();
+        }
     }
 
     // Not reached
@@ -1081,6 +1103,17 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
                     break;
                 case SECTION_SPEED_SAMPLES:
                     [self changeSpeedSamples];
+                    break;
+            }
+            break;
+
+        case SECTION_FONTS:
+            switch (indexPath.row) {
+                case SECTION_FONTS_SMALLTEXT_SIZE:
+                    [self changeSmallTextFontSize];
+                    break;
+                case SECTION_FONTS_NORMALTEXT_SIZE:
+                    [self changeNormalTextFontSize];
                     break;
             }
             break;
@@ -1703,6 +1736,78 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.text = [NSString stringWithFormat:@"%ld", (long)configManager.mapsearchGGCWNumberThreads];
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+/* ********************************************************************************* */
+
+- (void)changeSmallTextFontSize
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:_(@"settingsmainviewcontroller-Small Text Font Size")
+                                message:_(@"settingsmainviewcontroller-Size of font in pixels")
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:_(@"OK")
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *value = tf.text;
+                             NSInteger i = [value integerValue];
+                             [configManager fontSmallTextSizeUpdate:i];
+                             [self.tableView reloadData];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = [NSString stringWithFormat:@"%ld", (long)configManager.fontSmallTextSize];
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)changeNormalTextFontSize
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:_(@"settingsmainviewcontroller-Normal Text Font Size")
+                                message:_(@"settingsmainviewcontroller-Size of font in pixels")
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:_(@"OK")
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *value = tf.text;
+                             NSInteger i = [value integerValue];
+                             [configManager fontNormalTextSizeUpdate:i];
+                             [self.tableView reloadData];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = [NSString stringWithFormat:@"%ld", (long)configManager.fontNormalTextSize];
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
