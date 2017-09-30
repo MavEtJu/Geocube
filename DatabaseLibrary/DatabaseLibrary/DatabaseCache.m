@@ -122,7 +122,7 @@
     NSAssert(self.groupManualWaypoints != nil, @"Group_ManualWaypoints");
 
     [self.containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([c.size isEqualToString:@"Unknown"] == YES) {
+        if ([c.size isEqualToString:@"Other"] == YES) {
             self.containerUnknown = c;
             *stop = YES;
         }

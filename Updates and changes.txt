@@ -13,6 +13,8 @@ Version 1.7(x)
   - GGCW: No more message boxes about unable to parse the XML data
     for GPX files which are of premium caches.
   - Proper determination for logging for webcam caches.
+  - The waypoints filter for container sizes didn't show the right
+    images.
 
 Version 1.6(30)
 
