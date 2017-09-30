@@ -67,6 +67,18 @@
     [self.labelLocation changeTheme];
     [self.labelTerrain changeTheme];
     [self.labelDifficulty changeTheme];
+
+    self.labelDescription.font = [UIFont systemFontOfSize:configManager.fontNormalTextSize];
+    self.labelCode.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.labelWhoWhen.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.labelBearing.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.labelDistance.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.labelDirection.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.labelLocation.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.labelTerrain.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.labelDifficulty.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.labelFavourites.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+
     // the labelFavourites does not follow the theme rules.
     // [self.labelFavourites changeTheme];
 

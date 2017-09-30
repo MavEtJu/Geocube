@@ -22,6 +22,7 @@
 #import "GCTableViewCellWithSubtitle.h"
 
 #import "BaseObjectsLibrary/GCLabel.h"
+#import "ManagersLibrary/ConfigManager.h"
 
 @interface GCTableViewCellWithSubtitle ()
 
@@ -31,16 +32,6 @@
 @end
 
 @implementation GCTableViewCellWithSubtitle
-
-//- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-//{
-//    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
-//    self.textLabel.numberOfLines = 0;
-//    self.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-//    self.detailTextLabel.numberOfLines = 0;
-//    self.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
-//    return self;
-//}
 
 - (void)awakeFromNib
 {
@@ -53,6 +44,9 @@
     [super changeTheme];
     [self.myTextLabel changeTheme];
     [self.myDetailLabel changeTheme];
+
+    self.myTextLabel.font = [UIFont systemFontOfSize:configManager.fontNormalTextSize];
+    self.myDetailLabel.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
 }
 
 - (UILabel *)textLabel

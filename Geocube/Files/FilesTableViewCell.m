@@ -34,10 +34,15 @@
 - (void)changeTheme
 {
     [super changeTheme];
+    [self.labelFilename changeTheme];
     [self.labelSize changeTheme];
     [self.labelLastImport changeTheme];
     [self.labelDateTime changeTheme];
-    [self.labelFilename changeTheme];
+
+    self.labelFilename.font = [UIFont systemFontOfSize:configManager.fontNormalTextSize];
+    self.labelSize.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.labelLastImport.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.labelDateTime.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
 }
 
 @end

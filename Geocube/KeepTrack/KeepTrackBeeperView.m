@@ -103,6 +103,10 @@
     [self.firstView.labelInterval changeTheme];
     [self.firstView.buttonPlayStop changeTheme];
     [self.firstView.buttonTest changeTheme];
+
+    self.firstView.labelVolume.font = [UIFont systemFontOfSize:configManager.fontNormalTextSize];
+    self.firstView.labelHelp.font = [UIFont systemFontOfSize:configManager.fontNormalTextSize];
+    self.firstView.labelInterval.font = [UIFont systemFontOfSize:configManager.fontNormalTextSize];
 }
 
 @end

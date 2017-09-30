@@ -63,6 +63,7 @@
     else
         labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Any %@"), fo.name];
     labelHeader.textAlignment = NSTextAlignmentCenter;
+    labelHeader.font = [UIFont systemFontOfSize:configManager.fontNormalTextSize];
     [self.contentView addSubview:labelHeader];
 }
 

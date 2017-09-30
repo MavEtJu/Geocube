@@ -39,6 +39,12 @@
     [self.labelLastImport changeTheme];
     [self.labelSize changeTheme];
     [self.labelQueryname changeTheme];
+
+    self.labelQueryname.font = [UIFont systemFontOfSize:configManager.fontNormalTextSize];
+    self.labelDateTime.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.labelWaypoints.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.labelLastImport.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.labelSize.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
 }
 
 @end

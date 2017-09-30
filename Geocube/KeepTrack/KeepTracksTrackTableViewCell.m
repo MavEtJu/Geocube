@@ -37,6 +37,10 @@
     [self.labelDistance changeTheme];
     [self.labelDateTimeStart changeTheme];
     [self.labelTrackName changeTheme];
+
+    self.labelTrackName.font = [UIFont systemFontOfSize:configManager.fontNormalTextSize];
+    self.labelDistance.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.labelDateTimeStart.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
 }
 
 @end

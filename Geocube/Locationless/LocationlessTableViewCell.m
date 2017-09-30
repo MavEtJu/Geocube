@@ -39,6 +39,11 @@
     [self.owner changeTheme];
     [self.note changeTheme];
     [self.icon changeTheme];
+
+    self.name.font = [UIFont systemFontOfSize:configManager.fontNormalTextSize];
+    self.code.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.owner.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.note.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
 }
 
 @end

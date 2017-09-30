@@ -41,6 +41,14 @@
     [self.wpsDNF changeTheme];
     [self.recommendationsGiven changeTheme];
     [self.recommendationsReceived changeTheme];
+
+    self.site.font = [UIFont systemFontOfSize:configManager.fontNormalTextSize];
+    self.status.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.wpsFound.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.wpsHidden.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.wpsDNF.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.recommendationsGiven.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.recommendationsReceived.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
 }
 
 @end

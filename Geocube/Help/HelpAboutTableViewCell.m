@@ -38,6 +38,11 @@
     [self.url changeTheme];
     [self.copyright changeTheme];
     [self.license changeTheme];
+
+    self.name.font = [UIFont systemFontOfSize:configManager.fontNormalTextSize];
+    self.url.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.copyright.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.license.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
 }
 
 @end
