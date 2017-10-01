@@ -54,16 +54,15 @@
         else
             g.selected = [c boolValue];
 
-        CGRect rect = CGRectMake(20, y, width - 40, 20);
         GCFilterButton *b = [GCFilterButton buttonWithType:UIButtonTypeSystem];
-        b.frame = rect;
         [b setTitle:g.name forState:UIControlStateNormal];
         [b setTitleColor:(g.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b addTarget:self action:@selector(clickGroup:) forControlEvents:UIControlEventTouchDown];
         b.index = idx;
+        b.frame = CGRectMake(20, y, width - 40, b.titleLabel.font.lineHeight);
         [self.contentView addSubview:b];
 
-        y += rect.size.height;
+        y += b.frame.size.height;
     }];
 
     [self.contentView sizeToFit];

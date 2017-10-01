@@ -51,41 +51,39 @@
         return self;
     }
 
-    rect = CGRectMake(20, y, width - 40, 15);
-    l = [[GCLabel alloc] initWithFrame:rect];
-    l.font = f2;
+    rect = CGRectMake(40, y, 0, 0);
+    l = [[GCLabelSmallText alloc] initWithFrame:rect];
     l.textAlignment = NSTextAlignmentLeft;
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdistancetableviewcell-Distance")];
+    [l sizeToFit];
     [self.contentView addSubview:l];
 
-    rect = CGRectMake(80, y, 20, 15);
     compareDistanceButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    compareDistanceButton.frame = rect;
     [compareDistanceButton addTarget:self action:@selector(clickCompare:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:compareDistanceButton];
-    compareDistance--;
+    compareDistanceButton.frame = CGRectMake(l.frame.origin.x + l.frame.size.width + 20, y, 20, compareDistanceButton.titleLabel.font.lineHeight);
     [self clickCompare:compareDistanceButton];
+    compareDistance--;
 
-    rect = CGRectMake(100, y, width - 20 - 120, 15);
     distanceButton = [UIButton buttonWithType:UIButtonTypeSystem];
     distanceButton.frame = rect;
     [distanceButton addTarget:self action:@selector(clickDistance:) forControlEvents:UIControlEventTouchDown];
+    distanceButton.frame = CGRectMake(compareDistanceButton.frame.origin.x + compareDistanceButton.frame.size.width + 20, y, 120, distanceButton.titleLabel.font.lineHeight);
     [self.contentView addSubview:distanceButton];
     [self measurementWasSelectedWithBigUnit:[NSNumber numberWithLong:distanceKm] smallUnit:[NSNumber numberWithLong:distanceM] element:distanceButton];
 
     y += 35;
 
-    rect = CGRectMake(20, y, width - 40, 15);
-    l = [[GCLabel alloc] initWithFrame:rect];
-    l.font = f2;
+    rect = CGRectMake(40, y, 0, 0);
+    l = [[GCLabelSmallText alloc] initWithFrame:rect];
     l.textAlignment = NSTextAlignmentLeft;
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdistancetableviewcell-Variation")];
+    [l sizeToFit];
     [self.contentView addSubview:l];
 
-    rect = CGRectMake(100, y, width - 20 - 120, 15);
     variationButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    variationButton.frame = rect;
     [variationButton addTarget:self action:@selector(clickDistance:) forControlEvents:UIControlEventTouchDown];
+    variationButton.frame = CGRectMake(l.frame.origin.x + l.frame.size.width + 20, y, width - 20 - 120, variationButton.titleLabel.font.lineHeight);
     [self.contentView addSubview:variationButton];
     [self measurementWasSelectedWithBigUnit:[NSNumber numberWithLong:variationKm] smallUnit:[NSNumber numberWithLong:variationM] element:variationButton];
 

@@ -61,9 +61,8 @@
     }
 
     rect = CGRectMake(20, y, 100, 15);
-    l = [[GCLabel alloc] initWithFrame:rect];
+    l = [[GCLabelSmallText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdirectiontableviewcell-Direction is")];
-    l.font = f2;
     l.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:l];
 

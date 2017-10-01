@@ -1,7 +1,7 @@
 /*
  * Geocube
  * By Edwin Groothuis <geocube@mavetju.org>
- * Copyright 2015, 2016, 2017 Edwin Groothuis
+ * Copyright 2017 Edwin Groothuis
  *
  * This file is part of Geocube.
  *
@@ -21,9 +21,6 @@
 
 #import "GCLabel.h"
 
-@interface GCSmallLabel : GCLabel
-
-- (void)bold:(BOOL)onoff;
-- (void)changeTheme;
+@interface GCLabelNormalText : GCLabel
 
 @end

@@ -51,8 +51,8 @@
 
 // UI settings
 
-@property (nonatomic, retain) UIFont *GCLabelFont;
-@property (nonatomic, retain) UIFont *GCSmallFont;
+@property (nonatomic, retain) UIFont *GCLabelSmallSizeFont;
+@property (nonatomic, retain) UIFont *GCLabelNormalSizeFont;
 @property (nonatomic, retain) UIFont *GCTextblockFont;
 
 @end

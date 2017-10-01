@@ -1,7 +1,7 @@
 /*
  * Geocube
  * By Edwin Groothuis <geocube@mavetju.org>
- * Copyright 2015, 2016, 2017 Edwin Groothuis
+ * Copyright 2017 Edwin Groothuis
  *
  * This file is part of Geocube.
  *
@@ -19,37 +19,20 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "GCLabel.h"
+#import "GCLabelNormalText.h"
 
 #import "ThemesLibrary/ThemeManager.h"
 
-@interface GCLabel ()
+@interface GCLabelNormalText ()
 
 @end
 
-@implementation GCLabel
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-
-    self.font = currentTheme.GCLabelNormalSizeFont;
-    [self changeTheme];
-
-    return self;
-}
+@implementation GCLabelNormalText
 
 - (void)changeTheme
 {
-    self.textColor = currentTheme.labelTextColor;
-}
-
-- (void)bold:(BOOL)onoff
-{
-    if (onoff == YES)
-        self.font = [UIFont boldSystemFontOfSize:currentTheme.GCLabelNormalSizeFont.pointSize];
-    else
-        self.font = [UIFont systemFontOfSize:currentTheme.GCLabelNormalSizeFont.pointSize];
+    [super changeTheme];
+    self.font = currentTheme.GCLabelNormalSizeFont;
 }
 
 @end

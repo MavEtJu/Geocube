@@ -21,12 +21,10 @@
 
 @interface FilterTableViewCell ()
 {
-    UIFont *f1;
-
     NSString *configPrefix;
 
     CGRect rectHeader;
-    GCLabel *labelHeader;
+    GCLabelNormalText *labelHeader;
 }
 
 @end
@@ -49,21 +47,14 @@
 
 - (void)header
 {
-    /* Get some standard values */
-    UITableViewCell *cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-    f1 = cell.textLabel.font;
-    f2 = cell.detailTextLabel.font;
-
     [self calculateRects];
 
-    labelHeader = [[GCLabel alloc] initWithFrame:rectHeader];
-    labelHeader.font = f1;
+    labelHeader = [[GCLabelNormalText alloc] initWithFrame:rectHeader];
     if (fo.expanded == YES)
         labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), fo.name];
     else
         labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Any %@"), fo.name];
     labelHeader.textAlignment = NSTextAlignmentCenter;
-    labelHeader.font = [UIFont systemFontOfSize:configManager.fontNormalTextSize];
     [self.contentView addSubview:labelHeader];
 }
 

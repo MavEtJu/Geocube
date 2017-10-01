@@ -23,6 +23,9 @@
 
 #import <sys/time.h>
 
+#import "BaseObjectsLibrary/GCLabelSmallText.h"
+#import "BaseObjectsLibrary/GCLabelNormalText.h"
+
 @interface ToolsGNSSViewController ()
 {
     NSMutableArray<GCLocationCoordinate2D *> *coords;
@@ -30,13 +33,13 @@
 
     GCImageView *ivGNSSMap;
 
-    GCSmallLabel *labelCoordsMinX;
-    GCSmallLabel *labelCoordsMinY;
-    GCSmallLabel *labelCoordsMaxX;
-    GCSmallLabel *labelCoordsMaxY;
-    GCSmallLabel *labelCoordsAvg;
-    GCSmallLabel *labelCoordsLast;
-    GCSmallLabel *labelDistance;
+    GCLabelSmallText *labelCoordsMinX;
+    GCLabelSmallText *labelCoordsMinY;
+    GCLabelSmallText *labelCoordsMaxX;
+    GCLabelSmallText *labelCoordsMaxY;
+    GCLabelSmallText *labelCoordsAvg;
+    GCLabelSmallText *labelCoordsLast;
+    GCLabelSmallText *labelDistance;
 
     CGRect rectGNSSMap;
     CGRect rectCoordsMinX;
@@ -88,7 +91,7 @@ enum {
     self.view = contentView;
     [self.view sizeToFit];
 
-    GCSmallLabel *l = [[GCSmallLabel alloc] initWithFrame:rectCoordsMinX];
+    GCLabelSmallText *l = [[GCLabelSmallText alloc] initWithFrame:rectCoordsMinX];
     smallLabelLineHeight = l.font.lineHeight;
 
     coords = [NSMutableArray arrayWithCapacity:100];
@@ -97,35 +100,35 @@ enum {
     ivGNSSMap.image = [self createGNSSMap];
     [self.view addSubview:ivGNSSMap];
 
-    labelCoordsMinX = [[GCSmallLabel alloc] initWithFrame:rectCoordsMinX];
+    labelCoordsMinX = [[GCLabelSmallText alloc] initWithFrame:rectCoordsMinX];
     labelCoordsMinX.transform = CGAffineTransformMakeRotation(-M_PI_2);
     labelCoordsMinX.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:labelCoordsMinX];
 
-    labelCoordsMinY = [[GCSmallLabel alloc] initWithFrame:rectCoordsMinY];
+    labelCoordsMinY = [[GCLabelSmallText alloc] initWithFrame:rectCoordsMinY];
     labelCoordsMinY.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:labelCoordsMinY];
 
-    labelCoordsMaxX = [[GCSmallLabel alloc] initWithFrame:rectCoordsMaxX];
+    labelCoordsMaxX = [[GCLabelSmallText alloc] initWithFrame:rectCoordsMaxX];
     labelCoordsMaxX.transform = CGAffineTransformMakeRotation(M_PI_2);
     labelCoordsMaxX.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:labelCoordsMaxX];
 
-    labelCoordsMaxY = [[GCSmallLabel alloc] initWithFrame:rectCoordsMaxY];
+    labelCoordsMaxY = [[GCLabelSmallText alloc] initWithFrame:rectCoordsMaxY];
     labelCoordsMaxY.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:labelCoordsMaxY];
 
-    labelCoordsAvg = [[GCSmallLabel alloc] initWithFrame:rectCoordsAvg];
+    labelCoordsAvg = [[GCLabelSmallText alloc] initWithFrame:rectCoordsAvg];
     labelCoordsAvg.textAlignment = NSTextAlignmentCenter;
     labelCoordsAvg.textColor = [UIColor redColor];
     [self.view addSubview:labelCoordsAvg];
 
-    labelCoordsLast = [[GCSmallLabel alloc] initWithFrame:rectCoordsLast];
+    labelCoordsLast = [[GCLabelSmallText alloc] initWithFrame:rectCoordsLast];
     labelCoordsLast.textAlignment = NSTextAlignmentCenter;
     labelCoordsLast.textColor = [UIColor greenColor];
     [self.view addSubview:labelCoordsLast];
 
-    labelDistance = [[GCSmallLabel alloc] initWithFrame:rectDistance];
+    labelDistance = [[GCLabelSmallText alloc] initWithFrame:rectDistance];
     labelDistance.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:labelDistance];
 

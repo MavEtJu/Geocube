@@ -21,6 +21,8 @@
 
 #import "ThemeTemplate.h"
 
+#import "ManagersLibrary/ConfigManager.h"
+
 @interface ThemeTemplate ()
 
 @end
@@ -32,10 +34,10 @@
     self = [super init];
 
     UITableViewCell *tvc = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-
-    self.GCLabelFont = [UIFont systemFontOfSize:tvc.textLabel.font.pointSize];
     self.GCTextblockFont = [UIFont systemFontOfSize:tvc.textLabel.font.pointSize];
-    self.GCSmallFont = [UIFont systemFontOfSize:11];
+
+    self.GCLabelNormalSizeFont = [UIFont systemFontOfSize:configManager.fontNormalTextSize];
+    self.GCLabelSmallSizeFont = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
 
     return self;
 }

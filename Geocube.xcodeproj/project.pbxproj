@@ -407,6 +407,8 @@
 		E8596ACE1F73174100E26495 /* DeveloperImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8596ACC1F73174100E26495 /* DeveloperImagesViewController.m */; };
 		E85BA88E1F544372008E708F /* KeepTrackBeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = E85BA88D1F544372008E708F /* KeepTrackBeeper.m */; };
 		E85BA8901F5449F5008E708F /* Beeper.wav in Resources */ = {isa = PBXBuildFile; fileRef = E85BA88F1F5449F5008E708F /* Beeper.wav */; };
+		E860C9ED1F8094D400C66AD8 /* FilterDistanceTableViewCellContents.m in Sources */ = {isa = PBXBuildFile; fileRef = E860C9EB1F8094D400C66AD8 /* FilterDistanceTableViewCellContents.m */; };
+		E860C9EE1F8094D400C66AD8 /* FilterDistanceTableViewCellContents.xib in Resources */ = {isa = PBXBuildFile; fileRef = E860C9EC1F8094D400C66AD8 /* FilterDistanceTableViewCellContents.xib */; };
 		E861B97E1EE2E6D300BD82AC /* GC - logo - 1536×2048.png in Resources */ = {isa = PBXBuildFile; fileRef = E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */; };
 		E861B9801EE2E8AC00BD82AC /* GC - logo - 768×1024.png in Resources */ = {isa = PBXBuildFile; fileRef = E861B97F1EE2E8AC00BD82AC /* GC - logo - 768×1024.png */; };
 		E86C4AAF1E321822004526E2 /* CompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C4AAD1E321822004526E2 /* CompassViewController.m */; };
@@ -1238,6 +1240,9 @@
 		E85BA88C1F544372008E708F /* KeepTrackBeeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeepTrackBeeper.h; path = KeepTrack/KeepTrackBeeper.h; sourceTree = "<group>"; };
 		E85BA88D1F544372008E708F /* KeepTrackBeeper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeepTrackBeeper.m; path = KeepTrack/KeepTrackBeeper.m; sourceTree = "<group>"; };
 		E85BA88F1F5449F5008E708F /* Beeper.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beeper.wav; sourceTree = "<group>"; };
+		E860C9EA1F8094D400C66AD8 /* FilterDistanceTableViewCellContents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterDistanceTableViewCellContents.h; path = Filters/FilterDistanceTableViewCellContents.h; sourceTree = "<group>"; };
+		E860C9EB1F8094D400C66AD8 /* FilterDistanceTableViewCellContents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterDistanceTableViewCellContents.m; path = Filters/FilterDistanceTableViewCellContents.m; sourceTree = "<group>"; };
+		E860C9EC1F8094D400C66AD8 /* FilterDistanceTableViewCellContents.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterDistanceTableViewCellContents.xib; path = Filters/FilterDistanceTableViewCellContents.xib; sourceTree = "<group>"; };
 		E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 1536×2048.png"; path = "images/logos/GC - logo - 1536×2048.png"; sourceTree = "<group>"; };
 		E861B97F1EE2E8AC00BD82AC /* GC - logo - 768×1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 768×1024.png"; path = "images/logos/GC - logo - 768×1024.png"; sourceTree = "<group>"; };
 		E86C4AAC1E321822004526E2 /* CompassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassViewController.h; sourceTree = "<group>"; };
@@ -2596,6 +2601,9 @@
 				E823440E1EECDFB300D2CDFD /* FilterDirectionTableViewCell.m */,
 				E823440F1EECDFB300D2CDFD /* FilterDistanceTableViewCell.h */,
 				E82344101EECDFB300D2CDFD /* FilterDistanceTableViewCell.m */,
+				E860C9EA1F8094D400C66AD8 /* FilterDistanceTableViewCellContents.h */,
+				E860C9EB1F8094D400C66AD8 /* FilterDistanceTableViewCellContents.m */,
+				E860C9EC1F8094D400C66AD8 /* FilterDistanceTableViewCellContents.xib */,
 				E82344111EECDFB300D2CDFD /* FilterFavouritesTableViewCell.h */,
 				E82344121EECDFB300D2CDFD /* FilterFavouritesTableViewCell.m */,
 				E82344131EECDFB300D2CDFD /* FilterFlagsTableViewCell.h */,
@@ -3281,6 +3289,7 @@
 				E8FEDE7E1DA7AD67007C756B /* map - archived - 15x15@2x.png in Resources */,
 				E8FEDE541DA77F9D007C756B /* container size - notchosen - 35x11@2x.png in Resources */,
 				E861B97E1EE2E6D300BD82AC /* GC - logo - 1536×2048.png in Resources */,
+				E860C9EE1F8094D400C66AD8 /* FilterDistanceTableViewCellContents.xib in Resources */,
 				E8FEDE931DA7AD67007C756B /* map - pin stick - 35x42@3x.png in Resources */,
 				E82E66641DA07C4900CFBDED /* container flag - in progress - 24x24.png in Resources */,
 				E8FEDE4D1DA77F9D007C756B /* container size - large - 35x11.png in Resources */,
@@ -3588,6 +3597,7 @@
 				E82344631EECE06E00D2CDFD /* TrackablesInventoryViewController.m in Sources */,
 				E823442A1EECDFB300D2CDFD /* FilterDirectionTableViewCell.m in Sources */,
 				E82343B11EECDDFD00D2CDFD /* WaypointSorter.m in Sources */,
+				E860C9ED1F8094D400C66AD8 /* FilterDistanceTableViewCellContents.m in Sources */,
 				E82344AF1EECE0D500D2CDFD /* ToolsGNSSViewController.m in Sources */,
 				E82343FB1EECDF4400D2CDFD /* WaypointWaypointsTableViewCell.m in Sources */,
 				E82345271EECE14A00D2CDFD /* NoticeTableViewCell.m in Sources */,

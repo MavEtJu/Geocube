@@ -52,8 +52,7 @@
     }
 
     rect = CGRectMake(20, y, width - 40, 15);
-    l = [[GCLabel alloc] initWithFrame:rect];
-    l.font = f2;
+    l = [[GCLabelSmallText alloc] initWithFrame:rect];
     l.textAlignment = NSTextAlignmentLeft;
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdatetableviewcell-Placed on")];
     [self.contentView addSubview:l];
@@ -76,8 +75,7 @@
     y += 20;
 
     rect = CGRectMake(20, y, width - 40, 15);
-    l = [[GCLabel alloc] initWithFrame:rect];
-    l.font = f2;
+    l = [[GCLabelSmallText alloc] initWithFrame:rect];
     l.textAlignment = NSTextAlignmentLeft;
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdatetableviewcell-Last log")];
     [self.contentView addSubview:l];

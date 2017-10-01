@@ -23,7 +23,7 @@
 
 #import "Geocube-defines.h"
 
-#import "BaseObjectsLibrary/GCSmallLabel.h"
+#import "BaseObjectsLibrary/GCLabelSmallText.h"
 #import "BaseObjectsLibrary/GCView.h"
 #import "ManagersLibrary/LocalizationManager.h"
 #import "ToolsLibrary/MyTools.h"
@@ -48,15 +48,15 @@
     NSString *nextDesc, *nextURL, *nextWaypoints;
     NSString *nextQueue, *nextLinesObjects, *nextLogs, *nextTrackables;
 
-    GCSmallLabel *labelDesc;
-    GCSmallLabel *labelURL;
-    GCSmallLabel *labelChunks;
-    GCSmallLabel *labelBytes;
-    GCSmallLabel *labelLinesObjects;
-    GCSmallLabel *labelQueue;
-    GCSmallLabel *labelTrackables;
-    GCSmallLabel *labelLogs;
-    GCSmallLabel *labelWaypoints;
+    GCLabelSmallText *labelDesc;
+    GCLabelSmallText *labelURL;
+    GCLabelSmallText *labelChunks;
+    GCLabelSmallText *labelBytes;
+    GCLabelSmallText *labelLinesObjects;
+    GCLabelSmallText *labelQueue;
+    GCLabelSmallText *labelTrackables;
+    GCLabelSmallText *labelLogs;
+    GCLabelSmallText *labelWaypoints;
 
     BOOL showLogs, showWaypoints, showTrackables;
 }
@@ -85,10 +85,10 @@
             self.view = [[GCView alloc] initWithFrame:CGRectZero];
             self.view.backgroundColor = [UIColor lightGrayColor];
 
-            labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-            labelURL = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-            labelChunks = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-            labelBytes = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+            labelDesc = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            labelURL = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            labelChunks = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            labelBytes = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
 
             MAINQUEUE(
                 [self.view addSubview:labelDesc];
@@ -105,11 +105,11 @@
             self.view = [[GCView alloc] initWithFrame:CGRectZero];
             self.view.backgroundColor = [UIColor lightGrayColor];
 
-            labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-            labelLinesObjects = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-            labelTrackables = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-            labelLogs = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-            labelWaypoints = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+            labelDesc = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            labelLinesObjects = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            labelTrackables = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            labelLogs = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            labelWaypoints = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
 
             showLogs = YES;
             showWaypoints = YES;
@@ -131,10 +131,10 @@
             self.view = [[GCView alloc] initWithFrame:CGRectZero];
             self.view.backgroundColor = [UIColor lightGrayColor];
 
-            labelDesc = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-            labelURL = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-            labelBytes = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
-            labelQueue = [[GCSmallLabel alloc] initWithFrame:CGRectZero];
+            labelDesc = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            labelURL = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            labelBytes = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            labelQueue = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
 
             MAINQUEUE(
                 [self.view addSubview:labelDesc];

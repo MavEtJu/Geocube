@@ -47,13 +47,12 @@
         return self;
     }
 
-    rect = CGRectMake(20, y, width - 40, 15);
-    sliderLabel = [[GCLabel alloc] initWithFrame:rect];
+    sliderLabel = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
     sliderLabel.text = [NSString stringWithFormat:@"%@: 1 -5", _(@"filterterraintableviewcell-Terrain")];
-    sliderLabel.font = f2;
     sliderLabel.textAlignment = NSTextAlignmentCenter;
+    sliderLabel.frame = CGRectMake(20, y, width - 40, sliderLabel.font.lineHeight);
     [self.contentView addSubview:sliderLabel];
-    y += 25;
+    y += sliderLabel.frame.size.height;
 
     rect = CGRectMake(20, y, width - 40, 15);
     slider = [[RangeSlider alloc] initWithFrame:rect];

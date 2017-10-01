@@ -40,7 +40,8 @@
 #import "BaseObjectsLibrary/GCFilterButton.h"
 #import "BaseObjectsLibrary/GCImageView.h"
 #import "BaseObjectsLibrary/GCLabel.h"
-#import "BaseObjectsLibrary/GCSmallLabel.h"
+#import "BaseObjectsLibrary/GCLabelNormalText.h"
+#import "BaseObjectsLibrary/GCLabelSmallText.h"
 #import "BaseObjectsLibrary/GCSwitch.h"
 #import "BaseObjectsLibrary/GCTextblock.h"
 

@@ -21,10 +21,29 @@
 
 #import "GCFilterButton.h"
 
+#import "ThemesLibrary/ThemeManager.h"
+
 @interface GCFilterButton ()
 
 @end
 
 @implementation GCFilterButton
+
+
++ (instancetype)buttonWithType:(UIButtonType)buttonType
+{
+    GCFilterButton *button = [super buttonWithType:buttonType];
+
+    button.titleLabel.font = currentTheme.GCLabelSmallSizeFont;
+
+    return button;
+}
+
+- (void)changeTheme
+{
+    [super changeTheme];
+
+    self.titleLabel.font = currentTheme.GCLabelSmallSizeFont;
+}
 
 @end

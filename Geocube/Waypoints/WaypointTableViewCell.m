@@ -23,6 +23,8 @@
 
 #import "BaseObjectsLibrary/GCLabel.h"
 #import "BaseObjectsLibrary/GCImageView.h"
+#import "BaseObjectsLibrary/GCLabelSmallText.h"
+#import "BaseObjectsLibrary/GCLabelNormalText.h"
 #import "ManagersLibrary/ImageManager.h"
 #import "DatabaseLibrary/dbWaypoint.h"
 #import "DatabaseLibrary/dbName.h"
@@ -30,17 +32,17 @@
 
 @interface WaypointTableViewCell ()
 
-@property (weak, nonatomic) IBOutlet GCLabel *labelDescription;
-@property (weak, nonatomic) IBOutlet GCLabel *labelCode;
-@property (weak, nonatomic) IBOutlet GCLabel *labelWhoWhen;
-@property (weak, nonatomic) IBOutlet GCLabel *labelBearing;
-@property (weak, nonatomic) IBOutlet GCLabel *labelDistance;
-@property (weak, nonatomic) IBOutlet GCLabel *labelDirection;
-@property (weak, nonatomic) IBOutlet GCLabel *labelLocation;
-@property (weak, nonatomic) IBOutlet GCLabel *labelTerrain;
-@property (weak, nonatomic) IBOutlet GCLabel *labelDifficulty;
-@property (weak, nonatomic) IBOutlet GCLabel *labelFavourites;
-@property (weak, nonatomic) IBOutlet GCLabel *labelSize;
+@property (weak, nonatomic) IBOutlet GCLabelNormalText *labelDescription;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *labelCode;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *labelWhoWhen;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *labelBearing;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *labelDistance;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *labelDirection;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *labelLocation;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *labelTerrain;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *labelDifficulty;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *labelFavourites;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *labelSize;
 @property (weak, nonatomic) IBOutlet GCImageView *ivFavourites;
 @property (weak, nonatomic) IBOutlet GCImageView *ivContainer;
 @property (weak, nonatomic) IBOutlet GCImageView *ivSize;
@@ -67,17 +69,6 @@
     [self.labelLocation changeTheme];
     [self.labelTerrain changeTheme];
     [self.labelDifficulty changeTheme];
-
-    self.labelDescription.font = [UIFont systemFontOfSize:configManager.fontNormalTextSize];
-    self.labelCode.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
-    self.labelWhoWhen.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
-    self.labelBearing.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
-    self.labelDistance.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
-    self.labelDirection.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
-    self.labelLocation.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
-    self.labelTerrain.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
-    self.labelDifficulty.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
-    self.labelFavourites.font = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
 
     // the labelFavourites does not follow the theme rules.
     // [self.labelFavourites changeTheme];

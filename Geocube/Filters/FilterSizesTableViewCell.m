@@ -63,15 +63,16 @@
         else
             c.selected = [cfg boolValue];
 
-        CGRect rect = CGRectMake(imgSize.width + 30, y, width - imgSize.width - 10, imgSize.height + 5);
         GCFilterButton *b = [GCFilterButton buttonWithType:UIButtonTypeSystem];
-        b.frame = rect;
         b.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         NSString *s = [NSString stringWithFormat:@"container-%@", c.size];
         [b setTitle:_(s) forState:UIControlStateNormal];
         [b setTitleColor:(c.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b addTarget:self action:@selector(clickGroup:) forControlEvents:UIControlEventTouchDown];
         b.index = idx;
+
+        CGRect rect = CGRectMake(imgSize.width + 30, y, width - imgSize.width - 10, MAX(imgSize.height, b.titleLabel.font.lineHeight));
+        b.frame = rect;
 
         [self.contentView addSubview:b];
 

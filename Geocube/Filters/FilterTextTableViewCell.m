@@ -63,9 +63,8 @@
     }
 
     rect = CGRectMake(20, y, 100, 15);
-    l = [[GCLabel alloc] initWithFrame:rect];
+    l = [[GCLabelSmallText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Waypoint name")];
-    l.font = f2;
     l.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:l];
 
@@ -79,9 +78,8 @@
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
-    l = [[GCLabel alloc] initWithFrame:rect];
+    l = [[GCLabelSmallText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Owner")];
-    l.font = f2;
     l.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:l];
 
@@ -95,9 +93,8 @@
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
-    l = [[GCLabel alloc] initWithFrame:rect];
+    l = [[GCLabelSmallText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Locality")];
-    l.font = f2;
     l.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:l];
 
@@ -111,9 +108,8 @@
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
-    l = [[GCLabel alloc] initWithFrame:rect];
+    l = [[GCLabelSmallText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-State")];
-    l.font = f2;
     l.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:l];
 
@@ -127,9 +123,8 @@
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
-    l = [[GCLabel alloc] initWithFrame:rect];
+    l = [[GCLabelSmallText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Country")];
-    l.font = f2;
     l.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:l];
 
@@ -143,9 +138,8 @@
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
-    l = [[GCLabel alloc] initWithFrame:rect];
+    l = [[GCLabelSmallText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Description")];
-    l.font = f2;
     l.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:l];
 
@@ -159,9 +153,8 @@
     y += 20;
 
     rect = CGRectMake(20, y, 100, 15);
-    l = [[GCLabel alloc] initWithFrame:rect];
+    l = [[GCLabelSmallText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Logs")];
-    l.font = f2;
     l.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:l];
 
