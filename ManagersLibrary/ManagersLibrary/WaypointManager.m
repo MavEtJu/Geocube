@@ -116,7 +116,7 @@
 - (void)updateBadges
 {
     NSArray<dbWaypoint *> *wps = [dbWaypoint dbAllByFlag:FLAGS_MARKEDFOUND];
-    [UIApplication sharedApplication].applicationIconBadgeNumber = [wps count];;
+    [UIApplication sharedApplication].applicationIconBadgeNumber = [wps count];
 }
 
 - (void)needsRefreshAll

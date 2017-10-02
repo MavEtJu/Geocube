@@ -50,8 +50,8 @@ done
 
 echo
 echo "Classes:"
-grep -h @implementation $MFILES | sed -e 's/implementation/class/' -e 's/$/;/'| sort > /tmp/a
-grep @class Geocube/Geocube-Classes.h > /tmp/b
+grep -h @implementation $MFILES | sed -e 's/implementation/class/' -e 's/$/;/'| sort > /tmp/b
+grep @class Geocube/Geocube-Classes.h > /tmp/a
 diff /tmp/[ab]
 
 echo

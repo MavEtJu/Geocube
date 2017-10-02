@@ -858,7 +858,7 @@ enum sections {
             }
             abort();
         }
-    
+
         case SECTION_FONTS: {
             switch (indexPath.row) {
                 case SECTION_FONTS_SMALLTEXT_SIZE: {

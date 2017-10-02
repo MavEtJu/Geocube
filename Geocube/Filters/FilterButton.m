@@ -29,7 +29,6 @@
 
 @implementation FilterButton
 
-
 + (instancetype)buttonWithType:(UIButtonType)buttonType
 {
     FilterButton *button = [super buttonWithType:buttonType];

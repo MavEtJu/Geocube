@@ -74,12 +74,13 @@
 @class GCGMSCircle;
 @class GCImageView;
 @class GCLabel;
+@class GCLabelNormalText;
+@class GCLabelSmallText;
 @class GCLocationCoordinate2D;
 @class GCMutableArray;
 @class GCMutableURLRequest;
 @class GCOAuthBlackbox;
 @class GCScrollView;
-@class GCSmallLabel;
 @class GCString;
 @class GCStringFilename;
 @class GCStringGPX;
@@ -108,6 +109,7 @@
 @class HelpHelpViewController;
 @class HelpIntroduction;
 @class IOSFileTransfers;
+@class ImageManager;
 @class ImagesDownloadManager;
 @class ImportGCA2JSON;
 @class ImportGGCWJSON;

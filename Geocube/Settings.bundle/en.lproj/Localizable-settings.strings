@@ -215,3 +215,10 @@
 "settingsmainviewcontroller-Maximum number of concurrent downloads for the Geocaching.com Website with 'Load Waypoints'." = "Maximum number of concurrent downloads for the Geocaching.com Website with 'Load Waypoints'.";
 "settingsmainviewcontroller-Maximum waypoints" = "Maximum waypoints";
 "settingsmainviewcontroller-Maximum number of waypoints to download, maximum of 50, for the Geocaching.com Website with 'Load Waypoints'." = "Maximum number of waypoints to download, maximum of 50, for the Geocaching.com Website with 'Load Waypoints'.";
+
+"settingsmainviewcontroller-Fonts" = "Fonts";
+"settingsmainviewcontroller-Normal Text Font Size" = "Normal Text Font Size";
+"settingsmainviewcontroller-Normal text font size" = "Normal text font size";
+"settingsmainviewcontroller-Size of font in pixels" = "Size of font in pixels";
+"settingsmainviewcontroller-Small Text Font Size" = "Small Text Font Size";
+"settingsmainviewcontroller-Small text font size" = "Small text font size";
