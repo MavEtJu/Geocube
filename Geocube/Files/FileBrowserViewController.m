@@ -166,7 +166,7 @@
 
     self.y = 0;
 
-    GCLabel *l = [[GCLabel alloc] initWithFrame:CGRectMake(0, self.y, width, 20)];
+    GCLabelNormalText *l = [[GCLabelNormalText alloc] initWithFrame:CGRectMake(0, self.y, width, currentTheme.GCLabelNormalSizeFont.lineHeight)];
     l.text = [self determineVisiblePath];
     self.y += l.frame.size.height;
 
@@ -177,7 +177,7 @@
     [contentView addSubview:l];
 
     [self.shownFO.contents enumerateObjectsUsingBlock:^(FileObject * _Nonnull fo, NSUInteger idx, BOOL * _Nonnull stop) {
-        FileObjectView *fov = [[FileObjectView alloc] initWithFrame:CGRectMake(0, self.y, width, 20)];
+        FileObjectView *fov = [[FileObjectView alloc] initWithFrame:CGRectMake(0, self.y, width, currentTheme.GCLabelNormalSizeFont.lineHeight)];
         fov.filename.text = fo.filename;
         fov.filesize.text = [MyTools niceFileSize:fo.filesize];
         fov.filetype.text = _(@"filebrowserviewcontroller-(f)");

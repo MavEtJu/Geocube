@@ -23,9 +23,9 @@
 
 @interface FileObjectView : GCView
 
-@property (weak, nonatomic) IBOutlet GCLabel *filename;
-@property (weak, nonatomic) IBOutlet GCLabel *filesize;
-@property (weak, nonatomic) IBOutlet GCLabel *filetype;
+@property (weak, nonatomic) IBOutlet GCLabelNormalText *filename;
+@property (weak, nonatomic) IBOutlet GCLabelNormalText *filesize;
+@property (weak, nonatomic) IBOutlet GCLabelNormalText *filetype;
 
 @property (nonatomic, retain) FileObject *fo;
 
