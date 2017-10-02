@@ -54,7 +54,7 @@
         else
             g.selected = [c boolValue];
 
-        GCFilterButton *b = [GCFilterButton buttonWithType:UIButtonTypeSystem];
+        FilterButton *b = [FilterButton buttonWithType:UIButtonTypeSystem];
         [b setTitle:g.name forState:UIControlStateNormal];
         [b setTitleColor:(g.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b addTarget:self action:@selector(clickGroup:) forControlEvents:UIControlEventTouchDown];
@@ -115,7 +115,7 @@
 
 #pragma mark -- callback functions
 
-- (void)clickGroup:(GCFilterButton *)b
+- (void)clickGroup:(FilterButton *)b
 {
     dbGroup *g = [groups objectAtIndex:b.index];
     g.selected = !g.selected;

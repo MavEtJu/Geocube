@@ -41,6 +41,7 @@
 @class FilesTableViewCell;
 @class FilesViewController;
 @class FilterAccountsTableViewCell;
+@class FilterButton;
 @class FilterCategoryTableViewCell;
 @class FilterDateTableViewCell;
 @class FilterDifficultyTableViewCell;
@@ -70,7 +71,6 @@
 @class GCDictionaryGGCW;
 @class GCDictionaryLiveAPI;
 @class GCDictionaryOKAPI;
-@class GCFilterButton;
 @class GCGMSCircle;
 @class GCImageView;
 @class GCLabel;

@@ -21,16 +21,16 @@
 
 @interface FilterFlagsTableViewCell ()
 {
-    UIButton *buttonHighlighted;
-    UIButton *buttonMarkedAsFound;
-    UIButton *buttonMarkedAsDNF;
-    UIButton *buttonIgnored;
-    UIButton *buttonInProgress;
-    UIButton *buttonLoggedAsFound;
-    UIButton *buttonLoggedAsDNF;
-    UIButton *buttonOwner;
-    UIButton *buttonEnabled;
-    UIButton *buttonArchived;
+    FilterButton *buttonHighlighted;
+    FilterButton *buttonMarkedAsFound;
+    FilterButton *buttonMarkedAsDNF;
+    FilterButton *buttonIgnored;
+    FilterButton *buttonInProgress;
+    FilterButton *buttonLoggedAsFound;
+    FilterButton *buttonLoggedAsDNF;
+    FilterButton *buttonOwner;
+    FilterButton *buttonEnabled;
+    FilterButton *buttonArchived;
 
     FilterFlag valueHighlighted;
     FilterFlag valueMarkedAsFound;
@@ -129,10 +129,10 @@ typedef NS_ENUM(NSInteger, FlagType) {
     CHECK(Archived, @"isarchived");
 
     for (FlagType i = 0; i < flagMax; i++) {
-        CGRect rect = CGRectMake(20, y, width - 40, 20);
-        UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
-        b.frame = rect;
+        FilterButton *b = [FilterButton buttonWithType:UIButtonTypeSystem];
         [b addTarget:self action:@selector(clickGroup:) forControlEvents:UIControlEventTouchDown];
+        CGRect rect = CGRectMake(20, y, width - 40, b.titleLabel.font.lineHeight);
+        b.frame = rect;
         [self.contentView addSubview:b];
 
 #define CASE(__type__) \
@@ -156,7 +156,7 @@ typedef NS_ENUM(NSInteger, FlagType) {
             default:
                 NSAssert1(0, @"Flag %ld not found", (long)i);
         }
-        y += 20;
+        y += b.frame.size.height;
     };
 
     [self.contentView sizeToFit];
@@ -210,7 +210,7 @@ typedef NS_ENUM(NSInteger, FlagType) {
 
 #pragma mark -- callback functions
 
-- (void)clickGroup:(UIButton *)b
+- (void)clickGroup:(FilterButton *)b
 {
 #define PROCESS(__type__, __config__) \
     if (b == button ## __type__) { \

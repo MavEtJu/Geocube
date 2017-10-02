@@ -98,6 +98,7 @@
 #import "Waypoints/WaypointAddViewController.h"
 
 #import "Filters/FilterObject.h"
+#import "Filters/FilterButton.h"
 #import "Filters/FilterTableViewCell.h"
 #import "Filters/FilterAccountsTableViewCell.h"
 #import "Filters/FilterCategoryTableViewCell.h"

@@ -21,14 +21,14 @@
 
 @interface FilterTextTableViewCell ()
 {
-    UIButton *bWaypointName;
-    UIButton *bOwner;
-    UIButton *bPlacedBy;
-    UIButton *bCountry;
-    UIButton *bState;
-    UIButton *bLocality;
-    UIButton *bDescription;
-    UIButton *bLogs;
+    FilterButton *bWaypointName;
+    FilterButton *bOwner;
+    FilterButton *bPlacedBy;
+    FilterButton *bCountry;
+    FilterButton *bState;
+    FilterButton *bLocality;
+    FilterButton *bDescription;
+    FilterButton *bLogs;
 
     NSString *waypointName;
     NSString *owner;
@@ -62,110 +62,117 @@
         return self;
     }
 
-    rect = CGRectMake(20, y, 100, 15);
+    rect = CGRectMake(20, y, 0, 0);
     l = [[GCLabelSmallText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Waypoint name")];
     l.textAlignment = NSTextAlignmentRight;
+    [l sizeToFit];
     [self.contentView addSubview:l];
 
     rect = CGRectMake(120, y, width - 140, 15);
-    bWaypointName = [UIButton buttonWithType:UIButtonTypeSystem];
+    bWaypointName = [FilterButton buttonWithType:UIButtonTypeSystem];
     bWaypointName.frame = rect;
     bWaypointName.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [bWaypointName setTitle:waypointName forState:UIControlStateNormal];
     [bWaypointName addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:bWaypointName];
-    y += 20;
+    y += l.font.lineHeight;
 
-    rect = CGRectMake(20, y, 100, 15);
+    rect = CGRectMake(20, y, 0, 0);
     l = [[GCLabelSmallText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Owner")];
     l.textAlignment = NSTextAlignmentRight;
+    [l sizeToFit];
     [self.contentView addSubview:l];
 
     rect = CGRectMake(120, y, width - 140, 15);
-    bOwner = [UIButton buttonWithType:UIButtonTypeSystem];
+    bOwner = [FilterButton buttonWithType:UIButtonTypeSystem];
     bOwner.frame = rect;
     bOwner.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [bOwner setTitle:owner forState:UIControlStateNormal];
     [bOwner addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:bOwner];
-    y += 20;
+    y += l.font.lineHeight;
 
-    rect = CGRectMake(20, y, 100, 15);
+    rect = CGRectMake(20, y, 0, 0);
     l = [[GCLabelSmallText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Locality")];
     l.textAlignment = NSTextAlignmentRight;
+    [l sizeToFit];
     [self.contentView addSubview:l];
 
     rect = CGRectMake(120, y, width - 140, 15);
-    bLocality = [UIButton buttonWithType:UIButtonTypeSystem];
+    bLocality = [FilterButton buttonWithType:UIButtonTypeSystem];
     bLocality.frame = rect;
     bLocality.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [bLocality setTitle:locality forState:UIControlStateNormal];
     [bLocality addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:bLocality];
-    y += 20;
+    y += l.font.lineHeight;
 
-    rect = CGRectMake(20, y, 100, 15);
+    rect = CGRectMake(20, y, 0, 0);
     l = [[GCLabelSmallText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-State")];
     l.textAlignment = NSTextAlignmentRight;
+    [l sizeToFit];
     [self.contentView addSubview:l];
 
     rect = CGRectMake(120, y, width - 140, 15);
-    bState = [UIButton buttonWithType:UIButtonTypeSystem];
+    bState = [FilterButton buttonWithType:UIButtonTypeSystem];
     bState.frame = rect;
     bState.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [bState setTitle:state forState:UIControlStateNormal];
     [bState addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:bState];
-    y += 20;
+    y += l.font.lineHeight;
 
-    rect = CGRectMake(20, y, 100, 15);
+    rect = CGRectMake(20, y, 0, 0);
     l = [[GCLabelSmallText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Country")];
     l.textAlignment = NSTextAlignmentRight;
+    [l sizeToFit];
     [self.contentView addSubview:l];
 
     rect = CGRectMake(120, y, width - 140, 15);
-    bCountry = [UIButton buttonWithType:UIButtonTypeSystem];
+    bCountry = [FilterButton buttonWithType:UIButtonTypeSystem];
     bCountry.frame = rect;
     bCountry.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [bCountry setTitle:country forState:UIControlStateNormal];
     [bCountry addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:bCountry];
-    y += 20;
+    y += l.font.lineHeight;
 
-    rect = CGRectMake(20, y, 100, 15);
+    rect = CGRectMake(20, y, 0, 0);
     l = [[GCLabelSmallText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Description")];
     l.textAlignment = NSTextAlignmentRight;
+    [l sizeToFit];
     [self.contentView addSubview:l];
 
     rect = CGRectMake(120, y, width - 140, 15);
-    bDescription = [UIButton buttonWithType:UIButtonTypeSystem];
+    bDescription = [FilterButton buttonWithType:UIButtonTypeSystem];
     bDescription.frame = rect;
     bDescription.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [bDescription setTitle:description forState:UIControlStateNormal];
     [bDescription addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:bDescription];
-    y += 20;
+    y += l.font.lineHeight;
 
-    rect = CGRectMake(20, y, 100, 15);
+    rect = CGRectMake(20, y, 0, 0);
     l = [[GCLabelSmallText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Logs")];
     l.textAlignment = NSTextAlignmentRight;
+    [l sizeToFit];
     [self.contentView addSubview:l];
 
     rect = CGRectMake(120, y, width - 140, 15);
-    bLogs = [UIButton buttonWithType:UIButtonTypeSystem];
+    bLogs = [FilterButton buttonWithType:UIButtonTypeSystem];
     bLogs.frame = rect;
     bLogs.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [bLogs setTitle:logs forState:UIControlStateNormal];
     [bLogs addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:bLogs];
-    y += 20;
+    y += l.font.lineHeight;
 
     [self.contentView sizeToFit];
     fo.cellHeight = cellHeight = y;
@@ -228,7 +235,7 @@
 
 #pragma mark -- callback functions
 
-- (void)finishText:(UIButton *)b
+- (void)finishText:(FilterButton *)b
 {
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:_(@"filterflagstableviewcell-Change field")

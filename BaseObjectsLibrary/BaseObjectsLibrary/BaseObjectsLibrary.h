@@ -37,7 +37,6 @@
 /* View objects */
 #import "BaseObjectsLibrary/GCButton.h"
 #import "BaseObjectsLibrary/GCCloseButton.h"
-#import "BaseObjectsLibrary/GCFilterButton.h"
 #import "BaseObjectsLibrary/GCImageView.h"
 #import "BaseObjectsLibrary/GCLabel.h"
 #import "BaseObjectsLibrary/GCLabelNormalText.h"

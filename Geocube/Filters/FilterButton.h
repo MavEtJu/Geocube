@@ -19,31 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "GCFilterButton.h"
+#import "BaseObjectsLibrary/GCButton.h"
 
-#import "ThemesLibrary/ThemeManager.h"
+@interface FilterButton : GCButton
 
-@interface GCFilterButton ()
-
-@end
-
-@implementation GCFilterButton
-
-
-+ (instancetype)buttonWithType:(UIButtonType)buttonType
-{
-    GCFilterButton *button = [super buttonWithType:buttonType];
-
-    button.titleLabel.font = currentTheme.GCLabelSmallSizeFont;
-
-    return button;
-}
-
-- (void)changeTheme
-{
-    [super changeTheme];
-
-    self.titleLabel.font = currentTheme.GCLabelSmallSizeFont;
-}
+@property (nonatomic) NSInteger index;
 
 @end

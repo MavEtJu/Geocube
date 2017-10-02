@@ -24,7 +24,7 @@
     NSArray<NSString *> *directions;
     FilterDirection direction;
     NSString *directionString;
-    UIButton *directionButton;
+    FilterButton *directionButton;
 }
 
 @end
@@ -60,19 +60,20 @@
         return self;
     }
 
-    rect = CGRectMake(20, y, 100, 15);
+    rect = CGRectMake(20, y, 0, 0);
     l = [[GCLabelSmallText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdirectiontableviewcell-Direction is")];
     l.textAlignment = NSTextAlignmentCenter;
+    [l sizeToFit];
     [self.contentView addSubview:l];
 
     rect = CGRectMake(120, y, width - 140, 15);
-    directionButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    directionButton = [FilterButton buttonWithType:UIButtonTypeSystem];
     directionButton.frame = rect;
     [directionButton addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:directionButton];
     [self clickDirection:nil];
-    y += 35;
+    y += l.font.lineHeight;
 
     [self.contentView sizeToFit];
     fo.cellHeight = cellHeight = y;
@@ -115,7 +116,7 @@
 
 #pragma mark -- callback functions
 
-- (void)clickDirection:(UIButton *)s
+- (void)clickDirection:(FilterButton *)s
 {
     if (s == nil) {
         [directionButton setTitle:[directions objectAtIndex:direction] forState:UIControlStateNormal];

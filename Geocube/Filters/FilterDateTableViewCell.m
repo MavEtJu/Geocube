@@ -22,8 +22,8 @@
 @interface FilterDateTableViewCell ()
 {
     FilterDate comparePlaced, compareLastLog;
-    UIButton *buttonComparePlaced, *buttonCompareLastLog;
-    UIButton *buttonDatePlaced, *buttonDateLastLog;
+    FilterButton *buttonComparePlaced, *buttonCompareLastLog;
+    FilterButton *buttonDatePlaced, *buttonDateLastLog;
 
     ActionSheetDatePicker *asdp;
     NSInteger epochPlaced, epochLastLog;
@@ -51,14 +51,15 @@
         return self;
     }
 
-    rect = CGRectMake(20, y, width - 40, 15);
+    rect = CGRectMake(20, y, 0, 0);
     l = [[GCLabelSmallText alloc] initWithFrame:rect];
     l.textAlignment = NSTextAlignmentLeft;
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdatetableviewcell-Placed on")];
+    [l sizeToFit];
     [self.contentView addSubview:l];
 
     rect = CGRectMake(80, y, 50, 15);
-    buttonComparePlaced = [UIButton buttonWithType:UIButtonTypeSystem];
+    buttonComparePlaced = [FilterButton buttonWithType:UIButtonTypeSystem];
     buttonComparePlaced.frame = rect;
     [buttonComparePlaced addTarget:self action:@selector(clickCompare:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:buttonComparePlaced];
@@ -66,22 +67,23 @@
     [self clickCompare:buttonComparePlaced];
 
     rect = CGRectMake(130, y, width - 150, 15);
-    buttonDatePlaced = [UIButton buttonWithType:UIButtonTypeSystem];
+    buttonDatePlaced = [FilterButton buttonWithType:UIButtonTypeSystem];
     buttonDatePlaced.frame = rect;
     [buttonDatePlaced addTarget:self action:@selector(clickDate:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:buttonDatePlaced];
     [self dateWasSelected:[NSDate dateWithTimeIntervalSince1970:epochPlaced] element:buttonDatePlaced];
 
-    y += 20;
+    y += l.font.lineHeight;
 
-    rect = CGRectMake(20, y, width - 40, 15);
+    rect = CGRectMake(20, y, 0, 0);
     l = [[GCLabelSmallText alloc] initWithFrame:rect];
     l.textAlignment = NSTextAlignmentLeft;
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdatetableviewcell-Last log")];
+    [l sizeToFit];
     [self.contentView addSubview:l];
 
     rect = CGRectMake(80, y, 50, 15);
-    buttonCompareLastLog = [UIButton buttonWithType:UIButtonTypeSystem];
+    buttonCompareLastLog = [FilterButton buttonWithType:UIButtonTypeSystem];
     buttonCompareLastLog.frame = rect;
     [buttonCompareLastLog addTarget:self action:@selector(clickCompare:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:buttonCompareLastLog];
@@ -89,13 +91,13 @@
     [self clickCompare:buttonCompareLastLog];
 
     rect = CGRectMake(130, y, width - 150, 15);
-    buttonDateLastLog = [UIButton buttonWithType:UIButtonTypeSystem];
+    buttonDateLastLog = [FilterButton buttonWithType:UIButtonTypeSystem];
     buttonDateLastLog.frame = rect;
     [buttonDateLastLog addTarget:self action:@selector(clickDate:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:buttonDateLastLog];
     [self dateWasSelected:[NSDate dateWithTimeIntervalSince1970:epochLastLog] element:buttonDateLastLog];
 
-    y += 20;
+    y += l.font.lineHeight;
 
     [self.contentView sizeToFit];
     fo.cellHeight = cellHeight = y;
@@ -153,7 +155,7 @@
 
 #pragma mark -- callback functions
 
-- (void)clickCompare:(UIButton *)b
+- (void)clickCompare:(FilterButton *)b
 {
     FilterDate compare = -1;
     if (b == buttonCompareLastLog)
@@ -175,7 +177,7 @@
     }
 }
 
-- (void)clickDate:(UIButton *)b
+- (void)clickDate:(FilterButton *)b
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *minimumDateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
@@ -204,7 +206,7 @@
     [asdp showActionSheetPicker];
 }
 
-- (void)dateWasSelected:(NSDate *)date element:(UIButton *)b
+- (void)dateWasSelected:(NSDate *)date element:(FilterButton *)b
 {
     NSString *dateFromString = [NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
 

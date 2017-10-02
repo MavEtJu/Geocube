@@ -58,7 +58,7 @@
         else
             t.selected = [c boolValue];
 
-        GCFilterButton *b = [GCFilterButton buttonWithType:UIButtonTypeSystem];
+        FilterButton *b = [FilterButton buttonWithType:UIButtonTypeSystem];
         b.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [b setTitle:t.type_full forState:UIControlStateNormal];
         [b setTitleColor:(t.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
@@ -115,7 +115,7 @@
 
 #pragma mark -- callback functions
 
-- (void)clickGroup:(GCFilterButton *)b
+- (void)clickGroup:(FilterButton *)b
 {
     dbType *t = [types objectAtIndex:b.index];
     t.selected = !t.selected;

@@ -21,8 +21,8 @@
 
 @interface FilterDistanceTableViewCell ()
 {
-    UIButton *compareDistanceButton;
-    UIButton *distanceButton, *variationButton;
+    FilterButton *compareDistanceButton;
+    FilterButton *distanceButton, *variationButton;
     FilterDistance compareDistance;
 
     NSInteger distanceKm, distanceM;
@@ -58,14 +58,14 @@
     [l sizeToFit];
     [self.contentView addSubview:l];
 
-    compareDistanceButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    compareDistanceButton = [FilterButton buttonWithType:UIButtonTypeSystem];
     [compareDistanceButton addTarget:self action:@selector(clickCompare:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:compareDistanceButton];
     compareDistanceButton.frame = CGRectMake(l.frame.origin.x + l.frame.size.width + 20, y, 20, compareDistanceButton.titleLabel.font.lineHeight);
     [self clickCompare:compareDistanceButton];
     compareDistance--;
 
-    distanceButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    distanceButton = [FilterButton buttonWithType:UIButtonTypeSystem];
     distanceButton.frame = rect;
     [distanceButton addTarget:self action:@selector(clickDistance:) forControlEvents:UIControlEventTouchDown];
     distanceButton.frame = CGRectMake(compareDistanceButton.frame.origin.x + compareDistanceButton.frame.size.width + 20, y, 120, distanceButton.titleLabel.font.lineHeight);
@@ -81,7 +81,7 @@
     [l sizeToFit];
     [self.contentView addSubview:l];
 
-    variationButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    variationButton = [FilterButton buttonWithType:UIButtonTypeSystem];
     [variationButton addTarget:self action:@selector(clickDistance:) forControlEvents:UIControlEventTouchDown];
     variationButton.frame = CGRectMake(l.frame.origin.x + l.frame.size.width + 20, y, width - 20 - 120, variationButton.titleLabel.font.lineHeight);
     [self.contentView addSubview:variationButton];
@@ -147,7 +147,7 @@
 
 #pragma mark -- callback functions
 
-- (void)clickCompare:(UIButton *)b
+- (void)clickCompare:(FilterButton *)b
 {
     compareDistance = (compareDistance + 1) % FILTER_DISTANCE_MAX;
     [self configUpdate];
@@ -170,7 +170,7 @@
     }
 }
 
-- (void)clickDistance:(UIButton *)b
+- (void)clickDistance:(FilterButton *)b
 {
     if (b == distanceButton) {
         [ActionSheetDistancePicker showPickerWithTitle:_(@"filterdistancetableviewcell-Select distance") bigUnitString:@"km" bigUnitMax:999 selectedBigUnit:distanceKm smallUnitString:@"m" smallUnitMax:999 selectedSmallUnit:distanceM target:self action:@selector(measurementWasSelectedWithBigUnit:smallUnit:element:) origin:b];
@@ -182,7 +182,7 @@
     }
 }
 
-- (void)measurementWasSelectedWithBigUnit:(NSNumber *)bu smallUnit:(NSNumber *)su element:(UIButton *)e
+- (void)measurementWasSelectedWithBigUnit:(NSNumber *)bu smallUnit:(NSNumber *)su element:(FilterButton *)e
 {
     if (e == distanceButton) {
         distanceM = su.integerValue;

@@ -54,16 +54,16 @@
         else
             a.selected = [c boolValue];
 
-        CGRect rect = CGRectMake(20, y, width - 40, 20);
-        GCFilterButton *b = [GCFilterButton buttonWithType:UIButtonTypeSystem];
-        b.frame = rect;
+        FilterButton *b = [FilterButton buttonWithType:UIButtonTypeSystem];
         [b setTitle:a.site forState:UIControlStateNormal];
         [b setTitleColor:(a.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b addTarget:self action:@selector(clickAccount:) forControlEvents:UIControlEventTouchDown];
         b.index = idx;
+        CGRect rect = CGRectMake(20, y, width - 40, b.titleLabel.font.lineHeight);
+        b.frame = rect;
         [self.contentView addSubview:b];
 
-        y += rect.size.height;
+        y += b.frame.size.height;
     }];
 
     [self.contentView sizeToFit];
@@ -116,7 +116,7 @@
 
 #pragma mark -- callback functions
 
-- (void)clickAccount:(GCFilterButton *)b
+- (void)clickAccount:(FilterButton *)b
 {
     dbAccount *a = [accounts objectAtIndex:b.index];
     a.selected = !a.selected;

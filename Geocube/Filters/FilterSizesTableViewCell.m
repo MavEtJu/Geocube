@@ -63,7 +63,7 @@
         else
             c.selected = [cfg boolValue];
 
-        GCFilterButton *b = [GCFilterButton buttonWithType:UIButtonTypeSystem];
+        FilterButton *b = [FilterButton buttonWithType:UIButtonTypeSystem];
         b.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         NSString *s = [NSString stringWithFormat:@"container-%@", c.size];
         [b setTitle:_(s) forState:UIControlStateNormal];
@@ -124,7 +124,7 @@
 
 #pragma mark -- callback functions
 
-- (void)clickGroup:(GCFilterButton *)b
+- (void)clickGroup:(FilterButton *)b
 {
     dbContainer *c = [containers objectAtIndex:b.index];
     c.selected = !c.selected;
