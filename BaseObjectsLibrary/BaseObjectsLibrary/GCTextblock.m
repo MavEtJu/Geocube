@@ -43,6 +43,7 @@
 - (void)changeTheme
 {
     self.textColor = currentTheme.labelTextColor;
+    self.font = currentTheme.GCLabelNormalSizeFont;
 
     // [themeManager changeTheme:self.subviews];
 }

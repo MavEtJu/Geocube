@@ -29,12 +29,12 @@
 @interface LogTableViewCell ()
 
 @property (nonatomic, retain) IBOutlet UIImageView *ivLogType;
-@property (nonatomic, retain) IBOutlet GCLabel *labelDateTime;
-@property (nonatomic, retain) IBOutlet GCLabel *labelLogger;
-@property (nonatomic, retain) IBOutlet GCLabel *labelLog;
-@property (nonatomic, retain) IBOutlet GCLabel *labelLocalLog;
-@property (nonatomic, retain) IBOutlet GCLabel *labelNotSubmitted;
-@property (nonatomic, retain) IBOutlet GCLabel *labelCoordinates;
+@property (nonatomic, retain) IBOutlet GCLabelSmallText *labelDateTime;
+@property (nonatomic, retain) IBOutlet GCLabelSmallText *labelLogger;
+@property (nonatomic, retain) IBOutlet GCLabelNormalText *labelLog;
+@property (nonatomic, retain) IBOutlet GCLabelSmallText *labelLocalLog;
+@property (nonatomic, retain) IBOutlet GCLabelSmallText *labelNotSubmitted;
+@property (nonatomic, retain) IBOutlet GCLabelSmallText *labelCoordinates;
 
 @end
 

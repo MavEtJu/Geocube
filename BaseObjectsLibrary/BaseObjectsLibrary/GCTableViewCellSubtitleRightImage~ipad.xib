@@ -12,44 +12,43 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="uqK-IO-R6K" customClass="GCTableViewCellSubtitleRightImage">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="52.5"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="uqK-IO-R6K" customClass="GCTableViewCellSubtitleRightImage">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uqK-IO-R6K" id="3BA-6X-KFm">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WGu-HD-wS0" customClass="GCLabelNormalText">
-                        <rect key="frame" x="48" y="8" width="254" height="21"/>
+                        <rect key="frame" x="48" y="16" width="281" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWe-EN-UJN" customClass="GCLabelSmallText">
-                        <rect key="frame" x="48" y="29" width="254" height="15"/>
+                        <rect key="frame" x="48" y="37" width="281" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="ZCm-0b-qtW" customClass="GCImageView">
-                        <rect key="frame" x="297" y="8" width="30" height="30"/>
+                        <rect key="frame" x="329" y="20" width="30" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="7yA-Xi-tdC"/>
-                            <constraint firstAttribute="width" constant="30" id="WnO-IW-sMq"/>
+                            <constraint firstAttribute="width" constant="30" id="E6U-GX-d89"/>
+                            <constraint firstAttribute="height" constant="30" id="wEG-dJ-Y7J"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="WGu-HD-wS0" firstAttribute="leading" secondItem="3BA-6X-KFm" secondAttribute="leadingMargin" constant="40" id="2Kd-0J-d3t"/>
-                    <constraint firstItem="dWe-EN-UJN" firstAttribute="top" secondItem="WGu-HD-wS0" secondAttribute="bottom" id="BOz-kK-QdC"/>
-                    <constraint firstItem="dWe-EN-UJN" firstAttribute="leading" secondItem="3BA-6X-KFm" secondAttribute="leadingMargin" constant="40" id="CJX-8J-SHr"/>
-                    <constraint firstItem="dWe-EN-UJN" firstAttribute="bottom" secondItem="3BA-6X-KFm" secondAttribute="bottomMargin" id="JcE-qQ-4mb"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="dWe-EN-UJN" secondAttribute="trailing" constant="65" id="LD4-Y6-UFh"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="WGu-HD-wS0" secondAttribute="trailing" constant="65" id="TM9-Zc-6Zn"/>
-                    <constraint firstItem="ZCm-0b-qtW" firstAttribute="top" secondItem="3BA-6X-KFm" secondAttribute="topMargin" id="bM4-Wa-bMv"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="ZCm-0b-qtW" secondAttribute="trailing" constant="40" id="nAm-Ih-ALo"/>
-                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="ZCm-0b-qtW" secondAttribute="bottom" constant="8" id="plY-Mk-NAC"/>
-                    <constraint firstItem="WGu-HD-wS0" firstAttribute="top" secondItem="3BA-6X-KFm" secondAttribute="topMargin" id="ytb-bY-O7o"/>
+                    <constraint firstItem="dWe-EN-UJN" firstAttribute="leading" secondItem="WGu-HD-wS0" secondAttribute="leading" id="6XY-cL-FwD"/>
+                    <constraint firstItem="ZCm-0b-qtW" firstAttribute="leading" secondItem="WGu-HD-wS0" secondAttribute="trailing" id="6my-rD-zOi"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="dWe-EN-UJN" secondAttribute="bottom" constant="8" id="IB9-b1-kva"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ZCm-0b-qtW" secondAttribute="trailing" constant="8" id="Kna-hK-Seo"/>
+                    <constraint firstItem="dWe-EN-UJN" firstAttribute="top" secondItem="WGu-HD-wS0" secondAttribute="bottom" id="MDz-7C-qZ1"/>
+                    <constraint firstItem="ZCm-0b-qtW" firstAttribute="centerY" secondItem="3BA-6X-KFm" secondAttribute="centerY" id="MY6-1Z-L7G"/>
+                    <constraint firstItem="WGu-HD-wS0" firstAttribute="top" secondItem="3BA-6X-KFm" secondAttribute="topMargin" constant="8" id="NYk-b9-5gZ"/>
+                    <constraint firstItem="dWe-EN-UJN" firstAttribute="trailing" secondItem="WGu-HD-wS0" secondAttribute="trailing" id="iaJ-3G-ejr"/>
+                    <constraint firstItem="WGu-HD-wS0" firstAttribute="leading" secondItem="3BA-6X-KFm" secondAttribute="leadingMargin" constant="40" id="pAs-Sf-mBH"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -57,7 +56,7 @@
                 <outlet property="myImageView" destination="ZCm-0b-qtW" id="9KI-uE-mFI"/>
                 <outlet property="myTextLabel" destination="WGu-HD-wS0" id="JgT-fG-P0U"/>
             </connections>
-            <point key="canvasLocation" x="2.5" y="41"/>
+            <point key="canvasLocation" x="2.5" y="49"/>
         </tableViewCell>
     </objects>
 </document>

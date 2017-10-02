@@ -24,13 +24,13 @@
 @property (nonatomic, retain) IBOutlet UIImageView *ivContainer;
 @property (nonatomic, retain) IBOutlet UIImageView *ivSize;
 @property (nonatomic, retain) IBOutlet UIImageView *ivFavourites;
-@property (nonatomic, retain) IBOutlet GCLabel *labelLatLon;
-@property (nonatomic, retain) IBOutlet GCLabel *labelBearDis;
-@property (nonatomic, retain) IBOutlet GCLabel *labelLocation;
-@property (nonatomic, retain) IBOutlet GCLabel *labelRatingD;
-@property (nonatomic, retain) IBOutlet GCLabel *labelRatingT;
+@property (nonatomic, retain) IBOutlet GCLabelSmallText *labelLatLon;
+@property (nonatomic, retain) IBOutlet GCLabelSmallText *labelBearDis;
+@property (nonatomic, retain) IBOutlet GCLabelSmallText *labelLocation;
+@property (nonatomic, retain) IBOutlet GCLabelSmallText *labelRatingD;
+@property (nonatomic, retain) IBOutlet GCLabelSmallText *labelRatingT;
 @property (nonatomic, retain) IBOutlet GCLabel *labelFavourites;
-@property (nonatomic, retain) IBOutlet GCLabel *labelSize;
+@property (nonatomic, retain) IBOutlet GCLabelSmallText *labelSize;
 
 @end
 

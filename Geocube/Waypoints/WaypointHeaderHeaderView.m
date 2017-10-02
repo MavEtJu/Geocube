@@ -21,10 +21,10 @@
 
 @interface WaypointHeaderHeaderView ()
 
-@property (weak, nonatomic) IBOutlet GCLabel *labelName;
-@property (weak, nonatomic) IBOutlet GCLabel *labelWhoWhen;
-@property (weak, nonatomic) IBOutlet GCLabel *labelCode;
-@property (weak, nonatomic) IBOutlet GCLabel *labelLastImport;
+@property (weak, nonatomic) IBOutlet GCLabelNormalText *labelName;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *labelWhoWhen;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *labelCode;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *labelLastImport;
 
 @end
 

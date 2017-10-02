@@ -115,9 +115,10 @@ enum {
 
     // You'd expect this to be done programatically....
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
-        headerCellHeight = 82;
+        headerCellHeight = 84;
     else
         headerCellHeight = 60;
+    headerCellHeight = currentTheme.GCLabelNormalSizeFont.lineHeight + 3 * currentTheme.GCLabelSmallSizeFont.lineHeight;
 
     [self reloadDataMainQueue];
 }
