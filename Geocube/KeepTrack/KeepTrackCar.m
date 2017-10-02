@@ -36,13 +36,13 @@
     CGRect rectButtonRemember;
     CGRect rectButtonSetAsTarget;
 
-    GCLabel *labelRecordedLocation;
-    GCLabel *labelRecordedLocationCoordinates;
-    GCLabel *labelCurrentLocation;
-    GCLabel *labelCurrentLocationCoordinates;
-    GCLabel *labelDistance;
-    GCLabel *labelDirection;
-    UIButton *buttonSetAsTarget;
+    GCLabelNormalText *labelRecordedLocation;
+    GCLabelNormalText *labelRecordedLocationCoordinates;
+    GCLabelNormalText *labelCurrentLocation;
+    GCLabelNormalText *labelCurrentLocationCoordinates;
+    GCLabelNormalText *labelDistance;
+    GCLabelNormalText *labelDirection;
+    GCButton *buttonSetAsTarget;
 }
 
 @end
@@ -79,33 +79,33 @@ enum {
 
     [self calculateRects];
 
-    labelRecordedLocation = [[GCLabel alloc] initWithFrame:rectRecordedLocation];
+    labelRecordedLocation = [[GCLabelNormalText alloc] initWithFrame:rectRecordedLocation];
     labelRecordedLocation.textAlignment = NSTextAlignmentCenter;
     labelRecordedLocation.text = [NSString stringWithFormat:@"%@:", _(@"keeptrackcar-Remembered coordinates")];
     [self.view addSubview:labelRecordedLocation];
 
-    labelRecordedLocationCoordinates = [[GCLabel alloc] initWithFrame:rectRecordedLocationCoordinates];
+    labelRecordedLocationCoordinates = [[GCLabelNormalText alloc] initWithFrame:rectRecordedLocationCoordinates];
     labelRecordedLocationCoordinates.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:labelRecordedLocationCoordinates];
 
-    labelCurrentLocation = [[GCLabel alloc] initWithFrame:rectCurrentLocation];
+    labelCurrentLocation = [[GCLabelNormalText alloc] initWithFrame:rectCurrentLocation];
     labelCurrentLocation.textAlignment = NSTextAlignmentCenter;
     labelCurrentLocation.text = [NSString stringWithFormat:@"%@:", _(@"keeptrackcar-Current coordinates")];
     [self.view addSubview:labelCurrentLocation];
 
-    labelCurrentLocationCoordinates = [[GCLabel alloc] initWithFrame:rectCurrentLocationCoordinates];
+    labelCurrentLocationCoordinates = [[GCLabelNormalText alloc] initWithFrame:rectCurrentLocationCoordinates];
     labelCurrentLocationCoordinates.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:labelCurrentLocationCoordinates];
 
-    labelDistance = [[GCLabel alloc] initWithFrame:rectDistance];
+    labelDistance = [[GCLabelNormalText alloc] initWithFrame:rectDistance];
     labelDistance.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:labelDistance];
 
-    labelDirection = [[GCLabel alloc] initWithFrame:rectDirection];
+    labelDirection = [[GCLabelNormalText alloc] initWithFrame:rectDirection];
     labelDirection.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:labelDirection];
 
-    buttonSetAsTarget = [UIButton buttonWithType:UIButtonTypeSystem];
+    buttonSetAsTarget = [GCButton buttonWithType:UIButtonTypeSystem];
     buttonSetAsTarget.frame = rectButtonSetAsTarget;
     [buttonSetAsTarget setTitle:_(@"keeptrackcar-Set remembered coordinates as target") forState:UIControlStateNormal];
     [buttonSetAsTarget addTarget:self action:@selector(setastarget:) forControlEvents:UIControlEventTouchDown];

@@ -21,12 +21,12 @@
 
 #import "GCTableViewCellRightImageDisclosure.h"
 
-#import "BaseObjectsLibrary/GCLabel.h"
+#import "BaseObjectsLibrary/GCLabelNormalText.h"
 #import "BaseObjectsLibrary/GCImageView.h"
 
 @interface GCTableViewCellRightImageDisclosure ()
 
-@property (nonatomic, weak) IBOutlet GCLabel *myTextLabel;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *myTextLabel;
 @property (nonatomic, weak) IBOutlet GCImageView *myImageView;
 
 @end

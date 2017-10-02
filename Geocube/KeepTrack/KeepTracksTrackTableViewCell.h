@@ -21,10 +21,13 @@
 
 #define XIB_KEEPTRACKSTRACKTABLEVIEWCELL @"KeepTracksTrackTableViewCell"
 
+@class GCLabelNormalText;
+@class GCLabelSmallText;
+
 @interface KeepTracksTrackTableViewCell : GCTableViewCell
 
-@property (weak, nonatomic) IBOutlet GCLabel *labelTrackName;
-@property (weak, nonatomic) IBOutlet GCLabel *labelDateTimeStart;
-@property (weak, nonatomic) IBOutlet GCLabel *labelDistance;
+@property (weak, nonatomic) IBOutlet GCLabelNormalText *labelTrackName;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *labelDateTimeStart;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *labelDistance;
 
 @end

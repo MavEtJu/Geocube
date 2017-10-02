@@ -23,7 +23,7 @@
 
 @interface WaypointLogsTableViewCell : GCTableViewCell
 
-@property (weak, nonatomic) IBOutlet GCLabel *logs;
+@property (weak, nonatomic) IBOutlet GCLabelNormalText *logs;
 @property (weak, nonatomic) IBOutlet GCImageView *image0;
 @property (weak, nonatomic) IBOutlet GCImageView *image1;
 @property (weak, nonatomic) IBOutlet GCImageView *image2;
