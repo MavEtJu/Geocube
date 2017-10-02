@@ -22,7 +22,7 @@
 
 #import "GCTableViewCellKeyValue.h"
 
-#import "BaseObjectsLibrary/GCLabel.h"
+#import "BaseObjectsLibrary/GCLabelNormalText.h"
 
 @interface GCTableViewCellKeyValue ()
 

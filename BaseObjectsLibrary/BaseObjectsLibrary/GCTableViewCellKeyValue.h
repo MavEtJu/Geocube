@@ -21,13 +21,13 @@
 
 #import "GCTableViewCell.h"
 
-@class GCLabel;
+@class GCLabelNormalText;
 
 #define XIB_GCTABLEVIEWCELLKEYVALUE @"GCTableViewCellKeyValue"
 
 @interface GCTableViewCellKeyValue : GCTableViewCell
 
-@property (weak, nonatomic) IBOutlet GCLabel *keyLabel;
-@property (weak, nonatomic) IBOutlet GCLabel *valueLabel;
+@property (weak, nonatomic) IBOutlet GCLabelNormalText *keyLabel;
+@property (weak, nonatomic) IBOutlet GCLabelNormalText *valueLabel;
 
 @end

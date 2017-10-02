@@ -47,7 +47,9 @@
 - (void)changeTheme
 {
     self.textLabel.textColor = currentTheme.labelTextColor;
+    self.textLabel.font = currentTheme.GCLabelNormalSizeFont;
     self.detailTextLabel.textColor = currentTheme.labelTextColor;
+    self.detailTextLabel.font = currentTheme.GCLabelSmallSizeFont;
     self.backgroundColor = [UIColor clearColor];
 
     [themeManager changeThemeArray:self.subviews];

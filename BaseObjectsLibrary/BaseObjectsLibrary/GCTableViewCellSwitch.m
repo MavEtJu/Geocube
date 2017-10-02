@@ -21,12 +21,12 @@
 
 #import "GCTableViewCellSwitch.h"
 
-#import "BaseObjectsLibrary/GCLabel.h"
+#import "BaseObjectsLibrary/GCLabelNormalText.h"
 #import "BaseObjectsLibrary/GCSwitch.h"
 
 @interface GCTableViewCellSwitch ()
 
-@property (nonatomic, weak) IBOutlet GCLabel *myTextLabel;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *myTextLabel;
 
 @end
 

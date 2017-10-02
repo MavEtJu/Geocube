@@ -21,13 +21,14 @@
 
 #import "GCTableViewCellSubtitleRightImage.h"
 
-#import "BaseObjectsLibrary/GCLabel.h"
+#import "BaseObjectsLibrary/GCLabelNormalText.h"
+#import "BaseObjectsLibrary/GCLabelSmallText.h"
 #import "BaseObjectsLibrary/GCImageView.h"
 
 @interface GCTableViewCellSubtitleRightImage ()
 
-@property (nonatomic, weak) IBOutlet GCLabel *myTextLabel;
-@property (nonatomic, weak) IBOutlet GCLabel *myDetailTextLabel;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *myTextLabel;
+@property (nonatomic, weak) IBOutlet GCLabelSmallText *myDetailTextLabel;
 @property (nonatomic, weak) IBOutlet GCImageView *myImageView;
 
 @end
