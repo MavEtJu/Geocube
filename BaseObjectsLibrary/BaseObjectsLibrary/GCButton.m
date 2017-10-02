@@ -41,6 +41,7 @@
 - (void)changeTheme
 {
     [themeManager changeThemeArray:self.subviews];
+    self.titleLabel.font = currentTheme.GCLabelSmallSizeFont;
 }
 
 @end

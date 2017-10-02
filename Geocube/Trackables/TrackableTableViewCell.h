@@ -23,10 +23,10 @@
 
 #define XIB_TRACKABLETABLEVIEWCELL  @"TrackableTableViewCell"
 
-@property (weak, nonatomic) IBOutlet GCLabel *name;
-@property (weak, nonatomic) IBOutlet GCLabel *code;
-@property (weak, nonatomic) IBOutlet GCLabel *carrier;
-@property (weak, nonatomic) IBOutlet GCLabel *owner;
-@property (weak, nonatomic) IBOutlet GCLabel *waypoint;
+@property (weak, nonatomic) IBOutlet GCLabelNormalText *name;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *code;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *carrier;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *owner;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *waypoint;
 
 @end

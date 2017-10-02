@@ -23,12 +23,12 @@
 
 @interface StatisticsTableViewCell : GCTableViewCell
 
-@property (weak, nonatomic) IBOutlet GCLabel *site;
-@property (weak, nonatomic) IBOutlet GCLabel *status;
-@property (weak, nonatomic) IBOutlet GCLabel *wpsFound;
-@property (weak, nonatomic) IBOutlet GCLabel *wpsHidden;
-@property (weak, nonatomic) IBOutlet GCLabel *wpsDNF;
-@property (weak, nonatomic) IBOutlet GCLabel *recommendationsGiven;
-@property (weak, nonatomic) IBOutlet GCLabel *recommendationsReceived;
+@property (weak, nonatomic) IBOutlet GCLabelNormalText *site;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *status;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *wpsFound;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *wpsHidden;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *wpsDNF;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *recommendationsGiven;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *recommendationsReceived;
 
 @end
