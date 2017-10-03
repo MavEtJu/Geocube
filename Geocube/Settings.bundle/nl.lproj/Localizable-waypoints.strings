@@ -69,6 +69,7 @@
 "filtertexttableviewcell-Owner" = "Eigenaar";
 "filtertexttableviewcell-State" = "Provincie/Staat";
 "filtertexttableviewcell-Waypoint name" = "Waypoint naam";
+"filterterraintableviewcell-Terrain rating" = "Terrein beoordeling";
 
 /* Waypoints - List */
 "waypointslistviewcontroller-Are you sure?" = "Zeker weten?";

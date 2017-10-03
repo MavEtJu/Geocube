@@ -50,6 +50,7 @@
 @class FilterFavouritesTableViewCell;
 @class FilterFlagsTableViewCell;
 @class FilterGroupsTableViewCell;
+@class FilterHeaderTableViewCell;
 @class FilterObject;
 @class FilterOthersTableViewCell;
 @class FilterSizesTableViewCell;

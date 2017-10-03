@@ -434,6 +434,7 @@
 		E876ECB41F7E5396002A368E /* menu icon - global - default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E876ECB01F7E5396002A368E /* menu icon - global - default@3x.png */; };
 		E876ECB51F7E5396002A368E /* menu icon - local - default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E876ECB11F7E5396002A368E /* menu icon - local - default@2x.png */; };
 		E876ECB61F7E5396002A368E /* menu icon - local - default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E876ECB21F7E5396002A368E /* menu icon - local - default@3x.png */; };
+		E87ED16E1F843FBD00DE8E9B /* FilterTerrainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87ED16D1F843FBD00DE8E9B /* FilterTerrainTableViewCell.xib */; };
 		E881CA8A1F6BB11B00A17060 /* libToolsLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CA891F6BB11A00A17060 /* libToolsLibrary.a */; };
 		E881CAD91F6BB2C200A17060 /* libManagersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CAD21F6BB1C600A17060 /* libManagersLibrary.a */; };
 		E881CB131F6BDC4D00A17060 /* libThemesLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CB061F6BDA7000A17060 /* libThemesLibrary.a */; };
@@ -1274,6 +1275,7 @@
 		E876ECB11F7E5396002A368E /* menu icon - local - default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local - default@2x.png"; path = "images/menu/menu icon - local - default@2x.png"; sourceTree = "<group>"; };
 		E876ECB21F7E5396002A368E /* menu icon - local - default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local - default@3x.png"; path = "images/menu/menu icon - local - default@3x.png"; sourceTree = "<group>"; };
 		E879F9CB1B7B527200220EA7 /* Geocube.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Geocube.entitlements; sourceTree = "<group>"; };
+		E87ED16D1F843FBD00DE8E9B /* FilterTerrainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTerrainTableViewCell.xib; path = Filters/FilterTerrainTableViewCell.xib; sourceTree = "<group>"; };
 		E87FE7951EFFD25F009FA65B /* Geocube-defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-defines.h"; sourceTree = "<group>"; };
 		E881CA4F1F6B9CC400A17060 /* Geocube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geocube.h; sourceTree = "<group>"; };
 		E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ToolsLibrary.xcodeproj; path = ToolsLibrary/ToolsLibrary.xcodeproj; sourceTree = "<group>"; };
@@ -2629,6 +2631,7 @@
 				E823441C1EECDFB300D2CDFD /* FilterSizesTableViewCell.m */,
 				E82344211EECDFB300D2CDFD /* FilterTerrainTableViewCell.h */,
 				E82344221EECDFB300D2CDFD /* FilterTerrainTableViewCell.m */,
+				E87ED16D1F843FBD00DE8E9B /* FilterTerrainTableViewCell.xib */,
 				E82344231EECDFB300D2CDFD /* FilterTextTableViewCell.h */,
 				E82344241EECDFB300D2CDFD /* FilterTextTableViewCell.m */,
 				E82344251EECDFB300D2CDFD /* FilterTypesTableViewCell.h */,
@@ -3438,6 +3441,7 @@
 				E82E66261DA07A5500CFBDED /* menu icon - show both.png in Resources */,
 				E8F403E81DAF5B2600318CC6 /* cache - reverse - 30x30.png in Resources */,
 				E82E66D81DA07CBE00CFBDED /* cache - trigpoint - 30x30.png in Resources */,
+				E87ED16E1F843FBD00DE8E9B /* FilterTerrainTableViewCell.xib in Resources */,
 				E82E674E1DA07D0200CFBDED /* attributes - 36.png in Resources */,
 				E82E667B1DA07C6F00CFBDED /* compass - airplane - airplane.png in Resources */,
 				E83C6F151EEE8B6C00E303F5 /* NoticeTableViewCell.xib in Resources */,

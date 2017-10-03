@@ -80,3 +80,5 @@
 "filtertexttableviewcell-Owner" = "Owner";
 "filtertexttableviewcell-State" = "State";
 "filtertexttableviewcell-Waypoint name" = "Waypoint name";
+"filterterraintableviewcell-Terrain rating" = "Terrain rating";
+
