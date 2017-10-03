@@ -21,58 +21,39 @@
 
 @interface FilterFavouritesTableViewCell ()
 {
-    RangeSlider *slider;
-    GCLabel *sliderLabel;
     NSInteger config_min, config_max;
 }
+
+@property (nonatomic, weak) IBOutlet RangeSlider *slider;
+@property (nonatomic, weak) IBOutlet GCLabelSmallText *labelSlider;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
 
 @end
 
 @implementation FilterFavouritesTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo
+- (void)awakeFromNib
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    fo = _fo;
+    [super awakeFromNib];
+    [self changeTheme];
 
-    [self configInit];
-    [self header];
-
-    CGRect rect;
-    NSInteger y = cellHeight;
-
-    if (fo.expanded == NO) {
-        [self.contentView sizeToFit];
-        fo.cellHeight = cellHeight = y;
-        return self;
-    }
-
-    sliderLabel = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
-    sliderLabel.text = _(@"filterfavouritestableviewcell-Favourites: At least 0");
-    sliderLabel.textAlignment = NSTextAlignmentCenter;
-    sliderLabel.frame = CGRectMake(20, y, width - 40, sliderLabel.font.lineHeight);
-    [self.contentView addSubview:sliderLabel];
-    y += sliderLabel.frame.size.height;
-
-    rect = CGRectMake(20, y, width - 40, 15);
-    slider = [[RangeSlider alloc] initWithFrame:rect];
-    slider.minimumRangeLength = 0.00;
-    [slider setMinThumbImage:[UIImage imageNamed:@"rangethumb.png"]];
-    [slider setMaxThumbImage:[UIImage imageNamed:@"rangethumb.png"]];
-    [slider setTrackImage:[[UIImage imageNamed:@"fullrange.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(9.0, 9.0, 9.0, 9.0)]];
+    self.slider.minimumRangeLength = .00;
+    [self.slider setMinThumbImage:[UIImage imageNamed:@"rangethumb.png"]];
+    [self.slider setMaxThumbImage:[UIImage imageNamed:@"rangethumb.png"]];
+    [self.slider setTrackImage:[[UIImage imageNamed:@"fullrange.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(9.0, 9.0, 9.0, 9.0)]];
     UIImage *image = [UIImage imageNamed:@"fillrange.png"];
-    [slider addTarget:self action:@selector(reportSlider:) forControlEvents:UIControlEventValueChanged];
-    [slider setInRangeTrackImage:image];
-    slider.min = config_min / 100.0;
-    slider.max = config_max / 100.0;
-    [self.contentView addSubview:slider];
+    [self.slider addTarget:self action:@selector(reportSlider:) forControlEvents:UIControlEventValueChanged];
+    [self.slider setInRangeTrackImage:image];
+    self.slider.min = config_min / 100.0;
+    self.slider.max = config_max / 100.0;
+
     [self reportSlider:nil];
-    y += 35;
+}
 
-    [self.contentView sizeToFit];
-    fo.cellHeight = cellHeight = y;
-
-    return self;
+- (void)changeTheme
+{
+    [self.labelSlider changeTheme];
+    [self.labelHeader changeTheme];
 }
 
 #pragma mark -- configuration
@@ -80,6 +61,8 @@
 - (void)configInit
 {
     [super configInit];
+
+    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), fo.name];
 
     NSString *s;
     s = [self configGet:@"min"];
@@ -117,23 +100,25 @@
 
 - (void)reportSlider:(RangeSlider *)s
 {
-    config_min = (int)(100 * slider.min);
-    config_max = (int)(100 * slider.max);
-    [self configUpdate];
+    if (s != nil) {
+        config_min = (int)(100 * s.min);
+        config_max = (int)(100 * s.max);
+        [self configUpdate];
+    }
 
     NSString *minString = [NSString stringWithFormat:@"%ld", (long)config_min];
     NSString *maxString = [NSString stringWithFormat:@"%ld", (long)config_max];
 
     if (config_min == 0 && config_max == 100)
-        sliderLabel.text = _(@"filterfavouritestableviewcell-Favourites: Anything");
+        self.labelSlider.text = _(@"filterfavouritestableviewcell-Favourites: Anything");
     else if (config_min == config_max)
-        sliderLabel.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: %@"), minString];
+        self.labelSlider.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: %@"), minString];
     else if (config_max == 100)
-        sliderLabel.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: At least %@"), minString];
+        self.labelSlider.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: At least %@"), minString];
     else if (config_min == 0)
-        sliderLabel.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: At most %@"), maxString];
+        self.labelSlider.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: At most %@"), maxString];
     else
-        sliderLabel.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: Between %@ and %@"), minString, maxString];
+        self.labelSlider.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: Between %@ and %@"), minString, maxString];
 }
 
 @end

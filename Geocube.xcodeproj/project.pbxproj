@@ -435,6 +435,7 @@
 		E876ECB51F7E5396002A368E /* menu icon - local - default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E876ECB11F7E5396002A368E /* menu icon - local - default@2x.png */; };
 		E876ECB61F7E5396002A368E /* menu icon - local - default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E876ECB21F7E5396002A368E /* menu icon - local - default@3x.png */; };
 		E87ED16E1F843FBD00DE8E9B /* FilterTerrainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87ED16D1F843FBD00DE8E9B /* FilterTerrainTableViewCell.xib */; };
+		E87ED1701F8445C500DE8E9B /* FilterFavouritesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87ED16F1F8445C500DE8E9B /* FilterFavouritesTableViewCell.xib */; };
 		E881CA8A1F6BB11B00A17060 /* libToolsLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CA891F6BB11A00A17060 /* libToolsLibrary.a */; };
 		E881CAD91F6BB2C200A17060 /* libManagersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CAD21F6BB1C600A17060 /* libManagersLibrary.a */; };
 		E881CB131F6BDC4D00A17060 /* libThemesLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CB061F6BDA7000A17060 /* libThemesLibrary.a */; };
@@ -1276,6 +1277,7 @@
 		E876ECB21F7E5396002A368E /* menu icon - local - default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local - default@3x.png"; path = "images/menu/menu icon - local - default@3x.png"; sourceTree = "<group>"; };
 		E879F9CB1B7B527200220EA7 /* Geocube.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Geocube.entitlements; sourceTree = "<group>"; };
 		E87ED16D1F843FBD00DE8E9B /* FilterTerrainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTerrainTableViewCell.xib; path = Filters/FilterTerrainTableViewCell.xib; sourceTree = "<group>"; };
+		E87ED16F1F8445C500DE8E9B /* FilterFavouritesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterFavouritesTableViewCell.xib; path = Filters/FilterFavouritesTableViewCell.xib; sourceTree = "<group>"; };
 		E87FE7951EFFD25F009FA65B /* Geocube-defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-defines.h"; sourceTree = "<group>"; };
 		E881CA4F1F6B9CC400A17060 /* Geocube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geocube.h; sourceTree = "<group>"; };
 		E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ToolsLibrary.xcodeproj; path = ToolsLibrary/ToolsLibrary.xcodeproj; sourceTree = "<group>"; };
@@ -2621,6 +2623,7 @@
 				E82344101EECDFB300D2CDFD /* FilterDistanceTableViewCell.m */,
 				E82344111EECDFB300D2CDFD /* FilterFavouritesTableViewCell.h */,
 				E82344121EECDFB300D2CDFD /* FilterFavouritesTableViewCell.m */,
+				E87ED16F1F8445C500DE8E9B /* FilterFavouritesTableViewCell.xib */,
 				E82344131EECDFB300D2CDFD /* FilterFlagsTableViewCell.h */,
 				E82344141EECDFB300D2CDFD /* FilterFlagsTableViewCell.m */,
 				E82344151EECDFB300D2CDFD /* FilterGroupsTableViewCell.h */,
@@ -3438,6 +3441,7 @@
 				E82E66D91DA07CBE00CFBDED /* cache - trigpoint - 30x30@2x.png in Resources */,
 				E84E88821F6CF943004F4BE9 /* GCTableViewCellRightImage~ipad.xib in Resources */,
 				E8FEDED61DA8EEE9007C756B /* cache - burke-wills - 30x30@2x.png in Resources */,
+				E87ED1701F8445C500DE8E9B /* FilterFavouritesTableViewCell.xib in Resources */,
 				E82E66261DA07A5500CFBDED /* menu icon - show both.png in Resources */,
 				E8F403E81DAF5B2600318CC6 /* cache - reverse - 30x30.png in Resources */,
 				E82E66D81DA07CBE00CFBDED /* cache - trigpoint - 30x30.png in Resources */,
