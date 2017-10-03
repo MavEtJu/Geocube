@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		044933CB1F748525006B38EC /* SimpleCoverageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044933CA1F748525006B38EC /* SimpleCoverageTest.swift */; };
 		E804139D1E9EFF6D001FD7BF /* GC - logo - 512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = E804139C1E9EFF6D001FD7BF /* GC - logo - 512x512.png */; };
 		E804139F1E9F984E001FD7BF /* Menu - 640x623.png in Resources */ = {isa = PBXBuildFile; fileRef = E804139E1E9F984E001FD7BF /* Menu - 640x623.png */; };
 		E80732FB1B633A74007FDC29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732FA1B633A74007FDC29 /* main.m */; };
@@ -564,6 +565,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		044933C51F7484F6006B38EC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8F5704B1B3F7255003F020C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E8F570521B3F7255003F020C;
+			remoteInfo = Geocube;
+		};
 		E80CD3741F6F6175000AA10C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */;
@@ -722,6 +730,9 @@
 
 /* Begin PBXFileReference section */
 		0087F95E865F48AD94ADB39B /* Pods-Geocube.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Geocube.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Geocube/Pods-Geocube.debug.xcconfig"; sourceTree = "<group>"; };
+		044933C01F7484F6006B38EC /* GeocubeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeocubeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		044933C41F7484F6006B38EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		044933CA1F748525006B38EC /* SimpleCoverageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCoverageTest.swift; sourceTree = "<group>"; };
 		237ED37D295689D607775605 /* Pods-Geocube.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Geocube.release.xcconfig"; path = "Pods/Target Support Files/Pods-Geocube/Pods-Geocube.release.xcconfig"; sourceTree = "<group>"; };
 		88880BCD488967D0BA49FBE0 /* libPods-Geocube.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Geocube.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E804139C1E9EFF6D001FD7BF /* GC - logo - 512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 512x512.png"; path = "images/introduction/GC - logo - 512x512.png"; sourceTree = "<group>"; };
@@ -1411,6 +1422,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		044933BD1F7484F6006B38EC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E80732F51B633A74007FDC29 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1460,6 +1478,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		044933C11F7484F6006B38EC /* GeocubeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				044933CA1F748525006B38EC /* SimpleCoverageTest.swift */,
+				044933C41F7484F6006B38EC /* Info.plist */,
+			);
+			path = GeocubeUITests;
+			sourceTree = "<group>";
+		};
 		6917C4AD2B052674BDDB3A0D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2644,6 +2671,7 @@
 				E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */,
 				E8F570551B3F7255003F020C /* Geocube */,
 				E80732F91B633A74007FDC29 /* objects */,
+				044933C11F7484F6006B38EC /* GeocubeUITests */,
 				E8F570541B3F7255003F020C /* Products */,
 				6917C4AD2B052674BDDB3A0D /* Frameworks */,
 				E8F570B91B3FF668003F020C /* System Libraries */,
@@ -2658,6 +2686,7 @@
 				E8F5706C1B3F7255003F020C /* GeocubeTests.xctest */,
 				E80732F81B633A74007FDC29 /* objects */,
 				E8E8CFF11B64FAC900CC741A /* tests */,
+				044933C01F7484F6006B38EC /* GeocubeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2764,6 +2793,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		044933BF1F7484F6006B38EC /* GeocubeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 044933C91F7484F6006B38EC /* Build configuration list for PBXNativeTarget "GeocubeUITests" */;
+			buildPhases = (
+				044933BC1F7484F6006B38EC /* Sources */,
+				044933BD1F7484F6006B38EC /* Frameworks */,
+				044933BE1F7484F6006B38EC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				044933C61F7484F6006B38EC /* PBXTargetDependency */,
+			);
+			name = GeocubeUITests;
+			productName = GeocubeUITests;
+			productReference = 044933C01F7484F6006B38EC /* GeocubeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		E80732F71B633A74007FDC29 /* objects */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E80732FC1B633A74007FDC29 /* Build configuration list for PBXNativeTarget "objects" */;
@@ -2851,9 +2898,16 @@
 		E8F5704B1B3F7255003F020C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Edwin Groothuis";
 				TargetAttributes = {
+					044933BF1F7484F6006B38EC = {
+						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+						TestTargetID = E8F570521B3F7255003F020C;
+					};
 					E80732F71B633A74007FDC29 = {
 						CreatedOnToolsVersion = 6.4;
 					};
@@ -2939,6 +2993,7 @@
 				E8F5706B1B3F7255003F020C /* GeocubeTests */,
 				E80732F71B633A74007FDC29 /* objects */,
 				E8E8CFF01B64FAC900CC741A /* tests */,
+				044933BF1F7484F6006B38EC /* GeocubeUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -3010,6 +3065,13 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		044933BE1F7484F6006B38EC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E8F570511B3F7255003F020C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3497,6 +3559,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		044933BC1F7484F6006B38EC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				044933CB1F748525006B38EC /* SimpleCoverageTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E80732F41B633A74007FDC29 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3642,6 +3712,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		044933C61F7484F6006B38EC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E8F570521B3F7255003F020C /* Geocube */;
+			targetProxy = 044933C51F7484F6006B38EC /* PBXContainerItemProxy */;
+		};
 		E831D69D1F6F9BBD005D3ECA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BaseObjectsLibrary;
@@ -3706,6 +3781,68 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		044933C71F7484F6006B38EC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = GeocubeUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.mavetju.GeocubeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Geocube;
+			};
+			name = Debug;
+		};
+		044933C81F7484F6006B38EC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = GeocubeUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.mavetju.GeocubeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Geocube;
+			};
+			name = Release;
+		};
 		E80732FD1B633A74007FDC29 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3987,6 +4124,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		044933C91F7484F6006B38EC /* Build configuration list for PBXNativeTarget "GeocubeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				044933C71F7484F6006B38EC /* Debug */,
+				044933C81F7484F6006B38EC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E80732FC1B633A74007FDC29 /* Build configuration list for PBXNativeTarget "objects" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
