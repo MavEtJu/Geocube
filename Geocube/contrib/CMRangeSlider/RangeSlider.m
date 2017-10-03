@@ -22,35 +22,46 @@
 
 @synthesize min, max, minimumRangeLength;
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    NSLog(@"%@", [MyTools niceCGRect:self.frame]);
+    [self addPieces:self.frame];
+    return self;
+}
+
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, SLIDER_HEIGHT)])) {
-		
-		self.clipsToBounds = NO;
-		
-			// default values
-		min = 0.0;
-		max = 1.0;
-		minimumRangeLength = 0.0;
-				
-		backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, SLIDER_HEIGHT)];
-		backgroundImageView.contentMode = UIViewContentModeScaleToFill;
-		[self addSubview:backgroundImageView];
-		
-		trackImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 0, frame.size.width-10, SLIDER_HEIGHT)];
-		trackImageView.contentMode = UIViewContentModeScaleToFill;
-		
-		inRangeTrackImageView = [[UIImageView alloc] initWithFrame:CGRectMake(min*frame.size.width, 0, (max-min)*frame.size.width, SLIDER_HEIGHT)];
-		inRangeTrackImageView.contentMode = UIViewContentModeScaleToFill;
-
-		[self addSubview:trackImageView];
-		[self addSubview:inRangeTrackImageView];
-		
-		[self setupSliders];
-				
-		[self updateTrackImageViews];
-		
-	}
+        [self addPieces:self.frame];
+    }
     return self;
+}
+
+- (void)addPieces:(CGRect)frame
+{
+	self.clipsToBounds = NO;
+	
+		// default values
+	min = 0.0;
+	max = 1.0;
+	minimumRangeLength = 0.0;
+
+	backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, SLIDER_HEIGHT)];
+	backgroundImageView.contentMode = UIViewContentModeScaleToFill;
+	[self addSubview:backgroundImageView];
+	
+	trackImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 0, frame.size.width-10, SLIDER_HEIGHT)];
+	trackImageView.contentMode = UIViewContentModeScaleToFill;
+	
+	inRangeTrackImageView = [[UIImageView alloc] initWithFrame:CGRectMake(min*frame.size.width, 0, (max-min)*frame.size.width, SLIDER_HEIGHT)];
+	inRangeTrackImageView.contentMode = UIViewContentModeScaleToFill;
+
+	[self addSubview:trackImageView];
+	[self addSubview:inRangeTrackImageView];
+	
+	[self setupSliders];
+			
+	[self updateTrackImageViews];
 }
 
 - (void)setupSliders {
