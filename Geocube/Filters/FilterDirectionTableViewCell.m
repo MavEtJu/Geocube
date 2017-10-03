@@ -42,6 +42,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    [self changeTheme];
 
     directions = @[
                    _(@"compass-north"),
@@ -57,6 +58,14 @@
     self.labelDirection.text = _(@"filterdirectiontableviewcell-Direction");
     [self.buttonDirection addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
     [self clickDirection:nil];
+}
+
+- (void)changeTheme
+{
+    [super changeTheme];
+    [self.labelHeader changeTheme];
+    [self.labelDirection changeTheme];
+    [self.buttonDirection changeTheme];
 }
 
 #pragma mark -- configuration

@@ -35,6 +35,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    [self changeTheme];
 
     self.labelSlider.text = [NSString stringWithFormat:@"%@: 1 - 5", _(@"filterdifficultytableviewcell-Difficulty")];
     self.slider.minimumRangeLength = .00;
@@ -48,6 +49,12 @@
     self.slider.max = (config_max - 1) / 4.0;
 
     [self reportSlider:nil];
+}
+
+- (void)changeTheme
+{
+    [self.labelSlider changeTheme];
+    [self.labelHeader changeTheme];
 }
 
 #pragma mark -- configuration

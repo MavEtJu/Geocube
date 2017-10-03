@@ -33,16 +33,20 @@
 {
     FilterButton *button = [super buttonWithType:buttonType];
 
-    button.titleLabel.font = currentTheme.GCLabelNormalSizeFont;
-
     return button;
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self changeTheme];
 }
 
 - (void)changeTheme
 {
     [super changeTheme];
 
-    self.titleLabel.font = currentTheme.GCLabelSmallSizeFont;
+    self.titleLabel.font = currentTheme.GCLabelNormalSizeFont;
 }
 
 @end
