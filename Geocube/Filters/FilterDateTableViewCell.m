@@ -52,7 +52,7 @@
     }
 
     rect = CGRectMake(20, y, 0, 0);
-    l = [[GCLabelSmallText alloc] initWithFrame:rect];
+    l = [[GCLabelNormalText alloc] initWithFrame:rect];
     l.textAlignment = NSTextAlignmentLeft;
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdatetableviewcell-Placed on")];
     [l sizeToFit];
@@ -76,7 +76,7 @@
     y += l.font.lineHeight;
 
     rect = CGRectMake(20, y, 0, 0);
-    l = [[GCLabelSmallText alloc] initWithFrame:rect];
+    l = [[GCLabelNormalText alloc] initWithFrame:rect];
     l.textAlignment = NSTextAlignmentLeft;
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdatetableviewcell-Last log")];
     [l sizeToFit];
@@ -98,6 +98,8 @@
     [self dateWasSelected:[NSDate dateWithTimeIntervalSince1970:epochLastLog] element:buttonDateLastLog];
 
     y += l.font.lineHeight;
+
+    y += 15;
 
     [self.contentView sizeToFit];
     fo.cellHeight = cellHeight = y;

@@ -63,7 +63,7 @@
     }
 
     rect = CGRectMake(20, y, 0, 0);
-    l = [[GCLabelSmallText alloc] initWithFrame:rect];
+    l = [[GCLabelNormalText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Waypoint name")];
     l.textAlignment = NSTextAlignmentRight;
     [l sizeToFit];
@@ -79,7 +79,7 @@
     y += l.font.lineHeight;
 
     rect = CGRectMake(20, y, 0, 0);
-    l = [[GCLabelSmallText alloc] initWithFrame:rect];
+    l = [[GCLabelNormalText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Owner")];
     l.textAlignment = NSTextAlignmentRight;
     [l sizeToFit];
@@ -95,7 +95,7 @@
     y += l.font.lineHeight;
 
     rect = CGRectMake(20, y, 0, 0);
-    l = [[GCLabelSmallText alloc] initWithFrame:rect];
+    l = [[GCLabelNormalText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Locality")];
     l.textAlignment = NSTextAlignmentRight;
     [l sizeToFit];
@@ -111,7 +111,7 @@
     y += l.font.lineHeight;
 
     rect = CGRectMake(20, y, 0, 0);
-    l = [[GCLabelSmallText alloc] initWithFrame:rect];
+    l = [[GCLabelNormalText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-State")];
     l.textAlignment = NSTextAlignmentRight;
     [l sizeToFit];
@@ -127,7 +127,7 @@
     y += l.font.lineHeight;
 
     rect = CGRectMake(20, y, 0, 0);
-    l = [[GCLabelSmallText alloc] initWithFrame:rect];
+    l = [[GCLabelNormalText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Country")];
     l.textAlignment = NSTextAlignmentRight;
     [l sizeToFit];
@@ -143,7 +143,7 @@
     y += l.font.lineHeight;
 
     rect = CGRectMake(20, y, 0, 0);
-    l = [[GCLabelSmallText alloc] initWithFrame:rect];
+    l = [[GCLabelNormalText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Description")];
     l.textAlignment = NSTextAlignmentRight;
     [l sizeToFit];
@@ -159,7 +159,7 @@
     y += l.font.lineHeight;
 
     rect = CGRectMake(20, y, 0, 0);
-    l = [[GCLabelSmallText alloc] initWithFrame:rect];
+    l = [[GCLabelNormalText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Logs")];
     l.textAlignment = NSTextAlignmentRight;
     [l sizeToFit];
@@ -173,6 +173,8 @@
     [bLogs addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:bLogs];
     y += l.font.lineHeight;
+
+    y += 15;
 
     [self.contentView sizeToFit];
     fo.cellHeight = cellHeight = y;

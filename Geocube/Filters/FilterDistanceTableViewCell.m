@@ -52,7 +52,7 @@
     }
 
     rect = CGRectMake(40, y, 0, 0);
-    l = [[GCLabelSmallText alloc] initWithFrame:rect];
+    l = [[GCLabelNormalText alloc] initWithFrame:rect];
     l.textAlignment = NSTextAlignmentLeft;
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdistancetableviewcell-Distance")];
     [l sizeToFit];
@@ -61,7 +61,7 @@
     compareDistanceButton = [FilterButton buttonWithType:UIButtonTypeSystem];
     [compareDistanceButton addTarget:self action:@selector(clickCompare:) forControlEvents:UIControlEventTouchDown];
     [self.contentView addSubview:compareDistanceButton];
-    compareDistanceButton.frame = CGRectMake(l.frame.origin.x + l.frame.size.width + 20, y, 20, compareDistanceButton.titleLabel.font.lineHeight);
+    compareDistanceButton.frame = CGRectMake(l.frame.origin.x + l.frame.size.width + 20, y, 40, compareDistanceButton.titleLabel.font.lineHeight);
     [self clickCompare:compareDistanceButton];
     compareDistance--;
 
@@ -75,7 +75,7 @@
     y += 35;
 
     rect = CGRectMake(40, y, 0, 0);
-    l = [[GCLabelSmallText alloc] initWithFrame:rect];
+    l = [[GCLabelNormalText alloc] initWithFrame:rect];
     l.textAlignment = NSTextAlignmentLeft;
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdistancetableviewcell-Variation")];
     [l sizeToFit];

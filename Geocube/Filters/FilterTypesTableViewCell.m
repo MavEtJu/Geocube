@@ -59,12 +59,12 @@
             t.selected = [c boolValue];
 
         FilterButton *b = [FilterButton buttonWithType:UIButtonTypeSystem];
-        b.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        b.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
         [b setTitle:t.type_full forState:UIControlStateNormal];
         [b setTitleColor:(t.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b addTarget:self action:@selector(clickGroup:) forControlEvents:UIControlEventTouchDown];
         b.index = idx;
-        b.frame = CGRectMake(img.size.width + 30, y, width - img.size.width - 10, img.size.height);
+        b.frame = CGRectMake(img.size.width + 20, y, width - 2 * img.size.width - 2 * 20, img.size.height);
         [self.contentView addSubview:b];
 
         y += tv.frame.size.height;

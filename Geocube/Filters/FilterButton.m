@@ -33,7 +33,7 @@
 {
     FilterButton *button = [super buttonWithType:buttonType];
 
-    button.titleLabel.font = currentTheme.GCLabelSmallSizeFont;
+    button.titleLabel.font = currentTheme.GCLabelNormalSizeFont;
 
     return button;
 }

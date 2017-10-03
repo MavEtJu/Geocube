@@ -61,7 +61,7 @@
     }
 
     rect = CGRectMake(20, y, 0, 0);
-    l = [[GCLabelSmallText alloc] initWithFrame:rect];
+    l = [[GCLabelNormalText alloc] initWithFrame:rect];
     l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdirectiontableviewcell-Direction is")];
     l.textAlignment = NSTextAlignmentCenter;
     [l sizeToFit];
@@ -74,6 +74,8 @@
     [self.contentView addSubview:directionButton];
     [self clickDirection:nil];
     y += l.font.lineHeight;
+
+    y += 15;
 
     [self.contentView sizeToFit];
     fo.cellHeight = cellHeight = y;
