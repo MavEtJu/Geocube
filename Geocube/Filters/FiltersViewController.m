@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "FiltersViewController.h"
+
+#import "FilterHeaderTableViewCell.h"
+
 @interface FiltersViewController ()
 {
     NSMutableArray<FilterObject *> *filters;
@@ -62,30 +66,6 @@ enum {
 
     filters = [NSMutableArray arrayWithCapacity:15];
 
-#define MATCH(__i__, __s__) \
-    case __i__: \
-        [filters addObject:[FilterObject init:__s__]]; \
-        break
-
-    for (NSInteger i = 0; i < filterMax; i++) {
-        switch (i) {
-            MATCH(filterTypes, _(@"filtersviewcontroller-types"));
-            MATCH(filterGroups, _(@"filtersviewcontroller-groups"));
-            MATCH(filterFavourites, _(@"filtersviewcontroller-favourites"));
-            MATCH(filterSizes, _(@"filtersviewcontroller-sizes"));
-            MATCH(filterDifficulty, _(@"filtersviewcontroller-difficulty"));
-            MATCH(filterTerrain, _(@"filtersviewcontroller-terrain"));
-            MATCH(filterDistance, _(@"filtersviewcontroller-distance"));
-            MATCH(filterDirection, _(@"filtersviewcontroller-direction"));
-            MATCH(filterText, _(@"filtersviewcontroller-text"));
-            MATCH(filterDates, _(@"filtersviewcontroller-dates"));
-            MATCH(filterFlags, _(@"filtersviewcontroller-flags"));
-            MATCH(filterAccounts, _(@"filtersviewcontroller-accounts"));
-            default:
-                NSAssert1(FALSE, @"Unknown filter %ld", (long)i);
-        }
-    }
-
     return self;
 }
 
@@ -99,6 +79,39 @@ enum {
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
+
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERHEADERTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERHEADERTABLEVIEWCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERDIRECTIONTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERDIRECTIONTABLEVIEWCELL];
+
+#define MATCH(__idx__, __name__, __xib__) \
+    case __idx__: { \
+        FilterObject *fo = [[FilterObject alloc] init:__name__]; \
+        fo.tvcDisabled = [self.tableView dequeueReusableCellWithIdentifier:XIB_FILTERHEADERTABLEVIEWCELL]; \
+        [fo.tvcDisabled header:__name__]; \
+        fo.tvcEnabled = [self.tableView dequeueReusableCellWithIdentifier:__xib__]; \
+        [fo.tvcEnabled initFO:fo]; \
+        [filters addObject:fo]; \
+        break; \
+    }
+
+    for (NSInteger i = 0; i < filterMax; i++) {
+        switch (i) {
+            MATCH(filterTypes, _(@"filtersviewcontroller-types"), XIB_FILTERTABLEVIEWCELL);
+            MATCH(filterGroups, _(@"filtersviewcontroller-groups"), XIB_FILTERTABLEVIEWCELL);
+            MATCH(filterFavourites, _(@"filtersviewcontroller-favourites"), XIB_FILTERTABLEVIEWCELL);
+            MATCH(filterSizes, _(@"filtersviewcontroller-sizes"), XIB_FILTERTABLEVIEWCELL);
+            MATCH(filterDifficulty, _(@"filtersviewcontroller-difficulty"), XIB_FILTERTABLEVIEWCELL);
+            MATCH(filterTerrain, _(@"filtersviewcontroller-terrain"), XIB_FILTERTABLEVIEWCELL);
+            MATCH(filterDistance, _(@"filtersviewcontroller-distance"), XIB_FILTERTABLEVIEWCELL);
+            MATCH(filterDirection, _(@"filtersviewcontroller-direction"), XIB_FILTERDIRECTIONTABLEVIEWCELL);
+            MATCH(filterText, _(@"filtersviewcontroller-text"), XIB_FILTERTABLEVIEWCELL);
+            MATCH(filterDates, _(@"filtersviewcontroller-dates"), XIB_FILTERTABLEVIEWCELL);
+            MATCH(filterFlags, _(@"filtersviewcontroller-flags"), XIB_FILTERTABLEVIEWCELL);
+            MATCH(filterAccounts, _(@"filtersviewcontroller-accounts"), XIB_FILTERTABLEVIEWCELL);
+            default:
+                NSAssert1(FALSE, @"Unknown filter %ld", (long)i);
+        }
+    }
 }
 
 #pragma mark - TableViewController related functions
@@ -117,55 +130,56 @@ enum {
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   FilterObject *fo = [filters objectAtIndex:indexPath.row];
+    FilterObject *fo = [filters objectAtIndex:indexPath.row];
+    GCTableViewCell *cell;
 
-#define FILTER(__row__, __type__) \
+#define FILTER(__row__) \
         case __row__: { \
-            __type__ *cell = [[__type__ alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil filterObject:fo]; \
-            fo.tvc = cell; \
+            if (fo.expanded == YES) \
+                cell = fo.tvcEnabled; \
+            else \
+                cell = fo.tvcDisabled; \
             break; \
         }
 
     switch (indexPath.row) {
-        FILTER(filterGroups, FilterGroupsTableViewCell)
-        FILTER(filterTypes, FilterTypesTableViewCell)
-        FILTER(filterFavourites, FilterFavouritesTableViewCell)
-        FILTER(filterSizes, FilterSizesTableViewCell)
-        FILTER(filterDifficulty, FilterDifficultyTableViewCell)
-        FILTER(filterTerrain, FilterTerrainTableViewCell)
-        FILTER(filterDistance, FilterDistanceTableViewCell)
-        FILTER(filterDirection, FilterDirectionTableViewCell)
-        FILTER(filterText, FilterTextTableViewCell)
-        FILTER(filterDates, FilterDateTableViewCell)
-        FILTER(filterFlags, FilterFlagsTableViewCell)
-        FILTER(filterAccounts, FilterAccountsTableViewCell)
+        FILTER(filterGroups)
+        FILTER(filterTypes)
+        FILTER(filterFavourites)
+        FILTER(filterSizes)
+        FILTER(filterDifficulty)
+        FILTER(filterTerrain)
+        FILTER(filterDistance)
+        FILTER(filterDirection)
+        FILTER(filterText)
+        FILTER(filterDates)
+        FILTER(filterFlags)
+        FILTER(filterAccounts)
         default:
             NSAssert1(FALSE, @"Unknown filter: %ld", (long)indexPath.row);
-
     }
-    fo.tvc.accessoryType = UITableViewCellAccessoryNone;
-    return fo.tvc;
+
+    return cell;
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FilterObject *fo = [filters objectAtIndex:indexPath.row];
     fo.expanded = !fo.expanded;
-    FilterTableViewCell *ftvc = (FilterTableViewCell *)fo.tvc;
-    [ftvc configUpdate];
+    [fo.tvcEnabled configUpdate];
     [aTableView reloadData];
     [waypointManager needsRefreshAll];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    FilterObject *fo = [filters objectAtIndex:indexPath.row];
-
-    if (fo.expanded)
-        return fo.cellHeight;
-
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    FilterObject *fo = [filters objectAtIndex:indexPath.row];
+//
+//    if (fo.expanded)
+//        return fo.cellHeight;
+//
+//    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+//}
 
 #pragma mark - Local menu related
 

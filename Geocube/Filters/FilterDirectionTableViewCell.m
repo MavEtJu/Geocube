@@ -19,22 +19,32 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "FilterDirectionTableViewCell.h"
+
+#import "BaseObjectsLibrary/GCLabelNormalText.h"
+#import "FilterButton.h"
+
 @interface FilterDirectionTableViewCell ()
 {
     NSArray<NSString *> *directions;
     FilterDirection direction;
     NSString *directionString;
-    FilterButton *directionButton;
 }
+
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelDirection;
+@property (nonatomic, weak) IBOutlet FilterButton *buttonDirection;
+@property (nonatomic, weak) IBOutlet UIView *viewHD;
 
 @end
 
 @implementation FilterDirectionTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo
+- (void)awakeFromNib
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    fo = _fo;
+    [super awakeFromNib];
+
+    [self changeTheme];
 
     directions = @[
                    _(@"compass-north"),
@@ -47,40 +57,8 @@
                    _(@"compass-northwest"),
                    ];
 
-    [self configInit];
-    [self header];
-
-    CGRect rect;
-    NSInteger y = cellHeight;
-    GCLabel *l;
-
-    if (fo.expanded == NO) {
-        [self.contentView sizeToFit];
-        fo.cellHeight = cellHeight = y;
-        return self;
-    }
-
-    rect = CGRectMake(20, y, 0, 0);
-    l = [[GCLabelNormalText alloc] initWithFrame:rect];
-    l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdirectiontableviewcell-Direction is")];
-    l.textAlignment = NSTextAlignmentCenter;
-    [l sizeToFit];
-    [self.contentView addSubview:l];
-
-    rect = CGRectMake(120, y, width - 140, 15);
-    directionButton = [FilterButton buttonWithType:UIButtonTypeSystem];
-    directionButton.frame = rect;
-    [directionButton addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
-    [self.contentView addSubview:directionButton];
+    [self.buttonDirection addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
     [self clickDirection:nil];
-    y += l.font.lineHeight;
-
-    y += 15;
-
-    [self.contentView sizeToFit];
-    fo.cellHeight = cellHeight = y;
-
-    return self;
 }
 
 #pragma mark -- configuration
@@ -88,6 +66,8 @@
 - (void)configInit
 {
     [super configInit];
+
+    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), fo.name];
 
     direction = [[self configGet:@"direction"] integerValue];
     directionString = [directions objectAtIndex:direction];
@@ -121,8 +101,8 @@
 - (void)clickDirection:(FilterButton *)s
 {
     if (s == nil) {
-        [directionButton setTitle:[directions objectAtIndex:direction] forState:UIControlStateNormal];
-        [directionButton setTitle:[directions objectAtIndex:direction] forState:UIControlStateSelected];
+        [self.buttonDirection setTitle:[directions objectAtIndex:direction] forState:UIControlStateNormal];
+        [self.buttonDirection setTitle:[directions objectAtIndex:direction] forState:UIControlStateSelected];
         return;
     }
 

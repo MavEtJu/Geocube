@@ -37,54 +37,40 @@
     fo = _fo;
 
     [self configInit];
-    [self header];
-
     [self.contentView sizeToFit];
     fo.cellHeight = cellHeight;
 
     return self;
 }
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self configInit];
+}
+
+- (void)initFO:(FilterObject *)_fo
+{
+    fo = _fo;
+
+    [self configInit];
+}
+
 - (void)header
 {
-    [self calculateRects];
-
-    labelHeader = [[GCLabelNormalText alloc] initWithFrame:rectHeader];
-    if (fo.expanded == YES)
-        labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), fo.name];
-    else
-        labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Any %@"), fo.name];
-    labelHeader.textAlignment = NSTextAlignmentCenter;
-    [self.contentView addSubview:labelHeader];
+    /// XXX
 }
 
-- (void)viewWillTransitionToSize
-{
-    [self calculateCellHeights];
-    [self calculateRects];
-    labelHeader.frame = rectHeader;
-    [self calculateCellHeights];
-}
-
-- (void)calculateRects
-{
-    CGRect bounds = [[UIScreen mainScreen] bounds];
-    width = bounds.size.width;
-    [self calculateCellHeights];
-
-    rectHeader = CGRectMake(20, 2, width - 40, cellHeight);
-}
-
-- (void)calculateCellHeights
-{
-    UITableViewCell *cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-    cellHeight = cell.frame.size.height;
-}
-
-- (NSInteger)cellHeight
-{
-    return cellHeight;
-}
+//- (void)calculateCellHeights
+//{
+//    UITableViewCell *cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+//    cellHeight = cell.frame.size.height;
+//}
+//
+//- (NSInteger)cellHeight
+//{
+//    return cellHeight;
+//}
 
 #pragma mark -- configuration
 

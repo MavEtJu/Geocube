@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="94" id="3lY-NP-dOm" customClass="FilterDirectionTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3lY-NP-dOm" id="Q98-1o-c1S">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="93.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQK-MC-8Cn" customClass="GCLabelNormalText">
+                        <rect key="frame" x="8" y="8" width="359" height="39.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJC-ud-96w">
+                        <rect key="frame" x="118" y="55.5" width="139" height="30"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Direction" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mRY-TU-FqX" customClass="GCLabelNormalText">
+                                <rect key="frame" x="0.0" y="0.0" width="69" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dGq-eW-FC4" customClass="FilterButton">
+                                <rect key="frame" x="77" y="0.0" width="62" height="30"/>
+                                <state key="normal" title="Direction"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="dGq-eW-FC4" secondAttribute="bottom" id="1q9-QI-I4v"/>
+                            <constraint firstItem="dGq-eW-FC4" firstAttribute="leading" secondItem="mRY-TU-FqX" secondAttribute="trailing" constant="8" id="Cho-Pg-PbO"/>
+                            <constraint firstAttribute="bottom" secondItem="mRY-TU-FqX" secondAttribute="bottom" id="LTB-n5-5rO"/>
+                            <constraint firstItem="mRY-TU-FqX" firstAttribute="top" secondItem="aJC-ud-96w" secondAttribute="top" id="O2l-oG-FKo"/>
+                            <constraint firstItem="dGq-eW-FC4" firstAttribute="centerY" secondItem="mRY-TU-FqX" secondAttribute="centerY" id="P7K-5V-x8y"/>
+                            <constraint firstItem="dGq-eW-FC4" firstAttribute="top" secondItem="aJC-ud-96w" secondAttribute="top" id="QKj-BD-Wnb"/>
+                            <constraint firstAttribute="trailing" secondItem="dGq-eW-FC4" secondAttribute="trailing" id="Y7a-yc-lGc"/>
+                            <constraint firstItem="mRY-TU-FqX" firstAttribute="leading" secondItem="aJC-ud-96w" secondAttribute="leading" id="YRj-Gb-D6G"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="aJC-ud-96w" secondAttribute="bottom" id="KTA-hX-gQe"/>
+                    <constraint firstItem="aJC-ud-96w" firstAttribute="top" secondItem="wQK-MC-8Cn" secondAttribute="bottom" constant="8" id="QB8-A5-2HS"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="wQK-MC-8Cn" secondAttribute="trailing" id="RH4-tr-8Lm"/>
+                    <constraint firstItem="aJC-ud-96w" firstAttribute="centerX" secondItem="Q98-1o-c1S" secondAttribute="centerX" id="RtP-9Z-so7"/>
+                    <constraint firstItem="wQK-MC-8Cn" firstAttribute="leading" secondItem="Q98-1o-c1S" secondAttribute="leadingMargin" id="U4J-xi-1wy"/>
+                    <constraint firstItem="wQK-MC-8Cn" firstAttribute="top" secondItem="Q98-1o-c1S" secondAttribute="topMargin" id="dQK-Kr-C7B"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="buttonDirection" destination="dGq-eW-FC4" id="pHr-f1-5TS"/>
+                <outlet property="labelDirection" destination="mRY-TU-FqX" id="c64-aC-267"/>
+                <outlet property="labelHeader" destination="wQK-MC-8Cn" id="qb4-gH-IGy"/>
+                <outlet property="viewHD" destination="aJC-ud-96w" id="QZ4-e3-BH8"/>
+            </connections>
+            <point key="canvasLocation" x="-170.5" y="28"/>
+        </tableViewCell>
+    </objects>
+</document>

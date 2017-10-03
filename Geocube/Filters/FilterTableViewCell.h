@@ -19,15 +19,18 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define XIB_FILTERTABLEVIEWCELL @"FilterTableViewCell"
+
 @interface FilterTableViewCell : GCTableViewCell
 {
     NSInteger cellHeight, width;
     FilterObject *fo;
 }
 
-- (NSInteger)cellHeight;
+//- (NSInteger)cellHeight;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)fo;
+- (void)initFO:(FilterObject *)fo;
 
 - (void)header;
 

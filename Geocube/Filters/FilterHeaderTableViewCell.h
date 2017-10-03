@@ -19,18 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@class FilterTableViewCell;
-@class FilterHeaderTableViewCell;
-@class GCTableViewCell;
+#import "BaseObjectsLibrary/GCTableViewCell.h"
 
-@interface FilterObject : NSObject
+@interface FilterHeaderTableViewCell : GCTableViewCell
 
-@property (nonatomic, retain) NSString *name;
-@property (nonatomic) BOOL expanded;
-@property (nonatomic) NSInteger cellHeight;
-@property (nonatomic) FilterTableViewCell *tvcEnabled;
-@property (nonatomic) FilterHeaderTableViewCell *tvcDisabled;
+#define XIB_FILTERHEADERTABLEVIEWCELL   @"FilterHeaderTableViewCell"
 
-- (instancetype)init:(NSString *)name;
+- (void)header:(NSString *)t;
 
 @end

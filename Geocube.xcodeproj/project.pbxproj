@@ -460,6 +460,9 @@
 		E8EC01A31F5518840032F168 /* KeepTrackBeeperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8EC01A21F5518840032F168 /* KeepTrackBeeperView.xib */; };
 		E8EC01A61F551A990032F168 /* KeepTrackBeeperView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EC01A51F551A990032F168 /* KeepTrackBeeperView.m */; };
 		E8EC01A81F554C8F0032F168 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EC01A71F554C8F0032F168 /* MediaPlayer.framework */; };
+		E8EC502E1F832E6B004A2338 /* FilterHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EC502C1F832E6B004A2338 /* FilterHeaderTableViewCell.m */; };
+		E8EC502F1F832E6B004A2338 /* FilterHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8EC502D1F832E6B004A2338 /* FilterHeaderTableViewCell.xib */; };
+		E8EC50311F835798004A2338 /* FilterDirectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8EC50301F835798004A2338 /* FilterDirectionTableViewCell.xib */; };
 		E8EE47B81F6B473200AB13BC /* libContribLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE47B71F6B473200AB13BC /* libContribLibrary.a */; };
 		E8F403E81DAF5B2600318CC6 /* cache - reverse - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */; };
 		E8F403EB1DAFA23600318CC6 /* cache - reverse - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */; };
@@ -1304,6 +1307,10 @@
 		E8EC01A41F551A990032F168 /* KeepTrackBeeperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeepTrackBeeperView.h; path = KeepTrack/KeepTrackBeeperView.h; sourceTree = "<group>"; };
 		E8EC01A51F551A990032F168 /* KeepTrackBeeperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeepTrackBeeperView.m; path = KeepTrack/KeepTrackBeeperView.m; sourceTree = "<group>"; };
 		E8EC01A71F554C8F0032F168 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		E8EC502B1F832E6B004A2338 /* FilterHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterHeaderTableViewCell.h; path = Filters/FilterHeaderTableViewCell.h; sourceTree = "<group>"; };
+		E8EC502C1F832E6B004A2338 /* FilterHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterHeaderTableViewCell.m; path = Filters/FilterHeaderTableViewCell.m; sourceTree = "<group>"; };
+		E8EC502D1F832E6B004A2338 /* FilterHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterHeaderTableViewCell.xib; path = Filters/FilterHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		E8EC50301F835798004A2338 /* FilterDirectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterDirectionTableViewCell.xib; path = Filters/FilterDirectionTableViewCell.xib; sourceTree = "<group>"; };
 		E8EE47991F6B457C00AB13BC /* BaseObjectsLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BaseObjectsLibrary.xcodeproj; path = BaseObjectsLibrary/BaseObjectsLibrary.xcodeproj; sourceTree = "<group>"; };
 		E8EE47B71F6B473200AB13BC /* libContribLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libContribLibrary.a; path = "../../Library/Developer/Xcode/DerivedData/Geocube-bjprugvtqrcyrnatajlgnpwinftk/Build/Products/Debug-iphonesimulator/libContribLibrary.a"; sourceTree = "<group>"; };
 		E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30.png"; path = "images/caches/cache - reverse - 30x30.png"; sourceTree = "<group>"; };
@@ -2591,6 +2598,9 @@
 				E82344201EECDFB300D2CDFD /* FilterTableViewCell.m */,
 				E860CA031F81F84700C66AD8 /* FilterButton.h */,
 				E860CA041F81F84700C66AD8 /* FilterButton.m */,
+				E8EC502B1F832E6B004A2338 /* FilterHeaderTableViewCell.h */,
+				E8EC502C1F832E6B004A2338 /* FilterHeaderTableViewCell.m */,
+				E8EC502D1F832E6B004A2338 /* FilterHeaderTableViewCell.xib */,
 				E8845CB01EF493B200A47F5D /* FilterAccountsTableViewCell.h */,
 				E8845CB11EF493B200A47F5D /* FilterAccountsTableViewCell.m */,
 				E82344071EECDFB300D2CDFD /* FilterCategoryTableViewCell.h */,
@@ -2601,6 +2611,7 @@
 				E823440C1EECDFB300D2CDFD /* FilterDifficultyTableViewCell.m */,
 				E823440D1EECDFB300D2CDFD /* FilterDirectionTableViewCell.h */,
 				E823440E1EECDFB300D2CDFD /* FilterDirectionTableViewCell.m */,
+				E8EC50301F835798004A2338 /* FilterDirectionTableViewCell.xib */,
 				E823440F1EECDFB300D2CDFD /* FilterDistanceTableViewCell.h */,
 				E82344101EECDFB300D2CDFD /* FilterDistanceTableViewCell.m */,
 				E82344111EECDFB300D2CDFD /* FilterFavouritesTableViewCell.h */,
@@ -3289,6 +3300,7 @@
 				E8FEDE931DA7AD67007C756B /* map - pin stick - 35x42@3x.png in Resources */,
 				E82E66641DA07C4900CFBDED /* container flag - in progress - 24x24.png in Resources */,
 				E8FEDE4D1DA77F9D007C756B /* container size - large - 35x11.png in Resources */,
+				E8EC50311F835798004A2338 /* FilterDirectionTableViewCell.xib in Resources */,
 				E82E66D11DA07CBE00CFBDED /* cache - night - 30x30@3x.png in Resources */,
 				E84725E21DF774E200CFF99B /* menu icon - global - night.png in Resources */,
 				E8FEDEE51DA8EEE9007C756B /* cache - mega - 30x30@3x.png in Resources */,
@@ -3341,6 +3353,7 @@
 				E82E66081DA079E500CFBDED /* log - unknown - 30x30.png in Resources */,
 				E82E666B1DA07C4900CFBDED /* container flag - tick found - 24x21.png in Resources */,
 				E82E674A1DA07D0200CFBDED /* attributes - 32.png in Resources */,
+				E8EC502F1F832E6B004A2338 /* FilterHeaderTableViewCell.xib in Resources */,
 				E82E65DE1DA079AE00CFBDED /* map - found stick - 35x42.png in Resources */,
 				E8FEDE5A1DA77F9D007C756B /* container size - regular - 35x11@2x.png in Resources */,
 				E8FEDE641DA7A051007C756B /* ratings - favourites 20x30@2x.png in Resources */,
@@ -3565,6 +3578,7 @@
 				E82344841EECE09C00D2CDFD /* ListTemplateViewController.m in Sources */,
 				E823442D1EECDFB300D2CDFD /* FilterFlagsTableViewCell.m in Sources */,
 				E823424C1EECCF9300D2CDFD /* SVProgressAnimatedView.m in Sources */,
+				E8EC502E1F832E6B004A2338 /* FilterHeaderTableViewCell.m in Sources */,
 				E82343D81EECDEE200D2CDFD /* WaypointHeaderTableViewCell.m in Sources */,
 				E82341F21EECCEBB00D2CDFD /* RangeSlider.m in Sources */,
 				E823421B1EECCF2600D2CDFD /* NKOColorPickerView.m in Sources */,
