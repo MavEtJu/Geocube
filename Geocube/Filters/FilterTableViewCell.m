@@ -46,6 +46,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    [self changeTheme];
     [self configInit];
 }
 

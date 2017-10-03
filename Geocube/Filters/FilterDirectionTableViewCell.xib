@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -65,7 +65,6 @@
                 <outlet property="buttonDirection" destination="dGq-eW-FC4" id="pHr-f1-5TS"/>
                 <outlet property="labelDirection" destination="mRY-TU-FqX" id="c64-aC-267"/>
                 <outlet property="labelHeader" destination="wQK-MC-8Cn" id="qb4-gH-IGy"/>
-                <outlet property="viewHD" destination="aJC-ud-96w" id="QZ4-e3-BH8"/>
             </connections>
             <point key="canvasLocation" x="-170.5" y="28"/>
         </tableViewCell>

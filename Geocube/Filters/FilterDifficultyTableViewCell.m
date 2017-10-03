@@ -21,60 +21,33 @@
 
 @interface FilterDifficultyTableViewCell ()
 {
-    RangeSlider *slider;
-    GCLabel *sliderLabel;
     float config_min, config_max;
 }
+
+@property (nonatomic, weak) IBOutlet RangeSlider *slider;
+@property (nonatomic, weak) IBOutlet GCLabelSmallText *labelSlider;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
 
 @end
 
 @implementation FilterDifficultyTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo
+- (void)awakeFromNib
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    fo = _fo;
+    [super awakeFromNib];
 
-    [self configInit];
-    [self header];
-
-    CGRect rect;
-    NSInteger y = cellHeight;
-
-    if (fo.expanded == NO) {
-        [self.contentView sizeToFit];
-        fo.cellHeight = cellHeight = y;
-        return self;
-    }
-
-    sliderLabel = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
-    sliderLabel.text = [NSString stringWithFormat:@"%@: 1 - 5", _(@"filterdifficultytableviewcell-Difficulty")];
-    sliderLabel.textAlignment = NSTextAlignmentCenter;
-    sliderLabel.frame = CGRectMake(20, y, width - 40, sliderLabel.font.lineHeight);
-    [self.contentView addSubview:sliderLabel];
-    y += sliderLabel.frame.size.height;
-
-    rect = CGRectMake(20, y, width - 40, 15);
-    slider = [[RangeSlider alloc] initWithFrame:rect];
-    slider.minimumRangeLength = .00;
-    [slider setMinThumbImage:[UIImage imageNamed:@"rangethumb.png"]];
-    [slider setMaxThumbImage:[UIImage imageNamed:@"rangethumb.png"]];
-    [slider setTrackImage:[[UIImage imageNamed:@"fullrange.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(9.0, 9.0, 9.0, 9.0)]];
+    self.labelSlider.text = [NSString stringWithFormat:@"%@: 1 - 5", _(@"filterdifficultytableviewcell-Difficulty")];
+    self.slider.minimumRangeLength = .00;
+    [self.slider setMinThumbImage:[UIImage imageNamed:@"rangethumb.png"]];
+    [self.slider setMaxThumbImage:[UIImage imageNamed:@"rangethumb.png"]];
+    [self.slider setTrackImage:[[UIImage imageNamed:@"fullrange.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(9.0, 9.0, 9.0, 9.0)]];
     UIImage *image = [UIImage imageNamed:@"fillrange.png"];
-    [slider addTarget:self action:@selector(reportSlider:) forControlEvents:UIControlEventValueChanged];
-    [slider setInRangeTrackImage:image];
+    [self.slider addTarget:self action:@selector(reportSlider:) forControlEvents:UIControlEventValueChanged];
+    [self.slider setInRangeTrackImage:image];
+    self.slider.min = (config_min - 1) / 4.0;
+    self.slider.max = (config_max - 1) / 4.0;
 
-    slider.min = (config_min - 1) / 4.0;
-    slider.max = (config_max - 1) / 4.0;
-
-    [self.contentView addSubview:slider];
     [self reportSlider:nil];
-    y += 35;
-
-    [self.contentView sizeToFit];
-    fo.cellHeight = cellHeight = y;
-
-    return self;
 }
 
 #pragma mark -- configuration
@@ -82,6 +55,8 @@
 - (void)configInit
 {
     [super configInit];
+
+    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), fo.name];
 
     NSString *s;
     s = [self configGet:@"min"];
@@ -119,14 +94,16 @@
 
 - (void)reportSlider:(RangeSlider *)s
 {
-    config_min = (2 + (int)(4 * slider.min * 2)) / 2.0;
-    config_max = (2 + (int)(4 * slider.max * 2)) / 2.0;
-    [self configUpdate];
+    if (s != nil) {
+        config_min = (2 + (int)(4 * s.min * 2)) / 2.0;
+        config_max = (2 + (int)(4 * s.max * 2)) / 2.0;
+        [self configUpdate];
+    }
 
     NSString *minString = [NSString stringWithFormat:((int)config_min == config_min) ? @"%1.0f" : @"%0.1f", config_min];
     NSString *maxString = [NSString stringWithFormat:((int)config_max == config_max) ? @"%1.0f" : @"%0.1f", config_max];
 
-    sliderLabel.text = [NSString stringWithFormat:@"%@: %@ - %@", _(@"filterdifficultytableviewcell-Difficulty"), minString, maxString];
+    self.labelSlider.text = [NSString stringWithFormat:@"%@: %@ - %@", _(@"filterdifficultytableviewcell-Difficulty"), minString, maxString];
 }
 
 @end

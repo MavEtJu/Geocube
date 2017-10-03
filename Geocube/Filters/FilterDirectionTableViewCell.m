@@ -34,7 +34,6 @@
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelDirection;
 @property (nonatomic, weak) IBOutlet FilterButton *buttonDirection;
-@property (nonatomic, weak) IBOutlet UIView *viewHD;
 
 @end
 
@@ -43,8 +42,6 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-
-    [self changeTheme];
 
     directions = @[
                    _(@"compass-north"),

@@ -463,6 +463,7 @@
 		E8EC502E1F832E6B004A2338 /* FilterHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EC502C1F832E6B004A2338 /* FilterHeaderTableViewCell.m */; };
 		E8EC502F1F832E6B004A2338 /* FilterHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8EC502D1F832E6B004A2338 /* FilterHeaderTableViewCell.xib */; };
 		E8EC50311F835798004A2338 /* FilterDirectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8EC50301F835798004A2338 /* FilterDirectionTableViewCell.xib */; };
+		E8EC50331F836E68004A2338 /* FilterDifficultyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8EC50321F836E68004A2338 /* FilterDifficultyTableViewCell.xib */; };
 		E8EE47B81F6B473200AB13BC /* libContribLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EE47B71F6B473200AB13BC /* libContribLibrary.a */; };
 		E8F403E81DAF5B2600318CC6 /* cache - reverse - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */; };
 		E8F403EB1DAFA23600318CC6 /* cache - reverse - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */; };
@@ -1311,6 +1312,7 @@
 		E8EC502C1F832E6B004A2338 /* FilterHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterHeaderTableViewCell.m; path = Filters/FilterHeaderTableViewCell.m; sourceTree = "<group>"; };
 		E8EC502D1F832E6B004A2338 /* FilterHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterHeaderTableViewCell.xib; path = Filters/FilterHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		E8EC50301F835798004A2338 /* FilterDirectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterDirectionTableViewCell.xib; path = Filters/FilterDirectionTableViewCell.xib; sourceTree = "<group>"; };
+		E8EC50321F836E68004A2338 /* FilterDifficultyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterDifficultyTableViewCell.xib; path = Filters/FilterDifficultyTableViewCell.xib; sourceTree = "<group>"; };
 		E8EE47991F6B457C00AB13BC /* BaseObjectsLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BaseObjectsLibrary.xcodeproj; path = BaseObjectsLibrary/BaseObjectsLibrary.xcodeproj; sourceTree = "<group>"; };
 		E8EE47B71F6B473200AB13BC /* libContribLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libContribLibrary.a; path = "../../Library/Developer/Xcode/DerivedData/Geocube-bjprugvtqrcyrnatajlgnpwinftk/Build/Products/Debug-iphonesimulator/libContribLibrary.a"; sourceTree = "<group>"; };
 		E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30.png"; path = "images/caches/cache - reverse - 30x30.png"; sourceTree = "<group>"; };
@@ -2609,6 +2611,7 @@
 				E823440A1EECDFB300D2CDFD /* FilterDateTableViewCell.m */,
 				E823440B1EECDFB300D2CDFD /* FilterDifficultyTableViewCell.h */,
 				E823440C1EECDFB300D2CDFD /* FilterDifficultyTableViewCell.m */,
+				E8EC50321F836E68004A2338 /* FilterDifficultyTableViewCell.xib */,
 				E823440D1EECDFB300D2CDFD /* FilterDirectionTableViewCell.h */,
 				E823440E1EECDFB300D2CDFD /* FilterDirectionTableViewCell.m */,
 				E8EC50301F835798004A2338 /* FilterDirectionTableViewCell.xib */,
@@ -3129,6 +3132,7 @@
 				E8FEDE601DA77F9D007C756B /* container size - unknown - 35x11@2x.png in Resources */,
 				E82E66071DA079E500CFBDED /* log - unarchived - 30x30.png in Resources */,
 				E82E66B91DA07CBE00CFBDED /* cache - cito - 30x30.png in Resources */,
+				E8EC50331F836E68004A2338 /* FilterDifficultyTableViewCell.xib in Resources */,
 				E82E65BB1DA0794600CFBDED /* waypoint - multi - 30x30.png in Resources */,
 				E82E66CC1DA07CBE00CFBDED /* cache - mystery - 30x30.png in Resources */,
 				E82E65BF1DA0794600CFBDED /* waypoint - unknown - 30x30.png in Resources */,
