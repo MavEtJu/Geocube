@@ -85,6 +85,7 @@ enum {
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERDIFFICULTYTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERDIFFICULTYTABLEVIEWCELL];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERTERRAINTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERTERRAINTABLEVIEWCELL];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERFAVOURITESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERFAVOURITESTABLEVIEWCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERDATESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERDATESTABLEVIEWCELL];
 
 #define MATCH(__idx__, __name__, __xib__) \
     case __idx__: { \
@@ -108,7 +109,7 @@ enum {
             MATCH(filterDistance, _(@"filtersviewcontroller-distance"), XIB_FILTERTABLEVIEWCELL);
             MATCH(filterDirection, _(@"filtersviewcontroller-direction"), XIB_FILTERDIRECTIONTABLEVIEWCELL);
             MATCH(filterText, _(@"filtersviewcontroller-text"), XIB_FILTERTABLEVIEWCELL);
-            MATCH(filterDates, _(@"filtersviewcontroller-dates"), XIB_FILTERTABLEVIEWCELL);
+            MATCH(filterDates, _(@"filtersviewcontroller-dates"), XIB_FILTERDATESTABLEVIEWCELL);
             MATCH(filterFlags, _(@"filtersviewcontroller-flags"), XIB_FILTERTABLEVIEWCELL);
             MATCH(filterAccounts, _(@"filtersviewcontroller-accounts"), XIB_FILTERTABLEVIEWCELL);
             default:
@@ -211,7 +212,7 @@ enum {
     SAVE(FilterDistanceTableViewCell)
     SAVE(FilterDirectionTableViewCell)
     SAVE(FilterTextTableViewCell)
-    SAVE(FilterDateTableViewCell)
+    SAVE(FilterDatesTableViewCell)
     SAVE(FilterFlagsTableViewCell)
     SAVE(FilterAccountsTableViewCell)
 }
@@ -270,7 +271,7 @@ enum {
     LOAD(FilterDistanceTableViewCell)
     LOAD(FilterDirectionTableViewCell)
     LOAD(FilterTextTableViewCell)
-    LOAD(FilterDateTableViewCell)
+    LOAD(FilterDatesTableViewCell)
     LOAD(FilterFlagsTableViewCell)
     LOAD(FilterAccountsTableViewCell)
     [self.tableView reloadData];

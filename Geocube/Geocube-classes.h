@@ -43,7 +43,7 @@
 @class FilterAccountsTableViewCell;
 @class FilterButton;
 @class FilterCategoryTableViewCell;
-@class FilterDateTableViewCell;
+@class FilterDatesTableViewCell;
 @class FilterDifficultyTableViewCell;
 @class FilterDirectionTableViewCell;
 @class FilterDistanceTableViewCell;

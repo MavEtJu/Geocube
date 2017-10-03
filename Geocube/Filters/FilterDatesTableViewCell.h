@@ -19,7 +19,9 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface FilterDateTableViewCell : FilterTableViewCell
+#define XIB_FILTERDATESTABLEVIEWCELL @"FilterDatesTableViewCell"
+
+@interface FilterDatesTableViewCell : FilterTableViewCell
 
 typedef NS_ENUM(NSInteger, FilterDate) {
     FILTER_DATE_BEFORE = 0,

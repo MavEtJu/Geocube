@@ -45,7 +45,7 @@
 
 #import "Filters/FilterTableViewCell.h"
 #import "Filters/FilterDistanceTableViewCell.h"
-#import "Filters/FilterDateTableViewCell.h"
+#import "Filters/FilterDatesTableViewCell.h"
 #import "Filters/FilterFlagsTableViewCell.h"
 #import "Filters/FilterDirectionTableViewCell.h"
 

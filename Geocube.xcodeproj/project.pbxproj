@@ -70,7 +70,7 @@
 		E82344031EECDF6C00D2CDFD /* WaypointTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E82344001EECDF6C00D2CDFD /* WaypointTableViewCell~ipad.xib */; };
 		E82344061EECDF9C00D2CDFD /* WaypointsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344051EECDF9C00D2CDFD /* WaypointsListViewController.m */; };
 		E82344271EECDFB300D2CDFD /* FilterCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344081EECDFB300D2CDFD /* FilterCategoryTableViewCell.m */; };
-		E82344281EECDFB300D2CDFD /* FilterDateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E823440A1EECDFB300D2CDFD /* FilterDateTableViewCell.m */; };
+		E82344281EECDFB300D2CDFD /* FilterDatesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E823440A1EECDFB300D2CDFD /* FilterDatesTableViewCell.m */; };
 		E82344291EECDFB300D2CDFD /* FilterDifficultyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E823440C1EECDFB300D2CDFD /* FilterDifficultyTableViewCell.m */; };
 		E823442A1EECDFB300D2CDFD /* FilterDirectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E823440E1EECDFB300D2CDFD /* FilterDirectionTableViewCell.m */; };
 		E823442B1EECDFB300D2CDFD /* FilterDistanceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344101EECDFB300D2CDFD /* FilterDistanceTableViewCell.m */; };
@@ -829,8 +829,8 @@
 		E82344051EECDF9C00D2CDFD /* WaypointsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaypointsListViewController.m; path = Waypoints/WaypointsListViewController.m; sourceTree = "<group>"; };
 		E82344071EECDFB300D2CDFD /* FilterCategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterCategoryTableViewCell.h; path = Filters/FilterCategoryTableViewCell.h; sourceTree = "<group>"; };
 		E82344081EECDFB300D2CDFD /* FilterCategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterCategoryTableViewCell.m; path = Filters/FilterCategoryTableViewCell.m; sourceTree = "<group>"; };
-		E82344091EECDFB300D2CDFD /* FilterDateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterDateTableViewCell.h; path = Filters/FilterDateTableViewCell.h; sourceTree = "<group>"; };
-		E823440A1EECDFB300D2CDFD /* FilterDateTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterDateTableViewCell.m; path = Filters/FilterDateTableViewCell.m; sourceTree = "<group>"; };
+		E82344091EECDFB300D2CDFD /* FilterDatesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterDatesTableViewCell.h; path = Filters/FilterDatesTableViewCell.h; sourceTree = "<group>"; };
+		E823440A1EECDFB300D2CDFD /* FilterDatesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterDatesTableViewCell.m; path = Filters/FilterDatesTableViewCell.m; sourceTree = "<group>"; };
 		E823440B1EECDFB300D2CDFD /* FilterDifficultyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterDifficultyTableViewCell.h; path = Filters/FilterDifficultyTableViewCell.h; sourceTree = "<group>"; };
 		E823440C1EECDFB300D2CDFD /* FilterDifficultyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterDifficultyTableViewCell.m; path = Filters/FilterDifficultyTableViewCell.m; sourceTree = "<group>"; };
 		E823440D1EECDFB300D2CDFD /* FilterDirectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterDirectionTableViewCell.h; path = Filters/FilterDirectionTableViewCell.h; sourceTree = "<group>"; };
@@ -2611,8 +2611,8 @@
 				E8845CB11EF493B200A47F5D /* FilterAccountsTableViewCell.m */,
 				E82344071EECDFB300D2CDFD /* FilterCategoryTableViewCell.h */,
 				E82344081EECDFB300D2CDFD /* FilterCategoryTableViewCell.m */,
-				E82344091EECDFB300D2CDFD /* FilterDateTableViewCell.h */,
-				E823440A1EECDFB300D2CDFD /* FilterDateTableViewCell.m */,
+				E82344091EECDFB300D2CDFD /* FilterDatesTableViewCell.h */,
+				E823440A1EECDFB300D2CDFD /* FilterDatesTableViewCell.m */,
 				E823440B1EECDFB300D2CDFD /* FilterDifficultyTableViewCell.h */,
 				E823440C1EECDFB300D2CDFD /* FilterDifficultyTableViewCell.m */,
 				E8EC50321F836E68004A2338 /* FilterDifficultyTableViewCell.xib */,
@@ -3647,7 +3647,7 @@
 				E82344A11EECE0BD00D2CDFD /* StatisticsViewController.m in Sources */,
 				E82344B01EECE0D500D2CDFD /* ToolsRot13ViewController.m in Sources */,
 				E823451E1EECE14A00D2CDFD /* HelpAboutTableViewCell.m in Sources */,
-				E82344281EECDFB300D2CDFD /* FilterDateTableViewCell.m in Sources */,
+				E82344281EECDFB300D2CDFD /* FilterDatesTableViewCell.m in Sources */,
 				E823444E1EECE04B00D2CDFD /* NotesPersonalNotesViewController.m in Sources */,
 				E85BA88E1F544372008E708F /* KeepTrackBeeper.m in Sources */,
 				E823447F1EECE09C00D2CDFD /* ListDNFViewController.m in Sources */,

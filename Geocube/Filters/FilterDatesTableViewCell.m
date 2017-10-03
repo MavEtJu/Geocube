@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface FilterDateTableViewCell ()
+@interface FilterDatesTableViewCell ()
 {
     FilterDate comparePlaced, compareLastLog;
     FilterButton *buttonComparePlaced, *buttonCompareLastLog;
@@ -31,7 +31,7 @@
 
 @end
 
-@implementation FilterDateTableViewCell
+@implementation FilterDatesTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo
 {

@@ -102,7 +102,7 @@
 #import "Filters/FilterTableViewCell.h"
 #import "Filters/FilterAccountsTableViewCell.h"
 #import "Filters/FilterCategoryTableViewCell.h"
-#import "Filters/FilterDateTableViewCell.h"
+#import "Filters/FilterDatesTableViewCell.h"
 #import "Filters/FilterDifficultyTableViewCell.h"
 #import "Filters/FilterDirectionTableViewCell.h"
 #import "Filters/FilterDistanceTableViewCell.h"
