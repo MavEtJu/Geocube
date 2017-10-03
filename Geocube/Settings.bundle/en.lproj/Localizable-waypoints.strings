@@ -37,7 +37,7 @@
 "filterdatetableviewcell-On" = "On";
 "filterdatetableviewcell-Placed on" = "Placed on";
 "filterdifficultytableviewcell-Difficulty" = "Difficulty";
-"filterdirectiontableviewcell-Direction is" = "Direction is";
+"filterdirectiontableviewcell-Direction" = "Direction";
 "filterdirectiontableviewcell-Select a direction" = "Select a direction";
 "filterdistancetableviewcell-Distance" = "Distance";
 "filterdistancetableviewcell-Select distance" = "Select distance";

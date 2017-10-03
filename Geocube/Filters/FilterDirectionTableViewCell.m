@@ -57,6 +57,7 @@
                    _(@"compass-northwest"),
                    ];
 
+    self.labelDirection.text = _(@"filterdirectiontableviewcell-Direction");
     [self.buttonDirection addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
     [self clickDirection:nil];
 }

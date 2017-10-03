@@ -26,7 +26,7 @@
 "filterdatetableviewcell-On" = "Op";
 "filterdatetableviewcell-Placed on" = "Geplaatst op";
 "filterdifficultytableviewcell-Difficulty" = "Moeilijkheidsgraad";
-"filterdirectiontableviewcell-Direction is" = "Richting is";
+"filterdirectiontableviewcell-Direction" = "Richting";
 "filterdirectiontableviewcell-Select a direction" = "Kies een richting";
 "filterdistancetableviewcell-Distance" = "Afstand";
 "filterdistancetableviewcell-Select distance" = "Selecteer afstand";
