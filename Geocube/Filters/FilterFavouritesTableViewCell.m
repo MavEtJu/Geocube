@@ -46,14 +46,29 @@
     [self.slider setInRangeTrackImage:image];
     self.slider.min = config_min / 100.0;
     self.slider.max = config_max / 100.0;
-
-    [self reportSlider:nil];
 }
 
 - (void)changeTheme
 {
     [self.labelSlider changeTheme];
     [self.labelHeader changeTheme];
+}
+
+- (void)viewRefresh
+{
+    NSString *minString = [NSString stringWithFormat:@"%ld", (long)config_min];
+    NSString *maxString = [NSString stringWithFormat:@"%ld", (long)config_max];
+
+    if (config_min == 0 && config_max == 100)
+        self.labelSlider.text = _(@"filterfavouritestableviewcell-Favourites: Anything");
+    else if (config_min == config_max)
+        self.labelSlider.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: %@"), minString];
+    else if (config_max == 100)
+        self.labelSlider.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: At least %@"), minString];
+    else if (config_min == 0)
+        self.labelSlider.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: At most %@"), maxString];
+    else
+        self.labelSlider.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: Between %@ and %@"), minString, maxString];
 }
 
 #pragma mark -- configuration
@@ -76,6 +91,7 @@
     [self configSet:@"min" value:[NSString stringWithFormat:@"%ld", (long)config_min]];
     [self configSet:@"max" value:[NSString stringWithFormat:@"%ld", (long)config_max]];
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%ld", (long)fo.expanded]];
+    [self viewRefresh];
 }
 
 + (NSString *)configPrefix
@@ -105,20 +121,7 @@
         config_max = (int)(100 * s.max);
         [self configUpdate];
     }
-
-    NSString *minString = [NSString stringWithFormat:@"%ld", (long)config_min];
-    NSString *maxString = [NSString stringWithFormat:@"%ld", (long)config_max];
-
-    if (config_min == 0 && config_max == 100)
-        self.labelSlider.text = _(@"filterfavouritestableviewcell-Favourites: Anything");
-    else if (config_min == config_max)
-        self.labelSlider.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: %@"), minString];
-    else if (config_max == 100)
-        self.labelSlider.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: At least %@"), minString];
-    else if (config_min == 0)
-        self.labelSlider.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: At most %@"), maxString];
-    else
-        self.labelSlider.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: Between %@ and %@"), minString, maxString];
+    [self viewRefresh];
 }
 
 @end

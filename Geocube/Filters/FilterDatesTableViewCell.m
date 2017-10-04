@@ -22,89 +22,80 @@
 @interface FilterDatesTableViewCell ()
 {
     FilterDate comparePlaced, compareLastLog;
-    FilterButton *buttonComparePlaced, *buttonCompareLastLog;
-    FilterButton *buttonDatePlaced, *buttonDateLastLog;
 
     ActionSheetDatePicker *asdp;
     NSInteger epochPlaced, epochLastLog;
 }
 
+@property (nonatomic, weak) IBOutlet FilterButton *buttonComparePlaced;
+@property (nonatomic, weak) IBOutlet FilterButton *buttonCompareLastLog;
+@property (nonatomic, weak) IBOutlet FilterButton *buttonDatePlaced;
+@property (nonatomic, weak) IBOutlet FilterButton *buttonDateLastLog;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelPlaced;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelLastLog;
+
 @end
 
 @implementation FilterDatesTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo
+- (void)awakeFromNib
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    fo = _fo;
+    [super awakeFromNib];
+    [self changeTheme];
 
-    [self configInit];
-    [self header];
+    self.labelPlaced.text = [NSString stringWithFormat:@"%@: ", _(@"filterdatetableviewcell-Placed on")];
+    self.labelLastLog.text = [NSString stringWithFormat:@"%@: ", _(@"filterdatetableviewcell-Last log")];
 
-    CGRect rect;
-    NSInteger y = cellHeight;
-    GCLabel *l;
+    [self.buttonComparePlaced addTarget:self action:@selector(clickCompare:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonCompareLastLog addTarget:self action:@selector(clickCompare:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonDatePlaced addTarget:self action:@selector(clickDate:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonDateLastLog addTarget:self action:@selector(clickDate:) forControlEvents:UIControlEventTouchDown];
+}
 
-    if (fo.expanded == NO) {
-        [self.contentView sizeToFit];
-        fo.cellHeight = cellHeight = y;
-        return self;
+- (void)changeTheme
+{
+    [super changeTheme];
+    [self.labelHeader changeTheme];
+    [self.labelPlaced changeTheme];
+    [self.labelLastLog changeTheme];
+    [self.buttonDatePlaced changeTheme];
+    [self.buttonDateLastLog changeTheme];
+    [self.buttonComparePlaced changeTheme];
+    [self.buttonCompareLastLog changeTheme];
+}
+
+- (void)viewRefresh
+{
+    switch (compareLastLog) {
+    case FILTER_DATE_BEFORE:
+        [self.buttonCompareLastLog setTitle:_(@"filterdatetableviewcell-Before") forState:UIControlStateNormal];
+        break;
+    case FILTER_DATE_AFTER:
+        [self.buttonCompareLastLog setTitle:_(@"filterdatetableviewcell-After") forState:UIControlStateNormal];
+        break;
+    case FILTER_DATE_ON:
+        [self.buttonCompareLastLog setTitle:_(@"filterdatetableviewcell-On") forState:UIControlStateNormal];
+        break;
     }
 
-    rect = CGRectMake(20, y, 0, 0);
-    l = [[GCLabelNormalText alloc] initWithFrame:rect];
-    l.textAlignment = NSTextAlignmentLeft;
-    l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdatetableviewcell-Placed on")];
-    [l sizeToFit];
-    [self.contentView addSubview:l];
+    switch (comparePlaced) {
+    case FILTER_DATE_BEFORE:
+        [self.buttonComparePlaced setTitle:_(@"filterdatetableviewcell-Before") forState:UIControlStateNormal];
+        break;
+    case FILTER_DATE_AFTER:
+        [self.buttonComparePlaced setTitle:_(@"filterdatetableviewcell-After") forState:UIControlStateNormal];
+        break;
+    case FILTER_DATE_ON:
+        [self.buttonComparePlaced setTitle:_(@"filterdatetableviewcell-On") forState:UIControlStateNormal];
+        break;
+    }
 
-    rect = CGRectMake(80, y, 50, 15);
-    buttonComparePlaced = [FilterButton buttonWithType:UIButtonTypeSystem];
-    buttonComparePlaced.frame = rect;
-    [buttonComparePlaced addTarget:self action:@selector(clickCompare:) forControlEvents:UIControlEventTouchDown];
-    [self.contentView addSubview:buttonComparePlaced];
-    comparePlaced--;
-    [self clickCompare:buttonComparePlaced];
+    NSString *s = [NSDateFormatter localizedStringFromDate:[NSDate dateWithTimeIntervalSince1970:epochLastLog] dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
+    [self.buttonDateLastLog setTitle:s forState:UIControlStateNormal];
 
-    rect = CGRectMake(130, y, width - 150, 15);
-    buttonDatePlaced = [FilterButton buttonWithType:UIButtonTypeSystem];
-    buttonDatePlaced.frame = rect;
-    [buttonDatePlaced addTarget:self action:@selector(clickDate:) forControlEvents:UIControlEventTouchDown];
-    [self.contentView addSubview:buttonDatePlaced];
-    [self dateWasSelected:[NSDate dateWithTimeIntervalSince1970:epochPlaced] element:buttonDatePlaced];
-
-    y += l.font.lineHeight;
-
-    rect = CGRectMake(20, y, 0, 0);
-    l = [[GCLabelNormalText alloc] initWithFrame:rect];
-    l.textAlignment = NSTextAlignmentLeft;
-    l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdatetableviewcell-Last log")];
-    [l sizeToFit];
-    [self.contentView addSubview:l];
-
-    rect = CGRectMake(80, y, 50, 15);
-    buttonCompareLastLog = [FilterButton buttonWithType:UIButtonTypeSystem];
-    buttonCompareLastLog.frame = rect;
-    [buttonCompareLastLog addTarget:self action:@selector(clickCompare:) forControlEvents:UIControlEventTouchDown];
-    [self.contentView addSubview:buttonCompareLastLog];
-    compareLastLog--;
-    [self clickCompare:buttonCompareLastLog];
-
-    rect = CGRectMake(130, y, width - 150, 15);
-    buttonDateLastLog = [FilterButton buttonWithType:UIButtonTypeSystem];
-    buttonDateLastLog.frame = rect;
-    [buttonDateLastLog addTarget:self action:@selector(clickDate:) forControlEvents:UIControlEventTouchDown];
-    [self.contentView addSubview:buttonDateLastLog];
-    [self dateWasSelected:[NSDate dateWithTimeIntervalSince1970:epochLastLog] element:buttonDateLastLog];
-
-    y += l.font.lineHeight;
-
-    y += 15;
-
-    [self.contentView sizeToFit];
-    fo.cellHeight = cellHeight = y;
-
-    return self;
+    s = [NSDateFormatter localizedStringFromDate:[NSDate dateWithTimeIntervalSince1970:epochPlaced] dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
+    [self.buttonDatePlaced setTitle:s forState:UIControlStateNormal];
 }
 
 #pragma mark -- configuration
@@ -114,6 +105,8 @@
 - (void)configInit
 {
     [super configInit];
+
+    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), fo.name];
 
     NSString *s;
     s = [self configGet:@"placed_epoch"];
@@ -133,6 +126,7 @@
     [self configSet:@"placed_compare" value:[NSString stringWithFormat:@"%ld", (long)comparePlaced]];
     [self configSet:@"lastlog_compare" value:[NSString stringWithFormat:@"%ld", (long)compareLastLog]];
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+    [self viewRefresh];
 }
 
 + (NSString *)configPrefix
@@ -160,23 +154,12 @@
 - (void)clickCompare:(FilterButton *)b
 {
     FilterDate compare = -1;
-    if (b == buttonCompareLastLog)
+    if (b == self.buttonCompareLastLog)
         compare = compareLastLog = (compareLastLog + 1) % 3;
-    if (b == buttonComparePlaced)
+    if (b == self.buttonComparePlaced)
         compare = comparePlaced = (comparePlaced + 1) % 3;
     [self configUpdate];
-
-    switch (compare) {
-    case FILTER_DATE_BEFORE:
-        [b setTitle:_(@"filterdatetableviewcell-Before") forState:UIControlStateNormal];
-        break;
-    case FILTER_DATE_AFTER:
-        [b setTitle:_(@"filterdatetableviewcell-After") forState:UIControlStateNormal];
-        break;
-    case FILTER_DATE_ON:
-        [b setTitle:_(@"filterdatetableviewcell-On") forState:UIControlStateNormal];
-        break;
-    }
+    [self viewRefresh];
 }
 
 - (void)clickDate:(FilterButton *)b
@@ -190,9 +173,9 @@
     NSDate *maxDate = [NSDate date];
 
     NSDate *d;
-    if (b == buttonDateLastLog)
+    if (b == self.buttonDateLastLog)
         d = [NSDate dateWithTimeIntervalSince1970:epochLastLog];
-    if (b == buttonDatePlaced)
+    if (b == self.buttonDatePlaced)
         d = [NSDate dateWithTimeIntervalSince1970:epochPlaced];
 
     asdp =
@@ -210,15 +193,12 @@
 
 - (void)dateWasSelected:(NSDate *)date element:(FilterButton *)b
 {
-    NSString *dateFromString = [NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
-
-    [b setTitle:dateFromString forState:UIControlStateNormal];
-
-    if (b == buttonDateLastLog)
+    if (b == self.buttonDateLastLog)
         epochLastLog = [date timeIntervalSince1970];
-    if (b == buttonDatePlaced)
+    if (b == self.buttonDatePlaced)
         epochPlaced = [date timeIntervalSince1970];
     [self configUpdate];
+    [self viewRefresh];
 }
 
 @end

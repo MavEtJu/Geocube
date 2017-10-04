@@ -209,6 +209,7 @@
     [self configSet:@"description" value:description];
     [self configSet:@"logs" value:logs];
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+    [self viewRefresh];
 }
 
 + (NSString *)configPrefix

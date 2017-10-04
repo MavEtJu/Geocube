@@ -139,9 +139,11 @@ enum {
 
 #define FILTER(__row__) \
         case __row__: { \
-            if (fo.expanded == YES) \
-                cell = fo.tvcEnabled; \
-            else \
+            if (fo.expanded == YES) { \
+                FilterTableViewCell *c = fo.tvcEnabled; \
+                [c viewRefresh]; \
+                cell = c; \
+            } else \
                 cell = fo.tvcDisabled; \
             break; \
         }

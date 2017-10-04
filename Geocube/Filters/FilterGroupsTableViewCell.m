@@ -86,6 +86,7 @@
 - (void)configUpdate
 {
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+    [self viewRefresh];
 }
 
 + (NSString *)configPrefix

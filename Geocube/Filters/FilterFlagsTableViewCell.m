@@ -180,6 +180,7 @@ typedef NS_ENUM(NSInteger, FlagType) {
 - (void)configUpdate
 {
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+    [self viewRefresh];
 }
 
 + (NSString *)configPrefix

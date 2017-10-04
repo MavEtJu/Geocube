@@ -122,6 +122,7 @@
     [self configSet:@"variationM" value:[NSString stringWithFormat:@"%ld", (long)variationM]];
     [self configSet:@"variationKm" value:[NSString stringWithFormat:@"%ld", (long)variationKm]];
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%ld", (long)fo.expanded]];
+    [self viewRefresh];
 }
 
 + (NSString *)configPrefix

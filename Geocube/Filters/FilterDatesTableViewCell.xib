@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="136.5" id="DtY-kL-zT3" customClass="FilterDatesTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DtY-kL-zT3" id="PbV-Q4-lcN">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="97.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgE-2E-YaQ" customClass="GCLabelNormalText">
+                        <rect key="frame" x="159.5" y="8" width="56" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBz-6z-W1l" customClass="GCLabelNormalText">
+                        <rect key="frame" x="114" y="42" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uCe-Wr-T4v" customClass="FilterButton">
+                        <rect key="frame" x="164" y="37" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5D-St-QG1" customClass="GCLabelNormalText">
+                        <rect key="frame" x="114" y="72" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q5y-Ws-PT5" customClass="FilterButton">
+                        <rect key="frame" x="164" y="67" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4s7-dQ-e61" customClass="FilterButton">
+                        <rect key="frame" x="218" y="67" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3BI-ic-bbH" customClass="FilterButton">
+                        <rect key="frame" x="218" y="37" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="q5y-Ws-PT5" firstAttribute="top" secondItem="uCe-Wr-T4v" secondAttribute="bottom" id="5yk-WW-Rue"/>
+                    <constraint firstItem="4s7-dQ-e61" firstAttribute="leading" secondItem="q5y-Ws-PT5" secondAttribute="trailing" constant="8" id="F2a-0z-ED4"/>
+                    <constraint firstItem="uCe-Wr-T4v" firstAttribute="top" secondItem="cgE-2E-YaQ" secondAttribute="bottom" constant="8" id="HUm-uJ-ymG"/>
+                    <constraint firstItem="4s7-dQ-e61" firstAttribute="centerY" secondItem="e5D-St-QG1" secondAttribute="centerY" id="TLr-hZ-YOV"/>
+                    <constraint firstItem="3BI-ic-bbH" firstAttribute="centerY" secondItem="iBz-6z-W1l" secondAttribute="centerY" id="Xk1-Mr-BBZ"/>
+                    <constraint firstItem="3BI-ic-bbH" firstAttribute="leading" secondItem="uCe-Wr-T4v" secondAttribute="trailing" constant="8" id="Zfg-No-rNg"/>
+                    <constraint firstItem="cgE-2E-YaQ" firstAttribute="top" secondItem="PbV-Q4-lcN" secondAttribute="topMargin" id="cXj-OV-rMk"/>
+                    <constraint firstItem="cgE-2E-YaQ" firstAttribute="centerX" secondItem="PbV-Q4-lcN" secondAttribute="centerX" id="cb1-4Z-tmC"/>
+                    <constraint firstItem="uCe-Wr-T4v" firstAttribute="centerX" secondItem="cgE-2E-YaQ" secondAttribute="centerX" id="chW-CW-DwF"/>
+                    <constraint firstAttribute="bottom" secondItem="q5y-Ws-PT5" secondAttribute="bottom" constant="0.5" id="cxl-GU-vHO"/>
+                    <constraint firstItem="q5y-Ws-PT5" firstAttribute="leading" secondItem="e5D-St-QG1" secondAttribute="trailing" constant="8" id="fj8-hR-Pz8"/>
+                    <constraint firstItem="q5y-Ws-PT5" firstAttribute="centerX" secondItem="cgE-2E-YaQ" secondAttribute="centerX" id="h1W-3H-fGb"/>
+                    <constraint firstItem="uCe-Wr-T4v" firstAttribute="leading" secondItem="iBz-6z-W1l" secondAttribute="trailing" constant="8" id="mq6-C2-X3d"/>
+                    <constraint firstItem="q5y-Ws-PT5" firstAttribute="centerY" secondItem="e5D-St-QG1" secondAttribute="centerY" id="pgi-Nm-vJn"/>
+                    <constraint firstItem="uCe-Wr-T4v" firstAttribute="centerY" secondItem="iBz-6z-W1l" secondAttribute="centerY" id="uwB-nb-EVO"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="buttonCompareLastLog" destination="q5y-Ws-PT5" id="Moe-w1-40M"/>
+                <outlet property="buttonComparePlaced" destination="uCe-Wr-T4v" id="p7Q-uh-lrl"/>
+                <outlet property="buttonDateLastLog" destination="4s7-dQ-e61" id="5il-jW-7ti"/>
+                <outlet property="buttonDatePlaced" destination="3BI-ic-bbH" id="ANO-TI-Nxs"/>
+                <outlet property="labelHeader" destination="cgE-2E-YaQ" id="DgY-Ip-ryH"/>
+                <outlet property="labelLastLog" destination="e5D-St-QG1" id="A3m-nV-mIU"/>
+                <outlet property="labelPlaced" destination="iBz-6z-W1l" id="z7r-Xu-dkX"/>
+            </connections>
+            <point key="canvasLocation" x="-123.5" y="101.5"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -57,7 +57,6 @@
 
     self.labelDirection.text = _(@"filterdirectiontableviewcell-Direction");
     [self.buttonDirection addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
-    [self clickDirection:nil];
 }
 
 - (void)changeTheme
@@ -66,6 +65,12 @@
     [self.labelHeader changeTheme];
     [self.labelDirection changeTheme];
     [self.buttonDirection changeTheme];
+}
+
+- (void)viewRefresh
+{
+    [self.buttonDirection setTitle:[directions objectAtIndex:direction] forState:UIControlStateNormal];
+    [self.buttonDirection setTitle:[directions objectAtIndex:direction] forState:UIControlStateSelected];
 }
 
 #pragma mark -- configuration
@@ -84,6 +89,7 @@
 {
     [self configSet:@"direction" value:[NSString stringWithFormat:@"%ld", (long)direction]];
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+    [self viewRefresh];
 }
 
 + (NSString *)configPrefix
@@ -107,12 +113,6 @@
 
 - (void)clickDirection:(FilterButton *)s
 {
-    if (s == nil) {
-        [self.buttonDirection setTitle:[directions objectAtIndex:direction] forState:UIControlStateNormal];
-        [self.buttonDirection setTitle:[directions objectAtIndex:direction] forState:UIControlStateSelected];
-        return;
-    }
-
     [ActionSheetStringPicker
         showPickerWithTitle:_(@"filterdirectiontableviewcell-Select a direction")
         rows:directions
@@ -120,7 +120,6 @@
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
             direction = selectedIndex;
             directionString = [directions objectAtIndex:direction];
-            [self clickDirection:nil];
             [self configUpdate];
         }
         cancelBlock:^(ActionSheetStringPicker *picker) {

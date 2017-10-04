@@ -76,6 +76,7 @@
 #pragma mark -- configuration
 
 - NEEDS_OVERLOADING_VOID(configUpdate)
+- NEEDS_OVERLOADING_VOID(viewRefresh)
 + NEEDS_OVERLOADING_NSSTRING(configPrefix)
 + NEEDS_OVERLOADING_NSARRAY_NSSTRING(configFields)
 + NEEDS_OVERLOADING_NSDICTIONARY(configDefaults)

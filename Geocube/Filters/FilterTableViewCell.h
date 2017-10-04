@@ -39,6 +39,7 @@
 - (void)configInit;
 - (void)configSet:(NSString *)name value:(NSString *)value;
 - (void)configUpdate;
+- (void)viewRefresh;
 + (NSString *)configPrefix;
 + (NSArray<NSString *> *)configFields;
 + (NSDictionary *)configDefaults;

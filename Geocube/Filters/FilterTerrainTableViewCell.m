@@ -47,14 +47,20 @@
     [self.slider setInRangeTrackImage:image];
     self.slider.min = (config_min - 1) / 4.0;
     self.slider.max = (config_max - 1) / 4.0;
-
-    [self reportSlider:nil];
 }
 
 - (void)changeTheme
 {
     [self.labelSlider changeTheme];
     [self.labelHeader changeTheme];
+}
+
+- (void)viewRefresh
+{
+    NSString *minString = [NSString stringWithFormat:((int)config_min == config_min) ? @"%1.0f" : @"%0.1f", config_min];
+    NSString *maxString = [NSString stringWithFormat:((int)config_max == config_max) ? @"%1.0f" : @"%0.1f", config_max];
+
+    self.labelSlider.text = [NSString stringWithFormat:@"%@: %@ - %@", _(@"filterterraintableviewcell-Terrain"), minString, maxString];
 }
 
 #pragma mark -- configuration
@@ -77,6 +83,7 @@
     [self configSet:@"min" value:[NSString stringWithFormat:@"%0.1f", config_min]];
     [self configSet:@"max" value:[NSString stringWithFormat:@"%0.1f", config_max]];
     [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+    [self viewRefresh];
 }
 
 + (NSString *)configPrefix
@@ -107,10 +114,7 @@
         [self configUpdate];
     }
 
-    NSString *minString = [NSString stringWithFormat:((int)config_min == config_min) ? @"%1.0f" : @"%0.1f", config_min];
-    NSString *maxString = [NSString stringWithFormat:((int)config_max == config_max) ? @"%1.0f" : @"%0.1f", config_max];
-
-    self.labelSlider.text = [NSString stringWithFormat:@"%@: %@ - %@", _(@"filterterraintableviewcell-Terrain"), minString, maxString];
+    [self viewRefresh];
 }
 
 @end
