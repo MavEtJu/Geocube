@@ -19,80 +19,76 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "FilterDistanceTableViewCell.h"
+
+#import "BaseObjectsLibrary/GCLabelNormalText.h"
+#import "FilterButton.h"
+
 @interface FilterDistanceTableViewCell ()
 {
-    FilterButton *compareDistanceButton;
-    FilterButton *distanceButton, *variationButton;
     FilterDistance compareDistance;
 
     NSInteger distanceKm, distanceM;
     NSInteger variationKm, variationM;
 }
 
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelDistance;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelVariation;
+@property (nonatomic, weak) IBOutlet FilterButton *buttonCompareDistance;
+@property (nonatomic, weak) IBOutlet FilterButton *buttonDistance;
+@property (nonatomic, weak) IBOutlet FilterButton *buttonVariation;
+
 @end
 
 @implementation FilterDistanceTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo
+- (void)awakeFromNib
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    fo = _fo;
+    [super awakeFromNib];
+    [self changeTheme];
 
-    [self configInit];
-    [self header];
+    self.labelDistance.text = [NSString stringWithFormat:@"%@: ", _(@"filterdistancetableviewcell-Distance")];
+    self.labelVariation.text = [NSString stringWithFormat:@"%@: ", _(@"filterdistancetableviewcell-Variation")];
 
-    CGRect rect;
-    NSInteger y = cellHeight;
-    GCLabel *l;
+    [self.buttonCompareDistance addTarget:self action:@selector(clickCompare:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonDistance addTarget:self action:@selector(clickDistance:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonVariation addTarget:self action:@selector(clickDistance:) forControlEvents:UIControlEventTouchDown];
+}
 
-    if (fo.expanded == NO) {
-        [self.contentView sizeToFit];
-        fo.cellHeight = cellHeight = y;
-        return self;
+- (void)changeTheme
+{
+    [super changeTheme];
+    [self.labelDistance changeTheme];
+    [self.labelVariation changeTheme];
+    [self.buttonDistance changeTheme];
+    [self.buttonVariation changeTheme];
+    [self.buttonCompareDistance changeTheme];
+}
+
+- (void)viewRefresh
+{
+    switch (compareDistance) {
+        case FILTER_DISTANCE_LESSTHAN:
+            [self.buttonCompareDistance setTitle:_(@"=<") forState:UIControlStateNormal];
+            [self.buttonCompareDistance setTitle:_(@"=<") forState:UIControlStateSelected];
+            break;
+        case FILTER_DISTANCE_MORETHAN:
+            [self.buttonCompareDistance setTitle:_(@">=") forState:UIControlStateNormal];
+            [self.buttonCompareDistance setTitle:_(@">=") forState:UIControlStateSelected];
+            break;
+        case FILTER_DISTANCE_INBETWEEN:
+            [self.buttonCompareDistance setTitle:_(@"=") forState:UIControlStateNormal];
+            [self.buttonCompareDistance setTitle:_(@"=") forState:UIControlStateSelected];
+            break;
+        default:
+            break;
     }
 
-    rect = CGRectMake(40, y, 0, 0);
-    l = [[GCLabelNormalText alloc] initWithFrame:rect];
-    l.textAlignment = NSTextAlignmentLeft;
-    l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdistancetableviewcell-Distance")];
-    [l sizeToFit];
-    [self.contentView addSubview:l];
-
-    compareDistanceButton = [FilterButton buttonWithType:UIButtonTypeSystem];
-    [compareDistanceButton addTarget:self action:@selector(clickCompare:) forControlEvents:UIControlEventTouchDown];
-    [self.contentView addSubview:compareDistanceButton];
-    compareDistanceButton.frame = CGRectMake(l.frame.origin.x + l.frame.size.width + 20, y, 40, compareDistanceButton.titleLabel.font.lineHeight);
-    [self clickCompare:compareDistanceButton];
-    compareDistance--;
-
-    distanceButton = [FilterButton buttonWithType:UIButtonTypeSystem];
-    distanceButton.frame = rect;
-    [distanceButton addTarget:self action:@selector(clickDistance:) forControlEvents:UIControlEventTouchDown];
-    distanceButton.frame = CGRectMake(compareDistanceButton.frame.origin.x + compareDistanceButton.frame.size.width + 20, y, 120, distanceButton.titleLabel.font.lineHeight);
-    [self.contentView addSubview:distanceButton];
-    [self measurementWasSelectedWithBigUnit:[NSNumber numberWithLong:distanceKm] smallUnit:[NSNumber numberWithLong:distanceM] element:distanceButton];
-
-    y += 35;
-
-    rect = CGRectMake(40, y, 0, 0);
-    l = [[GCLabelNormalText alloc] initWithFrame:rect];
-    l.textAlignment = NSTextAlignmentLeft;
-    l.text = [NSString stringWithFormat:@"%@: ", _(@"filterdistancetableviewcell-Variation")];
-    [l sizeToFit];
-    [self.contentView addSubview:l];
-
-    variationButton = [FilterButton buttonWithType:UIButtonTypeSystem];
-    [variationButton addTarget:self action:@selector(clickDistance:) forControlEvents:UIControlEventTouchDown];
-    variationButton.frame = CGRectMake(l.frame.origin.x + l.frame.size.width + 20, y, width - 20 - 120, variationButton.titleLabel.font.lineHeight);
-    [self.contentView addSubview:variationButton];
-    [self measurementWasSelectedWithBigUnit:[NSNumber numberWithLong:variationKm] smallUnit:[NSNumber numberWithLong:variationM] element:variationButton];
-
-    y += 35;
-
-    [self.contentView sizeToFit];
-    fo.cellHeight = cellHeight = y;
-
-    return self;
+    [self.buttonDistance setTitle:[MyTools niceDistance:(distanceKm * 1000 + distanceM)] forState:UIControlStateNormal];
+    [self.buttonDistance setTitle:[MyTools niceDistance:(distanceKm * 1000 + distanceM)] forState:UIControlStateSelected];
+    [self.buttonVariation setTitle:[MyTools niceDistance:(variationKm * 1000 + variationM)] forState:UIControlStateNormal];
+    [self.buttonVariation setTitle:[MyTools niceDistance:(variationKm * 1000 + variationM)] forState:UIControlStateSelected];
 }
 
 #pragma mark -- configuration
@@ -100,6 +96,8 @@
 - (void)configInit
 {
     [super configInit];
+
+    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), fo.name];
 
     NSString *s;
     s = [self configGet:@"distanceKm"];
@@ -152,32 +150,15 @@
 {
     compareDistance = (compareDistance + 1) % FILTER_DISTANCE_MAX;
     [self configUpdate];
-
-    switch (compareDistance) {
-        case FILTER_DISTANCE_LESSTHAN:
-            [compareDistanceButton setTitle:_(@"=<") forState:UIControlStateNormal];
-            [compareDistanceButton setTitle:_(@"=<") forState:UIControlStateSelected];
-            break;
-        case FILTER_DISTANCE_MORETHAN:
-            [compareDistanceButton setTitle:_(@">=") forState:UIControlStateNormal];
-            [compareDistanceButton setTitle:_(@">=") forState:UIControlStateSelected];
-            break;
-        case FILTER_DISTANCE_INBETWEEN:
-            [compareDistanceButton setTitle:_(@"=") forState:UIControlStateNormal];
-            [compareDistanceButton setTitle:_(@"=") forState:UIControlStateSelected];
-            break;
-        default:
-            break;
-    }
 }
 
 - (void)clickDistance:(FilterButton *)b
 {
-    if (b == distanceButton) {
+    if (b == self.buttonDistance) {
         [ActionSheetDistancePicker showPickerWithTitle:_(@"filterdistancetableviewcell-Select distance") bigUnitString:@"km" bigUnitMax:999 selectedBigUnit:distanceKm smallUnitString:@"m" smallUnitMax:999 selectedSmallUnit:distanceM target:self action:@selector(measurementWasSelectedWithBigUnit:smallUnit:element:) origin:b];
         return;
     }
-    if (b == variationButton) {
+    if (b == self.buttonVariation) {
         [ActionSheetDistancePicker showPickerWithTitle:_(@"filterdistancetableviewcell-Select variation") bigUnitString:@"km" bigUnitMax:99 selectedBigUnit:variationKm smallUnitString:@"m" smallUnitMax:999 selectedSmallUnit:variationM target:self action:@selector(measurementWasSelectedWithBigUnit:smallUnit:element:) origin:b];
         return;
     }
@@ -185,19 +166,15 @@
 
 - (void)measurementWasSelectedWithBigUnit:(NSNumber *)bu smallUnit:(NSNumber *)su element:(FilterButton *)e
 {
-    if (e == distanceButton) {
+    if (e == self.buttonDistance) {
         distanceM = su.integerValue;
         distanceKm = bu.integerValue;
-        [distanceButton setTitle:[MyTools niceDistance:(distanceKm * 1000 + distanceM)] forState:UIControlStateNormal];
-        [distanceButton setTitle:[MyTools niceDistance:(distanceKm * 1000 + distanceM)] forState:UIControlStateSelected];
         [self configUpdate];
         return;
     }
-    if (e == variationButton) {
+    if (e == self.buttonVariation) {
         variationM = su.integerValue;
         variationKm = bu.integerValue;
-        [variationButton setTitle:[MyTools niceDistance:(variationKm * 1000 + variationM)] forState:UIControlStateNormal];
-        [variationButton setTitle:[MyTools niceDistance:(variationKm * 1000 + variationM)] forState:UIControlStateSelected];
         [self configUpdate];
         return;
     }

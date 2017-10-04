@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="116" id="iz1-Ap-26W" customClass="FilterDistanceTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="483" height="116"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iz1-Ap-26W" id="pPN-Fy-a1u">
+                <rect key="frame" x="0.0" y="0.0" width="483" height="115.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXh-61-n2f" customClass="GCLabelNormalText">
+                        <rect key="frame" x="213.5" y="8" width="56" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odL-Q4-voF" customClass="GCLabelNormalText">
+                        <rect key="frame" x="154" y="41" width="56" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ERp-7D-zmN" customClass="FilterButton">
+                        <rect key="frame" x="218.5" y="37" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4Q-Bf-QNt" customClass="FilterButton">
+                        <rect key="frame" x="272.5" y="37" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nnx-a9-F6U" customClass="GCLabelNormalText">
+                        <rect key="frame" x="154" y="77" width="56" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Be9-6Q-xHf" customClass="FilterButton">
+                        <rect key="frame" x="272.5" y="67" width="46" height="40.5"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="B4Q-Bf-QNt" firstAttribute="centerY" secondItem="odL-Q4-voF" secondAttribute="centerY" id="5W8-Df-jb7"/>
+                    <constraint firstItem="LXh-61-n2f" firstAttribute="centerX" secondItem="pPN-Fy-a1u" secondAttribute="centerX" id="AYv-mt-moH"/>
+                    <constraint firstItem="LXh-61-n2f" firstAttribute="top" secondItem="pPN-Fy-a1u" secondAttribute="topMargin" id="BAU-yi-0z1"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Be9-6Q-xHf" secondAttribute="bottom" id="DVr-tj-3eN"/>
+                    <constraint firstItem="ERp-7D-zmN" firstAttribute="top" secondItem="LXh-61-n2f" secondAttribute="bottom" constant="8" id="E90-ap-7EH"/>
+                    <constraint firstItem="ERp-7D-zmN" firstAttribute="centerY" secondItem="odL-Q4-voF" secondAttribute="centerY" id="GF3-xc-PWt"/>
+                    <constraint firstItem="B4Q-Bf-QNt" firstAttribute="leading" secondItem="ERp-7D-zmN" secondAttribute="trailing" constant="8" id="biF-x1-LrX"/>
+                    <constraint firstItem="Nnx-a9-F6U" firstAttribute="centerX" secondItem="odL-Q4-voF" secondAttribute="centerX" id="kZk-pp-yQq"/>
+                    <constraint firstItem="ERp-7D-zmN" firstAttribute="centerX" secondItem="LXh-61-n2f" secondAttribute="centerX" id="qD6-JO-fpx"/>
+                    <constraint firstItem="Be9-6Q-xHf" firstAttribute="centerY" secondItem="Nnx-a9-F6U" secondAttribute="centerY" id="qId-ta-MYo"/>
+                    <constraint firstItem="ERp-7D-zmN" firstAttribute="leading" secondItem="odL-Q4-voF" secondAttribute="trailing" constant="8" id="qzI-2d-gd2"/>
+                    <constraint firstItem="Be9-6Q-xHf" firstAttribute="top" secondItem="B4Q-Bf-QNt" secondAttribute="bottom" id="w8t-CW-3Qd"/>
+                    <constraint firstItem="B4Q-Bf-QNt" firstAttribute="centerX" secondItem="Be9-6Q-xHf" secondAttribute="centerX" id="wG5-Yc-7WO"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="buttonCompareDistance" destination="ERp-7D-zmN" id="UhG-VU-vbS"/>
+                <outlet property="buttonDistance" destination="B4Q-Bf-QNt" id="qPZ-d9-zlB"/>
+                <outlet property="buttonVariation" destination="Be9-6Q-xHf" id="aRN-QQ-Mq9"/>
+                <outlet property="labelDistance" destination="odL-Q4-voF" id="a5d-Pl-eBN"/>
+                <outlet property="labelHeader" destination="LXh-61-n2f" id="K53-34-9df"/>
+                <outlet property="labelVariation" destination="Nnx-a9-F6U" id="Fpi-ND-UN4"/>
+            </connections>
+            <point key="canvasLocation" x="-115.5" y="13"/>
+        </tableViewCell>
+    </objects>
+</document>
