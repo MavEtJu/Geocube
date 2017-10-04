@@ -86,6 +86,7 @@ enum {
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERTERRAINTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERTERRAINTABLEVIEWCELL];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERFAVOURITESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERFAVOURITESTABLEVIEWCELL];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERDATESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERDATESTABLEVIEWCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERFLAGSTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERFLAGSTABLEVIEWCELL];
 
 #define MATCH(__idx__, __name__, __xib__) \
     case __idx__: { \
@@ -110,7 +111,7 @@ enum {
             MATCH(filterDirection, _(@"filtersviewcontroller-direction"), XIB_FILTERDIRECTIONTABLEVIEWCELL);
             MATCH(filterText, _(@"filtersviewcontroller-text"), XIB_FILTERTABLEVIEWCELL);
             MATCH(filterDates, _(@"filtersviewcontroller-dates"), XIB_FILTERDATESTABLEVIEWCELL);
-            MATCH(filterFlags, _(@"filtersviewcontroller-flags"), XIB_FILTERTABLEVIEWCELL);
+            MATCH(filterFlags, _(@"filtersviewcontroller-flags"), XIB_FILTERFLAGSTABLEVIEWCELL);
             MATCH(filterAccounts, _(@"filtersviewcontroller-accounts"), XIB_FILTERTABLEVIEWCELL);
             default:
                 NSAssert1(FALSE, @"Unknown filter %ld", (long)i);

@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define XIB_FILTERFLAGSTABLEVIEWCELL @"FilterFlagsTableViewCell"
+
 @interface FilterFlagsTableViewCell : FilterTableViewCell
 
 typedef NS_ENUM(NSInteger, FilterFlag) {

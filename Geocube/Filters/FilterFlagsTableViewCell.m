@@ -21,17 +21,6 @@
 
 @interface FilterFlagsTableViewCell ()
 {
-    FilterButton *buttonHighlighted;
-    FilterButton *buttonMarkedAsFound;
-    FilterButton *buttonMarkedAsDNF;
-    FilterButton *buttonIgnored;
-    FilterButton *buttonInProgress;
-    FilterButton *buttonLoggedAsFound;
-    FilterButton *buttonLoggedAsDNF;
-    FilterButton *buttonOwner;
-    FilterButton *buttonEnabled;
-    FilterButton *buttonArchived;
-
     FilterFlag valueHighlighted;
     FilterFlag valueMarkedAsFound;
     FilterFlag valueMarkedAsDNF;
@@ -55,6 +44,19 @@
     NSArray<NSString *> *valuesArchived;
 }
 
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
+
+@property (nonatomic, weak) IBOutlet FilterButton *buttonHighlighted;
+@property (nonatomic, weak) IBOutlet FilterButton *buttonMarkedAsFound;
+@property (nonatomic, weak) IBOutlet FilterButton *buttonMarkedAsDNF;
+@property (nonatomic, weak) IBOutlet FilterButton *buttonIgnored;
+@property (nonatomic, weak) IBOutlet FilterButton *buttonInProgress;
+@property (nonatomic, weak) IBOutlet FilterButton *buttonLoggedAsFound;
+@property (nonatomic, weak) IBOutlet FilterButton *buttonLoggedAsDNF;
+@property (nonatomic, weak) IBOutlet FilterButton *buttonOwner;
+@property (nonatomic, weak) IBOutlet FilterButton *buttonEnabled;
+@property (nonatomic, weak) IBOutlet FilterButton *buttonArchived;
+
 @end
 
 @implementation FilterFlagsTableViewCell
@@ -73,23 +75,10 @@ typedef NS_ENUM(NSInteger, FlagType) {
     flagMax
 };
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo
+- (void)awakeFromNib
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    fo = _fo;
-
-    [self configInit];
-    [self header];
-
-    __block NSInteger y = cellHeight;
-
-    if (fo.expanded == NO) {
-        [self.contentView sizeToFit];
-        fo.cellHeight = cellHeight = y;
-        return self;
-    }
-
-    NSString *c;
+    [super awakeFromNib];
+    [self changeTheme];
 
     valueHighlighted = FILTER_FLAGS_NOTCHECKED;
     valueMarkedAsFound = FILTER_FLAGS_NOTCHECKED;
@@ -101,18 +90,51 @@ typedef NS_ENUM(NSInteger, FlagType) {
     valueEnabled = FILTER_FLAGS_NOTCHECKED;
     valueArchived = FILTER_FLAGS_NOTCHECKED;
 
-    valuesHighlighted = @[_(@"filterflagstableviewcell-Highlighted"), _(@"filterflagstableviewcell-Highlighted"), _(@"filterflagstableviewcell-Not highlighted")];
-    valuesMarkedAsFound = @[_(@"filterflagstableviewcell-Marked as Found"), _(@"filterflagstableviewcell-Marked as Found"), _(@"filterflagstableviewcell-Not marked as Found")];
-    valuesMarkedAsDNF = @[_(@"filterflagstableviewcell-Marked as DNF"), _(@"filterflagstableviewcell-Marked as DNF"), _(@"filterflagstableviewcell-Not marked as DNF")];
-    valuesIgnored = @[_(@"filterflagstableviewcell-Ignored"), _(@"filterflagstableviewcell-Ignored"), _(@"filterflagstableviewcell-Not ignored")];
-    valuesInProgress = @[_(@"filterflagstableviewcell-In progress"), _(@"filterflagstableviewcell-In progress"), _(@"filterflagstableviewcell-Not in progress")];
-    valuesLoggedAsFound = @[_(@"filterflagstableviewcell-Logged as Found"), _(@"filterflagstableviewcell-Logged as Found"), _(@"filterflagstableviewcell-Not logged as Found")];
-    valuesLoggedAsDNF = @[_(@"filterflagstableviewcell-Logged as DNF"), _(@"filterflagstableviewcell-Logged as DNF"), _(@"filterflagstableviewcell-Not logged as DNF")];
-    valuesOwner = @[_(@"filterflagstableviewcell-Mine"), _(@"filterflagstableviewcell-Mine"), _(@"filterflagstableviewcell-Not mine")];
-    valuesEnabled = @[_(@"filterflagstableviewcell-Enabled"), _(@"filterflagstableviewcell-Enabled"), _(@"filterflagstableviewcell-Not enabled")];
-    valuesArchived = @[_(@"filterflagstableviewcell-Archived"), _(@"filterflagstableviewcell-Archived"), _(@"filterflagstableviewcell-Not archived")];
+    valuesHighlighted = @[
+        _(@"filterflagstableviewcell-Highlighted"),
+        _(@"filterflagstableviewcell-Highlighted"),
+        _(@"filterflagstableviewcell-Not highlighted")];
+    valuesMarkedAsFound = @[
+        _(@"filterflagstableviewcell-Marked as Found"),
+        _(@"filterflagstableviewcell-Marked as Found"),
+        _(@"filterflagstableviewcell-Not marked as Found")];
+    valuesMarkedAsDNF = @[
+        _(@"filterflagstableviewcell-Marked as DNF"),
+        _(@"filterflagstableviewcell-Marked as DNF"),
+        _(@"filterflagstableviewcell-Not marked as DNF")];
+    valuesIgnored = @[
+        _(@"filterflagstableviewcell-Ignored"),
+        _(@"filterflagstableviewcell-Ignored"),
+        _(@"filterflagstableviewcell-Not ignored")];
+    valuesInProgress = @[
+        _(@"filterflagstableviewcell-In progress"),
+        _(@"filterflagstableviewcell-In progress"),
+        _(@"filterflagstableviewcell-Not in progress")];
+    valuesLoggedAsFound = @[
+        _(@"filterflagstableviewcell-Logged as Found"),
+        _(@"filterflagstableviewcell-Logged as Found"),
+        _(@"filterflagstableviewcell-Not logged as Found")];
+    valuesLoggedAsDNF = @[
+        _(@"filterflagstableviewcell-Logged as DNF"),
+        _(@"filterflagstableviewcell-Logged as DNF"),
+        _(@"filterflagstableviewcell-Not logged as DNF")];
+    valuesOwner = @[
+        _(@"filterflagstableviewcell-Mine"),
+        _(@"filterflagstableviewcell-Mine"),
+        _(@"filterflagstableviewcell-Not mine")];
+    valuesEnabled = @[
+        _(@"filterflagstableviewcell-Enabled"),
+        _(@"filterflagstableviewcell-Enabled"),
+        _(@"filterflagstableviewcell-Not enabled")];
+    valuesArchived = @[
+        _(@"filterflagstableviewcell-Archived"),
+        _(@"filterflagstableviewcell-Archived"),
+        _(@"filterflagstableviewcell-Not archived")];
+
+    NSString *c;
 
 #define CHECK(__type__, __config__) \
+    [self.button ## __type__ addTarget:self action:@selector(clickGroup:) forControlEvents:UIControlEventTouchDown]; \
     c = [self configGet:__config__]; \
     if (c != nil) \
         value ## __type__ = [c integerValue];
@@ -128,41 +150,7 @@ typedef NS_ENUM(NSInteger, FlagType) {
     CHECK(Enabled, @"isenabled");
     CHECK(Archived, @"isarchived");
 
-    for (FlagType i = 0; i < flagMax; i++) {
-        FilterButton *b = [FilterButton buttonWithType:UIButtonTypeSystem];
-        [b addTarget:self action:@selector(clickGroup:) forControlEvents:UIControlEventTouchDown];
-        CGRect rect = CGRectMake(20, y, width - 40, b.titleLabel.font.lineHeight);
-        b.frame = rect;
-        [self.contentView addSubview:b];
-
-#define CASE(__type__) \
-        case flag ## __type__: \
-            [b setTitle:[values ## __type__ objectAtIndex:value ## __type__] forState:UIControlStateNormal]; \
-            [b setTitleColor:(value ## __type__ != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal]; \
-            button ## __type__ = b; \
-            break;
-
-        switch (i) {
-            CASE(Highlighted);
-            CASE(MarkedAsFound);
-            CASE(MarkedAsDNF);
-            CASE(Ignored);
-            CASE(InProgress);
-            CASE(LoggedAsFound);
-            CASE(LoggedAsDNF);
-            CASE(Owner);
-            CASE(Enabled);
-            CASE(Archived);
-            default:
-                NSAssert1(0, @"Flag %ld not found", (long)i);
-        }
-        y += b.frame.size.height;
-    };
-
-    [self.contentView sizeToFit];
-    fo.cellHeight = cellHeight = y;
-
-    return self;
+    [self viewRefresh];
 }
 
 - (void)viewWillTransitionToSize
@@ -170,11 +158,31 @@ typedef NS_ENUM(NSInteger, FlagType) {
     [super viewWillTransitionToSize];
 }
 
+- (void)viewRefresh
+{
+#define VIEW(__type__, __config__) \
+    [self.button ## __type__ setTitle:[values ## __type__ objectAtIndex:value ## __type__] forState:UIControlStateNormal]; \
+    [self.button ## __type__ setTitleColor:(value ## __type__ != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
+
+    VIEW(MarkedAsFound, @"markedfound");
+    VIEW(MarkedAsDNF, @"markeddnf");
+    VIEW(Ignored, @"ignored");
+    VIEW(Highlighted, @"highlighted");
+    VIEW(InProgress, @"inprogress");
+    VIEW(LoggedAsFound, @"loggedasfound");
+    VIEW(LoggedAsDNF, @"loggedasdnf");
+    VIEW(Owner, @"owner");
+    VIEW(Enabled, @"isenabled");
+    VIEW(Archived, @"isarchived");
+}
+
 #pragma mark -- configuration
 
 - (void)configInit
 {
     [super configInit];
+
+    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), fo.name];
 }
 
 - (void)configUpdate
@@ -195,7 +203,7 @@ typedef NS_ENUM(NSInteger, FlagType) {
 
 + (NSDictionary *)configDefaults
 {
-    return @{@"enabled": [NSString stringWithFormat:@"%ld", (long)FILTER_FLAGS_NOTCHECKED],
+    return @{@"enabled": @"0",
              @"markedfound": [NSString stringWithFormat:@"%ld", (long)FILTER_FLAGS_NOTCHECKED],
              @"markeddnf": [NSString stringWithFormat:@"%ld", (long)FILTER_FLAGS_NOTCHECKED],
              @"ignored": [NSString stringWithFormat:@"%ld", (long)FILTER_FLAGS_NOTCHECKED],
@@ -214,10 +222,8 @@ typedef NS_ENUM(NSInteger, FlagType) {
 - (void)clickGroup:(FilterButton *)b
 {
 #define PROCESS(__type__, __config__) \
-    if (b == button ## __type__) { \
+    if (b == self.button ## __type__) { \
         value ## __type__ = (value ## __type__ + 1) % [values ## __type__ count]; \
-        [b setTitle:[values ## __type__ objectAtIndex:value ## __type__] forState:UIControlStateNormal]; \
-        [b setTitleColor:(value ## __type__ != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal]; \
         [self configSet:__config__ value:[NSString stringWithFormat:@"%ld", (long)value ## __type__]]; \
         [self configUpdate]; \
         return; \

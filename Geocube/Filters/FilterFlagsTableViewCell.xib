@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="414.5" id="hWK-uj-AdW" customClass="FilterFlagsTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="358"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hWK-uj-AdW" id="TB1-N7-vPc">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="357.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PLK-7a-37V" customClass="GCLabelNormalText">
+                        <rect key="frame" x="132" y="8" width="56" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mw8-wB-aiN" customClass="FilterButton">
+                        <rect key="frame" x="137" y="36.5" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cm9-4H-Leg" customClass="FilterButton">
+                        <rect key="frame" x="137" y="66.5" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C3t-oC-fSA" customClass="FilterButton">
+                        <rect key="frame" x="137" y="96.5" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jc6-lK-mSY" customClass="FilterButton">
+                        <rect key="frame" x="137" y="126.5" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zxm-MY-Dqf" customClass="FilterButton">
+                        <rect key="frame" x="137" y="156.5" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2p-F2-zLV" customClass="FilterButton">
+                        <rect key="frame" x="137" y="186.5" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6A-4X-NU9" customClass="FilterButton">
+                        <rect key="frame" x="137" y="216.5" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="19u-LK-aau" customClass="FilterButton">
+                        <rect key="frame" x="137" y="246.5" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSh-ej-KRP" customClass="FilterButton">
+                        <rect key="frame" x="137" y="276.5" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fhv-Xi-ULq" customClass="FilterButton">
+                        <rect key="frame" x="137" y="306.5" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Zxm-MY-Dqf" firstAttribute="top" secondItem="Jc6-lK-mSY" secondAttribute="bottom" id="2F4-8U-1bB"/>
+                    <constraint firstItem="Cm9-4H-Leg" firstAttribute="top" secondItem="mw8-wB-aiN" secondAttribute="bottom" id="86U-Zm-fuV"/>
+                    <constraint firstItem="19u-LK-aau" firstAttribute="top" secondItem="q6A-4X-NU9" secondAttribute="bottom" id="9I8-si-ft2"/>
+                    <constraint firstItem="q6A-4X-NU9" firstAttribute="centerX" secondItem="TB1-N7-vPc" secondAttribute="centerX" id="BaG-Yo-fyx"/>
+                    <constraint firstItem="Jc6-lK-mSY" firstAttribute="top" secondItem="C3t-oC-fSA" secondAttribute="bottom" id="BqG-PI-Nci"/>
+                    <constraint firstItem="pSh-ej-KRP" firstAttribute="centerX" secondItem="TB1-N7-vPc" secondAttribute="centerX" id="D2d-F9-7fU"/>
+                    <constraint firstItem="d2p-F2-zLV" firstAttribute="centerX" secondItem="TB1-N7-vPc" secondAttribute="centerX" id="Dcx-PD-gxj"/>
+                    <constraint firstItem="mw8-wB-aiN" firstAttribute="top" secondItem="PLK-7a-37V" secondAttribute="bottom" constant="8" id="Fq7-U1-eoc"/>
+                    <constraint firstItem="Zxm-MY-Dqf" firstAttribute="centerX" secondItem="TB1-N7-vPc" secondAttribute="centerX" id="HT7-5T-vgj"/>
+                    <constraint firstItem="PLK-7a-37V" firstAttribute="centerX" secondItem="TB1-N7-vPc" secondAttribute="centerX" id="KSE-r4-jW0"/>
+                    <constraint firstItem="q6A-4X-NU9" firstAttribute="top" secondItem="d2p-F2-zLV" secondAttribute="bottom" id="OoR-gR-t0J"/>
+                    <constraint firstItem="fhv-Xi-ULq" firstAttribute="centerX" secondItem="TB1-N7-vPc" secondAttribute="centerX" id="T1X-G3-VHc"/>
+                    <constraint firstItem="C3t-oC-fSA" firstAttribute="centerX" secondItem="TB1-N7-vPc" secondAttribute="centerX" id="T55-Il-tsN"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="fhv-Xi-ULq" secondAttribute="bottom" id="VyJ-Mt-KgI"/>
+                    <constraint firstItem="Jc6-lK-mSY" firstAttribute="centerX" secondItem="TB1-N7-vPc" secondAttribute="centerX" id="Wrj-jf-6Qn"/>
+                    <constraint firstItem="pSh-ej-KRP" firstAttribute="top" secondItem="19u-LK-aau" secondAttribute="bottom" id="ZW0-Pl-cRC"/>
+                    <constraint firstItem="Cm9-4H-Leg" firstAttribute="centerX" secondItem="TB1-N7-vPc" secondAttribute="centerX" id="bgD-Fc-tNA"/>
+                    <constraint firstItem="PLK-7a-37V" firstAttribute="top" secondItem="TB1-N7-vPc" secondAttribute="topMargin" id="ilp-xH-qBC"/>
+                    <constraint firstItem="mw8-wB-aiN" firstAttribute="centerX" secondItem="TB1-N7-vPc" secondAttribute="centerX" id="oI8-AX-U4f"/>
+                    <constraint firstItem="d2p-F2-zLV" firstAttribute="top" secondItem="Zxm-MY-Dqf" secondAttribute="bottom" id="oqe-vE-Mjc"/>
+                    <constraint firstItem="fhv-Xi-ULq" firstAttribute="top" secondItem="pSh-ej-KRP" secondAttribute="bottom" id="pUR-rU-3Hp"/>
+                    <constraint firstItem="19u-LK-aau" firstAttribute="centerX" secondItem="TB1-N7-vPc" secondAttribute="centerX" id="v9U-JW-ps0"/>
+                    <constraint firstItem="C3t-oC-fSA" firstAttribute="top" secondItem="Cm9-4H-Leg" secondAttribute="bottom" id="zJa-Nf-0d7"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="buttonArchived" destination="fhv-Xi-ULq" id="UKW-pO-046"/>
+                <outlet property="buttonEnabled" destination="pSh-ej-KRP" id="WzP-a1-z8V"/>
+                <outlet property="buttonHighlighted" destination="mw8-wB-aiN" id="3Ba-8v-7fo"/>
+                <outlet property="buttonIgnored" destination="Jc6-lK-mSY" id="7aw-6w-OVY"/>
+                <outlet property="buttonInProgress" destination="Zxm-MY-Dqf" id="Ub2-HR-pfO"/>
+                <outlet property="buttonLoggedAsDNF" destination="q6A-4X-NU9" id="oSD-Ue-9CH"/>
+                <outlet property="buttonLoggedAsFound" destination="d2p-F2-zLV" id="Us3-hN-EH8"/>
+                <outlet property="buttonMarkedAsDNF" destination="C3t-oC-fSA" id="myg-gM-DVC"/>
+                <outlet property="buttonMarkedAsFound" destination="Cm9-4H-Leg" id="2cd-Od-fjp"/>
+                <outlet property="buttonOwner" destination="19u-LK-aau" id="u3S-Kv-fAH"/>
+                <outlet property="labelHeader" destination="PLK-7a-37V" id="h00-T6-kT2"/>
+            </connections>
+            <point key="canvasLocation" x="-163" y="174"/>
+        </tableViewCell>
+    </objects>
+</document>
