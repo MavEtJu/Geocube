@@ -88,6 +88,7 @@ enum {
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERDATESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERDATESTABLEVIEWCELL];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERFLAGSTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERFLAGSTABLEVIEWCELL];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERDISTANCETABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERDISTANCETABLEVIEWCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERTEXTTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERTEXTTABLEVIEWCELL];
 
 #define MATCH(__idx__, __name__, __xib__) \
     case __idx__: { \
@@ -110,7 +111,7 @@ enum {
             MATCH(filterTerrain, _(@"filtersviewcontroller-terrain"), XIB_FILTERTERRAINTABLEVIEWCELL);
             MATCH(filterDistance, _(@"filtersviewcontroller-distance"), XIB_FILTERDISTANCETABLEVIEWCELL);
             MATCH(filterDirection, _(@"filtersviewcontroller-direction"), XIB_FILTERDIRECTIONTABLEVIEWCELL);
-            MATCH(filterText, _(@"filtersviewcontroller-text"), XIB_FILTERTABLEVIEWCELL);
+            MATCH(filterText, _(@"filtersviewcontroller-text"), XIB_FILTERTEXTTABLEVIEWCELL);
             MATCH(filterDates, _(@"filtersviewcontroller-dates"), XIB_FILTERDATESTABLEVIEWCELL);
             MATCH(filterFlags, _(@"filtersviewcontroller-flags"), XIB_FILTERFLAGSTABLEVIEWCELL);
             MATCH(filterAccounts, _(@"filtersviewcontroller-accounts"), XIB_FILTERTABLEVIEWCELL);

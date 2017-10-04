@@ -21,17 +21,7 @@
 
 @interface FilterTextTableViewCell ()
 {
-    FilterButton *bWaypointName;
-    FilterButton *bOwner;
-    FilterButton *bPlacedBy;
-    FilterButton *bCountry;
-    FilterButton *bState;
-    FilterButton *bLocality;
-    FilterButton *bDescription;
-    FilterButton *bLogs;
-
     NSString *waypointName;
-    NSString *owner;
     NSString *placedBy;
     NSString *country;
     NSString *state;
@@ -40,146 +30,59 @@
     NSString *logs;
 }
 
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
+
+@property (nonatomic, weak) IBOutlet FilterButton *buttonWaypointName;
+@property (nonatomic, weak) IBOutlet FilterButton *buttonPlacedBy;
+@property (nonatomic, weak) IBOutlet FilterButton *buttonCountry;
+@property (nonatomic, weak) IBOutlet FilterButton *buttonState;
+@property (nonatomic, weak) IBOutlet FilterButton *buttonLocality;
+@property (nonatomic, weak) IBOutlet FilterButton *buttonDescription;
+@property (nonatomic, weak) IBOutlet FilterButton *buttonLogs;
+
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelWaypointName;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelPlacedBy;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelCountry;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelState;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelLocality;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelDescription;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelLogs;
+
 @end
 
 @implementation FilterTextTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo
+- (void)awakeFromNib
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    fo = _fo;
+    [super awakeFromNib];
+    [self changeTheme];
 
-    [self configInit];
-    [self header];
+    self.labelWaypointName.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Waypoint name")];
+    self.labelPlacedBy.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Placed by")];
+    self.labelLocality.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Locality")];
+    self.labelState.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-State")];
+    self.labelCountry.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Country")];
+    self.labelDescription.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Description")];
+    self.labelLogs.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Logs")];
 
-    CGRect rect;
-    NSInteger y = cellHeight;
-    GCLabel *l;
+    [self.buttonWaypointName addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonPlacedBy addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonLocality addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonState addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonCountry addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonDescription addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonLogs addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
+}
 
-    if (fo.expanded == NO) {
-        [self.contentView sizeToFit];
-        fo.cellHeight = cellHeight = y;
-        return self;
-    }
-
-    rect = CGRectMake(20, y, 0, 0);
-    l = [[GCLabelNormalText alloc] initWithFrame:rect];
-    l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Waypoint name")];
-    l.textAlignment = NSTextAlignmentRight;
-    [l sizeToFit];
-    [self.contentView addSubview:l];
-
-    rect = CGRectMake(120, y, width - 140, 15);
-    bWaypointName = [FilterButton buttonWithType:UIButtonTypeSystem];
-    bWaypointName.frame = rect;
-    bWaypointName.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [bWaypointName setTitle:waypointName forState:UIControlStateNormal];
-    [bWaypointName addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
-    [self.contentView addSubview:bWaypointName];
-    y += l.font.lineHeight;
-
-    rect = CGRectMake(20, y, 0, 0);
-    l = [[GCLabelNormalText alloc] initWithFrame:rect];
-    l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Owner")];
-    l.textAlignment = NSTextAlignmentRight;
-    [l sizeToFit];
-    [self.contentView addSubview:l];
-
-    rect = CGRectMake(120, y, width - 140, 15);
-    bOwner = [FilterButton buttonWithType:UIButtonTypeSystem];
-    bOwner.frame = rect;
-    bOwner.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [bOwner setTitle:owner forState:UIControlStateNormal];
-    [bOwner addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
-    [self.contentView addSubview:bOwner];
-    y += l.font.lineHeight;
-
-    rect = CGRectMake(20, y, 0, 0);
-    l = [[GCLabelNormalText alloc] initWithFrame:rect];
-    l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Locality")];
-    l.textAlignment = NSTextAlignmentRight;
-    [l sizeToFit];
-    [self.contentView addSubview:l];
-
-    rect = CGRectMake(120, y, width - 140, 15);
-    bLocality = [FilterButton buttonWithType:UIButtonTypeSystem];
-    bLocality.frame = rect;
-    bLocality.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [bLocality setTitle:locality forState:UIControlStateNormal];
-    [bLocality addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
-    [self.contentView addSubview:bLocality];
-    y += l.font.lineHeight;
-
-    rect = CGRectMake(20, y, 0, 0);
-    l = [[GCLabelNormalText alloc] initWithFrame:rect];
-    l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-State")];
-    l.textAlignment = NSTextAlignmentRight;
-    [l sizeToFit];
-    [self.contentView addSubview:l];
-
-    rect = CGRectMake(120, y, width - 140, 15);
-    bState = [FilterButton buttonWithType:UIButtonTypeSystem];
-    bState.frame = rect;
-    bState.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [bState setTitle:state forState:UIControlStateNormal];
-    [bState addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
-    [self.contentView addSubview:bState];
-    y += l.font.lineHeight;
-
-    rect = CGRectMake(20, y, 0, 0);
-    l = [[GCLabelNormalText alloc] initWithFrame:rect];
-    l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Country")];
-    l.textAlignment = NSTextAlignmentRight;
-    [l sizeToFit];
-    [self.contentView addSubview:l];
-
-    rect = CGRectMake(120, y, width - 140, 15);
-    bCountry = [FilterButton buttonWithType:UIButtonTypeSystem];
-    bCountry.frame = rect;
-    bCountry.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [bCountry setTitle:country forState:UIControlStateNormal];
-    [bCountry addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
-    [self.contentView addSubview:bCountry];
-    y += l.font.lineHeight;
-
-    rect = CGRectMake(20, y, 0, 0);
-    l = [[GCLabelNormalText alloc] initWithFrame:rect];
-    l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Description")];
-    l.textAlignment = NSTextAlignmentRight;
-    [l sizeToFit];
-    [self.contentView addSubview:l];
-
-    rect = CGRectMake(120, y, width - 140, 15);
-    bDescription = [FilterButton buttonWithType:UIButtonTypeSystem];
-    bDescription.frame = rect;
-    bDescription.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [bDescription setTitle:description forState:UIControlStateNormal];
-    [bDescription addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
-    [self.contentView addSubview:bDescription];
-    y += l.font.lineHeight;
-
-    rect = CGRectMake(20, y, 0, 0);
-    l = [[GCLabelNormalText alloc] initWithFrame:rect];
-    l.text = [NSString stringWithFormat:@"%@: ", _(@"filtertexttableviewcell-Logs")];
-    l.textAlignment = NSTextAlignmentRight;
-    [l sizeToFit];
-    [self.contentView addSubview:l];
-
-    rect = CGRectMake(120, y, width - 140, 15);
-    bLogs = [FilterButton buttonWithType:UIButtonTypeSystem];
-    bLogs.frame = rect;
-    bLogs.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [bLogs setTitle:logs forState:UIControlStateNormal];
-    [bLogs addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
-    [self.contentView addSubview:bLogs];
-    y += l.font.lineHeight;
-
-    y += 15;
-
-    [self.contentView sizeToFit];
-    fo.cellHeight = cellHeight = y;
-
-    return self;
+- (void)viewRefresh
+{
+    [self.buttonWaypointName setTitle:waypointName forState:UIControlStateNormal];
+    [self.buttonPlacedBy setTitle:placedBy forState:UIControlStateNormal];
+    [self.buttonLocality setTitle:locality forState:UIControlStateNormal];
+    [self.buttonState setTitle:state forState:UIControlStateNormal];
+    [self.buttonCountry setTitle:country forState:UIControlStateNormal];
+    [self.buttonDescription setTitle:description forState:UIControlStateNormal];
+    [self.buttonLogs setTitle:logs forState:UIControlStateNormal];
 }
 
 #pragma mark -- configuration
@@ -188,8 +91,9 @@
 {
     [super configInit];
 
+    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), fo.name];
+
     waypointName = [self configGet:@"waypointname"];
-    owner = [self configGet:@"owner"];
     placedBy = [self configGet:@"placedby"];
     locality = [self configGet:@"locale"];
     state = [self configGet:@"state"];
@@ -201,7 +105,6 @@
 - (void)configUpdate
 {
     [self configSet:@"waypointname" value:waypointName];
-    [self configSet:@"owner" value:owner];
     [self configSet:@"placedby" value:placedBy];
     [self configSet:@"locale" value:locality];
     [self configSet:@"state" value:state];
@@ -219,13 +122,12 @@
 
 + (NSArray<NSString *> *)configFields
 {
-    return @[@"waypointname", @"owner", @"placedby", @"locale", @"state", @"country", @"description", @"logs", @"enabled"];
+    return @[@"waypointname", @"placedby", @"locale", @"state", @"country", @"description", @"logs", @"enabled"];
 }
 
 + (NSDictionary *)configDefaults
 {
     return @{@"waypointname": @"",
-             @"owner": @"",
              @"placedby": @"",
              @"locale": @"",
              @"state": @"",
@@ -253,15 +155,13 @@
                              UITextField *tf = alert.textFields.firstObject;
                              NSString *newstring = tf.text;
 
-                             [b setTitle:newstring forState:UIControlStateNormal];
-                             if (b == bWaypointName) waypointName = newstring;
-                             if (b == bOwner) owner = newstring;
-                             if (b == bPlacedBy) placedBy = newstring;
-                             if (b == bLocality) locality = newstring;
-                             if (b == bState) state = newstring;
-                             if (b == bCountry) country = newstring;
-                             if (b == bDescription) description = newstring;
-                             if (b == bLogs) logs = newstring;
+                             if (b == self.buttonWaypointName) waypointName = newstring;
+                             if (b == self.buttonPlacedBy) placedBy = newstring;
+                             if (b == self.buttonLocality) locality = newstring;
+                             if (b == self.buttonState) state = newstring;
+                             if (b == self.buttonCountry) country = newstring;
+                             if (b == self.buttonDescription) description = newstring;
+                             if (b == self.buttonLogs) logs = newstring;
                              [self configUpdate];
                          }];
     UIAlertAction *cancel = [UIAlertAction

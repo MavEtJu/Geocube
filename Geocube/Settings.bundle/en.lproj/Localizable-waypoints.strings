@@ -73,6 +73,7 @@
 "filterflagstableviewcell-Not marked as Found" = "Not marked as Found";
 "filterflagstableviewcell-Not mine" = "Not mine";
 "filterterraintableviewcell-Terrain" = "Terrain";
+"filtertexttableviewcell-Placed by" = "Placed by";
 "filtertexttableviewcell-Country" = "Country";
 "filtertexttableviewcell-Description" = "Description";
 "filtertexttableviewcell-Locality" = "Locality";

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilterTextTableViewCell"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="249" id="cwQ-Uf-jY1" customClass="FilterTextTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="249"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cwQ-Uf-jY1" id="J3L-HH-Eal">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="248.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ax4-3f-Lkg" customClass="GCLabelNormalText">
+                        <rect key="frame" x="159.5" y="8" width="56" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MM0-GT-8U9">
+                        <rect key="frame" x="183" y="36" width="8" height="212.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="8" id="CwB-CB-RJV"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4Z-M0-JVJ" customClass="GCLabelNormalText">
+                        <rect key="frame" x="141" y="32.5" width="42" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Rk-Ye-3EQ" customClass="FilterButton">
+                        <rect key="frame" x="191" y="28.5" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pfx-hj-9JB" customClass="GCLabelNormalText">
+                        <rect key="frame" x="141" y="63" width="42" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I3t-EG-zDb" customClass="FilterButton">
+                        <rect key="frame" x="191" y="58.5" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLy-QZ-rkp" customClass="GCLabelNormalText">
+                        <rect key="frame" x="141" y="93" width="42" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKb-8J-glo" customClass="FilterButton">
+                        <rect key="frame" x="191" y="88.5" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oN8-4U-0ZZ" customClass="GCLabelNormalText">
+                        <rect key="frame" x="141" y="123" width="42" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ke6-lI-ayH" customClass="FilterButton">
+                        <rect key="frame" x="191" y="118.5" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="er0-tl-Lax" customClass="GCLabelNormalText">
+                        <rect key="frame" x="141" y="153" width="42" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWd-ZA-442" customClass="FilterButton">
+                        <rect key="frame" x="191" y="148.5" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="An1-E8-rel" customClass="GCLabelNormalText">
+                        <rect key="frame" x="141" y="183" width="42" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iat-ay-1Sf" customClass="FilterButton">
+                        <rect key="frame" x="191" y="178.5" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VyI-sv-1No" customClass="GCLabelNormalText">
+                        <rect key="frame" x="141" y="213" width="42" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jt8-Eh-D6P" customClass="FilterButton">
+                        <rect key="frame" x="191" y="208.5" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="gWd-ZA-442" firstAttribute="centerY" secondItem="er0-tl-Lax" secondAttribute="centerY" id="2UM-yE-7eI"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="jt8-Eh-D6P" secondAttribute="bottom" id="6mp-ax-2FS"/>
+                    <constraint firstItem="ke6-lI-ayH" firstAttribute="top" secondItem="mKb-8J-glo" secondAttribute="bottom" id="8zV-JP-xMM"/>
+                    <constraint firstItem="MM0-GT-8U9" firstAttribute="leading" secondItem="oN8-4U-0ZZ" secondAttribute="trailing" id="9dl-Dv-Ms9"/>
+                    <constraint firstItem="MM0-GT-8U9" firstAttribute="leading" secondItem="LLy-QZ-rkp" secondAttribute="trailing" id="9l4-6e-dQy"/>
+                    <constraint firstItem="8Rk-Ye-3EQ" firstAttribute="centerY" secondItem="K4Z-M0-JVJ" secondAttribute="centerY" id="AJ8-ea-QCd"/>
+                    <constraint firstItem="jt8-Eh-D6P" firstAttribute="top" secondItem="Iat-ay-1Sf" secondAttribute="bottom" id="EQo-w2-CL1"/>
+                    <constraint firstItem="MM0-GT-8U9" firstAttribute="centerX" secondItem="J3L-HH-Eal" secondAttribute="centerX" id="IYG-iV-v8b"/>
+                    <constraint firstItem="8Rk-Ye-3EQ" firstAttribute="leading" secondItem="MM0-GT-8U9" secondAttribute="trailing" id="LF5-PN-dVx"/>
+                    <constraint firstItem="MM0-GT-8U9" firstAttribute="leading" secondItem="er0-tl-Lax" secondAttribute="trailing" id="Phi-S9-VhG"/>
+                    <constraint firstItem="MM0-GT-8U9" firstAttribute="leading" secondItem="VyI-sv-1No" secondAttribute="trailing" id="QAh-y4-MPq"/>
+                    <constraint firstItem="mKb-8J-glo" firstAttribute="leading" secondItem="MM0-GT-8U9" secondAttribute="trailing" id="REl-Rm-ULS"/>
+                    <constraint firstItem="Iat-ay-1Sf" firstAttribute="leading" secondItem="MM0-GT-8U9" secondAttribute="trailing" id="UfA-IS-dBZ"/>
+                    <constraint firstItem="MM0-GT-8U9" firstAttribute="leading" secondItem="Pfx-hj-9JB" secondAttribute="trailing" id="W47-Zw-Dhk"/>
+                    <constraint firstItem="ax4-3f-Lkg" firstAttribute="centerX" secondItem="J3L-HH-Eal" secondAttribute="centerX" id="W4l-BE-shx"/>
+                    <constraint firstItem="MM0-GT-8U9" firstAttribute="leading" secondItem="K4Z-M0-JVJ" secondAttribute="trailing" id="W6V-gd-UCa"/>
+                    <constraint firstItem="I3t-EG-zDb" firstAttribute="centerY" secondItem="Pfx-hj-9JB" secondAttribute="centerY" id="WyZ-wg-qcd"/>
+                    <constraint firstItem="ax4-3f-Lkg" firstAttribute="top" secondItem="J3L-HH-Eal" secondAttribute="topMargin" id="ZBY-px-csH"/>
+                    <constraint firstItem="gWd-ZA-442" firstAttribute="top" secondItem="ke6-lI-ayH" secondAttribute="bottom" id="ZZG-zw-hGO"/>
+                    <constraint firstAttribute="bottom" secondItem="MM0-GT-8U9" secondAttribute="bottom" id="ZmJ-MM-VcG"/>
+                    <constraint firstItem="Iat-ay-1Sf" firstAttribute="top" secondItem="gWd-ZA-442" secondAttribute="bottom" id="azx-Ei-DRc"/>
+                    <constraint firstItem="ke6-lI-ayH" firstAttribute="centerY" secondItem="oN8-4U-0ZZ" secondAttribute="centerY" id="b6B-Q0-fO0"/>
+                    <constraint firstItem="mKb-8J-glo" firstAttribute="centerY" secondItem="LLy-QZ-rkp" secondAttribute="centerY" id="bBU-G7-CwL"/>
+                    <constraint firstItem="8Rk-Ye-3EQ" firstAttribute="top" secondItem="ax4-3f-Lkg" secondAttribute="bottom" id="bWh-G5-xSl"/>
+                    <constraint firstItem="jt8-Eh-D6P" firstAttribute="centerY" secondItem="VyI-sv-1No" secondAttribute="centerY" id="fwk-hE-C2E"/>
+                    <constraint firstItem="Iat-ay-1Sf" firstAttribute="centerY" secondItem="An1-E8-rel" secondAttribute="centerY" id="ib1-9i-16T"/>
+                    <constraint firstItem="I3t-EG-zDb" firstAttribute="top" secondItem="8Rk-Ye-3EQ" secondAttribute="bottom" id="pxO-Rt-h0l"/>
+                    <constraint firstItem="MM0-GT-8U9" firstAttribute="top" secondItem="ax4-3f-Lkg" secondAttribute="bottom" constant="8" id="qem-Nf-rpG"/>
+                    <constraint firstItem="ke6-lI-ayH" firstAttribute="leading" secondItem="MM0-GT-8U9" secondAttribute="trailing" id="tyQ-nr-nDr"/>
+                    <constraint firstItem="gWd-ZA-442" firstAttribute="leading" secondItem="MM0-GT-8U9" secondAttribute="trailing" id="v9d-Em-mH9"/>
+                    <constraint firstItem="mKb-8J-glo" firstAttribute="top" secondItem="I3t-EG-zDb" secondAttribute="bottom" id="wEQ-IS-awb"/>
+                    <constraint firstItem="MM0-GT-8U9" firstAttribute="leading" secondItem="An1-E8-rel" secondAttribute="trailing" id="wqH-3d-uWd"/>
+                    <constraint firstItem="jt8-Eh-D6P" firstAttribute="leading" secondItem="MM0-GT-8U9" secondAttribute="trailing" id="zfG-pO-OzH"/>
+                    <constraint firstItem="I3t-EG-zDb" firstAttribute="leading" secondItem="MM0-GT-8U9" secondAttribute="trailing" id="zpp-Bo-Nt1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="buttonCountry" destination="jt8-Eh-D6P" id="STF-YK-cSz"/>
+                <outlet property="buttonDescription" destination="mKb-8J-glo" id="mDc-VN-Cla"/>
+                <outlet property="buttonLocality" destination="gWd-ZA-442" id="K94-Mz-Mre"/>
+                <outlet property="buttonLogs" destination="ke6-lI-ayH" id="vBp-LR-j3M"/>
+                <outlet property="buttonPlacedBy" destination="I3t-EG-zDb" id="LTg-DP-Dsf"/>
+                <outlet property="buttonState" destination="Iat-ay-1Sf" id="XzP-FS-NDt"/>
+                <outlet property="buttonWaypointName" destination="8Rk-Ye-3EQ" id="0mN-np-DFn"/>
+                <outlet property="labelCountry" destination="VyI-sv-1No" id="hhU-xU-iB0"/>
+                <outlet property="labelDescription" destination="LLy-QZ-rkp" id="0UQ-4Y-FFb"/>
+                <outlet property="labelHeader" destination="ax4-3f-Lkg" id="pEb-7H-PvD"/>
+                <outlet property="labelLocality" destination="er0-tl-Lax" id="6SD-kK-vTV"/>
+                <outlet property="labelLogs" destination="oN8-4U-0ZZ" id="fEL-uz-6Xg"/>
+                <outlet property="labelPlacedBy" destination="Pfx-hj-9JB" id="odg-fq-htS"/>
+                <outlet property="labelState" destination="An1-E8-rel" id="bkd-8W-gEG"/>
+                <outlet property="labelWaypointName" destination="K4Z-M0-JVJ" id="hGj-dT-5y9"/>
+            </connections>
+            <point key="canvasLocation" x="40.5" y="-168.5"/>
+        </tableViewCell>
+    </objects>
+</document>

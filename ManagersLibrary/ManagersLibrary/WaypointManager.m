@@ -501,7 +501,7 @@
         if (c != nil && [c boolValue] == YES) {
             NSLog(@"%@ - Filtering text", [self class]);
             NSString *cachename = [self configGet:@"text_waypointname"];
-            NSString *owner = [self configGet:@"text_owner"];
+            NSString *placedby = [self configGet:@"text_placedby"];
             NSString *locality = [self configGet:@"text_locale"];
             NSString *state = [self configGet:@"text_state"];
             NSString *country = [self configGet:@"text_country"];
@@ -539,10 +539,10 @@
                 }];
             }
 
-            if (owner != nil && [owner isEqualToString:@""] == NO) {
+            if (placedby != nil && [placedby isEqualToString:@""] == NO) {
                 owners = [NSMutableArray arrayWithCapacity:20];
                 [[dbName dbAll] enumerateObjectsUsingBlock:^(dbName * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
-                    if ([n.name localizedCaseInsensitiveContainsString:owner])
+                    if ([n.name localizedCaseInsensitiveContainsString:placedby])
                         [owners addObject:n];
                 }];
             }
