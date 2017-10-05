@@ -30,8 +30,6 @@
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, bounds.size.width, SLIDER_HEIGHT);
     [self addPieces:self.frame];
 
-    self.backgroundColor = [UIColor redColor];
-
     return self;
 }
 
