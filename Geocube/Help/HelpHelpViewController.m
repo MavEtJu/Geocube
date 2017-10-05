@@ -52,7 +52,7 @@ enum {
     t.numberOfLines = 0;
     t.lineBreakMode = NSLineBreakByWordWrapping;
     t.text = [NSString stringWithFormat:@"%@:\n\n%@\n\n%@\n\n%@\n\n%@\n",
-              _(@"helphelpviewcontroller-For further help:"),
+              _(@"helphelpviewcontroller-For further help"),
               _(@"helphelpviewcontroller-The website https://geocube.mavetju.org/ has a lot of documentation on the workings of Geocube."),
               _(@"helphelpviewcontroller-Follow the project on Twitter as @GeocubeCaching for announcements."),
               _(@"helphelpviewcontroller-Checkout on the Facebook page as Geocube Geocaching for announcements."),
