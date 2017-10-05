@@ -442,6 +442,8 @@
 		E87ED17C1F84EECB00DE8E9B /* FilterTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87ED17B1F84EECB00DE8E9B /* FilterTextTableViewCell.xib */; };
 		E87ED1801F859EFE00DE8E9B /* FilterAccountsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87ED17F1F859EFE00DE8E9B /* FilterAccountsTableViewCell.xib */; };
 		E87ED1821F85F97700DE8E9B /* FilterGroupsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87ED1811F85F97700DE8E9B /* FilterGroupsTableViewCell.xib */; };
+		E87ED1841F85FE3400DE8E9B /* FilterTypesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87ED1831F85FE3400DE8E9B /* FilterTypesTableViewCell.xib */; };
+		E87ED1871F86001E00DE8E9B /* FilterSizesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87ED1861F86001E00DE8E9B /* FilterSizesTableViewCell.xib */; };
 		E881CA8A1F6BB11B00A17060 /* libToolsLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CA891F6BB11A00A17060 /* libToolsLibrary.a */; };
 		E881CAD91F6BB2C200A17060 /* libManagersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CAD21F6BB1C600A17060 /* libManagersLibrary.a */; };
 		E881CB131F6BDC4D00A17060 /* libThemesLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E881CB061F6BDA7000A17060 /* libThemesLibrary.a */; };
@@ -1290,6 +1292,8 @@
 		E87ED17B1F84EECB00DE8E9B /* FilterTextTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTextTableViewCell.xib; path = Filters/FilterTextTableViewCell.xib; sourceTree = "<group>"; };
 		E87ED17F1F859EFE00DE8E9B /* FilterAccountsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterAccountsTableViewCell.xib; path = Filters/FilterAccountsTableViewCell.xib; sourceTree = "<group>"; };
 		E87ED1811F85F97700DE8E9B /* FilterGroupsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterGroupsTableViewCell.xib; path = Filters/FilterGroupsTableViewCell.xib; sourceTree = "<group>"; };
+		E87ED1831F85FE3400DE8E9B /* FilterTypesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTypesTableViewCell.xib; path = Filters/FilterTypesTableViewCell.xib; sourceTree = "<group>"; };
+		E87ED1861F86001E00DE8E9B /* FilterSizesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterSizesTableViewCell.xib; path = Filters/FilterSizesTableViewCell.xib; sourceTree = "<group>"; };
 		E87FE7951EFFD25F009FA65B /* Geocube-defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-defines.h"; sourceTree = "<group>"; };
 		E881CA4F1F6B9CC400A17060 /* Geocube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geocube.h; sourceTree = "<group>"; };
 		E881CA651F6B9F9600A17060 /* ToolsLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ToolsLibrary.xcodeproj; path = ToolsLibrary/ToolsLibrary.xcodeproj; sourceTree = "<group>"; };
@@ -2349,6 +2353,53 @@
 			name = SVProgressHUD;
 			sourceTree = "<group>";
 		};
+		E87ED1851F85FEF700DE8E9B /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				E8845CB01EF493B200A47F5D /* FilterAccountsTableViewCell.h */,
+				E8845CB11EF493B200A47F5D /* FilterAccountsTableViewCell.m */,
+				E87ED17F1F859EFE00DE8E9B /* FilterAccountsTableViewCell.xib */,
+				E82344071EECDFB300D2CDFD /* FilterCategoryTableViewCell.h */,
+				E82344081EECDFB300D2CDFD /* FilterCategoryTableViewCell.m */,
+				E82344091EECDFB300D2CDFD /* FilterDatesTableViewCell.h */,
+				E823440A1EECDFB300D2CDFD /* FilterDatesTableViewCell.m */,
+				E87ED1731F84495800DE8E9B /* FilterDatesTableViewCell.xib */,
+				E823440B1EECDFB300D2CDFD /* FilterDifficultyTableViewCell.h */,
+				E823440C1EECDFB300D2CDFD /* FilterDifficultyTableViewCell.m */,
+				E8EC50321F836E68004A2338 /* FilterDifficultyTableViewCell.xib */,
+				E823440D1EECDFB300D2CDFD /* FilterDirectionTableViewCell.h */,
+				E823440E1EECDFB300D2CDFD /* FilterDirectionTableViewCell.m */,
+				E8EC50301F835798004A2338 /* FilterDirectionTableViewCell.xib */,
+				E823440F1EECDFB300D2CDFD /* FilterDistanceTableViewCell.h */,
+				E82344101EECDFB300D2CDFD /* FilterDistanceTableViewCell.m */,
+				E87ED1791F84E74D00DE8E9B /* FilterDistanceTableViewCell.xib */,
+				E82344111EECDFB300D2CDFD /* FilterFavouritesTableViewCell.h */,
+				E82344121EECDFB300D2CDFD /* FilterFavouritesTableViewCell.m */,
+				E87ED16F1F8445C500DE8E9B /* FilterFavouritesTableViewCell.xib */,
+				E82344131EECDFB300D2CDFD /* FilterFlagsTableViewCell.h */,
+				E82344141EECDFB300D2CDFD /* FilterFlagsTableViewCell.m */,
+				E87ED1771F84B10400DE8E9B /* FilterFlagsTableViewCell.xib */,
+				E82344151EECDFB300D2CDFD /* FilterGroupsTableViewCell.h */,
+				E82344161EECDFB300D2CDFD /* FilterGroupsTableViewCell.m */,
+				E87ED1811F85F97700DE8E9B /* FilterGroupsTableViewCell.xib */,
+				E82344191EECDFB300D2CDFD /* FilterOthersTableViewCell.h */,
+				E823441A1EECDFB300D2CDFD /* FilterOthersTableViewCell.m */,
+				E823441B1EECDFB300D2CDFD /* FilterSizesTableViewCell.h */,
+				E823441C1EECDFB300D2CDFD /* FilterSizesTableViewCell.m */,
+				E87ED1861F86001E00DE8E9B /* FilterSizesTableViewCell.xib */,
+				E82344211EECDFB300D2CDFD /* FilterTerrainTableViewCell.h */,
+				E82344221EECDFB300D2CDFD /* FilterTerrainTableViewCell.m */,
+				E87ED16D1F843FBD00DE8E9B /* FilterTerrainTableViewCell.xib */,
+				E82344231EECDFB300D2CDFD /* FilterTextTableViewCell.h */,
+				E82344241EECDFB300D2CDFD /* FilterTextTableViewCell.m */,
+				E87ED17B1F84EECB00DE8E9B /* FilterTextTableViewCell.xib */,
+				E82344251EECDFB300D2CDFD /* FilterTypesTableViewCell.h */,
+				E82344261EECDFB300D2CDFD /* FilterTypesTableViewCell.m */,
+				E87ED1831F85FE3400DE8E9B /* FilterTypesTableViewCell.xib */,
+			);
+			name = Filters;
+			sourceTree = "<group>";
+		};
 		E87F58D21F48611700C90375 /* Developer */ = {
 			isa = PBXGroup;
 			children = (
@@ -2619,44 +2670,7 @@
 				E8EC502B1F832E6B004A2338 /* FilterHeaderTableViewCell.h */,
 				E8EC502C1F832E6B004A2338 /* FilterHeaderTableViewCell.m */,
 				E8EC502D1F832E6B004A2338 /* FilterHeaderTableViewCell.xib */,
-				E8845CB01EF493B200A47F5D /* FilterAccountsTableViewCell.h */,
-				E8845CB11EF493B200A47F5D /* FilterAccountsTableViewCell.m */,
-				E87ED17F1F859EFE00DE8E9B /* FilterAccountsTableViewCell.xib */,
-				E82344071EECDFB300D2CDFD /* FilterCategoryTableViewCell.h */,
-				E82344081EECDFB300D2CDFD /* FilterCategoryTableViewCell.m */,
-				E82344091EECDFB300D2CDFD /* FilterDatesTableViewCell.h */,
-				E823440A1EECDFB300D2CDFD /* FilterDatesTableViewCell.m */,
-				E87ED1731F84495800DE8E9B /* FilterDatesTableViewCell.xib */,
-				E823440B1EECDFB300D2CDFD /* FilterDifficultyTableViewCell.h */,
-				E823440C1EECDFB300D2CDFD /* FilterDifficultyTableViewCell.m */,
-				E8EC50321F836E68004A2338 /* FilterDifficultyTableViewCell.xib */,
-				E823440D1EECDFB300D2CDFD /* FilterDirectionTableViewCell.h */,
-				E823440E1EECDFB300D2CDFD /* FilterDirectionTableViewCell.m */,
-				E8EC50301F835798004A2338 /* FilterDirectionTableViewCell.xib */,
-				E823440F1EECDFB300D2CDFD /* FilterDistanceTableViewCell.h */,
-				E82344101EECDFB300D2CDFD /* FilterDistanceTableViewCell.m */,
-				E87ED1791F84E74D00DE8E9B /* FilterDistanceTableViewCell.xib */,
-				E82344111EECDFB300D2CDFD /* FilterFavouritesTableViewCell.h */,
-				E82344121EECDFB300D2CDFD /* FilterFavouritesTableViewCell.m */,
-				E87ED16F1F8445C500DE8E9B /* FilterFavouritesTableViewCell.xib */,
-				E82344131EECDFB300D2CDFD /* FilterFlagsTableViewCell.h */,
-				E82344141EECDFB300D2CDFD /* FilterFlagsTableViewCell.m */,
-				E87ED1771F84B10400DE8E9B /* FilterFlagsTableViewCell.xib */,
-				E82344151EECDFB300D2CDFD /* FilterGroupsTableViewCell.h */,
-				E82344161EECDFB300D2CDFD /* FilterGroupsTableViewCell.m */,
-				E87ED1811F85F97700DE8E9B /* FilterGroupsTableViewCell.xib */,
-				E82344191EECDFB300D2CDFD /* FilterOthersTableViewCell.h */,
-				E823441A1EECDFB300D2CDFD /* FilterOthersTableViewCell.m */,
-				E823441B1EECDFB300D2CDFD /* FilterSizesTableViewCell.h */,
-				E823441C1EECDFB300D2CDFD /* FilterSizesTableViewCell.m */,
-				E82344211EECDFB300D2CDFD /* FilterTerrainTableViewCell.h */,
-				E82344221EECDFB300D2CDFD /* FilterTerrainTableViewCell.m */,
-				E87ED16D1F843FBD00DE8E9B /* FilterTerrainTableViewCell.xib */,
-				E82344231EECDFB300D2CDFD /* FilterTextTableViewCell.h */,
-				E82344241EECDFB300D2CDFD /* FilterTextTableViewCell.m */,
-				E87ED17B1F84EECB00DE8E9B /* FilterTextTableViewCell.xib */,
-				E82344251EECDFB300D2CDFD /* FilterTypesTableViewCell.h */,
-				E82344261EECDFB300D2CDFD /* FilterTypesTableViewCell.m */,
+				E87ED1851F85FEF700DE8E9B /* Filters */,
 			);
 			name = "Filter Viewing";
 			sourceTree = "<group>";
@@ -3074,6 +3088,7 @@
 				E8FEDE551DA77F9D007C756B /* container size - notchosen - 35x11@3x.png in Resources */,
 				E84725E51DF774E200CFF99B /* menu icon - local - night.png in Resources */,
 				E8FEDEE01DA8EEE9007C756B /* cache - groundspeak hq - 30x30@2x.png in Resources */,
+				E87ED1841F85FE3400DE8E9B /* FilterTypesTableViewCell.xib in Resources */,
 				E84E88951F6CF956004F4BE9 /* GCTableViewCellWithSubtitle.xib in Resources */,
 				E82E66BB1DA07CBE00CFBDED /* cache - event - 30x30.png in Resources */,
 				E82E65D81DA079AE00CFBDED /* map - archived - 15x15.png in Resources */,
@@ -3263,6 +3278,7 @@
 				E82344421EECE01500D2CDFD /* KeepTracksTrackTableViewCell~ipad.xib in Resources */,
 				E8FEDE5C1DA77F9D007C756B /* container size - small - 35x11.png in Resources */,
 				E82E67541DA07D0200CFBDED /* attributes - 42.png in Resources */,
+				E87ED1871F86001E00DE8E9B /* FilterSizesTableViewCell.xib in Resources */,
 				E82E65FC1DA079E500CFBDED /* log - didnotfind - 30x30.png in Resources */,
 				E82E66C31DA07CBE00CFBDED /* cache - letterbox - 30x30@3x.png in Resources */,
 				E82E66CE1DA07CBE00CFBDED /* cache - mystery - 30x30@3x.png in Resources */,

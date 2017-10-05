@@ -22,67 +22,79 @@
 @interface FilterSizesTableViewCell ()
 {
     NSArray<dbContainer *> *containers;
+    NSArray<FilterButton *> *buttons;
 }
+
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
+@property (nonatomic, weak) IBOutlet GCView *accountsView;
 
 @end
 
 @implementation FilterSizesTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo
+- (void)awakeFromNib
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    fo = _fo;
-
-    [self configInit];
-    [self header];
-
-    __block NSInteger y = cellHeight;
-
-    if (fo.expanded == NO) {
-        [self.contentView sizeToFit];
-        fo.cellHeight = cellHeight = y;
-        return self;
-    }
-
-    UIImage *img = [imageLibrary get:dbc.containerUnknown.icon];
-    CGSize imgSize = img.size;
+    [super awakeFromNib];
+    [self changeTheme];
 
     containers = dbc.containers;
-    [containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
-        UIImage *img = [imageLibrary get:c.icon];
-        if (img != nil) {
-            CGRect rect = CGRectMake(20, y, imgSize.width, imgSize.height);
-            UIImageView *cv = [[UIImageView alloc] initWithFrame:rect];
-            cv.image = img;
-            [self.contentView addSubview:cv];
-        }
+    NSMutableArray *bs = [NSMutableArray arrayWithCapacity:[containers count]];
 
-        NSString *cfg = [self configGet:[NSString stringWithFormat:@"container_%ld", (long)c._id]];
-        if (cfg == nil)
-            c.selected = NO;
+    __block NSInteger y = 0;
+
+    [containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull con, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *s = [NSString stringWithFormat:@"type_%ld", (long)con._id];
+        NSString *c = [self configGet:s];
+        if (c == nil)
+            con.selected = NO;
         else
-            c.selected = [cfg boolValue];
+            con.selected = [c boolValue];
 
         FilterButton *b = [FilterButton buttonWithType:UIButtonTypeSystem];
-        b.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        NSString *s = [NSString stringWithFormat:@"container-%@", c.size];
-        [b setTitle:_(s) forState:UIControlStateNormal];
-        [b setTitleColor:(c.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-        [b addTarget:self action:@selector(clickGroup:) forControlEvents:UIControlEventTouchDown];
+        [b addTarget:self action:@selector(clickContainer:) forControlEvents:UIControlEventTouchDown];
         b.index = idx;
+        b.frame = CGRectMake(0, y, width, 1);
+        [b sizeToFit];
+        b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, width, b.frame.size.height);
+        [self.accountsView addSubview:b];
 
-        CGRect rect = CGRectMake(imgSize.width + 30, y, width - imgSize.width - 10, MAX(imgSize.height, b.titleLabel.font.lineHeight));
-        b.frame = rect;
+        y += b.frame.size.height;
 
-        [self.contentView addSubview:b];
-
-        y += rect.size.height;
+        [bs addObject:b];
     }];
 
-    [self.contentView sizeToFit];
-    fo.cellHeight = cellHeight = y;
+    buttons = bs;
 
-    return self;
+    NSLayoutConstraint *height = [NSLayoutConstraint
+                                  constraintWithItem:self.accountsView
+                                  attribute:NSLayoutAttributeHeight
+                                  relatedBy:0
+                                  toItem:nil
+                                  attribute:NSLayoutAttributeHeight
+                                  multiplier:1.0
+                                  constant:y];
+    [self.accountsView addConstraint:height];
+}
+
+- (void)changeTheme
+{
+    [super changeTheme];
+
+    [self.labelHeader changeTheme];
+    [self.accountsView changeTheme];
+}
+
+- (void)viewRefresh
+{
+    [containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull con, NSUInteger idx, BOOL * _Nonnull stop) {
+        FilterButton *b = [buttons objectAtIndex:idx];
+        [b setTitle:con.size forState:UIControlStateNormal];
+        [b setTitleColor:(con.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
+        [b sizeToFit];
+        b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, width, b.frame.size.height);
+    }];
+    [self.accountsView sizeToFit];
+    [self.contentView sizeToFit];
 }
 
 #pragma mark -- configuration
@@ -90,6 +102,7 @@
 - (void)configInit
 {
     [super configInit];
+    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), fo.name];
 }
 
 - (void)configUpdate
@@ -125,7 +138,7 @@
 
 #pragma mark -- callback functions
 
-- (void)clickGroup:(FilterButton *)b
+- (void)clickContainer:(FilterButton *)b
 {
     dbContainer *c = [containers objectAtIndex:b.index];
     c.selected = !c.selected;
