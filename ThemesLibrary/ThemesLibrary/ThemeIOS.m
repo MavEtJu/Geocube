@@ -44,7 +44,7 @@
     self.labelTextColorDisabled = [UIColor lightGrayColor];
 
     UITableViewHeaderFooterView *thfv = [[UITableViewHeaderFooterView alloc] init];
-    self.tableHeaderBackground = thfv.textLabel.backgroundColor;
+    self.tableHeaderBackground = [UIColor colorWithRed:247/255.0 green:247/255.0 blue:247/255.0 alpha:1];
     self.tableHeaderTextColor = thfv.textLabel.textColor;
 
     self.imageBackgroundColor = whiteColor;

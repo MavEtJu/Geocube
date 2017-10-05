@@ -24,6 +24,7 @@
 #import "Geocube.h"
 
 #import "ThemesLibrary/ThemeManager.h"
+#import "ManagersLibrary/ConfigManager.h"
 #import "BaseObjectsLibrary/GCCloseButton.h"
 #import "ToolsLibrary/MyTools.h"
 #import "ToolsLibrary/InfoViewer.h"
@@ -188,6 +189,30 @@
     return [[UITableViewCell alloc] init];
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UILabel *myLabel = [[UILabel alloc] init];
+    myLabel.frame = CGRectMake(20, 0, 320, 20);
+    myLabel.font = [UIFont boldSystemFontOfSize:configManager.fontNormalTextSize];
+    myLabel.text = [self tableView:tableView titleForHeaderInSection:section];
+    [myLabel sizeToFit];
+
+    UIView *headerView = [[UIView alloc] init];
+    [headerView addSubview:myLabel];
+    headerView.backgroundColor = currentTheme.tableHeaderBackground;
+    [headerView sizeToFit];
+
+    return headerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    NSString *s = [self tableView:tableView titleForHeaderInSection:section];
+    if (IS_EMPTY(s) == YES)
+        return 0;
+    return configManager.fontNormalTextSize - currentTheme.GCLabelNormalSizeFont.descender;
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     verticalContentOffset = scrollView.contentOffset.y;
@@ -203,13 +228,13 @@
     [infoView show:verticalContentOffset];
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
-{
-    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
-    header.contentView.backgroundColor = currentTheme.tableHeaderBackground;
-    header.textLabel.textColor = currentTheme.tableHeaderTextColor;
-    header.textLabel.backgroundColor = currentTheme.tableHeaderBackground;
-}
+//- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+//{
+//    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+//    header.contentView.backgroundColor = currentTheme.tableHeaderBackground;
+//    header.textLabel.textColor = currentTheme.tableHeaderTextColor;
+//    header.textLabel.backgroundColor = currentTheme.tableHeaderBackground;
+//}
 
 #pragma -- Local menu related functions
 
