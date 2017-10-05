@@ -22,29 +22,25 @@
 @interface FilterAccountsTableViewCell ()
 {
     NSArray<dbAccount *> *accounts;
+    NSArray<FilterButton *> *buttons;
 }
+
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
+@property (nonatomic, weak) IBOutlet GCView *accountsView;
 
 @end
 
 @implementation FilterAccountsTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo
+- (void)awakeFromNib
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    fo = _fo;
-
-    [self configInit];
-    [self header];
-
-    __block NSInteger y = cellHeight;
-
-    if (fo.expanded == NO) {
-        [self.contentView sizeToFit];
-        fo.cellHeight = cellHeight = y;
-        return self;
-    }
+    [super awakeFromNib];
+    [self changeTheme];
 
     accounts = dbc.accounts;
+    NSMutableArray *bs = [NSMutableArray arrayWithCapacity:[accounts count]];
+
+    __block NSInteger y = 0;
 
     [accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *s = [NSString stringWithFormat:@"account_%ld", (long)a._id];
@@ -55,26 +51,67 @@
             a.selected = [c boolValue];
 
         FilterButton *b = [FilterButton buttonWithType:UIButtonTypeSystem];
-        [b setTitle:a.site forState:UIControlStateNormal];
-        [b setTitleColor:(a.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b addTarget:self action:@selector(clickAccount:) forControlEvents:UIControlEventTouchDown];
         b.index = idx;
-        CGRect rect = CGRectMake(20, y, width - 40, b.titleLabel.font.lineHeight);
+        CGRect rect = CGRectMake(0, y, width, 1);
         b.frame = rect;
-        [self.contentView addSubview:b];
+        [b sizeToFit];
+        b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, width, b.frame.size.height);
+        [self.accountsView addSubview:b];
+
+//        NSLayoutConstraint *center = [NSLayoutConstraint
+//                                      constraintWithItem:b
+//                                      attribute:NSLayoutAttributeCenterXWithinMargins
+//                                      relatedBy:NSLayoutRelationEqual
+//                                      toItem:self.accountsView
+//                                      attribute:NSLayoutAttributeCenterXWithinMargins
+//                                      multiplier:1.0
+//                                      constant:0];
+//        [self addConstraint:center];
+
+        // 9bk-jT-iuE label
+        // 9wR-Xn-2Sp tableViewCellContentView
+        // <constraint firstItem="9bk-jT-iuE" firstAttribute="centerX" secondItem="9wR-Xn-2Sp" secondAttribute="centerX" id="ft7-G8-eA4"/>
 
         y += b.frame.size.height;
+
+        [bs addObject:b];
     }];
 
-    [self.contentView sizeToFit];
-    fo.cellHeight = cellHeight = y;
+    buttons = bs;
 
-    return self;
+    NSLayoutConstraint *height = [NSLayoutConstraint
+                                  constraintWithItem:self.accountsView
+                                  attribute:NSLayoutAttributeHeight
+                                  relatedBy:0
+                                  toItem:nil
+                                  attribute:NSLayoutAttributeHeight
+                                  multiplier:1.0
+                                  constant:y];
+    [self.accountsView addConstraint:height];
 }
 
-- (void)viewWillTransitionToSize
+- (void)changeTheme
 {
-    [super viewWillTransitionToSize];
+    [super changeTheme];
+
+    [self.labelHeader changeTheme];
+    [self.accountsView changeTheme];
+}
+
+- (void)viewRefresh
+{
+    [accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+        FilterButton *b = [buttons objectAtIndex:idx];
+        [b setTitle:a.site forState:UIControlStateNormal];
+        [b setTitleColor:(a.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
+        [b sizeToFit];
+        b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, width, b.frame.size.height);
+        NSLog(@"%@", [MyTools niceCGRect:b.frame]);
+        NSLog(@"");
+    }];
+    [self.accountsView sizeToFit];
+    [self.contentView sizeToFit];
 }
 
 #pragma mark -- configuration
@@ -82,6 +119,7 @@
 - (void)configInit
 {
     [super configInit];
+    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), fo.name];
 }
 
 - (void)configUpdate

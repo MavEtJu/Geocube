@@ -46,6 +46,10 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
+    width = applicationFrame.size.width;
+
     [self changeTheme];
     [self configInit];
 }
