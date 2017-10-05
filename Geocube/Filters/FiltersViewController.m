@@ -90,6 +90,7 @@ enum {
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERDISTANCETABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERDISTANCETABLEVIEWCELL];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERTEXTTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERTEXTTABLEVIEWCELL];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERACCOUNTSTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERACCOUNTSTABLEVIEWCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERGROUPSTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERGROUPSTABLEVIEWCELL];
 
 #define MATCH(__idx__, __name__, __xib__) \
     case __idx__: { \
@@ -105,7 +106,7 @@ enum {
     for (NSInteger i = 0; i < filterMax; i++) {
         switch (i) {
             MATCH(filterTypes, _(@"filtersviewcontroller-types"), XIB_FILTERTABLEVIEWCELL);
-            MATCH(filterGroups, _(@"filtersviewcontroller-groups"), XIB_FILTERTABLEVIEWCELL);
+            MATCH(filterGroups, _(@"filtersviewcontroller-groups"), XIB_FILTERGROUPSTABLEVIEWCELL);
             MATCH(filterFavourites, _(@"filtersviewcontroller-favourites"), XIB_FILTERFAVOURITESTABLEVIEWCELL);
             MATCH(filterSizes, _(@"filtersviewcontroller-sizes"), XIB_FILTERTABLEVIEWCELL);
             MATCH(filterDifficulty, _(@"filtersviewcontroller-difficulty"), XIB_FILTERDIFFICULTYTABLEVIEWCELL);

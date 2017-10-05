@@ -53,25 +53,10 @@
         FilterButton *b = [FilterButton buttonWithType:UIButtonTypeSystem];
         [b addTarget:self action:@selector(clickAccount:) forControlEvents:UIControlEventTouchDown];
         b.index = idx;
-        CGRect rect = CGRectMake(0, y, width, 1);
-        b.frame = rect;
+        b.frame = CGRectMake(0, y, width, 1);
         [b sizeToFit];
         b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, width, b.frame.size.height);
         [self.accountsView addSubview:b];
-
-//        NSLayoutConstraint *center = [NSLayoutConstraint
-//                                      constraintWithItem:b
-//                                      attribute:NSLayoutAttributeCenterXWithinMargins
-//                                      relatedBy:NSLayoutRelationEqual
-//                                      toItem:self.accountsView
-//                                      attribute:NSLayoutAttributeCenterXWithinMargins
-//                                      multiplier:1.0
-//                                      constant:0];
-//        [self addConstraint:center];
-
-        // 9bk-jT-iuE label
-        // 9wR-Xn-2Sp tableViewCellContentView
-        // <constraint firstItem="9bk-jT-iuE" firstAttribute="centerX" secondItem="9wR-Xn-2Sp" secondAttribute="centerX" id="ft7-G8-eA4"/>
 
         y += b.frame.size.height;
 
@@ -107,8 +92,6 @@
         [b setTitleColor:(a.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b sizeToFit];
         b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, width, b.frame.size.height);
-        NSLog(@"%@", [MyTools niceCGRect:b.frame]);
-        NSLog(@"");
     }];
     [self.accountsView sizeToFit];
     [self.contentView sizeToFit];

@@ -22,29 +22,25 @@
 @interface FilterGroupsTableViewCell ()
 {
     NSArray<dbGroup *> *groups;
+    NSArray<FilterButton *> *buttons;
 }
+
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
+@property (nonatomic, weak) IBOutlet GCView *accountsView;
 
 @end
 
 @implementation FilterGroupsTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo
+- (void)awakeFromNib
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    fo = _fo;
-
-    [self configInit];
-    [self header];
-
-    __block NSInteger y = cellHeight;
-
-    if (fo.expanded == NO) {
-        [self.contentView sizeToFit];
-        fo.cellHeight = cellHeight = y;
-        return self;
-    }
+    [super awakeFromNib];
+    [self changeTheme];
 
     groups = dbc.groups;
+    NSMutableArray *bs = [NSMutableArray arrayWithCapacity:[groups count]];
+
+    __block NSInteger y = 0;
 
     [groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *s = [NSString stringWithFormat:@"group_%ld", (long)g._id];
@@ -55,25 +51,49 @@
             g.selected = [c boolValue];
 
         FilterButton *b = [FilterButton buttonWithType:UIButtonTypeSystem];
-        [b setTitle:g.name forState:UIControlStateNormal];
-        [b setTitleColor:(g.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b addTarget:self action:@selector(clickGroup:) forControlEvents:UIControlEventTouchDown];
         b.index = idx;
-        b.frame = CGRectMake(20, y, width - 40, b.titleLabel.font.lineHeight);
+        b.frame = CGRectMake(0, y, width, 1);
+        [b sizeToFit];
+        b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, width, b.frame.size.height);
         [self.contentView addSubview:b];
 
         y += b.frame.size.height;
+
+        [bs addObject:b];
     }];
 
-    [self.contentView sizeToFit];
-    fo.cellHeight = cellHeight = y;
-
-    return self;
+    buttons = bs;
+    NSLayoutConstraint *height = [NSLayoutConstraint
+                                  constraintWithItem:self.accountsView
+                                  attribute:NSLayoutAttributeHeight
+                                  relatedBy:0
+                                  toItem:nil
+                                  attribute:NSLayoutAttributeHeight
+                                  multiplier:1.0
+                                  constant:y];
+    [self.accountsView addConstraint:height];
 }
 
-- (void)viewWillTransitionToSize
+- (void)changeTheme
 {
-    [super viewWillTransitionToSize];
+    [super changeTheme];
+
+    [self.labelHeader changeTheme];
+    [self.accountsView changeTheme];
+}
+
+- (void)viewRefresh
+{
+    [groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
+        FilterButton *b = [buttons objectAtIndex:idx];
+        [b setTitle:g.name forState:UIControlStateNormal];
+        [b setTitleColor:(g.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
+        [b sizeToFit];
+        b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, width, b.frame.size.height);
+    }];
+    [self.accountsView sizeToFit];
+    [self.contentView sizeToFit];
 }
 
 #pragma mark -- configuration
@@ -81,6 +101,7 @@
 - (void)configInit
 {
     [super configInit];
+    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), fo.name];
 }
 
 - (void)configUpdate
