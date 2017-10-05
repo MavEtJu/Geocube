@@ -24,6 +24,8 @@
 
 #import "VKSideMenu.h"
 
+#import "ThemesLibrary/ThemeManager.h"
+
 #define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define ROOTVC [[[[UIApplication sharedApplication] delegate] window] rootViewController]
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
@@ -256,8 +258,9 @@
         title.adjustsFontSizeToFitWidth = YES;
         [cell.contentView addSubview:title];
     }
-    
+
     title.text      = item.title;
+    title.font      = currentTheme.GCLabelNormalSizeFont;
     title.textColor = item.disabled == YES ? self.textDisabledColor : self.textColor;
     cell.userInteractionEnabled = !item.disabled;
 
