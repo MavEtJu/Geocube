@@ -74,6 +74,19 @@
     [self.buttonLogs addTarget:self action:@selector(finishText:) forControlEvents:UIControlEventTouchDown];
 }
 
+- (void)changeTheme
+{
+    [super changeTheme];
+    [self.labelHeader changeTheme];
+    [self.labelWaypointName changeTheme];
+    [self.labelPlacedBy changeTheme];
+    [self.labelLocality changeTheme];
+    [self.labelState changeTheme];
+    [self.labelCountry changeTheme];
+    [self.labelDescription changeTheme];
+    [self.labelLogs changeTheme];
+}
+
 - (void)viewRefresh
 {
     [self.buttonWaypointName setTitle:waypointName forState:UIControlStateNormal];

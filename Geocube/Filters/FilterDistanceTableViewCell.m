@@ -59,6 +59,8 @@
 - (void)changeTheme
 {
     [super changeTheme];
+
+    [self.labelHeader changeTheme];
     [self.labelDistance changeTheme];
     [self.labelVariation changeTheme];
     [self.buttonDistance changeTheme];

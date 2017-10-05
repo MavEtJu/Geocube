@@ -35,7 +35,6 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [self changeTheme];
 
     groups = dbc.groups;
     NSMutableArray<FilterButton *> *bs = [NSMutableArray arrayWithCapacity:[groups count]];
@@ -56,7 +55,7 @@
         b.frame = CGRectMake(0, y, width, 1);
         [b sizeToFit];
         b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, width, b.frame.size.height);
-        [self.contentView addSubview:b];
+        [self.accountsView addSubview:b];
 
         y += b.frame.size.height;
 
@@ -73,11 +72,17 @@
                                   multiplier:1.0
                                   constant:y];
     [self.accountsView addConstraint:height];
+
+    [self changeTheme];
 }
 
 - (void)changeTheme
 {
     [super changeTheme];
+
+    [buttons enumerateObjectsUsingBlock:^(FilterButton * _Nonnull fb, NSUInteger idx, BOOL * _Nonnull stop) {
+        [fb changeTheme];
+    }];
 
     [self.labelHeader changeTheme];
     [self.accountsView changeTheme];

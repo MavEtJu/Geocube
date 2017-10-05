@@ -153,9 +153,10 @@ typedef NS_ENUM(NSInteger, FlagType) {
     [self viewRefresh];
 }
 
-- (void)viewWillTransitionToSize
+- (void)changeTheme
 {
-    [super viewWillTransitionToSize];
+    [super changeTheme];
+    [self.labelHeader changeTheme];
 }
 
 - (void)viewRefresh

@@ -35,7 +35,6 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [self changeTheme];
 
     accounts = dbc.accounts;
     NSMutableArray<FilterButton *> *bs = [NSMutableArray arrayWithCapacity:[accounts count]];
@@ -74,11 +73,17 @@
                                   multiplier:1.0
                                   constant:y];
     [self.accountsView addConstraint:height];
+
+    [self changeTheme];
 }
 
 - (void)changeTheme
 {
     [super changeTheme];
+
+    [buttons enumerateObjectsUsingBlock:^(FilterButton * _Nonnull fb, NSUInteger idx, BOOL * _Nonnull stop) {
+        [fb changeTheme];
+    }];
 
     [self.labelHeader changeTheme];
     [self.accountsView changeTheme];
