@@ -38,7 +38,7 @@
     [self changeTheme];
 
     types = dbc.types;
-    NSMutableArray *bs = [NSMutableArray arrayWithCapacity:[types count]];
+    NSMutableArray<FilterButton *> *bs = [NSMutableArray arrayWithCapacity:[types count]];
 
     __block NSInteger y = 0;
 

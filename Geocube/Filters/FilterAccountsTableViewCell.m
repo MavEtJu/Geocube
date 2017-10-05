@@ -38,7 +38,7 @@
     [self changeTheme];
 
     accounts = dbc.accounts;
-    NSMutableArray *bs = [NSMutableArray arrayWithCapacity:[accounts count]];
+    NSMutableArray<FilterButton *> *bs = [NSMutableArray arrayWithCapacity:[accounts count]];
 
     __block NSInteger y = 0;
 

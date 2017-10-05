@@ -38,7 +38,7 @@
     [self changeTheme];
 
     containers = dbc.containers;
-    NSMutableArray *bs = [NSMutableArray arrayWithCapacity:[containers count]];
+    NSMutableArray<FilterButton *> *bs = [NSMutableArray arrayWithCapacity:[containers count]];
 
     __block NSInteger y = 0;
 

@@ -4,7 +4,6 @@
 "filtersviewcontroller-favourites" = "favorites";
 "filterfavouritestableviewcell-Favourites: %@" = "Favorites: %@";
 "filterfavouritestableviewcell-Favourites: Anything" = "Favorites: Anything";
-"filterfavouritestableviewcell-Favourites: At least 0" = "Favorites: At least 0";
 "filterfavouritestableviewcell-Favourites: At least %@" = "Favorites: At least %@";
 "filterfavouritestableviewcell-Favourites: At most %@" = "Favorites: At most %@";
 "filterfavouritestableviewcell-Favourites: Between %@ and %@" = "Favorites: Between %@ and %@";

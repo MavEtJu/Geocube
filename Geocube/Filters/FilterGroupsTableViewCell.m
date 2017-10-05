@@ -38,7 +38,7 @@
     [self changeTheme];
 
     groups = dbc.groups;
-    NSMutableArray *bs = [NSMutableArray arrayWithCapacity:[groups count]];
+    NSMutableArray<FilterButton *> *bs = [NSMutableArray arrayWithCapacity:[groups count]];
 
     __block NSInteger y = 0;
 

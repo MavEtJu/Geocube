@@ -45,7 +45,6 @@
 "filterdistancetableviewcell-Variation" = "Variation";
 "filterfavouritestableviewcell-Favourites: %@" = "Favourites: %@";
 "filterfavouritestableviewcell-Favourites: Anything" = "Favourites: Anything";
-"filterfavouritestableviewcell-Favourites: At least 0" = "Favourites: At least 0";
 "filterfavouritestableviewcell-Favourites: At least %@" = "Favourites: At least %@";
 "filterfavouritestableviewcell-Favourites: At most %@" = "Favourites: At most %@";
 "filterfavouritestableviewcell-Favourites: Between %@ and %@" = "Favourites: Between %@ and %@";
@@ -78,7 +77,6 @@
 "filtertexttableviewcell-Description" = "Description";
 "filtertexttableviewcell-Locality" = "Locality";
 "filtertexttableviewcell-Logs" = "Logs";
-"filtertexttableviewcell-Owner" = "Owner";
 "filtertexttableviewcell-State" = "State";
 "filtertexttableviewcell-Waypoint name" = "Waypoint name";
 "filterterraintableviewcell-Terrain rating" = "Terrain rating";

@@ -34,7 +34,6 @@
 "filterdistancetableviewcell-Variation" = "variatie";
 "filterfavouritestableviewcell-Favourites: %@" = "Favorieten: %@";
 "filterfavouritestableviewcell-Favourites: Anything" = "favorieten: alles";
-"filterfavouritestableviewcell-Favourites: At least 0" = "Favorieten: minstens 0";
 "filterfavouritestableviewcell-Favourites: At least %@" = "Favorieten: ten minste %@";
 "filterfavouritestableviewcell-Favourites: At most %@" = "Favorieten: ten hoogste %@ ";
 "filterfavouritestableviewcell-Favourites: Between %@ and %@" = "Favorieten: tussen %@ en %@";
@@ -66,9 +65,9 @@
 "filtertexttableviewcell-Description" = "Omschrijving";
 "filtertexttableviewcell-Locality" = "Plaats";
 "filtertexttableviewcell-Logs" = "Logs";
-"filtertexttableviewcell-Owner" = "Eigenaar";
 "filtertexttableviewcell-State" = "Provincie/Staat";
 "filtertexttableviewcell-Waypoint name" = "Waypoint naam";
+"filtertexttableviewcell-Placed by" = "Geplaatst door";
 "filterterraintableviewcell-Terrain rating" = "Terrein beoordeling";
 
 /* Waypoints - List */
