@@ -25,8 +25,13 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
-    NSLog(@"%@", [MyTools niceCGRect:self.frame]);
+
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, bounds.size.width, SLIDER_HEIGHT);
     [self addPieces:self.frame];
+
+    self.backgroundColor = [UIColor redColor];
+
     return self;
 }
 
@@ -66,11 +71,11 @@
 
 - (void)setupSliders {
 	
-	minSlider = [[UIImageView alloc] initWithFrame:CGRectMake(min*self.frame.size.width, (SLIDER_HEIGHT-self.frame.size.height)/2.0, self.frame.size.height, self.frame.size.height)];
+	minSlider = [[UIImageView alloc] initWithFrame:CGRectMake(min*self.frame.size.width, (SLIDER_HEIGHT-self.frame.size.height)/2.0, self.frame.size.width, self.frame.size.height)];
 	minSlider.backgroundColor = [UIColor whiteColor];
 	minSlider.contentMode = UIViewContentModeScaleToFill;
 	
-	maxSlider = [[UIImageView alloc] initWithFrame:CGRectMake(max*(self.frame.size.width-self.frame.size.height), (SLIDER_HEIGHT-self.frame.size.height)/2.0, self.frame.size.height, self.frame.size.height)];
+	maxSlider = [[UIImageView alloc] initWithFrame:CGRectMake(max*(self.frame.size.width-self.frame.size.height), (SLIDER_HEIGHT-self.frame.size.height)/2.0, self.frame.size.width, self.frame.size.height)];
 	maxSlider.backgroundColor = [UIColor whiteColor];
 	maxSlider.contentMode = UIViewContentModeScaleToFill;
 	
@@ -177,9 +182,9 @@
 
 - (void)updateTrackImageViews {
 
-	inRangeTrackImageView.frame = CGRectMake(minSlider.frame.origin.x+0.5*self.frame.size.height,
+	inRangeTrackImageView.frame = CGRectMake(minSlider.frame.origin.x + 0.5 * self.frame.size.height,
 											 inRangeTrackImageView.frame.origin.y,
-											 maxSlider.frame.origin.x-minSlider.frame.origin.x,
+											 maxSlider.frame.origin.x - minSlider.frame.origin.x,
 											 inRangeTrackImageView.frame.size.height);
 
 }

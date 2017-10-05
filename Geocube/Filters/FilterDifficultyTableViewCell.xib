@@ -32,7 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bIC-02-nQE" customClass="RangeSlider">
-                        <rect key="frame" x="16" y="49" width="343" height="30"/>
+                        <rect key="frame" x="0.0" y="49" width="375" height="30"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="prk-x4-IIS"/>
@@ -41,8 +41,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="PoW-v9-Gqh" firstAttribute="leading" secondItem="IV6-UU-7td" secondAttribute="leading" id="3DF-Vy-omf"/>
-                    <constraint firstItem="bIC-02-nQE" firstAttribute="trailing" secondItem="IV6-UU-7td" secondAttribute="trailing" id="5dp-2k-TKq"/>
+                    <constraint firstItem="bIC-02-nQE" firstAttribute="leading" secondItem="Fud-cH-awo" secondAttribute="leading" id="4eg-dV-8vS"/>
                     <constraint firstItem="IV6-UU-7td" firstAttribute="top" secondItem="Fud-cH-awo" secondAttribute="topMargin" id="8Go-xV-1YO"/>
+                    <constraint firstItem="PoW-v9-Gqh" firstAttribute="trailing" secondItem="IV6-UU-7td" secondAttribute="trailing" id="AWH-QC-5eI"/>
+                    <constraint firstItem="PoW-v9-Gqh" firstAttribute="leading" secondItem="IV6-UU-7td" secondAttribute="leading" id="KaD-94-ryY"/>
                     <constraint firstAttribute="trailingMargin" secondItem="IV6-UU-7td" secondAttribute="trailing" constant="8" id="OXZ-Z4-Jyy"/>
                     <constraint firstItem="bIC-02-nQE" firstAttribute="top" secondItem="PoW-v9-Gqh" secondAttribute="bottom" id="OtN-86-Izn"/>
                     <constraint firstItem="PoW-v9-Gqh" firstAttribute="top" secondItem="IV6-UU-7td" secondAttribute="bottom" constant="8" id="Wbs-gH-0U3"/>
@@ -52,7 +54,7 @@
                     <constraint firstItem="PoW-v9-Gqh" firstAttribute="centerX" secondItem="Fud-cH-awo" secondAttribute="centerX" id="e1P-q3-AMX"/>
                     <constraint firstAttribute="bottom" secondItem="bIC-02-nQE" secondAttribute="bottom" id="hjF-c7-7u1"/>
                     <constraint firstItem="bIC-02-nQE" firstAttribute="centerX" secondItem="Fud-cH-awo" secondAttribute="centerX" id="iKc-mG-hyk"/>
-                    <constraint firstItem="bIC-02-nQE" firstAttribute="leading" secondItem="IV6-UU-7td" secondAttribute="leading" id="qNz-oY-HTe"/>
+                    <constraint firstAttribute="trailing" secondItem="bIC-02-nQE" secondAttribute="trailing" id="t0y-Qe-Mgs"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
