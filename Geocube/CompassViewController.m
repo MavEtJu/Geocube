@@ -30,25 +30,25 @@
     float bearingAdjustment;
 }
 
-@property (nonatomic, weak) IBOutlet GCLabel *labelWPCode;
-@property (nonatomic, weak) IBOutlet GCLabel *labelWPDescription;
-@property (nonatomic, weak) IBOutlet GCLabel *labelWPLat;
-@property (nonatomic, weak) IBOutlet GCLabel *labelWPLon;
-@property (nonatomic, weak) IBOutlet GCLabel *labelWPRatingD;
-@property (nonatomic, weak) IBOutlet GCLabel *labelWPRatingT;
-@property (nonatomic, weak) IBOutlet GCLabel *labelGNSSLat;
-@property (nonatomic, weak) IBOutlet GCLabel *labelGNSSLon;
-@property (nonatomic, weak) IBOutlet GCLabel *labelGNSSAccuracy;
-@property (nonatomic, weak) IBOutlet GCLabel *labelGNSSAltitude;
-@property (nonatomic, weak) IBOutlet GCLabel *labelGNSSDistance;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelWPCode;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelWPDescription;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelWPLat;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelWPLon;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelWPRatingD;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelWPRatingT;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelGNSSLat;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelGNSSLon;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelGNSSAccuracy;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelGNSSAltitude;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelGNSSDistance;
 
 @property (nonatomic, weak) IBOutlet GCImageView *ivGNSSCompassBackground;
 @property (nonatomic, weak) IBOutlet GCImageView *ivGNSSCompassLine;
 @property (nonatomic, weak) IBOutlet GCImageView *ivWPContainer;
 @property (nonatomic, weak) IBOutlet GCImageView *ivWPSize;
 
-@property (nonatomic, weak) IBOutlet GCLabel *labelMyLocation;
-@property (nonatomic, weak) IBOutlet GCLabel *labelSpeed;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelMyLocation;
+@property (nonatomic, weak) IBOutlet GCLabelNormalText *labelSpeed;
 
 @end
 
