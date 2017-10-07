@@ -23,6 +23,7 @@
 {
     NSArray<dbType *> *types;
     NSArray<FilterButton *> *buttons;
+    NSInteger viewWidth;
 }
 
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
@@ -41,6 +42,8 @@
 
     __block NSInteger y = 0;
 
+    viewWidth = self.accountsView.frame.size.width;
+
     [types enumerateObjectsUsingBlock:^(dbType * _Nonnull t, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *s = [NSString stringWithFormat:@"type_%ld", (long)t._id];
         NSString *c = [self configGet:s];
@@ -53,8 +56,9 @@
         [b addTarget:self action:@selector(clickType:) forControlEvents:UIControlEventTouchDown];
         b.index = idx;
         b.frame = CGRectMake(0, y, width, 1);
+        [b.titleLabel sizeToFit];
         [b sizeToFit];
-        b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, width, b.frame.size.height);
+        b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, viewWidth, b.frame.size.height);
         [self.accountsView addSubview:b];
 
         y += b.frame.size.height;
@@ -95,8 +99,9 @@
         FilterButton *b = [buttons objectAtIndex:idx];
         [b setTitle:t.type_full forState:UIControlStateNormal];
         [b setTitleColor:(t.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
+        [b.titleLabel sizeToFit];
         [b sizeToFit];
-        b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, width, b.frame.size.height);
+        b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, viewWidth, b.frame.size.height);
     }];
     [self.accountsView sizeToFit];
     [self.contentView sizeToFit];

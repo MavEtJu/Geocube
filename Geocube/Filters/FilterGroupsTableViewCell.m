@@ -23,6 +23,8 @@
 {
     NSArray<dbGroup *> *groups;
     NSArray<FilterButton *> *buttons;
+    NSInteger viewWidth;
+    NSLayoutConstraint *heightConstraint;
 }
 
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
@@ -41,6 +43,8 @@
 
     __block NSInteger y = 0;
 
+    viewWidth = self.accountsView.frame.size.width;
+
     [groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *s = [NSString stringWithFormat:@"group_%ld", (long)g._id];
         NSString *c = [self configGet:s];
@@ -52,9 +56,9 @@
         FilterButton *b = [FilterButton buttonWithType:UIButtonTypeSystem];
         [b addTarget:self action:@selector(clickGroup:) forControlEvents:UIControlEventTouchDown];
         b.index = idx;
-        b.frame = CGRectMake(0, y, width, 1);
+        b.frame = CGRectMake(0, y, viewWidth, 1);
         [b sizeToFit];
-        b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, width, b.frame.size.height);
+        b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, viewWidth - 2 * b.frame.origin.x, b.frame.size.height);
         [self.accountsView addSubview:b];
 
         y += b.frame.size.height;
@@ -63,15 +67,6 @@
     }];
 
     buttons = bs;
-    NSLayoutConstraint *height = [NSLayoutConstraint
-                                  constraintWithItem:self.accountsView
-                                  attribute:NSLayoutAttributeHeight
-                                  relatedBy:0
-                                  toItem:nil
-                                  attribute:NSLayoutAttributeHeight
-                                  multiplier:1.0
-                                  constant:y];
-    [self.accountsView addConstraint:height];
 
     [self changeTheme];
 }
@@ -90,13 +85,27 @@
 
 - (void)viewRefresh
 {
+    __block NSInteger y = 0;
+
     [groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
         FilterButton *b = [buttons objectAtIndex:idx];
         [b setTitle:g.name forState:UIControlStateNormal];
         [b setTitleColor:(g.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b sizeToFit];
-        b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, width, b.frame.size.height);
+        b.frame = CGRectMake(b.frame.origin.x, y, viewWidth, b.frame.size.height);
+        y += b.frame.size.height;
     }];
+    [self.accountsView removeConstraint:heightConstraint];
+    heightConstraint = [NSLayoutConstraint
+                        constraintWithItem:self.accountsView
+                        attribute:NSLayoutAttributeHeight
+                        relatedBy:0
+                        toItem:nil
+                        attribute:NSLayoutAttributeHeight
+                        multiplier:1.0
+                        constant:y];
+    [self.accountsView addConstraint:heightConstraint];
+
     [self.accountsView sizeToFit];
     [self.contentView sizeToFit];
 }

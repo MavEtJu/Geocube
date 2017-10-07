@@ -184,16 +184,6 @@ enum {
     [waypointManager needsRefreshAll];
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    FilterObject *fo = [filters objectAtIndex:indexPath.row];
-//
-//    if (fo.expanded)
-//        return fo.cellHeight;
-//
-//    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
-//}
-
 #pragma mark - Local menu related
 
 - (void)saveAsFilter:(NSString *)filtername
@@ -284,6 +274,9 @@ enum {
     LOAD(FilterFlagsTableViewCell)
     LOAD(FilterAccountsTableViewCell)
     [self.tableView reloadData];
+    [filters enumerateObjectsUsingBlock:^(FilterObject * _Nonnull fo, NSUInteger idx, BOOL * _Nonnull stop) {
+        [fo.tvcEnabled viewRefresh];
+    }];
 }
 
 - (void)menuLoadFilter

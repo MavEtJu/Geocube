@@ -23,6 +23,7 @@
 {
     NSArray<dbAccount *> *accounts;
     NSArray<FilterButton *> *buttons;
+    NSInteger viewWidth;
 }
 
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
@@ -41,6 +42,8 @@
 
     __block NSInteger y = 0;
 
+    viewWidth = self.accountsView.frame.size.width;
+
     [accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *s = [NSString stringWithFormat:@"account_%ld", (long)a._id];
         NSString *c = [self configGet:s];
@@ -54,7 +57,7 @@
         b.index = idx;
         b.frame = CGRectMake(0, y, width, 1);
         [b sizeToFit];
-        b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, width, b.frame.size.height);
+        b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, viewWidth, b.frame.size.height);
         [self.accountsView addSubview:b];
 
         y += b.frame.size.height;
@@ -96,7 +99,7 @@
         [b setTitle:a.site forState:UIControlStateNormal];
         [b setTitleColor:(a.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b sizeToFit];
-        b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, width, b.frame.size.height);
+        b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, viewWidth, b.frame.size.height);
     }];
     [self.accountsView sizeToFit];
     [self.contentView sizeToFit];

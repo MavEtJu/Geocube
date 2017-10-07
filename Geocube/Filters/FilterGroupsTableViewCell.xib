@@ -32,7 +32,6 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="8eM-mN-0Wx" firstAttribute="top" secondItem="9bk-jT-iuE" secondAttribute="bottom" id="6qc-xh-t5f"/>
-                    <constraint firstItem="8eM-mN-0Wx" firstAttribute="centerX" secondItem="9wR-Xn-2Sp" secondAttribute="centerX" id="QVB-SF-1v5"/>
                     <constraint firstItem="9bk-jT-iuE" firstAttribute="top" secondItem="9wR-Xn-2Sp" secondAttribute="topMargin" id="WQF-3v-d8A"/>
                     <constraint firstAttribute="bottomMargin" secondItem="8eM-mN-0Wx" secondAttribute="bottom" id="fVg-Cn-q8V"/>
                     <constraint firstItem="9bk-jT-iuE" firstAttribute="centerX" secondItem="9wR-Xn-2Sp" secondAttribute="centerX" id="ft7-G8-eA4"/>
