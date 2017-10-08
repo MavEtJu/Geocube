@@ -9,6 +9,7 @@ Version 1.7(x)
   - In the home screen, the icon badge show how many waypoints are "marked as found".
   - Improve icons on the map with a white line around the black areas.
   - Be able to change the font size of the various texts.
+  - Add Geocacher cache type.
 
   Fixes:
   - GGCW: No more message boxes about unable to parse the XML data
