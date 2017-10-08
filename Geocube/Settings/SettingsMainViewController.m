@@ -271,6 +271,8 @@ enum sections {
     SECTION_THEME_THEME = 0,
     SECTION_THEME_COMPASS,
     SECTION_THEME_ORIENTATIONS,
+    SECTION_THEME_FONTS_SIZE_SMALLTEXT,
+    SECTION_THEME_FONTS_SIZE_NORMALTEXT,
     SECTION_THEME_MAX,
 
     SECTION_SOUNDS_DIRECTION = 0,
@@ -379,10 +381,6 @@ enum sections {
     SECTION_MAPSEARCH_GGCW_MAXIMUMLOADED = 0,
     SECTION_MAPSEARCH_GGCW_NUMBERTHREADS,
     SECTION_MAPSEARCH_MAX,
-
-    SECTION_FONTS_SMALLTEXT_SIZE = 0,
-    SECTION_FONTS_NORMALTEXT_SIZE,
-    SECTION_FONTS_MAX,
 };
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -417,7 +415,6 @@ enum sections {
         SECTION_MAX(BACKUPS);
         SECTION_MAX(ACCURACY);
         SECTION_MAX(MAPSEARCH);
-        SECTION_MAX(FONTS);
         default:
             NSAssert1(0, @"Unknown section %ld", (long)section);
     }
@@ -560,6 +557,14 @@ enum sections {
                         [s appendString:_(@"settingsmainviewcontroller-Landscape Right")];
                     }
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-Orientations allowed"), s);
+                }
+                case SECTION_THEME_FONTS_SIZE_SMALLTEXT: {
+                    NSString *s = [NSString stringWithFormat:@"%ld %@", (long)configManager.fontSmallTextSize, _(@"pixels")];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Small text font size"), s)
+                }
+                case SECTION_THEME_FONTS_SIZE_NORMALTEXT: {
+                    NSString *s = [NSString stringWithFormat:@"%ld %@", (long)configManager.fontNormalTextSize, _(@"pixels")];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Normal text font size"), s)
                 }
             }
             abort();
@@ -858,19 +863,6 @@ enum sections {
             abort();
         }
 
-        case SECTION_FONTS: {
-            switch (indexPath.row) {
-                case SECTION_FONTS_SMALLTEXT_SIZE: {
-                    NSString *s = [NSString stringWithFormat:@"%ld %@", (long)configManager.fontSmallTextSize, _(@"pixels")];
-                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Small text font size"), s)
-                }
-                case SECTION_FONTS_NORMALTEXT_SIZE: {
-                    NSString *s = [NSString stringWithFormat:@"%ld %@", (long)configManager.fontNormalTextSize, _(@"pixels")];
-                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Normal text font size"), s)
-                }
-            }
-            abort();
-        }
     }
 
     // Not reached
@@ -940,6 +932,12 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
                     break;
                 case SECTION_THEME_ORIENTATIONS:
                     [self changeThemeOrientations];
+                    break;
+                case SECTION_THEME_FONTS_SIZE_SMALLTEXT:
+                    [self changeSmallTextFontSize];
+                    break;
+                case SECTION_THEME_FONTS_SIZE_NORMALTEXT:
+                    [self changeNormalTextFontSize];
                     break;
             }
             break;
@@ -1106,16 +1104,6 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
             }
             break;
 
-        case SECTION_FONTS:
-            switch (indexPath.row) {
-                case SECTION_FONTS_SMALLTEXT_SIZE:
-                    [self changeSmallTextFontSize];
-                    break;
-                case SECTION_FONTS_NORMALTEXT_SIZE:
-                    [self changeNormalTextFontSize];
-                    break;
-            }
-            break;
     }
     [aTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
