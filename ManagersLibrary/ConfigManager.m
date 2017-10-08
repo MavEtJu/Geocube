@@ -440,10 +440,10 @@ UPDATE3(NSInteger, automaticDatabaseBackupPeriod, @"automaticdatabasebackup_peri
 UPDATE3(NSInteger, automaticDatabaseBackupRotate, @"automaticdatabasebackup_rotate")
 UPDATE3(NSInteger, speedSamples, @"speed_samples")
 UPDATE3(NSInteger, speedMinimum, @"speed_minimum")
-UPDATE3(NSInteger, mapsearchGGCWMaximumNumber, @"mapsearch_ggcw_maximumnumber");
-UPDATE3(NSInteger, mapsearchGGCWNumberThreads, @"mapsearch_ggcw_numberthreads");
-UPDATE3(NSInteger, fontSmallTextSize, @"font_smalltext_size");
-UPDATE3(NSInteger, fontNormalTextSize, @"font_normaltext_size");
+UPDATE3(NSInteger, mapsearchGGCWMaximumNumber, @"mapsearch_ggcw_maximumnumber")
+UPDATE3(NSInteger, mapsearchGGCWNumberThreads, @"mapsearch_ggcw_numberthreads")
+UPDATE3(NSInteger, fontSmallTextSize, @"font_smalltext_size")
+UPDATE3(NSInteger, fontNormalTextSize, @"font_normaltext_size")
 
 UPDATE3(float, keeptrackTimeDeltaMin, @"keeptrack_timedelta_min")
 UPDATE3(float, keeptrackTimeDeltaMax, @"keeptrack_timedelta_max")

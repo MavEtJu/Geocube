@@ -32,7 +32,7 @@
 #import "CXMLElement.h"
 
 #import "CXMLNode_PrivateExtensions.h"
-#import "CXMLNode_CreationExtensions.h"
+#import "Creation/CXMLNode_CreationExtensions.h"
 #import "CXMLNamespaceNode.h"
 
 @implementation CXMLElement

@@ -15,14 +15,14 @@
 
 #import "GMUKMLParser.h"
 
-#import "GMUGeometry.h"
-#import "GMUGeometryCollection.h"
-#import "GMUGroundOverlay.h"
-#import "GMULineString.h"
-#import "GMUPlacemark.h"
-#import "GMUPoint.h"
-#import "GMUPolygon.h"
-#import "GMUStyle.h"
+#import "Model/GMUGeometry.h"
+#import "Model/GMUGeometryCollection.h"
+#import "Model/GMUGroundOverlay.h"
+#import "Model/GMULineString.h"
+#import "Model/GMUPlacemark.h"
+#import "Model/GMUPoint.h"
+#import "Model/GMUPolygon.h"
+#import "Model/GMUStyle.h"
 
 static NSString *const kGMUPlacemarkElementName = @"Placemark";
 static NSString *const kGMUGroundOverlayElementName = @"GroundOverlay";

@@ -15,14 +15,14 @@
 
 #import "GMUGeometryRenderer.h"
 
-#import "GMUFeature.h"
-#import "GMUGeometryCollection.h"
-#import "GMUGroundOverlay.h"
-#import "GMULineString.h"
-#import "GMUPlacemark.h"
-#import "GMUPoint.h"
-#import "GMUPolygon.h"
-#import "GMUStyle.h"
+#import "Model/GMUFeature.h"
+#import "Model/GMUGeometryCollection.h"
+#import "Model/GMUGroundOverlay.h"
+#import "Model/GMULineString.h"
+#import "Model/GMUPlacemark.h"
+#import "Model/GMUPoint.h"
+#import "Model/GMUPolygon.h"
+#import "Model/GMUStyle.h"
 
 @implementation GMUGeometryRenderer {
   NSMutableArray<GMSOverlay *> *_mapOverlays;

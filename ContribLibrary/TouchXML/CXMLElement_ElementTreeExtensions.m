@@ -1,8 +1,8 @@
 //
-//  TouchXML.h
+//  CXMLElement_ElementTreeExtensions.m
 //  TouchCode
 //
-//  Created by Jonathan Wight on 07/11/08.
+//  Created by Jonathan Wight on 11/14/08.
 //  Copyright 2011 toxicsoftware.com. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are
@@ -29,20 +29,18 @@
 //  authors and should not be interpreted as representing official policies, either expressed
 //  or implied, of toxicsoftware.com.
 
-//! Project version number for TouchXML.
-FOUNDATION_EXPORT double TouchXMLVersionNumber;
-
-//! Project version string for TouchXML.
-FOUNDATION_EXPORT const unsigned char TouchXMLVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <TouchXML/PublicHeader.h>
-
-#import "CXMLDocument.h"
-#import "ContribLibrary/TouchXML/Creation/CXMLDocument_CreationExtensions.h"
-#import "CXMLElement.h"
-#import "CXMLElement_CreationExtensions.h"
 #import "CXMLElement_ElementTreeExtensions.h"
-#import "CXMLNode.h"
-#import "ContribLibrary/TouchXML/Creation/CXMLNode_CreationExtensions.h"
-#import "CXMLNode_XPathExtensions.h"
-#import "CXMLUnsupportedNode.h"
+
+#import "CXMLElement_CreationExtensions.h"
+#import "Creation/CXMLNode_CreationExtensions.h"
+
+@implementation CXMLElement (CXMLElement_ElementTreeExtensions)
+
+- (CXMLElement *)subelement:(NSString *)inName;
+{
+CXMLElement *theSubelement = [CXMLNode elementWithName:inName];
+[self addChild:theSubelement];
+return(theSubelement);
+}
+
+@end

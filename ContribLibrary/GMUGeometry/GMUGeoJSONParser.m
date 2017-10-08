@@ -19,11 +19,11 @@
 
 #import <GoogleMaps/GoogleMaps.h>
 
-#import "GMUFeature.h"
-#import "GMUGeometryCollection.h"
-#import "GMULineString.h"
-#import "GMUPoint.h"
-#import "GMUPolygon.h"
+#import "Model/GMUFeature.h"
+#import "Model/GMUGeometryCollection.h"
+#import "Model/GMULineString.h"
+#import "Model/GMUPoint.h"
+#import "Model/GMUPolygon.h"
 
 static NSString *const kGMUTypeMember = @"type";
 static NSString *const kGMUIdMember = @"id";
