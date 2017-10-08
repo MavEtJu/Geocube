@@ -108,8 +108,12 @@ grep -n " NSMutableArray " $MFILES
 grep -n " NSArray " $MFILES
 
 echo
-echo "Empty lines after beginning of a function:"
-grep -n -A 1 ^{ $MFILES | grep -v '^--$' | grep -- -$
+echo "Empty lines after beginning of a method:"
+grep -n -A 1 ^{ $MFILES | grep -v '^--$' | grep -- '-[	 ]*$'
+
+echo
+echo "Empty lines before the end of a method:"
+grep -n -B 1 ^} $MFILES | grep -v '^--$' | grep -- '-[	 ]*$'
 
 echo
 echo "Double empty lines:"

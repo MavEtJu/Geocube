@@ -198,7 +198,6 @@ EMPTY_METHOD(mapViewDidLoad)
 
         return;
     }
-
 }
 
 - (void)openWaypointsPicker:(NSArray<NSString *> *)names origin:(UIView *)origin

@@ -201,7 +201,6 @@ enum {
 
     if (self.delegateWaypoint != nil)
         [self.delegateWaypoint WaypointWaypoints_refreshTable];
-
 }
 
 - (void)newWaypoint

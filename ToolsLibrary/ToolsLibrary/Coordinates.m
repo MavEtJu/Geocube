@@ -78,7 +78,6 @@
 {
     NSString *hemi = (coords.latitude < 0) ? _(@"compass-S") : _(@"compass-N") ;
     return [NSString stringWithFormat:@"%@ %9.5f", hemi, fabs(coords.latitude)];
-
 }
 /// Returns E 151.07357
 - (NSString *)lon_decimalDegreesCardinal   // E 151.07357

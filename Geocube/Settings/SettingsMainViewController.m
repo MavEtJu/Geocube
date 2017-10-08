@@ -237,7 +237,6 @@ enum {
         [distancesDriving addObject:[MyTools niceDistance:i]];
         [distancesDrivingMetric addObject:[NSNumber numberWithInteger:i]];
     }
-
 }
 
 #pragma mark - TableViewController related functions
@@ -1947,7 +1946,6 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
                                      cancelBlock:nil
                                           origin:cell.contentView
      ];
-
 }
 
 - (void)changeAppsExternalMap

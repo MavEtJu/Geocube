@@ -430,7 +430,6 @@
         [self menuFindTarget];
         return;
     }
-
 }
 
 /* Delegated from GCLocationManager */
