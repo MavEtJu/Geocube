@@ -1,9 +1,9 @@
 #!/bin/sh
 
-MHFILES=$(find . -name '*.[mh]' | grep -Ev '(Geocube/contrib|GeocubeTests|Pods|ContribLibrary)')
-MFILES=$(find . -name '*.m' | grep -Ev '(Geocube/contrib|GeocubeTests|Pods|ContribLibrary)')
-HFILES=$(find . -name '*.h' | grep -Ev '(Geocube/contrib|GeocubeTests|Pods|ContribLibrary)')
-DBFILES=DatabaseLibrary/DatabaseLibrary/db*.m
+MHFILES=$(find . -name '*.[mh]' | grep -Ev '(GeocubeTests|Pods|ContribLibrary)')
+MFILES=$(find . -name '*.m' | grep -Ev '(GeocubeTests|Pods|ContribLibrary)')
+HFILES=$(find . -name '*.h' | grep -Ev '(GeocubeTests|Pods|ContribLibrary)')
+DBFILES=DatabaseLibrary/db*.m
 
 echo
 echo "Licenses:"
@@ -125,7 +125,7 @@ grep ";;" $MHFILES
 
 echo
 echo "ConfigManager:"
-./checkConfigManager.pl ManagersLibrary/ManagersLibrary/ConfigManager
+./checkConfigManager.pl ManagersLibrary/ConfigManager
 
 echo
 echo "XIB for iPhone/iPad"
