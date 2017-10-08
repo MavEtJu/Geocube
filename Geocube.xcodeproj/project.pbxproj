@@ -3534,6 +3534,7 @@
 		E8740F9C1B4E6645002527DA /* Waypoint Viewing */ = {
 			isa = PBXGroup;
 			children = (
+				E8740FE91B509540002527DA /* TableViewCells */,
 				E8457F2B1E971AC8005A6347 /* Sorting */,
 				E89051751C8AE1B600220986 /* Logging */,
 				E89051741C8AE1AE00220986 /* Images */,
@@ -3619,7 +3620,7 @@
 			name = containers;
 			sourceTree = "<group>";
 		};
-		E8740FE91B509540002527DA /* GUI TableViewCells */ = {
+		E8740FE91B509540002527DA /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
 				E82343FD1EECDF6C00D2CDFD /* WaypointTableViewCell.h */,
@@ -3631,7 +3632,7 @@
 				E83C205B1E2F0695006C523E /* LogTableViewCell.xib */,
 				E8C8C8C11EE26AAA00E2438D /* LogTableViewCell~ipad.xib */,
 			);
-			name = "GUI TableViewCells";
+			name = TableViewCells;
 			sourceTree = "<group>";
 		};
 		E876ECA61F7E0340002A368E /* launchscreen */ = {
@@ -3874,7 +3875,6 @@
 			children = (
 				E8F5705A1B3F7255003F020C /* AppDelegate.h */,
 				E8E3DC1B1E167C740066E903 /* AppDelegate.m */,
-				E8740FE91B509540002527DA /* GUI TableViewCells */,
 				E8740F9C1B4E6645002527DA /* Waypoint Viewing */,
 				E8F570B61B3FF266003F020C /* Pages */,
 			);
