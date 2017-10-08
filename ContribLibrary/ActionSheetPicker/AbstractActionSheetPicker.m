@@ -25,7 +25,7 @@
 //SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "AbstractActionSheetPicker.h"
+#import "ContribLibrary/ActionSheetPicker/AbstractActionSheetPicker.h"
 #import "SWActionSheet.h"
 #import <objc/message.h>
 #import <sys/utsname.h>

@@ -30,11 +30,6 @@
 #import "Geocube-globals.h"
 
 #import "ContribLibrary/ContribLibrary.h"
-#import "contrib/MHTabBarController/MHTabBarController.h"
-#import "contrib/NKOColorPickerView/NKOColorPickerView.h"
-#import "contrib/CMRangeSlider/RangeSlider.h"
-#import "contrib/SVProgressHUD/SVProgressHUD.h"
-
 #import "BaseObjectsLibrary/BaseObjectsLibrary.h"
 #import "ConvertorsLibrary/ConvertorsLibrary.h"
 #import "DatabaseLibrary/DatabaseLibrary.h"

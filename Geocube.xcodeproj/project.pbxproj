@@ -250,27 +250,31 @@
 		E82288FE1F8A3EC900631380 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = E82288F71F8A3EC900631380 /* mztools.c */; };
 		E82288FF1F8A3EC900631380 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = E82288F91F8A3EC900631380 /* unzip.c */; };
 		E82289001F8A3EC900631380 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = E82288FB1F8A3EC900631380 /* zip.c */; };
+		E822890F1F8A40A800631380 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82289061F8A40A800631380 /* SVIndefiniteAnimatedView.m */; };
+		E82289101F8A40A800631380 /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82289081F8A40A800631380 /* SVProgressAnimatedView.m */; };
+		E82289111F8A40A800631380 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E822890A1F8A40A800631380 /* SVProgressHUD.bundle */; };
+		E82289121F8A40A800631380 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E822890C1F8A40A800631380 /* SVProgressHUD.m */; };
+		E82289131F8A40A800631380 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E822890E1F8A40A800631380 /* SVRadialGradientLayer.m */; };
+		E82289171F8A40BA00631380 /* nko_colormap.png in Resources */ = {isa = PBXBuildFile; fileRef = E82289141F8A40BA00631380 /* nko_colormap.png */; };
+		E82289181F8A40BA00631380 /* NKOColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82289161F8A40BA00631380 /* NKOColorPickerView.m */; };
+		E82289251F8A40CB00631380 /* MHTabBarActiveTab.png in Resources */ = {isa = PBXBuildFile; fileRef = E82289191F8A40CB00631380 /* MHTabBarActiveTab.png */; };
+		E82289261F8A40CB00631380 /* MHTabBarActiveTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E822891A1F8A40CB00631380 /* MHTabBarActiveTab@2x.png */; };
+		E82289271F8A40CB00631380 /* MHTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E822891C1F8A40CB00631380 /* MHTabBarController.m */; };
+		E82289281F8A40CC00631380 /* MHTabBarInactiveTab.png in Resources */ = {isa = PBXBuildFile; fileRef = E822891D1F8A40CB00631380 /* MHTabBarInactiveTab.png */; };
+		E82289291F8A40CC00631380 /* MHTabBarInactiveTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E822891E1F8A40CB00631380 /* MHTabBarInactiveTab@2x.png */; };
+		E822892A1F8A40CC00631380 /* MHTabBarIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = E822891F1F8A40CB00631380 /* MHTabBarIndicator.png */; };
+		E822892B1F8A40CC00631380 /* MHTabBarIndicator.xcf in Resources */ = {isa = PBXBuildFile; fileRef = E82289201F8A40CB00631380 /* MHTabBarIndicator.xcf */; };
+		E822892C1F8A40CC00631380 /* MHTabBarIndicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82289211F8A40CB00631380 /* MHTabBarIndicator@2x.png */; };
+		E822892D1F8A40CC00631380 /* MHTabBarIndicator@2x.xcf in Resources */ = {isa = PBXBuildFile; fileRef = E82289221F8A40CB00631380 /* MHTabBarIndicator@2x.xcf */; };
+		E822892E1F8A40CC00631380 /* MHTabBarIndicator@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82289231F8A40CB00631380 /* MHTabBarIndicator@3x.png */; };
+		E822892F1F8A40CC00631380 /* MHTabBarIndicator@3x.xcf in Resources */ = {isa = PBXBuildFile; fileRef = E82289241F8A40CB00631380 /* MHTabBarIndicator@3x.xcf */; };
+		E82289351F8A40DB00631380 /* fillrange.png in Resources */ = {isa = PBXBuildFile; fileRef = E82289301F8A40DB00631380 /* fillrange.png */; };
+		E82289361F8A40DB00631380 /* fullrange.png in Resources */ = {isa = PBXBuildFile; fileRef = E82289311F8A40DB00631380 /* fullrange.png */; };
+		E82289371F8A40DB00631380 /* RangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = E82289331F8A40DB00631380 /* RangeSlider.m */; };
+		E82289381F8A40DB00631380 /* rangethumb.png in Resources */ = {isa = PBXBuildFile; fileRef = E82289341F8A40DB00631380 /* rangethumb.png */; };
 		E823024E1DCD54520032C5C6 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E823024D1DCD54520032C5C6 /* libxml2.tbd */; };
 		E82341871EECA19300D2CDFD /* EncryptionKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E82341861EECA19300D2CDFD /* EncryptionKeys.plist */; };
 		E823419B1EECAF4F00D2CDFD /* EncryptionKeysExample.plist in Resources */ = {isa = PBXBuildFile; fileRef = E823419A1EECAF4F00D2CDFD /* EncryptionKeysExample.plist */; };
-		E82341F01EECCEBB00D2CDFD /* fillrange.png in Resources */ = {isa = PBXBuildFile; fileRef = E82341EB1EECCEBB00D2CDFD /* fillrange.png */; };
-		E82341F11EECCEBB00D2CDFD /* fullrange.png in Resources */ = {isa = PBXBuildFile; fileRef = E82341EC1EECCEBB00D2CDFD /* fullrange.png */; };
-		E82341F21EECCEBB00D2CDFD /* RangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = E82341EE1EECCEBB00D2CDFD /* RangeSlider.m */; };
-		E82341F31EECCEBB00D2CDFD /* rangethumb.png in Resources */ = {isa = PBXBuildFile; fileRef = E82341EF1EECCEBB00D2CDFD /* rangethumb.png */; };
-		E823420C1EECCEEE00D2CDFD /* MHTabBarActiveTab.png in Resources */ = {isa = PBXBuildFile; fileRef = E82342001EECCEEE00D2CDFD /* MHTabBarActiveTab.png */; };
-		E823420D1EECCEEE00D2CDFD /* MHTabBarActiveTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82342011EECCEEE00D2CDFD /* MHTabBarActiveTab@2x.png */; };
-		E823420E1EECCEEE00D2CDFD /* MHTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342031EECCEEE00D2CDFD /* MHTabBarController.m */; };
-		E823420F1EECCEEE00D2CDFD /* MHTabBarInactiveTab.png in Resources */ = {isa = PBXBuildFile; fileRef = E82342041EECCEEE00D2CDFD /* MHTabBarInactiveTab.png */; };
-		E82342101EECCEEE00D2CDFD /* MHTabBarInactiveTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82342051EECCEEE00D2CDFD /* MHTabBarInactiveTab@2x.png */; };
-		E82342111EECCEEE00D2CDFD /* MHTabBarIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = E82342061EECCEEE00D2CDFD /* MHTabBarIndicator.png */; };
-		E82342131EECCEEE00D2CDFD /* MHTabBarIndicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82342081EECCEEE00D2CDFD /* MHTabBarIndicator@2x.png */; };
-		E82342151EECCEEE00D2CDFD /* MHTabBarIndicator@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E823420A1EECCEEE00D2CDFD /* MHTabBarIndicator@3x.png */; };
-		E823421A1EECCF2600D2CDFD /* nko_colormap.png in Resources */ = {isa = PBXBuildFile; fileRef = E82342171EECCF2600D2CDFD /* nko_colormap.png */; };
-		E823421B1EECCF2600D2CDFD /* NKOColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342191EECCF2600D2CDFD /* NKOColorPickerView.m */; };
-		E823424B1EECCF9300D2CDFD /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342421EECCF9300D2CDFD /* SVIndefiniteAnimatedView.m */; };
-		E823424C1EECCF9300D2CDFD /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342441EECCF9300D2CDFD /* SVProgressAnimatedView.m */; };
-		E823424E1EECCF9300D2CDFD /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E82342481EECCF9300D2CDFD /* SVProgressHUD.m */; };
-		E823424F1EECCF9300D2CDFD /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E823424A1EECCF9300D2CDFD /* SVRadialGradientLayer.m */; };
 		E82343B11EECDDFD00D2CDFD /* WaypointSorter.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343B01EECDDFD00D2CDFD /* WaypointSorter.m */; };
 		E82343BA1EECDE6C00D2CDFD /* WaypointLogEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343B31EECDE6C00D2CDFD /* WaypointLogEditViewController.m */; };
 		E82343BB1EECDE6C00D2CDFD /* WaypointLogImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82343B51EECDE6C00D2CDFD /* WaypointLogImagesViewController.m */; };
@@ -597,7 +601,6 @@
 		E83B109F1EF4FCCC00F2C5FA /* LocationlessTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E83B109E1EF4FCCC00F2C5FA /* LocationlessTableViewCell.m */; };
 		E83B10A51EF4FDFA00F2C5FA /* LocationlessTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E83B10A41EF4FDFA00F2C5FA /* LocationlessTemplateViewController.m */; };
 		E83C205C1E2F0695006C523E /* LogTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C205B1E2F0695006C523E /* LogTableViewCell.xib */; };
-		E83C6EF21EECE28100E303F5 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E83C6EF11EECE28100E303F5 /* SVProgressHUD.bundle */; };
 		E83C6F001EECE67100E303F5 /* FileBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C6EF41EECE67100E303F5 /* FileBrowserViewController.m */; };
 		E83C6F011EECE67100E303F5 /* FileObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C6EF61EECE67100E303F5 /* FileObject.m */; };
 		E83C6F021EECE67100E303F5 /* FileObjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C6EF81EECE67100E303F5 /* FileObjectView.m */; };
@@ -1329,35 +1332,39 @@
 		E82288FA1F8A3EC900631380 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = unzip.h; path = ContribLibrary/SSZipArchive/minizip/unzip.h; sourceTree = "<group>"; };
 		E82288FB1F8A3EC900631380 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zip.c; path = ContribLibrary/SSZipArchive/minizip/zip.c; sourceTree = "<group>"; };
 		E82288FC1F8A3EC900631380 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zip.h; path = ContribLibrary/SSZipArchive/minizip/zip.h; sourceTree = "<group>"; };
+		E82289051F8A40A800631380 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVIndefiniteAnimatedView.h; path = ContribLibrary/SVProgressHUD/SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		E82289061F8A40A800631380 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVIndefiniteAnimatedView.m; path = ContribLibrary/SVProgressHUD/SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		E82289071F8A40A800631380 /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVProgressAnimatedView.h; path = ContribLibrary/SVProgressHUD/SVProgressAnimatedView.h; sourceTree = "<group>"; };
+		E82289081F8A40A800631380 /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVProgressAnimatedView.m; path = ContribLibrary/SVProgressHUD/SVProgressAnimatedView.m; sourceTree = "<group>"; };
+		E82289091F8A40A800631380 /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SVProgressHUD-Prefix.pch"; path = "ContribLibrary/SVProgressHUD/SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		E822890A1F8A40A800631380 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = ContribLibrary/SVProgressHUD/SVProgressHUD.bundle; sourceTree = "<group>"; };
+		E822890B1F8A40A800631380 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVProgressHUD.h; path = ContribLibrary/SVProgressHUD/SVProgressHUD.h; sourceTree = "<group>"; };
+		E822890C1F8A40A800631380 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = ContribLibrary/SVProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
+		E822890D1F8A40A800631380 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVRadialGradientLayer.h; path = ContribLibrary/SVProgressHUD/SVRadialGradientLayer.h; sourceTree = "<group>"; };
+		E822890E1F8A40A800631380 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = ContribLibrary/SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		E82289141F8A40BA00631380 /* nko_colormap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nko_colormap.png; path = ContribLibrary/NKOColorPickerView/nko_colormap.png; sourceTree = "<group>"; };
+		E82289151F8A40BA00631380 /* NKOColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKOColorPickerView.h; path = ContribLibrary/NKOColorPickerView/NKOColorPickerView.h; sourceTree = "<group>"; };
+		E82289161F8A40BA00631380 /* NKOColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKOColorPickerView.m; path = ContribLibrary/NKOColorPickerView/NKOColorPickerView.m; sourceTree = "<group>"; };
+		E82289191F8A40CB00631380 /* MHTabBarActiveTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MHTabBarActiveTab.png; path = ContribLibrary/MHTabBarController/MHTabBarActiveTab.png; sourceTree = "<group>"; };
+		E822891A1F8A40CB00631380 /* MHTabBarActiveTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MHTabBarActiveTab@2x.png"; path = "ContribLibrary/MHTabBarController/MHTabBarActiveTab@2x.png"; sourceTree = "<group>"; };
+		E822891B1F8A40CB00631380 /* MHTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHTabBarController.h; path = ContribLibrary/MHTabBarController/MHTabBarController.h; sourceTree = "<group>"; };
+		E822891C1F8A40CB00631380 /* MHTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHTabBarController.m; path = ContribLibrary/MHTabBarController/MHTabBarController.m; sourceTree = "<group>"; };
+		E822891D1F8A40CB00631380 /* MHTabBarInactiveTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MHTabBarInactiveTab.png; path = ContribLibrary/MHTabBarController/MHTabBarInactiveTab.png; sourceTree = "<group>"; };
+		E822891E1F8A40CB00631380 /* MHTabBarInactiveTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MHTabBarInactiveTab@2x.png"; path = "ContribLibrary/MHTabBarController/MHTabBarInactiveTab@2x.png"; sourceTree = "<group>"; };
+		E822891F1F8A40CB00631380 /* MHTabBarIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MHTabBarIndicator.png; path = ContribLibrary/MHTabBarController/MHTabBarIndicator.png; sourceTree = "<group>"; };
+		E82289201F8A40CB00631380 /* MHTabBarIndicator.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MHTabBarIndicator.xcf; path = ContribLibrary/MHTabBarController/MHTabBarIndicator.xcf; sourceTree = "<group>"; };
+		E82289211F8A40CB00631380 /* MHTabBarIndicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MHTabBarIndicator@2x.png"; path = "ContribLibrary/MHTabBarController/MHTabBarIndicator@2x.png"; sourceTree = "<group>"; };
+		E82289221F8A40CB00631380 /* MHTabBarIndicator@2x.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MHTabBarIndicator@2x.xcf"; path = "ContribLibrary/MHTabBarController/MHTabBarIndicator@2x.xcf"; sourceTree = "<group>"; };
+		E82289231F8A40CB00631380 /* MHTabBarIndicator@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MHTabBarIndicator@3x.png"; path = "ContribLibrary/MHTabBarController/MHTabBarIndicator@3x.png"; sourceTree = "<group>"; };
+		E82289241F8A40CB00631380 /* MHTabBarIndicator@3x.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MHTabBarIndicator@3x.xcf"; path = "ContribLibrary/MHTabBarController/MHTabBarIndicator@3x.xcf"; sourceTree = "<group>"; };
+		E82289301F8A40DB00631380 /* fillrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fillrange.png; path = ContribLibrary/CMRangeSlider/fillrange.png; sourceTree = "<group>"; };
+		E82289311F8A40DB00631380 /* fullrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fullrange.png; path = ContribLibrary/CMRangeSlider/fullrange.png; sourceTree = "<group>"; };
+		E82289321F8A40DB00631380 /* RangeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RangeSlider.h; path = ContribLibrary/CMRangeSlider/RangeSlider.h; sourceTree = "<group>"; };
+		E82289331F8A40DB00631380 /* RangeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RangeSlider.m; path = ContribLibrary/CMRangeSlider/RangeSlider.m; sourceTree = "<group>"; };
+		E82289341F8A40DB00631380 /* rangethumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rangethumb.png; path = ContribLibrary/CMRangeSlider/rangethumb.png; sourceTree = "<group>"; };
 		E823024D1DCD54520032C5C6 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		E82341861EECA19300D2CDFD /* EncryptionKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EncryptionKeys.plist; sourceTree = "<group>"; };
 		E823419A1EECAF4F00D2CDFD /* EncryptionKeysExample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EncryptionKeysExample.plist; sourceTree = "<group>"; };
-		E82341EB1EECCEBB00D2CDFD /* fillrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fillrange.png; path = contrib/CMRangeSlider/fillrange.png; sourceTree = "<group>"; };
-		E82341EC1EECCEBB00D2CDFD /* fullrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fullrange.png; path = contrib/CMRangeSlider/fullrange.png; sourceTree = "<group>"; };
-		E82341ED1EECCEBB00D2CDFD /* RangeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RangeSlider.h; path = contrib/CMRangeSlider/RangeSlider.h; sourceTree = "<group>"; };
-		E82341EE1EECCEBB00D2CDFD /* RangeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RangeSlider.m; path = contrib/CMRangeSlider/RangeSlider.m; sourceTree = "<group>"; };
-		E82341EF1EECCEBB00D2CDFD /* rangethumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rangethumb.png; path = contrib/CMRangeSlider/rangethumb.png; sourceTree = "<group>"; };
-		E82342001EECCEEE00D2CDFD /* MHTabBarActiveTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MHTabBarActiveTab.png; path = contrib/MHTabBarController/MHTabBarActiveTab.png; sourceTree = "<group>"; };
-		E82342011EECCEEE00D2CDFD /* MHTabBarActiveTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MHTabBarActiveTab@2x.png"; path = "contrib/MHTabBarController/MHTabBarActiveTab@2x.png"; sourceTree = "<group>"; };
-		E82342021EECCEEE00D2CDFD /* MHTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHTabBarController.h; path = contrib/MHTabBarController/MHTabBarController.h; sourceTree = "<group>"; };
-		E82342031EECCEEE00D2CDFD /* MHTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHTabBarController.m; path = contrib/MHTabBarController/MHTabBarController.m; sourceTree = "<group>"; };
-		E82342041EECCEEE00D2CDFD /* MHTabBarInactiveTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MHTabBarInactiveTab.png; path = contrib/MHTabBarController/MHTabBarInactiveTab.png; sourceTree = "<group>"; };
-		E82342051EECCEEE00D2CDFD /* MHTabBarInactiveTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MHTabBarInactiveTab@2x.png"; path = "contrib/MHTabBarController/MHTabBarInactiveTab@2x.png"; sourceTree = "<group>"; };
-		E82342061EECCEEE00D2CDFD /* MHTabBarIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MHTabBarIndicator.png; path = contrib/MHTabBarController/MHTabBarIndicator.png; sourceTree = "<group>"; };
-		E82342081EECCEEE00D2CDFD /* MHTabBarIndicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MHTabBarIndicator@2x.png"; path = "contrib/MHTabBarController/MHTabBarIndicator@2x.png"; sourceTree = "<group>"; };
-		E823420A1EECCEEE00D2CDFD /* MHTabBarIndicator@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MHTabBarIndicator@3x.png"; path = "contrib/MHTabBarController/MHTabBarIndicator@3x.png"; sourceTree = "<group>"; };
-		E82342171EECCF2600D2CDFD /* nko_colormap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nko_colormap.png; path = contrib/NKOColorPickerView/nko_colormap.png; sourceTree = "<group>"; };
-		E82342181EECCF2600D2CDFD /* NKOColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKOColorPickerView.h; path = contrib/NKOColorPickerView/NKOColorPickerView.h; sourceTree = "<group>"; };
-		E82342191EECCF2600D2CDFD /* NKOColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKOColorPickerView.m; path = contrib/NKOColorPickerView/NKOColorPickerView.m; sourceTree = "<group>"; };
-		E82342411EECCF9300D2CDFD /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVIndefiniteAnimatedView.h; path = contrib/SVProgressHUD/SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
-		E82342421EECCF9300D2CDFD /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVIndefiniteAnimatedView.m; path = contrib/SVProgressHUD/SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
-		E82342431EECCF9300D2CDFD /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVProgressAnimatedView.h; path = contrib/SVProgressHUD/SVProgressAnimatedView.h; sourceTree = "<group>"; };
-		E82342441EECCF9300D2CDFD /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVProgressAnimatedView.m; path = contrib/SVProgressHUD/SVProgressAnimatedView.m; sourceTree = "<group>"; };
-		E82342451EECCF9300D2CDFD /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SVProgressHUD-Prefix.pch"; path = "contrib/SVProgressHUD/SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
-		E82342471EECCF9300D2CDFD /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVProgressHUD.h; path = contrib/SVProgressHUD/SVProgressHUD.h; sourceTree = "<group>"; };
-		E82342481EECCF9300D2CDFD /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = contrib/SVProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
-		E82342491EECCF9300D2CDFD /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVRadialGradientLayer.h; path = contrib/SVProgressHUD/SVRadialGradientLayer.h; sourceTree = "<group>"; };
-		E823424A1EECCF9300D2CDFD /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = contrib/SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
 		E82343AF1EECDDFD00D2CDFD /* WaypointSorter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaypointSorter.h; path = Waypoints/WaypointSorter.h; sourceTree = "<group>"; };
 		E82343B01EECDDFD00D2CDFD /* WaypointSorter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaypointSorter.m; path = Waypoints/WaypointSorter.m; sourceTree = "<group>"; };
 		E82343B21EECDE6C00D2CDFD /* WaypointLogEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaypointLogEditViewController.h; path = Waypoints/WaypointLogEditViewController.h; sourceTree = "<group>"; };
@@ -1775,7 +1782,6 @@
 		E83B10A31EF4FDFA00F2C5FA /* LocationlessTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationlessTemplateViewController.h; path = Locationless/LocationlessTemplateViewController.h; sourceTree = "<group>"; };
 		E83B10A41EF4FDFA00F2C5FA /* LocationlessTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationlessTemplateViewController.m; path = Locationless/LocationlessTemplateViewController.m; sourceTree = "<group>"; };
 		E83C205B1E2F0695006C523E /* LogTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogTableViewCell.xib; sourceTree = "<group>"; };
-		E83C6EF11EECE28100E303F5 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = contrib/SVProgressHUD/SVProgressHUD.bundle; sourceTree = "<group>"; };
 		E83C6EF31EECE67100E303F5 /* FileBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileBrowserViewController.h; path = Files/FileBrowserViewController.h; sourceTree = "<group>"; };
 		E83C6EF41EECE67100E303F5 /* FileBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileBrowserViewController.m; path = Files/FileBrowserViewController.m; sourceTree = "<group>"; };
 		E83C6EF51EECE67100E303F5 /* FileObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileObject.h; path = Files/FileObject.h; sourceTree = "<group>"; };
@@ -2129,14 +2135,18 @@
 			children = (
 				E82287D61F8A341300631380 /* ContribLibrary.h */,
 				E82287D71F8A341300631380 /* PSPDFUIKitMainThreadGuard.m */,
+				E82289011F8A404700631380 /* CMRangeSlider */,
 				E822889A1F8A353300631380 /* GMUGeometry */,
 				E822888E1F8A350400631380 /* Kxintro */,
 				E82287DD1F8A343500631380 /* ActionSheetPicker */,
 				E82287D91F8A342000631380 /* LXMapScaleView */,
+				E82289041F8A407900631380 /* MHTabBarController */,
+				E82289021F8A405800631380 /* NKOColorPickerView */,
 				E82288981F8A351D00631380 /* NVHTarGzip */,
 				E82288991F8A352700631380 /* RNCryptor */,
 				E82288391F8A34E200631380 /* SimpleKML */,
 				E82288331F8A34C900631380 /* SSZipArchive */,
+				E82289031F8A406E00631380 /* SVProgressHUD */,
 				E82288291F8A349C00631380 /* TFHpple */,
 				E82287FB1F8A345000631380 /* TouchXML */,
 				E82287FC1F8A346100631380 /* YIPopupTextView */,
@@ -2869,6 +2879,64 @@
 			name = Others;
 			sourceTree = "<group>";
 		};
+		E82289011F8A404700631380 /* CMRangeSlider */ = {
+			isa = PBXGroup;
+			children = (
+				E82289301F8A40DB00631380 /* fillrange.png */,
+				E82289311F8A40DB00631380 /* fullrange.png */,
+				E82289321F8A40DB00631380 /* RangeSlider.h */,
+				E82289331F8A40DB00631380 /* RangeSlider.m */,
+				E82289341F8A40DB00631380 /* rangethumb.png */,
+			);
+			name = CMRangeSlider;
+			sourceTree = "<group>";
+		};
+		E82289021F8A405800631380 /* NKOColorPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				E82289141F8A40BA00631380 /* nko_colormap.png */,
+				E82289151F8A40BA00631380 /* NKOColorPickerView.h */,
+				E82289161F8A40BA00631380 /* NKOColorPickerView.m */,
+			);
+			name = NKOColorPickerView;
+			sourceTree = "<group>";
+		};
+		E82289031F8A406E00631380 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				E82289051F8A40A800631380 /* SVIndefiniteAnimatedView.h */,
+				E82289061F8A40A800631380 /* SVIndefiniteAnimatedView.m */,
+				E82289071F8A40A800631380 /* SVProgressAnimatedView.h */,
+				E82289081F8A40A800631380 /* SVProgressAnimatedView.m */,
+				E82289091F8A40A800631380 /* SVProgressHUD-Prefix.pch */,
+				E822890A1F8A40A800631380 /* SVProgressHUD.bundle */,
+				E822890B1F8A40A800631380 /* SVProgressHUD.h */,
+				E822890C1F8A40A800631380 /* SVProgressHUD.m */,
+				E822890D1F8A40A800631380 /* SVRadialGradientLayer.h */,
+				E822890E1F8A40A800631380 /* SVRadialGradientLayer.m */,
+			);
+			name = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		E82289041F8A407900631380 /* MHTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				E82289191F8A40CB00631380 /* MHTabBarActiveTab.png */,
+				E822891A1F8A40CB00631380 /* MHTabBarActiveTab@2x.png */,
+				E822891B1F8A40CB00631380 /* MHTabBarController.h */,
+				E822891C1F8A40CB00631380 /* MHTabBarController.m */,
+				E822891D1F8A40CB00631380 /* MHTabBarInactiveTab.png */,
+				E822891E1F8A40CB00631380 /* MHTabBarInactiveTab@2x.png */,
+				E822891F1F8A40CB00631380 /* MHTabBarIndicator.png */,
+				E82289201F8A40CB00631380 /* MHTabBarIndicator.xcf */,
+				E82289211F8A40CB00631380 /* MHTabBarIndicator@2x.png */,
+				E82289221F8A40CB00631380 /* MHTabBarIndicator@2x.xcf */,
+				E82289231F8A40CB00631380 /* MHTabBarIndicator@3x.png */,
+				E82289241F8A40CB00631380 /* MHTabBarIndicator@3x.xcf */,
+			);
+			name = MHTabBarController;
+			sourceTree = "<group>";
+		};
 		E82E660A1DA07A0300CFBDED /* menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -3567,23 +3635,6 @@
 			name = launchscreen;
 			sourceTree = "<group>";
 		};
-		E87DF7761D7EDFCC00F16B5A /* SVProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				E83C6EF11EECE28100E303F5 /* SVProgressHUD.bundle */,
-				E82342411EECCF9300D2CDFD /* SVIndefiniteAnimatedView.h */,
-				E82342421EECCF9300D2CDFD /* SVIndefiniteAnimatedView.m */,
-				E82342431EECCF9300D2CDFD /* SVProgressAnimatedView.h */,
-				E82342441EECCF9300D2CDFD /* SVProgressAnimatedView.m */,
-				E82342451EECCF9300D2CDFD /* SVProgressHUD-Prefix.pch */,
-				E82342471EECCF9300D2CDFD /* SVProgressHUD.h */,
-				E82342481EECCF9300D2CDFD /* SVProgressHUD.m */,
-				E82342491EECCF9300D2CDFD /* SVRadialGradientLayer.h */,
-				E823424A1EECCF9300D2CDFD /* SVRadialGradientLayer.m */,
-			);
-			name = SVProgressHUD;
-			sourceTree = "<group>";
-		};
 		E87ED1851F85FEF700DE8E9B /* Filters */ = {
 			isa = PBXGroup;
 			children = (
@@ -3697,32 +3748,6 @@
 				E82344AE1EECE0D500D2CDFD /* ToolsRot13ViewController.m */,
 			);
 			name = Tools;
-			sourceTree = "<group>";
-		};
-		E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */ = {
-			isa = PBXGroup;
-			children = (
-				E82342171EECCF2600D2CDFD /* nko_colormap.png */,
-				E82342181EECCF2600D2CDFD /* NKOColorPickerView.h */,
-				E82342191EECCF2600D2CDFD /* NKOColorPickerView.m */,
-			);
-			name = NKOColorPickerView;
-			sourceTree = "<group>";
-		};
-		E8A3B0AF1CD33BA500170D61 /* MHTabBarController */ = {
-			isa = PBXGroup;
-			children = (
-				E82342001EECCEEE00D2CDFD /* MHTabBarActiveTab.png */,
-				E82342011EECCEEE00D2CDFD /* MHTabBarActiveTab@2x.png */,
-				E82342021EECCEEE00D2CDFD /* MHTabBarController.h */,
-				E82342031EECCEEE00D2CDFD /* MHTabBarController.m */,
-				E82342041EECCEEE00D2CDFD /* MHTabBarInactiveTab.png */,
-				E82342051EECCEEE00D2CDFD /* MHTabBarInactiveTab@2x.png */,
-				E82342061EECCEEE00D2CDFD /* MHTabBarIndicator.png */,
-				E82342081EECCEEE00D2CDFD /* MHTabBarIndicator@2x.png */,
-				E823420A1EECCEEE00D2CDFD /* MHTabBarIndicator@3x.png */,
-			);
-			name = MHTabBarController;
 			sourceTree = "<group>";
 		};
 		E8A3F44F1B51D932009F2F46 /* map */ = {
@@ -3882,18 +3907,6 @@
 			name = "Filter Viewing";
 			sourceTree = "<group>";
 		};
-		E8E8D0171B66E74600CC741A /* CMRangeSlider */ = {
-			isa = PBXGroup;
-			children = (
-				E82341EB1EECCEBB00D2CDFD /* fillrange.png */,
-				E82341EC1EECCEBB00D2CDFD /* fullrange.png */,
-				E82341ED1EECCEBB00D2CDFD /* RangeSlider.h */,
-				E82341EE1EECCEBB00D2CDFD /* RangeSlider.m */,
-				E82341EF1EECCEBB00D2CDFD /* rangethumb.png */,
-			);
-			name = CMRangeSlider;
-			sourceTree = "<group>";
-		};
 		E8F5704A1B3F7255003F020C = {
 			isa = PBXGroup;
 			children = (
@@ -3936,7 +3949,6 @@
 				E881CA4F1F6B9CC400A17060 /* Geocube.h */,
 				E8F570581B3F7255003F020C /* main.m */,
 				E8F570BB1B400124003F020C /* schema.sql */,
-				E8F570931B3F7EE1003F020C /* External modules */,
 				E8E4400B1D88A6D800BECB49 /* GUI */,
 				E8F570601B3F7255003F020C /* Main.storyboard */,
 				E8F570631B3F7255003F020C /* Images.xcassets */,
@@ -3968,17 +3980,6 @@
 				E808DC7E1C3A405200B8A572 /* Location.gpx */,
 			);
 			name = "Data files";
-			sourceTree = "<group>";
-		};
-		E8F570931B3F7EE1003F020C /* External modules */ = {
-			isa = PBXGroup;
-			children = (
-				E8E8D0171B66E74600CC741A /* CMRangeSlider */,
-				E8A3B0AF1CD33BA500170D61 /* MHTabBarController */,
-				E8A386761BBBFD4D0003DE49 /* NKOColorPickerView */,
-				E87DF7761D7EDFCC00F16B5A /* SVProgressHUD */,
-			);
-			name = "External modules";
 			sourceTree = "<group>";
 		};
 		E8F570B61B3FF266003F020C /* Pages */ = {
@@ -4209,6 +4210,7 @@
 				E8FEDED31DA8EEE9007C756B /* cache - beacon - 30x30@3x.png in Resources */,
 				E82E66401DA07A8700CFBDED /* icons - target - 30x30@3x.png in Resources */,
 				E8FEDE501DA77F9D007C756B /* container size - micro - 35x11.png in Resources */,
+				E822892C1F8A40CC00631380 /* MHTabBarIndicator@2x.png in Resources */,
 				E83C6F061EECE67100E303F5 /* FilesTableViewCell~ipad.xib in Resources */,
 				E82343DC1EECDEE200D2CDFD /* WaypointLogsTableViewCell.xib in Resources */,
 				E82E66B81DA07CBE00CFBDED /* cache - burke-wills - 30x30.png in Resources */,
@@ -4222,6 +4224,7 @@
 				E8FEDE5F1DA77F9D007C756B /* container size - unknown - 35x11.png in Resources */,
 				E82E66381DA07A8700CFBDED /* icons - sad - 30x30@2x.png in Resources */,
 				E82E66E01DA07CBE00CFBDED /* cache - virtual - 30x30@2x.png in Resources */,
+				E82289171F8A40BA00631380 /* nko_colormap.png in Resources */,
 				E8D49D311F00F9C1005EB7BE /* container size - nano - 35x11@3x.png in Resources */,
 				E8FEDE921DA7AD67007C756B /* map - pin stick - 35x42@2x.png in Resources */,
 				E8FEDE4F1DA77F9D007C756B /* container size - large - 35x11@3x.png in Resources */,
@@ -4230,7 +4233,6 @@
 				E8FEDE571DA77F9D007C756B /* container size - other - 35x11@2x.png in Resources */,
 				E876ECA11F7C8B66002A368E /* menu icon - gnss-on.png in Resources */,
 				E82E667C1DA07C6F00CFBDED /* compass - airplane - compass.png in Resources */,
-				E82341F11EECCEBB00D2CDFD /* fullrange.png in Resources */,
 				E82287A21F8A30B700631380 /* MapWaypointInfoView.xib in Resources */,
 				E82E67421DA07D0200CFBDED /* attributes - 24.png in Resources */,
 				E82E66E51DA07CBE00CFBDED /* cache - webcam - 30x30.png in Resources */,
@@ -4241,7 +4243,6 @@
 				E82E66D51DA07CBE00CFBDED /* cache - traditional - 30x30.png in Resources */,
 				E88DB00C1F334E4300FEF795 /* cache - gadget - 30x30@3.png in Resources */,
 				E82E66051DA079E500CFBDED /* log - published - 30x30.png in Resources */,
-				E823420C1EECCEEE00D2CDFD /* MHTabBarActiveTab.png in Resources */,
 				E82E67601DA07D0200CFBDED /* attributes - 54.png in Resources */,
 				E82E66CB1DA07CBE00CFBDED /* cache - multi - 30x30@3x.png in Resources */,
 				E8FEDEE61DA8EEE9007C756B /* cache - unknowntype - 30x30@2x.png in Resources */,
@@ -4255,7 +4256,6 @@
 				E87ED17C1F84EECB00DE8E9B /* FilterTextTableViewCell.xib in Resources */,
 				E82344411EECE01500D2CDFD /* KeepTracksTrackTableViewCell.xib in Resources */,
 				E82E66811DA07C6F00CFBDED /* compass - white arrow on black@2x.png in Resources */,
-				E82342131EECCEEE00D2CDFD /* MHTabBarIndicator@2x.png in Resources */,
 				E82E65FF1DA079E500CFBDED /* log - found - 30x30.png in Resources */,
 				E82287241F8A2E1A00631380 /* GCTableViewCellWithSubtitle~ipad.xib in Resources */,
 				E82E65BC1DA0794600CFBDED /* waypoint - parking - 30x30.png in Resources */,
@@ -4270,6 +4270,7 @@
 				E82E65BF1DA0794600CFBDED /* waypoint - unknown - 30x30.png in Resources */,
 				E82E673D1DA07D0200CFBDED /* attributes - 19.png in Resources */,
 				E82343D61EECDEE200D2CDFD /* WaypointHeaderHeaderView.xib in Resources */,
+				E82289361F8A40DB00631380 /* fullrange.png in Resources */,
 				E82288221F8A347A00631380 /* Tidy in Resources */,
 				E82288161F8A347A00631380 /* Creation in Resources */,
 				E82E66CD1DA07CBE00CFBDED /* cache - mystery - 30x30@2x.png in Resources */,
@@ -4284,7 +4285,6 @@
 				E82E661A1DA07A5500CFBDED /* menu icon - close@2x.png in Resources */,
 				E88DB00B1F334E4300FEF795 /* cache - gadget - 30x30@2.png in Resources */,
 				E82341871EECA19300D2CDFD /* EncryptionKeys.plist in Resources */,
-				E82342101EECCEEE00D2CDFD /* MHTabBarInactiveTab@2x.png in Resources */,
 				E82344681EECE06E00D2CDFD /* TrackableTableViewCell.xib in Resources */,
 				E82E66B71DA07CBE00CFBDED /* cache - benchmark - 30x30.png in Resources */,
 				E8FEDE821DA7AD67007C756B /* map - cross dnf - 9x9@2x.png in Resources */,
@@ -4294,7 +4294,6 @@
 				E8FEDED51DA8EEE9007C756B /* cache - benchmark - 30x30@3x.png in Resources */,
 				E82E66D21DA07CBE00CFBDED /* cache - podcast - 30x30.png in Resources */,
 				E8FEDED91DA8EEE9007C756B /* cache - cito - 30x30@3x.png in Resources */,
-				E82342151EECCEEE00D2CDFD /* MHTabBarIndicator@3x.png in Resources */,
 				E876EC831F7BCAA0002A368E /* log - photographed - 30x30.png in Resources */,
 				E8FEDE8C1DA7AD67007C756B /* map - in progress - 18x18@2x.png in Resources */,
 				E87ED1821F85F97700DE8E9B /* FilterGroupsTableViewCell.xib in Resources */,
@@ -4329,6 +4328,7 @@
 				E82E66D01DA07CBE00CFBDED /* cache - night - 30x30@2x.png in Resources */,
 				E82E67501DA07D0200CFBDED /* attributes - 38.png in Resources */,
 				E82E674D1DA07D0200CFBDED /* attributes - 35.png in Resources */,
+				E82289281F8A40CC00631380 /* MHTabBarInactiveTab.png in Resources */,
 				E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */,
 				E823451F1EECE14A00D2CDFD /* HelpAboutTableViewCell.xib in Resources */,
 				E8D49D371F0124F2005EB7BE /* container size - xlarge - 35x11@3x.png in Resources */,
@@ -4347,12 +4347,12 @@
 				E82E67651DA07D0200CFBDED /* attributes - 59.png in Resources */,
 				E876ECAD1F7E0391002A368E /* launchscreen - background.png in Resources */,
 				E8FEDEE91DA8EEE9007C756B /* cache - webcam - 30x30@3x.png in Resources */,
-				E82341F31EECCEBB00D2CDFD /* rangethumb.png in Resources */,
 				E822871A1F8A2E1A00631380 /* GCTableViewCellSubtitleRightImage.xib in Resources */,
 				E82E66C01DA07CBE00CFBDED /* cache - history - 30x30@3x.png in Resources */,
 				E82E67331DA07D0200CFBDED /* attributes - 08.png in Resources */,
 				E82E65F81DA079E500CFBDED /* log - announcement - 30x30.png in Resources */,
-				E823421A1EECCF2600D2CDFD /* nko_colormap.png in Resources */,
+				E82289261F8A40CB00631380 /* MHTabBarActiveTab@2x.png in Resources */,
+				E82289291F8A40CC00631380 /* MHTabBarInactiveTab@2x.png in Resources */,
 				E8FEDED81DA8EEE9007C756B /* cache - cito - 30x30@2x.png in Resources */,
 				E82E675D1DA07D0200CFBDED /* attributes - 51.png in Resources */,
 				E82E663C1DA07A8700CFBDED /* icons - smiley - 30x30@2x.png in Resources */,
@@ -4369,6 +4369,7 @@
 				E8845CAE1EF409BF00A47F5D /* WaypointWaypointsTableViewCell.xib in Resources */,
 				E82E66801DA07C6F00CFBDED /* compass - white arrow on black.png in Resources */,
 				E876ECB41F7E5396002A368E /* menu icon - global - default@3x.png in Resources */,
+				E822892D1F8A40CC00631380 /* MHTabBarIndicator@2x.xcf in Resources */,
 				E8F570BE1B400137003F020C /* empty.db in Resources */,
 				E8FEDEE41DA8EEE9007C756B /* cache - mega - 30x30@2x.png in Resources */,
 				E82344421EECE01500D2CDFD /* KeepTracksTrackTableViewCell~ipad.xib in Resources */,
@@ -4389,6 +4390,7 @@
 				E82E663A1DA07A8700CFBDED /* icons - smiley - 15x15.png in Resources */,
 				E82287201F8A2E1A00631380 /* GCTableViewCellSwitch.xib in Resources */,
 				E82E67681DA07D0200CFBDED /* attributes - 62.png in Resources */,
+				E822892E1F8A40CC00631380 /* MHTabBarIndicator@3x.png in Resources */,
 				E8F403EB1DAFA23600318CC6 /* cache - reverse - 30x30@2x.png in Resources */,
 				E8C8C8C21EE26AAA00E2438D /* LogTableViewCell~ipad.xib in Resources */,
 				E87ED1781F84B10400DE8E9B /* FilterFlagsTableViewCell.xib in Resources */,
@@ -4402,6 +4404,7 @@
 				E82E663E1DA07A8700CFBDED /* icons - target - 30x30.png in Resources */,
 				E876ECB51F7E5396002A368E /* menu icon - local - default@2x.png in Resources */,
 				E86D42751EF5484E00E4509F /* LocationlessTableViewCell.xib in Resources */,
+				E82289351F8A40DB00631380 /* fillrange.png in Resources */,
 				E82E66C41DA07CBE00CFBDED /* cache - maze - 30x30.png in Resources */,
 				E876ECA31F7C8B66002A368E /* menu icon - gnss-on@3x.png in Resources */,
 				E82E66351DA07A8700CFBDED /* icons - dead - 30x30@2x.png in Resources */,
@@ -4433,7 +4436,6 @@
 				E86D427D1EF68CC800E4509F /* container flag - planned - 24x21.png in Resources */,
 				E86D427F1EF68CC800E4509F /* container flag - planned - 24x21@3.png in Resources */,
 				E876ECA51F7DECBD002A368E /* Launch Screen.storyboard in Resources */,
-				E83C6EF21EECE28100E303F5 /* SVProgressHUD.bundle in Resources */,
 				E8FEDEE31DA8EEE9007C756B /* cache - maze - 30x30@3x.png in Resources */,
 				E8FEDE7E1DA7AD67007C756B /* map - archived - 15x15@2x.png in Resources */,
 				E8FEDE541DA77F9D007C756B /* container size - notchosen - 35x11@2x.png in Resources */,
@@ -4448,6 +4450,7 @@
 				E84725E21DF774E200CFF99B /* menu icon - global - night.png in Resources */,
 				E8FEDEE51DA8EEE9007C756B /* cache - mega - 30x30@3x.png in Resources */,
 				E82E66D41DA07CBE00CFBDED /* cache - podcast - 30x30@3x.png in Resources */,
+				E822892F1F8A40CC00631380 /* MHTabBarIndicator@3x.xcf in Resources */,
 				E876ECAE1F7E0391002A368E /* launchscreen - logo.png in Resources */,
 				E8FEDEA41DA7C08A007C756B /* waypoint - parking - 30x30@2x.png in Resources */,
 				E82E67431DA07D0200CFBDED /* attributes - 25.png in Resources */,
@@ -4458,7 +4461,6 @@
 				E82E66D71DA07CBE00CFBDED /* cache - traditional - 30x30@3x.png in Resources */,
 				E88DB00A1F334E4300FEF795 /* cache - gadget - 30x30.png in Resources */,
 				E8FEDE831DA7AD67007C756B /* map - cross dnf - 9x9@3x.png in Resources */,
-				E823420F1EECCEEE00D2CDFD /* MHTabBarInactiveTab.png in Resources */,
 				E8F570BC1B400124003F020C /* schema.sql in Resources */,
 				E8FEDE8D1DA7AD67007C756B /* map - in progress - 18x18@3x.png in Resources */,
 				E8D49D361F0124F2005EB7BE /* container size - xlarge - 35x11@2x.png in Resources */,
@@ -4508,7 +4510,6 @@
 				E897702F1BA39110000573FB /* Import Complete.wav in Resources */,
 				E82287211F8A2E1A00631380 /* GCTableViewCellSwitch~ipad.xib in Resources */,
 				E82E66031DA079E500CFBDED /* log - note - 30x30.png in Resources */,
-				E823420D1EECCEEE00D2CDFD /* MHTabBarActiveTab@2x.png in Resources */,
 				E82E67731DA07D1A00CFBDED /* image - nil - 1x1.png in Resources */,
 				E8FEDEA51DA7C08A007C756B /* waypoint - parking - 30x30@3x.png in Resources */,
 				E82E66C91DA07CBE00CFBDED /* cache - multi - 30x30.png in Resources */,
@@ -4522,18 +4523,17 @@
 				E82344561EECE05E00D2CDFD /* PersonalNoteTableViewCell~ipad.xib in Resources */,
 				E823419B1EECAF4F00D2CDFD /* EncryptionKeysExample.plist in Resources */,
 				E8FEDE851DA7AD67007C756B /* map - disabled - 15x15@3x.png in Resources */,
-				E82342111EECCEEE00D2CDFD /* MHTabBarIndicator.png in Resources */,
 				E82E67621DA07D0200CFBDED /* attributes - 56.png in Resources */,
 				E82343D91EECDEE200D2CDFD /* WaypointHeaderTableViewCell.xib in Resources */,
 				E8FEDE651DA7A051007C756B /* ratings - favourites 20x30@3x.png in Resources */,
 				E82E67451DA07D0200CFBDED /* attributes - 27.png in Resources */,
 				E876ECA21F7C8B66002A368E /* menu icon - gnss-on@2x.png in Resources */,
 				E82E667F1DA07C6F00CFBDED /* compass - red on blue compass - compass.png in Resources */,
+				E822892A1F8A40CC00631380 /* MHTabBarIndicator.png in Resources */,
 				E82E67641DA07D0200CFBDED /* attributes - 58.png in Resources */,
 				E82E67851DA0DD0700CFBDED /* menu icon - see target@2x.png in Resources */,
 				E82E66E61DA07CBE00CFBDED /* cache - whereigo - 30x30.png in Resources */,
 				E8FEDED71DA8EEE9007C756B /* cache - burke-wills - 30x30@3x.png in Resources */,
-				E82341F01EECCEBB00D2CDFD /* fillrange.png in Resources */,
 				E8FEDE5D1DA77F9D007C756B /* container size - small - 35x11@2x.png in Resources */,
 				E82E672C1DA07D0200CFBDED /* attributes - 01.png in Resources */,
 				E8EC01A31F5518840032F168 /* KeepTrackBeeperView.xib in Resources */,
@@ -4547,6 +4547,7 @@
 				E8FEDE8B1DA7AD67007C756B /* map - highlight - 21x21@3x.png in Resources */,
 				E8FEDEDF1DA8EEE9007C756B /* cache - giga - 30x30@3x.png in Resources */,
 				E82E673B1DA07D0200CFBDED /* attributes - 17.png in Resources */,
+				E82289381F8A40DB00631380 /* rangethumb.png in Resources */,
 				E8FEDE801DA7AD67007C756B /* map - background - 35x42@2x.png in Resources */,
 				E82E674B1DA07D0200CFBDED /* attributes - 33.png in Resources */,
 				E82E67591DA07D0200CFBDED /* attributes - 47.png in Resources */,
@@ -4559,14 +4560,17 @@
 				E82343DD1EECDEE200D2CDFD /* WaypointLogsTableViewCell~ipad.xib in Resources */,
 				E82E673C1DA07D0200CFBDED /* attributes - 18.png in Resources */,
 				E82E672F1DA07D0200CFBDED /* attributes - 04.png in Resources */,
+				E82289251F8A40CB00631380 /* MHTabBarActiveTab.png in Resources */,
 				E82E676A1DA07D0200CFBDED /* attributes - 64.png in Resources */,
 				E82E66E31DA07CBE00CFBDED /* cache - waymark - 30x30@2x.png in Resources */,
 				E82E67511DA07D0200CFBDED /* attributes - 39.png in Resources */,
 				E8F570641B3F7255003F020C /* Images.xcassets in Resources */,
 				E82E66E11DA07CBE00CFBDED /* cache - virtual - 30x30@3x.png in Resources */,
 				E82287121F8A2E1A00631380 /* GCTableViewCellKeyValue~ipad.xib in Resources */,
+				E822892B1F8A40CC00631380 /* MHTabBarIndicator.xcf in Resources */,
 				E8FEDE511DA77F9D007C756B /* container size - micro - 35x11@2x.png in Resources */,
 				E82E65C91DA0797E00CFBDED /* ratings - star on 19x18.png in Resources */,
+				E82289111F8A40A800631380 /* SVProgressHUD.bundle in Resources */,
 				E82E66D61DA07CBE00CFBDED /* cache - traditional - 30x30@2x.png in Resources */,
 				E8257F281EE41B8A0089C106 /* log - disabled - 30x30.png in Resources */,
 				E82344551EECE05E00D2CDFD /* PersonalNoteTableViewCell.xib in Resources */,
@@ -4684,6 +4688,7 @@
 				E82344711EECE08A00D2CDFD /* GroupsTemplateViewController.m in Sources */,
 				E82286851F8A2BD600631380 /* dbConfig.m in Sources */,
 				E82288791F8A34FB00631380 /* SimpleKMLExtendedData.m in Sources */,
+				E82289121F8A40A800631380 /* SVProgressHUD.m in Sources */,
 				E82287C81F8A32C600631380 /* GCOAuthBlackbox.m in Sources */,
 				E82288961F8A351400631380 /* KxIntroViewController.m in Sources */,
 				E82344831EECE09C00D2CDFD /* ListInProgressViewController.m in Sources */,
@@ -4730,6 +4735,7 @@
 				E82343F41EECDF4400D2CDFD /* WaypointDescriptionViewController.m in Sources */,
 				E82288951F8A351400631380 /* KxIntroView.m in Sources */,
 				E822887A1F8A34FB00631380 /* SimpleKMLFeature.m in Sources */,
+				E82289371F8A40DB00631380 /* RangeSlider.m in Sources */,
 				E82286961F8A2BD600631380 /* dbName.m in Sources */,
 				E82286C01F8A2C8800631380 /* ImportOKAPIJSON.m in Sources */,
 				E82286941F8A2BD600631380 /* dbLogStringWaypoint.m in Sources */,
@@ -4770,6 +4776,7 @@
 				E83C6F071EECE67100E303F5 /* FilesViewController.m in Sources */,
 				E83B10961EF4FC6000F2C5FA /* LocationlessListViewController.m in Sources */,
 				E82286E71F8A2CE300631380 /* DownloadManager.m in Sources */,
+				E82289181F8A40BA00631380 /* NKOColorPickerView.m in Sources */,
 				E82287D41F8A32C600631380 /* RemoteAPITemplate.m in Sources */,
 				E82286861F8A2BD600631380 /* dbContainer.m in Sources */,
 				E822873B1F8A2E7900631380 /* GCURLRequestObjects.m in Sources */,
@@ -4789,6 +4796,7 @@
 				E82344C01EECE0E800D2CDFD /* SettingsLogTemplatesViewController.m in Sources */,
 				E82287F41F8A344400631380 /* ActionSheetDatePicker.m in Sources */,
 				E82287981F8A30B700631380 /* MapBrand.m in Sources */,
+				E82289131F8A40A800631380 /* SVRadialGradientLayer.m in Sources */,
 				E82286BD1F8A2C8800631380 /* ImportGPX.m in Sources */,
 				E82287351F8A2E7900631380 /* GCArrayObjects.m in Sources */,
 				E82344911EECE0AC00D2CDFD /* QueriesGCAViewController.m in Sources */,
@@ -4796,7 +4804,6 @@
 				E82287F21F8A344400631380 /* AbstractActionSheetPicker.m in Sources */,
 				E82344841EECE09C00D2CDFD /* ListTemplateViewController.m in Sources */,
 				E823442D1EECDFB300D2CDFD /* FilterFlagsTableViewCell.m in Sources */,
-				E823424C1EECCF9300D2CDFD /* SVProgressAnimatedView.m in Sources */,
 				E82288F11F8A3E8500631380 /* GMUPoint.m in Sources */,
 				E82286ED1F8A2CE300631380 /* LocationManager.m in Sources */,
 				E8EC502E1F832E6B004A2338 /* FilterHeaderTableViewCell.m in Sources */,
@@ -4808,8 +4815,6 @@
 				E82288771F8A34FB00631380 /* SimpleKMLData.m in Sources */,
 				E82343D81EECDEE200D2CDFD /* WaypointHeaderTableViewCell.m in Sources */,
 				E82288BA1F8A357700631380 /* RNDecryptor.m in Sources */,
-				E82341F21EECCEBB00D2CDFD /* RangeSlider.m in Sources */,
-				E823421B1EECCF2600D2CDFD /* NKOColorPickerView.m in Sources */,
 				E83C6F011EECE67100E303F5 /* FileObject.m in Sources */,
 				E82343C21EECDE8A00D2CDFD /* WaypointImagesViewController.m in Sources */,
 				E83B109F1EF4FCCC00F2C5FA /* LocationlessTableViewCell.m in Sources */,
@@ -4823,7 +4828,6 @@
 				E82288271F8A349500631380 /* YIPopupTextView.m in Sources */,
 				E82343BB1EECDE6C00D2CDFD /* WaypointLogImagesViewController.m in Sources */,
 				E82344291EECDFB300D2CDFD /* FilterDifficultyTableViewCell.m in Sources */,
-				E823424E1EECCF9300D2CDFD /* SVProgressHUD.m in Sources */,
 				E82288751F8A34FB00631380 /* SimpleKMLColorStyle.m in Sources */,
 				E82287F51F8A344400631380 /* ActionSheetDistancePicker.m in Sources */,
 				E82286EC1F8A2CE300631380 /* LocalizationManager.m in Sources */,
@@ -4831,6 +4835,7 @@
 				E82345261EECE14A00D2CDFD /* NoticesViewController.m in Sources */,
 				E82288D61F8A359900631380 /* GMUGeoJSONParser.m in Sources */,
 				E82287621F8A2EC300631380 /* GCCloseButton.m in Sources */,
+				E822890F1F8A40A800631380 /* SVIndefiniteAnimatedView.m in Sources */,
 				E822887B1F8A34FB00631380 /* SimpleKMLFolder.m in Sources */,
 				E822887E1F8A34FB00631380 /* SimpleKMLIconStyle.m in Sources */,
 				E82288201F8A347A00631380 /* CXMLNode.m in Sources */,
@@ -4848,7 +4853,6 @@
 				E82344941EECE0AD00D2CDFD /* QueriesTableViewCell.m in Sources */,
 				E82287F31F8A344400631380 /* ActionSheetCustomPicker.m in Sources */,
 				E822873C1F8A2E7900631380 /* GCWaypointAnnotation.m in Sources */,
-				E823420E1EECCEEE00D2CDFD /* MHTabBarController.m in Sources */,
 				E82288891F8A34FB00631380 /* SimpleKMLSchemaData.m in Sources */,
 				E82343F31EECDF4400D2CDFD /* WaypointAttributesViewController.m in Sources */,
 				E82287221F8A2E1A00631380 /* GCTableViewCellWithSubtitle.m in Sources */,
@@ -4906,6 +4910,7 @@
 				E822861B1F8A285C00631380 /* InfoViewer.m in Sources */,
 				E82344BF1EECE0E800D2CDFD /* SettingsColourViewController.m in Sources */,
 				E82287131F8A2E1A00631380 /* GCTableViewCellRightImage.m in Sources */,
+				E82289271F8A40CB00631380 /* MHTabBarController.m in Sources */,
 				E82286831F8A2BD600631380 /* dbAttribute.m in Sources */,
 				E822881D1F8A347A00631380 /* CXMLNamespaceNode.m in Sources */,
 				E82286EA1F8A2CE300631380 /* ImportManager.m in Sources */,
@@ -4920,7 +4925,6 @@
 				E82286931F8A2BD600631380 /* dbLogString.m in Sources */,
 				E82287CF1F8A32C600631380 /* RemoteAPIGCA2.m in Sources */,
 				E82287361F8A2E7900631380 /* GCBoundingBox.m in Sources */,
-				E823424B1EECCF9300D2CDFD /* SVIndefiniteAnimatedView.m in Sources */,
 				E82344301EECDFB300D2CDFD /* FilterOthersTableViewCell.m in Sources */,
 				E822888A1F8A34FB00631380 /* SimpleKMLStyle.m in Sources */,
 				E82286821F8A2BD600631380 /* dbAccount.m in Sources */,
@@ -5005,7 +5009,6 @@
 				E823449E1EECE0BD00D2CDFD /* StatisticsTableViewCell.m in Sources */,
 				E822879D1F8A30B700631380 /* MapOSM.m in Sources */,
 				E82287601F8A2EC300631380 /* GCButton.m in Sources */,
-				E823424F1EECCF9300D2CDFD /* SVRadialGradientLayer.m in Sources */,
 				E822879E1F8A30B700631380 /* MapTemplate.m in Sources */,
 				E82286E41F8A2CE300631380 /* AudioManager.m in Sources */,
 				E82286BC1F8A2C8800631380 /* ImportGGCWJSON.m in Sources */,
@@ -5014,6 +5017,7 @@
 				E82287701F8A2EC300631380 /* GCViewController.m in Sources */,
 				E82288EF1F8A3E8500631380 /* GMULineString.m in Sources */,
 				E822876B1F8A2EC300631380 /* GCTableViewCell.m in Sources */,
+				E82289101F8A40A800631380 /* SVProgressAnimatedView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

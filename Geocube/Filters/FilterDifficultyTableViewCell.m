@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "ContribLibrary/CMRangeSlider/RangeSlider.h"
+
 @interface FilterDifficultyTableViewCell ()
 {
     float config_min, config_max;

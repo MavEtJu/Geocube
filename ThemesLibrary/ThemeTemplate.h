@@ -22,7 +22,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "contrib/SVProgressHUD/SVProgressHUD.h"
+#import "ContribLibrary/SVProgressHUD/SVProgressHUD.h"
 
 @interface ThemeTemplate : NSObject
 
