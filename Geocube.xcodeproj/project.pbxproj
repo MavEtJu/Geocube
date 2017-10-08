@@ -831,7 +831,6 @@
 		E804139E1E9F984E001FD7BF /* Menu - 640x623.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu - 640x623.png"; path = "images/introduction/Menu - 640x623.png"; sourceTree = "<group>"; };
 		E80732F81B633A74007FDC29 /* objects */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = objects; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80732FA1B633A74007FDC29 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E808DC7E1C3A405200B8A572 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E80F73761B53443000F35528 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E815B7811F67FCB2003A6092 /* FileKMLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileKMLViewController.h; path = Files/FileKMLViewController.h; sourceTree = "<group>"; };
@@ -2937,6 +2936,15 @@
 			name = MHTabBarController;
 			sourceTree = "<group>";
 		};
+		E82289391F8A446700631380 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				E85BA88F1F5449F5008E708F /* Beeper.wav */,
+				E897702E1BA3910F000573FB /* Import Complete.wav */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
 		E82E660A1DA07A0300CFBDED /* menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -3869,9 +3877,9 @@
 				E8740FE91B509540002527DA /* GUI TableViewCells */,
 				E8740F9C1B4E6645002527DA /* Waypoint Viewing */,
 				E8F570B61B3FF266003F020C /* Pages */,
-				E876ECA41F7DECBD002A368E /* Launch Screen.storyboard */,
 			);
 			name = GUI;
+			path = Geocube;
 			sourceTree = "<group>";
 		};
 		E8E8CFE91B639A0400CC741A /* Settings */ = {
@@ -3919,6 +3927,7 @@
 				E82286041F8A1D9900631380 /* NetworkLibrary */,
 				E82286051F8A1DA300631380 /* ThemesLibrary */,
 				E82286061F8A1DAA00631380 /* ToolsLibrary */,
+				E8E4400B1D88A6D800BECB49 /* GUI */,
 				E8F570551B3F7255003F020C /* Geocube */,
 				E80732F91B633A74007FDC29 /* objects */,
 				E8F570541B3F7255003F020C /* Products */,
@@ -3948,12 +3957,11 @@
 				E8F570BF1B400166003F020C /* Geocube-globals.h */,
 				E881CA4F1F6B9CC400A17060 /* Geocube.h */,
 				E8F570581B3F7255003F020C /* main.m */,
-				E8F570BB1B400124003F020C /* schema.sql */,
-				E8E4400B1D88A6D800BECB49 /* GUI */,
 				E8F570601B3F7255003F020C /* Main.storyboard */,
 				E8F570631B3F7255003F020C /* Images.xcassets */,
 				E8F5707C1B3F75D1003F020C /* Data files */,
 				E8BD82481B46A4CB0029CDC9 /* Images */,
+				E82289391F8A446700631380 /* Sounds */,
 				E8F570561B3F7255003F020C /* Supporting Files */,
 			);
 			path = Geocube;
@@ -3962,6 +3970,7 @@
 		E8F570561B3F7255003F020C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E876ECA41F7DECBD002A368E /* Launch Screen.storyboard */,
 				E82341861EECA19300D2CDFD /* EncryptionKeys.plist */,
 				E823419A1EECAF4F00D2CDFD /* EncryptionKeysExample.plist */,
 				E879F9CB1B7B527200220EA7 /* Geocube.entitlements */,
@@ -3974,10 +3983,8 @@
 		E8F5707C1B3F75D1003F020C /* Data files */ = {
 			isa = PBXGroup;
 			children = (
-				E85BA88F1F5449F5008E708F /* Beeper.wav */,
-				E897702E1BA3910F000573FB /* Import Complete.wav */,
+				E8F570BB1B400124003F020C /* schema.sql */,
 				E8F570BD1B400137003F020C /* empty.db */,
-				E808DC7E1C3A405200B8A572 /* Location.gpx */,
 			);
 			name = "Data files";
 			sourceTree = "<group>";
