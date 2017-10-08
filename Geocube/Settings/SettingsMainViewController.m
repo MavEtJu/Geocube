@@ -262,7 +262,6 @@ enum sections {
     SECTION_LOCATIONLESS,
     SECTION_SPEED,
     SECTION_BACKUPS,
-    SECTION_FONTS,
     SECTION_MAX,
 
     SECTION_DISTANCE_METRIC = 0,
@@ -466,8 +465,6 @@ enum sections {
             return _(@"settingsmainviewcontroller-Speed");
         case SECTION_MAPSEARCH:
             return _(@"settingsmainviewcontroller-Map search");
-        case SECTION_FONTS:
-            return _(@"settingsmainviewcontroller-Fonts");
         default:
             NSAssert1(0, @"Unknown section %ld", (long)section);
     }

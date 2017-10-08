@@ -626,6 +626,9 @@
 		E8596ACE1F73174100E26495 /* DeveloperImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8596ACC1F73174100E26495 /* DeveloperImagesViewController.m */; };
 		E85BA88E1F544372008E708F /* KeepTrackBeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = E85BA88D1F544372008E708F /* KeepTrackBeeper.m */; };
 		E85BA8901F5449F5008E708F /* Beeper.wav in Resources */ = {isa = PBXBuildFile; fileRef = E85BA88F1F5449F5008E708F /* Beeper.wav */; };
+		E8607F171F8ADA91004E273C /* cache - geocacher - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8607F141F8ADA91004E273C /* cache - geocacher - 30x30.png */; };
+		E8607F181F8ADA91004E273C /* cache - geocacher - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8607F151F8ADA91004E273C /* cache - geocacher - 30x30@2x.png */; };
+		E8607F191F8ADA91004E273C /* cache - geocacher - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8607F161F8ADA91004E273C /* cache - geocacher - 30x30@3x.png */; };
 		E860CA051F81F84700C66AD8 /* FilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E860CA041F81F84700C66AD8 /* FilterButton.m */; };
 		E861B97E1EE2E6D300BD82AC /* GC - logo - 1536×2048.png in Resources */ = {isa = PBXBuildFile; fileRef = E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */; };
 		E861B9801EE2E8AC00BD82AC /* GC - logo - 768×1024.png in Resources */ = {isa = PBXBuildFile; fileRef = E861B97F1EE2E8AC00BD82AC /* GC - logo - 768×1024.png */; };
@@ -1818,6 +1821,9 @@
 		E85BA88C1F544372008E708F /* KeepTrackBeeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeepTrackBeeper.h; path = KeepTrack/KeepTrackBeeper.h; sourceTree = "<group>"; };
 		E85BA88D1F544372008E708F /* KeepTrackBeeper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeepTrackBeeper.m; path = KeepTrack/KeepTrackBeeper.m; sourceTree = "<group>"; };
 		E85BA88F1F5449F5008E708F /* Beeper.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beeper.wav; sourceTree = "<group>"; };
+		E8607F141F8ADA91004E273C /* cache - geocacher - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - geocacher - 30x30.png"; path = "images/caches/cache - geocacher - 30x30.png"; sourceTree = "<group>"; };
+		E8607F151F8ADA91004E273C /* cache - geocacher - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - geocacher - 30x30@2x.png"; path = "images/caches/cache - geocacher - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8607F161F8ADA91004E273C /* cache - geocacher - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - geocacher - 30x30@3x.png"; path = "images/caches/cache - geocacher - 30x30@3x.png"; sourceTree = "<group>"; };
 		E860CA031F81F84700C66AD8 /* FilterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterButton.h; path = Filters/FilterButton.h; sourceTree = "<group>"; };
 		E860CA041F81F84700C66AD8 /* FilterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterButton.m; path = Filters/FilterButton.m; sourceTree = "<group>"; };
 		E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 1536×2048.png"; path = "images/logos/GC - logo - 1536×2048.png"; sourceTree = "<group>"; };
@@ -3436,6 +3442,9 @@
 				E88DB0071F334E4300FEF795 /* cache - gadget - 30x30.png */,
 				E88DB0081F334E4300FEF795 /* cache - gadget - 30x30@2.png */,
 				E88DB0091F334E4300FEF795 /* cache - gadget - 30x30@3.png */,
+				E8607F141F8ADA91004E273C /* cache - geocacher - 30x30.png */,
+				E8607F151F8ADA91004E273C /* cache - geocacher - 30x30@2x.png */,
+				E8607F161F8ADA91004E273C /* cache - geocacher - 30x30@3x.png */,
 				E82E66891DA07CBE00CFBDED /* cache - giga - 30x30.png */,
 				E8FEDEC61DA8EEE9007C756B /* cache - giga - 30x30@2x.png */,
 				E8FEDEC71DA8EEE9007C756B /* cache - giga - 30x30@3x.png */,
@@ -4247,6 +4256,7 @@
 				E82E66E81DA07CBE00CFBDED /* cache - whereigo - 30x30@3x.png in Resources */,
 				E876EC9E1F7C8B66002A368E /* menu icon - gnss-off.png in Resources */,
 				E82E667D1DA07C6F00CFBDED /* compass - red arrow on black.png in Resources */,
+				E8607F171F8ADA91004E273C /* cache - geocacher - 30x30.png in Resources */,
 				E82E66D51DA07CBE00CFBDED /* cache - traditional - 30x30.png in Resources */,
 				E88DB00C1F334E4300FEF795 /* cache - gadget - 30x30@3.png in Resources */,
 				E82E66051DA079E500CFBDED /* log - published - 30x30.png in Resources */,
@@ -4331,6 +4341,7 @@
 				E82E672E1DA07D0200CFBDED /* attributes - 03.png in Resources */,
 				E82E65C51DA0797E00CFBDED /* ratings - favourites 20x30.png in Resources */,
 				E82344021EECDF6C00D2CDFD /* WaypointTableViewCell.xib in Resources */,
+				E8607F181F8ADA91004E273C /* cache - geocacher - 30x30@2x.png in Resources */,
 				E8FEDE581DA77F9D007C756B /* container size - other - 35x11@3x.png in Resources */,
 				E82E66D01DA07CBE00CFBDED /* cache - night - 30x30@2x.png in Resources */,
 				E82E67501DA07D0200CFBDED /* attributes - 38.png in Resources */,
@@ -4415,6 +4426,7 @@
 				E82E66C41DA07CBE00CFBDED /* cache - maze - 30x30.png in Resources */,
 				E876ECA31F7C8B66002A368E /* menu icon - gnss-on@3x.png in Resources */,
 				E82E66351DA07A8700CFBDED /* icons - dead - 30x30@2x.png in Resources */,
+				E8607F191F8ADA91004E273C /* cache - geocacher - 30x30@3x.png in Resources */,
 				E83C205C1E2F0695006C523E /* LogTableViewCell.xib in Resources */,
 				E8FEDED41DA8EEE9007C756B /* cache - benchmark - 30x30@2x.png in Resources */,
 				E8FEDE911DA7AD67007C756B /* map - own overlay - 18x18@3x.png in Resources */,

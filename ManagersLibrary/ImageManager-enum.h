@@ -52,6 +52,7 @@ typedef NS_ENUM(NSInteger, ImageNumber) {
     ImageTypes_NFI,                 // 125
     ImageTypes_Reverse,             // 126
     ImageTypes_Gadget,              // 127
+    ImageTypes_Geocacher,           // 128
 
     ImageWaypoints_FinalLocation = 200, // 200
     ImageWaypoints_Flag,                // 201

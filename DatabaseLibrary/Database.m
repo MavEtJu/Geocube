@@ -834,6 +834,12 @@
     @"update travelbugs set code = '', ref = ''",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 65
+    a = @[
+    @"update config set value = 'https://geocube.mavetju.org/geocube_types.6.geocube' where key = 'url_types'",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql
