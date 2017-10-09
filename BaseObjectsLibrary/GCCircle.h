@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@class dbWaypoint;
-
 @interface GCCircle : MKCircle
 
 @property (nonatomic, retain) dbWaypoint *waypoint;

@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-
 typedef NS_ENUM(NSInteger, InfoItemType) {
     INFOITEM_DOWNLOAD = 1,
     INFOITEM_IMPORT,
