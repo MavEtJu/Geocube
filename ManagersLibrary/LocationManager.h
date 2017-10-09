@@ -19,14 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-#import <CoreLocation/CoreLocation.h>
-
-#import "LocationManager-enum.h"
-#import "LocationManager-delegate.h"
-
-@class GCCoordsHistorical;
-
 @interface LocationManager : NSObject <CLLocationManagerDelegate>
 
 @property (nonatomic, retain) NSMutableArray<id> *delegatesLocation;

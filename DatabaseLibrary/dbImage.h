@@ -19,15 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <CoreLocation/CoreLocation.h>
-#import <UIKit/UIKit.h>
-
-#import "dbObject.h"
-
-#import "DatabaseLibrary/dbImage-enum.h"
-
-@class dbWaypoint;
-
 @interface dbImage : dbObject
 
 @property (nonatomic, retain) NSString *url;

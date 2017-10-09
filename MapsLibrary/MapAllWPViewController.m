@@ -19,28 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "MapAllWPViewController.h"
-
-#import "Geocube-defines.h"
-
-#import "NetworkLibrary/RemoteAPIProcessingGroup.h"
-#import "NetworkLibrary/RemoteAPITemplate.h"
-#import "DatabaseLibrary/dbAccount.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/DatabaseCache.h"
-#import "ManagersLibrary/BezelManager.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/WaypointManager.h"
-#import "ManagersLibrary/LocationManager.h"
-#import "ConvertorsLibrary/ImportTemplate-enum.h"
-#import "ManagersLibrary/ImportManager.h"
-#import "MapsLibrary/MapTemplate.h"
-#import "ToolsLibrary/Coordinates.h"
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/InfoViewer.h"
-#import "ToolsLibrary/InfoItem.h"
-#import "BaseObjectsLibrary/GCBoundingBox.h"
-
 @interface MapAllWPViewController ()
 {
     NSMutableArray<dbWaypoint *> *oldWaypoints;

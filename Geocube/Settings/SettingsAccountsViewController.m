@@ -19,17 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "SettingsAccountsViewController.h"
-
-#import "ManagersLibrary/DownloadManager.h"
-#import "NetworkLibrary/RemoteAPITemplate.h"
-#import "ConvertorsLibrary/ImportGeocube.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/ImageManager.h"
-#import "ManagersLibrary/BezelManager.h"
-#import "ManagersLibrary/ConfigManager.h"
-#import "ToolsLibrary/MyTools.h"
-
 @interface SettingsAccountsViewController ()
 {
     NSArray<dbAccount *> *accounts;

@@ -19,21 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "WaypointTableViewCell.h"
-
-#import "BaseObjectsLibrary/GCLabel.h"
-#import "BaseObjectsLibrary/GCImageView.h"
-#import "BaseObjectsLibrary/GCLabelSmallText.h"
-#import "BaseObjectsLibrary/GCLabelNormalText.h"
-#import "ManagersLibrary/ImageManager.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/LocationManager.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/dbName.h"
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/Coordinates.h"
-#import "ThemesLibrary/ThemeManager.h"
-
 @interface WaypointTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet GCLabelNormalText *labelDescription;

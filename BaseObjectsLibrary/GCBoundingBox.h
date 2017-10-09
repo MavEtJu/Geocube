@@ -19,9 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-#import <CoreLocation/CoreLocation.h>
-
 @interface GCBoundingBox : NSObject
 
 @property (nonatomic) CLLocationDegrees topLat;

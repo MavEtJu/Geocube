@@ -19,17 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "RemoteAPIOKAPI.h"
-
-#import "BaseObjectsLibrary/GCDictionaryObjects.h"
-#import "ToolsLibrary/InfoViewer.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "DatabaseLibrary/dbLogString.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/dbAccount.h"
-#import "DatabaseLibrary/DatabaseCache.h"
-#import "NetworkLibrary/ProtocolOKAPI.h"
-
 @interface RemoteAPIOKAPI ()
 
 @end

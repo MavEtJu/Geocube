@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbListData.h"
-
-#import "DatabaseLibrary/dbWaypoint.h"
-
 @interface dbListData ()
 
 @end

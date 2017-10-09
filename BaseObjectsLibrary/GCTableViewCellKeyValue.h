@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "GCTableViewCell.h"
-
-@class GCLabelNormalText;
-
 #define XIB_GCTABLEVIEWCELLKEYVALUE @"GCTableViewCellKeyValue"
 
 @interface GCTableViewCellKeyValue : GCTableViewCell

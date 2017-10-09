@@ -19,23 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "WaypointsListViewController.h"
-
-#import "NetworkLibrary/RemoteAPIProcessingGroup.h"
-#import "NetworkLibrary/RemoteAPITemplate.h"
-#import "DatabaseLibrary/dbAccount.h"
-#import "ConvertorsLibrary/ExportGPX.h"
-#import "ManagersLibrary/ConfigManager.h"
-#import "ManagersLibrary/BezelManager.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/LocationManager.h"
-#import "ManagersLibrary/AudioManager.h"
-#import "ManagersLibrary/WaypointManager.h"
-#import "ManagersLibrary/ImportManager.h"
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/MyClock.h"
-#import "ToolsLibrary/InfoViewer.h"
-
 @interface WaypointsListViewController ()
 {
     NSArray<dbWaypoint *> *waypoints;

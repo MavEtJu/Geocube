@@ -19,35 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "AppDelegate.h"
-
-#import "ManagersLibrary/DownloadManager.h"
-#import "ManagersLibrary/OpenCageManager.h"
-#import "ManagersLibrary/BezelManager.h"
-#import "ManagersLibrary/ConfigManager.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/KeyManager.h"
-#import "ManagersLibrary/AudioManager.h"
-#import "ManagersLibrary/AudioFeedback.h"
-#import "ManagersLibrary/LocationManager.h"
-#import "ManagersLibrary/WaypointManager.h"
-#import "ManagersLibrary/ImageManager.h"
-#import "ManagersLibrary/ImagesDownloadManager.h"
-#import "ManagersLibrary/ImportManager.h"
-#import "ThemesLibrary/ThemeManager.h"
-#import "NetworkLibrary/IOSFileTransfers.h"
-#import "MapsLibrary/MapAppleCache.h"
-#import "MapsLibrary/MapOneWPViewController.h"
-#import "MapsLibrary/MapAllWPViewController.h"
-#import "MapsLibrary/MapTrackViewController.h"
-#import "MapsLibrary/MapLogsViewController.h"
-#import "ToolsLibrary/MyTools.h"
-
-#import "Tools/ToolsRot13ViewController.h"
-#import "Tools/ToolsGNSSViewController.h"
-
-@import GoogleMaps;
-
 @interface AppDelegate ()
 
 @end

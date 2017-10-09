@@ -19,14 +19,6 @@
 * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#import "Waypoints/WaypointLogEditViewController.h"
-#import "Waypoints/WaypointLogImagesViewController.h"
-#import "Waypoints/WaypointLogViewController.h"
-#import "Waypoints/WaypointLogTrackablesViewController.h"
-
-@class dbLog;
-@class dbWaypoint;
-
 @protocol WaypointLogDelegate
 
 - (void)WaypointLog_refreshWaypointData;

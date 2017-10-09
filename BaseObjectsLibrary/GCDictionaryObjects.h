@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-
 @interface GCDictionary : NSObject
 
 - (instancetype)initWithDictionary:(NSObject *)otherDictionary;

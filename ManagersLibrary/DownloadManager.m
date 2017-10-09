@@ -19,11 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "DownloadManager.h"
-
-#import "ToolsLibrary/InfoViewer.h"
-#import "ToolsLibrary/InfoItem.h"
-
 @interface DownloadManager ()
 {
     NSMutableArray<NSMutableDictionary *> *asyncRequests;

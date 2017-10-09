@@ -20,8 +20,6 @@
  */
 
 @interface FileObjectView ()
-{
-}
 
 @end
 

@@ -19,35 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "MapTemplateViewController.h"
-
-#import <GoogleMaps/GMSServices.h>
-
-#import "Geocube-defines.h"
-
-#import "ConvertorsLibrary/ExportGPX.h"
-#import "ContribLibrary/Others/THLabel.h"
-#import "ManagersLibrary/ConfigManager.h"
-#import "ManagersLibrary/KeyManager.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/WaypointManager.h"
-#import "ManagersLibrary/LocationManager.h"
-#import "ManagersLibrary/ImageManager.h"
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/Coordinates.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/dbExternalMap.h"
-#import "DatabaseLibrary/dbExternalMapURL.h"
-#import "DatabaseLibrary/dbType.h"
-#import "MapsLibrary/MapGoogle.h"
-#import "MapsLibrary/MapApple.h"
-#import "MapsLibrary/MapBrand.h"
-#import "MapsLibrary/MapOSM.h"
-#import "MapsLibrary/MapESRIWorldTopo.h"
-#import "MapsLibrary/MapWaypointInfoView.h"
-
-#import "Waypoints/WaypointAddViewController.h"
-
 @interface MapTemplateViewController ()
 {
     THLabel *distanceLabel;

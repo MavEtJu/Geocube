@@ -19,12 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbObject.h"
-
-#import "DatabaseLibrary/dbLogString-enum.h"
-
-@class dbLogString;
-
 @interface dbLogStringWaypoint : dbObject
 
 @property (nonatomic) LogStringWPType wptype;

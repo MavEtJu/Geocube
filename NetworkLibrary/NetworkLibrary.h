@@ -19,21 +19,23 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "NetworkLibrary/GCOAuthBlackbox-delegate.h"
+#import "NetworkLibrary/IOSFileTransfers-delegate.h"
+#import "NetworkLibrary/RemoteAPITemplate-delegate.h"
+#import "NetworkLibrary/ProtocolGGCW-delegate.h"
+#import "NetworkLibrary/RemoteAPITemplate-enum.h"
+
 #import "NetworkLibrary/GCOAuthBlackbox.h"
 #import "NetworkLibrary/IOSFileTransfers.h"
-#import "NetworkLibrary/OpenCageManager.h"
 #import "NetworkLibrary/RemoteAPIProcessingGroup.h"
+
 #import "NetworkLibrary/RemoteAPITemplate.h"
 #import "NetworkLibrary/ProtocolTemplate.h"
-
 #import "NetworkLibrary/RemoteAPIGGCW.h"
 #import "NetworkLibrary/ProtocolGGCW.h"
-
 #import "NetworkLibrary/RemoteAPIGCA2.h"
 #import "NetworkLibrary/ProtocolGCA2.h"
-
 #import "NetworkLibrary/RemoteAPIOKAPI.h"
 #import "NetworkLibrary/ProtocolOKAPI.h"
-
 #import "NetworkLibrary/RemoteAPILiveAPI.h"
 #import "NetworkLibrary/ProtocolLiveAPI.h"

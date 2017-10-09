@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbObject.h"
-
-@class dbPin;
-
 @interface dbType : dbObject
 
 @property (nonatomic, retain) NSString *type_minor;

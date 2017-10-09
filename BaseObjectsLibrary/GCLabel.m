@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "GCLabel.h"
-
-#import "ThemesLibrary/ThemeManager.h"
-
 @interface GCLabel ()
 
 @end

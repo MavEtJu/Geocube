@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "GCImageView.h"
-
-#import "ThemesLibrary/ThemeManager.h"
-
 @interface GCImageView ()
 
 @end

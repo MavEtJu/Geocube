@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbObject.h"
-
 @interface dbFilter : dbObject
 
 @property (nonatomic, retain) NSString *key;

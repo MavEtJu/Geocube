@@ -19,18 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <CoreLocation/CoreLocation.h>
-
-#import "ProtocolTemplate.h"
-
-#import "ToolsLibrary/InfoItem.h"
-
-@class GCDictionaryLiveAPI;
-@class InfoViewer;
-@class dbTrackable;
-@class dbWaypoint;
-@class GCBoundingBox;
-
 @interface ProtocolLiveAPI : ProtocolTemplate
 
 - (GCDictionaryLiveAPI *)GetYourUserProfile:(InfoViewer *)iv iiDownload:(InfoItemID)iid;

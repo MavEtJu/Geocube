@@ -19,11 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbObject.h"
-
 #define NAME_NONAMESUPPLIED @"(no name supplied)"
-
-@class dbAccount;
 
 @interface dbName : dbObject
 

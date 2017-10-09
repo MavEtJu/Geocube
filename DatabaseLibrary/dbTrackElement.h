@@ -19,12 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <CoreLocation/CoreLocation.h>
-
-#import "dbObject.h"
-
-@class dbTrack;
-
 @interface dbTrackElement : dbObject
 
 @property (nonatomic, retain) dbTrack *track;

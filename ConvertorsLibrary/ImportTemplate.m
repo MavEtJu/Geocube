@@ -19,16 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ImportTemplate.h"
-
-#import "Geocube-defines.h"
-
-#import "DatabaseLibrary/DatabaseCache.h"
-#import "DatabaseLibrary/Database.h"
-#import "DatabaseLibrary/dbGroup.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "BaseObjectsLibrary/GCStringObjects.h"
-
 @interface ImportTemplate ()
 
 @end

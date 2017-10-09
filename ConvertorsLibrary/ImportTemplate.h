@@ -19,18 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ToolsLibrary/InfoItem.h"
-
-#import "ConvertorsLibrary/ImportTemplate-delegate.h"
-#import "ConvertorsLibrary/ImportTemplate-enum.h"
-
-@class InfoViewer;
-@class dbGroup;
-@class dbWaypoint;
-@class dbAccount;
-@class GCDictionary;
-@class GCStringGPX;
-
 @interface ImportTemplate : NSObject
 {
     NSInteger newWaypointsCount;

@@ -19,11 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "HelpIntroduction.h"
-
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/ConfigManager.h"
-
 @interface HelpIntroduction ()
 
 @end

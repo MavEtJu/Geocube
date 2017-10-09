@@ -19,6 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "ManagersLibrary/AudioManager-enum.h"
+#import "ManagersLibrary/ImageManager-enum.h"
+#import "ManagersLibrary/LocationManager-enum.h"
+#import "ManagersLibrary/LocationManager-delegate.h"
+#import "ManagersLibrary/WaypointManager-delegate.h"
+
 #import "ManagersLibrary/AudioFeedback.h"
 #import "ManagersLibrary/AudioManager.h"
 #import "ManagersLibrary/BezelManager.h"

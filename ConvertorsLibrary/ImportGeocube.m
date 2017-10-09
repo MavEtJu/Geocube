@@ -19,32 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ImportGeocube.h"
-
-#import "ContribLibrary/Others/XMLReader.h"
-#import "ManagersLibrary/KeyManager.h"
-#import "ToolsLibrary/InfoViewer.h"
-#import "ToolsLibrary/InfoItem.h"
-#import "DatabaseLibrary/dbLogTemplate.h"
-#import "DatabaseLibrary/dbLogMacro.h"
-#import "DatabaseLibrary/dbConfig.h"
-#import "DatabaseLibrary/dbNotice.h"
-#import "DatabaseLibrary/dbAccount.h"
-#import "DatabaseLibrary/dbExternalMap.h"
-#import "DatabaseLibrary/dbExternalMapURL.h"
-#import "DatabaseLibrary/dbAttribute.h"
-#import "DatabaseLibrary/dbState.h"
-#import "DatabaseLibrary/dbCountry.h"
-#import "DatabaseLibrary/dbProtocol.h"
-#import "DatabaseLibrary/dbType.h"
-#import "DatabaseLibrary/dbPin.h"
-#import "DatabaseLibrary/dbLogString.h"
-#import "DatabaseLibrary/dbLogStringWaypoint.h"
-#import "DatabaseLibrary/dbContainer.h"
-#import "DatabaseLibrary/dbBookmark.h"
-#import "DatabaseLibrary/dbFileImport.h"
-#import "DatabaseLibrary/DatabaseCache.h"
-
 @interface ImportGeocube ()
 
 @end

@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbSymbol.h"
-
-#import "DatabaseLibrary/Database.h"
-
 @interface dbSymbol ()
 
 @end

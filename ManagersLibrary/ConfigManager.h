@@ -19,13 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
-#import "ManagersLibrary/LocationManager-enum.h"
-
-@class dbTrack;
-
 @interface ConfigManager : NSObject
 
 #define PROTO_NR(__type__, __name__) \

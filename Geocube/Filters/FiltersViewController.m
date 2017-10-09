@@ -19,13 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "FiltersViewController.h"
-
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/WaypointManager.h"
-
-#import "FilterHeaderTableViewCell.h"
-
 @interface FiltersViewController ()
 {
     NSMutableArray<FilterObject *> *filters;

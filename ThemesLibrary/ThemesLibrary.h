@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "ThemesLibrary/ThemeManager-enum.h"
+
 #import "ThemesLibrary/ThemeManager.h"
 #import "ThemesLibrary/ThemeTemplate.h"
 #import "ThemesLibrary/ThemeIOS.h"

@@ -19,11 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "BaseObjectsLibrary/GCViewController.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-
-#import "WaypointPersonalNoteViewController-delegate.h"
-
 @interface WaypointPersonalNoteViewController : GCViewController <YIPopupTextViewDelegate>
 
 - (instancetype)init:(dbWaypoint *)waypoint;

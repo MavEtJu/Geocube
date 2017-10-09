@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "BaseObjectsLibrary/GCViewController.h"
-
-#import "ContribLibrary/YIPopupTextView/YIPopupTextView.h"
-
 @protocol  WaypointLogEditDelegate
 
 - (void)didFinishEditing:(NSString *)text;

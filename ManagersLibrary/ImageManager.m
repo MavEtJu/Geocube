@@ -19,19 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ImageManager.h"
-
-#import "Geocube.h"
-
-#import "ToolsLibrary/MyTools.h"
-#import "DatabaseLibrary/dbObject.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/dbPin.h"
-#import "DatabaseLibrary/dbType.h"
-#import "DatabaseLibrary/dbAccount.h"
-#import "DatabaseLibrary/dbName.h"
-#import "DatabaseLibrary/DatabaseCache.h"
-
 @interface ImageManager ()
 {
     UIImage *imgs[ImageLibraryImagesMax];

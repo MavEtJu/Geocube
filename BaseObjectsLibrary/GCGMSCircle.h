@@ -19,9 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-#import <GoogleMaps/GoogleMaps.h>
-
 @interface GCGMSCircle : GMSCircle
 
 @property (nonatomic, retain) NSObject *userData;

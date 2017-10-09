@@ -19,13 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-
-#import "DatabaseLibrary/dbImage-enum.h"
-
-@class dbWaypoint;
-@class dbImage;
-
 @interface ImagesDownloadManager : NSObject
 
 + (NSInteger)findImagesInDescription:(dbWaypoint *)wp text:(NSString *)desc type:(NSInteger)type;

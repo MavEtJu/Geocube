@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@class dbWaypoint;
-
 @protocol ImportDelegate
 
 - (void)Import_WaypointProcessed:(dbWaypoint *)wp;

@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ThemeTemplate.h"
-
-#import "ThemesLibrary/ThemeManager-enum.h"
-
 @interface ThemeManager : NSObject
 
 @property (nonatomic, retain) NSArray<NSString *> *themeNames;

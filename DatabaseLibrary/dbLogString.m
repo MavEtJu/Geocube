@@ -19,13 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbLogString.h"
-
-#import "Geocube-defines.h"
-
-#import "DatabaseLibrary/DatabaseCache.h"
-#import "DatabaseLibrary/dbProtocol.h"
-
 @interface dbLogString ()
 
 @end

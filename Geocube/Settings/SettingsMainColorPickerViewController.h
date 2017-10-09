@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "BaseObjectsLibrary/GCViewController.h"
-
 @interface SettingsMainColorPickerViewController : GCViewController
 
 typedef NS_ENUM(NSInteger, SettingsPicker) {

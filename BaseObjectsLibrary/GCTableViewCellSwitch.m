@@ -19,11 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "GCTableViewCellSwitch.h"
-
-#import "BaseObjectsLibrary/GCLabelNormalText.h"
-#import "BaseObjectsLibrary/GCSwitch.h"
-
 @interface GCTableViewCellSwitch ()
 
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *myTextLabel;

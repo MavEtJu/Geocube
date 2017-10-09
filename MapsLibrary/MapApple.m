@@ -19,35 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "MapApple.h"
-
-#import <MapKit/MapKit.h>
-
-#import "Geocube-defines.h"
-
-#import "BaseObjectsLibrary/GCWaypointAnnotation.h"
-#import "BaseObjectsLibrary/GCCircle.h"
-#import "BaseObjectsLibrary/GCCoordsHistorical.h"
-#import "ToolsLibrary/Coordinates.h"
-#import "ContribLibrary/SimpleKML/SimpleKML.h"
-#import "ContribLibrary/SimpleKML/SimpleKMLFolder.h"
-#import "ContribLibrary/SimpleKML/SimpleKMLPlacemark.h"
-#import "ContribLibrary/SimpleKML/SimpleKMLPoint.h"
-#import "ContribLibrary/SimpleKML/SimpleKMLLineString.h"
-#import "ContribLibrary/SimpleKML/SimpleKMLPolygon.h"
-#import "ContribLibrary/SimpleKML/SimpleKMLLinearRing.h"
-#import "ContribLibrary/SimpleKML/SimpleKMLDocument.h"
-#import "ContribLibrary/SimpleKML/SimpleKMLFeature.h"
-#import "ContribLibrary/LXMapScaleView/LXMapScaleView.h"
-#import "MapsLibrary/MapTemplateViewController.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/dbAccount.h"
-#import "DatabaseLibrary/dbType.h"
-#import "DatabaseLibrary/dbTrackElement.h"
-#import "ManagersLibrary/ConfigManager.h"
-#import "ManagersLibrary/LocationManager.h"
-#import "ManagersLibrary/WaypointManager.h"
-
 #define COORDHISTORYSIZE    100
 
 @interface MapApple ()

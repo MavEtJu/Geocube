@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <CoreLocation/CoreLocation.h>
-
 @interface GCLocationCoordinate2D : NSObject
 
 @property (nonatomic) CLLocationDegrees lat;

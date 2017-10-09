@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "FilterTextTableViewCell.h"
-
-#import "ManagersLibrary/LocalizationManager.h"
-
 @interface FilterTextTableViewCell ()
 {
     NSString *waypointName;

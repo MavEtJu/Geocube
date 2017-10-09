@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-
 #define _(__s__) [LocalizationManager localize:__s__]
 
 @interface LocalizationManager : NSObject

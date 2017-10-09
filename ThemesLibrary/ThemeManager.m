@@ -19,18 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ThemeManager.h"
-
-#import "Geocube.h"
-
-#import "ManagersLibrary/LocalizationManager.h"
-#import "BaseObjectsLibrary/GCViewController.h"
-#import "ThemesLibrary/ThemeTemplate.h"
-#import "ThemesLibrary/ThemeIOS.h"
-#import "ThemesLibrary/ThemeNight.h"
-
-#import "AppDelegate.h"
-
 @interface ThemeManager ()
 {
     GCThemeType themeNr;

@@ -19,14 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbObject.h"
-
-#import "DatabaseLibrary/dbTrackable-enum.h"
-
-@class dbName;
-@class dbAccount;
-@class dbWaypoint;
-
 @interface dbTrackable : dbObject
 
 @property (nonatomic, retain) NSString *pin;

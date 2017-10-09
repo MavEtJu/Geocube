@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "WaypointTrackablesViewController.h"
-
-#import "ManagersLibrary/LocalizationManager.h"
-
 @interface WaypointTrackablesViewController ()
 {
     NSMutableArray<dbTrackable *> *tbs;

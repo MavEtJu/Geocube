@@ -19,29 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <CoreLocation/CoreLocation.h>
-
-#import "NetworkLibrary/GCOAuthBlackbox-delegate.h"
-#import "NetworkLibrary/ProtocolGGCW-delegate.h"
-#import "NetworkLibrary/RemoteAPITemplate-enum.h"
-#import "NetworkLibrary/RemoteAPITemplate-delegate.h"
-#import "ToolsLibrary/InfoItem.h"
-
-@class RemoteAPITemplate;
-@class GCBoundingBox;
-@class dbLogString;
-@class dbImage;
-@class dbPersonalNote;
-@class dbAccount;
-@class dbGroup;
-@class dbWaypoint;
-@class dbTrackable;
-@class ProtocolLiveAPI;
-@class ProtocolOKAPI;
-@class ProtocolGCA2;
-@class ProtocolGGCW;
-@class GCOAuthBlackbox;
-
 @interface RemoteAPITemplate : NSObject <GCOAuthBlackboxDelegate, ProtocolGGCWDelegate>
 {
     ProtocolLiveAPI *liveAPI;

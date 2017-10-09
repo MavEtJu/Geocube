@@ -19,19 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ExportGPX.h"
-
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/dbSymbol.h"
-#import "DatabaseLibrary/dbName.h"
-#import "DatabaseLibrary/dbState.h"
-#import "DatabaseLibrary/dbCountry.h"
-#import "DatabaseLibrary/dbAttribute.h"
-#import "DatabaseLibrary/dbType.h"
-#import "DatabaseLibrary/dbLog.h"
-#import "DatabaseLibrary/dbLogString.h"
-#import "ToolsLibrary/MyTools.h"
-
 @interface ExportGPX ()
 {
     NSMutableArray<NSString *> *lines;

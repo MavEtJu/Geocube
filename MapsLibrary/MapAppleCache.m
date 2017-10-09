@@ -19,14 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "MapAppleCache.h"
-
-#import "Geocube-globals.h"
-
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/MyClock.h"
-#import "ManagersLibrary/ConfigManager.h"
-
 @interface MapAppleCache ()
 {
     NSString *shortprefix;

@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@class FilterTableViewCell;
-@class FilterHeaderTableViewCell;
-@class GCTableViewCell;
-
 @interface FilterObject : NSObject
 
 @property (nonatomic, retain) NSString *name;

@@ -21,9 +21,23 @@
 
 #ifdef __OBJC__
 
+#include <mach/mach.h>
+#include <sys/time.h>
+#include <pthread.h>
+
+#import "objc/runtime.h"
+
+#import <ImageIO/ImageIO.h>
+#import <Social/Social.h>
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import <GoogleMaps/GoogleMaps.h>
+#import <CommonCrypto/CommonHMAC.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import <Photos/Photos.h>
 
 #import "Geocube-classes.h"
 #import "Geocube-defines.h"
@@ -31,12 +45,13 @@
 
 #import "ContribLibrary/ContribLibrary.h"
 #import "BaseObjectsLibrary/BaseObjectsLibrary.h"
+#import "ToolsLibrary/ToolsLibrary.h"
 #import "ConvertorsLibrary/ConvertorsLibrary.h"
 #import "DatabaseLibrary/DatabaseLibrary.h"
-//#import "ManagersLibrary/ManagersLibrary.h"
-//#import "MapsLibrary/MapsLibrary.h"
-//#import "ThemesLibrary/ThemesLibrary.h"
-//#import "ToolsLibrary/ToolsLibrary.h"
+#import "ManagersLibrary/ManagersLibrary.h"
+#import "NetworkLibrary/NetworkLibrary.h"
+#import "MapsLibrary/MapsLibrary.h"
+#import "ThemesLibrary/ThemesLibrary.h"
 
 #import "KeyboardCoordinateView.h"
 
@@ -72,6 +87,7 @@
 #import "Notes/NotesPersonalNotesViewController.h"
 #import "Notes/NotesSavedViewController.h"
 
+#import "Waypoints/WaypointPersonalNoteViewController-delegate.h"
 #import "Waypoints/WaypointWaypointsViewController.h"
 #import "Waypoints/WaypointWaypointsTableViewCell.h"
 #import "Waypoints/WaypointAttributesViewController.h"
@@ -94,6 +110,7 @@
 
 #import "Filters/FilterObject.h"
 #import "Filters/FilterButton.h"
+#import "Filters/FilterHeaderTableViewCell.h"
 #import "Filters/FilterTableViewCell.h"
 #import "Filters/FilterAccountsTableViewCell.h"
 #import "Filters/FilterCategoryTableViewCell.h"
@@ -148,6 +165,9 @@
 
 #import "Statistics/StatisticsTableViewCell.h"
 #import "Statistics/StatisticsViewController.h"
+
+#import "Tools/ToolsGNSSViewController.h"
+#import "Tools/ToolsRot13ViewController.h"
 
 #import "Locationless/LocationlessTemplateViewController.h"
 #import "Locationless/LocationlessListViewController.h"

@@ -19,14 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "QueriesGGCWViewController.h"
-
-#import "ManagersLibrary/BezelManager.h"
-#import "ManagersLibrary/LocalizationManager.h"
-
 @interface QueriesGGCWViewController ()
-{
-}
 
 @end
 

@@ -19,17 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbType.h"
-
-#import <UIKit/UIKit.h>
-#import <CoreLocation/CoreLocation.h>
-
-#import "Geocube-defines.h"
-
-#import "DatabaseLibrary/Database.h"
-#import "DatabaseLibrary/DatabaseCache.h"
-#import "DatabaseLibrary/dbPin.h"
-
 @interface dbType ()
 
 @end

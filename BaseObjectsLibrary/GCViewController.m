@@ -19,15 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "GCViewController.h"
-
-#import "Geocube.h"
-
-#import "ThemesLibrary/ThemeManager.h"
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/InfoViewer.h"
-#import "BaseObjectsLibrary/GCCloseButton.h"
-
 @interface GCViewController ()
 {
     GCCloseButton *closeButton;

@@ -19,12 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "WaypointLogImagesViewController.h"
-
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/ImageManager.h"
-#import "ToolsLibrary/MyTools.h"
-
 @interface WaypointLogImagesViewController ()
 {
     dbWaypoint *waypoint;

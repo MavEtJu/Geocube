@@ -19,19 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ImportGGCWJSON.h"
-
-#import "Geocube-defines.h"
-
-#import "ManagersLibrary/OpenCageManager.h"
-#import "ToolsLibrary/InfoViewer.h"
-#import "ToolsLibrary/InfoItem.h"
-#import "BaseObjectsLibrary/GCDictionaryObjects.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/dbName.h"
-#import "DatabaseLibrary/dbGroup.h"
-#import "DatabaseLibrary/dbTrackable.h"
-
 @interface ImportGGCWJSON ()
 
 @end

@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "MapApple.h"
-
 @interface MapAppleTemplate : MapApple
 
 @property (nonatomic, retain) NSString *creditsText;

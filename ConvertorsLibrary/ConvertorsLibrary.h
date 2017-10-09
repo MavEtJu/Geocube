@@ -19,7 +19,15 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "ConvertorsLibrary/ImportTemplate-delegate.h"
+#import "ConvertorsLibrary/ImportTemplate-enum.h"
+
 #import "ConvertorsLibrary/ExportGPX.h"
+
+#import "ConvertorsLibrary/ImportTemplate-delegate.h"
+#import "ConvertorsLibrary/ImportTemplate-enum.h"
+#import "ConvertorsLibrary/ImportTemplate.h"
+
 #import "ConvertorsLibrary/ImportGCA2JSON.h"
 #import "ConvertorsLibrary/ImportGeocube.h"
 #import "ConvertorsLibrary/ImportGGCWJSON.h"
@@ -27,4 +35,3 @@
 #import "ConvertorsLibrary/ImportGPXGarmin.h"
 #import "ConvertorsLibrary/ImportLiveAPIJSON.h"
 #import "ConvertorsLibrary/ImportOKAPIJSON.h"
-#import "ConvertorsLibrary/ImportTemplate.h"

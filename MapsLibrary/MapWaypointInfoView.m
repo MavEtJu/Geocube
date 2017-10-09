@@ -19,31 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "MapWaypointInfoView.h"
-
-#import "Geocube-defines.h"
-
-#import "ManagersLibrary/ImageManager.h"
-#import "ManagersLibrary/WaypointManager.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/LocationManager.h"
-#import "MapsLibrary/MapTemplate.h"
-#import "MapsLibrary/MapTemplateViewController.h"
-#import "BaseObjectsLibrary/GCImageView.h"
-#import "BaseObjectsLibrary/GCLabel.h"
-#import "BaseObjectsLibrary/GCButton.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/dbName.h"
-#import "DatabaseLibrary/dbAccount.h"
-#import "DatabaseLibrary/dbContainer.h"
-#import "DatabaseLibrary/dbType.h"
-#import "ThemesLibrary/ThemeManager.h"
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/Coordinates.h"
-#import "Waypoints/WaypointViewController.h"
-
-#import "AppDelegate.h"
-
 @interface MapWaypointInfoView ()
 {
     UIImage *imgFavourites, *imgSize;

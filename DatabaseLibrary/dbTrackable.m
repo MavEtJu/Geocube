@@ -19,14 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbTrackable.h"
-
-#import "Geocube-defines.h"
-
-#import "DatabaseLibrary/dbName.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/DatabaseCache.h"
-
 @interface dbTrackable ()
 
 @end

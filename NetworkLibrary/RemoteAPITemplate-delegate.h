@@ -19,14 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <Foundation/Foundation.h>
-
-#include "ToolsLibrary/InfoItem.h"
-
-@class dbGroup;
-@class dbAccount;
-@class RemoteAPITemplate;
-
 @protocol RemoteAPIAuthenticationDelegate
 
 - (void)remoteAPI:(RemoteAPITemplate *)api failure:(NSString *)failure error:(NSError *)error;

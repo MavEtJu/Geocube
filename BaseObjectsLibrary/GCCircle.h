@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <MapKit/MapKit.h>
-
 @class dbWaypoint;
 
 @interface GCCircle : MKCircle

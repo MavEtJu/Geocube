@@ -19,13 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "TrackablesTemplateViewController.h"
-
-#import "NetworkLibrary/RemoteAPITemplate.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/InfoViewer.h"
-
 @interface TrackablesTemplateViewController ()
 
 @property (strong, nonatomic) UISearchController *searchController;

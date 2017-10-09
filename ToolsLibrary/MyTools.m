@@ -19,22 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "MyTools.h"
-
-#include <mach/mach.h>
-#import <sys/time.h>
-#include <pthread.h>
-
-#import <ImageIO/ImageIO.h>
-#import <Social/Social.h>
-
-#import "Geocube.h"
-
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/ConfigManager.h"
-#import "DatabaseLibrary/DatabaseLibrary.h"
-#import "ContribLibrary/Others/Reachability.h"
-
 @interface MyTools ()
 
 @end

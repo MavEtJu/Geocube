@@ -19,21 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "OpenCageManager.h"
-
-#import "Geocube-defines.h"
-
-#import "ManagersLibrary/DownloadManager.h"
-#import "ManagersLibrary/ConfigManager.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "BaseObjectsLibrary/GCURLRequestObjects.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/dbLocality.h"
-#import "DatabaseLibrary/dbState.h"
-#import "DatabaseLibrary/dbCountry.h"
-#import "DatabaseLibrary/DatabaseCache.h"
-#import "ToolsLibrary/MyTools.h"
-
 @interface OpenCageManager ()
 {
     NSArray<NSString *> *locale_order, *state_order, *country_order;

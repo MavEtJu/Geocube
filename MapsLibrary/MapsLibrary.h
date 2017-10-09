@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "MapsLibrary/MapTemplateViewController-enum.h"
+
 #import "MapsLibrary/MapTemplateViewController.h"
 #import "MapsLibrary/MapAllWPViewController.h"
 #import "MapsLibrary/MapOneWPViewController.h"

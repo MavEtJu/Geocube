@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "GCButton.h"
-
-#import "ThemesLibrary/ThemeManager.h"
-
 @interface GCButton ()
 
 @end

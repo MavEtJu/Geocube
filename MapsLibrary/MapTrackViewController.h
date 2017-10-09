@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "MapTemplateViewController.h"
-
-@class dbTrack;
-
 @interface MapTrackViewController : MapTemplateViewController
 
 - (void)showTrack:(dbTrack *)track;

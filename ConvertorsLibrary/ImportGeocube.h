@@ -19,12 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ImportTemplate.h"
-
-#import "ToolsLibrary/InfoItem.h"
-
-@class InfoViewer;
-
 @interface ImportGeocube : ImportTemplate
 
 #define KEY_REVISION_ATTRIBUTES     @"attributes_revision"

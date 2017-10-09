@@ -19,19 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "MapOneWPViewController.h"
-
-#import "Geocube-defines.h"
-
-#import "ManagersLibrary/BezelManager.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/WaypointManager.h"
-#import "ManagersLibrary/LocationManager.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "ToolsLibrary/Coordinates.h"
-
-#import "MapTemplate.h"
-
 @interface MapOneWPViewController ()
 
 @end

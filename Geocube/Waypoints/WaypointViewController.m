@@ -19,22 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "WaypointViewController.h"
-
-#import "MapsLibrary/MapTemplateViewController.h"
-#import "NetworkLibrary/RemoteAPITemplate.h"
-#import "ConvertorsLibrary/ExportGPX.h"
-#import "ThemesLibrary/ThemeManager.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/WaypointManager.h"
-#import "ManagersLibrary/ImageManager.h"
-#import "ManagersLibrary/LocationManager.h"
-#import "ManagersLibrary/ConfigManager.h"
-#import "ManagersLibrary/ImportManager.h"
-#import "ManagersLibrary/AudioManager.h"
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/InfoViewer.h"
-
 #define TESTLOGJE
 #undef TESTLOGJE
 

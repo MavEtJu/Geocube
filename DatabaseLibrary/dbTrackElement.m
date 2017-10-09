@@ -19,12 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbTrackElement.h"
-
-#import "Geocube-defines.h"
-
-#import "DatabaseLibrary/dbTrack.h"
-
 @interface dbTrackElement ()
 
 @end

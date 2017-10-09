@@ -19,34 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbWaypoint.h"
-
-#import "Geocube-defines.h"
-
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/Coordinates.h"
-#import "ToolsLibrary/MyClock.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/ConfigManager.h"
-#import "DatabaseLibrary/DatabaseCache.h"
-#import "DatabaseLibrary/dbLogString.h"
-#import "DatabaseLibrary/dbType.h"
-#import "DatabaseLibrary/dbName.h"
-#import "DatabaseLibrary/dbCountry.h"
-#import "DatabaseLibrary/dbSymbol.h"
-#import "DatabaseLibrary/dbAccount.h"
-#import "DatabaseLibrary/dbLocality.h"
-#import "DatabaseLibrary/dbState.h"
-#import "DatabaseLibrary/dbContainer.h"
-#import "DatabaseLibrary/dbLog.h"
-#import "DatabaseLibrary/dbGroup.h"
-#import "DatabaseLibrary/dbAttribute.h"
-#import "DatabaseLibrary/dbPersonalNote.h"
-#import "DatabaseLibrary/dbTrackable.h"
-#import "DatabaseLibrary/dbImage.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/dbListData.h"
-
 @interface dbWaypoint ()
 
 @end

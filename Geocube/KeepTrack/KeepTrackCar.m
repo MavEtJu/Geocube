@@ -19,15 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "KeepTrackCar.h"
-
-#import "MapsLibrary/MapTemplateViewController.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/LocationManager.h"
-#import "ManagersLibrary/WaypointManager.h"
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/Coordinates.h"
-
 @interface KeepTrackCar ()
 {
     CLLocationCoordinate2D coordsRecordedLocation;

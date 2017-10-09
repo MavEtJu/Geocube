@@ -19,12 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "FileKMLViewController.h"
-
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/WaypointManager.h"
-#import "ToolsLibrary/MyTools.h"
-
 @interface FileKMLViewController ()
 {
     NSMutableArray<NSString *> *filesNames;

@@ -19,15 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ConfigManager.h"
-
-#import "DatabaseLibrary/dbTrack.h"
-#import "DatabaseLibrary/dbConfig.h"
-#import "ToolsLibrary/MyTools.h"
-#import "ManagersLibrary/LocationManager.h"
-#import "ManagersLibrary/ConfigManager.h"
-#import "ManagersLibrary/ImageManager.h"
-
 @interface ConfigManager ()
 
 @end

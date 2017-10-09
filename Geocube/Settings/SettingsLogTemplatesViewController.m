@@ -19,12 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "SettingsLogTemplatesViewController.h"
-
-#import "ConvertorsLibrary/ImportGeocube.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ToolsLibrary/MyTools.h"
-
 @interface SettingsLogTemplatesViewController ()
 {
     NSMutableArray<dbLogTemplate *> *logtemplates;

@@ -19,14 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "LogTableViewCell.h"
-
-#import "BaseObjectsLibrary/GCLabel.h"
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/Coordinates.h"
-#import "DatabaseLibrary/dbLog.h"
-#import "ManagersLibrary/ImageManager.h"
-
 @interface LogTableViewCell ()
 
 @property (nonatomic, retain) IBOutlet UIImageView *ivLogType;

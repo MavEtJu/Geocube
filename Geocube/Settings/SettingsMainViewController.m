@@ -19,17 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "SettingsMainViewController.h"
-
-#import "MapsLibrary/MapBrand.h"
-#import "MapsLibrary/MapTemplateViewController.h"
-#import "ThemesLibrary/ThemeManager.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/ConfigManager.h"
-#import "ManagersLibrary/ImageManager.h"
-#import "ManagersLibrary/AudioFeedback.h"
-#import "ToolsLibrary/MyTools.h"
-
 @interface SettingsMainViewController ()
 {
     NSArray<NSString *> *compassTypes;

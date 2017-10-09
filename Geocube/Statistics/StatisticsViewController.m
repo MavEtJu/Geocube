@@ -19,13 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "StatisticsViewController.h"
-
-#import "NetworkLibrary/RemoteAPITemplate.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ToolsLibrary/InfoViewer.h"
-#import "ToolsLibrary/MyTools.h"
-
 @interface StatisticsViewController ()
 {
     UIScrollView *contentView;

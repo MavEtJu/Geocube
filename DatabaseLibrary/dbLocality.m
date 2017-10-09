@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbLocality.h"
-
-#import "DatabaseLibrary/DatabaseCache.h"
-
 @interface dbLocality ()
 
 @end

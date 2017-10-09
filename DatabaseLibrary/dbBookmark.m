@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbBookmark.h"
-
-#import "DatabaseLibrary/dbFileImport.h"
-
 @interface dbBookmark ()
 
 @end

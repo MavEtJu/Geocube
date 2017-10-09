@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "GCLabelSmallText.h"
-
-#import "ThemesLibrary/ThemeManager.h"
-
 @interface GCLabelSmallText ()
 
 @end

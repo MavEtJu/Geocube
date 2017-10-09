@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbObject.h"
-
-@class dbAccount;
-
 @interface dbQueryImport : dbObject
 
 @property (nonatomic, retain) NSString *name;

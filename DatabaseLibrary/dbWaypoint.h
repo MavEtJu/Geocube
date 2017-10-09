@@ -19,24 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <CoreLocation/CoreLocation.h>
-
-#import "dbObject.h"
-
-#import "DatabaseLibrary/dbWaypoint-enum.h"
-#import "DatabaseLibrary/dbLogString-enum.h"
-#import "DatabaseLibrary/dbListData-enum.h"
-
-@class dbSymbol;
-@class dbType;
-@class dbCountry;
-@class dbState;
-@class dbGroup;
-@class dbName;
-@class dbLocality;
-@class dbContainer;
-@class dbAccount;
-
 @interface dbWaypoint : dbObject
 
 @property (nonatomic, retain) NSString *wpt_name;

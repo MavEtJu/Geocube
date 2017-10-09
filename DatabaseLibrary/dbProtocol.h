@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbObject.h"
-
-#import "DatabaseLibrary/dbProtocol-enum.h"
-
 @interface dbProtocol : dbObject
 
 @property (nonatomic, retain) NSString *name;

@@ -19,22 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ProtocolLiveAPI.h"
-
-#import "NetworkLibrary/RemoteAPITemplate.h"
-#import "NetworkLibrary/GCOAuthBlackbox.h"
-#import "ManagersLibrary/DownloadManager.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/ConfigManager.h"
-#import "BaseObjectsLibrary/GCURLRequestObjects.h"
-#import "BaseObjectsLibrary/GCDictionaryObjects.h"
-#import "BaseObjectsLibrary/GCBoundingBox.h"
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/Coordinates.h"
-#import "DatabaseLibrary/dbAccount.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/dbTrackable.h"
-
 @interface ProtocolLiveAPI ()
 {
     RemoteAPITemplate *remoteAPI;

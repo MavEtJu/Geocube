@@ -19,11 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "FilterGroupsTableViewCell.h"
-
-#import "ThemesLibrary/ThemeManager.h"
-#import "ManagersLibrary/LocalizationManager.h"
-
 @interface FilterGroupsTableViewCell ()
 {
     NSArray<dbGroup *> *groups;

@@ -19,13 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "FilterDirectionTableViewCell.h"
-
-#import "BaseObjectsLibrary/GCLabelNormalText.h"
-#import "ManagersLibrary/LocalizationManager.h"
-
-#import "FilterButton.h"
-
 @interface FilterDirectionTableViewCell ()
 {
     NSArray<NSString *> *directions;

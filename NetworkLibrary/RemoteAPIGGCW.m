@@ -19,30 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "RemoteAPIGGCW.h"
-
-#import "Geocube-defines.h"
-
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/dbTrackable.h"
-#import "DatabaseLibrary/dbLogString.h"
-#import "DatabaseLibrary/dbPersonalNote.h"
-#import "DatabaseLibrary/dbAccount.h"
-#import "DatabaseLibrary/dbName.h"
-#import "DatabaseLibrary/DatabaseCache.h"
-#import "ToolsLibrary/InfoViewer.h"
-#import "ToolsLibrary/InfoItem.h"
-#import "ToolsLibrary/MyTools.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/ConfigManager.h"
-#import "BaseObjectsLibrary/GCArrayObjects.h"
-#import "BaseObjectsLibrary/GCDictionaryObjects.h"
-#import "BaseObjectsLibrary/GCStringObjects.h"
-#import "BaseObjectsLibrary/GCDataObjects.h"
-#import "BaseObjectsLibrary/GCBoundingBox.h"
-#import "NetworkLibrary/ProtocolGGCW.h"
-#import "ConvertorsLibrary/ImportGGCWJSON.h"
-
 @interface RemoteAPIGGCW ()
 {
     NSInteger threadcounter;

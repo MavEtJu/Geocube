@@ -19,11 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "GCTableViewCellWithSubtitle.h"
-
-#import "BaseObjectsLibrary/GCLabel.h"
-#import "ManagersLibrary/ConfigManager.h"
-
 @interface GCTableViewCellWithSubtitle ()
 
 @property (nonatomic, weak) IBOutlet GCLabel *myTextLabel;

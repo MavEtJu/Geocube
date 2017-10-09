@@ -19,11 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "MapTemplate.h"
-
-#import <GoogleMapsBase/GoogleMapsBase.h>
-#import <GoogleMaps/GMSMapView.h>
-
 @interface MapGoogle : MapTemplate <GMSMapViewDelegate>
 
 @end

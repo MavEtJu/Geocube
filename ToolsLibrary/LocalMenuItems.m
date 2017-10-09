@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "LocalMenuItems.h"
-
-#import "ContribLibrary/Others/VKSideMenu.h"
-
 @interface LocalMenuItems ()
 {
     NSMutableArray<NSString *> *makeMenuItems;

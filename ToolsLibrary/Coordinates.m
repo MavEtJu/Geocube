@@ -19,17 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "Coordinates.h"
-
-#import "Geocube.h"
-
-#import "ManagersLibrary/LocalizationManager.h"
-#import "DatabaseLibrary/DatabaseCache.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/dbGroup.h"
-#import "ManagersLibrary/WaypointManager.h"
-#import "ToolsLibrary/MyTools.h"
-
 @interface Coordinates ()
 {
     CLLocationCoordinate2D coords;

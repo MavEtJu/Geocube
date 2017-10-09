@@ -19,12 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbExternalMapURL.h"
-
-#import "Geocube-defines.h"
-
-#import "DatabaseLibrary/dbExternalMap.h"
-
 @interface dbExternalMapURL ()
 
 @end

@@ -19,17 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "MapLogsViewController.h"
-
-#import "Geocube-defines.h"
-
-#import "MapsLibrary/MapTemplate.h"
-#import "DatabaseLibrary/dbLog.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/dbName.h"
-#import "DatabaseLibrary/DatabaseCache.h"
-#import "ToolsLibrary/MyTools.h"
-
 @interface MapLogsViewController ()
 {
     dbWaypoint *waypoint;

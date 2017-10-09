@@ -19,12 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbPin.h"
-
-#import "Geocube-defines.h"
-
-#import "ManagersLibrary/ImageManager.h"
-
 @interface dbPin ()
 
 @end

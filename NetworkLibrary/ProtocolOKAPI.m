@@ -19,21 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ProtocolOKAPI.h"
-
-#import "ManagersLibrary/DownloadManager.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/ConfigManager.h"
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/Coordinates.h"
-#import "NetworkLibrary/RemoteAPITemplate.h"
-#import "NetworkLibrary/GCOAuthBlackbox.h"
-#import "BaseObjectsLibrary/GCDictionaryObjects.h"
-#import "BaseObjectsLibrary/GCURLRequestObjects.h"
-#import "BaseObjectsLibrary/GCBoundingBox.h"
-#import "DatabaseLibrary/dbAccount.h"
-#import "DatabaseLibrary/dbName.h"
-
 @interface ProtocolOKAPI ()
 {
     RemoteAPITemplate *remoteAPI;

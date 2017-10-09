@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "BaseObjectsLibrary/GCTableViewController.h"
-
-#import "NetworkLibrary/IOSFileTransfers-delegate.h"
-
 @interface FilesViewController : GCTableViewController <IOSFileTransfersDelegate>
 
 @end

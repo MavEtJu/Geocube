@@ -19,16 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "LocationManager.h"
-
-#import "Geocube.h"
-
-#import "BaseObjectsLibrary/GCCoordsHistorical.h"
-#import "ToolsLibrary/Coordinates.h"
-#import "DatabaseLibrary/DatabaseLibrary.h"
-#import "ManagersLibrary/ConfigManager.h"
-#import "ManagersLibrary/WaypointManager.h"
-
 @interface LocationManager ()
 {
     CLLocationManager *_LM;

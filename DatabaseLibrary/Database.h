@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-
 #import <sqlite3.h>
 
 typedef sqlite3_int64 NSId;

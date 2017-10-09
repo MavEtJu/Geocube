@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ManagersLibrary/WaypointManager-delegate.h"
-
 @interface WaypointsListViewController : GCTableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UISearchResultsUpdating, WaypointManagerWaypointDelegate, RemoteAPIDownloadDelegate>
 
 @end

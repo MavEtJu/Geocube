@@ -19,11 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "TrackablesMineViewController.h"
-
-#import "DatabaseLibrary/dbTrackable.h"
-#import "NetworkLibrary/RemoteAPITemplate.h"
-
 @interface TrackablesMineViewController ()
 
 @end

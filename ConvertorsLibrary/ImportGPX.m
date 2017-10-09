@@ -19,33 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ImportGPX.h"
-
-#import "Geocube-defines.h"
-
-#import "ManagersLibrary/OpenCageManager.h"
-#import "ManagersLibrary/ImagesDownloadManager.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ToolsLibrary/InfoViewer.h"
-#import "ToolsLibrary/InfoItem.h"
-#import "ToolsLibrary/MyTools.h"
-#import "DatabaseLibrary/dbAttribute.h"
-#import "DatabaseLibrary/dbLog.h"
-#import "DatabaseLibrary/dbTrackable.h"
-#import "DatabaseLibrary/dbImage.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/dbState.h"
-#import "DatabaseLibrary/dbCountry.h"
-#import "DatabaseLibrary/dbLocality.h"
-#import "DatabaseLibrary/DatabaseCache.h"
-#import "DatabaseLibrary/dbAttribute.h"
-#import "DatabaseLibrary/dbGroup.h"
-#import "DatabaseLibrary/dbName.h"
-#import "DatabaseLibrary/dbType.h"
-#import "DatabaseLibrary/dbSymbol.h"
-#import "DatabaseLibrary/dbPersonalNote.h"
-#import "DatabaseLibrary/dbLogString.h"
-
 @interface ImportGPX ()
 {
     NSArray<NSString *> *files;

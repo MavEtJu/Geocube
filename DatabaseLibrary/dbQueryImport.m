@@ -19,13 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbQueryImport.h"
-
-#import "Geocube-defines.h"
-
-#import "DatabaseLibrary/DatabaseCache.h"
-#import "DatabaseLibrary/dbAccount.h"
-
 @interface dbQueryImport ()
 
 @end

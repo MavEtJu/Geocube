@@ -19,19 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ToolsGNSSViewController.h"
-
-#import <sys/time.h>
-
-#import "BaseObjectsLibrary/GCLabelSmallText.h"
-#import "BaseObjectsLibrary/GCLabelNormalText.h"
-#import "ThemesLibrary/ThemeManager.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/LocationManager.h"
-#import "ManagersLibrary/WaypointManager.h"
-#import "ToolsLibrary/Coordinates.h"
-#import "ToolsLibrary/MyTools.h"
-
 @interface ToolsGNSSViewController ()
 {
     NSMutableArray<GCLocationCoordinate2D *> *coords;

@@ -19,12 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbObject.h"
-
-@class dbName;
-@class dbProtocol;
-@class RemoteAPITemplate;
-
 @interface dbAccount : dbObject
 
 @property (nonatomic, retain) NSString *site;

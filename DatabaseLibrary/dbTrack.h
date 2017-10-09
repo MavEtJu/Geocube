@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbObject.h"
-
 @interface dbTrack : dbObject
 
 @property (nonatomic, retain) NSString *name;

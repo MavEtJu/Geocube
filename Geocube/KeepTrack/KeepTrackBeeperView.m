@@ -19,14 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "KeepTrackBeeper.h"
-
-#import <MediaPlayer/MediaPlayer.h>
-
-#import "ThemesLibrary/ThemeManager.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/ConfigManager.h"
-
 @interface KeepTrackBeeperView ()
 {
     BOOL isPlaying;

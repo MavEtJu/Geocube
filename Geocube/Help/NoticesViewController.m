@@ -19,14 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "NoticesViewController.h"
-
-#import "ConvertorsLibrary/ImportGeocube.h"
-#import "ManagersLibrary/DownloadManager.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/BezelManager.h"
-#import "ToolsLibrary/MyTools.h"
-
 @interface NoticesViewController ()
 {
     NSArray<dbNotice *> *notices;

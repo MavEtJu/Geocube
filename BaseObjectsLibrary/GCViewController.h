@@ -19,13 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <UIKit/UIKit.h>
-
-#import "ToolsLibrary/SideMenu.h"
-
-@class LocalMenuItems;
-@class InfoViewer;
-
 @interface GCViewController : UIViewController <SideMenuDelegate, UIScrollViewDelegate>
 {
     LocalMenuItems *lmi;

@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "BaseObjectsLibrary/GCButton.h"
-
 @interface FilterButton : GCButton
 
 @property (nonatomic) NSInteger index;

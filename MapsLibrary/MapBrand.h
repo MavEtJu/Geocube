@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-
-@class MapBrand;
-
 @interface MapBrand : NSObject
 
 @property (nonatomic, retain) NSString *key;

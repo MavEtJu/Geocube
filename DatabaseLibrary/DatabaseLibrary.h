@@ -19,6 +19,15 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "DatabaseLibrary/dbImage-enum.h"
+#import "DatabaseLibrary/dbListData-enum.h"
+#import "DatabaseLibrary/dbLogString-enum.h"
+#import "DatabaseLibrary/dbProtocol-enum.h"
+#import "DatabaseLibrary/dbTrackable-enum.h"
+#import "DatabaseLibrary/dbWaypoint-enum.h"
+
+#import "DatabaseLibrary/DatabaseLibrary-defines.h"
+
 #import "DatabaseLibrary/Database.h"
 #import "DatabaseLibrary/dbObject.h"
 #import "DatabaseLibrary/dbAccount.h"

@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "QueriesTableViewCell.h"
-
-#import "ManagersLibrary/ConfigManager.h"
-
 @interface QueriesTableViewCell ()
 
 @end

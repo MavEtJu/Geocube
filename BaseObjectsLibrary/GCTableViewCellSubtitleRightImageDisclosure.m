@@ -19,11 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "GCTableViewCellSubtitleRightImageDisclosure.h"
-
-#import "BaseObjectsLibrary/GCLabel.h"
-#import "BaseObjectsLibrary/GCImageView.h"
-
 @interface GCTableViewCellSubtitleRightImageDisclosure ()
 
 @property (nonatomic, weak) IBOutlet GCLabel *myTextLabel;

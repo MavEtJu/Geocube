@@ -19,17 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "FilesViewController.h"
-
-#import "NetworkLibrary/IOSFileTransfers.h"
-#import "ConvertorsLibrary/ImportGeocube.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/ConfigManager.h"
-#import "ManagersLibrary/AudioManager.h"
-#import "ManagersLibrary/ImportManager.h"
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/InfoViewer.h"
-
 @interface FilesViewController ()
 {
     NSMutableArray<NSString *> *filesNames;

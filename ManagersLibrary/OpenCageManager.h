@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-
-@class dbWaypoint;
-
 @interface OpenCageManager : NSObject
 
 - (void)addForProcessing:(dbWaypoint *)wp;

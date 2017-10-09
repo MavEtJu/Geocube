@@ -2193,6 +2193,7 @@
 		E82286011F8A1CC000631380 /* ManagersLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				E82286DD1F8A2CE300631380 /* ManagersLibrary.h */,
 				E82286C21F8A2CE300631380 /* AudioFeedback.h */,
 				E82286C31F8A2CE300631380 /* AudioFeedback.m */,
 				E82286C51F8A2CE300631380 /* AudioManager.h */,
@@ -2219,7 +2220,6 @@
 				E82286D81F8A2CE300631380 /* LocationManager-delegate.h */,
 				E82286D91F8A2CE300631380 /* LocationManager-enum.h */,
 				E82286DB1F8A2CE300631380 /* LocationManager.m */,
-				E82286DD1F8A2CE300631380 /* ManagersLibrary.h */,
 				E82286DE1F8A2CE300631380 /* OpenCageManager.h */,
 				E82286DF1F8A2CE300631380 /* OpenCageManager.m */,
 				E82286E11F8A2CE300631380 /* WaypointManager.h */,
@@ -2375,13 +2375,13 @@
 		E82286061F8A1DAA00631380 /* ToolsLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				E82286181F8A285C00631380 /* ToolsLibrary.h */,
 				E82286081F8A285C00631380 /* Coordinates.h */,
 				E82286091F8A285C00631380 /* Coordinates.m */,
 				E82286111F8A285C00631380 /* MyClock.h */,
 				E82286121F8A285C00631380 /* MyClock.m */,
 				E82286131F8A285C00631380 /* MyTools.h */,
 				E82286141F8A285C00631380 /* MyTools.m */,
-				E82286181F8A285C00631380 /* ToolsLibrary.h */,
 				E82286211F8A287000631380 /* InfoViewer */,
 				E82286201F8A286500631380 /* Menus */,
 			);

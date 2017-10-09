@@ -19,12 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define CONTRIBLIBRARY_H 1
-
 #import "ContribLibrary/CMRangeSlider/RangeSlider.h"
 #import "ContribLibrary/LXMapScaleView/LXMapScaleView.h"
 #import "ContribLibrary/MHTabBarController/MHTabBarController.h"
-#import "ContribLibrary/NKOCOlorPicketView/NKOColorPickerView.h"
+#import "ContribLibrary/NKOColorPickerView/NKOColorPickerView.h"
 #import "ContribLibrary/NVHTarGzip/NVHTarGzip.h"
 #import "ContribLibrary/SSZipArchive/SSZipArchive.h"
 #import "ContribLibrary/SVProgressHUD/SVProgressHUD.h"

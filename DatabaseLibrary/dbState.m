@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbState.h"
-
-#import "DatabaseLibrary/DatabaseCache.h"
-
 @interface dbState ()
 
 @end

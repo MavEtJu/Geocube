@@ -19,10 +19,14 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "ToolsLibrary/SideMenu-delegate.h"
+
+#import "InfoItem-enum.h"
+
 #import "ToolsLibrary/MyTools.h"
 #import "ToolsLibrary/MyClock.h"
 #import "ToolsLibrary/Coordinates.h"
-#import "ToolsLibrary/InfoViewer.h"
 #import "ToolsLibrary/InfoItem.h"
+#import "ToolsLibrary/InfoViewer.h"
 #import "ToolsLibrary/LocalMenuItems.h"
 #import "ToolsLibrary/SideMenu.h"

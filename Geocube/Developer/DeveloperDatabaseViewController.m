@@ -19,14 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "DeveloperDatabaseViewController.m"
-
-#import "MapsLibrary/MapBrand.h"
-#import "MapsLibrary/MapAppleTemplate.h"
-#import "MapsLibrary/MapTemplateViewController.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ToolsLibrary/MyTools.h"
-
 @interface DeveloperDatabaseViewController ()
 {
     NSArray<NSString *> *fieldsSizes;

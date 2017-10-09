@@ -19,16 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "WaypointPersonalNoteViewController.h"
-
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "BaseObjectsLibrary/GCTextblock.h"
-#import "NetworkLibrary/RemoteAPITemplate.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/BezelManager.h"
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/Coordinates.h"
-
 @interface WaypointPersonalNoteViewController ()
 {
     dbWaypoint *waypoint;

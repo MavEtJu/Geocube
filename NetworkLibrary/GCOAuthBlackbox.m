@@ -19,18 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "GCOAuthBlackbox.h"
-
-#import <sys/time.h>
-
-#import <CommonCrypto/CommonHMAC.h>
-
-#import "ManagersLibrary/DownloadManager.h"
-#import "ToolsLibrary/MyTools.h"
-#import "BaseObjectsLibrary/GCURLRequestObjects.h"
-
-#import "Browser/BrowserBrowserViewController.h"
-
 @interface GCOAuthBlackbox ()
 {
     NSString *nonce;

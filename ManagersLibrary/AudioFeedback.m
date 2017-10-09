@@ -19,11 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "AudioFeedback.h"
-
-#import <AudioToolbox/AudioToolbox.h>
-#import <AudioUnit/AudioUnit.h>
-
 AudioFeedback *audioFeedback;
 
 /* Obtained from http://www.cocoawithlove.com/2010/10/ios-tone-generator-introduction-to.html */

@@ -19,11 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "InfoItem-enum.h"
-
-@class InfoViewer;
-@class GCView;
-
 typedef NSInteger InfoItemID;
 
 @interface InfoItem : NSObject

@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "FilesTableViewCell.h"
-
-#import "ManagersLibrary/ConfigManager.h"
-
 @interface FilesTableViewCell ()
 
 @end

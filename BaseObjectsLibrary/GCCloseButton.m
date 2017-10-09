@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "GCCloseButton.h"
-
-#import "ManagersLibrary/ImageManager.h"
-
 @interface GCCloseButton ()
 
 @end

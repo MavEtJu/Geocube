@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "FilterTableViewCell.h"
-
-#import "ManagersLibrary/WaypointManager.h"
-
 @interface FilterTableViewCell ()
 {
     NSString *configPrefix;

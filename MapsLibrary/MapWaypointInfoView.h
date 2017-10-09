@@ -19,12 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "BaseObjectsLibrary/GCView.h"
-
-#import "ManagersLibrary/WaypointManager-delegate.h"
-
-@class MapTemplate;
-
 #define XIB_MAPWAYPOINTINFOVIEW @"MapWaypointInfoView"
 
 @interface MapWaypointInfoView : GCView <WaypointManagerWaypointDelegate>

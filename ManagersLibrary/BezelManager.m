@@ -19,13 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "BezelManager.h"
-
-#import "Geocube-defines.h"
-
-#import "ContribLibrary/SVProgressHUD/SVProgressHUD.h"
-#import "ThemesLibrary/ThemeManager.h"
-
 @interface BezelManager ()
 
 @end

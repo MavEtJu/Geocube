@@ -19,15 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "BaseObjectsLibrary/GCTableViewController.h"
-
-#import "Waypoints/WaypointLogViewController.h"
-#import "Waypoints/WaypointImagesViewController.h"
-#import "Waypoints/WaypointPersonalNoteViewController.h"
-#import "Waypoints/WaypointWaypointsViewController.h"
-#import "Waypoints/WaypointLogsViewController.h"
-#import "NetworkLibrary/RemoteAPITemplate-delegate.h"
-
 @interface WaypointViewController : GCTableViewController <WaypointLogDelegate, WaypointImagesDelegate, WaypointPersonalNoteDelegate, WaypointWaypointsDelegate, WaypointLogsDelegate, RemoteAPIDownloadDelegate>
 
 - (void)showWaypoint:(dbWaypoint *)wp;

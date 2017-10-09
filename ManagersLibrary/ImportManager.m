@@ -19,26 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ImportManager.h"
-
-#import "Geocube-globals.h"
-
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/InfoViewer.h"
-#import "ToolsLibrary/InfoItem.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ConvertorsLibrary/ImportGGCWJSON.h"
-#import "ConvertorsLibrary/ImportGPX.h"
-#import "ConvertorsLibrary/ImportGPXGarmin.h"
-#import "ConvertorsLibrary/ImportGCA2JSON.h"
-#import "ConvertorsLibrary/ImportOKAPIJSON.h"
-#import "ConvertorsLibrary/ImportLiveAPIJSON.h"
-#import "BaseObjectsLibrary/GCStringObjects.h"
-#import "BaseObjectsLibrary/GCArrayObjects.h"
-#import "BaseObjectsLibrary/GCDictionaryObjects.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "ManagersLibrary/WaypointManager.h"
-
 @interface ImportManager ()
 {
     NSMutableArray<NSString *> *filenames;

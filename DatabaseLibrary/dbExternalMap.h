@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbObject.h"
-
 @interface dbExternalMap : dbObject
 
 @property (nonatomic) NSInteger geocube_id;

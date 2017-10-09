@@ -19,25 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "RemoteAPILiveAPI.h"
-
-#import "Geocube-defines.h"
-
-#import "NetworkLibrary/ProtocolLiveAPI.h"
-#import "ConvertorsLibrary/ImportLiveAPIJSON.h"
-#import "ToolsLibrary/InfoViewer.h"
-#import "ToolsLibrary/InfoItem.h"
-#import "ToolsLibrary/MyTools.h"
-#import "BaseObjectsLibrary/GCDictionaryObjects.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "DatabaseLibrary/dbAccount.h"
-#import "DatabaseLibrary/dbTrackable.h"
-#import "DatabaseLibrary/dbPersonalNote.h"
-#import "DatabaseLibrary/dbLogString.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/dbImage.h"
-#import "DatabaseLibrary/DatabaseCache.h"
-
 @interface RemoteAPILiveAPI ()
 
 @end

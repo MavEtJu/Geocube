@@ -19,18 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <CoreLocation/CoreLocation.h>
-
-#import "ProtocolTemplate.h"
-
-#import "ToolsLibrary/InfoItem.h"
-
-@class GCDictionaryGCA2;
-@class InfoViewer;
-@class dbAccount;
-@class dbWaypoint;
-@class GCBoundingBox;
-
 @interface ProtocolGCA2 : ProtocolTemplate
 
 - (BOOL)authenticate:(dbAccount *)account;

@@ -19,21 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ProtocolTemplate.h"
-
-#import <CoreLocation/CoreLocation.h>
-
-#import "NetworkLibrary/ProtocolGGCW-delegate.h"
-
-#import "ToolsLibrary/InfoItem.h"
-
-@class GCDictionaryGGCW;
-@class GCDataZIPFile;
-@class GCStringGPX;
-@class GCStringGPXGarmin;
-@class dbTrackable;
-@class InfoViewer;
-
 @interface ProtocolGGCW : ProtocolTemplate <NSURLConnectionDataDelegate>
 
 @property (nonatomic) id<ProtocolGGCWDelegate> delegate;

@@ -19,13 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbLogStringWaypoint.h"
-
-#import "Geocube-defines.h"
-
-#import "DatabaseLibrary/Database.h"
-#import "DatabaseLibrary/dbLogString.h"
-
 @interface dbLogStringWaypoint ()
 
 @end

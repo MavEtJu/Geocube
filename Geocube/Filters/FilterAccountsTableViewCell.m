@@ -19,11 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "FilterAccountsTableViewCell.h"
-
-#import "ThemesLibrary/ThemeManager.h"
-#import "ManagersLibrary/LocalizationManager.h"
-
 @interface FilterAccountsTableViewCell ()
 {
     NSArray<dbAccount *> *accounts;

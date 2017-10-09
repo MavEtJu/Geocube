@@ -19,30 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ImportGCA2JSON.h"
-
-#import "Geocube-defines.h"
-
-#import "ManagersLibrary/OpenCageManager.h"
-#import "ManagersLibrary/ImagesDownloadManager.h"
-#import "BaseObjectsLibrary/GCDictionaryObjects.h"
-#import "ToolsLibrary/InfoViewer.h"
-#import "ToolsLibrary/InfoItem.h"
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/Coordinates.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/dbLog.h"
-#import "DatabaseLibrary/dbName.h"
-#import "DatabaseLibrary/dbAccount.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/dbState.h"
-#import "DatabaseLibrary/dbCountry.h"
-#import "DatabaseLibrary/dbLocality.h"
-#import "DatabaseLibrary/dbLogString.h"
-#import "DatabaseLibrary/dbImage.h"
-#import "DatabaseLibrary/dbGroup.h"
-#import "DatabaseLibrary/DatabaseCache.h"
-
 @interface ImportGCA2JSON ()
 
 @end

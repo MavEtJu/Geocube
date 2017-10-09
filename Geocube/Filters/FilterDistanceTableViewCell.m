@@ -19,14 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "FilterDistanceTableViewCell.h"
-
-#import "BaseObjectsLibrary/GCLabelNormalText.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ToolsLibrary/MyTools.h"
-
-#import "FilterButton.h"
-
 @interface FilterDistanceTableViewCell ()
 {
     FilterDistance compareDistance;

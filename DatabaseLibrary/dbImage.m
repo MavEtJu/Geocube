@@ -19,14 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "dbImage.h"
-
 #import <CommonCrypto/CommonDigest.h>
-
-#import "Geocube-globals.h"
-
-#import "ToolsLibrary/MyTools.h"
-#import "DatabaseLibrary/dbWaypoint.h"
 
 @interface dbImage ()
 

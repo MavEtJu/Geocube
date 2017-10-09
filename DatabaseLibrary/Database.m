@@ -19,16 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "Database.h"
-
-#import "Geocube-defines.h"
-#import "Geocube-globals.h"
-
-#import "ToolsLibrary/MyTools.h"
-#import "ManagersLibrary/ConfigManager.h"
-#import "DatabaseLibrary/dbConfig.h"
-#import "DatabaseLibrary/dbName.h"
-
 @interface database ()
 {
     NSString *dbname, *dbempty;

@@ -19,15 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-#import <CoreLocation/CoreLocation.h>
-
-#import "ManagersLibrary/LocationManager-delegate.h"
-#import "ManagersLibrary/WaypointManager-delegate.h"
-#import "DatabaseLibrary/Database.h"
-
-@class dbWaypoint;
-
 @interface WaypointManager : NSObject <LocationManagerLocationDelegate>
 
 @property (nonatomic, retain, readonly) dbWaypoint *currentWaypoint;

@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ProtocolTemplate.h"
-
-#import "Geocube-defines.h"
-
 @interface ProtocolTemplate ()
 
 @end

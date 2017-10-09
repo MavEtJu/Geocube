@@ -19,17 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <CoreLocation/CoreLocation.h>
-
-#import "BaseObjectsLibrary/GCViewController.h"
-#import "ManagersLibrary/LocationManager-delegate.h"
-#import "ManagersLibrary/WaypointManager-delegate.h"
-
-#import "MapsLibrary/MapTemplateViewController-enum.h"
-
-@class MapBrand;
-@class MapTemplate;
-
 @interface MapTemplateViewController : GCViewController <LocationManagerLocationDelegate, LocationManagerHistoryDelegate, WaypointManagerWaypointDelegate>
 
 #define MAPBRAND_APPLEMAPS  @"Apple Maps"

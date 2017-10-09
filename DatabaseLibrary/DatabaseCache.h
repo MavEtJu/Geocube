@@ -19,25 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Foundation/Foundation.h>
-
-#import "Database.h"
-
-@class dbAccount;
-@class dbProtocol;
-@class dbPin;
-@class dbType;
-@class dbGroup;
-@class dbContainer;
-@class dbCountry;
-@class dbState;
-@class dbLocality;
-@class dbSymbol;
-@class dbAttribute;
-@class dbLogString;
-@class dbWaypoint;
-@class dbName;
-
 @interface DatabaseCache : NSObject
 
 // In memory database information

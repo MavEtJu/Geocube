@@ -19,13 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "WaypointLogsViewController.h"
-
-#import "MapsLibrary/MapLogsViewController.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/Coordinates.h"
-
 @interface WaypointLogsViewController ()
 {
     BOOL mineOnly;

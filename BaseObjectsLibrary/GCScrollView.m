@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "GCScrollView.h"
-
-#import "ThemesLibrary/ThemeManager.h"
-
 @interface GCScrollView ()
 
 @end

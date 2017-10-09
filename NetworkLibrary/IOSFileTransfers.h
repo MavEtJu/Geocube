@@ -19,11 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <Foundation/Foundation.h>
-#include <UIKit/UIKit.h>
-
-#import "NetworkLibrary/IOSFileTransfers-delegate.h"
-
 @interface IOSFileTransfers : NSObject <UIDocumentMenuDelegate, UIDocumentPickerDelegate>
 
 @property (nonatomic, retain) id<IOSFileTransfersDelegate> delegate;

@@ -20,10 +20,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "GCTableViewCellKeyValue.h"
-
-#import "BaseObjectsLibrary/GCLabelNormalText.h"
-
 @interface GCTableViewCellKeyValue ()
 
 @end

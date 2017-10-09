@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "FilterDatesTableViewCell.h"
-
-#import "ManagersLibrary/LocalizationManager.h"
-
 @interface FilterDatesTableViewCell ()
 {
     FilterDate comparePlaced, compareLastLog;

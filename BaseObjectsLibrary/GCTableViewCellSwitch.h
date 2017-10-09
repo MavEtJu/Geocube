@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "GCTableViewCell.h"
-
-@class GCSwitch;
-
 #define XIB_GCTABLEVIEWCELLSWITCH @"GCTableViewCellSwitch"
 
 @interface GCTableViewCellSwitch : GCTableViewCell

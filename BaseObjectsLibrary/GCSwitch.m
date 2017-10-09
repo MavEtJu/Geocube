@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "GCSwitch.h"
-
-#import "ThemesLibrary/ThemeManager.h"
-
 @interface GCSwitch ()
 
 @end

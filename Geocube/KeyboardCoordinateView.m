@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "KeyboardCoordinateView.h"
-
-#import "ManagersLibrary/LocalizationManager.h"
-
 @interface KeyboardCoordinateView ()
 {
     BOOL isLatitude;

@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ContribLibrary/Others/VKSideMenu.h"
-#import "ToolsLibrary/LocalMenuItems.h"
-#import "ToolsLibrary/SideMenu-delegate.h"
-
 @interface SideMenu : NSObject <VKSideMenuDelegate, VKSideMenuDataSource>
 
 @property (nonatomic, strong) VKSideMenu *menuGlobal;

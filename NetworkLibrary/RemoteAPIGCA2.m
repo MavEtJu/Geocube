@@ -19,22 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "RemoteAPIGCA2.h"
-
-#import "Geocube-defines.h"
-
-#import "NetworkLibrary/ProtocolGCA2.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/dbLogString.h"
-#import "DatabaseLibrary/dbAccount.h"
-#import "DatabaseLibrary/dbImage.h"
-#import "DatabaseLibrary/DatabaseCache.h"
-#import "ToolsLibrary/InfoViewer.h"
-#import "ToolsLibrary/InfoItem.h"
-#import "ToolsLibrary/MyTools.h"
-#import "BaseObjectsLibrary/GCDictionaryObjects.h"
-
 @interface RemoteAPIGCA2 ()
 
 @end

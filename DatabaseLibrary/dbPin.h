@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <UIKit/UIKit.h>
-
-#import "dbObject.h"
-
 @interface dbPin : dbObject
 
 @property (nonatomic, retain) NSString *rgb;

@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "MyClock.h"
-
-#import <sys/time.h>
-
 @interface MyClock ()
 {
     struct timeval clock;

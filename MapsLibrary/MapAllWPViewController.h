@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "MapTemplateViewController.h"
-
-#import "NetworkLibrary/RemoteAPITemplate-delegate.h"
-
 @interface MapAllWPViewController : MapTemplateViewController <RemoteAPIDownloadDelegate>
 
 @end

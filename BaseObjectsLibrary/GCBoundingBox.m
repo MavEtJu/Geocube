@@ -19,10 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "GCBoundingBox.h"
-
-#import "ToolsLibrary/Coordinates.h"
-
 @interface GCBoundingBox ()
 
 @end

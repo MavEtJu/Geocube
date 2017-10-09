@@ -19,17 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "CompassViewController.h"
-
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/WaypointManager.h"
-#import "ManagersLibrary/ImageManager.h"
-#import "ManagersLibrary/LocationManager.h"
-#import "ManagersLibrary/ConfigManager.h"
-#import "ManagersLibrary/AudioFeedback.h"
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/Coordinates.h"
-
 @interface CompassViewController ()
 {
     UIImage *compassImage;

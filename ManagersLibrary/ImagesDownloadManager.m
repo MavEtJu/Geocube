@@ -19,17 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ImagesDownloadManager.h"
-
-#import "Geocube-globals.h"
-#import "Geocube-defines.h"
-
-#import "BaseObjectsLibrary/GCURLRequestObjects.h"
-#import "ToolsLibrary/MyTools.h"
-#import "DatabaseLibrary/dbImage.h"
-#import "ManagersLibrary/ConfigManager.h"
-#import "ManagersLibrary/DownloadManager.h"
-
 @interface ImagesDownloadManager ()
 {
     NSInteger downloaded;

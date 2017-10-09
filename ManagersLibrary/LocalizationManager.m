@@ -19,12 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "LocalizationManager.h"
-
-#import "Geocube.h"
-
-#import "ToolsLibrary/MyTools.h"
-
 @interface LocalizationManager ()
 
 @property(nonatomic, retain) NSMutableDictionary *txtable;

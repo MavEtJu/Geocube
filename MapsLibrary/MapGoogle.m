@@ -19,26 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "MapGoogle.h"
-
-#import "Geocube-defines.h"
-
-#import "BaseObjectsLibrary/GCGMSCircle.h"
-#import "BaseObjectsLibrary/GCCoordsHistorical.h"
-#import "ContribLibrary/GMUGeometry/GMUGeometryRenderer.h"
-#import "ContribLibrary/GMUGeometry/GMUKMLParser.h"
-#import "ContribLibrary/LXMapScaleView/LXMapScaleView.h"
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/Coordinates.h"
-#import "ManagersLibrary/LocationManager.h"
-#import "ManagersLibrary/WaypointManager.h"
-#import "ManagersLibrary/ConfigManager.h"
-#import "DatabaseLibrary/dbWaypoint.h"
-#import "DatabaseLibrary/dbAccount.h"
-#import "DatabaseLibrary/dbType.h"
-#import "DatabaseLibrary/dbTrackElement.h"
-#import "MapsLibrary/MapTemplateViewController.h"
-
 @interface MapGoogle ()
 {
     GMSMapView *mapView;

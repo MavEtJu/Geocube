@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "MapTemplateViewController.h"
-
 @interface MapLogsViewController : MapTemplateViewController
 
 - (void)showLogLocations:(dbWaypoint *)wp;

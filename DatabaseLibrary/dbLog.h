@@ -19,15 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <CoreLocation/CoreLocation.h>
-
-#import "dbObject.h"
-
-@class dbAccount;
-@class dbLogString;
-@class dbName;
-@class dbWaypoint;
-
 @interface dbLog : dbObject
 
 @property (nonatomic) NSInteger gc_id;

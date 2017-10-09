@@ -19,17 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "WaypointAddViewController.h"
-
-#import "ManagersLibrary/OpenCageManager.h"
-#import "ManagersLibrary/LocationManager.h"
-#import "ManagersLibrary/LocalizationManager.h"
-#import "ManagersLibrary/ConfigManager.h"
-#import "ManagersLibrary/WaypointManager.h"
-#import "ThemesLibrary/ThemeManager.h"
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/Coordinates.h"
-
 @interface WaypointAddViewController ()
 {
     NSString *code;
