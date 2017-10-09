@@ -46,6 +46,7 @@
 #import "DatabaseLibrary/dbListData.h"
 #import "DatabaseLibrary/dbLocality.h"
 #import "DatabaseLibrary/dbLog.h"
+#import "DatabaseLibrary/dbLogData.h"
 #import "DatabaseLibrary/dbLogMacro.h"
 #import "DatabaseLibrary/dbLogString.h"
 #import "DatabaseLibrary/dbLogStringWaypoint.h"

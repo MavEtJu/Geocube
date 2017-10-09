@@ -1,0 +1,99 @@
+/*
+ * Geocube
+ * By Edwin Groothuis <geocube@mavetju.org>
+ * Copyright 2017 Edwin Groothuis
+ *
+ * This file is part of Geocube.
+ *
+ * Geocube is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Geocube is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+@interface dbLogData ()
+
+@end
+
+@implementation dbLogData
+
+TABLENAME(@"log_data")
+
+- (NSId)dbCreate
+{
+    @synchronized(db) {
+        DB_PREPARE(@"insert into log_data(waypoint_id, datetime, type) values(?, ?, ?)");
+
+        SET_VAR_INT(1, self.waypoint._id);
+        SET_VAR_INT(2, self.datetime_epoch);
+        SET_VAR_INT(3, self.type);
+
+        DB_CHECK_OKAY;
+        DB_GET_LAST_ID(self._id);
+        DB_FINISH;
+    }
+
+    return self._id;
+}
+
+- (void)dbUpdate
+{
+    @synchronized(db) {
+        DB_PREPARE(@"update log_data set waypoint_id = ?, datetime = ?, type_id = ? where id = ?");
+
+        SET_VAR_INT(1, self.waypoint._id);
+        SET_VAR_INT(2, self.datetime_epoch);
+        SET_VAR_INT(3, self.type);
+        SET_VAR_INT(4, self._id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
++ (NSArray<dbLogData *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *> *)values
+{
+    NSMutableArray<dbLogData *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
+
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, waypoint_id, datetime, type from log_data "];
+    if (where != nil)
+        [sql appendString:where];
+
+    NSId i;
+
+    @synchronized(db) {
+        DB_PREPARE_KEYSVALUES(sql, keys, values)
+
+        DB_WHILE_STEP {
+            dbLogData *ld = [[dbLogData alloc] init];
+            INT_FETCH (0, ld._id);
+            INT_FETCH (1, i);
+            ld.waypoint = [dbWaypoint dbGet:i];
+            INT_FETCH (2, ld.datetime_epoch);
+            INT_FETCH (3, ld.type);
+            [ss addObject:ld];
+        }
+        DB_FINISH;
+    }
+    return ss;
+}
+
++ (NSArray<dbLogData *> *)dbAll
+{
+    return [self dbAllXXX:nil keys:nil values:nil];
+}
+
++ (dbLogData *)dbGet:(NSId)_id
+{
+    return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithId:_id]]] firstObject];
+}
+
+@end

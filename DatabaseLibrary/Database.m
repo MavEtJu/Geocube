@@ -830,6 +830,13 @@
     @"update config set value = 'https://geocube.mavetju.org/geocube_types.6.geocube' where key = 'url_types'",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 66
+    a = @[
+    @"create table log_data (id integer primary key, waypoint_id integer, datetime_epoch integer, type integer)",
+    @"create index log_data_idx_id on log_data(id)",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

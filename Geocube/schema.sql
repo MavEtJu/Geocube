@@ -18,7 +18,7 @@ insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.5.geocube");
 insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.5.geocube");
 insert into config(key, value) values("url_versions", "https://geocube.mavetju.org/geocube_versions.geocube");
-insert into config(key, value) values("version", "65");
+insert into config(key, value) values("version", "66");
 
 create table filters (
     id integer primary key,
@@ -431,3 +431,11 @@ create index languages_idx on languages(id);
 insert into languages(language, country) values("en", "");
 insert into languages(language, country) values("en", "US");
 insert into languages(language, country) values("nl", "");
+
+create table log_data (
+    id integer primary key,
+    waypoint_id integer,	-- points to waypoints(id)
+    datetime_epoch integer,
+    type integer		-- 0: Found, 1: DNF
+);
+create index log_data_idx_id on log_data(id);

@@ -246,6 +246,7 @@
 @class dbListData;
 @class dbLocality;
 @class dbLog;
+@class dbLogData;
 @class dbLogMacro;
 @class dbLogString;
 @class dbLogStringWaypoint;

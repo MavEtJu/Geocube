@@ -620,6 +620,7 @@
 		E84725E61DF774E200CFF99B /* menu icon - local@2x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E01DF774E200CFF99B /* menu icon - local@2x - night.png */; };
 		E84725E71DF774E200CFF99B /* menu icon - local@3x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */; };
 		E84E88A41F6CFFD0004F4BE9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E84E88A31F6CFFD0004F4BE9 /* Social.framework */; };
+		E8587B8B1F8C24330099EA0E /* dbLogData.m in Sources */ = {isa = PBXBuildFile; fileRef = E8587B8A1F8C24330099EA0E /* dbLogData.m */; };
 		E858F5991F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E858F5981F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib */; };
 		E858F59B1F56610B002C1F9B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E858F59A1F56610B002C1F9B /* ImageIO.framework */; };
 		E8596ACD1F73174100E26495 /* DeveloperDatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8596ACA1F73174100E26495 /* DeveloperDatabaseViewController.m */; };
@@ -1813,6 +1814,8 @@
 		E84E89871F6F2E13004F4BE9 /* WaypointPersonalNoteViewController-delegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "WaypointPersonalNoteViewController-delegate.h"; path = "Waypoints/WaypointPersonalNoteViewController-delegate.h"; sourceTree = "<group>"; };
 		E84E89881F6F30D4004F4BE9 /* libNetworkLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNetworkLibrary.a; path = "NetworkLibrary/build/Debug-iphoneos/libNetworkLibrary.a"; sourceTree = "<group>"; };
 		E84E89EB1F6F5547004F4BE9 /* libConvertorsLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libConvertorsLibrary.a; path = "../../Library/Developer/Xcode/DerivedData/Geocube-bjprugvtqrcyrnatajlgnpwinftk/Build/Products/Debug-iphonesimulator/libConvertorsLibrary.a"; sourceTree = "<group>"; };
+		E8587B891F8C24330099EA0E /* dbLogData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbLogData.h; path = DatabaseLibrary/dbLogData.h; sourceTree = "<group>"; };
+		E8587B8A1F8C24330099EA0E /* dbLogData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbLogData.m; path = DatabaseLibrary/dbLogData.m; sourceTree = "<group>"; };
 		E858F5981F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "KeepTrackBeeperView~ipad.xib"; path = "KeepTrack/KeepTrackBeeperView~ipad.xib"; sourceTree = "<group>"; };
 		E858F59A1F56610B002C1F9B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		E8596AC91F73174100E26495 /* DeveloperDatabaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeveloperDatabaseViewController.h; path = Developer/DeveloperDatabaseViewController.h; sourceTree = "<group>"; };
@@ -2290,6 +2293,8 @@
 				E82286551F8A2BD500631380 /* dbLocality.m */,
 				E82286561F8A2BD500631380 /* dbLog.h */,
 				E82286571F8A2BD500631380 /* dbLog.m */,
+				E8587B891F8C24330099EA0E /* dbLogData.h */,
+				E8587B8A1F8C24330099EA0E /* dbLogData.m */,
 				E82286581F8A2BD500631380 /* dbLogMacro.h */,
 				E82286591F8A2BD500631380 /* dbLogMacro.m */,
 				E822865B1F8A2BD500631380 /* dbLogString.h */,
@@ -4886,6 +4891,7 @@
 				E82288191F8A347A00631380 /* CXMLDocument.m in Sources */,
 				E82287681F8A2EC300631380 /* GCScrollView.m in Sources */,
 				E823444D1EECE04B00D2CDFD /* NotesImagesViewController.m in Sources */,
+				E8587B8B1F8C24330099EA0E /* dbLogData.m in Sources */,
 				E822876D1F8A2EC300631380 /* GCTableViewHeaderFooterView.m in Sources */,
 				E82288881F8A34FB00631380 /* SimpleKMLPolyStyle.m in Sources */,
 				E822868B1F8A2BD600631380 /* dbFilter.m in Sources */,
