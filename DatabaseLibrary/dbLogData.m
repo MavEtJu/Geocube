@@ -96,4 +96,25 @@ TABLENAME(@"log_data")
     return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithId:_id]]] firstObject];
 }
 
+// Other methods
+
++ (void)addEntry:(dbWaypoint *)waypoint type:(LogDataType)type datetime:(time_t)datetime_epoch
+{
+    // You can have multiple DNFs per waypoint.
+    // You can habe only one Found per waypoint.
+
+    if (type == LOGDATATYPE_FOUND) {
+        NSArray<dbLogData *> *lds = [dbLogData dbAllXXX:@"where waypoint_id = ? and type = ?" keys:@"ii" values:@[[NSNumber numberWithInteger:waypoint._id], [NSNumber numberWithInteger:type]]];
+        [lds enumerateObjectsUsingBlock:^(dbLogData * _Nonnull ld, NSUInteger idx, BOOL * _Nonnull stop) {
+            [ld dbDelete];
+        }];
+    }
+
+    dbLogData *ld = [[dbLogData alloc] init];
+    ld.waypoint = waypoint;
+    ld.type = type;
+    ld.datetime_epoch = datetime_epoch;
+    [ld dbCreate];
+}
+
 @end

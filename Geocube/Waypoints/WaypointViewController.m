@@ -724,8 +724,14 @@ enum {
                               waypoint.flag_dnf = !waypoint.flag_dnf;
                               [waypoint dbUpdateMarkedDNF];
                               [waypointManager needsRefreshUpdate:waypoint];
-                              if (waypoint.flag_dnf == YES && waypoint == waypointManager.currentWaypoint)
-                                  [waypointManager setTheCurrentWaypoint:nil];
+                              if (waypoint.flag_dnf == YES) {
+                                  // Remove from the navigation sreen
+                                  if (waypoint == waypointManager.currentWaypoint)
+                                      [waypointManager setTheCurrentWaypoint:nil];
+
+                                  // Add to log data
+                                  [dbLogData addEntry:waypoint type:LOGDATATYPE_DNF datetime:time(NULL)];
+                              }
                               [self.tableView reloadData];
                           }];
     TITLE(waypoint.flag_markedfound, _(@"waypointviewcontroller-Found"))
@@ -743,6 +749,10 @@ enum {
                                     [waypointManager setTheCurrentWaypoint:nil];
 
                                 if (waypoint.flag_markedfound == YES) {
+                                    // Add to log data
+                                    [dbLogData addEntry:waypoint type:LOGDATATYPE_FOUND datetime:time(NULL)];
+
+                                    // Mark all related waypoints as found.
                                     NSArray<dbWaypoint *> *wps = [waypoint hasWaypoints];
                                     [wps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                                         if (wp._id == waypoint._id)

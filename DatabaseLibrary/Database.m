@@ -690,6 +690,8 @@
     @"update config set value = 'https://geocube.mavetju.org/geocube_bookmarks.4.geocube' where key = 'url_bookmarks'",
     @"update config set value = 'https://geocube.mavetju.org/geocube_containers.4.geocube' where key = 'url_containers'",
     @"update config set value = 'https://geocube.mavetju.org/geocube_logstrings.4.geocube' where key = 'url_logstrings'",
+
+    @"alter table "
     ];
     [upgradeSteps addObject:a];
 
@@ -835,6 +837,27 @@
     a = @[
     @"create table log_data (id integer primary key, waypoint_id integer, datetime_epoch integer, type integer)",
     @"create index log_data_idx_id on log_data(id)",
+    ];
+    [upgradeSteps addObject:a];
+
+    // Version 67
+    a = @[
+    @"update config set value = 'https://geocube.mavetju.org/geocube_sites.6.geocube' where key = 'url_sites'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_sites.6.geocube' where key = 'url_sites'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_notices.6.geocube' where key = 'url_notices'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_externalmaps.6.geocube' where key = 'url_externalmaps'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_countries.6.geocube' where key = 'url_countries'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_states.6.geocube' where key = 'url_states'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_attributes.6.geocube' where key = 'url_attributes'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_keys.6.geocube' where key = 'url_keys'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_types.6.geocube' where key = 'url_types'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_pins.6.geocube' where key = 'url_pins'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_bookmarks.6.geocube' where key = 'url_bookmarks'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_containers.6.geocube' where key = 'url_containers'",
+    @"update config set value = 'https://geocube.mavetju.org/geocube_logstrings.6.geocube' where key = 'url_logstrings'",
+
+    @"alter table log_strings add column default_dnf bool",
+    @"update log_strings set default_dnf = 0",
     ];
     [upgradeSteps addObject:a];
 }

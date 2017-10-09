@@ -732,6 +732,7 @@ typedef NS_ENUM(NSInteger, Type) {
             BOOL defaultDropoff = ([dflt isEqualToString:@"dropoff"] == YES);
             BOOL defaultPickup = ([dflt isEqualToString:@"pickup"] == YES);
             BOOL defaultDiscover = ([dflt isEqualToString:@"discover"] == YES);
+            BOOL defaultDNF = ([dflt isEqualToString:@"dnf"] == YES);
 
             LogStringFound found = LOGSTRING_FOUND_NA;
             if (_found != nil) {
@@ -753,6 +754,7 @@ typedef NS_ENUM(NSInteger, Type) {
                 ls.defaultDropoff = defaultDropoff;
                 ls.defaultPickup = defaultPickup;
                 ls.defaultDiscover = defaultDiscover;
+                ls.defaultDNF = defaultDNF;
                 ls.icon = icon;
                 ls.found = found;
                 [ls dbCreate];
@@ -764,6 +766,7 @@ typedef NS_ENUM(NSInteger, Type) {
                 ls.defaultDropoff = defaultDropoff;
                 ls.defaultPickup = defaultPickup;
                 ls.defaultDiscover = defaultDiscover;
+                ls.defaultDNF = defaultDNF;
                 ls.icon = icon;
                 ls.found = found;
                 [ls dbUpdate];

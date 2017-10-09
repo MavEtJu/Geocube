@@ -30,6 +30,7 @@
 @property (nonatomic) BOOL defaultDropoff;
 @property (nonatomic) BOOL defaultPickup;
 @property (nonatomic) BOOL defaultDiscover;
+@property (nonatomic) BOOL defaultDNF;
 //@property (nonatomic) BOOL forLogs;
 //@property (nonatomic) LogStringWPType wptype;
 @property (nonatomic) LogStringFound found;

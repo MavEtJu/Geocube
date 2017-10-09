@@ -644,6 +644,12 @@ enum {
     [menuGlobal enableMenus:NO];
     [MHTabBarController enableMenus:NO controllerFrom:self];
 
+    // Keep record of 
+    if (logstring.defaultFound == YES)
+        [dbLogData addEntry:waypoint type:LOGDATATYPE_FOUND datetime:[MyTools secondsSinceEpochFromISO8601:date]];
+    if (logstring.defaultDNF == YES)
+        [dbLogData addEntry:waypoint type:LOGDATATYPE_DNF datetime:[MyTools secondsSinceEpochFromISO8601:date]];
+
     [bezelManager showBezel:self];
     [bezelManager setText:_(@"waypointlogviewcontroller-Uploading log")];
 

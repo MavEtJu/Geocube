@@ -31,7 +31,7 @@ TABLENAME(@"log_strings")
 {
     ASSERT_SELF_FIELD_EXISTS(protocol);
     @synchronized(db) {
-        DB_PREPARE(@"insert into log_strings(display_string, log_string, protocol_id, default_note, default_found, icon, found, default_visit, default_dropoff, default_pickup, default_discover) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into log_strings(display_string, log_string, protocol_id, default_note, default_found, icon, found, default_visit, default_dropoff, default_pickup, default_discover, default_dnf) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT( 1, self.displayString);
         SET_VAR_TEXT( 2, self.logString);
@@ -44,6 +44,7 @@ TABLENAME(@"log_strings")
         SET_VAR_BOOL( 9, self.defaultDropoff);
         SET_VAR_BOOL(10, self.defaultPickup);
         SET_VAR_BOOL(11, self.defaultDiscover);
+        SET_VAR_BOOL(12, self.defaultDNF);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(self._id);
@@ -56,7 +57,7 @@ TABLENAME(@"log_strings")
 - (void)dbUpdate
 {
     @synchronized(db) {
-        DB_PREPARE(@"update log_strings set display_string = ?, log_string = ?, protocol_id = ?, default_note = ?, default_found = ?, icon= ?, found = ?, default_visit = ?, default_dropoff = ?, default_pickup = ?, default_discover = ? where id = ?");
+        DB_PREPARE(@"update log_strings set display_string = ?, log_string = ?, protocol_id = ?, default_note = ?, default_found = ?, icon= ?, found = ?, default_visit = ?, default_dropoff = ?, default_pickup = ?, default_discover = ?, default_dnf = ? where id = ?");
 
         SET_VAR_TEXT( 1, self.displayString);
         SET_VAR_TEXT( 2, self.logString);
@@ -69,7 +70,8 @@ TABLENAME(@"log_strings")
         SET_VAR_BOOL( 9, self.defaultDropoff);
         SET_VAR_BOOL(10, self.defaultPickup);
         SET_VAR_BOOL(11, self.defaultDiscover);
-        SET_VAR_INT (12, self._id);
+        SET_VAR_BOOL(12, self.defaultDNF);
+        SET_VAR_INT (13, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -81,7 +83,7 @@ TABLENAME(@"log_strings")
     NSMutableArray<dbLogString *> *lss = [[NSMutableArray alloc] initWithCapacity:20];
     NSId i;
 
-    NSMutableString *sql = [NSMutableString stringWithString:@"select id, display_string, log_string, protocol_id, default_note, default_found, icon, found, default_visit, default_dropoff, default_pickup, default_discover from log_strings "];
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, display_string, log_string, protocol_id, default_note, default_found, icon, found, default_visit, default_dropoff, default_pickup, default_discover, default_dnf from log_strings "];
     if (where != nil)
         [sql appendString:where];
 
@@ -102,6 +104,7 @@ TABLENAME(@"log_strings")
             BOOL_FETCH( 9, ls.defaultDropoff);
             BOOL_FETCH(10, ls.defaultPickup);
             BOOL_FETCH(11, ls.defaultDiscover);
+            BOOL_FETCH(12, ls.defaultDNF);
             [ls finish];
             [lss addObject:ls];
         }
@@ -161,6 +164,9 @@ TABLENAME(@"log_strings")
             break;
         case LOGSTRING_DEFAULT_DISCOVER:
             what = @"discover";
+            break;
+        case LOGSTRING_DEFAULT_DNF:
+            what = @"dnf";
             break;
         default:
             NSAssert1(NO, @"Unknown default field: %ld", (long)dflt);
