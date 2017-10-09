@@ -27,6 +27,8 @@
 #import "ManagersLibrary/ConfigManager.h"
 #import "ManagersLibrary/WaypointManager.h"
 #import "ThemesLibrary/ThemeManager.h"
+#import "ToolsLibrary/MyTools.h"
+#import "ToolsLibrary/Coordinates.h"
 
 @interface WaypointAddViewController ()
 {

@@ -23,6 +23,8 @@
 
 #import "MapsLibrary/MapLogsViewController.h"
 #import "ManagersLibrary/LocalizationManager.h"
+#import "ToolsLibrary/MyTools.h"
+#import "ToolsLibrary/Coordinates.h"
 
 @interface WaypointLogsViewController ()
 {

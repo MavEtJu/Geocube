@@ -28,6 +28,7 @@
 #import "ManagersLibrary/ImageManager.h"
 #import "ManagersLibrary/BezelManager.h"
 #import "ManagersLibrary/ConfigManager.h"
+#import "ToolsLibrary/MyTools.h"
 
 @interface SettingsAccountsViewController ()
 {

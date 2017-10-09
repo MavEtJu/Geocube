@@ -24,6 +24,8 @@
 #import "ManagersLibrary/LocalizationManager.h"
 #import "ManagersLibrary/ImageManager.h"
 #import "ManagersLibrary/LocationManager.h"
+#import "ToolsLibrary/Coordinates.h"
+#import "ToolsLibrary/MyTools.h"
 
 @interface WaypointHeaderTableViewCell ()
 

@@ -28,6 +28,8 @@
 #import "ManagersLibrary/ImportManager.h"
 #import "ManagersLibrary/AudioManager.h"
 #import "ManagersLibrary/WaypointManager.h"
+#import "ToolsLibrary/MyTools.h"
+#import "ToolsLibrary/InfoViewer.h"
 
 @interface QueriesTemplateViewController ()
 {

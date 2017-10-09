@@ -27,6 +27,8 @@
 #import "ManagersLibrary/LocationManager.h"
 #import "ManagersLibrary/ConfigManager.h"
 #import "ManagersLibrary/AudioFeedback.h"
+#import "ToolsLibrary/MyTools.h"
+#import "ToolsLibrary/Coordinates.h"
 
 @interface CompassViewController ()
 {

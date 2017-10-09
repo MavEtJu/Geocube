@@ -27,6 +27,9 @@
 #import "ManagersLibrary/LocalizationManager.h"
 #import "ManagersLibrary/ImageManager.h"
 #import "ManagersLibrary/LocationManager.h"
+#import "ToolsLibrary/InfoViewer.h"
+#import "ToolsLibrary/MyTools.h"
+#import "ToolsLibrary/Coordinates.h"
 
 @interface WaypointImagesViewController ()
 {

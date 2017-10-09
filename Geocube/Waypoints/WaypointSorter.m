@@ -23,6 +23,7 @@
 
 #import "ManagersLibrary/LocationManager.h"
 #import "ManagersLibrary/LocalizationManager.h"
+#import "ToolsLibrary/Coordinates.h"
 
 @interface WaypointSorter ()
 

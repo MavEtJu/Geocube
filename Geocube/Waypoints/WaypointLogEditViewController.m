@@ -23,6 +23,7 @@
 
 #import "ManagersLibrary/LocalizationManager.h"
 #import "ManagersLibrary/ConfigManager.h"
+#import "ToolsLibrary/MyTools.h"
 
 @interface WaypointLogEditViewController ()
 {

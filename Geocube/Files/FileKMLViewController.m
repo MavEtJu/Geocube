@@ -23,6 +23,7 @@
 
 #import "ManagersLibrary/LocalizationManager.h"
 #import "ManagersLibrary/WaypointManager.h"
+#import "ToolsLibrary/MyTools.h"
 
 @interface FileKMLViewController ()
 {

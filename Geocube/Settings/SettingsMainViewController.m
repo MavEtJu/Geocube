@@ -28,6 +28,7 @@
 #import "ManagersLibrary/ConfigManager.h"
 #import "ManagersLibrary/ImageManager.h"
 #import "ManagersLibrary/AudioFeedback.h"
+#import "ToolsLibrary/MyTools.h"
 
 @interface SettingsMainViewController ()
 {

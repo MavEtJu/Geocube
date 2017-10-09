@@ -30,6 +30,8 @@
 #import "ManagersLibrary/ImportManager.h"
 #import "ManagersLibrary/ConfigManager.h"
 #import "ManagersLibrary/AudioManager.h"
+#import "ToolsLibrary/InfoViewer.h"
+#import "ToolsLibrary/MyTools.h"
 
 @interface ListTemplateViewController ()
 {

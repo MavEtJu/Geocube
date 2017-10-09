@@ -26,6 +26,8 @@
 #import "NetworkLibrary/RemoteAPITemplate.h"
 #import "ManagersLibrary/LocalizationManager.h"
 #import "ManagersLibrary/BezelManager.h"
+#import "ToolsLibrary/MyTools.h"
+#import "ToolsLibrary/Coordinates.h"
 
 @interface WaypointPersonalNoteViewController ()
 {

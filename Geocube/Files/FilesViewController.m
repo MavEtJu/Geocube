@@ -27,6 +27,8 @@
 #import "ManagersLibrary/ConfigManager.h"
 #import "ManagersLibrary/AudioManager.h"
 #import "ManagersLibrary/ImportManager.h"
+#import "ToolsLibrary/MyTools.h"
+#import "ToolsLibrary/InfoViewer.h"
 
 @interface FilesViewController ()
 {

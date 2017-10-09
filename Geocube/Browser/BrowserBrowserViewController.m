@@ -25,6 +25,8 @@
 #import "NetworkLibrary/GCOAuthBlackbox.h"
 #import "NetworkLibrary/ProtocolGGCW.h"
 #import "ManagersLibrary/LocalizationManager.h"
+#import "ToolsLibrary/MyTools.h"
+#import "ToolsLibrary/InfoViewer.h"
 
 @interface BrowserBrowserViewController ()
 {

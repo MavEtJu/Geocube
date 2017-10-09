@@ -41,6 +41,7 @@
 #import "MapsLibrary/MapAllWPViewController.h"
 #import "MapsLibrary/MapTrackViewController.h"
 #import "MapsLibrary/MapLogsViewController.h"
+#import "ToolsLibrary/MyTools.h"
 
 #import "Tools/ToolsRot13ViewController.h"
 #import "Tools/ToolsGNSSViewController.h"

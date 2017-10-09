@@ -29,6 +29,8 @@
 #import "ManagersLibrary/LocalizationManager.h"
 #import "ManagersLibrary/LocationManager.h"
 #import "ManagersLibrary/WaypointManager.h"
+#import "ToolsLibrary/Coordinates.h"
+#import "ToolsLibrary/MyTools.h"
 
 @interface ToolsGNSSViewController ()
 {

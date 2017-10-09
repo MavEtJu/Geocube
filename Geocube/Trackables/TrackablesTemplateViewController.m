@@ -23,6 +23,8 @@
 
 #import "NetworkLibrary/RemoteAPITemplate.h"
 #import "ManagersLibrary/LocalizationManager.h"
+#import "ToolsLibrary/MyTools.h"
+#import "ToolsLibrary/InfoViewer.h"
 
 @interface TrackablesTemplateViewController ()
 

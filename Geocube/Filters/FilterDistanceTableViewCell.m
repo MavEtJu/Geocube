@@ -23,6 +23,7 @@
 
 #import "BaseObjectsLibrary/GCLabelNormalText.h"
 #import "ManagersLibrary/LocalizationManager.h"
+#import "ToolsLibrary/MyTools.h"
 
 #import "FilterButton.h"
 

@@ -24,6 +24,8 @@
 #import "MapsLibrary/MapTrackViewController.h"
 #import "ManagersLibrary/LocalizationManager.h"
 #import "ManagersLibrary/ConfigManager.h"
+#import "ToolsLibrary/MyTools.h"
+#import "ToolsLibrary/Coordinates.h"
 
 @interface KeepTrackTracks ()
 {

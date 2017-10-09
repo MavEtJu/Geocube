@@ -25,6 +25,7 @@
 #import "MapsLibrary/MapAppleTemplate.h"
 #import "MapsLibrary/MapTemplateViewController.h"
 #import "ManagersLibrary/LocalizationManager.h"
+#import "ToolsLibrary/MyTools.h"
 
 @interface DeveloperDatabaseViewController ()
 {

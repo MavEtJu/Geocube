@@ -32,6 +32,8 @@
 #import "ManagersLibrary/ConfigManager.h"
 #import "ManagersLibrary/ImportManager.h"
 #import "ManagersLibrary/AudioManager.h"
+#import "ToolsLibrary/MyTools.h"
+#import "ToolsLibrary/InfoViewer.h"
 
 #define TESTLOGJE
 #undef TESTLOGJE

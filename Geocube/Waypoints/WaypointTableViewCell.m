@@ -31,6 +31,7 @@
 #import "DatabaseLibrary/dbWaypoint.h"
 #import "DatabaseLibrary/dbName.h"
 #import "ToolsLibrary/MyTools.h"
+#import "ToolsLibrary/Coordinates.h"
 #import "ThemesLibrary/ThemeManager.h"
 
 @interface WaypointTableViewCell ()

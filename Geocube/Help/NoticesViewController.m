@@ -25,6 +25,7 @@
 #import "ManagersLibrary/DownloadManager.h"
 #import "ManagersLibrary/LocalizationManager.h"
 #import "ManagersLibrary/BezelManager.h"
+#import "ToolsLibrary/MyTools.h"
 
 @interface NoticesViewController ()
 {

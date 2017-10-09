@@ -32,6 +32,9 @@
 #import "ManagersLibrary/AudioManager.h"
 #import "ManagersLibrary/WaypointManager.h"
 #import "ManagersLibrary/ImportManager.h"
+#import "ToolsLibrary/MyTools.h"
+#import "ToolsLibrary/MyClock.h"
+#import "ToolsLibrary/InfoViewer.h"
 
 @interface WaypointsListViewController ()
 {

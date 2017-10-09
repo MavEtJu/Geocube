@@ -28,6 +28,8 @@
 #import "ManagersLibrary/BezelManager.h"
 #import "ManagersLibrary/ConfigManager.h"
 #import "ManagersLibrary/ImageManager.h"
+#import "ToolsLibrary/MyTools.h"
+#import "ToolsLibrary/Coordinates.h"
 
 @interface WaypointLogViewController ()
 {

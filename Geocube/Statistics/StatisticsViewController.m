@@ -23,6 +23,8 @@
 
 #import "NetworkLibrary/RemoteAPITemplate.h"
 #import "ManagersLibrary/LocalizationManager.h"
+#import "ToolsLibrary/InfoViewer.h"
+#import "ToolsLibrary/MyTools.h"
 
 @interface StatisticsViewController ()
 {
