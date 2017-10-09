@@ -24,7 +24,7 @@ echo "Untranslated strings:"
 grep -h "_(" $MFILES | perl findMissingLocalizations.pl
 
 echo
-echo "HelpDatabaseViewController:"
+echo "DeveloperDatabaseViewController:"
 for class in $(grep implementation $DBFILES | awk '{ print $2 }' | grep -v dbObject); do
 	if [ $(grep -c "$class dbCount" Geocube/Developer/DeveloperDatabaseViewController.m) == 0 ]; then
 		echo "Not found: $class"
