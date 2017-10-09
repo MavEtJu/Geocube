@@ -629,6 +629,7 @@
 		E8607F171F8ADA91004E273C /* cache - geocacher - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8607F141F8ADA91004E273C /* cache - geocacher - 30x30.png */; };
 		E8607F181F8ADA91004E273C /* cache - geocacher - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8607F151F8ADA91004E273C /* cache - geocacher - 30x30@2x.png */; };
 		E8607F191F8ADA91004E273C /* cache - geocacher - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8607F161F8ADA91004E273C /* cache - geocacher - 30x30@3x.png */; };
+		E8607F1B1F8B1328004E273C /* Launch Screen-Landscape.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8607F1A1F8B1328004E273C /* Launch Screen-Landscape.storyboard */; };
 		E860CA051F81F84700C66AD8 /* FilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E860CA041F81F84700C66AD8 /* FilterButton.m */; };
 		E861B97E1EE2E6D300BD82AC /* GC - logo - 1536×2048.png in Resources */ = {isa = PBXBuildFile; fileRef = E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */; };
 		E861B9801EE2E8AC00BD82AC /* GC - logo - 768×1024.png in Resources */ = {isa = PBXBuildFile; fileRef = E861B97F1EE2E8AC00BD82AC /* GC - logo - 768×1024.png */; };
@@ -1824,6 +1825,7 @@
 		E8607F141F8ADA91004E273C /* cache - geocacher - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - geocacher - 30x30.png"; path = "images/caches/cache - geocacher - 30x30.png"; sourceTree = "<group>"; };
 		E8607F151F8ADA91004E273C /* cache - geocacher - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - geocacher - 30x30@2x.png"; path = "images/caches/cache - geocacher - 30x30@2x.png"; sourceTree = "<group>"; };
 		E8607F161F8ADA91004E273C /* cache - geocacher - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - geocacher - 30x30@3x.png"; path = "images/caches/cache - geocacher - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8607F1A1F8B1328004E273C /* Launch Screen-Landscape.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen-Landscape.storyboard"; sourceTree = "<group>"; };
 		E860CA031F81F84700C66AD8 /* FilterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterButton.h; path = Filters/FilterButton.h; sourceTree = "<group>"; };
 		E860CA041F81F84700C66AD8 /* FilterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterButton.m; path = Filters/FilterButton.m; sourceTree = "<group>"; };
 		E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 1536×2048.png"; path = "images/logos/GC - logo - 1536×2048.png"; sourceTree = "<group>"; };
@@ -3980,6 +3982,7 @@
 			isa = PBXGroup;
 			children = (
 				E876ECA41F7DECBD002A368E /* Launch Screen.storyboard */,
+				E8607F1A1F8B1328004E273C /* Launch Screen-Landscape.storyboard */,
 				E82341861EECA19300D2CDFD /* EncryptionKeys.plist */,
 				E823419A1EECAF4F00D2CDFD /* EncryptionKeysExample.plist */,
 				E879F9CB1B7B527200220EA7 /* Geocube.entitlements */,
@@ -4473,6 +4476,7 @@
 				E876ECAE1F7E0391002A368E /* launchscreen - logo.png in Resources */,
 				E8FEDEA41DA7C08A007C756B /* waypoint - parking - 30x30@2x.png in Resources */,
 				E82E67431DA07D0200CFBDED /* attributes - 25.png in Resources */,
+				E8607F1B1F8B1328004E273C /* Launch Screen-Landscape.storyboard in Resources */,
 				E87ED1801F859EFE00DE8E9B /* FilterAccountsTableViewCell.xib in Resources */,
 				E82E66DC1DA07CBE00CFBDED /* cache - unknown - 30x30@2x.png in Resources */,
 				E823449F1EECE0BD00D2CDFD /* StatisticsTableViewCell.xib in Resources */,

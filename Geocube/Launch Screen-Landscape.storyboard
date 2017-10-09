@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_0" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchscreen - background.png" translatesAutoresizingMaskIntoConstraints="NO" id="nIX-9d-peA" userLabel="Background">
+                                <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchscreen - logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zkw-if-JQD">
+                                <rect key="frame" x="248" y="0.0" width="320" height="320"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Zkw-if-JQD" secondAttribute="height" multiplier="1:1" id="Mek-Q7-Ntr"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RT1-YB-Fg7">
+                                <rect key="frame" x="20" y="0.0" width="228" height="320"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geocube" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
+                                        <rect key="frame" x="36.5" y="50" width="155" height="43"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8iF-EH-GQa">
+                                        <rect key="frame" x="73" y="113" width="82.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Website: https://geocube.mavetju.org Twitter: @geocubecaching Facebook: Geocube Geocaching Email: geocube@mavetju.org" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKV-UY-DRZ">
+                                        <rect key="frame" x="0.0" y="203.5" width="228.5" height="62.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright © 2017 Edwin `MavEtJu' Groothuis. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="obG-Y5-kRd">
+                                        <rect key="frame" x="0.0" y="296" width="228" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="8iF-EH-GQa" firstAttribute="centerX" secondItem="RT1-YB-Fg7" secondAttribute="centerX" id="1ec-iJ-VCo"/>
+                                    <constraint firstAttribute="bottom" secondItem="obG-Y5-kRd" secondAttribute="bottom" id="CT0-Al-k8P"/>
+                                    <constraint firstItem="8iF-EH-GQa" firstAttribute="top" secondItem="GJd-Yh-RWb" secondAttribute="bottom" constant="20" id="Cuh-4g-k5J"/>
+                                    <constraint firstItem="GJd-Yh-RWb" firstAttribute="top" secondItem="RT1-YB-Fg7" secondAttribute="top" constant="50" id="DvD-Jh-JqA"/>
+                                    <constraint firstItem="GJd-Yh-RWb" firstAttribute="centerX" secondItem="RT1-YB-Fg7" secondAttribute="centerX" id="ECY-DJ-pok"/>
+                                    <constraint firstItem="obG-Y5-kRd" firstAttribute="centerX" secondItem="RT1-YB-Fg7" secondAttribute="centerX" id="IGb-o6-hSm"/>
+                                    <constraint firstItem="MKV-UY-DRZ" firstAttribute="centerX" secondItem="RT1-YB-Fg7" secondAttribute="centerX" id="h9i-3Q-EfE"/>
+                                    <constraint firstItem="obG-Y5-kRd" firstAttribute="top" secondItem="MKV-UY-DRZ" secondAttribute="bottom" constant="30" id="wOD-LV-HsL"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Zkw-if-JQD" secondAttribute="trailing" id="0Og-vm-Z3O"/>
+                            <constraint firstItem="nIX-9d-peA" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="AR7-Gz-vx9"/>
+                            <constraint firstAttribute="bottom" secondItem="nIX-9d-peA" secondAttribute="bottom" id="K5U-ir-HjT"/>
+                            <constraint firstItem="RT1-YB-Fg7" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="UsY-hQ-s8d"/>
+                            <constraint firstItem="Zkw-if-JQD" firstAttribute="leading" secondItem="RT1-YB-Fg7" secondAttribute="trailing" id="a8o-rZ-1bU"/>
+                            <constraint firstItem="RT1-YB-Fg7" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="bottomMargin" id="baZ-0b-mRl"/>
+                            <constraint firstItem="RT1-YB-Fg7" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="e8i-gh-OMV"/>
+                            <constraint firstItem="nIX-9d-peA" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="kVo-jt-5FN"/>
+                            <constraint firstItem="Zkw-if-JQD" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="rD8-1S-GPI"/>
+                            <constraint firstAttribute="trailing" secondItem="nIX-9d-peA" secondAttribute="trailing" id="tfU-Ir-wWS"/>
+                            <constraint firstAttribute="bottom" secondItem="Zkw-if-JQD" secondAttribute="bottom" id="vYL-nT-Hwz"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="120.4225352112676" y="245.625"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="launchscreen - background.png" width="1536" height="2048"/>
+        <image name="launchscreen - logo.png" width="1024" height="1020"/>
+    </resources>
+</document>
