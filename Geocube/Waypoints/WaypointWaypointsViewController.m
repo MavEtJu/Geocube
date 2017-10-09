@@ -22,6 +22,10 @@
 #import "WaypointWaypointsViewController.h"
 
 #import "ManagersLibrary/OpenCageManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/ImageManager.h"
+#import "ManagersLibrary/WaypointManager.h"
+#import "ManagersLibrary/LocationManager.h"
 
 @interface WaypointWaypointsViewController ()
 {

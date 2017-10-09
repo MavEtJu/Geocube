@@ -19,6 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "WaypointSorter.h"
+
+#import "ManagersLibrary/LocationManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
+
 @interface WaypointSorter ()
 
 @end

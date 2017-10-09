@@ -22,6 +22,7 @@
 #import "NotesSavedViewController.h"
 
 #import "NetworkLibrary/RemoteAPITemplate.h"
+#import "ManagersLibrary/LocalizationManager.h"
 
 @interface NotesSavedViewController ()
 {

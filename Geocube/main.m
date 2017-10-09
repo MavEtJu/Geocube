@@ -94,6 +94,8 @@ int main(int argc, char * argv[])
     }
 }
 
+#import "ManagersLibrary/KeyManager.h"
+
 void encryptionstuff(void)
 {
     keyManager = [[KeyManager alloc] init];

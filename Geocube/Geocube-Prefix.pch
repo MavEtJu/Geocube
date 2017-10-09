@@ -33,9 +33,9 @@
 #import "BaseObjectsLibrary/BaseObjectsLibrary.h"
 #import "ConvertorsLibrary/ConvertorsLibrary.h"
 #import "DatabaseLibrary/DatabaseLibrary.h"
-#import "ManagersLibrary/ManagersLibrary.h"
-#import "MapsLibrary/MapsLibrary.h"
-#import "ThemesLibrary/ThemesLibrary.h"
+//#import "ManagersLibrary/ManagersLibrary.h"
+//#import "MapsLibrary/MapsLibrary.h"
+//#import "ThemesLibrary/ThemesLibrary.h"
 #import "ToolsLibrary/ToolsLibrary.h"
 
 #import "KeyboardCoordinateView.h"

@@ -21,6 +21,8 @@
 
 #import "ToolsRot13ViewController.h"
 
+#import "ManagersLibrary/LocalizationManager.h"
+
 @interface ToolsRot13ViewController ()
 {
     UITextView *labelInput;

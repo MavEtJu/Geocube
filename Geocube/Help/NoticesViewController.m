@@ -23,6 +23,8 @@
 
 #import "ConvertorsLibrary/ImportGeocube.h"
 #import "ManagersLibrary/DownloadManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/BezelManager.h"
 
 @interface NoticesViewController ()
 {

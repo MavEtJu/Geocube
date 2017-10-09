@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "LocationlessListViewController.h"
+
+#import "ManagersLibrary/ConfigManager.h"
+
 @interface LocationlessListViewController ()
 
 @end

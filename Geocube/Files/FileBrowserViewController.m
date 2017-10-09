@@ -22,6 +22,9 @@
 #import "FileBrowserViewController.h"
 
 #import "NetworkLibrary/IOSFileTransfers.h"
+#import "ThemesLibrary/ThemeManager.h"
+#import "ManagersLibrary/BezelManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
 
 @interface FileBrowserViewController ()
 {

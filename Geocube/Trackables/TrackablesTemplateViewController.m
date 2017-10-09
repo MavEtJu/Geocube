@@ -22,6 +22,7 @@
 #import "TrackablesTemplateViewController.h"
 
 #import "NetworkLibrary/RemoteAPITemplate.h"
+#import "ManagersLibrary/LocalizationManager.h"
 
 @interface TrackablesTemplateViewController ()
 

@@ -19,6 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "QueriesGroundspeakViewController.h"
+
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/BezelManager.h"
+
 @interface QueriesGroundspeakViewController ()
 
 @end

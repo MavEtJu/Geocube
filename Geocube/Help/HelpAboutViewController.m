@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "HelpAboutViewController.h"
+
+#import "ManagersLibrary/LocalizationManager.h"
+
 @interface HelpAboutViewController ()
 {
     NSInteger width;

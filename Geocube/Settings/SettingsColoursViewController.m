@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "SettingsColoursViewController.h"
+
+#import "ManagersLibrary/LocalizationManager.h"
+
 @interface SettingsColoursViewController ()
 {
     NSMutableArray<dbPin *> *pins;

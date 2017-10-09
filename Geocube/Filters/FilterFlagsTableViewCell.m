@@ -19,6 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "FilterFlagsTableViewCell.h"
+
+#import "ThemesLibrary/ThemeManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
+
 @interface FilterFlagsTableViewCell ()
 {
     FilterFlag valueHighlighted;

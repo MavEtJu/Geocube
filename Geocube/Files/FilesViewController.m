@@ -23,6 +23,10 @@
 
 #import "NetworkLibrary/IOSFileTransfers.h"
 #import "ConvertorsLibrary/ImportGeocube.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/ConfigManager.h"
+#import "ManagersLibrary/AudioManager.h"
+#import "ManagersLibrary/ImportManager.h"
 
 @interface FilesViewController ()
 {

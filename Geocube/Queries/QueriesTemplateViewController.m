@@ -23,6 +23,11 @@
 
 #import "NetworkLibrary/RemoteAPIProcessingGroup.h"
 #import "NetworkLibrary/RemoteAPITemplate.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/ConfigManager.h"
+#import "ManagersLibrary/ImportManager.h"
+#import "ManagersLibrary/AudioManager.h"
+#import "ManagersLibrary/WaypointManager.h"
 
 @interface QueriesTemplateViewController ()
 {

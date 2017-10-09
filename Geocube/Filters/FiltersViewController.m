@@ -21,6 +21,9 @@
 
 #import "FiltersViewController.h"
 
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/WaypointManager.h"
+
 #import "FilterHeaderTableViewCell.h"
 
 @interface FiltersViewController ()

@@ -24,6 +24,8 @@
 #import "DatabaseLibrary/dbWaypoint.h"
 #import "BaseObjectsLibrary/GCTextblock.h"
 #import "NetworkLibrary/RemoteAPITemplate.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/BezelManager.h"
 
 @interface WaypointPersonalNoteViewController ()
 {

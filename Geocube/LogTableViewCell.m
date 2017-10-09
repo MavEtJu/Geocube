@@ -25,6 +25,7 @@
 #import "ToolsLibrary/MyTools.h"
 #import "ToolsLibrary/Coordinates.h"
 #import "DatabaseLibrary/dbLog.h"
+#import "ManagersLibrary/ImageManager.h"
 
 @interface LogTableViewCell ()
 

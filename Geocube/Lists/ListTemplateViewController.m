@@ -25,6 +25,11 @@
 #import "NetworkLibrary/RemoteAPITemplate.h"
 #import "DatabaseLibrary/dbAccount.h"
 #import "ConvertorsLibrary/ExportGPX.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/WaypointManager.h"
+#import "ManagersLibrary/ImportManager.h"
+#import "ManagersLibrary/ConfigManager.h"
+#import "ManagersLibrary/AudioManager.h"
 
 @interface ListTemplateViewController ()
 {

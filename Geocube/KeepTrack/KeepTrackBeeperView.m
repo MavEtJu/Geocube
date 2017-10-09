@@ -23,6 +23,10 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 
+#import "ThemesLibrary/ThemeManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/ConfigManager.h"
+
 @interface KeepTrackBeeperView ()
 {
     BOOL isPlaying;

@@ -25,6 +25,10 @@
 
 #import "BaseObjectsLibrary/GCLabelSmallText.h"
 #import "BaseObjectsLibrary/GCLabelNormalText.h"
+#import "ThemesLibrary/ThemeManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/LocationManager.h"
+#import "ManagersLibrary/WaypointManager.h"
 
 @interface ToolsGNSSViewController ()
 {

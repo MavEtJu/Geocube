@@ -19,6 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "DeveloperImagesViewController.h"
+
+#import "ManagersLibrary/ImageManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
+
 @interface DeveloperImagesViewController ()
 {
     NSMutableArray<UIImage *> *imgs;

@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "StatisticsTableViewCell.h"
+
+#import "ManagersLibrary/ConfigManager.h"
+
 @interface StatisticsTableViewCell ()
 
 @end

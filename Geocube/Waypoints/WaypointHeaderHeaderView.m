@@ -19,6 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "WaypointHeaderHeaderView.h"
+
+#import "ThemesLibrary/ThemeManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
+
 @interface WaypointHeaderHeaderView ()
 
 @property (weak, nonatomic) IBOutlet GCLabelNormalText *labelName;

@@ -22,6 +22,7 @@
 #import "WaypointLogsViewController.h"
 
 #import "MapsLibrary/MapLogsViewController.h"
+#import "ManagersLibrary/LocalizationManager.h"
 
 @interface WaypointLogsViewController ()
 {

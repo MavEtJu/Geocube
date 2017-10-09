@@ -22,6 +22,8 @@
 #import "WaypointImageViewController.h"
 
 #import "NetworkLibrary/IOSFileTransfers.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/WaypointManager.h"
 
 @interface WaypointImageViewController ()
 {

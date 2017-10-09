@@ -19,6 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
+#import "GroupsTemplateViewController.h"
+
+#import "ManagersLibrary/WaypointManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
+
 @interface GroupsTemplateViewController ()
 
 @end

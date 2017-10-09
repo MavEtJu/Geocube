@@ -21,6 +21,8 @@
 
 #import "FilterHeaderTableViewCell.h"
 
+#import "ManagersLibrary/LocalizationManager.h"
+
 @interface FilterHeaderTableViewCell ()
 
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;

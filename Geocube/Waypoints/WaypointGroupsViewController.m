@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "WaypointGroupsViewController.h"
+
+#import "ManagersLibrary/LocalizationManager.h"
+
 @interface WaypointGroupsViewController ()
 {
     NSMutableArray<dbGroup *> *ugs, *sgs;

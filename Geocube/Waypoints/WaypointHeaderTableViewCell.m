@@ -19,6 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "WaypointHeaderTableViewCell.h"
+
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/ImageManager.h"
+#import "ManagersLibrary/LocationManager.h"
+
 @interface WaypointHeaderTableViewCell ()
 
 @property (nonatomic, retain) IBOutlet UIImageView *ivContainer;

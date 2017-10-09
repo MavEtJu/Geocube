@@ -23,6 +23,11 @@
 
 #import "MapsLibrary/MapBrand.h"
 #import "MapsLibrary/MapTemplateViewController.h"
+#import "ThemesLibrary/ThemeManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/ConfigManager.h"
+#import "ManagersLibrary/ImageManager.h"
+#import "ManagersLibrary/AudioFeedback.h"
 
 @interface SettingsMainViewController ()
 {

@@ -19,6 +19,13 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
+#import "FilterTypesTableViewCell.h"
+
+#import "ThemesLibrary/ThemeManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/ConfigManager.h"
+
 @interface FilterTypesTableViewCell ()
 {
     NSArray<dbType *> *types;

@@ -20,7 +20,9 @@
  */
 
 #import "SettingsLogTemplatesViewController.h"
+
 #import "ConvertorsLibrary/ImportGeocube.h"
+#import "ManagersLibrary/LocalizationManager.h"
 
 @interface SettingsLogTemplatesViewController ()
 {

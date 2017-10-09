@@ -19,6 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "QueriesGCAViewController.h"
+
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/BezelManager.h"
+
 @interface QueriesGCAViewController ()
 {
 }

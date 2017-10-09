@@ -19,7 +19,12 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "SettingsMainColorPickerViewController.h"
+
 #import "ContribLibrary/NKOColorPickerView/NKOColorPickerView.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/ConfigManager.h"
+#import "ManagersLibrary/ImageManager.h"
 
 @interface SettingsMainColorPickerViewController ()
 {

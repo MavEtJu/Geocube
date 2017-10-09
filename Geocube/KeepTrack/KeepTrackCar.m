@@ -22,6 +22,9 @@
 #import "KeepTrackCar.h"
 
 #import "MapsLibrary/MapTemplateViewController.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/LocationManager.h"
+#import "ManagersLibrary/WaypointManager.h"
 
 @interface KeepTrackCar ()
 {

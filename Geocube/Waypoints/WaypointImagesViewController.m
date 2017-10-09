@@ -24,6 +24,9 @@
 #import <Photos/Photos.h>
 
 #import "ManagersLibrary/DownloadManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/ImageManager.h"
+#import "ManagersLibrary/LocationManager.h"
 
 @interface WaypointImagesViewController ()
 {

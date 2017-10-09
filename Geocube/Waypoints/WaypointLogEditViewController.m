@@ -19,6 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "WaypointLogEditViewController.h"
+
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/ConfigManager.h"
+
 @interface WaypointLogEditViewController ()
 {
     YIPopupTextView *tv;

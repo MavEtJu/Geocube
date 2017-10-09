@@ -22,6 +22,7 @@
 #import "WaypointLogTrackablesViewController.h"
 
 #import "NetworkLibrary/RemoteAPITemplate.h"
+#import "ManagersLibrary/LocalizationManager.h"
 
 @interface WaypointLogTrackablesViewController ()
 {

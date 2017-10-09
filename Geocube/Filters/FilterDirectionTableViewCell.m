@@ -22,6 +22,8 @@
 #import "FilterDirectionTableViewCell.h"
 
 #import "BaseObjectsLibrary/GCLabelNormalText.h"
+#import "ManagersLibrary/LocalizationManager.h"
+
 #import "FilterButton.h"
 
 @interface FilterDirectionTableViewCell ()

@@ -19,7 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "FilterTerrainTableViewCell.h"
+
 #import "ContribLibrary/CMRangeSlider/RangeSlider.h"
+#import "ManagersLibrary/LocalizationManager.h"
 
 @interface FilterTerrainTableViewCell ()
 {

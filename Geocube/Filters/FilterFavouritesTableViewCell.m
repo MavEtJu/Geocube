@@ -19,7 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
+#import "FilterFavouritesTableViewCell.h"
+
 #import "ContribLibrary/CMRangeSlider/RangeSlider.h"
+#import "ManagersLibrary/LocalizationManager.h"
 
 @interface FilterFavouritesTableViewCell ()
 {

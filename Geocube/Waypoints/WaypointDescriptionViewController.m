@@ -19,6 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "WaypointDescriptionViewController.h"
+
+#import "ManagersLibrary/LocalizationManager.h"
+
 @interface WaypointDescriptionViewController ()
 {
     dbWaypoint *waypoint;

@@ -21,8 +21,13 @@
 
 #import "WaypointLogViewController.h"
 
+#import "ThemesLibrary/ThemeManager.h"
 #import "NetworkLibrary/RemoteAPITemplate.h"
 #import "DatabaseLibrary/dbAccount.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/BezelManager.h"
+#import "ManagersLibrary/ConfigManager.h"
+#import "ManagersLibrary/ImageManager.h"
 
 @interface WaypointLogViewController ()
 {

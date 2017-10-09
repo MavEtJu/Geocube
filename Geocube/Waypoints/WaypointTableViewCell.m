@@ -26,9 +26,12 @@
 #import "BaseObjectsLibrary/GCLabelSmallText.h"
 #import "BaseObjectsLibrary/GCLabelNormalText.h"
 #import "ManagersLibrary/ImageManager.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/LocationManager.h"
 #import "DatabaseLibrary/dbWaypoint.h"
 #import "DatabaseLibrary/dbName.h"
 #import "ToolsLibrary/MyTools.h"
+#import "ThemesLibrary/ThemeManager.h"
 
 @interface WaypointTableViewCell ()
 

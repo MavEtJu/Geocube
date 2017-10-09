@@ -20,7 +20,8 @@
  * THE SOFTWARE.
  */
 
-#import "Geocube-prefix.pch"
+#import "ThemesLibrary/ThemeManager.h"
+#import "ManagersLibrary/ConfigManager.h"
 
 static const NSInteger TagOffset = 1000;
 

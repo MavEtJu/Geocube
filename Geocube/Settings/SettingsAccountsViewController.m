@@ -24,6 +24,10 @@
 #import "ManagersLibrary/DownloadManager.h"
 #import "NetworkLibrary/RemoteAPITemplate.h"
 #import "ConvertorsLibrary/ImportGeocube.h"
+#import "ManagersLibrary/LocalizationManager.h"
+#import "ManagersLibrary/ImageManager.h"
+#import "ManagersLibrary/BezelManager.h"
+#import "ManagersLibrary/ConfigManager.h"
 
 @interface SettingsAccountsViewController ()
 {
