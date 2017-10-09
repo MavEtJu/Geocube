@@ -42,4 +42,4 @@
 
 @end
 
-extern ImageManager *imageLibrary;
+extern ImageManager *imageManager;

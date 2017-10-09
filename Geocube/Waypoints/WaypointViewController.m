@@ -307,7 +307,7 @@ enum {
 #define IMAGE(__idx__) \
     if ([logs count] > __idx__) { \
         dbLog *log = [logs objectAtIndex:__idx__]; \
-        cell.image ## __idx__.image = [imageLibrary get:log.logstring.icon]; \
+        cell.image ## __idx__.image = [imageManager get:log.logstring.icon]; \
     }
                 case WAYPOINT_DATA_FIELDNOTES: {
                     WaypointLogsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:XIB_WAYPOINTLOGSTABLEVIEWCELL forIndexPath:indexPath];
@@ -315,12 +315,12 @@ enum {
                     cell.userInteractionEnabled = YES;
                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
-                    cell.image0.image = [imageLibrary get:ImageLog_Empty];
-                    cell.image1.image = [imageLibrary get:ImageLog_Empty];
-                    cell.image2.image = [imageLibrary get:ImageLog_Empty];
-                    cell.image3.image = [imageLibrary get:ImageLog_Empty];
-                    cell.image4.image = [imageLibrary get:ImageLog_Empty];
-                    cell.image5.image = [imageLibrary get:ImageLog_Empty];
+                    cell.image0.image = [imageManager get:ImageLog_Empty];
+                    cell.image1.image = [imageManager get:ImageLog_Empty];
+                    cell.image2.image = [imageManager get:ImageLog_Empty];
+                    cell.image3.image = [imageManager get:ImageLog_Empty];
+                    cell.image4.image = [imageManager get:ImageLog_Empty];
+                    cell.image5.image = [imageManager get:ImageLog_Empty];
 
                     NSInteger c = [waypoint hasFieldNotes];
                     if (c == 0) {
@@ -347,12 +347,12 @@ enum {
                     cell.userInteractionEnabled = YES;
                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
-                    cell.image0.image = [imageLibrary get:ImageLog_Empty];
-                    cell.image1.image = [imageLibrary get:ImageLog_Empty];
-                    cell.image2.image = [imageLibrary get:ImageLog_Empty];
-                    cell.image3.image = [imageLibrary get:ImageLog_Empty];
-                    cell.image4.image = [imageLibrary get:ImageLog_Empty];
-                    cell.image5.image = [imageLibrary get:ImageLog_Empty];
+                    cell.image0.image = [imageManager get:ImageLog_Empty];
+                    cell.image1.image = [imageManager get:ImageLog_Empty];
+                    cell.image2.image = [imageManager get:ImageLog_Empty];
+                    cell.image3.image = [imageManager get:ImageLog_Empty];
+                    cell.image4.image = [imageManager get:ImageLog_Empty];
+                    cell.image5.image = [imageManager get:ImageLog_Empty];
 
                     NSInteger c = [waypoint hasLogs];
                     if (c == 0) {
@@ -366,7 +366,7 @@ enum {
 #define IMAGE(__idx__) \
     if ([logs count] > __idx__) { \
         dbLog *log = [logs objectAtIndex:__idx__]; \
-        cell.image ## __idx__.image = [imageLibrary get:log.logstring.icon]; \
+        cell.image ## __idx__.image = [imageManager get:log.logstring.icon]; \
     }
                         IMAGE(0);
                         IMAGE(1);
@@ -435,7 +435,7 @@ enum {
                 case WAYPOINT_ACTIONS_SETASTARGET: {
                     GCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLRIGHTIMAGEDISCLOSURE forIndexPath:indexPath];
                     cell.userInteractionEnabled = YES;
-                    cell.imageView.image = [imageLibrary get:ImageIcon_Target];
+                    cell.imageView.image = [imageManager get:ImageIcon_Target];
                     if (waypoint == waypointManager.currentWaypoint) {
                         cell.textLabel.text = _(@"waypointviewcontroller-Remove as target");
                     } else {
@@ -447,7 +447,7 @@ enum {
                 case WAYPOINT_ACTIONS_LOGTHISWAYPOINT: {
                     GCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLRIGHTIMAGEDISCLOSURE forIndexPath:indexPath];
                     cell.userInteractionEnabled = YES;
-                    cell.imageView.image = [imageLibrary get:ImageIcon_Smiley];
+                    cell.imageView.image = [imageManager get:ImageIcon_Smiley];
                     cell.textLabel.text = _(@"waypointviewcontroller-Log this waypoint");
                     return cell;
                 }

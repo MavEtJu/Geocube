@@ -107,7 +107,7 @@
     [audioFeedback togglePlay:configManager.soundDirection];
 
     // Initialize the image library
-    imageLibrary = [[ImageManager alloc] init];
+    imageManager = [[ImageManager alloc] init];
 
     // Initialize the theme - after configurationManager, imageLibrary
     themeManager = [[ThemeManager alloc] init];

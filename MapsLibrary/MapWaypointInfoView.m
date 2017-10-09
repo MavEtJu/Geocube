@@ -50,15 +50,15 @@
 {
     self = [super initWithFrame:frame];
 
-    imgFavourites = [imageLibrary get:ImageCacheView_favourites];
-    imgSize = [imageLibrary get:ImageContainerSize_NotChosen];
+    imgFavourites = [imageManager get:ImageCacheView_favourites];
+    imgSize = [imageManager get:ImageContainerSize_NotChosen];
 
     self.firstView = [[[NSBundle mainBundle] loadNibNamed:@"MapWaypointInfoView" owner:self options:nil] firstObject];
     self.firstView.frame = CGRectMake((frame.size.width - self.firstView.frame.size.width) / 2, 0, self.firstView.frame.size.width, self.firstView.frame.size.height);
     [self addSubview:self.firstView];
 
     self.ivFavourites.image = imgFavourites;
-    self.ivTarget.image = [imageLibrary get:ImageIcon_Target];
+    self.ivTarget.image = [imageManager get:ImageIcon_Target];
     [self.buttonOverlay addTarget:self action:@selector(actionShowWaypoint:) forControlEvents:UIControlEventTouchDown];
     [self.buttonSetAsTarget addTarget:self action:@selector(actionSetAsTarget:) forControlEvents:UIControlEventTouchDown];
 
@@ -111,7 +111,7 @@
         [nameText appendFormat:@" (%@)", wp.account.site];
     self.labelGCCode.text = nameText;
 
-    self.ivContainer.image = [imageLibrary getType:wp];
+    self.ivContainer.image = [imageManager getType:wp];
     if (wp.flag_highlight == YES)
         self.labelDescription.backgroundColor = currentTheme.labelHighlightBackgroundColor;
     else
@@ -182,7 +182,7 @@
     }
 
     if (sz != 0) {
-        self.ivSize.image = [imageLibrary get:sz];
+        self.ivSize.image = [imageManager get:sz];
         self.ivSize.hidden = NO;
     } else {
         self.ivSize.hidden = YES;
@@ -201,18 +201,18 @@
 
 - (void)refreshWaypoints
 {
-    self.ivContainer.image = [imageLibrary getType:self.waypoint];
+    self.ivContainer.image = [imageManager getType:self.waypoint];
 }
 
 - (void)addWaypoint:(dbWaypoint *)wp
 {
-    self.ivContainer.image = [imageLibrary getType:self.waypoint];
+    self.ivContainer.image = [imageManager getType:self.waypoint];
 }
 
 - (void)updateWaypoint:(dbWaypoint *)wp
 {
     self.waypoint = wp;
-    self.ivContainer.image = [imageLibrary getType:self.waypoint];
+    self.ivContainer.image = [imageManager getType:self.waypoint];
 }
 
 - (void)removeWaypoint:(dbWaypoint *)wp

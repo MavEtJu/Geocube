@@ -54,7 +54,7 @@
 {
     self.labelDateTime.text = [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:log.datetime_epoch];
     self.labelLogger.text = log.logger.name;
-    self.ivLogType.image = [imageLibrary get:log.logstring.icon];
+    self.ivLogType.image = [imageManager get:log.logstring.icon];
     self.labelLog.text = log.log;
     self.labelLocalLog.hidden = (log.localLog == NO);
     self.labelNotSubmitted.hidden = (log.needstobelogged == NO);

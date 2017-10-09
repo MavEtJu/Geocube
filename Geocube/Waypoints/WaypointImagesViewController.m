@@ -314,7 +314,7 @@ enum {
     if ([img imageHasBeenDowloaded] == YES) {
         cell.imageView.image = [img imageGet];
     } else {
-        cell.imageView.image = [imageLibrary get:Image_NoImageFile];
+        cell.imageView.image = [imageManager get:Image_NoImageFile];
     }
 
     return cell;

@@ -63,11 +63,11 @@ enum {
     NSString *name;
 
     for (NSInteger i = 0; i < ImageLibraryImagesMax ;i++) {
-        if ((img = [imageLibrary get:i]) == nil)
+        if ((img = [imageManager get:i]) == nil)
             continue;
         [numbers addObject:[NSNumber numberWithInteger:i]];
         [imgs addObject:img];
-        if ((name = [imageLibrary getName:i]) == nil)
+        if ((name = [imageManager getName:i]) == nil)
             continue;
         [names addObject:name];
     }
@@ -130,44 +130,44 @@ enum {
 
         switch (indexPath.row) {
             case 0:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
+                cell.imageView.image = [imageManager getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
                 cell.textLabel.text = _(@"developerimagesviewcontroller-Pin - Not logged");
                 break;
             case 1:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
+                cell.imageView.image = [imageManager getPin:pin found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
                 cell.textLabel.text = _(@"developerimagesviewcontroller-Pin - Found");
                 break;
             case 2:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
+                cell.imageView.image = [imageManager getPin:pin found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
                 cell.textLabel.text = _(@"developerimagesviewcontroller-Pin - Not Found");
                 break;
 
             case 3:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
+                cell.imageView.image = [imageManager getPin:pin found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
                 cell.textLabel.text = _(@"developerimagesviewcontroller-Pin - Disabled");
                 break;
             case 4:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
+                cell.imageView.image = [imageManager getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
                 cell.textLabel.text = _(@"developerimagesviewcontroller-Pin - Archived");
                 break;
             case 5:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:YES owner:NO markedFound:NO inProgress:NO markedDNF:NO];
+                cell.imageView.image = [imageManager getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:YES owner:NO markedFound:NO inProgress:NO markedDNF:NO];
                 cell.textLabel.text = _(@"developerimagesviewcontroller-Pin - Highlight");
                 break;
             case 6:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO];
+                cell.imageView.image = [imageManager getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO];
                 cell.textLabel.text = _(@"developerimagesviewcontroller-Pin - Owner");
                 break;
             case 7:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:YES inProgress:NO markedDNF:NO];
+                cell.imageView.image = [imageManager getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:YES inProgress:NO markedDNF:NO];
                 cell.textLabel.text = _(@"developerimagesviewcontroller-Pin - Marked Found");
                 break;
             case 8:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:YES markedDNF:NO];
+                cell.imageView.image = [imageManager getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:YES markedDNF:NO];
                 cell.textLabel.text = _(@"developerimagesviewcontroller-Pin - Marked In Progress");
                 break;
             case 9:
-                cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:YES];
+                cell.imageView.image = [imageManager getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:YES];
                 cell.textLabel.text = _(@"developerimagesviewcontroller-Pin - Marked DNF");
                 break;
 
@@ -180,44 +180,44 @@ enum {
 
         switch (indexPath.row) {
             case 0:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
+                cell.imageView.image = [imageManager getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
                 cell.textLabel.text = _(@"developerimagesviewcontroller-Type - Not Logged");
                 break;
             case 1:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
+                cell.imageView.image = [imageManager getType:type found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
                 cell.textLabel.text = _(@"developerimagesviewcontroller-Type - Found");
                 break;
             case 2:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
+                cell.imageView.image = [imageManager getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
                 cell.textLabel.text = _(@"developerimagesviewcontroller-Type - Not Found");
                 break;
 
             case 3:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
+                cell.imageView.image = [imageManager getType:type found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
                 cell.textLabel.text = _(@"developerimagesviewcontroller-Type - Disabled");
                 break;
             case 4:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
+                cell.imageView.image = [imageManager getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
                 cell.textLabel.text = _(@"developerimagesviewcontroller-Type - Archived");
                 break;
             case 5:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:YES owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
+                cell.imageView.image = [imageManager getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:YES owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
                 cell.textLabel.text = _(@"developerimagesviewcontroller-Type - Highlight");
                 break;
             case 6:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO planned:NO];
+                cell.imageView.image = [imageManager getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO planned:NO];
                 cell.textLabel.text = _(@"developerimagesviewcontroller-Type - Marked Found");
                 break;
             case 7:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:YES inProgress:NO markedDNF:NO planned:NO];
+                cell.imageView.image = [imageManager getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:YES inProgress:NO markedDNF:NO planned:NO];
                 cell.textLabel.text = _(@"developerimagesviewcontroller-Type - Marked Found");
                 break;
             case 8:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:YES markedDNF:NO planned:NO];
+                cell.imageView.image = [imageManager getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:YES markedDNF:NO planned:NO];
                 cell.textLabel.text = _(@"developerimagesviewcontroller-Type - Marked In Progress");
                 break;
             case 9:
-                cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:YES planned:NO];
+                cell.imageView.image = [imageManager getType:type found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:YES planned:NO];
                 cell.textLabel.text = _(@"developerimagesviewcontroller-Type - Marked DNF");
                 break;
         }
@@ -229,7 +229,7 @@ enum {
         NSArray<dbPin *> *pins = dbc.pins;
         dbPin *pin = [pins objectAtIndex:indexPath.row];
 
-        cell.imageView.image = [imageLibrary getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
+        cell.imageView.image = [imageManager getPin:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO];
         cell.textLabel.text = pin.desc;
         return cell;
     }
@@ -238,7 +238,7 @@ enum {
         NSArray<dbType *> *types = dbc.types;
         dbType *type = [types objectAtIndex:indexPath.row];
 
-        cell.imageView.image = [imageLibrary getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
+        cell.imageView.image = [imageManager getType:type found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
         cell.textLabel.text = type.type_full;
         return cell;
     }

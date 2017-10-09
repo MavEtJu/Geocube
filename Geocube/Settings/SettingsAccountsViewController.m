@@ -137,15 +137,15 @@ enum {
     cell.textLabel.text = a.site;
     cell.detailTextLabel.text = a.accountname.name;
     if (a.enabled == NO) {
-        cell.imageView.image = [imageLibrary get:Image_Nil];
+        cell.imageView.image = [imageManager get:Image_Nil];
     } else {
         if (a.accountname == nil) {
-            cell.imageView.image = [imageLibrary get:ImageIcon_Dead];
+            cell.imageView.image = [imageManager get:ImageIcon_Dead];
         } else {
             if (a.canDoRemoteStuff == YES)
-                cell.imageView.image = [imageLibrary get:ImageIcon_Smiley];
+                cell.imageView.image = [imageManager get:ImageIcon_Smiley];
             else
-                cell.imageView.image = [imageLibrary get:ImageIcon_Sad];
+                cell.imageView.image = [imageManager get:ImageIcon_Sad];
         }
     }
 

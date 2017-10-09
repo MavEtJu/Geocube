@@ -90,7 +90,7 @@ enum {
 
     dbWaypoint *wp = [wps objectAtIndex:indexPath.row];
 
-    cell.iconImage.image = [imageLibrary getType:wp];
+    cell.iconImage.image = [imageManager getType:wp];
     cell.nameLabel.text = wp.wpt_urlname;
     cell.codeLabel.text = wp.wpt_name;
     cell.coordinatesLabel.text = [Coordinates niceCoordinates:wp.wpt_latitude longitude:wp.wpt_longitude];

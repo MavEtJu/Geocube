@@ -204,7 +204,7 @@ enum {
                     if (image != nil)
                         c.imageView.image = image.imageGet;
                     else
-                        c.imageView.image = [imageLibrary get:Image_NoImageFile];
+                        c.imageView.image = [imageManager get:Image_NoImageFile];
                     if ([waypoint.account.remoteAPI supportsLoggingPhotos] == NO) {
                         c.userInteractionEnabled = NO;
                         c.textLabel.textColor = currentTheme.labelTextColorDisabled;

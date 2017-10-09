@@ -124,7 +124,7 @@ enum {
     LocationlessTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_LOCATIONLESSTABLEVIEWCELL forIndexPath:indexPath];
 
     dbWaypoint *wp = [self.waypoints objectAtIndex:indexPath.row];
-    cell.icon.image = [imageLibrary getType:wp];
+    cell.icon.image = [imageManager getType:wp];
     cell.name.text = wp.wpt_urlname;
     cell.owner.text = wp.gs_owner.name;
     cell.code.text = wp.wpt_name;

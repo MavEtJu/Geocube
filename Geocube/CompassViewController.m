@@ -90,8 +90,8 @@
         self.ivWPSize.hidden = NO;
         self.labelWPRatingD.hidden = NO;
         self.labelWPRatingT.hidden = NO;
-        self.ivWPContainer.image = [imageLibrary getType:waypointManager.currentWaypoint];
-        self.ivWPSize.image = [imageLibrary get:waypointManager.currentWaypoint.gs_container.icon];
+        self.ivWPContainer.image = [imageManager getType:waypointManager.currentWaypoint];
+        self.ivWPSize.image = [imageManager get:waypointManager.currentWaypoint.gs_container.icon];
         self.labelWPRatingD.text = [NSString stringWithFormat:@"%@: %0.1f", _(@"compassviewcontroller-D"), waypointManager.currentWaypoint.gs_rating_difficulty];
         self.labelWPRatingT.text = [NSString stringWithFormat:@"%@: %0.1f", _(@"compassviewcontroller-T"),  waypointManager.currentWaypoint.gs_rating_terrain];
     }
@@ -118,24 +118,24 @@
     // Update compass type
     switch (configManager.compassType) {
         case COMPASS_REDONBLUECOMPASS:
-            compassImage = [imageLibrary get:ImageCompass_RedArrowOnBlueCompass];
+            compassImage = [imageManager get:ImageCompass_RedArrowOnBlueCompass];
             self.ivGNSSCompassBackground.image = compassImage;
-            lineImage = [imageLibrary get:ImageCompass_RedArrowOnBlueArrow];
+            lineImage = [imageManager get:ImageCompass_RedArrowOnBlueArrow];
             self.ivGNSSCompassLine.image = lineImage;
             break;
         case COMPASS_WHITEARROWONBLACK:
             self.ivGNSSCompassBackground.image = nil;
-            lineImage = [imageLibrary get:ImageCompass_WhiteArrowOnBlack];
+            lineImage = [imageManager get:ImageCompass_WhiteArrowOnBlack];
             self.ivGNSSCompassLine.image = lineImage;
             break;
         case COMPASS_REDARROWONBLACK:
             self.ivGNSSCompassBackground.image = nil;
-            lineImage = [imageLibrary get:ImageCompass_RedArrowOnBlack];
+            lineImage = [imageManager get:ImageCompass_RedArrowOnBlack];
             self.ivGNSSCompassLine.image = lineImage;
             break;
         case COMPASS_AIRPLANE:
-            self.ivGNSSCompassBackground.image = [imageLibrary get:ImageCompass_AirplaneCompass];
-            lineImage = [imageLibrary get:ImageCompass_AirplaneAirplane];
+            self.ivGNSSCompassBackground.image = [imageManager get:ImageCompass_AirplaneCompass];
+            lineImage = [imageManager get:ImageCompass_AirplaneAirplane];
             self.ivGNSSCompassLine.image = lineImage;
             break;
     }

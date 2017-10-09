@@ -40,7 +40,7 @@
 {
     [super awakeFromNib];
     [self changeTheme];
-    self.ivFavourites.image = [imageLibrary get:ImageCacheView_favourites];
+    self.ivFavourites.image = [imageManager get:ImageCacheView_favourites];
 }
 
 - (void)changeTheme
@@ -77,7 +77,7 @@
                               [MyTools niceDistance:[Coordinates coordinates2distance:LM.coords toLatitude:wp.wpt_latitude toLongitude:wp.wpt_longitude]]];
     self.labelLocation.text = [wp makeLocalityStateCountry];
 
-    self.ivContainer.image = [imageLibrary getType:wp];
+    self.ivContainer.image = [imageManager getType:wp];
 
     if (wp.gs_favourites == 0) {
         self.ivFavourites.hidden = YES;
@@ -97,7 +97,7 @@
         self.ivSize.hidden = NO;
     }
     if (wp.gs_container.icon != 0) {
-        self.ivSize.image = [imageLibrary get:wp.gs_container.icon];
+        self.ivSize.image = [imageManager get:wp.gs_container.icon];
         self.ivSize.hidden = NO;
     } else {
         self.ivSize.hidden = YES;

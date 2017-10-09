@@ -447,7 +447,7 @@
 
 - (UIImage *)getPinImage:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF
 {
-    UIImage *img = [imageLibrary get:ImageMap_background];
+    UIImage *img = [imageManager get:ImageMap_background];
 
     switch (found) {
         case LOGSTATUS_NOTLOGGED:
@@ -521,7 +521,7 @@
 
 - (UIImage *)getTypeImage:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF planned:(BOOL)planned
 {
-    UIImage *img = [imageLibrary get:type.icon];
+    UIImage *img = [imageManager get:type.icon];
 
     if (owner == YES)
         img = [self mergeOwner:img top:ImageContainerFlag_owner];

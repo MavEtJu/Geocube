@@ -44,7 +44,7 @@
 {
     [super awakeFromNib];
     [self changeTheme];
-    self.ivFavourites.image = [imageLibrary get:ImageCacheView_favourites];
+    self.ivFavourites.image = [imageManager get:ImageCacheView_favourites];
 }
 
 - (void)changeTheme
@@ -68,7 +68,7 @@
 - (void)setWaypoint:(dbWaypoint *)wp
 {
     self.labelDescription.text = wp.wpt_urlname;
-    self.ivContainer.image = [imageLibrary getType:wp];
+    self.ivContainer.image = [imageManager getType:wp];
 
     if (wp.account == nil)
         self.labelCode.text = wp.wpt_name;
@@ -126,7 +126,7 @@
     }
 
     if (sz != 0) {
-        self.ivSize.image = [imageLibrary get:sz];
+        self.ivSize.image = [imageManager get:sz];
         self.ivSize.hidden = NO;
     } else {
         self.ivSize.hidden = YES;

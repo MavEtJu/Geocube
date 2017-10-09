@@ -28,7 +28,7 @@
 + (GCCloseButton *)buttonWithType:(UIButtonType)type
 {
     GCCloseButton *b = [super buttonWithType:type];
-    UIImage *imgMenu = [imageLibrary get:ImageIcon_CloseButton];
+    UIImage *imgMenu = [imageManager get:ImageIcon_CloseButton];
     b.frame = CGRectMake(0, 0, imgMenu.size.width, imgMenu.size.height);
     [b setImage:imgMenu forState:UIControlStateNormal];
     return b;
