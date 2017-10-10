@@ -33,9 +33,9 @@ TABLENAME(@"accounts")
 {
     [super finish];
 
-    if (self.oauth_consumer_private_sharedsecret != nil && [self.oauth_consumer_private_sharedsecret isEqualToString:@""] == NO)
+    if (IS_EMPTY(self.oauth_consumer_private_sharedsecret) == NO)
         self.oauth_consumer_private = [keyManager decrypt:self.oauth_consumer_private_sharedsecret data:self.oauth_consumer_private];
-    if (self.oauth_consumer_public_sharedsecret != nil && [self.oauth_consumer_public_sharedsecret isEqualToString:@""] == NO)
+    if (IS_EMPTY(self.oauth_consumer_public_sharedsecret) == NO)
         self.oauth_consumer_public = [keyManager decrypt:self.oauth_consumer_public_sharedsecret data:self.oauth_consumer_public];
 
     self.remoteAPI = nil;
@@ -303,8 +303,8 @@ TABLENAME(@"accounts")
     switch (pid) {
         case PROTOCOL_OKAPI:
         case PROTOCOL_LIVEAPI:
-            if (self.oauth_token == nil || [self.oauth_token isEqualToString:@""] == YES ||
-                self.oauth_token_secret == nil || [self.oauth_token_secret isEqualToString:@""] == YES)
+            if (IS_EMPTY(self.oauth_token) == YES ||
+                IS_EMPTY(self.oauth_token_secret) == YES)
                 [self disableRemoteAccess:@"This account is currenlty not authenticated"];
             else
                 [self enableRemoteAccess];
@@ -313,7 +313,7 @@ TABLENAME(@"accounts")
         case PROTOCOL_GGCW:
         case PROTOCOL_GCA:
         case PROTOCOL_GCA2:
-            if (self.gca_cookie_value == nil || [self.gca_cookie_value isEqualToString:@""] == YES)
+            if (IS_EMPTY(self.gca_cookie_value) == YES)
                 [self disableRemoteAccess:@"This account is currently not authenticated"];
             else
                 [self enableRemoteAccess];

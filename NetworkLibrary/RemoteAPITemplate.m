@@ -109,7 +109,7 @@
             // Reset it
             self.oabb = [[GCOAuthBlackbox alloc] init];
 
-            if (self.account.oauth_consumer_private == nil || [self.account.oauth_consumer_private isEqualToString:@""] == YES) {
+            if (IS_EMPTY(self.account.oauth_consumer_private) == YES) {
                 [self oauthtripped:@"No OAuth client information is available." error:nil];
                 return NO;
             }

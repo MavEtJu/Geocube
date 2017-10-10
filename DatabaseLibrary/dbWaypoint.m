@@ -266,27 +266,27 @@ TABLENAME(@"waypoints")
     /*
      // Find all the waypoints and their waypoints
      @synchronized(db) {
-     NSArray<dbWaypoint *> *waypoints = [dbWaypoint dbAllFound];
-     NSLog(@"Checking %ld waypoints", [waypoints count]);
-     [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull waypoint, NSUInteger idx, BOOL * _Nonnull stop) {
-     NSArray<dbWaypoint *> *wps = [waypoint hasWaypoints];
-     if ([wps count] <= 1)
-     return;
-     NSMutableString *ids = [NSMutableString string];
-     [wps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
-     if (wp.logStatus == LOGSTATUS_FOUND)
-     return;
-     if ([ids isEqualToString:@""] == NO)
-     [ids appendFormat:@" or id = %ld", (long)wp._id];
-     else
-     [ids appendFormat:@"id = %ld", (long)wp._id];
-     }];
-     NSString *sql = [NSString stringWithFormat:@"update waypoints set log_status = ? where %@", ids];
-     DB_PREPARE(sql);
-     SET_VAR_INT(1, LOGSTATUS_FOUND);
-     DB_CHECK_OKAY;
-     DB_FINISH;
-     }];
+         NSArray<dbWaypoint *> *waypoints = [dbWaypoint dbAllFound];
+         NSLog(@"Checking %ld waypoints", [waypoints count]);
+         [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull waypoint, NSUInteger idx, BOOL * _Nonnull stop) {
+         NSArray<dbWaypoint *> *wps = [waypoint hasWaypoints];
+         if ([wps count] <= 1)
+             return;
+         NSMutableString *ids = [NSMutableString string];
+         [wps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
+             if (wp.logStatus == LOGSTATUS_FOUND)
+                 return;
+             if (IS_EMPTY(ids) == NO)
+                 [ids appendFormat:@" or id = %ld", (long)wp._id];
+             else
+                 [ids appendFormat:@"id = %ld", (long)wp._id];
+         }];
+         NSString *sql = [NSString stringWithFormat:@"update waypoints set log_status = ? where %@", ids];
+         DB_PREPARE(sql);
+         SET_VAR_INT(1, LOGSTATUS_FOUND);
+         DB_CHECK_OKAY;
+         DB_FINISH;
+         }];
      }
      [clock clockShowAndReset:@"4"];
      */
@@ -552,14 +552,14 @@ TABLENAME(@"waypoints")
     NSMutableArray<NSNumber *> *values = [NSMutableArray arrayWithCapacity:[groups count]];
     NSMutableString *where = [NSMutableString stringWithString:@""];
     [groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull group, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([where isEqualToString:@""] == NO)
+        if (IS_EMPTY(where) == NO)
             [where appendString:@" or "];
         [where appendString:@"group_id = ?"];
         [keys appendString:@"i"];
         [values addObject:[NSNumber numberWithLongLong:group._id]];
     }];
     // Stop selecting this criteria without actually selecting a group!
-    if ([where isEqualToString:@""] == YES)
+    if (IS_EMPTY(where) == YES)
         return nil;
 
     return [dbWaypoint dbAllXXX:[NSString stringWithFormat:@"where wp.id in (select waypoint_id from group2waypoints where %@)", where]
@@ -759,7 +759,7 @@ TABLENAME(@"waypoints")
     if (self.gca_locality != nil)
         [s appendFormat:@"%@", self.gca_locality.name];
     if (self.gs_state != nil) {
-        if ([s isEqualToString:@""] == NO)
+        if (IS_EMPTY(s) == NO)
             [s appendFormat:@", "];
         if (configManager.showStateAsAbbrevationIfLocalityExists == YES && self.gca_locality != nil)
             [s appendFormat:@"%@", self.gs_state.code];
@@ -767,7 +767,7 @@ TABLENAME(@"waypoints")
             [s appendFormat:@"%@", configManager.showStateAsAbbrevation == YES ? self.gs_state.code : self.gs_state.name];
     }
     if (self.gs_country != nil) {
-        if ([s isEqualToString:@""] == NO)
+        if (IS_EMPTY(s) == NO)
             [s appendFormat:@", "];
         NSString *cs = [NSString stringWithFormat:@"country-%@", self.gs_country.name];
         [s appendFormat:@"%@", configManager.showCountryAsAbbrevation == YES ? self.gs_country.code : _(cs)];

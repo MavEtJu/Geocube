@@ -29,7 +29,7 @@ TABLENAME(@"pins")
 
 - (void)finish
 {
-    if (self.rgb == nil || [self.rgb isEqualToString:@""] == YES)
+    if (IS_EMPTY(self.rgb) == YES)
         self.rgb = self.rgb_default;
     self.colour = [ImageManager RGBtoColor:self.rgb];
     self.img = [ImageManager newPinHead:self.colour];

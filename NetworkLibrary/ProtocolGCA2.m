@@ -247,7 +247,7 @@
 
 - (NSString *)prepareURLString:(NSString *)suffix params:(NSDictionary *)params
 {
-    if (key == nil || [key isEqualToString:@""] == YES)
+    if (IS_EMPTY(key) == YES)
         key = keyManager.gca_api;
     NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@?consumer_key=%@", prefix, suffix, key];
     if (params != nil && [params count] != 0) {
@@ -328,7 +328,7 @@
     NSLog(@"api_services_logs_submit:%@", wp.wpt_name);
 
     NSMutableString *ps = [NSMutableString stringWithFormat:@""];
-    if (key == nil || [key isEqualToString:@""] == YES)
+    if (IS_EMPTY(key) == YES)
         key = keyManager.gca_api;
     [ps appendFormat:@"consumer_key=%@", [MyTools urlEncode:key]];
     [ps appendFormat:@"&cache_code=%@", [MyTools urlEncode:wp.wpt_name]];
@@ -363,7 +363,7 @@
     [req addValue:contentType forHTTPHeaderField:@"Content-Type"];
 
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:20];
-    if (key == nil || [key isEqualToString:@""] == YES)
+    if (IS_EMPTY(key) == YES)
         key = keyManager.gca_api;
     [params setObject:key forKey:@"consumer_key"];
     [params setObject:logid forKey:@"log_uuid"];

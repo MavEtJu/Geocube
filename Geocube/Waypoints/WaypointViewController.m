@@ -287,7 +287,7 @@ enum {
 
                 case WAYPOINT_DATA_HINT:
                     cell.textLabel.text = _(@"waypointviewcontroller-Hint");
-                    if (waypoint.gs_hint == nil || [waypoint.gs_hint isEqualToString:@""] == YES || [waypoint.gs_hint isEqualToString:@" "] == YES) {
+                    if (IS_EMPTY(waypoint.gs_hint) == YES || [waypoint.gs_hint isEqualToString:@" "] == YES) {
                         tc = currentTheme.labelTextColorDisabled;
                         cell.userInteractionEnabled = NO;
                     }

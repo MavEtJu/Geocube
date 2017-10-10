@@ -88,7 +88,7 @@
 
     // Disable GoogleMaps if there is no key
     hasGMS = YES;
-    if (keyManager.googlemaps == nil || [keyManager.googlemaps isEqualToString:@""] == YES)
+    if (IS_EMPTY(keyManager.googlemaps) == YES)
         hasGMS = NO;
     if ([self.currentMapBrand.key isEqualToString:MAPBRAND_GOOGLEMAPS] == YES && hasGMS == NO)
         self.currentMapBrand = [MapBrand findMapBrand:MAPBRAND_APPLEMAPS brands:mapBrands];
@@ -158,7 +158,7 @@
 
     // Appear GoogleMaps if it came back
     if (hasGMS == NO) {
-        if (keyManager.googlemaps != nil && [keyManager.googlemaps isEqualToString:@""] == NO) {
+        if (IS_EMPTY(keyManager.googlemaps) == NO) {
             hasGMS = YES;
             [GMSServices provideAPIKey:keyManager.googlemaps];
         }
@@ -647,7 +647,7 @@
 
     [mapBrands enumerateObjectsUsingBlock:^(MapBrand * _Nonnull mb, NSUInteger idx, BOOL * _Nonnull stop) {
         // Do not enable Google Maps until available
-        if ([mb.key isEqualToString:MAPBRAND_GOOGLEMAPS] == YES && (keyManager.googlemaps == nil || [keyManager.googlemaps isEqualToString:@""] == YES))
+        if ([mb.key isEqualToString:MAPBRAND_GOOGLEMAPS] == YES && (IS_EMPTY(keyManager.googlemaps) == YES))
             return;
 
         UIAlertAction *a = [UIAlertAction

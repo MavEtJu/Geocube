@@ -124,7 +124,7 @@
     LINE_S(@"time", [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:wp.wpt_date_placed_epoch]);
     LINE_S(@"name", wp.wpt_name);
     LINE_S(@"desc", wp.wpt_description);
-    if (wp.wpt_url == nil || [wp.wpt_url isEqualToString:@""] == YES)
+    if (IS_EMPTY(wp.wpt_url) == YES)
         [lines addObject:@"<url />"];
     else
         LINE_S(@"url", wp.wpt_url);

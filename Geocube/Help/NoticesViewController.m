@@ -129,7 +129,7 @@ enum {
         [self.tableView reloadData];
     }
 
-    if (n.url != nil && [n.url isEqualToString:@""] == NO) {
+    if (IS_EMPTY(n.url) == NO) {
         [browserViewController showBrowser];
         [browserViewController loadURL:n.url];
     }

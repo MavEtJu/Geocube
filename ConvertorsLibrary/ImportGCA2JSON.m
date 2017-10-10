@@ -183,7 +183,7 @@
 
     NSString *wpt_name;
     DICT_NSSTRING_KEY(dict, wpt_name, @"code");
-    if (wpt_name == nil || [wpt_name isEqualToString:@""] == YES)
+    if (IS_EMPTY(wpt_name) == YES)
         return;
 
     NSString *dummy;

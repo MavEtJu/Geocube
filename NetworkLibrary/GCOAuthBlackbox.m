@@ -359,7 +359,7 @@
     }];
 
     [order enumerateObjectsUsingBlock:^(NSString * _Nonnull key, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([params compare:@""] != NSOrderedSame)
+        if ([params isEqualToString:@""] == NO)
             [params appendString:@"&"];
         [params appendFormat:@"%@=%@", [MyTools urlEncode:key], [MyTools urlEncode:[paramDict objectForKey:key]]];
     }];

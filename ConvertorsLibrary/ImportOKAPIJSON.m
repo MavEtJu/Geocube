@@ -140,7 +140,7 @@
     NSString *dummy;
     NSString *wpt_name;
     DICT_NSSTRING_KEY(dict, wpt_name, @"code");
-    if (wpt_name == nil || [wpt_name isEqualToString:@""] == YES)
+    if (IS_EMPTY(wpt_name) == YES)
         return;
 
     dbWaypoint *wp = [dbWaypoint dbGetByName:wpt_name];
@@ -225,7 +225,7 @@
     DICT_NSSTRING_KEY(dict, personal_note, @"my_notes");
     dbPersonalNote *pn = [dbPersonalNote dbGetByWaypointName:wp.wpt_name];
     if (pn != nil) {
-        if (personal_note == nil || [personal_note isEqualToString:@""] == YES) {
+        if (IS_EMPTY(personal_note) == YES) {
             [pn dbDelete];
             pn = nil;
         } else {
@@ -233,7 +233,7 @@
             [pn dbUpdate];
         }
     } else {
-        if (personal_note != nil && [personal_note isEqualToString:@""] == NO) {
+        if (IS_EMPTY(personal_note) == NO) {
             pn = [[dbPersonalNote alloc] init];
             pn.wp_name = wp.wpt_name;
             pn.note = personal_note;

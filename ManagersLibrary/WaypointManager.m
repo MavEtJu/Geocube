@@ -44,7 +44,7 @@
     needsRefresh = NO;
     lastCoordinates = CLLocationCoordinate2DZero;
 
-    if (configManager.currentWaypoint != nil && [configManager.currentWaypoint isEqualToString:@""] == NO)
+    if (IS_EMPTY(configManager.currentWaypoint) == NO) 
         self.currentWaypoint = [dbWaypoint dbGetByName:configManager.currentWaypoint];
 
     [LM startDelegationLocation:self isNavigating:NO];
@@ -483,7 +483,7 @@
             __block NSMutableArray<dbLocality *> *localities = nil;
             __block NSMutableArray<dbName *> *owners = nil;
 
-            if (country != nil && [country isEqualToString:@""] == NO) {
+            if (IS_EMPTY(country) == NO) {
                 countries = [NSMutableArray arrayWithCapacity:20];
                 [dbc.countries enumerateObjectsUsingBlock:^(dbCountry * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
                     if ([c.name localizedCaseInsensitiveContainsString:country] ||
@@ -492,7 +492,7 @@
                 }];
             }
 
-            if (state != nil && [state isEqualToString:@""] == NO) {
+            if (IS_EMPTY(state) == NO) {
                 states = [NSMutableArray arrayWithCapacity:20];
                 [dbc.states enumerateObjectsUsingBlock:^(dbState * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
                     if ([c.name localizedCaseInsensitiveContainsString:state] ||
@@ -501,7 +501,7 @@
                 }];
             }
 
-            if (locality != nil && [locality isEqualToString:@""] == NO) {
+            if (IS_EMPTY(locality) == NO) {
                 localities = [NSMutableArray arrayWithCapacity:20];
                 [dbc.localities enumerateObjectsUsingBlock:^(dbLocality * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
                     if ([c.name localizedCaseInsensitiveContainsString:locality])
@@ -509,7 +509,7 @@
                 }];
             }
 
-            if (placedby != nil && [placedby isEqualToString:@""] == NO) {
+            if (IS_EMPTY(placedby) == NO) {
                 owners = [NSMutableArray arrayWithCapacity:20];
                 [[dbName dbAll] enumerateObjectsUsingBlock:^(dbName * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
                     if ([n.name localizedCaseInsensitiveContainsString:placedby])
@@ -520,13 +520,13 @@
             [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                 __block BOOL rv = YES;
 
-                if (cachename != nil && [cachename isEqualToString:@""] == NO &&
+                if (IS_EMPTY(cachename) == NO &&
                     [wp.wpt_name localizedCaseInsensitiveContainsString:cachename] == NO &&
                     [wp.wpt_urlname localizedCaseInsensitiveContainsString:cachename] == NO) {
                     rv = NO;
                 }
 
-                if (description != nil && [description isEqualToString:@""] == NO &&
+                if (IS_EMPTY(description) == NO &&
                     [wp.description localizedCaseInsensitiveContainsString:description] == NO &&
                     [wp.gs_long_desc localizedCaseInsensitiveContainsString:description] == NO &&
                     [wp.gs_short_desc localizedCaseInsensitiveContainsString:description] == NO) {
@@ -581,7 +581,7 @@
                         rv = NO;
                 }
 
-                if (logs != nil && [logs isEqualToString:@""] == NO) {
+                if (IS_EMPTY(logs) == NO) {
                     if ([dbLog dbCountByWaypointLogString:wp LogString:logs] == 0)
                         rv = NO;
                 }

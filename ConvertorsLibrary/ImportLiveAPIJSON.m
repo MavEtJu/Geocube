@@ -235,7 +235,7 @@
 
     DICT_NSSTRING_PATH(dict, wp.gs_owner_gsid, @"Owner.Id");
     DICT_NSSTRING_PATH(dict, dummy, @"Owner.UserName");
-    if ([dummy isEqualToString:@""] == NO)
+    if (IS_EMPTY(dummy) == NO)
         [dbName makeNameExist:dummy code:wp.gs_owner_gsid account:account];
     [wp set_gs_owner_str:dummy];
 
@@ -245,7 +245,7 @@
     /* "FoundDate": "/Date(1439017200000-0700)/", */
     DICT_NSSTRING_KEY(dict, dummy, @"FoundDate");
     wp.gs_date_found = 0;
-    if ([dummy isEqualToString:@""] == NO)
+    if (IS_EMPTY(dummy) == NO)
         wp.gs_date_found = [[dummy substringWithRange:NSMakeRange(6, 10)] integerValue];
 
     // Now see what we had and what we need to change
@@ -278,7 +278,7 @@
     DICT_NSSTRING_KEY(dict, personal_note, @"GeocacheNote");
     dbPersonalNote *pn = [dbPersonalNote dbGetByWaypointName:wp.wpt_name];
     if (pn != nil) {
-        if (personal_note == nil || [personal_note isEqualToString:@""] == YES) {
+        if (IS_EMPTY(personal_note) == YES) {
             [pn dbDelete];
             pn = nil;
         } else {
@@ -286,7 +286,7 @@
             [pn dbUpdate];
         }
     } else {
-        if (personal_note != nil && [personal_note isEqualToString:@""] == NO) {
+        if (IS_EMPTY(personal_note) == NO) {
             pn = [[dbPersonalNote alloc] init];
             pn.wp_name = wp.wpt_name;
             pn.note = personal_note;
@@ -429,7 +429,7 @@
     } else {
         // The code isn't always updated while we do have it.
         // In that case save it from the previous one.
-        if ([tb.pin isEqualToString:@""] == YES) {
+        if (IS_EMPTY(tb.pin) == YES) {
             dbTrackable *prevtb = [dbTrackable dbGet:_id];
             tb.pin = prevtb.pin;
         }

@@ -55,7 +55,7 @@
     self.labelName.backgroundColor = bgColor;
 
     NSMutableString *s = [NSMutableString stringWithString:@""];
-    if (waypoint.gs_owner.name != nil && [waypoint.gs_owner.name isEqualToString:@""] == NO)
+    if (IS_EMPTY(waypoint.gs_owner.name) == NO)
         [s appendFormat:_(@"waypointheaderheaderview-by %@"), waypoint.gs_owner.name];
     if (waypoint.wpt_date_placed_epoch != 0)
         [s appendFormat:_(@"waypointheaderheaderview- on %@"), [MyTools dateTimeString_YYYY_MM_DD:waypoint.wpt_date_placed_epoch]];
