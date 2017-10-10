@@ -221,3 +221,6 @@
 "settingsmainviewcontroller-Size of font in pixels" = "Size of font in pixels";
 "settingsmainviewcontroller-Small Text Font Size" = "Small Text Font Size";
 "settingsmainviewcontroller-Small text font size" = "Small text font size";
+
+"settingsmainviewcontroller-Restart required" = "Restart required";
+"settingsmainviewcontroller-When you are finished with these settings, please leave Geocube, swipe it up and restart it." = "When you are finished with these settings, please leave Geocube, swipe it up and restart it.";

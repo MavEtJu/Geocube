@@ -234,6 +234,11 @@ enum {
     }
 }
 
+- (void)reloadMessage
+{
+    [MyTools messageBox:self header:_(@"settingsmainviewcontroller-Restart required") text:_(@"settingsmainviewcontroller-When you are finished with these settings, please leave Geocube, swipe it up and restart it.")];
+}
+
 #pragma mark - TableViewController related functions
 
 enum sections {
@@ -1506,6 +1511,7 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
                                            [configManager themeTypeUpdate:selectedIndex];
                                            [themeManager setTheme:selectedIndex];
                                            [self.tableView reloadData];
+                                           [self reloadMessage];
                                        }
                                      cancelBlock:nil
                                           origin:cell.contentView
@@ -1739,6 +1745,7 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
                              NSInteger i = [value integerValue];
                              [configManager fontSmallTextSizeUpdate:i];
                              [self.tableView reloadData];
+                             [self reloadMessage];
                          }];
 
     UIAlertAction *cancel = [UIAlertAction
@@ -1774,6 +1781,7 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
                              NSInteger i = [value integerValue];
                              [configManager fontNormalTextSizeUpdate:i];
                              [self.tableView reloadData];
+                             [self reloadMessage];
                          }];
 
     UIAlertAction *cancel = [UIAlertAction
