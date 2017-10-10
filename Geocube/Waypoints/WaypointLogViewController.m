@@ -620,6 +620,12 @@ enum {
 
 - (void)submitLog
 {
+    // Keep record of logged waypoints
+    if (logstring.defaultFound == YES)
+        [dbLogData addEntry:waypoint type:LOGDATATYPE_FOUND datetime:[MyTools secondsSinceEpochFromISO8601:date]];
+    if (logstring.defaultDNF == YES)
+        [dbLogData addEntry:waypoint type:LOGDATATYPE_DNF datetime:[MyTools secondsSinceEpochFromISO8601:date]];
+
     // Do not upload, save it locally for later
     if (upload == NO) {
         NSInteger date_epoch = [MyTools secondsSinceEpochFromISO8601:date];
@@ -645,12 +651,6 @@ enum {
 {
     [menuGlobal enableMenus:NO];
     [MHTabBarController enableMenus:NO controllerFrom:self];
-
-    // Keep record of logged waypoints
-    if (logstring.defaultFound == YES)
-        [dbLogData addEntry:waypoint type:LOGDATATYPE_FOUND datetime:[MyTools secondsSinceEpochFromISO8601:date]];
-    if (logstring.defaultDNF == YES)
-        [dbLogData addEntry:waypoint type:LOGDATATYPE_DNF datetime:[MyTools secondsSinceEpochFromISO8601:date]];
 
     [bezelManager showBezel:self];
     [bezelManager setText:_(@"waypointlogviewcontroller-Uploading log")];
