@@ -74,7 +74,7 @@ enum {
 - (void)popupTextView:(YIPopupTextView *)textView didDismissWithText:(NSString *)text cancelled:(BOOL)cancelled
 {
     if (cancelled == NO) {
-        self.text = [self replaceMacros:tv.text];
+        self.text = tv.text;
         if (self.delegate != nil)
             [self.delegate didFinishEditing:self.text];
     }
@@ -97,7 +97,7 @@ enum {
                doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                    dbLogTemplate *lt = [lts objectAtIndex:selectedIndex];
                    NSMutableString *s = [NSMutableString stringWithString:tv.text];
-                   [s insertString:[self replaceMacros:lt.text] atIndex:tv.selectedRange.location];
+                   [s insertString:lt.text atIndex:tv.selectedRange.location];
                    tv.text = s;
                }
                cancelBlock:^(ActionSheetStringPicker *picker) {
@@ -120,7 +120,7 @@ enum {
         initialSelection:0
                doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                    dbLogTemplate *lt = [lts objectAtIndex:selectedIndex];
-                   tv.text = [self replaceMacros:lt.text];
+                   tv.text = lt.text;
                }
                cancelBlock:^(ActionSheetStringPicker *picker) {
                }
@@ -135,50 +135,7 @@ enum {
 
 - (void)useTemporary
 {
-    tv.text = [self replaceMacros:configManager.logTemporaryText];
-}
-
-- (NSString *)replaceMacros:(NSString *)text
-{
-    NSMutableString *s = [NSMutableString stringWithString:text];
-
-#define REPLACE(__macro__, __text__) \
-    [s replaceOccurrencesOfString:[NSString stringWithFormat:@"%%%@%%", __macro__] withString:[NSString stringWithFormat:@"%@", __text__] options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
-
-    REPLACE(@"waypoint.name", self.waypoint.wpt_urlname)
-    REPLACE(@"waypoint.code", self.waypoint.wpt_name)
-    REPLACE(@"waypoint.owner", self.waypoint.gs_owner.name)
-    REPLACE(@"waypoint.ratingD", [NSNumber numberWithInteger:self.waypoint.gs_rating_difficulty])
-    REPLACE(@"waypoint.ratingT", [NSNumber numberWithInteger:self.waypoint.gs_rating_terrain])
-
-    dbListData *ld = [dbListData dbGetByWaypoint:self.waypoint flag:FLAGS_MARKEDFOUND];
-    if (ld != nil) {
-        REPLACE(@"found.time", [MyTools dateTimeString_hh_mm_ss:ld.datetime])
-        REPLACE(@"found.date", [MyTools dateTimeString_YYYY_MM_DD:ld.datetime])
-        REPLACE(@"found.datetime", [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:ld.datetime])
-        REPLACE(@"found.dow", [MyTools dateTimeString_dow:ld.datetime])
-    } else {
-        REPLACE(@"found.time", @"<undefined>")
-        REPLACE(@"found.date", @"<undefined>")
-        REPLACE(@"found.datetime", @"<undefined>")
-        REPLACE(@"found.dow", @"<undefined>")
-    }
-
-    REPLACE(@"now.dow", [MyTools dateTimeString_dow])
-    REPLACE(@"now.foundtime", [MyTools dateTimeString_hh_mm_ss])
-    REPLACE(@"now.founddate", [MyTools dateTimeString_YYYY_MM_DD])
-    REPLACE(@"now.founddatetime", [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss])
-
-    REPLACE(@"cacher.name", self.waypoint.account.accountname.name)
-
-    REPLACE(@"list.found", [NSNumber numberWithInteger:[[dbListData dbAllByType:FLAGS_MARKEDFOUND ascending:NO] count]])
-    REPLACE(@"list.dnf", [NSNumber numberWithInteger:[[dbListData dbAllByType:FLAGS_MARKEDDNF ascending:NO] count]])
-
-    [[dbLogMacro dbAll] enumerateObjectsUsingBlock:^(dbLogMacro * _Nonnull macro, NSUInteger idx, BOOL * _Nonnull stop) {
-        REPLACE(macro.name, macro.text)
-    }];
-
-    return s;
+    tv.text = configManager.logTemporaryText;
 }
 
 #pragma mark - Local menu related functions

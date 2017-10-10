@@ -117,4 +117,10 @@ TABLENAME(@"log_data")
     [ld dbCreate];
 }
 
++ (NSArray<dbLogData *> *)dbAllByType:(LogDataType)type datetime:(NSInteger)datetime
+{
+    datetime -= (datetime % 86400);
+    return [dbLogData dbAllXXX:@"where type = ? and ? < datetime_epoch and datetime_epoch < ?" keys:@"iii" values:@[[NSNumber numberWithInteger:type], [NSNumber numberWithInteger:datetime], [NSNumber numberWithInteger:datetime + 86400]]];
+}
+
 @end

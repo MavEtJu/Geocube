@@ -31,5 +31,6 @@ typedef NS_ENUM(NSInteger, LogDataType) {
 @property (nonatomic) LogDataType type;
 
 + (void)addEntry:(dbWaypoint *)waypoint type:(LogDataType)type datetime:(time_t)datetime_epoch;
++ (NSArray<dbLogData *> *)dbAllByType:(LogDataType)type datetime:(NSInteger)datetime;
 
 @end

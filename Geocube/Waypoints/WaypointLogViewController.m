@@ -636,6 +636,8 @@ enum {
         return;
     }
 
+    note = [self replaceMacros:note];
+
     BACKGROUND(submitLogBackground, nil);
 }
 
@@ -644,7 +646,7 @@ enum {
     [menuGlobal enableMenus:NO];
     [MHTabBarController enableMenus:NO controllerFrom:self];
 
-    // Keep record of 
+    // Keep record of logged waypoints
     if (logstring.defaultFound == YES)
         [dbLogData addEntry:waypoint type:LOGDATATYPE_FOUND datetime:[MyTools secondsSinceEpochFromISO8601:date]];
     if (logstring.defaultDNF == YES)
@@ -700,6 +702,60 @@ enum {
     } else {
         [MyTools messageBox:self header:_(@"waypointlogviewcontroller-Log failed") text:_(@"waypointlogviewcontroller-This log has not been submitted yet.") error:waypoint.account.remoteAPI.lastError];
     }
+}
+
+- (NSString *)replaceMacros:(NSString *)text
+{
+    NSMutableString *s = [NSMutableString stringWithString:text];
+    NSString *old;
+
+#define REPLACE(__macro__, __text__) \
+    [s replaceOccurrencesOfString:[NSString stringWithFormat:@"%%%@%%", __macro__] withString:[NSString stringWithFormat:@"%@", __text__] options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+
+    NSInteger count = 0;
+
+    do {
+        old = text;
+
+        REPLACE(@"waypoint.name", waypoint.wpt_urlname)
+        REPLACE(@"waypoint.code", waypoint.wpt_name)
+        REPLACE(@"waypoint.owner", waypoint.gs_owner.name)
+        REPLACE(@"waypoint.ratingD", [NSNumber numberWithInteger:waypoint.gs_rating_difficulty])
+        REPLACE(@"waypoint.ratingT", [NSNumber numberWithInteger:waypoint.gs_rating_terrain])
+
+        dbListData *ld = [dbListData dbGetByWaypoint:waypoint flag:FLAGS_MARKEDFOUND];
+        NSInteger foundtime;
+        if (ld != nil)
+            foundtime = ld.datetime;
+        else
+            foundtime = [MyTools secondsSinceEpochFromISO8601:date];
+        REPLACE(@"found.time", [MyTools dateTimeString_hh_mm_ss:foundtime])
+        REPLACE(@"found.date", [MyTools dateTimeString_YYYY_MM_DD:foundtime])
+        REPLACE(@"found.datetime", [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:foundtime])
+        REPLACE(@"found.dow", [MyTools dateTimeString_dow:foundtime])
+
+        REPLACE(@"now.dow", [MyTools dateTimeString_dow])
+        REPLACE(@"now.foundtime", [MyTools dateTimeString_hh_mm_ss])
+        REPLACE(@"now.founddate", [MyTools dateTimeString_YYYY_MM_DD])
+        REPLACE(@"now.founddatetime", [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss])
+
+        REPLACE(@"cacher.name", waypoint.account.accountname.name)
+
+        REPLACE(@"stats.found.today", [NSNumber numberWithInteger:[[dbLogData dbAllByType:LOGDATATYPE_FOUND datetime:time(NULL)] count]])
+        REPLACE(@"stats.found.logdate", [NSNumber numberWithInteger:[[dbLogData dbAllByType:LOGDATATYPE_FOUND datetime:foundtime] count]])
+        REPLACE(@"stats.dnf.today", [NSNumber numberWithInteger:[[dbLogData dbAllByType:LOGDATATYPE_DNF datetime:time(NULL)] count]])
+        REPLACE(@"stats.dnf.logdate", [NSNumber numberWithInteger:[[dbLogData dbAllByType:LOGDATATYPE_DNF datetime:foundtime] count]])
+
+        [[dbLogMacro dbAll] enumerateObjectsUsingBlock:^(dbLogMacro * _Nonnull macro, NSUInteger idx, BOOL * _Nonnull stop) {
+            REPLACE(macro.name, macro.text)
+        }];
+
+        // Easy way to get out of (semi-)recursive definitions
+        if (++count == 10)
+            break;
+    } while ([old isEqualToString:s] == NO);
+
+    return s;
 }
 
 @end
