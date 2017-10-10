@@ -12,6 +12,8 @@ Version 1.7(x)
   - Be able to change the font size of the various texts.
   - Add Geocacher cache type.
   - Add more found/DNF related log macros.
+  - When logging a waypoint, the temporary log text will be
+    automatically inserted.
 
   Fixes:
   - GGCW: No more message boxes about unable to parse the XML data
