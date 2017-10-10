@@ -30,7 +30,7 @@ TABLENAME(@"log_data")
 - (NSId)dbCreate
 {
     @synchronized(db) {
-        DB_PREPARE(@"insert into log_data(waypoint_id, datetime, type) values(?, ?, ?)");
+        DB_PREPARE(@"insert into log_data(waypoint_id, datetime_epoch, type) values(?, ?, ?)");
 
         SET_VAR_INT(1, self.waypoint._id);
         SET_VAR_INT(2, self.datetime_epoch);
@@ -47,7 +47,7 @@ TABLENAME(@"log_data")
 - (void)dbUpdate
 {
     @synchronized(db) {
-        DB_PREPARE(@"update log_data set waypoint_id = ?, datetime = ?, type_id = ? where id = ?");
+        DB_PREPARE(@"update log_data set waypoint_id = ?, datetime_epoch = ?, type_id = ? where id = ?");
 
         SET_VAR_INT(1, self.waypoint._id);
         SET_VAR_INT(2, self.datetime_epoch);
@@ -63,7 +63,7 @@ TABLENAME(@"log_data")
 {
     NSMutableArray<dbLogData *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
 
-    NSMutableString *sql = [NSMutableString stringWithString:@"select id, waypoint_id, datetime, type from log_data "];
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, waypoint_id, datetime_epoch, type from log_data "];
     if (where != nil)
         [sql appendString:where];
 
