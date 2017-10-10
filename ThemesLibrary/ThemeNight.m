@@ -57,6 +57,10 @@
     self.menuLocalIcon = [imageManager get:ImageIcon_LocalMenuNight];
     self.menuGlobalIcon = [imageManager get:ImageIcon_GlobalMenuNight];
 
+    NSURL *styleUrl = [[NSBundle mainBundle] URLForResource:@"GoogleMapsNight" withExtension:@"json"];
+    NSError *error;
+    self.googleMapsStyle = [GMSMapStyle styleWithContentsOfFileURL:styleUrl error:&error];
+
     return self;
 }
 

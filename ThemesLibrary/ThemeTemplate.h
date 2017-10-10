@@ -44,6 +44,8 @@
 @property (nonatomic, retain) UIImage *menuLocalIcon;
 @property (nonatomic, retain) UIImage *menuGlobalIcon;
 
+@property (nonatomic, retain) GMSMapStyle *googleMapsStyle;
+
 // UI settings
 
 @property (nonatomic, retain) UIFont *GCLabelSmallSizeFont;

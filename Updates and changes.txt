@@ -14,6 +14,7 @@ Version 1.7(x)
   - Add more found/DNF related log macros.
   - When logging a waypoint, the temporary log text will be
     automatically inserted.
+  - Google Maps map is darker in the Geocube Night theme.
 
   Fixes:
   - GGCW: No more message boxes about unable to parse the XML data
