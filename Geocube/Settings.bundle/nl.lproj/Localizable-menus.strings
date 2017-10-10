@@ -82,6 +82,7 @@
 "waypointlogeditviewcontroller-Insert template" = "Voeg sjabloon in";
 "waypointlogeditviewcontroller-Save temporary" = "Bewaar tijdelijke log";
 "waypointlogeditviewcontroller-Use temporary" = "Gebruik tijdelijke log";
+"waypointlogeditviewcontroller-Clear temporary" = "Verwijder tijdelijke log";
 "browserbrowserviewcontroller-Enter URL" = "Voer URL in";
 "browserbrowserviewcontroller-Go home" = "Terug naar eerste pagina";
 "browserbrowserviewcontroller-Open in Safari" = "Open in Safari";

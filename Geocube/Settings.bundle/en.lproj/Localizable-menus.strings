@@ -82,6 +82,7 @@
 "waypointlogeditviewcontroller-Insert template" = "Insert Template";
 "waypointlogeditviewcontroller-Save temporary" = "Save Temporary";
 "waypointlogeditviewcontroller-Use temporary" = "Use Temporary";
+"waypointlogeditviewcontroller-Clear temporary" = "Clear temporary";
 "browserbrowserviewcontroller-Enter URL" = "Enter URL";
 "browserbrowserviewcontroller-Go home" = "Go Home";
 "browserbrowserviewcontroller-Open in Safari" = "Open in Safari";

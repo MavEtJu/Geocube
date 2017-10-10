@@ -32,6 +32,7 @@ enum {
     menuUseTemplate,
     menuInsertTemplate,
     menuSaveTemporary,
+    menuClearTemporary,
     menuUseTemporary,
     menuMax
 };
@@ -44,6 +45,7 @@ enum {
     [lmi addItem:menuUseTemplate label:_(@"waypointlogeditviewcontroller-Use template")];
     [lmi addItem:menuInsertTemplate label:_(@"waypointlogeditviewcontroller-Insert template")];
     [lmi addItem:menuSaveTemporary label:_(@"waypointlogeditviewcontroller-Save temporary")];
+    [lmi addItem:menuClearTemporary label:_(@"waypointlogeditviewcontroller-Clear temporary")];
     [lmi addItem:menuUseTemporary label:_(@"waypointlogeditviewcontroller-Use temporary")];
 
     return self;
@@ -67,6 +69,9 @@ enum {
     tv.caretShiftGestureEnabled = YES;
     tv.maxCount = 4000;
     tv.text = self.text;
+
+    if (IS_EMPTY(tv.text) == YES)
+        tv.text = configManager.logTemporaryText;
 
     [tv showInViewController:self];
 }
@@ -138,6 +143,11 @@ enum {
     tv.text = configManager.logTemporaryText;
 }
 
+- (void)clearTemporary
+{
+    [configManager logTemporaryTextUpdate:@""];
+}
+
 #pragma mark - Local menu related functions
 
 - (void)performLocalMenuAction:(NSInteger)index
@@ -149,6 +159,9 @@ enum {
             return;
         case menuUseTemporary:
             [self useTemporary];
+            return;
+        case menuClearTemporary:
+            [self clearTemporary];
             return;
         case menuInsertTemplate:
             [self insertTemplate];
