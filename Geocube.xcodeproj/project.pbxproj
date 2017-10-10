@@ -2896,9 +2896,9 @@
 			children = (
 				E82289301F8A40DB00631380 /* fillrange.png */,
 				E82289311F8A40DB00631380 /* fullrange.png */,
+				E82289341F8A40DB00631380 /* rangethumb.png */,
 				E82289321F8A40DB00631380 /* RangeSlider.h */,
 				E82289331F8A40DB00631380 /* RangeSlider.m */,
-				E82289341F8A40DB00631380 /* rangethumb.png */,
 			);
 			name = CMRangeSlider;
 			sourceTree = "<group>";

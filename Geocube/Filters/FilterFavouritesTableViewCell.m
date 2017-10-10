@@ -50,6 +50,7 @@
 
 - (void)changeTheme
 {
+    [super changeTheme];
     [self.labelSlider changeTheme];
     [self.labelHeader changeTheme];
 }

@@ -25,7 +25,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MM0-GT-8U9">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MM0-GT-8U9" customClass="GCView">
                         <rect key="frame" x="183" y="36" width="8" height="212.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -156,6 +156,7 @@
                 <outlet property="labelPlacedBy" destination="Pfx-hj-9JB" id="odg-fq-htS"/>
                 <outlet property="labelState" destination="An1-E8-rel" id="bkd-8W-gEG"/>
                 <outlet property="labelWaypointName" destination="K4Z-M0-JVJ" id="hGj-dT-5y9"/>
+                <outlet property="splitView" destination="MM0-GT-8U9" id="Iqv-yk-JDL"/>
             </connections>
             <point key="canvasLocation" x="40.5" y="-168.5"/>
         </tableViewCell>

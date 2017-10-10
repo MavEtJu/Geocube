@@ -29,6 +29,7 @@
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelDirection;
 @property (nonatomic, weak) IBOutlet FilterButton *buttonDirection;
+@property (nonatomic, weak) IBOutlet GCView *viewWindow;
 
 @end
 
@@ -60,6 +61,7 @@
     [self.labelHeader changeTheme];
     [self.labelDirection changeTheme];
     [self.buttonDirection changeTheme];
+    [self.viewWindow changeTheme];
 }
 
 - (void)viewRefresh

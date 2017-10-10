@@ -48,6 +48,8 @@
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelDescription;
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelLogs;
 
+@property (nonatomic, weak) IBOutlet GCView *splitView;
+
 @end
 
 @implementation FilterTextTableViewCell
@@ -85,6 +87,7 @@
     [self.labelCountry changeTheme];
     [self.labelDescription changeTheme];
     [self.labelLogs changeTheme];
+    [self.splitView changeTheme];
 }
 
 - (void)viewRefresh
