@@ -855,7 +855,11 @@
     @"update config set value = 'https://geocube.mavetju.org/geocube_bookmarks.6.geocube' where key = 'url_bookmarks'",
     @"update config set value = 'https://geocube.mavetju.org/geocube_containers.6.geocube' where key = 'url_containers'",
     @"update config set value = 'https://geocube.mavetju.org/geocube_logstrings.6.geocube' where key = 'url_logstrings'",
+    ];
+    [upgradeSteps addObject:a];
 
+    // Version 68
+    a = @[
     @"alter table log_strings add column default_dnf bool",
     @"update log_strings set default_dnf = 0",
     ];
