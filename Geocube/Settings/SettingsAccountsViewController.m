@@ -327,7 +327,7 @@ enum {
     COMPARE(@"url_containers", KEY_REVISION_CONTAINERS);
     COMPARE(@"url_logstrings", KEY_REVISION_LOGSTRINGS);
 
-    if (needsDownload)
+    if (needsDownload == YES)
         [MyTools messageBox:[MyTools topMostController] header:_(@"settingsaccountsviewcontroller-Configuration Update") text:_(@"settingsaccountsviewcontroller-A configuration update is available. Please go to the Settings -> Accounts menu and update the configuration.")];
 }
 
