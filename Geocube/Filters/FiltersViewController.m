@@ -22,6 +22,7 @@
 @interface FiltersViewController ()
 {
     NSMutableArray<FilterObject *> *filters;
+    NSMutableArray<NSNumber *> *initstates;
 }
 
 @end
@@ -61,13 +62,20 @@ enum {
     [lmi addItem:menuLoadFilter label:_(@"filtersviewcontroller-Load filter")];
 
     filters = [NSMutableArray arrayWithCapacity:15];
+    initstates = [NSMutableArray arrayWithCapacity:15];
 
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
+
+    /* Initially the filters get all displayed, then they get all properly displayed */
+    [filters enumerateObjectsUsingBlock:^(FilterObject * _Nonnull fo, NSUInteger idx, BOOL * _Nonnull stop) {
+        fo.expanded = [[initstates objectAtIndex:idx] boolValue];
+    }];
+
     [self.tableView reloadData];
 }
 
@@ -98,6 +106,8 @@ enum {
         fo.tvcEnabled = [self.tableView dequeueReusableCellWithIdentifier:__xib__]; \
         [fo.tvcEnabled initFO:fo]; \
         [filters addObject:fo]; \
+        [initstates addObject:[NSNumber numberWithBool:fo.expanded]]; \
+        fo.expanded = YES; \
         break; \
     }
 

@@ -69,6 +69,9 @@
     buttons = bs;
 
     [self changeTheme];
+
+    [self.accountsView sizeToFit];
+    [self.contentView sizeToFit];
 }
 
 - (void)changeTheme
@@ -87,6 +90,7 @@
 {
     __block NSInteger y = 0;
 
+    viewWidth = self.accountsView.frame.size.width;
     [groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
         FilterButton *b = [buttons objectAtIndex:idx];
         [b setTitle:g.name forState:UIControlStateNormal];

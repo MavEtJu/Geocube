@@ -79,6 +79,9 @@
     [self.accountsView addConstraint:height];
 
     [self changeTheme];
+
+    [self.accountsView sizeToFit];
+    [self.contentView sizeToFit];
 }
 
 - (void)changeTheme
@@ -95,6 +98,7 @@
 
 - (void)viewRefresh
 {
+    viewWidth = self.accountsView.frame.size.width;
     [types enumerateObjectsUsingBlock:^(dbType * _Nonnull t, NSUInteger idx, BOOL * _Nonnull stop) {
         FilterButton *b = [buttons objectAtIndex:idx];
         [b setTitle:t.type_full forState:UIControlStateNormal];
