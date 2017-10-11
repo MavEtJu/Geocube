@@ -83,6 +83,11 @@ ThemeManager *themeManager;
         return;
     }
 
+    if ([[[v class] description] isEqualToString:@"UIButtonLabel"] == YES)
+        return;
+    if ([[[v class] description] isEqualToString:@"UITableViewCellContentView"] == YES)
+        return;
+
     if ([[[v class] description] hasPrefix:@"_"] == NO)
         NSLog(@"%@ - not changedTheme: %@", [self class], [v class]);
 }
