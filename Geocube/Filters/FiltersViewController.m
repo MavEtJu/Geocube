@@ -61,15 +61,14 @@ enum {
     [lmi addItem:menuSaveFilter label:_(@"filtersviewcontroller-Save filter")];
     [lmi addItem:menuLoadFilter label:_(@"filtersviewcontroller-Load filter")];
 
-    filters = [NSMutableArray arrayWithCapacity:15];
-    initstates = [NSMutableArray arrayWithCapacity:15];
-
     return self;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+
+    [self loadFilters:YES];
 
     /* Initially the filters get all displayed, then they get all properly displayed */
     [filters enumerateObjectsUsingBlock:^(FilterObject * _Nonnull fo, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -98,7 +97,18 @@ enum {
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERTYPESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERTYPESTABLEVIEWCELL];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERSIZESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERSIZESTABLEVIEWCELL];
 
-#define MATCH(__idx__, __name__, __xib__) \
+    filters = [NSMutableArray arrayWithCapacity:15];
+    initstates = [NSMutableArray arrayWithCapacity:15];
+
+    [self loadFilters:YES];
+}
+
+- (void)loadFilters:(BOOL)viewDidLoad
+{
+    [filters removeAllObjects];
+    [initstates removeAllObjects];
+
+#define LOAD(__idx__, __name__, __xib__) \
     case __idx__: { \
         FilterObject *fo = [[FilterObject alloc] init:__name__]; \
         fo.tvcDisabled = [self.tableView dequeueReusableCellWithIdentifier:XIB_FILTERHEADERTABLEVIEWCELL]; \
@@ -108,27 +118,29 @@ enum {
         [filters addObject:fo]; \
         [initstates addObject:[NSNumber numberWithBool:fo.expanded]]; \
         fo.expanded = YES; \
+        [fo.tvcEnabled viewRefresh]; \
         break; \
     }
 
     for (NSInteger i = 0; i < filterMax; i++) {
         switch (i) {
-            MATCH(filterTypes, _(@"filtersviewcontroller-types"), XIB_FILTERTYPESTABLEVIEWCELL);
-            MATCH(filterGroups, _(@"filtersviewcontroller-groups"), XIB_FILTERGROUPSTABLEVIEWCELL);
-            MATCH(filterFavourites, _(@"filtersviewcontroller-favourites"), XIB_FILTERFAVOURITESTABLEVIEWCELL);
-            MATCH(filterSizes, _(@"filtersviewcontroller-sizes"), XIB_FILTERSIZESTABLEVIEWCELL);
-            MATCH(filterDifficulty, _(@"filtersviewcontroller-difficulty"), XIB_FILTERDIFFICULTYTABLEVIEWCELL);
-            MATCH(filterTerrain, _(@"filtersviewcontroller-terrain"), XIB_FILTERTERRAINTABLEVIEWCELL);
-            MATCH(filterDistance, _(@"filtersviewcontroller-distance"), XIB_FILTERDISTANCETABLEVIEWCELL);
-            MATCH(filterDirection, _(@"filtersviewcontroller-direction"), XIB_FILTERDIRECTIONTABLEVIEWCELL);
-            MATCH(filterText, _(@"filtersviewcontroller-text"), XIB_FILTERTEXTTABLEVIEWCELL);
-            MATCH(filterDates, _(@"filtersviewcontroller-dates"), XIB_FILTERDATESTABLEVIEWCELL);
-            MATCH(filterFlags, _(@"filtersviewcontroller-flags"), XIB_FILTERFLAGSTABLEVIEWCELL);
-            MATCH(filterAccounts, _(@"filtersviewcontroller-accounts"), XIB_FILTERACCOUNTSTABLEVIEWCELL);
+            LOAD(filterTypes, _(@"filtersviewcontroller-types"), XIB_FILTERTYPESTABLEVIEWCELL);
+            LOAD(filterGroups, _(@"filtersviewcontroller-groups"), XIB_FILTERGROUPSTABLEVIEWCELL);
+            LOAD(filterFavourites, _(@"filtersviewcontroller-favourites"), XIB_FILTERFAVOURITESTABLEVIEWCELL);
+            LOAD(filterSizes, _(@"filtersviewcontroller-sizes"), XIB_FILTERSIZESTABLEVIEWCELL);
+            LOAD(filterDifficulty, _(@"filtersviewcontroller-difficulty"), XIB_FILTERDIFFICULTYTABLEVIEWCELL);
+            LOAD(filterTerrain, _(@"filtersviewcontroller-terrain"), XIB_FILTERTERRAINTABLEVIEWCELL);
+            LOAD(filterDistance, _(@"filtersviewcontroller-distance"), XIB_FILTERDISTANCETABLEVIEWCELL);
+            LOAD(filterDirection, _(@"filtersviewcontroller-direction"), XIB_FILTERDIRECTIONTABLEVIEWCELL);
+            LOAD(filterText, _(@"filtersviewcontroller-text"), XIB_FILTERTEXTTABLEVIEWCELL);
+            LOAD(filterDates, _(@"filtersviewcontroller-dates"), XIB_FILTERDATESTABLEVIEWCELL);
+            LOAD(filterFlags, _(@"filtersviewcontroller-flags"), XIB_FILTERFLAGSTABLEVIEWCELL);
+            LOAD(filterAccounts, _(@"filtersviewcontroller-accounts"), XIB_FILTERACCOUNTSTABLEVIEWCELL);
             default:
                 NSAssert1(FALSE, @"Unknown filter %ld", (long)i);
         }
     }
+    [self.tableView reloadData];
 }
 
 #pragma mark - TableViewController related functions
@@ -150,7 +162,7 @@ enum {
     FilterObject *fo = [filters objectAtIndex:indexPath.row];
     GCTableViewCell *cell;
 
-#define FILTER(__row__) \
+#define SHOWFILTER(__row__) \
         case __row__: { \
             if (fo.expanded == YES) { \
                 FilterTableViewCell *c = fo.tvcEnabled; \
@@ -162,18 +174,18 @@ enum {
         }
 
     switch (indexPath.row) {
-        FILTER(filterGroups)
-        FILTER(filterTypes)
-        FILTER(filterFavourites)
-        FILTER(filterSizes)
-        FILTER(filterDifficulty)
-        FILTER(filterTerrain)
-        FILTER(filterDistance)
-        FILTER(filterDirection)
-        FILTER(filterText)
-        FILTER(filterDates)
-        FILTER(filterFlags)
-        FILTER(filterAccounts)
+        SHOWFILTER(filterGroups)
+        SHOWFILTER(filterTypes)
+        SHOWFILTER(filterFavourites)
+        SHOWFILTER(filterSizes)
+        SHOWFILTER(filterDifficulty)
+        SHOWFILTER(filterTerrain)
+        SHOWFILTER(filterDistance)
+        SHOWFILTER(filterDirection)
+        SHOWFILTER(filterText)
+        SHOWFILTER(filterDates)
+        SHOWFILTER(filterFlags)
+        SHOWFILTER(filterAccounts)
         default:
             NSAssert1(FALSE, @"Unknown filter: %ld", (long)indexPath.row);
     }
@@ -256,7 +268,7 @@ enum {
 {
     [dbFilter dbAllClear:nil];
 
-#define LOAD(__class__) { \
+#define RELOAD(__class__) { \
         NSString *prefix = [__class__ configPrefix]; \
         NSArray<NSString *> *fields = [__class__ configFields]; \
         [fields enumerateObjectsUsingBlock:^(NSString * _Nonnull fn, NSUInteger idx, BOOL * _Nonnull stop) { \
@@ -267,19 +279,20 @@ enum {
         }]; \
     }
 
-    LOAD(FilterGroupsTableViewCell)
-    LOAD(FilterTypesTableViewCell)
-    LOAD(FilterFavouritesTableViewCell)
-    LOAD(FilterSizesTableViewCell)
-    LOAD(FilterDifficultyTableViewCell)
-    LOAD(FilterTerrainTableViewCell)
-    LOAD(FilterDistanceTableViewCell)
-    LOAD(FilterDirectionTableViewCell)
-    LOAD(FilterTextTableViewCell)
-    LOAD(FilterDatesTableViewCell)
-    LOAD(FilterFlagsTableViewCell)
-    LOAD(FilterAccountsTableViewCell)
-    [self.tableView reloadData];
+    RELOAD(FilterGroupsTableViewCell)
+    RELOAD(FilterTypesTableViewCell)
+    RELOAD(FilterFavouritesTableViewCell)
+    RELOAD(FilterSizesTableViewCell)
+    RELOAD(FilterDifficultyTableViewCell)
+    RELOAD(FilterTerrainTableViewCell)
+    RELOAD(FilterDistanceTableViewCell)
+    RELOAD(FilterDirectionTableViewCell)
+    RELOAD(FilterTextTableViewCell)
+    RELOAD(FilterDatesTableViewCell)
+    RELOAD(FilterFlagsTableViewCell)
+    RELOAD(FilterAccountsTableViewCell)
+
+    [self loadFilters:NO];
     [filters enumerateObjectsUsingBlock:^(FilterObject * _Nonnull fo, NSUInteger idx, BOOL * _Nonnull stop) {
         [fo.tvcEnabled viewRefresh];
     }];
