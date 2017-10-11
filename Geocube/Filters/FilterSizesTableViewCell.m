@@ -23,11 +23,13 @@
 {
     NSArray<dbContainer *> *containers;
     NSArray<FilterButton *> *buttons;
-    NSInteger viewWidth;
 }
 
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
-@property (nonatomic, weak) IBOutlet GCView *accountsView;
+@property (nonatomic, weak) IBOutlet FilterButton *firstButton;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *firstButtonBottom;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *firstButtonLeft;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *firstButtonRight;
 
 @end
 
@@ -40,46 +42,88 @@
     containers = dbc.containers;
     NSMutableArray<FilterButton *> *bs = [NSMutableArray arrayWithCapacity:[containers count]];
 
-    __block NSInteger y = 0;
+    __block NSInteger y = self.firstButton.frame.origin.y + self.firstButton.frame.size.height;
 
-    viewWidth = self.accountsView.frame.size.width;
+    __block NSObject *lastButton = self.labelHeader;
+    __block NSLayoutConstraint *lc;
 
-    [containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull con, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *s = [NSString stringWithFormat:@"type_%ld", (long)con._id];
+    [self.contentView removeConstraint:self.firstButtonBottom];
+    [self.contentView removeConstraint:self.firstButtonLeft];
+    [self.contentView removeConstraint:self.firstButtonRight];
+
+    [containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *s = [NSString stringWithFormat:@"group_%ld", (long)g._id];
         NSString *c = [self configGet:s];
         if (c == nil)
-            con.selected = NO;
+            g.selected = NO;
         else
-            con.selected = [c boolValue];
+            g.selected = [c boolValue];
 
-        FilterButton *b = [FilterButton buttonWithType:UIButtonTypeSystem];
+        FilterButton *b;
+        if (idx == 0) {
+            b = self.firstButton;
+        } else {
+            b = [FilterButton buttonWithType:UIButtonTypeSystem];
+            b.translatesAutoresizingMaskIntoConstraints = NO;
+        }
+
         [b addTarget:self action:@selector(clickContainer:) forControlEvents:UIControlEventTouchDown];
         b.index = idx;
-        b.frame = CGRectMake(0, y, width, 1);
+        b.frame = CGRectMake(0, y, 0, 0);
+        [b setTitle:s forState:UIControlStateNormal];
         [b sizeToFit];
-        b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, viewWidth, b.frame.size.height);
-        [self.accountsView addSubview:b];
+
+        if (idx != 0)
+            [self.contentView addSubview:b];
+
+        lc = [NSLayoutConstraint
+              constraintWithItem:b
+              attribute:NSLayoutAttributeTrailing
+              relatedBy:NSLayoutRelationEqual
+              toItem:self.contentView
+              attribute:NSLayoutAttributeTrailingMargin
+              multiplier:1.0
+              constant:0];
+        [self.contentView addConstraint:lc];
+        lc = [NSLayoutConstraint
+              constraintWithItem:b
+              attribute:NSLayoutAttributeLeading
+              relatedBy:NSLayoutRelationEqual
+              toItem:self.contentView
+              attribute:NSLayoutAttributeLeadingMargin
+              multiplier:1.0
+              constant:0];
+        [self.contentView addConstraint:lc];
+
+        lc = [NSLayoutConstraint
+              constraintWithItem:b
+              attribute:NSLayoutAttributeTop
+              relatedBy:NSLayoutRelationEqual
+              toItem:lastButton
+              attribute:NSLayoutAttributeBottom
+              multiplier:1.0
+              constant:0];
+        [self.contentView addConstraint:lc];
 
         y += b.frame.size.height;
 
         [bs addObject:b];
+        lastButton = b;
     }];
 
+    lc = [NSLayoutConstraint
+          constraintWithItem:lastButton
+          attribute:NSLayoutAttributeBottom
+          relatedBy:NSLayoutRelationEqual
+          toItem:self.contentView
+          attribute:NSLayoutAttributeBottomMargin
+          multiplier:1.0
+          constant:0];
+    [self.contentView addConstraint:lc];
+
     buttons = bs;
-
-    NSLayoutConstraint *height = [NSLayoutConstraint
-                                  constraintWithItem:self.accountsView
-                                  attribute:NSLayoutAttributeHeight
-                                  relatedBy:0
-                                  toItem:nil
-                                  attribute:NSLayoutAttributeHeight
-                                  multiplier:1.0
-                                  constant:y];
-    [self.accountsView addConstraint:height];
-
+    
     [self changeTheme];
-
-    [self.accountsView sizeToFit];
     [self.contentView sizeToFit];
 }
 
@@ -92,20 +136,16 @@
     }];
 
     [self.labelHeader changeTheme];
-    [self.accountsView changeTheme];
 }
 
 - (void)viewRefresh
 {
-    viewWidth = self.accountsView.frame.size.width;
     [containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull con, NSUInteger idx, BOOL * _Nonnull stop) {
         FilterButton *b = [buttons objectAtIndex:idx];
         [b setTitle:con.size forState:UIControlStateNormal];
         [b setTitleColor:(con.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b sizeToFit];
-        b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, viewWidth, b.frame.size.height);
     }];
-    [self.accountsView sizeToFit];
     [self.contentView sizeToFit];
 }
 

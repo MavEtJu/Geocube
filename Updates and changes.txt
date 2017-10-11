@@ -22,6 +22,8 @@ Version 1.7(x)
   - Proper determination for logging for webcam caches.
   - The waypoints filter for container sizes didn't show the right
     images.
+  - Filters: Loading of filters for groups, types, sizes and accounts
+    works.
 
 Version 1.6(30)
 

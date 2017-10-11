@@ -47,6 +47,10 @@
     __block NSObject *lastButton = self.labelHeader;
     __block NSLayoutConstraint *lc;
 
+    [self.contentView removeConstraint:self.firstButtonBottom];
+    [self.contentView removeConstraint:self.firstButtonLeft];
+    [self.contentView removeConstraint:self.firstButtonRight];
+
     [groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *s = [NSString stringWithFormat:@"group_%ld", (long)g._id];
         NSString *c = [self configGet:s];
@@ -56,9 +60,9 @@
             g.selected = [c boolValue];
 
         FilterButton *b;
-        if (idx == 0)
+        if (idx == 0) {
             b = self.firstButton;
-        else {
+        } else {
             b = [FilterButton buttonWithType:UIButtonTypeSystem];
             b.translatesAutoresizingMaskIntoConstraints = NO;
         }
@@ -69,9 +73,6 @@
         [b setTitle:s forState:UIControlStateNormal];
         [b sizeToFit];
 
-        [self.contentView removeConstraint:self.firstButtonBottom];
-        [self.contentView removeConstraint:self.firstButtonLeft];
-        [self.contentView removeConstraint:self.firstButtonRight];
         if (idx != 0)
             [self.contentView addSubview:b];
 
@@ -139,14 +140,11 @@
 
 - (void)viewRefresh
 {
-    __block NSInteger y = 0;
-
     [groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
         FilterButton *b = [buttons objectAtIndex:idx];
         [b setTitle:g.name forState:UIControlStateNormal];
         [b setTitleColor:(g.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b sizeToFit];
-        y += b.frame.size.height;
     }];
 
     [self.contentView sizeToFit];
