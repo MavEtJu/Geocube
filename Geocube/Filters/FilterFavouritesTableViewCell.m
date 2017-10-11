@@ -57,6 +57,8 @@
 
 - (void)viewRefresh
 {
+    /* Do not update self.slider.min/max here */
+
     NSString *minString = [NSString stringWithFormat:@"%ld", (long)config_min];
     NSString *maxString = [NSString stringWithFormat:@"%ld", (long)config_max];
 
@@ -117,12 +119,9 @@
 
 - (void)reportSlider:(RangeSlider *)s
 {
-    if (s != nil) {
-        config_min = (int)(100 * s.min);
-        config_max = (int)(100 * s.max);
-        [self configUpdate];
-    }
-    [self viewRefresh];
+    config_min = (int)(100 * s.min);
+    config_max = (int)(100 * s.max);
+    [self configUpdate];
 }
 
 @end
