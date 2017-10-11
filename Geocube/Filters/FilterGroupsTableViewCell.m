@@ -23,12 +23,13 @@
 {
     NSArray<dbGroup *> *groups;
     NSArray<FilterButton *> *buttons;
-    NSInteger viewWidth;
-    NSLayoutConstraint *heightConstraint;
 }
 
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
-@property (nonatomic, weak) IBOutlet GCView *accountsView;
+@property (nonatomic, weak) IBOutlet FilterButton *firstButton;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *firstButtonBottom;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *firstButtonLeft;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *firstButtonRight;
 
 @end
 
@@ -41,9 +42,10 @@
     groups = dbc.groups;
     NSMutableArray<FilterButton *> *bs = [NSMutableArray arrayWithCapacity:[groups count]];
 
-    __block NSInteger y = 0;
+    __block NSInteger y = self.firstButton.frame.origin.y + self.firstButton.frame.size.height;
 
-    viewWidth = self.accountsView.frame.size.width;
+    __block NSObject *lastButton = self.labelHeader;
+    __block NSLayoutConstraint *lc;
 
     [groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *s = [NSString stringWithFormat:@"group_%ld", (long)g._id];
@@ -53,24 +55,74 @@
         else
             g.selected = [c boolValue];
 
-        FilterButton *b = [FilterButton buttonWithType:UIButtonTypeSystem];
+        FilterButton *b;
+        if (idx == 0)
+            b = self.firstButton;
+        else {
+            b = [FilterButton buttonWithType:UIButtonTypeSystem];
+            b.translatesAutoresizingMaskIntoConstraints = NO;
+        }
+
         [b addTarget:self action:@selector(clickGroup:) forControlEvents:UIControlEventTouchDown];
         b.index = idx;
-        b.frame = CGRectMake(0, y, viewWidth, 1);
+        b.frame = CGRectMake(0, y, 0, 0);
+        [b setTitle:s forState:UIControlStateNormal];
         [b sizeToFit];
-        b.frame = CGRectMake(b.frame.origin.x, b.frame.origin.y, viewWidth - 2 * b.frame.origin.x, b.frame.size.height);
-        [self.accountsView addSubview:b];
+
+        [self.contentView removeConstraint:self.firstButtonBottom];
+        [self.contentView removeConstraint:self.firstButtonLeft];
+        [self.contentView removeConstraint:self.firstButtonRight];
+        if (idx != 0)
+            [self.contentView addSubview:b];
+
+        lc = [NSLayoutConstraint
+              constraintWithItem:b
+              attribute:NSLayoutAttributeTrailing
+              relatedBy:NSLayoutRelationEqual
+              toItem:self.contentView
+              attribute:NSLayoutAttributeTrailingMargin
+              multiplier:1.0
+              constant:0];
+        [self.contentView addConstraint:lc];
+        lc = [NSLayoutConstraint
+              constraintWithItem:b
+              attribute:NSLayoutAttributeLeading
+              relatedBy:NSLayoutRelationEqual
+              toItem:self.contentView
+              attribute:NSLayoutAttributeLeadingMargin
+              multiplier:1.0
+              constant:0];
+        [self.contentView addConstraint:lc];
+
+        lc = [NSLayoutConstraint
+              constraintWithItem:b
+              attribute:NSLayoutAttributeTop
+              relatedBy:NSLayoutRelationEqual
+              toItem:lastButton
+              attribute:NSLayoutAttributeBottom
+              multiplier:1.0
+              constant:0];
+        [self.contentView addConstraint:lc];
 
         y += b.frame.size.height;
 
         [bs addObject:b];
+        lastButton = b;
     }];
+
+    lc = [NSLayoutConstraint
+          constraintWithItem:lastButton
+          attribute:NSLayoutAttributeBottom
+          relatedBy:NSLayoutRelationEqual
+          toItem:self.contentView
+          attribute:NSLayoutAttributeBottomMargin
+          multiplier:1.0
+          constant:0];
+    [self.contentView addConstraint:lc];
 
     buttons = bs;
 
     [self changeTheme];
-
-    [self.accountsView sizeToFit];
     [self.contentView sizeToFit];
 }
 
@@ -83,34 +135,20 @@
     }];
 
     [self.labelHeader changeTheme];
-    [self.accountsView changeTheme];
 }
 
 - (void)viewRefresh
 {
     __block NSInteger y = 0;
 
-    viewWidth = self.accountsView.frame.size.width;
     [groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
         FilterButton *b = [buttons objectAtIndex:idx];
         [b setTitle:g.name forState:UIControlStateNormal];
         [b setTitleColor:(g.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b sizeToFit];
-        b.frame = CGRectMake(b.frame.origin.x, y, viewWidth, b.frame.size.height);
         y += b.frame.size.height;
     }];
-    [self.accountsView removeConstraint:heightConstraint];
-    heightConstraint = [NSLayoutConstraint
-                        constraintWithItem:self.accountsView
-                        attribute:NSLayoutAttributeHeight
-                        relatedBy:0
-                        toItem:nil
-                        attribute:NSLayoutAttributeHeight
-                        multiplier:1.0
-                        constant:y];
-    [self.accountsView addConstraint:heightConstraint];
 
-    [self.accountsView sizeToFit];
     [self.contentView sizeToFit];
 }
 
@@ -137,7 +175,7 @@
 {
     NSMutableArray<NSString *> *as = [NSMutableArray arrayWithArray:@[@"enabled"]];
     [dbc.groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
-        [as addObject:g.name];
+        [as addObject:[NSString stringWithFormat:@"group_%ld", (long)g._id]];
     }];
     return as;
 }
@@ -148,7 +186,7 @@
     [dict setObject:@"0" forKey:@"enabled"];
 
     [dbc.groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
-        [dict setObject:@"0" forKey:g.name];
+        [dict setObject:@"0" forKey:[NSString stringWithFormat:@"group_%ld", (long)g._id]];
     }];
     return dict;
 }
