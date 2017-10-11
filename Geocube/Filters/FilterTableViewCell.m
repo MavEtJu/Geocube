@@ -66,17 +66,6 @@
     /// XXX
 }
 
-//- (void)calculateCellHeights
-//{
-//    UITableViewCell *cell = [[GCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-//    cellHeight = cell.frame.size.height;
-//}
-//
-//- (NSInteger)cellHeight
-//{
-//    return cellHeight;
-//}
-
 #pragma mark -- configuration
 
 - NEEDS_OVERLOADING_VOID(configUpdate)
