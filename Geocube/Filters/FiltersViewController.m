@@ -22,7 +22,6 @@
 @interface FiltersViewController ()
 {
     NSMutableArray<FilterObject *> *filters;
-    NSMutableArray<NSNumber *> *initstates;
 }
 
 @end
@@ -69,12 +68,6 @@ enum {
     [super viewDidAppear:animated];
 
     [self loadFilters:YES];
-
-    /* Initially the filters get all displayed, then they get all properly displayed */
-    [filters enumerateObjectsUsingBlock:^(FilterObject * _Nonnull fo, NSUInteger idx, BOOL * _Nonnull stop) {
-        fo.expanded = [[initstates objectAtIndex:idx] boolValue];
-    }];
-
     [self.tableView reloadData];
 }
 
@@ -98,7 +91,6 @@ enum {
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERSIZESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERSIZESTABLEVIEWCELL];
 
     filters = [NSMutableArray arrayWithCapacity:15];
-    initstates = [NSMutableArray arrayWithCapacity:15];
 
     [self loadFilters:YES];
 }
@@ -106,7 +98,6 @@ enum {
 - (void)loadFilters:(BOOL)viewDidLoad
 {
     [filters removeAllObjects];
-    [initstates removeAllObjects];
 
 #define LOAD(__idx__, __name__, __xib__) \
     case __idx__: { \
@@ -116,8 +107,6 @@ enum {
         fo.tvcEnabled = [self.tableView dequeueReusableCellWithIdentifier:__xib__]; \
         [fo.tvcEnabled initFO:fo]; \
         [filters addObject:fo]; \
-        [initstates addObject:[NSNumber numberWithBool:fo.expanded]]; \
-        fo.expanded = YES; \
         [fo.tvcEnabled viewRefresh]; \
         break; \
     }
