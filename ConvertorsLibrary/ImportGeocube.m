@@ -351,7 +351,7 @@ typedef NS_ENUM(NSInteger, Type) {
 
         dbProtocol *protocol = [dbProtocol dbGetByName:protocol_string];
 
-        dbAccount *a = [dbAccount dbGetBySite:_site];
+        dbAccount *a = [dbAccount dbGetByGeocubeID:[_id integerValue]];
         if (a == nil) {
             a = [[dbAccount alloc] init];
             a.site = _site;
@@ -374,6 +374,7 @@ typedef NS_ENUM(NSInteger, Type) {
             [a dbCreate];
         } else {
             a.enabled = enabledBool;
+            a.site = _site;
             a.url_site = url_website;
             a.url_queries = url_queries;
             a.protocol = protocol;

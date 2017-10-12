@@ -284,9 +284,9 @@ TABLENAME(@"accounts")
     return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithId:_id]]] firstObject];
 }
 
-+ (dbAccount *)dbGetBySite:(NSString *)site
++ (dbAccount *)dbGetByGeocubeID:(NSInteger)geocube_id
 {
-    return [[self dbAllXXX:@"where site = ?" keys:@"s" values:@[site]] firstObject];
+    return [[self dbAllXXX:@"where geocube_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:geocube_id]]] firstObject];
 }
 
 /* Other methods */

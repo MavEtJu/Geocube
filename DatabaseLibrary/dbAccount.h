@@ -67,7 +67,7 @@
 - (void)dbUpdateOAuthConsumer;
 - (void)dbUpdateOAuthToken;
 - (void)dbUpdateCookieValue;
-+ (dbAccount *)dbGetBySite:(NSString *)site;
++ (dbAccount *)dbGetByGeocubeID:(NSInteger)geocube_id;
 - (void)dbClearAuthentication;
 - (void)disableRemoteAccess:(NSString *)reason;
 - (void)enableRemoteAccess;
