@@ -175,7 +175,7 @@
 @class ProtocolTemplate;
 @class QueriesGCAViewController;
 @class QueriesGGCWViewController;
-@class QueriesGroundspeakViewController;
+@class QueriesLiveAPIViewController;
 @class QueriesTableViewCell;
 @class QueriesTemplateViewController;
 @class RemoteAPIGCA2;

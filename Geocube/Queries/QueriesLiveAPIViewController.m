@@ -19,11 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface QueriesGroundspeakViewController ()
+@interface QueriesLiveAPIViewController ()
 
 @end
 
-@implementation QueriesGroundspeakViewController
+@implementation QueriesLiveAPIViewController
 
 - (instancetype)init
 {
@@ -38,7 +38,7 @@
 - (void)reloadQueries
 {
     [bezelManager showBezel:self];
-    [bezelManager setText:_(@"queriesgroundspeakviewcontroller-Downloading list of pocket queries")];
+    [bezelManager setText:_(@"queriesliveapiviewcontroller-Downloading list of pocket queries")];
     [self reloadQueries:PROTOCOL_LIVEAPI];
     [bezelManager removeBezel];
 }

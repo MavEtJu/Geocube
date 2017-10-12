@@ -353,7 +353,7 @@
 		E82344841EECE09C00D2CDFD /* ListTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E823447E1EECE09C00D2CDFD /* ListTemplateViewController.m */; };
 		E82344911EECE0AC00D2CDFD /* QueriesGCAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344861EECE0AC00D2CDFD /* QueriesGCAViewController.m */; };
 		E82344921EECE0AC00D2CDFD /* QueriesGGCWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82344881EECE0AC00D2CDFD /* QueriesGGCWViewController.m */; };
-		E82344931EECE0AD00D2CDFD /* QueriesGroundspeakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E823448A1EECE0AC00D2CDFD /* QueriesGroundspeakViewController.m */; };
+		E82344931EECE0AD00D2CDFD /* QueriesLiveAPIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E823448A1EECE0AC00D2CDFD /* QueriesLiveAPIViewController.m */; };
 		E82344941EECE0AD00D2CDFD /* QueriesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E823448C1EECE0AC00D2CDFD /* QueriesTableViewCell.m */; };
 		E82344951EECE0AD00D2CDFD /* QueriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E823448D1EECE0AC00D2CDFD /* QueriesTableViewCell.xib */; };
 		E82344961EECE0AD00D2CDFD /* QueriesTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E823448E1EECE0AC00D2CDFD /* QueriesTableViewCell~ipad.xib */; };
@@ -1512,8 +1512,8 @@
 		E82344861EECE0AC00D2CDFD /* QueriesGCAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QueriesGCAViewController.m; path = Queries/QueriesGCAViewController.m; sourceTree = "<group>"; };
 		E82344871EECE0AC00D2CDFD /* QueriesGGCWViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QueriesGGCWViewController.h; path = Queries/QueriesGGCWViewController.h; sourceTree = "<group>"; };
 		E82344881EECE0AC00D2CDFD /* QueriesGGCWViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QueriesGGCWViewController.m; path = Queries/QueriesGGCWViewController.m; sourceTree = "<group>"; };
-		E82344891EECE0AC00D2CDFD /* QueriesGroundspeakViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QueriesGroundspeakViewController.h; path = Queries/QueriesGroundspeakViewController.h; sourceTree = "<group>"; };
-		E823448A1EECE0AC00D2CDFD /* QueriesGroundspeakViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QueriesGroundspeakViewController.m; path = Queries/QueriesGroundspeakViewController.m; sourceTree = "<group>"; };
+		E82344891EECE0AC00D2CDFD /* QueriesLiveAPIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QueriesLiveAPIViewController.h; path = Queries/QueriesLiveAPIViewController.h; sourceTree = "<group>"; };
+		E823448A1EECE0AC00D2CDFD /* QueriesLiveAPIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QueriesLiveAPIViewController.m; path = Queries/QueriesLiveAPIViewController.m; sourceTree = "<group>"; };
 		E823448B1EECE0AC00D2CDFD /* QueriesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QueriesTableViewCell.h; path = Queries/QueriesTableViewCell.h; sourceTree = "<group>"; };
 		E823448C1EECE0AC00D2CDFD /* QueriesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QueriesTableViewCell.m; path = Queries/QueriesTableViewCell.m; sourceTree = "<group>"; };
 		E823448D1EECE0AC00D2CDFD /* QueriesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = QueriesTableViewCell.xib; path = Queries/QueriesTableViewCell.xib; sourceTree = "<group>"; };
@@ -3242,8 +3242,8 @@
 			isa = PBXGroup;
 			children = (
 				E83C6F2C1EEEAE9E00E303F5 /* Template */,
-				E82344891EECE0AC00D2CDFD /* QueriesGroundspeakViewController.h */,
-				E823448A1EECE0AC00D2CDFD /* QueriesGroundspeakViewController.m */,
+				E82344891EECE0AC00D2CDFD /* QueriesLiveAPIViewController.h */,
+				E823448A1EECE0AC00D2CDFD /* QueriesLiveAPIViewController.m */,
 				E82344871EECE0AC00D2CDFD /* QueriesGGCWViewController.h */,
 				E82344881EECE0AC00D2CDFD /* QueriesGGCWViewController.m */,
 				E82344851EECE0AC00D2CDFD /* QueriesGCAViewController.h */,
@@ -4984,7 +4984,7 @@
 				E82286E91F8A2CE300631380 /* ImagesDownloadManager.m in Sources */,
 				E82344AA1EECE0C900D2CDFD /* BrowserUserViewController.m in Sources */,
 				E82286901F8A2BD600631380 /* dbLocality.m in Sources */,
-				E82344931EECE0AD00D2CDFD /* QueriesGroundspeakViewController.m in Sources */,
+				E82344931EECE0AD00D2CDFD /* QueriesLiveAPIViewController.m in Sources */,
 				E82343DB1EECDEE200D2CDFD /* WaypointLogsTableViewCell.m in Sources */,
 				E82287CE1F8A32C600631380 /* ProtocolTemplate.m in Sources */,
 				E823444C1EECE04B00D2CDFD /* NotesFieldnotesViewController.m in Sources */,

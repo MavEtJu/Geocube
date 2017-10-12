@@ -265,7 +265,7 @@
             case RC_QUERIES:
                 controllers = [NSMutableArray array];
 
-                VC(QueriesGroundspeakViewController, _(@"menu-queries-Groundspeak"));
+                VC(QueriesLiveAPIViewController, _(@"menu-queries-LiveAPI"));
                 VC(QueriesGGCWViewController, _(@"menu-queries-Geocaching.com website"));
                 VC(QueriesGCAViewController, _(@"menu-queries-GCA"));
 

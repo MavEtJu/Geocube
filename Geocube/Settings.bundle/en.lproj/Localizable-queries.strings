@@ -2,7 +2,7 @@
 
 "queriesgcaviewcontroller-Downloading list of queries" = "Downloading list of queries";
 "queriesggcwviewcontroller-Downloading list of pocket queries" = "Downloading list of pocket queries";
-"queriesgroundspeakviewcontroller-Downloading list of pocket queries" = "Downloading list of pocket queries";
+"queriesliveapiviewcontroller-Downloading list of pocket queries" = "Downloading list of pocket queries";
 
 /* Template */
 "queriesemplateviewcontroller-Unable to retrieve the list of queries" = "Unable to retrieve the list of queries";
