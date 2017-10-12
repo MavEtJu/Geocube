@@ -177,7 +177,7 @@
 {
     NSMutableArray<NSString *> *as = [NSMutableArray arrayWithArray:@[@"enabled"]];
     [dbc.containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
-        [as addObject:c.size];
+        [as addObject:[NSString stringWithFormat:@"container_%ld", (long)c._id]];
     }];
     return as;
 }

@@ -26,24 +26,36 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6P-na-AI8" customClass="FilterButton">
-                        <rect key="frame" x="8" y="28.5" width="359" height="30"/>
+                        <rect key="frame" x="38" y="28.5" width="299" height="30"/>
                         <state key="normal" title="Button"/>
                     </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Hp-P4-8dY" customClass="GCImageView">
+                        <rect key="frame" x="8" y="28.5" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="UTE-hY-a8h"/>
+                            <constraint firstAttribute="width" constant="30" id="r3H-ll-mhr"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="i6P-na-AI8" firstAttribute="top" secondItem="9bk-jT-iuE" secondAttribute="bottom" id="CC6-b7-64r"/>
+                    <constraint firstItem="i6P-na-AI8" firstAttribute="leading" secondItem="2Hp-P4-8dY" secondAttribute="trailing" id="IX2-Zf-66G"/>
+                    <constraint firstItem="i6P-na-AI8" firstAttribute="centerY" secondItem="2Hp-P4-8dY" secondAttribute="centerY" id="L5R-S1-LGj"/>
                     <constraint firstItem="9bk-jT-iuE" firstAttribute="top" secondItem="9wR-Xn-2Sp" secondAttribute="topMargin" id="WQF-3v-d8A"/>
-                    <constraint firstItem="i6P-na-AI8" firstAttribute="trailing" secondItem="9wR-Xn-2Sp" secondAttribute="trailingMargin" id="bpH-Cm-ClN"/>
+                    <constraint firstItem="i6P-na-AI8" firstAttribute="trailing" secondItem="9wR-Xn-2Sp" secondAttribute="trailingMargin" constant="-30" id="bpH-Cm-ClN"/>
                     <constraint firstItem="9bk-jT-iuE" firstAttribute="centerX" secondItem="9wR-Xn-2Sp" secondAttribute="centerX" id="ft7-G8-eA4"/>
-                    <constraint firstItem="i6P-na-AI8" firstAttribute="leading" secondItem="9wR-Xn-2Sp" secondAttribute="leadingMargin" id="mwp-Vh-CUN"/>
+                    <constraint firstItem="2Hp-P4-8dY" firstAttribute="leading" secondItem="9wR-Xn-2Sp" secondAttribute="leadingMargin" id="oZf-Td-tQe"/>
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="i6P-na-AI8" secondAttribute="bottom" id="sLQ-Mt-35h"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="constraintButtomBottom" destination="sLQ-Mt-35h" id="CzG-8z-fJ9"/>
+                <outlet property="constraintButtonRight" destination="bpH-Cm-ClN" id="fu5-DC-1bT"/>
+                <outlet property="constraintButtonTop" destination="CC6-b7-64r" id="yAC-5g-PK8"/>
+                <outlet property="constraintImageButton" destination="IX2-Zf-66G" id="R8G-cD-fvc"/>
+                <outlet property="constraintImageLeft" destination="oZf-Td-tQe" id="21F-AD-wgK"/>
                 <outlet property="firstButton" destination="i6P-na-AI8" id="J3w-x0-HhN"/>
-                <outlet property="firstButtonBottom" destination="sLQ-Mt-35h" id="xNK-ev-fKN"/>
-                <outlet property="firstButtonLeft" destination="mwp-Vh-CUN" id="0nr-IU-wiT"/>
-                <outlet property="firstButtonRight" destination="bpH-Cm-ClN" id="KKr-RC-pgY"/>
+                <outlet property="firstImage" destination="2Hp-P4-8dY" id="Mbs-g8-kTg"/>
                 <outlet property="labelHeader" destination="9bk-jT-iuE" id="GQ0-dE-dlu"/>
             </connections>
             <point key="canvasLocation" x="52.5" y="26"/>

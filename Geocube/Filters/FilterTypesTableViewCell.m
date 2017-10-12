@@ -27,9 +27,12 @@
 
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
 @property (nonatomic, weak) IBOutlet FilterButton *firstButton;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *firstButtonBottom;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *firstButtonLeft;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *firstButtonRight;
+@property (nonatomic, weak) IBOutlet GCImageView *firstImage;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *constraintButtonTop;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *constraintButtonRight;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *constraintImageButton;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *constraintButtomBottom;;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *constraintImageLeft;
 
 @end
 
@@ -47,9 +50,11 @@
     __block NSObject *lastButton = self.labelHeader;
     __block NSLayoutConstraint *lc;
 
-    [self.contentView removeConstraint:self.firstButtonBottom];
-    [self.contentView removeConstraint:self.firstButtonLeft];
-    [self.contentView removeConstraint:self.firstButtonRight];
+    [self.contentView removeConstraint:self.constraintImageLeft];
+    [self.contentView removeConstraint:self.constraintImageButton];
+    [self.contentView removeConstraint:self.constraintButtonRight];
+    [self.contentView removeConstraint:self.constraintButtomBottom];
+    [self.contentView removeConstraint:self.constraintButtonTop];
 
     [types enumerateObjectsUsingBlock:^(dbType * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *s = [NSString stringWithFormat:@"group_%ld", (long)g._id];
@@ -59,13 +64,18 @@
         else
             g.selected = [c boolValue];
 
+        GCImageView *iv;
         FilterButton *b;
         if (idx == 0) {
             b = self.firstButton;
+            iv = self.firstImage;
         } else {
             b = [FilterButton buttonWithType:UIButtonTypeSystem];
             b.translatesAutoresizingMaskIntoConstraints = NO;
+            iv = [[GCImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+            iv.translatesAutoresizingMaskIntoConstraints = NO;
         }
+        iv.image = [imageManager get:g.icon];
 
         [b addTarget:self action:@selector(clickType:) forControlEvents:UIControlEventTouchDown];
         b.index = idx;
@@ -73,9 +83,42 @@
         [b setTitle:s forState:UIControlStateNormal];
         [b sizeToFit];
 
-        if (idx != 0)
+        if (idx != 0) {
             [self.contentView addSubview:b];
+            [self.contentView addSubview:iv];
+        }
+        // height and width 30px
+        lc = [NSLayoutConstraint
+              constraintWithItem:iv
+              attribute:NSLayoutAttributeWidth
+              relatedBy:NSLayoutRelationEqual
+              toItem:nil
+              attribute:0
+              multiplier:1.0
+              constant:30];
+        [iv addConstraint:lc];
+        lc = [NSLayoutConstraint
+              constraintWithItem:iv
+              attribute:NSLayoutAttributeHeight
+              relatedBy:NSLayoutRelationEqual
+              toItem:nil
+              attribute:0
+              multiplier:1.0
+              constant:30];
+        [iv addConstraint:lc];
 
+        // image to button alignment
+        lc = [NSLayoutConstraint
+              constraintWithItem:iv
+              attribute:NSLayoutAttributeCenterY
+              relatedBy:NSLayoutRelationEqual
+              toItem:b
+              attribute:NSLayoutAttributeCenterY
+              multiplier:1.0
+              constant:0];
+        [self.contentView addConstraint:lc];
+
+        // button to right margin
         lc = [NSLayoutConstraint
               constraintWithItem:b
               attribute:NSLayoutAttributeTrailing
@@ -83,10 +126,11 @@
               toItem:self.contentView
               attribute:NSLayoutAttributeTrailingMargin
               multiplier:1.0
-              constant:0];
+              constant:-30];
         [self.contentView addConstraint:lc];
+        // image to left margin
         lc = [NSLayoutConstraint
-              constraintWithItem:b
+              constraintWithItem:iv
               attribute:NSLayoutAttributeLeading
               relatedBy:NSLayoutRelationEqual
               toItem:self.contentView
@@ -94,7 +138,18 @@
               multiplier:1.0
               constant:0];
         [self.contentView addConstraint:lc];
+        // image to button
+        lc = [NSLayoutConstraint
+              constraintWithItem:iv
+              attribute:NSLayoutAttributeTrailing
+              relatedBy:NSLayoutRelationEqual
+              toItem:b
+              attribute:NSLayoutAttributeLeading
+              multiplier:1.0
+              constant:0];
+        [self.contentView addConstraint:lc];
 
+        // button to top
         lc = [NSLayoutConstraint
               constraintWithItem:b
               attribute:NSLayoutAttributeTop
@@ -111,6 +166,7 @@
         lastButton = b;
     }];
 
+    // last button to bottom margin
     lc = [NSLayoutConstraint
           constraintWithItem:lastButton
           attribute:NSLayoutAttributeBottom
@@ -156,9 +212,9 @@
     [super configInit];
     self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), fo.name];
 
-    [types enumerateObjectsUsingBlock:^(dbType * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *key = [NSString stringWithFormat:@"type_%ld", (long)g._id];
-        g.selected = [[self configGet:key] boolValue];
+    [types enumerateObjectsUsingBlock:^(dbType * _Nonnull t, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *key = [NSString stringWithFormat:@"type_%ld", (long)t._id];
+        t.selected = [[self configGet:key] boolValue];
     }];
 }
 
@@ -177,7 +233,7 @@
 {
     NSMutableArray<NSString *> *as = [NSMutableArray arrayWithArray:@[@"enabled"]];
     [dbc.types enumerateObjectsUsingBlock:^(dbType * _Nonnull t, NSUInteger idx, BOOL * _Nonnull stop) {
-        [as addObject:t.type_full];
+        [as addObject:[NSString stringWithFormat:@"type_%ld", (long)t._id]];
     }];
     return as;
 }
