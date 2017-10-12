@@ -122,7 +122,7 @@
     [self.contentView addConstraint:lc];
 
     buttons = bs;
-    
+
     [self changeTheme];
     [self.contentView sizeToFit];
 }

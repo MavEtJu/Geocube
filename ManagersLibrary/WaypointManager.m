@@ -44,7 +44,7 @@
     needsRefresh = NO;
     lastCoordinates = CLLocationCoordinate2DZero;
 
-    if (IS_EMPTY(configManager.currentWaypoint) == NO) 
+    if (IS_EMPTY(configManager.currentWaypoint) == NO)
         self.currentWaypoint = [dbWaypoint dbGetByName:configManager.currentWaypoint];
 
     [LM startDelegationLocation:self isNavigating:NO];

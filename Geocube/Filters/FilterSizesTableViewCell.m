@@ -31,7 +31,7 @@
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *constraintButtonTop;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *constraintButtonRight;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *constraintImageButton;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *constraintButtomBottom;;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *constraintButtomBottom;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *constraintImageLeft;
 
 @end
@@ -178,7 +178,7 @@
     [self.contentView addConstraint:lc];
 
     buttons = bs;
-    
+
     [self changeTheme];
     [self.contentView sizeToFit];
 }
