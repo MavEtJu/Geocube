@@ -3295,6 +3295,7 @@
 		E857078E1CA1E6FE00467CE0 /* Waypoints */ = {
 			isa = PBXGroup;
 			children = (
+				E8740F9C1B4E6645002527DA /* Waypoint Viewing */,
 				E82344041EECDF9C00D2CDFD /* WaypointsListViewController.h */,
 				E82344051EECDF9C00D2CDFD /* WaypointsListViewController.m */,
 				E823441D1EECDFB300D2CDFD /* FiltersViewController.h */,
@@ -3893,8 +3894,22 @@
 			children = (
 				E8F5705A1B3F7255003F020C /* AppDelegate.h */,
 				E8E3DC1B1E167C740066E903 /* AppDelegate.m */,
-				E8740F9C1B4E6645002527DA /* Waypoint Viewing */,
-				E8F570B61B3FF266003F020C /* Pages */,
+				E857078F1CA1E77B00467CE0 /* Navigate */,
+				E857078E1CA1E6FE00467CE0 /* Waypoints */,
+				E8A4BEEB1BD4B8F000BCA5A5 /* Keep Track */,
+				E82002261B7B1B8F009AE50F /* Notes and logs */,
+				E857078C1CA1E68F00467CE0 /* Trackables */,
+				E857078A1CA1E67200467CE0 /* Groups */,
+				E833B72F1C522E8D00B9FB45 /* Lists */,
+				E84D6FD01C5826140000A6A0 /* Queries */,
+				E83B10921EF4D7BD00F2C5FA /* Locationless */,
+				E8FD610D1BE8C46100859A58 /* Files */,
+				E857078D1CA1E6A200467CE0 /* Statistics */,
+				E8A7FA921B777616003F4132 /* Browser */,
+				E89D15681DE55F4F00ED14B3 /* Tools */,
+				E8E8CFE91B639A0400CC741A /* Settings */,
+				E8A7FA9C1B784065003F4132 /* Help */,
+				E87F58D21F48611700C90375 /* Developer */,
 			);
 			name = GUI;
 			path = Geocube;
@@ -4007,29 +4022,6 @@
 				E8F570BD1B400137003F020C /* empty.db */,
 			);
 			name = "Data files";
-			sourceTree = "<group>";
-		};
-		E8F570B61B3FF266003F020C /* Pages */ = {
-			isa = PBXGroup;
-			children = (
-				E857078F1CA1E77B00467CE0 /* Navigate */,
-				E857078E1CA1E6FE00467CE0 /* Waypoints */,
-				E8A4BEEB1BD4B8F000BCA5A5 /* Keep Track */,
-				E82002261B7B1B8F009AE50F /* Notes and logs */,
-				E857078C1CA1E68F00467CE0 /* Trackables */,
-				E857078A1CA1E67200467CE0 /* Groups */,
-				E833B72F1C522E8D00B9FB45 /* Lists */,
-				E84D6FD01C5826140000A6A0 /* Queries */,
-				E83B10921EF4D7BD00F2C5FA /* Locationless */,
-				E8FD610D1BE8C46100859A58 /* Files */,
-				E857078D1CA1E6A200467CE0 /* Statistics */,
-				E8A7FA921B777616003F4132 /* Browser */,
-				E89D15681DE55F4F00ED14B3 /* Tools */,
-				E8E8CFE91B639A0400CC741A /* Settings */,
-				E8A7FA9C1B784065003F4132 /* Help */,
-				E87F58D21F48611700C90375 /* Developer */,
-			);
-			name = Pages;
 			sourceTree = "<group>";
 		};
 		E8F570B91B3FF668003F020C /* System Libraries */ = {
