@@ -173,8 +173,8 @@
 @class ProtocolLiveAPI;
 @class ProtocolOKAPI;
 @class ProtocolTemplate;
-@class QueriesGCAViewController;
 @class QueriesGCAPublicViewController;
+@class QueriesGCAViewController;
 @class QueriesGGCWViewController;
 @class QueriesLiveAPIViewController;
 @class QueriesTableViewCell;
