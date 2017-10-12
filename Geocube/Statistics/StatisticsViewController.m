@@ -58,8 +58,6 @@ enum {
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [self.tableView registerNib:[UINib nibWithNibName:XIB_STATISTICSTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_STATISTICSTABLEVIEWCELL];
-
-    [self createStatistics];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -67,6 +65,7 @@ enum {
     [super viewDidAppear:animated];
     if (hasbeenstarted == NO) {
         hasbeenstarted = YES;
+        [self createStatistics];
         [self loadStatistics];
     }
 }
@@ -270,6 +269,8 @@ enum {
 {
     switch (index) {
         case menuReload:
+            if ([accounts count] == 0)
+                [self createStatistics];
             [self loadStatistics];
             return;
     }
