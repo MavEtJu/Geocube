@@ -234,6 +234,8 @@ enum {
                            actionWithTitle:_(@"Save") style:UIAlertActionStyleDefault
                            handler:^(UIAlertAction * action) {
                                UITextField *tf = alert.textFields.firstObject;
+                               if (IS_EMPTY(tf.text) == YES)
+                                   return;
                                [self saveAsFilter:tf.text];
                                [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
