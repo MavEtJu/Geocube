@@ -178,7 +178,7 @@
 {
     NSMutableArray<NSString *> *as = [NSMutableArray arrayWithArray:@[@"enabled"]];
     [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
-        [as addObject:a.site];
+        [as addObject:[NSString stringWithFormat:@"account_%ld", (long)a._id]];
     }];
     return as;
 }
