@@ -281,6 +281,8 @@ enum {
     RELOAD(FilterFlagsTableViewCell)
     RELOAD(FilterAccountsTableViewCell)
 
+    [self.tableView reloadData];
+
     [self loadFilters:NO];
     [filters enumerateObjectsUsingBlock:^(FilterObject * _Nonnull fo, NSUInteger idx, BOOL * _Nonnull stop) {
         [fo.tvcEnabled viewRefresh];

@@ -156,6 +156,11 @@
 {
     [super configInit];
     self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), fo.name];
+
+    [accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *key = [NSString stringWithFormat:@"account_%ld", (long)g._id];
+        g.selected = [[self configGet:key] boolValue];
+    }];
 }
 
 - (void)configUpdate
