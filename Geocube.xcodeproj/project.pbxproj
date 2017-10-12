@@ -619,6 +619,7 @@
 		E84725E51DF774E200CFF99B /* menu icon - local - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725DF1DF774E200CFF99B /* menu icon - local - night.png */; };
 		E84725E61DF774E200CFF99B /* menu icon - local@2x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E01DF774E200CFF99B /* menu icon - local@2x - night.png */; };
 		E84725E71DF774E200CFF99B /* menu icon - local@3x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */; };
+		E84B174B1F8F6C18004CAE31 /* QueriesGCAPublicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84B174A1F8F6C18004CAE31 /* QueriesGCAPublicViewController.m */; };
 		E84E88A41F6CFFD0004F4BE9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E84E88A31F6CFFD0004F4BE9 /* Social.framework */; };
 		E8587B8B1F8C24330099EA0E /* dbLogData.m in Sources */ = {isa = PBXBuildFile; fileRef = E8587B8A1F8C24330099EA0E /* dbLogData.m */; };
 		E8587B8D1F8C83F40099EA0E /* GoogleMapsNight.json in Resources */ = {isa = PBXBuildFile; fileRef = E8587B8C1F8C83F40099EA0E /* GoogleMapsNight.json */; };
@@ -1811,6 +1812,8 @@
 		E84725DF1DF774E200CFF99B /* menu icon - local - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local - night.png"; path = "images/menu/menu icon - local - night.png"; sourceTree = "<group>"; };
 		E84725E01DF774E200CFF99B /* menu icon - local@2x - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local@2x - night.png"; path = "images/menu/menu icon - local@2x - night.png"; sourceTree = "<group>"; };
 		E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local@3x - night.png"; path = "images/menu/menu icon - local@3x - night.png"; sourceTree = "<group>"; };
+		E84B17491F8F6C18004CAE31 /* QueriesGCAPublicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QueriesGCAPublicViewController.h; path = Queries/QueriesGCAPublicViewController.h; sourceTree = "<group>"; };
+		E84B174A1F8F6C18004CAE31 /* QueriesGCAPublicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QueriesGCAPublicViewController.m; path = Queries/QueriesGCAPublicViewController.m; sourceTree = "<group>"; };
 		E84E88A31F6CFFD0004F4BE9 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		E84E89871F6F2E13004F4BE9 /* WaypointPersonalNoteViewController-delegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "WaypointPersonalNoteViewController-delegate.h"; path = "Waypoints/WaypointPersonalNoteViewController-delegate.h"; sourceTree = "<group>"; };
 		E84E89881F6F30D4004F4BE9 /* libNetworkLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNetworkLibrary.a; path = "NetworkLibrary/build/Debug-iphoneos/libNetworkLibrary.a"; sourceTree = "<group>"; };
@@ -3248,6 +3251,8 @@
 				E82344881EECE0AC00D2CDFD /* QueriesGGCWViewController.m */,
 				E82344851EECE0AC00D2CDFD /* QueriesGCAViewController.h */,
 				E82344861EECE0AC00D2CDFD /* QueriesGCAViewController.m */,
+				E84B17491F8F6C18004CAE31 /* QueriesGCAPublicViewController.h */,
+				E84B174A1F8F6C18004CAE31 /* QueriesGCAPublicViewController.m */,
 			);
 			name = Queries;
 			sourceTree = "<group>";
@@ -4953,6 +4958,7 @@
 				E82344301EECDFB300D2CDFD /* FilterOthersTableViewCell.m in Sources */,
 				E822888A1F8A34FB00631380 /* SimpleKMLStyle.m in Sources */,
 				E82286821F8A2BD600631380 /* dbAccount.m in Sources */,
+				E84B174B1F8F6C18004CAE31 /* QueriesGCAPublicViewController.m in Sources */,
 				E82286B91F8A2C8800631380 /* ExportGPX.m in Sources */,
 				E82344C21EECE0E800D2CDFD /* SettingsMainViewController.m in Sources */,
 				E822876C1F8A2EC300631380 /* GCTableViewController.m in Sources */,

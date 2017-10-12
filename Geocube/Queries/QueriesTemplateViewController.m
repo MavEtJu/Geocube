@@ -88,7 +88,7 @@ enum {
             }
 
             NSArray<NSDictionary *> *queries = nil;
-            RemoteAPIResult rv = [a.remoteAPI listQueries:&queries infoViewer:nil iiDownload:0];
+            RemoteAPIResult rv = [a.remoteAPI listQueries:&queries infoViewer:nil iiDownload:0 public:self.isPublic];
             if (rv != REMOTEAPI_OK)
                 failure = YES;
             qs = queries;

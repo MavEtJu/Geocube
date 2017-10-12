@@ -19,11 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface QueriesGCAViewController ()
+@interface QueriesGCAPublicViewController ()
 
 @end
 
-@implementation QueriesGCAViewController
+@implementation QueriesGCAPublicViewController
 
 enum {
     menuReload,
@@ -36,7 +36,7 @@ enum {
 
     self.queryString = @"Query";
     self.queriesString = @"Queries";
-    self.isPublic = NO;
+    self.isPublic = YES;
 
     return self;
 }

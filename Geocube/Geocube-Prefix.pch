@@ -73,6 +73,7 @@
 #import "Queries/QueriesTemplateViewController.h"
 #import "Queries/QueriesLiveAPIViewController.h"
 #import "Queries/QueriesGCAViewController.h"
+#import "Queries/QueriesGCAPublicViewController.h"
 #import "Queries/QueriesGGCWViewController.h"
 
 #import "Settings/SettingsAccountsViewController.h"

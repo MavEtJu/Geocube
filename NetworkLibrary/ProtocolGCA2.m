@@ -393,11 +393,15 @@
     return [self performURLRequest:req infoViewer:iv iiDownload:iid];
 }
 
-- (GCDictionaryGCA2 *)api_services_caches_query_list:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (GCDictionaryGCA2 *)api_services_caches_query_list:(InfoViewer *)iv iiDownload:(InfoItemID)iid public:(BOOL)_public
 {
     NSLog(@"api_services_caches_query_list");
 
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+    if (_public == YES)
+        [params setObject:@"public" forKey:@"type"];
+    else
+        [params setObject:@"private" forKey:@"type"];
 
     NSString *urlString = [self prepareURLString:@"/caches/query/list/" params:params];
     NSURL *url = [NSURL URLWithString:urlString];

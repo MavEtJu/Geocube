@@ -174,6 +174,7 @@
 @class ProtocolOKAPI;
 @class ProtocolTemplate;
 @class QueriesGCAViewController;
+@class QueriesGCAPublicViewController;
 @class QueriesGGCWViewController;
 @class QueriesLiveAPIViewController;
 @class QueriesTableViewCell;

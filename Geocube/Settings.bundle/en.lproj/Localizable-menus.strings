@@ -52,7 +52,8 @@
 "menu-noteslogs-Personal" = "Personal";
 "menu-noteslogs-Saved" = "Saved";
 "menu-queries-GCA" = "GCA";
-"menu-queries-Geocaching.com website" = "Geocaching.com Website";
+"menu-queries-GCA Public" = "GCA Public";
+"menu-queries-Geocaching.com website" = "GC.com";
 "menu-queries-LiveAPI" = "LiveAPI";
 "menu-settings-Accounts" = "Accounts";
 "menu-settings-Colours" = "Colours";

@@ -26,6 +26,7 @@
 
 @property (nonatomic, retain) NSString *queryString;
 @property (nonatomic, retain) NSString *queriesString;
+@property (nonatomic) BOOL isPublic;
 
 - (void)reloadQueries;
 - (void)reloadQueries:(NSInteger)protocol;

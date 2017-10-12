@@ -15,6 +15,7 @@ Version 1.7(x)
   - When logging a waypoint, the temporary log text will be
     automatically inserted.
   - Google Maps map is darker in the Geocube Night theme.
+  - You can now download GCA public queries.
 
   Fixes:
   - GGCW: No more message boxes about unable to parse the XML data

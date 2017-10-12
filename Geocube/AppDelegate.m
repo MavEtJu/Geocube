@@ -268,6 +268,7 @@
                 VC(QueriesLiveAPIViewController, _(@"menu-queries-LiveAPI"));
                 VC(QueriesGGCWViewController, _(@"menu-queries-Geocaching.com website"));
                 VC(QueriesGCAViewController, _(@"menu-queries-GCA"));
+                VC(QueriesGCAPublicViewController, _(@"menu-queries-GCA Public"));
 
                 TABBARCONTROLLER(RC_QUERIES, controllers)
                 break;

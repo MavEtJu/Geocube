@@ -365,7 +365,7 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)listQueries:(NSArray<NSDictionary *>**)qs infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (RemoteAPIResult)listQueries:(NSArray<NSDictionary *>**)qs infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid public:(BOOL)_public
 {
     /* Returns: array of dicts of
      * - Name

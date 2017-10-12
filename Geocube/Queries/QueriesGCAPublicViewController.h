@@ -19,34 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface QueriesGCAViewController ()
-
-@end
-
-@implementation QueriesGCAViewController
-
-enum {
-    menuReload,
-    menuMax
-};
-
-- (instancetype)init
-{
-    self = [super init];
-
-    self.queryString = @"Query";
-    self.queriesString = @"Queries";
-    self.isPublic = NO;
-
-    return self;
-}
-
-- (void)reloadQueries
-{
-    [bezelManager showBezel:self];
-    [bezelManager setText:_(@"queriesgcaviewcontroller-Downloading list of queries")];
-    [self reloadQueries:PROTOCOL_GCA2];
-    [bezelManager removeBezel];
-}
+@interface QueriesGCAPublicViewController : QueriesTemplateViewController
 
 @end
