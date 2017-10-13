@@ -620,6 +620,9 @@
 		E84725E61DF774E200CFF99B /* menu icon - local@2x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E01DF774E200CFF99B /* menu icon - local@2x - night.png */; };
 		E84725E71DF774E200CFF99B /* menu icon - local@3x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */; };
 		E84B174B1F8F6C18004CAE31 /* QueriesGCAPublicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84B174A1F8F6C18004CAE31 /* QueriesGCAPublicViewController.m */; };
+		E84B174E1F903E6C004CAE31 /* DeveloperRemoteAPIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84B174D1F903E6C004CAE31 /* DeveloperRemoteAPIViewController.m */; };
+		E84B17531F90BA2C004CAE31 /* DeveloperRemoteAPITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E84B17521F90BA2C004CAE31 /* DeveloperRemoteAPITableViewCell.m */; };
+		E84B17551F90BA51004CAE31 /* DeveloperRemoteAPITableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E84B17541F90BA51004CAE31 /* DeveloperRemoteAPITableViewCell.xib */; };
 		E84E88A41F6CFFD0004F4BE9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E84E88A31F6CFFD0004F4BE9 /* Social.framework */; };
 		E8587B8B1F8C24330099EA0E /* dbLogData.m in Sources */ = {isa = PBXBuildFile; fileRef = E8587B8A1F8C24330099EA0E /* dbLogData.m */; };
 		E8587B8D1F8C83F40099EA0E /* GoogleMapsNight.json in Resources */ = {isa = PBXBuildFile; fileRef = E8587B8C1F8C83F40099EA0E /* GoogleMapsNight.json */; };
@@ -1814,6 +1817,11 @@
 		E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local@3x - night.png"; path = "images/menu/menu icon - local@3x - night.png"; sourceTree = "<group>"; };
 		E84B17491F8F6C18004CAE31 /* QueriesGCAPublicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QueriesGCAPublicViewController.h; path = Queries/QueriesGCAPublicViewController.h; sourceTree = "<group>"; };
 		E84B174A1F8F6C18004CAE31 /* QueriesGCAPublicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QueriesGCAPublicViewController.m; path = Queries/QueriesGCAPublicViewController.m; sourceTree = "<group>"; };
+		E84B174C1F903E6C004CAE31 /* DeveloperRemoteAPIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeveloperRemoteAPIViewController.h; path = Developer/DeveloperRemoteAPIViewController.h; sourceTree = "<group>"; };
+		E84B174D1F903E6C004CAE31 /* DeveloperRemoteAPIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeveloperRemoteAPIViewController.m; path = Developer/DeveloperRemoteAPIViewController.m; sourceTree = "<group>"; };
+		E84B17511F90BA2C004CAE31 /* DeveloperRemoteAPITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeveloperRemoteAPITableViewCell.h; path = Developer/DeveloperRemoteAPITableViewCell.h; sourceTree = "<group>"; };
+		E84B17521F90BA2C004CAE31 /* DeveloperRemoteAPITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeveloperRemoteAPITableViewCell.m; path = Developer/DeveloperRemoteAPITableViewCell.m; sourceTree = "<group>"; };
+		E84B17541F90BA51004CAE31 /* DeveloperRemoteAPITableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DeveloperRemoteAPITableViewCell.xib; path = Developer/DeveloperRemoteAPITableViewCell.xib; sourceTree = "<group>"; };
 		E84E88A31F6CFFD0004F4BE9 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		E84E89871F6F2E13004F4BE9 /* WaypointPersonalNoteViewController-delegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "WaypointPersonalNoteViewController-delegate.h"; path = "Waypoints/WaypointPersonalNoteViewController-delegate.h"; sourceTree = "<group>"; };
 		E84E89881F6F30D4004F4BE9 /* libNetworkLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNetworkLibrary.a; path = "NetworkLibrary/build/Debug-iphoneos/libNetworkLibrary.a"; sourceTree = "<group>"; };
@@ -3722,6 +3730,11 @@
 				E8596ACA1F73174100E26495 /* DeveloperDatabaseViewController.m */,
 				E8596ACB1F73174100E26495 /* DeveloperImagesViewController.h */,
 				E8596ACC1F73174100E26495 /* DeveloperImagesViewController.m */,
+				E84B174C1F903E6C004CAE31 /* DeveloperRemoteAPIViewController.h */,
+				E84B174D1F903E6C004CAE31 /* DeveloperRemoteAPIViewController.m */,
+				E84B17511F90BA2C004CAE31 /* DeveloperRemoteAPITableViewCell.h */,
+				E84B17521F90BA2C004CAE31 /* DeveloperRemoteAPITableViewCell.m */,
+				E84B17541F90BA51004CAE31 /* DeveloperRemoteAPITableViewCell.xib */,
 			);
 			name = Developer;
 			sourceTree = "<group>";
@@ -4402,6 +4415,7 @@
 				E8FEDE5C1DA77F9D007C756B /* container size - small - 35x11.png in Resources */,
 				E82E67541DA07D0200CFBDED /* attributes - 42.png in Resources */,
 				E87ED1871F86001E00DE8E9B /* FilterSizesTableViewCell.xib in Resources */,
+				E84B17551F90BA51004CAE31 /* DeveloperRemoteAPITableViewCell.xib in Resources */,
 				E82E65FC1DA079E500CFBDED /* log - didnotfind - 30x30.png in Resources */,
 				E82E66C31DA07CBE00CFBDED /* cache - letterbox - 30x30@3x.png in Resources */,
 				E82E66CE1DA07CBE00CFBDED /* cache - mystery - 30x30@3x.png in Resources */,
@@ -4930,6 +4944,7 @@
 				E82288EC1F8A3E8500631380 /* GMUFeature.m in Sources */,
 				E822862F1F8A2B4600631380 /* ThemeTemplate.m in Sources */,
 				E82343FB1EECDF4400D2CDFD /* WaypointWaypointsTableViewCell.m in Sources */,
+				E84B174E1F903E6C004CAE31 /* DeveloperRemoteAPIViewController.m in Sources */,
 				E82345271EECE14A00D2CDFD /* NoticeTableViewCell.m in Sources */,
 				E82286921F8A2BD600631380 /* dbLogMacro.m in Sources */,
 				E82287191F8A2E1A00631380 /* GCTableViewCellSubtitleRightImage.m in Sources */,
@@ -5029,6 +5044,7 @@
 				E82344701EECE08A00D2CDFD /* GroupsSystemViewController.m in Sources */,
 				E82287371F8A2E7900631380 /* GCCoordsHistorical.m in Sources */,
 				E822888D1F8A34FB00631380 /* SimpleKMLSubStyle.m in Sources */,
+				E84B17531F90BA2C004CAE31 /* DeveloperRemoteAPITableViewCell.m in Sources */,
 				E82288851F8A34FB00631380 /* SimpleKMLPlacemark.m in Sources */,
 				E82344311EECDFB300D2CDFD /* FilterSizesTableViewCell.m in Sources */,
 				E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */,

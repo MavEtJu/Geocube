@@ -41,7 +41,7 @@
 - (NSRange)supportsLoggingRatingRange { return NSMakeRange(0, 0); }
 
 - (BOOL)supportsLoadWaypoint { return YES; }
-- (BOOL)supportsLoadWaypointsByCodes { return YES; }
+- (BOOL)supportsLoadWaypointsByCodes { return NO; }
 - (BOOL)supportsLoadWaypointsByBoundaryBox { return YES; }
 
 - (BOOL)supportsListQueries { return NO; }

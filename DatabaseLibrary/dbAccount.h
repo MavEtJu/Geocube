@@ -21,6 +21,24 @@
 
 @interface dbAccount : dbObject
 
+typedef NS_ENUM(NSInteger, AccountType) {
+    ACCOUNT_GCA2_GCA = 1,
+    ACCOUNT_LIVEAPI_GS = 2,
+    ACCOUNT_OKAPI_OCNL = 3,
+    ACCOUNT_OKAPI_OCNA = 4,
+    ACCOUNT_OKAPI_OCDE = 5,
+    ACCOUNT_OKAPI_OCCZ = 6,
+    ACCOUNT_OKAPI_OCPL = 7,
+    ACCOUNT_OKAPI_OCIT = 8,
+    ACCOUNT_OKAPI_OCUK = 9,
+    ACCOUNT_OKAPI_OCRO = 10,
+    ACCOUNT_OKAPI_OCES = 11,
+    ACCOUNT_GCSU = 12,
+    ACCOUNT_TPUK = 13,
+    ACCOUNT_WEB_GCCOM = 14,
+    ACCOUNT_PRIVATE = 15,
+};
+
 @property (nonatomic, retain) NSString *site;
 @property (nonatomic, retain) NSString *url_site;
 @property (nonatomic, retain) NSString *url_queries;

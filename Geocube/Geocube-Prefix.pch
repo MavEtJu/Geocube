@@ -136,6 +136,8 @@
 
 #import "Developer/DeveloperDatabaseViewController.h"
 #import "Developer/DeveloperImagesViewController.h"
+#import "Developer/DeveloperRemoteAPIViewController.h"
+#import "Developer/DeveloperRemoteAPITableViewCell.h"
 
 #import "KeepTrack/KeepTracksTrackTableViewCell.h"
 #import "KeepTrack/KeepTrackCar.h"
