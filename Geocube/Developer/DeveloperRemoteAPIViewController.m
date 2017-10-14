@@ -94,6 +94,36 @@ typedef NS_ENUM(NSInteger, TestResult) {
          };
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
 
+    /* OpenCaching Deuthschland */
+    d = @{@"description": @"Quelle des Müggelsees",
+          @"wpt_name": @"OC2CAA",
+          @"waypoints": @"OC2CAA,OC10DB7",
+          @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_OKAPI_OCDE],
+          @"coordinates": [[Coordinates alloc] init:52.42527 longitude:13.60113],
+          @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
+         };
+    [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
+
+    /* OpenCaching Poland */
+    d = @{@"description": @"Pałacyk Bieżuń",
+          @"wpt_name": @"OP2A2F",
+          @"waypoints": @"OP2A2F,OP81DM",
+          @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_OKAPI_OCPL],
+          @"coordinates": [[Coordinates alloc] init:52.96652 longitude:19.88642],
+          @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
+         };
+    [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
+
+    /* OpenCaching North America */
+    d = @{@"description": @"Tri State Peak",
+          @"wpt_name": @"OU0387",
+          @"waypoints": @"OU0387,OU0A3B",
+          @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_OKAPI_OCNA],
+          @"coordinates": [[Coordinates alloc] init:36.60077 longitude:-83.67533],
+          @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
+         };
+    [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
+
     self.tests = tests;
 
     return self;
