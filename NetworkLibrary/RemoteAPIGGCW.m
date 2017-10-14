@@ -231,7 +231,7 @@
 
         @synchronized(self) { threadcounter++; }
         NSDictionary *d = @{@"wptname":wptname,
-                            @"infoviewer":iv,
+                            @"infoviewer":iv == nil ? [[NSNull alloc] init] : iv,
                             @"infoitem":[NSNumber numberWithInteger:iid],
                             @"callback":callback,
                             @"identifier":[NSNumber numberWithInteger:identifier],
@@ -249,6 +249,9 @@
     InfoItemID iid = [[d objectForKey:@"infoitem"] integerValue];
     InfoViewer *iv = [d objectForKey:@"infoviewer"];
     NSString *wptname = [d objectForKey:@"wptname"];
+
+    if (IS_NULL(iv))
+        iv = nil;
 
     id<RemoteAPIDownloadDelegate> callback = [d objectForKey:@"callback"];
     GCStringGPX *gpx = [ggcw geocache_gpx:wptname infoViewer:iv iiDownload:iid];

@@ -46,7 +46,7 @@
     [req setObject:sem forKey:@"semaphore"];
     [req setObject:(iv == nil ? [NSNull null] : iv) forKey:@"infoViewer"];
     [req setObject:[NSNumber numberWithInteger:iid] forKey:@"iid"];
-    if (iv != nil)
+    if (IS_NULL(iv) == NO)
         [iv setURL:iid url:urlRequest.URL.absoluteString];
 
     NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
