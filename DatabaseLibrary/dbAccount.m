@@ -73,7 +73,7 @@ TABLENAME(@"accounts")
     ASSERT_SELF_FIELD_EXISTS(protocol);
     // ASSERT_SELF_FIELD_EXISTS(accountname);   -- not known yet until account is configured
     @synchronized(db) {
-        DB_PREPARE(@"insert into accounts(site, url_site, url_queries, protocol_id, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, accountname_id, enabled, distance_minimum, authentication_name, authentication_password, oauth_consumer_public_sharedsecret, oauth_consumer_private_sharedsecret) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into accounts(site, url_site, url_queries, protocol_id, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, accountname_id, enabled, distance_minimum, authentication_name, authentication_password, oauth_consumer_public_sharedsecret, oauth_consumer_private_sharedsecret, hidden) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT( 1, self.site);
         SET_VAR_TEXT( 2, self.url_site);
@@ -103,6 +103,7 @@ TABLENAME(@"accounts")
             SET_VAR_TEXT(22, self.authentictation_password);
         SET_VAR_TEXT(23, self.oauth_consumer_public_sharedsecret);
         SET_VAR_TEXT(24, self.oauth_consumer_private_sharedsecret);
+        SET_VAR_BOOL(25, self.hidden);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(self._id);
@@ -117,7 +118,7 @@ TABLENAME(@"accounts")
 {
     ASSERT_FINISHED;
     @synchronized(db) {
-        DB_PREPARE(@"update accounts set site = ?, url_site = ?, url_queries = ?, protocol_id = ?, oauth_consumer_public = ?, oauth_consumer_private = ?, oauth_token = ?, oauth_token_secret = ?, oauth_request_url = ?, oauth_authorize_url = ?, oauth_access_url = ?, gca_cookie_name = ?, gca_authenticate_url = ?, gca_callback_url = ?, geocube_id = ?, revision = ?, gca_cookie_value = ?, accountname_id = ?, enabled = ?, distance_minimum = ?, authentication_name = ?, authentication_password = ?, oauth_consumer_public_sharedsecret = ?, oauth_consumer_private_sharedsecret = ? where id = ?");
+        DB_PREPARE(@"update accounts set site = ?, url_site = ?, url_queries = ?, protocol_id = ?, oauth_consumer_public = ?, oauth_consumer_private = ?, oauth_token = ?, oauth_token_secret = ?, oauth_request_url = ?, oauth_authorize_url = ?, oauth_access_url = ?, gca_cookie_name = ?, gca_authenticate_url = ?, gca_callback_url = ?, geocube_id = ?, revision = ?, gca_cookie_value = ?, accountname_id = ?, enabled = ?, distance_minimum = ?, authentication_name = ?, authentication_password = ?, oauth_consumer_public_sharedsecret = ?, oauth_consumer_private_sharedsecret = ?, hidden = ? where id = ?");
 
         SET_VAR_TEXT( 1, self.site);
         SET_VAR_TEXT( 2, self.url_site);
@@ -147,7 +148,8 @@ TABLENAME(@"accounts")
             SET_VAR_TEXT(22, self.authentictation_password);
         SET_VAR_TEXT(23, self.oauth_consumer_public_sharedsecret);
         SET_VAR_TEXT(24, self.oauth_consumer_private_sharedsecret);
-        SET_VAR_INT (25, self._id);
+        SET_VAR_BOOL(25, self.hidden);
+        SET_VAR_INT (26, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -230,7 +232,7 @@ TABLENAME(@"accounts")
     NSMutableArray<dbAccount *> *ss = [[NSMutableArray alloc] initWithCapacity:20];
     NSId i;
 
-    NSMutableString *sql = [NSMutableString stringWithString:@"select id, site, url_site, url_queries, protocol_id, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, accountname_id, enabled, distance_minimum, authentication_name, authentication_password, oauth_consumer_public_sharedsecret, oauth_consumer_private_sharedsecret from accounts "];
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, site, url_site, url_queries, protocol_id, oauth_consumer_public, oauth_consumer_private, oauth_token, oauth_token_secret, oauth_request_url, oauth_authorize_url, oauth_access_url, gca_cookie_name, gca_authenticate_url, gca_callback_url, geocube_id, revision, gca_cookie_value, accountname_id, enabled, distance_minimum, authentication_name, authentication_password, oauth_consumer_public_sharedsecret, oauth_consumer_private_sharedsecret, hidden from accounts "];
     if (where != nil)
         [sql appendString:where];
 
@@ -266,6 +268,7 @@ TABLENAME(@"accounts")
             TEXT_FETCH(22, a.authentictation_password);
             TEXT_FETCH(23, a.oauth_consumer_public_sharedsecret);
             TEXT_FETCH(24, a.oauth_consumer_private_sharedsecret);
+            BOOL_FETCH(25, a.hidden);
             [a finish];
             [ss addObject:a];
         }
@@ -277,6 +280,11 @@ TABLENAME(@"accounts")
 + (NSArray<dbAccount *> *)dbAll
 {
     return [self dbAllXXX:nil keys:nil values:nil];
+}
+
++ (NSArray<dbAccount *> *)dbAllNoHidden
+{
+    return [self dbAllXXX:@" where hidden = 0" keys:nil values:nil];
 }
 
 + (dbAccount *)dbGet:(NSId)_id

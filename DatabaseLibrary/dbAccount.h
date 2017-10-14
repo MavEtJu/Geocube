@@ -47,6 +47,7 @@ typedef NS_ENUM(NSInteger, AccountType) {
 @property (nonatomic) NSInteger geocube_id;
 @property (nonatomic) NSInteger revision;
 @property (nonatomic) BOOL enabled;
+@property (nonatomic) BOOL hidden;
 
 @property (nonatomic, retain) NSString *oauth_consumer_public;
 @property (nonatomic, retain) NSString *oauth_consumer_public_sharedsecret;
@@ -81,6 +82,7 @@ typedef NS_ENUM(NSInteger, AccountType) {
 @property (nonatomic) BOOL selected;
 
 + (NSArray<dbAccount *> *)dbAll;
++ (NSArray<dbAccount *> *)dbAllNoHidden;
 - (void)dbUpdateAccount;
 - (void)dbUpdateOAuthConsumer;
 - (void)dbUpdateOAuthToken;

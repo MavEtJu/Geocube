@@ -43,7 +43,7 @@
 - (void)loadCachableData
 {
     self.protocols = [NSMutableArray arrayWithArray:[dbProtocol dbAll]];
-    self.accounts = [NSMutableArray arrayWithArray:[dbAccount dbAll]];      // after protocols
+    self.accounts = [NSMutableArray arrayWithArray:[dbAccount dbAllNoHidden]];      // after protocols
     self.groups = [NSMutableArray arrayWithArray:[dbGroup dbAll]];
     self.pins = [NSMutableArray arrayWithArray:[dbPin dbAll]];
     self.types = [NSMutableArray arrayWithArray:[dbType dbAll]];            // after pins
@@ -520,7 +520,7 @@
 
 - (void)accountsReload
 {
-    NSMutableArray<dbAccount *> *newAccounts = [NSMutableArray arrayWithArray:[dbAccount dbAll]];
+    NSMutableArray<dbAccount *> *newAccounts = [NSMutableArray arrayWithArray:[dbAccount dbAllNoHidden]];
 
     [newAccounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull newAccount, NSUInteger idx, BOOL * _Nonnull stop) {
         __block BOOL found = NO;

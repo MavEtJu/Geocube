@@ -864,6 +864,13 @@
     @"update log_strings set default_dnf = 0",
     ];
     [upgradeSteps addObject:a];
+
+    // Version 69
+    a = @[
+    @"alter table accounts add column hidden bool",
+    @"update accounts set hidden = 0",
+    ];
+    [upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

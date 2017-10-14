@@ -311,6 +311,7 @@ typedef NS_ENUM(NSInteger, Type) {
         NSString *revision = [site objectForKey:@"revision"];
         NSString *_site = [site objectForKey:@"site"];
         NSString *enabled = [site objectForKey:@"enabled"];
+        NSString *hidden = [site objectForKey:@"hidden"];
         BOOL enabledBool = NO;
         if ([enabled isEqualToString:@"YES"] == YES)
             enabledBool = YES;
@@ -370,6 +371,7 @@ typedef NS_ENUM(NSInteger, Type) {
             a.geocube_id = [_id integerValue];
             a.revision = [revision integerValue];
             a.distance_minimum = [distance integerValue];
+            a.hidden = [hidden boolValue];
             [a finish];
             [a dbCreate];
         } else {
@@ -389,6 +391,7 @@ typedef NS_ENUM(NSInteger, Type) {
             a.geocube_id = [_id integerValue];
             a.revision = [revision integerValue];
             a.distance_minimum = [distance integerValue];
+            a.hidden = [hidden boolValue];
             [a finish];
             [a dbUpdate];
         }
