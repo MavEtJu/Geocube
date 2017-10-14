@@ -134,6 +134,16 @@ typedef NS_ENUM(NSInteger, TestResult) {
          };
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
 
+    /* OpenCache UK */
+    d = @{@"description": @"Whistler's Glen",
+          @"wpt_name": @"OK041B",
+          @"waypoints": @"OK041B,OK041C",
+          @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_OKAPI_OCUK],
+          @"coordinates": [[Coordinates alloc] init:56.02365 longitude:4.78265],
+          @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
+         };
+    [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
+
     self.tests = tests;
 
     return self;
