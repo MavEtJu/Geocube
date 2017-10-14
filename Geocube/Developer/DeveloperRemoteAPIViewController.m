@@ -124,6 +124,16 @@ typedef NS_ENUM(NSInteger, TestResult) {
          };
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
 
+    /* OpenCaching Romenia */
+    d = @{@"description": @"[LALEA5] Trivale 1-07",
+          @"wpt_name": @"OR01B2",
+          @"waypoints": @"OR01B2,OR01B1",
+          @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_OKAPI_OCRO],
+          @"coordinates": [[Coordinates alloc] init:44.85508 longitude:24.85238],
+          @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
+         };
+    [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
+
     self.tests = tests;
 
     return self;
