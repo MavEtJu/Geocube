@@ -98,7 +98,7 @@ void encryptionstuff(void)
 {
     keyManager = [[KeyManager alloc] init];
 
-    NSString *key = @"sites_1";
+    NSString *key = @"2";
     NSArray<NSString *> *plains = @[
         @"Foo bar quux",
         // Your plain text goes here.
