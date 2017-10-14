@@ -3,6 +3,8 @@ Interesting additions and changes to Geocube
 Version 1.8(x)
 
   Features:
+  - In Developer -> Remote API you can check yourself if the various
+    API calls work as expected.
 
   Fixes:
   - Statistics will work immediately after the initial load of the

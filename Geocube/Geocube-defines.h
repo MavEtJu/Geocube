@@ -33,6 +33,8 @@
     (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define IS_EMPTY(__s__) \
     (__s__ == nil || [__s__ length] == 0)
+#define IS_NULL(__s__) \
+    (__s__ == nil || [__s__ isKindOfClass:[NSNull class]] == YES)
 
 #define NEEDS_OVERLOADING_ASSERT \
     NSAssert(0, @"%s should be overloaded for %@", __FUNCTION__, [self class])

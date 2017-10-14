@@ -36,6 +36,13 @@ typedef NS_ENUM(NSInteger, TestStatus) {
     TESTSTATUS_FINISHED,
 };
 
+typedef NS_ENUM(NSInteger, TestResult) {
+    TESTRESULT_NA = 0,
+    TESTRESULT_FAILED,
+    TESTRESULT_SUCCESSFUL,
+    TESTRESULT_NOTSUPPORTED,
+};
+
 - (instancetype)init
 {
     self = [super init];
@@ -52,6 +59,7 @@ typedef NS_ENUM(NSInteger, TestStatus) {
           @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_LIVEAPI_GS],
           @"coordinates": [[Coordinates alloc] init:-34.04550 longitude:151.12010],
           @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
+          @"travelbug": @"TB8NG8J,ARN7EA",
          };
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
 
@@ -62,6 +70,7 @@ typedef NS_ENUM(NSInteger, TestStatus) {
           @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_WEB_GCCOM],
           @"coordinates": [[Coordinates alloc] init:-34.04550 longitude:151.12010],
           @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
+          @"travelbug": @"TB8NG8J,ARN7EA",
          };
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
 
@@ -78,9 +87,9 @@ typedef NS_ENUM(NSInteger, TestStatus) {
     /* OpenCaching Benelux */
     d = @{@"description": @"Een testcache",
           @"wpt_name": @"OB1A60",
-          @"waypoints": @"GA4068,OB1A6E",
+          @"waypoints": @"OB1A60,OB1A6E",
           @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_OKAPI_OCNL],
-          @"coordinates": [[Coordinates alloc] init:51.21288 longitude:5.41623],
+          @"coordinates": [[Coordinates alloc] init:51.738116666667 longitude:5.95515],
           @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
          };
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
@@ -123,26 +132,48 @@ typedef NS_ENUM(NSInteger, TestStatus) {
         cell.labelStatus.text = @"Status: Running";
     if ([[test objectForKey:@"status"] integerValue] == TESTSTATUS_FINISHED)
         cell.labelStatus.text = @"Status: Finished";
+    cell.userInteractionEnabled = YES;
+    if (a.canDoRemoteStuff == NO) {
+        cell.labelStatus.text = @"Status: No remote API available";
+        cell.userInteractionEnabled = NO;
+    }
 
 #define LABEL(__field__, __name__) \
     if ([test objectForKey:__name__] == nil) { \
         cell.__field__.text = [NSString stringWithFormat:@"%@: n/a", __name__]; \
     } else { \
-        cell.__field__.text = [NSString stringWithFormat:@"%@: %@", __name__, [test objectForKey:__name__]]; \
+        NSString *s = nil; \
+        UIColor *color = nil; \
+        switch ([[test objectForKey:__name__] integerValue]) { \
+        case TESTRESULT_NA: \
+            s = @"n/a"; \
+            color = currentTheme.labelTextColor; \
+            break; \
+        case TESTRESULT_FAILED: \
+            s = @"Failed"; \
+            color = [UIColor redColor]; \
+            break; \
+        case TESTRESULT_SUCCESSFUL: \
+            s = @"Successful"; \
+            color = [UIColor greenColor]; \
+            break; \
+        case TESTRESULT_NOTSUPPORTED: \
+            s = @"Not supported"; \
+            color = currentTheme.labelTextColorDisabled; \
+            break; \
+        } \
+        cell.__field__.text = [NSString stringWithFormat:@"%@: %@", __name__, s]; \
+        cell.__field__.textColor = color; \
     }
 
     LABEL(labelLoadWaypoint, @"loadWaypoint")
-    LABEL(labelLoadWaypointsByCodes, @"loadWaypointsByCodes")
-    LABEL(labelLoadWaypointsByBoundingBox, @"loadWaypointsByBoundingBox")
-    LABEL(labelListQueries, @"listQueries")
-    LABEL(labelUserStatistics, @"userStatistics")
     LABEL(labelLoadWaypointsByCodes, @"loadWaypointsByCodes")
     LABEL(labelLoadWaypointsByBoundingBox, @"loadWaypointsByBoundingBox")
     LABEL(labelUserStatistics, @"userStatistics")
     LABEL(labelUpdatePersonalNote, @"updatePersonalNote")
     LABEL(labelListQueries, @"listQueries")
     LABEL(labelRetrieveQuery, @"retrieveQuery")
-    LABEL(labelTrackablesMine, @"trackablesmine")
+    LABEL(labelTrackablesMine, @"trackablesMine")
     LABEL(labelTrackablesInventory, @"trackablesInventory")
     LABEL(labelTrackableFind, @"trackableFind")
     LABEL(labelTrackableDrop, @"trackableDrop")
@@ -180,20 +211,18 @@ typedef NS_ENUM(NSInteger, TestStatus) {
     [test removeObjectForKey:@"trackableDiscover"];
 
     [test setObject:[NSNumber numberWithInteger:TESTSTATUS_RUNNING] forKey:@"status"];
-    MAINQUEUE(
-        [self.tableView reloadData];
-    );
+    [self reloadDataMainQueue];
 
     dbAccount *a = [test objectForKey:@"account"];
+    NSString *testname;
 
     // loadWaypoint
+    testname = @"loadWaypoint";
     if (a.remoteAPI.supportsLoadWaypoint == YES) {
         NSInteger identifier = ++self.identifier;
         [test setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
-        [test setObject:@"loadWaypoint" forKey:@"testname"];
-        MAINQUEUE(
-            [self.tableView reloadData];
-        );
+        [test setObject:testname forKey:@"testname"];
+        [self reloadDataMainQueue];
 
         dbWaypoint *wp = [[dbWaypoint alloc] init];
         wp.wpt_name = [test objectForKey:@"wpt_name"];
@@ -202,33 +231,31 @@ typedef NS_ENUM(NSInteger, TestStatus) {
 
         [a.remoteAPI loadWaypoint:wp infoViewer:nil iiDownload:0 identifier:identifier callback:self];
     } else {
-        [test setObject:@"Not supported" forKey:@"loadWaypoint"];
+        [test setObject:[NSNumber numberWithInteger:TESTRESULT_NOTSUPPORTED] forKey:testname];
     }
 
     // loadWaypointByCodes
+    testname = @"loadWaypointByCodes";
     if (a.remoteAPI.supportsLoadWaypointsByCodes == YES) {
         NSInteger identifier = ++self.identifier;
         [test setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
-        [test setObject:@"loadWaypointsByCodes" forKey:@"testname"];
-        MAINQUEUE(
-            [self.tableView reloadData];
-        );
+        [test setObject:testname forKey:@"testname"];
+        [self reloadDataMainQueue];
 
         NSArray *wps = [[test objectForKey:@"waypoints"] componentsSeparatedByString:@","];
 
         [a.remoteAPI loadWaypointsByCodes:wps infoViewer:nil iiDownload:0 identifier:identifier group:dbc.groupLiveImport callback:self];
     } else {
-        [test setObject:@"Not supported" forKey:@"loadWaypointsByCodes"];
+        [test setObject:[NSNumber numberWithInteger:TESTRESULT_NOTSUPPORTED] forKey:testname];
     }
 
     // loadWaypointByBoundingBox
+    testname = @"loadWaypointsByBoundingBox";
     if (a.remoteAPI.supportsLoadWaypointsByBoundaryBox == YES) {
         NSInteger identifier = ++self.identifier;
         [test setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
-        [test setObject:@"loadWaypointsByBoundingBox" forKey:@"testname"];
-        MAINQUEUE(
-            [self.tableView reloadData];
-        );
+        [test setObject:testname forKey:@"testname"];
+        [self reloadDataMainQueue];
 
         GCBoundingBox *bb = [[GCBoundingBox alloc] init];
         Coordinates *c = [test objectForKey:@"coordinates"];
@@ -239,13 +266,148 @@ typedef NS_ENUM(NSInteger, TestStatus) {
 
         [a.remoteAPI loadWaypointsByBoundingBox:bb infoViewer:nil iiDownload: 0 identifier:identifier callback:self];
     } else {
-        [test setObject:@"Not supported" forKey:@"loadWaypointsByBoundingBox"];
+        [test setObject:[NSNumber numberWithInteger:TESTRESULT_NOTSUPPORTED] forKey:testname];
+    }
+
+    // userStatistics
+    testname = @"userStatistics";
+    if (a.remoteAPI.supportsUserStatistics == YES) {
+        NSInteger identifier = ++self.identifier;
+        [test setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
+        [test setObject:testname forKey:@"testname"];
+        [self reloadDataMainQueue];
+
+        NSDictionary *dict;
+
+        RemoteAPIResult rv = [a.remoteAPI UserStatistics:&dict infoViewer:nil iiDownload:0];
+        if (rv == REMOTEAPI_OK)
+            [test setObject:[NSNumber numberWithInteger:TESTRESULT_SUCCESSFUL] forKey:testname];
+        else
+            [test setObject:[NSNumber numberWithInteger:TESTRESULT_FAILED] forKey:testname];
+    } else {
+        [test setObject:[NSNumber numberWithInteger:TESTRESULT_NOTSUPPORTED] forKey:testname];
+    }
+
+    // listQueries
+    testname = @"listQueries";
+    if (a.remoteAPI.supportsListQueries == YES) {
+        NSInteger identifier = ++self.identifier;
+        [test setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
+        [test setObject:testname forKey:@"testname"];
+        [self reloadDataMainQueue];
+
+        NSDictionary *dict;
+
+        RemoteAPIResult rv = [a.remoteAPI UserStatistics:&dict infoViewer:nil iiDownload:0];
+        if (rv == REMOTEAPI_OK)
+            [test setObject:[NSNumber numberWithInteger:TESTRESULT_SUCCESSFUL] forKey:testname];
+        else
+            [test setObject:[NSNumber numberWithInteger:TESTRESULT_FAILED] forKey:testname];
+    } else {
+        [test setObject:[NSNumber numberWithInteger:TESTRESULT_NOTSUPPORTED] forKey:testname];
+    }
+
+    // trackablesMine
+    testname = @"trackablesMine";
+    if (a.remoteAPI.supportsTrackablesRetrieve == YES) {
+        NSInteger identifier = ++self.identifier;
+        [test setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
+        [test setObject:testname forKey:@"testname"];
+        [self reloadDataMainQueue];
+
+        //
+
+        RemoteAPIResult rv = [a.remoteAPI trackablesMine:nil iiDownload:0];
+        if (rv == REMOTEAPI_OK)
+            [test setObject:[NSNumber numberWithInteger:TESTRESULT_SUCCESSFUL] forKey:testname];
+        else
+            [test setObject:[NSNumber numberWithInteger:TESTRESULT_FAILED] forKey:testname];
+    } else {
+        [test setObject:[NSNumber numberWithInteger:TESTRESULT_NOTSUPPORTED] forKey:testname];
+    }
+
+    // trackablesInventory
+    testname = @"trackablesInventory";
+    if (a.remoteAPI.supportsTrackablesRetrieve == YES) {
+        NSInteger identifier = ++self.identifier;
+        [test setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
+        [test setObject:testname forKey:@"testname"];
+        [self reloadDataMainQueue];
+
+        //
+
+        RemoteAPIResult rv = [a.remoteAPI trackablesInventory:nil iiDownload:0];
+        if (rv == REMOTEAPI_OK)
+            [test setObject:[NSNumber numberWithInteger:TESTRESULT_SUCCESSFUL] forKey:testname];
+        else
+            [test setObject:[NSNumber numberWithInteger:TESTRESULT_FAILED] forKey:testname];
+    } else {
+        [test setObject:[NSNumber numberWithInteger:TESTRESULT_NOTSUPPORTED] forKey:testname];
+    }
+
+    // trackableFind
+    testname = @"trackableFind";
+    if (a.remoteAPI.supportsTrackablesRetrieve == YES &&
+        [test objectForKey:@"travelbug"] != nil) {
+        NSInteger identifier = ++self.identifier;
+        [test setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
+        [test setObject:testname forKey:@"testname"];
+        [self reloadDataMainQueue];
+
+        dbTrackable *tb;
+        NSArray<NSString *> *data = [[test objectForKey:@"travelbug"] componentsSeparatedByString:@","];
+
+        RemoteAPIResult rv = [a.remoteAPI trackableFind:[data objectAtIndex:1] trackable:&tb infoViewer:nil iiDownload:0];
+        if (rv == REMOTEAPI_OK)
+            [test setObject:[NSNumber numberWithInteger:TESTRESULT_SUCCESSFUL] forKey:testname];
+        else
+            [test setObject:[NSNumber numberWithInteger:TESTRESULT_FAILED] forKey:testname];
+    } else {
+        [test setObject:[NSNumber numberWithInteger:TESTRESULT_NOTSUPPORTED] forKey:testname];
+    }
+
+    // trackableDiscover
+    testname = @"trackableDiscover";
+    if (a.remoteAPI.supportsTrackablesRetrieve == YES &&
+        [test objectForKey:@"travelbug"] != nil) {
+        NSInteger identifier = ++self.identifier;
+        [test setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
+        [test setObject:testname forKey:@"testname"];
+        [self reloadDataMainQueue];
+
+        NSArray<NSString *> *data = [[test objectForKey:@"travelbug"] componentsSeparatedByString:@","];
+
+        RemoteAPIResult rv = [a.remoteAPI trackableDiscover:[data objectAtIndex:1] infoViewer:nil iiDownload:0];
+        if (rv == REMOTEAPI_OK)
+            [test setObject:[NSNumber numberWithInteger:TESTRESULT_SUCCESSFUL] forKey:testname];
+        else
+            [test setObject:[NSNumber numberWithInteger:TESTRESULT_FAILED] forKey:testname];
+    } else {
+        [test setObject:[NSNumber numberWithInteger:TESTRESULT_NOTSUPPORTED] forKey:testname];
+    }
+
+    // trackableGrab
+    testname = @"trackableGrab";
+    if (a.remoteAPI.supportsTrackablesRetrieve == YES &&
+        [test objectForKey:@"travelbug"] != nil) {
+        NSInteger identifier = ++self.identifier;
+        [test setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
+        [test setObject:testname forKey:@"testname"];
+        [self reloadDataMainQueue];
+
+        NSArray<NSString *> *data = [[test objectForKey:@"travelbug"] componentsSeparatedByString:@","];
+
+        RemoteAPIResult rv = [a.remoteAPI trackableGrab:[data objectAtIndex:1] infoViewer:nil iiDownload:0];
+        if (rv == REMOTEAPI_OK)
+            [test setObject:[NSNumber numberWithInteger:TESTRESULT_SUCCESSFUL] forKey:testname];
+        else
+            [test setObject:[NSNumber numberWithInteger:TESTRESULT_FAILED] forKey:testname];
+    } else {
+        [test setObject:[NSNumber numberWithInteger:TESTRESULT_NOTSUPPORTED] forKey:testname];
     }
 
     [test setObject:[NSNumber numberWithInteger:TESTSTATUS_FINISHED] forKey:@"status"];
-    MAINQUEUE(
-        [self.tableView reloadData];
-    );
+    [self reloadDataMainQueue];
 }
 
 - (void)remoteAPI_objectReadyToImport:(NSInteger)identifier iiImport:(InfoItemID)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
@@ -260,12 +422,10 @@ typedef NS_ENUM(NSInteger, TestStatus) {
             }
         }];
         NSString *testname = [test objectForKey:@"testname"];
-        [test setObject:@"Successful" forKey:testname];
+        [test setObject:[NSNumber numberWithInteger:TESTRESULT_SUCCESSFUL] forKey:testname];
     }
 
-    MAINQUEUE(
-        [self.tableView reloadData]
-    );
+    [self reloadDataMainQueue];
 }
 
 - (void)remoteAPI_failed:(NSInteger)identifier
@@ -280,12 +440,10 @@ typedef NS_ENUM(NSInteger, TestStatus) {
             }
         }];
         NSString *testname = [test objectForKey:@"testname"];
-        [test setObject:@"Failed" forKey:testname];
+        [test setObject:[NSNumber numberWithInteger:TESTRESULT_FAILED] forKey:testname];
     }
 
-    MAINQUEUE(
-        [self.tableView reloadData]
-    );
+    [self reloadDataMainQueue];
 }
 
 - (void)remoteAPI_finishedDownloads:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
