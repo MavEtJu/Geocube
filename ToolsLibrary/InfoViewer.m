@@ -30,6 +30,7 @@
     InfoItemID maxid;
     BOOL stopUpdating;
     NSInteger contentOffset;
+    BOOL isRefreshing;
 }
 
 @end
@@ -95,6 +96,10 @@
 
 - (void)refreshItems
 {
+    if (isRefreshing == YES)
+        return;
+
+    isRefreshing = YES;
     while (1) {
         [NSThread sleepForTimeInterval:0.1];
 
@@ -105,6 +110,7 @@
         if (stopUpdating == YES)
             break;
     }
+    isRefreshing = NO;
 }
 
 - (void)refreshItems:(NSArray<InfoItem *> *)items
