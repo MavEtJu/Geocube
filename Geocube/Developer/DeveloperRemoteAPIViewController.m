@@ -53,7 +53,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
     NSDictionary *d;
 
     /* Groundspeak LiveaAPI */
-    d = @{@"description": @"Cricket and Soccer ][",
+    d = @{@"description": @"Cricket and Soccer 2",
           @"wpt_name": @"GC6N4RD",
           @"waypoints": @"GC6N4RD,GC5GNW7",
           @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_LIVEAPI_GS],
@@ -64,7 +64,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
 
     /* Geocaching.com website */
-    d = @{@"description": @"Cricket and Soccer ][",
+    d = @{@"description": @"Cricket and Soccer 2",
           @"wpt_name": @"GC6N4RD",
           @"waypoints": @"GC6N4RD,GC5GNW7",
           @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_WEB_GCCOM],
@@ -106,7 +106,6 @@ typedef NS_ENUM(NSInteger, TestResult) {
 
     [self.tableView registerNib:[UINib nibWithNibName:XIB_DEVELOPERREMOTEAPITABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_DEVELOPERREMOTEAPITABLEVIEWCELL];
 }
-
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -242,7 +241,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
         [test setObject:testname forKey:@"testname"];
         [self reloadDataMainQueue];
 
-        NSArray *wps = [[test objectForKey:@"waypoints"] componentsSeparatedByString:@","];
+        NSArray<NSString *> *wps = [[test objectForKey:@"waypoints"] componentsSeparatedByString:@","];
 
         [a.remoteAPI loadWaypointsByCodes:wps infoViewer:nil iiDownload:0 identifier:identifier group:dbc.groupLiveImport callback:self];
     } else {

@@ -40,7 +40,7 @@
     [self.labelLoadWaypoint changeTheme];
     [self.labelStatus changeTheme];
     [self.labelTest changeTheme];
-    [self.labelLoadWaypointsByCodes changeTheme];;
+    [self.labelLoadWaypointsByCodes changeTheme];
     [self.labelLoadWaypointsByBoundingBox changeTheme];
     [self.labelUserStatistics changeTheme];
     [self.labelUpdatePersonalNote changeTheme];
@@ -55,4 +55,3 @@
 }
 
 @end
-

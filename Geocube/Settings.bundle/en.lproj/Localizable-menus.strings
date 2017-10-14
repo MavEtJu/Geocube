@@ -24,6 +24,7 @@
 "menu-browser-User" = "User";
 "menu-developer-DB" = "DB";
 "menu-developer-Images" = "Images";
+"menu-developer-RemoteAPI" = "RemoteAPI";
 "menu-files-File Browser" = "File Browser";
 "menu-files-Local Files" = "Local Files";
 "menu-files-KML" = "KML";

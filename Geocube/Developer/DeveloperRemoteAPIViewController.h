@@ -19,6 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface DeveloperRemoteAPIViewController : GCTableViewController<RemoteAPIDownloadDelegate>
+@interface DeveloperRemoteAPIViewController : GCTableViewController <RemoteAPIDownloadDelegate>
 
 @end
