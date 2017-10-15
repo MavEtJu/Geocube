@@ -48,9 +48,18 @@ typedef NS_ENUM(NSInteger, TestResult) {
     self = [super init];
 
     [self makeInfoView];
+    [self loadTests];
 
+    return self;
+}
+
+- (void)loadTests
+{
     NSMutableArray<NSMutableDictionary *> *tests = [NSMutableArray arrayWithCapacity:10];
     NSDictionary *d;
+
+    if ([dbAccount dbGetByGeocubeID:ACCOUNT_LIVEAPI_GS] == nil)
+        return;
 
     /* Groundspeak LiveaAPI */
     d = @{@"description": @"Cricket and Soccer 2",
@@ -60,7 +69,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
           @"coordinates": [[Coordinates alloc] init:-34.04550 longitude:151.12010],
           @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
           @"travelbug": @"TB8NG8J,ARN7EA",
-         };
+          };
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
 
     /* Geocaching.com website */
@@ -71,7 +80,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
           @"coordinates": [[Coordinates alloc] init:-34.04550 longitude:151.12010],
           @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
           @"travelbug": @"TB8NG8J,ARN7EA",
-         };
+          };
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
 
     /* Geocaching Australia */
@@ -81,7 +90,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
           @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_GCA2_GCA],
           @"coordinates": [[Coordinates alloc] init:-29.3242 longitude:143.08183333333332],
           @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
-         };
+          };
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
 
     /* OpenCaching Benelux */
@@ -91,17 +100,17 @@ typedef NS_ENUM(NSInteger, TestResult) {
           @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_OKAPI_OCNL],
           @"coordinates": [[Coordinates alloc] init:51.738116666667 longitude:5.95515],
           @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
-         };
+          };
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
 
-    /* OpenCaching Deuthschland */
+    /* OpenCaching Deutschland */
     d = @{@"description": @"Quelle des Müggelsees",
           @"wpt_name": @"OC2CAA",
           @"waypoints": @"OC2CAA,OC10DB7",
           @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_OKAPI_OCDE],
           @"coordinates": [[Coordinates alloc] init:52.42527 longitude:13.60113],
           @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
-         };
+          };
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
 
     /* OpenCaching Poland */
@@ -111,7 +120,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
           @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_OKAPI_OCPL],
           @"coordinates": [[Coordinates alloc] init:52.96652 longitude:19.88642],
           @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
-         };
+          };
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
 
     /* OpenCaching North America */
@@ -121,7 +130,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
           @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_OKAPI_OCNA],
           @"coordinates": [[Coordinates alloc] init:36.60077 longitude:-83.67533],
           @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
-         };
+          };
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
 
     /* OpenCaching Romenia */
@@ -131,7 +140,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
           @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_OKAPI_OCRO],
           @"coordinates": [[Coordinates alloc] init:44.85508 longitude:24.85238],
           @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
-         };
+          };
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
 
     /* OpenCache UK */
@@ -141,12 +150,10 @@ typedef NS_ENUM(NSInteger, TestResult) {
           @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_OKAPI_OCUK],
           @"coordinates": [[Coordinates alloc] init:56.02365 longitude:4.78265],
           @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
-         };
+          };
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
 
     self.tests = tests;
-
-    return self;
 }
 
 - (void)viewDidLoad
@@ -157,6 +164,13 @@ typedef NS_ENUM(NSInteger, TestResult) {
     [self.tableView registerNib:[UINib nibWithNibName:XIB_DEVELOPERREMOTEAPITABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_DEVELOPERREMOTEAPITABLEVIEWCELL];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if ([self.tests count] == 0)
+        [self loadTests];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -164,11 +178,19 @@ typedef NS_ENUM(NSInteger, TestResult) {
 
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.tests count];
+    if ([self.tests count] != 0)
+        return [self.tests count];
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([self.tests count] == 0) {
+        GCTableViewCell *cell = [[GCTableViewCell alloc] initWithFrame:CGRectZero];
+        cell.textLabel.text = @"No accounts found yet.";
+        return cell;
+    }
+
     DeveloperRemoteAPITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_DEVELOPERREMOTEAPITABLEVIEWCELL forIndexPath:indexPath];
 
     NSDictionary *test = [self.tests objectAtIndex:indexPath.row];
