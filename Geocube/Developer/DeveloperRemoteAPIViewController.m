@@ -185,10 +185,10 @@ typedef NS_ENUM(NSInteger, TestResult) {
     if (a.canDoRemoteStuff == NO) {
         cell.labelStatus.text = @"Status: No remote API available";
         cell.userInteractionEnabled = NO;
-        cell.labelTest.backgroundColor = currentTheme.labelTextColorDisabled;
+        cell.labelTest.textColor = currentTheme.labelTextColorDisabled;
     } else {
         cell.userInteractionEnabled = YES;
-        cell.labelTest.backgroundColor = currentTheme.labelTextColor;
+        cell.labelTest.textColor = currentTheme.labelTextColor;
     }
 
 #define LABEL(__field__, __name__) \
