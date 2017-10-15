@@ -174,17 +174,21 @@ typedef NS_ENUM(NSInteger, TestResult) {
     NSDictionary *test = [self.tests objectAtIndex:indexPath.row];
     dbAccount *a = [test objectForKey:@"account"];
 
-    cell.labelTest.text = [NSString stringWithFormat:@"%@ - %@", a.site, [test objectForKey:@"wpt_name"]];
+    cell.labelTest.text = a.site;
     if ([[test objectForKey:@"status"] integerValue] == TESTSTATUS_IDLE)
         cell.labelStatus.text = @"Status: Idle";
     if ([[test objectForKey:@"status"] integerValue] == TESTSTATUS_RUNNING)
         cell.labelStatus.text = @"Status: Running";
     if ([[test objectForKey:@"status"] integerValue] == TESTSTATUS_FINISHED)
         cell.labelStatus.text = @"Status: Finished";
-    cell.userInteractionEnabled = YES;
+
     if (a.canDoRemoteStuff == NO) {
         cell.labelStatus.text = @"Status: No remote API available";
         cell.userInteractionEnabled = NO;
+        cell.labelTest.backgroundColor = currentTheme.labelTextColorDisabled;
+    } else {
+        cell.userInteractionEnabled = YES;
+        cell.labelTest.backgroundColor = currentTheme.labelTextColor;
     }
 
 #define LABEL(__field__, __name__) \

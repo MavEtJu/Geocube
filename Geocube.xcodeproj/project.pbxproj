@@ -3726,15 +3726,11 @@
 		E87F58D21F48611700C90375 /* Developer */ = {
 			isa = PBXGroup;
 			children = (
+				E8B772ED1F92BDED0060B415 /* RemoteAPI */,
 				E8596AC91F73174100E26495 /* DeveloperDatabaseViewController.h */,
 				E8596ACA1F73174100E26495 /* DeveloperDatabaseViewController.m */,
 				E8596ACB1F73174100E26495 /* DeveloperImagesViewController.h */,
 				E8596ACC1F73174100E26495 /* DeveloperImagesViewController.m */,
-				E84B174C1F903E6C004CAE31 /* DeveloperRemoteAPIViewController.h */,
-				E84B174D1F903E6C004CAE31 /* DeveloperRemoteAPIViewController.m */,
-				E84B17511F90BA2C004CAE31 /* DeveloperRemoteAPITableViewCell.h */,
-				E84B17521F90BA2C004CAE31 /* DeveloperRemoteAPITableViewCell.m */,
-				E84B17541F90BA51004CAE31 /* DeveloperRemoteAPITableViewCell.xib */,
 			);
 			name = Developer;
 			sourceTree = "<group>";
@@ -3879,6 +3875,18 @@
 				E83C6F261EEEA8A200E303F5 /* Notices */,
 			);
 			name = Help;
+			sourceTree = "<group>";
+		};
+		E8B772ED1F92BDED0060B415 /* RemoteAPI */ = {
+			isa = PBXGroup;
+			children = (
+				E84B174C1F903E6C004CAE31 /* DeveloperRemoteAPIViewController.h */,
+				E84B174D1F903E6C004CAE31 /* DeveloperRemoteAPIViewController.m */,
+				E84B17511F90BA2C004CAE31 /* DeveloperRemoteAPITableViewCell.h */,
+				E84B17521F90BA2C004CAE31 /* DeveloperRemoteAPITableViewCell.m */,
+				E84B17541F90BA51004CAE31 /* DeveloperRemoteAPITableViewCell.xib */,
+			);
+			name = RemoteAPI;
 			sourceTree = "<group>";
 		};
 		E8BD82481B46A4CB0029CDC9 /* Images */ = {
