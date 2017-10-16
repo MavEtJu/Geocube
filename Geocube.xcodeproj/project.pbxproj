@@ -614,11 +614,7 @@
 		E84725D61DF770DA00CFF99B /* menu icon - global - default.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725D01DF770DA00CFF99B /* menu icon - global - default.png */; };
 		E84725D91DF770DA00CFF99B /* menu icon - local - default.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725D31DF770DA00CFF99B /* menu icon - local - default.png */; };
 		E84725E21DF774E200CFF99B /* menu icon - global - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725DC1DF774E200CFF99B /* menu icon - global - night.png */; };
-		E84725E31DF774E200CFF99B /* menu icon - global@2x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725DD1DF774E200CFF99B /* menu icon - global@2x - night.png */; };
-		E84725E41DF774E200CFF99B /* menu icon - global@3x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725DE1DF774E200CFF99B /* menu icon - global@3x - night.png */; };
 		E84725E51DF774E200CFF99B /* menu icon - local - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725DF1DF774E200CFF99B /* menu icon - local - night.png */; };
-		E84725E61DF774E200CFF99B /* menu icon - local@2x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E01DF774E200CFF99B /* menu icon - local@2x - night.png */; };
-		E84725E71DF774E200CFF99B /* menu icon - local@3x - night.png in Resources */ = {isa = PBXBuildFile; fileRef = E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */; };
 		E84B174B1F8F6C18004CAE31 /* QueriesGCAPublicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84B174A1F8F6C18004CAE31 /* QueriesGCAPublicViewController.m */; };
 		E84B174E1F903E6C004CAE31 /* DeveloperRemoteAPIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84B174D1F903E6C004CAE31 /* DeveloperRemoteAPIViewController.m */; };
 		E84B17531F90BA2C004CAE31 /* DeveloperRemoteAPITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E84B17521F90BA2C004CAE31 /* DeveloperRemoteAPITableViewCell.m */; };
@@ -684,6 +680,10 @@
 		E88DB00C1F334E4300FEF795 /* cache - gadget - 30x30@3.png in Resources */ = {isa = PBXBuildFile; fileRef = E88DB0091F334E4300FEF795 /* cache - gadget - 30x30@3.png */; };
 		E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
+		E8B772F61F9460490060B415 /* menu icon - global - night@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B772F21F9460490060B415 /* menu icon - global - night@2x.png */; };
+		E8B772F71F9460490060B415 /* menu icon - global - night@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B772F31F9460490060B415 /* menu icon - global - night@3x.png */; };
+		E8B772F81F9460490060B415 /* menu icon - local - night@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B772F41F9460490060B415 /* menu icon - local - night@2x.png */; };
+		E8B772F91F9460490060B415 /* menu icon - local - night@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B772F51F9460490060B415 /* menu icon - local - night@3x.png */; };
 		E8C8C8C21EE26AAA00E2438D /* LogTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8C11EE26AAA00E2438D /* LogTableViewCell~ipad.xib */; };
 		E8D49D2F1F00F9C1005EB7BE /* container size - nano - 35x11.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */; };
 		E8D49D301F00F9C1005EB7BE /* container size - nano - 35x11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */; };
@@ -1810,11 +1810,7 @@
 		E84725D01DF770DA00CFF99B /* menu icon - global - default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - global - default.png"; path = "images/menu/menu icon - global - default.png"; sourceTree = "<group>"; };
 		E84725D31DF770DA00CFF99B /* menu icon - local - default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local - default.png"; path = "images/menu/menu icon - local - default.png"; sourceTree = "<group>"; };
 		E84725DC1DF774E200CFF99B /* menu icon - global - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - global - night.png"; path = "images/menu/menu icon - global - night.png"; sourceTree = "<group>"; };
-		E84725DD1DF774E200CFF99B /* menu icon - global@2x - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - global@2x - night.png"; path = "images/menu/menu icon - global@2x - night.png"; sourceTree = "<group>"; };
-		E84725DE1DF774E200CFF99B /* menu icon - global@3x - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - global@3x - night.png"; path = "images/menu/menu icon - global@3x - night.png"; sourceTree = "<group>"; };
 		E84725DF1DF774E200CFF99B /* menu icon - local - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local - night.png"; path = "images/menu/menu icon - local - night.png"; sourceTree = "<group>"; };
-		E84725E01DF774E200CFF99B /* menu icon - local@2x - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local@2x - night.png"; path = "images/menu/menu icon - local@2x - night.png"; sourceTree = "<group>"; };
-		E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local@3x - night.png"; path = "images/menu/menu icon - local@3x - night.png"; sourceTree = "<group>"; };
 		E84B17491F8F6C18004CAE31 /* QueriesGCAPublicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QueriesGCAPublicViewController.h; path = Queries/QueriesGCAPublicViewController.h; sourceTree = "<group>"; };
 		E84B174A1F8F6C18004CAE31 /* QueriesGCAPublicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QueriesGCAPublicViewController.m; path = Queries/QueriesGCAPublicViewController.m; sourceTree = "<group>"; };
 		E84B174C1F903E6C004CAE31 /* DeveloperRemoteAPIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeveloperRemoteAPIViewController.h; path = Developer/DeveloperRemoteAPIViewController.h; sourceTree = "<group>"; };
@@ -1899,6 +1895,10 @@
 		E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - empty - 30x30.png"; path = "images/logs/log - empty - 30x30.png"; sourceTree = "<group>"; };
 		E895552A1F6CA70A0026582B /* libDatabaseLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libDatabaseLibrary.a; path = "../../Library/Developer/Xcode/DerivedData/Geocube-bjprugvtqrcyrnatajlgnpwinftk/Build/Products/Debug-iphonesimulator/libDatabaseLibrary.a"; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
+		E8B772F21F9460490060B415 /* menu icon - global - night@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - global - night@2x.png"; path = "images/menu/menu icon - global - night@2x.png"; sourceTree = "<group>"; };
+		E8B772F31F9460490060B415 /* menu icon - global - night@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - global - night@3x.png"; path = "images/menu/menu icon - global - night@3x.png"; sourceTree = "<group>"; };
+		E8B772F41F9460490060B415 /* menu icon - local - night@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local - night@2x.png"; path = "images/menu/menu icon - local - night@2x.png"; sourceTree = "<group>"; };
+		E8B772F51F9460490060B415 /* menu icon - local - night@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - local - night@3x.png"; path = "images/menu/menu icon - local - night@3x.png"; sourceTree = "<group>"; };
 		E8C8C8C11EE26AAA00E2438D /* LogTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LogTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11.png"; path = "images/containers/container size - nano - 35x11.png"; sourceTree = "<group>"; };
 		E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11@2x.png"; path = "images/containers/container size - nano - 35x11@2x.png"; sourceTree = "<group>"; };
@@ -2999,11 +2999,11 @@
 				E876ECB11F7E5396002A368E /* menu icon - local - default@2x.png */,
 				E876ECB21F7E5396002A368E /* menu icon - local - default@3x.png */,
 				E84725DC1DF774E200CFF99B /* menu icon - global - night.png */,
-				E84725DD1DF774E200CFF99B /* menu icon - global@2x - night.png */,
-				E84725DE1DF774E200CFF99B /* menu icon - global@3x - night.png */,
+				E8B772F21F9460490060B415 /* menu icon - global - night@2x.png */,
+				E8B772F31F9460490060B415 /* menu icon - global - night@3x.png */,
 				E84725DF1DF774E200CFF99B /* menu icon - local - night.png */,
-				E84725E01DF774E200CFF99B /* menu icon - local@2x - night.png */,
-				E84725E11DF774E200CFF99B /* menu icon - local@3x - night.png */,
+				E8B772F41F9460490060B415 /* menu icon - local - night@2x.png */,
+				E8B772F51F9460490060B415 /* menu icon - local - night@3x.png */,
 				E82E66171DA07A5500CFBDED /* menu icon - see target.png */,
 				E82E67831DA0DD0700CFBDED /* menu icon - see target@2x.png */,
 				E82E67841DA0DD0700CFBDED /* menu icon - see target@3x.png */,
@@ -4214,8 +4214,8 @@
 				E82E66011DA079E500CFBDED /* log - needsarchiving - 30x30.png in Resources */,
 				E8FEDEA31DA7C08A007C756B /* waypoint - manually entered - 30x30@3x.png in Resources */,
 				E8FEDEDD1DA8EEE9007C756B /* cache - event - 30x30@3x.png in Resources */,
+				E8B772F81F9460490060B415 /* menu icon - local - night@2x.png in Resources */,
 				E82E67481DA07D0200CFBDED /* attributes - 30.png in Resources */,
-				E84725E61DF774E200CFF99B /* menu icon - local@2x - night.png in Resources */,
 				E82E66C61DA07CBE00CFBDED /* cache - moveable - 30x30.png in Resources */,
 				E82E66E21DA07CBE00CFBDED /* cache - waymark - 30x30.png in Resources */,
 				E82E67691DA07D0200CFBDED /* attributes - 63.png in Resources */,
@@ -4248,6 +4248,7 @@
 				E8FEDEA01DA7C08A007C756B /* waypoint - flag - 30x30@2x.png in Resources */,
 				E8FEDE591DA77F9D007C756B /* container size - regular - 35x11.png in Resources */,
 				E8FEDEDC1DA8EEE9007C756B /* cache - event - 30x30@2x.png in Resources */,
+				E8B772F71F9460490060B415 /* menu icon - global - night@3x.png in Resources */,
 				E82E675F1DA07D0200CFBDED /* attributes - 53.png in Resources */,
 				E86C4AB01E321822004526E2 /* CompassView.xib in Resources */,
 				E82E65B91DA0794600CFBDED /* waypoint - flag - 30x30.png in Resources */,
@@ -4281,7 +4282,6 @@
 				E82287A21F8A30B700631380 /* MapWaypointInfoView.xib in Resources */,
 				E82E67421DA07D0200CFBDED /* attributes - 24.png in Resources */,
 				E82E66E51DA07CBE00CFBDED /* cache - webcam - 30x30.png in Resources */,
-				E84725E31DF774E200CFF99B /* menu icon - global@2x - night.png in Resources */,
 				E82E66E81DA07CBE00CFBDED /* cache - whereigo - 30x30@3x.png in Resources */,
 				E876EC9E1F7C8B66002A368E /* menu icon - gnss-off.png in Resources */,
 				E82E667D1DA07C6F00CFBDED /* compass - red arrow on black.png in Resources */,
@@ -4322,6 +4322,7 @@
 				E82E66CD1DA07CBE00CFBDED /* cache - mystery - 30x30@2x.png in Resources */,
 				E8FEDEB81DA887A7007C756B /* image - nil - 1x1@2x.png in Resources */,
 				E822871B1F8A2E1A00631380 /* GCTableViewCellSubtitleRightImage~ipad.xib in Resources */,
+				E8B772F91F9460490060B415 /* menu icon - local - night@3x.png in Resources */,
 				E8FEDE5E1DA77F9D007C756B /* container size - small - 35x11@3x.png in Resources */,
 				E82E65C71DA0797E00CFBDED /* ratings - star half 18x18.png in Resources */,
 				E82E66021DA079E500CFBDED /* log - needsmaintenance - 30x30.png in Resources */,
@@ -4429,10 +4430,10 @@
 				E82E66CE1DA07CBE00CFBDED /* cache - mystery - 30x30@3x.png in Resources */,
 				E82E66361DA07A8700CFBDED /* icons - dead - 30x30@3x.png in Resources */,
 				E82E67661DA07D0200CFBDED /* attributes - 60.png in Resources */,
-				E84725E41DF774E200CFF99B /* menu icon - global@3x - night.png in Resources */,
 				E82E67671DA07D0200CFBDED /* attributes - 61.png in Resources */,
 				E8F570621B3F7255003F020C /* Main.storyboard in Resources */,
 				E8F403EC1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png in Resources */,
+				E8B772F61F9460490060B415 /* menu icon - global - night@2x.png in Resources */,
 				E86D427E1EF68CC800E4509F /* container flag - planned - 24x21@2.png in Resources */,
 				E85BA8901F5449F5008E708F /* Beeper.wav in Resources */,
 				E82E663A1DA07A8700CFBDED /* icons - smiley - 15x15.png in Resources */,
@@ -4649,7 +4650,6 @@
 				E82E67351DA07D0200CFBDED /* attributes - 10.png in Resources */,
 				E82E661E1DA07A5500CFBDED /* menu icon - follow me.png in Resources */,
 				E82E67741DA07D1A00CFBDED /* image - no image - 32x32.png in Resources */,
-				E84725E71DF774E200CFF99B /* menu icon - local@3x - night.png in Resources */,
 				E82E65B81DA0794600CFBDED /* waypoint - finish - 30x30.png in Resources */,
 				E861B9801EE2E8AC00BD82AC /* GC - logo - 768×1024.png in Resources */,
 				E876EC841F7BCAA0002A368E /* log - photographed - 30x30@2.png in Resources */,
