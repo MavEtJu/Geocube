@@ -141,18 +141,18 @@
     [self addToLibrary:@"icons - dead - 30x30" index:ImageIcon_Dead];
     [self addToLibrary:@"icons - target - 30x30" index:ImageIcon_Target];
 
-    [self addToLibrary:@"menu icon - global - default" index:ImageIcon_GlobalMenuDefault];
-    [self addToLibrary:@"menu icon - local - default" index:ImageIcon_LocalMenuDefault];
-    [self addToLibrary:@"menu icon - global - night" index:ImageIcon_GlobalMenuNight];
-    [self addToLibrary:@"menu icon - local - night" index:ImageIcon_LocalMenuNight];
-    [self addToLibrary:@"menu icon - close" index:ImageIcon_CloseButton];
-    [self addToLibrary:@"menu icon - see target" index:ImageIcon_SeeTarget];
-    [self addToLibrary:@"menu icon - show both" index:ImageIcon_ShowBoth];
-    [self addToLibrary:@"menu icon - follow me" index:ImageIcon_FollowMe];
-    [self addToLibrary:@"menu icon - find me" index:ImageIcon_FindMe];
-    [self addToLibrary:@"menu icon - find target" index:ImageIcon_FindTarget];
-    [self addToLibrary:@"menu icon - gnss-on" index:ImageIcon_GNSSOn];
-    [self addToLibrary:@"menu icon - gnss-off" index:ImageIcon_GNSSOff];
+    [self addToLibrary:@"menu icon - global default - 27x27" index:ImageIcon_GlobalMenuDefault];
+    [self addToLibrary:@"menu icon - local default - 27x27" index:ImageIcon_LocalMenuDefault];
+    [self addToLibrary:@"menu icon - global night - 27x27" index:ImageIcon_GlobalMenuNight];
+    [self addToLibrary:@"menu icon - local night - 27x27" index:ImageIcon_LocalMenuNight];
+    [self addToLibrary:@"menu icon - close - 15x15" index:ImageIcon_CloseButton];
+    [self addToLibrary:@"menu icon - see target - 27x27" index:ImageIcon_SeeTarget];
+    [self addToLibrary:@"menu icon - show both - 27x27" index:ImageIcon_ShowBoth];
+    [self addToLibrary:@"menu icon - follow me - 27x27" index:ImageIcon_FollowMe];
+    [self addToLibrary:@"menu icon - find me - 27x27" index:ImageIcon_FindMe];
+    [self addToLibrary:@"menu icon - find target - 27x27" index:ImageIcon_FindTarget];
+    [self addToLibrary:@"menu icon - gnss-on - 27x27" index:ImageIcon_GNSSOn];
+    [self addToLibrary:@"menu icon - gnss-off - 27x27" index:ImageIcon_GNSSOff];
 
     [self addToLibrary:@"compass - red on blue compass - compass" index:ImageCompass_RedArrowOnBlueCompass];
     [self addToLibrary:@"compass - red on blue compass - arrow" index:ImageCompass_RedArrowOnBlueArrow];
