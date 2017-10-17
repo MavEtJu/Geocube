@@ -25,5 +25,5 @@
 #import "ThemesLibrary/ThemeTemplate.h"
 #import "ThemesLibrary/ThemeIOSNormalSize.h"
 #import "ThemesLibrary/ThemeNightNormalSize.h"
-#import "ThemesLibrary/ThemeIOSLargeSize.h"
-#import "ThemesLibrary/ThemeNightLargeSize.h"
+#import "ThemesLibrary/ThemeIOSSmallSize.h"
+#import "ThemesLibrary/ThemeNightSmallSize.h"

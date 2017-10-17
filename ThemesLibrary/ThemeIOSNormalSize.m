@@ -1,7 +1,7 @@
 /*
  * Geocube
  * By Edwin Groothuis <geocube@mavetju.org>
- * Copyright 2015, 2016, 2017 Edwin Groothuis
+ * Copyright 2017 Edwin Groothuis
  *
  * This file is part of Geocube.
  *
@@ -68,8 +68,8 @@
     self.mapGNSSOn = [imageManager get:ImageIcon_GNSSOn_Normal];
     self.mapGNSSOff = [imageManager get:ImageIcon_GNSSOff_Normal];
 
-    self.tabBarHeightPortrait = 44;
-    self.tabBarHeightLandscape = 32;
+    self.tabBarHeightPortrait = 71;
+    self.tabBarHeightLandscape = 59;
 
     return self;
 }

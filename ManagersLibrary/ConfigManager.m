@@ -66,8 +66,9 @@
     CHECK(@"map_destination_colour", @"FF0000");
 
     CHECK(@"compass_type", @"0");
-    CHECK(@"theme_type", @"0");
-    NSString *s = [NSString stringWithFormat:@"%ld", (long)(UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown | UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight)];
+    NSString *s = [NSString stringWithFormat:@"%ld", (long)THEME_IOS_NORMALSIZE];
+    CHECK(@"theme_type", s);
+    s = [NSString stringWithFormat:@"%ld", (long)(UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown | UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight)];
     CHECK(@"orientations_allowed", s);
 
     CHECK(@"sound_direction", @"0");

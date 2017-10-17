@@ -5,7 +5,7 @@ Version 1.8(x)
   Features:
   - In Developer -> Remote API you can check yourself if the various
     API calls work as expected.
-  - You are able to select a large buttoned theme for the global/local
+  - You are able to select a small buttoned theme for the global/local
     menu and map menu buttons..
 
   Fixes:

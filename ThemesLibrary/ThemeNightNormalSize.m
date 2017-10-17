@@ -1,7 +1,7 @@
 /*
  * Geocube
  * By Edwin Groothuis <geocube@mavetju.org>
- * Copyright 2015, 2016, 2017 Edwin Groothuis
+ * Copyright 2017 Edwin Groothuis
  *
  * This file is part of Geocube.
  *
@@ -39,7 +39,7 @@
     self.labelTextColorDisabled = darkGrayColor;
 
     self.tableHeaderBackground = darkGrayColor;
-    self.tableHeaderTextColor = lightTextColor; //[UIColor greenColor]; //thfv.textLabel.backgroundColor;
+    self.tableHeaderTextColor = lightTextColor;
 
     self.imageBackgroundColor = lightTextColor;
 
@@ -54,8 +54,8 @@
     self.switchOnTintColor = [UIColor darkGrayColor];
     self.switchThumbTintColor = [UIColor lightGrayColor];
 
-    self.menuLocalIcon = [imageManager get:ImageIcon_LocalMenuNight_Large];
-    self.menuGlobalIcon = [imageManager get:ImageIcon_GlobalMenuNight_Large];
+    self.menuLocalIcon = [imageManager get:ImageIcon_LocalMenuNight_Normal];
+    self.menuGlobalIcon = [imageManager get:ImageIcon_GlobalMenuNight_Normal];
     self.menuCloseIcon = [imageManager get:ImageIcon_CloseButton_Normal];
 
     self.mapShowBoth = [imageManager get:ImageIcon_ShowBoth_Normal];
@@ -70,8 +70,8 @@
     NSError *error;
     self.googleMapsStyle = [GMSMapStyle styleWithContentsOfFileURL:styleUrl error:&error];
 
-    self.tabBarHeightPortrait = 44;
-    self.tabBarHeightLandscape = 32;
+    self.tabBarHeightPortrait = 71;
+    self.tabBarHeightLandscape = 59;
 
     return self;
 }

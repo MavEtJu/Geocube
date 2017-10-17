@@ -19,21 +19,30 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ThemeTemplate ()
+@interface ThemeNightSmallSize ()
 
 @end
 
-@implementation ThemeTemplate
+@implementation ThemeNightSmallSize
 
 - (instancetype)init
 {
     self = [super init];
 
-    UITableViewCell *tvc = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-    self.GCTextblockFont = [UIFont systemFontOfSize:tvc.textLabel.font.pointSize];
+    self.menuLocalIcon = [imageManager get:ImageIcon_LocalMenuNight_Small];
+    self.menuGlobalIcon = [imageManager get:ImageIcon_GlobalMenuNight_Small];
+    self.menuCloseIcon = [imageManager get:ImageIcon_CloseButton_Small];
 
-    self.GCLabelNormalSizeFont = [UIFont systemFontOfSize:configManager.fontNormalTextSize];
-    self.GCLabelSmallSizeFont = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+    self.mapShowBoth = [imageManager get:ImageIcon_ShowBoth_Small];
+    self.mapFindTarget = [imageManager get:ImageIcon_FindTarget_Small];
+    self.mapFindMe = [imageManager get:ImageIcon_FindMe_Small];
+    self.mapFollowMe = [imageManager get:ImageIcon_FollowMe_Small];
+    self.mapSeeTarget = [imageManager get:ImageIcon_SeeTarget_Small];
+    self.mapGNSSOn = [imageManager get:ImageIcon_GNSSOn_Small];
+    self.mapGNSSOff = [imageManager get:ImageIcon_GNSSOff_Small];
+
+    self.tabBarHeightPortrait = 44;
+    self.tabBarHeightLandscape = 32;
 
     return self;
 }
