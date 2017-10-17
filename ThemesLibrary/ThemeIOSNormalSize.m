@@ -68,8 +68,8 @@
     self.mapGNSSOn = [imageManager get:ImageIcon_GNSSOn_Normal];
     self.mapGNSSOff = [imageManager get:ImageIcon_GNSSOff_Normal];
 
-    self.tabBarHeightPortrait = 71;
-    self.tabBarHeightLandscape = 59;
+    self.tabBarHeightPortrait = 58;
+    self.tabBarHeightLandscape = 43;
 
     return self;
 }

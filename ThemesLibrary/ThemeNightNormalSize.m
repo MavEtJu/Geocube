@@ -70,8 +70,8 @@
     NSError *error;
     self.googleMapsStyle = [GMSMapStyle styleWithContentsOfFileURL:styleUrl error:&error];
 
-    self.tabBarHeightPortrait = 71;
-    self.tabBarHeightLandscape = 59;
+    self.tabBarHeightPortrait = 58;
+    self.tabBarHeightLandscape = 43;
 
     return self;
 }

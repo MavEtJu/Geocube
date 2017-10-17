@@ -14,8 +14,8 @@
 
 /* Theme manager */
 "thememanager-Default iOS theme, small icons" = "Standaard iOS thema, kleine iconen";
-"thememanager-Default iOS theme, small icons" = "Standaard iOS thema, kleine iconen";
-"thememanager-Geocube night theme, large icons" = "Geocube nacht thema, grote iconen";
+"thememanager-Default iOS theme, normal icons" = "Standaard iOS thema, normale iconen";
+"thememanager-Geocube night theme, small icons" = "Geocube nacht thema, kleine iconen";
 "thememanager-Geocube night theme, normal icons" = "Geocube nacht thema, normale iconen";
 
 /* InfoViewer */

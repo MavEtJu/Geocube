@@ -220,9 +220,11 @@
 
 "settingsmainviewcontroller-Normal Text Font Size" = "Normale tekst font grootte";
 "settingsmainviewcontroller-Normal text font size" = "Normale tekst font grootte";
-"settingsmainviewcontroller-Size of font in pixels" = "Grootte van het font in pixels";
 "settingsmainviewcontroller-Small Text Font Size" = "Kleine tekst font grootte";
 "settingsmainviewcontroller-Small text font size" = "Kleine tekst font grootte";
+"settingsmainviewcontroller-Size of font in pixels\nSmall: 10 pixels\nNormal: 15 pixels" = "Font grootte\nKlein: 10 pixels\nNormaal: 15 pixels";
+"settingsmainviewcontroller-Size of font in pixels\nSmall: 17 pixels\nNormal: 24 pixels" = "Font grootte\nKlein: 17 pixels\nNormaal: 24 pixels";
+
 
 "settingsmainviewcontroller-Restart required" = "Herstart nodig";
 "settingsmainviewcontroller-When you are finished with these settings, please leave Geocube, swipe it up and restart it." = "Wanneer je klaar bent met de veranderingen, verlaat dan Geocube, schiet het omhoog en start het opnieuw.";
