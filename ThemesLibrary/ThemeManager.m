@@ -37,8 +37,10 @@ ThemeManager *themeManager;
     self = [super init];
 
     self.themeNames = @[
-                        _(@"thememanager-Default iOS theme"),
-                        _(@"thememanager-Geocube night theme"),
+                        _(@"thememanager-Default iOS theme, normal icons"),
+                        _(@"thememanager-Geocube night theme, normal icons"),
+                        _(@"thememanager-Default iOS theme, large icons"),
+                        _(@"thememanager-Geocube night theme, large icons"),
                         ];
 
     return self;
@@ -53,14 +55,20 @@ ThemeManager *themeManager;
 {
     themeNr = nr;
     switch (nr) {
-        case THEME_IOS:
-            currentTheme = [[ThemeIOS alloc] init];
+        case THEME_IOS_NORMALSIZE:
+            currentTheme = [[ThemeIOSNormalSize alloc] init];
             break;
-        case THEME_NIGHT:
-            currentTheme = [[ThemeNight alloc] init];
+        case THEME_NIGHT_NORMALSIZE:
+            currentTheme = [[ThemeNightNormalSize alloc] init];
+            break;
+        case THEME_IOS_LARGESIZE:
+            currentTheme = [[ThemeIOSLargeSize alloc] init];
+            break;
+        case THEME_NIGHT_LARGESIZE:
+            currentTheme = [[ThemeNightLargeSize alloc] init];
             break;
         default:
-            currentTheme = [[ThemeIOS alloc] init];
+            currentTheme = [[ThemeIOSNormalSize alloc] init];
             break;
     }
 

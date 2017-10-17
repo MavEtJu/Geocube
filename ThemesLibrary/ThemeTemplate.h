@@ -36,6 +36,8 @@
 @property (nonatomic, retain) UIColor *tabBarForegroundColor;
 
 @property (nonatomic        ) SVProgressHUDStyle svProgressHUDStyle;
+@property (nonatomic        ) NSInteger tabBarHeightLandscape;
+@property (nonatomic        ) NSInteger tabBarHeightPortrait;
 
 @property (nonatomic, retain) UIColor *switchTintColor;
 @property (nonatomic, retain) UIColor *switchOnTintColor;
@@ -43,6 +45,15 @@
 
 @property (nonatomic, retain) UIImage *menuLocalIcon;
 @property (nonatomic, retain) UIImage *menuGlobalIcon;
+@property (nonatomic, retain) UIImage *menuCloseIcon;
+
+@property (nonatomic, retain) UIImage *mapShowBoth;
+@property (nonatomic, retain) UIImage *mapFindTarget;
+@property (nonatomic, retain) UIImage *mapFindMe;
+@property (nonatomic, retain) UIImage *mapFollowMe;
+@property (nonatomic, retain) UIImage *mapSeeTarget;
+@property (nonatomic, retain) UIImage *mapGNSSOff;
+@property (nonatomic, retain) UIImage *mapGNSSOn;
 
 @property (nonatomic, retain) GMSMapStyle *googleMapsStyle;
 

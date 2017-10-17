@@ -1,7 +1,7 @@
 /*
  * Geocube
  * By Edwin Groothuis <geocube@mavetju.org>
- * Copyright 2015, 2016, 2017 Edwin Groothuis
+ * Copyright 2017 Edwin Groothuis
  *
  * This file is part of Geocube.
  *
@@ -19,18 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ThemeManager : NSObject
-
-@property (nonatomic, retain) NSArray<NSString *> *themeNames;
-@property (nonatomic, retain) NSArray<NSString *> *themeSizes;
-
-- (GCThemeType)currentTheme;
-- (void)setTheme:(GCThemeType)nr;
-- (void)changeThemeView:(UIView *)v;
-- (void)changeThemeViewController:(UIViewController *)v;
-- (void)changeThemeArray:(NSArray<UIView *> *)vs;
+@interface ThemeNightLargeSize : ThemeNightNormalSize
 
 @end
-
-extern ThemeTemplate *currentTheme;
-extern ThemeManager *themeManager;

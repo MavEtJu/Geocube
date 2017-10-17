@@ -19,11 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ThemeNight ()
+@interface ThemeNightNormalSize ()
 
 @end
 
-@implementation ThemeNight
+@implementation ThemeNightNormalSize
 
 - (instancetype)init
 {
@@ -54,12 +54,24 @@
     self.switchOnTintColor = [UIColor darkGrayColor];
     self.switchThumbTintColor = [UIColor lightGrayColor];
 
-    self.menuLocalIcon = [imageManager get:ImageIcon_LocalMenuNight];
-    self.menuGlobalIcon = [imageManager get:ImageIcon_GlobalMenuNight];
+    self.menuLocalIcon = [imageManager get:ImageIcon_LocalMenuNight_Large];
+    self.menuGlobalIcon = [imageManager get:ImageIcon_GlobalMenuNight_Large];
+    self.menuCloseIcon = [imageManager get:ImageIcon_CloseButton_Normal];
+
+    self.mapShowBoth = [imageManager get:ImageIcon_ShowBoth_Normal];
+    self.mapFindTarget = [imageManager get:ImageIcon_FindTarget_Normal];
+    self.mapFindMe = [imageManager get:ImageIcon_FindMe_Normal];
+    self.mapFollowMe = [imageManager get:ImageIcon_FollowMe_Normal];
+    self.mapSeeTarget = [imageManager get:ImageIcon_SeeTarget_Normal];
+    self.mapGNSSOn = [imageManager get:ImageIcon_GNSSOn_Normal];
+    self.mapGNSSOff = [imageManager get:ImageIcon_GNSSOff_Normal];
 
     NSURL *styleUrl = [[NSBundle mainBundle] URLForResource:@"GoogleMapsNight" withExtension:@"json"];
     NSError *error;
     self.googleMapsStyle = [GMSMapStyle styleWithContentsOfFileURL:styleUrl error:&error];
+
+    self.tabBarHeightPortrait = 44;
+    self.tabBarHeightLandscape = 32;
 
     return self;
 }

@@ -19,6 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ThemeNight : ThemeTemplate
+@interface ThemeNightNormalSize : ThemeTemplate
 
 @end

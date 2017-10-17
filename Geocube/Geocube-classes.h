@@ -196,9 +196,11 @@
 @class SideMenu;
 @class StatisticsTableViewCell;
 @class StatisticsViewController;
-@class ThemeIOS;
+@class ThemeIOSLargeSize;
+@class ThemeIOSNormalSize;
 @class ThemeManager;
-@class ThemeNight;
+@class ThemeNightLargeSize;
+@class ThemeNightNormalSize;
 @class ThemeTemplate;
 @class ToolsGNSSViewController;
 @class ToolsRot13ViewController;

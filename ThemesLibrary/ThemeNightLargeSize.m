@@ -1,7 +1,7 @@
 /*
  * Geocube
  * By Edwin Groothuis <geocube@mavetju.org>
- * Copyright 2015, 2016, 2017 Edwin Groothuis
+ * Copyright 2017 Edwin Groothuis
  *
  * This file is part of Geocube.
  *
@@ -19,22 +19,18 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ThemeTemplate ()
+@interface ThemeNightLargeSize ()
 
 @end
 
-@implementation ThemeTemplate
+@implementation ThemeNightLargeSize
 
 - (instancetype)init
 {
     self = [super init];
 
-    UITableViewCell *tvc = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-    self.GCTextblockFont = [UIFont systemFontOfSize:tvc.textLabel.font.pointSize];
-
-    self.GCLabelNormalSizeFont = [UIFont systemFontOfSize:configManager.fontNormalTextSize];
-    self.GCLabelSmallSizeFont = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
-
+    self.menuLocalIcon = [imageManager get:ImageIcon_LocalMenuNight_Large];
+    self.menuGlobalIcon = [imageManager get:ImageIcon_GlobalMenuNight_Large];
     self.menuCloseIcon = [imageManager get:ImageIcon_CloseButton_Large];
 
     self.mapShowBoth = [imageManager get:ImageIcon_ShowBoth_Large];
@@ -44,6 +40,9 @@
     self.mapSeeTarget = [imageManager get:ImageIcon_SeeTarget_Large];
     self.mapGNSSOn = [imageManager get:ImageIcon_GNSSOn_Large];
     self.mapGNSSOff = [imageManager get:ImageIcon_GNSSOff_Large];
+
+    self.tabBarHeightPortrait = 71;
+    self.tabBarHeightLandscape = 59;
 
     return self;
 }

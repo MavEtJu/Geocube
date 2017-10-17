@@ -390,11 +390,9 @@ static const NSInteger TagOffset = 1000;
 {
     // landscape
     if (self.view.bounds.size.width > self.view.bounds.size.height)
-        return 32;
-//        return 2 * [UIFont systemFontOfSize:14].lineHeight;
+        return currentTheme.tabBarHeightLandscape;
     // portrait
-    return 44;
-//    return 3 * [UIFont systemFontOfSize:14].lineHeight;
+    return currentTheme.tabBarHeightPortrait;
 }
 
 // ---------------- Added ----

@@ -19,11 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ThemeIOS ()
+@interface ThemeIOSNormalSize ()
 
 @end
 
-@implementation ThemeIOS
+@implementation ThemeIOSNormalSize
 
 - (instancetype)init
 {
@@ -56,8 +56,20 @@
     self.switchOnTintColor = switch_.onTintColor;
     self.switchThumbTintColor = switch_.thumbTintColor;
 
-    self.menuLocalIcon = [imageManager get:ImageIcon_LocalMenuDefault];
-    self.menuGlobalIcon = [imageManager get:ImageIcon_GlobalMenuDefault];
+    self.menuLocalIcon = [imageManager get:ImageIcon_LocalMenuDefault_Normal];
+    self.menuGlobalIcon = [imageManager get:ImageIcon_GlobalMenuDefault_Normal];
+    self.menuCloseIcon = [imageManager get:ImageIcon_CloseButton_Normal];
+
+    self.mapShowBoth = [imageManager get:ImageIcon_ShowBoth_Normal];
+    self.mapFindTarget = [imageManager get:ImageIcon_FindTarget_Normal];
+    self.mapFindMe = [imageManager get:ImageIcon_FindMe_Normal];
+    self.mapFollowMe = [imageManager get:ImageIcon_FollowMe_Normal];
+    self.mapSeeTarget = [imageManager get:ImageIcon_SeeTarget_Normal];
+    self.mapGNSSOn = [imageManager get:ImageIcon_GNSSOn_Normal];
+    self.mapGNSSOff = [imageManager get:ImageIcon_GNSSOff_Normal];
+
+    self.tabBarHeightPortrait = 44;
+    self.tabBarHeightLandscape = 32;
 
     return self;
 }
