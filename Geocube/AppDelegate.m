@@ -354,13 +354,18 @@
     if (configManager.introSeen == NO)
         [HelpIntroduction showIntro:self];
     else
-        [SettingsAccountsViewController needsToDownloadFiles];
+        BACKGROUND(checkForDownloadConfigurationFiles, nil);
 
     // Ask for notifications
     UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
 
     return YES;
+}
+
+- (void)checkForDownloadConfigurationFiles
+{
+    [SettingsAccountsViewController needsToDownloadFiles];
 }
 
 - (void)switchController:(NSInteger)idx
