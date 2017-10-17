@@ -13,8 +13,10 @@
 "importmanager-LiveAPI data" = "LiveAPI data";
 
 /* Theme manager */
-"thememanager-Default iOS theme" = "Standaard iOS thema";
-"thememanager-Geocube night theme" = "Geocube nacht thema";
+"thememanager-Default iOS theme, large icons" = "Standaard iOS thema, grote iconen";
+"thememanager-Default iOS theme, normal icons" = "Standaard iOS thema, normale iconen";
+"thememanager-Geocube night theme, large icons" = "Geocube nacht thema, grote iconen";
+"thememanager-Geocube night theme, normal icons" = "Geocube nacht thema, normale iconen";
 
 /* InfoViewer */
 "infoviewer-Downloads" = "Downloads";
