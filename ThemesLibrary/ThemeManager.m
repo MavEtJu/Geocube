@@ -93,6 +93,8 @@ ThemeManager *themeManager;
 
     if ([[[v class] description] isEqualToString:@"UIButtonLabel"] == YES)
         return;
+    if ([[[v class] description] isEqualToString:@"UISwitchModernVisualElement"] == YES)
+        return;
     if ([[[v class] description] isEqualToString:@"UITableViewCellContentView"] == YES)
         return;
 
