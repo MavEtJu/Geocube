@@ -162,8 +162,9 @@
 
     self.y = 0;
 
-    GCLabelNormalText *l = [[GCLabelNormalText alloc] initWithFrame:CGRectMake(0, self.y, width, currentTheme.GCLabelNormalSizeFont.lineHeight)];
+    GCLabelNormalText *l = [[GCLabelNormalText alloc] initWithFrame:CGRectMake(0, self.y, 0, 0)];
     l.text = [self determineVisiblePath];
+    [l sizeToFit];
     self.y += l.frame.size.height;
 
     l.userInteractionEnabled = YES;
@@ -173,7 +174,7 @@
     [contentView addSubview:l];
 
     [self.shownFO.contents enumerateObjectsUsingBlock:^(FileObject * _Nonnull fo, NSUInteger idx, BOOL * _Nonnull stop) {
-        FileObjectView *fov = [[FileObjectView alloc] initWithFrame:CGRectMake(0, self.y, width, currentTheme.GCLabelNormalSizeFont.lineHeight)];
+        FileObjectView *fov = [[FileObjectView alloc] initWithFrame:CGRectMake(0, self.y, width, currentTheme.GCLabelNormalSizeFont.pointSize)];
         fov.filename.text = fo.filename;
         fov.filesize.text = [MyTools niceFileSize:fo.filesize];
         fov.filetype.text = _(@"filebrowserviewcontroller-(f)");
@@ -186,7 +187,6 @@
         if (fo.isLinkToFile == YES)
             fov.filetype.text = _(@"filebrowserviewcontroller-(lf)");
         fov.fo = fo;
-        self.y += fov.frame.size.height;
 
         fov.userInteractionEnabled = YES;
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFile:)];
@@ -196,6 +196,8 @@
 
         [fov changeTheme];
 
+        [fov sizeToFit];
+        self.y += fov.frame.size.height;
         [contentView addSubview:fov];
     }];
 
