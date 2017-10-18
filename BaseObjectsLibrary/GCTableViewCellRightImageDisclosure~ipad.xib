@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9Q-T5-DPQ" customClass="GCLabelNormalText">
-                        <rect key="frame" x="48" y="11.5" width="42" height="21"/>
+                        <rect key="frame" x="48" y="16" width="42" height="11.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -34,10 +34,11 @@
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="m9Q-T5-DPQ" firstAttribute="centerY" secondItem="5z8-rK-4c7" secondAttribute="centerY" id="R0c-mQ-CAI"/>
+                    <constraint firstItem="m9Q-T5-DPQ" firstAttribute="top" secondItem="5z8-rK-4c7" secondAttribute="topMargin" constant="8" id="BEu-KE-aYW"/>
                     <constraint firstItem="m9Q-T5-DPQ" firstAttribute="leading" secondItem="5z8-rK-4c7" secondAttribute="leadingMargin" constant="40" id="V9T-7n-EQ1"/>
-                    <constraint firstItem="voe-Hw-LzH" firstAttribute="centerY" secondItem="5z8-rK-4c7" secondAttribute="centerY" id="lDA-5M-dqT"/>
                     <constraint firstAttribute="trailing" secondItem="voe-Hw-LzH" secondAttribute="trailing" constant="65" id="lQ3-Ob-K3E"/>
+                    <constraint firstItem="voe-Hw-LzH" firstAttribute="centerY" secondItem="m9Q-T5-DPQ" secondAttribute="centerY" id="tl8-eT-s1O"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="m9Q-T5-DPQ" secondAttribute="bottom" constant="8" id="zcO-Lg-0Lf"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
