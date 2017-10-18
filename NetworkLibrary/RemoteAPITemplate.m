@@ -299,7 +299,9 @@
 - (void)getNumber:(NSDictionary *)out from:(id)in outKey:(NSString *)outKey inKey:(NSString *)inKey
 {
     NSObject *o = nil;
-    if ([in isKindOfClass:[NSDictionary class]] == YES)
+    if (in == nil)
+        o = nil;
+    else if ([in isKindOfClass:[NSDictionary class]] == YES)
         o = [(NSDictionary *)in objectForKey:inKey];
     else if ([in isKindOfClass:[GCDictionaryGCA2 class]] == YES)
         o = [(GCDictionaryGCA2 *)in objectForKey:inKey];
