@@ -169,8 +169,8 @@
     CHECK(@"mapsearch_ggcw_maximumnumber", @"50");
     CHECK(@"mapsearch_ggcw_numberthreads", @"10");
 
-    CHECK(@"font_smalltext_size", @"10");
-    CHECK(@"font_normaltext_size", @"17");
+    CHECK(@"font_smalltext_size", @"15");
+    CHECK(@"font_normaltext_size", @"24");
 }
 
 - (void)loadValues
