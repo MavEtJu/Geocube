@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,69 +21,70 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTl-VS-Dbh" customClass="GCLabelNormalText">
-                        <rect key="frame" x="16" y="11" width="42" height="21"/>
+                        <rect key="frame" x="16" y="16" width="42" height="11.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lja-xK-CZ8" customClass="GCImageView">
-                        <rect key="frame" x="345" y="7" width="30" height="30"/>
+                        <rect key="frame" x="345" y="7" width="30" height="30.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="32n-T2-9nv"/>
+                            <constraint firstAttribute="width" secondItem="Lja-xK-CZ8" secondAttribute="height" multiplier="1:1" id="C2l-P4-7tH"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ue7-15-W89" customClass="GCImageView">
-                        <rect key="frame" x="315" y="7" width="30" height="30"/>
+                        <rect key="frame" x="315" y="7" width="30" height="30.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="VSo-Dt-XYb"/>
+                            <constraint firstAttribute="width" secondItem="Ue7-15-W89" secondAttribute="height" multiplier="1:1" id="wdx-Qt-KZr"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HSs-2q-kfm" customClass="GCImageView">
-                        <rect key="frame" x="285" y="7" width="30" height="30"/>
+                        <rect key="frame" x="285" y="7" width="30" height="30.5"/>
                         <constraints>
+                            <constraint firstAttribute="width" secondItem="HSs-2q-kfm" secondAttribute="height" multiplier="1:1" id="Ocf-Et-JgW"/>
                             <constraint firstAttribute="width" constant="30" id="kd8-qq-ees"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JFu-H1-fbu" customClass="GCImageView">
-                        <rect key="frame" x="255" y="7" width="30" height="30"/>
+                        <rect key="frame" x="255" y="7" width="30" height="30.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="2zo-4C-1wq"/>
+                            <constraint firstAttribute="width" secondItem="JFu-H1-fbu" secondAttribute="height" multiplier="1:1" id="MCw-4Y-OuT"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hix-8X-mpu" customClass="GCImageView">
-                        <rect key="frame" x="225" y="7" width="30" height="30"/>
+                        <rect key="frame" x="225" y="7" width="30" height="30.5"/>
                         <constraints>
+                            <constraint firstAttribute="width" secondItem="hix-8X-mpu" secondAttribute="height" multiplier="1:1" id="hSn-Mt-abk"/>
                             <constraint firstAttribute="width" constant="30" id="y0J-d9-Qp4"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="umU-H1-2zX" customClass="GCImageView">
-                        <rect key="frame" x="195" y="7" width="30" height="30"/>
+                        <rect key="frame" x="195" y="7" width="30" height="30.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="LwC-Mv-akB"/>
+                            <constraint firstAttribute="width" secondItem="umU-H1-2zX" secondAttribute="height" multiplier="1:1" id="a5e-Gd-r8z"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="hix-8X-mpu" firstAttribute="bottom" secondItem="JFu-H1-fbu" secondAttribute="bottom" id="0Pg-43-bgw"/>
                     <constraint firstItem="Lja-xK-CZ8" firstAttribute="leading" secondItem="Ue7-15-W89" secondAttribute="trailing" id="31z-9F-H5j"/>
-                    <constraint firstItem="Ue7-15-W89" firstAttribute="bottom" secondItem="Lja-xK-CZ8" secondAttribute="bottom" id="6Yw-Yb-U01"/>
-                    <constraint firstItem="umU-H1-2zX" firstAttribute="top" secondItem="ent-gB-LoU" secondAttribute="topMargin" constant="-1" id="6uz-tU-sw8"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="XTl-VS-Dbh" secondAttribute="bottom" constant="8" id="5UT-Y9-HyJ"/>
                     <constraint firstItem="XTl-VS-Dbh" firstAttribute="leading" secondItem="ent-gB-LoU" secondAttribute="leadingMargin" constant="8" id="AO8-jT-hIZ"/>
-                    <constraint firstItem="XTl-VS-Dbh" firstAttribute="centerY" secondItem="ent-gB-LoU" secondAttribute="centerY" id="Bu3-7h-94K"/>
-                    <constraint firstItem="HSs-2q-kfm" firstAttribute="top" secondItem="Ue7-15-W89" secondAttribute="top" id="C4p-zg-uWR"/>
-                    <constraint firstItem="umU-H1-2zX" firstAttribute="top" secondItem="hix-8X-mpu" secondAttribute="top" id="G9K-wb-pyD"/>
+                    <constraint firstItem="hix-8X-mpu" firstAttribute="centerY" secondItem="XTl-VS-Dbh" secondAttribute="centerY" id="GKv-C8-BFB"/>
                     <constraint firstItem="XTl-VS-Dbh" firstAttribute="centerY" secondItem="umU-H1-2zX" secondAttribute="centerY" id="IsG-H7-jT2"/>
+                    <constraint firstItem="Lja-xK-CZ8" firstAttribute="centerY" secondItem="XTl-VS-Dbh" secondAttribute="centerY" id="JQg-Zc-JMX"/>
                     <constraint firstAttribute="trailing" secondItem="Lja-xK-CZ8" secondAttribute="trailing" id="KLK-ad-tAF"/>
                     <constraint firstItem="JFu-H1-fbu" firstAttribute="leading" secondItem="hix-8X-mpu" secondAttribute="trailing" id="MTQ-GW-46C"/>
-                    <constraint firstItem="JFu-H1-fbu" firstAttribute="top" secondItem="HSs-2q-kfm" secondAttribute="top" id="NXn-oV-Nh3"/>
-                    <constraint firstItem="JFu-H1-fbu" firstAttribute="bottom" secondItem="HSs-2q-kfm" secondAttribute="bottom" id="XWJ-SZ-b4X"/>
+                    <constraint firstItem="XTl-VS-Dbh" firstAttribute="top" secondItem="ent-gB-LoU" secondAttribute="topMargin" constant="8" id="VpH-hY-erB"/>
                     <constraint firstItem="Ue7-15-W89" firstAttribute="leading" secondItem="HSs-2q-kfm" secondAttribute="trailing" id="Yxo-L3-MHu"/>
-                    <constraint firstItem="Ue7-15-W89" firstAttribute="top" secondItem="Lja-xK-CZ8" secondAttribute="top" id="cFa-a2-UD7"/>
-                    <constraint firstItem="HSs-2q-kfm" firstAttribute="bottom" secondItem="Ue7-15-W89" secondAttribute="bottom" id="kP6-yL-SKH"/>
+                    <constraint firstItem="JFu-H1-fbu" firstAttribute="centerY" secondItem="XTl-VS-Dbh" secondAttribute="centerY" id="ZtW-SM-ccd"/>
+                    <constraint firstItem="HSs-2q-kfm" firstAttribute="centerY" secondItem="XTl-VS-Dbh" secondAttribute="centerY" id="ajI-Pa-nYS"/>
+                    <constraint firstItem="Ue7-15-W89" firstAttribute="centerY" secondItem="XTl-VS-Dbh" secondAttribute="centerY" id="fQN-Go-EJt"/>
+                    <constraint firstItem="hix-8X-mpu" firstAttribute="leading" secondItem="umU-H1-2zX" secondAttribute="trailing" id="gnm-jn-yCk"/>
                     <constraint firstItem="HSs-2q-kfm" firstAttribute="leading" secondItem="JFu-H1-fbu" secondAttribute="trailing" id="sqL-rm-K6y"/>
-                    <constraint firstItem="hix-8X-mpu" firstAttribute="leading" secondItem="umU-H1-2zX" secondAttribute="trailing" id="tYT-YV-JCd"/>
-                    <constraint firstItem="hix-8X-mpu" firstAttribute="top" secondItem="JFu-H1-fbu" secondAttribute="top" id="wpy-X5-f1K"/>
-                    <constraint firstItem="umU-H1-2zX" firstAttribute="bottom" secondItem="hix-8X-mpu" secondAttribute="bottom" id="z9B-6g-k4G"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

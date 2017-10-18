@@ -13,6 +13,7 @@ Version 1.8(x)
     configuration now.
   - Fixed fienames of some images so the high-resolution ones get used.
   - Fixed slowness at startup due to configuration checks.
+  - Fixed layout of the logs cell in the waypoint view table..
 
 Version 1.7(x)
 

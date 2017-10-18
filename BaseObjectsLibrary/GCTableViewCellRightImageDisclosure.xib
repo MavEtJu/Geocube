@@ -21,13 +21,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cc2-k3-fzQ" customClass="GCLabelNormalText">
-                        <rect key="frame" x="16" y="11" width="42" height="21"/>
+                        <rect key="frame" x="16" y="16" width="42" height="11.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="Ig1-US-Gj0" customClass="GCImageView">
-                        <rect key="frame" x="335" y="7" width="30" height="30"/>
+                        <rect key="frame" x="335" y="7.5" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Ig1-US-Gj0" secondAttribute="height" multiplier="1:1" id="HOx-Lv-YTU"/>
                             <constraint firstAttribute="height" constant="30" id="zsZ-uN-Igv"/>
@@ -35,10 +35,11 @@
                     </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Cc2-k3-fzQ" firstAttribute="top" secondItem="viZ-vd-Mde" secondAttribute="topMargin" constant="8" id="BGb-uR-n8W"/>
                     <constraint firstItem="Cc2-k3-fzQ" firstAttribute="leading" secondItem="viZ-vd-Mde" secondAttribute="leadingMargin" constant="8" id="Huq-aF-3A5"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Cc2-k3-fzQ" secondAttribute="bottom" constant="8" id="IMO-Zk-poQ"/>
                     <constraint firstAttribute="trailing" secondItem="Ig1-US-Gj0" secondAttribute="trailing" constant="10" id="bO9-kc-77f"/>
-                    <constraint firstItem="Ig1-US-Gj0" firstAttribute="centerY" secondItem="viZ-vd-Mde" secondAttribute="centerY" id="dDd-dg-yWj"/>
-                    <constraint firstItem="Cc2-k3-fzQ" firstAttribute="centerY" secondItem="viZ-vd-Mde" secondAttribute="centerY" id="lut-Rc-I8A"/>
+                    <constraint firstItem="Ig1-US-Gj0" firstAttribute="centerY" secondItem="Cc2-k3-fzQ" secondAttribute="centerY" id="i60-i7-nwI"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
