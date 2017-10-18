@@ -5,6 +5,8 @@ Version 1.9(x)
   Features:
 
   Fixes:
+  - Fix the way the File Browser is dealt with with regards to element
+    height determination.
 
 Version 1.8(x)
 
