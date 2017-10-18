@@ -20,13 +20,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOG-lU-lOT" customClass="GCLabel">
-                        <rect key="frame" x="48" y="11" width="213" height="21"/>
+                        <rect key="frame" x="48" y="16" width="213" height="11.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="umc-Lo-sNB" customClass="GCSwitch">
-                        <rect key="frame" x="261" y="6" width="51" height="31"/>
+                        <rect key="frame" x="261" y="6.5" width="51" height="31"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="49" id="9oc-UX-jJS"/>
                             <constraint firstAttribute="height" constant="31" id="D8p-vF-rvc"/>
@@ -36,9 +36,10 @@
                 <constraints>
                     <constraint firstItem="XOG-lU-lOT" firstAttribute="leading" secondItem="O9i-y6-XYc" secondAttribute="leadingMargin" constant="40" id="4K1-jL-lTY"/>
                     <constraint firstAttribute="trailing" secondItem="umc-Lo-sNB" secondAttribute="trailing" constant="65" id="BZZ-uO-JnC"/>
-                    <constraint firstItem="XOG-lU-lOT" firstAttribute="centerY" secondItem="O9i-y6-XYc" secondAttribute="centerY" id="QSn-Al-ZS0"/>
+                    <constraint firstItem="umc-Lo-sNB" firstAttribute="centerY" secondItem="XOG-lU-lOT" secondAttribute="centerY" id="G9f-uI-3Ot"/>
+                    <constraint firstItem="XOG-lU-lOT" firstAttribute="top" secondItem="O9i-y6-XYc" secondAttribute="topMargin" constant="8" id="eRX-sh-aTE"/>
                     <constraint firstItem="umc-Lo-sNB" firstAttribute="leading" secondItem="XOG-lU-lOT" secondAttribute="trailing" id="pJp-dX-yDV"/>
-                    <constraint firstItem="umc-Lo-sNB" firstAttribute="centerY" secondItem="O9i-y6-XYc" secondAttribute="centerY" id="sdy-9D-nWx"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="XOG-lU-lOT" secondAttribute="bottom" constant="8" id="sxy-d9-v3m"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
