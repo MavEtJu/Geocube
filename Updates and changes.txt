@@ -7,6 +7,7 @@ Version 1.9(x)
   Fixes:
   - Fix the way the File Browser is dealt with with regards to element
     height determination.
+  - Reduced white-space on map icon for the GNSS.
 
 Version 1.8(x)
 
