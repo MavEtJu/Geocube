@@ -3,13 +3,14 @@ Interesting additions and changes to Geocube
 Version 1.9(x)
 
   Features:
+  - Add support for MapBox.
 
   Fixes:
   - Fix the way the File Browser is dealt with with regards to element
     height determination.
   - Reduced white-space on map icon for the GNSS.
 
-Version 1.8(x)
+Version 1.8(32)
 
   Features:
   - In Developer -> Remote API you can check yourself if the various
