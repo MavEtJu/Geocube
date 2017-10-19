@@ -4,9 +4,9 @@
 
     $ git clone
 
-Install the Google Maps POD, run:
+Install the Google Maps and MapBox Pods, run:
 
-    $ pod update GoogleMaps
+    $ pod install
 
 After that, open Geocube.xcworkspace in Xcode and under Supporting
 Files, copy the file EncryptionKeysExample.plist to EncryptionKeys.plist

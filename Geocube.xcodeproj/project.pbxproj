@@ -598,6 +598,7 @@
 		E84B17531F90BA2C004CAE31 /* DeveloperRemoteAPITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E84B17521F90BA2C004CAE31 /* DeveloperRemoteAPITableViewCell.m */; };
 		E84B17551F90BA51004CAE31 /* DeveloperRemoteAPITableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E84B17541F90BA51004CAE31 /* DeveloperRemoteAPITableViewCell.xib */; };
 		E84E88A41F6CFFD0004F4BE9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E84E88A31F6CFFD0004F4BE9 /* Social.framework */; };
+		E851139F1F987BB300737EC7 /* MapMapBox.m in Sources */ = {isa = PBXBuildFile; fileRef = E851139E1F987BB300737EC7 /* MapMapBox.m */; };
 		E8587B8B1F8C24330099EA0E /* dbLogData.m in Sources */ = {isa = PBXBuildFile; fileRef = E8587B8A1F8C24330099EA0E /* dbLogData.m */; };
 		E8587B8D1F8C83F40099EA0E /* GoogleMapsNight.json in Resources */ = {isa = PBXBuildFile; fileRef = E8587B8C1F8C83F40099EA0E /* GoogleMapsNight.json */; };
 		E858F5991F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E858F5981F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib */; };
@@ -1836,6 +1837,8 @@
 		E84E89871F6F2E13004F4BE9 /* WaypointPersonalNoteViewController-delegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "WaypointPersonalNoteViewController-delegate.h"; path = "Waypoints/WaypointPersonalNoteViewController-delegate.h"; sourceTree = "<group>"; };
 		E84E89881F6F30D4004F4BE9 /* libNetworkLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNetworkLibrary.a; path = "NetworkLibrary/build/Debug-iphoneos/libNetworkLibrary.a"; sourceTree = "<group>"; };
 		E84E89EB1F6F5547004F4BE9 /* libConvertorsLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libConvertorsLibrary.a; path = "../../Library/Developer/Xcode/DerivedData/Geocube-bjprugvtqrcyrnatajlgnpwinftk/Build/Products/Debug-iphonesimulator/libConvertorsLibrary.a"; sourceTree = "<group>"; };
+		E851139D1F987BB300737EC7 /* MapMapBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapMapBox.h; path = MapsLibrary/MapMapBox.h; sourceTree = "<group>"; };
+		E851139E1F987BB300737EC7 /* MapMapBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapMapBox.m; path = MapsLibrary/MapMapBox.m; sourceTree = "<group>"; };
 		E8587B891F8C24330099EA0E /* dbLogData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbLogData.h; path = DatabaseLibrary/dbLogData.h; sourceTree = "<group>"; };
 		E8587B8A1F8C24330099EA0E /* dbLogData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbLogData.m; path = DatabaseLibrary/dbLogData.m; sourceTree = "<group>"; };
 		E8587B8C1F8C83F40099EA0E /* GoogleMapsNight.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GoogleMapsNight.json; sourceTree = "<group>"; };
@@ -2629,6 +2632,8 @@
 				E82287811F8A30B700631380 /* MapGoogle.m */,
 				E82287861F8A30B700631380 /* MapOSM.h */,
 				E82287871F8A30B700631380 /* MapOSM.m */,
+				E851139D1F987BB300737EC7 /* MapMapBox.h */,
+				E851139E1F987BB300737EC7 /* MapMapBox.m */,
 			);
 			name = "Map Suppliers";
 			sourceTree = "<group>";
@@ -4239,12 +4244,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8F570761B3F7255003F020C /* Build configuration list for PBXNativeTarget "Geocube" */;
 			buildPhases = (
-				2B22D39840096528A77E7C43 /* 📦 Check Pods Manifest.lock */,
+				2B22D39840096528A77E7C43 /* [CP] Check Pods Manifest.lock */,
 				E8F5704F1B3F7255003F020C /* Sources */,
 				E8F570501B3F7255003F020C /* Frameworks */,
 				E8F570511B3F7255003F020C /* Resources */,
-				49D5871A08E106E97092B7AE /* 📦 Embed Pods Frameworks */,
-				8D16B52877B1DEA54ABEA344 /* 📦 Copy Pods Resources */,
+				49D5871A08E106E97092B7AE /* [CP] Embed Pods Frameworks */,
+				8D16B52877B1DEA54ABEA344 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -4831,45 +4836,56 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2B22D39840096528A77E7C43 /* 📦 Check Pods Manifest.lock */ = {
+		2B22D39840096528A77E7C43 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Geocube-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		49D5871A08E106E97092B7AE /* 📦 Embed Pods Frameworks */ = {
+		49D5871A08E106E97092B7AE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Geocube/Pods-Geocube-frameworks.sh",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework.dSYM",
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/Mapbox.framework.dSYM",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Geocube/Pods-Geocube-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8D16B52877B1DEA54ABEA344 /* 📦 Copy Pods Resources */ = {
+		8D16B52877B1DEA54ABEA344 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Geocube/Pods-Geocube-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -4953,6 +4969,7 @@
 				E82286C01F8A2C8800631380 /* ImportOKAPIJSON.m in Sources */,
 				E82286941F8A2BD600631380 /* dbLogStringWaypoint.m in Sources */,
 				E822879B1F8A30B700631380 /* MapLogsViewController.m in Sources */,
+				E851139F1F987BB300737EC7 /* MapMapBox.m in Sources */,
 				E82286871F8A2BD600631380 /* dbCountry.m in Sources */,
 				E82344321EECDFB300D2CDFD /* FiltersViewController.m in Sources */,
 				E82288D81F8A359900631380 /* GMUKMLParser.m in Sources */,
