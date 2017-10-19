@@ -23,6 +23,7 @@
 
 - (instancetype)init;
 - (UIImage *)get:(ImageNumber)imgnum;
+- (NSString *)getCode:(dbWaypoint *)wp;
 - (UIImage *)getPin:(dbWaypoint *)wp;
 - (UIImage *)getType:(dbWaypoint *)wp;
 

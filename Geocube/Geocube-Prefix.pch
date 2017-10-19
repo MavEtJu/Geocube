@@ -34,10 +34,12 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import <GoogleMaps/GoogleMaps.h>
 #import <CommonCrypto/CommonHMAC.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <Photos/Photos.h>
+
+#import <GoogleMaps/GoogleMaps.h>
+#import <Mapbox/Mapbox.h>
 
 #import "Geocube-classes.h"
 #import "Geocube-defines.h"
