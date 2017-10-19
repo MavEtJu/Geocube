@@ -23,9 +23,9 @@
 
 @interface HelpAboutTableViewCell : GCTableViewCell
 
-@property (weak, nonatomic) IBOutlet GCLabel *name;
-@property (weak, nonatomic) IBOutlet GCLabel *url;
-@property (weak, nonatomic) IBOutlet GCLabel *copyright;
-@property (weak, nonatomic) IBOutlet GCLabel *license;
+@property (weak, nonatomic) IBOutlet GCLabelNormalText *name;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *url;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *copyright;
+@property (weak, nonatomic) IBOutlet GCLabelSmallText *license;
 
 @end
