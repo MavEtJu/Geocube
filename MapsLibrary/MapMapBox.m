@@ -19,14 +19,24 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapMapBox () <MGLMapViewDelegate>
+#define COORDHISTORYSIZE    100
+
+@interface MapMapBox ()
+{
+    CLLocationCoordinate2D historyCoords[COORDHISTORYSIZE];
+}
 
 @property (nonatomic, retain) MGLMapView *mapView;
+
 @property (nonatomic, retain) NSMutableArray<GCMGLPointAnnotation *> *markers;
 @property (nonatomic, retain) NSMutableArray<MGLPolygon *> *circles;
-@property (nonatomic) NSInteger currentAltitude;
+
+@property (nonatomic        ) NSInteger currentAltitude;
+
 @property (nonatomic, retain) MGLPolyline *lineWaypointToMe;
-@property (nonatomic) BOOL showBoundary;
+
+@property (nonatomic, retain) NSMutableArray<MGLPolyline *> *linesHistory;
+@property (nonatomic        ) NSInteger historyCoordsIdx;
 
 @end
 
@@ -60,11 +70,17 @@ EMPTY_METHOD(mapViewDidLoad)
     self.mapView = [[MGLMapView alloc] initWithFrame:CGRectZero];
     self.mapvc.view = self.mapView;
 
-    self.mapView.userTrackingMode = MGLUserTrackingModeFollow;
+    if (self.staticHistory == NO)
+        self.mapView.userTrackingMode = MGLUserTrackingModeFollow;
     self.currentAltitude = 1000;
 
     self.markers = [NSMutableArray arrayWithCapacity:100];
     self.circles = [NSMutableArray arrayWithCapacity:100];
+
+    self.linesHistory = [NSMutableArray arrayWithCapacity:100];
+
+    if (self.staticHistory == NO)
+        [self showHistory];
 }
 
 - (void)removeMap
@@ -124,46 +140,6 @@ EMPTY_METHOD(mapViewDidLoad)
     [self.mapView addAnnotation:self.lineWaypointToMe];
 }
 
-- (CGFloat)mapView:(MGLMapView *)mapView alphaForShapeAnnotation:(MGLShape *)annotation
-{
-    return 1;
-}
-
-- (UIColor *)mapView:(MGLMapView *)mapView strokeColorForShapeAnnotation:(MGLShape *)annotation
-{
-    // Set the stroke color for shape annotations
-    if (annotation == self.lineWaypointToMe)
-        return [UIColor redColor];
-
-    __block BOOL found = NO;
-    [self.circles enumerateObjectsUsingBlock:^(MGLPolygon * _Nonnull circle, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (circle == annotation) {
-            *stop = YES;
-            found = YES;
-        }
-    }];
-    if (found == YES)
-        return [UIColor blueColor];
-
-    return [UIColor redColor];
-}
-
-- (UIColor *)mapView:(MGLMapView *)mapView fillColorForPolygonAnnotation:(MGLPolygon *)annotation
-{
-    __block BOOL found = NO;
-    [self.circles enumerateObjectsUsingBlock:^(MGLPolygon * _Nonnull circle, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (circle == annotation) {
-            *stop = YES;
-            found = YES;
-        }
-    }];
-    if (found == YES)
-        return [UIColor colorWithRed:0 green:0 blue:0.35 alpha:0.05];
-
-    return [UIColor colorWithRed:1 green:1 blue:1 alpha:0.05];
-}
-
-
 - (void)removeLineMeToWaypoint
 {
     [self.mapView removeAnnotation:self.lineWaypointToMe];
@@ -172,12 +148,72 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (void)removeHistory
 {
-    // XXX
+    if (self.staticHistory == YES)
+        return;
+
+    [self.linesHistory enumerateObjectsUsingBlock:^(MGLPolyline * _Nonnull line, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.mapView removeAnnotation:line];
+    }];
+    @synchronized (self.linesHistory) {
+        [self.linesHistory removeAllObjects];
+    }
 }
 
 - (void)showHistory
 {
-    // XXX
+    if (self.staticHistory == YES)
+        return;
+
+#define ADDPATH(__coords__, __count__) { \
+    if (__count__ != 0) { \
+        MGLPolyline *l = [MGLPolyline polylineWithCoordinates:__coords__ count:__count__]; \
+        @synchronized (self.linesHistory) { \
+            [self.linesHistory addObject:l]; \
+        }; \
+        [self.mapView addAnnotation:l]; \
+    } \
+}
+
+    __block CLLocationCoordinate2D *coordinateArray = calloc([LM.coordsHistorical count], sizeof(CLLocationCoordinate2D));
+    __block NSInteger counter = 0;
+    [LM.coordsHistorical enumerateObjectsUsingBlock:^(GCCoordsHistorical * _Nonnull mho, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (mho.restart == NO) {
+            coordinateArray[counter++] = mho.coord;
+            return;
+        }
+
+        ADDPATH(coordinateArray, counter)
+        counter = 0;
+    }];
+    if (counter != 0)
+        ADDPATH(coordinateArray, counter)
+
+    free(coordinateArray);
+
+    historyCoords[0] = LM.coords;
+    self.historyCoordsIdx = 1;
+    ADDPATH(historyCoords, self.historyCoordsIdx)
+}
+
+- (void)addHistory:(GCCoordsHistorical *)ch
+{
+    if (self.staticHistory == YES)
+        return;
+
+    MAINQUEUE(
+        if (ch.restart == NO && self.historyCoordsIdx < COORDHISTORYSIZE - 1) {
+            historyCoords[self.historyCoordsIdx++] = ch.coord;
+            @synchronized (self.linesHistory) {
+                MGLPolyline *l = [self.linesHistory lastObject];
+                [self.linesHistory removeLastObject];
+                [self.mapView removeOverlay:l];
+            }
+        } else {
+            self.historyCoordsIdx = 0;
+            historyCoords[self.historyCoordsIdx++] = ch.coord;
+        }
+        ADDPATH(historyCoords, self.historyCoordsIdx)
+    )
 }
 
 - (void)removeMarkers
@@ -249,6 +285,8 @@ EMPTY_METHOD(mapViewDidLoad)
     }];
 }
 
+#pragma -- Callbacks
+
 - (MGLAnnotationImage *)mapView:(MGLMapView *)mapView imageForAnnotation:(id <MGLAnnotation>)_annotation
 {
     MGLAnnotationImage *annotationImage = nil;
@@ -265,6 +303,55 @@ EMPTY_METHOD(mapViewDidLoad)
     }
 
     return annotationImage;
+}
+
+- (CGFloat)mapView:(MGLMapView *)mapView alphaForShapeAnnotation:(MGLShape *)annotation
+{
+    return 1;
+}
+
+- (UIColor *)mapView:(MGLMapView *)mapView strokeColorForShapeAnnotation:(MGLShape *)annotation
+{
+    // Set the stroke color for shape annotations
+    if (annotation == self.lineWaypointToMe)
+        return [UIColor redColor];
+
+    __block BOOL found = NO;
+
+    [self.circles enumerateObjectsUsingBlock:^(MGLPolygon * _Nonnull circle, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (circle == annotation) {
+            *stop = YES;
+            found = YES;
+        }
+    }];
+    if (found == YES)
+        return [UIColor blueColor];
+
+    [self.linesHistory enumerateObjectsUsingBlock:^(MGLPolyline * _Nonnull lh, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (lh == annotation) {
+            *stop = YES;
+            found = YES;
+        }
+    }];
+    if (found == YES)
+        return configManager.mapTrackColour;
+
+    return [UIColor redColor];
+}
+
+- (UIColor *)mapView:(MGLMapView *)mapView fillColorForPolygonAnnotation:(MGLPolygon *)annotation
+{
+    __block BOOL found = NO;
+    [self.circles enumerateObjectsUsingBlock:^(MGLPolygon * _Nonnull circle, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (circle == annotation) {
+            *stop = YES;
+            found = YES;
+        }
+    }];
+    if (found == YES)
+        return [UIColor colorWithRed:0 green:0 blue:0.35 alpha:0.05];
+
+    return [UIColor colorWithRed:1 green:1 blue:1 alpha:0.05];
 }
 
 - (void)setMapType:(GCMapType)mapType
@@ -305,14 +392,9 @@ EMPTY_METHOD(mapViewDidLoad)
     *topRight = self.mapView.visibleCoordinateBounds.ne;
 }
 
-- (void)addHistory:(GCCoordsHistorical *)ch
-{
-    // XXX
-}
-
 - (void)showBoundaries:(BOOL)yesno
 {
-    self.showBoundary = yesno;
+    showBoundary = yesno;
     if (yesno == YES) {
         [self placeMarkers];
     } else {
