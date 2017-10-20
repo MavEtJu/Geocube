@@ -20,32 +20,31 @@
  */
 
 @interface MapTemplateViewController ()
-{
-    THLabel *distanceLabel;
-    BOOL distanceLabelLocked;
-    NSInteger distanceLabelCounter;
 
-    UIButton *labelMapFollowMe;
-    UIButton *labelMapShowBoth;
-    UIButton *labelMapSeeTarget;
-    UIButton *labelMapFindMe;
-    UIButton *labelMapFindTarget;
-    UIButton *labelMapGPS;
-    MapWaypointInfoView *wpInfoView;
+@property (nonatomic, retain) THLabel *distanceLabel;
+@property (nonatomic        ) BOOL distanceLabelLocked;
+@property (nonatomic        ) NSInteger distanceLabelCounter;
 
-    CLLocationCoordinate2D meLocation;
-    CLLocationDirection meBearing;
-    BOOL useGNSS;
+@property (nonatomic, retain) UIButton *labelMapFollowMe;
+@property (nonatomic, retain) UIButton *labelMapShowBoth;
+@property (nonatomic, retain) UIButton *labelMapSeeTarget;
+@property (nonatomic, retain) UIButton *labelMapFindMe;
+@property (nonatomic, retain) UIButton *labelMapFindTarget;
+@property (nonatomic, retain) UIButton *labelMapGPS;
+@property (nonatomic, retain) MapWaypointInfoView *wpInfoView;
 
-    BOOL hasGMS;
-    BOOL hasMapbox;
-    BOOL showBoundaries;
+@property (nonatomic        ) CLLocationCoordinate2D meLocation;
+@property (nonatomic        ) CLLocationDirection meBearing;
+@property (nonatomic        ) BOOL useGNSS;
 
-    BOOL isVisible;
-    BOOL needsRefresh;
+@property (nonatomic        ) BOOL hasGMS;
+@property (nonatomic        ) BOOL hasMapbox;
+@property (nonatomic        ) BOOL showBoundaries;
 
-    NSArray<MapBrand *> *mapBrands;
-}
+@property (nonatomic        ) BOOL isVisible;
+@property (nonatomic        ) BOOL needsRefresh;
+
+@property (nonatomic, retain) NSArray<MapBrand *> *mapBrands;
 
 @end
 
@@ -75,30 +74,30 @@
 
     self.staticHistory = staticHistory;
 
-    mapBrands = [MapTemplateViewController initMapBrands];
+    self.mapBrands = [MapTemplateViewController initMapBrands];
 
     // Default map brand
     self.currentMapBrand = nil;
-    [mapBrands enumerateObjectsUsingBlock:^(MapBrand * _Nonnull mb, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.mapBrands enumerateObjectsUsingBlock:^(MapBrand * _Nonnull mb, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([configManager.mapBrandDefault isEqualToString:mb.defaultString] == YES) {
             self.currentMapBrand = mb;
             *stop = YES;
         }
     }];
     if (self.currentMapBrand == nil)
-        self.currentMapBrand = [MapBrand findMapBrand:MAPBRAND_APPLEMAPS brands:mapBrands];
+        self.currentMapBrand = [MapBrand findMapBrand:MAPBRAND_APPLEMAPS brands:self.mapBrands];
 
     // Disable GoogleMaps if there is no key
-    hasGMS = YES;
+    self.hasGMS = YES;
     if (IS_EMPTY(keyManager.googlemaps) == YES)
-        hasGMS = NO;
-    hasMapbox = YES;
+        self.hasGMS = NO;
+    self.hasMapbox = YES;
     if (IS_EMPTY(configManager.mapboxKey) == YES)
-        hasMapbox = NO;
-    if ([self.currentMapBrand.key isEqualToString:MAPBRAND_MAPBOX] == YES && hasMapbox == NO)
-        self.currentMapBrand = [MapBrand findMapBrand:MAPBRAND_APPLEMAPS brands:mapBrands];
-    if ([self.currentMapBrand.key isEqualToString:MAPBRAND_GOOGLEMAPS] == YES && hasGMS == NO)
-        self.currentMapBrand = [MapBrand findMapBrand:MAPBRAND_APPLEMAPS brands:mapBrands];
+        self.hasMapbox = NO;
+    if ([self.currentMapBrand.key isEqualToString:MAPBRAND_MAPBOX] == YES && self.hasMapbox == NO)
+        self.currentMapBrand = [MapBrand findMapBrand:MAPBRAND_APPLEMAPS brands:self.mapBrands];
+    if ([self.currentMapBrand.key isEqualToString:MAPBRAND_GOOGLEMAPS] == YES && self.hasGMS == NO)
+        self.currentMapBrand = [MapBrand findMapBrand:MAPBRAND_APPLEMAPS brands:self.mapBrands];
 
     lmi = [[LocalMenuItems alloc] init:MVCmenuMax];
     [lmi addItem:MVCmenuBrandChange label:_(@"maptemplaceviewcontroller-Map Change")];
@@ -110,7 +109,7 @@
     [lmi addItem:MVCmenuRecenter label:_(@"maptemplateviewcontroller-Recenter")];
     [lmi addItem:MVCmenuExportVisible label:_(@"maptemplateviewcontroller-Export visible")];
 
-    showBoundaries = NO;
+    self.showBoundaries = NO;
     [lmi addItem:MVCmenuShowBoundaries label:_(@"maptemplateviewcontroller-Show boundaries")];
 
     [lmi addItem:MVCmenuRemoveHistory label:_(@"maptemplateviewcontroller-Remove history")];
@@ -127,11 +126,11 @@
         [lmi addItem:MVCmenuAutoZoom label:_(@"maptemplateviewcontroller-Autozoom")];
     }
 
-    useGNSS = LM.useGNSS;
-    if (useGNSS == YES)
-        [labelMapGPS setImage:currentTheme.mapGNSSOn forState:UIControlStateNormal];
+    self.useGNSS = LM.useGNSS;
+    if (self.useGNSS == YES)
+        [self.labelMapGPS setImage:currentTheme.mapGNSSOn forState:UIControlStateNormal];
     else
-        [labelMapGPS setImage:currentTheme.mapGNSSOff forState:UIControlStateNormal];
+        [self.labelMapGPS setImage:currentTheme.mapGNSSOff forState:UIControlStateNormal];
 
     self.waypointsArray = nil;
 
@@ -153,8 +152,8 @@
 
     [self makeInfoView];
 
-    needsRefresh = YES;
-    isVisible = NO;
+    self.needsRefresh = YES;
+    self.isVisible = NO;
     if (self.staticHistory == NO)
         [waypointManager startDelegationWaypoints:self];
 }
@@ -164,26 +163,26 @@
     [super viewWillAppear:animated];
 
     // Appear GoogleMaps if it came back
-    if (hasGMS == NO) {
+    if (self.hasGMS == NO) {
         if (IS_EMPTY(keyManager.googlemaps) == NO) {
-            hasGMS = YES;
+            self.hasGMS = YES;
             [GMSServices provideAPIKey:keyManager.googlemaps];
         }
     }
     // Appear Mapbox if it came back
-    if (hasMapbox == NO) {
+    if (self.hasMapbox == NO) {
         if (IS_EMPTY(configManager.mapboxKey) == NO) {
-            hasMapbox = YES;
+            self.hasMapbox = YES;
             [MGLAccountManager setAccessToken:configManager.mapboxKey];
         }
     }
 
     // Enable GNSS Menu?
-    useGNSS = LM.useGNSS;
-    if (useGNSS == YES)
-        [labelMapGPS setImage:currentTheme.mapGNSSOn forState:UIControlStateNormal];
+    self.useGNSS = LM.useGNSS;
+    if (self.useGNSS == YES)
+        [self.labelMapGPS setImage:currentTheme.mapGNSSOn forState:UIControlStateNormal];
     else
-        [labelMapGPS setImage:currentTheme.mapGNSSOff forState:UIControlStateNormal];
+        [self.labelMapGPS setImage:currentTheme.mapGNSSOff forState:UIControlStateNormal];
 
     // Enable Remove Target menu only if there is a target
     if (waypointManager.currentWaypoint == nil)
@@ -203,35 +202,35 @@
     if (self.staticHistory == NO) {
         [LM startDelegationLocation:self isNavigating:isNavigating];
         [LM startDelegationHistory:self];
-        if (meLocation.longitude == 0 && meLocation.latitude == 0)
+        if (self.meLocation.longitude == 0 && self.meLocation.latitude == 0)
             [self updateLocationManagerLocation];
     }
 
     [self updateMapButtons];
 
-    isVisible = YES;
-    if (needsRefresh == YES) {
+    self.isVisible = YES;
+    if (self.needsRefresh == YES) {
         [self refreshWaypointsData];
-        needsRefresh = NO;
+        self.needsRefresh = NO;
     }
 }
 
 - (void)updateMapButtons
 {
     if (waypointManager.currentWaypoint == nil) {
-        labelMapShowBoth.userInteractionEnabled = NO;
-        labelMapShowBoth.enabled = NO;
-        labelMapSeeTarget.userInteractionEnabled = NO;
-        labelMapSeeTarget.enabled = NO;
-        labelMapFindTarget.userInteractionEnabled = NO;
-        labelMapFindTarget.enabled = NO;
+        self.labelMapShowBoth.userInteractionEnabled = NO;
+        self.labelMapShowBoth.enabled = NO;
+        self.labelMapSeeTarget.userInteractionEnabled = NO;
+        self.labelMapSeeTarget.enabled = NO;
+        self.labelMapFindTarget.userInteractionEnabled = NO;
+        self.labelMapFindTarget.enabled = NO;
     } else {
-        labelMapShowBoth.userInteractionEnabled = YES;
-        labelMapShowBoth.enabled = YES;
-        labelMapSeeTarget.userInteractionEnabled = YES;
-        labelMapSeeTarget.enabled = YES;
-        labelMapFindTarget.userInteractionEnabled = YES;
-        labelMapFindTarget.enabled = YES;
+        self.labelMapShowBoth.userInteractionEnabled = YES;
+        self.labelMapShowBoth.enabled = YES;
+        self.labelMapSeeTarget.userInteractionEnabled = YES;
+        self.labelMapSeeTarget.enabled = YES;
+        self.labelMapFindTarget.userInteractionEnabled = YES;
+        self.labelMapFindTarget.enabled = YES;
     }
 }
 
@@ -245,7 +244,7 @@
     }
     [super viewWillDisappear:animated];
     [self.map mapViewWillDisappear];
-    isVisible = NO;
+    self.isVisible = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -273,22 +272,22 @@
     NSLog(@"New size %@", [MyTools niceCGRect:applicationFrame]);
     NSInteger width = applicationFrame.size.width;
 
-    distanceLabel.frame = CGRectMake(3, 3, 250, 20);
+    self.distanceLabel.frame = CGRectMake(3, 3, 250, 20);
 
     UIImage *img = currentTheme.mapFollowMe;
     NSInteger imgwidth = img.size.width;
     NSInteger imgheight = img.size.height;
 
-    labelMapGPS.frame = CGRectMake(width - 7.5 * imgwidth - 3, 3, imgwidth, imgheight);
-    labelMapFindMe.frame = CGRectMake(width - 6 * imgwidth - 3, 3, imgwidth, imgheight);
+    self.labelMapGPS.frame = CGRectMake(width - 7.5 * imgwidth - 3, 3, imgwidth, imgheight);
+    self.labelMapFindMe.frame = CGRectMake(width - 6 * imgwidth - 3, 3, imgwidth, imgheight);
 
-    labelMapFollowMe.frame = CGRectMake(width - 4.5 * imgwidth - 3, 3, imgwidth, imgheight);
-    labelMapShowBoth.frame = CGRectMake(width - 3.5 * imgwidth - 3, 3, imgwidth, imgheight);
-    labelMapSeeTarget.frame = CGRectMake(width - 2.5 * imgwidth - 3, 3, imgwidth, imgheight);
+    self.labelMapFollowMe.frame = CGRectMake(width - 4.5 * imgwidth - 3, 3, imgwidth, imgheight);
+    self.labelMapShowBoth.frame = CGRectMake(width - 3.5 * imgwidth - 3, 3, imgwidth, imgheight);
+    self.labelMapSeeTarget.frame = CGRectMake(width - 2.5 * imgwidth - 3, 3, imgwidth, imgheight);
 
-    labelMapFindTarget.frame = CGRectMake(width - 1 * imgwidth - 3, 3, imgwidth, imgheight);
+    self.labelMapFindTarget.frame = CGRectMake(width - 1 * imgwidth - 3, 3, imgwidth, imgheight);
 
-    [self showWaypointInfo:wpInfoView.waypoint];
+    [self showWaypointInfo:self.wpInfoView.waypoint];
 
     [self.map recalculateRects];
     [self.map updateMapScaleView];
@@ -296,87 +295,87 @@
 
 - (void)initDistanceLabel
 {
-    distanceLabel = [[THLabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    distanceLabel.strokeColor = [UIColor whiteColor];
-    distanceLabel.layer.shadowColor = [[UIColor redColor] CGColor];
-    distanceLabel.layer.shadowRadius = 1;
-    distanceLabel.strokeSize = 1;
-    [self.view addSubview:distanceLabel];
+    self.distanceLabel = [[THLabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    self.distanceLabel.strokeColor = [UIColor whiteColor];
+    self.distanceLabel.layer.shadowColor = [[UIColor redColor] CGColor];
+    self.distanceLabel.layer.shadowRadius = 1;
+    self.distanceLabel.strokeSize = 1;
+    [self.view addSubview:self.distanceLabel];
 }
 
 - (void)initMapIcons
 {
-    labelMapGPS = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    labelMapGPS.layer.borderWidth = 1;
-    labelMapGPS.layer.borderColor = [UIColor blackColor].CGColor;
-    [labelMapGPS addTarget:self action:@selector(menuTapGNSS:) forControlEvents:UIControlEventTouchDown];
-    labelMapGPS.userInteractionEnabled = YES;
-    [labelMapGPS setImage:currentTheme.mapGNSSOn forState:UIControlStateNormal];
-    [self.view addSubview:labelMapGPS];
+    self.labelMapGPS = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    self.labelMapGPS.layer.borderWidth = 1;
+    self.labelMapGPS.layer.borderColor = [UIColor blackColor].CGColor;
+    [self.labelMapGPS addTarget:self action:@selector(menuTapGNSS:) forControlEvents:UIControlEventTouchDown];
+    self.labelMapGPS.userInteractionEnabled = YES;
+    [self.labelMapGPS setImage:currentTheme.mapGNSSOn forState:UIControlStateNormal];
+    [self.view addSubview:self.labelMapGPS];
 
-    labelMapFollowMe = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    labelMapFollowMe.layer.borderWidth = 1;
-    labelMapFollowMe.layer.borderColor = [UIColor blackColor].CGColor;
-    [labelMapFollowMe addTarget:self action:@selector(chooseMapFollow:) forControlEvents:UIControlEventTouchDown];
-    labelMapFollowMe.userInteractionEnabled = YES;
-    [labelMapFollowMe setImage:currentTheme.mapFollowMe forState:UIControlStateNormal];
-    [self.view addSubview:labelMapFollowMe];
+    self.labelMapFollowMe = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    self.labelMapFollowMe.layer.borderWidth = 1;
+    self.labelMapFollowMe.layer.borderColor = [UIColor blackColor].CGColor;
+    [self.labelMapFollowMe addTarget:self action:@selector(chooseMapFollow:) forControlEvents:UIControlEventTouchDown];
+    self.labelMapFollowMe.userInteractionEnabled = YES;
+    [self.labelMapFollowMe setImage:currentTheme.mapFollowMe forState:UIControlStateNormal];
+    [self.view addSubview:self.labelMapFollowMe];
 
-    labelMapShowBoth = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    labelMapShowBoth.layer.borderWidth = 1;
-    labelMapShowBoth.layer.borderColor = [UIColor blackColor].CGColor;
-    [labelMapShowBoth addTarget:self action:@selector(chooseMapFollow:) forControlEvents:UIControlEventTouchDown];
-    labelMapShowBoth.userInteractionEnabled = YES;
-    [labelMapShowBoth setImage:currentTheme.mapShowBoth forState:UIControlStateNormal];
-    [self.view addSubview:labelMapShowBoth];
+    self.labelMapShowBoth = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    self.labelMapShowBoth.layer.borderWidth = 1;
+    self.labelMapShowBoth.layer.borderColor = [UIColor blackColor].CGColor;
+    [self.labelMapShowBoth addTarget:self action:@selector(chooseMapFollow:) forControlEvents:UIControlEventTouchDown];
+    self.labelMapShowBoth.userInteractionEnabled = YES;
+    [self.labelMapShowBoth setImage:currentTheme.mapShowBoth forState:UIControlStateNormal];
+    [self.view addSubview:self.labelMapShowBoth];
 
-    labelMapSeeTarget = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    labelMapSeeTarget.layer.borderWidth = 1;
-    labelMapSeeTarget.layer.borderColor = [UIColor blackColor].CGColor;
-    [labelMapSeeTarget addTarget:self action:@selector(chooseMapFollow:) forControlEvents:UIControlEventTouchDown];
-    labelMapSeeTarget.userInteractionEnabled = YES;
-    [labelMapSeeTarget setImage:currentTheme.mapSeeTarget forState:UIControlStateNormal];
-    [self.view addSubview:labelMapSeeTarget];
+    self.labelMapSeeTarget = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    self.labelMapSeeTarget.layer.borderWidth = 1;
+    self.labelMapSeeTarget.layer.borderColor = [UIColor blackColor].CGColor;
+    [self.labelMapSeeTarget addTarget:self action:@selector(chooseMapFollow:) forControlEvents:UIControlEventTouchDown];
+    self.labelMapSeeTarget.userInteractionEnabled = YES;
+    [self.labelMapSeeTarget setImage:currentTheme.mapSeeTarget forState:UIControlStateNormal];
+    [self.view addSubview:self.labelMapSeeTarget];
 
-    labelMapFindMe = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    labelMapFindMe.layer.borderWidth = 1;
-    labelMapFindMe.layer.borderColor = [UIColor blackColor].CGColor;
-    [labelMapFindMe addTarget:self action:@selector(chooseMapFollow:) forControlEvents:UIControlEventTouchDown];
-    labelMapFindMe.userInteractionEnabled = YES;
-    [labelMapFindMe setImage:currentTheme.mapFindMe forState:UIControlStateNormal];
-    [self.view addSubview:labelMapFindMe];
+    self.labelMapFindMe = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    self.labelMapFindMe.layer.borderWidth = 1;
+    self.labelMapFindMe.layer.borderColor = [UIColor blackColor].CGColor;
+    [self.labelMapFindMe addTarget:self action:@selector(chooseMapFollow:) forControlEvents:UIControlEventTouchDown];
+    self.labelMapFindMe.userInteractionEnabled = YES;
+    [self.labelMapFindMe setImage:currentTheme.mapFindMe forState:UIControlStateNormal];
+    [self.view addSubview:self.labelMapFindMe];
 
-    labelMapFindTarget = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    labelMapFindTarget.layer.borderWidth = 1;
-    labelMapFindTarget.layer.borderColor = [UIColor blackColor].CGColor;
-    [labelMapFindTarget addTarget:self action:@selector(chooseMapFollow:) forControlEvents:UIControlEventTouchDown];
-    labelMapFindTarget.userInteractionEnabled = YES;
-    [labelMapFindTarget setImage:currentTheme.mapFindTarget forState:UIControlStateNormal];
-    [self.view addSubview:labelMapFindTarget];
+    self.labelMapFindTarget = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    self.labelMapFindTarget.layer.borderWidth = 1;
+    self.labelMapFindTarget.layer.borderColor = [UIColor blackColor].CGColor;
+    [self.labelMapFindTarget addTarget:self action:@selector(chooseMapFollow:) forControlEvents:UIControlEventTouchDown];
+    self.labelMapFindTarget.userInteractionEnabled = YES;
+    [self.labelMapFindTarget setImage:currentTheme.mapFindTarget forState:UIControlStateNormal];
+    [self.view addSubview:self.labelMapFindTarget];
 
     [self updateMapButtons];
 
     switch (self.followWhom) {
         case SHOW_FOLLOWME:
-            [labelMapFindMe setBackgroundColor:[UIColor clearColor]];
-            [labelMapFollowMe setBackgroundColor:[UIColor grayColor]];
-            [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
-            [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
-            [labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
+            [self.labelMapFindMe setBackgroundColor:[UIColor clearColor]];
+            [self.labelMapFollowMe setBackgroundColor:[UIColor grayColor]];
+            [self.labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
+            [self.labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
+            [self.labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
             break;
         case SHOW_SHOWBOTH:
-            [labelMapFindMe setBackgroundColor:[UIColor clearColor]];
-            [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
-            [labelMapShowBoth setBackgroundColor:[UIColor grayColor]];
-            [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
-            [labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
+            [self.labelMapFindMe setBackgroundColor:[UIColor clearColor]];
+            [self.labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
+            [self.labelMapShowBoth setBackgroundColor:[UIColor grayColor]];
+            [self.labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
+            [self.labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
             break;
         case SHOW_SEETARGET:
-            [labelMapFindMe setBackgroundColor:[UIColor clearColor]];
-            [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
-            [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
-            [labelMapSeeTarget setBackgroundColor:[UIColor grayColor]];
-            [labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
+            [self.labelMapFindMe setBackgroundColor:[UIColor clearColor]];
+            [self.labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
+            [self.labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
+            [self.labelMapSeeTarget setBackgroundColor:[UIColor grayColor]];
+            [self.labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
             break;
         default:
             break;
@@ -385,33 +384,33 @@
 
 - (void)removeDistanceLabel
 {
-    distanceLabel = nil;
-    labelMapFollowMe = nil;
-    labelMapShowBoth = nil;
-    labelMapSeeTarget = nil;
-    labelMapFindMe = nil;
-    labelMapFindTarget = nil;
+    self.distanceLabel = nil;
+    self.labelMapFollowMe = nil;
+    self.labelMapShowBoth = nil;
+    self.labelMapSeeTarget = nil;
+    self.labelMapFindMe = nil;
+    self.labelMapFindTarget = nil;
 }
 
 - (void)chooseMapFollow:(UIButton *)button
 {
-    if (button == labelMapFollowMe) {
+    if (button == self.labelMapFollowMe) {
         [self menuShowWhom:SHOW_FOLLOWME];
         return;
     }
-    if (button == labelMapShowBoth) {
+    if (button == self.labelMapShowBoth) {
         [self menuShowWhom:SHOW_SHOWBOTH];
         return;
     }
-    if (button == labelMapSeeTarget) {
+    if (button == self.labelMapSeeTarget) {
         [self menuShowWhom:SHOW_SEETARGET];
         return;
     }
-    if (button == labelMapFindMe) {
+    if (button == self.labelMapFindMe) {
         [self menuFindMe];
         return;
     }
-    if (button == labelMapFindTarget) {
+    if (button == self.labelMapFindTarget) {
         [self menuFindTarget];
         return;
     }
@@ -420,30 +419,30 @@
 /* Delegated from GCLocationManager */
 - (void)updateLocationManagerLocation
 {
-    if (useGNSS == NO)
+    if (self.useGNSS == NO)
         return;
     if (self.staticHistory == YES)
         return;
 
-    meLocation = [LM coords];
+    self.meLocation = [LM coords];
 
-    if (fabs(meBearing - [LM direction]) > 5)
-        meBearing = [LM direction];
+    if (fabs(self.meBearing - [LM direction]) > 5)
+        self.meBearing = [LM direction];
 
     // Move the map around to match current location
     switch (self.followWhom) {
         case SHOW_FOLLOWMEZOOM:
-            [self.map moveCameraTo:meLocation zoom:YES];
+            [self.map moveCameraTo:self.meLocation zoom:YES];
             break;
         case SHOW_FOLLOWME:
-            [self.map moveCameraTo:meLocation zoom:NO];
+            [self.map moveCameraTo:self.meLocation zoom:NO];
             break;
         case SHOW_SHOWBOTH:
             if (waypointManager.currentWaypoint != nil)
-                [self.map moveCameraTo:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude) c2:meLocation];
+                [self.map moveCameraTo:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude) c2:self.meLocation];
             else {
                 [self menuShowWhom:SHOW_FOLLOWME];
-                [self.map moveCameraTo:meLocation zoom:NO];
+                [self.map moveCameraTo:self.meLocation zoom:NO];
             }
             break;
         default:
@@ -455,7 +454,7 @@
         [self.map addLineMeToWaypoint];
 
     if (waypointManager.currentWaypoint != nil) {
-        NSString *distance = [MyTools niceDistance:[Coordinates coordinates2distance:meLocation toLatitude:waypointManager.currentWaypoint.wpt_latitude toLongitude:waypointManager.currentWaypoint.wpt_longitude]];
+        NSString *distance = [MyTools niceDistance:[Coordinates coordinates2distance:self.meLocation toLatitude:waypointManager.currentWaypoint.wpt_latitude toLongitude:waypointManager.currentWaypoint.wpt_longitude]];
         [self showDistance:distance];
     } else {
         [self showDistance:@""];
@@ -470,26 +469,26 @@
 - (void)showDistance:(NSString *)d timeout:(NSTimeInterval)seconds unlock:(BOOL)unlock
 {
     if (unlock == YES)
-        distanceLabelLocked = NO;
-    if (distanceLabelLocked == YES)
+        self.distanceLabelLocked = NO;
+    if (self.distanceLabelLocked == YES)
         return;
     if (seconds != 0)
-        distanceLabelLocked = YES;
-    distanceLabel.text = d;
+        self.distanceLabelLocked = YES;
+    self.distanceLabel.text = d;
     if (seconds != 0) {
-        distanceLabelCounter++;
+        self.distanceLabelCounter++;
         BACKGROUND(showDistanceHide:, [NSNumber numberWithInteger:seconds]);
     }
 }
 
 - (void)showDistanceHide:(NSNumber *)seconds
 {
-    NSInteger i = distanceLabelCounter;
+    NSInteger i = self.distanceLabelCounter;
     [NSThread sleepForTimeInterval:[seconds integerValue]];
     MAINQUEUE(
-        if (distanceLabelLocked == YES && i == distanceLabelCounter) {
-            distanceLabelLocked = NO;
-            distanceLabel.text = @"";
+        if (self.distanceLabelLocked == YES && i == self.distanceLabelCounter) {
+            self.distanceLabelLocked = NO;
+            self.distanceLabel.text = @"";
             [self.map removeLineTapToMe];
         }
     )
@@ -517,11 +516,11 @@
 
 - (void)labelClearAll
 {
-    [labelMapFindMe setBackgroundColor:[UIColor clearColor]];
-    [labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
-    [labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
-    [labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
-    [labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
+    [self.labelMapFindMe setBackgroundColor:[UIColor clearColor]];
+    [self.labelMapFollowMe setBackgroundColor:[UIColor clearColor]];
+    [self.labelMapShowBoth setBackgroundColor:[UIColor clearColor]];
+    [self.labelMapSeeTarget setBackgroundColor:[UIColor clearColor]];
+    [self.labelMapFindTarget setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)userInteractionFinished
@@ -540,42 +539,42 @@
 
     if (whom == SHOW_FOLLOWME) {
         self.followWhom = whom;
-        meLocation = [LM coords];
+        self.meLocation = [LM coords];
         if (self.staticHistory == NO)
-            [self.map moveCameraTo:meLocation zoom:NO];
-        [labelMapFollowMe setBackgroundColor:[UIColor grayColor]];
+            [self.map moveCameraTo:self.meLocation zoom:NO];
+        [self.labelMapFollowMe setBackgroundColor:[UIColor grayColor]];
     }
     if (whom == SHOW_SEETARGET && waypointManager.currentWaypoint != nil) {
         self.followWhom = whom;
-        meLocation = [LM coords];
+        self.meLocation = [LM coords];
         if (self.staticHistory == NO)
             [self.map moveCameraTo:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude) zoom:NO];
-        [labelMapSeeTarget setBackgroundColor:[UIColor grayColor]];
+        [self.labelMapSeeTarget setBackgroundColor:[UIColor grayColor]];
     }
     if (whom == SHOW_SHOWBOTH && waypointManager.currentWaypoint != nil) {
         self.followWhom = whom;
-        meLocation = [LM coords];
+        self.meLocation = [LM coords];
         if (self.staticHistory == NO)
-            [self.map moveCameraTo:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude) c2:meLocation];
-        [labelMapShowBoth setBackgroundColor:[UIColor grayColor]];
+            [self.map moveCameraTo:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude) c2:self.meLocation];
+        [self.labelMapShowBoth setBackgroundColor:[UIColor grayColor]];
     }
 }
 
 - (void)menuFindMe
 {
-    meLocation = [LM coords];
+    self.meLocation = [LM coords];
     self.followWhom = SHOW_FOLLOWMEZOOM;
     [self labelClearAll];
-    [labelMapFindMe setBackgroundColor:[UIColor grayColor]];
-    [self.map moveCameraTo:meLocation zoom:YES];
+    [self.labelMapFindMe setBackgroundColor:[UIColor grayColor]];
+    [self.map moveCameraTo:self.meLocation zoom:YES];
 }
 
 - (void)menuFindTarget
 {
-    meLocation = [LM coords];
+    self.meLocation = [LM coords];
     self.followWhom = SHOW_SEETARGET;
     [self labelClearAll];
-    [labelMapFindTarget setBackgroundColor:[UIColor grayColor]];
+    [self.labelMapFindTarget setBackgroundColor:[UIColor grayColor]];
     [self.map moveCameraTo:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude) zoom:YES];
 }
 
@@ -583,9 +582,9 @@
 
 - (void)refreshWaypoints
 {
-    needsRefresh = YES;
-    if (isVisible == YES) {
-        needsRefresh = NO;
+    self.needsRefresh = YES;
+    if (self.isVisible == YES) {
+        self.needsRefresh = NO;
         BACKGROUND(refreshWaypointsData, nil);
     }
 }
@@ -622,9 +621,9 @@
 
 - (void)removeWaypointInfo
 {
-    [wpInfoView removeSelf];
-    [wpInfoView removeFromSuperview];
-    wpInfoView = nil;
+    [self.wpInfoView removeSelf];
+    [self.wpInfoView removeFromSuperview];
+    self.wpInfoView = nil;
 }
 
 - (void)initWaypointInfo
@@ -633,19 +632,19 @@
     CGRect maprect = self.view.frame;
     maprect.origin.y = maprect.size.height - [MapWaypointInfoView viewHeight];
     maprect.size.height = [MapWaypointInfoView viewHeight];
-    wpInfoView = [[MapWaypointInfoView alloc] initWithFrame:maprect];
-    wpInfoView.parentMap = self.map;
-    [self.view addSubview:wpInfoView];
+    self.wpInfoView = [[MapWaypointInfoView alloc] initWithFrame:maprect];
+    self.wpInfoView.parentMap = self.map;
+    [self.view addSubview:self.wpInfoView];
 }
 
 - (void)showWaypointInfo:(dbWaypoint *)wp
 {
     if (wp == nil)
         return;
-    if (wpInfoView != nil)
+    if (self.wpInfoView != nil)
         [self removeWaypointInfo];
     [self initWaypointInfo];
-    [wpInfoView showWaypoint:wp];
+    [self.wpInfoView showWaypoint:wp];
 }
 
 #pragma mark - Local menu related functions
@@ -659,7 +658,7 @@
     view.popoverPresentationController.sourceView = self.view;
     view.popoverPresentationController.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0);
 
-    [mapBrands enumerateObjectsUsingBlock:^(MapBrand * _Nonnull mb, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.mapBrands enumerateObjectsUsingBlock:^(MapBrand * _Nonnull mb, NSUInteger idx, BOOL * _Nonnull stop) {
         // Do not enable Google Maps until available
         if ([mb.key isEqualToString:MAPBRAND_GOOGLEMAPS] == YES && (IS_EMPTY(keyManager.googlemaps) == YES))
             return;
@@ -733,7 +732,7 @@
     [self.map mapViewDidAppear];
     [self menuShowWhom:self.followWhom];
 
-    [self.map showBoundaries:showBoundaries];
+    [self.map showBoundaries:self.showBoundaries];
 
     [self updateLocationManagerLocation];
 }
@@ -914,33 +913,33 @@
 
 - (void)menuRecenter
 {
-    useGNSS = NO;
+    self.useGNSS = NO;
     [LM useGNSS:NO coordinates:[self.map currentCenter]];
 
-    [labelMapGPS setImage:currentTheme.mapGNSSOff forState:UIControlStateNormal];
+    [self.labelMapGPS setImage:currentTheme.mapGNSSOff forState:UIControlStateNormal];
 
-    meLocation = [self.map currentCenter];
+    self.meLocation = [self.map currentCenter];
     self.followWhom = SHOW_NEITHER;
     [waypointManager needsRefreshAll];
 }
 
 - (void)menuTapGNSS:(UIButton *)b
 {
-    if (useGNSS == NO) {
-        useGNSS = YES;
+    if (self.useGNSS == NO) {
+        self.useGNSS = YES;
         [LM useGNSS:YES coordinates:CLLocationCoordinate2DZero];
 
-        [labelMapGPS setImage:currentTheme.mapGNSSOn forState:UIControlStateNormal];
+        [self.labelMapGPS setImage:currentTheme.mapGNSSOn forState:UIControlStateNormal];
 
-        meLocation = LM.coords;
+        self.meLocation = LM.coords;
         self.followWhom = SHOW_NEITHER;
     } else {
-        useGNSS = NO;
+        self.useGNSS = NO;
         [LM useGNSS:NO coordinates:[self.map currentCenter]];
 
-        [labelMapGPS setImage:currentTheme.mapGNSSOff forState:UIControlStateNormal];
+        [self.labelMapGPS setImage:currentTheme.mapGNSSOff forState:UIControlStateNormal];
 
-        meLocation = [self.map currentCenter];
+        self.meLocation = [self.map currentCenter];
         self.followWhom = SHOW_FOLLOWME;
     }
     [waypointManager needsRefreshAll];
@@ -948,14 +947,14 @@
 
 - (void)menuShowBoundaries
 {
-    if (showBoundaries == NO) {
-        showBoundaries = YES;
+    if (self.showBoundaries == NO) {
+        self.showBoundaries = YES;
         [lmi changeItem:MVCmenuShowBoundaries label:_(@"maptemplateviewcontroller-Hide boundaries")];
     } else {
-        showBoundaries = NO;
+        self.showBoundaries = NO;
         [lmi changeItem:MVCmenuShowBoundaries label:_(@"maptemplateviewcontroller-Show boundaries")];
     }
-    [self.map showBoundaries:showBoundaries];
+    [self.map showBoundaries:self.showBoundaries];
 }
 
 - (void)menuRemoveTarget

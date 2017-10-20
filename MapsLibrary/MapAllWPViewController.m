@@ -20,13 +20,12 @@
  */
 
 @interface MapAllWPViewController ()
-{
-    NSMutableArray<dbWaypoint *> *oldWaypoints;
-    NSMutableArray<NSString *> *newWaypoints;
 
-    RemoteAPIProcessingGroup *processing;
-    NSInteger currentRun;
-}
+@property (nonatomic, retain) NSMutableArray<dbWaypoint *> *waypointsOld;
+@property (nonatomic, retain) NSMutableArray<NSString *> *waypointsNew;
+
+@property (nonatomic, retain) RemoteAPIProcessingGroup *processing;
+@property (nonatomic        ) NSInteger currentRun;
 
 @end
 
@@ -46,8 +45,8 @@ enum {
     self = [super init:NO];
     self.followWhom = SHOW_SHOWBOTH;
 
-    processing = [[RemoteAPIProcessingGroup alloc] init];
-    currentRun = RUN_NONE;
+    self.processing = [[RemoteAPIProcessingGroup alloc] init];
+    self.currentRun = RUN_NONE;
 
     return self;
 }
@@ -80,7 +79,7 @@ enum {
 {
     CLLocationCoordinate2D bl, tr;
 
-    currentRun = RUN_BOUNDINGBOX;
+    self.currentRun = RUN_BOUNDINGBOX;
 
     [self.map currentRectangle:&bl topRight:&tr];
     NSInteger dist = [Coordinates coordinates2distance:bl to:tr];
@@ -105,11 +104,11 @@ enum {
 
     NSLog(@"Boundingbox: %@ x %@", [Coordinates niceCoordinates:bl], [Coordinates niceCoordinates:tr]);
 
-    oldWaypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAllInRect:bl RT:tr]];
-    newWaypoints = [NSMutableArray arrayWithCapacity:[oldWaypoints count]];
+    self.waypointsOld = [NSMutableArray arrayWithArray:[dbWaypoint dbAllInRect:bl RT:tr]];
+    self.waypointsNew = [NSMutableArray arrayWithCapacity:[self.waypointsOld count]];
 
     [self showInfoView];
-    [processing clearAll];
+    [self.processing clearAll];
 
     [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoViewer:nil iiImport:0];
 
@@ -144,15 +143,15 @@ enum {
 - (void)waitForDownloadsToFinish
 {
     [NSThread sleepForTimeInterval:0.5];
-    while ([processing hasIdentifiers] == YES) {
+    while ([self.processing hasIdentifiers] == YES) {
         [NSThread sleepForTimeInterval:0.1];
     }
     NSLog(@"PROCESSING: Nothing pending");
 
-    if (currentRun == RUN_BOUNDINGBOX) {
+    if (self.currentRun == RUN_BOUNDINGBOX) {
         // Now need to find all the waypoints which weren't found
-        NSMutableArray<dbWaypoint *> *waypoints = [NSMutableArray arrayWithArray:oldWaypoints];
-        [newWaypoints enumerateObjectsUsingBlock:^(NSString * _Nonnull wpn, NSUInteger nidx, BOOL * _Nonnull stop) {
+        NSMutableArray<dbWaypoint *> *waypoints = [NSMutableArray arrayWithArray:self.waypointsOld];
+        [self.waypointsNew enumerateObjectsUsingBlock:^(NSString * _Nonnull wpn, NSUInteger nidx, BOOL * _Nonnull stop) {
             [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wpo, NSUInteger oidx, BOOL * _Nonnull stop) {
                 if ([wpo.wpt_name isEqualToString:wpn] == YES) {
                     [waypoints removeObjectAtIndex:oidx];
@@ -165,12 +164,12 @@ enum {
         if ([waypoints count] == 0) {
             [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil iiImport:0];
             [waypointManager needsRefreshAll];
-            currentRun = RUN_NONE;
+            self.currentRun = RUN_NONE;
             [self hideInfoView];
             return;
         };
 
-        currentRun = RUN_INDIVIDUAL;
+        self.currentRun = RUN_INDIVIDUAL;
 
         // Deal with the waypoints by account
         NSArray<dbAccount *> *accounts = dbc.accounts;
@@ -193,7 +192,7 @@ enum {
             [wps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                 [wpnames addObject:wp.wpt_name];
             }];
-            [processing addIdentifier:(long)account._id];
+            [self.processing addIdentifier:(long)account._id];
             [account.remoteAPI loadWaypointsByCodes:wpnames infoViewer:infoView iiDownload:iid identifier:(long)account._id group:dbc.groupLiveImport callback:self];
         }];
 
@@ -202,10 +201,10 @@ enum {
         return;
     }
 
-    if (currentRun == RUN_INDIVIDUAL) {
+    if (self.currentRun == RUN_INDIVIDUAL) {
         [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil iiImport:0];
         [waypointManager needsRefreshAll];
-        currentRun = RUN_NONE;
+        self.currentRun = RUN_NONE;
         [self hideInfoView];
 
         return;
@@ -216,8 +215,8 @@ enum {
 {
     // We are already in a background thread, but don't want to delay the next request until this one is processed.
 
-    [processing increaseDownloadedChunks:identifier];
-    NSLog(@"PROCESSING: Downloaded #%ld - %@", (long)identifier, [processing description:identifier]);
+    [self.processing increaseDownloadedChunks:identifier];
+    NSLog(@"PROCESSING: Downloaded #%ld - %@", (long)identifier, [self.processing description:identifier]);
 
     if (o == nil)
         o = [NSNull null];
@@ -241,18 +240,18 @@ enum {
 
     if ([o isKindOfClass:[NSNull class]] == NO) {
         NSArray<NSString *> *wps = [importManager process:o group:g account:a options:IMPORTOPTION_NOPOST|IMPORTOPTION_NOPRE infoViewer:infoView iiImport:iii];
-        @synchronized (newWaypoints) {
-            [newWaypoints addObjectsFromArray:wps];
+        @synchronized (self.waypointsNew) {
+            [self.waypointsNew addObjectsFromArray:wps];
         }
     }
 
-    [processing increaseProcessedChunks:identifier];
-    NSLog(@"PROCESSING: Processed #%ld - %@", (long)identifier, [processing description:identifier]);
+    [self.processing increaseProcessedChunks:identifier];
+    NSLog(@"PROCESSING: Processed #%ld - %@", (long)identifier, [self.processing description:identifier]);
     [infoView removeItem:iii];
 
-    if ([processing hasAllProcessed:identifier] == YES) {
+    if ([self.processing hasAllProcessed:identifier] == YES) {
         NSLog(@"PROCESSING: All seen for #%ld", (long)identifier);
-        [processing removeIdentifier:identifier];
+        [self.processing removeIdentifier:identifier];
     }
 }
 
@@ -262,7 +261,7 @@ enum {
     GCBoundingBox *bb = [dict objectForKey:@"boundingbox"];
     dbAccount *account = [dict objectForKey:@"account"];
 
-    [processing addIdentifier:(long)account._id];
+    [self.processing addIdentifier:(long)account._id];
 
     NSInteger rv = [account.remoteAPI loadWaypointsByBoundingBox:bb infoViewer:infoView iiDownload:iid identifier:(long)account._id callback:self];
 
@@ -276,18 +275,18 @@ enum {
 
 - (void)remoteAPI_finishedDownloads:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
 {
-    [processing expectedChunks:identifier chunks:numberOfChunks];
-    NSLog(@"PROCESSING: Expecting %ld for #%ld - %@", (long)numberOfChunks, (long)identifier, [processing description:identifier]);
-    if ([processing hasAllProcessed:identifier] == YES) {
+    [self.processing expectedChunks:identifier chunks:numberOfChunks];
+    NSLog(@"PROCESSING: Expecting %ld for #%ld - %@", (long)numberOfChunks, (long)identifier, [self.processing description:identifier]);
+    if ([self.processing hasAllProcessed:identifier] == YES) {
         NSLog(@"PROCESSING: All seen for #%ld", (long)identifier);
-        [processing removeIdentifier:identifier];
+        [self.processing removeIdentifier:identifier];
     }
 }
 
 - (void)remoteAPI_failed:(NSInteger)identifier
 {
     NSLog(@"PROCESSING: Failed %ld", (long)identifier);
-    [processing removeIdentifier:identifier];
+    [self.processing removeIdentifier:identifier];
 }
 
 @end

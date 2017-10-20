@@ -20,9 +20,8 @@
  */
 
 @interface MapTrackViewController ()
-{
-    dbTrack *currentTrack;
-}
+
+@property (nonatomic, retain) dbTrack *currentTrack;
 
 @end
 
@@ -45,14 +44,14 @@
     [lmi disableItem:MVCmenuExportVisible];
     [lmi disableItem:MVCmenuRemoveHistory];
 
-    currentTrack = nil;
+    self.currentTrack = nil;
 
     return self;
 }
 
 - (void)showTrack:(dbTrack *)track
 {
-    currentTrack = track;
+    self.currentTrack = track;
     [self.map showTrack:track];
 }
 
@@ -69,7 +68,7 @@
 - (void)menuChangeMapbrand:(MapBrand *)mapBrand
 {
     [super menuChangeMapbrand:mapBrand];
-    [self showTrack:currentTrack];
+    [self showTrack:self.currentTrack];
 }
 
 @end
