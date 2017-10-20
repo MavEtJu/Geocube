@@ -20,11 +20,10 @@
  */
 
 @interface MapAppleCache ()
-{
-    NSString *shortprefix;
-    NSString *prefix;
-    NSDate *now;
-}
+
+@property (nonatomic, retain) NSString *shortprefix;
+@property (nonatomic, retain) NSString *prefix;
+@property (nonatomic, retain) NSDate *now;
 
 @end
 
@@ -158,16 +157,16 @@
     NSLog(@"%@ - Checked %ld tiles in %ld Mb, deleted %ld tiles for age, deleted %ld tiles for size", [self class], (long)checked, (long)totalFileSize / (1024 * 1024), (long)deletedAge, (long)deletedSize);
 }
 
-- (instancetype)initWithURLTemplate:(NSString *)template prefix:(NSString *)_prefix
+- (instancetype)initWithURLTemplate:(NSString *)template prefix:(NSString *)prefix
 {
     self = [super initWithURLTemplate:template];
 
-    shortprefix = _prefix;
-    prefix = [MapAppleCache createPrefix:_prefix];
+    self.shortprefix = prefix;
+    self.prefix = [MapAppleCache createPrefix:prefix];
     self.hits = 0;
     self.misses = 0;
     self.saves = 0;
-    now = [NSDate date];    // Just give them all todays date
+    self.now = [NSDate date];    // Just give them all todays date
 
     return self;
 }
@@ -180,7 +179,7 @@
 
 - (void)loadTileAtPath:(MKTileOverlayPath)path result:(void (^)(NSData *tileData, NSError *error))result
 {
-    NSString *cachefile = [NSString stringWithFormat:@"%@/%d/%d/%d/tile_%ld_%ld_%ld", prefix, (int)path.z, (int)path.y % 10, (int)path.x % 10, (long)path.z, (long)path.y, (long)path.x];
+    NSString *cachefile = [NSString stringWithFormat:@"%@/%d/%d/%d/tile_%ld_%ld_%ld", self.prefix, (int)path.z, (int)path.y % 10, (int)path.x % 10, (long)path.z, (long)path.y, (long)path.x];
 
     if (configManager.mapcacheEnable == NO) {
         [super loadTileAtPath:path result:^(NSData *tileData, NSError *error) {
@@ -192,7 +191,7 @@
     if ([fileManager fileExistsAtPath:cachefile] == NO) {
         NSError *err = nil;
 
-        NSDictionary *modificationDateAttr = [NSDictionary dictionaryWithObjectsAndKeys:now, NSFileModificationDate, nil];
+        NSDictionary *modificationDateAttr = [NSDictionary dictionaryWithObjectsAndKeys:self.now, NSFileModificationDate, nil];
         [fileManager setAttributes:modificationDateAttr ofItemAtPath:cachefile error:&err];
 
         [super loadTileAtPath:path result:^(NSData *tileData, NSError *error) {
@@ -204,7 +203,7 @@
                     self.notfounds++;
                 } else {
                     [tileData writeToFile:cachefile atomically:NO];
-                    NSLog(@"Saving %@ tile (%ld, %ld, %ld)", shortprefix, (long)path.z, (long)path.y, (long)path.x);
+                    NSLog(@"Saving %@ tile (%ld, %ld, %ld)", self.shortprefix, (long)path.z, (long)path.y, (long)path.x);
                     self.saves++;
                 }
             }
@@ -215,7 +214,7 @@
     }
 
     __block NSData *d = [NSData dataWithContentsOfFile:cachefile];
-    NSLog(@"Loading %@ tile (%ld, %ld, %ld)", shortprefix, (long)path.z, (long)path.y, (long)path.x);
+    NSLog(@"Loading %@ tile (%ld, %ld, %ld)", self.shortprefix, (long)path.z, (long)path.y, (long)path.x);
     self.hits++;
     result(d, nil);
 }

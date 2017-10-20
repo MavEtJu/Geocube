@@ -20,9 +20,8 @@
  */
 
 @interface MapWaypointInfoView ()
-{
-    UIImage *imgFavourites, *imgSize;
-}
+
+@property (nonatomic, retain) UIImage *imgFavourites;
 
 @property (weak, nonatomic) IBOutlet GCImageView *ivFavourites;
 @property (weak, nonatomic) IBOutlet GCLabel *labelFavourites;
@@ -37,7 +36,6 @@
 @property (weak, nonatomic) IBOutlet GCLabel *labelBearing;
 @property (weak, nonatomic) IBOutlet GCLabel *labelStateCountry;
 @property (weak, nonatomic) IBOutlet GCLabel *labelRatingDT;
-//@property (weak, nonatomic) IBOutlet GCLabel *labelRatingT;
 
 @property (weak, nonatomic) IBOutlet GCButton *buttonOverlay;
 @property (weak, nonatomic) IBOutlet GCButton *buttonSetAsTarget;
@@ -50,14 +48,13 @@
 {
     self = [super initWithFrame:frame];
 
-    imgFavourites = [imageManager get:ImageCacheView_favourites];
-    imgSize = [imageManager get:ImageContainerSize_NotChosen];
+    self.imgFavourites = [imageManager get:ImageCacheView_favourites];
 
     self.firstView = [[[NSBundle mainBundle] loadNibNamed:@"MapWaypointInfoView" owner:self options:nil] firstObject];
     self.firstView.frame = CGRectMake((frame.size.width - self.firstView.frame.size.width) / 2, 0, self.firstView.frame.size.width, self.firstView.frame.size.height);
     [self addSubview:self.firstView];
 
-    self.ivFavourites.image = imgFavourites;
+    self.ivFavourites.image = self.imgFavourites;
     self.ivTarget.image = [imageManager get:ImageIcon_Target];
     [self.buttonOverlay addTarget:self action:@selector(actionShowWaypoint:) forControlEvents:UIControlEventTouchDown];
     [self.buttonSetAsTarget addTarget:self action:@selector(actionSetAsTarget:) forControlEvents:UIControlEventTouchDown];
