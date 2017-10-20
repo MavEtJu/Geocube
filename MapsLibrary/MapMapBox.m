@@ -404,7 +404,6 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - NEEDS_OVERLOADING_VOID(addLineTapToMe:(CLLocationCoordinate2D)c)
 - NEEDS_OVERLOADING_VOID(removeLineTapToMe)
-- NEEDS_OVERLOADING_VOID(updateMyPosition:(CLLocationCoordinate2D)c)
 - NEEDS_OVERLOADING_VOID(showTrack:(dbTrack *)track)
 - NEEDS_OVERLOADING_VOID(showTrack)
 - NEEDS_OVERLOADING_VOID(placeMarker:(dbWaypoint *)wp)

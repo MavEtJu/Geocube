@@ -61,7 +61,6 @@
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord zoomLevel:(double)zoomLevel;
 - (void)moveCameraToAll;
 
-- (void)updateMyPosition:(CLLocationCoordinate2D)c; /* Does not affect camera */
 - (void)updateMapScaleView;
 
 - (void)showBoundaries:(BOOL)yesno;
