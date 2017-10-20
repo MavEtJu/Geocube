@@ -280,7 +280,7 @@ EMPTY_METHOD(mapViewDidLoad)
     [self.mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.markers addObject:[self makeMarker:wp]];
 
-        if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES)
+        if (self.showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES)
             [self.circles addObject:[self makeCircle:wp]];
     }];
 }
@@ -394,7 +394,7 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (void)showBoundaries:(BOOL)yesno
 {
-    showBoundary = yesno;
+    self.showBoundary = yesno;
     if (yesno == YES) {
         [self placeMarkers];
     } else {

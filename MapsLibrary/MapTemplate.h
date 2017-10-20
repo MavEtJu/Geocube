@@ -20,14 +20,12 @@
  */
 
 @interface MapTemplate : NSObject <WaypointManagerKMLDelegate>
-{
-    LXMapScaleView *mapScaleView;
-    BOOL showBoundary;
-}
 
 @property (nonatomic, retain) MapTemplateViewController *mapvc;
-@property (nonatomic) BOOL circlesShown;
-@property (nonatomic) BOOL staticHistory;
+@property (nonatomic, retain) LXMapScaleView *mapScaleView;
+@property (nonatomic        ) BOOL circlesShown;
+@property (nonatomic        ) BOOL staticHistory;
+@property (nonatomic        ) BOOL showBoundary;
 
 - (void)mapViewWillAppear;
 - (void)mapViewWillDisappear;

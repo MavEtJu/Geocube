@@ -88,9 +88,9 @@
     // template = @"https://api.mapbox.com/v4/mapbox.dark/{z}/{x}/{y}.png?access_token=...";
     overlay = [[MapAppleCache alloc] initWithURLTemplate:template prefix:self.cachePrefix];
     overlay.canReplaceMapContent = YES;
-    [mapView addOverlay:overlay level:MKOverlayLevelAboveLabels];
+    [self.mapView addOverlay:overlay level:MKOverlayLevelAboveLabels];
 
-    mapView.delegate = self;
+    self.mapView.delegate = self;
 }
 
 // From http://www.glimsoft.com/01/31/how-to-use-openstreetmap-on-ios-7-in-7-lines-of-code/

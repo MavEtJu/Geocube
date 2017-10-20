@@ -73,10 +73,10 @@
 
     self.mapvc.view = self.mapView;
 
-    mapScaleView = [LXMapScaleView mapScaleForGMSMapView:self.mapView];
-    mapScaleView.position = kLXMapScalePositionBottomLeft;
-    mapScaleView.style = kLXMapScaleStyleBar;
-    [mapScaleView update];
+    self.mapScaleView = [LXMapScaleView mapScaleForGMSMapView:self.mapView];
+    self.mapScaleView.position = kLXMapScalePositionBottomLeft;
+    self.mapScaleView.style = kLXMapScaleStyleBar;
+    [self.mapScaleView update];
 
     self.wpSelected = nil;
 
@@ -94,7 +94,7 @@
 - (void)removeMap
 {
     self.mapView = nil;
-    mapScaleView = nil;
+    self.mapScaleView = nil;
 }
 
 - (void)initCamera:(CLLocationCoordinate2D)coords
@@ -162,7 +162,7 @@
     [self.mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.markers addObject:[self makeMarker:wp]];
 
-        if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES)
+        if (self.showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES)
             [self.circles addObject:[self makeCircle:wp]];
     }];
 }
@@ -184,7 +184,7 @@
     [self.markers addObject:[self makeMarker:wp]];
 
     // Add the boundary if needed
-    if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
+    if (self.showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
         GCGMSCircle *circle = [self makeCircle:wp];
         circle.map = self.mapView;
         [self.circles addObject:circle];
@@ -209,7 +209,7 @@
     [self.markers removeObjectAtIndex:idx];
 
     // Remove the boundary if needed
-    if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
+    if (self.showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
         [self.circles enumerateObjectsUsingBlock:^(GCGMSCircle * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
             if (c.userData == wp) {
                 [self.circles removeObjectAtIndex:idx];
@@ -239,7 +239,7 @@
 
 - (void)showBoundaries:(BOOL)yesno
 {
-    showBoundary = yesno;
+    self.showBoundary = yesno;
     [self removeMarkers];
     [self placeMarkers];
 }
@@ -287,7 +287,7 @@
         [self.mapView animateWithCameraUpdate:[GMSCameraUpdate setTarget:coord]];
     }
 
-    [mapScaleView update];
+    [self.mapScaleView update];
 }
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord zoomLevel:(double)zoomLevel
@@ -303,7 +303,7 @@
     GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:d1 coordinate:d2];
     [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:30.0f]];
 
-    [mapScaleView update];
+    [self.mapScaleView update];
 }
 
 - (void)addLineMeToWaypoint
@@ -540,7 +540,7 @@
         [self.mapvc userInteractionStart];
 
     // Update the ruler
-    [mapScaleView update];
+    [self.mapScaleView update];
 }
 
 - (void)mapView:(GMSMapView *)mapView idleAtCameraPosition:(nonnull GMSCameraPosition *)position

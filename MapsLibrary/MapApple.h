@@ -20,10 +20,8 @@
  */
 
 @interface MapApple : MapTemplate <MKMapViewDelegate>
-{
-    MKMapView *mapView;
-}
 
-@property (nonatomic) double minimumAltitude;
+@property (nonatomic, retain) MKMapView *mapView;
+@property (nonatomic        ) double minimumAltitude;
 
 @end

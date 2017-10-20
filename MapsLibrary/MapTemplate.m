@@ -234,7 +234,7 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (void)updateMapScaleView
 {
-    [mapScaleView update];
+    [self.mapScaleView update];
 }
 
 - (void)moveCameraToAll
