@@ -134,12 +134,33 @@ EMPTY_METHOD(mapViewDidLoad)
     // Set the stroke color for shape annotations
     if (annotation == self.lineWaypointToMe)
         return [UIColor redColor];
-    return [UIColor blueColor];
+
+    __block BOOL found = NO;
+    [self.circles enumerateObjectsUsingBlock:^(MGLPolygon * _Nonnull circle, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (circle == annotation) {
+            *stop = YES;
+            found = YES;
+        }
+    }];
+    if (found == YES)
+        return [UIColor blueColor];
+
+    return [UIColor redColor];
 }
 
 - (UIColor *)mapView:(MGLMapView *)mapView fillColorForPolygonAnnotation:(MGLPolygon *)annotation
 {
-    return [UIColor colorWithRed:0 green:0 blue:0.35 alpha:0.05];
+    __block BOOL found = NO;
+    [self.circles enumerateObjectsUsingBlock:^(MGLPolygon * _Nonnull circle, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (circle == annotation) {
+            *stop = YES;
+            found = YES;
+        }
+    }];
+    if (found == YES)
+        return [UIColor colorWithRed:0 green:0 blue:0.35 alpha:0.05];
+
+    return [UIColor colorWithRed:1 green:1 blue:1 alpha:0.05];
 }
 
 
