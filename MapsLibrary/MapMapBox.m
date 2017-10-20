@@ -22,8 +22,10 @@
 @interface MapMapBox () <MGLMapViewDelegate>
 
 @property (nonatomic, retain) MGLMapView *mapView;
-@property (nonatomic, retain) NSMutableArray<MGLPointAnnotation *> *markers;
+@property (nonatomic, retain) NSMutableArray<GCMGLPointAnnotation *> *markers;
 @property (nonatomic, retain) NSMutableArray<MGLPointAnnotation *> *circles;
+@property (nonatomic) NSInteger currentAltitude;
+@property (nonatomic, retain) MGLPolyline *lineWaypointToMe;
 
 @end
 
@@ -58,6 +60,7 @@ EMPTY_METHOD(mapViewDidLoad)
     self.mapvc.view = self.mapView;
 
     self.mapView.userTrackingMode = MGLUserTrackingModeFollow;
+    self.currentAltitude = 1000;
 }
 
 - (void)initCamera:(CLLocationCoordinate2D)coords
@@ -65,7 +68,7 @@ EMPTY_METHOD(mapViewDidLoad)
     self.markers = [NSMutableArray arrayWithCapacity:100];
     self.circles = [NSMutableArray arrayWithCapacity:100];
 
-    MGLMapCamera *camera = [MGLMapCamera cameraLookingAtCenterCoordinate:coords fromDistance:1000 pitch:0 heading:0];
+    MGLMapCamera *camera = [MGLMapCamera cameraLookingAtCenterCoordinate:coords fromDistance:self.currentAltitude pitch:0 heading:0];
     [self.mapView setCamera:camera];
     self.mapView.delegate = self;
 
@@ -73,24 +76,91 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord zoom:(BOOL)zoom
 {
-    MGLMapCamera *camera = [MGLMapCamera cameraLookingAtCenterCoordinate:coord fromDistance:1000 pitch:0 heading:0];
+    MGLMapCamera *camera = [MGLMapCamera cameraLookingAtCenterCoordinate:coord fromDistance:self.currentAltitude pitch:0 heading:0];
+
+    if (zoom == YES) {
+        NSInteger span = [self calculateSpan];
+        camera.altitude = [self altitudeForSpan:span];
+        self.currentAltitude = camera.altitude;
+    }
+
     [self.mapView setCamera:camera];
 }
 
+- (void)moveCameraTo:(CLLocationCoordinate2D)coord zoomLevel:(double)zoomLevel
+{
+    [self.mapView setCenterCoordinate:coord zoomLevel:zoomLevel animated:YES];
+}
+
+- (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2
+{
+    CLLocationCoordinate2D d1, d2;
+    [Coordinates makeNiceBoundary:c1 c2:c2 d1:&d1 d2:&d2 boundaryPercentage:10];
+    MGLCoordinateBounds bbox = MGLCoordinateBoundsMake(d1, d2);
+    [self.mapView setVisibleCoordinateBounds:bbox];
+}
+
+- (void)removeCamera
+{
+    // Nothing
+}
+
+- (void)addLineMeToWaypoint
+{
+    CLLocationCoordinate2D coordinates[] = {
+        LM.coords,
+        CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude),
+    };
+    NSUInteger numberOfCoordinates = sizeof(coordinates) / sizeof(CLLocationCoordinate2D);
+    self.lineWaypointToMe = [MGLPolyline polylineWithCoordinates:coordinates count:numberOfCoordinates];
+    [self.mapView addAnnotation:self.lineWaypointToMe];
+}
+
+- (CGFloat)mapView:(MGLMapView *)mapView alphaForShapeAnnotation:(MGLShape *)annotation
+{
+    return 0.5f;
+}
+
+- (UIColor *)mapView:(MGLMapView *)mapView strokeColorForShapeAnnotation:(MGLShape *)annotation
+{
+    // Set the stroke color for shape annotations
+    if (annotation == self.lineWaypointToMe)
+        return [UIColor redColor];
+    return [UIColor blackColor];
+}
+
+- (UIColor *)mapView:(MGLMapView *)mapView fillColorForPolygonAnnotation:(MGLPolygon *)annotation
+{
+    return [UIColor colorWithRed:59.0f/255.0f green:178.0f/255.0f blue:208.0f/255.0f alpha:1.0f];
+}
+
+
 - (void)removeLineMeToWaypoint
 {
+    [self.mapView removeAnnotation:self.lineWaypointToMe];
+    self.lineWaypointToMe = nil;
 }
 
 - (void)removeHistory
 {
+    // XXX
 }
 
 - (void)showHistory
 {
+    // XXX
 }
 
 - (void)removeMarkers
 {
+    [self.markers enumerateObjectsUsingBlock:^(GCMGLPointAnnotation * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.mapView removeAnnotation:a];
+    }];
+    [self.markers removeAllObjects];
+//    [self.circles enumerateObjectsUsingBlock:^( * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+//        [self.mapView removeOverlay:a];
+//    }];
+    [self.circles removeAllObjects];
 }
 
 - (GCMGLPointAnnotation *)makeMarker:(dbWaypoint *)wp
@@ -106,12 +176,6 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (void)placeMarkers
 {
-    MGLPointAnnotation *a = [[MGLPointAnnotation alloc] init];
-    a.coordinate = CLLocationCoordinate2DMake(-34.0, 151.0);
-    a.title = @"Bobby's Coffee";
-    a.subtitle = @"Coffeeshop";
-    [self.mapView addAnnotation:a];
-
     // Remove everything from the map
     [self.markers enumerateObjectsUsingBlock:^(MGLPointAnnotation * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.mapView removeAnnotation:a];
@@ -173,25 +237,31 @@ EMPTY_METHOD(mapViewDidLoad)
     return self.mapView.centerCoordinate;
 }
 
-- (void)addHistory:(GCCoordsHistorical *)ch
+- (double)currentZoom
 {
+    return self.mapView.zoomLevel;
 }
 
-- NEEDS_OVERLOADING_VOID(removeCamera)
+- (void)currentRectangle:(CLLocationCoordinate2D *)bottomLeft topRight:(CLLocationCoordinate2D *)topRight
+{
+    *bottomLeft = self.mapView.visibleCoordinateBounds.sw;
+    *topRight = self.mapView.visibleCoordinateBounds.ne;
+}
+
+- (void)addHistory:(GCCoordsHistorical *)ch
+{
+    // XXX
+}
+
 - NEEDS_OVERLOADING_VOID(removeMap)
-- NEEDS_OVERLOADING_VOID(moveCameraTo:(CLLocationCoordinate2D)coord zoomLevel:(double)zoomLevel)
-- NEEDS_OVERLOADING_VOID(moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2)
 - NEEDS_OVERLOADING_VOID(updateMyBearing:(CLLocationDirection)bearing)
 - NEEDS_OVERLOADING_VOID(showBoundaries:(BOOL)yesno)
-- NEEDS_OVERLOADING_VOID(addLineMeToWaypoint)
 - NEEDS_OVERLOADING_VOID(addLineTapToMe:(CLLocationCoordinate2D)c)
 - NEEDS_OVERLOADING_VOID(removeLineTapToMe)
 - NEEDS_OVERLOADING_VOID(updateMyPosition:(CLLocationCoordinate2D)c)
 - NEEDS_OVERLOADING_VOID(showTrack:(dbTrack *)track)
 - NEEDS_OVERLOADING_VOID(showTrack)
-- NEEDS_OVERLOADING_DOUBLE(currentZoom)
 - NEEDS_OVERLOADING_GCMAPTYPE(mapType)
-- NEEDS_OVERLOADING_VOID(currentRectangle:(CLLocationCoordinate2D *)bottomLeft topRight:(CLLocationCoordinate2D *)topRight)
 - NEEDS_OVERLOADING_VOID(placeMarker:(dbWaypoint *)wp)
 - NEEDS_OVERLOADING_VOID(removeMarker:(dbWaypoint *)wp)
 - NEEDS_OVERLOADING_VOID(updateMarker:(dbWaypoint *)wp)

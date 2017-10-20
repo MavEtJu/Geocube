@@ -39,6 +39,8 @@
 - (instancetype)initMapObject:(MapTemplateViewController *)mvc;
 - (UIImage *)waypointImage:(dbWaypoint *)wp;
 - (NSInteger)calculateSpan;
+- (double)altitudeForSpan:(double)span;
+- (double)determineAltitudeForRectangle:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2 viewPort:(CGRect)viewPort;
 
 // To be implemented by inherited classes:
 

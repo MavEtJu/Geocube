@@ -128,6 +128,31 @@ EMPTY_METHOD(mapViewDidLoad)
     return span;
 }
 
+- (double)altitudeForSpan:(double)span
+{
+    double adjacent = span / 2;
+    double height = adjacent / tan([Coordinates degrees2rad:15]);
+    return height;
+}
+
+- (double)determineAltitudeForRectangle:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2 viewPort:(CGRect)viewPort
+{
+    // Determine the borders
+    CLLocationCoordinate2D UL = CLLocationCoordinate2DMake(c1.latitude > c2.latitude ? c1.latitude : c2.latitude, c1.longitude < c2.longitude ?  c1.longitude : c2.longitude);
+    CLLocationCoordinate2D UR = CLLocationCoordinate2DMake(c1.latitude > c2.latitude ? c1.latitude : c2.latitude, c1.longitude > c2.longitude ? c1.longitude : c2.longitude);
+    CLLocationCoordinate2D LL = CLLocationCoordinate2DMake(c1.latitude < c2.latitude ? c1.latitude : c2.latitude, c1.longitude < c2.longitude ? c1.longitude : c2.longitude);
+
+    CLLocationDistance dLon = MKMetersBetweenMapPoints(MKMapPointForCoordinate(UL), MKMapPointForCoordinate(UR));
+    CLLocationDistance dLat = MKMetersBetweenMapPoints(MKMapPointForCoordinate(UL), MKMapPointForCoordinate(LL));
+
+    float ratio = viewPort.size.height / viewPort.size.width;
+
+    if (dLat > dLon) // More above each other than besides each other
+        return [self altitudeForSpan:dLat];
+    // More besides each other than above each other
+    return [self altitudeForSpan:dLon * ratio];
+}
+
 #pragma mark -- User interaction
 
 - (void)openWaypointView:(dbWaypoint *)wp

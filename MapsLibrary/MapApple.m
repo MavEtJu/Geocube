@@ -398,7 +398,7 @@
     if (zoom == YES) {
         NSInteger span = [self calculateSpan];
 
-        mapView.camera.altitude = [MapApple altitudeForSpan:span];
+        mapView.camera.altitude = [self altitudeForSpan:span];
     }
 
     mapView.camera.centerCoordinate = t;
@@ -419,30 +419,7 @@
     return log2(360 * ((mapView.frame.size.width / 256) / mapView.region.span.longitudeDelta));
 }
 
-+ (double)altitudeForSpan:(double)span
-{
-    double adjacent = span / 2;
-    double height = adjacent / tan([Coordinates degrees2rad:15]);
-    return height;
-}
 
-+ (double)determineAltitudeForRectangle:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2 viewPort:(CGRect)viewPort
-{
-    // Determine the borders
-    CLLocationCoordinate2D UL = CLLocationCoordinate2DMake(c1.latitude > c2.latitude ? c1.latitude : c2.latitude, c1.longitude < c2.longitude ?  c1.longitude : c2.longitude);
-    CLLocationCoordinate2D UR = CLLocationCoordinate2DMake(c1.latitude > c2.latitude ? c1.latitude : c2.latitude, c1.longitude > c2.longitude ? c1.longitude : c2.longitude);
-    CLLocationCoordinate2D LL = CLLocationCoordinate2DMake(c1.latitude < c2.latitude ? c1.latitude : c2.latitude, c1.longitude < c2.longitude ? c1.longitude : c2.longitude);
-
-    CLLocationDistance dLon = MKMetersBetweenMapPoints(MKMapPointForCoordinate(UL), MKMapPointForCoordinate(UR));
-    CLLocationDistance dLat = MKMetersBetweenMapPoints(MKMapPointForCoordinate(UL), MKMapPointForCoordinate(LL));
-
-    float ratio = viewPort.size.height / viewPort.size.width;
-
-    if (dLat > dLon) // More above each other than besides each other
-        return [self altitudeForSpan:dLat];
-    // More besides each other than above each other
-    return [self altitudeForSpan:dLon * ratio];
-}
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord zoomLevel:(double)zoomLevel
 {
@@ -465,7 +442,7 @@
      * Otherwise set the rectangle with a proper edge.
      */
 
-    if ([MapApple determineAltitudeForRectangle:d1 c2:d2 viewPort:self.mapvc.view.frame] < self.minimumAltitude) {
+    if ([self determineAltitudeForRectangle:d1 c2:d2 viewPort:self.mapvc.view.frame] < self.minimumAltitude) {
         CLLocationCoordinate2D c = CLLocationCoordinate2DMake((c1.latitude + c2.latitude) / 2, (c1.longitude + c2.longitude) / 2);
         mapView.camera.centerCoordinate = c;
         mapView.camera.altitude = self.minimumAltitude;
