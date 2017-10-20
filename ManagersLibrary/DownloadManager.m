@@ -82,7 +82,7 @@
     return [self imageSynchronousRequest:urlRequest returningResponse:response error:error];
 }
 
-- (NSData *)imageSynchronousRequest:(NSURLRequest *)urlRequest returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr
+- (NSData *)imageSynchronousRequest:(NSURLRequest *)urlRequest returningResponse:(NSURLResponse * __autoreleasing *)responsePtr error:(NSError * __autoreleasing *)errorPtr
 {
     dispatch_semaphore_t sem;
     __block NSData *result;

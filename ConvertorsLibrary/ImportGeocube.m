@@ -296,7 +296,7 @@ typedef NS_ENUM(NSInteger, Type) {
     [infoViewer setLineObjectTotal:iiImport total:[notices count] isLines:NO];
 
     if ([notices isKindOfClass:[NSDictionary class]] == YES)
-        notices = @[notices];
+        notices = @[(NSDictionary *)notices];
 
     [notices enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull notice, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *geocube_id = [notice objectForKey:@"id"];
@@ -343,7 +343,7 @@ typedef NS_ENUM(NSInteger, Type) {
 
     NSArray<NSDictionary *> *sites = [dict objectForKey:@"site"];
     if ([sites isKindOfClass:[NSDictionary class]] == YES)
-        sites = @[sites];
+        sites = @[(NSDictionary *)sites];
     [infoViewer setLineObjectTotal:iiImport total:[sites count] isLines:NO];
     [sites enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull site, NSUInteger idx, BOOL * _Nonnull stop) {
         [infoViewer setLineObjectCount:iiImport count:idx + 1];
@@ -761,7 +761,7 @@ typedef NS_ENUM(NSInteger, Type) {
 
         NSArray<NSDictionary *> *logtypes = [protocoldict objectForKey:@"log"];
         if ([logtypes isKindOfClass:[NSDictionary class]] == YES)
-            logtypes = @[logtypes];
+            logtypes = @[(NSDictionary *)logtypes];
         [logtypes enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull logdict, NSUInteger idx, BOOL * _Nonnull stop) {
 
             NSString *displaystring = [logdict objectForKey:@"displaystring"];
