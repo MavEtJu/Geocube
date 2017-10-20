@@ -52,7 +52,6 @@
 - (void)initMap;
 - (void)removeMap;
 - (void)setMapType:(GCMapType)maptype;
-- (GCMapType)mapType;
 
 - (void)initCamera:(CLLocationCoordinate2D)coords;
 - (void)removeCamera;
