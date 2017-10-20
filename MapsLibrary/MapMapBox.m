@@ -23,9 +23,10 @@
 
 @property (nonatomic, retain) MGLMapView *mapView;
 @property (nonatomic, retain) NSMutableArray<GCMGLPointAnnotation *> *markers;
-@property (nonatomic, retain) NSMutableArray<MGLPointAnnotation *> *circles;
+@property (nonatomic, retain) NSMutableArray<MGLPolygon *> *circles;
 @property (nonatomic) NSInteger currentAltitude;
 @property (nonatomic, retain) MGLPolyline *lineWaypointToMe;
+@property (nonatomic) BOOL showBoundary;
 
 @end
 
@@ -61,13 +62,20 @@ EMPTY_METHOD(mapViewDidLoad)
 
     self.mapView.userTrackingMode = MGLUserTrackingModeFollow;
     self.currentAltitude = 1000;
+
+    self.markers = [NSMutableArray arrayWithCapacity:100];
+    self.circles = [NSMutableArray arrayWithCapacity:100];
+}
+
+- (void)removeMap
+{
+    self.markers = nil;
+    self.circles = nil;
+    self.mapView = nil;
 }
 
 - (void)initCamera:(CLLocationCoordinate2D)coords
 {
-    self.markers = [NSMutableArray arrayWithCapacity:100];
-    self.circles = [NSMutableArray arrayWithCapacity:100];
-
     MGLMapCamera *camera = [MGLMapCamera cameraLookingAtCenterCoordinate:coords fromDistance:self.currentAltitude pitch:0 heading:0];
     [self.mapView setCamera:camera];
     self.mapView.delegate = self;
@@ -118,7 +126,7 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (CGFloat)mapView:(MGLMapView *)mapView alphaForShapeAnnotation:(MGLShape *)annotation
 {
-    return 0.5f;
+    return 1;
 }
 
 - (UIColor *)mapView:(MGLMapView *)mapView strokeColorForShapeAnnotation:(MGLShape *)annotation
@@ -126,12 +134,12 @@ EMPTY_METHOD(mapViewDidLoad)
     // Set the stroke color for shape annotations
     if (annotation == self.lineWaypointToMe)
         return [UIColor redColor];
-    return [UIColor blackColor];
+    return [UIColor blueColor];
 }
 
 - (UIColor *)mapView:(MGLMapView *)mapView fillColorForPolygonAnnotation:(MGLPolygon *)annotation
 {
-    return [UIColor colorWithRed:59.0f/255.0f green:178.0f/255.0f blue:208.0f/255.0f alpha:1.0f];
+    return [UIColor colorWithRed:0 green:0 blue:0.35 alpha:0.05];
 }
 
 
@@ -157,9 +165,9 @@ EMPTY_METHOD(mapViewDidLoad)
         [self.mapView removeAnnotation:a];
     }];
     [self.markers removeAllObjects];
-//    [self.circles enumerateObjectsUsingBlock:^( * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
-//        [self.mapView removeOverlay:a];
-//    }];
+    [self.circles enumerateObjectsUsingBlock:^(MGLPolygon * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.mapView removeOverlay:a];
+    }];
     [self.circles removeAllObjects];
 }
 
@@ -172,6 +180,34 @@ EMPTY_METHOD(mapViewDidLoad)
     marker.waypoint = wp;
     [self.mapView addAnnotation:marker];
     return marker;
+}
+
+- (MGLPolygon *)makeCircle:(dbWaypoint *)wp
+{
+    NSInteger meterRadius = 150;
+
+    // Seen at https://github.com/mapbox/mapbox-gl-native/issues/2167
+    NSUInteger degreesBetweenPoints = 8; //45 sides
+    NSUInteger numberOfPoints = floor(360 / degreesBetweenPoints);
+    double distRadians = meterRadius / 6371000.0; // earth radius in meters
+    double centerLatRadians = wp.wpt_latitude * M_PI / 180;
+    double centerLonRadians = wp.wpt_longitude * M_PI / 180;
+    CLLocationCoordinate2D coordinates[numberOfPoints]; //array to hold all the points
+    for (NSUInteger index = 0; index < numberOfPoints; index++) {
+        double degrees = index * degreesBetweenPoints;
+        double degreeRadians = degrees * M_PI / 180;
+        double pointLatRadians = asin( sin(centerLatRadians) * cos(distRadians) + cos(centerLatRadians) * sin(distRadians) * cos(degreeRadians));
+        double pointLonRadians = centerLonRadians + atan2( sin(degreeRadians) * sin(distRadians) * cos(centerLatRadians),
+                                                          cos(distRadians) - sin(centerLatRadians) * sin(pointLatRadians) );
+        double pointLat = pointLatRadians * 180 / M_PI;
+        double pointLon = pointLonRadians * 180 / M_PI;
+        CLLocationCoordinate2D point = CLLocationCoordinate2DMake(pointLat, pointLon);
+        coordinates[index] = point;
+    }
+
+    MGLPolygon *polygon = [MGLPolygon polygonWithCoordinates:coordinates count:numberOfPoints];
+    [self.mapView addOverlay:polygon];
+    return polygon;
 }
 
 - (void)placeMarkers
@@ -187,8 +223,8 @@ EMPTY_METHOD(mapViewDidLoad)
     [self.mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.markers addObject:[self makeMarker:wp]];
 
-//        if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES)
-//            [self.circles addObject:[self makeCircle:wp]];
+        if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES)
+            [self.circles addObject:[self makeCircle:wp]];
     }];
 }
 
@@ -255,10 +291,14 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (void)showBoundaries:(BOOL)yesno
 {
-    // XXX
+    self.showBoundary = yesno;
+    if (yesno == YES) {
+        [self placeMarkers];
+    } else {
+        [self removeMarkers];
+    }
 }
 
-- NEEDS_OVERLOADING_VOID(removeMap)
 - NEEDS_OVERLOADING_VOID(updateMyBearing:(CLLocationDirection)bearing)
 - NEEDS_OVERLOADING_VOID(addLineTapToMe:(CLLocationCoordinate2D)c)
 - NEEDS_OVERLOADING_VOID(removeLineTapToMe)
