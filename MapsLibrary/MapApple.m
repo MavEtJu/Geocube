@@ -752,11 +752,6 @@
     *topRight = CLLocationCoordinate2DMake(cr.center.latitude + cr.span.latitudeDelta, cr.center.longitude + cr.span.longitudeDelta);
 }
 
-- (void)updateMyBearing:(CLLocationDirection)bearing
-{
-//    [mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:YES];
-}
-
 #pragma mark -- delegation from the map
 
 // From http://stackoverflow.com/questions/5556977/determine-if-mkmapview-was-dragged-moved moby

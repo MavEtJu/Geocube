@@ -62,7 +62,6 @@
 - (void)moveCameraToAll;
 
 - (void)updateMyPosition:(CLLocationCoordinate2D)c; /* Does not affect camera */
-- (void)updateMyBearing:(CLLocationDirection)bearing;
 - (void)updateMapScaleView;
 
 - (void)showBoundaries:(BOOL)yesno;

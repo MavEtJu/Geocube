@@ -402,7 +402,6 @@ EMPTY_METHOD(mapViewDidLoad)
     }
 }
 
-- NEEDS_OVERLOADING_VOID(updateMyBearing:(CLLocationDirection)bearing)
 - NEEDS_OVERLOADING_VOID(addLineTapToMe:(CLLocationCoordinate2D)c)
 - NEEDS_OVERLOADING_VOID(removeLineTapToMe)
 - NEEDS_OVERLOADING_VOID(updateMyPosition:(CLLocationCoordinate2D)c)
