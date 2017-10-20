@@ -476,23 +476,6 @@
     }
 }
 
-- (GCMapType)mapType
-{
-    switch (mapView.mapType) {
-        case MKMapTypeStandard:
-            return MAPTYPE_NORMAL;
-        case MKMapTypeSatellite:
-            return MAPTYPE_AERIAL;
-        case MKMapTypeHybrid:
-            return MAPTYPE_HYBRIDMAPAERIAL;
-
-        case MKMapTypeSatelliteFlyover:
-        case MKMapTypeHybridFlyover:
-            return -1;
-    }
-    return MAPTYPE_NORMAL;
-}
-
 - (void)addLineMeToWaypoint
 {
     MAINQUEUE(

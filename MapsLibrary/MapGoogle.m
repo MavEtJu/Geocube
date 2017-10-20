@@ -268,25 +268,6 @@
     }
 }
 
-- (GCMapType)mapType
-{
-    switch (mapView.mapType) {
-        case kGMSTypeNormal:
-            return MAPTYPE_NORMAL;
-        case kGMSTypeSatellite:
-            return MAPTYPE_AERIAL;
-        case kGMSTypeTerrain:
-            return MAPTYPE_TERRAIN;
-        case kGMSTypeHybrid:
-            return MAPTYPE_HYBRIDMAPAERIAL;
-
-        case kGMSTypeNone:
-            return -1;
-    }
-
-    return -1;
-}
-
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord zoom:(BOOL)zoom
 {
     CLLocationCoordinate2D d1, d2;
