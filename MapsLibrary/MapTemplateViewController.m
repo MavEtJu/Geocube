@@ -38,6 +38,7 @@
     BOOL useGNSS;
 
     BOOL hasGMS;
+    BOOL hasMapbox;
     BOOL showBoundaries;
 
     BOOL isVisible;
@@ -91,6 +92,11 @@
     hasGMS = YES;
     if (IS_EMPTY(keyManager.googlemaps) == YES)
         hasGMS = NO;
+    hasMapbox = YES;
+    if (IS_EMPTY(configManager.mapboxKey) == YES)
+        hasMapbox = NO;
+    if ([self.currentMapBrand.key isEqualToString:MAPBRAND_MAPBOX] == YES && hasMapbox == NO)
+        self.currentMapBrand = [MapBrand findMapBrand:MAPBRAND_APPLEMAPS brands:mapBrands];
     if ([self.currentMapBrand.key isEqualToString:MAPBRAND_GOOGLEMAPS] == YES && hasGMS == NO)
         self.currentMapBrand = [MapBrand findMapBrand:MAPBRAND_APPLEMAPS brands:mapBrands];
 
@@ -162,6 +168,13 @@
         if (IS_EMPTY(keyManager.googlemaps) == NO) {
             hasGMS = YES;
             [GMSServices provideAPIKey:keyManager.googlemaps];
+        }
+    }
+    // Appear Mapbox if it came back
+    if (hasMapbox == NO) {
+        if (IS_EMPTY(configManager.mapboxKey) == NO) {
+            hasMapbox = YES;
+            [MGLAccountManager setAccessToken:configManager.mapboxKey];
         }
     }
 
@@ -649,6 +662,9 @@
     [mapBrands enumerateObjectsUsingBlock:^(MapBrand * _Nonnull mb, NSUInteger idx, BOOL * _Nonnull stop) {
         // Do not enable Google Maps until available
         if ([mb.key isEqualToString:MAPBRAND_GOOGLEMAPS] == YES && (IS_EMPTY(keyManager.googlemaps) == YES))
+            return;
+        // Do not enable Mapbox until available
+        if ([mb.key isEqualToString:MAPBRAND_MAPBOX] == YES && (IS_EMPTY(configManager.mapboxKey) == YES))
             return;
 
         UIAlertAction *a = [UIAlertAction

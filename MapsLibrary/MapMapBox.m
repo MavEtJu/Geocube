@@ -253,9 +253,13 @@ EMPTY_METHOD(mapViewDidLoad)
     // XXX
 }
 
+- (void)showBoundaries:(BOOL)yesno
+{
+    // XXX
+}
+
 - NEEDS_OVERLOADING_VOID(removeMap)
 - NEEDS_OVERLOADING_VOID(updateMyBearing:(CLLocationDirection)bearing)
-- NEEDS_OVERLOADING_VOID(showBoundaries:(BOOL)yesno)
 - NEEDS_OVERLOADING_VOID(addLineTapToMe:(CLLocationCoordinate2D)c)
 - NEEDS_OVERLOADING_VOID(removeLineTapToMe)
 - NEEDS_OVERLOADING_VOID(updateMyPosition:(CLLocationCoordinate2D)c)

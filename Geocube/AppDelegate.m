@@ -95,6 +95,9 @@
     // Initialize Google Maps -- after keyManager
     [GMSServices provideAPIKey:keyManager.googlemaps];
 
+    // Initialize Mapbox -- after configurationManager
+    [MGLAccountManager setAccessToken:configManager.mapboxKey];
+
     // Clean the map cache - after configurationManager
     [MapAppleCache cleanupCache];
 

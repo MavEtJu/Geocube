@@ -360,7 +360,27 @@ enum {
     [infoView setDescription:iii description:[NSString stringWithFormat:_(@"filesviewcontroller-Geocube import of %@"), fn]];
 
     NSData *data = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], fn]];
-    if ([ImportGeocube parse:data infoViewer:infoView iiImport:iii] == NO) {
+
+    BOOL success = NO;
+    BOOL done = NO;
+    if (done == NO && [fn isEqualToString:@"mapbox.geocube"] == YES) {
+        done = YES;
+        success = [ImportGeocube parse:data infoViewer:infoView iiImport:iii filetype:GEOCUBEFILETYPE_MAPBOXKEY];
+    }
+    if (done == NO && [fn isEqualToString:@"opencage.geocube"] == YES) {
+        done = YES;
+        success = [ImportGeocube parse:data infoViewer:infoView iiImport:iii filetype:GEOCUBEFILETYPE_OPENCAGEKEY];
+    }
+    if (done == NO && [fn isEqualToString:@"Log Templates and Macros.geocube"] == YES) {
+        done = YES;
+        success = [ImportGeocube parse:data infoViewer:infoView iiImport:iii filetype:GEOCUBEFILETYPE_LOGMACROS];
+    }
+    if (done == NO) {
+        done = YES;
+        success = [ImportGeocube parse:data infoViewer:infoView iiImport:iii];
+    }
+
+    if (success == NO) {
         [MyTools messageBox:self header:_(@"filesviewcontroller-Import failed") text:[NSString stringWithFormat:_(@"filesviewcontroller-There was a problem importing the file %@."), fn]];
     } else {
         [MyTools messageBox:self header:_(@"filesviewcontroller-Import successful") text:_(@"filesviewcontroller-The import was successful.")];

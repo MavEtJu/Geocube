@@ -133,6 +133,7 @@
     CHECK(@"opencage_enable", @"0");
     CHECK(@"opencage_key", @"");
     CHECK(@"opencage_wifionly", @"1");
+    CHECK(@"mapbox_key", @"");
 
     CHECK(@"configupdate_lastversion", @"1.3");
     s = [NSString stringWithFormat:@"%ld", time(NULL)];
@@ -247,6 +248,7 @@
     LOAD_BOOL   (self.opencageEnable, @"opencage_enable");
     LOAD_VALUE  (self.opencageKey, @"opencage_key");
     LOAD_BOOL   (self.opencageWifiOnly, @"opencage_wifionly");
+    LOAD_VALUE  (self.mapboxKey, @"mapbox_key");
     LOAD_VALUE  (self.configUpdateLastVersion, @"configupdate_lastversion");
     LOAD_INTEGER(self.configUpdateLastTime, @"configupdate_lasttime");
     LOAD_BOOL   (self.automaticDatabaseBackup, @"automaticdatabasebackup_enable");
@@ -444,6 +446,7 @@ UPDATE4(NSString *, NSString, currentWaypoint, @"waypoint_current")
 UPDATE4(NSString *, NSString, mapBrandDefault, @"map_branddefault")
 UPDATE4(NSString *, NSString, logTemporaryText, @"log_temporary_text")
 UPDATE4(NSString *, NSString, opencageKey, @"opencage_key")
+UPDATE4(NSString *, NSString, mapboxKey, @"mapbox_key")
 UPDATE4(NSString *, NSString, configUpdateLastVersion, @"configupdate_lastversion")
 
 UPDATE4(NSTimeInterval, double, automaticDatabaseBackupLast, @"automaticdatabasebackup_last")

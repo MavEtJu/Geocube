@@ -36,12 +36,30 @@ typedef NS_ENUM(NSInteger, Type) {
 
 + (BOOL)parse:(NSData *)data
 {
-    return [self parse:data infoViewer:nil iiImport:0];
+    return [self parse:data infoViewer:nil iiImport:0 filetype:GEOCUBEFILETYPE_NONE];
 }
 
 + (BOOL)parse:(NSData *)data infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii
 {
+    return [self parse:data infoViewer:iv iiImport:iii filetype:GEOCUBEFILETYPE_NONE];
+
+}
+
++ (BOOL)parse:(NSData *)data infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii filetype:(GeocubeFileType)filetype;
+{
     NSString *d = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(0, 1)] encoding:NSASCIIStringEncoding];
+
+    switch (filetype) {
+        case GEOCUBEFILETYPE_NONE: {
+            ImportGeocube *ig = [[ImportGeocube alloc] init];
+            return [ig parse:data infoViewer:iv iiImport:iii];
+        }
+        case GEOCUBEFILETYPE_LOGMACROS:
+            return [self parseLogMacros:data infoViewer:iv iiImport:iii];
+        case GEOCUBEFILETYPE_MAPBOXKEY:
+        case GEOCUBEFILETYPE_OPENCAGEKEY:
+            return [self parseKey:data filetype:filetype infoViewer:iv iiImport:iii];
+    }
 
     if ([d isEqualToString:@"<"] == YES) {
         // Assume XML
@@ -49,10 +67,32 @@ typedef NS_ENUM(NSInteger, Type) {
         return [ig parse:data infoViewer:iv iiImport:iii];
     }
 
-    return [self parseFlatFile:data infoViewer:iv iiImport:iii];
+    return [self parseLogMacros:data infoViewer:iv iiImport:iii];
 }
 
-+ (BOOL)parseFlatFile:(NSData *)data infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii
++ (BOOL)parseKey:(NSData *)data filetype:(GeocubeFileType)filetype infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii
+{
+    // One line with a key
+    NSString *d = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+    NSArray<NSString *> *lines = [d componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+
+    NSString *key = [lines objectAtIndex:0];
+
+    switch (filetype) {
+        case GEOCUBEFILETYPE_OPENCAGEKEY:
+            [configManager opencageKeyUpdate:key];
+            return YES;
+        case GEOCUBEFILETYPE_MAPBOXKEY:
+            [configManager mapboxKeyUpdate:key];
+            return YES;
+        default:
+            NSLog(@"ImportGeocube: Unknown filetype %ld", filetype);
+            return NO;
+    }
+    return NO;
+}
+
++ (BOOL)parseLogMacros:(NSData *)data infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii
 {
     NSString *d = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     NSArray<NSString *> *lines = [d componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];

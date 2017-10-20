@@ -49,8 +49,16 @@
 #define KEY_VERSION_STATES          1
 #define KEY_VERSION_TYPES           1
 
+typedef NS_ENUM(NSInteger, GeocubeFileType) {
+    GEOCUBEFILETYPE_NONE = 0,
+    GEOCUBEFILETYPE_LOGMACROS,
+    GEOCUBEFILETYPE_MAPBOXKEY,
+    GEOCUBEFILETYPE_OPENCAGEKEY,
+};
+
 @property (nonatomic, retain) InfoItem *iii;
 
++ (BOOL)parse:(NSData *)data infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii filetype:(GeocubeFileType)filetype;
 + (BOOL)parse:(NSData *)data infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii;
 + (BOOL)parse:(NSData *)data;
 + (NSString *)blockSeparator;

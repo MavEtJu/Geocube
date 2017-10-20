@@ -282,6 +282,7 @@ enum sections {
     SECTION_COMPASS_MAX,
 
     SECTION_MAPS_DEFAULTBRAND = 0,
+    SECTION_MAPS_MAPBOXKEY,
     SECTION_MAPS_MAX,
 
     SECTION_MAPCOLOURS_TRACK = 0,
@@ -600,6 +601,8 @@ enum sections {
                     }];
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-Default map"), value);
                 }
+                case SECTION_MAPS_MAPBOXKEY:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Mapbox key"), configManager.mapboxKey);
             }
             abort();
         }
@@ -949,6 +952,9 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
             switch (indexPath.row) {
                 case SECTION_MAPS_DEFAULTBRAND:
                     [self changeMapsDefaultBrand];
+                    break;
+                case SECTION_MAPS_MAPBOXKEY:
+                    [self changeMapboxKey];
                     break;
             }
             break;
@@ -1960,6 +1966,41 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
                                      cancelBlock:nil
                                           origin:cell.contentView
      ];
+}
+
+- (void)changeMapboxKey
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:_(@"settingsmainviewcontroller-Mapbox key")
+                                message:_(@"settingsmainviewcontroller-Enter your Mapbox key")
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:_(@"OK")
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *value = tf.text;
+                             [configManager mapboxKeyUpdate:value];
+                             [self.tableView reloadData];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = configManager.mapboxKey;
+        textField.placeholder = _(@"settingsmainviewcontroller-Mapbox key");
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 /* ********************************************************************************* */
