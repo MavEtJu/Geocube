@@ -20,23 +20,22 @@
  */
 
 @interface MapGoogle ()
-{
-    GMSMapView *mapView;
-    NSMutableArray<GMSMarker *> *markers;
-    NSMutableArray<GCGMSCircle *> *circles;
 
-    GMSPolyline *lineMeToWaypoint;
-    GMSPolyline *lineTapToMe;
-    NSMutableArray<GMSPolyline *> *linesHistory;
-    GMSMutablePath *lastPathHistory;
+@property (nonatomic, retain) GMSMapView *mapView;
+@property (nonatomic, retain) NSMutableArray<GMSMarker *> *markers;
+@property (nonatomic, retain) NSMutableArray<GCGMSCircle *> *circles;
 
-    CLLocationCoordinate2D trackBL, trackTR;
+@property (nonatomic, retain) GMSPolyline *lineMeToWaypoint;
+@property (nonatomic, retain) GMSPolyline *lineTapToMe;
+@property (nonatomic, retain) NSMutableArray<GMSPolyline *> *linesHistory;
+@property (nonatomic, retain) GMSMutablePath *lastPathHistory;
 
-    dbWaypoint *wpSelected;
+@property (nonatomic        ) CLLocationCoordinate2D trackBL, trackTR;
 
-    GMUGeometryRenderer *KMLrenderer;
-    NSMutableArray<GMUGeometryRenderer *> *KMLrenderers;
-}
+@property (nonatomic, retain) dbWaypoint *wpSelected;
+
+@property (nonatomic, retain) GMUGeometryRenderer *KMLrenderer;
+@property (nonatomic, retain) NSMutableArray<GMUGeometryRenderer *> *KMLrenderers;
 
 @end
 
@@ -65,36 +64,36 @@
 - (void)initMap
 {
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithTarget:LM.coords zoom:15];
-    mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-    mapView.mapType = kGMSTypeNormal;
+    self.mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    self.mapView.mapType = kGMSTypeNormal;
     if (self.staticHistory == NO)
-        mapView.myLocationEnabled = YES;
-    mapView.delegate = self;
-    mapView.mapStyle = currentTheme.googleMapsStyle;
+        self.mapView.myLocationEnabled = YES;
+    self.mapView.delegate = self;
+    self.mapView.mapStyle = currentTheme.googleMapsStyle;
 
-    self.mapvc.view = mapView;
+    self.mapvc.view = self.mapView;
 
-    mapScaleView = [LXMapScaleView mapScaleForGMSMapView:mapView];
+    mapScaleView = [LXMapScaleView mapScaleForGMSMapView:self.mapView];
     mapScaleView.position = kLXMapScalePositionBottomLeft;
     mapScaleView.style = kLXMapScaleStyleBar;
     [mapScaleView update];
 
-    wpSelected = nil;
+    self.wpSelected = nil;
 
-    if (linesHistory == nil)
-        linesHistory = [NSMutableArray arrayWithCapacity:100];
-    if (lastPathHistory == nil)
-        lastPathHistory = [GMSMutablePath path];
+    if (self.linesHistory == nil)
+        self.linesHistory = [NSMutableArray arrayWithCapacity:100];
+    if (self.lastPathHistory == nil)
+        self.lastPathHistory = [GMSMutablePath path];
     if (self.staticHistory == NO)
         [self showHistory];
 
-    KMLrenderers = [NSMutableArray arrayWithCapacity:3];
+    self.KMLrenderers = [NSMutableArray arrayWithCapacity:3];
     [self loadKMLs];
 }
 
 - (void)removeMap
 {
-    mapView = nil;
+    self.mapView = nil;
     mapScaleView = nil;
 }
 
@@ -102,10 +101,10 @@
 {
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithTarget:coords zoom:15];
     if (self.staticHistory == NO)
-    [mapView setCamera:camera];
+    [self.mapView setCamera:camera];
 
     if (self.staticHistory == YES)
-        [self moveCameraTo:trackBL c2:trackTR];
+        [self moveCameraTo:self.trackBL c2:self.trackTR];
 }
 
 - (void)removeCamera
@@ -114,15 +113,15 @@
 
 - (void)removeMarkers
 {
-    [markers enumerateObjectsUsingBlock:^(GMSMarker * _Nonnull m, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.markers enumerateObjectsUsingBlock:^(GMSMarker * _Nonnull m, NSUInteger idx, BOOL * _Nonnull stop) {
         m.map = nil;
     }];
-    markers = nil;
+    self.markers = nil;
 
-    [circles enumerateObjectsUsingBlock:^(GCGMSCircle * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.circles enumerateObjectsUsingBlock:^(GCGMSCircle * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
         c.map = nil;
     }];
-    circles = nil;
+    self.circles = nil;
 }
 
 - (GMSMarker *)makeMarker:(dbWaypoint *)wp
@@ -131,7 +130,7 @@
     marker.position = CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude);
     marker.title = wp.wpt_name;
     marker.snippet = wp.wpt_urlname;
-    marker.map = mapView;
+    marker.map = self.mapView;
     marker.groundAnchor = CGPointMake(11.0 / 35.0, 38.0 / 42.0);
     marker.infoWindowAnchor = CGPointMake(11.0 / 35.0, 3.0 / 42.0);
     marker.userData = wp;
@@ -144,7 +143,7 @@
     GCGMSCircle *circle = [GCGMSCircle circleWithPosition:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) radius:wp.account.distance_minimum];
     circle.strokeColor = [UIColor blueColor];
     circle.fillColor = [UIColor colorWithRed:0 green:0 blue:0.35 alpha:0.05];
-    circle.map = mapView;
+    circle.map = self.mapView;
     circle.userData = wp;
     return circle;
 }
@@ -152,19 +151,19 @@
 - (void)placeMarkers
 {
     // Remove everything from the map
-    [markers enumerateObjectsUsingBlock:^(GMSMarker * _Nonnull m, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.markers enumerateObjectsUsingBlock:^(GMSMarker * _Nonnull m, NSUInteger idx, BOOL * _Nonnull stop) {
         m.map = nil;
     }];
-    markers = nil;
+    self.markers = nil;
 
     // Add the new markers to the map
-    markers = [NSMutableArray arrayWithCapacity:20];
-    circles = [NSMutableArray arrayWithCapacity:20];
+    self.markers = [NSMutableArray arrayWithCapacity:20];
+    self.circles = [NSMutableArray arrayWithCapacity:20];
     [self.mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        [markers addObject:[self makeMarker:wp]];
+        [self.markers addObject:[self makeMarker:wp]];
 
         if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES)
-            [circles addObject:[self makeCircle:wp]];
+            [self.circles addObject:[self makeCircle:wp]];
     }];
 }
 
@@ -172,7 +171,7 @@
 {
     // Add a new marker
     __block BOOL found = NO;
-    [markers enumerateObjectsUsingBlock:^(GMSMarker * _Nonnull m, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.markers enumerateObjectsUsingBlock:^(GMSMarker * _Nonnull m, NSUInteger idx, BOOL * _Nonnull stop) {
         dbObject *o = (dbObject *)m.userData;
         if (wp._id == o._id) {
             found = YES;
@@ -182,13 +181,13 @@
     if (found == YES)
         return;
 
-    [markers addObject:[self makeMarker:wp]];
+    [self.markers addObject:[self makeMarker:wp]];
 
     // Add the boundary if needed
     if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
         GCGMSCircle *circle = [self makeCircle:wp];
-        circle.map = mapView;
-        [circles addObject:circle];
+        circle.map = self.mapView;
+        [self.circles addObject:circle];
     }
 }
 
@@ -196,7 +195,7 @@
 {
     // Remove an new marker
     __block NSUInteger idx = NSNotFound;
-    [markers enumerateObjectsUsingBlock:^(GMSMarker * _Nonnull m, NSUInteger idxx, BOOL * _Nonnull stop) {
+    [self.markers enumerateObjectsUsingBlock:^(GMSMarker * _Nonnull m, NSUInteger idxx, BOOL * _Nonnull stop) {
         dbObject *o = (dbObject *)m.userData;
         if (wp._id == o._id) {
             idx = idxx;
@@ -207,13 +206,13 @@
     if (idx == NSNotFound)
         return;
 
-    [markers removeObjectAtIndex:idx];
+    [self.markers removeObjectAtIndex:idx];
 
     // Remove the boundary if needed
     if (showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
-        [circles enumerateObjectsUsingBlock:^(GCGMSCircle * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.circles enumerateObjectsUsingBlock:^(GCGMSCircle * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
             if (c.userData == wp) {
-                [circles removeObjectAtIndex:idx];
+                [self.circles removeObjectAtIndex:idx];
                 c.map = nil;
                 *stop = YES;
             }
@@ -224,7 +223,7 @@
 - (void)updateMarker:(dbWaypoint *)wp
 {
     __block NSUInteger idx = NSNotFound;
-    [markers enumerateObjectsUsingBlock:^(GMSMarker * _Nonnull m, NSUInteger idxx, BOOL * _Nonnull stop) {
+    [self.markers enumerateObjectsUsingBlock:^(GMSMarker * _Nonnull m, NSUInteger idxx, BOOL * _Nonnull stop) {
         dbObject *o = (dbObject *)m.userData;
         if (wp._id == o._id) {
             idx = idxx;
@@ -235,7 +234,7 @@
     if (idx == NSNotFound)
         return;
 
-    [markers replaceObjectAtIndex:idx withObject:[self makeMarker:wp]];
+    [self.markers replaceObjectAtIndex:idx withObject:[self makeMarker:wp]];
 }
 
 - (void)showBoundaries:(BOOL)yesno
@@ -254,16 +253,16 @@
 {
     switch (mapType) {
         case MAPTYPE_NORMAL:
-            mapView.mapType = kGMSTypeNormal;
+            self.mapView.mapType = kGMSTypeNormal;
             break;
         case MAPTYPE_AERIAL:
-            mapView.mapType = kGMSTypeSatellite;
+            self.mapView.mapType = kGMSTypeSatellite;
             break;
         case MAPTYPE_TERRAIN:
-            mapView.mapType = kGMSTypeTerrain;
+            self.mapView.mapType = kGMSTypeTerrain;
             break;
         case MAPTYPE_HYBRIDMAPAERIAL:
-            mapView.mapType = kGMSTypeHybrid;
+            self.mapView.mapType = kGMSTypeHybrid;
             break;
     }
 }
@@ -283,9 +282,9 @@
         d2 = CLLocationCoordinate2DMake(coord.latitude + latspan, coord.longitude + longspan);
 
         GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:d1 coordinate:d2];
-        [mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:30.0f]];
+        [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:30.0f]];
     } else {
-        [mapView animateWithCameraUpdate:[GMSCameraUpdate setTarget:coord]];
+        [self.mapView animateWithCameraUpdate:[GMSCameraUpdate setTarget:coord]];
     }
 
     [mapScaleView update];
@@ -293,7 +292,7 @@
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord zoomLevel:(double)zoomLevel
 {
-    [mapView animateWithCameraUpdate:[GMSCameraUpdate setTarget:coord zoom:zoomLevel]];
+    [self.mapView animateWithCameraUpdate:[GMSCameraUpdate setTarget:coord zoom:zoomLevel]];
 }
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2
@@ -302,7 +301,7 @@
     [Coordinates makeNiceBoundary:c1 c2:c2 d1:&d1 d2:&d2 boundaryPercentage:10];
 
     GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:d1 coordinate:d2];
-    [mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:30.0f]];
+    [self.mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:30.0f]];
 
     [mapScaleView update];
 }
@@ -313,15 +312,15 @@
     [pathMeToWaypoint addCoordinate:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude)];
     [pathMeToWaypoint addCoordinate:LM.coords];
 
-    lineMeToWaypoint = [GMSPolyline polylineWithPath:pathMeToWaypoint];
-    lineMeToWaypoint.strokeWidth = 2.f;
-    lineMeToWaypoint.strokeColor = configManager.mapDestinationColour;
-    lineMeToWaypoint.map = mapView;
+    self.lineMeToWaypoint = [GMSPolyline polylineWithPath:pathMeToWaypoint];
+    self.lineMeToWaypoint.strokeWidth = 2.f;
+    self.lineMeToWaypoint.strokeColor = configManager.mapDestinationColour;
+    self.lineMeToWaypoint.map = self.mapView;
 }
 
 - (void)removeLineMeToWaypoint
 {
-    lineMeToWaypoint.map = nil;
+    self.lineMeToWaypoint.map = nil;
 }
 
 - (void)addLineTapToMe:(CLLocationCoordinate2D)c
@@ -330,18 +329,18 @@
     [path addCoordinate:c];
     [path addCoordinate:LM.coords];
 
-    lineTapToMe = [GMSPolyline polylineWithPath:path];
-    lineTapToMe.strokeWidth = 2.f;
-    lineTapToMe.strokeColor = configManager.mapDestinationColour;
-    lineTapToMe.map = mapView;
+    self.lineTapToMe = [GMSPolyline polylineWithPath:path];
+    self.lineTapToMe.strokeWidth = 2.f;
+    self.lineTapToMe.strokeColor = configManager.mapDestinationColour;
+    self.lineTapToMe.map = self.mapView;
 
     [self.mapvc showDistance:[MyTools niceDistance:[Coordinates coordinates2distance:c to:LM.coords]] timeout:5 unlock:NO];
 }
 
 - (void)removeLineTapToMe
 {
-    lineTapToMe.map = nil;
-    lineTapToMe = nil;
+    self.lineTapToMe.map = nil;
+    self.lineTapToMe = nil;
     [self.mapvc showDistance:@"" timeout:0 unlock:YES];
 }
 
@@ -352,7 +351,7 @@
 
     [LM.coordsHistorical enumerateObjectsUsingBlock:^(GCCoordsHistorical * _Nonnull mho, NSUInteger idx, BOOL * _Nonnull stop) {
         if (mho.restart == NO) {
-            [lastPathHistory addCoordinate:mho.coord];
+            [self.lastPathHistory addCoordinate:mho.coord];
             return;
         }
 
@@ -360,20 +359,20 @@
         GMSPolyline *__line__ = [GMSPolyline polylineWithPath:__path__]; \
         __line__.strokeWidth = 2.f; \
         __line__.strokeColor = configManager.mapTrackColour; \
-        __line__.map = mapView;
+        __line__.map = self.mapView;
 
         MAINQUEUE(
-            ADDPATH(lastPathHistory, lineHistory)
-            [linesHistory addObject:lineHistory];
+            ADDPATH(self.lastPathHistory, lineHistory)
+            [self.linesHistory addObject:lineHistory];
         )
 
-        [lastPathHistory removeAllCoordinates];
+        [self.lastPathHistory removeAllCoordinates];
     }];
 
-    if ([lastPathHistory count] != 0) {
+    if ([self.lastPathHistory count] != 0) {
         MAINQUEUE(
-            ADDPATH(lastPathHistory, lineHistory)
-            [linesHistory addObject:lineHistory];
+            ADDPATH(self.lastPathHistory, lineHistory)
+            [self.linesHistory addObject:lineHistory];
         )
     }
 }
@@ -388,27 +387,27 @@
      * If it is a restart, then just clear the path and add it to the linesHistory.
      */
     if (ch.restart == YES) {
-        [lastPathHistory removeAllCoordinates];
+        [self.lastPathHistory removeAllCoordinates];
     } else {
         MAINQUEUE(
-            [linesHistory lastObject].map = nil;
-            [linesHistory removeLastObject];
+            [self.linesHistory lastObject].map = nil;
+            [self.linesHistory removeLastObject];
         )
     }
 
-    [lastPathHistory addCoordinate:ch.coord];
+    [self.lastPathHistory addCoordinate:ch.coord];
 
     MAINQUEUE(
-        ADDPATH(lastPathHistory, lineHistory)
-        [linesHistory addObject:lineHistory];
+        ADDPATH(self.lastPathHistory, lineHistory)
+        [self.linesHistory addObject:lineHistory];
     )
 
-    if ([lastPathHistory count] == 200) {
-        lastPathHistory = [GMSMutablePath path];
-        [lastPathHistory addCoordinate:ch.coord];
+    if ([self.lastPathHistory count] == 200) {
+        self.lastPathHistory = [GMSMutablePath path];
+        [self.lastPathHistory addCoordinate:ch.coord];
         MAINQUEUE(
-            ADDPATH(lastPathHistory, lineHistory)
-            [linesHistory addObject:lineHistory];
+            ADDPATH(self.lastPathHistory, lineHistory)
+            [self.linesHistory addObject:lineHistory];
         )
     }
 }
@@ -418,33 +417,33 @@
     if (self.staticHistory == YES)
         return;
 
-    for (GMSPolyline *lh in linesHistory) {
+    for (GMSPolyline *lh in self.linesHistory) {
         lh.map = nil;
     };
-    [linesHistory removeAllObjects];
-    [lastPathHistory removeAllCoordinates];
+    [self.linesHistory removeAllObjects];
+    [self.lastPathHistory removeAllCoordinates];
 }
 
 - (void)showTrack:(dbTrack *)track
 {
     NSAssert(self.staticHistory, @"Shouldn't be called for staticHistory = NO");
 
-    if (linesHistory == nil)
-        linesHistory = [NSMutableArray arrayWithCapacity:100];
-    if (lastPathHistory == nil)
-        lastPathHistory = [GMSMutablePath path];
+    if (self.linesHistory == nil)
+        self.linesHistory = [NSMutableArray arrayWithCapacity:100];
+    if (self.lastPathHistory == nil)
+        self.lastPathHistory = [GMSMutablePath path];
 
-    for (GMSPolyline *lh in linesHistory) {
+    for (GMSPolyline *lh in self.linesHistory) {
         lh.map = nil;
     };
-    [linesHistory removeAllObjects];
-    [lastPathHistory removeAllCoordinates];
+    [self.linesHistory removeAllObjects];
+    [self.lastPathHistory removeAllCoordinates];
 
 #define ADDPATH(__path__, __line__) \
     GMSPolyline *__line__ = [GMSPolyline polylineWithPath:__path__]; \
         __line__.strokeWidth = 2.f; \
         __line__.strokeColor = configManager.mapTrackColour; \
-        __line__.map = mapView;
+        __line__.map = self.mapView;
 
     __block CLLocationDegrees left, right, top, bottom;
     left = 180;
@@ -459,38 +458,38 @@
         left = MIN(left, te.lon);
 
         if (te.restart == NO) {
-            [lastPathHistory addCoordinate:CLLocationCoordinate2DMake(te.lat, te.lon)];
+            [self.lastPathHistory addCoordinate:CLLocationCoordinate2DMake(te.lat, te.lon)];
             return;
         }
 
-        ADDPATH(lastPathHistory, lineHistory)
-        [linesHistory addObject:lineHistory];
+        ADDPATH(self.lastPathHistory, lineHistory)
+        [self.linesHistory addObject:lineHistory];
 
-        [lastPathHistory removeAllCoordinates];
+        [self.lastPathHistory removeAllCoordinates];
     }];
 
-    if ([lastPathHistory count] != 0) {
-        ADDPATH(lastPathHistory, lineHistory)
-        [linesHistory addObject:lineHistory];
+    if ([self.lastPathHistory count] != 0) {
+        ADDPATH(self.lastPathHistory, lineHistory)
+        [self.linesHistory addObject:lineHistory];
     }
 
-    trackBL = CLLocationCoordinate2DMake(bottom, left);
-    trackTR = CLLocationCoordinate2DMake(top, right);
+    self.trackBL = CLLocationCoordinate2DMake(bottom, left);
+    self.trackTR = CLLocationCoordinate2DMake(top, right);
 
     [self performSelector:@selector(showTrack) withObject:nil afterDelay:1];
 }
 
 - (void)showTrack
 {
-    [linesHistory enumerateObjectsUsingBlock:^(GMSPolyline * _Nonnull line, NSUInteger idx, BOOL * _Nonnull stop) {
-        line.map = mapView;
+    [self.linesHistory enumerateObjectsUsingBlock:^(GMSPolyline * _Nonnull line, NSUInteger idx, BOOL * _Nonnull stop) {
+        line.map = self.mapView;
     }];
-    [self moveCameraTo:trackBL c2:trackTR];
+    [self moveCameraTo:self.trackBL c2:self.trackTR];
 }
 
 - (void)removeKMLs
 {
-    [KMLrenderers enumerateObjectsUsingBlock:^(GMUGeometryRenderer * _Nonnull renderer, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.KMLrenderers enumerateObjectsUsingBlock:^(GMUGeometryRenderer * _Nonnull renderer, NSUInteger idx, BOOL * _Nonnull stop) {
         [renderer clear];
     }];
 }
@@ -500,31 +499,31 @@
     NSURL *url = [NSURL fileURLWithPath:path];
     GMUKMLParser *parser = [[GMUKMLParser alloc] initWithURL:url];
     [parser parse];
-    GMUGeometryRenderer *renderer = [[GMUGeometryRenderer alloc] initWithMap:mapView
+    GMUGeometryRenderer *renderer = [[GMUGeometryRenderer alloc] initWithMap:self.mapView
                                                                   geometries:parser.placemarks
                                                                       styles:parser.styles];
     [renderer render];
-    [KMLrenderers addObject:renderer];
+    [self.KMLrenderers addObject:renderer];
 }
 
 - (CLLocationCoordinate2D)currentCenter
 {
-    CGPoint point = mapView.center;
+    CGPoint point = self.mapView.center;
     CLLocationCoordinate2D loc;
-    loc = [mapView.projection coordinateForPoint:point];
+    loc = [self.mapView.projection coordinateForPoint:point];
     return loc;
 }
 
 - (double)currentZoom
 {
-    CGFloat zoom = mapView.camera.zoom;
+    CGFloat zoom = self.mapView.camera.zoom;
     return zoom;
 }
 
 - (void)currentRectangle:(CLLocationCoordinate2D *)bottomLeft topRight:(CLLocationCoordinate2D *)topRight
 {
     GMSVisibleRegion visibleRegion;
-    visibleRegion = mapView.projection.visibleRegion;
+    visibleRegion = self.mapView.projection.visibleRegion;
 
     GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithRegion:visibleRegion];
 
@@ -556,23 +555,23 @@
 
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker
 {
-    if (lineTapToMe != nil)
+    if (self.lineTapToMe != nil)
         [self removeLineTapToMe];
 
-    wpSelected = marker.userData;
-    [self.mapvc showWaypointInfo:wpSelected];
+    self.wpSelected = marker.userData;
+    [self.mapvc showWaypointInfo:self.wpSelected];
     return YES;
 }
 
 - (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
 {
-    if (wpSelected != nil) {
+    if (self.wpSelected != nil) {
         [self.mapvc removeWaypointInfo];
-        wpSelected = nil;
+        self.wpSelected = nil;
         return;
     }
 
-    if (lineTapToMe != nil) {
+    if (self.lineTapToMe != nil) {
         [self removeLineTapToMe];
         return;
     }
