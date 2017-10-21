@@ -358,8 +358,8 @@
     [self.circles enumerateObjectsUsingBlock:^(GCCircle * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
         if (overlay == c) {
             circleRenderer = [[MKCircleRenderer alloc] initWithCircle:overlay];
-            circleRenderer.strokeColor = [UIColor blueColor];
-            circleRenderer.fillColor = [UIColor colorWithRed:0 green:0 blue:0.35 alpha:0.05];
+            circleRenderer.strokeColor = configManager.mapCircleRingColour;
+            circleRenderer.fillColor = [configManager.mapCircleFillColour colorWithAlphaComponent:0.05];;
             circleRenderer.lineWidth = 1;
             *stop = YES;
         }

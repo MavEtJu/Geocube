@@ -287,6 +287,8 @@ enum sections {
 
     SECTION_MAPCOLOURS_TRACK = 0,
     SECTION_MAPCOLOURS_DESTINATION,
+    SECTION_MAPCOLOURS_CIRCLERING,
+    SECTION_MAPCOLOURS_CIRCLEFILL,
     SECTION_MAPCOLOURS_MAX,
 
     SECTION_APPS_EXTERNALMAP = 0,
@@ -584,6 +586,10 @@ enum sections {
                     CELL_RIGHTIMAGE(_(@"settingsmainviewcontroller-Destination line"), [ImageManager circleWithColour:configManager.mapDestinationColour])
                 case SECTION_MAPCOLOURS_TRACK:
                     CELL_RIGHTIMAGE(_(@"settingsmainviewcontroller-Track line"), [ImageManager circleWithColour:configManager.mapTrackColour])
+                case SECTION_MAPCOLOURS_CIRCLERING:
+                    CELL_RIGHTIMAGE(_(@"settingsmainviewcontroller-Boundary circle ring"), [ImageManager circleWithColour:configManager.mapCircleRingColour])
+                case SECTION_MAPCOLOURS_CIRCLEFILL:
+                    CELL_RIGHTIMAGE(_(@"settingsmainviewcontroller-Boundary circle fill"), [ImageManager circleWithColour:configManager.mapCircleFillColour])
             }
             abort();
         }
@@ -993,6 +999,18 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
                 }
                 case SECTION_MAPCOLOURS_DESTINATION: {
                     UIViewController *newController = [[SettingsMainColorPickerViewController alloc] init:SettingsMainColorPickerDestination];
+                    newController.edgesForExtendedLayout = UIRectEdgeNone;
+                    [self.navigationController pushViewController:newController animated:YES];
+                    break;
+                }
+                case SECTION_MAPCOLOURS_CIRCLERING: {
+                    UIViewController *newController = [[SettingsMainColorPickerViewController alloc] init:SettingsMainColorPickerCircleRing];
+                    newController.edgesForExtendedLayout = UIRectEdgeNone;
+                    [self.navigationController pushViewController:newController animated:YES];
+                    break;
+                }
+                case SECTION_MAPCOLOURS_CIRCLEFILL: {
+                    UIViewController *newController = [[SettingsMainColorPickerViewController alloc] init:SettingsMainColorPickerCircleFill];
                     newController.edgesForExtendedLayout = UIRectEdgeNone;
                     [self.navigationController pushViewController:newController animated:YES];
                     break;

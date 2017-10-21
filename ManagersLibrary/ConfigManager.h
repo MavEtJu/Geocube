@@ -51,6 +51,8 @@ PROTO_N (NSInteger, mapExternal);
 PROTO_NR(NSString *, mapBrandDefault);
 PROTO_N3(UIColor *, mapTrackColour, NSString *);
 PROTO_N3(UIColor *, mapDestinationColour, NSString *);
+PROTO_N3(UIColor *, mapCircleRingColour, NSString *);
+PROTO_N3(UIColor *, mapCircleFillColour, NSString *);
 PROTO_N (NSInteger, compassType);
 PROTO_N (NSInteger, themeType);
 PROTO_N (BOOL, soundDirection);

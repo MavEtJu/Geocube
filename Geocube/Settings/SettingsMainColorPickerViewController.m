@@ -64,6 +64,14 @@
             l.text = _(@"settingsmaincolorpickerviewcontroller-Destination");
             currentColour = configManager.mapDestinationColour;
             break;
+        case SettingsMainColorPickerCircleRing:
+            l.text = _(@"settingsmaincolorpickerviewcontroller-Boundary Circle Ring");
+            currentColour = configManager.mapCircleRingColour;
+            break;
+        case SettingsMainColorPickerCircleFill:
+            l.text = _(@"settingsmaincolorpickerviewcontroller-Boundary Circle Fill");
+            currentColour = configManager.mapCircleFillColour;
+            break;
         default:
             l.text = _(@"settingsmaincolorpickerviewcontroller-Wot?");
             break;
@@ -129,6 +137,12 @@
         case SettingsMainColorPickerDestination:
             [configManager mapDestinationColourUpdate:hexString];
             break;
+        case SettingsMainColorPickerCircleRing:
+            [configManager mapCircleRingColourUpdate:hexString];
+            break;
+        case SettingsMainColorPickerCircleFill:
+            [configManager mapCircleFillColourUpdate:hexString];
+            break;
     }
 
     [self.navigationController popViewControllerAnimated:YES];
@@ -143,6 +157,12 @@
             break;
         case SettingsMainColorPickerDestination:
             [colorPickerView setColor:configManager.mapDestinationColour];
+            break;
+        case SettingsMainColorPickerCircleRing:
+            [colorPickerView setColor:configManager.mapCircleRingColour];
+            break;
+        case SettingsMainColorPickerCircleFill:
+            [colorPickerView setColor:configManager.mapCircleFillColour];
             break;
     }
 }

@@ -64,6 +64,8 @@
     CHECK(@"map_branddefault", @"apple");
     CHECK(@"map_track_colour", @"00F0F0");
     CHECK(@"map_destination_colour", @"FF0000");
+    CHECK(@"map_circle_ring_colour", @"0000FF");
+    CHECK(@"map_circle_fill_colour", @"000013");
 
     CHECK(@"compass_type", @"0");
     NSString *s = [NSString stringWithFormat:@"%ld", (long)THEME_IOS_NORMALSIZE];
@@ -280,6 +282,8 @@
     self.currentTrack = [dbTrack dbGet:[[dbConfig dbGetByKey:@"track_current"].value integerValue]];
     self.mapTrackColour = [ImageManager RGBtoColor:[dbConfig dbGetByKey:@"map_track_colour"].value];
     self.mapDestinationColour = [ImageManager RGBtoColor:[dbConfig dbGetByKey:@"map_destination_colour"].value];
+    self.mapCircleFillColour = [ImageManager RGBtoColor:[dbConfig dbGetByKey:@"map_circle_ring_colour"].value];
+    self.mapCircleRingColour = [ImageManager RGBtoColor:[dbConfig dbGetByKey:@"map_circle_fill_colour"].value];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -464,6 +468,16 @@ UPDATE5(dbTrack *, NSId, currentTrack, @"track_current", _id)
 {
     self.mapDestinationColour = [ImageManager RGBtoColor:value];
     [self NSStringUpdate:@"map_destination_colour" value:value];
+}
+- (void)mapCircleRingColourUpdate:(NSString *)value
+{
+    self.mapCircleRingColour = [ImageManager RGBtoColor:value];
+    [self NSStringUpdate:@"map_circle_ring_colour" value:value];
+}
+- (void)mapCircleFillColourUpdate:(NSString *)value
+{
+    self.mapCircleFillColour = [ImageManager RGBtoColor:value];
+    [self NSStringUpdate:@"map_circle_fill_colour" value:value];
 }
 
 @end

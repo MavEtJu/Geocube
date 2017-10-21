@@ -29,7 +29,8 @@
 @property (nonatomic, retain) MGLMapView *mapView;
 
 @property (nonatomic, retain) NSMutableArray<GCMGLPointAnnotation *> *markers;
-@property (nonatomic, retain) NSMutableArray<MGLPolygon *> *circles;
+@property (nonatomic, retain) NSMutableArray<MGLPolygon *> *circleFills;
+@property (nonatomic, retain) NSMutableArray<MGLPolyline *> *circleLines;
 
 @property (nonatomic        ) NSInteger currentAltitude;
 
@@ -75,7 +76,8 @@ EMPTY_METHOD(mapViewDidLoad)
     self.currentAltitude = 1000;
 
     self.markers = [NSMutableArray arrayWithCapacity:100];
-    self.circles = [NSMutableArray arrayWithCapacity:100];
+    self.circleLines = [NSMutableArray arrayWithCapacity:100];
+    self.circleFills = [NSMutableArray arrayWithCapacity:100];
 
     self.linesHistory = [NSMutableArray arrayWithCapacity:100];
 
@@ -85,8 +87,10 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (void)removeMap
 {
+    [self removeMarkers];
     self.markers = nil;
-    self.circles = nil;
+    self.circleLines = nil;
+    self.circleFills = nil;
     self.mapView = nil;
 }
 
@@ -222,10 +226,14 @@ EMPTY_METHOD(mapViewDidLoad)
         [self.mapView removeAnnotation:a];
     }];
     [self.markers removeAllObjects];
-    [self.circles enumerateObjectsUsingBlock:^(MGLPolygon * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.circleLines enumerateObjectsUsingBlock:^(MGLPolyline * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.mapView removeOverlay:a];
     }];
-    [self.circles removeAllObjects];
+    [self.circleLines removeAllObjects];
+    [self.circleFills enumerateObjectsUsingBlock:^(MGLPolygon * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.mapView removeOverlay:a];
+    }];
+    [self.circleFills removeAllObjects];
 }
 
 - (GCMGLPointAnnotation *)makeMarker:(dbWaypoint *)wp
@@ -235,18 +243,19 @@ EMPTY_METHOD(mapViewDidLoad)
     marker.title = wp.wpt_name;
     marker.subtitle = wp.wpt_urlname;
     marker.waypoint = wp;
+
+    [self.markers addObject:marker];
     [self.mapView addAnnotation:marker];
+
     return marker;
 }
 
 - (MGLPolygon *)makeCircle:(dbWaypoint *)wp
 {
-    NSInteger meterRadius = 150;
-
     // Seen at https://github.com/mapbox/mapbox-gl-native/issues/2167
-    NSUInteger degreesBetweenPoints = 8; //45 sides
-    NSUInteger numberOfPoints = floor(360 / degreesBetweenPoints);
-    double distRadians = meterRadius / 6371000.0; // earth radius in meters
+    NSUInteger degreesBetweenPoints = 9; //45 sides
+    NSUInteger numberOfPoints = floor(360 / degreesBetweenPoints) + 1;
+    double distRadians = wp.account.distance_minimum / 6371000.0; // earth radius in meters
     double centerLatRadians = wp.wpt_latitude * M_PI / 180;
     double centerLonRadians = wp.wpt_longitude * M_PI / 180;
     CLLocationCoordinate2D coordinates[numberOfPoints]; //array to hold all the points
@@ -262,26 +271,26 @@ EMPTY_METHOD(mapViewDidLoad)
         coordinates[index] = point;
     }
 
+    MGLPolyline *polyline = [MGLPolyline polylineWithCoordinates:coordinates count:numberOfPoints];
+    [self.circleLines addObject:polyline];
+    [self.mapView addOverlay:polyline];
     MGLPolygon *polygon = [MGLPolygon polygonWithCoordinates:coordinates count:numberOfPoints];
+    [self.circleFills addObject:polygon];
     [self.mapView addOverlay:polygon];
+
     return polygon;
 }
 
 - (void)placeMarkers
 {
     // Remove everything from the map
-    [self.markers enumerateObjectsUsingBlock:^(MGLPointAnnotation * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.mapView removeAnnotation:a];
-    }];
-    [self.markers removeAllObjects];
-    [self.circles removeAllObjects];
+    [self removeMarkers];
 
     // Add the new markers to the map
     [self.mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.markers addObject:[self makeMarker:wp]];
-
+        [self makeMarker:wp];
         if (self.showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES)
-            [self.circles addObject:[self makeCircle:wp]];
+            [self makeCircle:wp];
     }];
 }
 
@@ -305,8 +314,33 @@ EMPTY_METHOD(mapViewDidLoad)
     return annotationImage;
 }
 
+- (CGFloat)mapView:(MGLMapView *)mapView lineWidthForPolylineAnnotation:(nonnull MGLPolyline *)annotation
+{
+    __block BOOL found = NO;
+    [self.circleLines enumerateObjectsUsingBlock:^(MGLPolyline * _Nonnull circle, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (circle == annotation) {
+            *stop = YES;
+            found = YES;
+        }
+    }];
+    if (found == YES)
+        return 3;
+
+    return 100;
+}
+
 - (CGFloat)mapView:(MGLMapView *)mapView alphaForShapeAnnotation:(MGLShape *)annotation
 {
+    __block BOOL found = NO;
+    [self.circleFills enumerateObjectsUsingBlock:^(MGLPolygon * _Nonnull circle, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (circle == annotation) {
+            *stop = YES;
+            found = YES;
+        }
+    }];
+    if (found == YES)
+        return 0.05;
+
     return 1;
 }
 
@@ -318,14 +352,23 @@ EMPTY_METHOD(mapViewDidLoad)
 
     __block BOOL found = NO;
 
-    [self.circles enumerateObjectsUsingBlock:^(MGLPolygon * _Nonnull circle, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.circleFills enumerateObjectsUsingBlock:^(MGLPolygon * _Nonnull circle, NSUInteger idx, BOOL * _Nonnull stop) {
         if (circle == annotation) {
             *stop = YES;
             found = YES;
         }
     }];
     if (found == YES)
-        return [UIColor blueColor];
+        return configManager.mapCircleFillColour;
+
+    [self.circleLines enumerateObjectsUsingBlock:^(MGLPolyline * _Nonnull circle, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (circle == annotation) {
+            *stop = YES;
+            found = YES;
+        }
+    }];
+    if (found == YES)
+        return configManager.mapCircleRingColour;
 
     [self.linesHistory enumerateObjectsUsingBlock:^(MGLPolyline * _Nonnull lh, NSUInteger idx, BOOL * _Nonnull stop) {
         if (lh == annotation) {
@@ -336,20 +379,20 @@ EMPTY_METHOD(mapViewDidLoad)
     if (found == YES)
         return configManager.mapTrackColour;
 
-    return [UIColor redColor];
+    return [UIColor whiteColor];
 }
 
 - (UIColor *)mapView:(MGLMapView *)mapView fillColorForPolygonAnnotation:(MGLPolygon *)annotation
 {
     __block BOOL found = NO;
-    [self.circles enumerateObjectsUsingBlock:^(MGLPolygon * _Nonnull circle, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.circleFills enumerateObjectsUsingBlock:^(MGLPolygon * _Nonnull circle, NSUInteger idx, BOOL * _Nonnull stop) {
         if (circle == annotation) {
             *stop = YES;
             found = YES;
         }
     }];
     if (found == YES)
-        return [UIColor colorWithRed:0 green:0 blue:0.35 alpha:0.05];
+        return configManager.mapCircleFillColour;
 
     return [UIColor colorWithRed:1 green:1 blue:1 alpha:0.05];
 }

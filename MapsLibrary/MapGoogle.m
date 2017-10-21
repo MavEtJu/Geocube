@@ -141,8 +141,8 @@
 - (GCGMSCircle *)makeCircle:(dbWaypoint *)wp
 {
     GCGMSCircle *circle = [GCGMSCircle circleWithPosition:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) radius:wp.account.distance_minimum];
-    circle.strokeColor = [UIColor blueColor];
-    circle.fillColor = [UIColor colorWithRed:0 green:0 blue:0.35 alpha:0.05];
+    circle.strokeColor = configManager.mapCircleRingColour;
+    circle.fillColor = [configManager.mapCircleFillColour colorWithAlphaComponent:0.05];;
     circle.map = self.mapView;
     circle.userData = wp;
     return circle;
