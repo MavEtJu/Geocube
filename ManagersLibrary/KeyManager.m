@@ -20,9 +20,8 @@
  */
 
 @interface KeyManager ()
-{
-    NSDictionary *contentDict;
-}
+
+@property (nonatomic, retain) NSDictionary *contentDict;
 
 @end
 
@@ -33,18 +32,17 @@
     self = [super init];
 
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"EncryptionKeys" ofType:@"plist"];
-    contentDict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    self.contentDict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
 
-    self.gca_api = [contentDict objectForKey:@"gca-api"];
-    self.googlemaps = [contentDict objectForKey:@"googlemaps"];
-    self.mapbox = [contentDict objectForKey:@"mapbox"];
+    self.gca_api = [self.contentDict objectForKey:@"gca-api"];
+    self.googlemaps = [self.contentDict objectForKey:@"googlemaps"];
 
     return self;
 }
 
 - (NSString *)sharedSecret:(NSString *)key
 {
-    return [contentDict objectForKey:[NSString stringWithFormat:@"sharedsecret_%@", key]];
+    return [self.contentDict objectForKey:[NSString stringWithFormat:@"sharedsecret_%@", key]];
 }
 
 - (NSString *)decrypt:(NSString *)key data:(NSString *)encryptedString
