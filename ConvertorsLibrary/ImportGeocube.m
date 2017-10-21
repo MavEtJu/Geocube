@@ -42,7 +42,6 @@ typedef NS_ENUM(NSInteger, Type) {
 + (BOOL)parse:(NSData *)data infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii
 {
     return [self parse:data infoViewer:iv iiImport:iii filetype:GEOCUBEFILETYPE_NONE];
-
 }
 
 + (BOOL)parse:(NSData *)data infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii filetype:(GeocubeFileType)filetype;

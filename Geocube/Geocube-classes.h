@@ -80,6 +80,7 @@
 @class GCLabelNormalText;
 @class GCLabelSmallText;
 @class GCLocationCoordinate2D;
+@class GCMGLPointAnnotation;
 @class GCMutableArray;
 @class GCMutableURLRequest;
 @class GCOAuthBlackbox;

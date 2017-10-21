@@ -223,6 +223,12 @@
 "settingsmainviewcontroller-Size of font in pixels\nSmall: 10 pixels\nNormal: 15 pixels" = "Size of font in pixels\nSmall: 10 pixels\nNormal: 15 pixels";
 "settingsmainviewcontroller-Size of font in pixels\nSmall: 17 pixels\nNormal: 24 pixels" = "Size of font in pixels\nSmall: 17 pixels\nNormal: 24 pixels";
 
+"settingsmaincolorpickerviewcontroller-Boundary Circle Fill" = "Boundary Circle Fill";
+"settingsmaincolorpickerviewcontroller-Boundary Circle Ring" = "Boundary Circle Ring";
+"settingsmainviewcontroller-Boundary circle fill" = "Boundary circle fill";
+"settingsmainviewcontroller-Boundary circle ring" = "Boundary circle ring";
+"settingsmainviewcontroller-Enter your Mapbox key" = "Enter your Mapbox key";
+"settingsmainviewcontroller-Mapbox key" = "Mapbox key";
 
 "settingsmainviewcontroller-Restart required" = "Restart required";
 "settingsmainviewcontroller-When you are finished with these settings, please leave Geocube, swipe it up and restart it." = "When you are finished with these settings, please leave Geocube, swipe it up and restart it.";

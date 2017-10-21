@@ -72,7 +72,7 @@
     self.mapView = [[MKMapView alloc] initWithFrame:self.mapvc.view.frame];
     self.mapView.delegate = self;
     self.mapvc.view = self.mapView;
-    
+
     if (self.staticHistory == NO)
         self.mapView.showsUserLocation = YES;
 
@@ -359,7 +359,7 @@
         if (overlay == c) {
             circleRenderer = [[MKCircleRenderer alloc] initWithCircle:overlay];
             circleRenderer.strokeColor = configManager.mapCircleRingColour;
-            circleRenderer.fillColor = [configManager.mapCircleFillColour colorWithAlphaComponent:0.05];;
+            circleRenderer.fillColor = [configManager.mapCircleFillColour colorWithAlphaComponent:0.05];
             circleRenderer.lineWidth = 1;
             *stop = YES;
         }

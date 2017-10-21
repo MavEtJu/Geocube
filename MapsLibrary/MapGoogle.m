@@ -142,7 +142,7 @@
 {
     GCGMSCircle *circle = [GCGMSCircle circleWithPosition:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) radius:wp.account.distance_minimum];
     circle.strokeColor = configManager.mapCircleRingColour;
-    circle.fillColor = [configManager.mapCircleFillColour colorWithAlphaComponent:0.05];;
+    circle.fillColor = [configManager.mapCircleFillColour colorWithAlphaComponent:0.05];
     circle.map = self.mapView;
     circle.userData = wp;
     return circle;

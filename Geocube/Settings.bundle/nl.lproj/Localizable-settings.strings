@@ -225,6 +225,12 @@
 "settingsmainviewcontroller-Size of font in pixels\nSmall: 10 pixels\nNormal: 15 pixels" = "Font grootte\nKlein: 10 pixels\nNormaal: 15 pixels";
 "settingsmainviewcontroller-Size of font in pixels\nSmall: 17 pixels\nNormal: 24 pixels" = "Font grootte\nKlein: 17 pixels\nNormaal: 24 pixels";
 
+"settingsmaincolorpickerviewcontroller-Boundary Circle Fill" = "Waypoint cirkel vulling kleur";
+"settingsmaincolorpickerviewcontroller-Boundary Circle Ring" = "Waypoint cirkel grens kleur";
+"settingsmainviewcontroller-Boundary circle fill" = "Waypoint cirkel vulling";
+"settingsmainviewcontroller-Boundary circle ring" = "Waypoint cirkel grens";
+"settingsmainviewcontroller-Enter your Mapbox key" = "Geef je Mapbox key hier";
+"settingsmainviewcontroller-Mapbox key" = "Mapbox key";
 
 "settingsmainviewcontroller-Restart required" = "Herstart nodig";
 "settingsmainviewcontroller-When you are finished with these settings, please leave Geocube, swipe it up and restart it." = "Wanneer je klaar bent met de veranderingen, verlaat dan Geocube, schiet het omhoog en start het opnieuw.";

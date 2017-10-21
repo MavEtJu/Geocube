@@ -99,7 +99,6 @@ EMPTY_METHOD(mapViewDidLoad)
     MGLMapCamera *camera = [MGLMapCamera cameraLookingAtCenterCoordinate:coords fromDistance:self.currentAltitude pitch:0 heading:0];
     [self.mapView setCamera:camera];
     self.mapView.delegate = self;
-
 }
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord zoom:(BOOL)zoom
@@ -399,7 +398,6 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (void)setMapType:(GCMapType)mapType
 {
-
     NSURL *styleURL = nil;
     switch (mapType) {
         case MAPTYPE_NORMAL:
@@ -415,7 +413,7 @@ EMPTY_METHOD(mapViewDidLoad)
             styleURL = [MGLStyle satelliteStreetsStyleURL];
             break;
     }
-    
+
     self.mapView.styleURL = styleURL;
 }
 
