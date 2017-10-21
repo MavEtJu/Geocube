@@ -27,7 +27,7 @@
 }
 
 @property (nonatomic, retain) NSMutableArray<GCWaypointAnnotation *> *markers;
-@property (nonatomic, retain) NSMutableArray<GCCircle *> *circles;
+@property (nonatomic, retain) NSMutableArray<GCMKCircle *> *circles;
 
 @property (nonatomic, retain) MKPolyline *lineMeToWaypoint;
 @property (nonatomic, retain) MKPolylineRenderer *viewLineMeToWaypoint;
@@ -147,7 +147,7 @@
             [self.markers addObject:annotation];
 
             if (self.showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
-                GCCircle *circle = [GCCircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) radius:wp.account.distance_minimum];
+                GCMKCircle *circle = [GCMKCircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) radius:wp.account.distance_minimum];
                 circle.waypoint = wp;
                 [self.circles addObject:circle];
             }
@@ -190,7 +190,7 @@
 
     // Take care of the boundary circles
     if (self.showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
-        GCCircle *circle = [GCCircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) radius:wp.account.distance_minimum];
+        GCMKCircle *circle = [GCMKCircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) radius:wp.account.distance_minimum];
         circle.waypoint = wp;
         [self.circles addObject:circle];
         [self.mapView addOverlay:circle];
@@ -217,7 +217,7 @@
 
     // Take care of the boundary circles
     if (self.showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
-        [self.circles enumerateObjectsUsingBlock:^(GCCircle * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.circles enumerateObjectsUsingBlock:^(GCMKCircle * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
             if (c.waypoint._id == wp._id) {
                 [self.mapView removeOverlay:c];
                 [self.circles removeObject:c];
@@ -253,14 +253,14 @@
 
     // Take care of the boundary circles
     if (self.showBoundary == YES) {
-        [self.circles enumerateObjectsUsingBlock:^(GCCircle * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.circles enumerateObjectsUsingBlock:^(GCMKCircle * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
             if (c.waypoint._id == wp._id) {
                 [self.mapView removeOverlay:c];
                 [self.circles removeObject:c];
                 *stop = YES;
             }
         }];
-        GCCircle *circle = [GCCircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) radius:wp.account.distance_minimum];
+        GCMKCircle *circle = [GCMKCircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) radius:wp.account.distance_minimum];
         circle.waypoint = wp;
         [self.circles addObject:circle];
         [self.mapView addOverlay:circle];
@@ -274,7 +274,7 @@
         self.circles = [NSMutableArray arrayWithCapacity:[self.mapvc.waypointsArray count]];
         [self.mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
             if (self.showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
-                GCCircle *circle = [GCCircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) radius:wp.account.distance_minimum];
+                GCMKCircle *circle = [GCMKCircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) radius:wp.account.distance_minimum];
                 circle.waypoint = wp;
                 [self.circles addObject:circle];
             }
@@ -355,7 +355,7 @@
         return vlHistory;
 
     __block MKCircleRenderer *circleRenderer = nil;
-    [self.circles enumerateObjectsUsingBlock:^(GCCircle * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.circles enumerateObjectsUsingBlock:^(GCMKCircle * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
         if (overlay == c) {
             circleRenderer = [[MKCircleRenderer alloc] initWithCircle:overlay];
             circleRenderer.strokeColor = configManager.mapCircleRingColour;

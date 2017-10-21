@@ -64,7 +64,6 @@
 @class GCArray;
 @class GCBoundingBox;
 @class GCButton;
-@class GCCircle;
 @class GCCloseButton;
 @class GCCoordsHistorical;
 @class GCData;
@@ -81,6 +80,7 @@
 @class GCLabelSmallText;
 @class GCLocationCoordinate2D;
 @class GCMGLPointAnnotation;
+@class GCMKCircle;
 @class GCMutableArray;
 @class GCMutableURLRequest;
 @class GCOAuthBlackbox;

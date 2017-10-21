@@ -19,10 +19,10 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface GCCircle ()
+@interface GCMKCircle ()
 
 @end
 
-@implementation GCCircle
+@implementation GCMKCircle
 
 @end

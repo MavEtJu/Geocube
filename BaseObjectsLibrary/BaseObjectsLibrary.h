@@ -29,7 +29,7 @@
 #import "BaseObjectsLibrary/GCURLRequestObjects.h"
 
 /* Maps */
-#import "BaseObjectsLibrary/GCCircle.h"
+#import "BaseObjectsLibrary/GCMKCircle.h"
 #import "BaseObjectsLibrary/GCCoordsHistorical.h"
 #import "BaseObjectsLibrary/GCGMSCircle.h"
 #import "BaseObjectsLibrary/GCWaypointAnnotation.h"
