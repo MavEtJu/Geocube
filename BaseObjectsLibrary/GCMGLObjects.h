@@ -40,4 +40,3 @@
 @interface GCMGLPolylineTrack : MGLPolyline
 
 @end
-

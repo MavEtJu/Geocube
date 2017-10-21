@@ -80,6 +80,10 @@
 @class GCLabelSmallText;
 @class GCLocationCoordinate2D;
 @class GCMGLPointAnnotation;
+@class GCMGLPolygonCircleFill;
+@class GCMGLPolylineCircleEdge;
+@class GCMGLPolylineLineToMe;
+@class GCMGLPolylineTrack;
 @class GCMKCircle;
 @class GCMutableArray;
 @class GCMutableURLRequest;
