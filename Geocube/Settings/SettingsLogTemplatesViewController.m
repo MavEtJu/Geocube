@@ -53,10 +53,10 @@ enum {
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELL];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLWITHSUBTITLE bundle:nil] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
 
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuAddTemplate label:_(@"settingslogtemplatesviewcontroller-Add template")];
-    [lmi addItem:menuAddMacro label:_(@"settingslogtemplatesviewcontroller-Add macro")];
-    [lmi addItem:menuBackup label:_(@"settingslogtemplatesviewcontroller-Backup")];
+    self.lmi = [[LocalMenuItems alloc] init:menuMax];
+    [self.lmi addItem:menuAddTemplate label:_(@"settingslogtemplatesviewcontroller-Add template")];
+    [self.lmi addItem:menuAddMacro label:_(@"settingslogtemplatesviewcontroller-Add macro")];
+    [self.lmi addItem:menuBackup label:_(@"settingslogtemplatesviewcontroller-Backup")];
 }
 
 - (void)reloadLogXxx

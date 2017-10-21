@@ -48,9 +48,9 @@ enum {
         [logtypes addObject:[NSNumber numberWithInteger:tb.logtype]];
     }];
 
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuPickup label:_(@"waypointlogtrackablesviewcontroller-Pickup")];
-    [lmi addItem:menuDiscover label:_(@"waypointlogtrackablesviewcontroller-Discover")];
+    self.lmi = [[LocalMenuItems alloc] init:menuMax];
+    [self.lmi addItem:menuPickup label:_(@"waypointlogtrackablesviewcontroller-Pickup")];
+    [self.lmi addItem:menuDiscover label:_(@"waypointlogtrackablesviewcontroller-Discover")];
 
     self.hasCloseButton = YES;
     _delegate = nil;

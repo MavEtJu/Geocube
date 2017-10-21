@@ -51,9 +51,9 @@ enum {
 
     [self makeInfoView];
 
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuICloud label:_(@"filesviewcontroller-iCloud")];
-    [lmi addItem:menuRefresh label:_(@"filesviewcontroller-Refresh")];
+    self.lmi = [[LocalMenuItems alloc] init:menuMax];
+    [self.lmi addItem:menuICloud label:_(@"filesviewcontroller-iCloud")];
+    [self.lmi addItem:menuRefresh label:_(@"filesviewcontroller-Refresh")];
 }
 
 - (void)refreshFileData
@@ -356,8 +356,8 @@ enum {
 - (void)fileImportGeocube:(NSString *)fn
 {
     [self showInfoView];
-    InfoItemID iii = [infoView addImport];
-    [infoView setDescription:iii description:[NSString stringWithFormat:_(@"filesviewcontroller-Geocube import of %@"), fn]];
+    InfoItemID iii = [self.infoView addImport];
+    [self.infoView setDescription:iii description:[NSString stringWithFormat:_(@"filesviewcontroller-Geocube import of %@"), fn]];
 
     NSData *data = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], fn]];
 
@@ -365,19 +365,19 @@ enum {
     BOOL done = NO;
     if (done == NO && [fn isEqualToString:@"mapbox.geocube"] == YES) {
         done = YES;
-        success = [ImportGeocube parse:data infoViewer:infoView iiImport:iii filetype:GEOCUBEFILETYPE_MAPBOXKEY];
+        success = [ImportGeocube parse:data infoViewer:self.infoView iiImport:iii filetype:GEOCUBEFILETYPE_MAPBOXKEY];
     }
     if (done == NO && [fn isEqualToString:@"opencage.geocube"] == YES) {
         done = YES;
-        success = [ImportGeocube parse:data infoViewer:infoView iiImport:iii filetype:GEOCUBEFILETYPE_OPENCAGEKEY];
+        success = [ImportGeocube parse:data infoViewer:self.infoView iiImport:iii filetype:GEOCUBEFILETYPE_OPENCAGEKEY];
     }
     if (done == NO && [fn isEqualToString:@"Log Templates and Macros.geocube"] == YES) {
         done = YES;
-        success = [ImportGeocube parse:data infoViewer:infoView iiImport:iii filetype:GEOCUBEFILETYPE_LOGMACROS];
+        success = [ImportGeocube parse:data infoViewer:self.infoView iiImport:iii filetype:GEOCUBEFILETYPE_LOGMACROS];
     }
     if (done == NO) {
         done = YES;
-        success = [ImportGeocube parse:data infoViewer:infoView iiImport:iii];
+        success = [ImportGeocube parse:data infoViewer:self.infoView iiImport:iii];
     }
 
     if (success == NO) {
@@ -386,7 +386,7 @@ enum {
         [MyTools messageBox:self header:_(@"filesviewcontroller-Import successful") text:_(@"filesviewcontroller-The import was successful.")];
     };
 
-    [infoView removeItem:iii];
+    [self.infoView removeItem:iii];
     [self hideInfoView];
 }
 
@@ -521,13 +521,13 @@ enum {
     NSString *filename = [dict objectForKey:@"filename"];
 
     [self showInfoView];
-    InfoItemID iii = [infoView addImport];
-    [infoView setDescription:iii description:filename];
+    InfoItemID iii = [self.infoView addImport];
+    [self.infoView setDescription:iii description:filename];
 
-    [importManager process:sfn group:group account:account options:options infoViewer:infoView iiImport:iii];
+    [importManager process:sfn group:group account:account options:options infoViewer:self.infoView iiImport:iii];
 
-    [infoView removeItem:iii];
-    if ([infoView hasItems] == NO) {
+    [self.infoView removeItem:iii];
+    if ([self.infoView hasItems] == NO) {
         [self hideInfoView];
         [audioManager playSound:PLAYSOUND_IMPORTCOMPLETE];
     }

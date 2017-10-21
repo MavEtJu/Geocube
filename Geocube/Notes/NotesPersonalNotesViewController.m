@@ -36,7 +36,7 @@
 
     [self.tableView registerNib:[UINib nibWithNibName:XIB_PERSONALNOTETABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_PERSONALNOTETABLEVIEWCELL];
 
-    lmi = nil;
+    self.lmi = nil;
 
     pns = [dbPersonalNote dbAll];
 }

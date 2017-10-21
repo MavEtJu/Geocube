@@ -101,7 +101,7 @@ enum {
     [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLKEYVALUE bundle:nil] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLKEYVALUE];
 
     self.hasCloseButton = YES;
-    lmi = nil;
+    self.lmi = nil;
 
     return self;
 }

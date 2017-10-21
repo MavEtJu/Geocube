@@ -53,16 +53,16 @@ enum {
 {
     self = [super init];
 
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuImportPhoto label:_(@"waypointimagesviewcontroller-Import photo")];
-    [lmi addItem:menuMakePhoto label:_(@"waypointimagesviewcontroller-Make photo")];
-    [lmi addItem:menuDownloadImages label:_(@"waypointimagesviewcontroller-Download photos")];
-    [lmi addItem:menuDeleteAllPhotos label:_(@"waypointimagesviewcontroller-Delete all photos")];
+    self.lmi = [[LocalMenuItems alloc] init:menuMax];
+    [self.lmi addItem:menuImportPhoto label:_(@"waypointimagesviewcontroller-Import photo")];
+    [self.lmi addItem:menuMakePhoto label:_(@"waypointimagesviewcontroller-Make photo")];
+    [self.lmi addItem:menuDownloadImages label:_(@"waypointimagesviewcontroller-Download photos")];
+    [self.lmi addItem:menuDeleteAllPhotos label:_(@"waypointimagesviewcontroller-Delete all photos")];
 
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary] == NO)
-        [lmi disableItem:menuImportPhoto];
+        [self.lmi disableItem:menuImportPhoto];
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == NO)
-        [lmi disableItem:menuMakePhoto];
+        [self.lmi disableItem:menuMakePhoto];
 
     self.hasCloseButton = YES;
 
@@ -111,13 +111,13 @@ enum {
             needsDelete = YES;
     }];
     if (needsDownload == NO)
-        [lmi disableItem:menuDownloadImages];
+        [self.lmi disableItem:menuDownloadImages];
     else
-        [lmi enableItem:menuDownloadImages];
+        [self.lmi enableItem:menuDownloadImages];
     if (needsDelete == NO)
-        [lmi disableItem:menuDeleteAllPhotos];
+        [self.lmi disableItem:menuDeleteAllPhotos];
     else
-        [lmi enableItem:menuDeleteAllPhotos];
+        [self.lmi enableItem:menuDeleteAllPhotos];
 }
 
 #pragma mark - Functions for downloading of images
@@ -125,7 +125,7 @@ enum {
 - (void)downloadImage:(dbImage *)image
 {
     [self showInfoView];
-    NSNumber *iiiImage = [NSNumber numberWithInteger:[infoView addImage]];
+    NSNumber *iiiImage = [NSNumber numberWithInteger:[self.infoView addImage]];
     NSDictionary *d = @{@"iii": iiiImage, @"image": image };
     BACKGROUND(downloadImageBG:, d);
 }
@@ -134,11 +134,11 @@ enum {
 {
     InfoItemID iii = [[dict objectForKey:@"iii"]  integerValue];
     dbImage *img = [dict objectForKey:@"image"];
-    [infoView setDescription:iii description:_(@"waypointimagesviewcontroller-Images")];
-    [self downloadImage:img infoViewer:infoView iiImage:iii];
-    [infoView setQueueSize:iii queueSize:0];
-    [infoView removeItem:iii];
-    if ([infoView hasItems] == NO) {
+    [self.infoView setDescription:iii description:_(@"waypointimagesviewcontroller-Images")];
+    [self downloadImage:img infoViewer:self.infoView iiImage:iii];
+    [self.infoView setQueueSize:iii queueSize:0];
+    [self.infoView removeItem:iii];
+    if ([self.infoView hasItems] == NO) {
         [self hideInfoView];
         [self needsDownloadMenu];
     }
@@ -147,8 +147,8 @@ enum {
 - (void)downloadImages
 {
     [self showInfoView];
-    NSNumber *iiiLogs = [NSNumber numberWithInteger:[infoView addImage]];
-    NSNumber *iiiCache = [NSNumber numberWithInteger:[infoView addImage]];
+    NSNumber *iiiLogs = [NSNumber numberWithInteger:[self.infoView addImage]];
+    NSNumber *iiiCache = [NSNumber numberWithInteger:[self.infoView addImage]];
     BACKGROUND(downloadImagesLogs:, iiiLogs);
     BACKGROUND(downloadImagesCache:, iiiCache);
 }
@@ -156,18 +156,18 @@ enum {
 - (void)downloadImagesLogs:(NSNumber *)iii_
 {
     InfoItemID iii = [iii_ integerValue];
-    [infoView setDescription:iii description:_(@"waypointimagesviewcontroller-Images from the logs")];
+    [self.infoView setDescription:iii description:_(@"waypointimagesviewcontroller-Images from the logs")];
 
     [logImages enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
-        [infoView setQueueSize:iii queueSize:[logImages count] - idx];
+        [self.infoView setQueueSize:iii queueSize:[logImages count] - idx];
         if ([img imageHasBeenDowloaded] == NO) {
-            [self downloadImage:img infoViewer:infoView iiImage:iii];
+            [self downloadImage:img infoViewer:self.infoView iiImage:iii];
         }
     }];
 
-    [infoView setQueueSize:iii queueSize:0];
-    [infoView removeItem:iii];
-    if ([infoView hasItems] == NO) {
+    [self.infoView setQueueSize:iii queueSize:0];
+    [self.infoView removeItem:iii];
+    if ([self.infoView hasItems] == NO) {
         [self hideInfoView];
         [self needsDownloadMenu];
     }
@@ -176,18 +176,18 @@ enum {
 - (void)downloadImagesCache:(NSNumber *)iii_
 {
     InfoItemID iii = [iii_ integerValue];
-    [infoView setDescription:iii description:_(@"waypointimagesviewcontroller-Images from the waypoint")];
+    [self.infoView setDescription:iii description:_(@"waypointimagesviewcontroller-Images from the waypoint")];
 
     [cacheImages enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
-        [infoView setQueueSize:iii queueSize:[cacheImages count] - idx];
+        [self.infoView setQueueSize:iii queueSize:[cacheImages count] - idx];
         if ([img imageHasBeenDowloaded] == NO)
-            [self downloadImage:img infoViewer:infoView iiImage:iii];
+            [self downloadImage:img infoViewer:self.infoView iiImage:iii];
     }];
 
-    [infoView setQueueSize:iii queueSize:0];
-    [infoView removeItem:iii];
+    [self.infoView setQueueSize:iii queueSize:0];
+    [self.infoView removeItem:iii];
 
-    if ([infoView hasItems] == NO) {
+    if ([self.infoView hasItems] == NO) {
         [self hideInfoView];
         [self needsDownloadMenu];
     }

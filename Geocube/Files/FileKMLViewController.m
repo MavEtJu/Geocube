@@ -39,7 +39,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self refreshFileData];
 
-    lmi = nil;
+    self.lmi = nil;
 }
 
 - (void)refreshFileData

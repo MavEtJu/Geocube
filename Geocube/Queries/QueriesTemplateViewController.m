@@ -40,8 +40,8 @@ enum {
 {
     self = [super init];
 
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuReload label:_(@"queriestemplateviewcontroller-Reload")];
+    self.lmi = [[LocalMenuItems alloc] init:menuMax];
+    [self.lmi addItem:menuReload label:_(@"queriestemplateviewcontroller-Reload")];
 
     processing = [[RemoteAPIProcessingGroup alloc] init];
 
@@ -256,15 +256,15 @@ enum {
 
     dbGroup *group = [self makeGroupExist:[pq objectForKey:@"Name"]];
 
-    InfoItemID iid = [infoView addDownload];
-    [infoView setDescription:iid description:[pq objectForKey:@"Name"]];
+    InfoItemID iid = [self.infoView addDownload];
+    [self.infoView setDescription:iid description:[pq objectForKey:@"Name"]];
 
     [processing addIdentifier:0];
-    RemoteAPIResult rv = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group infoViewer:infoView iiDownload:iid identifier:0 callback:self];
+    RemoteAPIResult rv = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group infoViewer:self.infoView iiDownload:iid identifier:0 callback:self];
     if (rv != REMOTEAPI_OK)
         [MyTools messageBox:self header:_(@"Error") text:_(@"queriestemplateviewcontroller-Unable to retrieve the data from the query") error:account.remoteAPI.lastError];
 
-    [infoView removeItem:iid];
+    [self.infoView removeItem:iid];
 }
 
 - (void)remoteAPI_objectReadyToImport:(NSInteger)identifier iiImport:(InfoItemID)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
@@ -289,8 +289,8 @@ enum {
     dbAccount *a = [dict objectForKey:@"account"];
     NSInteger identifier = [[dict objectForKey:@"identifier"] integerValue];
 
-    [importManager process:o group:g account:a options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoViewer:infoView iiImport:iii];
-    [infoView removeItem:iii];
+    [importManager process:o group:g account:a options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoViewer:self.infoView iiImport:iii];
+    [self.infoView removeItem:iii];
 
     NSLog(@"PROCESSING: Processed %ld", (long)identifier);
     [processing increaseProcessedChunks:identifier];

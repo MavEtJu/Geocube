@@ -47,8 +47,8 @@ enum {
 - (instancetype)init
 {
     self = [super init];
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuDumpDatabase label:_(@"helpdatabaseviewcontroller-Dump database")];
+    self.lmi = [[LocalMenuItems alloc] init:menuMax];
+    [self.lmi addItem:menuDumpDatabase label:_(@"helpdatabaseviewcontroller-Dump database")];
 
     [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLKEYVALUE bundle:nil] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLKEYVALUE];
 

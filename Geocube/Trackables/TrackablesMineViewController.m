@@ -37,10 +37,10 @@
 
 - (void)adjustMenus
 {
-    [lmi disableItem:trackablesMenuDiscover];
-    [lmi disableItem:trackablesMenuGrab];
-    [lmi enableItem:trackablesMenuDrop];
-    [lmi enableItem:trackablesMenuUpdate];
+    [self.lmi disableItem:trackablesMenuDiscover];
+    [self.lmi disableItem:trackablesMenuGrab];
+    [self.lmi enableItem:trackablesMenuDrop];
+    [self.lmi enableItem:trackablesMenuUpdate];
 }
 
 @end

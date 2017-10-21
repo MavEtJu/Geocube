@@ -37,8 +37,8 @@ enum {
 {
     self = [super init];
 
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuDownloadNotices label:_(@"noticesviewcontroller-Download notices")];
+    self.lmi = [[LocalMenuItems alloc] init:menuMax];
+    [self.lmi addItem:menuDownloadNotices label:_(@"noticesviewcontroller-Download notices")];
 
     return self;
 }

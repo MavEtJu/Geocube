@@ -44,11 +44,11 @@ enum {
 {
     self = [super init];
 
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuClearFlags label:_(@"listtemplateviewcontroller-Clear list")];
-    [lmi addItem:menuReloadWaypoints label:_(@"listtemplateviewcontroller-Reload waypoints")];
-    [lmi addItem:menuExportGPX label:_(@"listtemplateviewcontroller-Export GPX")];
-    [lmi addItem:menuSortBy label:_(@"listtemplateviewcontroller-Sort by")];
+    self.lmi = [[LocalMenuItems alloc] init:menuMax];
+    [self.lmi addItem:menuClearFlags label:_(@"listtemplateviewcontroller-Clear list")];
+    [self.lmi addItem:menuReloadWaypoints label:_(@"listtemplateviewcontroller-Reload waypoints")];
+    [self.lmi addItem:menuExportGPX label:_(@"listtemplateviewcontroller-Export GPX")];
+    [self.lmi addItem:menuSortBy label:_(@"listtemplateviewcontroller-Sort by")];
 
     currentSortOrder = configManager.listSortBy;
     processing = [[RemoteAPIProcessingGroup alloc] init];
@@ -76,9 +76,9 @@ enum {
     [self.tableView reloadData];
 
     if ([waypoints count] == 0)
-        [lmi disableItem:menuExportGPX];
+        [self.lmi disableItem:menuExportGPX];
     else
-        [lmi enableItem:menuExportGPX];
+        [self.lmi enableItem:menuExportGPX];
 }
 
 #pragma mark - TableViewController related functions
@@ -210,14 +210,14 @@ enum {
     NSArray<NSString *> *wps = [dict objectForKey:@"waypoints"];
     dbAccount *account = [dict objectForKey:@"account"];
 
-    InfoItemID iid = [infoView addDownload];
-    [infoView setChunksTotal:iid total:[wps count]];
-    [infoView setDescription:iid description:[NSString stringWithFormat:_(@"listtemplateviewcontroller-Downloading for %@"), account.site]];
+    InfoItemID iid = [self.infoView addDownload];
+    [self.infoView setChunksTotal:iid total:[wps count]];
+    [self.infoView setDescription:iid description:[NSString stringWithFormat:_(@"listtemplateviewcontroller-Downloading for %@"), account.site]];
 
-    NSInteger rv = [account.remoteAPI loadWaypointsByCodes:wps infoViewer:infoView iiDownload:iid identifier:(long)account._id group:dbc.groupLastImport callback:self];
+    NSInteger rv = [account.remoteAPI loadWaypointsByCodes:wps infoViewer:self.infoView iiDownload:iid identifier:(long)account._id group:dbc.groupLastImport callback:self];
     if (rv != REMOTEAPI_OK)
         [MyTools messageBox:self header:_(@"listtemplateviewcontroller-Reload waypoints") text:_(@"listtemplateviewcontroller-Update failed") error:account.remoteAPI.lastError];
-    [infoView removeItem:iid];
+    [self.infoView removeItem:iid];
 }
 
 - (void)remoteAPI_objectReadyToImport:(NSInteger)identifier iiImport:(InfoItemID)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
@@ -225,8 +225,8 @@ enum {
     NSLog(@"PROCESSING: Downloaded %ld", (long)identifier);
     [processing increaseDownloadedChunks:identifier];
 
-    [importManager process:o group:group account:account options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoViewer:infoView iiImport:iii];
-    [infoView removeItem:iii];
+    [importManager process:o group:group account:account options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoViewer:self.infoView iiImport:iii];
+    [self.infoView removeItem:iii];
 
     NSLog(@"PROCESSING: Processed %ld", (long)identifier);
     [processing increaseProcessedChunks:identifier];

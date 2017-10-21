@@ -83,16 +83,16 @@ enum {
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
 
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuMarkAs label:_(@"waypointviewcontroller-Mark as")];
-    [lmi addItem:menuRefreshWaypoint label:_(@"waypointviewcontroller-Refresh waypoint")];
-    [lmi addItem:menuAddToGroup label:_(@"waypointviewcontroller-Add to group")];
-    [lmi addItem:menuViewRaw label:_(@"waypointviewcontroller-Raw data")];
-    [lmi addItem:menuSetAsTarget label:_(@"waypointviewcontroller-Set target")];
-    [lmi addItem:menuLogThisWaypoint label:_(@"waypointviewcontroller-Log waypoint")];
-    [lmi addItem:menuOpenInBrowser label:_(@"waypointviewcontroller-Open in browser")];
-    [lmi addItem:menuExportGPX label:_(@"waypointviewcontroller-Export GPX")];
-    [lmi addItem:menuDeleteWaypoint label:_(@"waypointviewcontroller-Delete waypoint")];
+    self.lmi = [[LocalMenuItems alloc] init:menuMax];
+    [self.lmi addItem:menuMarkAs label:_(@"waypointviewcontroller-Mark as")];
+    [self.lmi addItem:menuRefreshWaypoint label:_(@"waypointviewcontroller-Refresh waypoint")];
+    [self.lmi addItem:menuAddToGroup label:_(@"waypointviewcontroller-Add to group")];
+    [self.lmi addItem:menuViewRaw label:_(@"waypointviewcontroller-Raw data")];
+    [self.lmi addItem:menuSetAsTarget label:_(@"waypointviewcontroller-Set target")];
+    [self.lmi addItem:menuLogThisWaypoint label:_(@"waypointviewcontroller-Log waypoint")];
+    [self.lmi addItem:menuOpenInBrowser label:_(@"waypointviewcontroller-Open in browser")];
+    [self.lmi addItem:menuExportGPX label:_(@"waypointviewcontroller-Export GPX")];
+    [self.lmi addItem:menuDeleteWaypoint label:_(@"waypointviewcontroller-Delete waypoint")];
 
     self.hasCloseButton = NO;
     self.isLocationless = NO;
@@ -137,14 +137,14 @@ enum {
     [super viewWillAppear:animated];
 
     if ([waypoint.account canDoRemoteStuff] == NO)
-        [lmi disableItem:menuRefreshWaypoint];
+        [self.lmi disableItem:menuRefreshWaypoint];
     else
-        [lmi enableItem:menuRefreshWaypoint];
+        [self.lmi enableItem:menuRefreshWaypoint];
 
     if (waypoint == waypointManager.currentWaypoint)
-        [lmi disableItem:menuSetAsTarget];
+        [self.lmi disableItem:menuSetAsTarget];
     else
-        [lmi enableItem:menuSetAsTarget];
+        [self.lmi enableItem:menuSetAsTarget];
 }
 
 - (void)didReceiveMemoryWarning
@@ -892,14 +892,14 @@ enum {
 - (void)runRefreshWaypoint
 {
     [self showInfoView];
-    InfoItemID iid = [infoView addDownload];
-    [infoView setDescription:iid description:[NSString stringWithFormat:_(@"waypointviewcontroller-Updating %@"), waypoint.wpt_name]];
+    InfoItemID iid = [self.infoView addDownload];
+    [self.infoView setDescription:iid description:[NSString stringWithFormat:_(@"waypointviewcontroller-Updating %@"), waypoint.wpt_name]];
 
     chunksDownloaded = 0;
     chunksProcessed = 0;
-    NSInteger retValue = [waypoint.account.remoteAPI loadWaypoint:waypoint infoViewer:infoView iiDownload:iid identifier:0 callback:self];
+    NSInteger retValue = [waypoint.account.remoteAPI loadWaypoint:waypoint infoViewer:self.infoView iiDownload:iid identifier:0 callback:self];
 
-    [infoView removeItem:iid];
+    [self.infoView removeItem:iid];
 
     if (retValue != REMOTEAPI_OK)
         [MyTools messageBox:self header:_(@"waypointviewcontroller-Update failed") text:_(@"waypointviewcontroller-Unable to update the waypoint.") error:waypoint.account.remoteAPI.lastError];
@@ -911,8 +911,8 @@ enum {
         chunksDownloaded++;
     }
 
-    [importManager process:o group:group account:account options:IMPORTOPTION_NONE infoViewer:infoView iiImport:iii];
-    [infoView removeItem:iii];
+    [importManager process:o group:group account:account options:IMPORTOPTION_NONE infoViewer:self.infoView iiImport:iii];
+    [self.infoView removeItem:iii];
 
     @synchronized (self) {
         chunksProcessed++;

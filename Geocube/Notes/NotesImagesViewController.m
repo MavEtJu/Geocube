@@ -34,7 +34,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELL];
-    lmi = nil;
+    self.lmi = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -36,7 +36,7 @@
 
     [self.tableView registerNib:[UINib nibWithNibName:XIB_LOGTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_LOGTABLEVIEWCELL];
 
-    lmi = nil;
+    self.lmi = nil;
 
     waypointsWithLogs = [dbWaypoint dbAllWaypointsWithMyLogs];
 }

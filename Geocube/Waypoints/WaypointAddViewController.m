@@ -47,7 +47,7 @@ enum {
 {
     self = [super init];
 
-    lmi = nil;
+    self.lmi = nil;
 
     code = [MyTools makeNewWaypoint:@"MY"];
     name = @"A new name";

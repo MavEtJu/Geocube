@@ -44,9 +44,9 @@ enum {
     waypoint = _wp;
     wps = [waypoint hasWaypoints];
 
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuAddWaypoint label:_(@"waypointwaypointsviewcontroller-Add waypoint")];
-    [lmi addItem:menuCleanup label:_(@"waypointwaypointsviewcontroller-Remove dupes")];
+    self.lmi = [[LocalMenuItems alloc] init:menuMax];
+    [self.lmi addItem:menuAddWaypoint label:_(@"waypointwaypointsviewcontroller-Add waypoint")];
+    [self.lmi addItem:menuCleanup label:_(@"waypointwaypointsviewcontroller-Remove dupes")];
 
     self.delegateWaypoint = nil;
 

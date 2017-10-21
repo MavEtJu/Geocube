@@ -30,7 +30,7 @@
     self = [super init];
 
     self.showUsers = NO;
-    lmi = nil;
+    self.lmi = nil;
 
     return self;
 }

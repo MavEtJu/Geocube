@@ -65,11 +65,11 @@
 
     [self makeInfoView];
 
-    lmi = [[LocalMenuItems alloc] init:trackablesMenuMax];
-    [lmi addItem:trackablesMenuUpdate label:_(@"trackablestemplateviewcontroller-Update List")];
-    [lmi addItem:trackablesMenuDrop label:_(@"trackablestemplateviewcontroller-Drop trackable")];
-    [lmi addItem:trackablesMenuGrab label:_(@"trackablestemplateviewcontroller-Grab trackable")];
-    [lmi addItem:trackablesMenuDiscover label:_(@"trackablestemplateviewcontroller-Discover trackable")];
+    self.lmi = [[LocalMenuItems alloc] init:trackablesMenuMax];
+    [self.lmi addItem:trackablesMenuUpdate label:_(@"trackablestemplateviewcontroller-Update List")];
+    [self.lmi addItem:trackablesMenuDrop label:_(@"trackablestemplateviewcontroller-Drop trackable")];
+    [self.lmi addItem:trackablesMenuGrab label:_(@"trackablestemplateviewcontroller-Grab trackable")];
+    [self.lmi addItem:trackablesMenuDiscover label:_(@"trackablestemplateviewcontroller-Discover trackable")];
     [self adjustMenus];
 
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
@@ -144,8 +144,8 @@
 - (void)menuUpdate_BG
 {
     [self showInfoView];
-    InfoItemID iid = [infoView addDownload];
-    [infoView setDescription:iid description:_(@"trackablestemplateviewcontroller-Download trackables information")];
+    InfoItemID iid = [self.infoView addDownload];
+    [self.infoView setDescription:iid description:_(@"trackablestemplateviewcontroller-Download trackables information")];
 
     [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a.remoteAPI.supportsTrackablesRetrieve == YES && a.canDoRemoteStuff == YES) {
@@ -155,14 +155,14 @@
                 tb.waypoint_name = nil;
                 [tb dbUpdate];
             }];
-            [self remoteAPILoadTrackables:a infoView:infoView infoItemID:iid];
+            [self remoteAPILoadTrackables:a infoView:self.infoView infoItemID:iid];
             [self refreshTrackables:nil];
             [self reloadDataMainQueue];
             *stop = YES;
         }
     }];
 
-    [infoView removeItem:iid];
+    [self.infoView removeItem:iid];
     [self hideInfoView];
 }
 

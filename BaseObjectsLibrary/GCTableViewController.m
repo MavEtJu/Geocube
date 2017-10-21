@@ -20,10 +20,9 @@
  */
 
 @interface GCTableViewController ()
-{
-    GCCloseButton *closeButton;
-    NSInteger verticalContentOffset;
-}
+
+@property (nonatomic, retain) GCCloseButton *closeButton;
+@property (nonatomic        ) NSInteger verticalContentOffset;
 
 @end
 
@@ -33,10 +32,10 @@
 {
     self = [super initWithStyle:style];
 
-    lmi = nil;
+    self.lmi = nil;
     self.numberOfItemsInRow = 3;
 
-    closeButton = nil;
+    self.closeButton = nil;
     self.hasCloseButton = NO;
 
     return self;
@@ -76,19 +75,19 @@
 
 - (void)makeInfoView
 {
-    infoView = [[InfoViewer alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:infoView];
+    self.infoView = [[InfoViewer alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:self.infoView];
 }
 
 - (void)hideInfoView
 {
-    [infoView hide];
+    [self.infoView hide];
 }
 
 - (void)showInfoView
 {
-    NSAssert1(infoView != nil, @"makeInfoView not called for %@", [self class]);
-    [infoView show:verticalContentOffset];
+    NSAssert1(self.infoView != nil, @"makeInfoView not called for %@", [self class]);
+    [self.infoView show:self.verticalContentOffset];
 }
 
 - (void)buttonMenuLocal:(id)sender
@@ -100,7 +99,7 @@
 {
     [super viewDidAppear:animated];
     if (self.hasCloseButton == YES)
-        [self.view bringSubviewToFront:closeButton];
+        [self.view bringSubviewToFront:self.closeButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -109,16 +108,16 @@
 
     [super viewWillAppear:animated];
 
-    [menuGlobal defineLocalMenu:lmi forVC:self];
+    [menuGlobal defineLocalMenu:self.lmi forVC:self];
 
     // Add a close button to the view
-    if (self.hasCloseButton == YES && closeButton == nil) {
+    if (self.hasCloseButton == YES && self.closeButton == nil) {
         GCCloseButton *b = [GCCloseButton buttonWithType:UIButtonTypeCustom];
         [self.view addSubview:b];
         [b addTarget:self action:@selector(closePage:) forControlEvents:UIControlEventTouchDown];
-        closeButton = b;
+        self.closeButton = b;
     }
-    [infoView show:verticalContentOffset];
+    [self.infoView show:self.verticalContentOffset];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
@@ -135,7 +134,7 @@
 
 - (void)viewWillTransitionToSize
 {
-    [infoView viewWillTransitionToSize];
+    [self.infoView viewWillTransitionToSize];
     // Dummy for this class
 }
 
@@ -205,17 +204,17 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    verticalContentOffset = scrollView.contentOffset.y;
+    self.verticalContentOffset = scrollView.contentOffset.y;
 
-    if (closeButton != nil) {
-        CGRect frame = closeButton.frame;
+    if (self.closeButton != nil) {
+        CGRect frame = self.closeButton.frame;
         frame.origin.y = scrollView.contentOffset.y;
-        closeButton.frame = frame;
+        self.closeButton.frame = frame;
 
-        [self.view bringSubviewToFront:closeButton];
+        [self.view bringSubviewToFront:self.closeButton];
     }
 
-    [infoView show:verticalContentOffset];
+    [self.infoView show:self.verticalContentOffset];
 }
 
 //- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section

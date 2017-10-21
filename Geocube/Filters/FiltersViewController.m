@@ -55,10 +55,10 @@ enum {
 {
     self = [super init];
 
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuSetDefaultValues label:_(@"filtersviewcontroller-Set default values")];
-    [lmi addItem:menuSaveFilter label:_(@"filtersviewcontroller-Save filter")];
-    [lmi addItem:menuLoadFilter label:_(@"filtersviewcontroller-Load filter")];
+    self.lmi = [[LocalMenuItems alloc] init:menuMax];
+    [self.lmi addItem:menuSetDefaultValues label:_(@"filtersviewcontroller-Set default values")];
+    [self.lmi addItem:menuSaveFilter label:_(@"filtersviewcontroller-Save filter")];
+    [self.lmi addItem:menuLoadFilter label:_(@"filtersviewcontroller-Load filter")];
 
     return self;
 }

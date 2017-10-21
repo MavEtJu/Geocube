@@ -22,13 +22,11 @@
 #import "ToolsLibrary/SideMenu-delegate.h"
 
 @interface GCTableViewController : UITableViewController <MHTabBarControllerDelegate, SideMenuDelegate>
-{
-    LocalMenuItems *lmi;
-    InfoViewer *infoView;
-}
 
-@property (nonatomic) NSInteger numberOfItemsInRow;
-@property (nonatomic) BOOL hasCloseButton;
+@property (nonatomic, retain) LocalMenuItems *lmi;
+@property (nonatomic, retain) InfoViewer *infoView;
+@property (nonatomic        ) NSInteger numberOfItemsInRow;
+@property (nonatomic        ) BOOL hasCloseButton;
 
 - (void)performLocalMenuAction:(NSInteger)index;
 

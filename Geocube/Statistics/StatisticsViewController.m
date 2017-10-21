@@ -41,8 +41,8 @@ enum {
 {
     self = [super init];
 
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuReload label:_(@"statisticsviewcontroller-Reload")];
+    self.lmi = [[LocalMenuItems alloc] init:menuMax];
+    [self.lmi addItem:menuReload label:_(@"statisticsviewcontroller-Reload")];
 
     accounts = [NSMutableArray arrayWithCapacity:[dbc.accounts count]];
     hasbeenstarted = NO;
@@ -231,16 +231,16 @@ enum {
 
 - (void)runStatistics:(NSMutableDictionary *)ad
 {
-    InfoItemID iid = [infoView addDownload];
-    [infoView setDescription:iid description:[ad objectForKey:@"site"]];
+    InfoItemID iid = [self.infoView addDownload];
+    [self.infoView setDescription:iid description:[ad objectForKey:@"site"]];
 
     dbAccount *a = [ad objectForKey:@"account"];
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
-    NSInteger retValue = [a.remoteAPI UserStatistics:&d infoViewer:infoView iiDownload:iid];
+    NSInteger retValue = [a.remoteAPI UserStatistics:&d infoViewer:self.infoView iiDownload:iid];
 
     if (retValue != REMOTEAPI_OK) {
-        [infoView removeItem:iid];
-        if ([infoView hasItems] == NO)
+        [self.infoView removeItem:iid];
+        if ([self.infoView hasItems] == NO)
             [self hideInfoView];
 
         NSString *header = [NSString stringWithFormat:_(@"statistics-Unable to load statistics for %@"), a.site];
@@ -257,8 +257,8 @@ enum {
     [ad removeObjectForKey:@"status"];
     [self updateTotals:ad];
 
-    [infoView removeItem:iid];
-    if ([infoView hasItems] == NO)
+    [self.infoView removeItem:iid];
+    if ([self.infoView hasItems] == NO)
         [self hideInfoView];
     [self reloadDataMainQueue];
 }

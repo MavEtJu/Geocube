@@ -41,8 +41,8 @@ enum {
 
     [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLSUBTITLERIGHTIMAGE bundle:nil] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLSUBTITLERIGHTIMAGE];
 
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuUpdate label:_(@"settingsaccountsviewcontroller-Update Config")];
+    self.lmi = [[LocalMenuItems alloc] init:menuMax];
+    [self.lmi addItem:menuUpdate label:_(@"settingsaccountsviewcontroller-Update Config")];
 }
 
 - (void)refreshAccountData

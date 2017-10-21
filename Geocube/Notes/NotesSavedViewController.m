@@ -42,14 +42,14 @@ enum {
 {
     self = [super init];
 
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuDelete label:_(@"notessavedviewcontroller-Remove")];
-    [lmi addItem:menuSubmit label:_(@"notessavedviewcontroller-Submit")];
-    [lmi addItem:menuDeleteAll label:_(@"notessavedviewcontroller-Remove all")];
-    [lmi addItem:menuSubmitAll label:_(@"notessavedviewcontroller-Submit all")];
-    [lmi disableItem:menuDelete];
-    [lmi disableItem:menuSubmit];
-    [lmi disableItem:menuSubmitAll];
+    self.lmi = [[LocalMenuItems alloc] init:menuMax];
+    [self.lmi addItem:menuDelete label:_(@"notessavedviewcontroller-Remove")];
+    [self.lmi addItem:menuSubmit label:_(@"notessavedviewcontroller-Submit")];
+    [self.lmi addItem:menuDeleteAll label:_(@"notessavedviewcontroller-Remove all")];
+    [self.lmi addItem:menuSubmitAll label:_(@"notessavedviewcontroller-Submit all")];
+    [self.lmi disableItem:menuDelete];
+    [self.lmi disableItem:menuSubmit];
+    [self.lmi disableItem:menuSubmitAll];
 
     selected = nil;
 
@@ -83,8 +83,8 @@ enum {
     [self.tableView reloadData];
 
     selected = nil;
-    [lmi disableItem:menuDelete];
-    [lmi disableItem:menuSubmit];
+    [self.lmi disableItem:menuDelete];
+    [self.lmi disableItem:menuSubmit];
 }
 
 - (void)reloadLogs
@@ -136,16 +136,16 @@ enum {
     dbWaypoint *wp = [waypointsWithLogs objectAtIndex:indexPath.section];
     if (wp.account.remoteAPI.supportsLogging == YES &&
         wp.account.canDoRemoteStuff == YES)
-        [lmi enableItem:menuSubmit];
+        [self.lmi enableItem:menuSubmit];
 
-    [lmi enableItem:menuDelete];
+    [self.lmi enableItem:menuDelete];
 }
 
 - (void)tableView:(UITableView *)aTableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     selected = nil;
-    [lmi disableItem:menuDelete];
-    [lmi disableItem:menuSubmit];
+    [self.lmi disableItem:menuDelete];
+    [self.lmi disableItem:menuSubmit];
 }
 
 - (BOOL)tableView:(UITableView *)aTableView canEditRowAtIndexPath:(nonnull NSIndexPath *)indexPath

@@ -43,14 +43,14 @@ enum {
     self = [super init];
     parentTable = table;
 
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuImportPhoto label:_(@"waypointlogimagesviewcontroller-Import photo")];
-    [lmi addItem:menuMakePhoto label:_(@"waypointlogimagesviewcontroller-Make photo")];
+    self.lmi = [[LocalMenuItems alloc] init:menuMax];
+    [self.lmi addItem:menuImportPhoto label:_(@"waypointlogimagesviewcontroller-Import photo")];
+    [self.lmi addItem:menuMakePhoto label:_(@"waypointlogimagesviewcontroller-Make photo")];
 
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary] == NO)
-        [lmi disableItem:menuImportPhoto];
+        [self.lmi disableItem:menuImportPhoto];
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == NO)
-        [lmi disableItem:menuMakePhoto];
+        [self.lmi disableItem:menuMakePhoto];
 
     self.hasCloseButton = YES;
     _delegate = nil;

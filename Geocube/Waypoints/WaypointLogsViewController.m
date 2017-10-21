@@ -59,16 +59,16 @@ enum {
         }
     }];
 
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuMapLogs label:_(@"waypointlogsviewcontroller-Map logs")];
-    [lmi addItem:menuScanForWaypoints label:_(@"waypointlogsviewcontroller-Extract waypoints")];
-    [lmi addItem:menuCopyLog label:_(@"waypointlogsviewcontroller-Copy log to clipboard")];
-    [lmi addItem:menuDeleteLog label:_(@"waypointlogsviewcontroller-Delete log")];
-    [lmi disableItem:menuScanForWaypoints];
-    [lmi disableItem:menuCopyLog];
-    [lmi disableItem:menuDeleteLog];
+    self.lmi = [[LocalMenuItems alloc] init:menuMax];
+    [self.lmi addItem:menuMapLogs label:_(@"waypointlogsviewcontroller-Map logs")];
+    [self.lmi addItem:menuScanForWaypoints label:_(@"waypointlogsviewcontroller-Extract waypoints")];
+    [self.lmi addItem:menuCopyLog label:_(@"waypointlogsviewcontroller-Copy log to clipboard")];
+    [self.lmi addItem:menuDeleteLog label:_(@"waypointlogsviewcontroller-Delete log")];
+    [self.lmi disableItem:menuScanForWaypoints];
+    [self.lmi disableItem:menuCopyLog];
+    [self.lmi disableItem:menuDeleteLog];
     if (foundAnyCoordinates == NO)
-        [lmi disableItem:menuMapLogs];
+        [self.lmi disableItem:menuMapLogs];
 
     return self;
 }
@@ -122,17 +122,17 @@ enum {
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     selectedLog = [logs objectAtIndex:indexPath.row];
-    [lmi enableItem:menuScanForWaypoints];
-    [lmi enableItem:menuCopyLog];
-    [lmi enableItem:menuDeleteLog];
+    [self.lmi enableItem:menuScanForWaypoints];
+    [self.lmi enableItem:menuCopyLog];
+    [self.lmi enableItem:menuDeleteLog];
 }
 
 - (void)tableView:(UITableView *)aTableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     selectedLog = nil;
-    [lmi disableItem:menuScanForWaypoints];
-    [lmi disableItem:menuCopyLog];
-    [lmi disableItem:menuDeleteLog];
+    [self.lmi disableItem:menuScanForWaypoints];
+    [self.lmi disableItem:menuCopyLog];
+    [self.lmi disableItem:menuDeleteLog];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

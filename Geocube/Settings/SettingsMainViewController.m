@@ -73,8 +73,8 @@ enum {
     [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLRIGHTIMAGE bundle:nil] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLRIGHTIMAGE];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLSWITCH bundle:nil] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLSWITCH];
 
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuResetToDefault label:_(@"settingsmainviewcontroller-Reset to default")];
+    self.lmi = [[LocalMenuItems alloc] init:menuMax];
+    [self.lmi addItem:menuResetToDefault label:_(@"settingsmainviewcontroller-Reset to default")];
 
     compassTypes = @[
                      _(@"settingsmainviewcontroller-Red arrow on blue"),
