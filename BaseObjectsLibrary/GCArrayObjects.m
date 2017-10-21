@@ -20,9 +20,8 @@
  */
 
 @interface GCArray ()
-{
-    NSMutableArray<id> *a;
-}
+
+@property (nonatomic, retain) NSMutableArray<id> *a;
 
 @end
 
@@ -31,40 +30,40 @@
 - (instancetype)initWithCapacity:(NSUInteger)size
 {
     self = [super init];
-    a = [NSMutableArray arrayWithCapacity:size];
+    self.a = [NSMutableArray arrayWithCapacity:size];
     return self;
 }
 
 - (instancetype)initWithArray:(NSArray<id> *)array
 {
     self = [super init];
-    a = [NSMutableArray arrayWithArray:array];
+    self.a = [NSMutableArray arrayWithArray:array];
     return self;
 }
 
 - (NSUInteger)count
 {
-    return [a count];
+    return [self.a count];
 }
 
 - (NSMutableArray<id> *)_array
 {
-    return a;
+    return self.a;
 }
 
 - (void)addObject:(id)object
 {
-    [a addObject:object];
+    [self.a addObject:object];
 }
 
 - (id)objectAtIndex:(NSUInteger)idx
 {
-    return [a objectAtIndex:idx];
+    return [self.a objectAtIndex:idx];
 }
 
 - (void)enumerateObjectsUsingBlock:(void (NS_NOESCAPE ^)(id key, NSUInteger idx, BOOL * _Nonnull stop))block;
 {
-    [a enumerateObjectsUsingBlock:block];
+    [self.a enumerateObjectsUsingBlock:block];
 }
 
 @end

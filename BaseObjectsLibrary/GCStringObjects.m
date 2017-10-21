@@ -21,45 +21,44 @@
 
 @interface GCString ()
 
+@property (nonatomic, retain) NSMutableString *sfn;
+
 @end
 
 @implementation GCString
-{
-    NSMutableString *sfn;
-}
 
 - (instancetype)initWithString:(NSString *)s
 {
     self = [super init];
-    sfn = [NSMutableString stringWithString:s];
+    self.sfn = [NSMutableString stringWithString:s];
     return self;
 }
 
 - (instancetype)initWithData:(NSData *)data encoding:(NSStringEncoding)encoding
 {
     self = [super init];
-    sfn = [[NSMutableString alloc] initWithData:data encoding:encoding];
+    self.sfn = [[NSMutableString alloc] initWithData:data encoding:encoding];
     return self;
 }
 
 - (NSData *)dataUsingEncoding:(NSStringEncoding)encoding
 {
-    return [sfn dataUsingEncoding:encoding];
+    return [self.sfn dataUsingEncoding:encoding];
 }
 
 - (NSUInteger)length
 {
-    return [sfn length];
+    return [self.sfn length];
 }
 
 - (NSString *)description
 {
-    return [sfn description];
+    return [self.sfn description];
 }
 
 - (NSString *)_string
 {
-    return sfn;
+    return self.sfn;
 }
 
 @end

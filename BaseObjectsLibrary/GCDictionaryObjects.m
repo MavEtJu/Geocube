@@ -21,48 +21,47 @@
 
 @interface GCDictionary ()
 
+@property (nonatomic, retain) NSDictionary *d;
+
 @end
 
 @implementation GCDictionary
-{
-    NSDictionary *d;
-}
 
 - (instancetype)initWithDictionary:(NSDictionary *)otherDictionary
 {
     self = [super self];
-    d = [NSDictionary dictionaryWithDictionary:otherDictionary];
+    self.d = [NSDictionary dictionaryWithDictionary:otherDictionary];
     return self;
 }
 
 - (id)objectForKey:(NSString *)aKey
 {
-    return [d objectForKey:aKey];
+    return [self.d objectForKey:aKey];
 }
 
 - (id)valueForKey:(NSString *)aKey
 {
-    return [d valueForKey:aKey];
+    return [self.d valueForKey:aKey];
 }
 
 - (void)enumerateKeysAndObjectsUsingBlock:(void (NS_NOESCAPE ^)(id key, id obj, BOOL * _Nonnull stop))block
 {
-    [d enumerateKeysAndObjectsUsingBlock:block];
+    [self.d enumerateKeysAndObjectsUsingBlock:block];
 }
 
 - (NSUInteger)count
 {
-    return [d count];
+    return [self.d count];
 }
 
 - (NSString *)description
 {
-    return [d description];
+    return [self.d description];
 }
 
 - (NSDictionary *)_dict
 {
-    return d;
+    return self.d;
 }
 
 @end

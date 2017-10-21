@@ -20,9 +20,8 @@
  */
 
 @interface GCData ()
-{
-    NSData *data;
-}
+
+@property (nonatomic, retain) NSData *data;
 
 @end
 
@@ -32,14 +31,14 @@
 {
     self = [super init];
 
-    data = [NSData dataWithData:_data];
+    self.data = [NSData dataWithData:_data];
 
     return self;
 }
 
 - (BOOL)writeToFile:(NSString *)path atomically:(BOOL)useAuxiliaryFile
 {
-    return [data writeToFile:path atomically:useAuxiliaryFile];
+    return [self.data writeToFile:path atomically:useAuxiliaryFile];
 }
 
 @end
