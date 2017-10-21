@@ -20,11 +20,10 @@
  */
 
 @interface database ()
-{
-    NSString *dbname, *dbempty;
 
-    NSMutableArray<NSArray <NSString *> *> *upgradeSteps;
-}
+@property (nonatomic, retain) NSString *dbname;
+@property (nonatomic, retain) NSString *dbempty;
+@property (nonatomic, retain) NSMutableArray<NSArray <NSString *> *> *upgradeSteps;
 
 @end
 
@@ -46,7 +45,7 @@
     NSString *to = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], toName];
     [fileManager removeItemAtPath:to error:&error];
     @synchronized(db) {
-        [fileManager copyItemAtPath:dbname toPath:to error:&error];
+        [fileManager copyItemAtPath:self.dbname toPath:to error:&error];
     }
     return toName;
 }
@@ -55,8 +54,8 @@
 {
     NSError *error = nil;
     NSString *from = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], source];
-    [fileManager removeItemAtPath:dbname error:&error];
-    [fileManager copyItemAtPath:from toPath:dbname error:&error];
+    [fileManager removeItemAtPath:self.dbname error:&error];
+    [fileManager copyItemAtPath:from toPath:self.dbname error:&error];
     return (error == nil);
 }
 
@@ -100,15 +99,15 @@
         [fileManager moveItemAtPath:dbold toPath:dbnew error:nil];
     }
 
-    dbname = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools ApplicationSupportRoot], DB_NAME];
-    NSLog(@"Using %@ as the database.", dbname);
-    dbempty = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], DB_EMPTY];
+    self.dbname = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools ApplicationSupportRoot], DB_NAME];
+    NSLog(@"Using %@ as the database.", self.dbname);
+    self.dbempty = [[NSString alloc] initWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], DB_EMPTY];
 
 #if TARGET_OS_SIMULATOR
     // Keep a symlink to /Users/edwin/db to the database for easy access
     NSError *e;
     [fileManager removeItemAtPath:@"/Users/edwin/db" error:nil];
-    [fileManager createSymbolicLinkAtPath:@"/Users/edwin/db" withDestinationPath:dbname error:&e];
+    [fileManager createSymbolicLinkAtPath:@"/Users/edwin/db" withDestinationPath:self.dbname error:&e];
 #endif
 
     // If the database doesn't exist, create it
@@ -116,7 +115,7 @@
 
     // Determine version of the distribution database
     sqlite3 *tdb;
-    sqlite3_open([dbempty UTF8String], &tdb);
+    sqlite3_open([self.dbempty UTF8String], &tdb);
     self.db = tdb;
     dbConfig *c_empty = [dbConfig dbGetByKey:KEY_VERSION_DB];
     sqlite3_close(tdb);
@@ -130,7 +129,7 @@
     }
 
     // Determine version of the active database
-    sqlite3_open([dbname UTF8String], &tdb);
+    sqlite3_open([self.dbname UTF8String], &tdb);
     self.db = tdb;
     dbConfig *c_real = [dbConfig dbGetByKey:KEY_VERSION_DB];
     sqlite3_close(tdb);
@@ -141,7 +140,7 @@
     NSLog(@"Database version %@, distribution is %@.", c_real.value, c_empty.value);
     if ([c_real.value isEqualToString:c_empty.value] == NO) {
         NSLog(@"Empty database is newer, upgrading");
-        sqlite3_open([dbname UTF8String], &tdb);
+        sqlite3_open([self.dbname UTF8String], &tdb);
         self.db = tdb;
 
         NSInteger version = [c_real.value integerValue];
@@ -156,7 +155,7 @@
         tdb = nil;
     }
 
-    sqlite3_open([dbname UTF8String], &tdb);
+    sqlite3_open([self.dbname UTF8String], &tdb);
     self.db = tdb;
 }
 
@@ -169,16 +168,16 @@
         NSLog(@"Erasing database on user request.");
         [[NSUserDefaults standardUserDefaults] setBool:FALSE forKey:@"option_cleardatabase"];
         error = nil;
-        [fileManager removeItemAtPath:dbname error:&error];
+        [fileManager removeItemAtPath:self.dbname error:&error];
         if (error != nil)
             NSLog(@"Error: %@", error);
     }
 
-    success = [fileManager fileExistsAtPath:dbname];
+    success = [fileManager fileExistsAtPath:self.dbname];
     if (success == NO) {
-        NSLog(@"Initializing database from %@ to %@.", dbempty, dbname);
+        NSLog(@"Initializing database from %@ to %@.", self.dbempty, self.dbname);
         error = nil;
-        [fileManager copyItemAtPath:dbempty toPath:dbname error:&error];
+        [fileManager copyItemAtPath:self.dbempty toPath:self.dbname error:&error];
         if (error != nil)
             NSLog(@"Error: %@", error);
     }
@@ -193,7 +192,7 @@
 {
     NSError *e = nil;
     NSLog(@"getDatabaseSize");
-    NSDictionary *as = [fileManager attributesOfItemAtPath:dbname error:&e];
+    NSDictionary *as = [fileManager attributesOfItemAtPath:self.dbname error:&e];
     if (e != nil) {
         NSLog(@"Error: %@", e);
         return -1;
@@ -227,7 +226,7 @@
 - (void)upgradePerform:(NSInteger)version
 {
     NSLog(@"upgradePerform: to version: %ld", (long)version);
-    if (version > [upgradeSteps count])
+    if (version > [self.upgradeSteps count])
         NSAssert1(false, @"performUpgrade: Unknown destination version: %ld", (long)version);
 
     @synchronized(db) {
@@ -235,7 +234,7 @@
 
         DB_PREPARE(@"begin");
         DB_CHECK_OKAY;
-        [[upgradeSteps objectAtIndex:version] enumerateObjectsUsingBlock:^(NSString * _Nonnull sql, NSUInteger idx, BOOL * _Nonnull stop) {
+        [[self.upgradeSteps objectAtIndex:version] enumerateObjectsUsingBlock:^(NSString * _Nonnull sql, NSUInteger idx, BOOL * _Nonnull stop) {
             DB_PREPARE(sql);
             if (sqlite3_step(req) != SQLITE_DONE) {
                 NSLog(@"Failure of '%@'", sql);
@@ -250,26 +249,26 @@
 
 - (void)upgradeInit
 {
-    upgradeSteps = [NSMutableArray arrayWithCapacity:10];
+    self.upgradeSteps = [NSMutableArray arrayWithCapacity:10];
 
     // Version 0
     NSArray<NSString *> *a = @[
         // Nothing
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 1
     a = @[
         // Nothing
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 2
     a = @[
     @"update types set icon = 118 where id = 32",
     @"update types set icon = 119 where id = 31",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 3
     a = @[
@@ -277,7 +276,7 @@
     @"update groups set deletable = usergroup",
     @"insert into groups(name, usergroup, deletable) values('Live Import', 1, 0)"
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 4
     a = @[
@@ -285,7 +284,7 @@
     @"insert into types(type_major, type_minor, icon, pin_id) values('Geocache', 'Virtual', 114, 17)",
     @"insert into types(type_major, type_minor, icon, pin_id) values('Geocache', 'Traditional', 112, 16)",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 5
     a = @[
@@ -294,33 +293,33 @@
     @"update waypoints set markedfound = 0",
     @"update waypoints set inprogress = 0",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 6
     a = @[
     @"alter table accounts add column name_id integer",
     @"update accounts set name_id = 0",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 7
     a = @[
     @"create index logs_idx_gc_id on logs(gc_id)",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 8
     a = @[
     @"alter table waypoints add column gs_date_found integer",
     @"update waypoints set gs_date_found = 0",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 9
     a = @[
     @"insert into types(type_major, type_minor, icon, pin_id) values('Geocache', 'History', 120, 17)",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 10
     a = @[
@@ -330,41 +329,41 @@
     @"insert into log_types(logtype, icon) values('Maintained', 405)",
     @"insert into log_types(logtype, icon) values('Needs maintenance', 404)"
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 11
     a = @[
     @"update config set value='https://geocube.mavetju.org/geocube_sites.txt' where key='url_sites'",
     @"update config set value='https://geocube.mavetju.org/geocube_notices.txt' where key='url_notices'",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 12
     a = @[
     @"create table query_imports (id integer primary key, account_id integer, name text, filesize integer, last_import_epoch integer)",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 13
     a = @[
     @"alter table waypoints add column dnfed bool",
     @"update waypoints set dnfed = 0",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 14
     a = @[
     @"update config set value = 'https://geocube.mavetju.org/geocube_sites.geocube' where key = 'url_sites'",
     @"update config set value = 'https://geocube.mavetju.org/geocube_notices.geocube' where key = 'url_notices'",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 15
     a = @[
     @"alter table accounts add column enabled bool",
     @"update accounts set enabled = 1",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 16
     a = @[
@@ -372,7 +371,7 @@
     @"create table externalmap_urls ( id integer primary key, externalmap_id integer, model text, type integer, url text)",
     @"insert into config(key, value) values('url_externalmaps', 'https://geocube.mavetju.org/geocube_externalmaps.geocube')",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 17
     a = @[
@@ -381,7 +380,7 @@
     @"insert into types(type_major, type_minor, icon, pin_id) values('Geocache', 'Contest', 103, 11)",
     @"insert into types(type_major, type_minor, icon, pin_id) values('Geocache', 'Event', 103, 11)",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 18
     a = @[
@@ -390,7 +389,7 @@
     @"insert into config(key, value) values('url_attributes', 'https://geocube.mavetju.org/geocube_attributes.geocube')",
     @"insert into config(key, value) values('url_keys', 'https://geocube.mavetju.org/geocube_keys.geocube')",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 19
     a = @[
@@ -398,7 +397,7 @@
     @"insert into config(key, value) values('url_types', 'https://geocube.mavetju.org/geocube_types.geocube')",
     @"insert into config(key, value) values('url_pins', 'https://geocube.mavetju.org/geocube_pins.geocube')",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 20
     a = @[
@@ -406,21 +405,21 @@
     @"delete from bookmarks",
     @"insert into config(key, value) values('url_bookmarks', 'https://geocube.mavetju.org/geocube_bookmarks.geocube')",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 21
     a = @[
     @"alter table notices add column url string",
     @"update notices set url = ''",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 22
     a = @[
     @"insert into config(key, value) values('url_containers', 'https://geocube.mavetju.org/geocube_containers.geocube')",
     @"alter table containers add column gc_id integer"
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 23
     a = @[
@@ -428,54 +427,54 @@
     @"alter table travelbugs add column carrier_id integer",
     @"alter table travelbugs add waypoint_name text",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 24
     a = @[
     @"alter table waypoints add column date_lastlog_epoch integer",
     @"update waypoints set date_lastlog_epoch = 0"
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 25
     a = @[
     @"insert into groups(name, usergroup, deletable) values('Manual waypoints', 1, 0)",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 26
     a = @[
     @"alter table accounts add column distance_minimum integer",
     @"update accounts set distance_minimum = 0",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 27
     a = @[
     @"alter table travelbugs add column log_type integer",
     @"update travelbugs set log_type = 0",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 28
     a = @[
     @"alter table travelbugs add column code text",
     @"update travelbugs set code = ''",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 29
     a = @[
     @"insert into config(key, value) values('url_logstrings', 'https://geocube.mavetju.org/geocube_logstrings.geocube')",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 30
     a = @[
     @"delete from logs",
     @"create table log_strings (id integer primary key, text text, type text, logtype integer, default_note bool, default_found bool, account_id integer, icon integer, found integer, forlogs bool)",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 31
     a = @[
@@ -484,7 +483,7 @@
     @"update logs set log_string_id = 0",
     @"delete from groups where name ='All Waypoints - Attended'",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 32
     a = @[
@@ -494,14 +493,14 @@
     @"alter table log_strings add column default_discover bool",
     @"update log_strings set default_visit = 0, default_dropoff = 0, default_pickup = 0, default_discover = 0",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 33
     a = @[
     @"alter table types add column has_boundary bool",
     @"update types set has_boundary = 0",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 34
     a = @[
@@ -511,21 +510,21 @@
     @"create index locales_idx_id on locales(id)",
     @"create index locales_idx_name on locales(name)",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 35
     a = @[
     @"alter table waypoints add column date_lastimport_epoch integer",
     @"update waypoints set date_lastimport_epoch = 0",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 36
     a = @[
     @"alter table waypoints add column related_id integer",
     @"update waypoints set related_id = 0",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 37
     a = @[
@@ -533,7 +532,7 @@
     @"alter table accounts add column authentication_password text",
     @"update accounts set authentication_name = '', authentication_password = ''",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 38
     a = @[
@@ -554,7 +553,7 @@
     @"update log_strings set protocol_id = (select protocol_id from accounts where id = account_id)",
     @"delete from log_strings where protocol_id = 2",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 39
     a = @[
@@ -572,7 +571,7 @@
     @"update config set value = 'https://geocube.mavetju.org/geocube_containers.2.geocube' where key = 'url_containers'",
     @"update config set value = 'https://geocube.mavetju.org/geocube_logstrings.2.geocube' where key = 'url_logstrings'",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 40
     a = @[
@@ -584,14 +583,14 @@
     @"insert into listdata(waypoint_id, type, datetime) select id, 3, id from waypoints where inprogress = 1",
     @"insert into listdata(waypoint_id, type, datetime) select id, 4, id from waypoints where dnfed = 1",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 41
     a = @[
     @"alter table logs add column locallog bool",
     @"update logs set locallog = 0",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 42
     a = @[
@@ -609,21 +608,21 @@
     @"update config set value = 'https://geocube.mavetju.org/geocube_containers.3.geocube' where key = 'url_containers'",
     @"update config set value = 'https://geocube.mavetju.org/geocube_logstrings.3.geocube' where key = 'url_logstrings'",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 43
     a = @[
     @"create table log_templates (id integer primary key, name text, text text)",
     @"create index log_templates_idx on log_templates(id)",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 44
     a = @[
     @"create table log_macros (id integer primary key, name text, text text)",
     @"create index log_macros_idx on log_macros(id)",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 45
     a = @[
@@ -632,7 +631,7 @@
     @"delete from config where key = 'key_mapbox'",
     @"delete from config where key = 'key_gca-api'",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 46
     a = @[
@@ -641,7 +640,7 @@
     @"update accounts set oauth_consumer_public_sharedsecret = ''",
     @"update accounts set oauth_consumer_private_sharedsecret = ''",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 47
     a = @[
@@ -649,7 +648,7 @@
     @"create index locationless_idx_waypoint  on locationless(waypoint_id)",
     @"create index locationless_idx_id on locationless(id)",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 48
     a = @[
@@ -657,7 +656,7 @@
     @"alter table waypoints add column planned integer",
     @"update waypoints set planned = 0",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 49
     a = @[
@@ -667,13 +666,13 @@
     @"alter table logs add column lon_int integer",
     @"update logs set lat = '', lon = '', lat_int = 0, lon_int = 0",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 50
     a = @[
     @"insert into config(key, value) values('url_versions', 'https://geocube.mavetju.org/geocube_versions.geocube')"
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 51
     a = @[
@@ -693,7 +692,7 @@
 
     @"alter table "
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 52
     a = @[
@@ -723,7 +722,7 @@
     @"create index waypoint_idx_id on waypoints(id)",
     @"drop table waypoints_old",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 53
     a = @[
@@ -733,7 +732,7 @@
     @"insert into languages(language, country) values('en', 'US')",
     @"insert into languages(language, country) values('nl', '')",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 54
     a = @[
@@ -742,7 +741,7 @@
     @"update log_strings set display_string = text, log_string = type",
     @"update log_strings set text = text, type = type",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 55
     a = @[
@@ -750,7 +749,7 @@
     @"update log_strings set wptype = logtype",
     @"update log_strings set logtype = -1",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 56
     a = @[
@@ -758,7 +757,7 @@
     @"create index log_string_waypoints_idx  on log_string_waypoints(id)",
     @"delete from log_strings where id not in (select distinct log_string_id from logs)",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 57
     // Fix duplicate travelbugs
@@ -766,7 +765,7 @@
     @"delete from travelbugs where gc_id in (select gc_id from travelbugs group by gc_id having count(gc_id) > 1) and (carrier_id is null or carrier_id = 0) and (waypoint_name is null or waypoint_name = 0)",
     @"delete from travelbugs where not (owner_id in (select accountname_id from accounts where accountname_id != 0)) and not (carrier_id in (select accountname_id from accounts where accountname_id != 0))",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 58
     a = @[
@@ -784,19 +783,19 @@
     @"update config set value = 'https://geocube.mavetju.org/geocube_containers.5.geocube' where key = 'url_containers'",
     @"update config set value = 'https://geocube.mavetju.org/geocube_logstrings.5.geocube' where key = 'url_logstrings'",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 59
     a = @[
     @"insert into protocols(id, name) values(8, 'Geocube')",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 60
     a = @[
     @"create table kml_files (id integer primary key, filename text, enabled bool)",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 61
     a = @[
@@ -804,19 +803,19 @@
     @"alter table images add column lon float",
     @"update images set lat = 0, lon = 0",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 62
     a = @[
           [NSString stringWithFormat:@"insert into names(account_id, name, code) select id, '%@', '' from accounts", NAME_NONAMESUPPLIED],
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 63
     a = @[
     @"alter table travelbugs add column guid text",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 64
     a = @[
@@ -825,20 +824,20 @@
     @"update travelbugs set pin = code, tbcode = ref",
     @"update travelbugs set code = '', ref = ''",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 65
     a = @[
     @"update config set value = 'https://geocube.mavetju.org/geocube_types.6.geocube' where key = 'url_types'",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 66
     a = @[
     @"create table log_data (id integer primary key, waypoint_id integer, datetime_epoch integer, type integer)",
     @"create index log_data_idx_id on log_data(id)",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 67
     a = @[
@@ -856,21 +855,21 @@
     @"update config set value = 'https://geocube.mavetju.org/geocube_containers.6.geocube' where key = 'url_containers'",
     @"update config set value = 'https://geocube.mavetju.org/geocube_logstrings.6.geocube' where key = 'url_logstrings'",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 68
     a = @[
     @"alter table log_strings add column default_dnf bool",
     @"update log_strings set default_dnf = 0",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 
     // Version 69
     a = @[
     @"alter table accounts add column hidden bool",
     @"update accounts set hidden = 0",
     ];
-    [upgradeSteps addObject:a];
+    [self.upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

@@ -36,7 +36,6 @@ typedef sqlite3_int64 NSId;
 
 - (instancetype)init;
 - (void)checkVersion;
-//- (void)checkAndCreateDatabase:(NSString *)dbname empty:(NSString *)dbempty;
 - (NSInteger)getDatabaseSize;
 - (void)singleStatement:(NSString *)sql;
 - (NSString *)saveCopy;
