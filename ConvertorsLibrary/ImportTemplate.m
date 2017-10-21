@@ -25,23 +25,23 @@
 
 @implementation ImportTemplate
 
-- (instancetype)init:(dbGroup *)_group account:(dbAccount *)_account
+- (instancetype)init:(dbGroup *)group account:(dbAccount *)account
 {
     self = [super init];
 
-    group = _group;
-    account = _account;
+    self.group = group;
+    self.account = account;
     self.run_options = IMPORTOPTION_NONE;
 
-    newWaypointsCount = 0;
-    totalWaypointsCount = 0;
-    newLogsCount = 0;
-    totalLogsCount = 0;
-    newTrackablesCount = 0;
-    totalTrackablesCount = 0;
-    newImagesCount = 0;
+    self.newWaypointsCount = 0;
+    self.totalWaypointsCount = 0;
+    self.newLogsCount = 0;
+    self.totalLogsCount = 0;
+    self.newTrackablesCount = 0;
+    self.totalTrackablesCount = 0;
+    self.newImagesCount = 0;
 
-    NSLog(@"%@: Importing into %@", [self class], group.name);
+    NSLog(@"%@: Importing into %@", [self class], self.group.name);
 
     return self;
 }

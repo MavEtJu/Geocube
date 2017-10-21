@@ -29,8 +29,8 @@
 {
     if ([dict objectForKey:@"waypoints"] != nil) {
         [self parseBefore_caches];
-        infoViewer = iv;
-        iiImport = iii;
+        self.infoViewer = iv;
+        self.iiImport = iii;
         [self parseData_caches:[dict objectForKey:@"waypoints"]];
         [self parseAfter_caches];
     }
@@ -46,12 +46,12 @@
 
 - (void)parseData_caches:(NSArray<NSDictionary *> *)caches
 {
-    [infoViewer setLineObjectTotal:iiImport total:[caches count] isLines:NO];
+    [self.infoViewer setLineObjectTotal:self.iiImport total:[caches count] isLines:NO];
     [caches enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull cache, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseData_cache:cache];
-        totalWaypointsCount++;
-        [infoViewer setWaypointsTotal:iiImport total:totalWaypointsCount];
-        [infoViewer setLineObjectCount:iiImport count:idx + 1];
+        self.totalWaypointsCount++;
+        [self.infoViewer setWaypointsTotal:self.iiImport total:self.totalWaypointsCount];
+        [self.infoViewer setLineObjectCount:self.iiImport count:idx + 1];
     }];
 }
 
@@ -147,7 +147,7 @@
     if (wp == nil)
         wp = [[dbWaypoint alloc] init];
     wp.wpt_name = wpt_name;
-    wp.account = account;
+    wp.account = self.account;
 
     DICT_NSSTRING_KEY(dict, dummy, @"state");
     [dbState makeNameExist:dummy];
@@ -165,7 +165,7 @@
     DICT_NSSTRING_KEY(dict, wp.wpt_urlname, @"name");
     DICT_NSSTRING_PATH(dict, wp.gs_owner_gsid, @"owner.uuid");
     DICT_NSSTRING_PATH(dict, dummy, @"owner.username");
-    [dbName makeNameExist:dummy code:wp.gs_owner_gsid account:account];
+    [dbName makeNameExist:dummy code:wp.gs_owner_gsid account:self.account];
     [wp set_gs_owner_str:dummy];
     DICT_INTEGER_KEY(dict, wp.gs_favourites, @"recommendations");
     DICT_NSSTRING_KEY(dict, wp.gs_short_desc, @"short_description");
@@ -205,8 +205,8 @@
         NSLog(@"Created waypoint %@", wp.wpt_name);
         [wp set_wpt_symbol_str:@"Geocache"];
         [wp dbCreate];
-        newWaypointsCount++;
-        [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
+        self.newWaypointsCount++;
+        [self.infoViewer setWaypointsNew:self.iiImport new:self.newWaypointsCount];
     } else {
         NSLog(@"Updated waypoint %@", wp.wpt_name);
         [wp dbUpdate];
@@ -215,8 +215,8 @@
 
     [opencageManager addForProcessing:wp];
 
-    if ([group containsWaypoint:wp] == NO)
-        [group addWaypointToGroup:wp];
+    if ([self.group containsWaypoint:wp] == NO)
+        [self.group addWaypointToGroup:wp];
 
     [ImagesDownloadManager findImagesInDescription:wp text:wp.gs_long_desc type:IMAGECATEGORY_CACHE];
     [ImagesDownloadManager findImagesInDescription:wp text:wp.gs_short_desc type:IMAGECATEGORY_CACHE];
@@ -308,11 +308,11 @@
 - (void)parseData_logs:(NSArray<NSDictionary *> *)logs waypoint:(dbWaypoint *)wp
 {
     NSArray<dbLog *> *alllogs = [dbLog dbAllByWaypoint:wp];
-    [infoViewer setLogsTotal:iiImport total:[alllogs count]];
+    [self.infoViewer setLogsTotal:self.iiImport total:[alllogs count]];
     [logs enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseData_log:log waypoint:wp logs:alllogs];
-        totalLogsCount++;
-        [infoViewer setLogsTotal:iiImport total:totalLogsCount];
+        self.totalLogsCount++;
+        [self.infoViewer setLogsTotal:self.iiImport total:self.totalLogsCount];
     }];
 }
 
@@ -340,15 +340,15 @@
     NSString *comment;
     dbName *name;
     DICT_NSSTRING_KEY(dict, type, @"type");
-    dbLogString *ls = [dbLogString dbGetByProtocolDisplayString:account.protocol displayString:type];
+    dbLogString *ls = [dbLogString dbGetByProtocolDisplayString:self.account.protocol displayString:type];
     DICT_NSSTRING_KEY(dict, date, @"date");
     dateSinceEpoch = [MyTools secondsSinceEpochFromISO8601:date];
     DICT_NSSTRING_PATH(dict, loggername, @"user.username");
     DICT_NSSTRING_PATH(dict, loggerid, @"user.uuid");
     DICT_NSSTRING_PATH(dict, comment, @"comment");
-    [dbName makeNameExist:loggername code:loggerid account:account];
+    [dbName makeNameExist:loggername code:loggerid account:self.account];
 
-    name = [dbName dbGetByName:loggername account:account];
+    name = [dbName dbGetByName:loggername account:self.account];
 
     [ImagesDownloadManager findImagesInDescription:wp text:comment type:IMAGECATEGORY_LOG];
 
@@ -365,17 +365,17 @@
 
     dbLog *l = [[dbLog alloc] init:0 gc_id:0 waypoint:wp logstring:ls datetime:dateSinceEpoch logger:name log:comment needstobelogged:NO locallog:NO coordinates:CLLocationCoordinate2DZero];
     [l dbCreate];
-    newLogsCount++;
-    [infoViewer setLogsNew:iiImport new:newLogsCount];
+    self.newLogsCount++;
+    [self.infoViewer setLogsNew:self.iiImport new:self.newLogsCount];
 }
 
 - (void)parseData_trackables:(NSArray<NSDictionary *> *)trackables waypoint:(dbWaypoint *)wp
 {
-    [infoViewer setTrackablesTotal:iiImport total:[trackables count]];
+    [self.infoViewer setTrackablesTotal:self.iiImport total:[trackables count]];
     [trackables enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull trackable, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseData_trackable:trackable waypoint:wp];
-        totalTrackablesCount++;
-        [infoViewer setTrackablesTotal:iiImport total:totalTrackablesCount];
+        self.totalTrackablesCount++;
+        [self.infoViewer setTrackablesTotal:self.iiImport total:self.totalTrackablesCount];
     }];
 }
 

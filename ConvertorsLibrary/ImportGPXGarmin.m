@@ -20,27 +20,26 @@
  */
 
 @interface ImportGPXGarmin ()
-{
-    NSArray<NSString *> *files;
 
-    NSMutableDictionary *logIdGCId;
-    NSMutableArray<dbAttribute *> *attributesYES, *attributesNO;
-    NSMutableArray<dbLog *> *logs;
-    NSMutableArray<dbTrackable *> *trackables;
-    NSMutableArray<dbImage *> *imagesLog, *imagesCache;
-    NSInteger index;
-    NSInteger inItem, inLog, inTrackable, inGroundspeak, inImageLog, inImageCache;
-    NSMutableString *currentText;
-    NSString *currentElement;
-    NSString *gsOwnerNameId, *logFinderNameId;
-    dbWaypoint *currentWP;
-    dbLog *currentLog;
-    dbTrackable *currentTB;
-    dbImage *currentImage;
+@property (nonatomic, retain) NSArray<NSString *> *files;
 
-    BOOL runOption_LogsOnly;
-    NSInteger numberOfLines;
-}
+@property (nonatomic, retain) NSMutableDictionary *logIdGCId;
+@property (nonatomic, retain) NSMutableArray<dbAttribute *> *attributesYES, *attributesNO;
+@property (nonatomic, retain) NSMutableArray<dbLog *> *logs;
+@property (nonatomic, retain) NSMutableArray<dbTrackable *> *trackables;
+@property (nonatomic, retain) NSMutableArray<dbImage *> *imagesLog, *imagesCache;
+@property (nonatomic        ) NSInteger index;
+@property (nonatomic        ) NSInteger inItem, inLog, inTrackable, inGroundspeak, inImageLog, inImageCache;
+@property (nonatomic, retain) NSMutableString *currentText;
+@property (nonatomic, retain) NSString *currentElement;
+@property (nonatomic, retain) NSString *gsOwnerNameId, *logFinderNameId;
+@property (nonatomic, retain) dbWaypoint *currentWP;
+@property (nonatomic, retain) dbLog *currentLog;
+@property (nonatomic, retain) dbTrackable *currentTB;
+@property (nonatomic, retain) dbImage *currentImage;
+
+@property (nonatomic        ) BOOL runOption_LogsOnly;
+@property (nonatomic        ) NSInteger numberOfLines;
 
 @end
 
@@ -64,16 +63,16 @@
 
 - (void)parseData:(NSData *)data infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii
 {
-    runOption_LogsOnly = (self.run_options & IMPORTOPTION_LOGSONLY) != 0;
+    self.runOption_LogsOnly = (self.run_options & IMPORTOPTION_LOGSONLY) != 0;
     NSLog(@"%@: Parsing data", [self class]);
 
-    infoViewer = iv;
-    iiImport = iii;
+    self.infoViewer = iv;
+    self.iiImport = iii;
 
     NSXMLParser *rssParser = [[NSXMLParser alloc] initWithData:data];
 
     NSString *s = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-    numberOfLines = [MyTools numberOfLines:s];
+    self.numberOfLines = [MyTools numberOfLines:s];
 
     NSLog(@"run_options: %ld", (long)self.run_options);
 
@@ -82,102 +81,102 @@
     [rssParser setShouldReportNamespacePrefixes:NO];
     [rssParser setShouldResolveExternalEntities:NO];
 
-    index = 0;
-    inItem = NO;
-    inLog = NO;
-    inTrackable = NO;
-    inImageLog = NO;
-    inImageCache = NO;
-    logIdGCId = [dbLog dbAllIdGCId];
+    self.index = 0;
+    self.inItem = NO;
+    self.inLog = NO;
+    self.inTrackable = NO;
+    self.inImageLog = NO;
+    self.inImageCache = NO;
+    self.logIdGCId = [dbLog dbAllIdGCId];
 
-    [infoViewer setLineObjectTotal:iiImport total:numberOfLines isLines:YES];
+    [self.infoViewer setLineObjectTotal:self.iiImport total:self.numberOfLines isLines:YES];
     @autoreleasepool {
         [rssParser parse];
     }
-    [infoViewer setLineObjectCount:iiImport count:numberOfLines];
+    [self.infoViewer setLineObjectCount:self.iiImport count:self.numberOfLines];
 }
 
 - (void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
     @autoreleasepool {
-        currentElement = elementName;
-        currentText = nil;
-        index++;
+        self.currentElement = elementName;
+        self.currentText = nil;
+        self.index++;
 
-        if ([currentElement isEqualToString:@"wpt"] == YES) {
-            currentWP = [[dbWaypoint alloc] init];
-            [currentWP set_wpt_lat_str:[attributeDict objectForKey:@"lat"]];
-            [currentWP set_wpt_lon_str:[attributeDict objectForKey:@"lon"]];
+        if ([self.currentElement isEqualToString:@"wpt"] == YES) {
+            self.currentWP = [[dbWaypoint alloc] init];
+            [self.currentWP set_wpt_lat_str:[attributeDict objectForKey:@"lat"]];
+            [self.currentWP set_wpt_lon_str:[attributeDict objectForKey:@"lon"]];
 
-            currentWP.account = account;
+            self.currentWP.account = self.account;
 
-            logs = [NSMutableArray arrayWithCapacity:20];
-            attributesYES = [NSMutableArray arrayWithCapacity:20];
-            attributesNO = [NSMutableArray arrayWithCapacity:20];
-            trackables = [NSMutableArray arrayWithCapacity:20];
-            imagesLog = [NSMutableArray arrayWithCapacity:20];
-            imagesCache = [NSMutableArray arrayWithCapacity:20];
+            self.logs = [NSMutableArray arrayWithCapacity:20];
+            self.attributesYES = [NSMutableArray arrayWithCapacity:20];
+            self.attributesNO = [NSMutableArray arrayWithCapacity:20];
+            self.trackables = [NSMutableArray arrayWithCapacity:20];
+            self.imagesLog = [NSMutableArray arrayWithCapacity:20];
+            self.imagesCache = [NSMutableArray arrayWithCapacity:20];
 
-            inItem = YES;
+            self.inItem = YES;
             return;
         }
 
-        if ([currentElement isEqualToString:@"cache"] == YES) {
-            [currentWP setGs_archived:[[attributeDict objectForKey:@"archived"] boolValue]];
-            [currentWP setGs_available:[[attributeDict objectForKey:@"available"] boolValue]];
+        if ([self.currentElement isEqualToString:@"cache"] == YES) {
+            [self.currentWP setGs_archived:[[attributeDict objectForKey:@"archived"] boolValue]];
+            [self.currentWP setGs_available:[[attributeDict objectForKey:@"available"] boolValue]];
 
-            inGroundspeak = YES;
+            self.inGroundspeak = YES;
             return;
         }
 
-        if ([currentElement isEqualToString:@"long_description"] == YES) {
-            [currentWP setGs_long_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
+        if ([self.currentElement isEqualToString:@"long_description"] == YES) {
+            [self.currentWP setGs_long_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
             return;
         }
 
-        if ([currentElement isEqualToString:@"short_description"] == YES) {
-            [currentWP setGs_short_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
+        if ([self.currentElement isEqualToString:@"short_description"] == YES) {
+            [self.currentWP setGs_short_desc_html:[[attributeDict objectForKey:@"html"] boolValue]];
             return;
         }
 
-        if ([currentElement isEqualToString:@"log"] == YES) {
-            currentLog = [[dbLog alloc] init];
-            [currentLog setGc_id:[[attributeDict objectForKey:@"id"] integerValue]];
+        if ([self.currentElement isEqualToString:@"log"] == YES) {
+            self.currentLog = [[dbLog alloc] init];
+            [self.currentLog setGc_id:[[attributeDict objectForKey:@"id"] integerValue]];
 
-            inLog = YES;
+            self.inLog = YES;
             return;
         }
 
-        if ([currentElement isEqualToString:@"finder"] == YES) {
-            logFinderNameId = [attributeDict objectForKey:@"id"];
-            [currentLog setLogger_gsid:logFinderNameId];
+        if ([self.currentElement isEqualToString:@"finder"] == YES) {
+            self.logFinderNameId = [attributeDict objectForKey:@"id"];
+            [self.currentLog setLogger_gsid:self.logFinderNameId];
             return;
         }
-        if ([currentElement isEqualToString:@"owner"] == YES) {
-            gsOwnerNameId = [attributeDict objectForKey:@"id"];
-            [currentWP setGs_owner_gsid:gsOwnerNameId];
-            return;
-        }
-
-        if ([currentElement isEqualToString:@"travelbug"] == YES) {
-            currentTB = [[dbTrackable alloc] init];
-            currentTB.gc_id = [[attributeDict objectForKey:@"id"] integerValue];
-            currentTB.tbcode = [attributeDict objectForKey:@"ref"];
-            currentTB.waypoint_name = currentWP.wpt_name;
-
-            inTrackable = YES;
+        if ([self.currentElement isEqualToString:@"owner"] == YES) {
+            self.gsOwnerNameId = [attributeDict objectForKey:@"id"];
+            [self.currentWP setGs_owner_gsid:self.gsOwnerNameId];
             return;
         }
 
-        if ([currentElement isEqualToString:@"attribute"] == YES) {
+        if ([self.currentElement isEqualToString:@"travelbug"] == YES) {
+            self.currentTB = [[dbTrackable alloc] init];
+            self.currentTB.gc_id = [[attributeDict objectForKey:@"id"] integerValue];
+            self.currentTB.tbcode = [attributeDict objectForKey:@"ref"];
+            self.currentTB.waypoint_name = self.currentWP.wpt_name;
+
+            self.inTrackable = YES;
+            return;
+        }
+
+        if ([self.currentElement isEqualToString:@"attribute"] == YES) {
             NSId _id = [[attributeDict objectForKey:@"id"] integerValue];
             BOOL YesNo = [[attributeDict objectForKey:@"inc"] boolValue];
             dbAttribute *a = [dbc attributeGetByGCId:_id];
             a._YesNo = YesNo;
             if (YesNo == YES)
-                [attributesYES addObject:[dbc attributeGetByGCId:_id]];
+                [self.attributesYES addObject:[dbc attributeGetByGCId:_id]];
             else
-                [attributesNO addObject:[dbc attributeGetByGCId:_id]];
+                [self.attributesNO addObject:[dbc attributeGetByGCId:_id]];
             return;
         }
 
@@ -188,143 +187,143 @@
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
     if (parser.lineNumber % 25 == 0)
-        [infoViewer setLineObjectCount:iiImport count:parser.lineNumber];
+        [self.infoViewer setLineObjectCount:self.iiImport count:parser.lineNumber];
 
     @autoreleasepool {
-        index--;
+        self.index--;
 
         NSMutableString *cleanText = nil;
-        if (currentText != nil) {
-            cleanText = [NSMutableString stringWithString:currentText];
-            [cleanText replaceOccurrencesOfString:@"\\s+" withString:@" " options:NSRegularExpressionSearch range:NSMakeRange(0, [currentText length])];
+        if (self.currentText != nil) {
+            cleanText = [NSMutableString stringWithString:self.currentText];
+            [cleanText replaceOccurrencesOfString:@"\\s+" withString:@" " options:NSRegularExpressionSearch range:NSMakeRange(0, [self.currentText length])];
         }
 
         // Deal with the completion of the cache
-        if (index == 1 && [elementName isEqualToString:@"wpt"] == YES) {
-            [currentWP finish];
-            currentWP.date_lastimport_epoch = time(NULL);
+        if (self.index == 1 && [elementName isEqualToString:@"wpt"] == YES) {
+            [self.currentWP finish];
+            self.currentWP.date_lastimport_epoch = time(NULL);
 
             // Determine if it is a new waypoint or an existing one
-            currentWP._id = [dbWaypoint dbGetByName:currentWP.wpt_name]._id;
-            totalWaypointsCount++;
-            [infoViewer setWaypointsTotal:iiImport total:totalWaypointsCount];
-            if (runOption_LogsOnly == NO) {
-                if (currentWP._id == 0) {
-                    [currentWP dbCreate];
-                    newWaypointsCount++;
-                    [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
+            self.currentWP._id = [dbWaypoint dbGetByName:self.currentWP.wpt_name]._id;
+            self.totalWaypointsCount++;
+            [self.infoViewer setWaypointsTotal:self.iiImport total:self.totalWaypointsCount];
+            if (self.runOption_LogsOnly == NO) {
+                if (self.currentWP._id == 0) {
+                    [self.currentWP dbCreate];
+                    self.newWaypointsCount++;
+                    [self.infoViewer setWaypointsNew:self.iiImport new:self.newWaypointsCount];
 
                     // Update the group
-                    [dbc.groupLastImportAdded addWaypointToGroup:currentWP];
-                    [dbc.groupAllWaypoints addWaypointToGroup:currentWP];
-                    [group addWaypointToGroup:currentWP];
+                    [dbc.groupLastImportAdded addWaypointToGroup:self.currentWP];
+                    [dbc.groupAllWaypoints addWaypointToGroup:self.currentWP];
+                    [self.group addWaypointToGroup:self.currentWP];
                 } else {
-                    [currentWP dbUpdate];
+                    [self.currentWP dbUpdate];
 
                     // Update the group
-                    if ([group containsWaypoint:currentWP] == NO)
-                        [group addWaypointToGroup:currentWP];
+                    if ([self.group containsWaypoint:self.currentWP] == NO)
+                        [self.group addWaypointToGroup:self.currentWP];
                 }
-                [self.delegate Import_WaypointProcessed:currentWP];
+                [self.delegate Import_WaypointProcessed:self.currentWP];
 
-                [opencageManager addForProcessing:currentWP];
+                [opencageManager addForProcessing:self.currentWP];
 
-                [dbc.groupLastImport addWaypointToGroup:currentWP];
-                if (currentWP.gs_long_desc != nil)
-                    newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP text:currentWP.gs_long_desc type:IMAGECATEGORY_CACHE];
-                if (currentWP.gs_short_desc != nil)
-                    newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP text:currentWP.gs_short_desc type:IMAGECATEGORY_CACHE];
+                [dbc.groupLastImport addWaypointToGroup:self.currentWP];
+                if (self.currentWP.gs_long_desc != nil)
+                    self.newImagesCount += [ImagesDownloadManager findImagesInDescription:self.currentWP text:self.currentWP.gs_long_desc type:IMAGECATEGORY_CACHE];
+                if (self.currentWP.gs_short_desc != nil)
+                    self.newImagesCount += [ImagesDownloadManager findImagesInDescription:self.currentWP text:self.currentWP.gs_short_desc type:IMAGECATEGORY_CACHE];
             }
 
             // Link images to cache
-            [imagesCache enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
-                newImagesCount += [ImagesDownloadManager downloadImage:currentWP url:img.url name:img.name type:IMAGECATEGORY_CACHE];
+            [self.imagesCache enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
+                self.newImagesCount += [ImagesDownloadManager downloadImage:self.currentWP url:img.url name:img.name type:IMAGECATEGORY_CACHE];
             }];
 
-            [imagesLog enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
-                newImagesCount += [ImagesDownloadManager downloadImage:currentWP url:img.url name:img.name type:IMAGECATEGORY_LOG];
+            [self.imagesLog enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
+                self.newImagesCount += [ImagesDownloadManager downloadImage:self.currentWP url:img.url name:img.name type:IMAGECATEGORY_LOG];
             }];
 
             // Link logs to cache
-            [logs enumerateObjectsUsingBlock:^(dbLog * _Nonnull l, NSUInteger idx, BOOL * _Nonnull stop) {
-                newImagesCount += [ImagesDownloadManager findImagesInDescription:currentWP text:l.log type:IMAGECATEGORY_LOG];
-                l.waypoint = currentWP;
+            [self.logs enumerateObjectsUsingBlock:^(dbLog * _Nonnull l, NSUInteger idx, BOOL * _Nonnull stop) {
+                self.newImagesCount += [ImagesDownloadManager findImagesInDescription:self.currentWP text:l.log type:IMAGECATEGORY_LOG];
+                l.waypoint = self.currentWP;
                 [l finish];
 
                 __block NSId _id = 0;
-                dbLog *_l = [logIdGCId objectForKey:[NSString stringWithFormat:@"%ld", (long)l.gc_id]];
+                dbLog *_l = [self.logIdGCId objectForKey:[NSString stringWithFormat:@"%ld", (long)l.gc_id]];
                 if (_l != nil)
                     _id = _l._id;
 
                 if (_id == 0) {
-                    newLogsCount++;
-                    [infoViewer setLogsNew:iiImport new:newLogsCount];
+                    self.newLogsCount++;
+                    [self.infoViewer setLogsNew:self.iiImport new:self.newLogsCount];
                     [l finish];
                     [l dbCreate];
-                    [logIdGCId setObject:l forKey:[NSString stringWithFormat:@"%ld", (long)l.gc_id]];
+                    [self.logIdGCId setObject:l forKey:[NSString stringWithFormat:@"%ld", (long)l.gc_id]];
                 } else {
                     l._id = _id;
                     [l dbUpdateNote];
                 }
-                totalLogsCount++;
-                [infoViewer setLogsTotal:iiImport total:totalLogsCount];
+                self.totalLogsCount++;
+                [self.infoViewer setLogsTotal:self.iiImport total:self.totalLogsCount];
             }];
 
-            if (runOption_LogsOnly == NO) {
+            if (self.runOption_LogsOnly == NO) {
                 // Link attributes to cache
-                [dbAttribute dbUnlinkAllFromWaypoint:currentWP];
-                [dbAttribute dbAllLinkToWaypoint:currentWP attributes:attributesNO YesNo:NO];
-                [dbAttribute dbAllLinkToWaypoint:currentWP attributes:attributesYES YesNo:YES];
+                [dbAttribute dbUnlinkAllFromWaypoint:self.currentWP];
+                [dbAttribute dbAllLinkToWaypoint:self.currentWP attributes:self.attributesNO YesNo:NO];
+                [dbAttribute dbAllLinkToWaypoint:self.currentWP attributes:self.attributesYES YesNo:YES];
 
                 // Link trackables to cache
-                [dbTrackable dbUnlinkAllFromWaypoint:currentWP];
-                [trackables enumerateObjectsUsingBlock:^(dbTrackable * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {
+                [dbTrackable dbUnlinkAllFromWaypoint:self.currentWP];
+                [self.trackables enumerateObjectsUsingBlock:^(dbTrackable * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {
                     NSId _id = [dbTrackable dbGetIdByGC:tb.gc_id];
                     [tb finish];
                     if (_id == 0) {
-                        newTrackablesCount++;
-                        [infoViewer setTrackablesNew:iiImport new:newTrackablesCount];
+                        self.newTrackablesCount++;
+                        [self.infoViewer setTrackablesNew:self.iiImport new:self.newTrackablesCount];
                         [tb dbCreate];
                     } else {
                         tb._id = _id;
                         [tb dbUpdate];
                     }
-                    [tb dbLinkToWaypoint:currentWP];
-                    totalTrackablesCount++;
-                    [infoViewer setTrackablesTotal:iiImport total:totalTrackablesCount];
+                    [tb dbLinkToWaypoint:self.currentWP];
+                    self.totalTrackablesCount++;
+                    [self.infoViewer setTrackablesTotal:self.iiImport total:self.totalTrackablesCount];
                 }];
             }
 
-            inItem = NO;
+            self.inItem = NO;
             goto bye;
         }
 
-        if (index == 2 && [currentElement isEqualToString:@"cache"] == YES) {
-            inGroundspeak = NO;
+        if (self.index == 2 && [self.currentElement isEqualToString:@"cache"] == YES) {
+            self.inGroundspeak = NO;
             goto bye;
         }
 
         // Deal with the completion of the travelbug
-        if (index == 4 && inTrackable == YES && [elementName isEqualToString:@"travelbug"] == YES) {
-            [trackables addObject:currentTB];
+        if (self.index == 4 && self.inTrackable == YES && [elementName isEqualToString:@"travelbug"] == YES) {
+            [self.trackables addObject:self.currentTB];
 
-            inTrackable = NO;
+            self.inTrackable = NO;
             goto bye;
         }
 
         // Deal with the completion of the log
-        if (index == 4 && inLog == YES && [elementName isEqualToString:@"log"] == YES) {
-            [logs addObject:currentLog];
+        if (self.index == 4 && self.inLog == YES && [elementName isEqualToString:@"log"] == YES) {
+            [self.logs addObject:self.currentLog];
 
-            inLog = NO;
+            self.inLog = NO;
             goto bye;
         }
 
         // Deal with the data of the travelbug
-        if (inTrackable == YES) {
-            if (index == 5) {
+        if (self.inTrackable == YES) {
+            if (self.index == 5) {
                 if ([elementName isEqualToString:@"name"] == YES) {
-                    [currentTB setName:cleanText];
+                    [self.currentTB setName:cleanText];
                     goto bye;
                 }
                 goto bye;
@@ -333,23 +332,23 @@
         }
 
         // Deal with the data of the log
-        if (inLog == YES) {
-            if (index == 5) {
+        if (self.inLog == YES) {
+            if (self.index == 5) {
                 if ([elementName isEqualToString:@"date"] == YES) {
-                    currentLog.datetime_epoch = [MyTools secondsSinceEpochFromISO8601:cleanText];
+                    self.currentLog.datetime_epoch = [MyTools secondsSinceEpochFromISO8601:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"type"] == YES) {
-                    [currentLog set_logstring_str:cleanText account:account];
+                    [self.currentLog set_logstring_str:cleanText account:self.account];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"finder"] == YES) {
-                    [dbName makeNameExist:cleanText code:logFinderNameId account:account];
-                    currentLog.logger = [dbName dbGetByName:cleanText account:account];
+                    [dbName makeNameExist:cleanText code:self.logFinderNameId account:self.account];
+                    self.currentLog.logger = [dbName dbGetByName:cleanText account:self.account];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"text"] == YES) {
-                    [currentLog setLog:currentText]; // Can contain newlines
+                    [self.currentLog setLog:self.currentText]; // Can contain newlines
                     goto bye;
                 }
                 goto bye;
@@ -358,26 +357,26 @@
         }
 
         // Deal with the data of the cache. Always the last one!
-        if (inItem == YES) {
-            if (index == 2 && cleanText != nil) {
+        if (self.inItem == YES) {
+            if (self.index == 2 && cleanText != nil) {
                 if ([elementName isEqualToString:@"time"] == YES) {
-                    [currentWP set_wpt_date_placed:cleanText];
+                    [self.currentWP set_wpt_date_placed:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"name"] == YES) {
-                    [currentWP setWpt_name:cleanText];
+                    [self.currentWP setWpt_name:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"desc"] == YES) {
-                    [currentWP setWpt_description:cleanText];
+                    [self.currentWP setWpt_description:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"url"] == YES) {
-                    [currentWP setWpt_url:cleanText];
+                    [self.currentWP setWpt_url:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"urlname"] == YES) {
-                    [currentWP setWpt_urlname:cleanText];
+                    [self.currentWP setWpt_urlname:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"sym"] == YES) {
@@ -388,57 +387,57 @@
                         [s dbCreate];
                         [dbc symbolsAdd:s];
                     }
-                    [currentWP set_wpt_symbol_str:cleanText];
+                    [self.currentWP set_wpt_symbol_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"type"] == YES) {
-                    [currentWP set_wpt_type_str:cleanText];
+                    [self.currentWP set_wpt_type_str:cleanText];
                     goto bye;
                 }
                 goto bye;
             }
-            if (index == 3 && cleanText != nil) {
+            if (self.index == 3 && cleanText != nil) {
                 if ([elementName isEqualToString:@"difficulty"] == YES) {
-                    [currentWP setGs_rating_difficulty:[cleanText floatValue]];
+                    [self.currentWP setGs_rating_difficulty:[cleanText floatValue]];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"terrain"] == YES) {
-                    [currentWP setGs_rating_terrain:[cleanText floatValue]];
+                    [self.currentWP setGs_rating_terrain:[cleanText floatValue]];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"country"] == YES) {
                     [dbCountry makeNameExist:cleanText];
-                    [currentWP set_gs_country_str:cleanText];
+                    [self.currentWP set_gs_country_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"state"] == YES) {
                     [dbState makeNameExist:cleanText];
-                    [currentWP set_gs_state_str:cleanText];
+                    [self.currentWP set_gs_state_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"container"] == YES) {
-                    [currentWP set_gs_container_str:cleanText];
+                    [self.currentWP set_gs_container_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"short_description"] == YES) {
-                    [currentWP setGs_short_desc:[MyTools HTMLUnescape:currentText]]; // Can contain newlines
+                    [self.currentWP setGs_short_desc:[MyTools HTMLUnescape:self.currentText]]; // Can contain newlines
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"long_description"] == YES) {
-                    [currentWP setGs_long_desc:[MyTools HTMLUnescape:currentText]]; // Can contain newlines
+                    [self.currentWP setGs_long_desc:[MyTools HTMLUnescape:self.currentText]]; // Can contain newlines
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"encoded_hints"] == YES) {
-                    [currentWP setGs_hint:[MyTools HTMLUnescape:currentText]]; // Can contain newlines
+                    [self.currentWP setGs_hint:[MyTools HTMLUnescape:self.currentText]]; // Can contain newlines
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"owner"] == YES) {
-                    [dbName makeNameExist:cleanText code:gsOwnerNameId account:account];
-                    [currentWP set_gs_owner_str:cleanText];
+                    [dbName makeNameExist:cleanText code:self.gsOwnerNameId account:self.account];
+                    [self.currentWP set_gs_owner_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"placed_by"] == YES) {
-                    [currentWP setGs_placed_by:cleanText];
+                    [self.currentWP setGs_placed_by:cleanText];
                     goto bye;
                 }
 
@@ -449,7 +448,7 @@
     }
 
 bye:
-    currentText = nil;
+    self.currentText = nil;
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
@@ -457,10 +456,10 @@ bye:
     @autoreleasepool {
         if (string == nil)
             return;
-        if (currentText == nil)
-            currentText = [[NSMutableString alloc] initWithString:string];
+        if (self.currentText == nil)
+            self.currentText = [[NSMutableString alloc] initWithString:string];
         else
-            [currentText appendString:string];
+            [self.currentText appendString:string];
         return;
     }
 }

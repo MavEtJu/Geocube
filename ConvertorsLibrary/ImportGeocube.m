@@ -222,8 +222,8 @@ typedef NS_ENUM(NSInteger, Type) {
     NSDictionary *d;
     BOOL okay = YES;
 
-    infoViewer = iv;
-    iiImport = iii;
+    self.infoViewer = iv;
+    self.iiImport = iii;
 
     NSDictionary *xmlDictionary = [XMLReader dictionaryForXMLData:XMLdata error:&error];
     if (xmlDictionary == nil)
@@ -292,14 +292,14 @@ typedef NS_ENUM(NSInteger, Type) {
         return NO;
 
     NSArray<NSDictionary *> *notices = [dict objectForKey:@"notice"];
-    [infoViewer setLineObjectTotal:iiImport total:[notices count] isLines:NO];
+    [self.infoViewer setLineObjectTotal:self.iiImport total:[notices count] isLines:NO];
 
     if ([notices isKindOfClass:[NSDictionary class]] == YES)
         notices = @[(NSDictionary *)notices];
 
     [notices enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull notice, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *geocube_id = [notice objectForKey:@"id"];
-        [infoViewer setLineObjectCount:iiImport count:idx + 1];
+        [self.infoViewer setLineObjectCount:self.iiImport count:idx + 1];
 
 #define KEY(__dict__, __var__, __key__) \
     NSString *__var__ = [[__dict__ objectForKey:__key__] objectForKey:@"text"]; \
@@ -343,9 +343,9 @@ typedef NS_ENUM(NSInteger, Type) {
     NSArray<NSDictionary *> *sites = [dict objectForKey:@"site"];
     if ([sites isKindOfClass:[NSDictionary class]] == YES)
         sites = @[(NSDictionary *)sites];
-    [infoViewer setLineObjectTotal:iiImport total:[sites count] isLines:NO];
+    [self.infoViewer setLineObjectTotal:self.iiImport total:[sites count] isLines:NO];
     [sites enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull site, NSUInteger idx, BOOL * _Nonnull stop) {
-        [infoViewer setLineObjectCount:iiImport count:idx + 1];
+        [self.infoViewer setLineObjectCount:self.iiImport count:idx + 1];
         NSString *_id = [site objectForKey:@"id"];
         NSString *revision = [site objectForKey:@"revision"];
         NSString *_site = [site objectForKey:@"site"];
@@ -445,7 +445,7 @@ typedef NS_ENUM(NSInteger, Type) {
         return NO;
 
     NSArray<NSDictionary *> *keys = [dict objectForKey:@"externalmap"];
-    [infoViewer setLineObjectTotal:iiImport total:[keys count] isLines:NO];
+    [self.infoViewer setLineObjectTotal:self.iiImport total:[keys count] isLines:NO];
     [keys enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull key, NSUInteger idx, BOOL * _Nonnull stop) {
         NSInteger gc_id = [[key objectForKey:@"id"] integerValue];
         NSString *enabled = [key objectForKey:@"enabled"];
@@ -495,9 +495,9 @@ typedef NS_ENUM(NSInteger, Type) {
         return NO;
 
     NSArray<NSDictionary *> *attrs = [dict objectForKey:@"attribute"];
-    [infoViewer setLineObjectTotal:iiImport total:[attrs count] isLines:NO];
+    [self.infoViewer setLineObjectTotal:self.iiImport total:[attrs count] isLines:NO];
     [attrs enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull attr, NSUInteger idx, BOOL * _Nonnull stop) {
-        [infoViewer setLineObjectCount:iiImport count:idx + 1];
+        [self.infoViewer setLineObjectCount:self.iiImport count:idx + 1];
         NSInteger gc_id = [[attr objectForKey:@"gc_id"] integerValue];
         NSInteger icon = [[attr objectForKey:@"icon"] integerValue];
         NSString *label = [attr objectForKey:@"label"];
@@ -526,9 +526,9 @@ typedef NS_ENUM(NSInteger, Type) {
         return NO;
 
     NSArray<NSDictionary *> *states = [dict objectForKey:@"state"];
-    [infoViewer setLineObjectTotal:iiImport total:[states count] isLines:NO];
+    [self.infoViewer setLineObjectTotal:self.iiImport total:[states count] isLines:NO];
     [states enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull state, NSUInteger idx, BOOL * _Nonnull stop) {
-        [infoViewer setLineObjectCount:iiImport count:idx + 1];
+        [self.infoViewer setLineObjectCount:self.iiImport count:idx + 1];
         NSString *abbr = [state objectForKey:@"abbr"];
         NSString *name = [state objectForKey:@"name"];
 
@@ -555,9 +555,9 @@ typedef NS_ENUM(NSInteger, Type) {
         return NO;
 
     NSArray<NSDictionary *> *countries = [dict objectForKey:@"country"];
-    [infoViewer setLineObjectTotal:iiImport total:[countries count] isLines:NO];
+    [self.infoViewer setLineObjectTotal:self.iiImport total:[countries count] isLines:NO];
     [countries enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull country, NSUInteger idx, BOOL * _Nonnull stop) {
-        [infoViewer setLineObjectCount:iiImport count:idx + 1];
+        [self.infoViewer setLineObjectCount:self.iiImport count:idx + 1];
         NSString *abbr = [country objectForKey:@"abbr"];
         NSString *name = [country objectForKey:@"name"];
 
@@ -584,9 +584,9 @@ typedef NS_ENUM(NSInteger, Type) {
         return NO;
 
     NSArray<NSDictionary *> *types = [dict objectForKey:@"type"];
-    [infoViewer setLineObjectTotal:iiImport total:[types count] isLines:NO];
+    [self.infoViewer setLineObjectTotal:self.iiImport total:[types count] isLines:NO];
     [types enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull type, NSUInteger idx, BOOL * _Nonnull stop) {
-        [infoViewer setLineObjectCount:iiImport count:idx + 1];
+        [self.infoViewer setLineObjectCount:self.iiImport count:idx + 1];
         NSString *major = [type objectForKey:@"major"];
         NSString *minor = [type objectForKey:@"minor"];
         NSInteger icon = [[type objectForKey:@"icon"] integerValue];
@@ -627,9 +627,9 @@ typedef NS_ENUM(NSInteger, Type) {
         return NO;
 
     NSArray<NSDictionary *> *pins = [dict objectForKey:@"pin"];
-    [infoViewer setLineObjectTotal:iiImport total:[pins count] isLines:NO];
+    [self.infoViewer setLineObjectTotal:self.iiImport total:[pins count] isLines:NO];
     [pins enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull pin, NSUInteger idx, BOOL * _Nonnull stop) {
-        [infoViewer setLineObjectCount:iiImport count:idx + 1];
+        [self.infoViewer setLineObjectCount:self.iiImport count:idx + 1];
         NSString *description = [pin objectForKey:@"description"];
         NSString *rgb = [pin objectForKey:@"rgb"];
         NSInteger _id = [[pin objectForKey:@"id"] integerValue];
@@ -662,9 +662,9 @@ typedef NS_ENUM(NSInteger, Type) {
         return NO;
 
     NSArray<NSDictionary *> *bookmarks = [dict objectForKey:@"bookmark"];
-    [infoViewer setLineObjectTotal:iiImport total:[bookmarks count] isLines:NO];
+    [self.infoViewer setLineObjectTotal:self.iiImport total:[bookmarks count] isLines:NO];
     [bookmarks enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull bookmark, NSUInteger idx, BOOL * _Nonnull stop) {
-        [infoViewer setLineObjectCount:iiImport count:idx + 1];
+        [self.infoViewer setLineObjectCount:self.iiImport count:idx + 1];
         NSString *description = [bookmark objectForKey:@"description"];
         NSString *url = [bookmark objectForKey:@"url"];
         NSInteger import_id = [[bookmark objectForKey:@"id"] integerValue];
@@ -694,9 +694,9 @@ typedef NS_ENUM(NSInteger, Type) {
         return NO;
 
     NSArray<NSDictionary *> *containers = [dict objectForKey:@"container"];
-    [infoViewer setLineObjectTotal:iiImport total:[containers count] isLines:NO];
+    [self.infoViewer setLineObjectTotal:self.iiImport total:[containers count] isLines:NO];
     [containers enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull container, NSUInteger idx, BOOL * _Nonnull stop) {
-        [infoViewer setLineObjectCount:iiImport count:idx + 1];
+        [self.infoViewer setLineObjectCount:self.iiImport count:idx + 1];
         NSString *label = [container objectForKey:@"label"];
         NSInteger gc_id = [[container objectForKey:@"gc_id"] integerValue];
         NSInteger icon = [[container objectForKey:@"icon"] integerValue];
@@ -726,9 +726,9 @@ typedef NS_ENUM(NSInteger, Type) {
         return NO;
 
     NSArray<NSDictionary *> *protocols = [dict objectForKey:@"protocol"];
-    [infoViewer setLineObjectTotal:iiImport total:[protocols count] isLines:NO];
+    [self.infoViewer setLineObjectTotal:self.iiImport total:[protocols count] isLines:NO];
     [protocols enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull protocoldict, NSUInteger idx, BOOL * _Nonnull stop) {
-        [infoViewer setLineObjectCount:iiImport count:idx + 1];
+        [self.infoViewer setLineObjectCount:self.iiImport count:idx + 1];
         NSString *protocol_name = [protocoldict objectForKey:@"name"];
         dbProtocol *_protocol = [dbProtocol dbGetByName:protocol_name];
 

@@ -27,8 +27,8 @@
 
 - (void)parseDictionary:(GCDictionaryGGCW *)dict infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii
 {
-    infoViewer = iv;
-    iiImport = iii;
+    self.infoViewer = iv;
+    self.iiImport = iii;
     if ([dict objectForKey:@"mapwaypoints"] != nil) {
         [self parseBefore_mapwaypoints];
         [self parseData_mapwaypoints:[dict objectForKey:@"mapwaypoints"]];
@@ -53,13 +53,13 @@
 
 - (void)parseData_mapwaypoints:(NSDictionary *)waypoints
 {
-    [infoViewer setLineObjectTotal:iiImport total:[waypoints count] isLines:NO];
+    [self.infoViewer setLineObjectTotal:self.iiImport total:[waypoints count] isLines:NO];
     __block NSInteger idx = 0;
     [waypoints enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSDictionary *wp, BOOL * _Nonnull stop) {
         [self parseData_mapwaypoint:wp];
-        ++totalWaypointsCount;
-        [infoViewer setWaypointsTotal:iiImport total:totalWaypointsCount];
-        [infoViewer setLineObjectCount:iiImport count:++idx];
+        ++self.totalWaypointsCount;
+        [self.infoViewer setWaypointsTotal:self.iiImport total:self.totalWaypointsCount];
+        [self.infoViewer setLineObjectCount:self.iiImport count:++idx];
     }];
 }
 
@@ -118,18 +118,18 @@
     DICT_NSSTRING_PATH(dict, dummy, @"container.text");
     [wp set_wpt_type_str:dummy];
     DICT_NSSTRING_PATH(dict, dummy, @"owner.text");
-    [dbName makeNameExist:dummy code:nil account:account];
+    [dbName makeNameExist:dummy code:nil account:self.account];
     [wp set_gs_owner_str:dummy];
 
-    wp.account = account;
+    wp.account = self.account;
     [wp finish];
     wp.date_lastimport_epoch = time(NULL);
 
     if (wp._id == 0) {
         NSLog(@"Created waypoint %@", wp.wpt_name);
         [wp dbCreate];
-        newWaypointsCount++;
-        [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
+        self.newWaypointsCount++;
+        [self.infoViewer setWaypointsNew:self.iiImport new:self.newWaypointsCount];
     } else {
         NSLog(@"Updated waypoint %@", wp.wpt_name);
         [wp dbUpdate];
@@ -138,8 +138,8 @@
 
     [opencageManager addForProcessing:wp];
 
-    if ([group containsWaypoint:wp] == NO)
-        [group addWaypointToGroup:wp];
+    if ([self.group containsWaypoint:wp] == NO)
+        [self.group addWaypointToGroup:wp];
 }
 
 - (void)parseBefore_trackables
@@ -154,12 +154,12 @@
 
 - (void)parseData_trackables:(NSArray<NSDictionary *> *)trackables
 {
-    [infoViewer setLineObjectTotal:iiImport total:[trackables count] isLines:NO];
+    [self.infoViewer setLineObjectTotal:self.iiImport total:[trackables count] isLines:NO];
     [trackables enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseData_trackable:tb];
-        ++totalTrackablesCount;
-        [infoViewer setWaypointsTotal:iiImport total:totalTrackablesCount];
-        [infoViewer setLineObjectCount:iiImport count:idx + 1];
+        ++self.totalTrackablesCount;
+        [self.infoViewer setWaypointsTotal:self.iiImport total:self.totalTrackablesCount];
+        [self.infoViewer setLineObjectCount:self.iiImport count:idx + 1];
     }];
 }
 
@@ -192,20 +192,20 @@
     DICT_NSSTRING_KEY(tbdata, tb.name, @"name");
     DICT_NSSTRING_KEY(tbdata, dummy, @"carrier");
     if (dummy != nil) {
-        [dbName makeNameExist:dummy code:nil account:account];
-        [tb set_carrier_str:dummy account:account];
+        [dbName makeNameExist:dummy code:nil account:self.account];
+        [tb set_carrier_str:dummy account:self.account];
     }
     DICT_NSSTRING_KEY(tbdata, tb.guid, @"guid");
     DICT_NSSTRING_KEY(tbdata, dummy, @"owner");
-    [dbName makeNameExist:dummy code:nil account:account];
-    [tb set_owner_str:dummy account:account];
+    [dbName makeNameExist:dummy code:nil account:self.account];
+    [tb set_owner_str:dummy account:self.account];
     [tb finish];
 
     if (tb._id == 0) {
         NSLog(@"Created trackable %@", tb.tbcode);
         [tb dbCreate];
-        newTrackablesCount++;
-        [infoViewer setTrackablesNew:iiImport new:newTrackablesCount];
+        self.newTrackablesCount++;
+        [self.infoViewer setTrackablesNew:self.iiImport new:self.newTrackablesCount];
     } else {
         [tb dbUpdate];
     }

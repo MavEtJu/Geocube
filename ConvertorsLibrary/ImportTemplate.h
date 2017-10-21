@@ -20,26 +20,25 @@
  */
 
 @interface ImportTemplate : NSObject
-{
-    NSInteger newWaypointsCount;
-    NSInteger totalWaypointsCount;
 
-    NSInteger newLogsCount;
-    NSInteger totalLogsCount;
+@property (nonatomic        ) NSInteger newWaypointsCount;
+@property (nonatomic        ) NSInteger totalWaypointsCount;
 
-    NSInteger newTrackablesCount;
-    NSInteger totalTrackablesCount;
+@property (nonatomic        ) NSInteger newLogsCount;
+@property (nonatomic        ) NSInteger totalLogsCount;
 
-    NSInteger newImagesCount;
+@property (nonatomic        ) NSInteger newTrackablesCount;
+@property (nonatomic        ) NSInteger totalTrackablesCount;
 
-    dbAccount *account;
-    dbGroup *group;
+@property (nonatomic        ) NSInteger newImagesCount;
 
-    InfoViewer *infoViewer;
-    InfoItemID iiImport;
-};
+@property (nonatomic, retain) dbAccount *account;
+@property (nonatomic, retain) dbGroup *group;
 
-@property (nonatomic) ImportOptions run_options;
+@property (nonatomic, retain) InfoViewer *infoViewer;
+@property (nonatomic        ) InfoItemID iiImport;
+
+@property (nonatomic        ) ImportOptions run_options;
 @property (nonatomic, retain) id<ImportDelegate> delegate;
 
 - (instancetype)init:(dbGroup *)group account:(dbAccount *)account;

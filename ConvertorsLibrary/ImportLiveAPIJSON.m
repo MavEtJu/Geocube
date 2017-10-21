@@ -44,8 +44,8 @@
 {
     GCLog(@"Parsing data");
 
-    infoViewer = iv;
-    iiImport = iii;
+    self.infoViewer = iv;
+    self.iiImport = iii;
 
     if ([dict objectForKey:@"Geocaches"] != nil) {
         [self parseBefore_geocaches];
@@ -63,15 +63,15 @@
 {
     if ([geocaches isKindOfClass:[NSNull class]] == YES)
         return;
-    [infoViewer setLineObjectTotal:iiImport total:[geocaches count] isLines:NO];
+    [self.infoViewer setLineObjectTotal:self.iiImport total:[geocaches count] isLines:NO];
     [geocaches enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull d, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseGeocache:d];
-        totalWaypointsCount++;
+        self.totalWaypointsCount++;
 
-        [infoViewer setLineObjectCount:iiImport count:idx];
-        [infoViewer setWaypointsTotal:iiImport total:totalWaypointsCount];
+        [self.infoViewer setLineObjectCount:self.iiImport count:idx];
+        [self.infoViewer setWaypointsTotal:self.iiImport total:self.totalWaypointsCount];
     }];
-    [infoViewer setLineObjectCount:iiImport count:[geocaches count]];
+    [self.infoViewer setLineObjectCount:self.iiImport count:[geocaches count]];
 }
 - (void)parseGeocache:(NSDictionary *)dict
 {
@@ -209,7 +209,7 @@
     [wp set_wpt_type_str:dummy];
     [wp set_wpt_symbol_str:@"Geocache"];
 
-    wp.account = account;
+    wp.account = self.account;
 
     // Groundspeak object
     DICT_FLOAT_KEY(dict, wp.gs_rating_difficulty, @"Difficulty");
@@ -236,7 +236,7 @@
     DICT_NSSTRING_PATH(dict, wp.gs_owner_gsid, @"Owner.Id");
     DICT_NSSTRING_PATH(dict, dummy, @"Owner.UserName");
     if (IS_EMPTY(dummy) == NO)
-        [dbName makeNameExist:dummy code:wp.gs_owner_gsid account:account];
+        [dbName makeNameExist:dummy code:wp.gs_owner_gsid account:self.account];
     [wp set_gs_owner_str:dummy];
 
     DICT_NSSTRING_PATH(dict, dummy, @"ContainerType.ContainerTypeName");
@@ -255,18 +255,18 @@
     if (wp._id == 0) {
         GCLog(@"Creating %@", wp.wpt_name);
         [wp dbCreate];
-        newWaypointsCount++;
-        [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
+        self.newWaypointsCount++;
+        [self.infoViewer setWaypointsNew:self.iiImport new:self.newWaypointsCount];
     } else {
         GCLog(@"Updating %@", wp.wpt_name);
         dbWaypoint *wpold = [dbWaypoint dbGet:wp._id];
         wp._id = wpold._id;
-        if ([group containsWaypoint:wp] == NO)
-            [group addWaypointToGroup:wp];
+        if ([self.group containsWaypoint:wp] == NO)
+            [self.group addWaypointToGroup:wp];
         [wp dbUpdate];
     }
-    if ([group containsWaypoint:wp] == NO)
-        [group addWaypointToGroup:wp];
+    if ([self.group containsWaypoint:wp] == NO)
+        [self.group addWaypointToGroup:wp];
 
     [opencageManager addForProcessing:wp];
 
@@ -312,8 +312,8 @@
         [dbTrackable dbUnlinkAllFromWaypoint:wp];
     [trackables enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull d, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseTrackable:d waypoint:wp];
-        totalTrackablesCount++;
-        [infoViewer setTrackablesTotal:iiImport total:totalTrackablesCount];
+        self.totalTrackablesCount++;
+        [self.infoViewer setTrackablesTotal:self.iiImport total:self.totalTrackablesCount];
     }];
 }
 
@@ -412,11 +412,11 @@
     DICT_NSSTRING_KEY(dict, tb.tbcode, @"Code");
     DICT_NSSTRING_KEY(dict, tb.waypoint_name, @"CurrentGeocacheCode");
     DICT_NSSTRING_PATH(dict, dummy, @"OriginalOwner.UserName");
-    [dbName makeNameExist:dummy code:0 account:account];
-    [tb set_owner_str:dummy account:account];
+    [dbName makeNameExist:dummy code:0 account:self.account];
+    [tb set_owner_str:dummy account:self.account];
     DICT_NSSTRING_PATH(dict, dummy, @"CurrentOwner.UserName");
-    [dbName makeNameExist:dummy code:0 account:account];
-    [tb set_carrier_str:dummy account:account];
+    [dbName makeNameExist:dummy code:0 account:self.account];
+    [tb set_carrier_str:dummy account:self.account];
     DICT_NSSTRING_KEY(dict, tb.pin, @"TrackingCode");
 
     [tb finish];
@@ -424,8 +424,8 @@
     NSId _id = [dbTrackable dbGetIdByGC:tb.gc_id];
     if (_id == 0) {
         [tb dbCreate];
-        newTrackablesCount++;
-        [infoViewer setTrackablesNew:iiImport new:newTrackablesCount];
+        self.newTrackablesCount++;
+        [self.infoViewer setTrackablesNew:self.iiImport new:self.newTrackablesCount];
     } else {
         // The code isn't always updated while we do have it.
         // In that case save it from the previous one.
@@ -517,8 +517,8 @@
         return;
     [wps enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull d, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseUserWaypoint:d waypoint:wp];
-        totalWaypointsCount++;
-        [infoViewer setWaypointsTotal:iiImport total:totalWaypointsCount];
+        self.totalWaypointsCount++;
+        [self.infoViewer setWaypointsTotal:self.iiImport total:self.totalWaypointsCount];
     }];
 }
 
@@ -560,7 +560,7 @@
 
     awp.wpt_type = dbc.typeManuallyEntered;
 
-    awp.account = account;
+    awp.account = self.account;
     awp.date_lastimport_epoch = time(NULL);
 
     [awp finish];
@@ -568,9 +568,9 @@
     dbWaypoint *wpold = [dbWaypoint dbGetByName:awp.wpt_name];
     if (wpold == nil) {
         [awp dbCreate];
-        [group addWaypointToGroup:awp];
-        newWaypointsCount++;
-        [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
+        [self.group addWaypointToGroup:awp];
+        self.newWaypointsCount++;
+        [self.infoViewer setWaypointsNew:self.iiImport new:self.newWaypointsCount];
     } else {
         awp._id = wpold._id;
         [awp dbUpdate];
@@ -585,8 +585,8 @@
         return;
     [wps enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull d, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseAdditionalWaypoint:d waypoint:wp];
-        totalWaypointsCount++;
-        [infoViewer setWaypointsTotal:iiImport total:totalWaypointsCount];
+        self.totalWaypointsCount++;
+        [self.infoViewer setWaypointsTotal:self.iiImport total:self.totalWaypointsCount];
     }];
 }
 
@@ -657,19 +657,19 @@
     DICT_NSSTRING_KEY(dict, dummy, @"Type");
     [awp set_wpt_type_str:dummy];
 
-    awp.account = account;
+    awp.account = self.account;
     [awp finish];
 
     dbWaypoint *wpold = [dbWaypoint dbGetByName:awp.wpt_name];
     if (wpold == nil) {
         [awp dbCreate];
-        [group addWaypointToGroup:awp];
-        newWaypointsCount++;
-        [infoViewer setWaypointsNew:iiImport new:newWaypointsCount];
+        [self.group addWaypointToGroup:awp];
+        self.newWaypointsCount++;
+        [self.infoViewer setWaypointsNew:self.iiImport new:self.newWaypointsCount];
     } else {
         awp._id = wpold._id;
-        if ([group containsWaypoint:awp] == NO)
-            [group addWaypointToGroup:awp];
+        if ([self.group containsWaypoint:awp] == NO)
+            [self.group addWaypointToGroup:awp];
         [awp dbUpdate];
     }
     [opencageManager addForProcessing:awp];
@@ -683,8 +683,8 @@
         return;
     [logs enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull d, NSUInteger idx, BOOL * _Nonnull stop) {
         [self parseLog:d waypoint:wp];
-        totalLogsCount++;
-        [infoViewer setLogsTotal:iiImport total:totalLogsCount];
+        self.totalLogsCount++;
+        [self.infoViewer setLogsTotal:self.iiImport total:self.totalLogsCount];
     }];
 }
 
@@ -743,7 +743,7 @@
     l.needstobelogged = NO;
     DICT_NSSTRING_KEY(dict, l.log, @"LogText");
     DICT_NSSTRING_PATH(dict, dummy, @"LogType.WptLogTypeName");
-    l.logstring = [dbc logStringGetByDisplayString:account displayString:dummy];
+    l.logstring = [dbc logStringGetByDisplayString:self.account displayString:dummy];
 
     [ImagesDownloadManager findImagesInDescription:wp text:l.log type:IMAGECATEGORY_LOG];
 
@@ -764,8 +764,8 @@
     dbWaypoint *ll = [dbLog dbGetIdByGC:l.gc_id account:wp.account];
     if (ll == nil) {
         [l dbCreate];
-        newLogsCount++;
-        [infoViewer setLogsNew:iiImport new:newLogsCount];
+        self.newLogsCount++;
+        [self.infoViewer setLogsNew:self.iiImport new:self.newLogsCount];
     }
 
     [self parseImages:[dict objectForKey:@"Images"] waypoint:wp imageSource:IMAGECATEGORY_LOG];
