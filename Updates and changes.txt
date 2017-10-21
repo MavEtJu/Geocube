@@ -4,6 +4,7 @@ Version 1.9(x)
 
   Features:
   - Add support for MapBox.
+  - Be able to configure the colour for the waypoint boundary circles.
 
   Fixes:
   - Fix the way the File Browser is dealt with with regards to element
