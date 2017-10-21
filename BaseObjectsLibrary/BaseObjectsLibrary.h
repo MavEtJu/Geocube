@@ -33,7 +33,7 @@
 #import "BaseObjectsLibrary/GCCoordsHistorical.h"
 #import "BaseObjectsLibrary/GCGMSCircle.h"
 #import "BaseObjectsLibrary/GCWaypointAnnotation.h"
-#import "BaseObjectsLibrary/GCMGLPointAnnotation.h"
+#import "BaseObjectsLibrary/GCMGLObjects.h"
 
 /* View objects */
 #import "BaseObjectsLibrary/GCButton.h"

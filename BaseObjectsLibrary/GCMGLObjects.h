@@ -24,3 +24,20 @@
 @property (nonatomic, retain) dbWaypoint *waypoint;
 
 @end
+
+@interface GCMGLPolygonCircleFill : MGLPolygon
+
+@end
+
+@interface GCMGLPolylineCircleEdge : MGLPolyline
+
+@end
+
+@interface GCMGLPolylineLineToMe : MGLPolyline
+
+@end
+
+@interface GCMGLPolylineTrack : MGLPolyline
+
+@end
+

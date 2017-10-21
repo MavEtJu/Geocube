@@ -29,14 +29,14 @@
 @property (nonatomic, retain) MGLMapView *mapView;
 
 @property (nonatomic, retain) NSMutableArray<GCMGLPointAnnotation *> *markers;
-@property (nonatomic, retain) NSMutableArray<MGLPolygon *> *circleFills;
-@property (nonatomic, retain) NSMutableArray<MGLPolyline *> *circleLines;
+@property (nonatomic, retain) NSMutableArray<GCMGLPolygonCircleFill *> *circleFills;
+@property (nonatomic, retain) NSMutableArray<GCMGLPolylineCircleEdge *> *circleLines;
 
 @property (nonatomic        ) NSInteger currentAltitude;
 
-@property (nonatomic, retain) MGLPolyline *lineWaypointToMe;
+@property (nonatomic, retain) GCMGLPolylineLineToMe *lineWaypointToMe;
 
-@property (nonatomic, retain) NSMutableArray<MGLPolyline *> *linesHistory;
+@property (nonatomic, retain) NSMutableArray<GCMGLPolylineTrack *> *linesHistory;
 @property (nonatomic        ) NSInteger historyCoordsIdx;
 
 @end
@@ -139,7 +139,7 @@ EMPTY_METHOD(mapViewDidLoad)
         CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude),
     };
     NSUInteger numberOfCoordinates = sizeof(coordinates) / sizeof(CLLocationCoordinate2D);
-    self.lineWaypointToMe = [MGLPolyline polylineWithCoordinates:coordinates count:numberOfCoordinates];
+    self.lineWaypointToMe = [GCMGLPolylineLineToMe polylineWithCoordinates:coordinates count:numberOfCoordinates];
     [self.mapView addAnnotation:self.lineWaypointToMe];
 }
 
@@ -169,7 +169,7 @@ EMPTY_METHOD(mapViewDidLoad)
 
 #define ADDPATH(__coords__, __count__) { \
     if (__count__ != 0) { \
-        MGLPolyline *l = [MGLPolyline polylineWithCoordinates:__coords__ count:__count__]; \
+        GCMGLPolylineTrack *l = [GCMGLPolylineTrack polylineWithCoordinates:__coords__ count:__count__]; \
         @synchronized (self.linesHistory) { \
             [self.linesHistory addObject:l]; \
         }; \
@@ -270,10 +270,10 @@ EMPTY_METHOD(mapViewDidLoad)
         coordinates[index] = point;
     }
 
-    MGLPolyline *polyline = [MGLPolyline polylineWithCoordinates:coordinates count:numberOfPoints];
+    GCMGLPolylineCircleEdge *polyline = [GCMGLPolylineCircleEdge polylineWithCoordinates:coordinates count:numberOfPoints];
     [self.circleLines addObject:polyline];
     [self.mapView addOverlay:polyline];
-    MGLPolygon *polygon = [MGLPolygon polygonWithCoordinates:coordinates count:numberOfPoints];
+    GCMGLPolygonCircleFill *polygon = [GCMGLPolygonCircleFill polygonWithCoordinates:coordinates count:numberOfPoints];
     [self.circleFills addObject:polygon];
     [self.mapView addOverlay:polygon];
 
@@ -315,14 +315,7 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (CGFloat)mapView:(MGLMapView *)mapView lineWidthForPolylineAnnotation:(nonnull MGLPolyline *)annotation
 {
-    __block BOOL found = NO;
-    [self.circleLines enumerateObjectsUsingBlock:^(MGLPolyline * _Nonnull circle, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (circle == annotation) {
-            *stop = YES;
-            found = YES;
-        }
-    }];
-    if (found == YES)
+    if ([annotation isKindOfClass:[GCMGLPolylineCircleEdge class]] == YES)
         return 3;
 
     return 100;
@@ -330,14 +323,7 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (CGFloat)mapView:(MGLMapView *)mapView alphaForShapeAnnotation:(MGLShape *)annotation
 {
-    __block BOOL found = NO;
-    [self.circleFills enumerateObjectsUsingBlock:^(MGLPolygon * _Nonnull circle, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (circle == annotation) {
-            *stop = YES;
-            found = YES;
-        }
-    }];
-    if (found == YES)
+    if ([annotation isKindOfClass:[GCMGLPolygonCircleFill class]] == YES)
         return 0.05;
 
     return 1;
@@ -349,33 +335,13 @@ EMPTY_METHOD(mapViewDidLoad)
     if (annotation == self.lineWaypointToMe)
         return [UIColor redColor];
 
-    __block BOOL found = NO;
-
-    [self.circleFills enumerateObjectsUsingBlock:^(MGLPolygon * _Nonnull circle, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (circle == annotation) {
-            *stop = YES;
-            found = YES;
-        }
-    }];
-    if (found == YES)
+    if ([annotation isKindOfClass:[GCMGLPolygonCircleFill class]] == YES)
         return configManager.mapCircleFillColour;
 
-    [self.circleLines enumerateObjectsUsingBlock:^(MGLPolyline * _Nonnull circle, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (circle == annotation) {
-            *stop = YES;
-            found = YES;
-        }
-    }];
-    if (found == YES)
+    if ([annotation isKindOfClass:[GCMGLPolylineCircleEdge class]] == YES)
         return configManager.mapCircleRingColour;
 
-    [self.linesHistory enumerateObjectsUsingBlock:^(MGLPolyline * _Nonnull lh, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (lh == annotation) {
-            *stop = YES;
-            found = YES;
-        }
-    }];
-    if (found == YES)
+    if ([annotation isKindOfClass:[GCMGLPolylineTrack class]] == YES)
         return configManager.mapTrackColour;
 
     return [UIColor whiteColor];
@@ -383,14 +349,7 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (UIColor *)mapView:(MGLMapView *)mapView fillColorForPolygonAnnotation:(MGLPolygon *)annotation
 {
-    __block BOOL found = NO;
-    [self.circleFills enumerateObjectsUsingBlock:^(MGLPolygon * _Nonnull circle, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (circle == annotation) {
-            *stop = YES;
-            found = YES;
-        }
-    }];
-    if (found == YES)
+    if ([annotation isKindOfClass:[GCMGLPolygonCircleFill class]] == YES)
         return configManager.mapCircleFillColour;
 
     return [UIColor colorWithRed:1 green:1 blue:1 alpha:0.05];
