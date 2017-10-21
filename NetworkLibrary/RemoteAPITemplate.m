@@ -20,18 +20,17 @@
  */
 
 @interface RemoteAPITemplate ()
-{
-    ProtocolTemplate *protocol;
 
-    NSString *errorStringNetwork;
-    NSString *errorStringAPI;
-    NSString *errorStringData;
-    RemoteAPIResult errorCodeNetwork;
-    RemoteAPIResult errorCodeAPI;
-    RemoteAPIResult errorCodeData;
+@property (nonatomic, retain) ProtocolTemplate *protocol;
 
-    NSString *errorDomain;
-}
+@property (nonatomic, retain) NSString *errorStringNetwork;
+@property (nonatomic, retain) NSString *errorStringAPI;
+@property (nonatomic, retain) NSString *errorStringData;
+@property (nonatomic        ) RemoteAPIResult errorCodeNetwork;
+@property (nonatomic        ) RemoteAPIResult errorCodeAPI;
+@property (nonatomic        ) RemoteAPIResult errorCodeData;
+
+@property (nonatomic, retain) NSString *errorDomain;
 
 @end
 
@@ -58,7 +57,7 @@
 {
     self = [super init];
 
-    errorDomain = [NSString stringWithFormat:@"%@", [self class]];
+    self.errorDomain = [NSString stringWithFormat:@"%@", [self class]];
     self.account = account;
 
     self.oabb = [[GCOAuthBlackbox alloc] init];
@@ -67,30 +66,30 @@
     [self.oabb consumerKey:self.account.oauth_consumer_public];
     [self.oabb consumerSecret:self.account.oauth_consumer_private];
 
-    liveAPI = nil;
-    okapi = nil;
-    gca2 = nil;
-    ggcw = nil;
+    self.liveAPI = nil;
+    self.okapi = nil;
+    self.gca2 = nil;
+    self.ggcw = nil;
     ProtocolId pid = (ProtocolId)self.account.protocol._id;
     switch (pid) {
         case PROTOCOL_LIVEAPI:
-            liveAPI = [[ProtocolLiveAPI alloc] init:self];
-            protocol = liveAPI;
+            self.liveAPI = [[ProtocolLiveAPI alloc] init:self];
+            self.protocol = self.liveAPI;
             break;
         case PROTOCOL_OKAPI:
-            okapi = [[ProtocolOKAPI alloc] init:self];
-            protocol = okapi;
+            self.okapi = [[ProtocolOKAPI alloc] init:self];
+            self.protocol = self.okapi;
             break;
         case PROTOCOL_GCA:
             NSAssert(FALSE, @"Obsolete protocol: PROTOCOL_GCA");
             break;
         case PROTOCOL_GCA2:
-            gca2 = [[ProtocolGCA2 alloc] init:self];
-            protocol = gca2;
+            self.gca2 = [[ProtocolGCA2 alloc] init:self];
+            self.protocol = self.gca2;
             break;
         case PROTOCOL_GGCW:
-            ggcw = [[ProtocolGGCW alloc] init:self];
-            protocol = ggcw;
+            self.ggcw = [[ProtocolGGCW alloc] init:self];
+            self.protocol = self.ggcw;
             break;
         case PROTOCOL_NONE:
             break;
@@ -142,7 +141,7 @@
         }
 
         case PROTOCOL_GCA2:
-            if ([gca2 authenticate:self.account] == YES) {
+            if ([self.gca2 authenticate:self.account] == YES) {
                 if (self.authenticationDelegate != nil)
                     [self.authenticationDelegate remoteAPI:self success:@"Obtained cookie"];
                 return YES;
@@ -153,10 +152,10 @@
             // Load https://www.geocaching.com/login/?jump=/geocube and wait for the redirect to /geocube.
             NSString *url = self.account.gca_authenticate_url;
 
-            ggcw.delegate = self;
+            self.ggcw.delegate = self;
 
             [browserViewController showBrowser];
-            [browserViewController prepare_ggcw:ggcw];
+            [browserViewController prepare_ggcw:self.ggcw];
             [browserViewController loadURL:url];
             return YES;
         }
@@ -231,66 +230,66 @@
 
 - (void)clearErrors
 {
-    errorStringNetwork = nil;
-    errorStringAPI = nil;
-    errorStringData = nil;
-    errorCodeNetwork = REMOTEAPI_OK;
-    errorCodeAPI = REMOTEAPI_OK;
-    errorCodeData = REMOTEAPI_OK;
+    self.errorStringNetwork = nil;
+    self.errorStringAPI = nil;
+    self.errorStringData = nil;
+    self.errorCodeNetwork = REMOTEAPI_OK;
+    self.errorCodeAPI = REMOTEAPI_OK;
+    self.errorCodeData = REMOTEAPI_OK;
 }
 
 - (void)setNetworkError:(NSString *)errorString error:(RemoteAPIResult)errorCode
 {
-    errorStringNetwork = errorString;
-    errorCodeNetwork = errorCode;
+    self.errorStringNetwork = errorString;
+    self.errorCodeNetwork = errorCode;
 }
 
 - (void)setAPIError:(NSString *)errorString error:(RemoteAPIResult)errorCode
 {
-    errorStringAPI = errorString;
-    errorCodeAPI = errorCode;
+    self.errorStringAPI = errorString;
+    self.errorCodeAPI = errorCode;
 }
 
 - (void)setDataError:(NSString *)errorString error:(RemoteAPIResult)errorCode
 {
-    errorStringData = errorString;
-    errorCodeData = errorCode;
+    self.errorStringData = errorString;
+    self.errorCodeData = errorCode;
 }
 
 - (RemoteAPIResult)lastErrorCode
 {
-    if (errorCodeNetwork != REMOTEAPI_OK)
-        return errorCodeNetwork;
-    if (errorCodeAPI != REMOTEAPI_OK)
-        return errorCodeAPI;
-    if (errorCodeData != REMOTEAPI_OK)
-        return errorCodeData;
+    if (self.errorCodeNetwork != REMOTEAPI_OK)
+        return self.errorCodeNetwork;
+    if (self.errorCodeAPI != REMOTEAPI_OK)
+        return self.errorCodeAPI;
+    if (self.errorCodeData != REMOTEAPI_OK)
+        return self.errorCodeData;
     return REMOTEAPI_OK;
 }
 
 - (NSString *)lastNetworkError
 {
-    return errorStringNetwork;
+    return self.errorStringNetwork;
 }
 
 - (NSString *)lastAPIError
 {
-    return errorStringAPI;
+    return self.errorStringAPI;
 }
 
 - (NSString *)lastDataError
 {
-    return errorStringData;
+    return self.errorStringData;
 }
 
 - (NSString *)lastError
 {
-    if (errorStringNetwork != nil)
-        return errorStringNetwork;
-    if (errorStringAPI != nil)
-        return errorStringAPI;
-    if (errorStringData != nil)
-        return errorStringData;
+    if (self.errorStringNetwork != nil)
+        return self.errorStringNetwork;
+    if (self.errorStringAPI != nil)
+        return self.errorStringAPI;
+    if (self.errorStringData != nil)
+        return self.errorStringData;
     return @"No error";
 }
 

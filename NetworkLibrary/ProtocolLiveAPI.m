@@ -20,28 +20,27 @@
  */
 
 @interface ProtocolLiveAPI ()
-{
-    RemoteAPITemplate *remoteAPI;
-    NSString *liveAPIPrefix;
-}
+
+@property (nonatomic, retain) RemoteAPITemplate *remoteAPI;
+@property (nonatomic, retain) NSString *liveAPIPrefix;
 
 @end
 
 @implementation ProtocolLiveAPI
 
-- (instancetype)init:(RemoteAPITemplate *)_remoteAPI
+- (instancetype)init:(RemoteAPITemplate *)remoteAPI
 {
     self = [super init];
 
-    remoteAPI = _remoteAPI;
-    liveAPIPrefix = @"https://api.groundspeak.com/LiveV6/geocaching.svc/";
+    self.remoteAPI = remoteAPI;
+    self.liveAPIPrefix = @"https://api.groundspeak.com/LiveV6/geocaching.svc/";
 
     return self;
 }
 
 - (GCMutableURLRequest *)prepareURLRequest:(NSString *)url parameters:(NSString *)parameters
 {
-    NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@", liveAPIPrefix, url];
+    NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@", self.liveAPIPrefix, url];
     if (parameters != nil) {
         [urlString appendFormat:@"?format=json&%@", parameters];
     } else {
@@ -83,8 +82,8 @@
             dict = [_dict _dict];
     if (dict == nil) {
         NSString *reason = _(@"protocolliveapi-No Status value given.");
-        [remoteAPI setAPIError:reason error:REMOTEAPI_APIFAILED];
-        [remoteAPI.account disableRemoteAccess:reason];
+        [self.remoteAPI setAPIError:reason error:REMOTEAPI_APIFAILED];
+        [self.remoteAPI.account disableRemoteAccess:reason];
         return NO;
     }
     return [self checkStatusCode:dict];
@@ -95,20 +94,20 @@
     NSNumber *n = [dict valueForKey:@"StatusCode"];
     if (n == nil) {
         NSString *reason = _(@"protocolliveapi-No StatusCode value given.");
-        [remoteAPI setAPIError:reason error:REMOTEAPI_APIFAILED];
-        [remoteAPI.account disableRemoteAccess:reason];
+        [self.remoteAPI setAPIError:reason error:REMOTEAPI_APIFAILED];
+        [self.remoteAPI.account disableRemoteAccess:reason];
         return NO;
     }
     if ([n isEqualToNumber:[NSNumber numberWithInteger:0]] == NO) {
         NSString *reason = [NSString stringWithFormat:_(@"protocolliveapi-StatusCode %@: %@"), [dict objectForKey:@"StatusCode"], [dict objectForKey:@"StatusMessage"]];
-        [remoteAPI setAPIError:reason error:REMOTEAPI_APIFAILED];
+        [self.remoteAPI setAPIError:reason error:REMOTEAPI_APIFAILED];
         switch ([n integerValue]) {
             case  15:   // The DateTime provided must be between 2000-01-01 12:00:00 and 2017-06-14 11:23:45.
             case  40:   // This log requires the person to hold the trackable item first
             case 161:   // Owners cannot log (FoundIt|DidntFindIt) on geocaches they own
                 break;
             default:
-                [remoteAPI.account disableRemoteAccess:reason];
+                [self.remoteAPI.account disableRemoteAccess:reason];
                 break;
         }
         return NO;
@@ -133,14 +132,14 @@
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"retbody: %@", retbody);
-        [remoteAPI setNetworkError:[error description] error:REMOTEAPI_APIREFUSED];
+        [self.remoteAPI setNetworkError:[error description] error:REMOTEAPI_APIREFUSED];
         return nil;
     }
 
     if (response.statusCode != 200) {
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"retbody: %@", retbody);
-        [remoteAPI setNetworkError:[NSString stringWithFormat:_(@"protocolliveapi-HTTP response statusCode: %ld"), (long)response.statusCode] error:REMOTEAPI_APIFAILED];
+        [self.remoteAPI setNetworkError:[NSString stringWithFormat:_(@"protocolliveapi-HTTP response statusCode: %ld"), (long)response.statusCode] error:REMOTEAPI_APIFAILED];
         return nil;
     }
 
@@ -150,7 +149,7 @@
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"retbody: %@", retbody);
-        [remoteAPI setNetworkError:[error description] error:REMOTEAPI_JSONINVALID];
+        [self.remoteAPI setNetworkError:[error description] error:REMOTEAPI_JSONINVALID];
         return nil;
     }
 
@@ -181,7 +180,7 @@
      */
     NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
 
-    [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
+    [_dict setValue:self.remoteAPI.oabb.token forKey:@"AccessToken"];
 
     NSDictionary *_d = [NSMutableDictionary dictionaryWithCapacity:20];
     [_d setValue:@"1.2.3.4" forKey:@"ApplicationSoftwareVersion"];
@@ -207,7 +206,7 @@
     NSLog(@"GetCacheIdsFavoritedByUser");
 
     NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
-    [_dict setObject:[MyTools urlEncode:remoteAPI.oabb.token] forKey:@"accessToken"];
+    [_dict setObject:[MyTools urlEncode:self.remoteAPI.oabb.token] forKey:@"accessToken"];
     NSString *params = [MyTools urlParameterJoin:_dict];
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetCacheIdsFavoritedByUser" parameters:params];
@@ -268,7 +267,7 @@
     NSDate *todayDate = [dateF dateFromString:dateLogged];
     date = [todayDate timeIntervalSince1970];
 
-    [dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
+    [dict setValue:self.remoteAPI.oabb.token forKey:@"AccessToken"];
     [dict setValue:waypointName forKey:@"CacheCode"];
     [dict setValue:[NSNumber numberWithLong:[logtype integerValue]] forKey:@"WptLogTypeId"];
     [dict setValue:[NSString stringWithFormat:@"/Date(%lld)/", (long long)(1000 * date)] forKey:@"UTCDateLogged"];
@@ -309,7 +308,7 @@
      */
     NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
 
-    [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
+    [_dict setValue:self.remoteAPI.oabb.token forKey:@"AccessToken"];
     [_dict setValue:[NSNumber numberWithInteger:20] forKey:@"GeocacheLogCount"];
     [_dict setValue:[NSNumber numberWithInteger:20] forKey:@"MaxPerPage"];
     [_dict setValue:[NSNumber numberWithInteger:1] forKey:@"TrackableLogCount"];
@@ -349,7 +348,7 @@
      */
     NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
 
-    [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
+    [_dict setValue:self.remoteAPI.oabb.token forKey:@"AccessToken"];
     [_dict setValue:[NSNumber numberWithInteger:20] forKey:@"GeocacheLogCount"];
     [_dict setValue:[NSNumber numberWithInteger:20] forKey:@"MaxPerPage"];
     [_dict setValue:[NSNumber numberWithInteger:1] forKey:@"TrackableLogCount"];
@@ -394,7 +393,7 @@
      */
     NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
 
-    [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
+    [_dict setValue:self.remoteAPI.oabb.token forKey:@"AccessToken"];
     [_dict setValue:[NSNumber numberWithInteger:20] forKey:@"GeocacheLogCount"];
     [_dict setValue:[NSNumber numberWithInteger:20] forKey:@"MaxPerPage"];
     [_dict setValue:[NSNumber numberWithInteger:1] forKey:@"TrackableLogCount"];
@@ -438,7 +437,7 @@
      */
     NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
 
-    [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
+    [_dict setValue:self.remoteAPI.oabb.token forKey:@"AccessToken"];
     [_dict setValue:[NSNumber numberWithInteger:20] forKey:@"GeocacheLogCount"];
     [_dict setValue:[NSNumber numberWithInteger:20] forKey:@"MaxPerPage"];
     [_dict setValue:[NSNumber numberWithInteger:1] forKey:@"TrackableLogCount"];
@@ -459,7 +458,7 @@
     NSLog(@"GetPocketQueryList");
 
     NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
-    [_dict setObject:[MyTools urlEncode:remoteAPI.oabb.token] forKey:@"accessToken"];
+    [_dict setObject:[MyTools urlEncode:self.remoteAPI.oabb.token] forKey:@"accessToken"];
     NSString *params = [MyTools urlParameterJoin:_dict];
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetPocketQueryList" parameters:params];
@@ -473,7 +472,7 @@
     NSLog(@"GetPocketQueryZippedFile:%@", guid);
 
     NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
-    [_dict setObject:[MyTools urlEncode:remoteAPI.oabb.token] forKey:@"accessToken"];
+    [_dict setObject:[MyTools urlEncode:self.remoteAPI.oabb.token] forKey:@"accessToken"];
     [_dict setObject:guid forKey:@"pocketQueryGuid"];
     NSString *params = [MyTools urlParameterJoin:_dict];
 
@@ -488,7 +487,7 @@
     NSLog(@"GetFullPocketQueryData:%@", guid);
 
     NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
-    [_dict setObject:[MyTools urlEncode:remoteAPI.oabb.token] forKey:@"accessToken"];
+    [_dict setObject:[MyTools urlEncode:self.remoteAPI.oabb.token] forKey:@"accessToken"];
     [_dict setObject:guid forKey:@"pocketQueryGuid"];
     [_dict setObject:[NSNumber numberWithInteger:startItem] forKey:@"startItem"];
     [_dict setObject:[NSNumber numberWithInteger:numItems] forKey:@"maxItems"];
@@ -509,7 +508,7 @@
 
     NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
 
-    [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
+    [_dict setValue:self.remoteAPI.oabb.token forKey:@"AccessToken"];
     [_dict setValue:wpt_name forKey:@"CacheCode"];
     [_dict setValue:text forKey:@"Note"];
 
@@ -529,7 +528,7 @@
 
     NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
 
-    [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
+    [_dict setValue:self.remoteAPI.oabb.token forKey:@"AccessToken"];
     [_dict setValue:[NSNumber numberWithInteger:0] forKey:@"StartIndex"];
     [_dict setValue:[NSNumber numberWithInteger:30] forKey:@"MaxPerPage"];
     [_dict setValue:[NSNumber numberWithInteger:0] forKey:@"TrackableLogsCount"];
@@ -551,7 +550,7 @@
 
     NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
 
-    [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
+    [_dict setValue:self.remoteAPI.oabb.token forKey:@"AccessToken"];
     [_dict setValue:[NSNumber numberWithInteger:0] forKey:@"StartIndex"];
     [_dict setValue:[NSNumber numberWithInteger:30] forKey:@"MaxPerPage"];
     [_dict setValue:[NSNumber numberWithInteger:0] forKey:@"TrackableLogsCount"];
@@ -570,7 +569,7 @@
     NSLog(@"GetTrackablesByTrackingNumber:%@", code);
 
     NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
-    [_dict setObject:[MyTools urlEncode:remoteAPI.oabb.token] forKey:@"accessToken"];
+    [_dict setObject:[MyTools urlEncode:self.remoteAPI.oabb.token] forKey:@"accessToken"];
     [_dict setObject:code forKey:@"trackingNumber"];
     [_dict setObject:@"0" forKey:@"trackableLogCount"];
     NSString *params = [MyTools urlParameterJoin:_dict];
@@ -606,7 +605,7 @@
     NSDate *todayDate = [dateF dateFromString:dateLogged];
     NSTimeInterval date = [todayDate timeIntervalSince1970];
 
-    [_dict setValue:remoteAPI.oabb.token forKey:@"AccessToken"];
+    [_dict setValue:self.remoteAPI.oabb.token forKey:@"AccessToken"];
     if (wpt_name != nil)
         [_dict setValue:wpt_name forKey:@"CacheCode"];
     [_dict setValue:tb.pin forKey:@"TrackingNumber"];

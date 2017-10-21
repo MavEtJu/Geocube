@@ -115,7 +115,7 @@
     [iv setChunksTotal:iid total:1];
     [iv setChunksCount:iid count:1];
 
-    GCDictionaryGCA2 *dict = [gca2 api_services_users_by__username:username infoViewer:iv iiDownload:iid];
+    GCDictionaryGCA2 *dict = [self.gca2 api_services_users_by__username:username infoViewer:iv iiDownload:iid];
     GCA2_CHECK_STATUS(dict, @"UserStatistics", REMOTEAPI_USERSTATISTICS_LOADFAILED);
 
     [self getNumber:ret from:dict outKey:@"waypoints_found" inKey:@"caches_found"];
@@ -138,14 +138,14 @@
         [n appendFormat:@"\n*Overall Experience: %ld*\n", (long)rating];
     if (favourite == YES)
         [n appendFormat:@"\n*Recommended*\n"];
-    GCDictionaryGCA2 *json = [gca2 api_services_logs_submit:waypoint logtype:logstring.logString comment:n when:dateLogged rating:rating recommended:favourite coordinates:coordinates infoViewer:iv iiDownload:iid];
+    GCDictionaryGCA2 *json = [self.gca2 api_services_logs_submit:waypoint logtype:logstring.logString comment:n when:dateLogged rating:rating recommended:favourite coordinates:coordinates infoViewer:iv iiDownload:iid];
     GCA2_CHECK_STATUS(json, @"CreateLogNote/log", REMOTEAPI_CREATELOG_LOGFAILED);
 
     GCA2_GET_VALUE(json, NSDictionary, data, @"data", @"CreateLogNote/log", REMOTEAPI_CREATELOG_LOGFAILED);
     GCA2_GET_VALUE(data, NSNumber, logid, @"log_uuid", @"CreateLogNote/log", REMOTEAPI_CREATELOG_LOGFAILED);
 
     if (image != nil) {
-        json = [gca2 api_services_logs_images_add:logid data:imgdata caption:imageCaption description:imageDescription infoViewer:iv iiDownload:iid];
+        json = [self.gca2 api_services_logs_images_add:logid data:imgdata caption:imageCaption description:imageDescription infoViewer:iv iiDownload:iid];
         GCA2_CHECK_STATUS(json, @"CreateLogNote/image", REMOTEAPI_CREATELOG_IMAGEFAILED);
     }
 
@@ -160,7 +160,7 @@
     [iv setChunksTotal:iid total:1];
     [iv setChunksCount:iid count:1];
 
-    GCDictionaryGCA2 *json = [gca2 api_services_caches_geocache:waypoint.wpt_name infoViewer:iv iiDownload:iid];
+    GCDictionaryGCA2 *json = [self.gca2 api_services_caches_geocache:waypoint.wpt_name infoViewer:iv iiDownload:iid];
     GCA2_CHECK_STATUS_CB(json, @"loadWaypoint", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
@@ -187,7 +187,7 @@
     [iv setChunksTotal:iid total:1];
     [iv setChunksCount:iid count:1];
 
-    GCDictionaryGCA2 *json = [gca2 api_services_caches_geocaches:wpcodes infoViewer:iv iiDownload:iid];
+    GCDictionaryGCA2 *json = [self.gca2 api_services_caches_geocaches:wpcodes infoViewer:iv iiDownload:iid];
     GCA2_CHECK_STATUS_CB(json, @"loadWaypointsByCodes", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
@@ -217,7 +217,7 @@
     [iv setChunksTotal:iid total:2];
     [iv setChunksCount:iid count:1];
 
-    GCDictionaryGCA2 *json = [gca2 api_services_search_bbox:bb infoViewer:iv iiDownload:iid];
+    GCDictionaryGCA2 *json = [self.gca2 api_services_search_bbox:bb infoViewer:iv iiDownload:iid];
     GCA2_CHECK_STATUS_CB(json, @"loadWaypointsByBoundingBox", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
     GCA2_GET_VALUE_CB(json, NSArray, wpcodes, @"results", @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
@@ -227,7 +227,7 @@
     }
 
     [iv setChunksCount:iid count:2];
-    json = [gca2 api_services_caches_geocaches:wpcodes logs:30 infoViewer:iv iiDownload:iid];
+    json = [self.gca2 api_services_caches_geocaches:wpcodes logs:30 infoViewer:iv iiDownload:iid];
     GCA2_CHECK_STATUS_CB(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
@@ -257,7 +257,7 @@
      */
 
     *qs = nil;
-    GCDictionaryGCA2 *json = [gca2 api_services_caches_query_list:iv iiDownload:iid public:_public];
+    GCDictionaryGCA2 *json = [self.gca2 api_services_caches_query_list:iv iiDownload:iid public:_public];
     GCA2_CHECK_STATUS(json, @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
 
     NSMutableArray<NSDictionary *> *as = [NSMutableArray arrayWithCapacity:20];
@@ -284,7 +284,7 @@
     // Download the query
     [iv setChunksCount:iid count:1];
 
-    GCDictionaryGCA2 *json = [gca2 api_services_caches_query_geocaches:_id infoViewer:iv iiDownload:iid];
+    GCDictionaryGCA2 *json = [self.gca2 api_services_caches_query_geocaches:_id infoViewer:iv iiDownload:iid];
     GCA2_CHECK_STATUS_CB(json, @"retrieveQuery/query", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
 
     GCA2_GET_VALUE_CB(json, NSArray, wps, @"geocaches", @"retrieveQuery/query", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
@@ -312,7 +312,7 @@
 
         [iv setChunksCount:iid count:1 + ++idx];
 
-        GCDictionaryGCA2 *json = [gca2 api_services_caches_geocaches:wpcodes infoViewer:iv iiDownload:iid];
+        GCDictionaryGCA2 *json = [self.gca2 api_services_caches_geocaches:wpcodes infoViewer:iv iiDownload:iid];
         GCA2_CHECK_STATUS_CB(json, @"retrieveQuery/geocaches", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
 
         NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];

@@ -20,34 +20,33 @@
  */
 
 @interface ProtocolGCA2 ()
-{
-    RemoteAPITemplate *remoteAPI;
-    NSHTTPCookie *authCookie;
-    NSString *prefix;
-    NSString *hostpart;
-    NSString *key;
-}
+
+@property (nonatomic        ) RemoteAPITemplate *remoteAPI;
+@property (nonatomic, retain) NSHTTPCookie *authCookie;
+@property (nonatomic, retain) NSString *prefix;
+@property (nonatomic, retain) NSString *hostpart;
+@property (nonatomic, retain) NSString *key;
 
 @end
 
 @implementation ProtocolGCA2
 
-- (instancetype)init:(RemoteAPITemplate *)_remoteAPI
+- (instancetype)init:(RemoteAPITemplate *)remoteAPI
 {
     self = [super init];
 
-    prefix = @"http://geocaching.com.au/api/services";
-    hostpart = @"http://geocaching.com.au";
-    key = keyManager.gca_api;
+    self.prefix = @"http://geocaching.com.au/api/services";
+    self.hostpart = @"http://geocaching.com.au";
+    self.key = keyManager.gca_api;
 
-    remoteAPI = _remoteAPI;
-    if (remoteAPI.account.gca_cookie_value != nil) {
-        authCookie = [NSHTTPCookie cookieWithProperties:
+    self.remoteAPI = remoteAPI;
+    if (self.remoteAPI.account.gca_cookie_value != nil) {
+        self.authCookie = [NSHTTPCookie cookieWithProperties:
                       [NSDictionary
                        dictionaryWithObjects:@[
                                                @"/",
-                                               remoteAPI.account.gca_cookie_name,
-                                               [MyTools urlEncode:remoteAPI.account.gca_cookie_value],
+                                               self.remoteAPI.account.gca_cookie_name,
+                                               [MyTools urlEncode:self.remoteAPI.account.gca_cookie_value],
                                                @".geocaching.com.au" //remoteAPI.account.url_site
                                                ] forKeys:@[
                                                            NSHTTPCookiePath,
@@ -59,7 +58,7 @@
                       ];
         // Set-Cookie: phpbb3mysql_data=a%3A2%3A%7Bs%3A11%3A%22autologinid%22%3Bs%3A34%3A%22%24H%249bhZ2qUoKtqdqSSeZZvlBdDXIAiGbi.%22%3Bs%3A6%3A%22userid%22%3Bs%3A6%3A%22119649%22%3B%7D; expires=Mon, 28-Sep-2015 13:36:09 GMT; path=/; domain=.geocaching.com.au.
         NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-        [cookiemgr setCookie:authCookie];
+        [cookiemgr setCookie:self.authCookie];
     }
 
     return self;
@@ -67,7 +66,7 @@
 
 - (BOOL)authenticate:(dbAccount *)account
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/login/login/", prefix]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/login/login/", self.prefix]];
 
     NSMutableString *ps = [NSMutableString stringWithFormat:@""];
     [ps appendFormat:@"username=%@", [MyTools urlEncode:account.authentictation_name]];
@@ -166,19 +165,19 @@
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"retbody: %@", retbody);
-        [remoteAPI setNetworkError:[error description] error:REMOTEAPI_APIREFUSED];
+        [self.remoteAPI setNetworkError:[error description] error:REMOTEAPI_APIREFUSED];
         return nil;
     }
     if (response.statusCode != 400 && response.statusCode != 200) {
         NSLog(@"statusCode: %ld", (long)response.statusCode);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"retbody: %@", retbody);
-        [remoteAPI setAPIError:[NSString stringWithFormat:_(@"remoteapigca2-HTTP Response was %ld"), (long)response.statusCode] error:REMOTEAPI_APIFAILED];
+        [self.remoteAPI setAPIError:[NSString stringWithFormat:_(@"remoteapigca2-HTTP Response was %ld"), (long)response.statusCode] error:REMOTEAPI_APIFAILED];
         return nil;
     }
 
     if ([data length] == 0) {
-        [remoteAPI setAPIError:_(@"remoteapigca2-Returned data is zero length") error:REMOTEAPI_APIFAILED];
+        [self.remoteAPI setAPIError:_(@"remoteapigca2-Returned data is zero length") error:REMOTEAPI_APIFAILED];
         return nil;
     }
 
@@ -205,25 +204,25 @@
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"retbody: %@", retbody);
-        [remoteAPI setNetworkError:[error description] error:REMOTEAPI_APIREFUSED];
+        [self.remoteAPI setNetworkError:[error description] error:REMOTEAPI_APIREFUSED];
         return nil;
     }
     if (response.statusCode != 400 && response.statusCode != 200) {
         NSLog(@"statusCode: %ld", (long)response.statusCode);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"retbody: %@", retbody);
-        [remoteAPI setAPIError:[NSString stringWithFormat:_(@"remoteapigca2-HTTP Response was %ld"), (long)response.statusCode] error:REMOTEAPI_APIFAILED];
+        [self.remoteAPI setAPIError:[NSString stringWithFormat:_(@"remoteapigca2-HTTP Response was %ld"), (long)response.statusCode] error:REMOTEAPI_APIFAILED];
         return nil;
     }
 
     if ([data length] == 0) {
-        [remoteAPI setAPIError:_(@"remoteapigca2-Returned data is zero length") error:REMOTEAPI_APIFAILED];
+        [self.remoteAPI setAPIError:_(@"remoteapigca2-Returned data is zero length") error:REMOTEAPI_APIFAILED];
         return nil;
     }
 
     NSObject *d = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     if ([d isKindOfClass:[NSDictionary class]] == NO) {
-        [remoteAPI setAPIError:[error description] error:REMOTEAPI_JSONINVALID];
+        [self.remoteAPI setAPIError:[error description] error:REMOTEAPI_JSONINVALID];
         return nil;
     }
     GCDictionaryGCA2 *json = [[GCDictionaryGCA2 alloc] initWithDictionary:d];
@@ -231,14 +230,14 @@
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"retbody: %@", retbody);
-        [remoteAPI setAPIError:[error description] error:REMOTEAPI_JSONINVALID];
+        [self.remoteAPI setAPIError:[error description] error:REMOTEAPI_JSONINVALID];
         return nil;
     }
 
     NSDictionary *e = [json objectForKey:@"error"];
     if (e != nil) {
         NSLog(@"error: %@", [e objectForKey:@"developer_message"]);
-        [remoteAPI setAPIError:[e objectForKey:@"developer_message"] error:REMOTEAPI_APIFAILED];
+        [self.remoteAPI setAPIError:[e objectForKey:@"developer_message"] error:REMOTEAPI_APIFAILED];
         return nil;
     }
 
@@ -247,9 +246,9 @@
 
 - (NSString *)prepareURLString:(NSString *)suffix params:(NSDictionary *)params
 {
-    if (IS_EMPTY(key) == YES)
-        key = keyManager.gca_api;
-    NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@?consumer_key=%@", prefix, suffix, key];
+    if (IS_EMPTY(self.key) == YES)
+        self.key = keyManager.gca_api;
+    NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@?consumer_key=%@", self.prefix, suffix, self.key];
     if (params != nil && [params count] != 0) {
         NSString *ps = [MyTools urlParameterJoin:params];
         [urlString appendFormat:@"&%@", ps];
@@ -328,9 +327,9 @@
     NSLog(@"api_services_logs_submit:%@", wp.wpt_name);
 
     NSMutableString *ps = [NSMutableString stringWithFormat:@""];
-    if (IS_EMPTY(key) == YES)
-        key = keyManager.gca_api;
-    [ps appendFormat:@"consumer_key=%@", [MyTools urlEncode:key]];
+    if (IS_EMPTY(self.key) == YES)
+        self.key = keyManager.gca_api;
+    [ps appendFormat:@"consumer_key=%@", [MyTools urlEncode:self.key]];
     [ps appendFormat:@"&cache_code=%@", [MyTools urlEncode:wp.wpt_name]];
     [ps appendFormat:@"&logtype=%@", [MyTools urlEncode:logtype]];
     [ps appendFormat:@"&comment=%@", [MyTools urlEncode:comment]];
@@ -363,9 +362,9 @@
     [req addValue:contentType forHTTPHeaderField:@"Content-Type"];
 
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:20];
-    if (IS_EMPTY(key) == YES)
-        key = keyManager.gca_api;
-    [params setObject:key forKey:@"consumer_key"];
+    if (IS_EMPTY(self.key) == YES)
+        self.key = keyManager.gca_api;
+    [params setObject:self.key forKey:@"consumer_key"];
     [params setObject:logid forKey:@"log_uuid"];
     [params setObject:imageCaption forKey:@"caption"];
     [params setObject:imageDescription forKey:@"description"];

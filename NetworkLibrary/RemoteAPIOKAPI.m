@@ -113,7 +113,7 @@
 
     [iv setChunksTotal:iid total:1];
     [iv setChunksCount:iid count:1];
-    GCDictionaryOKAPI *dict = [okapi services_users_byUsername:username infoViewer:iv iiDownload:iid];
+    GCDictionaryOKAPI *dict = [self.okapi services_users_byUsername:username infoViewer:iv iiDownload:iid];
     OKAPI_CHECK_STATUS(dict, @"UserStatistics", REMOTEAPI_USERSTATISTICS_LOADFAILED);
 
     [self getNumber:ret from:dict outKey:@"waypoints_found" inKey:@"caches_found"];
@@ -127,7 +127,7 @@
 
 - (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables coordinates:(CLLocationCoordinate2D)coordinates infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    GCDictionaryOKAPI *json = [okapi services_logs_submit:logstring.logString waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite infoViewer:iv iiDownload:iid];
+    GCDictionaryOKAPI *json = [self.okapi services_logs_submit:logstring.logString waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite infoViewer:iv iiDownload:iid];
     OKAPI_CHECK_STATUS(json, @"CreateLogNote", REMOTEAPI_CREATELOG_LOGFAILED);
 
     OKAPI_GET_VALUE(json, NSNumber, success, @"success", @"CreateLogNote", REMOTEAPI_CREATELOG_LOGFAILED);
@@ -148,7 +148,7 @@
     [iv setChunksTotal:iid total:1];
     [iv setChunksCount:iid count:1];
 
-    GCDictionaryOKAPI *json = [okapi services_caches_geocache:waypoint.wpt_name infoViewer:iv iiDownload:iid];
+    GCDictionaryOKAPI *json = [self.okapi services_caches_geocache:waypoint.wpt_name infoViewer:iv iiDownload:iid];
     OKAPI_CHECK_STATUS_CB(json, @"loadWaypoint", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
@@ -175,7 +175,7 @@
     [iv setChunksTotal:iid total:2];
     [iv setChunksCount:iid count:1];
 
-    GCDictionaryOKAPI *json = [okapi services_caches_search_bbox:bb infoViewer:iv iiDownload:iid];
+    GCDictionaryOKAPI *json = [self.okapi services_caches_search_bbox:bb infoViewer:iv iiDownload:iid];
     OKAPI_CHECK_STATUS_CB(json, @"loadWaypointsByBoundingBox", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
     OKAPI_GET_VALUE_CB(json, NSArray, wpcodes, @"results", @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
@@ -185,7 +185,7 @@
     }
 
     [iv setChunksCount:iid count:2];
-    json = [okapi services_caches_geocaches:wpcodes infoViewer:iv iiDownload:iid];
+    json = [self.okapi services_caches_geocaches:wpcodes infoViewer:iv iiDownload:iid];
     OKAPI_CHECK_STATUS_CB(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];

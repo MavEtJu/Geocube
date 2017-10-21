@@ -20,19 +20,18 @@
  */
 
 @interface RemoteAPITemplate : NSObject <GCOAuthBlackboxDelegate, ProtocolGGCWDelegate>
-{
-    ProtocolLiveAPI *liveAPI;
-    ProtocolOKAPI *okapi;
-    ProtocolGCA2 *gca2;
-    ProtocolGGCW *ggcw;
 
-    NSInteger loadWaypointsLogs, loadWaypointsWaypoints;
-}
+@property (nonatomic, retain) ProtocolLiveAPI *liveAPI;
+@property (nonatomic, retain) ProtocolOKAPI *okapi;
+@property (nonatomic, retain) ProtocolGCA2 *gca2;
+@property (nonatomic, retain) ProtocolGGCW *ggcw;
+
+@property (nonatomic        ) NSInteger loadWaypointsLogs, loadWaypointsWaypoints;
 
 @property (nonatomic, retain) dbAccount *account;
 @property (nonatomic, retain) GCOAuthBlackbox *oabb;
-@property (nonatomic) NSInteger stats_found, stats_notfound;
-@property (nonatomic) id<RemoteAPIAuthenticationDelegate> authenticationDelegate;
+@property (nonatomic        ) NSInteger stats_found, stats_notfound;
+@property (nonatomic        ) id<RemoteAPIAuthenticationDelegate> authenticationDelegate;
 
 - (instancetype)init:(dbAccount *)account;
 - (BOOL)Authenticate;

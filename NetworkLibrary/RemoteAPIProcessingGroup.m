@@ -20,11 +20,10 @@
  */
 
 @interface RemoteAPIProcessingGroup ()
-{
-    NSMutableDictionary *expected;
-    NSMutableDictionary *processed;
-    NSMutableDictionary *downloaded;
-}
+
+@property (nonatomic, retain) NSMutableDictionary *expected;
+@property (nonatomic, retain) NSMutableDictionary *processed;
+@property (nonatomic, retain) NSMutableDictionary *downloaded;
 
 @end
 
@@ -35,9 +34,9 @@
     self = [super init];
 
     @synchronized (self) {
-        expected = [NSMutableDictionary dictionaryWithCapacity:10];
-        processed = [NSMutableDictionary dictionaryWithCapacity:10];
-        downloaded = [NSMutableDictionary dictionaryWithCapacity:10];
+        self.expected = [NSMutableDictionary dictionaryWithCapacity:10];
+        self.processed = [NSMutableDictionary dictionaryWithCapacity:10];
+        self.downloaded = [NSMutableDictionary dictionaryWithCapacity:10];
     }
 
     return self;
@@ -46,102 +45,102 @@
 - (NSString *)description:(NSInteger)identifier
 {
     return [NSString stringWithFormat:@"expected:%@ processed:%@ downloaded:%@",
-            [expected objectForKey:[NSNumber numberWithInteger:identifier]],
-            [processed objectForKey:[NSNumber numberWithInteger:identifier]],
-            [downloaded objectForKey:[NSNumber numberWithInteger:identifier]]
+            [self.expected objectForKey:[NSNumber numberWithInteger:identifier]],
+            [self.processed objectForKey:[NSNumber numberWithInteger:identifier]],
+            [self.downloaded objectForKey:[NSNumber numberWithInteger:identifier]]
             ];
 }
 
 - (void)clearAll
 {
     @synchronized (self) {
-        [expected removeAllObjects];
-        [processed removeAllObjects];
-        [downloaded removeAllObjects];
+        [self.expected removeAllObjects];
+        [self.processed removeAllObjects];
+        [self.downloaded removeAllObjects];
     }
 }
 
 - (void)addIdentifier:(NSInteger)identifier
 {
     @synchronized (self) {
-        [expected setObject:[NSNumber numberWithInteger:0] forKey:[NSNumber numberWithInteger:identifier]];
-        [processed setObject:[NSNumber numberWithInteger:0] forKey:[NSNumber numberWithInteger:identifier]];
-        [downloaded setObject:[NSNumber numberWithInteger:0] forKey:[NSNumber numberWithInteger:identifier]];
+        [self.expected setObject:[NSNumber numberWithInteger:0] forKey:[NSNumber numberWithInteger:identifier]];
+        [self.processed setObject:[NSNumber numberWithInteger:0] forKey:[NSNumber numberWithInteger:identifier]];
+        [self.downloaded setObject:[NSNumber numberWithInteger:0] forKey:[NSNumber numberWithInteger:identifier]];
     }
 }
 
 - (void)removeIdentifier:(NSInteger)identifier
 {
     @synchronized (self) {
-        [expected removeObjectForKey:[NSNumber numberWithInteger:identifier]];
-        [processed removeObjectForKey:[NSNumber numberWithInteger:identifier]];
-        [downloaded removeObjectForKey:[NSNumber numberWithInteger:identifier]];
+        [self.expected removeObjectForKey:[NSNumber numberWithInteger:identifier]];
+        [self.processed removeObjectForKey:[NSNumber numberWithInteger:identifier]];
+        [self.downloaded removeObjectForKey:[NSNumber numberWithInteger:identifier]];
     }
 }
 
 - (BOOL)hasIdentifier:(NSInteger)identifier
 {
     @synchronized (self) {
-        return [expected objectForKey:[NSNumber numberWithInteger:identifier]] != nil;
+        return [self.expected objectForKey:[NSNumber numberWithInteger:identifier]] != nil;
     }
 }
 
 - (BOOL)hasIdentifiers
 {
     @synchronized (self) {
-        return ([expected count] != 0);
+        return ([self.expected count] != 0);
     }
 }
 
 - (void)expectedChunks:(NSInteger)identifier chunks:(NSInteger)chunks
 {
     @synchronized (self) {
-        [expected setObject:[NSNumber numberWithInteger:chunks] forKey:[NSNumber numberWithInteger:identifier]];
+        [self.expected setObject:[NSNumber numberWithInteger:chunks] forKey:[NSNumber numberWithInteger:identifier]];
     }
 }
 
 - (void)increaseDownloadedChunks:(NSInteger)identifier
 {
     @synchronized (self) {
-        NSNumber *n = [downloaded objectForKey:[NSNumber numberWithInteger:identifier]];
-        [downloaded setObject:[NSNumber numberWithInteger:1 + [n integerValue]] forKey:[NSNumber numberWithInteger:identifier]];
+        NSNumber *n = [self.downloaded objectForKey:[NSNumber numberWithInteger:identifier]];
+        [self.downloaded setObject:[NSNumber numberWithInteger:1 + [n integerValue]] forKey:[NSNumber numberWithInteger:identifier]];
     }
 }
 
 - (void)increaseProcessedChunks:(NSInteger)identifier
 {
     @synchronized (self) {
-        NSNumber *n = [processed objectForKey:[NSNumber numberWithInteger:identifier]];
-        [processed setObject:[NSNumber numberWithInteger:1 + [n integerValue]] forKey:[NSNumber numberWithInteger:identifier]];
+        NSNumber *n = [self.processed objectForKey:[NSNumber numberWithInteger:identifier]];
+        [self.processed setObject:[NSNumber numberWithInteger:1 + [n integerValue]] forKey:[NSNumber numberWithInteger:identifier]];
     }
 }
 
 - (NSInteger)expectedChunks:(NSInteger)identifier;
 {
     @synchronized (self) {
-        return [[expected objectForKey:[NSNumber numberWithInteger:identifier]] integerValue];
+        return [[self.expected objectForKey:[NSNumber numberWithInteger:identifier]] integerValue];
     }
 }
 
 - (NSInteger)downloadedChunks:(NSInteger)identifier;
 {
     @synchronized (self) {
-        return [[downloaded objectForKey:[NSNumber numberWithInteger:identifier]] integerValue];
+        return [[self.downloaded objectForKey:[NSNumber numberWithInteger:identifier]] integerValue];
     }
 }
 
 - (NSInteger)processedChunks:(NSInteger)identifier;
 {
     @synchronized (self) {
-        return [[processed objectForKey:[NSNumber numberWithInteger:identifier]] integerValue];
+        return [[self.processed objectForKey:[NSNumber numberWithInteger:identifier]] integerValue];
     }
 }
 
 - (BOOL)hasAllProcessed:(NSInteger)identifier
 {
     @synchronized (self) {
-        NSInteger e = [[expected objectForKey:[NSNumber numberWithInteger:identifier]] integerValue];
-        NSInteger p = [[processed objectForKey:[NSNumber numberWithInteger:identifier]] integerValue];
+        NSInteger e = [[self.expected objectForKey:[NSNumber numberWithInteger:identifier]] integerValue];
+        NSInteger p = [[self.processed objectForKey:[NSNumber numberWithInteger:identifier]] integerValue];
         return e == p;
     }
 }

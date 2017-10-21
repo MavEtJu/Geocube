@@ -184,10 +184,10 @@
 
     [iv setChunksTotal:iid total:2];
     [iv setChunksCount:iid count:1];
-    GCDictionaryLiveAPI *dict1 = [liveAPI GetYourUserProfile:iv iiDownload:iid];
+    GCDictionaryLiveAPI *dict1 = [self.liveAPI GetYourUserProfile:iv iiDownload:iid];
     LIVEAPI_CHECK_STATUS(dict1, @"UserStatistics/profile", REMOTEAPI_USERSTATISTICS_LOADFAILED);
     [iv setChunksCount:iid count:2];
-    GCDictionaryLiveAPI *dict2 = [liveAPI GetCacheIdsFavoritedByUser:iv iiDownload:iid];
+    GCDictionaryLiveAPI *dict2 = [self.liveAPI GetCacheIdsFavoritedByUser:iv iiDownload:iid];
     LIVEAPI_CHECK_STATUS(dict2, @"UserStatistics/favourited", REMOTEAPI_USERSTATISTICS_LOADFAILED);
 
     if (dict1 == nil && dict2 == nil)
@@ -212,7 +212,7 @@
     if (image != nil)
         imgdata = [NSData dataWithContentsOfFile:[MyTools ImageFile:image.datafile]];
 
-    GCDictionaryLiveAPI *json = [liveAPI CreateFieldNoteAndPublish:logstring.logString waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite imageCaption:imageCaption imageDescription:imageDescription imageData:imgdata imageFilename:image.datafile infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self.liveAPI CreateFieldNoteAndPublish:logstring.logString waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite imageCaption:imageCaption imageDescription:imageDescription imageData:imgdata imageFilename:image.datafile infoViewer:iv iiDownload:iid];
     LIVEAPI_CHECK_STATUS(json, @"CreateLogNote", REMOTEAPI_CREATELOG_LOGFAILED);
 
     __block NSInteger errorCode = REMOTEAPI_OK;
@@ -247,7 +247,7 @@
                 NSAssert(NO, @"Unknown tb.logtype");
         }
         dbLogString *ls = [dbLogString dbGetByProtocolWPTypeDefault:self.account.protocol wptype:wptype default:dflt];
-        GCDictionaryLiveAPI *json = [liveAPI CreateTrackableLog:waypoint.wpt_name logtype:ls.logString trackable:tb note:note dateLogged:dateLogged infoViewer:iv iiDownload:iid];
+        GCDictionaryLiveAPI *json = [self.liveAPI CreateTrackableLog:waypoint.wpt_name logtype:ls.logString trackable:tb note:note dateLogged:dateLogged infoViewer:iv iiDownload:iid];
         LIVEAPI_CHECK_STATUS_ENUM(json, @"CreateTrackableLog", REMOTEAPI_CREATELOG_LOGFAILED);
     }];
     return errorCode;
@@ -261,7 +261,7 @@
     [iv setChunksTotal:iid total:1];
     [iv setChunksCount:iid count:1];
 
-    GCDictionaryLiveAPI *json = [liveAPI SearchForGeocaches_waypointname:waypoint.wpt_name infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self.liveAPI SearchForGeocaches_waypointname:waypoint.wpt_name infoViewer:iv iiDownload:iid];
     LIVEAPI_CHECK_STATUS_CB(json, @"loadWaypoint", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
 
     InfoItemID iii = [iv addImport:NO];
@@ -276,7 +276,7 @@
 {
     [iv setChunksTotal:iid total:1];
     [iv setChunksCount:iid count:1];
-    GCDictionaryLiveAPI *json = [liveAPI SearchForGeocaches_waypointnames:wpcodes infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self.liveAPI SearchForGeocaches_waypointnames:wpcodes infoViewer:iv iiDownload:iid];
     LIVEAPI_CHECK_STATUS_CB(json, @"loadWaypointsByCodes", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
 
     InfoItemID iii = [iv addImport:NO];
@@ -290,8 +290,8 @@
 - (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     NSInteger chunks = 0;
-    loadWaypointsLogs = 0;
-    loadWaypointsWaypoints = 0;
+    self.loadWaypointsLogs = 0;
+    self.loadWaypointsWaypoints = 0;
 
     if ([self.account canDoRemoteStuff] == NO) {
         [self setAPIError:_(@"remoteapiliveapi-[LiveAPI] loadWaypointsByBoundingBox: remote API is disabled") error:REMOTEAPI_APIDISABLED];
@@ -301,7 +301,7 @@
 
     [iv setChunksTotal:iid total:1];
     [iv setChunksCount:iid count:1];
-    GCDictionaryLiveAPI *json = [liveAPI SearchForGeocaches_boundbox:bb infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self.liveAPI SearchForGeocaches_boundbox:bb infoViewer:iv iiDownload:iid];
     LIVEAPI_CHECK_STATUS_CB(json, @"loadWaypointsByBoundingBox", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
     LIVEAPI_GET_VALUE_CB(json, NSNumber, ptotal, @"TotalMatchingCaches", @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
@@ -319,7 +319,7 @@
             [iv setChunksCount:iid count:(done / 20) + 1];
             done += 20;
 
-            json = [liveAPI GetMoreGeocaches:done infoViewer:iv iiDownload:iid];
+            json = [self.liveAPI GetMoreGeocaches:done infoViewer:iv iiDownload:iid];
             LIVEAPI_CHECK_STATUS_CB(json, @"loadWaypointsByBoundingBox", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
             if ([json objectForKey:@"Geocaches"] != nil) {
@@ -338,7 +338,7 @@
 
 - (RemoteAPIResult)updatePersonalNote:(dbPersonalNote *)note infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    GCDictionaryLiveAPI *json = [liveAPI UpdateCacheNote:note.wp_name text:note.note infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self.liveAPI UpdateCacheNote:note.wp_name text:note.note infoViewer:iv iiDownload:iid];
     LIVEAPI_CHECK_STATUS(json, @"updatePersonalNote", REMOTEAPI_PERSONALNOTE_UPDATEFAILED);
     return REMOTEAPI_OK;
 }
@@ -354,7 +354,7 @@
      */
 
     *qs = nil;
-    GCDictionaryLiveAPI *json = [liveAPI GetPocketQueryList:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self.liveAPI GetPocketQueryList:iv iiDownload:iid];
     LIVEAPI_CHECK_STATUS(json, @"listQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
 
     NSMutableArray<NSDictionary *> *as = [NSMutableArray arrayWithCapacity:20];
@@ -389,7 +389,7 @@
     [iv setChunksCount:iid count:1];
     do {
         NSLog(@"offset:%ld - max: %ld", (long)offset, (long)max);
-        GCDictionaryLiveAPI *json = [liveAPI GetFullPocketQueryData:_id startItem:offset numItems:increase infoViewer:iv iiDownload:iid];
+        GCDictionaryLiveAPI *json = [self.liveAPI GetFullPocketQueryData:_id startItem:offset numItems:increase infoViewer:iv iiDownload:iid];
         LIVEAPI_CHECK_STATUS_CB(json, @"retrieveQuery", REMOTEAPI_RETRIEVEQUERY_LOADFAILED);
 
         NSInteger found = 0;
@@ -418,7 +418,7 @@
     [iv setChunksTotal:iid total:1];
     [iv setChunksCount:iid count:1];
 
-    GCDictionaryLiveAPI *json = [liveAPI GetOwnedTrackables:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self.liveAPI GetOwnedTrackables:iv iiDownload:iid];
     LIVEAPI_CHECK_STATUS(json, @"trackablesMine", REMOTEAPI_TRACKABLES_OWNEDLOADFAILED);
 
     ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:self.account];
@@ -432,7 +432,7 @@
     [iv setChunksTotal:iid total:1];
     [iv setChunksCount:iid count:1];
 
-    GCDictionaryLiveAPI *json = [liveAPI GetUsersTrackables:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self.liveAPI GetUsersTrackables:iv iiDownload:iid];
     LIVEAPI_CHECK_STATUS(json, @"trackablesInventory", REMOTEAPI_TRACKABLES_INVENTORYLOADFAILED);
 
     ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:self.account];
@@ -443,7 +443,7 @@
 
 - (RemoteAPIResult)trackableFind:(NSString *)pin trackable:(dbTrackable **)t infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
 {
-    GCDictionaryLiveAPI *json = [liveAPI GetTrackablesByPin:pin infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self.liveAPI GetTrackablesByPin:pin infoViewer:iv iiDownload:iid];
     LIVEAPI_CHECK_STATUS(json, @"trackableFind", REMOTEAPI_TRACKABLES_FINDFAILED);
 
     ImportLiveAPIJSON *imp = [[ImportLiveAPIJSON alloc] init:nil account:self.account];
@@ -479,7 +479,7 @@
     NSString *note = @"Discovered";
 
     dbLogString *ls = [dbLogString dbGetByProtocolWPTypeDefault:self.account.protocol wptype:LOGSTRING_WPTYPE_TRACKABLEWAYPOINT default:LOGSTRING_DEFAULT_DISCOVER];
-    GCDictionaryLiveAPI *json = [liveAPI CreateTrackableLog:nil logtype:ls.logString trackable:tb note:note dateLogged:[MyTools dateTimeString_YYYY_MM_DD] infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self.liveAPI CreateTrackableLog:nil logtype:ls.logString trackable:tb note:note dateLogged:[MyTools dateTimeString_YYYY_MM_DD] infoViewer:iv iiDownload:iid];
     LIVEAPI_CHECK_STATUS(json, @"CreateTrackableLog", REMOTEAPI_CREATELOG_LOGFAILED);
 
     return REMOTEAPI_OK;
@@ -499,7 +499,7 @@
     NSString *note = @"Grabbed";
 
     dbLogString *ls = [dbLogString dbGetByProtocolWPTypeDefault:self.account.protocol wptype:LOGSTRING_WPTYPE_TRACKABLEPERSON default:LOGSTRING_DEFAULT_PICKUP];
-    GCDictionaryLiveAPI *json = [liveAPI CreateTrackableLog:nil logtype:ls.logString trackable:tb note:note dateLogged:[MyTools dateTimeString_YYYY_MM_DD] infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self.liveAPI CreateTrackableLog:nil logtype:ls.logString trackable:tb note:note dateLogged:[MyTools dateTimeString_YYYY_MM_DD] infoViewer:iv iiDownload:iid];
     LIVEAPI_CHECK_STATUS(json, @"CreateTrackableLog", REMOTEAPI_CREATELOG_LOGFAILED);
 
     return REMOTEAPI_OK;
@@ -510,7 +510,7 @@
     NSString *note = @"Dropped";
 
     dbLogString *ls = [dbLogString dbGetByProtocolWPTypeDefault:self.account.protocol wptype:LOGSTRING_WPTYPE_TRACKABLEWAYPOINT default:LOGSTRING_DEFAULT_DROPOFF];
-    GCDictionaryLiveAPI *json = [liveAPI CreateTrackableLog:wptname logtype:ls.logString trackable:tb note:note dateLogged:[MyTools dateTimeString_YYYY_MM_DD] infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self.liveAPI CreateTrackableLog:wptname logtype:ls.logString trackable:tb note:note dateLogged:[MyTools dateTimeString_YYYY_MM_DD] infoViewer:iv iiDownload:iid];
     LIVEAPI_CHECK_STATUS(json, @"CreateTrackableLog", REMOTEAPI_CREATELOG_LOGFAILED);
 
     return REMOTEAPI_OK;

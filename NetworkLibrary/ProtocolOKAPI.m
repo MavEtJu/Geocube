@@ -20,21 +20,20 @@
  */
 
 @interface ProtocolOKAPI ()
-{
-    RemoteAPITemplate *remoteAPI;
-    NSString *okapi_prefix;
-}
+
+@property (nonatomic, retain) RemoteAPITemplate *remoteAPI;
+@property (nonatomic, retain) NSString *okapi_prefix;
 
 @end
 
 @implementation ProtocolOKAPI
 
-- (instancetype)init:(RemoteAPITemplate *)_remoteAPI
+- (instancetype)init:(RemoteAPITemplate *)remoteAPI
 {
     self = [super init];
 
-    remoteAPI = _remoteAPI;
-    okapi_prefix = @"okapi/services";
+    self.remoteAPI = remoteAPI;
+    self.okapi_prefix = @"okapi/services";
 
     return self;
 }
@@ -46,14 +45,14 @@
 
 - (GCMutableURLRequest *)prepareURLRequest:(NSString *)url parameters:(NSString *)parameters
 {
-    NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@%@", remoteAPI.account.url_site, okapi_prefix, url];
+    NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@%@", self.remoteAPI.account.url_site, self.okapi_prefix, url];
     if (parameters != nil)
         [urlString appendFormat:@"?%@", parameters];
 
     NSURL *urlURL = [NSURL URLWithString:urlString];
     GCMutableURLRequest *urlRequest = [GCMutableURLRequest requestWithURL:urlURL];
 
-    NSString *oauth = [remoteAPI.oabb oauth_header:urlRequest];
+    NSString *oauth = [self.remoteAPI.oabb oauth_header:urlRequest];
     [urlRequest addValue:oauth forHTTPHeaderField:@"Authorization"];
     [urlRequest setValue:@"none" forHTTPHeaderField:@"Accept-Encoding"];
     [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -93,14 +92,14 @@
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"retbody: %@", retbody);
-        [remoteAPI setNetworkError:[error description] error:REMOTEAPI_APIREFUSED];
+        [self.remoteAPI setNetworkError:[error description] error:REMOTEAPI_APIREFUSED];
         return nil;
     }
     if (response.statusCode != 400 && response.statusCode != 200) {
         NSLog(@"statusCode: %ld", (long)response.statusCode);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"retbody: %@", retbody);
-        [remoteAPI setAPIError:[NSString stringWithFormat:_(@"remoteapiokapi-HTTP Response was %ld"), (long)response.statusCode] error:REMOTEAPI_APIFAILED];
+        [self.remoteAPI setAPIError:[NSString stringWithFormat:_(@"remoteapiokapi-HTTP Response was %ld"), (long)response.statusCode] error:REMOTEAPI_APIFAILED];
         return nil;
     }
 
@@ -109,7 +108,7 @@
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"retbody: %@", retbody);
-        [remoteAPI setAPIError:[error description] error:REMOTEAPI_JSONINVALID];
+        [self.remoteAPI setAPIError:[error description] error:REMOTEAPI_JSONINVALID];
         return nil;
     }
 
@@ -125,7 +124,7 @@
     NSArray<NSString *> *fields = @[@"caches_found", @"caches_notfound", @"caches_hidden", @"rcmds_given", @"username", @"profile_url", @"uuid"];
 
     NSMutableDictionary *_dict = [NSMutableDictionary dictionaryWithCapacity:20];
-    [_dict setObject:remoteAPI.account.accountname.name forKey:@"username"];
+    [_dict setObject:self.remoteAPI.account.accountname.name forKey:@"username"];
     [_dict setObject:[self string_array:fields] forKey:@"fields"];
     NSString *params = [MyTools urlParameterJoin:_dict];
 

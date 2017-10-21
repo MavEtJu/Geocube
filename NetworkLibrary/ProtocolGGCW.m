@@ -20,15 +20,14 @@
  */
 
 @interface ProtocolGGCW ()
-{
-    RemoteAPITemplate *remoteAPI;
-    NSHTTPCookie *authCookie;
 
-    NSString *prefix;
-    NSString *prefixTiles;
+@property (nonatomic, retain) RemoteAPITemplate *remoteAPI;
+@property (nonatomic, retain) NSHTTPCookie *authCookie;
 
-    NSString *uid;
-}
+@property (nonatomic, retain) NSString *prefix;
+@property (nonatomic, retain) NSString *prefixTiles;
+
+@property (nonatomic, retain) NSString *uid;
 
 @property (nonatomic, retain, readwrite) NSString *callback;
 
@@ -43,24 +42,24 @@ enum {
     GGCW_GGCWSERVER,
 };
 
-- (instancetype)init:(RemoteAPITemplate *)_remoteAPI
+- (instancetype)init:(RemoteAPITemplate *)remoteAPI
 {
     self = [super init];
 
-    prefix = @"https://www.geocaching.com";
-    prefixTiles = @"https://tiles%02d.geocaching.com%@";
+    self.prefix = @"https://www.geocaching.com";
+    self.prefixTiles = @"https://tiles%02d.geocaching.com%@";
 
-    remoteAPI = _remoteAPI;
-    self.callback = remoteAPI.account.gca_callback_url;
+    self.remoteAPI = remoteAPI;
+    self.callback = self.remoteAPI.account.gca_callback_url;
     NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
 
-    if (remoteAPI.account.gca_cookie_value != nil) {
-        authCookie = [NSHTTPCookie cookieWithProperties:
+    if (self.remoteAPI.account.gca_cookie_value != nil) {
+        self.authCookie = [NSHTTPCookie cookieWithProperties:
                       [NSDictionary
                        dictionaryWithObjects:@[
                                                @"/",
-                                               remoteAPI.account.gca_cookie_name,
-                                               [MyTools urlEncode:remoteAPI.account.gca_cookie_value],
+                                               self.remoteAPI.account.gca_cookie_name,
+                                               [MyTools urlEncode:self.remoteAPI.account.gca_cookie_value],
                                                @".geocaching.com" //remoteAPI.account.url_site
                                                ] forKeys:@[
                                                            NSHTTPCookiePath,
@@ -71,7 +70,7 @@ enum {
                        ]
                       ];
         // Set-Cookie: phpbb3mysql_data=a%3A2%3A%7Bs%3A11%3A%22autologinid%22%3Bs%3A34%3A%22%24H%249bhZ2qUoKtqdqSSeZZvlBdDXIAiGbi.%22%3Bs%3A6%3A%22userid%22%3Bs%3A6%3A%22119649%22%3B%7D; expires=Mon, 28-Sep-2015 13:36:09 GMT; path=/; domain=.geocaching.com.au.
-        [cookiemgr setCookie:authCookie];
+        [cookiemgr setCookie:self.authCookie];
     }
 
     // Set-Cookie:        Send2GPS=garmin; expires=Tue, 07-Nov-2017 11:44:23 GMT; path=/
@@ -101,11 +100,11 @@ enum {
         [self.delegate GGCWAuthSuccessful:cookie];
 
     NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    authCookie = [NSHTTPCookie cookieWithProperties:
+    self.authCookie = [NSHTTPCookie cookieWithProperties:
                   [NSDictionary dictionaryWithObjects:@[
                                            @"/",
-                                           remoteAPI.account.gca_cookie_name,
-                                           [MyTools urlEncode:remoteAPI.account.gca_cookie_value],
+                                           self.remoteAPI.account.gca_cookie_name,
+                                           [MyTools urlEncode:self.remoteAPI.account.gca_cookie_value],
                                            @".geocaching.com" //remoteAPI.account.url_site
                                        ] forKeys:@[
                                            NSHTTPCookiePath,
@@ -116,7 +115,7 @@ enum {
                    ]
                   ];
     // Set-Cookie: phpbb3mysql_data=a%3A2%3A%7Bs%3A11%3A%22autologinid%22%3Bs%3A34%3A%22%24H%249bhZ2qUoKtqdqSSeZZvlBdDXIAiGbi.%22%3Bs%3A6%3A%22userid%22%3Bs%3A6%3A%22119649%22%3B%7D; expires=Mon, 28-Sep-2015 13:36:09 GMT; path=/; domain=.geocaching.com.au.
-    [cookiemgr setCookie:authCookie];
+    [cookiemgr setCookie:self.authCookie];
 }
 
 // ------------------------------------------------
@@ -131,13 +130,13 @@ enum {
     NSMutableString *urlString = nil;
     switch (servers) {
         case GGCW_GGCWSERVER:
-            urlString = [NSMutableString stringWithFormat:@"%@%@", prefix, suffix];
+            urlString = [NSMutableString stringWithFormat:@"%@%@", self.prefix, suffix];
             break;
         case GGCW_TILESERVERS: {
             // Make sure that the tile server chosen is the same for every x andy coordinate.
             NSInteger ts = [[params objectForKey:@"x"] integerValue] +
                            [[params objectForKey:@"y"] integerValue];
-            urlString = [NSMutableString stringWithFormat:prefixTiles, ts % 4 + 1, suffix];
+            urlString = [NSMutableString stringWithFormat:self.prefixTiles, ts % 4 + 1, suffix];
             break;
         }
         default:
@@ -176,7 +175,7 @@ enum {
         NSLog(@"error: %@", [error description]);
         NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSLog(@"retbody: %@", retbody);
-        [remoteAPI setNetworkError:[error description] error:REMOTEAPI_APIREFUSED];
+        [self.remoteAPI setNetworkError:[error description] error:REMOTEAPI_APIREFUSED];
         return nil;
     }
     if (response.statusCode != 200) {
@@ -185,13 +184,13 @@ enum {
             NSLog(@"statusCode: %ld", (long)response.statusCode);
             NSLog(@"data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
             NSLog(@"retbody: %@", retbody);
-            [remoteAPI setAPIError:[NSString stringWithFormat:_(@"protocolggcw-HTTP Response was %ld"), (long)response.statusCode] error:REMOTEAPI_APIFAILED];
+            [self.remoteAPI setAPIError:[NSString stringWithFormat:_(@"protocolggcw-HTTP Response was %ld"), (long)response.statusCode] error:REMOTEAPI_APIFAILED];
             return nil;
         }
     }
 
     if ([data length] == 0) {
-        [remoteAPI setAPIError:_(@"protocolggcw-Returned data is zero length") error:REMOTEAPI_APIFAILED];
+        [self.remoteAPI setAPIError:_(@"protocolggcw-Returned data is zero length") error:REMOTEAPI_APIFAILED];
         return nil;
     }
 
@@ -257,7 +256,7 @@ enum {
         r = [s rangeOfString:@"\","];
         CHECK_RANGE(r, bail);
         s = [s substringToIndex:r.location];
-        uid = s;
+        self.uid = s;
 
         *stop = YES;
     bail:
@@ -309,7 +308,7 @@ enum {
         r = [s rangeOfString:@"\","];
         CHECK_RANGE(r, bail);
         s = [s substringToIndex:r.location];
-        uid = s;
+        self.uid = s;
 
         *stop = YES;
     bail:
@@ -321,9 +320,9 @@ enum {
 
 - (void)determine_uid
 {
-    if (uid == nil) {
+    if (self.uid == nil) {
         [self account_dashboard:nil iiDownload:0];
-        if (uid == nil)
+        if (self.uid == nil)
             [self my_default:nil iiDownload:0];
         return;
     }
@@ -1065,13 +1064,13 @@ bail:
 {
     [self determine_uid];
 
-    NSLog(@"track_search:%@", uid);
+    NSLog(@"track_search:%@", self.uid);
     /*
      https://www.geocaching.com/track/search.aspx?o=1&uid=7d657fb4-351b-4321-8f39-a96fe85309a6
      */
 
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
-    [params setObject:uid forKey:@"uid"];
+    [params setObject:self.uid forKey:@"uid"];
     [params setObject:@"1" forKey:@"o"];
 
     NSString *urlString = [self prepareURLString:@"/track/search.aspx" params:params];
