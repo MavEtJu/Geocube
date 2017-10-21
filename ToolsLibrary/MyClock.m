@@ -20,11 +20,10 @@
  */
 
 @interface MyClock ()
-{
-    struct timeval clock;
-    BOOL clockEnabled;
-    NSString *clockTitle;
-}
+
+@property (nonatomic        ) struct timeval clock;
+@property (nonatomic        ) BOOL clockEnabled;
+@property (nonatomic, retain) NSString *clockTitle;
 
 @end
 
@@ -40,8 +39,10 @@
 {
     self = [super init];
 
-    clockTitle = title;
+    self.clockTitle = title;
+    struct timeval clock;
     gettimeofday(&clock, NULL);
+    self.clock = clock;
     [self clockShowAndReset];
 
     return self;
@@ -63,18 +64,18 @@
     struct timeval now1, now, diff;
     gettimeofday(&now1, NULL);
     now = now1;
-    if (now.tv_usec < clock.tv_usec) {
+    if (now.tv_usec < self.clock.tv_usec) {
         now.tv_sec--;
         now.tv_usec += 1000000;
     }
-    diff.tv_usec = now.tv_usec - clock.tv_usec;
-    diff.tv_sec = now.tv_sec - clock.tv_sec;
+    diff.tv_usec = now.tv_usec - self.clock.tv_usec;
+    diff.tv_sec = now.tv_sec - self.clock.tv_sec;
 
-    clock = now1;
-    if (clockEnabled == NO)
+    self.clock = now1;
+    if (self.clockEnabled == NO)
         return;
 
-    NSMutableString *t = [NSMutableString stringWithString:clockTitle];
+    NSMutableString *t = [NSMutableString stringWithString:self.clockTitle];
     if (suffix != nil) {
         [t appendString:@":"];
         [t appendString:suffix];
@@ -85,7 +86,7 @@
 /// Determine to show the clock or not when clockShowAndReset has been called
 - (void)clockEnable:(BOOL)yesno
 {
-    clockEnabled = yesno;
+    self.clockEnabled = yesno;
 }
 
 @end

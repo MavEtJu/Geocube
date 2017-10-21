@@ -20,18 +20,17 @@
  */
 
 @interface InfoViewer ()
-{
-    NSMutableArray<InfoItem *> *imageItems;
-    NSMutableArray<InfoItem *> *downloadItems;
-    NSMutableArray<InfoItem *> *importItems;
-    GCLabel *imageHeader;
-    GCLabel *downloadHeader;
-    GCLabel *importHeader;
-    InfoItemID maxid;
-    BOOL stopUpdating;
-    NSInteger contentOffset;
-    BOOL isRefreshing;
-}
+
+@property (nonatomic, retain) NSMutableArray<InfoItem *> *imageItems;
+@property (nonatomic, retain) NSMutableArray<InfoItem *> *downloadItems;
+@property (nonatomic, retain) NSMutableArray<InfoItem *> *importItems;
+@property (nonatomic, retain) GCLabel *imageHeader;
+@property (nonatomic, retain) GCLabel *downloadHeader;
+@property (nonatomic, retain) GCLabel *importHeader;
+@property (nonatomic        ) InfoItemID maxid;
+@property (nonatomic        ) BOOL stopUpdating;
+@property (nonatomic        ) NSInteger contentOffset;
+@property (nonatomic        ) BOOL isRefreshing;
 
 @end
 
@@ -41,38 +40,38 @@
 {
     self = [super initWithFrame:frame];
 
-    imageHeader = [[GCLabel alloc] initWithFrame:CGRectZero];
-    imageHeader.text = _(@"infoviewer-Images");
-    imageHeader.backgroundColor = [UIColor lightGrayColor];
-    [self addSubview:imageHeader];
+    self.imageHeader = [[GCLabel alloc] initWithFrame:CGRectZero];
+    self.imageHeader.text = _(@"infoviewer-Images");
+    self.imageHeader.backgroundColor = [UIColor lightGrayColor];
+    [self addSubview:self.imageHeader];
 
-    downloadHeader = [[GCLabel alloc] initWithFrame:CGRectZero];
-    downloadHeader.text = _(@"infoviewer-Downloads");
-    downloadHeader.backgroundColor = [UIColor lightGrayColor];
-    [self addSubview:downloadHeader];
+    self.downloadHeader = [[GCLabel alloc] initWithFrame:CGRectZero];
+    self.downloadHeader.text = _(@"infoviewer-Downloads");
+    self.downloadHeader.backgroundColor = [UIColor lightGrayColor];
+    [self addSubview:self.downloadHeader];
 
-    importHeader = [[GCLabel alloc] initWithFrame:CGRectZero];
-    importHeader.text = _(@"infoviewer-Imports");
-    importHeader.backgroundColor = [UIColor lightGrayColor];
-    [self addSubview:importHeader];
+    self.importHeader = [[GCLabel alloc] initWithFrame:CGRectZero];
+    self.importHeader.text = _(@"infoviewer-Imports");
+    self.importHeader.backgroundColor = [UIColor lightGrayColor];
+    [self addSubview:self.importHeader];
 
-    importItems = [NSMutableArray arrayWithCapacity:5];
-    downloadItems = [NSMutableArray arrayWithCapacity:5];
-    imageItems = [NSMutableArray arrayWithCapacity:5];
-    maxid = 1;
+    self.importItems = [NSMutableArray arrayWithCapacity:5];
+    self.downloadItems = [NSMutableArray arrayWithCapacity:5];
+    self.imageItems = [NSMutableArray arrayWithCapacity:5];
+    self.maxid = 1;
 
     [self calculateRects];
     [self changeTheme];
 
-    stopUpdating = YES;
+    self.stopUpdating = YES;
 
     return self;
 }
 
-- (void)show:(NSInteger)_contentOffset
+- (void)show:(NSInteger)contentOffset
 {
-    stopUpdating = NO;
-    contentOffset = _contentOffset;
+    self.stopUpdating = NO;
+    self.contentOffset = contentOffset;
     BACKGROUND(refreshItems, nil);
     MAINQUEUE(
         CGRect frame = self.frame;
@@ -88,7 +87,7 @@
 
 - (void)hide
 {
-    stopUpdating = YES;
+    self.stopUpdating = YES;
     MAINQUEUE(
         self.hidden = YES;
     )
@@ -96,21 +95,21 @@
 
 - (void)refreshItems
 {
-    if (isRefreshing == YES)
+    if (self.isRefreshing == YES)
         return;
 
-    isRefreshing = YES;
+    self.isRefreshing = YES;
     while (1) {
         [NSThread sleepForTimeInterval:0.1];
 
-        [self refreshItems:imageItems];
-        [self refreshItems:downloadItems];
-        [self refreshItems:importItems];
+        [self refreshItems:self.imageItems];
+        [self refreshItems:self.downloadItems];
+        [self refreshItems:self.importItems];
 
-        if (stopUpdating == YES)
+        if (self.stopUpdating == YES)
             break;
     }
-    isRefreshing = NO;
+    self.isRefreshing = NO;
 }
 
 - (void)refreshItems:(NSArray<InfoItem *> *)items
@@ -134,7 +133,7 @@
 
 - (BOOL)hasItems
 {
-    return ([imageItems count] + [downloadItems count] + [importItems count] != 0);
+    return ([self.imageItems count] + [self.downloadItems count] + [self.importItems count] != 0);
 }
 
 - (NSInteger)addImage
@@ -146,9 +145,9 @@
 {
     InfoItem *iii = [[InfoItem alloc] initWithInfoViewer:self type:INFOITEM_IMAGE expanded:expanded];
 
-    @synchronized (imageItems) {
-        iii._id = maxid++;
-        [imageItems addObject:iii];
+    @synchronized (self.imageItems) {
+        iii._id = self.maxid++;
+        [self.imageItems addObject:iii];
     }
 
     MAINQUEUE(
@@ -168,9 +167,9 @@
 {
     InfoItem *iii = [[InfoItem alloc] initWithInfoViewer:self type:INFOITEM_IMPORT expanded:expanded];
 
-    @synchronized (importItems) {
-        iii._id = maxid++;
-        [importItems addObject:iii];
+    @synchronized (self.importItems) {
+        iii._id = self.maxid++;
+        [self.importItems addObject:iii];
     }
 
     MAINQUEUE(
@@ -190,9 +189,9 @@
 {
     InfoItem *iid = [[InfoItem alloc] initWithInfoViewer:self type:INFOITEM_DOWNLOAD expanded:expanded];
 
-    @synchronized (downloadItems) {
-        iid._id = maxid++;
-        [downloadItems addObject:iid];
+    @synchronized (self.downloadItems) {
+        iid._id = self.maxid++;
+        [self.downloadItems addObject:iid];
     }
 
     MAINQUEUE(
@@ -205,9 +204,9 @@
 
 - (void)removeItem:(InfoItemID)_id
 {
-    [self removeItem:_id from:imageItems];
-    [self removeItem:_id from:downloadItems];
-    [self removeItem:_id from:importItems];
+    [self removeItem:_id from:self.imageItems];
+    [self removeItem:_id from:self.downloadItems];
+    [self removeItem:_id from:self.importItems];
 }
 
 - (void)removeItem:(InfoItemID)_id from:(NSMutableArray<InfoItem *> *)items
@@ -235,7 +234,7 @@
 {
     NSString *t = [NSString stringWithFormat:@"%@ (%@)", _(@"infoviewer-Images"), suffix];
     MAINQUEUE(
-        imageHeader.text = t;
+        self.imageHeader.text = t;
     )
 }
 
@@ -243,7 +242,7 @@
 {
     NSString *t = [NSString stringWithFormat:@"%@ (%@)", _(@"infoviewer-Downloads"), suffix];
     MAINQUEUE(
-        downloadHeader.text = t;
+        self.downloadHeader.text = t;
     )
 }
 
@@ -251,7 +250,7 @@
 {
     NSString *t = [NSString stringWithFormat:@"%@ (%@)", _(@"infoviewer-Imports"), suffix];
     MAINQUEUE(
-        importHeader.text = t;
+        self.importHeader.text = t;
     )
 }
 
@@ -275,11 +274,11 @@
         return;
     }
 
-    height += [self calculateRects:imageItems header:imageHeader height:height];
-    height += [self calculateRects:downloadItems header:downloadHeader height:height];
-    height += [self calculateRects:importItems header:importHeader height:height];
+    height += [self calculateRects:self.imageItems header:self.imageHeader height:height];
+    height += [self calculateRects:self.downloadItems header:self.downloadHeader height:height];
+    height += [self calculateRects:self.importItems header:self.importHeader height:height];
 
-    self.frame = CGRectMake(0, contentOffset + self.superview.frame.size.height - height, width, height);
+    self.frame = CGRectMake(0, self.contentOffset + self.superview.frame.size.height - height, width, height);
 }
 
 - (NSInteger)calculateRects:(NSArray<InfoItem *> *)items header:(GCLabel *)header height:(NSInteger)heightOffset
@@ -308,9 +307,9 @@
 
 - (void)viewWillTransitionToSize
 {
-    [self viewWillTransitionToSize:imageItems];
-    [self viewWillTransitionToSize:downloadItems];
-    [self viewWillTransitionToSize:importItems];
+    [self viewWillTransitionToSize:self.imageItems];
+    [self viewWillTransitionToSize:self.downloadItems];
+    [self viewWillTransitionToSize:self.importItems];
     [self calculateRects];
 }
 
@@ -335,13 +334,13 @@
 {
     InfoItem *ii = nil;
 
-    ii = [self findInfoItem:imageItems infoItem:_id];
+    ii = [self findInfoItem:self.imageItems infoItem:_id];
     if (ii != nil)
         return ii;
-    ii = [self findInfoItem:downloadItems infoItem:_id];
+    ii = [self findInfoItem:self.downloadItems infoItem:_id];
     if (ii != nil)
         return ii;
-    ii = [self findInfoItem:importItems infoItem:_id];
+    ii = [self findInfoItem:self.importItems infoItem:_id];
     return ii;
 }
 

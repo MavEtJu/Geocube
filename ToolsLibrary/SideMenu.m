@@ -20,13 +20,12 @@
  */
 
 @interface SideMenu ()
-{
-    NSMutableArray<NSString *> *items;
-    LocalMenuItems *localMenuItems;
-    id localMenuTarget;
 
-    BOOL buttonsEnabled;
-}
+@property (nonatomic, retain) NSMutableArray<NSString *> *items;
+@property (nonatomic, retain) LocalMenuItems *localMenuItems;
+@property (nonatomic, retain) id localMenuTarget;
+
+@property (nonatomic        ) BOOL buttonsEnabled;
 
 @end
 
@@ -34,27 +33,27 @@
 
 - (void)buttonMenuGlobal:(id)sender
 {
-    if (buttonsEnabled == YES)
+    if (self.buttonsEnabled == YES)
         [self.menuGlobal show];
 }
 
 - (void)buttonMenuLocal:(id)sender
 {
-    if (buttonsEnabled == YES)
+    if (self.buttonsEnabled == YES)
         [self.menuLocal show];
 }
 
 - (void)enableMenus:(BOOL)YESNO
 {
-    buttonsEnabled = YESNO;
+    self.buttonsEnabled = YESNO;
 }
 
 - (void)defineLocalMenu:(LocalMenuItems *)lmi forVC:(id)vc
 {
-    localMenuItems = lmi;
-    localMenuTarget = vc;
+    self.localMenuItems = lmi;
+    self.localMenuTarget = vc;
 
-    if (localMenuItems == nil) {
+    if (self.localMenuItems == nil) {
         self.menuLocalButton.hidden = YES;
     } else {
         self.menuLocalButton.hidden = NO;
@@ -66,10 +65,10 @@
     self = [super init];
 
     #define MATCH(__i__, __s__) \
-        case __i__: [items addObject:__s__]; \
+        case __i__: [self.items addObject:__s__]; \
         break;
 
-    items = [NSMutableArray arrayWithCapacity:RC_MAX];
+    self.items = [NSMutableArray arrayWithCapacity:RC_MAX];
     for (NSInteger i = 0; i < RC_MAX; i++) {
         switch (i) {
             MATCH(RC_NAVIGATE, _(@"menu-Navigate"));
@@ -115,7 +114,7 @@
     self.menuLocal.blurEffectStyle  = UIBlurEffectStyleDark;
     /* See more options in VKSideMenu.h */
 
-    buttonsEnabled = YES;
+    self.buttonsEnabled = YES;
 
     return self;
 }
@@ -128,9 +127,9 @@
 - (NSInteger)sideMenu:(VKSideMenu *)sideMenu numberOfRowsInSection:(NSInteger)section
 {
     if (sideMenu == self.menuGlobal)
-        return [items count];
+        return [self.items count];
     else
-        return [localMenuItems countItems];
+        return [self.localMenuItems countItems];
 }
 
 - (VKSideMenuItem *)sideMenu:(VKSideMenu *)sideMenu itemForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -141,16 +140,16 @@
 
     if (sideMenu == self.menuGlobal) {
         item.disabled = NO;
-        item.title = [items objectAtIndex:indexPath.row];
+        item.title = [self.items objectAtIndex:indexPath.row];
     } else
-        item = [localMenuItems makeItem:indexPath.row];
+        item = [self.localMenuItems makeItem:indexPath.row];
     return item;
 }
 
 - (void)hideAll
 {
-    [_menuLocal hide];
-    [_menuGlobal hide];
+    [self.menuLocal hide];
+    [self.menuGlobal hide];
 }
 
 #pragma mark - VKSideMenuDelegate
@@ -179,7 +178,7 @@
         [_AppDelegate switchController:indexPath.row];
     } else {
         NSLog(@"Local menu action %ld", (long)indexPath.row);
-        [localMenuTarget performLocalMenuAction:indexPath.row];
+        [self.localMenuTarget performLocalMenuAction:indexPath.row];
     }
 }
 

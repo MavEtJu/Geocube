@@ -20,40 +20,39 @@
  */
 
 @interface InfoItem ()
-{
-    BOOL isLines;
-    BOOL isExpanded;
-    InfoItemType type;
 
-    NSInteger viewHeight;
+@property (nonatomic        ) BOOL isLines;
+@property (nonatomic        ) BOOL isExpanded;
+@property (nonatomic        ) InfoItemType type;
 
-    NSInteger nextLineObjectCount, nextLineObjectTotal;
-    NSInteger nextChunksCount, nextChunksTotal;
-    NSInteger nextBytesCount, nextBytesTotal;
+@property (nonatomic        ) NSInteger viewHeight;
 
-    NSInteger nextLogsNew, nextLogsTotal;
-    NSInteger nextWaypointsNew, nextWaypointsTotal;
-    NSInteger nextTrackablesNew, nextTrackablesTotal;
+@property (nonatomic        ) NSInteger nextLineObjectCount, nextLineObjectTotal;
+@property (nonatomic        ) NSInteger nextChunksCount, nextChunksTotal;
+@property (nonatomic        ) NSInteger nextBytesCount, nextBytesTotal;
 
-    NSString *nextBytes, *nextObjects, *nextChunks;
-    NSString *nextDesc, *nextURL, *nextWaypoints;
-    NSString *nextQueue, *nextLinesObjects, *nextLogs, *nextTrackables;
+@property (nonatomic        ) NSInteger nextLogsNew, nextLogsTotal;
+@property (nonatomic        ) NSInteger nextWaypointsNew, nextWaypointsTotal;
+@property (nonatomic        ) NSInteger nextTrackablesNew, nextTrackablesTotal;
 
-    GCLabelSmallText *labelDesc;
-    GCLabelSmallText *labelURL;
-    GCLabelSmallText *labelChunks;
-    GCLabelSmallText *labelBytes;
-    GCLabelSmallText *labelLinesObjects;
-    GCLabelSmallText *labelQueue;
-    GCLabelSmallText *labelTrackables;
-    GCLabelSmallText *labelLogs;
-    GCLabelSmallText *labelWaypoints;
+@property (nonatomic, retain) NSString *nextBytes, *nextObjects, *nextChunks;
+@property (nonatomic, retain) NSString *nextDesc, *nextURL, *nextWaypoints;
+@property (nonatomic, retain) NSString *nextQueue, *nextLinesObjects, *nextLogs, *nextTrackables;
 
-    BOOL showLogs, showWaypoints, showTrackables;
-}
+@property (nonatomic, retain) GCLabelSmallText *labelDesc;
+@property (nonatomic, retain) GCLabelSmallText *labelURL;
+@property (nonatomic, retain) GCLabelSmallText *labelChunks;
+@property (nonatomic, retain) GCLabelSmallText *labelBytes;
+@property (nonatomic, retain) GCLabelSmallText *labelLinesObjects;
+@property (nonatomic, retain) GCLabelSmallText *labelQueue;
+@property (nonatomic, retain) GCLabelSmallText *labelTrackables;
+@property (nonatomic, retain) GCLabelSmallText *labelLogs;
+@property (nonatomic, retain) GCLabelSmallText *labelWaypoints;
 
-@property (nonatomic) BOOL needsRefresh;
-@property (nonatomic) BOOL needsRecalculate;
+@property (nonatomic        ) BOOL showLogs, showWaypoints, showTrackables;
+
+@property (nonatomic        ) BOOL needsRefresh;
+@property (nonatomic        ) BOOL needsRecalculate;
 
 @end
 
@@ -68,24 +67,24 @@
 {
     self = [super init];
     self.infoViewer = parent;
-    isExpanded = expanded;
-    type = _type;
+    self.isExpanded = expanded;
+    self.type = _type;
 
-    switch (type) {
+    switch (self.type) {
         case INFOITEM_DOWNLOAD: {
             self.view = [[GCView alloc] initWithFrame:CGRectZero];
             self.view.backgroundColor = [UIColor lightGrayColor];
 
-            labelDesc = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
-            labelURL = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
-            labelChunks = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
-            labelBytes = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            self.labelDesc = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            self.labelURL = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            self.labelChunks = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            self.labelBytes = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
 
             MAINQUEUE(
-                [self.view addSubview:labelDesc];
-                [self.view addSubview:labelURL];
-                [self.view addSubview:labelChunks];
-                [self.view addSubview:labelBytes];
+                [self.view addSubview:self.labelDesc];
+                [self.view addSubview:self.labelURL];
+                [self.view addSubview:self.labelChunks];
+                [self.view addSubview:self.labelBytes];
                 [self calculateRects];
             )
 
@@ -96,22 +95,22 @@
             self.view = [[GCView alloc] initWithFrame:CGRectZero];
             self.view.backgroundColor = [UIColor lightGrayColor];
 
-            labelDesc = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
-            labelLinesObjects = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
-            labelTrackables = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
-            labelLogs = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
-            labelWaypoints = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            self.labelDesc = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            self.labelLinesObjects = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            self.labelTrackables = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            self.labelLogs = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            self.labelWaypoints = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
 
-            showLogs = YES;
-            showWaypoints = YES;
-            showTrackables = YES;
+            self.showLogs = YES;
+            self.showWaypoints = YES;
+            self.showTrackables = YES;
 
             MAINQUEUE(
-                [self.view addSubview:labelDesc];
-                [self.view addSubview:labelLinesObjects];
-                [self.view addSubview:labelWaypoints];
-                [self.view addSubview:labelLogs];
-                [self.view addSubview:labelTrackables];
+                [self.view addSubview:self.labelDesc];
+                [self.view addSubview:self.labelLinesObjects];
+                [self.view addSubview:self.labelWaypoints];
+                [self.view addSubview:self.labelLogs];
+                [self.view addSubview:self.labelTrackables];
                 [self calculateRects];
             )
 
@@ -122,16 +121,16 @@
             self.view = [[GCView alloc] initWithFrame:CGRectZero];
             self.view.backgroundColor = [UIColor lightGrayColor];
 
-            labelDesc = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
-            labelURL = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
-            labelBytes = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
-            labelQueue = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            self.labelDesc = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            self.labelURL = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            self.labelBytes = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
+            self.labelQueue = [[GCLabelSmallText alloc] initWithFrame:CGRectZero];
 
             MAINQUEUE(
-                [self.view addSubview:labelDesc];
-                [self.view addSubview:labelQueue];
-                [self.view addSubview:labelURL];
-                [self.view addSubview:labelBytes];
+                [self.view addSubview:self.labelDesc];
+                [self.view addSubview:self.labelQueue];
+                [self.view addSubview:self.labelURL];
+                [self.view addSubview:self.labelBytes];
                 [self calculateRects];
             )
             break;
@@ -159,18 +158,18 @@
         y += __s__.font.lineHeight; \
     }
 
-    if (isExpanded == YES) {
-        INDENT_RESIZE(labelDesc);
-        INDENT_RESIZE(labelURL);
-        INDENT_RESIZE(labelQueue);
-        INDENT_RESIZE(labelChunks);
-        INDENT_RESIZE(labelBytes);
-        INDENT_RESIZE(labelLinesObjects);
-        INDENT_RESIZE(labelLogs);
-        INDENT_RESIZE(labelTrackables);
-        INDENT_RESIZE(labelWaypoints);
+    if (self.isExpanded == YES) {
+        INDENT_RESIZE(self.labelDesc);
+        INDENT_RESIZE(self.labelURL);
+        INDENT_RESIZE(self.labelQueue);
+        INDENT_RESIZE(self.labelChunks);
+        INDENT_RESIZE(self.labelBytes);
+        INDENT_RESIZE(self.labelLinesObjects);
+        INDENT_RESIZE(self.labelLogs);
+        INDENT_RESIZE(self.labelTrackables);
+        INDENT_RESIZE(self.labelWaypoints);
     } else {
-        INDENT_RESIZE(labelDesc);
+        INDENT_RESIZE(self.labelDesc);
     }
 
     y += MARGIN;
@@ -180,13 +179,13 @@
 
 - (void)expand:(BOOL)yesno
 {
-    isExpanded = yesno;
+    self.isExpanded = yesno;
     self.needsRecalculate = YES;
 }
 
 - (BOOL)isExpanded
 {
-    return isExpanded;
+    return self.isExpanded;
 }
 
 - (void)recalculate
@@ -211,15 +210,15 @@
     }
 
     MAINQUEUE(
-        UPDATE(labelDesc, nextDesc);
-        UPDATE(labelURL, nextURL);
-        UPDATE(labelChunks, nextChunks);
-        UPDATE(labelBytes, nextBytes);
-        UPDATE(labelLinesObjects, nextLinesObjects);
-        UPDATE(labelLogs, nextLogs);
-        UPDATE(labelTrackables, nextTrackables);
-        UPDATE(labelWaypoints, nextWaypoints);
-        UPDATE(labelQueue, nextQueue);
+        UPDATE(self.labelDesc, self.nextDesc);
+        UPDATE(self.labelURL, self.nextURL);
+        UPDATE(self.labelChunks, self.nextChunks);
+        UPDATE(self.labelBytes, self.nextBytes);
+        UPDATE(self.labelLinesObjects, self.nextLinesObjects);
+        UPDATE(self.labelLogs, self.nextLogs);
+        UPDATE(self.labelTrackables, self.nextTrackables);
+        UPDATE(self.labelWaypoints, self.nextWaypoints);
+        UPDATE(self.labelQueue, self.nextQueue);
     )
 
     self.needsRefresh = NO;
@@ -227,41 +226,41 @@
 
 - (void)setDescription:(NSString *)newDesc
 {
-    nextDesc = newDesc;
+    self.nextDesc = newDesc;
     self.needsRefresh = YES;
 }
 
 - (void)setURL:(NSString *)newURL
 {
-    nextURL = newURL;
+    self.nextURL = newURL;
     self.needsRefresh = YES;
 }
 
 - (void)setQueueSize:(NSInteger)queueSize
 {
-    nextQueue = [NSString stringWithFormat:@"%@: %ld", _(@"infoitem-Queue depth"), (long)queueSize];
+    self.nextQueue = [NSString stringWithFormat:@"%@: %ld", _(@"infoitem-Queue depth"), (long)queueSize];
     self.needsRefresh = YES;
 }
 
 - (void)showLinesObjects
 {
-    NSInteger lot = nextLineObjectTotal;
-    NSInteger loc = nextLineObjectCount;
+    NSInteger lot = self.nextLineObjectTotal;
+    NSInteger loc = self.nextLineObjectCount;
     if (lot <= 0)
-        nextLinesObjects = [NSString stringWithFormat:@"%@: %ld", isLines ? _(@"infoitem-Lines") : _(@"infoitem-Objects"), (long)loc];
+        self.nextLinesObjects = [NSString stringWithFormat:@"%@: %ld", self.isLines ? _(@"infoitem-Lines") : _(@"infoitem-Objects"), (long)loc];
     else
-        nextLinesObjects = [NSString stringWithFormat:@"%@: %ld %@ %ld (%ld%%)", isLines ? _(@"infoitem-Lines") : _(@"infoitem-Objects"), (long)loc, _(@"of"), (long)lot, (long)(100 * loc / lot)];
+        self.nextLinesObjects = [NSString stringWithFormat:@"%@: %ld %@ %ld (%ld%%)", self.isLines ? _(@"infoitem-Lines") : _(@"infoitem-Objects"), (long)loc, _(@"of"), (long)lot, (long)(100 * loc / lot)];
     self.needsRefresh = YES;
 }
 - (void)setLineObjectCount:(NSInteger)count
 {
-    nextLineObjectCount = count;
+    self.nextLineObjectCount = count;
     [self showLinesObjects];
 }
-- (void)setLineObjectTotal:(NSInteger)total isLines:(BOOL)_isLines
+- (void)setLineObjectTotal:(NSInteger)total isLines:(BOOL)isLines
 {
-    nextLineObjectTotal = total;
-    isLines = _isLines;
+    self.nextLineObjectTotal = total;
+    self.isLines = isLines;
     [self showLinesObjects];
 }
 
@@ -273,24 +272,24 @@
 
 - (void)showBytes
 {
-    NSInteger bt = nextBytesTotal;
-    NSInteger bc = nextBytesCount;
+    NSInteger bt = self.nextBytesTotal;
+    NSInteger bc = self.nextBytesCount;
     if (bc < 0)
-        nextBytes = [NSString stringWithFormat:@"%@: -", _(@"infoitem-Bytes")];
+        self.nextBytes = [NSString stringWithFormat:@"%@: -", _(@"infoitem-Bytes")];
     else if (bt <= 0)
-        nextBytes = [NSString stringWithFormat:@"%@: %@", _(@"infoitem-Bytes"), [MyTools niceFileSize:bc]];
+        self.nextBytes = [NSString stringWithFormat:@"%@: %@", _(@"infoitem-Bytes"), [MyTools niceFileSize:bc]];
     else
-        nextBytes = [NSString stringWithFormat:@"%@: %@ %@ %@ (%ld %%)", _(@"infoitem-Bytes"), [MyTools niceFileSize:bc], _(@"of"), [MyTools niceFileSize:bt], (long)((bc * 100) / bt)];
+        self.nextBytes = [NSString stringWithFormat:@"%@: %@ %@ %@ (%ld %%)", _(@"infoitem-Bytes"), [MyTools niceFileSize:bc], _(@"of"), [MyTools niceFileSize:bt], (long)((bc * 100) / bt)];
     self.needsRefresh = YES;
 }
 - (void)setBytesTotal:(NSInteger)newTotal
 {
-    nextBytesTotal = newTotal;
+    self.nextBytesTotal = newTotal;
     [self showBytes];
 }
 - (void)setBytesCount:(NSInteger)newCount
 {
-    nextBytesCount = newCount;
+    self.nextBytesCount = newCount;
     [self showBytes];
 }
 
@@ -304,100 +303,100 @@
 
 - (void)setChunks
 {
-    if (nextChunksCount < 0)
-        nextChunks = [NSString stringWithFormat:@"%@: -", _(@"infoitem-Chunks")];
-    else if (nextChunksTotal == 0)
-        nextChunks = [NSString stringWithFormat:@"%@: %ld", _(@"infoitem-Chunks"), (long)nextChunksCount];
+    if (self.nextChunksCount < 0)
+        self.nextChunks = [NSString stringWithFormat:@"%@: -", _(@"infoitem-Chunks")];
+    else if (self.nextChunksTotal == 0)
+        self.nextChunks = [NSString stringWithFormat:@"%@: %ld", _(@"infoitem-Chunks"), (long)self.nextChunksCount];
     else
-        nextChunks = [NSString stringWithFormat:@"%@: %ld %@ %ld", _(@"infoitem-Chunks"), (long)nextChunksCount, _(@"of"), (long)nextChunksTotal];
+        self.nextChunks = [NSString stringWithFormat:@"%@: %ld %@ %ld", _(@"infoitem-Chunks"), (long)self.nextChunksCount, _(@"of"), (long)self.nextChunksTotal];
     self.needsRefresh = YES;
 }
 - (void)setChunksTotal:(NSInteger)newTotal
 {
-    nextChunksTotal = newTotal;
+    self.nextChunksTotal = newTotal;
     [self setChunks];
 }
 - (void)setChunksCount:(NSInteger)newCount
 {
-    nextChunksCount = newCount;
+    self.nextChunksCount = newCount;
     [self setChunks];
 }
 
 - (void)showWaypoints:(BOOL)yesno
 {
-    showWaypoints = yesno;
+    self.showWaypoints = yesno;
     self.needsRecalculate = YES;
 }
 
 - (void)showLogs:(BOOL)yesno
 {
-    showLogs = yesno;
+    self.showLogs = yesno;
     self.needsRecalculate = YES;
 }
 
 - (void)showTrackables:(BOOL)yesno
 {
-    showTrackables = yesno;
+    self.showTrackables = yesno;
     self.needsRecalculate = YES;
 }
 - (void)setWaypoints
 {
-    if (nextWaypointsNew == 0)
-        nextWaypoints = [NSString stringWithFormat:@"%@: %ld", _(@"infoitem-Waypoints"), (long)nextWaypointsTotal];
+    if (self.nextWaypointsNew == 0)
+        self.nextWaypoints = [NSString stringWithFormat:@"%@: %ld", _(@"infoitem-Waypoints"), (long)self.nextWaypointsTotal];
     else
-        nextWaypoints = [NSString stringWithFormat:@"%@: %ld (%ld %@)", _(@"infoitem-Waypoints"), (long)nextWaypointsTotal, (long)nextWaypointsNew, _(@"new")];
+        self.nextWaypoints = [NSString stringWithFormat:@"%@: %ld (%ld %@)", _(@"infoitem-Waypoints"), (long)self.nextWaypointsTotal, (long)self.nextWaypointsNew, _(@"new")];
     self.needsRefresh = YES;
 }
 - (void)setWaypointsNew:(NSInteger)i
 {
-    nextWaypointsNew = i;
+    self.nextWaypointsNew = i;
     [self setWaypoints];
 }
 - (void)setWaypointsTotal:(NSInteger)i
 {
-    nextWaypointsTotal = i;
+    self.nextWaypointsTotal = i;
     [self setWaypoints];
 }
 
 - (void)setLogs
 {
     NSString *s;
-    if (nextLogsNew == 0)
-        s = [NSString stringWithFormat:@"%@: %ld", _(@"infoitem-Logs"), (long)nextLogsTotal];
+    if (self.nextLogsNew == 0)
+        s = [NSString stringWithFormat:@"%@: %ld", _(@"infoitem-Logs"), (long)self.nextLogsTotal];
     else
-        s = [NSString stringWithFormat:@"%@: %ld (%ld %@)", _(@"infoitem-Logs"), (long)nextLogsTotal, (long)nextLogsNew, _(@"new")];
-    nextLogs = s;
+        s = [NSString stringWithFormat:@"%@: %ld (%ld %@)", _(@"infoitem-Logs"), (long)self.nextLogsTotal, (long)self.nextLogsNew, _(@"new")];
+    self.nextLogs = s;
     [self needsRefresh];
 }
 - (void)setLogsNew:(NSInteger)i
 {
-    nextLogsNew = i;
+    self.nextLogsNew = i;
     [self setLogs];
 }
 - (void)setLogsTotal:(NSInteger)i
 {
-    nextLogsTotal = i;
+    self.nextLogsTotal = i;
     [self setLogs];
 }
 
 - (void)setTrackables
 {
     NSString *s;
-    if (nextTrackablesNew == 0)
-        s = [NSString stringWithFormat:@"%@: %ld", _(@"infoitem-Trackables"), (long)nextTrackablesTotal];
+    if (self.nextTrackablesNew == 0)
+        s = [NSString stringWithFormat:@"%@: %ld", _(@"infoitem-Trackables"), (long)self.nextTrackablesTotal];
     else
-        s = [NSString stringWithFormat:@"%@: %ld (%ld %@)", _(@"infoitem-Trackables"), (long)nextTrackablesTotal, (long)nextTrackablesNew, _(@"new")];
-    nextTrackables = s;
+        s = [NSString stringWithFormat:@"%@: %ld (%ld %@)", _(@"infoitem-Trackables"), (long)self.nextTrackablesTotal, (long)self.nextTrackablesNew, _(@"new")];
+    self.nextTrackables = s;
     self.needsRefresh = YES;
 }
 - (void)setTrackablesNew:(NSInteger)i
 {
-    nextTrackablesNew = i;
+    self.nextTrackablesNew = i;
     [self setTrackables];
 }
 - (void)setTrackablesTotal:(NSInteger)i
 {
-    nextTrackablesTotal = i;
+    self.nextTrackablesTotal = i;
     [self setTrackables];
 }
 

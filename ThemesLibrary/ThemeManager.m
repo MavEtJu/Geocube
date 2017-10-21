@@ -20,9 +20,8 @@
  */
 
 @interface ThemeManager ()
-{
-    GCThemeType themeNr;
-}
+
+@property (nonatomic) GCThemeType themeNr;
 
 @end
 
@@ -48,12 +47,12 @@ ThemeManager *themeManager;
 
 - (GCThemeType)currentTheme
 {
-    return themeNr;
+    return self.themeNr;
 }
 
 - (void)setTheme:(GCThemeType)nr
 {
-    themeNr = nr;
+    self.themeNr = nr;
     switch (nr) {
         case THEME_IOS_SMALLSIZE:
             currentTheme = [[ThemeIOSSmallSize alloc] init];

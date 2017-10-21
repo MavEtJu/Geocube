@@ -20,9 +20,8 @@
  */
 
 @interface Coordinates ()
-{
-    CLLocationCoordinate2D coords;
-}
+
+@property (nonatomic) CLLocationCoordinate2D coords;
 
 @end
 
@@ -34,149 +33,147 @@
 - (instancetype)init:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude       // -34.02787 151.07357
 {
     self = [super init];
-    coords.latitude = latitude;
-    coords.longitude = longitude;
+    self.coords = CLLocationCoordinate2DMake(latitude, longitude);
     return self;
 }
 /// Initialize a Coordinates object with a lat and a lon value from a set of coordinates
-- (instancetype)init:(CLLocationCoordinate2D)_coords           // { -34.02787, 151.07357 }
+- (instancetype)init:(CLLocationCoordinate2D)coords           // { -34.02787, 151.07357 }
 {
     self = [super init];
-    coords.latitude = _coords.latitude;
-    coords.longitude = _coords.longitude;
+    self.coords = CLLocationCoordinate2DMake(coords.latitude, coords.longitude);
     return self;
 }
 
 - (CLLocationCoordinate2D)coordinates
 {
-    return CLLocationCoordinate2DMake(coords.latitude, coords.longitude);
+    return CLLocationCoordinate2DMake(self.coords.latitude, self.coords.longitude);
 }
 
 /// Returns -34.02787
 - (NSString *)lat_decimalDegreesSigned     // -34.02787
 {
-    return [NSString stringWithFormat:@"%9.5f", coords.latitude];
+    return [NSString stringWithFormat:@"%9.5f", self.coords.latitude];
 }
 /// Returns 151.07357
 - (NSString *)lon_decimalDegreesSigned     // 151.07357
 {
-    return [NSString stringWithFormat:@"%9.5f", coords.longitude];
+    return [NSString stringWithFormat:@"%9.5f", self.coords.longitude];
 }
 /// Returns S 34.02787
 - (NSString *)lat_decimalDegreesCardinal   // S 34.02787
 {
-    NSString *hemi = (coords.latitude < 0) ? _(@"compass-S") : _(@"compass-N") ;
-    return [NSString stringWithFormat:@"%@ %9.5f", hemi, fabs(coords.latitude)];
+    NSString *hemi = (self.coords.latitude < 0) ? _(@"compass-S") : _(@"compass-N") ;
+    return [NSString stringWithFormat:@"%@ %9.5f", hemi, fabs(self.coords.latitude)];
 }
 /// Returns E 151.07357
 - (NSString *)lon_decimalDegreesCardinal   // E 151.07357
 {
-    NSString *hemi = (coords.longitude < 0) ? _(@"compass-W") : _(@"compass-E") ;
-    return [NSString stringWithFormat:@"%@ %9.5f", hemi, fabs(coords.longitude)];
+    NSString *hemi = (self.coords.longitude < 0) ? _(@"compass-W") : _(@"compass-E") ;
+    return [NSString stringWithFormat:@"%@ %9.5f", hemi, fabs(self.coords.longitude)];
 }
 /// Returns S 34° 1.672'
 - (NSString *)lat_degreesDecimalMinutes    // S 34° 1.672'
 {
-    NSString *hemi = (coords.latitude < 0) ? _(@"compass-S") : _(@"compass-N") ;
+    NSString *hemi = (self.coords.latitude < 0) ? _(@"compass-S") : _(@"compass-N") ;
     float dummy;
-    int degrees = (int)fabs(coords.latitude);
-    float mins = modff(fabs(coords.latitude), &dummy);
+    int degrees = (int)fabs(self.coords.latitude);
+    float mins = modff(fabs(self.coords.latitude), &dummy);
     return [NSString stringWithFormat:@"%@ %3d° %06.3f'", hemi, degrees, mins * 60];
 }
 /// Returns E 151° 4.414'
 - (NSString *)lon_degreesDecimalMinutes    // E 151° 4.414'
 {
-    NSString *hemi = (coords.longitude < 0) ? _(@"compass-W") : _(@"compass-E") ;
+    NSString *hemi = (self.coords.longitude < 0) ? _(@"compass-W") : _(@"compass-E") ;
     float dummy;
-    int degrees = (int)fabs(coords.longitude);
-    float mins = modff(fabs(coords.longitude), &dummy);
+    int degrees = (int)fabs(self.coords.longitude);
+    float mins = modff(fabs(self.coords.longitude), &dummy);
     return [NSString stringWithFormat:@"%@ %3d° %06.3f'", hemi, degrees, mins * 60];
 }
 /// Returns S 34 1.672
 - (NSString *)lat_degreesDecimalMinutesEdit    // S 34 1.672
 {
-    NSString *hemi = (coords.latitude < 0) ? _(@"compass-S") : _(@"compass-N") ;
+    NSString *hemi = (self.coords.latitude < 0) ? _(@"compass-S") : _(@"compass-N") ;
     float dummy;
-    int degrees = (int)fabs(coords.latitude);
-    float mins = modff(fabs(coords.latitude), &dummy);
+    int degrees = (int)fabs(self.coords.latitude);
+    float mins = modff(fabs(self.coords.latitude), &dummy);
     return [NSString stringWithFormat:@"%@ %d %0.3f", hemi, degrees, mins * 60];
 }
 /// Returns E 151 4.414
 - (NSString *)lon_degreesDecimalMinutesEdit    // E 151 4.414
 {
-    NSString *hemi = (coords.longitude < 0) ? _(@"compass-W") : _(@"compass-E") ;
+    NSString *hemi = (self.coords.longitude < 0) ? _(@"compass-W") : _(@"compass-E") ;
     float dummy;
-    int degrees = (int)fabs(coords.longitude);
-    float mins = modff(fabs(coords.longitude), &dummy);
+    int degrees = (int)fabs(self.coords.longitude);
+    float mins = modff(fabs(self.coords.longitude), &dummy);
     return [NSString stringWithFormat:@"%@ %d %0.3f", hemi, degrees, mins * 60];
 }
 /// Returns S 34 1.672
 - (NSString *)lat_degreesDecimalMinutesSimple    // S 34 1.672
 {
-    NSString *hemi = (coords.latitude < 0) ? _(@"compass-S") : _(@"compass-N") ;
+    NSString *hemi = (self.coords.latitude < 0) ? _(@"compass-S") : _(@"compass-N") ;
     float dummy;
-    int degrees = (int)fabs(coords.latitude);
-    float mins = modff(fabs(coords.latitude), &dummy);
+    int degrees = (int)fabs(self.coords.latitude);
+    float mins = modff(fabs(self.coords.latitude), &dummy);
     return [NSString stringWithFormat:@"%@ %3d %06.3f", hemi, degrees, mins * 60];
 }
 /// Returns E 151 4.414
 - (NSString *)lon_degreesDecimalMinutesSimple    // E 151 4.414
 {
-    NSString *hemi = (coords.longitude < 0) ? _(@"compass-W") : _(@"compass-E") ;
+    NSString *hemi = (self.coords.longitude < 0) ? _(@"compass-W") : _(@"compass-E") ;
     float dummy;
-    int degrees = (int)fabs(coords.longitude);
-    float mins = modff(fabs(coords.longitude), &dummy);
+    int degrees = (int)fabs(self.coords.longitude);
+    float mins = modff(fabs(self.coords.longitude), &dummy);
     return [NSString stringWithFormat:@"%@ %3d %06.3f", hemi, degrees, mins * 60];
 }
 /// Returns S 34° 01' 40"
 - (NSString *)lat_degreesMinutesSeconds    // S 34° 01' 40"
 {
-    NSString *hemi = (coords.latitude < 0) ? _(@"compass-S") : _(@"compass-N") ;
+    NSString *hemi = (self.coords.latitude < 0) ? _(@"compass-S") : _(@"compass-N") ;
     float dummy;
-    int degrees = (int)fabs(coords.latitude);
-    float mins = modff(fabs(coords.latitude), &dummy);
+    int degrees = (int)fabs(self.coords.latitude);
+    float mins = modff(fabs(self.coords.latitude), &dummy);
     float secs = modff(60 * mins, &dummy);
     return [NSString stringWithFormat:@"%@ %3d° %02d' %02d\"", hemi, degrees, (int)(mins * 60), (int)(secs * 60)];
 }
 /// Returns E 151° 04' 25"
 - (NSString *)lon_degreesMinutesSeconds    // E 151° 04' 25"
 {
-    NSString *hemi = (coords.longitude < 0) ? _(@"compass-W") : _(@"compass-E") ;
+    NSString *hemi = (self.coords.longitude < 0) ? _(@"compass-W") : _(@"compass-E") ;
     float dummy;
-    int degrees = (int)fabs(coords.longitude);
-    float mins = modff(fabs(coords.longitude), &dummy);
+    int degrees = (int)fabs(self.coords.longitude);
+    float mins = modff(fabs(self.coords.longitude), &dummy);
     float secs = modff(60 * mins, &dummy);
     return [NSString stringWithFormat:@"%@ %3d° %02d' %02d\"", hemi, degrees, (int)(mins * 60), (int)(secs * 60)];
 }
 /// Returns lat value
 - (CLLocationDegrees)latitude
 {
-    return coords.latitude;
+    return self.coords.latitude;
 }
 /// Returns lon value
 - (CLLocationDegrees)longitude
 {
-    return coords.longitude;
+    return self.coords.longitude;
 }
 
 /// Returns calculated distance towards coordinates c
 - (NSInteger)distance:(CLLocationCoordinate2D)c
 {
-    return [Coordinates coordinates2distance:coords to:c];
+    return [Coordinates coordinates2distance:self.coords to:c];
 }
 - (NSInteger)distance:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude
 {
-    return [Coordinates coordinates2distance:coords to:CLLocationCoordinate2DMake(latitude, longitude)];
+    return [Coordinates coordinates2distance:self.coords to:CLLocationCoordinate2DMake(latitude, longitude)];
 }
 
 /// Returns bearing towards coordinates c
 - (NSInteger)bearing:(CLLocationCoordinate2D)c
 {
-    return [Coordinates coordinates2bearing:coords to:c];
+    return [Coordinates coordinates2bearing:self.coords to:c];
 }
 - (NSInteger)bearing:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude
 {
-    return [Coordinates coordinates2bearing:coords to:CLLocationCoordinate2DMake(latitude, longitude)];
+    return [Coordinates coordinates2bearing:self.coords to:CLLocationCoordinate2DMake(latitude, longitude)];
 }
 
 /// Returns radians value of a degree value
@@ -447,8 +444,7 @@
 {
     self = [super init];
 
-    coords.latitude = [Coordinates degreesDecimalMinutes2degrees:latitude];
-    coords.longitude = [Coordinates degreesDecimalMinutes2degrees:longitude];
+    self.coords = CLLocationCoordinate2DMake([Coordinates degreesDecimalMinutes2degrees:latitude], [Coordinates degreesDecimalMinutes2degrees:longitude]);
 
     return self;
 }

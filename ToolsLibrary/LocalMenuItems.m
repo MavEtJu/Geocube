@@ -20,11 +20,10 @@
  */
 
 @interface LocalMenuItems ()
-{
-    NSMutableArray<NSString *> *makeMenuItems;
-    NSMutableArray<NSNumber *> *makeMenuDisableds;
-    NSInteger makeMenuMax;
-}
+
+@property (nonatomic, retain) NSMutableArray<NSString *> *makeMenuItems;
+@property (nonatomic, retain) NSMutableArray<NSNumber *> *makeMenuDisableds;
+@property (nonatomic        ) NSInteger makeMenuMax;
 
 @end
 
@@ -34,14 +33,14 @@
 {
     self = [super init];
 
-    makeMenuItems = [[NSMutableArray alloc] initWithCapacity:max];
-    makeMenuDisableds = [[NSMutableArray alloc] initWithCapacity:max];
-    makeMenuMax = max;
+    self.makeMenuItems = [[NSMutableArray alloc] initWithCapacity:max];
+    self.makeMenuDisableds = [[NSMutableArray alloc] initWithCapacity:max];
+    self.makeMenuMax = max;
 
     for (NSInteger i = 0; i < max; i++) {
-        [makeMenuItems addObject:@""];
+        [self.makeMenuItems addObject:@""];
         NSNumber *b = [NSNumber numberWithBool:FALSE];
-        [makeMenuDisableds addObject:b];
+        [self.makeMenuDisableds addObject:b];
     }
 
     return self;
@@ -49,45 +48,45 @@
 
 - (void)addItem:(NSInteger)idx label:(NSString *)label
 {
-    if ([[makeMenuItems objectAtIndex:idx] isEqualToString:@""] == NO)
+    if ([[self.makeMenuItems objectAtIndex:idx] isEqualToString:@""] == NO)
         NSAssert1(FALSE, @"Menuitem %ld already found!", (long)idx);
-    NSAssert3(idx < makeMenuMax, @"Menuitem %@ (%ld) > max (%ld)!", label, (long)idx, (long)makeMenuMax);
-    [makeMenuItems replaceObjectAtIndex:idx withObject:label];
+    NSAssert3(idx < self.makeMenuMax, @"Menuitem %@ (%ld) > max (%ld)!", label, (long)idx, (long)self.makeMenuMax);
+    [self.makeMenuItems replaceObjectAtIndex:idx withObject:label];
 }
 
 - (void)changeItem:(NSInteger)idx label:(NSString *)label
 {
-    if ([[makeMenuItems objectAtIndex:idx] isEqualToString:@""] == YES)
+    if ([[self.makeMenuItems objectAtIndex:idx] isEqualToString:@""] == YES)
         NSAssert1(FALSE, @"Menuitem %ld not yet defined!", (long)idx);
-    NSAssert3(idx < makeMenuMax, @"Menuitem %@ (%ld) > max (%ld)!", label, (long)idx, (long)makeMenuMax);
-    [makeMenuItems replaceObjectAtIndex:idx withObject:label];
+    NSAssert3(idx < self.makeMenuMax, @"Menuitem %@ (%ld) > max (%ld)!", label, (long)idx, (long)self.makeMenuMax);
+    [self.makeMenuItems replaceObjectAtIndex:idx withObject:label];
 }
 
 - (void)enableItem:(NSInteger)idx
 {
-    NSAssert2(idx < makeMenuMax, @"Menuitem %ld > max (%ld)!", (long)idx, (long)makeMenuMax);
+    NSAssert2(idx < self.makeMenuMax, @"Menuitem %ld > max (%ld)!", (long)idx, (long)self.makeMenuMax);
     NSNumber *b = [NSNumber numberWithBool:NO];
-    [makeMenuDisableds replaceObjectAtIndex:idx withObject:b];
+    [self.makeMenuDisableds replaceObjectAtIndex:idx withObject:b];
 }
 
 - (void)disableItem:(NSInteger)idx
 {
-    NSAssert2(idx < makeMenuMax, @"Menuitem %ld > max (%ld)!", (long)idx, (long)makeMenuMax);
+    NSAssert2(idx < self.makeMenuMax, @"Menuitem %ld > max (%ld)!", (long)idx, (long)self.makeMenuMax);
     NSNumber *b = [NSNumber numberWithBool:YES];
-    [makeMenuDisableds replaceObjectAtIndex:idx withObject:b];
+    [self.makeMenuDisableds replaceObjectAtIndex:idx withObject:b];
 }
 
 - (VKSideMenuItem *)makeItem:(NSInteger)idx
 {
     VKSideMenuItem *item = [[VKSideMenuItem alloc] init];
-    item.title = [makeMenuItems objectAtIndex:idx];
-    item.disabled = [[makeMenuDisableds objectAtIndex:idx] boolValue];
+    item.title = [self.makeMenuItems objectAtIndex:idx];
+    item.disabled = [[self.makeMenuDisableds objectAtIndex:idx] boolValue];
     return item;
 }
 
 - (NSInteger)countItems
 {
-    return makeMenuMax;
+    return self.makeMenuMax;
 }
 
 @end
