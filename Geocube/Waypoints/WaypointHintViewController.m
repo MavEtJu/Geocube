@@ -35,14 +35,14 @@
     self = [super init];
 
     waypoint = _wp;
-    lmi = nil;
+    self.lmi = nil;
 
     return self;
 }
 
 - (void)loadView
 {
-    hasCloseButton = YES;
+    self.hasCloseButton = YES;
     [super loadView];
     // Do any additional setup after loading the view.
 

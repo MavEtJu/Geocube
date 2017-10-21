@@ -38,7 +38,7 @@
     self = [super init];
 
     pin = _pin;
-    lmi = nil;
+    self.lmi = nil;
 
     return self;
 }

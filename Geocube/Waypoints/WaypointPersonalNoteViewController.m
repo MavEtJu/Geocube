@@ -44,9 +44,9 @@ enum {
     waypoint = _waypoint;
     self.delegateWaypoint = nil;
 
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuScanForWaypoints label:_(@"waypointpersonalnoteviewcontroller-Extract waypoints")];
-    [lmi addItem:menuCopyLog label:_(@"waypointpersonalnoteviewcontroller-Copy note to clipboard")];
+    self.lmi = [[LocalMenuItems alloc] init:menuMax];
+    [self.lmi addItem:menuScanForWaypoints label:_(@"waypointpersonalnoteviewcontroller-Extract waypoints")];
+    [self.lmi addItem:menuCopyLog label:_(@"waypointpersonalnoteviewcontroller-Copy note to clipboard")];
 
     note = [dbPersonalNote dbGetByWaypointName:waypoint.wpt_name];
 
@@ -55,7 +55,7 @@ enum {
 
 - (void)loadView
 {
-    hasCloseButton = YES;
+    self.hasCloseButton = YES;
     [super loadView];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 

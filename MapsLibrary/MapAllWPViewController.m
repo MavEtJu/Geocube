@@ -121,8 +121,8 @@ enum {
             return;
         accountsFound++;
 
-        InfoItemID iid = [infoView addDownload];
-        [infoView setDescription:iid description:account.site];
+        InfoItemID iid = [self.infoView addDownload];
+        [self.infoView setDescription:iid description:account.site];
 
         NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:3];
         [d setObject:bb forKey:@"boundingbox"];
@@ -186,14 +186,14 @@ enum {
             if ([wps count] == 0)
                 return;
 
-            InfoItemID iid = [infoView addDownload:YES];
-            [infoView setDescription:iid description:account.site];
+            InfoItemID iid = [self.infoView addDownload:YES];
+            [self.infoView setDescription:iid description:account.site];
             NSMutableArray<NSString *> *wpnames = [NSMutableArray arrayWithCapacity:[wps count]];
             [wps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                 [wpnames addObject:wp.wpt_name];
             }];
             [self.processing addIdentifier:(long)account._id];
-            [account.remoteAPI loadWaypointsByCodes:wpnames infoViewer:infoView iiDownload:iid identifier:(long)account._id group:dbc.groupLiveImport callback:self];
+            [account.remoteAPI loadWaypointsByCodes:wpnames infoViewer:self.infoView iiDownload:iid identifier:(long)account._id group:dbc.groupLiveImport callback:self];
         }];
 
         BACKGROUND(waitForDownloadsToFinish, nil);
@@ -239,7 +239,7 @@ enum {
     NSInteger identifier = [[dict objectForKey:@"identifier"] integerValue];
 
     if ([o isKindOfClass:[NSNull class]] == NO) {
-        NSArray<NSString *> *wps = [importManager process:o group:g account:a options:IMPORTOPTION_NOPOST|IMPORTOPTION_NOPRE infoViewer:infoView iiImport:iii];
+        NSArray<NSString *> *wps = [importManager process:o group:g account:a options:IMPORTOPTION_NOPOST|IMPORTOPTION_NOPRE infoViewer:self.infoView iiImport:iii];
         @synchronized (self.waypointsNew) {
             [self.waypointsNew addObjectsFromArray:wps];
         }
@@ -247,7 +247,7 @@ enum {
 
     [self.processing increaseProcessedChunks:identifier];
     NSLog(@"PROCESSING: Processed #%ld - %@", (long)identifier, [self.processing description:identifier]);
-    [infoView removeItem:iii];
+    [self.infoView removeItem:iii];
 
     if ([self.processing hasAllProcessed:identifier] == YES) {
         NSLog(@"PROCESSING: All seen for #%ld", (long)identifier);
@@ -263,9 +263,9 @@ enum {
 
     [self.processing addIdentifier:(long)account._id];
 
-    NSInteger rv = [account.remoteAPI loadWaypointsByBoundingBox:bb infoViewer:infoView iiDownload:iid identifier:(long)account._id callback:self];
+    NSInteger rv = [account.remoteAPI loadWaypointsByBoundingBox:bb infoViewer:self.infoView iiDownload:iid identifier:(long)account._id callback:self];
 
-    [infoView removeItem:iid];
+    [self.infoView removeItem:iid];
 
     if (rv != REMOTEAPI_OK) {
         [MyTools messageBox:self header:account.site text:_(@"mapallwpviewcontroller-Unable to retrieve the data") error:account.remoteAPI.lastError];

@@ -58,7 +58,7 @@
 {
     self = [super init];
 
-    lmi = nil;
+    self.lmi = nil;
 
     return self;
 }

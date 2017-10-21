@@ -32,17 +32,17 @@
     self = [super init:YES];
     self.followWhom = SHOW_NEITHER;
 
-    [lmi disableItem:MVCmenuLoadWaypoints];
-    [lmi disableItem:MVCmenuExportVisible];
+    [self.lmi disableItem:MVCmenuLoadWaypoints];
+    [self.lmi disableItem:MVCmenuExportVisible];
 
-    [lmi disableItem:MVCmenuLoadWaypoints];
-    [lmi disableItem:MVCmenuDirections];
-    [lmi disableItem:MVCmenuAutoZoom];
-    [lmi disableItem:MVCmenuRecenter];
-    [lmi disableItem:MVCmenuRemoveTarget];
-    [lmi disableItem:MVCmenuShowBoundaries];
-    [lmi disableItem:MVCmenuExportVisible];
-    [lmi disableItem:MVCmenuRemoveHistory];
+    [self.lmi disableItem:MVCmenuLoadWaypoints];
+    [self.lmi disableItem:MVCmenuDirections];
+    [self.lmi disableItem:MVCmenuAutoZoom];
+    [self.lmi disableItem:MVCmenuRecenter];
+    [self.lmi disableItem:MVCmenuRemoveTarget];
+    [self.lmi disableItem:MVCmenuShowBoundaries];
+    [self.lmi disableItem:MVCmenuExportVisible];
+    [self.lmi disableItem:MVCmenuRemoveHistory];
 
     self.currentTrack = nil;
 

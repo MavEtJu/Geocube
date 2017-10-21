@@ -33,7 +33,7 @@
 {
     self = [super init];
 
-    lmi = nil;
+    self.lmi = nil;
     isBeeping = NO;
 
     return self;

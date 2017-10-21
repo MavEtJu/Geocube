@@ -39,7 +39,7 @@
     self = [super init];
 
     type = _type;
-    lmi = nil;
+    self.lmi = nil;
 
     return self;
 }

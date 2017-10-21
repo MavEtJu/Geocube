@@ -99,31 +99,31 @@
     if ([self.currentMapBrand.key isEqualToString:MAPBRAND_GOOGLEMAPS] == YES && self.hasGMS == NO)
         self.currentMapBrand = [MapBrand findMapBrand:MAPBRAND_APPLEMAPS brands:self.mapBrands];
 
-    lmi = [[LocalMenuItems alloc] init:MVCmenuMax];
-    [lmi addItem:MVCmenuBrandChange label:_(@"maptemplaceviewcontroller-Map Change")];
-    [lmi addItem:MVCmenuMapType label:_(@"maptemplateviewcontroller-Map Type")];
+    self.lmi = [[LocalMenuItems alloc] init:MVCmenuMax];
+    [self.lmi addItem:MVCmenuBrandChange label:_(@"maptemplaceviewcontroller-Map Change")];
+    [self.lmi addItem:MVCmenuMapType label:_(@"maptemplateviewcontroller-Map Type")];
 
-    [lmi addItem:MVCmenuLoadWaypoints label:_(@"maptemplateviewcontroller-Load waypoints")];
-    [lmi addItem:MVCmenuDirections label:_(@"maptemplateviewcontroller-Directions")];
-    [lmi addItem:MVCmenuRemoveTarget label:_(@"maptemplateviewcontroller-Remove target")];
-    [lmi addItem:MVCmenuRecenter label:_(@"maptemplateviewcontroller-Recenter")];
-    [lmi addItem:MVCmenuExportVisible label:_(@"maptemplateviewcontroller-Export visible")];
+    [self.lmi addItem:MVCmenuLoadWaypoints label:_(@"maptemplateviewcontroller-Load waypoints")];
+    [self.lmi addItem:MVCmenuDirections label:_(@"maptemplateviewcontroller-Directions")];
+    [self.lmi addItem:MVCmenuRemoveTarget label:_(@"maptemplateviewcontroller-Remove target")];
+    [self.lmi addItem:MVCmenuRecenter label:_(@"maptemplateviewcontroller-Recenter")];
+    [self.lmi addItem:MVCmenuExportVisible label:_(@"maptemplateviewcontroller-Export visible")];
 
     self.showBoundaries = NO;
-    [lmi addItem:MVCmenuShowBoundaries label:_(@"maptemplateviewcontroller-Show boundaries")];
+    [self.lmi addItem:MVCmenuShowBoundaries label:_(@"maptemplateviewcontroller-Show boundaries")];
 
-    [lmi addItem:MVCmenuRemoveHistory label:_(@"maptemplateviewcontroller-Remove history")];
+    [self.lmi addItem:MVCmenuRemoveHistory label:_(@"maptemplateviewcontroller-Remove history")];
 
     self.map = [[self.currentMapBrand.mapObject alloc] initMapObject:self];
     self.map.staticHistory = self.staticHistory;
 
     if (waypointManager.currentWaypoint == nil)
-        [lmi disableItem:MVCmenuRemoveTarget];
+        [self.lmi disableItem:MVCmenuRemoveTarget];
 
     if (configManager.dynamicmapEnable == YES) {
-        [lmi addItem:MVCmenuAutoZoom label:_(@"maptemplateviewcontroller-No autozoom")];
+        [self.lmi addItem:MVCmenuAutoZoom label:_(@"maptemplateviewcontroller-No autozoom")];
     } else {
-        [lmi addItem:MVCmenuAutoZoom label:_(@"maptemplateviewcontroller-Autozoom")];
+        [self.lmi addItem:MVCmenuAutoZoom label:_(@"maptemplateviewcontroller-Autozoom")];
     }
 
     self.useGNSS = LM.useGNSS;
@@ -186,9 +186,9 @@
 
     // Enable Remove Target menu only if there is a target
     if (waypointManager.currentWaypoint == nil)
-        [lmi disableItem:MVCmenuRemoveTarget];
+        [self.lmi disableItem:MVCmenuRemoveTarget];
     else
-        [lmi enableItem:MVCmenuRemoveTarget];
+        [self.lmi enableItem:MVCmenuRemoveTarget];
 
     [self.map mapViewWillAppear];
 }
@@ -679,9 +679,9 @@
                                 if ([self.map mapHasViewHybridMapAerial] == TRUE) count++;
                                 if ([self.map mapHasViewTerrain] == TRUE) count++;
                                 if (count <= 1)
-                                    [lmi disableItem:MVCmenuMapType];
+                                    [self.lmi disableItem:MVCmenuMapType];
                                 else
-                                    [lmi enableItem:MVCmenuMapType];
+                                    [self.lmi enableItem:MVCmenuMapType];
                             }];
         [view addAction:a];
     }];
@@ -905,9 +905,9 @@
 {
     configManager.dynamicmapEnable = !configManager.dynamicmapEnable;
     if (configManager.dynamicmapEnable == YES) {
-        [lmi changeItem:MVCmenuAutoZoom label:_(@"maptemplateviewcontroller-No autozoom")];
+        [self.lmi changeItem:MVCmenuAutoZoom label:_(@"maptemplateviewcontroller-No autozoom")];
     } else {
-        [lmi changeItem:MVCmenuAutoZoom label:_(@"maptemplateviewcontroller-Autozoom")];
+        [self.lmi changeItem:MVCmenuAutoZoom label:_(@"maptemplateviewcontroller-Autozoom")];
     }
 }
 
@@ -949,17 +949,17 @@
 {
     if (self.showBoundaries == NO) {
         self.showBoundaries = YES;
-        [lmi changeItem:MVCmenuShowBoundaries label:_(@"maptemplateviewcontroller-Hide boundaries")];
+        [self.lmi changeItem:MVCmenuShowBoundaries label:_(@"maptemplateviewcontroller-Hide boundaries")];
     } else {
         self.showBoundaries = NO;
-        [lmi changeItem:MVCmenuShowBoundaries label:_(@"maptemplateviewcontroller-Show boundaries")];
+        [self.lmi changeItem:MVCmenuShowBoundaries label:_(@"maptemplateviewcontroller-Show boundaries")];
     }
     [self.map showBoundaries:self.showBoundaries];
 }
 
 - (void)menuRemoveTarget
 {
-    [lmi disableItem:MVCmenuRemoveTarget];
+    [self.lmi disableItem:MVCmenuRemoveTarget];
     [self updateMapButtons];
     [waypointManager setTheCurrentWaypoint:nil];
 }

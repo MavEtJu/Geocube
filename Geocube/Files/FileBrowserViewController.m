@@ -35,7 +35,7 @@
 
 - (void)viewDidLoad
 {
-    hasCloseButton = NO;
+    self.hasCloseButton = NO;
     [super viewDidLoad];
 
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];

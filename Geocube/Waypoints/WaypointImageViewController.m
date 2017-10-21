@@ -53,12 +53,12 @@ enum {
     self = [super init];
 
     img = nil;
-    hasCloseButton = YES;
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuUploadAirdrop label:_(@"waypointimageviewcontroller-Airdrop")];
-    [lmi addItem:menuUploadICloud label:_(@"waypointimageviewcontroller-iCloud")];
-    [lmi addItem:menuDeletePhoto label:_(@"waypointimageviewcontroller-Delete photo")];
-    [lmi addItem:menuAddNewWaypoint label:_(@"waypointimageviewcontroller-Add waypoint")];
+    self.hasCloseButton = YES;
+    self.lmi = [[LocalMenuItems alloc] init:menuMax];
+    [self.lmi addItem:menuUploadAirdrop label:_(@"waypointimageviewcontroller-Airdrop")];
+    [self.lmi addItem:menuUploadICloud label:_(@"waypointimageviewcontroller-iCloud")];
+    [self.lmi addItem:menuDeletePhoto label:_(@"waypointimageviewcontroller-Delete photo")];
+    [self.lmi addItem:menuAddNewWaypoint label:_(@"waypointimageviewcontroller-Add waypoint")];
     image = nil;
     self.delegate = nil;
 
@@ -273,7 +273,7 @@ enum {
     totalImages = _totalImages;
     [self viewWillTransitionToSize];
 
-    [lmi disableItem:menuAddNewWaypoint];
+    [self.lmi disableItem:menuAddNewWaypoint];
     NSDictionary *exif = [MyTools imageEXIFDataFile:[MyTools ImageFile:img.datafile]];
     NSDictionary *exifgps = [exif objectForKey:@"{GPS}"];
     NSString *lats = [exifgps objectForKey:@"Latitude"];
@@ -289,7 +289,7 @@ enum {
         if ([lonref isEqualToString:@"W"] == YES)
             lon = -lon;
         exifCoordinates = [[Coordinates alloc] init:lat longitude:lon];
-        [lmi enableItem:menuAddNewWaypoint];
+        [self.lmi enableItem:menuAddNewWaypoint];
     }
 }
 

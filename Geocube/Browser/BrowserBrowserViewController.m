@@ -46,10 +46,10 @@ enum {
 {
     self = [super init];
 
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuGoHome label:_(@"browserbrowserviewcontroller-Go home")];
-    [lmi addItem:menuEnterURL label:_(@"browserbrowserviewcontroller-Enter URL")];
-    [lmi addItem:menuOpenInSafari label:_(@"browserbrowserviewcontroller-Open in Safari")];
+    self.lmi = [[LocalMenuItems alloc] init:menuMax];
+    [self.lmi addItem:menuGoHome label:_(@"browserbrowserviewcontroller-Go home")];
+    [self.lmi addItem:menuEnterURL label:_(@"browserbrowserviewcontroller-Enter URL")];
+    [self.lmi addItem:menuOpenInSafari label:_(@"browserbrowserviewcontroller-Open in Safari")];
 
     webView = [[UIWebView alloc] initWithFrame:self.view.frame];
     webView.delegate = self;
@@ -244,14 +244,14 @@ enum {
     NSError *error = nil;
 
     [self showInfoView];
-    InfoItemID iid = [infoView addDownload];
-    [infoView setDescription:iid description:_(@"browserbrowserviewcontroller-Downloading query")];
+    InfoItemID iid = [self.infoView addDownload];
+    [self.infoView setDescription:iid description:_(@"browserbrowserviewcontroller-Downloading query")];
 
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error infoViewer:infoView iiDownload:iid];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error infoViewer:self.infoView iiDownload:iid];
     [self showActivity:NO];
     [self saveDataToFile:data response:response error:error];
 
-    [infoView removeItem:iid];
+    [self.infoView removeItem:iid];
     [self hideInfoView];
 }
 

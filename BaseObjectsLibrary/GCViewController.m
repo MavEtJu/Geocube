@@ -20,9 +20,8 @@
  */
 
 @interface GCViewController ()
-{
-    GCCloseButton *closeButton;
-}
+
+@property (nonatomic, retain) GCCloseButton *closeButton;
 
 @end
 
@@ -32,11 +31,11 @@
 {
     self = [super init];
 
-    lmi = nil;
+    self.lmi = nil;
     self.numberOfItemsInRow = 3;
 
-    hasCloseButton = NO;
-    closeButton = nil;
+    self.hasCloseButton = NO;
+    self.closeButton = nil;
 
     return self;
 }
@@ -49,26 +48,26 @@
 
 - (void)makeInfoView
 {
-    infoView = [[InfoViewer alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:infoView];
+    self.infoView = [[InfoViewer alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:self.infoView];
 }
 
 - (void)hideInfoView
 {
-    [infoView hide];
+    [self.infoView hide];
 }
 
 - (void)showInfoView
 {
-    NSAssert1(infoView != nil, @"makeInfoView not called for %@", [self class]);
-    if (infoView.superview == nil)
-        [self.view addSubview:infoView];
-    [infoView show:0];
+    NSAssert1(self.infoView != nil, @"makeInfoView not called for %@", [self class]);
+    if (self.infoView.superview == nil)
+        [self.view addSubview:self.infoView];
+    [self.infoView show:0];
 }
 
 - (void)prepareCloseButton:(UIView *)view
 {
-    if (hasCloseButton == YES) {
+    if (self.hasCloseButton == YES) {
         UISwipeGestureRecognizer *swipeToRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(closePage:)];
         swipeToRight.direction = UISwipeGestureRecognizerDirectionRight;
         [view addGestureRecognizer:swipeToRight];
@@ -93,8 +92,8 @@
 
 - (void)showCloseButton
 {
-    if (hasCloseButton == YES)
-        [self.view bringSubviewToFront:closeButton];
+    if (self.hasCloseButton == YES)
+        [self.view bringSubviewToFront:self.closeButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -102,14 +101,14 @@
     [super viewWillAppear:animated];
     NSLog(@"%@/viewWillAppear: %0.0f px", [self class], self.view.frame.size.height);
 
-    [menuGlobal defineLocalMenu:lmi forVC:self];
+    [menuGlobal defineLocalMenu:self.lmi forVC:self];
 
     // Add a close button to the view
-    if (hasCloseButton == YES && closeButton == nil) {
+    if (self.hasCloseButton == YES && self.closeButton == nil) {
         GCCloseButton *b = [GCCloseButton buttonWithType:UIButtonTypeCustom];
         [self.view addSubview:b];
         [b addTarget:self action:@selector(closePage:) forControlEvents:UIControlEventTouchDown];
-        closeButton = b;
+        self.closeButton = b;
     }
 }
 
@@ -127,15 +126,15 @@
 
 - (void)calculateRects
 {
-    if (infoView != nil)
-        [infoView calculateRects];
+    if (self.infoView != nil)
+        [self.infoView calculateRects];
     // Dummy for this class
 }
 
 - (void)viewWilltransitionToSize
 {
-    if (infoView != nil)
-        [infoView viewWillTransitionToSize];
+    if (self.infoView != nil)
+        [self.infoView viewWillTransitionToSize];
     // Dummy for this class
 }
 
@@ -152,15 +151,15 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (closeButton == nil)
+    if (self.closeButton == nil)
         return;
 
-    CGRect frame = closeButton.frame;
+    CGRect frame = self.closeButton.frame;
     frame.origin.x = scrollView.contentOffset.x;
     frame.origin.y = scrollView.contentOffset.y;
-    closeButton.frame = frame;
+    self.closeButton.frame = frame;
 
-    [self.view bringSubviewToFront:closeButton];
+    [self.view bringSubviewToFront:self.closeButton];
 }
 
 #pragma -- Local menu related functions

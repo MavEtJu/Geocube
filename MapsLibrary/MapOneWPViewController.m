@@ -30,8 +30,8 @@
     self = [super init:NO];
     self.followWhom = SHOW_SHOWBOTH;
 
-    [lmi disableItem:MVCmenuLoadWaypoints];
-    [lmi disableItem:MVCmenuExportVisible];
+    [self.lmi disableItem:MVCmenuLoadWaypoints];
+    [self.lmi disableItem:MVCmenuExportVisible];
 
     return self;
 }

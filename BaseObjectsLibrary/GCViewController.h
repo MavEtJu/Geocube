@@ -20,11 +20,10 @@
  */
 
 @interface GCViewController : UIViewController <SideMenuDelegate, UIScrollViewDelegate>
-{
-    LocalMenuItems *lmi;
-    BOOL hasCloseButton;
-    InfoViewer *infoView;
-}
+
+@property (nonatomic, retain) LocalMenuItems *lmi;
+@property (nonatomic        ) BOOL hasCloseButton;
+@property (nonatomic, retain) InfoViewer *infoView;
 
 @property (assign, nonatomic) NSInteger numberOfItemsInRow;
 

@@ -44,18 +44,18 @@ enum {
     waypoint = _wp;
     useWebview = yesno;
 
-    lmi = [[LocalMenuItems alloc] init:menuMax];
+    self.lmi = [[LocalMenuItems alloc] init:menuMax];
     if (yesno == YES)
-        [lmi addItem:menuShowAsText label:_(@"waypointdescriptionviewcontroller-Show as text")];
+        [self.lmi addItem:menuShowAsText label:_(@"waypointdescriptionviewcontroller-Show as text")];
     else
-        [lmi addItem:menuShowAsText label:_(@"waypointdescriptionviewcontroller-Show as HTML")];
+        [self.lmi addItem:menuShowAsText label:_(@"waypointdescriptionviewcontroller-Show as HTML")];
 
     return self;
 }
 
 - (void)loadView
 {
-    hasCloseButton = YES;
+    self.hasCloseButton = YES;
     [super loadView];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 

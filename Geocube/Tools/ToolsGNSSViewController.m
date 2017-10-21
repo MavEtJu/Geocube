@@ -63,18 +63,18 @@ enum {
 {
     self = [super init];
 
-    lmi = [[LocalMenuItems alloc] init:menuMax];
-    [lmi addItem:menuRestart label:_(@"toolsgnssviewcontroller-Restart")];
-    [lmi addItem:menuCopyCoordsAvg label:_(@"toolsgnssviewcontroller-Copy average coords")];
-    [lmi addItem:menuCopyCoordsLast label:_(@"toolsgnssviewcontroller-Copy last coords")];
-    [lmi addItem:menuCreateWaypoint label:_(@"toolsgnssviewcontroller-Create waypoint")];
+    self.lmi = [[LocalMenuItems alloc] init:menuMax];
+    [self.lmi addItem:menuRestart label:_(@"toolsgnssviewcontroller-Restart")];
+    [self.lmi addItem:menuCopyCoordsAvg label:_(@"toolsgnssviewcontroller-Copy average coords")];
+    [self.lmi addItem:menuCopyCoordsLast label:_(@"toolsgnssviewcontroller-Copy last coords")];
+    [self.lmi addItem:menuCreateWaypoint label:_(@"toolsgnssviewcontroller-Create waypoint")];
 
     return self;
 }
 
 - (void)viewDidLoad
 {
-    hasCloseButton = NO;
+    self.hasCloseButton = NO;
     [super viewDidLoad];
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
