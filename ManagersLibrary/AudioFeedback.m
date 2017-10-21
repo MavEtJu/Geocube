@@ -58,9 +58,8 @@ OSStatus RenderTone(
 }
 
 @interface AudioFeedback ()
-{
-    AudioComponentInstance toneUnit;
-}
+
+@property (nonatomic        ) AudioComponentInstance toneUnit;
 
 @end
 
@@ -94,14 +93,16 @@ OSStatus RenderTone(
     NSAssert(defaultOutput, @"Can't find default output");
 
     // Create a new unit based on this that we'll use for output
+    AudioComponentInstance toneUnit;
     OSErr err = AudioComponentInstanceNew(defaultOutput, &toneUnit);
-    NSAssert1(toneUnit, @"Error creating unit: %hd", err);
+    self.toneUnit = toneUnit;
+    NSAssert1(self.toneUnit, @"Error creating unit: %hd", err);
 
     // Set our tone rendering function on the unit
     AURenderCallbackStruct input;
     input.inputProc = RenderTone;
     input.inputProcRefCon = nil;    // was self
-    err = AudioUnitSetProperty(toneUnit,
+    err = AudioUnitSetProperty(self.toneUnit,
                                kAudioUnitProperty_SetRenderCallback,
                                kAudioUnitScope_Input,
                                0,
@@ -122,7 +123,7 @@ OSStatus RenderTone(
     streamFormat.mBytesPerFrame = four_bytes_per_float;
     streamFormat.mChannelsPerFrame = 1;
     streamFormat.mBitsPerChannel = four_bytes_per_float * eight_bits_per_byte;
-    err = AudioUnitSetProperty (toneUnit,
+    err = AudioUnitSetProperty (self.toneUnit,
                                 kAudioUnitProperty_StreamFormat,
                                 kAudioUnitScope_Input,
                                 0,
@@ -139,19 +140,19 @@ OSStatus RenderTone(
 - (void)togglePlay:(BOOL)on
 {
     if (on == NO) {
-        AudioOutputUnitStop(toneUnit);
-        AudioUnitUninitialize(toneUnit);
-        AudioComponentInstanceDispose(toneUnit);
-        toneUnit = nil;
+        AudioOutputUnitStop(self.toneUnit);
+        AudioUnitUninitialize(self.toneUnit);
+        AudioComponentInstanceDispose(self.toneUnit);
+        self.toneUnit = nil;
     } else {
         [self createToneUnit];
 
         // Stop changing parameters on the unit
-        OSErr err = AudioUnitInitialize(toneUnit);
+        OSErr err = AudioUnitInitialize(self.toneUnit);
         NSAssert1(err == noErr, @"Error initializing unit: %hd", err);
 
         // Start playback
-        err = AudioOutputUnitStart(toneUnit);
+        err = AudioOutputUnitStart(self.toneUnit);
         NSAssert1(err == noErr, @"Error starting unit: %hd", err);
     }
 }

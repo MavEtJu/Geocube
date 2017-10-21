@@ -20,9 +20,8 @@
  */
 
 @interface AudioManager ()
-{
-    AVAudioPlayer *audioPlayer;
-}
+
+@property (nonatomic, retain) AVAudioPlayer *audioPlayer;
 
 @end
 
@@ -32,7 +31,7 @@
 {
     self = [super init];
 
-    audioPlayer = nil;
+    self.audioPlayer = nil;
 
     return self;
 }
@@ -42,9 +41,9 @@
 {
     /* Crappy way to do sound but will work for now */
     NSURL *soundURL = [[NSBundle mainBundle] URLForResource:filename withExtension:extension];
-    audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundURL error:nil];
-    audioPlayer.delegate = self;
-    [audioPlayer play];
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundURL error:nil];
+    self.audioPlayer.delegate = self;
+    [self.audioPlayer play];
 }
 
 /// Play one of the defined sounds

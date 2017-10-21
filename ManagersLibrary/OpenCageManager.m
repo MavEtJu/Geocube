@@ -20,13 +20,14 @@
  */
 
 @interface OpenCageManager ()
-{
-    NSArray<NSString *> *locale_order, *state_order, *country_order;
-    NSString *urlFormat;
-    NSMutableArray<dbWaypoint *> *queue;
-    BOOL isRunning;
-    BOOL disabled;
-}
+
+@property (nonatomic, retain) NSArray<NSString *> *locale_order;
+@property (nonatomic, retain) NSArray<NSString *> *state_order;
+@property (nonatomic, retain) NSArray<NSString *> *country_order;
+@property (nonatomic, retain) NSString *urlFormat;
+@property (nonatomic, retain) NSMutableArray<dbWaypoint *> *queue;
+@property (nonatomic        ) BOOL isRunning;
+@property (nonatomic        ) BOOL disabled;
 
 @end
 
@@ -36,41 +37,41 @@
 {
     self = [super init];
 
-    locale_order = @[@"village",
-                     @"hamlet",
-                     @"locality",
-                     @"suburb",
-                     @"city_district",
-                     @"town",
-                     @"city",
-                     @"county",
-                     @"state_district",
-                     @"province",
-                     @"state",
-                     @"region",
-                     @"island"
+    self.locale_order = @[@"village",
+                          @"hamlet",
+                          @"locality",
+                          @"suburb",
+                          @"city_district",
+                          @"town",
+                          @"city",
+                          @"county",
+                          @"state_district",
+                          @"province",
+                          @"state",
+                          @"region",
+                          @"island"
+                          ];
+
+    self.state_order = @[@"province",
+                         @"state",
+                         @"region",
+                         @"island"
+                         ];
+
+    self.country_order = @[@"country"
                      ];
 
-    state_order = @[@"province",
-                    @"state",
-                    @"region",
-                    @"island"
-                    ];
-
-    country_order = @[@"country"
-                     ];
-
-    urlFormat = @"https://api.opencagedata.com/geocode/v1/json?q=%f,%f&no_annotations=1&key=%@&language=en";
-    queue = [NSMutableArray arrayWithCapacity:20];
-    isRunning = NO;
-    disabled = NO;
+    self.urlFormat = @"https://api.opencagedata.com/geocode/v1/json?q=%f,%f&no_annotations=1&key=%@&language=en";
+    self.queue = [NSMutableArray arrayWithCapacity:20];
+    self.isRunning = NO;
+    self.disabled = NO;
 
     return self;
 }
 
 - (void)addForProcessing:(dbWaypoint *)wp
 {
-    if (disabled == YES)
+    if (self.disabled == YES)
         return;
     if (configManager.opencageEnable == NO)
         return;
@@ -81,9 +82,9 @@
         return;
 
     @synchronized (self) {
-        [queue addObject:wp];
+        [self.queue addObject:wp];
     }
-    if (isRunning == NO)
+    if (self.isRunning == NO)
         BACKGROUND(runQueue, nil);
 }
 
@@ -91,14 +92,14 @@
 {
     dbWaypoint *wp;
 
-    isRunning = YES;
+    self.isRunning = YES;
     while (TRUE) {
         @synchronized (self) {
-            NSLog(@"%@ - queue size is %ld", [self class], (long)[queue count]);
-            if ([queue count] == 0)
+            NSLog(@"%@ - queue size is %ld", [self class], (long)[self.queue count]);
+            if ([self.queue count] == 0)
                 break;
-            wp = [queue lastObject];
-            [queue removeLastObject];
+            wp = [self.queue lastObject];
+            [self.queue removeLastObject];
         }
         if (wp != nil) {
             if ([MyTools hasWifiNetwork] == NO && configManager.opencageWifiOnly == YES)
@@ -109,12 +110,12 @@
         [NSThread sleepForTimeInterval:1];
     }
     NSLog(@"%@ - finished", [self class]);
-    isRunning = NO;
+    self.isRunning = NO;
 }
 
 - (void)runQueue:(dbWaypoint *)wp
 {
-    NSString *urlString = [NSString stringWithFormat:urlFormat, wp.wpt_latitude, wp.wpt_longitude, configManager.opencageKey];
+    NSString *urlString = [NSString stringWithFormat:self.urlFormat, wp.wpt_latitude, wp.wpt_longitude, configManager.opencageKey];
     NSURL *url = [NSURL URLWithString:urlString];
 
     GCURLRequest *urlRequest = [GCURLRequest requestWithURL:url];
@@ -132,7 +133,7 @@
 
         if (wp.gca_locality == nil) {
             __block NSString *locality = nil;
-            [locale_order enumerateObjectsUsingBlock:^(NSString * _Nonnull field, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.locale_order enumerateObjectsUsingBlock:^(NSString * _Nonnull field, NSUInteger idx, BOOL * _Nonnull stop) {
                 locality = [components objectForKey:field];
                 if (locality != nil)
                     *stop = YES;
@@ -145,7 +146,7 @@
         }
         if (wp.gs_state == nil) {
             __block NSString *state = nil;
-            [state_order enumerateObjectsUsingBlock:^(NSString * _Nonnull field, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.state_order enumerateObjectsUsingBlock:^(NSString * _Nonnull field, NSUInteger idx, BOOL * _Nonnull stop) {
                 state = [components objectForKey:field];
                 if (state != nil)
                     *stop = YES;
@@ -158,7 +159,7 @@
         }
         if (wp.gs_country == nil) {
             __block NSString *country = nil;
-            [country_order enumerateObjectsUsingBlock:^(NSString * _Nonnull field, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.country_order enumerateObjectsUsingBlock:^(NSString * _Nonnull field, NSUInteger idx, BOOL * _Nonnull stop) {
                 country = [components objectForKey:field];
                 if (country != nil)
                     *stop = YES;
@@ -173,9 +174,9 @@
         if (needsUpdate == YES)
             [wp dbUpdateCountryStateLocality];
     } else {
-        disabled = YES;
+        self.disabled = YES;
         @synchronized (self) {
-            [queue removeAllObjects];
+            [self.queue removeAllObjects];
         }
 
         if (error != nil) {

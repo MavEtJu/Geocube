@@ -63,7 +63,8 @@ enum {
     NSString *name;
 
     for (NSInteger i = 0; i < ImageLibraryImagesMax ;i++) {
-        if ((img = [imageManager get:i]) == nil)
+        img = [imageManager get:i];
+        if (img == nil || [img isKindOfClass:[NSNull class]] == YES)
             continue;
         [numbers addObject:[NSNumber numberWithInteger:i]];
         [imgs addObject:img];
@@ -244,10 +245,11 @@ enum {
     }
 
     if (indexPath.section == IMAGES_IMAGES) {
-        cell.imageView.image = [imgs objectAtIndex:indexPath.row];
-        cell.textLabel.text = [names objectAtIndex:indexPath.row];
-        cell.detailTextLabel.text = [[numbers objectAtIndex:indexPath.row] stringValue];
-
+        if ([[imgs objectAtIndex:indexPath.row] isKindOfClass:[NSNull class]] == NO) {
+            cell.imageView.image = [imgs objectAtIndex:indexPath.row];
+            cell.textLabel.text = [names objectAtIndex:indexPath.row];
+            cell.detailTextLabel.text = [[numbers objectAtIndex:indexPath.row] stringValue];
+        }
         return cell;
     }
 

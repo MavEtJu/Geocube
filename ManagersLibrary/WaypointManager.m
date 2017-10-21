@@ -20,13 +20,12 @@
  */
 
 @interface WaypointManager ()
-{
-    CLLocationCoordinate2D lastCoordinates;
-    BOOL needsRefresh;
 
-    NSMutableArray<id> *delegatesWaypoints;
-    NSMutableArray<id> *delegatesKML;
-}
+@property (nonatomic        ) CLLocationCoordinate2D lastCoordinates;
+@property (nonatomic        ) BOOL needsRefresh;
+
+@property (nonatomic, retain) NSMutableArray<id> *delegatesWaypoints;
+@property (nonatomic, retain) NSMutableArray<id> *delegatesKML;
 
 @property (nonatomic, retain, readwrite) dbWaypoint *currentWaypoint;
 
@@ -41,16 +40,16 @@
 
     self.currentWaypoints = nil;
     self.currentWaypoint = nil;
-    needsRefresh = NO;
-    lastCoordinates = CLLocationCoordinate2DZero;
+    self.needsRefresh = NO;
+    self.lastCoordinates = CLLocationCoordinate2DZero;
 
     if (IS_EMPTY(configManager.currentWaypoint) == NO)
         self.currentWaypoint = [dbWaypoint dbGetByName:configManager.currentWaypoint];
 
     [LM startDelegationLocation:self isNavigating:NO];
 
-    delegatesWaypoints = [NSMutableArray arrayWithCapacity:5];
-    delegatesKML = [NSMutableArray arrayWithCapacity:5];
+    self.delegatesWaypoints = [NSMutableArray arrayWithCapacity:5];
+    self.delegatesKML = [NSMutableArray arrayWithCapacity:5];
     [self needsRefreshAll];
     [self updateBadges];
 
@@ -61,26 +60,26 @@
 {
     NSLog(@"%@: starting for %@", [self class], [_delegate class]);
     if (_delegate != nil)
-        [delegatesWaypoints addObject:_delegate];
+        [self.delegatesWaypoints addObject:_delegate];
 }
 
 - (void)stopDelegationWaypoints:(id)_delegate
 {
     NSLog(@"%@: stopping for %@", [self class], [_delegate class]);
-    [delegatesWaypoints removeObject:_delegate];
+    [self.delegatesWaypoints removeObject:_delegate];
 }
 
 - (void)startDelegationKML:(id)_delegate
 {
     NSLog(@"%@: starting for %@", [self class], [_delegate class]);
     if (_delegate != nil)
-        [delegatesKML addObject:_delegate];
+        [self.delegatesKML addObject:_delegate];
 }
 
 - (void)stopDelegationKML:(id)_delegate
 {
     NSLog(@"%@: stopping for %@", [self class], [_delegate class]);
-    [delegatesKML removeObject:_delegate];
+    [self.delegatesKML removeObject:_delegate];
 }
 
 - (void)updateBadges
@@ -91,10 +90,10 @@
 
 - (void)needsRefreshAll
 {
-    if (needsRefresh == NO) {
-        needsRefresh = YES;
+    if (self.needsRefresh == NO) {
+        self.needsRefresh = YES;
 
-        [delegatesWaypoints enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.delegatesWaypoints enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
             // Doing this via the main queue because Google Map Service insists on it.
             NSLog(@"%@: refreshing #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
             MAINQUEUE(
@@ -109,7 +108,7 @@
 {
     [self.currentWaypoints addObject:wp];
 
-    [delegatesWaypoints enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.delegatesWaypoints enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
         MAINQUEUE(
@@ -123,7 +122,7 @@
 {
     [self.currentWaypoints removeObject:wp];
 
-    [delegatesWaypoints enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.delegatesWaypoints enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
         MAINQUEUE(
@@ -139,7 +138,7 @@
     if (idx != NSNotFound)
         [self.currentWaypoints replaceObjectAtIndex:idx withObject:wp];
 
-    [delegatesWaypoints enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.delegatesWaypoints enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
         MAINQUEUE(
@@ -155,7 +154,7 @@
         NSLog(@"%@: coordinates %@", [self class], [Coordinates niceCoordinates:coords]);
 
         /* Do not unnecessary go through this */
-        if (needsRefresh != YES)
+        if (self.needsRefresh != YES)
             return;
 
         NSMutableArray<dbWaypoint *> *waypoints;
@@ -742,7 +741,7 @@
 
         NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
         self.currentWaypoints = waypoints;
-        needsRefresh = NO;
+        self.needsRefresh = NO;
     }
 }
 
@@ -767,11 +766,11 @@
     NSString *c = [self configGet:@"distance_enabled"];
     if (c != nil && [c boolValue] == YES) {
         NSInteger filterDistanceM = [[self configGet:@"distance_distanceM"] integerValue] + 1000 * [[self configGet:@"distance_distanceKm"] integerValue];
-        NSInteger realDistanceM = [Coordinates coordinates2distance:lastCoordinates to:LM.coords];
+        NSInteger realDistanceM = [Coordinates coordinates2distance:self.lastCoordinates to:LM.coords];
         if (realDistanceM > filterDistanceM / 4) {
             NSLog(@"WaypointManager:updateLocationManagerLocation: Updating filter: %ld meters > %ld meters", (long)realDistanceM, (long)filterDistanceM);
             [self needsRefreshAll];
-            lastCoordinates = LM.coords;
+            self.lastCoordinates = LM.coords;
         }
     }
 }
@@ -808,7 +807,7 @@
 
 - (void)refreshKMLs
 {
-    [delegatesKML enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.delegatesKML enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         // Doing this via the main queue because Google Map Service insists on it.
         MAINQUEUE(
             [delegate refreshKMLs];

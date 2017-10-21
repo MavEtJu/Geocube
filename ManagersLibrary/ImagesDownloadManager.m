@@ -20,21 +20,20 @@
  */
 
 @interface ImagesDownloadManager ()
-{
-    NSInteger downloaded;
 
-    dbImage *imgToDownload;
+@property (nonatomic        ) NSInteger downloaded;
 
-    NSMutableData *activeDownload;
-    NSURLConnection *imageConnection;
-    NSURLConnection *conn;
+@property (nonatomic, retain) dbImage *imgToDownload;
 
-    NSInteger running;
-}
+@property (nonatomic, retain) NSMutableData *activeDownload;
+@property (nonatomic, retain) NSURLConnection *imageConnection;
+@property (nonatomic, retain) NSURLConnection *conn;
 
-- (void)start;
+@property (nonatomic        ) NSInteger running;
 
 @property (nonatomic, retain) NSMutableArray<dbImage *> *todo;
+
+- (void)start;
 
 @end
 
@@ -83,68 +82,68 @@
 
     self.todo = [NSMutableArray<dbImage *> arrayWithCapacity:20];
 
-    running = 0;
-    downloaded = 0;
+    self.running = 0;
+    self.downloaded = 0;
 
     return self;
 }
 
 - (void)start
 {
-    if (running == 0) {
+    if (self.running == 0) {
         NSLog(@"%@/starting", [self class]);
-        running = 10;
+        self.running = 10;
         BACKGROUND(run, nil);
     }
-    running = 10;
+    self.running = 10;
 }
 
 - (void)run
 {
     while (TRUE) {
-        imgToDownload = nil;
+        self.imgToDownload = nil;
 
         NSLog(@"%@/run: Queue is %ld deep", [self class], (unsigned long)[self.todo count]);
         @synchronized (imagesDownloadManager) {
             if ([self.todo count] != 0)
-                imgToDownload = [self.todo objectAtIndex:0];
+                self.imgToDownload = [self.todo objectAtIndex:0];
         }
         // After 10 attempts stop, enough for now
-        if (--running == 0) {
+        if (--self.running == 0) {
             NSLog(@"%@/stopping", [self class]);
             return;
         }
 
         // Nothing to download, wait one second and try again.
-        if (imgToDownload == nil) {
+        if (self.imgToDownload == nil) {
             [NSThread sleepForTimeInterval:1.0];
             continue;
         }
 
         // Make sure we don't accidently fall asleep
-        running = 10;
+        self.running = 10;
 
         // It could be that multiple entries for the same URL is here.
         // If so, only download the first one.
-        if ([imgToDownload imageHasBeenDowloaded] == YES) {
-            NSLog(@"%@/run: Already found %@", [self class], imgToDownload.datafile);
+        if ([self.imgToDownload imageHasBeenDowloaded] == YES) {
+            NSLog(@"%@/run: Already found %@", [self class], self.imgToDownload.datafile);
             @synchronized (imagesDownloadManager) {
                 [self.todo removeObjectAtIndex:0];
             }
             continue;
         }
 
-        NSLog(@"%@/run: Downloading %@", [self class], imgToDownload.url);
+        NSLog(@"%@/run: Downloading %@", [self class], self.imgToDownload.url);
 
         // Send a synchronous request
-        GCURLRequest *urlRequest = [GCURLRequest requestWithURL:[NSURL URLWithString:imgToDownload.url]];
+        GCURLRequest *urlRequest = [GCURLRequest requestWithURL:[NSURL URLWithString:self.imgToDownload.url]];
         NSURLResponse *response = nil;
         NSError *error = nil;
         NSData *data = [downloadManager downloadImage:urlRequest returningResponse:&response error:&error];
 
         if (error == nil) {
-            NSLog(@"%@/run: Downloaded %@ (%ld bytes)", [self class], imgToDownload.url, (unsigned long)[data length]);
-            [data writeToFile:[MyTools ImageFile:imgToDownload.datafile] atomically:NO];
+            NSLog(@"%@/run: Downloaded %@ (%ld bytes)", [self class], self.imgToDownload.url, (unsigned long)[data length]);
+            [data writeToFile:[MyTools ImageFile:self.imgToDownload.datafile] atomically:NO];
         } else {
             NSLog(@"Failed! %@", error);
         }
@@ -152,7 +151,7 @@
         @synchronized (imagesDownloadManager) {
             [self.todo removeObjectAtIndex:0];
         }
-        downloaded++;
+        self.downloaded++;
     }
 }
 

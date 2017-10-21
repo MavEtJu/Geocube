@@ -20,12 +20,10 @@
  */
 
 @interface ImportManager ()
-{
-    NSMutableArray<NSString *> *filenames;
-    NSMutableArray<NSString *> *filenamesToBeRemoved;
 
-    NSMutableArray<NSString *> *processedWaypoints;
-}
+@property (nonatomic, retain) NSMutableArray<NSString *> *filenames;
+@property (nonatomic, retain) NSMutableArray<NSString *> *filenamesToBeRemoved;
+@property (nonatomic, retain) NSMutableArray<NSString *> *processedWaypoints;
 
 @end
 
@@ -35,15 +33,15 @@
 {
     self = [super init];
 
-    processedWaypoints = [NSMutableArray arrayWithCapacity:100];
+    self.processedWaypoints = [NSMutableArray arrayWithCapacity:100];
 
     return self;
 }
 
 - (void)zipArchiveDidUnzipFileAtIndex:(NSInteger)fileIndex totalFiles:(NSInteger)totalFiles archivePath:(NSString *)archivePath unzippedFilePath:(NSString *)unzippedFilePath
 {
-    [filenames addObject:[unzippedFilePath lastPathComponent]];
-    [filenamesToBeRemoved addObject:[unzippedFilePath lastPathComponent]];
+    [self.filenames addObject:[unzippedFilePath lastPathComponent]];
+    [self.filenamesToBeRemoved addObject:[unzippedFilePath lastPathComponent]];
 }
 
 - (void)addToQueue:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions
@@ -55,10 +53,10 @@
 {
     if ([data isKindOfClass:[GCStringFilename class]] == YES) {
         NSString *_filename = [data description];
-        filenamesToBeRemoved = [NSMutableArray arrayWithCapacity:1];
-        filenames = [NSMutableArray arrayWithCapacity:1];
+        self.filenamesToBeRemoved = [NSMutableArray arrayWithCapacity:1];
+        self.filenames = [NSMutableArray arrayWithCapacity:1];
         if ([[_filename pathExtension] isEqualToString:@"gpx"] == YES) {
-            [filenames addObject:_filename];
+            [self.filenames addObject:_filename];
         }
         if ([[_filename pathExtension] isEqualToString:@"zip"] == YES) {
             NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], _filename];
@@ -72,7 +70,7 @@
         [as enumerateObjectsUsingBlock:^(id a, NSUInteger idx, BOOL * _Nonnull stop) {
             [self process:a group:group account:account options:runoptions infoViewer:iv iiImport:iii];
         }];
-        return processedWaypoints;
+        return self.processedWaypoints;
     }
 
     ImportTemplate *imp;
@@ -104,7 +102,7 @@
         [self runImporter:imp data:(NSObject *)data run_options:runoptions infoViewer:iv iiImport:iii];
     }
 
-    return processedWaypoints;
+    return self.processedWaypoints;
 }
 
 - (void)runImporter:(ImportTemplate *)imp data:(NSObject *)data run_options:(ImportOptions)run_options infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii
@@ -124,7 +122,7 @@
     if ((run_options & IMPORTOPTION_NOPARSE) == 0) {
         @autoreleasepool {
             if ([data isKindOfClass:[GCStringFilename class]] == YES) {
-                [filenames enumerateObjectsUsingBlock:^(NSString * _Nonnull filename, NSUInteger idx, BOOL * _Nonnull stop) {
+                [self.filenames enumerateObjectsUsingBlock:^(NSString * _Nonnull filename, NSUInteger idx, BOOL * _Nonnull stop) {
                     [iv setDescription:iii description:filename];
                     [imp parseFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] infoViewer:iv iiImport:iii];
                     [waypointManager needsRefreshAll];
@@ -156,7 +154,7 @@
     if ((run_options & IMPORTOPTION_NOPOST) == 0)
         [imp parseAfter];
 
-    [filenamesToBeRemoved enumerateObjectsUsingBlock:^(NSString * _Nonnull filename, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.filenamesToBeRemoved enumerateObjectsUsingBlock:^(NSString * _Nonnull filename, NSUInteger idx, BOOL * _Nonnull stop) {
         [fileManager removeItemAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] error:nil];
     }];
 }
@@ -168,7 +166,7 @@
 
 - (void)Import_WaypointProcessed:(dbWaypoint *)wp
 {
-    [processedWaypoints addObject:wp.wpt_name];
+    [self.processedWaypoints addObject:wp.wpt_name];
 }
 
 @end

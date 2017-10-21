@@ -20,11 +20,11 @@
  */
 
 @interface ImageManager ()
-{
-    UIImage *imgs[ImageLibraryImagesMax];
-    NSString *names[ImageLibraryImagesMax];
-    NSMutableDictionary *pinImages, *typeImages;
-};
+
+@property (nonatomic, retain) NSMutableArray<id> *imgs;
+@property (nonatomic, retain) NSMutableArray<NSString *> *names;
+@property (nonatomic, retain) NSMutableDictionary *pinImages;
+@property (nonatomic, retain) NSMutableDictionary *typeImages;
 
 @end
 
@@ -34,6 +34,13 @@
 {
     self = [super init];
     NSLog(@"ImageLibrary: %ld elements", (long)ImageLibraryImagesMax);
+
+    self.imgs = [NSMutableArray arrayWithCapacity:ImageLibraryImagesMax];
+    self.names = [NSMutableArray arrayWithCapacity:ImageLibraryImagesMax];
+    for (NSInteger i = 0; i < ImageLibraryImagesMax; i++) {
+        [self.imgs addObject:[NSNull null]];
+        [self.names addObject:[NSString string]];
+    }
 
     [self addToLibrary:@"image - nil - 1x1" index:Image_Nil];
 
@@ -72,7 +79,6 @@
     [self addToLibrary:@"waypoint - parking - 30x30" index:ImageWaypoints_ParkingArea];
     [self addToLibrary:@"waypoint - flag - 30x30" index:ImageWaypoints_PhysicalStage];
     [self addToLibrary:@"waypoint - flag - 30x30" index:ImageWaypoints_ReferenceStage];
-    //[self addToLibrary:@"waypoint - question - 30x30" index:ImageWaypoints_QuestionStage];
     [self addToLibrary:@"waypoint - trailhead - 30x30" index:ImageWaypoints_Trailhead];
     [self addToLibrary:@"waypoint - trailhead - 30x30" index:ImageWaypoints_VirtualStage];
     [self addToLibrary:@"waypoint - manually entered - 30x30" index:ImageWaypoints_ManuallyEntered];
@@ -245,26 +251,27 @@
     [self addToLibrary:@"image - no image - 32x32" index:Image_NoImageFile];
 
     /* Pin and type images */
-    pinImages = [NSMutableDictionary dictionaryWithCapacity:25];
-    typeImages = [NSMutableDictionary dictionaryWithCapacity:25];
+    self.pinImages = [NSMutableDictionary dictionaryWithCapacity:25];
+    self.typeImages = [NSMutableDictionary dictionaryWithCapacity:25];
 
     return self;
 }
 
-- (void)addToLibrary:(NSString *)name index:(NSInteger)idx
+- (void)addToLibrary:(NSString *)name index:(NSInteger)index
 {
     NSString *s = [NSString stringWithFormat:@"%@/%@", [MyTools DataDistributionDirectory], name];
     UIImage *img = [[UIImage alloc] initWithContentsOfFile:s];
     NSAssert1(img != nil, @"ImageLibrary: Image %@ not found", s);
-    imgs[idx] = img;
-    names[idx] = name;
+    [self.imgs replaceObjectAtIndex:index withObject:img];
+    [self.names replaceObjectAtIndex:index withObject:name];
 }
 
 // -------------------------------------------------------------
 - (void)addpinhead:(NSInteger)index image:(UIImage *)img
 {
-    imgs[index] = img;
-    names[index] = [NSString stringWithFormat:@"pinhead: %ld", (long)index];
+    [self.imgs replaceObjectAtIndex:index withObject:img];
+    NSString *name = [NSString stringWithFormat:@"pinhead: %ld", (long)index];
+    [self.names replaceObjectAtIndex:index withObject:name];
 }
 
 - (UIImage *)mergePinhead:(UIImage *)bottom topImg:(UIImage *)top
@@ -284,8 +291,9 @@
 - (void)mergePinhead:(NSInteger)bottom top:(NSInteger)top index:(NSInteger)index
 {
     UIImage *out = [self mergePinhead2:[self get:bottom] top:top];
-    imgs[index] = out;
-    names[index] = [NSString stringWithFormat:@"Merge of %ld and %ld", (long)bottom, (long)top];
+    [self.imgs replaceObjectAtIndex:index withObject:out];
+    NSString *name = [NSString stringWithFormat:@"Merge of %ld and %ld", (long)bottom, (long)top];
+    [self.names replaceObjectAtIndex:index withObject:name];
 }
 
 - (UIImage *)mergeXXX:(UIImage *)bottom top:(NSInteger)top
@@ -354,7 +362,7 @@
 
 - (UIImage *)get:(ImageNumber)imgnum
 {
-    UIImage *img = imgs[imgnum];
+    UIImage *img = [self.imgs objectAtIndex:imgnum];
     if (img == nil)
         NSLog(@"ImageLibrary/get: imgnum %ld not found", (long)imgnum);
     return img;
@@ -362,7 +370,7 @@
 
 - (NSString *)getName:(ImageNumber)imgnum
 {
-    NSString *name = names[imgnum];
+    NSString *name = [self.names objectAtIndex:imgnum];
     if (name == nil)
         NSLog(@"ImageLibrary/getName: imgnum %ld not found", (long)imgnum);
     return name;
@@ -435,11 +443,11 @@
 - (UIImage *)getPin:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF
 {
     NSString *s = [self getCode:pin found:found disabled:disabled archived:archived highlight:highlight owner:owner markedFound:markedFound inProgress:inProgress markedDNF:markedDNF planned:NO];
-    UIImage *img = [pinImages valueForKey:s];
+    UIImage *img = [self.pinImages valueForKey:s];
     if (img == nil) {
         NSLog(@"Creating pin %@s", s);
         img = [self getPinImage:pin found:found disabled:disabled archived:archived highlight:highlight owner:owner markedFound:markedFound inProgress:inProgress markedDNF:markedDNF];
-        [pinImages setObject:img forKey:s];
+        [self.pinImages setObject:img forKey:s];
     }
 
     return img;
@@ -523,10 +531,10 @@
 - (UIImage *)getType:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF planned:(BOOL)planned
 {
     NSString *s = [self getCode:type found:found disabled:disabled archived:archived highlight:highlight owner:owner markedFound:markedFound inProgress:inProgress markedDNF:markedDNF planned:planned];
-    UIImage *img = [typeImages valueForKey:s];
+    UIImage *img = [self.typeImages valueForKey:s];
     if (img == nil) {
         img = [self getTypeImage:type found:found disabled:disabled archived:archived highlight:highlight owner:owner markedFound:markedFound inProgress:inProgress markedDNF:markedDNF planned:planned];
-        [typeImages setObject:img forKey:s];
+        [self.typeImages setObject:img forKey:s];
     }
 
     return img;

@@ -20,20 +20,19 @@
  */
 
 @interface LocationManager ()
-{
-    CLLocationManager *_LM;
 
-    NSDate *lastHistory;
-    CLLocationCoordinate2D coordsHistoricalLast;
+@property (nonatomic, retain) CLLocationManager *_LM;
 
-    NSMutableArray<dbTrackElement *> *historyData;
-    NSMutableArray<GCCoordsHistorical *> *coordsSpeed;
-    NSInteger lastSync;
-    NSInteger lastAccuracy;
-    NSInteger lastIsNavigating;
+@property (nonatomic, retain) NSDate *lastHistory;
+@property (nonatomic        ) CLLocationCoordinate2D coordsHistoricalLast;
 
-    BOOL gotUpdate;
-}
+@property (nonatomic, retain) NSMutableArray<dbTrackElement *> *historyData;
+@property (nonatomic, retain) NSMutableArray<GCCoordsHistorical *> *coordsSpeed;
+@property (nonatomic        ) NSInteger lastSync;
+@property (nonatomic        ) NSInteger lastAccuracy;
+@property (nonatomic        ) NSInteger lastIsNavigating;
+
+@property (nonatomic        ) BOOL gotUpdate;
 
 @property (nonatomic, readwrite) BOOL useGNSS;
 
@@ -46,17 +45,17 @@
     self = [super init];
 
     self.coordsHistorical = [NSMutableArray arrayWithCapacity:1000];
-    lastHistory = [NSDate date];
+    self.lastHistory = [NSDate date];
     self.speed = 0;
 
     /* Initiate the location manager */
-    _LM = [[CLLocationManager alloc] init];
+    self._LM = [[CLLocationManager alloc] init];
     [self adjustAccuracy:LMACCURACY_1000M];
-    _LM.distanceFilter = 1;
-    _LM.headingFilter = 1;
-    _LM.delegate = self;
+    self._LM.distanceFilter = 1;
+    self._LM.headingFilter = 1;
+    self._LM.delegate = self;
 
-    self.coords = _LM.location.coordinate;
+    self.coords = self._LM.location.coordinate;
     NSLog(@"%@: Starting at %@", [self class], [Coordinates niceCoordinates:self.coords]);
 
     self.delegatesHistory = [NSMutableArray arrayWithCapacity:5];
@@ -65,15 +64,15 @@
     self.delegatesHeading = [NSMutableArray arrayWithCapacity:5];
     self.useGNSS = YES;
 
-    lastSync = 0;
-    historyData = [NSMutableArray arrayWithCapacity:configManager.keeptrackSync / configManager.keeptrackTimeDeltaMax];
-    coordsSpeed = [NSMutableArray arrayWithCapacity:configManager.speedSamples];
+    self.lastSync = 0;
+    self.historyData = [NSMutableArray arrayWithCapacity:configManager.keeptrackSync / configManager.keeptrackTimeDeltaMax];
+    self.coordsSpeed = [NSMutableArray arrayWithCapacity:configManager.speedSamples];
 
     CLAuthorizationStatus stat = [CLLocationManager authorizationStatus];
     if (stat == kCLAuthorizationStatusNotDetermined ||
         stat == kCLAuthorizationStatusRestricted ||
         stat == kCLAuthorizationStatusDenied)
-        [_LM requestWhenInUseAuthorization];
+        [self._LM requestWhenInUseAuthorization];
 
     BACKGROUND(backgroundUpdater, nil);
 
@@ -120,8 +119,8 @@
         [self.delegatesHistory count] > 0)
         return;
 
-    [_LM stopUpdatingHeading];
-    [_LM stopUpdatingLocation];
+    [self._LM stopUpdatingHeading];
+    [self._LM stopUpdatingLocation];
     NSLog(@"%@: Stopped all of them", [self class]);
 }
 
@@ -129,8 +128,8 @@
 {
     NSLog(@"%@: Location starting for %@ (isNavigating:%d)", [self class], [_delegate class], isNavigating);
     [self adjustAccuracy:isNavigating];
-    [_LM startUpdatingHeading];
-    [_LM startUpdatingLocation];
+    [self._LM startUpdatingHeading];
+    [self._LM startUpdatingLocation];
 
     if (_delegate != nil) {
         [self.delegatesLocation addObject:_delegate];
@@ -190,29 +189,29 @@
 
 - (void)setNewAccuracy:(LM_ACCURACY)accuracy
 {
-    if (accuracy == lastAccuracy)
+    if (accuracy == self.lastAccuracy)
         return;
-    lastAccuracy = accuracy;
+    self.lastAccuracy = accuracy;
     NSLog(@"%@: New accuracy: %ld", [self class], (long)accuracy);
 
     switch (accuracy) {
         case LMACCURACY_3000M:
-            _LM.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
+            self._LM.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
             break;
         case LMACCURACY_1000M:
-            _LM.desiredAccuracy = kCLLocationAccuracyKilometer;
+            self._LM.desiredAccuracy = kCLLocationAccuracyKilometer;
             break;
         case LMACCURACY_100M:
-            _LM.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+            self._LM.desiredAccuracy = kCLLocationAccuracyHundredMeters;
             break;
         case LMACCURACY_10M:
-            _LM.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+            self._LM.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
             break;
         case LMACCURACY_BEST:
-            _LM.desiredAccuracy = kCLLocationAccuracyBest;
+            self._LM.desiredAccuracy = kCLLocationAccuracyBest;
             break;
         case LMACCURACY_BESTFORNAVIGATION:
-            _LM.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+            self._LM.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
             break;
         default:
             abort();
@@ -260,16 +259,16 @@
 
      */
 
-    lastIsNavigating = isNavigating;
+    self.lastIsNavigating = isNavigating;
 
     // Static stuff, easy:
     if (configManager.accuracyDynamicEnable == NO) {
         if (isNavigating == NO) {
             [self setNewAccuracy:configManager.accuracyStaticAccuracyNonNavigating];
-            _LM.distanceFilter = configManager.accuracyStaticDeltaDNonNavigating;
+            self._LM.distanceFilter = configManager.accuracyStaticDeltaDNonNavigating;
         } else {
             [self setNewAccuracy:configManager.accuracyStaticAccuracyNavigating];
-            _LM.distanceFilter = configManager.accuracyStaticDeltaDNavigating;
+            self._LM.distanceFilter = configManager.accuracyStaticDeltaDNavigating;
         }
         return;
     }
@@ -277,7 +276,7 @@
     // Not navigating or no waypoint selected, as such assume "far"
     if (isNavigating == NO || waypointManager.currentWaypoint == nil) {
         [self setNewAccuracy:configManager.accuracyDynamicAccuracyFar];
-        _LM.distanceFilter = configManager.accuracyDynamicDeltaDFar;
+        self._LM.distanceFilter = configManager.accuracyDynamicDeltaDFar;
         return;
     }
 
@@ -285,13 +284,13 @@
     NSInteger d = [Coordinates coordinates2distance:self.coords toLatitude:waypointManager.currentWaypoint.wpt_latitude toLongitude:waypointManager.currentWaypoint.wpt_longitude];
     if (d <= configManager.accuracyDynamicDistanceNearToMidrange) {
         [self setNewAccuracy:configManager.accuracyDynamicAccuracyNear];
-        _LM.distanceFilter = configManager.accuracyDynamicDeltaDNear;
+        self._LM.distanceFilter = configManager.accuracyDynamicDeltaDNear;
     } else if (d <= configManager.accuracyDynamicDistanceMidrangeToFar) {
         [self setNewAccuracy:configManager.accuracyDynamicAccuracyMidrange];
-        _LM.distanceFilter = configManager.accuracyDynamicDeltaDMidrange;
+        self._LM.distanceFilter = configManager.accuracyDynamicDeltaDMidrange;
     } else {
         [self setNewAccuracy:configManager.accuracyDynamicAccuracyFar];
-        _LM.distanceFilter = configManager.accuracyDynamicDeltaDFar;
+        self._LM.distanceFilter = configManager.accuracyDynamicDeltaDFar;
     }
 }
 
@@ -300,9 +299,9 @@
     do {
         // Wait for a second and updates
         [NSThread sleepForTimeInterval:1];
-        if (gotUpdate == NO)
+        if (self.gotUpdate == NO)
             continue;
-        gotUpdate = NO;
+        self.gotUpdate = NO;
 
         // Keep a copy of the current data
         NSDate *now = [NSDate date];
@@ -317,21 +316,21 @@
 
         // Calculate speed over the last ten units.
         if (configManager.speedEnable == YES) {
-            [coordsSpeed addObject:ch];
-            if ([coordsSpeed count] >= configManager.speedSamples) {
-                GCCoordsHistorical *ch0 = [coordsSpeed firstObject];
+            [self.coordsSpeed addObject:ch];
+            if ([self.coordsSpeed count] >= configManager.speedSamples) {
+                GCCoordsHistorical *ch0 = [self.coordsSpeed firstObject];
                 td = ch.when - ch0.when;
                 float distance = [Coordinates coordinates2distance:ch.coord to:ch0.coord];
                 if (td != 0) {
                     self.speed = distance / td;
                     [self updateSpeedDelegates];
                 }
-                [coordsSpeed removeObjectAtIndex:0];
+                [self.coordsSpeed removeObjectAtIndex:0];
             }
         }
 
         // Change the accuracy for the receiver
-        [self adjustAccuracy:lastIsNavigating];
+        [self adjustAccuracy:self.lastIsNavigating];
 
         if (configManager.keeptrackEnable == NO && configManager.keeptrackMemoryOnly == YES)
             [self updateHistoryDelegates:ch];
@@ -339,20 +338,20 @@
         if (configManager.keeptrackEnable == YES) {
             // Update the historical track.
             // To save from random data changes, only do it every 5 seconds or every 100 meters, whatever comes first.
-            float distance = [Coordinates coordinates2distance:ch.coord to:coordsHistoricalLast];
-            td = ch.when - lastHistory.timeIntervalSince1970;
+            float distance = [Coordinates coordinates2distance:ch.coord to:self.coordsHistoricalLast];
+            td = ch.when - self.lastHistory.timeIntervalSince1970;
             if (td > configManager.keeptrackTimeDeltaMin || distance > configManager.keeptrackDistanceDeltaMin) {
                 BOOL jump = (td > configManager.keeptrackTimeDeltaMax || distance > configManager.keeptrackDistanceDeltaMax);
                 if (jump == YES) {
                     ch.restart = YES;
                     self.speed = 0;
-                    [coordsSpeed removeAllObjects];
+                    [self.coordsSpeed removeAllObjects];
                     [self updateSpeedDelegates];
                 }
                 [self updateHistoryDelegates:ch];
 
-                coordsHistoricalLast = ch.coord;
-                lastHistory = now;
+                self.coordsHistoricalLast = ch.coord;
+                self.lastHistory = now;
                 if (configManager.currentTrack != 0) {
                     dbTrackElement *te = [[dbTrackElement alloc] init];
                     te.track = configManager.currentTrack;
@@ -361,15 +360,15 @@
                     te.height = self.altitude;
                     te.restart = jump;
                     [te dbCreate];
-                    [historyData addObject:te];
+                    [self.historyData addObject:te];
 
                     // Sync
-                    if (lastSync + configManager.keeptrackSync < te.timestamp_epoch) {
-                        [historyData enumerateObjectsUsingBlock:^(dbTrackElement * _Nonnull e, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if (self.lastSync + configManager.keeptrackSync < te.timestamp_epoch) {
+                        [self.historyData enumerateObjectsUsingBlock:^(dbTrackElement * _Nonnull e, NSUInteger idx, BOOL * _Nonnull stop) {
                             [e dbCreate];
                         }];
-                        [historyData removeAllObjects];
-                        lastSync = te.timestamp_epoch;
+                        [self.historyData removeAllObjects];
+                        self.lastSync = te.timestamp_epoch;
                     }
                 }
             }
@@ -405,7 +404,7 @@
     [self updateLocationDelegates];
 
     // Let somebody else deal with the expensive stuff.
-    gotUpdate = YES;
+    self.gotUpdate = YES;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading

@@ -20,9 +20,8 @@
  */
 
 @interface DownloadManager ()
-{
-    NSMutableArray<NSMutableDictionary *> *asyncRequests;
-}
+
+@property (nonatomic, retain) NSMutableArray<NSMutableDictionary *> *asyncRequests;
 
 @end
 
@@ -32,7 +31,7 @@
 {
     self = [super init];
 
-    asyncRequests = [NSMutableArray arrayWithCapacity:10];
+    self.asyncRequests = [NSMutableArray arrayWithCapacity:10];
 
     return self;
 }
@@ -65,8 +64,8 @@
 
     [sessionDataTask resume];
 
-    @synchronized (asyncRequests) {
-        [asyncRequests addObject:req];
+    @synchronized (self.asyncRequests) {
+        [self.asyncRequests addObject:req];
     }
 
     return req;
@@ -128,13 +127,13 @@
     NSLog(@"URLSession:(NSURLSession *) task:(NSURLSessionTask *) didCompleteWithError:(NSError *)");
 #endif
 
-    @synchronized (asyncRequests) {
-        [asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull req, NSUInteger idx, BOOL * _Nonnull stop) {
+    @synchronized (self.asyncRequests) {
+        [self.asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull req, NSUInteger idx, BOOL * _Nonnull stop) {
             if (session == [req objectForKey:@"session"] && task == [req objectForKey:@"task"]) {
                 [req setObject:[NSNumber numberWithBool:YES] forKey:@"completed"];
                 if (error != nil)
                     [req setObject:error forKey:@"error"];
-                [asyncRequests removeObjectAtIndex:idx];
+                [self.asyncRequests removeObjectAtIndex:idx];
                 dispatch_semaphore_signal([req objectForKey:@"semaphore"]);
 
                 // Free session information, prevent memory leak
@@ -164,8 +163,8 @@
 //  NSLog(@"URLSession:(NSURLSession *) dataTask:(NSURLSessionTask *) didReceiveData:(NSData *)");
 #endif
 
-    @synchronized (asyncRequests) {
-        [asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull req, NSUInteger idx, BOOL * _Nonnull stop) {
+    @synchronized (self.asyncRequests) {
+        [self.asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull req, NSUInteger idx, BOOL * _Nonnull stop) {
             if (session == [req objectForKey:@"session"] && dataTask == [req objectForKey:@"task"]) {
                 NSMutableData *d = [req objectForKey:@"data"];
                 [d appendData:data];
@@ -188,8 +187,8 @@
     NSLog(@"URLSession:(NSURLSession *) dataTask:(NSURLSessionTask *) didReceiveResponse:(NSURLResponse *)");
 #endif
 
-    @synchronized (asyncRequests) {
-        [asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull req, NSUInteger idx, BOOL * _Nonnull stop) {
+    @synchronized (self.asyncRequests) {
+        [self.asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull req, NSUInteger idx, BOOL * _Nonnull stop) {
             if (session == [req objectForKey:@"session"] && dataTask == [req objectForKey:@"task"]) {
 #ifdef GC_VERBOSE
                 NSLog(@"Starting download thread %ld", (long)idx);
