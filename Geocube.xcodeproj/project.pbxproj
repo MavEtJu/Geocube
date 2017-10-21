@@ -113,9 +113,9 @@
 		E822873B1F8A2E7900631380 /* GCURLRequestObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E82287321F8A2E7900631380 /* GCURLRequestObjects.m */; };
 		E822873C1F8A2E7900631380 /* GCWaypointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E82287341F8A2E7900631380 /* GCWaypointAnnotation.m */; };
 		E82287601F8A2EC300631380 /* GCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E822873F1F8A2EC300631380 /* GCButton.m */; };
-		E82287611F8A2EC300631380 /* GCMKCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = E82287411F8A2EC300631380 /* GCMKCircle.m */; };
+		E82287611F8A2EC300631380 /* GCMKObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E82287411F8A2EC300631380 /* GCMKObjects.m */; };
 		E82287621F8A2EC300631380 /* GCCloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E82287431F8A2EC300631380 /* GCCloseButton.m */; };
-		E82287631F8A2EC300631380 /* GCGMSCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = E82287451F8A2EC300631380 /* GCGMSCircle.m */; };
+		E82287631F8A2EC300631380 /* GCGMSObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E82287451F8A2EC300631380 /* GCGMSObjects.m */; };
 		E82287641F8A2EC300631380 /* GCImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82287471F8A2EC300631380 /* GCImageView.m */; };
 		E82287651F8A2EC300631380 /* GCLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E82287491F8A2EC300631380 /* GCLabel.m */; };
 		E82287661F8A2EC300631380 /* GCLabelNormalText.m in Sources */ = {isa = PBXBuildFile; fileRef = E822874B1F8A2EC300631380 /* GCLabelNormalText.m */; };
@@ -1092,12 +1092,12 @@
 		E822873D1F8A2EB000631380 /* BaseObjectsLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseObjectsLibrary.h; path = BaseObjectsLibrary/BaseObjectsLibrary.h; sourceTree = "<group>"; };
 		E822873E1F8A2EC300631380 /* GCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCButton.h; path = BaseObjectsLibrary/GCButton.h; sourceTree = "<group>"; };
 		E822873F1F8A2EC300631380 /* GCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCButton.m; path = BaseObjectsLibrary/GCButton.m; sourceTree = "<group>"; };
-		E82287401F8A2EC300631380 /* GCMKCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCMKCircle.h; path = BaseObjectsLibrary/GCMKCircle.h; sourceTree = "<group>"; };
-		E82287411F8A2EC300631380 /* GCMKCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCMKCircle.m; path = BaseObjectsLibrary/GCMKCircle.m; sourceTree = "<group>"; };
+		E82287401F8A2EC300631380 /* GCMKObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCMKObjects.h; path = BaseObjectsLibrary/GCMKObjects.h; sourceTree = "<group>"; };
+		E82287411F8A2EC300631380 /* GCMKObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCMKObjects.m; path = BaseObjectsLibrary/GCMKObjects.m; sourceTree = "<group>"; };
 		E82287421F8A2EC300631380 /* GCCloseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCCloseButton.h; path = BaseObjectsLibrary/GCCloseButton.h; sourceTree = "<group>"; };
 		E82287431F8A2EC300631380 /* GCCloseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCCloseButton.m; path = BaseObjectsLibrary/GCCloseButton.m; sourceTree = "<group>"; };
-		E82287441F8A2EC300631380 /* GCGMSCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCGMSCircle.h; path = BaseObjectsLibrary/GCGMSCircle.h; sourceTree = "<group>"; };
-		E82287451F8A2EC300631380 /* GCGMSCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCGMSCircle.m; path = BaseObjectsLibrary/GCGMSCircle.m; sourceTree = "<group>"; };
+		E82287441F8A2EC300631380 /* GCGMSObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCGMSObjects.h; path = BaseObjectsLibrary/GCGMSObjects.h; sourceTree = "<group>"; };
+		E82287451F8A2EC300631380 /* GCGMSObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCGMSObjects.m; path = BaseObjectsLibrary/GCGMSObjects.m; sourceTree = "<group>"; };
 		E82287461F8A2EC300631380 /* GCImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCImageView.h; path = BaseObjectsLibrary/GCImageView.h; sourceTree = "<group>"; };
 		E82287471F8A2EC300631380 /* GCImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCImageView.m; path = BaseObjectsLibrary/GCImageView.m; sourceTree = "<group>"; };
 		E82287481F8A2EC300631380 /* GCLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCLabel.h; path = BaseObjectsLibrary/GCLabel.h; sourceTree = "<group>"; };
@@ -2610,10 +2610,10 @@
 		E82287711F8A2EEA00631380 /* Map objects */ = {
 			isa = PBXGroup;
 			children = (
-				E82287401F8A2EC300631380 /* GCMKCircle.h */,
-				E82287411F8A2EC300631380 /* GCMKCircle.m */,
-				E82287441F8A2EC300631380 /* GCGMSCircle.h */,
-				E82287451F8A2EC300631380 /* GCGMSCircle.m */,
+				E82287401F8A2EC300631380 /* GCMKObjects.h */,
+				E82287411F8A2EC300631380 /* GCMKObjects.m */,
+				E82287441F8A2EC300631380 /* GCGMSObjects.h */,
+				E82287451F8A2EC300631380 /* GCGMSObjects.m */,
 				E8B6D8D81F9AE81B00C376A2 /* GCMGLObjects.h */,
 				E8B6D8D91F9AE81B00C376A2 /* GCMGLObjects.m */,
 				E82287331F8A2E7900631380 /* GCWaypointAnnotation.h */,
@@ -4983,7 +4983,7 @@
 				E82344671EECE06E00D2CDFD /* TrackableTableViewCell.m in Sources */,
 				E82343F61EECDF4400D2CDFD /* WaypointHintViewController.m in Sources */,
 				E82287CC1F8A32C600631380 /* ProtocolLiveAPI.m in Sources */,
-				E82287611F8A2EC300631380 /* GCMKCircle.m in Sources */,
+				E82287611F8A2EC300631380 /* GCMKObjects.m in Sources */,
 				E82288F31F8A3E8500631380 /* GMUStyle.m in Sources */,
 				E82344821EECE09C00D2CDFD /* ListIgnoredViewController.m in Sources */,
 				E8596ACD1F73174100E26495 /* DeveloperDatabaseViewController.m in Sources */,
@@ -5219,7 +5219,7 @@
 				E82344281EECDFB300D2CDFD /* FilterDatesTableViewCell.m in Sources */,
 				E82287101F8A2E1A00631380 /* GCTableViewCellKeyValue.m in Sources */,
 				E82287641F8A2EC300631380 /* GCImageView.m in Sources */,
-				E82287631F8A2EC300631380 /* GCGMSCircle.m in Sources */,
+				E82287631F8A2EC300631380 /* GCGMSObjects.m in Sources */,
 				E82288D71F8A359900631380 /* GMUGeometryRenderer.m in Sources */,
 				E822869D1F8A2BD600631380 /* dbState.m in Sources */,
 				E82288FD1F8A3EC900631380 /* ioapi.c in Sources */,
