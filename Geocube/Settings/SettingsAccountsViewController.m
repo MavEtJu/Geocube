@@ -20,10 +20,8 @@
  */
 
 @interface SettingsAccountsViewController ()
-{
-    NSArray<dbAccount *> *accounts;
-    NSInteger accountsCount;
-}
+
+@property (nonatomic, retain) NSArray<dbAccount *> *accounts;
 
 @end
 
@@ -73,8 +71,7 @@ enum {
             [bs addObject:a];
     }];
 
-    accounts = bs;
-    accountsCount = [accounts count];
+    self.accounts = bs;
     [self reloadDataMainQueue];
 }
 
@@ -89,7 +86,7 @@ enum {
 {
     [super viewDidAppear:animated];
 
-    if ([accounts count] != 0)
+    if ([self.accounts count] != 0)
         return;
 
     UIAlertController *alert = [UIAlertController
@@ -125,7 +122,7 @@ enum {
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return accountsCount;
+    return [self.accounts count];
 }
 
 // Return a cell for the index path
@@ -133,7 +130,7 @@ enum {
 {
     GCTableViewCellSubtitleRightImage *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLSUBTITLERIGHTIMAGE forIndexPath:indexPath];
 
-    dbAccount *a = [accounts objectAtIndex:indexPath.row];
+    dbAccount *a = [self.accounts objectAtIndex:indexPath.row];
     cell.textLabel.text = a.site;
     cell.detailTextLabel.text = a.accountname.name;
     if (a.enabled == NO) {
@@ -156,7 +153,7 @@ enum {
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbAccount *account = [accounts objectAtIndex:indexPath.row];
+    dbAccount *account = [self.accounts objectAtIndex:indexPath.row];
 
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:_(@"settingsaccountsviewcontroller-Update account details")

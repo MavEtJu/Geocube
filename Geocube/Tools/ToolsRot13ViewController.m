@@ -20,14 +20,13 @@
  */
 
 @interface ToolsRot13ViewController ()
-{
-    UITextView *labelInput;
-    UITextView *labelOutput;
-    GCButton *buttonClear;
-    CGRect rectInput;
-    CGRect rectOutput;
-    CGRect rectButtonClear;
-}
+
+@property (nonatomic, retain) UITextView *labelInput;
+@property (nonatomic, retain) UITextView *labelOutput;
+@property (nonatomic, retain) GCButton *buttonClear;
+@property (nonatomic        ) CGRect rectInput;
+@property (nonatomic        ) CGRect rectOutput;
+@property (nonatomic        ) CGRect rectButtonClear;
 
 @end
 
@@ -55,26 +54,26 @@
 
     [self calculateRects];
 
-    labelInput = [[UITextView alloc] initWithFrame:rectInput];
-    labelInput.text = _(@"toolsrot13viewcontroller-Enter your text here...");
-    labelInput.backgroundColor = [UIColor lightGrayColor];
-    labelInput.delegate = self;
-    [labelInput selectAll:self];
-    [self.view addSubview:labelInput];
+    self.labelInput = [[UITextView alloc] initWithFrame:self.rectInput];
+    self.labelInput.text = _(@"toolsrot13viewcontroller-Enter your text here...");
+    self.labelInput.backgroundColor = [UIColor lightGrayColor];
+    self.labelInput.delegate = self;
+    [self.labelInput selectAll:self];
+    [self.view addSubview:self.labelInput];
 
-    labelOutput = [[UITextView alloc] initWithFrame:rectOutput];
-    labelOutput.text = _(@"toolsrot13viewcontroller-Ragre lbhe grkg urer...");
-    labelOutput.backgroundColor = [UIColor lightGrayColor];
-    labelOutput.userInteractionEnabled = YES;
-    labelOutput.delegate = self;
-    [self.view addSubview:labelOutput];
+    self.labelOutput = [[UITextView alloc] initWithFrame:self.rectOutput];
+    self.labelOutput.text = _(@"toolsrot13viewcontroller-Ragre lbhe grkg urer...");
+    self.labelOutput.backgroundColor = [UIColor lightGrayColor];
+    self.labelOutput.userInteractionEnabled = YES;
+    self.labelOutput.delegate = self;
+    [self.view addSubview:self.labelOutput];
 
-    buttonClear = [GCButton buttonWithType:UIButtonTypeSystem];
-    buttonClear.frame = rectButtonClear;
-    [buttonClear setTitle:_(@"Clear") forState:UIControlStateNormal];
-    [buttonClear addTarget:self action:@selector(clear:) forControlEvents:UIControlEventTouchDown];
-    buttonClear.userInteractionEnabled = YES;
-    [self.view addSubview:buttonClear];
+    self.buttonClear = [GCButton buttonWithType:UIButtonTypeSystem];
+    self.buttonClear.frame = self.rectButtonClear;
+    [self.buttonClear setTitle:_(@"Clear") forState:UIControlStateNormal];
+    [self.buttonClear addTarget:self action:@selector(clear:) forControlEvents:UIControlEventTouchDown];
+    self.buttonClear.userInteractionEnabled = YES;
+    [self.view addSubview:self.buttonClear];
 
     [self changeTheme];
 }
@@ -103,32 +102,32 @@
      */
 #define BORDER  10
 
-    rectInput = CGRectMake(BORDER, 1 * height36, width - 2 * BORDER, 6 * height36);
-    rectOutput = CGRectMake(BORDER, 8 * height36, width - 2 * BORDER, 6 * height36);
-    rectButtonClear = CGRectMake(BORDER, 15 * height36, width - 2 * BORDER, 1 * height36);
+    self.rectInput = CGRectMake(BORDER, 1 * height36, width - 2 * BORDER, 6 * height36);
+    self.rectOutput = CGRectMake(BORDER, 8 * height36, width - 2 * BORDER, 6 * height36);
+    self.rectButtonClear = CGRectMake(BORDER, 15 * height36, width - 2 * BORDER, 1 * height36);
 }
 
 - (void)viewWilltransitionToSize
 {
-    labelInput.frame = rectInput;
-    labelOutput.frame = rectOutput;
-    buttonClear.frame = rectButtonClear;
+    self.labelInput.frame = self.rectInput;
+    self.labelOutput.frame = self.rectOutput;
+    self.buttonClear.frame = self.rectButtonClear;
 }
 
 - (void)clear:(UIButton *)b
 {
-    labelInput.text = @"";
-    labelOutput.text = @"";
+    self.labelInput.text = @"";
+    self.labelOutput.text = @"";
 }
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-    labelOutput.text = [self rot13:labelInput.text];
+    self.labelOutput.text = [self rot13:self.labelInput.text];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    if (textView == labelOutput)
+    if (textView == self.labelOutput)
         return NO;
     return YES;
 }

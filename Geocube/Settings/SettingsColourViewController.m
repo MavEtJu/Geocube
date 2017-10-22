@@ -20,24 +20,23 @@
  */
 
 @interface SettingsColourViewController ()
-{
-    UIButton *chooseButton, *resetButton;
-    dbPin *pin;
-//    UIColor *currentColour;
-    UIImageView *previewColour;
-    UILabel *hexLabel;
-    NKOColorPickerView *colorPickerView;
-}
+
+@property (nonatomic, retain) UIButton *chooseButton, *resetButton;
+@property (nonatomic, retain) dbPin *pin;
+
+@property (nonatomic, retain) UIImageView *previewColour;
+@property (nonatomic, retain) UILabel *hexLabel;
+@property (nonatomic, retain) NKOColorPickerView *colorPickerView;
 
 @end
 
 @implementation SettingsColourViewController
 
-- (instancetype)init:(dbPin *)_pin
+- (instancetype)init:(dbPin *)pin
 {
     self = [super init];
 
-    pin = _pin;
+    self.pin = pin;
     self.lmi = nil;
 
     return self;
@@ -54,46 +53,46 @@
     self.view = contentView;
 
     GCLabel *l = [[GCLabel alloc] initWithFrame:CGRectMake(10, y, frame.size.width, 20)];
-    l.text = pin.desc;
+    l.text = self.pin.desc;
     [self.view addSubview:l];
     y += 20;
 
     /* Create pin data */
 
     NKOColorPickerDidChangeColorBlock colorDidChangeBlock = ^(UIColor *colour){
-        pin.colour = colour;
-        pin.rgb = [ImageManager ColorToRGB:colour];
-        pin.img = [ImageManager newPinHead:colour];
-        hexLabel.text = pin.rgb;
-        previewColour.image = pin.img;
+        self.pin.colour = colour;
+        self.pin.rgb = [ImageManager ColorToRGB:colour];
+        self.pin.img = [ImageManager newPinHead:colour];
+        self.hexLabel.text = self.pin.rgb;
+        self.previewColour.image = self.pin.img;
     };
-    colorPickerView = [[NKOColorPickerView alloc] initWithFrame:CGRectMake(0, y, frame.size.width, 340) color:pin.colour andDidChangeColorBlock:colorDidChangeBlock];
-    [colorPickerView setColor:pin.colour];
-    [self.view addSubview:colorPickerView];
+    self.colorPickerView = [[NKOColorPickerView alloc] initWithFrame:CGRectMake(0, y, frame.size.width, 340) color:self.pin.colour andDidChangeColorBlock:colorDidChangeBlock];
+    [self.colorPickerView setColor:self.pin.colour];
+    [self.view addSubview:self.colorPickerView];
     y += 340;
 
-    UIImage *img = pin.img;
-    previewColour = [[UIImageView alloc] initWithFrame:CGRectMake((15 + frame.size.width / 5 - img.size.width * 1.5) / 2, y, img.size.width * 1.5, img.size.height * 1.5)];
-    previewColour.image = img;
-    [self.view addSubview:previewColour];
+    UIImage *img = self.pin.img;
+    self.previewColour = [[UIImageView alloc] initWithFrame:CGRectMake((15 + frame.size.width / 5 - img.size.width * 1.5) / 2, y, img.size.width * 1.5, img.size.height * 1.5)];
+    self.previewColour.image = img;
+    [self.view addSubview:self.previewColour];
 
-    chooseButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    chooseButton.frame = CGRectMake(frame.size.width / 5, y, 3 * frame.size.width / 5, 20);
-    [chooseButton setTitle:_(@"settingscolourviewcontroller-Choose this colour") forState:UIControlStateNormal];
-    [chooseButton addTarget:self action:@selector(chooseColour) forControlEvents:UIControlEventTouchDown];
-    [self.view addSubview:chooseButton];
+    self.chooseButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.chooseButton.frame = CGRectMake(frame.size.width / 5, y, 3 * frame.size.width / 5, 20);
+    [self.chooseButton setTitle:_(@"settingscolourviewcontroller-Choose this colour") forState:UIControlStateNormal];
+    [self.chooseButton addTarget:self action:@selector(chooseColour) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:self.chooseButton];
     y += 30;
 
-    hexLabel = [[GCLabel alloc] initWithFrame:CGRectMake(5, y, 10 + frame.size.width / 5, 20)];
-    hexLabel.text = pin.rgb;
-    hexLabel.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:hexLabel];
+    self.hexLabel = [[GCLabel alloc] initWithFrame:CGRectMake(5, y, 10 + frame.size.width / 5, 20)];
+    self.hexLabel.text = self.pin.rgb;
+    self.hexLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:self.hexLabel];
 
-    resetButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    resetButton.frame = CGRectMake(frame.size.width / 5, y, 3 * frame.size.width / 5, 20);
-    [resetButton setTitle:_(@"Reset") forState:UIControlStateNormal];
-    [resetButton addTarget:self action:@selector(resetColour) forControlEvents:UIControlEventTouchDown];
-    [self.view addSubview:resetButton];
+    self.resetButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.resetButton.frame = CGRectMake(frame.size.width / 5, y, 3 * frame.size.width / 5, 20);
+    [self.resetButton setTitle:_(@"Reset") forState:UIControlStateNormal];
+    [self.resetButton addTarget:self action:@selector(resetColour) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:self.resetButton];
     y += 30;
 
     contentView.contentSize = CGSizeMake(frame.size.width, y);
@@ -101,19 +100,19 @@
 
 - (void)chooseColour
 {
-    NSString *hexString = [ImageManager ColorToRGB:pin.colour];
+    NSString *hexString = [ImageManager ColorToRGB:self.pin.colour];
 
-    pin.rgb = hexString;
-    [pin dbUpdateRGB];
+    self.pin.rgb = hexString;
+    [self.pin dbUpdateRGB];
 
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)resetColour
 {
-    pin.rgb = pin.rgb_default;
-    [pin finish];
-    [colorPickerView setColor:pin.colour];
+    self.pin.rgb = self.pin.rgb_default;
+    [self.pin finish];
+    [self.colorPickerView setColor:self.pin.colour];
 }
 
 @end

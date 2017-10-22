@@ -20,10 +20,8 @@
  */
 
 @interface LocationlessTemplateViewController ()
-{
-    SortOrderLocationless currentSortOrder;
-}
 
+@property (nonatomic        ) SortOrderLocationless currentSortOrder;
 @property (strong, nonatomic) UISearchController *searchController;
 
 @end
@@ -39,7 +37,7 @@ enum {
 {
     self = [super init];
 
-    currentSortOrder = configManager.locationlessListSortBy;
+    self.currentSortOrder = configManager.locationlessListSortBy;
 
     self.lmi = [[LocalMenuItems alloc] init:menuMax];
     [self.lmi addItem:menuSortBy label:_(@"locationlesstemplateviewcontroller-Sort by")];
@@ -51,7 +49,7 @@ enum {
 {
     [super viewWillAppear:animated];
     [self refreshWaypoints:nil];
-    self.waypoints = [WaypointSorter resortWaypoints:self.waypoints locationlessSortOrder:currentSortOrder];
+    self.waypoints = [WaypointSorter resortWaypoints:self.waypoints locationlessSortOrder:self.currentSortOrder];
     [self.tableView reloadData];
 }
 
@@ -174,8 +172,8 @@ enum {
                                  actionWithTitle:[orders objectAtIndex:i]
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction *action) {
-                                     currentSortOrder = i;
-                                     self.waypoints = [WaypointSorter resortWaypoints:self.waypoints locationlessSortOrder:currentSortOrder];
+                                     self.currentSortOrder = i;
+                                     self.waypoints = [WaypointSorter resortWaypoints:self.waypoints locationlessSortOrder:self.currentSortOrder];
                                      [self.tableView reloadData];
                                  }];
         [alert addAction:action];

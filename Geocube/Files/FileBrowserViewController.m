@@ -20,9 +20,8 @@
  */
 
 @interface FileBrowserViewController ()
-{
-    GCScrollView *contentView;
-}
+
+@property (nonatomic, retain) GCScrollView *contentView;
 
 @property (nonatomic, retain) FileObject *rootFO;
 @property (nonatomic, retain) FileObject *shownFO;
@@ -39,9 +38,9 @@
     [super viewDidLoad];
 
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
-    contentView = [[GCScrollView alloc] initWithFrame:applicationFrame];
-    contentView.delegate = self;
-    self.view = contentView;
+    self.contentView = [[GCScrollView alloc] initWithFrame:applicationFrame];
+    self.contentView.delegate = self;
+    self.view = self.contentView;
 
     [self changeTheme];
 }
@@ -151,7 +150,7 @@
     CGRect bounds = [[UIScreen mainScreen] bounds];
     NSInteger width = bounds.size.width;
 
-    for (UIView *v in contentView.subviews) {
+    for (UIView *v in self.contentView.subviews) {
         if ([v isKindOfClass:[GCLabel class]]) {
             [v removeFromSuperview];
         }
@@ -171,7 +170,7 @@
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapUp:)];
     [l addGestureRecognizer:tapGesture];
 
-    [contentView addSubview:l];
+    [self.contentView addSubview:l];
 
     [self.shownFO.contents enumerateObjectsUsingBlock:^(FileObject * _Nonnull fo, NSUInteger idx, BOOL * _Nonnull stop) {
         FileObjectView *fov = [[FileObjectView alloc] initWithFrame:CGRectMake(0, self.y, width, currentTheme.GCLabelNormalSizeFont.pointSize)];
@@ -198,10 +197,10 @@
 
         [fov sizeToFit];
         self.y += fov.frame.size.height;
-        [contentView addSubview:fov];
+        [self.contentView addSubview:fov];
     }];
 
-    [contentView setContentSize:CGSizeMake(width, self.y)];
+    [self.contentView setContentSize:CGSizeMake(width, self.y)];
 }
 
 - (NSString *)determineFullPath

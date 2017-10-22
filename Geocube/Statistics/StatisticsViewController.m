@@ -20,13 +20,12 @@
  */
 
 @interface StatisticsViewController ()
-{
-    UIScrollView *contentView;
-    NSMutableArray<NSMutableDictionary *> *accounts;
-    NSMutableDictionary *totalDictionary;
 
-    BOOL hasbeenstarted;
-}
+@property (nonatomic, retain) UIScrollView *contentView;
+@property (nonatomic, retain) NSMutableArray<NSMutableDictionary *> *accounts;
+@property (nonatomic, retain) NSMutableDictionary *totalDictionary;
+
+@property (nonatomic        ) BOOL hasbeenstarted;
 
 @end
 
@@ -44,8 +43,8 @@ enum {
     self.lmi = [[LocalMenuItems alloc] init:menuMax];
     [self.lmi addItem:menuReload label:_(@"statisticsviewcontroller-Reload")];
 
-    accounts = [NSMutableArray arrayWithCapacity:[dbc.accounts count]];
-    hasbeenstarted = NO;
+    self.accounts = [NSMutableArray arrayWithCapacity:[dbc.accounts count]];
+    self.hasbeenstarted = NO;
 
     [self makeInfoView];
 
@@ -63,8 +62,8 @@ enum {
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (hasbeenstarted == NO) {
-        hasbeenstarted = YES;
+    if (self.hasbeenstarted == NO) {
+        self.hasbeenstarted = YES;
         [self createStatistics];
         [self loadStatistics];
     }
@@ -91,7 +90,7 @@ enum {
     if (section == 1)
         return 1;
     else
-        return [accounts count];
+        return [self.accounts count];
 }
 
 // Return a cell for the index path
@@ -111,17 +110,17 @@ enum {
     }
 
     if (indexPath.section == 1) {
-        CELL(site, nil, totalDictionary, @"site")
-        CELL(status, @"Status", totalDictionary, @"status")
-        CELL(wpsFound, @"Waypoints found", totalDictionary, @"waypoints_found")
-        CELL(wpsHidden, @"Waypoints hidden", totalDictionary, @"waypoints_hidden")
-        CELL(wpsDNF, @"Waypoints DNF", totalDictionary, @"waypoints_notfound")
-        CELL(recommendationsGiven, @"Recommendations given", totalDictionary, @"recommendations_given")
-        CELL(recommendationsReceived, @"Recommendations received", totalDictionary, @"recommendations_received")
+        CELL(site, nil, self.totalDictionary, @"site")
+        CELL(status, @"Status", self.totalDictionary, @"status")
+        CELL(wpsFound, @"Waypoints found", self.totalDictionary, @"waypoints_found")
+        CELL(wpsHidden, @"Waypoints hidden", self.totalDictionary, @"waypoints_hidden")
+        CELL(wpsDNF, @"Waypoints DNF", self.totalDictionary, @"waypoints_notfound")
+        CELL(recommendationsGiven, @"Recommendations given", self.totalDictionary, @"recommendations_given")
+        CELL(recommendationsReceived, @"Recommendations received", self.totalDictionary, @"recommendations_received")
     }
 
     if (indexPath.section == 0) {
-        NSDictionary *d = [accounts objectAtIndex:indexPath.row];
+        NSDictionary *d = [self.accounts objectAtIndex:indexPath.row];
         CELL(site, nil, d, @"site")
         CELL(status, @"Status", d, @"status")
         CELL(wpsFound, @"Waypoints found", d, @"waypoints_found")
@@ -149,7 +148,7 @@ enum {
         [d setObject:_(@"statistics-Not yet polled") forKey:@"status"];
         [d setObject:a.site forKey:@"site"];
         [d setObject:a forKey:@"account"];
-        [accounts addObject:d];
+        [self.accounts addObject:d];
 
         if (a.remoteAPI.supportsUserStatistics == NO)
             [d setObject:_(@"statistics-Remote API doesn't support user statistics") forKey:@"status"];
@@ -157,19 +156,19 @@ enum {
             [d setObject:_(@"statistics-No remote API available") forKey:@"status"];
     }];
 
-    totalDictionary = [NSMutableDictionary dictionary];
-    [totalDictionary setObject:@"" forKey:@"site"];
-    [totalDictionary setObject:_(@"statistics-Not yet computed") forKey:@"status"];
+    self.totalDictionary = [NSMutableDictionary dictionary];
+    [self.totalDictionary setObject:@"" forKey:@"site"];
+    [self.totalDictionary setObject:_(@"statistics-Not yet computed") forKey:@"status"];
     [self clearTotal];
 }
 
 - (void)clearTotal
 {
-    [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"waypoints_hidden"];
-    [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"waypoints_notfound"];
-    [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"waypoints_found"];
-    [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"recommendations_given"];
-    [totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"recommendations_received"];
+    [self.totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"waypoints_hidden"];
+    [self.totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"waypoints_notfound"];
+    [self.totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"waypoints_found"];
+    [self.totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"recommendations_given"];
+    [self.totalDictionary setObject:[NSNumber numberWithInteger:0] forKey:@"recommendations_received"];
 }
 
 - (void)loadStatistics
@@ -177,7 +176,7 @@ enum {
     [self showInfoView];
     [self clearTotal];
 
-    [accounts enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull d, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.accounts enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull d, NSUInteger idx, BOOL * _Nonnull stop) {
         dbAccount *a = [d objectForKey:@"account"];
 
         [d removeObjectForKey:@"waypoints_found"];
@@ -205,7 +204,7 @@ enum {
 
 - (void)updateTotals:(NSDictionary *)ad
 {
-    [totalDictionary removeObjectForKey:@"status"];
+    [self.totalDictionary removeObjectForKey:@"status"];
     [self updateTotal:@"waypoints_found" with:[ad valueForKey:@"waypoints_found"]];
     [self updateTotal:@"waypoints_notfound" with:[ad valueForKey:@"waypoints_notfound"]];
     [self updateTotal:@"waypoints_hidden" with:[ad valueForKey:@"waypoints_hidden"]];
@@ -220,13 +219,13 @@ enum {
     if ([_value isKindOfClass:[NSNumber class]] == NO)
         return;
     NSNumber *value = (NSNumber *)_value;
-    NSNumber *n = [totalDictionary objectForKey:key];
+    NSNumber *n = [self.totalDictionary objectForKey:key];
     NSAssert1(n != nil, @"updateTotal: key %@ does not exist", key);
 
     NSInteger i = [n integerValue];
     i += [value integerValue];
 
-    [totalDictionary setObject:[NSNumber numberWithInteger:i] forKey:key];
+    [self.totalDictionary setObject:[NSNumber numberWithInteger:i] forKey:key];
 }
 
 - (void)runStatistics:(NSMutableDictionary *)ad
@@ -269,7 +268,7 @@ enum {
 {
     switch (index) {
         case menuReload:
-            if ([accounts count] == 0)
+            if ([self.accounts count] == 0)
                 [self createStatistics];
             [self loadStatistics];
             return;

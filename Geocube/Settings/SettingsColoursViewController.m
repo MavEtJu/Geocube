@@ -20,9 +20,8 @@
  */
 
 @interface SettingsColoursViewController ()
-{
-    NSMutableArray<dbPin *> *pins;
-}
+
+@property (nonatomic, retain) NSMutableArray<dbPin *> *pins;
 
 @end
 
@@ -43,7 +42,7 @@ enum {
     self.lmi = [[LocalMenuItems alloc] init:menuMax];
     [self.lmi addItem:menuReset label:_(@"settingscoloursviewcontroller-Reset")];
 
-    pins = [NSMutableArray arrayWithArray:dbc.pins];
+    self.pins = [NSMutableArray arrayWithArray:dbc.pins];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -59,7 +58,7 @@ enum {
 
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [pins count];
+    return [self.pins count];
 }
 
 // Return a cell for the index path
@@ -67,7 +66,7 @@ enum {
 {
     GCTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
 
-    dbPin *p = [pins objectAtIndex:indexPath.row];
+    dbPin *p = [self.pins objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"pin-%@", p.desc];
     cell.textLabel.text = _(cell.textLabel.text);
     cell.imageView.image = p.img;
@@ -77,7 +76,7 @@ enum {
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbPin *p = [pins objectAtIndex:indexPath.row];
+    dbPin *p = [self.pins objectAtIndex:indexPath.row];
 
     UIViewController *newController = [[SettingsColourViewController alloc] init:p];
     newController.edgesForExtendedLayout = UIRectEdgeNone;

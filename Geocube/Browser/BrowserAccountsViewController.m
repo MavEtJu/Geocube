@@ -20,9 +20,8 @@
  */
 
 @interface BrowserAccountsViewController ()
-{
-    NSMutableArray<dbAccount *> *accounts;
-}
+
+@property (nonatomic, retain) NSMutableArray<dbAccount *> *accounts;
 
 @end
 
@@ -47,11 +46,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    accounts = [NSMutableArray arrayWithCapacity:20];
+    self.accounts = [NSMutableArray arrayWithCapacity:20];
     [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (IS_EMPTY(a.accountname.name) == NO &&
             a.url_queries != nil && [a.url_queries isEqualToString:@""] == NO)
-            [accounts addObject:a];
+            [self.accounts addObject:a];
     }];
     [self.tableView reloadData];
 }
@@ -66,7 +65,7 @@
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [accounts count];
+    return [self.accounts count];
 }
 
 // Return a cell for the index path
@@ -74,7 +73,7 @@
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
-    dbAccount *a = [accounts objectAtIndex:indexPath.row];
+    dbAccount *a = [self.accounts objectAtIndex:indexPath.row];
     cell.textLabel.text = a.site;
 
     cell.userInteractionEnabled = YES;
@@ -90,7 +89,7 @@
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbAccount *a = [accounts objectAtIndex:indexPath.row];
+    dbAccount *a = [self.accounts objectAtIndex:indexPath.row];
 
     [browserViewController showBrowser];
     [browserViewController clearScreen];

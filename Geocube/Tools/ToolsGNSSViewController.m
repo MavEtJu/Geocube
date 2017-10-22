@@ -20,32 +20,32 @@
  */
 
 @interface ToolsGNSSViewController ()
-{
-    NSMutableArray<GCLocationCoordinate2D *> *coords;
-    CLLocationCoordinate2D coordsLast, coordsAverage;
 
-    GCImageView *ivGNSSMap;
+@property (nonatomic, retain) NSMutableArray<GCLocationCoordinate2D *> *coords;
+@property (nonatomic        ) CLLocationCoordinate2D coordsLast, coordsAverage;
 
-    GCLabelSmallText *labelCoordsMinX;
-    GCLabelSmallText *labelCoordsMinY;
-    GCLabelSmallText *labelCoordsMaxX;
-    GCLabelSmallText *labelCoordsMaxY;
-    GCLabelSmallText *labelCoordsAvg;
-    GCLabelSmallText *labelCoordsLast;
-    GCLabelSmallText *labelDistance;
+@property (nonatomic, retain) GCImageView *ivGNSSMap;
 
-    CGRect rectGNSSMap;
-    CGRect rectCoordsMinX;
-    CGRect rectCoordsMinY;
-    CGRect rectCoordsMaxX;
-    CGRect rectCoordsMaxY;
-    CGRect rectCoordsAvg;
-    CGRect rectCoordsLast;
-    CGRect rectDistance;
+@property (nonatomic, retain) GCLabelSmallText *labelCoordsMinX;
+@property (nonatomic, retain) GCLabelSmallText *labelCoordsMinY;
+@property (nonatomic, retain) GCLabelSmallText *labelCoordsMaxX;
+@property (nonatomic, retain) GCLabelSmallText *labelCoordsMaxY;
+@property (nonatomic, retain) GCLabelSmallText *labelCoordsAvg;
+@property (nonatomic, retain) GCLabelSmallText *labelCoordsLast;
+@property (nonatomic, retain) GCLabelSmallText *labelDistance;
 
-    float smallLabelLineHeight;
-    BOOL stopTimer;
-}
+@property (nonatomic        ) CGRect rectGNSSMap;
+@property (nonatomic        ) CGRect rectCoordsMinX;
+@property (nonatomic        ) CGRect rectCoordsMinY;
+@property (nonatomic        ) CGRect rectCoordsMaxX;
+@property (nonatomic        ) CGRect rectCoordsMaxY;
+@property (nonatomic        ) CGRect rectCoordsAvg;
+@property (nonatomic        ) CGRect rectCoordsLast;
+@property (nonatomic        ) CGRect rectDistance;
+
+@property (nonatomic        ) float smallLabelLineHeight;
+@property (nonatomic        ) BOOL stopTimer;
+
 
 @end
 
@@ -84,46 +84,46 @@ enum {
     self.view = contentView;
     [self.view sizeToFit];
 
-    GCLabelSmallText *l = [[GCLabelSmallText alloc] initWithFrame:rectCoordsMinX];
-    smallLabelLineHeight = l.font.lineHeight;
+    GCLabelSmallText *l = [[GCLabelSmallText alloc] initWithFrame:self.rectCoordsMinX];
+    self.smallLabelLineHeight = l.font.lineHeight;
 
-    coords = [NSMutableArray arrayWithCapacity:100];
+    self.coords = [NSMutableArray arrayWithCapacity:100];
 
-    ivGNSSMap = [[GCImageView alloc] initWithFrame:rectGNSSMap];
-    ivGNSSMap.image = [self createGNSSMap];
-    [self.view addSubview:ivGNSSMap];
+    self.ivGNSSMap = [[GCImageView alloc] initWithFrame:self.rectGNSSMap];
+    self.ivGNSSMap.image = [self createGNSSMap];
+    [self.view addSubview:self.ivGNSSMap];
 
-    labelCoordsMinX = [[GCLabelSmallText alloc] initWithFrame:rectCoordsMinX];
-    labelCoordsMinX.transform = CGAffineTransformMakeRotation(-M_PI_2);
-    labelCoordsMinX.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:labelCoordsMinX];
+    self.labelCoordsMinX = [[GCLabelSmallText alloc] initWithFrame:self.rectCoordsMinX];
+    self.labelCoordsMinX.transform = CGAffineTransformMakeRotation(-M_PI_2);
+    self.labelCoordsMinX.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:self.labelCoordsMinX];
 
-    labelCoordsMinY = [[GCLabelSmallText alloc] initWithFrame:rectCoordsMinY];
-    labelCoordsMinY.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:labelCoordsMinY];
+    self.labelCoordsMinY = [[GCLabelSmallText alloc] initWithFrame:self.rectCoordsMinY];
+    self.labelCoordsMinY.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:self.labelCoordsMinY];
 
-    labelCoordsMaxX = [[GCLabelSmallText alloc] initWithFrame:rectCoordsMaxX];
-    labelCoordsMaxX.transform = CGAffineTransformMakeRotation(M_PI_2);
-    labelCoordsMaxX.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:labelCoordsMaxX];
+    self.labelCoordsMaxX = [[GCLabelSmallText alloc] initWithFrame:self.rectCoordsMaxX];
+    self.labelCoordsMaxX.transform = CGAffineTransformMakeRotation(M_PI_2);
+    self.labelCoordsMaxX.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:self.labelCoordsMaxX];
 
-    labelCoordsMaxY = [[GCLabelSmallText alloc] initWithFrame:rectCoordsMaxY];
-    labelCoordsMaxY.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:labelCoordsMaxY];
+    self.labelCoordsMaxY = [[GCLabelSmallText alloc] initWithFrame:self.rectCoordsMaxY];
+    self.labelCoordsMaxY.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:self.labelCoordsMaxY];
 
-    labelCoordsAvg = [[GCLabelSmallText alloc] initWithFrame:rectCoordsAvg];
-    labelCoordsAvg.textAlignment = NSTextAlignmentCenter;
-    labelCoordsAvg.textColor = [UIColor redColor];
-    [self.view addSubview:labelCoordsAvg];
+    self.labelCoordsAvg = [[GCLabelSmallText alloc] initWithFrame:self.rectCoordsAvg];
+    self.labelCoordsAvg.textAlignment = NSTextAlignmentCenter;
+    self.labelCoordsAvg.textColor = [UIColor redColor];
+    [self.view addSubview:self.labelCoordsAvg];
 
-    labelCoordsLast = [[GCLabelSmallText alloc] initWithFrame:rectCoordsLast];
-    labelCoordsLast.textAlignment = NSTextAlignmentCenter;
-    labelCoordsLast.textColor = [UIColor greenColor];
-    [self.view addSubview:labelCoordsLast];
+    self.labelCoordsLast = [[GCLabelSmallText alloc] initWithFrame:self.rectCoordsLast];
+    self.labelCoordsLast.textAlignment = NSTextAlignmentCenter;
+    self.labelCoordsLast.textColor = [UIColor greenColor];
+    [self.view addSubview:self.labelCoordsLast];
 
-    labelDistance = [[GCLabelSmallText alloc] initWithFrame:rectDistance];
-    labelDistance.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:labelDistance];
+    self.labelDistance = [[GCLabelSmallText alloc] initWithFrame:self.rectDistance];
+    self.labelDistance.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:self.labelDistance];
 
     [self viewWilltransitionToSize];
     [self changeTheme];
@@ -133,14 +133,14 @@ enum {
 {
     [super viewDidAppear:animated];
     [LM startDelegationLocation:self isNavigating:YES];
-    stopTimer = NO;
+    self.stopTimer = NO;
     BACKGROUND(updateEverySecond, nil);
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    stopTimer = YES;
+    self.stopTimer = YES;
     [LM stopDelegationLocation:self];
 }
 
@@ -152,54 +152,54 @@ enum {
     NSInteger height16 = bounds.size.height / 18;
     NSInteger height = 16.8 * height16;
 
-    rectGNSSMap = CGRectMake(smallLabelLineHeight, smallLabelLineHeight, width - 2 * smallLabelLineHeight, height - 5 * smallLabelLineHeight);
+    self.rectGNSSMap = CGRectMake(self.smallLabelLineHeight, self.smallLabelLineHeight, width - 2 * self.smallLabelLineHeight, height - 5 * self.smallLabelLineHeight);
 
-    rectCoordsMinX = CGRectMake( 0 * width16, width16, smallLabelLineHeight, 15 * height16);
-    rectCoordsMaxX = CGRectMake(width - smallLabelLineHeight, width16, smallLabelLineHeight, 15 * height16);
+    self.rectCoordsMinX = CGRectMake( 0 * width16, width16, self.smallLabelLineHeight, 15 * height16);
+    self.rectCoordsMaxX = CGRectMake(width - self.smallLabelLineHeight, width16, self.smallLabelLineHeight, 15 * height16);
 
-    rectCoordsMaxY = CGRectMake(0,  0, width, smallLabelLineHeight);
-    rectCoordsMinY = CGRectMake(0, height - 4 * smallLabelLineHeight, width, smallLabelLineHeight);
+    self.rectCoordsMaxY = CGRectMake(0,  0, width, self.smallLabelLineHeight);
+    self.rectCoordsMinY = CGRectMake(0, height - 4 * self.smallLabelLineHeight, width, self.smallLabelLineHeight);
 
-    rectCoordsLast = CGRectMake(0, height - 3 * smallLabelLineHeight, width, smallLabelLineHeight);
-    rectCoordsAvg = CGRectMake( 0, height - 2 * smallLabelLineHeight, width, smallLabelLineHeight);
-    rectDistance = CGRectMake(  0, height - 1 * smallLabelLineHeight, width, smallLabelLineHeight);
+    self.rectCoordsLast = CGRectMake(0, height - 3 * self.smallLabelLineHeight, width, self.smallLabelLineHeight);
+    self.rectCoordsAvg = CGRectMake( 0, height - 2 * self.smallLabelLineHeight, width, self.smallLabelLineHeight);
+    self.rectDistance = CGRectMake(  0, height - 1 * self.smallLabelLineHeight, width, self.smallLabelLineHeight);
 }
 
 - (void)viewWilltransitionToSize
 {
     [self calculateRects];
-    labelCoordsMinX.frame = rectCoordsMinX;
-    labelCoordsMaxX.frame = rectCoordsMaxX;
-    labelCoordsMinY.frame = rectCoordsMinY;
-    labelCoordsMaxY.frame = rectCoordsMaxY;
-    labelCoordsAvg.frame = rectCoordsAvg;
-    labelCoordsLast.frame = rectCoordsLast;
-    labelDistance.frame = rectDistance;
+    self.labelCoordsMinX.frame = self.rectCoordsMinX;
+    self.labelCoordsMaxX.frame = self.rectCoordsMaxX;
+    self.labelCoordsMinY.frame = self.rectCoordsMinY;
+    self.labelCoordsMaxY.frame = self.rectCoordsMaxY;
+    self.labelCoordsAvg.frame = self.rectCoordsAvg;
+    self.labelCoordsLast.frame = self.rectCoordsLast;
+    self.labelDistance.frame = self.rectDistance;
 
-    ivGNSSMap.frame = rectGNSSMap;
+    self.ivGNSSMap.frame = self.rectGNSSMap;
 }
 
 - (UIImage *)createGNSSMap
 {
     UIImage *img = nil;
-    NSInteger X = rectGNSSMap.size.width;
-    NSInteger Y = rectGNSSMap.size.height;
+    NSInteger X = self.rectGNSSMap.size.width;
+    NSInteger Y = self.rectGNSSMap.size.height;
 
     if (X == 0 && Y == 0)
         return nil;
 
     __block CGFloat x0 = +180, x3 = -180, y0 = +180, y3 = -180;
-    [coords enumerateObjectsUsingBlock:^(GCLocationCoordinate2D * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.coords enumerateObjectsUsingBlock:^(GCLocationCoordinate2D * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
         x0 = MIN(x0, c.lon);
         x3 = MAX(x3, c.lon);
         y0 = MIN(y0, c.lat);
         y3 = MAX(y3, c.lat);
     }];
 
-    labelCoordsMinX.text = [Coordinates niceLongitude:x0];
-    labelCoordsMaxX.text = [Coordinates niceLongitude:x3];
-    labelCoordsMinY.text = [Coordinates niceLatitude:y0];
-    labelCoordsMaxY.text = [Coordinates niceLatitude:y3];
+    self.labelCoordsMinX.text = [Coordinates niceLongitude:x0];
+    self.labelCoordsMaxX.text = [Coordinates niceLongitude:x3];
+    self.labelCoordsMinY.text = [Coordinates niceLatitude:y0];
+    self.labelCoordsMaxY.text = [Coordinates niceLatitude:y3];
 
     x0 -= .0001;
     y0 -= .0001;
@@ -235,8 +235,8 @@ enum {
     GCLocationCoordinate2D *avg = [[GCLocationCoordinate2D alloc] init];
     CGContextSetLineWidth(context, 1);
     __block NSInteger countavg = 0;
-    [coords enumerateObjectsUsingBlock:^(GCLocationCoordinate2D * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
-        CGContextSetStrokeColorWithColor(context, [[UIColor colorWithWhite:(1.0 - 1.0 * (idx + 1) / [coords count]) alpha:1] CGColor]);
+    [self.coords enumerateObjectsUsingBlock:^(GCLocationCoordinate2D * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
+        CGContextSetStrokeColorWithColor(context, [[UIColor colorWithWhite:(1.0 - 1.0 * (idx + 1) / [self.coords count]) alpha:1] CGColor]);
         CGFloat xx = [self xtrack:c.lon x0:x0 X:X x3:x3];
         CGFloat yy = [self ytrack:c.lat y0:y0 Y:Y y3:y3];
         CGContextStrokeRect(context, CGRectMake(xx - c.accuracy / 2.0, yy - c.accuracy / 2.0, c.accuracy, c.accuracy));
@@ -251,7 +251,7 @@ enum {
     avg.lon /= countavg;
 
     // Last coordinates in green
-    GCLocationCoordinate2D *last = [coords lastObject];
+    GCLocationCoordinate2D *last = [self.coords lastObject];
     CGContextSetStrokeColorWithColor(context, [[UIColor greenColor] CGColor]);
     CGFloat xx = [self xtrack:last.lon x0:x0 X:X x3:x3];
     CGFloat yy = [self ytrack:last.lat y0:y0 Y:Y y3:y3];
@@ -259,7 +259,7 @@ enum {
 
     // Average coordinates in red
     CGContextSetFillColorWithColor(context, [[UIColor redColor] CGColor]);
-    if ([coords count] != 0) {
+    if ([self.coords count] != 0) {
         CGFloat xx = [self xtrack:avg.lon x0:x0 X:X x3:x3];
         CGFloat yy = [self ytrack:avg.lat y0:y0 Y:Y y3:y3];
         CGContextFillRect(context, CGRectMake(xx - 2, yy - 2, 4, 4));
@@ -267,17 +267,17 @@ enum {
     CGContextStrokePath(context);
 
     // Update text
-    labelCoordsLast.text = [NSString stringWithFormat:@"%@: %@ ± %@", _(@"toolsgnssviewcontroller-Last"), [Coordinates niceCoordinates:last.lat longitude:last.lon], [MyTools niceDistance:last.accuracy]];
-    labelCoordsAvg.text = [NSString stringWithFormat:@"%@: %@", _(@"toolsgnssviewcontroller-Average"), [Coordinates niceCoordinates:avg.lat longitude:avg.lon]];
-    labelDistance.text = [NSString stringWithFormat:@"%@: %@", _(@"toolsgnssviewcontroller-Last distance to average"), [MyTools niceDistance:[Coordinates coordinates2distance:avg.lat fromLongitude:avg.lon toLatitude:last.lat toLongitude:last.lon]]];
+    self.labelCoordsLast.text = [NSString stringWithFormat:@"%@: %@ ± %@", _(@"toolsgnssviewcontroller-Last"), [Coordinates niceCoordinates:last.lat longitude:last.lon], [MyTools niceDistance:last.accuracy]];
+    self.labelCoordsAvg.text = [NSString stringWithFormat:@"%@: %@", _(@"toolsgnssviewcontroller-Average"), [Coordinates niceCoordinates:avg.lat longitude:avg.lon]];
+    self.labelDistance.text = [NSString stringWithFormat:@"%@: %@", _(@"toolsgnssviewcontroller-Last distance to average"), [MyTools niceDistance:[Coordinates coordinates2distance:avg.lat fromLongitude:avg.lon toLatitude:last.lat toLongitude:last.lon]]];
 
     // Make an image
     img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
 
     // Keep track
-    coordsAverage = CLLocationCoordinate2DMake(avg.lat, avg.lon);
-    coordsLast = CLLocationCoordinate2DMake(last.lat, last.lon);
+    self.coordsAverage = CLLocationCoordinate2DMake(avg.lat, avg.lon);
+    self.coordsLast = CLLocationCoordinate2DMake(last.lat, last.lon);
 
     return img;
 }
@@ -305,28 +305,28 @@ enum {
     gettimeofday(&tv, NULL);
     c.tv = tv;
 
-    [coords addObject:c];
-    while ([coords count] > 100)
-        [coords removeObjectAtIndex:0];
+    [self.coords addObject:c];
+    while ([self.coords count] > 100)
+        [self.coords removeObjectAtIndex:0];
 
     MAINQUEUE(
-        ivGNSSMap.image = [self createGNSSMap];
+        self.ivGNSSMap.image = [self createGNSSMap];
     )
 }
 
 - (void)updateEverySecond
 {
-    while ([coords count] == 0) {
+    while ([self.coords count] == 0) {
         [NSThread sleepForTimeInterval:1];
-        if (stopTimer == YES)
+        if (self.stopTimer == YES)
             return;
     }
     while (1) {
-        if (stopTimer == YES)
+        if (self.stopTimer == YES)
             return;
         [NSThread sleepForTimeInterval:1.0];
 
-        GCLocationCoordinate2D *c = [coords lastObject];
+        GCLocationCoordinate2D *c = [self.coords lastObject];
         long lastc = c.tv.tv_sec;
         long now = time(NULL);
 
@@ -375,20 +375,20 @@ enum {
     // Go back home
     switch (index) {
         case menuRestart:
-            [coords removeAllObjects];
+            [self.coords removeAllObjects];
             [self updateLocationManagerLocation];
             return;
 
         case menuCopyCoordsLast:
-            [self copyCoords:labelCoordsLast.text];
+            [self copyCoords:self.labelCoordsLast.text];
             return;
 
         case menuCopyCoordsAvg:
-            [self copyCoords:labelCoordsAvg.text];
+            [self copyCoords:self.labelCoordsAvg.text];
             return;
 
         case menuCreateWaypoint:
-            [self createWaypoint:coordsAverage];
+            [self createWaypoint:self.coordsAverage];
             return;
     }
 

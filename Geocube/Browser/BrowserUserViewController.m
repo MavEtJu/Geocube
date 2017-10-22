@@ -20,9 +20,8 @@
  */
 
 @interface BrowserUserViewController ()
-{
-    NSArray<dbBookmark *> *bms;
-}
+
+@property (nonatomic, retain) NSArray<dbBookmark *> *bms;
 
 @end
 
@@ -48,7 +47,7 @@ enum {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    bms = [dbBookmark dbAll];
+    self.bms = [dbBookmark dbAll];
     [self.tableView reloadData];
 }
 
@@ -62,7 +61,7 @@ enum {
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [bms count];
+    return [self.bms count];
 }
 
 // Return a cell for the index path
@@ -70,7 +69,7 @@ enum {
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
 
-    dbBookmark *a = [bms objectAtIndex:indexPath.row];
+    dbBookmark *a = [self.bms objectAtIndex:indexPath.row];
     cell.textLabel.text = a.name;
     cell.detailTextLabel.text = a.url;
 
@@ -89,16 +88,16 @@ enum {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         //add code here for when you hit delete
 
-        dbBookmark *a = [bms objectAtIndex:indexPath.row];
+        dbBookmark *a = [self.bms objectAtIndex:indexPath.row];
         [a dbDelete];
-        bms = [dbBookmark dbAll];
+        self.bms = [dbBookmark dbAll];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     }
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbBookmark *bm = [bms objectAtIndex:indexPath.row];
+    dbBookmark *bm = [self.bms objectAtIndex:indexPath.row];
 
     UIAlertController *view = [UIAlertController
                                alertControllerWithTitle:bm.name
@@ -111,7 +110,7 @@ enum {
                              handler:^(UIAlertAction * action)
                              {
                                  [bm dbDelete];
-                                 bms = [dbBookmark dbAll];
+                                 self.bms = [dbBookmark dbAll];
                                  [self.tableView reloadData];
 
                                  [view dismissViewControllerAnimated:YES completion:nil];
@@ -184,7 +183,7 @@ enum {
                              bm.name = name;
                              bm.url = url;
                              [bm dbUpdate];
-                             bms = [dbBookmark dbAll];
+                             self.bms = [dbBookmark dbAll];
 
                              [self.tableView reloadData];
                          }];
@@ -233,7 +232,7 @@ enum {
                              bm.url = url;
 
                              [bm dbCreate];
-                             bms = [dbBookmark dbAll];
+                             self.bms = [dbBookmark dbAll];
                              [self.tableView reloadData];
                          }];
     UIAlertAction *cancel = [UIAlertAction

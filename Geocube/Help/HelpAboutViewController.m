@@ -20,10 +20,8 @@
  */
 
 @interface HelpAboutViewController ()
-{
-    NSInteger width;
-    NSMutableArray<NSDictionary *> *texts;
-}
+
+@property (nonatomic, retain) NSMutableArray<NSDictionary *> *texts;
 
 @end
 
@@ -57,15 +55,15 @@
 
 - (void)loadTexts
 {
-    texts = [NSMutableArray arrayWithCapacity:20];
-    [texts addObject:@{
+    self.texts = [NSMutableArray arrayWithCapacity:20];
+    [self.texts addObject:@{
         @"name": @"OpenStreetMap maps",
         @"copyright": @"© OpenStreetMap contributors",
         @"url": @"http://openstreetmap.org",
         @"license": @"The data used for the OpenStreetMap map is available under the Open Database License. For the map tiles, the cartography is licensed as CC BY-SA. See http://openstreetmap.org/copyright for more details.",
      }];
 
-    [texts addObject:@{
+    [self.texts addObject:@{
         @"name": @"ActionSheetPicker",
         @"copyright": @"Copyright (c) 2011, Tim Cinel, All rights reserved.",
         @"url": @"https://github.com/skywinder/ActionSheetPicker-3.0",
@@ -78,13 +76,13 @@
             "\n"
             "THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.",
      }];
-    [texts addObject:@{
+    [self.texts addObject:@{
         @"name": @"'Beeper' sound (original Beep-2.wav)",
         @"copyright": @"Copyright (c) SoundJay.com",
         @"url": @"https://www.soundjay.com/beep-sounds-1.html",
         @"license": @"You are allowed to use the sounds free of charge and royalty free in your projects (such as films, videos, games, presentations, animations, stage plays, radio plays, audio books, apps) be it for commercial or non-commercial purposes.",
      }];
-    [texts addObject:@{
+    [self.texts addObject:@{
         @"name": @"CMRangeSlider",
         @"copyright": @"Copyright (c) 2010 Charlie Mezak <charliemezak@gmail.com>",
         @"url": @"https://github.com/cmezak/CMRangeSlider",
@@ -95,7 +93,7 @@
             "\n"
             "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
      }];
-    [texts addObject:@{
+    [self.texts addObject:@{
         @"name": @"DOPNavbarMenu",
         @"copyright": @"Copyright (c) 2015 Weizhou",
         @"url": @"https://github.com/dopcn/DOPNavbarMenu",
@@ -108,13 +106,13 @@
             "\n"
             "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
      }];
-    [texts addObject:@{
+    [self.texts addObject:@{
         @"name": @"'Import Complete' sound",
         @"copyright": @"Copyright (c) 2011, Brandon Morris",
         @"url": @"http://opengameart.org/content/completion-sound",
         @"license": @"CC-BY 3.0",
      }];
-    [texts addObject:@{
+    [self.texts addObject:@{
         @"name": @"kxintro",
         @"copyright": @"Copyright (c) 2013 Konstantin Bukreev. All rights reserved.\n",
         @"url": @"https://github.com/kolyvan/kxintro/",
@@ -126,7 +124,7 @@
             "\n"
             "THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.",
      }];
-    [texts addObject:@{
+    [self.texts addObject:@{
         @"name": @"MHTabBarController",
         @"copyright": @"Copyright (c) 2011 Matthijs Hollemans.",
         @"url": @"https://github.com/hollance/MHTabBarController",
@@ -137,7 +135,7 @@
             "\n"
             "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
      }];
-    [texts addObject:@{
+    [self.texts addObject:@{
         @"name": @"NKOColorPickerView",
         @"copyright": @"Copyright (C) 2014 Carlos Vidal",
         @"url": @"https://github.com/nakiostudio/NKO-Color-Picker-View-iOS",
@@ -150,7 +148,7 @@
             "\n"
             "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE LICENSE",
      }];
-    [texts addObject:@{
+    [self.texts addObject:@{
         @"name": @"NVHTarGzip",
         @"copyright": @"Copyright (c) 2014 Niels van Hoorn <niels@zekerwaar.nl>",
         @"url": @"https://github.com/nvh/NVHTarGzip",
@@ -163,13 +161,13 @@
             "\n"
             "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
      }];
-    [texts addObject:@{
+    [self.texts addObject:@{
        @"name": @"Geodata via OpenCage Data",
        @"copyright": @"Geodata copyright OpenStreetMap contributors",
        @"url": @"https://geocoder.opencagedata.com/",
        @"license": @"The geocodes the API returns are jointly licensed under the ODbL and CC-BY-SA licenses."
      }];
-    [texts addObject:@{
+    [self.texts addObject:@{
        @"name": @"google-maps-ios-utils",
        @"copyright": @"Copyright (c) 2016 Google Inc.",
        @"url": @"https://github.com/googlemaps/google-maps-ios-utils",
@@ -182,7 +180,7 @@
            "\n"
            "Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License."
      }];
-    [texts addObject:@{
+    [self.texts addObject:@{
         @"name": @"Reachability",
         @"copyright": @"Copyright (C) 2015 Apple Inc. All Rights Reserved.",
         @"url": @"http://developer.apple.com/library/ios/samplecode/Reachability/index.html",
@@ -195,7 +193,7 @@
             "\n"
             "IN NO EVENT SHALL APPLE BE LIABLE FOR ANY SPECIAL, INDIRECT, INCIDENTAL OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) ARISING IN ANY WAY OUT OF THE USE, REPRODUCTION, MODIFICATION AND/OR DISTRIBUTION OF THE APPLE SOFTWARE, HOWEVER CAUSED AND WHETHER UNDER THEORY OF CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, EVEN IF APPLE HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.",
      }];
-    [texts addObject:@{
+    [self.texts addObject:@{
         @"name": @"RNCryptor-objc",
         @"copyright": @"Copyright (c) 2012 Rob Napier",
         @"url": @"https://github.com/RNCryptor/RNCryptor-objc",
@@ -208,7 +206,7 @@
             "\n"
             "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
      }];
-    [texts addObject:@{
+    [self.texts addObject:@{
         @"name": @"Simple-KML",
         @"copyright": @"Copyright (c) 2010-2013 MapBox.",
         @"url": @"https://github.com/mapbox/Simple-KML",
@@ -221,7 +219,7 @@
             "\n"
             "THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.",
      }];
-    [texts addObject:@{
+    [self.texts addObject:@{
         @"name": @"SSZipArchive",
         @"copyright": @"Copyright (c) 2010-2015, Sam Soffes, http://soff.es",
         @"url": @"https://github.com/iosphere/ssziparchive",
@@ -232,14 +230,14 @@
             "\n"
             "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
      }];
-    [texts addObject:@{
+    [self.texts addObject:@{
         @"name": @"SVProgressHUD",
         @"copyright": @"Copyright (c) 2011-2016 Sam Vermette and contributors. All rights reserved.",
         @"url": @"https://github.com/SVProgressHUD/SVProgressHUD",
         @"license":
             @"SVProgressHUD is distributed under the terms and conditions of the MIT license (https://github.com/SVProgressHUD/SVProgressHUD/blob/master/LICENSE.txt). The success, error and info icons are made by Freepik (http://www.freepik.com) from Flaticon (http://www.flaticon.com) and are licensed under Creative Commons BY 3.0 (http://creativecommons.org/licenses/by/3.0/).",
      }];
-    [texts addObject:@{
+    [self.texts addObject:@{
         @"name": @"TFHpple",
         @"copyright": @"Created by Geoffrey Grosenbach on 1/31/09, Copyright (c) 2009 Topfunky Corporation, http://topfunky.com",
         @"url": @"https://github.com/topfunky/hpple",
@@ -252,7 +250,7 @@
             "\n"
             "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
      }];
-    [texts addObject:@{
+    [self.texts addObject:@{
         @"name": @"THLabel",
         @"copyright": @"Copyright (c) 2012-2016 Tobias Hagemann, tobiha.de",
         @"url": @"https://github.com/MuscleRumble/THLabel",
@@ -265,7 +263,7 @@
             "2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software."
             "3. This notice may not be removed or altered from any source distribution.",
      }];
-    [texts addObject:@{
+    [self.texts addObject:@{
         @"name": @"TouchXML",
         @"copyright": @"Copyright 2011 Jonathan Wight. All rights reserved.",
         @"url": @"https://github.com/TouchCode/TouchXML",
@@ -278,7 +276,7 @@
             "THIS SOFTWARE IS PROVIDED BY JONATHAN WIGHT ''AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL JONATHAN WIGHT OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
             "The views and conclusions contained in the software and documentation are those of the authors and should not be interpreted as representing official policies, either expressed or implied, of Jonathan Wight."
      }];
-    [texts addObject:@{
+    [self.texts addObject:@{
         @"name": @"VKSideMenu",
         @"copyright": @"Copyright © 2016 WOOPSS.com (http://woopss.com/) Created by Vladislav Kovalyov on 2/7/16.",
         @"url": @"https://github.com/vladislav-k/VKSideMenu",
@@ -289,7 +287,7 @@
             "\n"
             "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
      }];
-    [texts addObject:@{
+    [self.texts addObject:@{
         @"name": @"YIPopupTextView",
         @"copyright": @"Copyright (c) 2012 Yasuhiro Inami. All rights reserved.",
         @"url": @"https://github.com/inamiy/YIPopupTextView)",
@@ -320,7 +318,7 @@
     if (section == 0)
         return 1;
     else
-        return [texts count];
+        return [self.texts count];
 }
 
 // Return a cell for the index path
@@ -341,7 +339,7 @@
 
     if (indexPath.section == 1) {
         NSString *s = nil;
-        NSDictionary *d = [texts objectAtIndex:indexPath.row];
+        NSDictionary *d = [self.texts objectAtIndex:indexPath.row];
         cell.name.text = [d objectForKey:@"name"];
         if ((s = [d objectForKey:@"url"]) != nil)
             cell.url.text = [NSString stringWithFormat:@"%@: %@", _(@"URL"), s];

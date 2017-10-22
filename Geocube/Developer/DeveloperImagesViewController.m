@@ -20,12 +20,10 @@
  */
 
 @interface DeveloperImagesViewController ()
-{
-    NSMutableArray<UIImage *> *imgs;
-    NSMutableArray<NSString *> *names;
-    NSMutableArray<NSNumber *> *numbers;
-    NSInteger imgCount;
-}
+
+@property (nonatomic, retain) NSMutableArray<UIImage *> *imgs;
+@property (nonatomic, retain) NSMutableArray<NSString *> *names;
+@property (nonatomic, retain) NSMutableArray<NSNumber *> *numbers;
 
 @end
 
@@ -56,9 +54,9 @@ enum {
 
 - (void)refreshImages
 {
-    imgs = [[NSMutableArray alloc] initWithCapacity:20];
-    names = [[NSMutableArray alloc] initWithCapacity:20];
-    numbers = [[NSMutableArray alloc] initWithCapacity:20];
+    self.imgs = [[NSMutableArray alloc] initWithCapacity:20];
+    self.names = [[NSMutableArray alloc] initWithCapacity:20];
+    self.numbers = [[NSMutableArray alloc] initWithCapacity:20];
     UIImage *img;
     NSString *name;
 
@@ -66,13 +64,12 @@ enum {
         img = [imageManager get:i];
         if (img == nil || [img isKindOfClass:[NSNull class]] == YES)
             continue;
-        [numbers addObject:[NSNumber numberWithInteger:i]];
-        [imgs addObject:img];
+        [self.numbers addObject:[NSNumber numberWithInteger:i]];
+        [self.imgs addObject:img];
         if ((name = [imageManager getName:i]) == nil)
             continue;
-        [names addObject:name];
+        [self.names addObject:name];
     }
-    imgCount = [imgs count];
 }
 
 - (void)viewDidLoad
@@ -101,7 +98,7 @@ enum {
     if (section == IMAGES_TYPES_ONE)
         return 10;
     if (section == IMAGES_IMAGES)
-        return imgCount;
+        return [self.imgs count];
     return 0;
 }
 
@@ -245,10 +242,10 @@ enum {
     }
 
     if (indexPath.section == IMAGES_IMAGES) {
-        if ([[imgs objectAtIndex:indexPath.row] isKindOfClass:[NSNull class]] == NO) {
-            cell.imageView.image = [imgs objectAtIndex:indexPath.row];
-            cell.textLabel.text = [names objectAtIndex:indexPath.row];
-            cell.detailTextLabel.text = [[numbers objectAtIndex:indexPath.row] stringValue];
+        if ([[self.imgs objectAtIndex:indexPath.row] isKindOfClass:[NSNull class]] == NO) {
+            cell.imageView.image = [self.imgs objectAtIndex:indexPath.row];
+            cell.textLabel.text = [self.names objectAtIndex:indexPath.row];
+            cell.detailTextLabel.text = [[self.numbers objectAtIndex:indexPath.row] stringValue];
         }
         return cell;
     }

@@ -20,9 +20,8 @@
  */
 
 @interface NoticesViewController ()
-{
-    NSArray<dbNotice *> *notices;
-}
+
+@property (nonatomic, retain) NSArray<dbNotice *> *notices;
 
 @end
 
@@ -53,7 +52,7 @@ enum {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    notices = [dbNotice dbAll];
+    self.notices = [dbNotice dbAll];
     [self.tableView reloadData];
 }
 
@@ -61,7 +60,7 @@ enum {
 {
     [super viewDidAppear:animated];
 
-    if ([notices count] > 1)
+    if ([self.notices count] > 1)
         return;
 
     UIAlertController *alert = [UIAlertController
@@ -97,7 +96,7 @@ enum {
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [notices count];
+    return [self.notices count];
 }
 
 // Return a cell for the index path
@@ -105,7 +104,7 @@ enum {
 {
     NoticeTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_HELPNOTICESTABLEVIEWCELL forIndexPath:indexPath];
 
-    dbNotice *n = [notices objectAtIndex:indexPath.row];
+    dbNotice *n = [self.notices objectAtIndex:indexPath.row];
     cell.sender.text = n.sender;
     cell.date.text = n.date;
     cell.seen = n.seen;
@@ -120,7 +119,7 @@ enum {
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbNotice *n = [notices objectAtIndex:indexPath.row];
+    dbNotice *n = [self.notices objectAtIndex:indexPath.row];
 
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (n.seen == NO) {
@@ -169,7 +168,7 @@ enum {
         else
             [MyTools messageBox:self header:_(@"noticesviewcontroller-Notices download") text:_(@"noticesviewcontroller-There was a failure in parsing the downloaded notices file")];
 
-        notices = [dbNotice dbAll];
+        self.notices = [dbNotice dbAll];
         [self reloadDataMainQueue];
     } else {
         NSLog(@"%@: Failed! %@", [self class], error);

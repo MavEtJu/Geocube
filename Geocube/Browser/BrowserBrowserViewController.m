@@ -20,16 +20,15 @@
  */
 
 @interface BrowserBrowserViewController ()
-{
-    UIWebView *webView;
 
-    NSMutableURLRequest *req;
-    NSString *urlHome;
+@property (nonatomic, retain) UIWebView *webView;
 
-    GCOAuthBlackbox *oabb;
-    ProtocolGGCW *ggcw;
-    NSInteger networkActivityIndicator;
-}
+@property (nonatomic, retain) NSMutableURLRequest *req;
+@property (nonatomic, retain) NSString *urlHome;
+
+@property (nonatomic, retain) GCOAuthBlackbox *oabb;
+@property (nonatomic, retain) ProtocolGGCW *ggcw;
+@property (nonatomic        ) NSInteger networkActivityIndicator;
 
 @end
 
@@ -51,13 +50,13 @@ enum {
     [self.lmi addItem:menuEnterURL label:_(@"browserbrowserviewcontroller-Enter URL")];
     [self.lmi addItem:menuOpenInSafari label:_(@"browserbrowserviewcontroller-Open in Safari")];
 
-    webView = [[UIWebView alloc] initWithFrame:self.view.frame];
-    webView.delegate = self;
+    self.webView = [[UIWebView alloc] initWithFrame:self.view.frame];
+    self.webView.delegate = self;
 
-    webView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
-    [self.view addSubview:webView];
+    self.webView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
+    [self.view addSubview:self.webView];
 
-    networkActivityIndicator = 0;
+    self.networkActivityIndicator = 0;
 
     return self;
 }
@@ -80,7 +79,7 @@ enum {
 
     [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
                                                 CGRect frame = [[UIScreen mainScreen] bounds];
-                                                webView.frame = frame;
+                                                self.webView.frame = frame;
                                                 [self calculateRects];
                                                 [self viewWilltransitionToSize];
                                             }
@@ -90,7 +89,7 @@ enum {
 
 - (void)clearScreen
 {
-    [webView loadHTMLString:@"" baseURL:nil];
+    [self.webView loadHTMLString:@"" baseURL:nil];
 }
 
 - (void)loadURL:(NSString *)urlString
@@ -98,24 +97,24 @@ enum {
     // Clear
     [self clearScreen];
 
-    urlHome = urlString;
-    NSURL *url = [NSURL URLWithString:urlHome];
+    self.urlHome = urlString;
+    NSURL *url = [NSURL URLWithString:self.urlHome];
     GCURLRequest *request = [GCURLRequest requestWithURL:url];
-    [webView loadRequest:request];
+    [self.webView loadRequest:request];
 }
 
 - (void)showActivity:(NSInteger)enable
 {
     @synchronized(self) {
-        NSLog(@"showActivity - %ld %ld", (long)networkActivityIndicator, (long)enable);
+        NSLog(@"showActivity - %ld %ld", (long)self.networkActivityIndicator, (long)enable);
         if (enable == YES)
-            networkActivityIndicator++;
+            self.networkActivityIndicator++;
         else if (enable == NO) {
-            if (networkActivityIndicator > 0)
-                networkActivityIndicator--;
+            if (self.networkActivityIndicator > 0)
+                self.networkActivityIndicator--;
         } else if (enable == -1)
-            networkActivityIndicator = 0;
-        if (networkActivityIndicator > 0)
+            self.networkActivityIndicator = 0;
+        if (self.networkActivityIndicator > 0)
             [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         else
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -124,7 +123,7 @@ enum {
 
 - (void)loadURLRequest:(GCURLRequest *)_req
 {
-    [webView loadRequest:_req];
+    [self.webView loadRequest:_req];
 }
 
 // https://www.geocaching.com/pocket/downloadpq.ashx?g=9bf11fd9-abcd-49b2-b182-74e494e5a1fe&src=web
@@ -134,9 +133,9 @@ enum {
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)newRequest navigationType:(UIWebViewNavigationType)navigationType
 {
-    req = [NSMutableURLRequest requestWithURL:[newRequest URL]];
+    self.req = [NSMutableURLRequest requestWithURL:[newRequest URL]];
 
-    if (oabb == nil && ggcw == nil) {
+    if (self.oabb == nil && self.ggcw == nil) {
         [self showActivity:YES];
         NSString *urlString = [[newRequest URL] absoluteString];
         NSLog(@"urlString: -%@-", urlString);
@@ -182,17 +181,17 @@ enum {
     }
 
     // OAuth related stuff
-    NSLog(@"W: %@", req);
+    NSLog(@"W: %@", self.req);
 
-    NSString *url = [req.URL absoluteString];
-    NSString *query = [req.URL query];
+    NSString *url = [self.req.URL absoluteString];
+    NSString *query = [self.req.URL query];
     if ([query length] != 0)
         url = [url substringToIndex:(url.length - [query length] - 1)];
 
     // OAuth related stuff
-    if (oabb != nil &&
-        [url length] >= [oabb.callback length] &&
-        [[url substringToIndex:[oabb.callback length]] isEqualToString:oabb.callback] == YES) {
+    if (self.oabb != nil &&
+        [url length] >= [self.oabb.callback length] &&
+        [[url substringToIndex:[self.oabb.callback length]] isEqualToString:self.oabb.callback] == YES) {
         // In body: oauth_token=MyEhWdraaVDuUyvqRwxr&oauth_verifier=56536006
         [[query componentsSeparatedByString:@"&"] enumerateObjectsUsingBlock:^(NSString * _Nonnull keyvalue, NSUInteger idx, BOOL * _Nonnull stop) {
             NSArray<NSString *> *ss = [keyvalue componentsSeparatedByString:@"="];
@@ -200,31 +199,31 @@ enum {
             NSString *value = [ss objectAtIndex:1];
 
             if ([key isEqualToString:@"oauth_token"] == YES)
-                [oabb token:[MyTools urlDecode:value]];
+                [self.oabb token:[MyTools urlDecode:value]];
             if ([key isEqualToString:@"oauth_verifier"] == YES)
-                [oabb verifier:[MyTools urlDecode:value]];
+                [self.oabb verifier:[MyTools urlDecode:value]];
         }];
 
 //        NSLog(@"token: %@", oauth_token);
 //        NSLog(@"verifier: %@", oauth_verifier);
 
         [self showActivity:-1];
-        [oabb obtainAccessToken];
+        [self.oabb obtainAccessToken];
         return NO;
     }
 
     // Geocaching.com Authentication related stuff
-    if (ggcw != nil &&
-        [url length] >= [ggcw.callback length] &&
-        [[url substringToIndex:[ggcw.callback length]] isEqualToString:ggcw.callback] == YES) {
+    if (self.ggcw != nil &&
+        [url length] >= [self.ggcw.callback length] &&
+        [[url substringToIndex:[self.ggcw.callback length]] isEqualToString:self.ggcw.callback] == YES) {
         NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-        NSArray<NSHTTPCookie *> *cookies = [cookiemgr cookiesForURL:req.URL];
+        NSArray<NSHTTPCookie *> *cookies = [cookiemgr cookiesForURL:self.req.URL];
 
         [cookies enumerateObjectsUsingBlock:^(NSHTTPCookie * _Nonnull cookie, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([cookie.name isEqualToString:@"gspkauth"] == NO)
                 return;
 
-            [ggcw storeCookie:cookie];
+            [self.ggcw storeCookie:cookie];
             *stop = YES;
         }];
 
@@ -267,14 +266,14 @@ enum {
     [MyTools messageBox:self header:_(@"browserbrowserviewcontroller-Download complete") text:[NSString stringWithFormat:_(@"browserbrowserviewcontroller-Downloaded %@ for %@. You can find it in the Files menu."), [MyTools niceFileSize:length], response.suggestedFilename]];
 }
 
-- (void)prepare_oauth:(GCOAuthBlackbox *)_oabb
+- (void)prepare_oauth:(GCOAuthBlackbox *)oabb
 {
-    oabb = _oabb;
+    self.oabb = oabb;
 }
 
-- (void)prepare_ggcw:(ProtocolGGCW *)_ggcw
+- (void)prepare_ggcw:(ProtocolGGCW *)ggcw
 {
-    ggcw = _ggcw;
+    self.ggcw = ggcw;
 
     NSHTTPCookieStorage *cookiemgr = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     NSArray<NSHTTPCookie *> *cookies = cookiemgr.cookies;
@@ -315,7 +314,7 @@ enum {
     // Go back home
     switch (index) {
         case menuGoHome:
-            [self loadURL:urlHome];
+            [self loadURL:self.urlHome];
             return;
         case menuEnterURL:
             [self menuEnterURL];
@@ -364,7 +363,7 @@ enum {
 
 - (void)menuOpenInSafari
 {
-    NSURL *url = [NSURL URLWithString:urlHome];
+    NSURL *url = [NSURL URLWithString:self.urlHome];
     [[UIApplication sharedApplication] openURL:url options:[NSDictionary dictionary] completionHandler:nil];
 }
 

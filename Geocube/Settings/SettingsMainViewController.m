@@ -20,39 +20,38 @@
  */
 
 @interface SettingsMainViewController ()
-{
-    NSArray<NSString *> *compassTypes;
-    NSArray<NSString *> *externalMapTypes;
-    NSArray<NSString *> *mapBrandsCodes;
-    NSArray<NSString *> *mapBrandsNames;
 
-    NSArray<NSString *> *orientationStrings;
-    NSArray<NSNumber *> *orientationValues;
+@property (nonatomic, retain) NSArray<NSString *> *compassTypes;
+@property (nonatomic, retain) NSArray<NSString *> *externalMapTypes;
+@property (nonatomic, retain) NSArray<NSString *> *mapBrandsCodes;
+@property (nonatomic, retain) NSArray<NSString *> *mapBrandsNames;
 
-    NSMutableArray<NSNumber *> *speedsWalkingMetric;
-    NSMutableArray<NSNumber *> *speedsCyclingMetric;
-    NSMutableArray<NSNumber *> *speedsDrivingMetric;
-    NSMutableArray<NSString *> *speedsWalking;
-    NSMutableArray<NSString *> *speedsCycling;
-    NSMutableArray<NSString *> *speedsDriving;
+@property (nonatomic, retain) NSArray<NSString *> *orientationStrings;
+@property (nonatomic, retain) NSArray<NSNumber *> *orientationValues;
 
-    NSMutableArray<NSNumber *> *distancesWalkingMetric;
-    NSMutableArray<NSNumber *> *distancesCyclingMetric;
-    NSMutableArray<NSNumber *> *distancesDrivingMetric;
-    NSMutableArray<NSString *> *distancesWalking;
-    NSMutableArray<NSString *> *distancesCycling;
-    NSMutableArray<NSString *> *distancesDriving;
+@property (nonatomic, retain) NSMutableArray<NSNumber *> *speedsWalkingMetric;
+@property (nonatomic, retain) NSMutableArray<NSNumber *> *speedsCyclingMetric;
+@property (nonatomic, retain) NSMutableArray<NSNumber *> *speedsDrivingMetric;
+@property (nonatomic, retain) NSMutableArray<NSString *> *speedsWalking;
+@property (nonatomic, retain) NSMutableArray<NSString *> *speedsCycling;
+@property (nonatomic, retain) NSMutableArray<NSString *> *speedsDriving;
 
-    NSArray<NSString *> *accuracies;
+@property (nonatomic, retain) NSMutableArray<NSNumber *> *distancesWalkingMetric;
+@property (nonatomic, retain) NSMutableArray<NSNumber *> *distancesCyclingMetric;
+@property (nonatomic, retain) NSMutableArray<NSNumber *> *distancesDrivingMetric;
+@property (nonatomic, retain) NSMutableArray<NSString *> *distancesWalking;
+@property (nonatomic, retain) NSMutableArray<NSString *> *distancesCycling;
+@property (nonatomic, retain) NSMutableArray<NSString *> *distancesDriving;
 
-    NSInteger mapcacheMaxAge;
-    NSInteger mapcacheMaxSize;
-    NSArray<NSString *> *mapcacheMaxAgeValues;
-    NSArray<NSString *> *mapcacheMaxSizeValues;
+@property (nonatomic, retain) NSArray<NSString *> *accuracies;
 
-    NSMutableArray<NSString *> *downloadSimpleTimeouts;
-    NSMutableArray<NSString *> *downloadQueryTimeouts;
-}
+@property (nonatomic        ) NSInteger mapcacheMaxAge;
+@property (nonatomic        ) NSInteger mapcacheMaxSize;
+@property (nonatomic, retain) NSArray<NSString *> *mapcacheMaxAgeValues;
+@property (nonatomic, retain) NSArray<NSString *> *mapcacheMaxSizeValues;
+
+@property (nonatomic, retain) NSMutableArray<NSString *> *downloadSimpleTimeouts;
+@property (nonatomic, retain) NSMutableArray<NSString *> *downloadQueryTimeouts;
 
 @end
 
@@ -76,12 +75,12 @@ enum {
     self.lmi = [[LocalMenuItems alloc] init:menuMax];
     [self.lmi addItem:menuResetToDefault label:_(@"settingsmainviewcontroller-Reset to default")];
 
-    compassTypes = @[
-                     _(@"settingsmainviewcontroller-Red arrow on blue"),
-                     _(@"settingsmainviewcontroller-White arrow on black"),
-                     _(@"settingsmainviewcontroller-Red arrow on black"),
-                     _(@"settingsmainviewcontroller-Airplane")
-                     ];
+    self.compassTypes = @[
+        _(@"settingsmainviewcontroller-Red arrow on blue"),
+        _(@"settingsmainviewcontroller-White arrow on black"),
+        _(@"settingsmainviewcontroller-Red arrow on black"),
+        _(@"settingsmainviewcontroller-Airplane")
+        ];
 
     [self calculateDynamicmapSpeedsDistances];
     [self calculateMapcache];
@@ -93,19 +92,19 @@ enum {
         [codes addObject:mp.defaultString];
         [names addObject:mp.key];
     }];
-    mapBrandsCodes = codes;
-    mapBrandsNames = names;
+    self.mapBrandsCodes = codes;
+    self.mapBrandsNames = names;
 
-    orientationStrings = @[
-                           _(@"settingsmainviewcontroller-Portrait"),
-                           _(@"settingsmainviewcontroller-Portrait UpsideDown"),
-                           _(@"settingsmainviewcontroller-LandscapeLeft Portrait LandscapeRight"),
-                           _(@"settingsmainviewcontroller-LandscapeLeft Portrait UpsideDown LandscapeRight"),
-                           _(@"settingsmainviewcontroller-LandscapeRight"),
-                           _(@"settingsmainviewcontroller-LandscapeLeft"),
-                           _(@"settingsmainviewcontroller-LandscapeLeft LandscapeRight"),
-                           ];
-    orientationValues = @[
+    self.orientationStrings = @[
+        _(@"settingsmainviewcontroller-Portrait"),
+        _(@"settingsmainviewcontroller-Portrait UpsideDown"),
+        _(@"settingsmainviewcontroller-LandscapeLeft Portrait LandscapeRight"),
+        _(@"settingsmainviewcontroller-LandscapeLeft Portrait UpsideDown LandscapeRight"),
+        _(@"settingsmainviewcontroller-LandscapeRight"),
+        _(@"settingsmainviewcontroller-LandscapeLeft"),
+        _(@"settingsmainviewcontroller-LandscapeLeft LandscapeRight"),
+        ];
+    self.orientationValues = @[
         [NSNumber numberWithInteger:UIInterfaceOrientationMaskPortrait],
         [NSNumber numberWithInteger:UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown],
         [NSNumber numberWithInteger:UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight],
@@ -115,7 +114,7 @@ enum {
         [NSNumber numberWithInteger:UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight],
         ];
 
-    accuracies = @[
+    self.accuracies = @[
         _(@"settingsmainviewcontroller-Highest possible accuracy with additional sensor data"),
         _(@"settingsmainviewcontroller-Highest possible accuracy"),
         _(@"settingsmainviewcontroller-Accurate to ten meters"),
@@ -124,13 +123,13 @@ enum {
         _(@"settingsmainviewcontroller-Accurate to three kilometers"),
         ];
 
-    downloadSimpleTimeouts = [NSMutableArray arrayWithCapacity:20];
+    self.downloadSimpleTimeouts = [NSMutableArray arrayWithCapacity:20];
     for (NSInteger i = 30; i < 600; i += 30) {
-        [downloadSimpleTimeouts addObject:[NSString stringWithFormat:@"%ld %@", (long)i, _(@"time-seconds")]];
+        [self.downloadSimpleTimeouts addObject:[NSString stringWithFormat:@"%ld %@", (long)i, _(@"time-seconds")]];
     }
-    downloadQueryTimeouts = [NSMutableArray arrayWithCapacity:20];
+    self.downloadQueryTimeouts = [NSMutableArray arrayWithCapacity:20];
     for (NSInteger i = 60; i < 1200; i += 30) {
-        [downloadQueryTimeouts addObject:[NSString stringWithFormat:@"%ld %@", (long)i, _(@"time-seconds")]];
+        [self.downloadQueryTimeouts addObject:[NSString stringWithFormat:@"%ld %@", (long)i, _(@"time-seconds")]];
     }
 }
 
@@ -142,7 +141,7 @@ enum {
     [[dbExternalMap dbAll] enumerateObjectsUsingBlock:^(dbExternalMap * _Nonnull em, NSUInteger idx, BOOL * _Nonnull stop) {
         [as addObject:em.name];
     }];
-    externalMapTypes = as;
+    self.externalMapTypes = as;
     [self.tableView reloadData];
 }
 
@@ -158,30 +157,30 @@ enum {
     for (NSInteger i = 30; i < 13 * 30; i += 30) {
         [as addObject:[NSString stringWithFormat:@"%ld %@ (%ld %@)", (long)i, _(@"time-days"), (long)i / 30, (i / 30) == 1 ? _(@"time-month") : _(@"time-months")]];
     }
-    mapcacheMaxAgeValues = [NSArray arrayWithArray:as];
+    self.mapcacheMaxAgeValues = [NSArray arrayWithArray:as];
 
     as = [NSMutableArray arrayWithCapacity:20];
     for (NSInteger i = 0; i < 40; i++) {
         [as addObject:[NSString stringWithFormat:@"%ld Mb", (long)i * 25]];
     }
-    mapcacheMaxSizeValues = [NSArray arrayWithArray:as];
+    self.mapcacheMaxSizeValues = [NSArray arrayWithArray:as];
 }
 
 - (void)calculateDynamicmapSpeedsDistances
 {
-    speedsWalking = [NSMutableArray arrayWithCapacity:20];
-    speedsCycling = [NSMutableArray arrayWithCapacity:20];
-    speedsDriving = [NSMutableArray arrayWithCapacity:20];
-    speedsWalkingMetric = [NSMutableArray arrayWithCapacity:20];
-    speedsCyclingMetric = [NSMutableArray arrayWithCapacity:20];
-    speedsDrivingMetric = [NSMutableArray arrayWithCapacity:20];
+    self.speedsWalking = [NSMutableArray arrayWithCapacity:20];
+    self.speedsCycling = [NSMutableArray arrayWithCapacity:20];
+    self.speedsDriving = [NSMutableArray arrayWithCapacity:20];
+    self.speedsWalkingMetric = [NSMutableArray arrayWithCapacity:20];
+    self.speedsCyclingMetric = [NSMutableArray arrayWithCapacity:20];
+    self.speedsDrivingMetric = [NSMutableArray arrayWithCapacity:20];
 
-    distancesWalking = [NSMutableArray arrayWithCapacity:20];
-    distancesCycling = [NSMutableArray arrayWithCapacity:20];
-    distancesDriving = [NSMutableArray arrayWithCapacity:20];
-    distancesWalkingMetric = [NSMutableArray arrayWithCapacity:20];
-    distancesCyclingMetric = [NSMutableArray arrayWithCapacity:20];
-    distancesDrivingMetric = [NSMutableArray arrayWithCapacity:20];
+    self.distancesWalking = [NSMutableArray arrayWithCapacity:20];
+    self.distancesCycling = [NSMutableArray arrayWithCapacity:20];
+    self.distancesDriving = [NSMutableArray arrayWithCapacity:20];
+    self.distancesWalkingMetric = [NSMutableArray arrayWithCapacity:20];
+    self.distancesCyclingMetric = [NSMutableArray arrayWithCapacity:20];
+    self.distancesDrivingMetric = [NSMutableArray arrayWithCapacity:20];
 
 #define SPEED_WALKING_MIN   1
 #define SPEED_WALKING_MAX   10
@@ -208,29 +207,29 @@ enum {
 #define DISTANCE_DRIVING_INC    250
 
     for (NSInteger i = SPEED_WALKING_MIN; i <= SPEED_WALKING_MAX; i += SPEED_WALKING_INC) {
-        [speedsWalking addObject:[MyTools niceSpeed:i]];
-        [speedsWalkingMetric addObject:[NSNumber numberWithInteger:i]];
+        [self.speedsWalking addObject:[MyTools niceSpeed:i]];
+        [self.speedsWalkingMetric addObject:[NSNumber numberWithInteger:i]];
     }
     for (NSInteger i = SPEED_CYCLING_MIN; i <= SPEED_CYCLING_MAX; i += SPEED_CYCLING_INC) {
-        [speedsCycling addObject:[MyTools niceSpeed:i]];
-        [speedsCyclingMetric addObject:[NSNumber numberWithInteger:i]];
+        [self.speedsCycling addObject:[MyTools niceSpeed:i]];
+        [self.speedsCyclingMetric addObject:[NSNumber numberWithInteger:i]];
     }
     for (NSInteger i = SPEED_DRIVING_MIN; i <= SPEED_DRIVING_MAX; i += SPEED_DRIVING_INC) {
-        [speedsDriving addObject:[MyTools niceSpeed:i]];
-        [speedsDrivingMetric addObject:[NSNumber numberWithInteger:i]];
+        [self.speedsDriving addObject:[MyTools niceSpeed:i]];
+        [self.speedsDrivingMetric addObject:[NSNumber numberWithInteger:i]];
     }
 
     for (NSInteger i = DISTANCE_WALKING_MIN; i <= DISTANCE_WALKING_MAX; i += DISTANCE_WALKING_INC) {
-        [distancesWalking addObject:[MyTools niceDistance:i]];
-        [distancesWalkingMetric addObject:[NSNumber numberWithInteger:i]];
+        [self.distancesWalking addObject:[MyTools niceDistance:i]];
+        [self.distancesWalkingMetric addObject:[NSNumber numberWithInteger:i]];
     }
     for (NSInteger i = DISTANCE_CYCLING_MIN; i <= DISTANCE_CYCLING_MAX; i += DISTANCE_CYCLING_INC) {
-        [distancesCycling addObject:[MyTools niceDistance:i]];
-        [distancesCyclingMetric addObject:[NSNumber numberWithInteger:i]];
+        [self.distancesCycling addObject:[MyTools niceDistance:i]];
+        [self.distancesCyclingMetric addObject:[NSNumber numberWithInteger:i]];
     }
     for (NSInteger i = DISTANCE_DRIVING_MIN; i <= DISTANCE_DRIVING_MAX; i += DISTANCE_DRIVING_INC) {
-        [distancesDriving addObject:[MyTools niceDistance:i]];
-        [distancesDrivingMetric addObject:[NSNumber numberWithInteger:i]];
+        [self.distancesDriving addObject:[MyTools niceDistance:i]];
+        [self.distancesDrivingMetric addObject:[NSNumber numberWithInteger:i]];
     }
 }
 
@@ -533,7 +532,7 @@ enum sections {
                 case SECTION_THEME_THEME:
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-Theme"), [[themeManager themeNames] objectAtIndex:configManager.themeType]);
                 case SECTION_THEME_COMPASS:
-                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Compass type"), [compassTypes objectAtIndex:configManager.compassType]);
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Compass type"), [self.compassTypes objectAtIndex:configManager.compassType]);
                 case SECTION_THEME_ORIENTATIONS: {
                     NSMutableString *s = [NSMutableString stringWithString:@""];
                     if ((configManager.orientationsAllowed & UIInterfaceOrientationMaskPortrait) != 0) {
@@ -598,9 +597,9 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_MAPS_DEFAULTBRAND: {
                     __block NSString *value = nil;
-                    [mapBrandsCodes enumerateObjectsUsingBlock:^(NSString * _Nonnull k, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [self.mapBrandsCodes enumerateObjectsUsingBlock:^(NSString * _Nonnull k, NSUInteger idx, BOOL * _Nonnull stop) {
                         if ([k isEqualToString:configManager.mapBrandDefault] == YES) {
-                            value = [mapBrandsNames objectAtIndex:idx];
+                            value = [self.mapBrandsNames objectAtIndex:idx];
                             *stop = YES;
                             return;
                         }
@@ -822,11 +821,11 @@ enum sections {
                 case SECTION_ACCURACY_DYNAMIC_ENABLE:
                     CELL_SWITCH(_(@"settingsmainviewcontroller-Enable dynamic accuracy"), accuracyDynamicEnable, updateDynamicAccuracyEnable)
                 case SECTION_ACCURACY_DYNAMIC_ACCURACY_NEAR:
-                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Accuracy for 'near' accuracy"), [accuracies objectAtIndex:configManager.accuracyDynamicAccuracyNear])
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Accuracy for 'near' accuracy"), [self.accuracies objectAtIndex:configManager.accuracyDynamicAccuracyNear])
                 case SECTION_ACCURACY_DYNAMIC_ACCURACY_MIDRANGE:
-                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Accuracy for 'midrange' accuracy"), [accuracies objectAtIndex:configManager.accuracyDynamicAccuracyMidrange])
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Accuracy for 'midrange' accuracy"), [self.accuracies objectAtIndex:configManager.accuracyDynamicAccuracyMidrange])
                 case SECTION_ACCURACY_DYNAMIC_ACCURACY_FAR:
-                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Accuracy for 'far' accuracy"), [accuracies objectAtIndex:configManager.accuracyDynamicAccuracyFar])
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Accuracy for 'far' accuracy"), [self.accuracies objectAtIndex:configManager.accuracyDynamicAccuracyFar])
                 case SECTION_ACCURACY_DYNAMIC_DISTANCE_NEARTOMIDRANGE: {
                     NSString *s = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Up to %@"), [MyTools niceDistance:configManager.accuracyDynamicDistanceNearToMidrange]];
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-Distance for 'near' accuracy"), s)
@@ -836,9 +835,9 @@ enum sections {
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-Distance for 'midrange' accuracy"), s)
                 }
                 case SECTION_ACCURACY_STATIC_ACCURACY_NAVIGATING:
-                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Accuracy for static 'navigating' accuracy"), [accuracies objectAtIndex:configManager.accuracyStaticAccuracyNavigating])
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Accuracy for static 'navigating' accuracy"), [self.accuracies objectAtIndex:configManager.accuracyStaticAccuracyNavigating])
                 case SECTION_ACCURACY_STATIC_ACCURACY_NONNAVIGATING:
-                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Accuracy for static 'non-navigating' accuracy"), [accuracies objectAtIndex:configManager.accuracyStaticAccuracyNonNavigating])
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Accuracy for static 'non-navigating' accuracy"), [self.accuracies objectAtIndex:configManager.accuracyStaticAccuracyNonNavigating])
                 case SECTION_ACCURACY_STATIC_DELTAD_NONNAVIGATING:
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-Update distance for static 'non-navigating' pages"), [MyTools niceDistance:configManager.accuracyStaticDeltaDNonNavigating])
                 case SECTION_ACCURACY_STATIC_DELTAD_NAVIGATING:
@@ -1301,19 +1300,19 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
     SEL successAction = nil;
     switch (row) {
         case SECTION_DYNAMICMAP_SPEED_WALKING:
-            speeds = speedsWalking;
+            speeds = self.speedsWalking;
             currentSpeed = [MyTools niceSpeed:configManager.dynamicmapWalkingSpeed];
             title = _(@"settingsmainviewcontroller-Maximum walking speed");
             successAction = @selector(updateDynamicmapSpeedWalking:element:);
             break;
         case SECTION_DYNAMICMAP_SPEED_CYCLING:
-            speeds = speedsCycling;
+            speeds = self.speedsCycling;
             currentSpeed = [MyTools niceSpeed:configManager.dynamicmapCyclingSpeed];
             title = _(@"settingsmainviewcontroller-Maximum cycling speed");
             successAction = @selector(updateDynamicmapSpeedCycling:element:);
             break;
         case SECTION_DYNAMICMAP_SPEED_DRIVING:
-            speeds = speedsDriving;
+            speeds = self.speedsDriving;
             currentSpeed = [MyTools niceSpeed:configManager.dynamicmapDrivingSpeed];
             title = _(@"settingsmainviewcontroller-Maximum driving speed");
             successAction = @selector(updateDynamicmapSpeedDriving:element:);
@@ -1342,19 +1341,19 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
 
 - (void)updateDynamicmapSpeedWalking:(NSNumber *)selectedIndex element:(id)element
 {
-    [configManager dynamicmapWalkingSpeedUpdate:[[speedsWalkingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [configManager dynamicmapWalkingSpeedUpdate:[[self.speedsWalkingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
     [self.tableView reloadData];
 }
 
 - (void)updateDynamicmapSpeedCycling:(NSNumber *)selectedIndex element:(id)element
 {
-    [configManager dynamicmapCyclingSpeedUpdate:[[speedsCyclingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [configManager dynamicmapCyclingSpeedUpdate:[[self.speedsCyclingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
     [self.tableView reloadData];
 }
 
 - (void)updateDynamicmapSpeedDriving:(NSNumber *)selectedIndex element:(id)element
 {
-    [configManager dynamicmapDrivingSpeedUpdate:[[speedsDrivingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [configManager dynamicmapDrivingSpeedUpdate:[[self.speedsDrivingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
     [self.tableView reloadData];
 }
 
@@ -1366,19 +1365,19 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
     SEL successAction = nil;
     switch (row) {
         case SECTION_DYNAMICMAP_DISTANCE_WALKING:
-            distances = distancesWalking;
+            distances = self.distancesWalking;
             currentDistance = [MyTools niceDistance:configManager.dynamicmapWalkingDistance];
             title = _(@"settingsmainviewcontroller-Maximum walking distance");
             successAction = @selector(updateDynamicmapDistanceWalking:element:);
             break;
         case SECTION_DYNAMICMAP_DISTANCE_CYCLING:
-            distances = distancesCycling;
+            distances = self.distancesCycling;
             currentDistance = [MyTools niceDistance:configManager.dynamicmapCyclingDistance];
             title = _(@"settingsmainviewcontroller-Maximum cycling distance");
             successAction = @selector(updateDynamicmapDistanceCycling:element:);
             break;
         case SECTION_DYNAMICMAP_DISTANCE_DRIVING:
-            distances = distancesDriving;
+            distances = self.distancesDriving;
             currentDistance = [MyTools niceDistance:configManager.dynamicmapDrivingDistance];
             title = _(@"settingsmainviewcontroller-Maximum driving distance");
             successAction = @selector(updateDynamicmapDistanceDriving:element:);
@@ -1407,19 +1406,19 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
 
 - (void)updateDynamicmapDistanceWalking:(NSNumber *)selectedIndex element:(id)element
 {
-    [configManager dynamicmapWalkingDistanceUpdate:[[distancesWalkingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [configManager dynamicmapWalkingDistanceUpdate:[[self.distancesWalkingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
     [self.tableView reloadData];
 }
 
 - (void)updateDynamicmapDistanceCycling:(NSNumber *)selectedIndex element:(id)element
 {
-    [configManager dynamicmapCyclingDistanceUpdate:[[distancesCyclingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [configManager dynamicmapCyclingDistanceUpdate:[[self.distancesCyclingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
     [self.tableView reloadData];
 }
 
 - (void)updateDynamicmapDistanceDriving:(NSNumber *)selectedIndex element:(id)element
 {
-    [configManager dynamicmapDrivingDistanceUpdate:[[distancesDrivingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
+    [configManager dynamicmapDrivingDistanceUpdate:[[self.distancesDrivingMetric objectAtIndex:[selectedIndex integerValue]] integerValue]];
     [self.tableView reloadData];
 }
 
@@ -1428,7 +1427,7 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
 - (void)changeImportsQueryTimeout
 {
     __block NSInteger currentChoice = 10;   // 600 seconds
-    [downloadQueryTimeouts enumerateObjectsUsingBlock:^(NSString * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.downloadQueryTimeouts enumerateObjectsUsingBlock:^(NSString * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([s integerValue] == configManager.downloadTimeoutQuery) {
             currentChoice = idx;
             *stop = YES;
@@ -1438,10 +1437,10 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_IMPORTS_TIMEOUT_QUERY inSection:SECTION_IMPORTS]];
 
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Timeout value for big HTTP requests")
-                                            rows:downloadQueryTimeouts
+                                            rows:self.downloadQueryTimeouts
                                 initialSelection:currentChoice
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                           [configManager downloadTimeoutQueryUpdate:[[downloadQueryTimeouts objectAtIndex:selectedIndex] integerValue]];
+                                           [configManager downloadTimeoutQueryUpdate:[[self.downloadQueryTimeouts objectAtIndex:selectedIndex] integerValue]];
                                            [self.tableView reloadData];
                                        }
                                      cancelBlock:nil
@@ -1452,7 +1451,7 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
 - (void)changeImportsSimpleTimeout
 {
     __block NSInteger currentChoice = 4;   // 120 seconds
-    [downloadSimpleTimeouts enumerateObjectsUsingBlock:^(NSString * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.downloadSimpleTimeouts enumerateObjectsUsingBlock:^(NSString * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([s integerValue] == configManager.downloadTimeoutSimple) {
             currentChoice = idx;
             *stop = YES;
@@ -1462,10 +1461,10 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_IMPORTS_TIMEOUT_SIMPLE inSection:SECTION_IMPORTS]];
 
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Timeout value for simple HTTP requests")
-                                            rows:downloadSimpleTimeouts
+                                            rows:self.downloadSimpleTimeouts
                                 initialSelection:currentChoice
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                           [configManager downloadTimeoutSimpleUpdate:[[downloadSimpleTimeouts objectAtIndex:selectedIndex] integerValue]];
+                                           [configManager downloadTimeoutSimpleUpdate:[[self.downloadSimpleTimeouts objectAtIndex:selectedIndex] integerValue]];
                                            [self.tableView reloadData];
                                        }
                                      cancelBlock:nil
@@ -1478,7 +1477,7 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
 - (void)changeMapCacheMaxAge
 {
     __block NSInteger currentChoice = 14;   // 30 days
-    [mapcacheMaxAgeValues enumerateObjectsUsingBlock:^(NSString * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.mapcacheMaxAgeValues enumerateObjectsUsingBlock:^(NSString * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([s integerValue] == configManager.mapcacheMaxAge) {
             currentChoice = idx;
             *stop = YES;
@@ -1488,10 +1487,10 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_MAPCACHE_MAXAGE inSection:SECTION_MAPCACHE]];
 
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Maximum age for objects in the map cache")
-                                            rows:mapcacheMaxAgeValues
+                                            rows:self.mapcacheMaxAgeValues
                                 initialSelection:currentChoice
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                           [configManager mapcacheMaxAgeUpdate:[[mapcacheMaxAgeValues objectAtIndex:selectedIndex] integerValue]];
+                                           [configManager mapcacheMaxAgeUpdate:[[self.mapcacheMaxAgeValues objectAtIndex:selectedIndex] integerValue]];
                                            [self.tableView reloadData];
                                        }
                                      cancelBlock:nil
@@ -1501,7 +1500,7 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
 
 - (void)changeMapCacheMaxSize
 {    __block NSInteger currentChoice = 10;   // 250 Mb
-    [mapcacheMaxSizeValues enumerateObjectsUsingBlock:^(NSString * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.mapcacheMaxSizeValues enumerateObjectsUsingBlock:^(NSString * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([s integerValue] == configManager.mapcacheMaxSize) {
             currentChoice = idx;
             *stop = YES;
@@ -1511,10 +1510,10 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_MAPCACHE_MAXSIZE inSection:SECTION_MAPCACHE]];
 
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Maximum size for the map cache")
-                                            rows:mapcacheMaxSizeValues
+                                            rows:self.mapcacheMaxSizeValues
                                 initialSelection:currentChoice
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                           [configManager mapcacheMaxSizeUpdate:[[mapcacheMaxSizeValues objectAtIndex:selectedIndex] integerValue]];
+                                           [configManager mapcacheMaxSizeUpdate:[[self.mapcacheMaxSizeValues objectAtIndex:selectedIndex] integerValue]];
                                            [self.tableView reloadData];
                                        }
                                      cancelBlock:nil
@@ -1547,7 +1546,7 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_THEME_COMPASS inSection:SECTION_THEME]];
 
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select Compass")
-                                            rows:compassTypes
+                                            rows:self.compassTypes
                                 initialSelection:configManager.compassType
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                            [configManager compassTypeUpdate:selectedIndex];
@@ -1563,17 +1562,17 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_THEME_ORIENTATIONS inSection:SECTION_THEME]];
 
     __block NSInteger orientationIndex = 0;
-    [orientationValues enumerateObjectsUsingBlock:^(NSNumber * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.orientationValues enumerateObjectsUsingBlock:^(NSNumber * _Nonnull n, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([n integerValue] == configManager.orientationsAllowed) {
             orientationIndex = idx;
             *stop = YES;
         }
     }];
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select Orientations")
-                                            rows:orientationStrings
+                                            rows:self.orientationStrings
                                 initialSelection:orientationIndex
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                           NSInteger d = [[orientationValues objectAtIndex:selectedIndex] integerValue];
+                                           NSInteger d = [[self.orientationValues objectAtIndex:selectedIndex] integerValue];
                                            [configManager orientationsAllowedUpdate:d];
                                            [self.tableView reloadData];
                                        }
@@ -1940,7 +1939,7 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_MAPS_DEFAULTBRAND inSection:SECTION_MAPS]];
 
     __block NSInteger initial = 0;
-    [mapBrandsCodes enumerateObjectsUsingBlock:^(NSString * _Nonnull k, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.mapBrandsCodes enumerateObjectsUsingBlock:^(NSString * _Nonnull k, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([k isEqualToString:configManager.mapBrandDefault] == YES) {
             initial = idx;
             *stop = YES;
@@ -1948,10 +1947,10 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
     }];
 
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select Default Map")
-                                            rows:mapBrandsNames
+                                            rows:self.mapBrandsNames
                                 initialSelection:initial
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                           NSString *code = [mapBrandsCodes objectAtIndex:selectedIndex];
+                                           NSString *code = [self.mapBrandsCodes objectAtIndex:selectedIndex];
                                            [configManager mapBrandDefaultUpdate:code];
                                            [self.tableView reloadData];
                                        }
@@ -1974,7 +1973,7 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_APPS_EXTERNALMAP inSection:SECTION_APPS]];
 
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select External Maps")
-                                            rows:externalMapTypes
+                                            rows:self.externalMapTypes
                                 initialSelection:initial
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                            dbExternalMap *map = [maps objectAtIndex:selectedIndex];
@@ -2049,7 +2048,7 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
     }
 
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select accuracy")
-                                            rows:accuracies
+                                            rows:self.accuracies
                                 initialSelection:initial
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                            switch (field) {

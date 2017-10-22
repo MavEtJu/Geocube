@@ -20,15 +20,14 @@
  */
 
 @interface SettingsMainColorPickerViewController ()
-{
-    SettingsPicker type;
-    UIButton *chooseButton, *resetButton;
-    dbPin *dummyPin;
-    UIColor *currentColour;
-    UIImageView *previewColour;
-    UILabel *hexLabel;
-    NKOColorPickerView *colorPickerView;
-}
+
+@property (nonatomic        ) SettingsPicker type;
+@property (nonatomic, retain) UIButton *chooseButton, *resetButton;
+@property (nonatomic, retain) dbPin *dummyPin;
+@property (nonatomic, retain) UIColor *currentColour;
+@property (nonatomic, retain) UIImageView *previewColour;
+@property (nonatomic, retain) UILabel *hexLabel;
+@property (nonatomic, retain) NKOColorPickerView *colorPickerView;
 
 @end
 
@@ -38,7 +37,7 @@
 {
     self = [super init];
 
-    type = _type;
+    self.type = _type;
     self.lmi = nil;
 
     return self;
@@ -55,22 +54,22 @@
     self.view = contentView;
 
     GCLabel *l = [[GCLabel alloc] initWithFrame:CGRectMake(10, y, frame.size.width, 20)];
-    switch (type) {
+    switch (self.type) {
         case SettingsMainColorPickerTrack:
             l.text = _(@"settingsmaincolorpickerviewcontroller-Track");
-            currentColour = configManager.mapTrackColour;
+            self.currentColour = configManager.mapTrackColour;
             break;
         case SettingsMainColorPickerDestination:
             l.text = _(@"settingsmaincolorpickerviewcontroller-Destination");
-            currentColour = configManager.mapDestinationColour;
+            self.currentColour = configManager.mapDestinationColour;
             break;
         case SettingsMainColorPickerCircleRing:
             l.text = _(@"settingsmaincolorpickerviewcontroller-Boundary Circle Ring");
-            currentColour = configManager.mapCircleRingColour;
+            self.currentColour = configManager.mapCircleRingColour;
             break;
         case SettingsMainColorPickerCircleFill:
             l.text = _(@"settingsmaincolorpickerviewcontroller-Boundary Circle Fill");
-            currentColour = configManager.mapCircleFillColour;
+            self.currentColour = configManager.mapCircleFillColour;
             break;
         default:
             l.text = _(@"settingsmaincolorpickerviewcontroller-Wot?");
@@ -81,45 +80,45 @@
 
     /* Create pin data */
 
-    dummyPin = [[dbPin alloc] init];
-    dummyPin.rgb_default = [ImageManager ColorToRGB:currentColour];
-    [dummyPin finish];
-    dummyPin.img = [ImageManager newPinHead:dummyPin.colour];
+    self.dummyPin = [[dbPin alloc] init];
+    self.dummyPin.rgb_default = [ImageManager ColorToRGB:self.currentColour];
+    [self.dummyPin finish];
+    self.dummyPin.img = [ImageManager newPinHead:self.dummyPin.colour];
 
     NKOColorPickerDidChangeColorBlock colorDidChangeBlock = ^(UIColor *colour){
-        dummyPin.img = [ImageManager newPinHead:colour];
-        dummyPin.rgb = [ImageManager ColorToRGB:colour];
-        hexLabel.text = dummyPin.rgb;
-        currentColour = colour;
-        previewColour.image = dummyPin.img;
+        self.dummyPin.img = [ImageManager newPinHead:colour];
+        self.dummyPin.rgb = [ImageManager ColorToRGB:colour];
+        self.hexLabel.text = self.dummyPin.rgb;
+        self.currentColour = colour;
+        self.previewColour.image = self.dummyPin.img;
     };
-    colorPickerView = [[NKOColorPickerView alloc] initWithFrame:CGRectMake(0, y, frame.size.width, 340) color:currentColour andDidChangeColorBlock:colorDidChangeBlock];
-    [colorPickerView setColor:currentColour];
-    [self.view addSubview:colorPickerView];
+    self.colorPickerView = [[NKOColorPickerView alloc] initWithFrame:CGRectMake(0, y, frame.size.width, 340) color:self.currentColour andDidChangeColorBlock:colorDidChangeBlock];
+    [self.colorPickerView setColor:self.currentColour];
+    [self.view addSubview:self.colorPickerView];
     y += 340;
 
-    UIImage *img = dummyPin.img;
-    previewColour = [[UIImageView alloc] initWithFrame:CGRectMake((15 + frame.size.width / 5 - img.size.width * 1.5) / 2, y, img.size.width * 1.5, img.size.height * 1.5)];
-    previewColour.image = img;
-    [self.view addSubview:previewColour];
+    UIImage *img = self.dummyPin.img;
+    self.previewColour = [[UIImageView alloc] initWithFrame:CGRectMake((15 + frame.size.width / 5 - img.size.width * 1.5) / 2, y, img.size.width * 1.5, img.size.height * 1.5)];
+    self.previewColour.image = img;
+    [self.view addSubview:self.previewColour];
 
-    chooseButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    chooseButton.frame = CGRectMake(frame.size.width / 5, y, 3 * frame.size.width / 5, 20);
-    [chooseButton setTitle:_(@"settingsmaincolorpickerviewcontroller-Choose this colour") forState:UIControlStateNormal];
-    [chooseButton addTarget:self action:@selector(chooseColour) forControlEvents:UIControlEventTouchDown];
-    [self.view addSubview:chooseButton];
+    self.chooseButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.chooseButton.frame = CGRectMake(frame.size.width / 5, y, 3 * frame.size.width / 5, 20);
+    [self.chooseButton setTitle:_(@"settingsmaincolorpickerviewcontroller-Choose this colour") forState:UIControlStateNormal];
+    [self.chooseButton addTarget:self action:@selector(chooseColour) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:self.chooseButton];
     y += 30;
 
-    hexLabel = [[GCLabel alloc] initWithFrame:CGRectMake(5, y, 10 + frame.size.width / 5, 20)];
-    hexLabel.text = dummyPin.rgb;
-    hexLabel.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:hexLabel];
+    self.hexLabel = [[GCLabel alloc] initWithFrame:CGRectMake(5, y, 10 + frame.size.width / 5, 20)];
+    self.hexLabel.text = self.dummyPin.rgb;
+    self.hexLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:self.hexLabel];
 
-    resetButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    resetButton.frame = CGRectMake(frame.size.width / 5, y, 3 * frame.size.width / 5, 20);
-    [resetButton setTitle:_(@"Reset") forState:UIControlStateNormal];
-    [resetButton addTarget:self action:@selector(resetColour) forControlEvents:UIControlEventTouchDown];
-    [self.view addSubview:resetButton];
+    self.resetButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.resetButton.frame = CGRectMake(frame.size.width / 5, y, 3 * frame.size.width / 5, 20);
+    [self.resetButton setTitle:_(@"Reset") forState:UIControlStateNormal];
+    [self.resetButton addTarget:self action:@selector(resetColour) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:self.resetButton];
     y += 30;
 
     contentView.contentSize = CGSizeMake(frame.size.width, y);
@@ -127,10 +126,10 @@
 
 - (void)chooseColour
 {
-    NSString *hexString = [ImageManager ColorToRGB:currentColour];
+    NSString *hexString = [ImageManager ColorToRGB:self.currentColour];
 
     /* Write to database */
-    switch (type) {
+    switch (self.type) {
         case SettingsMainColorPickerTrack:
             [configManager mapTrackColourUpdate:hexString];
             break;
@@ -151,18 +150,18 @@
 - (void)resetColour
 {
     /* Reset the colour */
-    switch (type) {
+    switch (self.type) {
         case SettingsMainColorPickerTrack:
-            [colorPickerView setColor:configManager.mapTrackColour];
+            [self.colorPickerView setColor:configManager.mapTrackColour];
             break;
         case SettingsMainColorPickerDestination:
-            [colorPickerView setColor:configManager.mapDestinationColour];
+            [self.colorPickerView setColor:configManager.mapDestinationColour];
             break;
         case SettingsMainColorPickerCircleRing:
-            [colorPickerView setColor:configManager.mapCircleRingColour];
+            [self.colorPickerView setColor:configManager.mapCircleRingColour];
             break;
         case SettingsMainColorPickerCircleFill:
-            [colorPickerView setColor:configManager.mapCircleFillColour];
+            [self.colorPickerView setColor:configManager.mapCircleFillColour];
             break;
     }
 }

@@ -20,11 +20,10 @@
  */
 
 @interface SettingsLogTemplatesViewController ()
-{
-    NSMutableArray<dbLogTemplate *> *logtemplates;
-    dbLogTemplate *currentLT;
-    NSMutableArray<dbLogMacro *> *logmacros;
-}
+
+@property (nonatomic, retain) NSMutableArray<dbLogTemplate *> *logtemplates;
+@property (nonatomic, retain) dbLogTemplate *currentLT;
+@property (nonatomic, retain) NSMutableArray<dbLogMacro *> *logmacros;
 
 @end
 
@@ -61,8 +60,8 @@ enum {
 
 - (void)reloadLogXxx
 {
-    logtemplates = [NSMutableArray arrayWithArray:[dbLogTemplate dbAll]];
-    logmacros = [NSMutableArray arrayWithArray:[dbLogMacro dbAll]];
+    self.logtemplates = [NSMutableArray arrayWithArray:[dbLogTemplate dbAll]];
+    self.logmacros = [NSMutableArray arrayWithArray:[dbLogMacro dbAll]];
     [self.tableView reloadData];
 }
 
@@ -77,9 +76,9 @@ enum {
 {
     switch (section) {
         case SECTION_LOGTEMPLATES:
-            return [NSString stringWithFormat:@"%ld %@", (long)[logtemplates count], _(@"settingslogtemplatesviewcontroller-log templates")];
+            return [NSString stringWithFormat:@"%ld %@", (long)[self.logtemplates count], _(@"settingslogtemplatesviewcontroller-log templates")];
         case SECTION_LOGMACROS:
-            return [NSString stringWithFormat:@"%ld %@", (long)[logmacros count], _(@"settingslogtemplatesviewcontroller-log macros")];
+            return [NSString stringWithFormat:@"%ld %@", (long)[self.logmacros count], _(@"settingslogtemplatesviewcontroller-log macros")];
         default:
             return @"";
     }
@@ -90,9 +89,9 @@ enum {
 {
     switch (section) {
         case SECTION_LOGTEMPLATES:
-            return [logtemplates count];
+            return [self.logtemplates count];
         case SECTION_LOGMACROS:
-            return [logmacros count];
+            return [self.logmacros count];
         default:
             return 0;
     }
@@ -106,13 +105,13 @@ enum {
     switch (indexPath.section) {
         case SECTION_LOGTEMPLATES: {
             cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL forIndexPath:indexPath];
-            dbLogTemplate *lt = [logtemplates objectAtIndex:indexPath.row];
+            dbLogTemplate *lt = [self.logtemplates objectAtIndex:indexPath.row];
             cell.textLabel.text = lt.name;
             break;
         }
         case SECTION_LOGMACROS: {
             cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE forIndexPath:indexPath];
-            dbLogMacro *lm = [logmacros objectAtIndex:indexPath.row];
+            dbLogMacro *lm = [self.logmacros objectAtIndex:indexPath.row];
             cell.textLabel.text = lm.name;
             cell.detailTextLabel.text = lm.text;
             break;
@@ -128,13 +127,13 @@ enum {
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     YIPopupTextView *tv;
-    currentLT = nil;
+    self.currentLT = nil;
 
     switch (indexPath.section) {
         case SECTION_LOGTEMPLATES: {
-            currentLT = [logtemplates objectAtIndex:indexPath.row];
+            self.currentLT = [self.logtemplates objectAtIndex:indexPath.row];
             tv = [[YIPopupTextView alloc] initWithPlaceHolder:_(@"settingslogtemplatesviewcontroller-Enter your log template here") maxCount:20000 buttonStyle:YIPopupTextViewButtonStyleRightCancelAndDone];
-            tv.text = currentLT.text;
+            tv.text = self.currentLT.text;
             tv.delegate = self;
             tv.caretShiftGestureEnabled = YES;
             tv.maxCount = 4000;
@@ -142,7 +141,7 @@ enum {
             break;
         }
         case SECTION_LOGMACROS: {
-            [self updateLogMacro:[logmacros objectAtIndex:indexPath.row]];
+            [self updateLogMacro:[self.logmacros objectAtIndex:indexPath.row]];
             break;
         }
     }
@@ -194,9 +193,9 @@ enum {
 {
     if (cancelled == YES)
         return;
-    if (currentLT != nil) {
-        currentLT.text = text;
-        [currentLT dbUpdate];
+    if (self.currentLT != nil) {
+        self.currentLT.text = text;
+        [self.currentLT dbUpdate];
     }
     [self.tableView reloadData];
 }
@@ -212,15 +211,15 @@ indexPath
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         switch (indexPath.section) {
             case SECTION_LOGMACROS: {
-                dbLogMacro *lm = [logmacros objectAtIndex:indexPath.row];
+                dbLogMacro *lm = [self.logmacros objectAtIndex:indexPath.row];
                 [lm dbDelete];
-                [logmacros removeObjectAtIndex:indexPath.row];
+                [self.logmacros removeObjectAtIndex:indexPath.row];
                 break;
             }
             case SECTION_LOGTEMPLATES: {
-                dbLogTemplate *lt = [logtemplates objectAtIndex:indexPath.row];
+                dbLogTemplate *lt = [self.logtemplates objectAtIndex:indexPath.row];
                 [lt dbDelete];
-                [logtemplates removeObjectAtIndex:indexPath.row];
+                [self.logtemplates removeObjectAtIndex:indexPath.row];
                 break;
             }
         }

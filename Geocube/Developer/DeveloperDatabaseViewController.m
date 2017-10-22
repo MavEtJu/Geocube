@@ -20,13 +20,12 @@
  */
 
 @interface DeveloperDatabaseViewController ()
-{
-    NSArray<NSString *> *fieldsSizes;
-    NSArray<NSString *> *valuesSizes;
-    NSArray<NSString *> *fieldsDBCount;
-    NSArray<NSString *> *valuesDBCount;
-    NSArray<dbConfig *> *config;
-}
+
+@property (nonatomic, retain) NSArray<NSString *> *fieldsSizes;
+@property (nonatomic, retain) NSArray<NSString *> *valuesSizes;
+@property (nonatomic, retain) NSArray<NSString *> *fieldsDBCount;
+@property (nonatomic, retain) NSArray<NSString *> *valuesDBCount;
+@property (nonatomic, retain) NSArray<dbConfig *> *config;
 
 @end
 
@@ -136,10 +135,10 @@ enum {
     [vs addObject:[[NSNumber numberWithInteger:[dbType dbCount]] stringValue]];
     [fs addObject:@"Waypoints"];
     [vs addObject:[[NSNumber numberWithInteger:[dbWaypoint dbCount]] stringValue]];
-    fieldsDBCount = fs;
-    valuesDBCount = vs;
+    self.fieldsDBCount = fs;
+    self.valuesDBCount = vs;
 
-    config = [dbConfig dbAll];
+    self.config = [dbConfig dbAll];
 }
 
 - (void)reloadDiskUtilization
@@ -147,8 +146,8 @@ enum {
     NSMutableArray<NSString *> *vs = [NSMutableArray arrayWithCapacity:20];
     NSMutableArray<NSString *> *fs = [NSMutableArray arrayWithCapacity:20];
 
-    fieldsSizes = fs;
-    valuesSizes = vs;
+    self.fieldsSizes = fs;
+    self.valuesSizes = vs;
 
     [vs addObject:[MyTools niceFileSize:[db getDatabaseSize]]];
     [fs addObject:@"Database size"];
@@ -175,7 +174,6 @@ enum {
     size = [MyTools determineDirectorySize:[MyTools ImagesDir]];
     [vs addObject:[MyTools niceFileSize:size]];
     [fs addObject:@"Images directory size"];
-    [self reloadDataMainQueue];
 
     [self reloadDataMainQueue];
 }
@@ -211,11 +209,11 @@ enum {
 {
     switch (section) {
         case SECTION_SIZES:
-            return [fieldsSizes count];
+            return [self.fieldsSizes count];
         case SECTION_DBCOUNT:
-            return [fieldsDBCount count];
+            return [self.fieldsDBCount count];
         case SECTION_CONFIGURATION:
-            return [config count];
+            return [self.config count];
     }
     return 0;
 }
@@ -227,19 +225,19 @@ enum {
 
     switch (indexPath.section) {
         case SECTION_SIZES: {
-            cell.keyLabel.text = [fieldsSizes objectAtIndex:indexPath.row];
-            cell.valueLabel.text = [[valuesSizes objectAtIndex:indexPath.row] description];
+            cell.keyLabel.text = [self.fieldsSizes objectAtIndex:indexPath.row];
+            cell.valueLabel.text = [[self.valuesSizes objectAtIndex:indexPath.row] description];
             cell.userInteractionEnabled = NO;
             break;
         }
         case SECTION_DBCOUNT: {
-            cell.keyLabel.text = [fieldsDBCount objectAtIndex:indexPath.row];
-            cell.valueLabel.text = [[valuesDBCount objectAtIndex:indexPath.row] description];
+            cell.keyLabel.text = [self.fieldsDBCount objectAtIndex:indexPath.row];
+            cell.valueLabel.text = [[self.valuesDBCount objectAtIndex:indexPath.row] description];
             cell.userInteractionEnabled = NO;
             break;
         }
         case SECTION_CONFIGURATION: {
-            dbConfig *c = [config objectAtIndex:indexPath.row];
+            dbConfig *c = [self.config objectAtIndex:indexPath.row];
             cell.keyLabel.text = c.key;
             cell.valueLabel.text = c.value;
             cell.userInteractionEnabled = NO;
