@@ -20,12 +20,11 @@
  */
 
 @interface WaypointWaypointsViewController ()
-{
-    NSArray<dbWaypoint *> *wps;
-    dbWaypoint *waypoint;
-    UITextField *tfLatitude, *tfLongitude;
-    UIAlertAction *okButton;
-}
+
+@property (nonatomic, retain) NSArray<dbWaypoint *> *wps;
+@property (nonatomic, retain) dbWaypoint *waypoint;
+@property (nonatomic, retain) UITextField *tfLatitude, *tfLongitude;
+@property (nonatomic, retain) UIAlertAction *okButton;
 
 @end
 
@@ -37,12 +36,12 @@ enum {
     menuMax
 };
 
-- (instancetype)init:(dbWaypoint *)_wp
+- (instancetype)init:(dbWaypoint *)wp
 {
     self = [super init];
 
-    waypoint = _wp;
-    wps = [waypoint hasWaypoints];
+    self.waypoint = wp;
+    self.wps = [self.waypoint hasWaypoints];
 
     self.lmi = [[LocalMenuItems alloc] init:menuMax];
     [self.lmi addItem:menuAddWaypoint label:_(@"waypointwaypointsviewcontroller-Add waypoint")];
@@ -66,7 +65,7 @@ enum {
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if ([wps count] == 1)
+    if ([self.wps count] == 1)
         [self newWaypoint];
 }
 
@@ -79,7 +78,7 @@ enum {
 
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [wps count];
+    return [self.wps count];
 }
 
 // Return a cell for the index path
@@ -88,7 +87,7 @@ enum {
     WaypointWaypointsTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_WAYPOINTSWAYPOINTSTABLEVIEWCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
-    dbWaypoint *wp = [wps objectAtIndex:indexPath.row];
+    dbWaypoint *wp = [self.wps objectAtIndex:indexPath.row];
 
     cell.iconImage.image = [imageManager getType:wp];
     cell.nameLabel.text = wp.wpt_urlname;
@@ -96,7 +95,7 @@ enum {
     cell.coordinatesLabel.text = [Coordinates niceCoordinates:wp.wpt_latitude longitude:wp.wpt_longitude];
     [cell viewWillTransitionToSize];
 
-    if (wp._id == waypoint._id) {
+    if (wp._id == self.waypoint._id) {
         cell.userInteractionEnabled = NO;
         cell.nameLabel.textColor = [UIColor lightGrayColor];
         cell.codeLabel.textColor = [UIColor lightGrayColor];
@@ -113,7 +112,7 @@ enum {
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbWaypoint *wp = [wps objectAtIndex:indexPath.row];
+    dbWaypoint *wp = [self.wps objectAtIndex:indexPath.row];
 
     [self.navigationController popViewControllerAnimated:YES];
     WaypointViewController *cvc = (WaypointViewController *)self.navigationController.topViewController;
@@ -123,12 +122,12 @@ enum {
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbWaypoint *wp = [wps objectAtIndex:indexPath.row];
+    dbWaypoint *wp = [self.wps objectAtIndex:indexPath.row];
 
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [waypointManager needsRefreshRemove:wp];
         [wp dbDelete];
-        wps = [waypoint hasWaypoints];
+        self.wps = [self.waypoint hasWaypoints];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
         if (self.delegateWaypoint != nil)
             [self.delegateWaypoint WaypointWaypoints_refreshTable];
@@ -137,8 +136,8 @@ enum {
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbWaypoint *wp = [wps objectAtIndex:indexPath.row];
-    if (wp._id == waypoint._id)
+    dbWaypoint *wp = [self.wps objectAtIndex:indexPath.row];
+    if (wp._id == self.waypoint._id)
         return NO;
     return YES;
 }
@@ -163,8 +162,8 @@ enum {
 - (void)cleanup
 {
     // Find which waypoints are duplicates
-    NSMutableArray<dbWaypoint *> *nwps = [NSMutableArray arrayWithCapacity:[wps count]];
-    [wps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp1, NSUInteger idx1, BOOL * _Nonnull stop1) {
+    NSMutableArray<dbWaypoint *> *nwps = [NSMutableArray arrayWithCapacity:[self.wps count]];
+    [self.wps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp1, NSUInteger idx1, BOOL * _Nonnull stop1) {
         __block BOOL found = NO;
         [nwps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp2, NSUInteger idx2, BOOL * _Nonnull stop2) {
             if (wp1.wpt_latitude == wp2.wpt_latitude &&
@@ -178,7 +177,7 @@ enum {
     }];
 
     // Find which waypoints are unique and don't delete them
-    [wps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.wps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
         __block BOOL found = NO;
         [nwps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull nwp, NSUInteger idx2, BOOL * _Nonnull stop2) {
             if (nwp._id == wp._id) {
@@ -192,7 +191,7 @@ enum {
         }
     }];
 
-    wps = nwps;
+    self.wps = nwps;
     [self.tableView reloadData];
 
     if (self.delegateWaypoint != nil)
@@ -201,13 +200,13 @@ enum {
 
 - (void)newWaypoint
 {
-    NSString *s = [NSString stringWithFormat:_(@"waypointwaypointsviewcontroller-Waypoint coordinates:\n%@\nCurrent coordinates:\n%@"), [Coordinates niceCoordinates:waypoint.wpt_latitude longitude:waypoint.wpt_longitude], [Coordinates niceCoordinates:LM.coords]];
+    NSString *s = [NSString stringWithFormat:_(@"waypointwaypointsviewcontroller-Waypoint coordinates:\n%@\nCurrent coordinates:\n%@"), [Coordinates niceCoordinates:self.waypoint.wpt_latitude longitude:self.waypoint.wpt_longitude], [Coordinates niceCoordinates:LM.coords]];
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:_(@"waypointwaypointsviewcontroller-Add a related waypoint")
                                 message:s
                                 preferredStyle:UIAlertControllerStyleAlert];
 
-    okButton = [UIAlertAction
+    self.okButton = [UIAlertAction
                 actionWithTitle:_(@"OK")
                 style:UIAlertActionStyleDefault
                 handler:^(UIAlertAction *action) {
@@ -226,14 +225,14 @@ enum {
                     dbWaypoint *wp = [[dbWaypoint alloc] init];
                     wp.wpt_latitude = [c latitude];
                     wp.wpt_longitude = [c longitude];
-                    wp.wpt_name = [dbWaypoint makeName:[waypoint.wpt_name substringFromIndex:2]];
+                    wp.wpt_name = [dbWaypoint makeName:[self.waypoint.wpt_name substringFromIndex:2]];
                     wp.wpt_description = wp.wpt_name;
                     wp.wpt_date_placed_epoch = time(NULL);
                     wp.wpt_url = nil;
                     wp.wpt_urlname = wp.wpt_name;
                     wp.wpt_symbol = dbc.symbolVirtualStage;
                     wp.wpt_type = dbc.typeManuallyEntered;
-                    wp.account = waypoint.account;
+                    wp.account = self.waypoint.account;
                     [wp finish];
                     [wp dbCreate];
 
@@ -243,7 +242,7 @@ enum {
                     [dbc.groupAllWaypoints addWaypointToGroup:wp];
                     [dbc.groupManualWaypoints addWaypointToGroup:wp];
 
-                    wps = [waypoint hasWaypoints];
+                    self.wps = [self.waypoint hasWaypoints];
                     [self.tableView reloadData];
                     [waypointManager needsRefreshAdd:wp];
                     if (self.delegateWaypoint != nil)
@@ -255,42 +254,42 @@ enum {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
 
-    [alert addAction:okButton];
+    [alert addAction:self.okButton];
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = _(@"waypointwaypointsviewcontroller-Latitude (like S 12 34.567)");
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:YES];
-        textField.text = [NSString stringWithString:[Coordinates niceLatitudeForEditing:waypoint.wpt_latitude]];
+        textField.text = [NSString stringWithString:[Coordinates niceLatitudeForEditing:self.waypoint.wpt_latitude]];
         [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-        tfLatitude = textField;
+        self.tfLatitude = textField;
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = _(@"waypointwaypointsviewcontroller-Longitude (like E 23 45.678)");
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:NO];
-        textField.text = [NSString stringWithString:[Coordinates niceLongitudeForEditing:waypoint.wpt_longitude]];
+        textField.text = [NSString stringWithString:[Coordinates niceLongitudeForEditing:self.waypoint.wpt_longitude]];
         [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-        tfLongitude = textField;
+        self.tfLongitude = textField;
     }];
 
-    if ([Coordinates checkCoordinate:tfLatitude.text] == YES &&
-        [Coordinates checkCoordinate:tfLongitude.text] == YES)
-        okButton.enabled = YES;
+    if ([Coordinates checkCoordinate:self.tfLatitude.text] == YES &&
+        [Coordinates checkCoordinate:self.tfLongitude.text] == YES)
+        self.okButton.enabled = YES;
     else
-        okButton.enabled = NO;
+        self.okButton.enabled = NO;
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)alertControllerTextFieldDidChange:(UITextField *)sender
 {
-    if ([Coordinates checkCoordinate:tfLatitude.text] == YES &&
-        [Coordinates checkCoordinate:tfLongitude.text] == YES)
-        okButton.enabled = YES;
+    if ([Coordinates checkCoordinate:self.tfLatitude.text] == YES &&
+        [Coordinates checkCoordinate:self.tfLongitude.text] == YES)
+        self.okButton.enabled = YES;
     else
-        okButton.enabled = NO;
+        self.okButton.enabled = NO;
 }
 
 @end

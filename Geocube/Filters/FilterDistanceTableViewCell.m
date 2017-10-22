@@ -20,12 +20,11 @@
  */
 
 @interface FilterDistanceTableViewCell ()
-{
-    FilterDistance compareDistance;
 
-    NSInteger distanceKm, distanceM;
-    NSInteger variationKm, variationM;
-}
+@property (nonatomic        ) FilterDistance compareDistance;
+
+@property (nonatomic        ) NSInteger distanceKm, distanceM;
+@property (nonatomic        ) NSInteger variationKm, variationM;
 
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelDistance;
@@ -65,7 +64,7 @@
 
 - (void)viewRefresh
 {
-    switch (compareDistance) {
+    switch (self.compareDistance) {
         case FILTER_DISTANCE_LESSTHAN:
             [self.buttonCompareDistance setTitle:_(@"=<") forState:UIControlStateNormal];
             [self.buttonCompareDistance setTitle:_(@"=<") forState:UIControlStateSelected];
@@ -82,10 +81,10 @@
             break;
     }
 
-    [self.buttonDistance setTitle:[MyTools niceDistance:(distanceKm * 1000 + distanceM)] forState:UIControlStateNormal];
-    [self.buttonDistance setTitle:[MyTools niceDistance:(distanceKm * 1000 + distanceM)] forState:UIControlStateSelected];
-    [self.buttonVariation setTitle:[MyTools niceDistance:(variationKm * 1000 + variationM)] forState:UIControlStateNormal];
-    [self.buttonVariation setTitle:[MyTools niceDistance:(variationKm * 1000 + variationM)] forState:UIControlStateSelected];
+    [self.buttonDistance setTitle:[MyTools niceDistance:(self.distanceKm * 1000 + self.distanceM)] forState:UIControlStateNormal];
+    [self.buttonDistance setTitle:[MyTools niceDistance:(self.distanceKm * 1000 + self.distanceM)] forState:UIControlStateSelected];
+    [self.buttonVariation setTitle:[MyTools niceDistance:(self.variationKm * 1000 + self.variationM)] forState:UIControlStateNormal];
+    [self.buttonVariation setTitle:[MyTools niceDistance:(self.variationKm * 1000 + self.variationM)] forState:UIControlStateSelected];
 }
 
 #pragma mark -- configuration
@@ -94,29 +93,29 @@
 {
     [super configInit];
 
-    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), fo.name];
+    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), self.fo.name];
 
     NSString *s;
     s = [self configGet:@"distanceKm"];
-    distanceKm = [s integerValue];
+    self.distanceKm = [s integerValue];
     s = [self configGet:@"distanceM"];
-    distanceM = [s integerValue];
+    self.distanceM = [s integerValue];
     s = [self configGet:@"variationKm"];
-    variationKm = [s integerValue];
+    self.variationKm = [s integerValue];
     s = [self configGet:@"variationM"];
-    variationM = [s integerValue];
+    self.variationM = [s integerValue];
     s = [self configGet:@"compareDistance"];
-    compareDistance = [s integerValue];
+    self.compareDistance = [s integerValue];
 }
 
 - (void)configUpdate
 {
-    [self configSet:@"compareDistance" value:[NSString stringWithFormat:@"%ld", (long)compareDistance]];
-    [self configSet:@"distanceM" value:[NSString stringWithFormat:@"%ld", (long)distanceM]];
-    [self configSet:@"distanceKm" value:[NSString stringWithFormat:@"%ld", (long)distanceKm]];
-    [self configSet:@"variationM" value:[NSString stringWithFormat:@"%ld", (long)variationM]];
-    [self configSet:@"variationKm" value:[NSString stringWithFormat:@"%ld", (long)variationKm]];
-    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%ld", (long)fo.expanded]];
+    [self configSet:@"compareDistance" value:[NSString stringWithFormat:@"%ld", (long)self.compareDistance]];
+    [self configSet:@"distanceM" value:[NSString stringWithFormat:@"%ld", (long)self.distanceM]];
+    [self configSet:@"distanceKm" value:[NSString stringWithFormat:@"%ld", (long)self.distanceKm]];
+    [self configSet:@"variationM" value:[NSString stringWithFormat:@"%ld", (long)self.variationM]];
+    [self configSet:@"variationKm" value:[NSString stringWithFormat:@"%ld", (long)self.variationKm]];
+    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%ld", (long)self.fo.expanded]];
     [self viewRefresh];
 }
 
@@ -145,18 +144,18 @@
 
 - (void)clickCompare:(FilterButton *)b
 {
-    compareDistance = (compareDistance + 1) % FILTER_DISTANCE_MAX;
+    self.compareDistance = (self.compareDistance + 1) % FILTER_DISTANCE_MAX;
     [self configUpdate];
 }
 
 - (void)clickDistance:(FilterButton *)b
 {
     if (b == self.buttonDistance) {
-        [ActionSheetDistancePicker showPickerWithTitle:_(@"filterdistancetableviewcell-Select distance") bigUnitString:@"km" bigUnitMax:999 selectedBigUnit:distanceKm smallUnitString:@"m" smallUnitMax:999 selectedSmallUnit:distanceM target:self action:@selector(measurementWasSelectedWithBigUnit:smallUnit:element:) origin:b];
+        [ActionSheetDistancePicker showPickerWithTitle:_(@"filterdistancetableviewcell-Select distance") bigUnitString:@"km" bigUnitMax:999 selectedBigUnit:self.distanceKm smallUnitString:@"m" smallUnitMax:999 selectedSmallUnit:self.distanceM target:self action:@selector(measurementWasSelectedWithBigUnit:smallUnit:element:) origin:b];
         return;
     }
     if (b == self.buttonVariation) {
-        [ActionSheetDistancePicker showPickerWithTitle:_(@"filterdistancetableviewcell-Select variation") bigUnitString:@"km" bigUnitMax:99 selectedBigUnit:variationKm smallUnitString:@"m" smallUnitMax:999 selectedSmallUnit:variationM target:self action:@selector(measurementWasSelectedWithBigUnit:smallUnit:element:) origin:b];
+        [ActionSheetDistancePicker showPickerWithTitle:_(@"filterdistancetableviewcell-Select variation") bigUnitString:@"km" bigUnitMax:99 selectedBigUnit:self.variationKm smallUnitString:@"m" smallUnitMax:999 selectedSmallUnit:self.variationM target:self action:@selector(measurementWasSelectedWithBigUnit:smallUnit:element:) origin:b];
         return;
     }
 }
@@ -164,14 +163,14 @@
 - (void)measurementWasSelectedWithBigUnit:(NSNumber *)bu smallUnit:(NSNumber *)su element:(FilterButton *)e
 {
     if (e == self.buttonDistance) {
-        distanceM = su.integerValue;
-        distanceKm = bu.integerValue;
+        self.distanceM = su.integerValue;
+        self.distanceKm = bu.integerValue;
         [self configUpdate];
         return;
     }
     if (e == self.buttonVariation) {
-        variationM = su.integerValue;
-        variationKm = bu.integerValue;
+        self.variationM = su.integerValue;
+        self.variationKm = bu.integerValue;
         [self configUpdate];
         return;
     }

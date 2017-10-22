@@ -20,11 +20,10 @@
  */
 
 @interface FilterDirectionTableViewCell ()
-{
-    NSArray<NSString *> *directions;
-    FilterDirection direction;
-    NSString *directionString;
-}
+
+@property (nonatomic, retain) NSArray<NSString *> *directions;
+@property (nonatomic        ) FilterDirection direction;
+@property (nonatomic, retain) NSString *directionString;
 
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelDirection;
@@ -40,7 +39,7 @@
     [super awakeFromNib];
     [self changeTheme];
 
-    directions = @[
+    self.directions = @[
                    _(@"compass-north"),
                    _(@"compass-northeast"),
                    _(@"compass-east"),
@@ -66,8 +65,8 @@
 
 - (void)viewRefresh
 {
-    [self.buttonDirection setTitle:[directions objectAtIndex:direction] forState:UIControlStateNormal];
-    [self.buttonDirection setTitle:[directions objectAtIndex:direction] forState:UIControlStateSelected];
+    [self.buttonDirection setTitle:[self.directions objectAtIndex:self.direction] forState:UIControlStateNormal];
+    [self.buttonDirection setTitle:[self.directions objectAtIndex:self.direction] forState:UIControlStateSelected];
 }
 
 #pragma mark -- configuration
@@ -76,16 +75,16 @@
 {
     [super configInit];
 
-    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), fo.name];
+    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), self.fo.name];
 
-    direction = [[self configGet:@"direction"] integerValue];
-    directionString = [directions objectAtIndex:direction];
+    self.direction = [[self configGet:@"direction"] integerValue];
+    self.directionString = [self.directions objectAtIndex:self.direction];
 }
 
 - (void)configUpdate
 {
-    [self configSet:@"direction" value:[NSString stringWithFormat:@"%ld", (long)direction]];
-    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+    [self configSet:@"direction" value:[NSString stringWithFormat:@"%ld", (long)self.direction]];
+    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", self.fo.expanded]];
     [self viewRefresh];
 }
 
@@ -112,11 +111,11 @@
 {
     [ActionSheetStringPicker
         showPickerWithTitle:_(@"filterdirectiontableviewcell-Select a direction")
-        rows:directions
-        initialSelection:direction
+        rows:self.directions
+        initialSelection:self.direction
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-            direction = selectedIndex;
-            directionString = [directions objectAtIndex:direction];
+            self.direction = selectedIndex;
+            self.directionString = [self.directions objectAtIndex:self.direction];
             [self configUpdate];
         }
         cancelBlock:^(ActionSheetStringPicker *picker) {

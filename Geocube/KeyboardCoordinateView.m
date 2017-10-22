@@ -21,12 +21,13 @@
 
 @interface KeyboardCoordinateView ()
 {
-    BOOL isLatitude;
-
-    UIButton *dirNorth, *dirEast, *dirSouth, *dirWest;
     UIButton *value[10];
-    UIButton *buttonSpace, *buttonDot, *buttonDegree, *buttonBackspace;
 }
+
+@property (nonatomic        ) BOOL isLatitude;
+
+@property (nonatomic, retain) UIButton *dirNorth, *dirEast, *dirSouth, *dirWest;
+@property (nonatomic, retain) UIButton *buttonSpace, *buttonDot, *buttonDegree, *buttonBackspace;
 
 @property (nonatomic, weak) UITextField <UITextInput> *targetTextInput;
 
@@ -34,11 +35,11 @@
 
 @implementation KeyboardCoordinateView
 
-- (instancetype)initWithIsLatitude:(BOOL)_isLatitude
+- (instancetype)initWithIsLatitude:(BOOL)isLatitude
 {
     self = [super initWithFrame:CGRectMake(0, 0, 100, 160)];
 
-    isLatitude = _isLatitude;
+    self.isLatitude = isLatitude;
 
     /*
      * +----------------------------------+
@@ -49,33 +50,33 @@
 
     NSInteger y = 3;
 
-    if (isLatitude == YES) {
-        dirNorth = [UIButton buttonWithType:UIButtonTypeSystem];
-        dirNorth.frame = CGRectMake(0, y, 100, 80);
-        [dirNorth setTitle:_(@"compass-north") forState:UIControlStateNormal];
-        [dirNorth addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
-        [self addSubview:dirNorth];
+    if (self.isLatitude == YES) {
+        self.dirNorth = [UIButton buttonWithType:UIButtonTypeSystem];
+        self.dirNorth.frame = CGRectMake(0, y, 100, 80);
+        [self.dirNorth setTitle:_(@"compass-north") forState:UIControlStateNormal];
+        [self.dirNorth addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
+        [self addSubview:self.dirNorth];
         y += 80;
 
-        dirSouth = [UIButton buttonWithType:UIButtonTypeSystem];
-        dirSouth.frame = CGRectMake(0, y, 100, 80);
-        [dirSouth setTitle:_(@"compass-south") forState:UIControlStateNormal];
-        [dirSouth addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
-        [self addSubview:dirSouth];
+        self.dirSouth = [UIButton buttonWithType:UIButtonTypeSystem];
+        self.dirSouth.frame = CGRectMake(0, y, 100, 80);
+        [self.dirSouth setTitle:_(@"compass-south") forState:UIControlStateNormal];
+        [self.dirSouth addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
+        [self addSubview:self.dirSouth];
         y += 80;
     } else {
-        dirEast = [UIButton buttonWithType:UIButtonTypeSystem];
-        dirEast.frame = CGRectMake(0, y, 100, 80);
-        [dirEast setTitle:_(@"compass-east") forState:UIControlStateNormal];
-        [dirEast addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
-        [self addSubview:dirEast];
+        self.dirEast = [UIButton buttonWithType:UIButtonTypeSystem];
+        self.dirEast.frame = CGRectMake(0, y, 100, 80);
+        [self.dirEast setTitle:_(@"compass-east") forState:UIControlStateNormal];
+        [self.dirEast addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
+        [self addSubview:self.dirEast];
         y += 80;
 
-        dirWest = [UIButton buttonWithType:UIButtonTypeSystem];
-        dirWest.frame = CGRectMake(0, y, 100, 80);
-        [dirWest setTitle:_(@"compass-west") forState:UIControlStateNormal];
-        [dirWest addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
-        [self addSubview:dirWest];
+        self.dirWest = [UIButton buttonWithType:UIButtonTypeSystem];
+        self.dirWest.frame = CGRectMake(0, y, 100, 80);
+        [self.dirWest setTitle:_(@"compass-west") forState:UIControlStateNormal];
+        [self.dirWest addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
+        [self addSubview:self.dirWest];
         y += 80;
     }
 
@@ -102,32 +103,32 @@
     NSInteger x = 100;
     y += 48;
 
-    buttonSpace = [UIButton buttonWithType:UIButtonTypeSystem];
-    buttonSpace.frame = CGRectMake(x, y, 40, 48);
-    [buttonSpace setTitle:@"_" forState:UIControlStateNormal];
-    [buttonSpace addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
-    [self addSubview:buttonSpace];
+    self.buttonSpace = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.buttonSpace.frame = CGRectMake(x, y, 40, 48);
+    [self.buttonSpace setTitle:@"_" forState:UIControlStateNormal];
+    [self.buttonSpace addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
+    [self addSubview:self.buttonSpace];
     x += 45;
 
-    buttonDot = [UIButton buttonWithType:UIButtonTypeSystem];
-    buttonDot.frame = CGRectMake(x, y, 40, 48);
-    [buttonDot setTitle:@"." forState:UIControlStateNormal];
-    [buttonDot addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
-    [self addSubview:buttonDot];
+    self.buttonDot = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.buttonDot.frame = CGRectMake(x, y, 40, 48);
+    [self.buttonDot setTitle:@"." forState:UIControlStateNormal];
+    [self.buttonDot addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
+    [self addSubview:self.buttonDot];
     x += 45;
 
-    buttonDegree = [UIButton buttonWithType:UIButtonTypeSystem];
-    buttonDegree.frame = CGRectMake(x, y, 40, 48);
-    [buttonDegree setTitle:@"°" forState:UIControlStateNormal];
-    [buttonDegree addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
-    [self addSubview:buttonDegree];
+    self.buttonDegree = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.buttonDegree.frame = CGRectMake(x, y, 40, 48);
+    [self.buttonDegree setTitle:@"°" forState:UIControlStateNormal];
+    [self.buttonDegree addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
+    [self addSubview:self.buttonDegree];
     x += 45;
 
-    buttonBackspace = [UIButton buttonWithType:UIButtonTypeSystem];
-    buttonBackspace.frame = CGRectMake(x, y, 40, 48);
-    [buttonBackspace setTitle:@"⌫" forState:UIControlStateNormal];
-    [buttonBackspace addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
-    [self addSubview:buttonBackspace];
+    self.buttonBackspace = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.buttonBackspace.frame = CGRectMake(x, y, 40, 48);
+    [self.buttonBackspace setTitle:@"⌫" forState:UIControlStateNormal];
+    [self.buttonBackspace addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
+    [self addSubview:self.buttonBackspace];
     x += 45;
 
     [self addObservers];
@@ -142,13 +143,13 @@
 
     NSString *new = nil;
 
-    if (b == dirNorth)
+    if (b == self.dirNorth)
         new = _(@"compass-N");
-    if (b == dirEast)
+    if (b == self.dirEast)
         new = _(@"compass-E");
-    if (b == dirSouth)
+    if (b == self.dirSouth)
         new = _(@"compass-S");
-    if (b == dirWest)
+    if (b == self.dirWest)
         new = _(@"compass-W");
     new = [NSString stringWithFormat:@"%@ ", new];
 
@@ -195,14 +196,14 @@
     if (selectedTextRange == nil)
         return;
 
-    if (b == buttonSpace)
+    if (b == self.buttonSpace)
         [self textInput:self.targetTextInput replaceTextAtTextRange:selectedTextRange withString:@" "];
-    if (b == buttonDot)
+    if (b == self.buttonDot)
         [self textInput:self.targetTextInput replaceTextAtTextRange:selectedTextRange withString:@"."];
-    if (b == buttonDegree)
+    if (b == self.buttonDegree)
         [self textInput:self.targetTextInput replaceTextAtTextRange:selectedTextRange withString:@"° "];
 
-    if (b == buttonBackspace) {
+    if (b == self.buttonBackspace) {
         if (selectedTextRange.empty == YES && selectedTextRange.start != 0) {
             NSRange r = [self rangeForTextRange:selectedTextRange];
             r.location--;

@@ -20,28 +20,27 @@
  */
 
 @interface WaypointGroupsViewController ()
-{
-    NSMutableArray<dbGroup *> *ugs, *sgs;
-    dbWaypoint *waypoint;
-}
+
+@property (nonatomic, retain) NSMutableArray<dbGroup *> *ugs, *sgs;
+@property (nonatomic, retain) dbWaypoint *waypoint;
 
 @end
 
 @implementation WaypointGroupsViewController
 
-- (instancetype)init:(dbWaypoint *)_wp
+- (instancetype)init:(dbWaypoint *)wp
 {
     self = [super init];
-    waypoint = _wp;
+    self.waypoint = wp;
 
-    ugs = [NSMutableArray arrayWithCapacity:5];
-    sgs = [NSMutableArray arrayWithCapacity:5];
+    self.ugs = [NSMutableArray arrayWithCapacity:5];
+    self.sgs = [NSMutableArray arrayWithCapacity:5];
 
-    [[dbGroup dbAllByWaypoint:waypoint] enumerateObjectsUsingBlock:^(dbGroup * _Nonnull cg, NSUInteger idx, BOOL * _Nonnull stop) {
+    [[dbGroup dbAllByWaypoint:self.waypoint] enumerateObjectsUsingBlock:^(dbGroup * _Nonnull cg, NSUInteger idx, BOOL * _Nonnull stop) {
         if (cg.usergroup == TRUE)
-            [ugs addObject:cg];
+            [self.ugs addObject:cg];
         else
-            [sgs addObject:cg];
+            [self.sgs addObject:cg];
     }];
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -68,8 +67,8 @@
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0)
-        return [ugs count];
-    return [sgs count];
+        return [self.ugs count];
+    return [self.sgs count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -87,9 +86,9 @@
 
     NSEnumerator *e;
     if (indexPath.section == 0)
-        e = [ugs objectEnumerator];
+        e = [self.ugs objectEnumerator];
     else
-        e = [sgs objectEnumerator];
+        e = [self.sgs objectEnumerator];
 
     dbGroup *cg;
     NSInteger c = 0;

@@ -28,19 +28,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    flag = FLAGS_IGNORED;
+    self.flag = FLAGS_IGNORED;
 }
 
 - (void)removeMark:(NSInteger)idx
 {
-    dbWaypoint *wp = [waypoints objectAtIndex:idx];
+    dbWaypoint *wp = [self.waypoints objectAtIndex:idx];
     wp.flag_ignore = NO;
     [wp dbUpdateIgnore];
 }
 
 - (void)clearFlags
 {
-    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
         wp.flag_ignore = NO;
         [wp dbUpdateIgnore];
     }];

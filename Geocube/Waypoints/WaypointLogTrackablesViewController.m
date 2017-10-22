@@ -20,11 +20,10 @@
  */
 
 @interface WaypointLogTrackablesViewController ()
-{
-    dbWaypoint *waypoint;
-    NSMutableArray<dbTrackable *> *tbs;
-    NSMutableArray<NSNumber *> *logtypes;
-}
+
+@property (nonatomic, retain) dbWaypoint *waypoint;
+@property (nonatomic, retain) NSMutableArray<dbTrackable *> *tbs;
+@property (nonatomic, retain) NSMutableArray<NSNumber *> *logtypes;
 
 @end
 
@@ -40,12 +39,12 @@ enum {
 {
     self = [super init];
 
-    waypoint = wp;
-    tbs = _tbs;
-    logtypes = [NSMutableArray arrayWithCapacity:[tbs count]];
+    self.waypoint = wp;
+    self.tbs = _tbs;
+    self.logtypes = [NSMutableArray arrayWithCapacity:[self.tbs count]];
 
-    [tbs enumerateObjectsUsingBlock:^(dbTrackable * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {
-        [logtypes addObject:[NSNumber numberWithInteger:tb.logtype]];
+    [self.tbs enumerateObjectsUsingBlock:^(dbTrackable * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.logtypes addObject:[NSNumber numberWithInteger:tb.logtype]];
     }];
 
     self.lmi = [[LocalMenuItems alloc] init:menuMax];
@@ -62,9 +61,9 @@ enum {
 
 - (void)willClosePage
 {
-    [logtypes enumerateObjectsUsingBlock:^(NSNumber * _Nonnull logtype, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.logtypes enumerateObjectsUsingBlock:^(NSNumber * _Nonnull logtype, NSUInteger idx, BOOL * _Nonnull stop) {
         NSInteger lt = [logtype integerValue];
-        dbTrackable *tb = [tbs objectAtIndex:idx];
+        dbTrackable *tb = [self.tbs objectAtIndex:idx];
         if (lt == TRACKABLE_LOG_VISIT && tb.logtype != TRACKABLE_LOG_VISIT) {
             tb.logtype = lt;
             [tb dbUpdate];
@@ -92,15 +91,15 @@ enum {
 
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [tbs count];
+    return [self.tbs count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     GCTableViewCellWithSubtitle *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
 
-    dbTrackable *tb = [tbs objectAtIndex:indexPath.row];
-    NSInteger logtype = [[logtypes objectAtIndex:indexPath.row] integerValue];
+    dbTrackable *tb = [self.tbs objectAtIndex:indexPath.row];
+    NSInteger logtype = [[self.logtypes objectAtIndex:indexPath.row] integerValue];
 
     cell.textLabel.text = tb.name;
     cell.userInteractionEnabled = YES;
@@ -134,7 +133,7 @@ enum {
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbTrackable *tb = [tbs objectAtIndex:indexPath.row];
+    dbTrackable *tb = [self.tbs objectAtIndex:indexPath.row];
 
     if (tb.logtype == TRACKABLE_LOG_PICKUP) {
         [self trackableContainerAction:tb indexPath:indexPath];
@@ -156,7 +155,7 @@ enum {
                                actionWithTitle:_(@"waypointlogtrackablesviewcontroller-Ignore")
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction *action) {
-                                   [logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_NONE] atIndexedSubscript:indexPath.row];
+                                   [self.logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_NONE] atIndexedSubscript:indexPath.row];
                                    [self.tableView reloadData];
                                }];
 
@@ -164,7 +163,7 @@ enum {
                              actionWithTitle:_(@"waypointlogtrackablesviewcontroller-Pick up")
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction *action) {
-                                 [logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_PICKUP] atIndexedSubscript:indexPath.row];
+                                 [self.logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_PICKUP] atIndexedSubscript:indexPath.row];
                                  [self.tableView reloadData];
                              }];
 
@@ -172,7 +171,7 @@ enum {
                                  actionWithTitle:_(@"waypointlogtrackablesviewcontroller-Discovered")
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction *action) {
-                                     [logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_DISCOVER] atIndexedSubscript:indexPath.row];
+                                     [self.logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_DISCOVER] atIndexedSubscript:indexPath.row];
                                      [self.tableView reloadData];
                                  }];
 
@@ -202,7 +201,7 @@ enum {
                                actionWithTitle:_(@"waypointlogtrackablesviewcontroller-No action")
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction *action) {
-                                   [logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_NONE] atIndexedSubscript:indexPath.row];
+                                   [self.logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_NONE] atIndexedSubscript:indexPath.row];
                                    [self.tableView reloadData];
                                }];
 
@@ -210,7 +209,7 @@ enum {
                               actionWithTitle:_(@"waypointlogtrackablesviewcontroller-Dropped off")
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction *action) {
-                                  [logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_DROPOFF] atIndexedSubscript:indexPath.row];
+                                  [self.logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_DROPOFF] atIndexedSubscript:indexPath.row];
                                   [self.tableView reloadData];
                               }];
 
@@ -218,7 +217,7 @@ enum {
                               actionWithTitle:_(@"waypointlogtrackablesviewcontroller-Visited")
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction *action) {
-                                  [logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_VISIT] atIndexedSubscript:indexPath.row];
+                                  [self.logtypes setObject:[NSNumber numberWithInteger:TRACKABLE_LOG_VISIT] atIndexedSubscript:indexPath.row];
                                   [self.tableView reloadData];
                               }];
 
@@ -280,9 +279,9 @@ enum {
                                  return;
                              }
 
-                             [tbs addObject:tb];
+                             [self.tbs addObject:tb];
                              tb.logtype = TRACKABLE_LOG_PICKUP;
-                             [logtypes addObject:[NSNumber numberWithInteger:TRACKABLE_LOG_PICKUP]];
+                             [self.logtypes addObject:[NSNumber numberWithInteger:TRACKABLE_LOG_PICKUP]];
                              [self.tableView reloadData];
                          }];
 
@@ -333,9 +332,9 @@ enum {
                                  return;
                              }
 
-                             [tbs addObject:tb];
+                             [self.tbs addObject:tb];
                              tb.logtype = TRACKABLE_LOG_DISCOVER;
-                             [logtypes addObject:[NSNumber numberWithInteger:TRACKABLE_LOG_DISCOVER]];
+                             [self.logtypes addObject:[NSNumber numberWithInteger:TRACKABLE_LOG_DISCOVER]];
                              [self.tableView reloadData];
                          }];
 

@@ -20,12 +20,11 @@
  */
 
 @interface WaypointPersonalNoteViewController ()
-{
-    dbWaypoint *waypoint;
-    GCTextblock *l;
-    YIPopupTextView *tv;
-    dbPersonalNote *note;
-}
+
+@property (nonatomic, retain) dbWaypoint *waypoint;
+@property (nonatomic, retain) GCTextblock *l;
+@property (nonatomic, retain) YIPopupTextView *tv;
+@property (nonatomic, retain) dbPersonalNote *note;
 
 @end
 
@@ -37,18 +36,18 @@ enum {
     menuMax,
 };
 
-- (instancetype)init:(dbWaypoint *)_waypoint
+- (instancetype)init:(dbWaypoint *)waypoint
 {
     self = [super init];
 
-    waypoint = _waypoint;
+    self.waypoint = waypoint;
     self.delegateWaypoint = nil;
 
     self.lmi = [[LocalMenuItems alloc] init:menuMax];
     [self.lmi addItem:menuScanForWaypoints label:_(@"waypointpersonalnoteviewcontroller-Extract waypoints")];
     [self.lmi addItem:menuCopyLog label:_(@"waypointpersonalnoteviewcontroller-Copy note to clipboard")];
 
-    note = [dbPersonalNote dbGetByWaypointName:waypoint.wpt_name];
+    self.note = [dbPersonalNote dbGetByWaypointName:self.waypoint.wpt_name];
 
     return self;
 }
@@ -63,25 +62,25 @@ enum {
     UIScrollView *view = [[UIScrollView alloc] initWithFrame:applicationFrame];
     self.view = view;
 
-    l = [[GCTextblock alloc] initWithFrame:CGRectMake(0, 0, applicationFrame.size.width, 0)];
-    l.text = note.note;
-    [l sizeToFit];
-    l.userInteractionEnabled = YES;
+    self.l = [[GCTextblock alloc] initWithFrame:CGRectMake(0, 0, applicationFrame.size.width, 0)];
+    self.l.text = self.note.note;
+    [self.l sizeToFit];
+    self.l.userInteractionEnabled = YES;
 
-    CGRect frame = l.frame;
+    CGRect frame = self.l.frame;
     frame.size.width = applicationFrame.size.width;
-    l.frame = frame;
+    self.l.frame = frame;
 
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelTapped)];
     tapGestureRecognizer.numberOfTapsRequired = 1;
-    [l addGestureRecognizer:tapGestureRecognizer];
+    [self.l addGestureRecognizer:tapGestureRecognizer];
 
-    [self.view addSubview:l];
+    [self.view addSubview:self.l];
 
-    view.contentSize = l.frame.size;
+    view.contentSize = self.l.frame.size;
     [self.view sizeToFit];
 
-    if (l.text == nil || [l.text isEqualToString:@""] == YES)
+    if (self.l.text == nil || [self.l.text isEqualToString:@""] == YES)
         [self labelTapped];
 
     [self prepareCloseButton:self.view];
@@ -89,35 +88,35 @@ enum {
 
 - (void)labelTapped
 {
-    tv = [[YIPopupTextView alloc] initWithPlaceHolder:_(@"waypointpersonalnoteviewcontroller-Enter your personal note here") maxCount:20000 buttonStyle:YIPopupTextViewButtonStyleRightCancelAndDone];
+    self.tv = [[YIPopupTextView alloc] initWithPlaceHolder:_(@"waypointpersonalnoteviewcontroller-Enter your personal note here") maxCount:20000 buttonStyle:YIPopupTextViewButtonStyleRightCancelAndDone];
 
-    tv.delegate = self;
-    tv.caretShiftGestureEnabled = YES;
-    tv.text = l.text;
+    self.tv.delegate = self;
+    self.tv.caretShiftGestureEnabled = YES;
+    self.tv.text = self.l.text;
 
-    [tv showInViewController:self];
+    [self.tv showInViewController:self];
 }
 
 - (void)popupTextView:(YIPopupTextView *)textView didDismissWithText:(NSString *)text cancelled:(BOOL)cancelled
 {
     if (cancelled == YES)
         return;
-    l.text = text;
-    [l sizeToFit];
+    self.l.text = text;
+    [self.l sizeToFit];
 
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
-    CGRect frame = l.frame;
+    CGRect frame = self.l.frame;
     frame.size.width = applicationFrame.size.width;
-    l.frame = frame;
+    self.l.frame = frame;
 
-    if (note == nil) {
-        note = [[dbPersonalNote alloc] init];
-        note.note = text;
-        note.wp_name = waypoint.wpt_name;
-        [note dbCreate];
+    if (self.note == nil) {
+        self.note = [[dbPersonalNote alloc] init];
+        self.note.note = text;
+        self.note.wp_name = self.waypoint.wpt_name;
+        [self.note dbCreate];
     } else {
-        note.note = text;
-        [note dbUpdate];
+        self.note.note = text;
+        [self.note dbUpdate];
     }
     BACKGROUND(updatePersonalNote, nil);
 
@@ -127,11 +126,11 @@ enum {
 
 - (void)updatePersonalNote
 {
-    if ([waypoint.account.remoteAPI supportsWaypointPersonalNotes] == YES) {
+    if ([self.waypoint.account.remoteAPI supportsWaypointPersonalNotes] == YES) {
         [bezelManager showBezel:self];
         [bezelManager setText:_(@"waypointpersonalnoteviewcontroller-Updating personal note")];
-        if ([waypoint.account.remoteAPI updatePersonalNote:note infoViewer:nil iiDownload:0] != REMOTEAPI_OK) {
-            [MyTools messageBox:self header:_(@"waypointpersonalnoteviewcontroller-Personal note") text:_(@"waypointpersonalnoteviewcontroller-Update of personal note has failed") error:waypoint.account.remoteAPI.lastError];
+        if ([self.waypoint.account.remoteAPI updatePersonalNote:self.note infoViewer:nil iiDownload:0] != REMOTEAPI_OK) {
+            [MyTools messageBox:self header:_(@"waypointpersonalnoteviewcontroller-Personal note") text:_(@"waypointpersonalnoteviewcontroller-Update of personal note has failed") error:self.waypoint.account.remoteAPI.lastError];
         }
         [bezelManager removeBezel];
     }
@@ -157,14 +156,14 @@ enum {
 
 - (void)scanForWaypoints
 {
-    NSArray<NSString *> *lines = [note.note componentsSeparatedByString:@"\n"];
-    [Coordinates scanForWaypoints:lines waypoint:waypoint view:self];
+    NSArray<NSString *> *lines = [self.note.note componentsSeparatedByString:@"\n"];
+    [Coordinates scanForWaypoints:lines waypoint:self.waypoint view:self];
 }
 
 - (void)menuCopyLog
 {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    pasteboard.string = note.note;
+    pasteboard.string = self.note.note;
     [MyTools messageBox:self header:_(@"waypointpersonalnoteviewcontroller-Copy successful") text:_(@"waypointpersonalnoteviewcontroller-The text of the personal note has been copied to the clipboard")];
 }
 

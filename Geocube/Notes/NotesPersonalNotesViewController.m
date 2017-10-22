@@ -20,10 +20,9 @@
  */
 
 @interface NotesPersonalNotesViewController ()
-{
-    NSArray<dbPersonalNote *> *pns;
-    NSMutableArray<NSString *> *notes;
-}
+
+@property (nonatomic, retain) NSArray<dbPersonalNote *> *pns;
+@property (nonatomic, retain) NSMutableArray<NSString *> *notes;
 
 @end
 
@@ -38,25 +37,25 @@
 
     self.lmi = nil;
 
-    pns = [dbPersonalNote dbAll];
+    self.pns = [dbPersonalNote dbAll];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    notes = [NSMutableArray arrayWithCapacity:100];
+    self.notes = [NSMutableArray arrayWithCapacity:100];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    notes = nil;
+    self.notes = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    pns = [dbPersonalNote dbAll];
+    self.pns = [dbPersonalNote dbAll];
     [self.tableView reloadData];
 }
 
@@ -70,7 +69,7 @@
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [pns count];
+    return [self.pns count];
 }
 
 // Return a cell for the index path
@@ -79,7 +78,7 @@
     PersonalNoteTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_PERSONALNOTETABLEVIEWCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
-    dbPersonalNote *pn = [pns objectAtIndex:indexPath.row];
+    dbPersonalNote *pn = [self.pns objectAtIndex:indexPath.row];
     [cell setNote:pn];
 
     return cell;

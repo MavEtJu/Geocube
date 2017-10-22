@@ -20,15 +20,14 @@
  */
 
 @interface WaypointImagesViewController ()
-{
-    dbWaypoint *waypoint;
-    NSArray<dbImage *> *userImages;
-    NSArray<dbImage *> *logImages;
-    NSArray<dbImage *> *cacheImages;
 
-    NSIndexPath *currentIndexPath;
-    WaypointImageViewController *ivc;
-}
+@property (nonatomic, retain) dbWaypoint *waypoint;
+@property (nonatomic, retain) NSArray<dbImage *> *userImages;
+@property (nonatomic, retain) NSArray<dbImage *> *logImages;
+@property (nonatomic, retain) NSArray<dbImage *> *cacheImages;
+
+@property (nonatomic, retain) NSIndexPath *currentIndexPath;
+@property (nonatomic, retain) WaypointImageViewController *ivc;
 
 @end
 
@@ -70,12 +69,12 @@ enum {
     [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLSUBTITLERIGHTIMAGE bundle:nil] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLSUBTITLERIGHTIMAGE];
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELL];
 
-    waypoint = wp;
-    userImages = [dbImage dbAllByWaypoint:wp type:IMAGECATEGORY_USER];
-    cacheImages = [dbImage dbAllByWaypoint:wp type:IMAGECATEGORY_CACHE];
-    logImages = [dbImage dbAllByWaypoint:wp type:IMAGECATEGORY_LOG];
+    self.waypoint = wp;
+    self.userImages = [dbImage dbAllByWaypoint:wp type:IMAGECATEGORY_USER];
+    self.cacheImages = [dbImage dbAllByWaypoint:wp type:IMAGECATEGORY_CACHE];
+    self.logImages = [dbImage dbAllByWaypoint:wp type:IMAGECATEGORY_LOG];
 
-    currentIndexPath = [[NSIndexPath alloc] init];
+    self.currentIndexPath = [[NSIndexPath alloc] init];
 
     [self needsDownloadMenu];
 
@@ -92,19 +91,19 @@ enum {
 {
     __block NSInteger needsDownload = NO;
     __block NSInteger needsDelete = NO;
-    [userImages enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.userImages enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([img imageHasBeenDowloaded] == NO)
             needsDownload = YES;
         else
             needsDelete = YES;
     }];
-    [cacheImages enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.cacheImages enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([img imageHasBeenDowloaded] == NO)
             needsDownload = YES;
         else
             needsDelete = YES;
     }];
-    [logImages enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.logImages enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([img imageHasBeenDowloaded] == NO)
             needsDownload = YES;
         else
@@ -158,8 +157,8 @@ enum {
     InfoItemID iii = [iii_ integerValue];
     [self.infoView setDescription:iii description:_(@"waypointimagesviewcontroller-Images from the logs")];
 
-    [logImages enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.infoView setQueueSize:iii queueSize:[logImages count] - idx];
+    [self.logImages enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.infoView setQueueSize:iii queueSize:[self.logImages count] - idx];
         if ([img imageHasBeenDowloaded] == NO) {
             [self downloadImage:img infoViewer:self.infoView iiImage:iii];
         }
@@ -178,8 +177,8 @@ enum {
     InfoItemID iii = [iii_ integerValue];
     [self.infoView setDescription:iii description:_(@"waypointimagesviewcontroller-Images from the waypoint")];
 
-    [cacheImages enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.infoView setQueueSize:iii queueSize:[cacheImages count] - idx];
+    [self.cacheImages enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.infoView setQueueSize:iii queueSize:[self.cacheImages count] - idx];
         if ([img imageHasBeenDowloaded] == NO)
             [self downloadImage:img infoViewer:self.infoView iiImage:iii];
     }];
@@ -227,9 +226,9 @@ enum {
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
-        case SECTION_USER: return [userImages count];
-        case SECTION_WAYPOINT: return [cacheImages count];
-        case SECTION_LOG: return [logImages count];
+        case SECTION_USER: return [self.userImages count];
+        case SECTION_WAYPOINT: return [self.cacheImages count];
+        case SECTION_LOG: return [self.logImages count];
     }
     return 0;
 }
@@ -258,11 +257,11 @@ enum {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         if (indexPath.section != SECTION_USER)
             return;
-        dbImage *img = [userImages objectAtIndex:indexPath.row];
+        dbImage *img = [self.userImages objectAtIndex:indexPath.row];
 
-        [img dbUnlinkFromWaypoint:waypoint];
+        [img dbUnlinkFromWaypoint:self.waypoint];
 
-        userImages = [dbImage dbAllByWaypoint:waypoint type:IMAGECATEGORY_USER];
+        self.userImages = [dbImage dbAllByWaypoint:self.waypoint type:IMAGECATEGORY_USER];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
         if (self.delegateWaypoint != nil)
             [self.delegateWaypoint WaypointImages_refreshTable];
@@ -278,9 +277,9 @@ enum {
 
     dbImage *img;
     switch (indexPath.section) {
-        case SECTION_USER: img = [userImages objectAtIndex:indexPath.row]; break;
-        case SECTION_WAYPOINT: img = [cacheImages objectAtIndex:indexPath.row]; break;
-        case SECTION_LOG: img = [logImages objectAtIndex:indexPath.row]; break;
+        case SECTION_USER: img = [self.userImages objectAtIndex:indexPath.row]; break;
+        case SECTION_WAYPOINT: img = [self.cacheImages objectAtIndex:indexPath.row]; break;
+        case SECTION_LOG: img = [self.logImages objectAtIndex:indexPath.row]; break;
     }
 
     if (img == nil)
@@ -325,18 +324,18 @@ enum {
     NSInteger max = 0;
     dbImage *img = nil;
 
-    currentIndexPath = [NSIndexPath indexPathForItem:indexPath.row inSection:indexPath.section];
+    self.currentIndexPath = [NSIndexPath indexPathForItem:indexPath.row inSection:indexPath.section];
 
-    switch (currentIndexPath.section) {
-        case SECTION_USER: max = [userImages count]; break;
-        case SECTION_WAYPOINT: max = [cacheImages count]; break;
-        case SECTION_LOG: max = [logImages count]; break;
+    switch (self.currentIndexPath.section) {
+        case SECTION_USER: max = [self.userImages count]; break;
+        case SECTION_WAYPOINT: max = [self.cacheImages count]; break;
+        case SECTION_LOG: max = [self.logImages count]; break;
     }
 
     switch (indexPath.section) {
-        case SECTION_USER: img = [userImages objectAtIndex:indexPath.row]; break;
-        case SECTION_WAYPOINT: img = [cacheImages objectAtIndex:indexPath.row]; break;
-        case SECTION_LOG: img = [logImages objectAtIndex:indexPath.row]; break;
+        case SECTION_USER: img = [self.userImages objectAtIndex:indexPath.row]; break;
+        case SECTION_WAYPOINT: img = [self.cacheImages objectAtIndex:indexPath.row]; break;
+        case SECTION_LOG: img = [self.logImages objectAtIndex:indexPath.row]; break;
     }
 
     if (img == nil)
@@ -347,12 +346,12 @@ enum {
         return;
     }
 
-    ivc = [[WaypointImageViewController alloc] init];
-    ivc.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.navigationController pushViewController:ivc animated:YES];
-    ivc.delegate = self;
+    self.ivc = [[WaypointImageViewController alloc] init];
+    self.ivc.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.navigationController pushViewController:self.ivc animated:YES];
+    self.ivc.delegate = self;
 
-    [ivc setImage:img idx:indexPath.row + 1 totalImages:max waypoint:waypoint];
+    [self.ivc setImage:img idx:indexPath.row + 1 totalImages:max waypoint:self.waypoint];
     return;
 }
 
@@ -371,22 +370,22 @@ enum {
 {
     NSInteger max = 0;
 
-    switch (currentIndexPath.section) {
-        case SECTION_USER: max = [userImages count]; break;
-        case SECTION_WAYPOINT: max = [cacheImages count]; break;
-        case SECTION_LOG: max = [logImages count]; break;
+    switch (self.currentIndexPath.section) {
+        case SECTION_USER: max = [self.userImages count]; break;
+        case SECTION_WAYPOINT: max = [self.cacheImages count]; break;
+        case SECTION_LOG: max = [self.logImages count]; break;
     }
 
-    if (currentIndexPath.row != 0) {
+    if (self.currentIndexPath.row != 0) {
         dbImage *img = nil;
-        currentIndexPath = [NSIndexPath indexPathForItem:currentIndexPath.row - 1 inSection:currentIndexPath.section];
-        switch (currentIndexPath.section) {
-            case SECTION_USER: img = [userImages objectAtIndex:currentIndexPath.row]; break;
-            case SECTION_WAYPOINT: img = [cacheImages objectAtIndex:currentIndexPath.row]; break;
-            case SECTION_LOG: img = [logImages objectAtIndex:currentIndexPath.row]; break;
+        self.currentIndexPath = [NSIndexPath indexPathForItem:self.currentIndexPath.row - 1 inSection:self.currentIndexPath.section];
+        switch (self.currentIndexPath.section) {
+            case SECTION_USER: img = [self.userImages objectAtIndex:self.currentIndexPath.row]; break;
+            case SECTION_WAYPOINT: img = [self.cacheImages objectAtIndex:self.currentIndexPath.row]; break;
+            case SECTION_LOG: img = [self.logImages objectAtIndex:self.currentIndexPath.row]; break;
         }
 
-        [ivc setImage:img idx:currentIndexPath.row + 1 totalImages:max waypoint:waypoint];
+        [self.ivc setImage:img idx:self.currentIndexPath.row + 1 totalImages:max waypoint:self.waypoint];
     }
 }
 
@@ -394,22 +393,22 @@ enum {
 {
     NSInteger max = 0;
 
-    switch (currentIndexPath.section) {
-        case SECTION_USER: max = [userImages count]; break;
-        case SECTION_WAYPOINT: max = [cacheImages count]; break;
-        case SECTION_LOG: max = [logImages count]; break;
+    switch (self.currentIndexPath.section) {
+        case SECTION_USER: max = [self.userImages count]; break;
+        case SECTION_WAYPOINT: max = [self.cacheImages count]; break;
+        case SECTION_LOG: max = [self.logImages count]; break;
     }
 
-    if (currentIndexPath.row != max - 1) {
+    if (self.currentIndexPath.row != max - 1) {
         dbImage *img = nil;
-        currentIndexPath = [NSIndexPath indexPathForItem:currentIndexPath.row + 1 inSection:currentIndexPath.section];
-        switch (currentIndexPath.section) {
-            case SECTION_USER: img = [userImages objectAtIndex:currentIndexPath.row]; break;
-            case SECTION_WAYPOINT: img = [cacheImages objectAtIndex:currentIndexPath.row]; break;
-            case SECTION_LOG: img = [logImages objectAtIndex:currentIndexPath.row]; break;
+        self.currentIndexPath = [NSIndexPath indexPathForItem:self.currentIndexPath.row + 1 inSection:self.currentIndexPath.section];
+        switch (self.currentIndexPath.section) {
+            case SECTION_USER: img = [self.userImages objectAtIndex:self.currentIndexPath.row]; break;
+            case SECTION_WAYPOINT: img = [self.cacheImages objectAtIndex:self.currentIndexPath.row]; break;
+            case SECTION_LOG: img = [self.logImages objectAtIndex:self.currentIndexPath.row]; break;
         }
 
-        [ivc setImage:img idx:currentIndexPath.row + 1 totalImages:max waypoint:waypoint];
+        [self.ivc setImage:img idx:self.currentIndexPath.row + 1 totalImages:max waypoint:self.waypoint];
     }
 }
 
@@ -438,9 +437,9 @@ enum {
 
 - (void)deleteAllPhotos
 {
-    [self deleteAllPhotos:cacheImages];
-    [self deleteAllPhotos:userImages];
-    [self deleteAllPhotos:logImages];
+    [self deleteAllPhotos:self.cacheImages];
+    [self deleteAllPhotos:self.userImages];
+    [self deleteAllPhotos:self.logImages];
 
     [self needsDownloadMenu];
     [self.tableView reloadData];
@@ -518,10 +517,10 @@ enum {
         UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
     }
 
-    if ([img dbLinkedtoWaypoint:waypoint] == NO)
-        [img dbLinkToWaypoint:waypoint type:IMAGECATEGORY_USER];
+    if ([img dbLinkedtoWaypoint:self.waypoint] == NO)
+        [img dbLinkToWaypoint:self.waypoint type:IMAGECATEGORY_USER];
 
-    userImages = [dbImage dbAllByWaypoint:waypoint type:IMAGECATEGORY_USER];
+    self.userImages = [dbImage dbAllByWaypoint:self.waypoint type:IMAGECATEGORY_USER];
     [self.tableView reloadData];
     if (self.delegateWaypoint != nil)
         [self.delegateWaypoint WaypointImages_refreshTable];

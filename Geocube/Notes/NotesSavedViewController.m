@@ -20,11 +20,10 @@
  */
 
 @interface NotesSavedViewController ()
-{
-    NSArray<dbWaypoint *> *waypointsWithLogs;
-    NSMutableArray<dbLog *> *logs;
-    NSIndexPath *selected;
-}
+
+@property (nonatomic, retain) NSArray<dbWaypoint *> *waypointsWithLogs;
+@property (nonatomic, retain) NSMutableArray<dbLog *> *logs;
+@property (nonatomic, retain) NSIndexPath *selected;
 
 @end
 
@@ -51,7 +50,7 @@ enum {
     [self.lmi disableItem:menuSubmit];
     [self.lmi disableItem:menuSubmitAll];
 
-    selected = nil;
+    self.selected = nil;
 
     return self;
 }
@@ -67,13 +66,13 @@ enum {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    logs = [NSMutableArray arrayWithCapacity:100];
+    self.logs = [NSMutableArray arrayWithCapacity:100];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    logs = nil;
+    self.logs = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -82,33 +81,33 @@ enum {
     [self reloadLogs];
     [self.tableView reloadData];
 
-    selected = nil;
+    self.selected = nil;
     [self.lmi disableItem:menuDelete];
     [self.lmi disableItem:menuSubmit];
 }
 
 - (void)reloadLogs
 {
-    waypointsWithLogs = [dbWaypoint dbAllWaypointsWithLogsUnsubmitted];
+    self.waypointsWithLogs = [dbWaypoint dbAllWaypointsWithLogsUnsubmitted];
 }
 
 #pragma mark - TableViewController related functions
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
-    return [waypointsWithLogs count];
+    return [self.waypointsWithLogs count];
 }
 
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    dbWaypoint *wp = [waypointsWithLogs objectAtIndex:section];
+    dbWaypoint *wp = [self.waypointsWithLogs objectAtIndex:section];
     return [[dbLog dbAllByWaypointUnsubmitted:wp] count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    dbWaypoint *wp = [waypointsWithLogs objectAtIndex:section];
+    dbWaypoint *wp = [self.waypointsWithLogs objectAtIndex:section];
     return [NSString stringWithFormat:@"%@ - %@", wp.wpt_name, wp.wpt_urlname];
 }
 
@@ -118,22 +117,22 @@ enum {
     LogTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_LOGTABLEVIEWCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
-    dbWaypoint *wp = [waypointsWithLogs objectAtIndex:indexPath.section];
+    dbWaypoint *wp = [self.waypointsWithLogs objectAtIndex:indexPath.section];
     dbLog *l = [[dbLog dbAllByWaypointUnsubmitted:wp] objectAtIndex:indexPath.row];
 
     [cell setLog:l];
     [cell setUserInteractionEnabled:YES];
 
-    [logs addObject:l];
+    [self.logs addObject:l];
 
     return cell;
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    selected = indexPath;
+    self.selected = indexPath;
 
-    dbWaypoint *wp = [waypointsWithLogs objectAtIndex:indexPath.section];
+    dbWaypoint *wp = [self.waypointsWithLogs objectAtIndex:indexPath.section];
     if (wp.account.remoteAPI.supportsLogging == YES &&
         wp.account.canDoRemoteStuff == YES)
         [self.lmi enableItem:menuSubmit];
@@ -143,7 +142,7 @@ enum {
 
 - (void)tableView:(UITableView *)aTableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    selected = nil;
+    self.selected = nil;
     [self.lmi disableItem:menuDelete];
     [self.lmi disableItem:menuSubmit];
 }
@@ -175,7 +174,7 @@ enum {
          ];
     submit.backgroundColor = [UIColor greenColor];
 
-    dbWaypoint *wp = [waypointsWithLogs objectAtIndex:indexPath.section];
+    dbWaypoint *wp = [self.waypointsWithLogs objectAtIndex:indexPath.section];
     if (wp.account.remoteAPI.supportsLogging == YES &&
         wp.account.canDoRemoteStuff == YES) {
         return @[submit, remove];
@@ -188,7 +187,7 @@ enum {
 
 - (void)menuDeleteAll
 {
-    [waypointsWithLogs enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.waypointsWithLogs enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
         [[dbLog dbAllByWaypointUnsubmitted:wp] enumerateObjectsUsingBlock:^(dbLog * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
             [log dbDelete];
         }];
@@ -199,13 +198,13 @@ enum {
 
 - (void)menuDelete
 {
-    if (selected != nil)
-        [self menuDelete:selected];
+    if (self.selected != nil)
+        [self menuDelete:self.selected];
 }
 
 - (void)menuDelete:(NSIndexPath *)indexPath
 {
-    dbWaypoint *wp = [waypointsWithLogs objectAtIndex:indexPath.section];
+    dbWaypoint *wp = [self.waypointsWithLogs objectAtIndex:indexPath.section];
     dbLog *l = [[dbLog dbAllByWaypointUnsubmitted:wp] objectAtIndex:indexPath.row];
 
     l.needstobelogged = NO;
@@ -216,7 +215,7 @@ enum {
 
 - (void)menuSubmitAll
 {
-    [waypointsWithLogs enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.waypointsWithLogs enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
         [[dbLog dbAllByWaypointUnsubmitted:wp] enumerateObjectsUsingBlock:^(dbLog * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
             // Something
         }];
@@ -227,13 +226,13 @@ enum {
 
 - (void)menuSubmit
 {
-    if (selected != nil)
-        [self menuSubmit:selected];
+    if (self.selected != nil)
+        [self menuSubmit:self.selected];
 }
 
 - (void)menuSubmit:(NSIndexPath *)indexPath
 {
-    dbWaypoint *wp = [waypointsWithLogs objectAtIndex:indexPath.section];
+    dbWaypoint *wp = [self.waypointsWithLogs objectAtIndex:indexPath.section];
     dbLog *l = [[dbLog dbAllByWaypointUnsubmitted:wp] objectAtIndex:indexPath.row];
 
     WaypointViewController *wpvc = [[WaypointViewController alloc] init];

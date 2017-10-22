@@ -20,12 +20,10 @@
  */
 
 @interface FilterDatesTableViewCell ()
-{
-    FilterDate comparePlaced, compareLastLog;
 
-    ActionSheetDatePicker *asdp;
-    NSInteger epochPlaced, epochLastLog;
-}
+@property (nonatomic        ) FilterDate comparePlaced, compareLastLog;
+@property (nonatomic, retain) ActionSheetDatePicker *asdp;
+@property (nonatomic        ) NSInteger epochPlaced, epochLastLog;
 
 @property (nonatomic, weak) IBOutlet FilterButton *buttonComparePlaced;
 @property (nonatomic, weak) IBOutlet FilterButton *buttonCompareLastLog;
@@ -67,7 +65,7 @@
 
 - (void)viewRefresh
 {
-    switch (compareLastLog) {
+    switch (self.compareLastLog) {
     case FILTER_DATE_BEFORE:
         [self.buttonCompareLastLog setTitle:_(@"filterdatetableviewcell-Before") forState:UIControlStateNormal];
         break;
@@ -79,7 +77,7 @@
         break;
     }
 
-    switch (comparePlaced) {
+    switch (self.comparePlaced) {
     case FILTER_DATE_BEFORE:
         [self.buttonComparePlaced setTitle:_(@"filterdatetableviewcell-Before") forState:UIControlStateNormal];
         break;
@@ -91,10 +89,10 @@
         break;
     }
 
-    NSString *s = [NSDateFormatter localizedStringFromDate:[NSDate dateWithTimeIntervalSince1970:epochLastLog] dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
+    NSString *s = [NSDateFormatter localizedStringFromDate:[NSDate dateWithTimeIntervalSince1970:self.epochLastLog] dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
     [self.buttonDateLastLog setTitle:s forState:UIControlStateNormal];
 
-    s = [NSDateFormatter localizedStringFromDate:[NSDate dateWithTimeIntervalSince1970:epochPlaced] dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
+    s = [NSDateFormatter localizedStringFromDate:[NSDate dateWithTimeIntervalSince1970:self.epochPlaced] dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
     [self.buttonDatePlaced setTitle:s forState:UIControlStateNormal];
 }
 
@@ -106,26 +104,26 @@
 {
     [super configInit];
 
-    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), fo.name];
+    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), self.fo.name];
 
     NSString *s;
     s = [self configGet:@"placed_epoch"];
-    epochPlaced = [s integerValue];
+    self.epochPlaced = [s integerValue];
     s = [self configGet:@"lastlog_epoch"];
-    epochLastLog = [s integerValue];
+    self.epochLastLog = [s integerValue];
     s = [self configGet:@"placed_compare"];
-    comparePlaced = [s integerValue];
+    self.comparePlaced = [s integerValue];
     s = [self configGet:@"lastlog_compare"];
-    compareLastLog = [s integerValue];
+    self.compareLastLog = [s integerValue];
 }
 
 - (void)configUpdate
 {
-    [self configSet:@"placed_epoch" value:[NSString stringWithFormat:@"%ld", (long)epochPlaced]];
-    [self configSet:@"lastlog_epoch" value:[NSString stringWithFormat:@"%ld", (long)epochLastLog]];
-    [self configSet:@"placed_compare" value:[NSString stringWithFormat:@"%ld", (long)comparePlaced]];
-    [self configSet:@"lastlog_compare" value:[NSString stringWithFormat:@"%ld", (long)compareLastLog]];
-    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+    [self configSet:@"placed_epoch" value:[NSString stringWithFormat:@"%ld", (long)self.epochPlaced]];
+    [self configSet:@"lastlog_epoch" value:[NSString stringWithFormat:@"%ld", (long)self.epochLastLog]];
+    [self configSet:@"placed_compare" value:[NSString stringWithFormat:@"%ld", (long)self.comparePlaced]];
+    [self configSet:@"lastlog_compare" value:[NSString stringWithFormat:@"%ld", (long)self.compareLastLog]];
+    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", self.fo.expanded]];
     [self viewRefresh];
 }
 
@@ -155,9 +153,9 @@
 {
     FilterDate compare = -1;
     if (b == self.buttonCompareLastLog)
-        compare = compareLastLog = (compareLastLog + 1) % 3;
+        compare = self.compareLastLog = (self.compareLastLog + 1) % 3;
     if (b == self.buttonComparePlaced)
-        compare = comparePlaced = (comparePlaced + 1) % 3;
+        compare = self.comparePlaced = (self.comparePlaced + 1) % 3;
     [self configUpdate];
     [self viewRefresh];
 }
@@ -174,11 +172,11 @@
 
     NSDate *d;
     if (b == self.buttonDateLastLog)
-        d = [NSDate dateWithTimeIntervalSince1970:epochLastLog];
+        d = [NSDate dateWithTimeIntervalSince1970:self.epochLastLog];
     if (b == self.buttonDatePlaced)
-        d = [NSDate dateWithTimeIntervalSince1970:epochPlaced];
+        d = [NSDate dateWithTimeIntervalSince1970:self.epochPlaced];
 
-    asdp =
+    self.asdp =
         [[ActionSheetDatePicker alloc]
          initWithTitle:_(@"filterdatetableviewcell-Date") datePickerMode:UIDatePickerModeDate
          selectedDate:d //self.selectedDate
@@ -188,15 +186,15 @@
          action:@selector(dateWasSelected:element:)
          origin:b];
 
-    [asdp showActionSheetPicker];
+    [self.asdp showActionSheetPicker];
 }
 
 - (void)dateWasSelected:(NSDate *)date element:(FilterButton *)b
 {
     if (b == self.buttonDateLastLog)
-        epochLastLog = [date timeIntervalSince1970];
+        self.epochLastLog = [date timeIntervalSince1970];
     if (b == self.buttonDatePlaced)
-        epochPlaced = [date timeIntervalSince1970];
+        self.epochPlaced = [date timeIntervalSince1970];
     [self configUpdate];
     [self viewRefresh];
 }

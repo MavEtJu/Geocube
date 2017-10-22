@@ -20,13 +20,12 @@
  */
 
 @interface WaypointDescriptionViewController ()
-{
-    dbWaypoint *waypoint;
-    UIWebView *webview;
-    GCScrollView *scrollview;
-    GCTextblock *block;
-    BOOL useWebview;
-}
+
+@property (nonatomic, retain) dbWaypoint *waypoint;
+@property (nonatomic, retain) UIWebView *webview;
+@property (nonatomic, retain) GCScrollView *scrollview;
+@property (nonatomic, retain) GCTextblock *block;
+@property (nonatomic        ) BOOL useWebview;
 
 @end
 
@@ -37,12 +36,12 @@ enum {
     menuMax,
 };
 
-- (instancetype)init:(dbWaypoint *)_wp webview:(BOOL)yesno
+- (instancetype)init:(dbWaypoint *)wp webview:(BOOL)yesno
 {
     self = [super init];
 
-    waypoint = _wp;
-    useWebview = yesno;
+    self.waypoint = wp;
+    self.useWebview = yesno;
 
     self.lmi = [[LocalMenuItems alloc] init:menuMax];
     if (yesno == YES)
@@ -60,60 +59,60 @@ enum {
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     /* webview */
-    if (useWebview == YES) {
-        webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-        [webview loadHTMLString:[self makeHTMLString] baseURL:nil];
-        [webview sizeToFit];
-        self.view = webview;
-        [self prepareCloseButton:webview];
+    if (self.useWebview == YES) {
+        self.webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+        [self.webview loadHTMLString:[self makeHTMLString] baseURL:nil];
+        [self.webview sizeToFit];
+        self.view = self.webview;
+        [self prepareCloseButton:self.webview];
     } else {
         /* scrollview */
         CGRect applicationFrame = [[UIScreen mainScreen] bounds];
-        scrollview = [[GCScrollView alloc] initWithFrame:applicationFrame];
+        self.scrollview = [[GCScrollView alloc] initWithFrame:applicationFrame];
 
-        block = [[GCTextblock alloc] initWithFrame:CGRectMake(0, 0, applicationFrame.size.width, 0)];
-        block.text = [self makeTextString];
-        [block sizeToFit];
+        self.block = [[GCTextblock alloc] initWithFrame:CGRectMake(0, 0, applicationFrame.size.width, 0)];
+        self.block.text = [self makeTextString];
+        [self.block sizeToFit];
 
-        CGRect frame = block.frame;
+        CGRect frame = self.block.frame;
         frame.size.width = applicationFrame.size.width;
-        block.frame = frame;
+        self.block.frame = frame;
 
-        [scrollview addSubview:block];
+        [self.scrollview addSubview:self.block];
 
-        scrollview.contentSize = block.frame.size;
-        [scrollview sizeToFit];
-        self.view = scrollview;
-        [self prepareCloseButton:scrollview];
+        self.scrollview.contentSize = self.block.frame.size;
+        [self.scrollview sizeToFit];
+        self.view = self.scrollview;
+        [self prepareCloseButton:self.scrollview];
     }
 }
 
 - (void)calculateRects
 {
     [super calculateRects];
-    if (useWebview == NO) {
+    if (self.useWebview == NO) {
         CGRect applicationFrame = [[UIScreen mainScreen] bounds];
         NSInteger width = applicationFrame.size.width;
 
-        block.frame = CGRectMake(0, 0, width, 0);
-        [block sizeToFit];
+        self.block.frame = CGRectMake(0, 0, width, 0);
+        [self.block sizeToFit];
     }
 }
 
 - (NSString *)makeHTMLString
 {
-    NSMutableString *ret = [NSMutableString stringWithString:waypoint.description];
+    NSMutableString *ret = [NSMutableString stringWithString:self.waypoint.description];
 
-    if ([waypoint.gs_short_desc isEqualToString:@""] == NO) {
-        NSString *s = waypoint.gs_short_desc;
-        if (waypoint.gs_short_desc_html == NO)
+    if ([self.waypoint.gs_short_desc isEqualToString:@""] == NO) {
+        NSString *s = self.waypoint.gs_short_desc;
+        if (self.waypoint.gs_short_desc_html == NO)
             s = [MyTools simpleHTML:s];
         [ret appendFormat:@"<hr>%@", s];
     }
 
-    if ([waypoint.gs_long_desc isEqualToString:@""] == NO) {
-        NSString *s = waypoint.gs_long_desc;
-        if (waypoint.gs_long_desc_html == NO)
+    if ([self.waypoint.gs_long_desc isEqualToString:@""] == NO) {
+        NSString *s = self.waypoint.gs_long_desc;
+        if (self.waypoint.gs_long_desc_html == NO)
             s = [MyTools simpleHTML:s];
         [ret appendFormat:@"<hr>%@", s];
     }
@@ -123,18 +122,18 @@ enum {
 
 - (NSString *)makeTextString
 {
-    NSMutableString *ret = [NSMutableString stringWithString:waypoint.description];
+    NSMutableString *ret = [NSMutableString stringWithString:self.waypoint.description];
 
-    if ([waypoint.gs_short_desc isEqualToString:@""] == NO) {
-        NSString *s = waypoint.gs_short_desc;
-        if (waypoint.gs_short_desc_html == NO)
+    if ([self.waypoint.gs_short_desc isEqualToString:@""] == NO) {
+        NSString *s = self.waypoint.gs_short_desc;
+        if (self.waypoint.gs_short_desc_html == NO)
             s = [MyTools simpleHTML:s];
         [ret appendFormat:@"\n-----------------\n%@", s];
     }
 
-    if ([waypoint.gs_long_desc isEqualToString:@""] == NO) {
-        NSString *s = waypoint.gs_long_desc;
-        if (waypoint.gs_long_desc_html == NO)
+    if ([self.waypoint.gs_long_desc isEqualToString:@""] == NO) {
+        NSString *s = self.waypoint.gs_long_desc;
+        if (self.waypoint.gs_long_desc_html == NO)
             s = [MyTools simpleHTML:s];
         [ret appendFormat:@"\n-----------------\n%@", s];
     }
@@ -184,7 +183,7 @@ enum {
 {
     [self.navigationController popViewControllerAnimated:YES];
     WaypointViewController *cvc = (WaypointViewController *)self.navigationController.topViewController;
-    UIViewController *newController = [[WaypointDescriptionViewController alloc] init:waypoint webview:!useWebview];
+    UIViewController *newController = [[WaypointDescriptionViewController alloc] init:self.waypoint webview:!self.useWebview];
     newController.edgesForExtendedLayout = UIRectEdgeNone;
     [cvc.navigationController pushViewController:newController animated:YES];
 }

@@ -20,21 +20,20 @@
  */
 
 @interface WaypointImageViewController ()
-{
-    dbImage *img;
-    dbWaypoint *waypoint;
-    UIScrollView *sv;
-    UIImage *image;
-    UIImageView *imgview;
 
-    CGRect imgViewRect;
-    GCLabel *labelCount;
-    Coordinates *exifCoordinates;
+@property (nonatomic, retain) dbImage *img;
+@property (nonatomic, retain) dbWaypoint *waypoint;
+@property (nonatomic, retain) UIScrollView *sv;
+@property (nonatomic, retain) UIImage *image;
+@property (nonatomic, retain) UIImageView *imgview;
 
-    BOOL zoomedIn;
+@property (nonatomic        ) CGRect imgViewRect;
+@property (nonatomic, retain) GCLabel *labelCount;
+@property (nonatomic, retain) Coordinates *exifCoordinates;
 
-    NSInteger totalImages, thisImage;
-}
+@property (nonatomic        ) BOOL zoomedIn;
+
+@property (nonatomic        ) NSInteger totalImages, thisImage;
 
 @end
 
@@ -52,14 +51,14 @@ enum {
 {
     self = [super init];
 
-    img = nil;
+    self.img = nil;
     self.hasCloseButton = YES;
     self.lmi = [[LocalMenuItems alloc] init:menuMax];
     [self.lmi addItem:menuUploadAirdrop label:_(@"waypointimageviewcontroller-Airdrop")];
     [self.lmi addItem:menuUploadICloud label:_(@"waypointimageviewcontroller-iCloud")];
     [self.lmi addItem:menuDeletePhoto label:_(@"waypointimageviewcontroller-Delete photo")];
     [self.lmi addItem:menuAddNewWaypoint label:_(@"waypointimageviewcontroller-Add waypoint")];
-    image = nil;
+    self.image = nil;
     self.delegate = nil;
 
     return self;
@@ -70,25 +69,25 @@ enum {
     [super viewDidLoad];
 
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
-    sv = [[UIScrollView alloc] initWithFrame:applicationFrame];
-    sv.delegate = self;
-    self.view = sv;
+    self.sv = [[UIScrollView alloc] initWithFrame:applicationFrame];
+    self.sv.delegate = self;
+    self.view = self.sv;
 
     [self loadImage];
-    [self prepareCloseButton:sv];
+    [self prepareCloseButton:self.sv];
 }
 
 - (void)loadImage
 {
-    [imgview removeFromSuperview];
-    [labelCount removeFromSuperview];
+    [self.imgview removeFromSuperview];
+    [self.labelCount removeFromSuperview];
 
-    imgview = [[UIImageView alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:imgview];
+    self.imgview = [[UIImageView alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:self.imgview];
 
-    labelCount = [[GCLabel alloc] initWithFrame:CGRectZero];
-    labelCount.textAlignment = NSTextAlignmentRight;
-    [self.view addSubview:labelCount];
+    self.labelCount = [[GCLabel alloc] initWithFrame:CGRectZero];
+    self.labelCount.textAlignment = NSTextAlignmentRight;
+    [self.view addSubview:self.labelCount];
 
     [self zoominout:NO];
 
@@ -114,17 +113,17 @@ enum {
 
 - (void)imageTapped:(UIGestureRecognizer *)gestureRecognizer
 {
-    if (zoomedIn) {
+    if (self.zoomedIn) {
         [UIView animateWithDuration:0.5 animations:^(void){
-            [self zoominout:(!zoomedIn)];
+            [self zoominout:(!self.zoomedIn)];
         }];
         return;
     }
 
-    CGSize imgSize = imgview.frame.size;
-    CGPoint touchPoint = [gestureRecognizer locationInView:imgview];
+    CGSize imgSize = self.imgview.frame.size;
+    CGPoint touchPoint = [gestureRecognizer locationInView:self.imgview];
     [UIView animateWithDuration:0.5 animations:^(void){
-        [self zoominout:(!zoomedIn) centerX:touchPoint.x / imgSize.width centerY:touchPoint.y / imgSize.height];
+        [self zoominout:(!self.zoomedIn) centerX:touchPoint.x / imgSize.width centerY:touchPoint.y / imgSize.height];
     }];
 }
 
@@ -148,16 +147,16 @@ enum {
 {
     [super scrollViewDidScroll:scrollView];
 
-    if (labelCount == nil)
+    if (self.labelCount == nil)
         return;
 
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     NSInteger width = applicationFrame.size.width;
 
-    CGRect frame = labelCount.frame;
+    CGRect frame = self.labelCount.frame;
     frame.origin.y = scrollView.contentOffset.y;
     frame.origin.x = scrollView.contentOffset.x + width - 100;
-    labelCount.frame = frame;
+    self.labelCount.frame = frame;
     frame.origin.y = scrollView.contentOffset.y;
 }
 
@@ -169,44 +168,44 @@ enum {
     applicationFrame.size.height--;
 
     // Nothing to zoom in if the picture is small enough already.
-    if (image.size.width < applicationFrame.size.width &&
-        image.size.height < applicationFrame.size.height) {
+    if (self.image.size.width < applicationFrame.size.width &&
+        self.image.size.height < applicationFrame.size.height) {
 
         // Center around the middle of the screen
-        imgview.frame = CGRectMake((applicationFrame.size.width - image.size.width) / 2, (applicationFrame.size.height - image.size.height) / 2, image.size.width, image.size.height);
+        self.imgview.frame = CGRectMake((applicationFrame.size.width - self.image.size.width) / 2, (applicationFrame.size.height - self.image.size.height) / 2, self.image.size.width, self.image.size.height);
 
-        sv.contentSize = imgview.frame.size;
+        self.sv.contentSize = self.imgview.frame.size;
         [self.view sizeToFit];
-        zoomedIn = NO;
+        self.zoomedIn = NO;
         return;
     }
 
     if (zoomIn == YES) {
-        imgview.frame = CGRectMake(0, 0, image.size.width, image.size.height);
-        sv.contentSize = image.size;
+        self.imgview.frame = CGRectMake(0, 0, self.image.size.width, self.image.size.height);
+        self.sv.contentSize = self.image.size;
         [self.view sizeToFit];
-        zoomedIn = YES;
+        self.zoomedIn = YES;
         return;
     }
 
     // Adjust the picture according to the ration of the width and the height
-    float rw = 1.0 * image.size.width / applicationFrame.size.width;
-    float rh = 1.0 * image.size.height / applicationFrame.size.height;
+    float rw = 1.0 * self.image.size.width / applicationFrame.size.width;
+    float rh = 1.0 * self.image.size.height / applicationFrame.size.height;
 
     if (rw < 1.0 && rh >= 1.0) {
-        imgview.frame = CGRectMake(0, 0, image.size.width / rh, image.size.height / rh);
+        self.imgview.frame = CGRectMake(0, 0, self.image.size.width / rh, self.image.size.height / rh);
     }
     if (rh < 1.0 && rw >= 1.0) {
-        imgview.frame = CGRectMake(0, 0, image.size.width / rw, image.size.height / rw);
+        self.imgview.frame = CGRectMake(0, 0, self.image.size.width / rw, self.image.size.height / rw);
     }
     if (rh >= 1.0 && rw >= 1.0) {
         float rx = (rh > rw) ? rh : rw;
-        imgview.frame = CGRectMake(0, 0, image.size.width / rx, image.size.height / rx);
+        self.imgview.frame = CGRectMake(0, 0, self.image.size.width / rx, self.image.size.height / rx);
     }
 
-    sv.contentSize = imgview.frame.size;
+    self.sv.contentSize = self.imgview.frame.size;
     [self.view sizeToFit];
-    zoomedIn = NO;
+    self.zoomedIn = NO;
 }
 
 - (void)zoominout:(BOOL)zoomIn centerX:(CGFloat)centerX centerY:(CGFloat)centerY
@@ -236,24 +235,24 @@ enum {
 
     CGFloat xO, yO;
 
-    xO = imgview.frame.size.width * centerX - applicationFrame.size.width / 2;
-    yO = imgview.frame.size.height * centerY - applicationFrame.size.height / 2;
-    if (applicationFrame.size.height > imgview.frame.size.height) {
+    xO = self.imgview.frame.size.width * centerX - applicationFrame.size.width / 2;
+    yO = self.imgview.frame.size.height * centerY - applicationFrame.size.height / 2;
+    if (applicationFrame.size.height > self.imgview.frame.size.height) {
         yO = 0;
-    } else if (applicationFrame.size.width > imgview.frame.size.width) {
+    } else if (applicationFrame.size.width > self.imgview.frame.size.width) {
         xO = 0;
     }
 
-    if (xO > imgview.frame.size.width - applicationFrame.size.width)
-        xO = imgview.frame.size.width - applicationFrame.size.width;
-    if (yO > imgview.frame.size.height - applicationFrame.size.height)
-        yO = imgview.frame.size.height - applicationFrame.size.height;
+    if (xO > self.imgview.frame.size.width - applicationFrame.size.width)
+        xO = self.imgview.frame.size.width - applicationFrame.size.width;
+    if (yO > self.imgview.frame.size.height - applicationFrame.size.height)
+        yO = self.imgview.frame.size.height - applicationFrame.size.height;
     if (xO < 0)
         xO = 0;
     if (yO < 0)
         yO = 0;
 
-    sv.contentOffset = CGPointMake(xO, yO);
+    self.sv.contentOffset = CGPointMake(xO, yO);
 }
 
 - (void)calculateRects
@@ -261,20 +260,20 @@ enum {
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     NSInteger width = applicationFrame.size.width;
 
-    labelCount.frame = CGRectMake(width - 100, 0, 100, 15);
-    [self zoominout:zoomedIn];
+    self.labelCount.frame = CGRectMake(width - 100, 0, 100, 15);
+    [self zoominout:self.zoomedIn];
 }
 
 - (void)setImage:(dbImage *)_img idx:(NSInteger)_thisImage totalImages:(NSInteger)_totalImages waypoint:(dbWaypoint *)wp
 {
-    img = _img;
-    waypoint = wp;
-    thisImage = _thisImage;
-    totalImages = _totalImages;
+    self.img = _img;
+    self.waypoint = wp;
+    self.thisImage = _thisImage;
+    self.totalImages = _totalImages;
     [self viewWillTransitionToSize];
 
     [self.lmi disableItem:menuAddNewWaypoint];
-    NSDictionary *exif = [MyTools imageEXIFDataFile:[MyTools ImageFile:img.datafile]];
+    NSDictionary *exif = [MyTools imageEXIFDataFile:[MyTools ImageFile:self.img.datafile]];
     NSDictionary *exifgps = [exif objectForKey:@"{GPS}"];
     NSString *lats = [exifgps objectForKey:@"Latitude"];
     NSString *latref = [exifgps objectForKey:@"LatitudeRef"];
@@ -288,17 +287,17 @@ enum {
         CLLocationDegrees lon = [lons floatValue];
         if ([lonref isEqualToString:@"W"] == YES)
             lon = -lon;
-        exifCoordinates = [[Coordinates alloc] init:lat longitude:lon];
+        self.exifCoordinates = [[Coordinates alloc] init:lat longitude:lon];
         [self.lmi enableItem:menuAddNewWaypoint];
     }
 }
 
 - (void)viewWillTransitionToSize
 {
-    labelCount.text = [NSString stringWithFormat:@"%ld / %ld", (long)thisImage, (long)totalImages];
+    self.labelCount.text = [NSString stringWithFormat:@"%ld / %ld", (long)self.thisImage, (long)self.totalImages];
 
-    image = [UIImage imageWithContentsOfFile:[MyTools ImageFile:img.datafile]];
-    imgview.image = image;
+    self.image = [UIImage imageWithContentsOfFile:[MyTools ImageFile:self.img.datafile]];
+    self.imgview.image = self.image;
 }
 
 #pragma mark - Local menu related functions
@@ -314,7 +313,7 @@ enum {
             [self uploadICloud];
             return;
         case menuDeletePhoto:
-            [fileManager removeItemAtPath:[MyTools ImageFile:img.datafile] error:nil];
+            [fileManager removeItemAtPath:[MyTools ImageFile:self.img.datafile] error:nil];
             [self.delegate WaypointImage_refreshTable];
             [self.navigationController popViewControllerAnimated:YES];
             return;
@@ -328,29 +327,29 @@ enum {
 
 - (void)uploadAirdrop
 {
-    NSString *filename = [MyTools ImageFile: img.datafile];
+    NSString *filename = [MyTools ImageFile: self.img.datafile];
     [IOSFTM uploadAirdrop:filename vc:self];
 }
 
 - (void)uploadICloud
 {
-    NSString *filename = [MyTools ImageFile:img.datafile];
+    NSString *filename = [MyTools ImageFile:self.img.datafile];
     [IOSFTM uploadICloud:filename vc:self];
 }
 
 - (void)addNewWaypoint
 {
     dbWaypoint *wp = [[dbWaypoint alloc] init];
-    wp.wpt_latitude = exifCoordinates.latitude;
-    wp.wpt_longitude = exifCoordinates.longitude;
-    wp.wpt_name = [dbWaypoint makeName:[waypoint.wpt_name substringFromIndex:2]];
+    wp.wpt_latitude = self.exifCoordinates.latitude;
+    wp.wpt_longitude = self.exifCoordinates.longitude;
+    wp.wpt_name = [dbWaypoint makeName:[self.waypoint.wpt_name substringFromIndex:2]];
     wp.wpt_description = wp.wpt_name;
     wp.wpt_date_placed_epoch = time(NULL);
     wp.wpt_url = nil;
     wp.wpt_urlname = wp.wpt_name;
     wp.wpt_symbol = dbc.symbolVirtualStage;
     wp.wpt_type = dbc.typeManuallyEntered;
-    wp.account = waypoint.account;
+    wp.account = self.waypoint.account;
     [wp finish];
     [wp dbCreate];
 

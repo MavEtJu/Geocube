@@ -20,10 +20,8 @@
  */
 
 @interface QueriesTemplateViewController : GCTableViewController <RemoteAPIDownloadDelegate>
-{
-    dbAccount *account;
-}
 
+@property (nonatomic, retain) dbAccount *account;
 @property (nonatomic, retain) NSString *queryString;
 @property (nonatomic, retain) NSString *queriesString;
 @property (nonatomic) BOOL isPublic;

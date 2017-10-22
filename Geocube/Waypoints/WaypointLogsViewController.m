@@ -20,13 +20,12 @@
  */
 
 @interface WaypointLogsViewController ()
-{
-    BOOL mineOnly;
-    dbWaypoint *waypoint;
-    NSMutableArray<dbLog *> *logs;
 
-    dbLog *selectedLog;
-}
+@property (nonatomic        ) BOOL mineOnly;
+@property (nonatomic, retain) dbWaypoint *waypoint;
+@property (nonatomic, retain) NSMutableArray<dbLog *> *logs;
+
+@property (nonatomic, retain) dbLog *selectedLog;
 
 @end
 
@@ -43,16 +42,16 @@ enum {
 - (instancetype)init:(dbWaypoint *)_wp
 {
     self = [super initWithStyle:UITableViewStylePlain];
-    waypoint = _wp;
-    mineOnly = NO;
+    self.waypoint = _wp;
+    self.mineOnly = NO;
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [self.tableView registerNib:[UINib nibWithNibName:XIB_LOGTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_LOGTABLEVIEWCELL];
 
-    logs = [NSMutableArray arrayWithArray:[dbLog dbAllByWaypoint:waypoint]];
+    self.logs = [NSMutableArray arrayWithArray:[dbLog dbAllByWaypoint:self.waypoint]];
     __block BOOL foundAnyCoordinates = NO;
-    [logs enumerateObjectsUsingBlock:^(dbLog * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.logs enumerateObjectsUsingBlock:^(dbLog * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {
         if (log.latitude != 0 && log.longitude != 0) {
             *stop = YES;
             foundAnyCoordinates = YES;
@@ -77,8 +76,8 @@ enum {
 {
     self = [self init:_wp];
 
-    mineOnly = YES;
-    logs = [NSMutableArray arrayWithArray:[dbLog dbAllByWaypointLogged:waypoint]];
+    self.mineOnly = YES;
+    self.logs = [NSMutableArray arrayWithArray:[dbLog dbAllByWaypointLogged:self.waypoint]];
 
     return self;
 }
@@ -103,7 +102,7 @@ enum {
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [logs count];
+    return [self.logs count];
 }
 
 // Return a cell for the index path
@@ -112,7 +111,7 @@ enum {
     LogTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_LOGTABLEVIEWCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
-    dbLog *l = [logs objectAtIndex:indexPath.row];
+    dbLog *l = [self.logs objectAtIndex:indexPath.row];
     [cell setLog:l];
     [cell setUserInteractionEnabled:YES];
 
@@ -121,7 +120,7 @@ enum {
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    selectedLog = [logs objectAtIndex:indexPath.row];
+    self.selectedLog = [self.logs objectAtIndex:indexPath.row];
     [self.lmi enableItem:menuScanForWaypoints];
     [self.lmi enableItem:menuCopyLog];
     [self.lmi enableItem:menuDeleteLog];
@@ -129,7 +128,7 @@ enum {
 
 - (void)tableView:(UITableView *)aTableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    selectedLog = nil;
+    self.selectedLog = nil;
     [self.lmi disableItem:menuScanForWaypoints];
     [self.lmi disableItem:menuCopyLog];
     [self.lmi disableItem:menuDeleteLog];
@@ -137,7 +136,7 @@ enum {
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbLog *l = [logs objectAtIndex:indexPath.row];
+    dbLog *l = [self.logs objectAtIndex:indexPath.row];
     if (l.localLog == YES)
         return YES;
     return NO;
@@ -146,12 +145,12 @@ enum {
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        dbLog *l = [logs objectAtIndex:indexPath.row];
+        dbLog *l = [self.logs objectAtIndex:indexPath.row];
         if (l.localLog == NO)
             return;
 
         [l dbDelete];
-        [logs removeObjectAtIndex:indexPath.row];
+        [self.logs removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
         [self.delegateWaypoint WaypointLogs_refreshTable];
         [self.tableView reloadData];
@@ -185,37 +184,37 @@ enum {
 {
     [_AppDelegate switchController:RC_LOCATIONSLESS];
     [locationlessMapTabController setSelectedIndex:VC_LOCATIONLESS_MAP animated:YES];
-    [locationlessMapViewController showLogLocations:waypoint];
+    [locationlessMapViewController showLogLocations:self.waypoint];
     return;
 }
 
 - (void)scanForWaypoints
 {
-    if (selectedLog == nil)
+    if (self.selectedLog == nil)
         return;
 
-    NSArray<NSString *> *lines = [selectedLog.log componentsSeparatedByString:@"\n"];
-    [Coordinates scanForWaypoints:lines waypoint:waypoint view:self];
+    NSArray<NSString *> *lines = [self.selectedLog.log componentsSeparatedByString:@"\n"];
+    [Coordinates scanForWaypoints:lines waypoint:self.waypoint view:self];
     [self.delegateWaypoint WaypointLogs_refreshTable];
 }
 
 - (void)menuCopyLog
 {
-    if (selectedLog == nil)
+    if (self.selectedLog == nil)
         return;
 
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    pasteboard.string = selectedLog.log;
+    pasteboard.string = self.selectedLog.log;
     [MyTools messageBox:self header:_(@"waypointlogsviewcontroller-Copy successful") text:_(@"waypointlogsviewcontroller-The text of the selected log has been copied to the clipboard")];
 }
 
 - (void)menuDeleteLog
 {
-    if (selectedLog == nil)
+    if (self.selectedLog == nil)
         return;
 
-    [selectedLog dbDelete];
-    logs = [NSMutableArray arrayWithArray:[dbLog dbAllByWaypoint:waypoint]];
+    [self.selectedLog dbDelete];
+    self.logs = [NSMutableArray arrayWithArray:[dbLog dbAllByWaypoint:self.waypoint]];
     [self reloadDataMainQueue];
 
     if (self.delegateWaypoint != nil)

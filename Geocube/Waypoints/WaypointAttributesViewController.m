@@ -20,25 +20,22 @@
  */
 
 @interface WaypointAttributesViewController ()
-{
-    NSMutableArray<dbAttribute *> *attrs;
-    dbWaypoint *waypoint;
-}
+
+@property (nonatomic, retain) NSMutableArray<dbAttribute *> *attrs;
 
 @end
 
 @implementation WaypointAttributesViewController
 
-- (instancetype)init:(dbWaypoint *)_wp
+- (instancetype)init:(dbWaypoint *)wp
 {
     self = [super init];
-    waypoint = _wp;
 
-    attrs = [NSMutableArray arrayWithCapacity:5];
+    self.attrs = [NSMutableArray arrayWithCapacity:5];
 
-    NSArray<dbAttribute *> *as = [dbAttribute dbAllByWaypoint:waypoint];
+    NSArray<dbAttribute *> *as = [dbAttribute dbAllByWaypoint:wp];
     [as enumerateObjectsUsingBlock:^(dbAttribute * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
-        [attrs addObject:a];
+        [self.attrs addObject:a];
     }];
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -64,7 +61,7 @@
 
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [attrs count];
+    return [self.attrs count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -78,7 +75,7 @@
     GCTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
-    dbAttribute *a = [attrs objectAtIndex:indexPath.row];
+    dbAttribute *a = [self.attrs objectAtIndex:indexPath.row];
 
     cell.textLabel.text = _(([NSString stringWithFormat:@"attributes-%@", a.label]));
     cell.imageView.image = [imageManager get:a.icon];

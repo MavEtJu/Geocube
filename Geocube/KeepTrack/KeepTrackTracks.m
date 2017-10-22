@@ -20,9 +20,8 @@
  */
 
 @interface KeepTrackTracks ()
-{
-    NSMutableArray<dbTrack *> *tracks;
-}
+
+@property (nonatomic, retain) NSMutableArray<dbTrack *> *tracks;
 
 @end
 
@@ -48,16 +47,16 @@ enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    tracks = [NSMutableArray arrayWithArray:[dbTrack dbAll]];
-    if ([tracks count] == 0)
+    self.tracks = [NSMutableArray arrayWithArray:[dbTrack dbAll]];
+    if ([self.tracks count] == 0)
         [self newTrack:_(@"keeptracktracks-First track")];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    tracks = [NSMutableArray arrayWithArray:[dbTrack dbAll]];
-    if ([tracks count] == 0)
+    self.tracks = [NSMutableArray arrayWithArray:[dbTrack dbAll]];
+    if ([self.tracks count] == 0)
         [self newTrack:_(@"keeptracktracks-New track")];
     [self.tableView reloadData];
 }
@@ -79,7 +78,7 @@ enum {
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [tracks count];
+    return [self.tracks count];
 }
 
 // Return a cell for the index path
@@ -87,7 +86,7 @@ enum {
 {
     KeepTracksTrackTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:XIB_KEEPTRACKSTRACKTABLEVIEWCELL forIndexPath:indexPath];
 
-    dbTrack *t = [tracks objectAtIndex:indexPath.row];
+    dbTrack *t = [self.tracks objectAtIndex:indexPath.row];
 
     cell.labelTrackName.text = t.name;
     cell.labelDateTimeStart.text = [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:t.dateStart];
@@ -108,7 +107,7 @@ enum {
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbTrack *t = [tracks objectAtIndex:indexPath.row];
+    dbTrack *t = [self.tracks objectAtIndex:indexPath.row];
 
     [_AppDelegate switchController:RC_KEEPTRACK];
     [keepTrackTabController setSelectedIndex:VC_KEEPTRACK_MAP animated:YES];
@@ -118,11 +117,11 @@ enum {
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbTrack *t = [tracks objectAtIndex:indexPath.row];
+    dbTrack *t = [self.tracks objectAtIndex:indexPath.row];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [dbTrackElement dbDeleteByTrack:t];
         [t dbDelete];
-        [tracks removeObjectAtIndex:indexPath.row];
+        [self.tracks removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     }
 }
@@ -189,7 +188,7 @@ enum {
     t.dateStop = 0;
     [t dbCreate];
 
-    [tracks addObject:t];
+    [self.tracks addObject:t];
     [configManager currentTrackUpdate:t];
     return t;
 }

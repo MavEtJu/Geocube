@@ -20,9 +20,8 @@
  */
 
 @interface WaypointLogEditViewController ()
-{
-    YIPopupTextView *tv;
-}
+
+@property (nonatomic, retain) YIPopupTextView *tv;
 
 @end
 
@@ -63,23 +62,23 @@ enum {
     self.view = contentView;
     [self.view sizeToFit];
 
-    tv = [[YIPopupTextView alloc] initWithPlaceHolder:_(@"waypointlogeditviewcontroller-Enter your log here") maxCount:20000 buttonStyle:YIPopupTextViewButtonStyleRightCancelAndDone];
+    self.tv = [[YIPopupTextView alloc] initWithPlaceHolder:_(@"waypointlogeditviewcontroller-Enter your log here") maxCount:20000 buttonStyle:YIPopupTextViewButtonStyleRightCancelAndDone];
 
-    tv.delegate = self;
-    tv.caretShiftGestureEnabled = YES;
-    tv.maxCount = 4000;
-    tv.text = self.text;
+    self.tv.delegate = self;
+    self.tv.caretShiftGestureEnabled = YES;
+    self.tv.maxCount = 4000;
+    self.tv.text = self.text;
 
-    if (IS_EMPTY(tv.text) == YES)
-        tv.text = configManager.logTemporaryText;
+    if (IS_EMPTY(self.tv.text) == YES)
+        self.tv.text = configManager.logTemporaryText;
 
-    [tv showInViewController:self];
+    [self.tv showInViewController:self];
 }
 
 - (void)popupTextView:(YIPopupTextView *)textView didDismissWithText:(NSString *)text cancelled:(BOOL)cancelled
 {
     if (cancelled == NO) {
-        self.text = tv.text;
+        self.text = self.tv.text;
         if (self.delegate != nil)
             [self.delegate didFinishEditing:self.text];
     }
@@ -101,9 +100,9 @@ enum {
         initialSelection:0
                doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                    dbLogTemplate *lt = [lts objectAtIndex:selectedIndex];
-                   NSMutableString *s = [NSMutableString stringWithString:tv.text];
-                   [s insertString:lt.text atIndex:tv.selectedRange.location];
-                   tv.text = s;
+                   NSMutableString *s = [NSMutableString stringWithString:self.tv.text];
+                   [s insertString:lt.text atIndex:self.tv.selectedRange.location];
+                   self.tv.text = s;
                }
                cancelBlock:^(ActionSheetStringPicker *picker) {
                }
@@ -125,7 +124,7 @@ enum {
         initialSelection:0
                doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                    dbLogTemplate *lt = [lts objectAtIndex:selectedIndex];
-                   tv.text = lt.text;
+                   self.tv.text = lt.text;
                }
                cancelBlock:^(ActionSheetStringPicker *picker) {
                }
@@ -135,12 +134,12 @@ enum {
 
 - (void)saveTemporary
 {
-    [configManager logTemporaryTextUpdate:tv.text];
+    [configManager logTemporaryTextUpdate:self.tv.text];
 }
 
 - (void)useTemporary
 {
-    tv.text = configManager.logTemporaryText;
+    self.tv.text = configManager.logTemporaryText;
 }
 
 - (void)clearTemporary

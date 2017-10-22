@@ -20,26 +20,25 @@
  */
 
 @interface KeepTrackCar ()
-{
-    CLLocationCoordinate2D coordsRecordedLocation;
 
-    CGRect rectRecordedLocation;
-    CGRect rectRecordedLocationCoordinates;
-    CGRect rectCurrentLocation;
-    CGRect rectCurrentLocationCoordinates;
-    CGRect rectDistance;
-    CGRect rectDirection;
-    CGRect rectButtonRemember;
-    CGRect rectButtonSetAsTarget;
+@property (nonatomic        ) CLLocationCoordinate2D coordsRecordedLocation;
 
-    GCLabelNormalText *labelRecordedLocation;
-    GCLabelNormalText *labelRecordedLocationCoordinates;
-    GCLabelNormalText *labelCurrentLocation;
-    GCLabelNormalText *labelCurrentLocationCoordinates;
-    GCLabelNormalText *labelDistance;
-    GCLabelNormalText *labelDirection;
-    GCButton *buttonSetAsTarget;
-}
+@property (nonatomic        ) CGRect rectRecordedLocation;
+@property (nonatomic        ) CGRect rectRecordedLocationCoordinates;
+@property (nonatomic        ) CGRect rectCurrentLocation;
+@property (nonatomic        ) CGRect rectCurrentLocationCoordinates;
+@property (nonatomic        ) CGRect rectDistance;
+@property (nonatomic        ) CGRect rectDirection;
+@property (nonatomic        ) CGRect rectButtonRemember;
+@property (nonatomic        ) CGRect rectButtonSetAsTarget;
+
+@property (nonatomic, retain) GCLabelNormalText *labelRecordedLocation;
+@property (nonatomic, retain) GCLabelNormalText *labelRecordedLocationCoordinates;
+@property (nonatomic, retain) GCLabelNormalText *labelCurrentLocation;
+@property (nonatomic, retain) GCLabelNormalText *labelCurrentLocationCoordinates;
+@property (nonatomic, retain) GCLabelNormalText *labelDistance;
+@property (nonatomic, retain) GCLabelNormalText *labelDirection;
+@property (nonatomic, retain) GCButton *buttonSetAsTarget;
 
 @end
 
@@ -75,45 +74,45 @@ enum {
 
     [self calculateRects];
 
-    labelRecordedLocation = [[GCLabelNormalText alloc] initWithFrame:rectRecordedLocation];
-    labelRecordedLocation.textAlignment = NSTextAlignmentCenter;
-    labelRecordedLocation.text = [NSString stringWithFormat:@"%@:", _(@"keeptrackcar-Remembered coordinates")];
-    [self.view addSubview:labelRecordedLocation];
+    self.labelRecordedLocation = [[GCLabelNormalText alloc] initWithFrame:self.rectRecordedLocation];
+    self.labelRecordedLocation.textAlignment = NSTextAlignmentCenter;
+    self.labelRecordedLocation.text = [NSString stringWithFormat:@"%@:", _(@"keeptrackcar-Remembered coordinates")];
+    [self.view addSubview:self.labelRecordedLocation];
 
-    labelRecordedLocationCoordinates = [[GCLabelNormalText alloc] initWithFrame:rectRecordedLocationCoordinates];
-    labelRecordedLocationCoordinates.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:labelRecordedLocationCoordinates];
+    self.labelRecordedLocationCoordinates = [[GCLabelNormalText alloc] initWithFrame:self.rectRecordedLocationCoordinates];
+    self.labelRecordedLocationCoordinates.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:self.labelRecordedLocationCoordinates];
 
-    labelCurrentLocation = [[GCLabelNormalText alloc] initWithFrame:rectCurrentLocation];
-    labelCurrentLocation.textAlignment = NSTextAlignmentCenter;
-    labelCurrentLocation.text = [NSString stringWithFormat:@"%@:", _(@"keeptrackcar-Current coordinates")];
-    [self.view addSubview:labelCurrentLocation];
+    self.labelCurrentLocation = [[GCLabelNormalText alloc] initWithFrame:self.rectCurrentLocation];
+    self.labelCurrentLocation.textAlignment = NSTextAlignmentCenter;
+    self.labelCurrentLocation.text = [NSString stringWithFormat:@"%@:", _(@"keeptrackcar-Current coordinates")];
+    [self.view addSubview:self.labelCurrentLocation];
 
-    labelCurrentLocationCoordinates = [[GCLabelNormalText alloc] initWithFrame:rectCurrentLocationCoordinates];
-    labelCurrentLocationCoordinates.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:labelCurrentLocationCoordinates];
+    self.labelCurrentLocationCoordinates = [[GCLabelNormalText alloc] initWithFrame:self.rectCurrentLocationCoordinates];
+    self.labelCurrentLocationCoordinates.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:self.labelCurrentLocationCoordinates];
 
-    labelDistance = [[GCLabelNormalText alloc] initWithFrame:rectDistance];
-    labelDistance.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:labelDistance];
+    self.labelDistance = [[GCLabelNormalText alloc] initWithFrame:self.rectDistance];
+    self.labelDistance.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:self.labelDistance];
 
-    labelDirection = [[GCLabelNormalText alloc] initWithFrame:rectDirection];
-    labelDirection.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:labelDirection];
+    self.labelDirection = [[GCLabelNormalText alloc] initWithFrame:self.rectDirection];
+    self.labelDirection.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:self.labelDirection];
 
-    buttonSetAsTarget = [GCButton buttonWithType:UIButtonTypeSystem];
-    buttonSetAsTarget.frame = rectButtonSetAsTarget;
-    [buttonSetAsTarget setTitle:_(@"keeptrackcar-Set remembered coordinates as target") forState:UIControlStateNormal];
-    [buttonSetAsTarget addTarget:self action:@selector(setastarget:) forControlEvents:UIControlEventTouchDown];
-    buttonSetAsTarget.userInteractionEnabled = NO;
-    [self.view addSubview:buttonSetAsTarget];
+    self.buttonSetAsTarget = [GCButton buttonWithType:UIButtonTypeSystem];
+    self.buttonSetAsTarget.frame = self.rectButtonSetAsTarget;
+    [self.buttonSetAsTarget setTitle:_(@"keeptrackcar-Set remembered coordinates as target") forState:UIControlStateNormal];
+    [self.buttonSetAsTarget addTarget:self action:@selector(setastarget:) forControlEvents:UIControlEventTouchDown];
+    self.buttonSetAsTarget.userInteractionEnabled = NO;
+    [self.view addSubview:self.buttonSetAsTarget];
 
     dbWaypoint *waypoint = [dbWaypoint dbGetByName:@"MYCAR"];
     if (waypoint == nil)
-        coordsRecordedLocation = CLLocationCoordinate2DZero;
+        self.coordsRecordedLocation = CLLocationCoordinate2DZero;
     else {
-        coordsRecordedLocation = CLLocationCoordinate2DMake(waypoint.wpt_latitude, waypoint.wpt_longitude);
-        buttonSetAsTarget.userInteractionEnabled = YES;
+        self.coordsRecordedLocation = CLLocationCoordinate2DMake(waypoint.wpt_latitude, waypoint.wpt_longitude);
+        self.buttonSetAsTarget.userInteractionEnabled = YES;
     }
 
     [self updateLocationManagerLocation];
@@ -144,41 +143,41 @@ enum {
      * +---------------------------------+
      */
 
-    rectCurrentLocation = CGRectMake(0, 1 * height18, width, height18);
-    rectCurrentLocationCoordinates = CGRectMake(0, 2 * height18, width, height18);
+    self.rectCurrentLocation = CGRectMake(0, 1 * height18, width, height18);
+    self.rectCurrentLocationCoordinates = CGRectMake(0, 2 * height18, width, height18);
 
-    rectRecordedLocation = CGRectMake(0, 4 * height18, width, height18);
-    rectRecordedLocationCoordinates = CGRectMake(0, 5 * height18, width, height18);
+    self.rectRecordedLocation = CGRectMake(0, 4 * height18, width, height18);
+    self.rectRecordedLocationCoordinates = CGRectMake(0, 5 * height18, width, height18);
 
-    rectDistance = CGRectMake(0, 7 * height18, width, height18);
-    rectDirection = CGRectMake(0, 8 * height18, width, height18);
+    self.rectDistance = CGRectMake(0, 7 * height18, width, height18);
+    self.rectDirection = CGRectMake(0, 8 * height18, width, height18);
 
-    rectButtonRemember = CGRectMake(0, height - 7 * height18, width, height18);
-    rectButtonSetAsTarget = CGRectMake(0, height - 5 * height18, width, height18);
+    self.rectButtonRemember = CGRectMake(0, height - 7 * height18, width, height18);
+    self.rectButtonSetAsTarget = CGRectMake(0, height - 5 * height18, width, height18);
 }
 
 - (void)viewWilltransitionToSize
 {
-    labelCurrentLocation.frame = rectCurrentLocation;
-    labelCurrentLocationCoordinates.frame = rectCurrentLocationCoordinates;
-    labelRecordedLocation.frame = rectRecordedLocation;
-    labelRecordedLocationCoordinates.frame = rectRecordedLocationCoordinates;
-    labelDirection.frame = rectDirection;
-    labelDistance.frame = rectDistance;
-    buttonSetAsTarget.frame = rectButtonSetAsTarget;
+    self.labelCurrentLocation.frame = self.rectCurrentLocation;
+    self.labelCurrentLocationCoordinates.frame = self.rectCurrentLocationCoordinates;
+    self.labelRecordedLocation.frame = self.rectRecordedLocation;
+    self.labelRecordedLocationCoordinates.frame = self.rectRecordedLocationCoordinates;
+    self.labelDirection.frame = self.rectDirection;
+    self.labelDistance.frame = self.rectDistance;
+    self.buttonSetAsTarget.frame = self.rectButtonSetAsTarget;
 }
 
 - (void)updateLocationManagerLocation
 {
-    labelCurrentLocationCoordinates.text = [Coordinates niceCoordinates:[LM coords]];
-    if (coordsRecordedLocation.latitude != 0 && coordsRecordedLocation.longitude != 0) {
-        labelRecordedLocationCoordinates.text = [Coordinates niceCoordinates:coordsRecordedLocation];
-        labelDistance.text = [NSString stringWithFormat:@"%@: %@", _(@"keeptrackcar-Distance"), [MyTools niceDistance:[Coordinates coordinates2distance:[LM coords] to:coordsRecordedLocation]]];
-        labelDirection.text = [NSString stringWithFormat:@"%@: %@", _(@"keeptrackcar-Distance"), [Coordinates bearing2compass:[Coordinates coordinates2bearing:[LM coords] to:coordsRecordedLocation]]];
+    self.labelCurrentLocationCoordinates.text = [Coordinates niceCoordinates:[LM coords]];
+    if (self.coordsRecordedLocation.latitude != 0 && self.coordsRecordedLocation.longitude != 0) {
+        self.labelRecordedLocationCoordinates.text = [Coordinates niceCoordinates:self.coordsRecordedLocation];
+        self.labelDistance.text = [NSString stringWithFormat:@"%@: %@", _(@"keeptrackcar-Distance"), [MyTools niceDistance:[Coordinates coordinates2distance:[LM coords] to:self.coordsRecordedLocation]]];
+        self.labelDirection.text = [NSString stringWithFormat:@"%@: %@", _(@"keeptrackcar-Distance"), [Coordinates bearing2compass:[Coordinates coordinates2bearing:[LM coords] to:self.coordsRecordedLocation]]];
     } else {
-        labelRecordedLocationCoordinates.text = @"-";
-        labelDistance.text = [NSString stringWithFormat:@"%@: - ", _(@"keeptrackcar-Distance")];
-        labelDirection.text = [NSString stringWithFormat:@"%@: - ", _(@"keeptrackcar-Direction")];
+        self.labelRecordedLocationCoordinates.text = @"-";
+        self.labelDistance.text = [NSString stringWithFormat:@"%@: - ", _(@"keeptrackcar-Distance")];
+        self.labelDirection.text = [NSString stringWithFormat:@"%@: - ", _(@"keeptrackcar-Direction")];
     }
 }
 
@@ -196,7 +195,7 @@ enum {
 
 - (void)remember
 {
-    coordsRecordedLocation = [LM coords];
+    self.coordsRecordedLocation = [LM coords];
     [self updateLocationManagerLocation];
 
     // Update waypoint
@@ -215,8 +214,8 @@ enum {
         [waypointManager needsRefreshAdd:waypoint];
     }
 
-    waypoint.wpt_longitude = coordsRecordedLocation.longitude;
-    waypoint.wpt_latitude = coordsRecordedLocation.latitude;
+    waypoint.wpt_longitude = self.coordsRecordedLocation.longitude;
+    waypoint.wpt_latitude = self.coordsRecordedLocation.latitude;
 
     waypoint.wpt_date_placed_epoch = time(NULL);
     [waypointManager needsRefreshUpdate:waypoint];
@@ -225,7 +224,7 @@ enum {
     [waypoint dbUpdate];
 
     // Enable "set as target"
-    buttonSetAsTarget.userInteractionEnabled = YES;
+    self.buttonSetAsTarget.userInteractionEnabled = YES;
 }
 
 - (void)setastarget:(UIButton *)b
@@ -257,7 +256,7 @@ enum {
             [self remember];
             return;
         case menuClearCoordinates:
-            coordsRecordedLocation = CLLocationCoordinate2DZero;
+            self.coordsRecordedLocation = CLLocationCoordinate2DZero;
             [self updateLocationManagerLocation];
             dbWaypoint *wp = [dbWaypoint dbGetByName:@"MYCAR"];
             [wp dbDelete];

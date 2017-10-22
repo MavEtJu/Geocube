@@ -20,15 +20,13 @@
  */
 
 @interface CompassViewController ()
-{
-    UIImage *compassImage;
-    UIImage *lineImage;
 
-    NSInteger width;
+@property (nonatomic, retain) UIImage *compassImage;
+@property (nonatomic, retain) UIImage *lineImage;
 
-    UIDeviceOrientation currentOrienation;
-    float bearingAdjustment;
-}
+@property (nonatomic        ) NSInteger width;
+@property (nonatomic        ) UIDeviceOrientation currentOrienation;
+@property (nonatomic        ) float bearingAdjustment;
 
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelWPCode;
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelWPDescription;
@@ -118,25 +116,25 @@
     // Update compass type
     switch (configManager.compassType) {
         case COMPASS_REDONBLUECOMPASS:
-            compassImage = [imageManager get:ImageCompass_RedArrowOnBlueCompass];
-            self.ivGNSSCompassBackground.image = compassImage;
-            lineImage = [imageManager get:ImageCompass_RedArrowOnBlueArrow];
-            self.ivGNSSCompassLine.image = lineImage;
+            self.compassImage = [imageManager get:ImageCompass_RedArrowOnBlueCompass];
+            self.ivGNSSCompassBackground.image = self.compassImage;
+            self.lineImage = [imageManager get:ImageCompass_RedArrowOnBlueArrow];
+            self.ivGNSSCompassLine.image = self.lineImage;
             break;
         case COMPASS_WHITEARROWONBLACK:
             self.ivGNSSCompassBackground.image = nil;
-            lineImage = [imageManager get:ImageCompass_WhiteArrowOnBlack];
-            self.ivGNSSCompassLine.image = lineImage;
+            self.lineImage = [imageManager get:ImageCompass_WhiteArrowOnBlack];
+            self.ivGNSSCompassLine.image = self.lineImage;
             break;
         case COMPASS_REDARROWONBLACK:
             self.ivGNSSCompassBackground.image = nil;
-            lineImage = [imageManager get:ImageCompass_RedArrowOnBlack];
-            self.ivGNSSCompassLine.image = lineImage;
+            self.lineImage = [imageManager get:ImageCompass_RedArrowOnBlack];
+            self.ivGNSSCompassLine.image = self.lineImage;
             break;
         case COMPASS_AIRPLANE:
             self.ivGNSSCompassBackground.image = [imageManager get:ImageCompass_AirplaneCompass];
-            lineImage = [imageManager get:ImageCompass_AirplaneAirplane];
-            self.ivGNSSCompassLine.image = lineImage;
+            self.lineImage = [imageManager get:ImageCompass_AirplaneAirplane];
+            self.ivGNSSCompassLine.image = self.lineImage;
             break;
     }
 
@@ -171,8 +169,8 @@
 
 - (void)deviceDidRotate:(NSNotification *)notification
 {
-    currentOrienation = [[UIDevice currentDevice] orientation];
-    bearingAdjustment = 0;
+    self.currentOrienation = [[UIDevice currentDevice] orientation];
+    self.bearingAdjustment = 0;
     return;
 
     //    switch (currentOrienation) {
@@ -230,12 +228,12 @@
 - (void)updateLocationManagerHeading
 {
     /* Draw the compass */
-    float newCompass = -LM.direction * M_PI / 180.0f + bearingAdjustment;
+    float newCompass = -LM.direction * M_PI / 180.0f + self.bearingAdjustment;
 
     self.ivGNSSCompassBackground.transform = CGAffineTransformMakeRotation(newCompass);
 
     NSInteger bearing = [Coordinates coordinates2bearing:LM.coords toLatitude:waypointManager.currentWaypoint.wpt_latitude toLongitude:waypointManager.currentWaypoint.wpt_longitude] - LM.direction;
-    float fBearing = bearing * M_PI / 180.0 + bearingAdjustment;
+    float fBearing = bearing * M_PI / 180.0 + self.bearingAdjustment;
 
     /* Draw the line */
     if (waypointManager.currentWaypoint == nil) {

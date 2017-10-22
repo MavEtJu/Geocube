@@ -20,9 +20,8 @@
  */
 
 @interface FilterTerrainTableViewCell ()
-{
-    float config_min, config_max;
-}
+
+@property (nonatomic      ) float config_min, config_max;
 
 @property (nonatomic, weak) IBOutlet RangeSlider *slider;
 @property (nonatomic, weak) IBOutlet GCLabelSmallText *labelSlider;
@@ -45,8 +44,8 @@
     UIImage *image = [UIImage imageNamed:@"fillrange.png"];
     [self.slider addTarget:self action:@selector(reportSlider:) forControlEvents:UIControlEventValueChanged];
     [self.slider setInRangeTrackImage:image];
-    self.slider.min = (config_min - 1) / 4.0;
-    self.slider.max = (config_max - 1) / 4.0;
+    self.slider.min = (self.config_min - 1) / 4.0;
+    self.slider.max = (self.config_max - 1) / 4.0;
 }
 
 - (void)changeTheme
@@ -60,8 +59,8 @@
 {
     /* Do not update self.slider.min/max here */
 
-    NSString *minString = [NSString stringWithFormat:((int)config_min == config_min) ? @"%1.0f" : @"%0.1f", config_min];
-    NSString *maxString = [NSString stringWithFormat:((int)config_max == config_max) ? @"%1.0f" : @"%0.1f", config_max];
+    NSString *minString = [NSString stringWithFormat:((int)self.config_min == self.config_min) ? @"%1.0f" : @"%0.1f", self.config_min];
+    NSString *maxString = [NSString stringWithFormat:((int)self.config_max == self.config_max) ? @"%1.0f" : @"%0.1f", self.config_max];
 
     self.labelSlider.text = [NSString stringWithFormat:@"%@: %@ - %@", _(@"filterterraintableviewcell-Terrain"), minString, maxString];
 }
@@ -72,20 +71,20 @@
 {
     [super configInit];
 
-    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), fo.name];
+    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), self.fo.name];
 
     NSString *s;
     s = [self configGet:@"min"];
-    config_min = [s floatValue];
+    self.config_min = [s floatValue];
     s = [self configGet:@"max"];
-    config_max = [s floatValue];
+    self.config_max = [s floatValue];
 }
 
 - (void)configUpdate
 {
-    [self configSet:@"min" value:[NSString stringWithFormat:@"%0.1f", config_min]];
-    [self configSet:@"max" value:[NSString stringWithFormat:@"%0.1f", config_max]];
-    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+    [self configSet:@"min" value:[NSString stringWithFormat:@"%0.1f", self.config_min]];
+    [self configSet:@"max" value:[NSString stringWithFormat:@"%0.1f", self.config_max]];
+    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", self.fo.expanded]];
     [self viewRefresh];
 }
 
@@ -111,8 +110,8 @@
 
 - (void)reportSlider:(RangeSlider *)s
 {
-    config_min = 1 + round(4 * s.min * 2) / 2.0;
-    config_max = 1 + round(4 * s.max * 2) / 2.0;
+    self.config_min = 1 + round(4 * s.min * 2) / 2.0;
+    self.config_max = 1 + round(4 * s.max * 2) / 2.0;
     [self configUpdate];
 }
 

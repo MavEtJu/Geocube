@@ -20,9 +20,9 @@
  */
 
 @interface NotesImagesViewController ()
-{
-    NSArray<dbWaypoint *> *waypointsWithImages;
-}
+
+@property (nonatomic, retain) NSArray<dbWaypoint *> *waypointsWithImages;
+
 
 @end
 
@@ -40,7 +40,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    waypointsWithImages = [dbWaypoint dbAllWaypointsWithImages];
+    self.waypointsWithImages = [dbWaypoint dbAllWaypointsWithImages];
     [self.tableView reloadData];
 }
 
@@ -48,19 +48,19 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
-    return [waypointsWithImages count];
+    return [self.waypointsWithImages count];
 }
 
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    dbWaypoint *wp = [waypointsWithImages objectAtIndex:section];
+    dbWaypoint *wp = [self.waypointsWithImages objectAtIndex:section];
     return [dbImage dbCountByWaypoint:wp type:IMAGECATEGORY_USER];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    dbWaypoint *wp = [waypointsWithImages objectAtIndex:section];
+    dbWaypoint *wp = [self.waypointsWithImages objectAtIndex:section];
     return [NSString stringWithFormat:@"%@ - %@", wp.wpt_name, wp.wpt_urlname];
 }
 
@@ -70,7 +70,7 @@
     UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
-    dbWaypoint *wp = [waypointsWithImages objectAtIndex:indexPath.section];
+    dbWaypoint *wp = [self.waypointsWithImages objectAtIndex:indexPath.section];
     NSArray<dbImage *> *imgs = [dbImage dbAllByWaypoint:wp type:IMAGECATEGORY_USER];
     dbImage *img = [imgs objectAtIndex:indexPath.row];
 
@@ -83,7 +83,7 @@
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbWaypoint *wp = [waypointsWithImages objectAtIndex:indexPath.section];
+    dbWaypoint *wp = [self.waypointsWithImages objectAtIndex:indexPath.section];
     NSArray<dbImage *> *imgs = [dbImage dbAllByWaypoint:wp type:IMAGECATEGORY_USER];
     dbImage *img = [imgs objectAtIndex:indexPath.row];
 

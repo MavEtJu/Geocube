@@ -20,10 +20,9 @@
  */
 
 @interface ListTemplateViewController : GCTableViewController <RemoteAPIDownloadDelegate>
-{
-    NSInteger flag;
-    NSMutableArray<dbWaypoint *> *waypoints;
-}
+
+@property (nonatomic        ) NSInteger flag;
+@property (nonatomic, retain) NSMutableArray<dbWaypoint *> *waypoints;
 
 - (void)clearFlags;
 - (void)removeMark:(NSInteger)idx;

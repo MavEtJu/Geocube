@@ -20,9 +20,8 @@
  */
 
 @interface FiltersViewController ()
-{
-    NSMutableArray<FilterObject *> *filters;
-}
+
+@property (nonatomic, retain) NSMutableArray<FilterObject *> *filters;
 
 @end
 
@@ -90,14 +89,14 @@ enum {
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERTYPESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERTYPESTABLEVIEWCELL];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERSIZESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERSIZESTABLEVIEWCELL];
 
-    filters = [NSMutableArray arrayWithCapacity:15];
+    self.filters = [NSMutableArray arrayWithCapacity:15];
 
     [self loadFilters:YES];
 }
 
 - (void)loadFilters:(BOOL)viewDidLoad
 {
-    [filters removeAllObjects];
+    [self.filters removeAllObjects];
 
 #define LOAD(__idx__, __name__, __xib__) \
     case __idx__: { \
@@ -106,7 +105,7 @@ enum {
         [fo.tvcDisabled header:__name__]; \
         fo.tvcEnabled = [self.tableView dequeueReusableCellWithIdentifier:__xib__]; \
         [fo.tvcEnabled initFO:fo]; \
-        [filters addObject:fo]; \
+        [self.filters addObject:fo]; \
         [fo.tvcEnabled viewRefresh]; \
         break; \
     }
@@ -142,13 +141,13 @@ enum {
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [filters count];
+    return [self.filters count];
 }
 
 // Return a cell for the index path
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FilterObject *fo = [filters objectAtIndex:indexPath.row];
+    FilterObject *fo = [self.filters objectAtIndex:indexPath.row];
     GCTableViewCell *cell;
 
 #define SHOWFILTER(__row__) \
@@ -184,7 +183,7 @@ enum {
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FilterObject *fo = [filters objectAtIndex:indexPath.row];
+    FilterObject *fo = [self.filters objectAtIndex:indexPath.row];
     fo.expanded = !fo.expanded;
     [fo.tvcEnabled configUpdate];
     [aTableView reloadData];
@@ -284,7 +283,7 @@ enum {
     RELOAD(FilterAccountsTableViewCell)
 
     [self loadFilters:NO];
-    [filters enumerateObjectsUsingBlock:^(FilterObject * _Nonnull fo, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.filters enumerateObjectsUsingBlock:^(FilterObject * _Nonnull fo, NSUInteger idx, BOOL * _Nonnull stop) {
         [fo.tvcEnabled viewRefresh];
     }];
 
@@ -315,7 +314,7 @@ enum {
     switch (index) {
         case menuSetDefaultValues:
             [dbFilter dbAllClear:nil];
-            [filters enumerateObjectsUsingBlock:^(FilterObject * _Nonnull fo, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.filters enumerateObjectsUsingBlock:^(FilterObject * _Nonnull fo, NSUInteger idx, BOOL * _Nonnull stop) {
                 fo.expanded = NO;
             }];
             [self.tableView reloadData];

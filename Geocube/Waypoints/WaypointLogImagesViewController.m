@@ -20,13 +20,12 @@
  */
 
 @interface WaypointLogImagesViewController ()
-{
-    dbWaypoint *waypoint;
-    NSArray<dbImage *> *images;
 
-    UITableView *parentTable;
-    UIImagePickerController *imagePickerController;
-}
+@property (nonatomic, retain) dbWaypoint *waypoint;
+@property (nonatomic, retain) NSArray<dbImage *> *images;
+
+@property (nonatomic, retain) UITableView *parentTable;
+@property (nonatomic, retain) UIImagePickerController *imagePickerController;
 
 @end
 
@@ -41,7 +40,7 @@ enum {
 - (instancetype)init:(dbWaypoint *)wp table:(UITableView *)table
 {
     self = [super init];
-    parentTable = table;
+    self.parentTable = table;
 
     self.lmi = [[LocalMenuItems alloc] init:menuMax];
     [self.lmi addItem:menuImportPhoto label:_(@"waypointlogimagesviewcontroller-Import photo")];
@@ -58,8 +57,8 @@ enum {
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELL];
 
-    waypoint = wp;
-    images = [dbImage dbAllByWaypoint:wp type:IMAGECATEGORY_USER];
+    self.waypoint = wp;
+    self.images = [dbImage dbAllByWaypoint:wp type:IMAGECATEGORY_USER];
 
     return self;
 }
@@ -73,7 +72,7 @@ enum {
 
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [images count];
+    return [self.images count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -81,7 +80,7 @@ enum {
     UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
-    dbImage *img = [images objectAtIndex:indexPath.row];
+    dbImage *img = [self.images objectAtIndex:indexPath.row];
     if (img == nil)
         return nil;
 
@@ -99,7 +98,7 @@ enum {
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbImage *img = [images objectAtIndex:indexPath.row];
+    dbImage *img = [self.images objectAtIndex:indexPath.row];
 
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:_(@"waypointlogimagesviewcontroller-Photo details")
@@ -164,12 +163,12 @@ enum {
 
 - (void)showImagePickerForSourceType:(UIImagePickerControllerSourceType)sourceType
 {
-    imagePickerController = [[UIImagePickerController alloc] init];
-    imagePickerController.modalPresentationStyle = UIModalPresentationCurrentContext;
-    imagePickerController.sourceType = sourceType;
-    imagePickerController.delegate = self;
+    self.imagePickerController = [[UIImagePickerController alloc] init];
+    self.imagePickerController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    self.imagePickerController.sourceType = sourceType;
+    self.imagePickerController.delegate = self;
 
-    [ALERT_VC_RVC(self) presentViewController:imagePickerController animated:YES completion:nil];
+    [ALERT_VC_RVC(self) presentViewController:self.imagePickerController animated:YES completion:nil];
 }
 
 - (void)finishAndUpdate
@@ -214,12 +213,12 @@ enum {
         [img dbCreate];
     }
 
-    if ([img dbLinkedtoWaypoint:waypoint] == NO)
-        [img dbLinkToWaypoint:waypoint type:IMAGECATEGORY_USER];
+    if ([img dbLinkedtoWaypoint:self.waypoint] == NO)
+        [img dbLinkToWaypoint:self.waypoint type:IMAGECATEGORY_USER];
 
-    images = [dbImage dbAllByWaypoint:waypoint type:IMAGECATEGORY_USER];
+    self.images = [dbImage dbAllByWaypoint:self.waypoint type:IMAGECATEGORY_USER];
     [self.tableView reloadData];
-    [parentTable reloadData];
+    [self.parentTable reloadData];
 
     [self finishAndUpdate];
     [picker dismissViewControllerAnimated:YES completion:NULL];
@@ -228,7 +227,7 @@ enum {
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    [parentTable reloadData];
+    [self.parentTable reloadData];
 }
 
 @end

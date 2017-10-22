@@ -20,10 +20,9 @@
  */
 
 @interface FilterAccountsTableViewCell ()
-{
-    NSArray<dbAccount *> *accounts;
-    NSArray<FilterButton *> *buttons;
-}
+
+@property (nonatomic, retain) NSArray<dbAccount *> *accounts;
+@property (nonatomic, retain) NSArray<FilterButton *> *buttons;
 
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
 @property (nonatomic, weak) IBOutlet FilterButton *firstButton;
@@ -39,8 +38,8 @@
 {
     [super awakeFromNib];
 
-    accounts = dbc.accounts;
-    NSMutableArray<FilterButton *> *bs = [NSMutableArray arrayWithCapacity:[accounts count]];
+    self.accounts = dbc.accounts;
+    NSMutableArray<FilterButton *> *bs = [NSMutableArray arrayWithCapacity:[self.accounts count]];
 
     __block NSInteger y = self.firstButton.frame.origin.y + self.firstButton.frame.size.height;
 
@@ -51,7 +50,7 @@
     [self.contentView removeConstraint:self.firstButtonLeft];
     [self.contentView removeConstraint:self.firstButtonRight];
 
-    [accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *s = [NSString stringWithFormat:@"group_%ld", (long)g._id];
         NSString *c = [self configGet:s];
         if (c == nil)
@@ -121,7 +120,7 @@
           constant:0];
     [self.contentView addConstraint:lc];
 
-    buttons = bs;
+    self.buttons = bs;
 
     [self changeTheme];
     [self.contentView sizeToFit];
@@ -131,7 +130,7 @@
 {
     [super changeTheme];
 
-    [buttons enumerateObjectsUsingBlock:^(FilterButton * _Nonnull fb, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.buttons enumerateObjectsUsingBlock:^(FilterButton * _Nonnull fb, NSUInteger idx, BOOL * _Nonnull stop) {
         [fb changeTheme];
     }];
 
@@ -140,8 +139,8 @@
 
 - (void)viewRefresh
 {
-    [accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
-        FilterButton *b = [buttons objectAtIndex:idx];
+    [self.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+        FilterButton *b = [self.buttons objectAtIndex:idx];
         [b setTitle:a.site forState:UIControlStateNormal];
         [b setTitleColor:(a.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b sizeToFit];
@@ -155,9 +154,9 @@
 - (void)configInit
 {
     [super configInit];
-    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), fo.name];
+    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), self.fo.name];
 
-    [accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *key = [NSString stringWithFormat:@"account_%ld", (long)g._id];
         g.selected = [[self configGet:key] boolValue];
     }];
@@ -165,7 +164,7 @@
 
 - (void)configUpdate
 {
-    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", self.fo.expanded]];
     [self viewRefresh];
 }
 
@@ -198,7 +197,7 @@
 
 - (void)clickAccount:(FilterButton *)b
 {
-    dbAccount *a = [accounts objectAtIndex:b.index];
+    dbAccount *a = [self.accounts objectAtIndex:b.index];
     a.selected = !a.selected;
     [b setTitleColor:(a.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
     [self configSet:[NSString stringWithFormat:@"account_%ld", (long)a._id] value:[NSString stringWithFormat:@"%d", a.selected]];

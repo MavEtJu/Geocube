@@ -22,10 +22,9 @@
 #define XIB_FILTERTABLEVIEWCELL @"FilterTableViewCell"
 
 @interface FilterTableViewCell : GCTableViewCell
-{
-    NSInteger cellHeight, width;
-    FilterObject *fo;
-}
+
+@property (nonatomic        ) NSInteger cellHeight, width;
+@property (nonatomic, retain) FilterObject *fo;
 
 //- (NSInteger)cellHeight;
 

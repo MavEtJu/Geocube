@@ -20,11 +20,9 @@
  */
 
 @interface WaypointRawViewController ()
-{
-    UIScrollView *contentView;
 
-    dbWaypoint *waypoint;
-}
+@property (nonatomic, retain) UIScrollView *contentView;
+@property (nonatomic, retain) dbWaypoint *waypoint;
 
 @end
 
@@ -34,7 +32,7 @@
 {
     self = [super init];
 
-    waypoint = wp;
+    self.waypoint = wp;
     self.lmi = nil;
 
     return self;
@@ -48,10 +46,10 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
-    contentView = [[GCScrollView alloc] initWithFrame:applicationFrame];
-    contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    contentView.delegate = self;
-    self.view = contentView;
+    self.contentView = [[GCScrollView alloc] initWithFrame:applicationFrame];
+    self.contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.contentView.delegate = self;
+    self.view = self.contentView;
 
     GCLabel *l;
     NSInteger y = 20;
@@ -61,7 +59,7 @@
 
     @autoreleasepool {
         unsigned int numberOfProperties = 0;
-        objc_property_t *propertyArray = class_copyPropertyList([waypoint class], &numberOfProperties);
+        objc_property_t *propertyArray = class_copyPropertyList([self.waypoint class], &numberOfProperties);
 
         for (NSUInteger i = 0; i < numberOfProperties; i++)
         {
@@ -69,20 +67,20 @@
             NSString *name = [[NSString alloc] initWithUTF8String:property_getName(property)];
             // const char *attributesCString = property_getAttributes(property);
             // NSString *attributesString = [[NSString alloc] initWithUTF8String:attributesCString];
-            id value = [waypoint valueForKey:name];
+            id value = [self.waypoint valueForKey:name];
             // NSLog(@"Property %@ attributes: %@ value: %@", name, attributesString, value);
 
             l = [[GCLabel alloc] initWithFrame:CGRectMake(1, y, width, 20)];
             l.text = [NSString stringWithFormat:@"%@: %@", name, value];
-            [contentView addSubview:l];
+            [self.contentView addSubview:l];
             y += 20;
         }
         free(propertyArray);
     }
 
-    [contentView setContentSize:CGSizeMake(width, y)];
+    [self.contentView setContentSize:CGSizeMake(width, y)];
 
-    [self prepareCloseButton:contentView];
+    [self prepareCloseButton:self.contentView];
 }
 
 @end

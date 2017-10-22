@@ -20,9 +20,9 @@
  */
 
 @interface FilterFavouritesTableViewCell ()
-{
-    NSInteger config_min, config_max;
-}
+
+@property (nonatomic      ) NSInteger config_min, config_max;
+
 
 @property (nonatomic, weak) IBOutlet RangeSlider *slider;
 @property (nonatomic, weak) IBOutlet GCLabelSmallText *labelSlider;
@@ -44,8 +44,8 @@
     UIImage *image = [UIImage imageNamed:@"fillrange.png"];
     [self.slider addTarget:self action:@selector(reportSlider:) forControlEvents:UIControlEventValueChanged];
     [self.slider setInRangeTrackImage:image];
-    self.slider.min = config_min / 100.0;
-    self.slider.max = config_max / 100.0;
+    self.slider.min = self.config_min / 100.0;
+    self.slider.max = self.config_max / 100.0;
 }
 
 - (void)changeTheme
@@ -59,16 +59,16 @@
 {
     /* Do not update self.slider.min/max here */
 
-    NSString *minString = [NSString stringWithFormat:@"%ld", (long)config_min];
-    NSString *maxString = [NSString stringWithFormat:@"%ld", (long)config_max];
+    NSString *minString = [NSString stringWithFormat:@"%ld", (long)self.config_min];
+    NSString *maxString = [NSString stringWithFormat:@"%ld", (long)self.config_max];
 
-    if (config_min == 0 && config_max == 100)
+    if (self.config_min == 0 && self.config_max == 100)
         self.labelSlider.text = _(@"filterfavouritestableviewcell-Favourites: Anything");
-    else if (config_min == config_max)
+    else if (self.config_min == self.config_max)
         self.labelSlider.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: %@"), minString];
-    else if (config_max == 100)
+    else if (self.config_max == 100)
         self.labelSlider.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: At least %@"), minString];
-    else if (config_min == 0)
+    else if (self.config_min == 0)
         self.labelSlider.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: At most %@"), maxString];
     else
         self.labelSlider.text = [NSString stringWithFormat:_(@"filterfavouritestableviewcell-Favourites: Between %@ and %@"), minString, maxString];
@@ -80,20 +80,20 @@
 {
     [super configInit];
 
-    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), fo.name];
+    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), self.fo.name];
 
     NSString *s;
     s = [self configGet:@"min"];
-    config_min = [s integerValue];
+    self.config_min = [s integerValue];
     s = [self configGet:@"max"];
-    config_max = [s integerValue];
+    self.config_max = [s integerValue];
 }
 
 - (void)configUpdate
 {
-    [self configSet:@"min" value:[NSString stringWithFormat:@"%ld", (long)config_min]];
-    [self configSet:@"max" value:[NSString stringWithFormat:@"%ld", (long)config_max]];
-    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%ld", (long)fo.expanded]];
+    [self configSet:@"min" value:[NSString stringWithFormat:@"%ld", (long)self.config_min]];
+    [self configSet:@"max" value:[NSString stringWithFormat:@"%ld", (long)self.config_max]];
+    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%ld", (long)self.fo.expanded]];
     [self viewRefresh];
 }
 
@@ -119,8 +119,8 @@
 
 - (void)reportSlider:(RangeSlider *)s
 {
-    config_min = (int)(100 * s.min);
-    config_max = (int)(100 * s.max);
+    self.config_min = (int)(100 * s.min);
+    self.config_max = (int)(100 * s.max);
     [self configUpdate];
 }
 

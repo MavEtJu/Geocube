@@ -20,12 +20,11 @@
  */
 
 @interface QueriesTemplateViewController ()
-{
-    NSArray<NSDictionary *> *qs;
-    NSArray<dbQueryImport *> *qis;
 
-    RemoteAPIProcessingGroup *processing;
-}
+@property (nonatomic, retain) NSArray<NSDictionary *> *qs;
+@property (nonatomic, retain) NSArray<dbQueryImport *> *qis;
+
+@property (nonatomic, retain) RemoteAPIProcessingGroup *processing;
 
 @end
 
@@ -43,7 +42,7 @@ enum {
     self.lmi = [[LocalMenuItems alloc] init:menuMax];
     [self.lmi addItem:menuReload label:_(@"queriestemplateviewcontroller-Reload")];
 
-    processing = [[RemoteAPIProcessingGroup alloc] init];
+    self.processing = [[RemoteAPIProcessingGroup alloc] init];
 
     return self;
 }
@@ -58,30 +57,30 @@ enum {
 
     [self makeInfoView];
 
-    qs = nil;
+    self.qs = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
 
-    if (qs == nil) {
-        qs = @[];
+    if (self.qs == nil) {
+        self.qs = @[];
         BACKGROUND(reloadQueries, nil);
     }
-    qis = [dbQueryImport dbAll];
+    self.qis = [dbQueryImport dbAll];
 }
 
 - NEEDS_OVERLOADING_VOID(reloadQueries)
 
 - (void)reloadQueries:(NSInteger)protocol
 {
-    account = nil;
+    self.account = nil;
 
     __block BOOL failure = NO;
     [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a.protocol._id == protocol && a.remoteAPI.supportsListQueries == YES) {
-            account = a;
+            self.account = a;
             if (a.canDoRemoteStuff == NO) {
                 *stop = YES;
                 return;
@@ -91,13 +90,13 @@ enum {
             RemoteAPIResult rv = [a.remoteAPI listQueries:&queries infoViewer:nil iiDownload:0 public:self.isPublic];
             if (rv != REMOTEAPI_OK)
                 failure = YES;
-            qs = queries;
+            self.qs = queries;
             *stop = YES;
         }
     }];
 
     if (failure == YES)
-        [MyTools messageBox:self header:account.site text:_(@"queriesemplateviewcontroller-Unable to retrieve the list of queries") error:account.remoteAPI.lastError];
+        [MyTools messageBox:self header:self.account.site text:_(@"queriesemplateviewcontroller-Unable to retrieve the list of queries") error:self.account.remoteAPI.lastError];
 
     [self reloadDataMainQueue];
 }
@@ -107,12 +106,12 @@ enum {
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     // Alert if this option isn't available.
-    if (account.canDoRemoteStuff == NO)
+    if (self.account.canDoRemoteStuff == NO)
         return _(@"queriestemplateviewcontroller-This account cannot be polled right now.");
 
-    if (qs == nil)
+    if (self.qs == nil)
         return @"";
-    NSInteger c = [qs count];
+    NSInteger c = [self.qs count];
     return [NSString stringWithFormat:_(@"queriestemplateviewcontroller-%ld available %@"), (unsigned long)c, c == 1 ? self.queryString : self.queriesString];
 }
 
@@ -124,9 +123,9 @@ enum {
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    if (account.canDoRemoteStuff == NO)
+    if (self.account.canDoRemoteStuff == NO)
         return 0;
-    return [qs count];
+    return [self.qs count];
 }
 
 // Return a cell for the index path
@@ -135,7 +134,7 @@ enum {
     QueriesTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_QUERIESTABLEVIEWCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
-    NSDictionary *pq = [qs objectAtIndex:indexPath.row];
+    NSDictionary *pq = [self.qs objectAtIndex:indexPath.row];
     NSString *name = [pq objectForKey:@"Name"];
     cell.labelQueryname.text = name;
 
@@ -159,8 +158,8 @@ enum {
     }
 
     cell.labelLastImport.text = @"";
-    [qis enumerateObjectsUsingBlock:^(dbQueryImport * _Nonnull qi, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (qi.account._id == account._id &&
+    [self.qis enumerateObjectsUsingBlock:^(dbQueryImport * _Nonnull qi, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (qi.account._id == self.account._id &&
             [qi.name isEqualToString:name] == YES &&
             qi.filesize == size) {
             cell.labelLastImport.text = [NSString stringWithFormat:_(@"queriestemplateviewcontroller-Last import: %@"), [MyTools dateTimeString_YYYY_MM_DD_hh_mm_ss:qi.lastimport]];
@@ -178,17 +177,17 @@ enum {
         return;
     }
 
-    [processing clearAll];
+    [self.processing clearAll];
     [self showInfoView];
 
-    NSDictionary *pq = [qs objectAtIndex:indexPath.row];
+    NSDictionary *pq = [self.qs objectAtIndex:indexPath.row];
     BACKGROUND(doRunRetrieveQuery:, pq);
     BACKGROUND(waitForDownloadsToFinish, nil);
 
     // Update historical data for this query.
     __block dbQueryImport *foundqi = nil;
-    [qis enumerateObjectsUsingBlock:^(dbQueryImport * _Nonnull qi, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (qi.account._id == account._id &&
+    [self.qis enumerateObjectsUsingBlock:^(dbQueryImport * _Nonnull qi, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (qi.account._id == self.account._id &&
             [qi.name isEqualToString:[pq objectForKey:@"Name"]] == YES &&
             qi.filesize == [[pq objectForKey:@"Size"] integerValue]) {
             foundqi = qi;
@@ -200,20 +199,20 @@ enum {
         dbQueryImport *qi = [[dbQueryImport alloc] init];
         qi.filesize = [[pq objectForKey:@"Size"] integerValue];
         qi.name = [pq objectForKey:@"Name"];
-        qi.account = account;
+        qi.account = self.account;
         qi.lastimport = time(NULL);
         [qi dbCreate];
     } else {
         foundqi.lastimport = time(NULL);
         [foundqi dbUpdate];
     }
-    qis = [dbQueryImport dbAll];
+    self.qis = [dbQueryImport dbAll];
 }
 
 - (void)waitForDownloadsToFinish
 {
     [NSThread sleepForTimeInterval:0.5];
-    while ([processing hasIdentifiers] == YES) {
+    while ([self.processing hasIdentifiers] == YES) {
         [NSThread sleepForTimeInterval:0.1];
     }
     NSLog(@"PROCESSING: Nothing pending");
@@ -251,7 +250,7 @@ enum {
 
 - (void)doRunRetrieveQuery:(NSDictionary *)pq
 {
-    [processing addIdentifier:0];
+    [self.processing addIdentifier:0];
     [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoViewer:nil iiImport:0];
 
     dbGroup *group = [self makeGroupExist:[pq objectForKey:@"Name"]];
@@ -259,10 +258,10 @@ enum {
     InfoItemID iid = [self.infoView addDownload];
     [self.infoView setDescription:iid description:[pq objectForKey:@"Name"]];
 
-    [processing addIdentifier:0];
-    RemoteAPIResult rv = [account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group infoViewer:self.infoView iiDownload:iid identifier:0 callback:self];
+    [self.processing addIdentifier:0];
+    RemoteAPIResult rv = [self.account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group infoViewer:self.infoView iiDownload:iid identifier:0 callback:self];
     if (rv != REMOTEAPI_OK)
-        [MyTools messageBox:self header:_(@"Error") text:_(@"queriestemplateviewcontroller-Unable to retrieve the data from the query") error:account.remoteAPI.lastError];
+        [MyTools messageBox:self header:_(@"Error") text:_(@"queriestemplateviewcontroller-Unable to retrieve the data from the query") error:self.account.remoteAPI.lastError];
 
     [self.infoView removeItem:iid];
 }
@@ -277,7 +276,7 @@ enum {
     [d setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
 
     NSLog(@"PROCESSING: Downloaded %ld", (long)identifier);
-    [processing increaseDownloadedChunks:identifier];
+    [self.processing increaseDownloadedChunks:identifier];
     BACKGROUND(parseQueryBG:, d);
 }
 
@@ -293,26 +292,26 @@ enum {
     [self.infoView removeItem:iii];
 
     NSLog(@"PROCESSING: Processed %ld", (long)identifier);
-    [processing increaseProcessedChunks:identifier];
-    if ([processing hasAllProcessed:identifier] == YES) {
+    [self.processing increaseProcessedChunks:identifier];
+    if ([self.processing hasAllProcessed:identifier] == YES) {
         NSLog(@"PROCESSING: All seen for %ld", (long)identifier);
-        [processing removeIdentifier:identifier];
+        [self.processing removeIdentifier:identifier];
     }
 }
 
 - (void)remoteAPI_finishedDownloads:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
 {
     NSLog(@"PROCESSING: Expecting %ld for %ld", (long)numberOfChunks, (long)identifier);
-    [processing expectedChunks:identifier chunks:numberOfChunks];
-    if ([processing hasAllProcessed:identifier] == YES) {
+    [self.processing expectedChunks:identifier chunks:numberOfChunks];
+    if ([self.processing hasAllProcessed:identifier] == YES) {
         NSLog(@"PROCESSING: All seen for %ld", (long)identifier);
-        [processing removeIdentifier:identifier];
+        [self.processing removeIdentifier:identifier];
     }
 }
 - (void)remoteAPI_failed:(NSInteger)identifier
 {
     NSLog(@"PROCESSING: Failed %ld", (long)identifier);
-    [processing removeIdentifier:identifier];
+    [self.processing removeIdentifier:identifier];
 }
 
 #pragma mark - Local menu related functions

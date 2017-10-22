@@ -20,10 +20,9 @@
  */
 
 @interface ListTemplateViewController ()
-{
-    SortOrderList currentSortOrder;
-    RemoteAPIProcessingGroup *processing;
-}
+
+@property (nonatomic        ) SortOrderList currentSortOrder;
+@property (nonatomic, retain) RemoteAPIProcessingGroup *processing;
 
 @end
 
@@ -50,8 +49,8 @@ enum {
     [self.lmi addItem:menuExportGPX label:_(@"listtemplateviewcontroller-Export GPX")];
     [self.lmi addItem:menuSortBy label:_(@"listtemplateviewcontroller-Sort by")];
 
-    currentSortOrder = configManager.listSortBy;
-    processing = [[RemoteAPIProcessingGroup alloc] init];
+    self.currentSortOrder = configManager.listSortBy;
+    self.processing = [[RemoteAPIProcessingGroup alloc] init];
 
     return self;
 }
@@ -72,10 +71,10 @@ enum {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    waypoints = [NSMutableArray arrayWithArray:[WaypointSorter resortWaypoints:[dbWaypoint dbAllByFlag:flag] listSortOrder:currentSortOrder flag:flag]];
+    self.waypoints = [NSMutableArray arrayWithArray:[WaypointSorter resortWaypoints:[dbWaypoint dbAllByFlag:self.flag] listSortOrder:self.currentSortOrder flag:self.flag]];
     [self.tableView reloadData];
 
-    if ([waypoints count] == 0)
+    if ([self.waypoints count] == 0)
         [self.lmi disableItem:menuExportGPX];
     else
         [self.lmi enableItem:menuExportGPX];
@@ -85,9 +84,9 @@ enum {
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (waypoints == nil)
+    if (self.waypoints == nil)
         return @"";
-    NSInteger c = [waypoints count];
+    NSInteger c = [self.waypoints count];
     return [NSString stringWithFormat:@"%ld %@", (unsigned long)c, c == 1 ? _(@"waypoint") : _(@"waypoints")];
 }
 
@@ -99,7 +98,7 @@ enum {
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [waypoints count];
+    return [self.waypoints count];
 }
 
 // Return a cell for the index path
@@ -107,7 +106,7 @@ enum {
 {
     WaypointTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_WAYPOINTTABLEVIEWCELL];
 
-    dbWaypoint *wp = [waypoints objectAtIndex:indexPath.row];
+    dbWaypoint *wp = [self.waypoints objectAtIndex:indexPath.row];
     [cell setWaypoint:wp];
 
     return cell;
@@ -115,7 +114,7 @@ enum {
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbWaypoint *wp = [waypoints objectAtIndex:indexPath.row];
+    dbWaypoint *wp = [self.waypoints objectAtIndex:indexPath.row];
     NSString *newTitle = wp.description;
 
     WaypointViewController *newController = [[WaypointViewController alloc] init];
@@ -134,10 +133,10 @@ enum {
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        dbWaypoint *wp = [waypoints objectAtIndex:indexPath.row];
+        dbWaypoint *wp = [self.waypoints objectAtIndex:indexPath.row];
 
         [self removeMark:indexPath.row];
-        [waypoints removeObjectAtIndex:indexPath.row];
+        [self.waypoints removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
         [waypointManager needsRefreshUpdate:wp];
         [self.tableView reloadData];
@@ -154,7 +153,7 @@ enum {
 - (void)menuClearFlags
 {
     [self clearFlags];
-    [waypoints removeAllObjects];
+    [self.waypoints removeAllObjects];
     [self.tableView reloadData];
     [waypointManager needsRefreshAll];
 }
@@ -163,12 +162,12 @@ enum {
 {
     [self showInfoView];
 
-    [processing clearAll];
+    [self.processing clearAll];
     [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoViewer:nil iiImport:0];
 
     [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull account, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSMutableArray<NSString *> *wps = [NSMutableArray arrayWithCapacity:[waypoints count]];
-        [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSMutableArray<NSString *> *wps = [NSMutableArray arrayWithCapacity:[self.waypoints count]];
+        [self.waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
             if (wp.account._id == account._id)
                 [wps addObject:wp.wpt_name];
         }];
@@ -179,7 +178,7 @@ enum {
         [dict setObject:wps forKey:@"waypoints"];
         [dict setObject:account forKey:@"account"];
 
-        [processing addIdentifier:(long)account._id];
+        [self.processing addIdentifier:(long)account._id];
         NSLog(@"PROCESSING: Adding %ld (%@)", (long)account._id, account.site);
         BACKGROUND(runReloadWaypoints:, dict);
     }];
@@ -192,12 +191,12 @@ enum {
     [NSThread sleepForTimeInterval:0.5];
     do {
         [NSThread sleepForTimeInterval:0.1];
-    } while ([processing hasIdentifiers] == YES);
+    } while ([self.processing hasIdentifiers] == YES);
     NSLog(@"PROCESSING: Nothing pending");
 
     [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil iiImport:0];
 
-    waypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAllByFlag:flag]];
+    self.waypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAllByFlag:self.flag]];
     [waypointManager needsRefreshAll];
     [self reloadDataMainQueue];
     [audioManager playSound:PLAYSOUND_IMPORTCOMPLETE];
@@ -223,33 +222,33 @@ enum {
 - (void)remoteAPI_objectReadyToImport:(NSInteger)identifier iiImport:(InfoItemID)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
     NSLog(@"PROCESSING: Downloaded %ld", (long)identifier);
-    [processing increaseDownloadedChunks:identifier];
+    [self.processing increaseDownloadedChunks:identifier];
 
     [importManager process:o group:group account:account options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoViewer:self.infoView iiImport:iii];
     [self.infoView removeItem:iii];
 
     NSLog(@"PROCESSING: Processed %ld", (long)identifier);
-    [processing increaseProcessedChunks:identifier];
-    if ([processing hasAllProcessed:identifier] == YES) {
+    [self.processing increaseProcessedChunks:identifier];
+    if ([self.processing hasAllProcessed:identifier] == YES) {
         NSLog(@"PROCESSING: All seen for %ld", (long)identifier);
-        [processing removeIdentifier:identifier];
+        [self.processing removeIdentifier:identifier];
     }
 }
 
 - (void)remoteAPI_finishedDownloads:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
 {
     NSLog(@"PROCESSING: Expecting %ld for %ld", (long)numberOfChunks, (long)identifier);
-    [processing expectedChunks:identifier chunks:numberOfChunks];
-    if ([processing hasAllProcessed:identifier] == YES) {
+    [self.processing expectedChunks:identifier chunks:numberOfChunks];
+    if ([self.processing hasAllProcessed:identifier] == YES) {
         NSLog(@"PROCESSING: All seen for %ld", (long)identifier);
-        [processing removeIdentifier:identifier];
+        [self.processing removeIdentifier:identifier];
     }
 }
 
 - (void)remoteAPI_failed:(NSInteger)identifier
 {
     NSLog(@"PROCESSING: Failed %ld", (long)identifier);
-    [processing removeIdentifier:identifier];
+    [self.processing removeIdentifier:identifier];
 }
 
 - (void)menuSortBy
@@ -266,8 +265,8 @@ enum {
                                  actionWithTitle:[orders objectAtIndex:i]
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction *action) {
-                                     currentSortOrder = i;
-                                     waypoints = [NSMutableArray arrayWithArray:[WaypointSorter resortWaypoints:waypoints listSortOrder:currentSortOrder flag:flag]];
+                                     self.currentSortOrder = i;
+                                     self.waypoints = [NSMutableArray arrayWithArray:[WaypointSorter resortWaypoints:self.waypoints listSortOrder:self.currentSortOrder flag:self.flag]];
                                      [self.tableView reloadData];
                                  }];
         [alert addAction:action];
@@ -293,7 +292,7 @@ enum {
             [self menuReloadWaypoints];
             return;
         case menuExportGPX:
-            [ExportGPX exports:waypoints];
+            [ExportGPX exports:self.waypoints];
             [MyTools messageBox:self header:_(@"listtemplateviewcontroller-Export successful") text:_(@"listtemplateviewcontroller-The exported file can be found in the Files section")];
             return;
         case menuSortBy:

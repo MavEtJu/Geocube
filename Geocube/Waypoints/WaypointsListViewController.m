@@ -20,16 +20,15 @@
  */
 
 @interface WaypointsListViewController ()
-{
-    NSArray<dbWaypoint *> *waypoints;
 
-    SortOrderWaypoints currentSortOrder;
+@property (nonatomic, retain) NSArray<dbWaypoint *> *waypoints;
 
-    BOOL needsRefresh;
-    BOOL isVisible;
+@property (nonatomic        ) SortOrderWaypoints currentSortOrder;
 
-    RemoteAPIProcessingGroup *processing;
-}
+@property (nonatomic        ) BOOL needsRefresh;
+@property (nonatomic        ) BOOL isVisible;
+
+@property (nonatomic, retain) RemoteAPIProcessingGroup *processing;
 
 @property (strong, nonatomic) UISearchController *searchController;
 
@@ -50,7 +49,7 @@ enum {
 {
     self = [super init];
 
-    currentSortOrder = configManager.waypointListSortBy;
+    self.currentSortOrder = configManager.waypointListSortBy;
 
     self.lmi = [[LocalMenuItems alloc] init:menuMax];
     [self.lmi addItem:menuAddWaypoint label:_(@"waypointslistviewcontroller-Add waypoint")];
@@ -59,7 +58,7 @@ enum {
     [self.lmi addItem:menuReloadWaypoints label:_(@"waypointslistviewcontroller-Reload waypoints")];
     [self.lmi addItem:menuDeleteAll label:_(@"waypointslistviewcontroller-Delete all")];
 
-    processing = [[RemoteAPIProcessingGroup alloc] init];
+    self.processing = [[RemoteAPIProcessingGroup alloc] init];
 
     return self;
 }
@@ -74,8 +73,8 @@ enum {
 
     [self makeInfoView];
 
-    isVisible = NO;
-    needsRefresh = YES;
+    self.isVisible = NO;
+    self.needsRefresh = YES;
     [waypointManager startDelegationWaypoints:self];
 
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
@@ -100,20 +99,20 @@ enum {
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    isVisible = NO;
+    self.isVisible = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (needsRefresh == YES) {
+    if (self.needsRefresh == YES) {
         BACKGROUND(refreshCachesData, nil);
     } else {
-        waypoints = [WaypointSorter resortWaypoints:waypoints waypointsSortOrder:currentSortOrder];
+        self.waypoints = [WaypointSorter resortWaypoints:self.waypoints waypointsSortOrder:self.currentSortOrder];
         [self.tableView reloadData];
     }
-    needsRefresh = NO;
-    isVisible = YES;
+    self.needsRefresh = NO;
+    self.isVisible = YES;
 }
 
 - (void)refreshCachesData
@@ -125,7 +124,7 @@ enum {
 
     [bezelManager removeBezel];
 
-    if ([waypoints count] == 0)
+    if ([self.waypoints count] == 0)
         [self.lmi disableItem:menuExportGPX];
     else {
         [self.lmi enableItem:menuExportGPX];
@@ -154,7 +153,7 @@ enum {
         [_wps addObject:wp];
     }];
 
-    waypoints = [WaypointSorter resortWaypoints:_wps waypointsSortOrder:currentSortOrder];
+    self.waypoints = [WaypointSorter resortWaypoints:_wps waypointsSortOrder:self.currentSortOrder];
 
     [self reloadDataMainQueue];
 }
@@ -169,14 +168,14 @@ enum {
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [waypoints count];
+    return [self.waypoints count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (waypoints == nil)
+    if (self.waypoints == nil)
         return @"";
-    NSInteger c = [waypoints count];
+    NSInteger c = [self.waypoints count];
     return [NSString stringWithFormat:@"%ld %@", (unsigned long)c, c == 1 ? _(@"waypointslistviewcontroller-Waypoint") : _(@"waypointslistviewcontroller-Waypoints")];
 }
 
@@ -184,7 +183,7 @@ enum {
 - (WaypointTableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WaypointTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_WAYPOINTTABLEVIEWCELL];
-    dbWaypoint *wp = [waypoints objectAtIndex:indexPath.row];
+    dbWaypoint *wp = [self.waypoints objectAtIndex:indexPath.row];
     [cell setWaypoint:wp];
 
     return cell;
@@ -192,7 +191,7 @@ enum {
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbWaypoint *wp = [waypoints objectAtIndex:indexPath.row];
+    dbWaypoint *wp = [self.waypoints objectAtIndex:indexPath.row];
     NSString *newTitle = wp.description;
 
     WaypointViewController *newController = [[WaypointViewController alloc] init];
@@ -219,26 +218,26 @@ enum {
 
 - (void)refreshWaypoints
 {
-    needsRefresh = YES;
-    if (isVisible == YES)
+    self.needsRefresh = YES;
+    if (self.isVisible == YES)
         [self refreshCachesData:nil];
 }
 
 - (void)removeWaypoint:(dbWaypoint *)wp
 {
-    waypoints = [WaypointSorter resortWaypoints:waypointManager.currentWaypoints waypointsSortOrder:currentSortOrder];
+    self.waypoints = [WaypointSorter resortWaypoints:waypointManager.currentWaypoints waypointsSortOrder:self.currentSortOrder];
     [self reloadDataMainQueue];
 }
 
 - (void)addWaypoint:(dbWaypoint *)wp
 {
-    waypoints = [WaypointSorter resortWaypoints:waypointManager.currentWaypoints waypointsSortOrder:currentSortOrder];
+    self.waypoints = [WaypointSorter resortWaypoints:waypointManager.currentWaypoints waypointsSortOrder:self.currentSortOrder];
     [self reloadDataMainQueue];
 }
 
 - (void)updateWaypoint:(dbWaypoint *)wp
 {
-    waypoints = [WaypointSorter resortWaypoints:waypointManager.currentWaypoints waypointsSortOrder:currentSortOrder];
+    self.waypoints = [WaypointSorter resortWaypoints:waypointManager.currentWaypoints waypointsSortOrder:self.currentSortOrder];
     [self reloadDataMainQueue];
 }
 
@@ -251,7 +250,7 @@ enum {
             [self addWaypoint];
             return;
         case menuExportGPX:
-            [ExportGPX exports:waypoints];
+            [ExportGPX exports:self.waypoints];
             [MyTools messageBox:self header:_(@"waypointslistviewcontroller-Export successful") text:_(@"waypointslistviewcontroller-The exported file can be found in the Files section")];
             return;
         case menuSortBy:
@@ -289,8 +288,8 @@ enum {
                                  actionWithTitle:[orders objectAtIndex:i]
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction *action) {
-                                     currentSortOrder = i;
-                                     waypoints = [WaypointSorter resortWaypoints:waypoints waypointsSortOrder:currentSortOrder];
+                                     self.currentSortOrder = i;
+                                     self.waypoints = [WaypointSorter resortWaypoints:self.waypoints waypointsSortOrder:self.currentSortOrder];
                                      [self.tableView reloadData];
                                  }];
         [alert addAction:action];
@@ -344,12 +343,12 @@ enum {
 {
     [self showInfoView];
 
-    [processing clearAll];
+    [self.processing clearAll];
     [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoViewer:nil iiImport:0];
 
     [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull account, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSMutableArray<NSString *> *wps = [NSMutableArray arrayWithCapacity:[waypoints count]];
-        [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSMutableArray<NSString *> *wps = [NSMutableArray arrayWithCapacity:[self.waypoints count]];
+        [self.waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
             if (wp.account._id == account._id)
                 [wps addObject:wp.wpt_name];
         }];
@@ -360,7 +359,7 @@ enum {
         [dict setObject:wps forKey:@"waypoints"];
         [dict setObject:account forKey:@"account"];
 
-        [processing addIdentifier:(long)account._id];
+        [self.processing addIdentifier:(long)account._id];
         BACKGROUND(runReloadWaypoints:, dict);
     }];
 
@@ -370,7 +369,7 @@ enum {
 - (void)waitForDownloadsToFinish
 {
     [NSThread sleepForTimeInterval:0.5];
-    while ([processing hasIdentifiers] == YES) {
+    while ([self.processing hasIdentifiers] == YES) {
         [NSThread sleepForTimeInterval:0.1];
     }
     NSLog(@"PROCESSING: Nothing pending");
@@ -403,33 +402,33 @@ enum {
 - (void)remoteAPI_objectReadyToImport:(NSInteger)identifier iiImport:(InfoItemID)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
     NSLog(@"PROCESSING: Downloaded %ld", (long)identifier);
-    [processing increaseDownloadedChunks:identifier];
+    [self.processing increaseDownloadedChunks:identifier];
 
     [importManager process:o group:group account:account options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoViewer:self.infoView iiImport:iii];
     [self.infoView removeItem:iii];
 
     NSLog(@"PROCESSING: Processed %ld", (long)identifier);
-    [processing increaseProcessedChunks:identifier];
-    if ([processing hasAllProcessed:identifier] == YES) {
+    [self.processing increaseProcessedChunks:identifier];
+    if ([self.processing hasAllProcessed:identifier] == YES) {
         NSLog(@"PROCESSING: All seen for %ld", (long)identifier);
-        [processing removeIdentifier:identifier];
+        [self.processing removeIdentifier:identifier];
     }
 }
 
 - (void)remoteAPI_finishedDownloads:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
 {
     NSLog(@"PROCESSING: Expecting %ld for %ld", (long)numberOfChunks, (long)identifier);
-    [processing expectedChunks:identifier chunks:numberOfChunks];
-    if ([processing hasAllProcessed:identifier] == YES) {
+    [self.processing expectedChunks:identifier chunks:numberOfChunks];
+    if ([self.processing hasAllProcessed:identifier] == YES) {
         NSLog(@"PROCESSING: All seen for %ld", (long)identifier);
-        [processing removeIdentifier:identifier];
+        [self.processing removeIdentifier:identifier];
     }
 }
 
 - (void)remoteAPI_failed:(NSInteger)identifier
 {
     NSLog(@"PROCESSING: Failed %ld", (long)identifier);
-    [processing removeIdentifier:identifier];
+    [self.processing removeIdentifier:identifier];
 }
 
 @end

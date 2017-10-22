@@ -20,11 +20,10 @@
  */
 
 @interface WaypointHintViewController ()
-{
-    dbWaypoint *waypoint;
-    GCScrollView *scrollview;
-    GCTextblock *block;
-}
+
+@property (nonatomic, retain) dbWaypoint *waypoint;
+@property (nonatomic, retain) GCScrollView *scrollview;
+@property (nonatomic, retain) GCTextblock *block;
 
 @end
 
@@ -34,7 +33,7 @@
 {
     self = [super init];
 
-    waypoint = _wp;
+    self.waypoint = _wp;
     self.lmi = nil;
 
     return self;
@@ -48,19 +47,19 @@
 
     CGRect bounds = [[UIScreen mainScreen] bounds];
     NSInteger width = bounds.size.width;
-    scrollview = [[GCScrollView alloc] initWithFrame:CGRectMake(0, 0, width, 0)];
+    self.scrollview = [[GCScrollView alloc] initWithFrame:CGRectMake(0, 0, width, 0)];
 
-    block = [[GCTextblock alloc] initWithFrame:CGRectMake(0, 0, width, 0)];
-    block.text = waypoint.gs_hint;
-    block.numberOfLines = 0;
+    self.block = [[GCTextblock alloc] initWithFrame:CGRectMake(0, 0, width, 0)];
+    self.block.text = self.waypoint.gs_hint;
+    self.block.numberOfLines = 0;
 
-    [scrollview addSubview:block];
-    [block sizeToFit];
+    [self.scrollview addSubview:self.block];
+    [self.block sizeToFit];
 
-    [scrollview sizeToFit];
-    self.view = scrollview;
+    [self.scrollview sizeToFit];
+    self.view = self.scrollview;
 
-    [self prepareCloseButton:scrollview];
+    [self prepareCloseButton:self.scrollview];
 }
 
 - (void)calculateRects
@@ -69,8 +68,8 @@
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     NSInteger width = applicationFrame.size.width;
 
-    block.frame = CGRectMake(0, 0, width, 0);
-    [block sizeToFit];
+    self.block.frame = CGRectMake(0, 0, width, 0);
+    [self.block sizeToFit];
 }
 
 @end

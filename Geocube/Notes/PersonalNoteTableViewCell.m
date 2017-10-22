@@ -20,13 +20,9 @@
  */
 
 @interface PersonalNoteTableViewCell ()
-{
-    CGRect rectLog;
-    CGRect rectName;
-}
 
-@property (nonatomic, retain) IBOutlet GCLabel *labelNote;
-@property (nonatomic, retain) IBOutlet GCLabel *labelCode;
+@property (nonatomic, weak) IBOutlet GCLabel *labelNote;
+@property (nonatomic, weak) IBOutlet GCLabel *labelCode;
 
 @end
 

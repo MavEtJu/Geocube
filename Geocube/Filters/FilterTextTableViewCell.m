@@ -20,15 +20,14 @@
  */
 
 @interface FilterTextTableViewCell ()
-{
-    NSString *waypointName;
-    NSString *placedBy;
-    NSString *country;
-    NSString *state;
-    NSString *locality;
-    NSString *description;
-    NSString *logs;
-}
+
+@property (nonatomic, retain) NSString *waypointName;
+@property (nonatomic, retain) NSString *placedBy;
+@property (nonatomic, retain) NSString *country;
+@property (nonatomic, retain) NSString *state;
+@property (nonatomic, retain) NSString *locality;
+@property (nonatomic, retain) NSString *desc;
+@property (nonatomic, retain) NSString *logs;
 
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
 
@@ -92,13 +91,13 @@
 
 - (void)viewRefresh
 {
-    [self.buttonWaypointName setTitle:waypointName forState:UIControlStateNormal];
-    [self.buttonPlacedBy setTitle:placedBy forState:UIControlStateNormal];
-    [self.buttonLocality setTitle:locality forState:UIControlStateNormal];
-    [self.buttonState setTitle:state forState:UIControlStateNormal];
-    [self.buttonCountry setTitle:country forState:UIControlStateNormal];
-    [self.buttonDescription setTitle:description forState:UIControlStateNormal];
-    [self.buttonLogs setTitle:logs forState:UIControlStateNormal];
+    [self.buttonWaypointName setTitle:self.waypointName forState:UIControlStateNormal];
+    [self.buttonPlacedBy setTitle:self.placedBy forState:UIControlStateNormal];
+    [self.buttonLocality setTitle:self.locality forState:UIControlStateNormal];
+    [self.buttonState setTitle:self.state forState:UIControlStateNormal];
+    [self.buttonCountry setTitle:self.country forState:UIControlStateNormal];
+    [self.buttonDescription setTitle:self.desc forState:UIControlStateNormal];
+    [self.buttonLogs setTitle:self.logs forState:UIControlStateNormal];
 }
 
 #pragma mark -- configuration
@@ -107,27 +106,27 @@
 {
     [super configInit];
 
-    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), fo.name];
+    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), self.fo.name];
 
-    waypointName = [self configGet:@"waypointname"];
-    placedBy = [self configGet:@"placedby"];
-    locality = [self configGet:@"locale"];
-    state = [self configGet:@"state"];
-    country = [self configGet:@"country"];
-    description = [self configGet:@"description"];
-    logs = [self configGet:@"logs"];
+    self.waypointName = [self configGet:@"waypointname"];
+    self.placedBy = [self configGet:@"placedby"];
+    self.locality = [self configGet:@"locale"];
+    self.state = [self configGet:@"state"];
+    self.country = [self configGet:@"country"];
+    self.desc = [self configGet:@"description"];
+    self.logs = [self configGet:@"logs"];
 }
 
 - (void)configUpdate
 {
-    [self configSet:@"waypointname" value:waypointName];
-    [self configSet:@"placedby" value:placedBy];
-    [self configSet:@"locale" value:locality];
-    [self configSet:@"state" value:state];
-    [self configSet:@"country" value:country];
-    [self configSet:@"description" value:description];
-    [self configSet:@"logs" value:logs];
-    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+    [self configSet:@"waypointname" value:self.waypointName];
+    [self configSet:@"placedby" value:self.placedBy];
+    [self configSet:@"locale" value:self.locality];
+    [self configSet:@"state" value:self.state];
+    [self configSet:@"country" value:self.country];
+    [self configSet:@"description" value:self.desc];
+    [self configSet:@"logs" value:self.logs];
+    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", self.fo.expanded]];
     [self viewRefresh];
 }
 
@@ -171,13 +170,13 @@
                              UITextField *tf = alert.textFields.firstObject;
                              NSString *newstring = tf.text;
 
-                             if (b == self.buttonWaypointName) waypointName = newstring;
-                             if (b == self.buttonPlacedBy) placedBy = newstring;
-                             if (b == self.buttonLocality) locality = newstring;
-                             if (b == self.buttonState) state = newstring;
-                             if (b == self.buttonCountry) country = newstring;
-                             if (b == self.buttonDescription) description = newstring;
-                             if (b == self.buttonLogs) logs = newstring;
+                             if (b == self.buttonWaypointName) self.waypointName = newstring;
+                             if (b == self.buttonPlacedBy) self.placedBy = newstring;
+                             if (b == self.buttonLocality) self.locality = newstring;
+                             if (b == self.buttonState) self.state = newstring;
+                             if (b == self.buttonCountry) self.country = newstring;
+                             if (b == self.buttonDescription) self.desc = newstring;
+                             if (b == self.buttonLogs) self.logs = newstring;
                              [self configUpdate];
                          }];
     UIAlertAction *cancel = [UIAlertAction

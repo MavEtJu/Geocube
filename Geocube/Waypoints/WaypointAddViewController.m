@@ -20,15 +20,14 @@
  */
 
 @interface WaypointAddViewController ()
-{
-    NSString *code;
-    NSString *name;
-    dbAccount *account;
-    CLLocationCoordinate2D coords;
-    UIAlertAction *coordsOkButton;
-    UITextField *coordsLatitude;
-    UITextField *coordsLongitude;
-}
+
+@property (nonatomic, retain) NSString *code;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) dbAccount *account;
+@property (nonatomic        ) CLLocationCoordinate2D coords;
+@property (nonatomic, retain) UIAlertAction *coordsOkButton;
+@property (nonatomic, retain) UITextField *coordsLatitude;
+@property (nonatomic, retain) UITextField *coordsLongitude;
 
 @end
 
@@ -49,18 +48,18 @@ enum {
 
     self.lmi = nil;
 
-    code = [MyTools makeNewWaypoint:@"MY"];
-    name = @"A new name";
-    coords = [LM coords];
+    self.code = [MyTools makeNewWaypoint:@"MY"];
+    self.name = @"A new name";
+    self.coords = [LM coords];
 
     self.hasCloseButton = YES;
 
     return self;
 }
 
-- (void)setCoordinates:(CLLocationCoordinate2D)_coords
+- (void)setCoordinates:(CLLocationCoordinate2D)coords
 {
-    coords = _coords;
+    self.coords = coords;
 }
 
 - (void)viewDidLoad
@@ -76,7 +75,7 @@ enum {
 {
     [super viewWillAppear:animated];
 
-    account = dbc.accountPrivate;
+    self.account = dbc.accountPrivate;
 }
 
 #pragma mark - TableViewController related functions
@@ -108,28 +107,28 @@ enum {
     switch (indexPath.row) {
         case cellCode:
             cell.textLabel.text = _(@"waypointaddviewcontroller-Waypoint code");
-            cell.detailTextLabel.text = code;
+            cell.detailTextLabel.text = self.code;
             break;
         case cellName:
             cell.textLabel.text = _(@"waypointaddviewcontroller-Short Name");
-            cell.detailTextLabel.text = name;
+            cell.detailTextLabel.text = self.name;
             break;
         case cellCoords:
             cell.textLabel.text = _(@"waypointaddviewcontroller-Coords");
-            cell.detailTextLabel.text = [Coordinates niceCoordinates:coords];
+            cell.detailTextLabel.text = [Coordinates niceCoordinates:self.coords];
             break;
         case cellAccount:
             cell.textLabel.text = _(@"waypointaddviewcontroller-Account");
-            if (account == nil)
+            if (self.account == nil)
                 cell.detailTextLabel.text = _(@"waypointaddviewcontroller-None chosen yet");
             else
-                cell.detailTextLabel.text = account.site;
+                cell.detailTextLabel.text = self.account.site;
             break;
         case cellSubmit:
             cell.textLabel.text = _(@"waypointaddviewcontroller-Create this waypoint");
             cell.detailTextLabel.text = @"";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            if (account == nil) {
+            if (self.account == nil) {
                 cell.textLabel.textColor = currentTheme.labelTextColorDisabled;
                 cell.userInteractionEnabled = NO;
             }
@@ -176,7 +175,7 @@ enum {
      rows:accountNames
      initialSelection:configManager.lastImportSource
      doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-         account = [accounts objectAtIndex:selectedIndex];
+         self.account = [accounts objectAtIndex:selectedIndex];
          [self.tableView reloadData];
      }
      cancelBlock:^(ActionSheetStringPicker *picker) {
@@ -199,7 +198,7 @@ enum {
                          handler:^(UIAlertAction *action) {
                              //Do Some action
                              UITextField *tf = [alert.textFields objectAtIndex:0];
-                             code = tf.text;
+                             self.code = tf.text;
 
                              [self.tableView reloadData];
                          }];
@@ -214,7 +213,7 @@ enum {
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = code;
+        textField.text = self.code;
         textField.placeholder = _(@"waypointaddviewcontroller-Waypoint code");
     }];
 
@@ -234,7 +233,7 @@ enum {
                          handler:^(UIAlertAction *action) {
                              //Do Some action
                              UITextField *tf = [alert.textFields objectAtIndex:0];
-                             name = tf.text;
+                             self.name = tf.text;
 
                              [self.tableView reloadData];
                          }];
@@ -249,7 +248,7 @@ enum {
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = name;
+        textField.text = self.name;
         textField.placeholder = _(@"waypointaddviewcontroller-Waypoint name");
     }];
 
@@ -263,7 +262,7 @@ enum {
                                 message:_(@"waypointaddviewcontroller-Please enter the coordinates")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
-    coordsOkButton = [UIAlertAction
+    self.coordsOkButton = [UIAlertAction
                       actionWithTitle:_(@"OK")
                       style:UIAlertActionStyleDefault
                       handler:^(UIAlertAction *action) {
@@ -278,8 +277,7 @@ enum {
 
                           Coordinates *c;
                           c = [[Coordinates alloc] initString:lat longitude:lon];
-                          coords.latitude = c.latitude;
-                          coords.longitude = c.longitude;
+                          self.coords = CLLocationCoordinate2DMake(c.latitude, c.longitude);
 
                           [self.tableView reloadData];
                       }];
@@ -289,24 +287,24 @@ enum {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
 
-    [alert addAction:coordsOkButton];
+    [alert addAction:self.coordsOkButton];
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = [Coordinates niceLatitudeForEditing:coords.latitude];
+        textField.text = [Coordinates niceLatitudeForEditing:self.coords.latitude];
         textField.placeholder = [NSString stringWithFormat:@"%@ (%@ %@ 12 34.567)", _(@"Latitude"), _(@"waypointaddviewcontroller-like"), (@"compass-S")];
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:YES];
         [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-        coordsLatitude = textField;
+        self.coordsLatitude = textField;
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = [Coordinates niceLongitudeForEditing:coords.longitude];
+        textField.text = [Coordinates niceLongitudeForEditing:self.coords.longitude];
         textField.placeholder = [NSString stringWithFormat:@"%@ (%@ %@ 23 45.678)", _(@"Longitude"), _(@"waypointaddviewcontroller-like"), _(@"compass-E")];
         textField.keyboardType = UIKeyboardTypeDecimalPad;
         textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:NO];
         [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-        coordsLongitude = textField;
+        self.coordsLongitude = textField;
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
@@ -314,28 +312,28 @@ enum {
 
 - (void)alertControllerTextFieldDidChange:(UITextField *)tf
 {
-    if ([Coordinates checkCoordinate:coordsLatitude.text] == YES &&
-        [Coordinates checkCoordinate:coordsLongitude.text] == YES)
-        coordsOkButton.enabled = YES;
+    if ([Coordinates checkCoordinate:self.coordsLatitude.text] == YES &&
+        [Coordinates checkCoordinate:self.coordsLongitude.text] == YES)
+        self.coordsOkButton.enabled = YES;
     else
-        coordsOkButton.enabled = NO;
+        self.coordsOkButton.enabled = NO;
 }
 
 - (void)updateSubmit
 {
     dbWaypoint *wp = [[dbWaypoint alloc] init];
-    Coordinates *c = [[Coordinates alloc] init:coords];
+    Coordinates *c = [[Coordinates alloc] init:self.coords];
 
     wp.wpt_latitude = [c latitude];
     wp.wpt_longitude = [c longitude];
-    wp.wpt_name = code;
-    wp.wpt_description = name;
+    wp.wpt_name = self.code;
+    wp.wpt_description = self.name;
     wp.wpt_date_placed_epoch = time(NULL);
     wp.wpt_url = nil;
-    wp.wpt_urlname = [NSString stringWithFormat:@"%@ - %@", code, name];
+    wp.wpt_urlname = [NSString stringWithFormat:@"%@ - %@", self.code, self.name];
     wp.wpt_symbol = dbc.symbolVirtualStage;
     wp.wpt_type = dbc.typeManuallyEntered;
-    wp.account = account;
+    wp.account = self.account;
     [wp finish];
     [wp dbCreate];
 

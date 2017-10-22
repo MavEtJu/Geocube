@@ -20,10 +20,9 @@
  */
 
 @interface NotesFieldnotesViewController ()
-{
-    NSArray<dbWaypoint *> *waypointsWithLogs;
-    NSMutableArray<dbLog *> *logs;
-}
+
+@property (nonatomic, retain) NSArray<dbWaypoint *> *waypointsWithLogs;
+@property (nonatomic, retain) NSMutableArray<dbLog *> *logs;
 
 @end
 
@@ -38,25 +37,25 @@
 
     self.lmi = nil;
 
-    waypointsWithLogs = [dbWaypoint dbAllWaypointsWithMyLogs];
+    self.waypointsWithLogs = [dbWaypoint dbAllWaypointsWithMyLogs];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    logs = [NSMutableArray arrayWithCapacity:100];
+    self.logs = [NSMutableArray arrayWithCapacity:100];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    logs = nil;
+    self.logs = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    waypointsWithLogs = [dbWaypoint dbAllWaypointsWithMyLogs];
+    self.waypointsWithLogs = [dbWaypoint dbAllWaypointsWithMyLogs];
     [self.tableView reloadData];
 }
 
@@ -64,19 +63,19 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
-    return [waypointsWithLogs count];
+    return [self.waypointsWithLogs count];
 }
 
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    dbWaypoint *wp = [waypointsWithLogs objectAtIndex:section];
+    dbWaypoint *wp = [self.waypointsWithLogs objectAtIndex:section];
     return [[dbLog dbAllByWaypointLogged:wp] count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    dbWaypoint *wp = [waypointsWithLogs objectAtIndex:section];
+    dbWaypoint *wp = [self.waypointsWithLogs objectAtIndex:section];
     return [NSString stringWithFormat:@"%@ - %@", wp.wpt_name, wp.wpt_urlname];
 }
 
@@ -86,7 +85,7 @@
     LogTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_LOGTABLEVIEWCELL];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
-    dbWaypoint *wp = [waypointsWithLogs objectAtIndex:indexPath.section];
+    dbWaypoint *wp = [self.waypointsWithLogs objectAtIndex:indexPath.section];
     dbLog *l = [[dbLog dbAllByWaypointLogged:wp] objectAtIndex:indexPath.row];
 
     [cell setLog:l];
@@ -94,7 +93,7 @@
 
     /* Save the height for later */
     [cell viewWillTransitionToSize];
-    [logs addObject:l];
+    [self.logs addObject:l];
 
     return cell;
 }

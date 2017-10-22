@@ -20,24 +20,21 @@
  */
 
 @interface WaypointTrackablesViewController ()
-{
-    NSMutableArray<dbTrackable *> *tbs;
-    dbWaypoint *waypoint;
-}
+
+@property (nonatomic, retain) NSMutableArray<dbTrackable *> *tbs;
 
 @end
 
 @implementation WaypointTrackablesViewController
 
-- (instancetype)init:(dbWaypoint *)_wp
+- (instancetype)init:(dbWaypoint *)waypoint
 {
     self = [super init];
-    waypoint = _wp;
 
-    tbs = [NSMutableArray arrayWithCapacity:5];
+    self.tbs = [NSMutableArray arrayWithCapacity:5];
 
     [[dbTrackable dbAllByWaypoint:waypoint] enumerateObjectsUsingBlock:^(dbTrackable * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {
-        [tbs addObject:tb];
+        [self.tbs addObject:tb];
     }];
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -63,7 +60,7 @@
 
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [tbs count];
+    return [self.tbs count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -77,7 +74,7 @@
     UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
-    dbTrackable *tb = [tbs objectAtIndex:indexPath.row];
+    dbTrackable *tb = [self.tbs objectAtIndex:indexPath.row];
 
     cell.textLabel.text = tb.name;
     cell.detailTextLabel.text = tb.tbcode;

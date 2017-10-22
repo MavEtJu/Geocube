@@ -20,9 +20,8 @@
  */
 
 @interface KeepTrackBeeperView ()
-{
-    BOOL isPlaying;
-}
+
+@property (nonatomic) BOOL isPlaying;
 
 @property (nonatomic, weak) IBOutlet GCLabel *labelHelp;
 @property (nonatomic, weak) IBOutlet GCLabel *labelVolume;
@@ -42,7 +41,7 @@
 {
     self = [super initWithFrame:frame];
 
-    isPlaying = NO;
+    self.isPlaying = NO;
 
     self.firstView = [[[NSBundle mainBundle] loadNibNamed:@"KeepTrackBeeperView" owner:self options:nil] firstObject];
     self.firstView.frame = frame;
@@ -73,8 +72,8 @@
 
 - (void)pressPlayStop:(GCButton *)button
 {
-    isPlaying = !isPlaying;
-    if (isPlaying == YES) {
+    self.isPlaying = !self.isPlaying;
+    if (self.isPlaying == YES) {
         [self.firstView.buttonPlayStop setTitle:_(@"keeptrackbeeperview-Stop beeping") forState:UIControlStateNormal];
         [self.delegate buttonPlayPressed];
     } else {

@@ -20,10 +20,9 @@
  */
 
 @interface KeepTrackBeeper ()
-{
-    BOOL isBeeping;
-    NSInteger interval;
-}
+
+@property (nonatomic) BOOL isBeeping;
+@property (nonatomic) NSInteger interval;
 
 @end
 
@@ -34,7 +33,7 @@
     self = [super init];
 
     self.lmi = nil;
-    isBeeping = NO;
+    self.isBeeping = NO;
 
     return self;
 }
@@ -51,7 +50,7 @@
     self.view = beepview;
     [self.view sizeToFit];
 
-    interval = configManager.keeptrackBeeperInterval;
+    self.interval = configManager.keeptrackBeeperInterval;
 
     [self changeTheme];
 }
@@ -63,26 +62,26 @@
 
 - (void)buttonPlayPressed
 {
-    isBeeping = YES;
+    self.isBeeping = YES;
     BACKGROUND(performBeeping, nil);
 }
 
 - (void)buttonStopPressed
 {
-    isBeeping = NO;
+    self.isBeeping = NO;
 }
 
 - (void)sliderIntervalChanged:(float)value
 {
-    interval = value;
-    [configManager keeptrackBeeperIntervalUpdate:interval];
+    self.interval = value;
+    [configManager keeptrackBeeperIntervalUpdate:self.interval];
 }
 
 - (void)performBeeping
 {
-    while (isBeeping == YES) {
+    while (self.isBeeping == YES) {
         [audioManager playSound:PLAYSOUND_BEEPER];
-        [NSThread sleepForTimeInterval:interval];
+        [NSThread sleepForTimeInterval:self.interval];
     }
 }
 

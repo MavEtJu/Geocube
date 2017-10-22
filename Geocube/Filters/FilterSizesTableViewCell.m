@@ -20,10 +20,9 @@
  */
 
 @interface FilterSizesTableViewCell ()
-{
-    NSArray<dbContainer *> *containers;
-    NSArray<FilterButton *> *buttons;
-}
+
+@property (nonatomic, retain) NSArray<dbContainer *> *containers;
+@property (nonatomic, retain) NSArray<FilterButton *> *buttons;
 
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
 @property (nonatomic, weak) IBOutlet FilterButton *firstButton;
@@ -42,8 +41,8 @@
 {
     [super awakeFromNib];
 
-    containers = dbc.containers;
-    NSMutableArray<FilterButton *> *bs = [NSMutableArray arrayWithCapacity:[containers count]];
+    self.containers = dbc.containers;
+    NSMutableArray<FilterButton *> *bs = [NSMutableArray arrayWithCapacity:[self.containers count]];
 
     __block NSInteger y = self.firstButton.frame.origin.y + self.firstButton.frame.size.height;
 
@@ -56,7 +55,7 @@
     [self.contentView removeConstraint:self.constraintButtonRight];
     [self.contentView removeConstraint:self.constraintImageLeft];
 
-    [containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *s = [NSString stringWithFormat:@"group_%ld", (long)g._id];
         NSString *c = [self configGet:s];
         if (c == nil)
@@ -177,7 +176,7 @@
           constant:0];
     [self.contentView addConstraint:lc];
 
-    buttons = bs;
+    self.buttons = bs;
 
     [self changeTheme];
     [self.contentView sizeToFit];
@@ -187,7 +186,7 @@
 {
     [super changeTheme];
 
-    [buttons enumerateObjectsUsingBlock:^(FilterButton * _Nonnull fs, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.buttons enumerateObjectsUsingBlock:^(FilterButton * _Nonnull fs, NSUInteger idx, BOOL * _Nonnull stop) {
         [fs changeTheme];
     }];
 
@@ -196,8 +195,8 @@
 
 - (void)viewRefresh
 {
-    [containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull con, NSUInteger idx, BOOL * _Nonnull stop) {
-        FilterButton *b = [buttons objectAtIndex:idx];
+    [self.containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull con, NSUInteger idx, BOOL * _Nonnull stop) {
+        FilterButton *b = [self.buttons objectAtIndex:idx];
         [b setTitle:con.size forState:UIControlStateNormal];
         [b setTitleColor:(con.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b sizeToFit];
@@ -210,9 +209,9 @@
 - (void)configInit
 {
     [super configInit];
-    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), fo.name];
+    self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), self.fo.name];
 
-    [containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *key = [NSString stringWithFormat:@"container_%ld", (long)g._id];
         g.selected = [[self configGet:key] boolValue];
     }];
@@ -220,7 +219,7 @@
 
 - (void)configUpdate
 {
-    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", fo.expanded]];
+    [self configSet:@"enabled" value:[NSString stringWithFormat:@"%d", self.fo.expanded]];
     [self viewRefresh];
 }
 
@@ -253,7 +252,7 @@
 
 - (void)clickContainer:(FilterButton *)b
 {
-    dbContainer *c = [containers objectAtIndex:b.index];
+    dbContainer *c = [self.containers objectAtIndex:b.index];
     c.selected = !c.selected;
     [b setTitleColor:(c.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
     [self configSet:[NSString stringWithFormat:@"container_%ld", (long)c._id] value:[NSString stringWithFormat:@"%d", c.selected]];

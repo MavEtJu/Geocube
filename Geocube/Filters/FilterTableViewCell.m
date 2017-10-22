@@ -20,25 +20,23 @@
  */
 
 @interface FilterTableViewCell ()
-{
-    NSString *configPrefix;
 
-    CGRect rectHeader;
-    GCLabelNormalText *labelHeader;
-}
+@property (nonatomic, retain) NSString *configPrefix;
+@property (nonatomic        ) CGRect rectHeader;
+@property (nonatomic, retain) GCLabelNormalText *labelHeader;
 
 @end
 
 @implementation FilterTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)_fo
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier filterObject:(FilterObject *)fo
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    fo = _fo;
+    self.fo = fo;
 
     [self configInit];
     [self.contentView sizeToFit];
-    fo.cellHeight = cellHeight;
+    self.fo.cellHeight = self.cellHeight;
 
     return self;
 }
@@ -48,16 +46,15 @@
     [super awakeFromNib];
 
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
-    width = applicationFrame.size.width;
+    self.width = applicationFrame.size.width;
 
     [self changeTheme];
     [self configInit];
 }
 
-- (void)initFO:(FilterObject *)_fo
+- (void)initFO:(FilterObject *)fo
 {
-    fo = _fo;
-
+    self.fo = fo;
     [self configInit];
 }
 
@@ -79,17 +76,17 @@
     [self configPrefix:[[self class] configPrefix]];
 
     NSString *s = [self configGet:@"enabled"];
-    fo.expanded = [s boolValue];
+    self.fo.expanded = [s boolValue];
 }
 
 - (void)configPrefix:(NSString *)prefix
 {
-    configPrefix = prefix;
+    self.configPrefix = prefix;
 }
 
 - (NSString *)configGet:(NSString *)_name
 {
-    NSString *retvalue = [waypointManager configGet:[NSString stringWithFormat:@"%@_%@", configPrefix, _name]];
+    NSString *retvalue = [waypointManager configGet:[NSString stringWithFormat:@"%@_%@", self.configPrefix, _name]];
     if (retvalue != nil)
         return retvalue;
 
@@ -99,7 +96,7 @@
 
 - (void)configSet:(NSString *)_name value:(NSString *)_value
 {
-    [waypointManager configSet:[NSString stringWithFormat:@"%@_%@", configPrefix, _name] value:_value];
+    [waypointManager configSet:[NSString stringWithFormat:@"%@_%@", self.configPrefix, _name] value:_value];
 }
 
 @end
