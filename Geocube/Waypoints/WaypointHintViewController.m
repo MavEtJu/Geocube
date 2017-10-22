@@ -29,11 +29,11 @@
 
 @implementation WaypointHintViewController
 
-- (instancetype)init:(dbWaypoint *)_wp
+- (instancetype)init:(dbWaypoint *)wp
 {
     self = [super init];
 
-    self.waypoint = _wp;
+    self.waypoint = wp;
     self.lmi = nil;
 
     return self;

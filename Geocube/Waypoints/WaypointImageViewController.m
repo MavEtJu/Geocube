@@ -264,12 +264,12 @@ enum {
     [self zoominout:self.zoomedIn];
 }
 
-- (void)setImage:(dbImage *)_img idx:(NSInteger)_thisImage totalImages:(NSInteger)_totalImages waypoint:(dbWaypoint *)wp
+- (void)setImage:(dbImage *)img idx:(NSInteger)thisImage totalImages:(NSInteger)totalImages waypoint:(dbWaypoint *)wp
 {
-    self.img = _img;
+    self.img = img;
     self.waypoint = wp;
-    self.thisImage = _thisImage;
-    self.totalImages = _totalImages;
+    self.thisImage = thisImage;
+    self.totalImages = totalImages;
     [self viewWillTransitionToSize];
 
     [self.lmi disableItem:menuAddNewWaypoint];

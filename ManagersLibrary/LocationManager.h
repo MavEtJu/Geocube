@@ -43,7 +43,7 @@
 - (void)startDelegationHeading:(id<LocationManagerHeadingDelegate>)delegate;
 - (void)stopDelegationHeading:(id<LocationManagerHeadingDelegate>)delegate;
 
-- (void)useGNSS:(BOOL)_useGNSS coordinates:(CLLocationCoordinate2D)newcoords;
+- (void)useGNSS:(BOOL)useGNSS coordinates:(CLLocationCoordinate2D)newcoords;
 - (void)clearCoordsHistorical;
 
 @end

@@ -58,17 +58,17 @@
 
 @implementation InfoItem
 
-- (instancetype)initWithInfoViewer:(InfoViewer *)parent type:(InfoItemType)_type
+- (instancetype)initWithInfoViewer:(InfoViewer *)parent type:(InfoItemType)type
 {
-    return [self initWithInfoViewer:parent type:_type expanded:YES];
+    return [self initWithInfoViewer:parent type:type expanded:YES];
 }
 
-- (instancetype)initWithInfoViewer:(InfoViewer *)parent type:(InfoItemType)_type expanded:(BOOL)expanded
+- (instancetype)initWithInfoViewer:(InfoViewer *)parent type:(InfoItemType)type expanded:(BOOL)expanded
 {
     self = [super init];
     self.infoViewer = parent;
     self.isExpanded = expanded;
-    self.type = _type;
+    self.type = type;
 
     switch (self.type) {
         case INFOITEM_DOWNLOAD: {

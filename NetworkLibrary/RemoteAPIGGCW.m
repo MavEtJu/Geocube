@@ -135,7 +135,7 @@
     return REMOTEAPI_CREATELOG_LOGFAILED;
 }
 
-- (RemoteAPIResult)listQueries:(NSArray<NSDictionary *> **)qs infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid public:(BOOL)_public
+- (RemoteAPIResult)listQueries:(NSArray<NSDictionary *> **)qs infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid public:(BOOL)public
 {
     /* Returns: array of dicts of
      * - Name

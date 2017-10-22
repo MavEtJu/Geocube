@@ -304,7 +304,7 @@
     }
 }
 
-- (MKAnnotationView *)mapView:(MKMapView *)_mapView viewForAnnotation:(id <MKAnnotation>)annotation
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     // If it is the user location, just return nil.
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
@@ -329,7 +329,7 @@
     return nil;
 }
 
-- (MKOverlayRenderer *)mapView:(MKMapView *)_mapView rendererForOverlay:(id<MKOverlay>)overlay
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
 {
     if (overlay == self.lineMeToWaypoint) {
         if (self.viewLineMeToWaypoint == nil) {

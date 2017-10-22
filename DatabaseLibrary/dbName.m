@@ -117,7 +117,7 @@ TABLENAME(@"names")
 
 /* Other methods */
 
-+ (void)makeNameExist:(NSString *)_name code:(NSString *)_code account:(dbAccount *)account
++ (void)makeNameExist:(NSString *)name code:(NSString *)code account:(dbAccount *)account
 {
     /*
      * First check if the code exists.
@@ -127,33 +127,33 @@ TABLENAME(@"names")
      * - If not, create the name with the code.
      */
 
-    dbName *name;
-    if (IS_EMPTY(_code) == NO) {
-        name = [dbName dbGetByCode:_code account:account];
-        if (name != nil) {
-            if ([name.name isEqualToString:_name] == YES)
+    dbName *dbname;
+    if (IS_EMPTY(code) == NO) {
+        dbname = [dbName dbGetByCode:code account:account];
+        if (dbname != nil) {
+            if ([dbname.name isEqualToString:name] == YES)
                 return;
-            name.name = _name;
-            [name dbUpdate];
+            dbname.name = name;
+            [dbname dbUpdate];
             return;
         }
     }
 
-    name = [dbName dbGetByName:_name account:account];
-    if (name != nil) {
-        if (_code != nil && [_code isEqualToString:name.code] == NO) {
-            name.code = _code;
-            [name dbUpdate];
+    dbname = [dbName dbGetByName:name account:account];
+    if (dbname != nil) {
+        if (code != nil && [code isEqualToString:dbname.code] == NO) {
+            dbname.code = code;
+            [dbname dbUpdate];
             return;
         }
         return;
     }
 
-    name = [[dbName alloc] init];
-    name.name = _name;
-    name.code = _code;
-    name.account = account;
-    [name dbCreate];
+    dbname = [[dbName alloc] init];
+    dbname.name = name;
+    dbname.code = code;
+    dbname.account = account;
+    [dbname dbCreate];
 }
 
 @end

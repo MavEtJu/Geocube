@@ -40,7 +40,7 @@
 + (void)dbUnlinkAllFromWaypoint:(dbWaypoint *)wp;
 - (void)dbLinkToWaypoint:(dbWaypoint *)wp;
 + (dbTrackable *)dbGet:(NSId)_id;
-+ (NSId)dbGetIdByGC:(NSInteger)_gc_id;
++ (NSId)dbGetIdByGC:(NSInteger)gc_id;
 + (dbTrackable *)dbGetByTBCode:(NSString *)tbcode;
 + (dbTrackable *)dbGetByPin:(NSString *)pin;
 + (NSInteger)dbCountByWaypoint:(dbWaypoint *)wp_id;

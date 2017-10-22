@@ -29,26 +29,26 @@
 
 @implementation MapAppleCache
 
-+ (NSString *)createPrefix:(NSString *)_prefix;
++ (NSString *)createPrefix:(NSString *)prefix;
 {
     // The cache has moved from files/MapCache/x to MapCache/x
-    if ([_prefix isEqualToString:@""] == NO) {
-        NSString *old = [NSString stringWithFormat:@"%@/MapCache/%@", [MyTools FilesDir], _prefix];
+    if ([prefix isEqualToString:@""] == NO) {
+        NSString *old = [NSString stringWithFormat:@"%@/MapCache/%@", [MyTools FilesDir], prefix];
         if ([fileManager fileExistsAtPath:old] == YES) {
             if ([fileManager fileExistsAtPath:[MyTools MapCacheDir]] == NO)
                 [fileManager createDirectoryAtPath:[MyTools MapCacheDir] withIntermediateDirectories:YES attributes:nil error:nil];
             NSError *e = nil;
-            [fileManager moveItemAtPath:old toPath:[NSString stringWithFormat:@"%@/%@", [MyTools MapCacheDir], _prefix] error:&e];
+            [fileManager moveItemAtPath:old toPath:[NSString stringWithFormat:@"%@/%@", [MyTools MapCacheDir], prefix] error:&e];
         }
     }
 
     NSMutableString *p = [NSMutableString stringWithString:[MyTools MapCacheDir]];
-    if ([_prefix isEqualToString:@""] == NO)
-        [p appendFormat:@"/%@", _prefix];
+    if ([prefix isEqualToString:@""] == NO)
+        [p appendFormat:@"/%@", prefix];
     if ([fileManager fileExistsAtPath:p] == NO)
         [fileManager createDirectoryAtPath:p withIntermediateDirectories:YES attributes:nil error:nil];
 
-    if ([_prefix isEqualToString:@""] == YES)
+    if ([prefix isEqualToString:@""] == YES)
         return p;
 
     // The has directories be z, y % 10, x % 10

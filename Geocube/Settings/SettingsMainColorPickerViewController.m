@@ -33,11 +33,11 @@
 
 @implementation SettingsMainColorPickerViewController
 
-- (instancetype)init:(SettingsPicker)_type
+- (instancetype)init:(SettingsPicker)type
 {
     self = [super init];
 
-    self.type = _type;
+    self.type = type;
     self.lmi = nil;
 
     return self;

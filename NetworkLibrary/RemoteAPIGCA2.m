@@ -246,7 +246,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)listQueries:(NSArray<NSDictionary *> **)qs infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid public:(BOOL)_public
+- (RemoteAPIResult)listQueries:(NSArray<NSDictionary *> **)qs infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid public:(BOOL)public
 {
     /* Returns: array of dicts of
      * - Name
@@ -257,7 +257,7 @@
      */
 
     *qs = nil;
-    GCDictionaryGCA2 *json = [self.gca2 api_services_caches_query_list:iv iiDownload:iid public:_public];
+    GCDictionaryGCA2 *json = [self.gca2 api_services_caches_query_list:iv iiDownload:iid public:public];
     GCA2_CHECK_STATUS(json, @"ListQueries", REMOTEAPI_LISTQUERIES_LOADFAILED);
 
     NSMutableArray<NSDictionary *> *as = [NSMutableArray arrayWithCapacity:20];

@@ -84,19 +84,19 @@
     self.configPrefix = prefix;
 }
 
-- (NSString *)configGet:(NSString *)_name
+- (NSString *)configGet:(NSString *)name
 {
-    NSString *retvalue = [waypointManager configGet:[NSString stringWithFormat:@"%@_%@", self.configPrefix, _name]];
+    NSString *retvalue = [waypointManager configGet:[NSString stringWithFormat:@"%@_%@", self.configPrefix, name]];
     if (retvalue != nil)
         return retvalue;
 
     NSDictionary *defs = [[self class] configDefaults];
-    return [defs objectForKey:_name];
+    return [defs objectForKey:name];
 }
 
-- (void)configSet:(NSString *)_name value:(NSString *)_value
+- (void)configSet:(NSString *)name value:(NSString *)value
 {
-    [waypointManager configSet:[NSString stringWithFormat:@"%@_%@", self.configPrefix, _name] value:_value];
+    [waypointManager configSet:[NSString stringWithFormat:@"%@_%@", self.configPrefix, name] value:value];
 }
 
 @end

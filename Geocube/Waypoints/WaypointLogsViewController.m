@@ -39,10 +39,10 @@ enum {
     menuMax,
 };
 
-- (instancetype)init:(dbWaypoint *)_wp
+- (instancetype)init:(dbWaypoint *)wp
 {
     self = [super initWithStyle:UITableViewStylePlain];
-    self.waypoint = _wp;
+    self.waypoint = wp;
     self.mineOnly = NO;
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -72,9 +72,9 @@ enum {
     return self;
 }
 
-- (instancetype)initMine:(dbWaypoint *)_wp
+- (instancetype)initMine:(dbWaypoint *)wp
 {
-    self = [self init:_wp];
+    self = [self init:wp];
 
     self.mineOnly = YES;
     self.logs = [NSMutableArray arrayWithArray:[dbLog dbAllByWaypointLogged:self.waypoint]];

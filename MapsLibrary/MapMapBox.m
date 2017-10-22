@@ -295,11 +295,11 @@ EMPTY_METHOD(mapViewDidLoad)
 
 #pragma -- Callbacks
 
-- (MGLAnnotationImage *)mapView:(MGLMapView *)mapView imageForAnnotation:(id <MGLAnnotation>)_annotation
+- (MGLAnnotationImage *)mapView:(MGLMapView *)mapView imageForAnnotation:(id <MGLAnnotation>)annotation_
 {
     MGLAnnotationImage *annotationImage = nil;
-    if ([_annotation isKindOfClass:[GCMGLPointAnnotation class]] == YES) {
-        GCMGLPointAnnotation *annotation = (GCMGLPointAnnotation *)_annotation;
+    if ([annotation_ isKindOfClass:[GCMGLPointAnnotation class]] == YES) {
+        GCMGLPointAnnotation *annotation = (GCMGLPointAnnotation *)annotation_;
         annotationImage = [mapView dequeueReusableAnnotationImageWithIdentifier:[imageManager getCode:annotation.waypoint]];
 
         if (annotationImage == nil) {

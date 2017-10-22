@@ -212,18 +212,18 @@ enum {
     [self updateTotal:@"recommendations_received" with:[ad valueForKey:@"recommendations_received"]];
 }
 
-- (void)updateTotal:(NSString *)key with:(NSObject *)_value
+- (void)updateTotal:(NSString *)key with:(NSObject *)value
 {
-    if (_value == nil)
+    if (value == nil)
         return;
-    if ([_value isKindOfClass:[NSNumber class]] == NO)
+    if ([value isKindOfClass:[NSNumber class]] == NO)
         return;
-    NSNumber *value = (NSNumber *)_value;
+    NSNumber *nvalue = (NSNumber *)value;
     NSNumber *n = [self.totalDictionary objectForKey:key];
     NSAssert1(n != nil, @"updateTotal: key %@ does not exist", key);
 
     NSInteger i = [n integerValue];
-    i += [value integerValue];
+    i += [nvalue integerValue];
 
     [self.totalDictionary setObject:[NSNumber numberWithInteger:i] forKey:key];
 }

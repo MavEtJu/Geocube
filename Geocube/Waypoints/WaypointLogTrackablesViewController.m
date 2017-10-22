@@ -35,12 +35,12 @@ enum {
     menuMax
 };
 
-- (instancetype)init:(dbWaypoint *)wp trackables:(NSMutableArray<dbTrackable *> *)_tbs
+- (instancetype)init:(dbWaypoint *)wp trackables:(NSMutableArray<dbTrackable *> *)tbs
 {
     self = [super init];
 
     self.waypoint = wp;
-    self.tbs = _tbs;
+    self.tbs = tbs;
     self.logtypes = [NSMutableArray arrayWithCapacity:[self.tbs count]];
 
     [self.tbs enumerateObjectsUsingBlock:^(dbTrackable * _Nonnull tb, NSUInteger idx, BOOL * _Nonnull stop) {

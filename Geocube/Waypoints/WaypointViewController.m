@@ -101,9 +101,9 @@ enum {
     return self;
 }
 
-- (void)showWaypoint:(dbWaypoint *)_wp
+- (void)showWaypoint:(dbWaypoint *)wp
 {
-    self.waypoint = _wp;
+    self.waypoint = wp;
     self.headerCell = nil;
 
     self.headerCellHeight = currentTheme.GCLabelNormalSizeFont.lineHeight + 3 * currentTheme.GCLabelSmallSizeFont.lineHeight;

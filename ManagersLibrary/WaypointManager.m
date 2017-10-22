@@ -745,18 +745,18 @@
     }
 }
 
-- (NSString *)configGet:(NSString *)_name
+- (NSString *)configGet:(NSString *)name
 {
-    dbFilter *c = [dbFilter dbGetByKey:_name];
+    dbFilter *c = [dbFilter dbGetByKey:name];
     if (c == nil)
         return nil;
     return c.value;
 }
 
-- (void)configSet:(NSString *)_name value:(NSString *)_value
+- (void)configSet:(NSString *)name value:(NSString *)value
 {
     [waypointManager needsRefreshAll];
-    [dbFilter dbUpdateOrInsert:_name value:_value];
+    [dbFilter dbUpdateOrInsert:name value:value];
 }
 
 /* Receive data from the location manager */

@@ -210,7 +210,7 @@
     [_AppDelegate switchController:RC_SETTINGS];
 }
 
-- (void)oauthtripped:(NSString *)reason error:(NSError *)_error
+- (void)oauthtripped:(NSString *)reason error:(NSError *)error
 {
     NSLog(@"tripped: %@", reason);
     self.account.oauth_token = nil;
@@ -223,7 +223,7 @@
 
     [_AppDelegate switchController:RC_SETTINGS];
     if (self.authenticationDelegate)
-        [self.authenticationDelegate remoteAPI:self failure:@"Unable to obtain secret token." error:_error];
+        [self.authenticationDelegate remoteAPI:self failure:@"Unable to obtain secret token." error:error];
 }
 
 // ----------------------------------------
@@ -366,7 +366,7 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)listQueries:(NSArray<NSDictionary *>**)qs infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid public:(BOOL)_public
+- (RemoteAPIResult)listQueries:(NSArray<NSDictionary *>**)qs infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid public:(BOOL)public
 {
     /* Returns: array of dicts of
      * - Name
