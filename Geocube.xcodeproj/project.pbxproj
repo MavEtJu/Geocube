@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		E804139D1E9EFF6D001FD7BF /* GC - logo - 512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = E804139C1E9EFF6D001FD7BF /* GC - logo - 512x512.png */; };
 		E804139F1E9F984E001FD7BF /* Menu - 640x623.png in Resources */ = {isa = PBXBuildFile; fileRef = E804139E1E9F984E001FD7BF /* Menu - 640x623.png */; };
-		E80732FB1B633A74007FDC29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E80732FA1B633A74007FDC29 /* main.m */; };
 		E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73741B533F4D00F35528 /* MapKit.framework */; };
 		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
 		E815B7831F67FCB2003A6092 /* FileKMLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E815B7821F67FCB2003A6092 /* FileKMLViewController.m */; };
@@ -878,7 +877,6 @@
 		E804139C1E9EFF6D001FD7BF /* GC - logo - 512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 512x512.png"; path = "images/introduction/GC - logo - 512x512.png"; sourceTree = "<group>"; };
 		E804139E1E9F984E001FD7BF /* Menu - 640x623.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu - 640x623.png"; path = "images/introduction/Menu - 640x623.png"; sourceTree = "<group>"; };
 		E80732F81B633A74007FDC29 /* objects */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = objects; sourceTree = BUILT_PRODUCTS_DIR; };
-		E80732FA1B633A74007FDC29 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E80F73761B53443000F35528 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E815B7811F67FCB2003A6092 /* FileKMLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileKMLViewController.h; path = Files/FileKMLViewController.h; sourceTree = "<group>"; };
@@ -2197,14 +2195,6 @@
 				E82E65C41DA0797E00CFBDED /* ratings - star on 19x18.png */,
 			);
 			name = ratings;
-			sourceTree = "<group>";
-		};
-		E80732F91B633A74007FDC29 /* objects */ = {
-			isa = PBXGroup;
-			children = (
-				E80732FA1B633A74007FDC29 /* main.m */,
-			);
-			path = objects;
 			sourceTree = "<group>";
 		};
 		E82002261B7B1B8F009AE50F /* Notes and logs */ = {
@@ -4126,7 +4116,6 @@
 				E82286061F8A1DAA00631380 /* ToolsLibrary */,
 				E8E4400B1D88A6D800BECB49 /* GUI */,
 				E8F570551B3F7255003F020C /* Geocube */,
-				E80732F91B633A74007FDC29 /* objects */,
 				E8F570541B3F7255003F020C /* Products */,
 				6917C4AD2B052674BDDB3A0D /* Frameworks */,
 				E8F570B91B3FF668003F020C /* System Libraries */,
@@ -4904,7 +4893,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E80732FB1B633A74007FDC29 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
