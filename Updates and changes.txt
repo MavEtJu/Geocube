@@ -10,6 +10,8 @@ Version 1.9(x)
   - Fix the way the File Browser is dealt with with regards to element
     height determination.
   - Reduced white-space on map icon for the GNSS.
+  - When "Remove Target" was picked from the map it didn't always remove
+    the line towards it.
 
 Version 1.8(32)
 
