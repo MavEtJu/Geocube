@@ -23,6 +23,14 @@
 @end
 @implementation GCMGLPointAnnotation
 @end
+@interface GCMGLPointAnnotationKML ()
+@end
+@implementation GCMGLPointAnnotationKML
+@end
+@interface GCMGLPolygonKML ()
+@end
+@implementation GCMGLPolygonKML
+@end
 @interface GCMGLPolygonCircleFill ()
 @end
 @implementation GCMGLPolygonCircleFill
@@ -38,4 +46,8 @@
 @interface GCMGLPolylineCircleEdge ()
 @end
 @implementation GCMGLPolylineCircleEdge
+@end
+@interface GCMGLPolylineKML()
+@end
+@implementation GCMGLPolylineKML
 @end

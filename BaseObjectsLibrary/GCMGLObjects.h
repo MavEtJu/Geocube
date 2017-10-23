@@ -25,7 +25,17 @@
 
 @end
 
+@interface GCMGLPointAnnotationKML : MGLPointAnnotation
+
+@end
+
 @interface GCMGLPolygonCircleFill : MGLPolygon
+
+@property (nonatomic, retain) dbWaypoint *waypoint;
+
+@end
+
+@interface GCMGLPolygonKML : MGLPolygon
 
 @property (nonatomic, retain) dbWaypoint *waypoint;
 
@@ -42,5 +52,9 @@
 @end
 
 @interface GCMGLPolylineTrack : MGLPolyline
+
+@end
+
+@interface GCMGLPolylineKML : MGLPolyline
 
 @end
