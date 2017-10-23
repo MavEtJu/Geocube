@@ -22,7 +22,7 @@
 @interface InfoItem ()
 
 @property (nonatomic        ) BOOL isLines;
-@property (nonatomic        ) BOOL isExpanded;
+@property (nonatomic        ) BOOL hasBeenExpanded;
 @property (nonatomic        ) InfoItemType type;
 
 @property (nonatomic        ) NSInteger viewHeight;
@@ -67,7 +67,7 @@
 {
     self = [super init];
     self.infoViewer = parent;
-    self.isExpanded = expanded;
+    self.hasBeenExpanded = expanded;
     self.type = type;
 
     switch (self.type) {
@@ -158,7 +158,7 @@
         y += __s__.font.lineHeight; \
     }
 
-    if (self.isExpanded == YES) {
+    if (self.hasBeenExpanded == YES) {
         INDENT_RESIZE(self.labelDesc);
         INDENT_RESIZE(self.labelURL);
         INDENT_RESIZE(self.labelQueue);
@@ -179,13 +179,13 @@
 
 - (void)expand:(BOOL)yesno
 {
-    self.isExpanded = yesno;
+    self.hasBeenExpanded = yesno;
     self.needsRecalculate = YES;
 }
 
 - (BOOL)isExpanded
 {
-    return self.isExpanded;
+    return self.hasBeenExpanded;
 }
 
 - (void)recalculate
