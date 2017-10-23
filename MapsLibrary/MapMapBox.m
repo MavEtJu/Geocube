@@ -39,6 +39,7 @@
 
 @property (nonatomic, retain) NSMutableArray<GCMGLPolylineTrack *> *linesHistory;
 @property (nonatomic        ) NSInteger historyCoordsIdx;
+@property (nonatomic        ) CLLocationCoordinate2D trackBL, trackTR;
 
 @end
 
@@ -345,6 +346,65 @@ EMPTY_METHOD(mapViewDidLoad)
     [self placeMarker:wp];
 }
 
+- (void)showTrack:(dbTrack *)track
+{
+    NSAssert(self.staticHistory == YES, @"Should only be called with static history");
+
+    [self.linesHistory enumerateObjectsUsingBlock:^(MGLPolyline * _Nonnull line, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.mapView removeAnnotation:line];
+    }];
+    @synchronized (self.linesHistory) {
+        [self.linesHistory removeAllObjects];
+    }
+
+    if (self.linesHistory == nil)
+        self.linesHistory = [NSMutableArray arrayWithCapacity:100];
+
+    __block CLLocationDegrees left, right, top, bottom;
+    left = 180;
+    right = -180;
+    top = -180;
+    bottom = 180;
+
+    NSArray<dbTrackElement *> *tes = [dbTrackElement dbAllByTrack:track];
+
+    __block CLLocationCoordinate2D *coordinateArray = calloc([tes count], sizeof(CLLocationCoordinate2D));
+    __block NSInteger counter = 0;
+    [tes enumerateObjectsUsingBlock:^(dbTrackElement * _Nonnull te, NSUInteger idx, BOOL * _Nonnull stop) {
+        bottom = MIN(bottom, te.lat);
+        top = MAX(top, te.lat);
+        right = MAX(right, te.lon);
+        left = MIN(left, te.lon);
+
+        if (te.restart == NO) {
+            coordinateArray[counter++] = CLLocationCoordinate2DMake(te.lat, te.lon);
+            return;
+        }
+
+        ADDPATH(coordinateArray, counter)
+        counter = 0;
+    }];
+    if (counter != 0)
+        ADDPATH(coordinateArray, counter)
+
+        free(coordinateArray);
+
+    self.trackBL = CLLocationCoordinate2DMake(bottom, left);
+    self.trackTR = CLLocationCoordinate2DMake(top, right);
+
+    [self performSelector:@selector(showTrack) withObject:nil afterDelay:1];
+}
+
+- (void)showTrack
+{
+    @synchronized (self.linesHistory) {
+        [self.linesHistory enumerateObjectsUsingBlock:^(GCMGLPolylineTrack * _Nonnull track, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.mapView addOverlay:track];
+        }];
+    }
+    [self moveCameraTo:self.trackBL c2:self.trackTR];
+}
+
 #pragma -- Callbacks
 
 - (MGLAnnotationImage *)mapView:(MGLMapView *)mapView imageForAnnotation:(id <MGLAnnotation>)annotation_
@@ -371,6 +431,9 @@ EMPTY_METHOD(mapViewDidLoad)
         return 3;
 
     if ([annotation isKindOfClass:[GCMGLPolylineLineToMe class]] == YES)
+        return 3;
+
+    if ([annotation isKindOfClass:[GCMGLPolylineTrack class]] == YES)
         return 3;
 
     return 100;
@@ -487,8 +550,6 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - NEEDS_OVERLOADING_VOID(addLineTapToMe:(CLLocationCoordinate2D)c)
 - NEEDS_OVERLOADING_VOID(removeLineTapToMe)
-- NEEDS_OVERLOADING_VOID(showTrack:(dbTrack *)track)
-- NEEDS_OVERLOADING_VOID(showTrack)
 - NEEDS_OVERLOADING_VOID(loadKML:(NSString *)file)
 - NEEDS_OVERLOADING_VOID(removeKMLs)
 
