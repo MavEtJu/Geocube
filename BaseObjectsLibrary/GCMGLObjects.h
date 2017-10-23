@@ -27,9 +27,13 @@
 
 @interface GCMGLPolygonCircleFill : MGLPolygon
 
+@property (nonatomic, retain) dbWaypoint *waypoint;
+
 @end
 
 @interface GCMGLPolylineCircleEdge : MGLPolyline
+
+@property (nonatomic, retain) dbWaypoint *waypoint;
 
 @end
 
