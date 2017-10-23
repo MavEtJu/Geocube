@@ -41,6 +41,9 @@
 @property (nonatomic        ) NSInteger historyCoordsIdx;
 @property (nonatomic        ) CLLocationCoordinate2D trackBL, trackTR;
 
+@property (nonatomic, retain) SimpleKML *simpleKML;
+@property (nonatomic, retain) NSMutableArray<id> *KMLfeatures;
+
 @end
 
 @implementation MapMapBox
@@ -90,6 +93,9 @@ EMPTY_METHOD(mapViewDidLoad)
 
     if (self.staticHistory == NO)
         [self showHistory];
+
+    self.KMLfeatures = [NSMutableArray arrayWithCapacity:3];
+    [self loadKMLs];
 }
 
 - (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
@@ -405,6 +411,109 @@ EMPTY_METHOD(mapViewDidLoad)
     [self moveCameraTo:self.trackBL c2:self.trackTR];
 }
 
+- (void)removeKMLs
+{
+    [self.KMLfeatures enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[GCMGLPolygonKML class]] == YES) {
+            [self.mapView removeOverlay:obj];
+            return;
+        }
+        if ([obj isKindOfClass:[GCMGLPolylineKML class]] == YES) {
+            [self.mapView removeOverlay:obj];
+            return;
+        }
+        if ([obj isKindOfClass:[GCMGLPointAnnotationKML class]] == YES) {
+            [self.mapView removeAnnotation:obj];
+            return;
+        }
+        NSLog(@"removeKMLs: Unknown KML feature: %@", [obj class]);
+    }];
+}
+
+- (void)loadKML:(NSString *)path
+{
+    SimpleKML *kml = [SimpleKML KMLWithContentsOfFile:path error:nil];
+
+    // look for a document feature in it per the KML spec
+    //
+    if (kml.feature != nil && [kml.feature isKindOfClass:[SimpleKMLDocument class]] == YES) {
+        for (SimpleKMLFeature *feature in ((SimpleKMLContainer *)kml.feature).features) {
+            [self dealWithKMLFeature:feature mapView:self.mapView];
+        }
+    }
+}
+
+- (void)dealWithKMLFeature:(SimpleKMLFeature *)feature mapView:(MGLMapView *)mapview
+{
+    if ([feature isKindOfClass:[SimpleKMLFolder class]] == YES) {
+        NSLog(@"reloadKMLFiles: SimpleKMLFolder");
+
+        NSArray<SimpleKMLObject *> *entries = ((SimpleKMLFolder *)feature).entries;
+        NSLog(@"children: %lu", (unsigned long)[entries count]);
+        for (SimpleKMLFeature *entry in entries)
+            [self dealWithKMLFeature:entry mapView:mapview];
+        return;
+    }
+
+    if ([feature isKindOfClass:[SimpleKMLPlacemark class]] == YES && ((SimpleKMLPlacemark *)feature).point != nil) {
+        SimpleKMLPoint *point = ((SimpleKMLPlacemark *)feature).point;
+        NSLog(@"reloadKMLFiles: SimpleKMLPoint");
+
+        // create a normal point annotation for it
+        GCMGLPointAnnotationKML *annotation = [[GCMGLPointAnnotationKML alloc] init];
+
+        annotation.coordinate = point.coordinate;
+        annotation.title      = feature.name;
+
+        [self.mapView addAnnotation:annotation];
+        [self.KMLfeatures addObject:annotation];
+        return;
+    }
+
+    // line
+    if ([feature isKindOfClass:[SimpleKMLPlacemark class]] == YES && ((SimpleKMLPlacemark *)feature).lineString != nil) {
+        SimpleKMLLineString *lines = (SimpleKMLLineString *)((SimpleKMLPlacemark *)feature).lineString;
+        NSLog(@"reloadKMLFiles: SimpleKMLLineString");
+
+        NSArray<CLLocation *> *coords = lines.coordinates;
+
+        CLLocationCoordinate2D *points = calloc([coords count], sizeof(CLLocationCoordinate2D));
+        __block NSUInteger i = 0;
+        [coords enumerateObjectsUsingBlock:^(CLLocation * _Nonnull coordinate, NSUInteger idx, BOOL * _Nonnull stop) {
+            points[i++] = coordinate.coordinate;
+        }];
+        GCMGLPolylineKML *overlayPolyline = [GCMGLPolylineKML polylineWithCoordinates:points count:i];
+        free(points);
+
+        [self.mapView addOverlay:overlayPolyline];
+        [self.KMLfeatures addObject:overlayPolyline];
+        return;
+    }
+
+    // otherwise, see if we have any placemark features with a polygon
+    if ([feature isKindOfClass:[SimpleKMLPlacemark class]] == YES && ((SimpleKMLPlacemark *)feature).polygon != nil) {
+        SimpleKMLPolygon *polygon = (SimpleKMLPolygon *)((SimpleKMLPlacemark *)feature).polygon;
+        NSLog(@"reloadKMLFiles: SimpleKMLPolygon");
+
+        SimpleKMLLinearRing *outerRing = polygon.outerBoundary;
+
+        CLLocationCoordinate2D points[[outerRing.coordinates count]];
+        NSUInteger i = 0;
+
+        for (CLLocation *coordinate in outerRing.coordinates)
+            points[i++] = coordinate.coordinate;
+
+        // create a polygon annotation for it
+        GCMGLPolygonKML *overlayPolygon = [GCMGLPolygonKML polygonWithCoordinates:points count:[outerRing.coordinates count]];
+
+        [self.mapView addOverlay:overlayPolygon];
+        [self.KMLfeatures addObject:overlayPolygon];
+        return;
+    }
+
+    NSLog(@"dealWithKMLFeature: Unknown KML feature: %@", [feature class]);
+}
+
 #pragma -- Callbacks
 
 - (MGLAnnotationImage *)mapView:(MGLMapView *)mapView imageForAnnotation:(id <MGLAnnotation>)annotation_
@@ -550,7 +659,5 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - NEEDS_OVERLOADING_VOID(addLineTapToMe:(CLLocationCoordinate2D)c)
 - NEEDS_OVERLOADING_VOID(removeLineTapToMe)
-- NEEDS_OVERLOADING_VOID(loadKML:(NSString *)file)
-- NEEDS_OVERLOADING_VOID(removeKMLs)
 
 @end
