@@ -12,6 +12,7 @@ Version 1.9(x)
   - Reduced white-space on map icon for the GNSS.
   - When "Remove Target" was picked from the map it didn't always remove
     the line towards it.
+  - No longer crashes when enabling a KML file or when deleting a KML file.
 
 Version 1.8(32)
 
