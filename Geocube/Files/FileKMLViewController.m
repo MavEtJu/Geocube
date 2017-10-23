@@ -131,6 +131,12 @@
     NSString *fn = [self.filesNames objectAtIndex:indexPath.row];
 
     dbKMLFile *kml = [dbKMLFile dbGetByFilename:fn];
+    if (kml == nil) {
+        kml = [[dbKMLFile alloc] init];
+        kml.filename = fn;
+        kml.enabled = NO;
+        [kml dbCreate];
+    }
     kml.enabled = !kml.enabled;
     [kml dbUpdate];
     [waypointManager refreshKMLs];
@@ -150,7 +156,7 @@
     [waypointManager refreshKMLs];
 
     [self refreshFileData];
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
 }
 
 @end
