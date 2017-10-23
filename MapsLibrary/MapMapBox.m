@@ -370,6 +370,9 @@ EMPTY_METHOD(mapViewDidLoad)
     if ([annotation isKindOfClass:[GCMGLPolylineCircleEdge class]] == YES)
         return 3;
 
+    if ([annotation isKindOfClass:[GCMGLPolylineLineToMe class]] == YES)
+        return 3;
+
     return 100;
 }
 
@@ -422,9 +425,9 @@ EMPTY_METHOD(mapViewDidLoad)
 - (void)mapView:(__unused MGLMapView *)mapView didSelectAnnotation:(nonnull id<MGLAnnotation>)annotation
 {
     if ([annotation isKindOfClass:[GCMGLPointAnnotation class]] == YES) {
-GCMGLPointAnnotation *pa = (GCMGLPointAnnotation *)annotation;
-self.wpSelected = pa.waypoint;
-[self.mapvc showWaypointInfo:pa.waypoint];
+        GCMGLPointAnnotation *pa = (GCMGLPointAnnotation *)annotation;
+        self.wpSelected = pa.waypoint;
+        [self.mapvc showWaypointInfo:pa.waypoint];
     }
 }
 
