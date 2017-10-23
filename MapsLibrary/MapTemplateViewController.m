@@ -962,6 +962,7 @@
     [self.lmi disableItem:MVCmenuRemoveTarget];
     [self updateMapButtons];
     [waypointManager setTheCurrentWaypoint:nil];
+    [self.map removeLineMeToWaypoint];
 }
 
 - (void)menuExportVisible
