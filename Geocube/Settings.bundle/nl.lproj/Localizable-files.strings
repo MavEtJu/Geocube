@@ -1,9 +1,6 @@
 /* Files */
 
 /* Files - Local Files */
-"filesviewcontroller-File age" = "Bestands leeftijd";
-"filesviewcontroller-File size" = "Bestandsgrootte";
-"filesviewcontroller-Last imported" = "Laatste import";
 "filesviewcontroller-Choose your action" = "Welke aktie?";
 "filesviewcontroller-Delete" = "Verwijder";
 "filesviewcontroller-Import" = "Importeer";
@@ -25,6 +22,9 @@
 "filesviewcontroller-Select the source" = "Selecteer de oorsprong";
 "filesviewcontroller-The import was successful." = "De import is gelukt.";
 "filesviewcontroller-There was a problem importing the file %@." = "Er was een probleem met de import van %@.";
+"filesviewcontroller-File age: %@" = "Bestand leeftijd: %@";
+"filesviewcontroller-File size: %@" = "Bestand grootte: %@";
+"filesviewcontroller-Last imported: %@" = "Laatste import: %@";
 
 /* Files - File browser */
 "filebrowserviewcontroller-Choose your action" = "Welke aktie?";

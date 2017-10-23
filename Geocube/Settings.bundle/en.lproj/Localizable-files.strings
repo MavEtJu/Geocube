@@ -1,9 +1,6 @@
 /* Files */
 
 /* Files - Local Files */
-"filesviewcontroller-File age" = "File age";
-"filesviewcontroller-File size" = "File size";
-"filesviewcontroller-Last imported" = "Last imported";
 "filesviewcontroller-Choose your action" = "Choose Your Action";
 "filesviewcontroller-Delete" = "Delete";
 "filesviewcontroller-Import" = "Import";
@@ -25,6 +22,10 @@
 "filesviewcontroller-Select the source" = "Select the source";
 "filesviewcontroller-The import was successful." = "The import was successful.";
 "filesviewcontroller-There was a problem importing the file %@." = "There was a problem importing the file %@.";
+"filesviewcontroller-File age: %@" = "File age: %@";
+"filesviewcontroller-File size: %@" = "File size: %@";
+"filesviewcontroller-Last imported: %@" = "Last imported: %@";
+
 
 /* Files - File browser */
 "filebrowserviewcontroller-Choose your action" = "Choose Your Action";

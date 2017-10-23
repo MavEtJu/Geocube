@@ -21,9 +21,7 @@
 
 @interface FileKMLViewController ()
 
-@property (nonatomic, retain) NSMutableArray<NSString *> *filesNames;
-@property (nonatomic, retain) NSMutableArray<NSNumber *> *filesSizes;
-@property (nonatomic, retain) NSMutableArray<NSDate *> *filesDates;
+@property (nonatomic, retain) NSArray<NSDictionary *> *fileData;
 
 @end
 
@@ -46,22 +44,30 @@
     // Count files in KLMDir
 
     NSArray<NSString *> *files = [fileManager contentsOfDirectoryAtPath:[MyTools KMLDir] error:nil];
-    self.filesNames = [NSMutableArray arrayWithCapacity:20];
-    self.filesDates = [NSMutableArray arrayWithCapacity:20];
-    self.filesSizes = [NSMutableArray arrayWithCapacity:20];
+    NSMutableArray<NSDictionary *> *fileData = [NSMutableArray arrayWithCapacity:3];
 
     [files enumerateObjectsUsingBlock:^(NSString * _Nonnull file, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSMutableDictionary *filedata = [NSMutableDictionary dictionaryWithCapacity:3];
         NSDictionary *a = [fileManager attributesOfItemAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools KMLDir], file] error:nil];
         if ([[a objectForKey:NSFileType] isEqualToString:NSFileTypeDirectory] == YES)
             return;
-        [self.filesNames addObject:file];
+        [filedata setObject:file forKey:@"name"];
         NSNumber *s = [a objectForKey:NSFileSize];
-        [self.filesSizes addObject:s];
+        [filedata setObject:s forKey:@"size"];
         NSDate *d = [a objectForKey:NSFileModificationDate];
-        [self.filesDates addObject:d];
+        [filedata setObject:d forKey:@"date"];
+
+        [fileData addObject:filedata];
     }];
 
-    [self refreshControl];
+    [fileData sortUsingComparator:^(NSDictionary *obj1, NSDictionary *obj2) {
+        NSString *o1 = [obj1 objectForKey:@"name"];
+        NSString *o2 = [obj2 objectForKey:@"name"];
+        return (NSComparisonResult)[o1 compare:o2 options:NSCaseInsensitiveSearch];
+    }];
+
+    self.fileData = fileData;
+    [self.tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -87,7 +93,7 @@
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.filesNames count];
+    return [self.fileData count];
 }
 
 // Return a cell for the index path
@@ -97,11 +103,14 @@
 
     cell.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 
-    NSString *fn = [self.filesNames objectAtIndex:indexPath.row];
+    NSDictionary *dict = [self.fileData objectAtIndex:indexPath.row];
+    NSString *fn = [dict objectForKey:@"name"];
+    NSNumber *size = [dict objectForKey:@"size"];
+    NSDate *date = [dict objectForKey:@"date"];
 
     cell.labelFilename.text = fn;
-    cell.labelSize.text = [NSString stringWithFormat:@"%@: %@", _(@"filesviewcontroller-File size"), [MyTools niceFileSize:[[self.filesSizes objectAtIndex:indexPath.row] integerValue]]];
-    cell.labelDateTime.text = [NSString stringWithFormat:@"%@: %@.", _(@"filesviewcontroller-File age"), [MyTools niceTimeDifference:[[self.filesDates objectAtIndex:indexPath.row] timeIntervalSince1970]]];
+    cell.labelSize.text = [NSString stringWithFormat:_(@"filesviewcontroller-File size: %@"), [MyTools niceFileSize:[size integerValue]]];
+    cell.labelDateTime.text = [NSString stringWithFormat:_(@"filesviewcontroller-File age: %@"), [MyTools niceTimeDifference:[date timeIntervalSince1970]]];
 
     dbKMLFile *kml = [dbKMLFile dbGetByFilename:fn];
     if (kml.enabled == NO)
@@ -120,7 +129,8 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSString *fn = [self.filesNames objectAtIndex:indexPath.row];
+        NSDictionary *dict = [self.fileData objectAtIndex:indexPath.row];
+        NSString *fn = [dict objectForKey:@"name"];
         [self fileDelete:fn];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     }
@@ -128,7 +138,8 @@
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *fn = [self.filesNames objectAtIndex:indexPath.row];
+    NSDictionary *dict = [self.fileData objectAtIndex:indexPath.row];
+    NSString *fn = [dict objectForKey:@"name"];
 
     dbKMLFile *kml = [dbKMLFile dbGetByFilename:fn];
     if (kml == nil) {

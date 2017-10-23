@@ -80,8 +80,11 @@
 @class GCLabelSmallText;
 @class GCLocationCoordinate2D;
 @class GCMGLPointAnnotation;
+@class GCMGLPointAnnotationKML;
 @class GCMGLPolygonCircleFill;
+@class GCMGLPolygonKML;
 @class GCMGLPolylineCircleEdge;
+@class GCMGLPolylineKML;
 @class GCMGLPolylineLineToMe;
 @class GCMGLPolylineTrack;
 @class GCMKCircle;

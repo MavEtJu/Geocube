@@ -47,7 +47,7 @@
 @end
 @implementation GCMGLPolylineCircleEdge
 @end
-@interface GCMGLPolylineKML()
+@interface GCMGLPolylineKML ()
 @end
 @implementation GCMGLPolylineKML
 @end

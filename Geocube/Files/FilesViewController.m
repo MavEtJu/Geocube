@@ -57,7 +57,7 @@ enum {
     // Count files in FilesDir
 
     NSArray<NSString *> *files = [fileManager contentsOfDirectoryAtPath:[MyTools FilesDir] error:nil];
-    NSMutableArray *fileData = [NSMutableArray arrayWithCapacity:20];
+    NSMutableArray<NSDictionary *> *fileData = [NSMutableArray arrayWithCapacity:20];
 
     [files enumerateObjectsUsingBlock:^(NSString * _Nonnull file, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMutableDictionary *filedata = [NSMutableDictionary dictionaryWithCapacity:5];
