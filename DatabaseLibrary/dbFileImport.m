@@ -93,4 +93,9 @@ TABLENAME(@"file_imports")
     return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithId:_id]]] firstObject];
 }
 
++ (dbFileImport *)dbGetByFilename:(NSString *)fn
+{
+    return [[self dbAllXXX:@"where filename = ?" keys:@"s" values:@[fn]] firstObject];
+}
+
 @end

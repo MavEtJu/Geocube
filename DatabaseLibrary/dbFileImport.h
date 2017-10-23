@@ -27,5 +27,5 @@
 
 + (NSArray<dbFileImport *> *)dbAll;
 + (dbFileImport *)dbGet:(NSId)_id;
-
++ (dbFileImport *)dbGetByFilename:(NSString *)fn;
 @end
