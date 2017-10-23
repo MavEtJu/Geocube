@@ -807,10 +807,10 @@
 
 - (void)refreshKMLs
 {
-    [self.delegatesKML enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.delegatesKML enumerateObjectsUsingBlock:^(id<WaypointManagerKMLDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         // Doing this via the main queue because Google Map Service insists on it.
         MAINQUEUE(
-            [delegate refreshKMLs];
+            [delegate reloadKMLFiles];
         )
     }];
 }
