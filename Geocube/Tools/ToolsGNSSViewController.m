@@ -46,7 +46,6 @@
 @property (nonatomic        ) float smallLabelLineHeight;
 @property (nonatomic        ) BOOL stopTimer;
 
-
 @end
 
 @implementation ToolsGNSSViewController

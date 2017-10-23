@@ -23,7 +23,6 @@
 
 @property (nonatomic, retain) NSArray<dbWaypoint *> *waypointsWithImages;
 
-
 @end
 
 @implementation NotesImagesViewController

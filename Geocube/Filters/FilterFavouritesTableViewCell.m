@@ -23,7 +23,6 @@
 
 @property (nonatomic      ) NSInteger config_min, config_max;
 
-
 @property (nonatomic, weak) IBOutlet RangeSlider *slider;
 @property (nonatomic, weak) IBOutlet GCLabelSmallText *labelSlider;
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
