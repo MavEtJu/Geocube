@@ -839,44 +839,12 @@
 		ED9C520343AE9414E4500616 /* libPods-Geocube.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88880BCD488967D0BA49FBE0 /* libPods-Geocube.a */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		E8F5706D1B3F7255003F020C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E8F5704B1B3F7255003F020C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E8F570521B3F7255003F020C;
-			remoteInfo = Geocube;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		E80732F61B633A74007FDC29 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-		E8E8CFEF1B64FAC900CC741A /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		0087F95E865F48AD94ADB39B /* Pods-Geocube.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Geocube.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Geocube/Pods-Geocube.debug.xcconfig"; sourceTree = "<group>"; };
 		237ED37D295689D607775605 /* Pods-Geocube.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Geocube.release.xcconfig"; path = "Pods/Target Support Files/Pods-Geocube/Pods-Geocube.release.xcconfig"; sourceTree = "<group>"; };
 		88880BCD488967D0BA49FBE0 /* libPods-Geocube.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Geocube.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E804139C1E9EFF6D001FD7BF /* GC - logo - 512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 512x512.png"; path = "images/introduction/GC - logo - 512x512.png"; sourceTree = "<group>"; };
 		E804139E1E9F984E001FD7BF /* Menu - 640x623.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu - 640x623.png"; path = "images/introduction/Menu - 640x623.png"; sourceTree = "<group>"; };
-		E80732F81B633A74007FDC29 /* objects */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = objects; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E80F73761B53443000F35528 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E815B7811F67FCB2003A6092 /* FileKMLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileKMLViewController.h; path = Files/FileKMLViewController.h; sourceTree = "<group>"; };
@@ -1834,8 +1802,6 @@
 		E84B17541F90BA51004CAE31 /* DeveloperRemoteAPITableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DeveloperRemoteAPITableViewCell.xib; path = Developer/DeveloperRemoteAPITableViewCell.xib; sourceTree = "<group>"; };
 		E84E88A31F6CFFD0004F4BE9 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		E84E89871F6F2E13004F4BE9 /* WaypointPersonalNoteViewController-delegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "WaypointPersonalNoteViewController-delegate.h"; path = "Waypoints/WaypointPersonalNoteViewController-delegate.h"; sourceTree = "<group>"; };
-		E84E89881F6F30D4004F4BE9 /* libNetworkLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNetworkLibrary.a; path = "NetworkLibrary/build/Debug-iphoneos/libNetworkLibrary.a"; sourceTree = "<group>"; };
-		E84E89EB1F6F5547004F4BE9 /* libConvertorsLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libConvertorsLibrary.a; path = "../../Library/Developer/Xcode/DerivedData/Geocube-bjprugvtqrcyrnatajlgnpwinftk/Build/Products/Debug-iphonesimulator/libConvertorsLibrary.a"; sourceTree = "<group>"; };
 		E851139D1F987BB300737EC7 /* MapMapBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapMapBox.h; path = MapsLibrary/MapMapBox.h; sourceTree = "<group>"; };
 		E851139E1F987BB300737EC7 /* MapMapBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapMapBox.m; path = MapsLibrary/MapMapBox.m; sourceTree = "<group>"; };
 		E8587B891F8C24330099EA0E /* dbLogData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbLogData.h; path = DatabaseLibrary/dbLogData.h; sourceTree = "<group>"; };
@@ -1909,7 +1875,6 @@
 		E87ED1861F86001E00DE8E9B /* FilterSizesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterSizesTableViewCell.xib; path = Filters/FilterSizesTableViewCell.xib; sourceTree = "<group>"; };
 		E87FE7951EFFD25F009FA65B /* Geocube-defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-defines.h"; sourceTree = "<group>"; };
 		E881CA4F1F6B9CC400A17060 /* Geocube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geocube.h; sourceTree = "<group>"; };
-		E881CA891F6BB11A00A17060 /* libToolsLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libToolsLibrary.a; path = "../../Library/Developer/Xcode/DerivedData/Geocube-bjprugvtqrcyrnatajlgnpwinftk/Build/Products/Debug-iphonesimulator/libToolsLibrary.a"; sourceTree = "<group>"; };
 		E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Close Window - 640x430.png"; path = "images/introduction/Close Window - 640x430.png"; sourceTree = "<group>"; };
 		E88258361E9FA15F00FCF9B2 /* Map icons - 362x86.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Map icons - 362x86.png"; path = "images/introduction/Map icons - 362x86.png"; sourceTree = "<group>"; };
 		E8845CA81EF3628900A47F5D /* FileObjectView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "FileObjectView~ipad.xib"; path = "Files/FileObjectView~ipad.xib"; sourceTree = "<group>"; };
@@ -1919,7 +1884,6 @@
 		E8845CB11EF493B200A47F5D /* FilterAccountsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterAccountsTableViewCell.m; path = Filters/FilterAccountsTableViewCell.m; sourceTree = "<group>"; };
 		E88DB0071F334E4300FEF795 /* cache - gadget - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - gadget - 30x30.png"; path = "images/caches/cache - gadget - 30x30.png"; sourceTree = "<group>"; };
 		E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - empty - 30x30.png"; path = "images/logs/log - empty - 30x30.png"; sourceTree = "<group>"; };
-		E895552A1F6CA70A0026582B /* libDatabaseLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libDatabaseLibrary.a; path = "../../Library/Developer/Xcode/DerivedData/Geocube-bjprugvtqrcyrnatajlgnpwinftk/Build/Products/Debug-iphonesimulator/libDatabaseLibrary.a"; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
 		E8B6D8D81F9AE81B00C376A2 /* GCMGLObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GCMGLObjects.h; path = BaseObjectsLibrary/GCMGLObjects.h; sourceTree = "<group>"; };
 		E8B6D8D91F9AE81B00C376A2 /* GCMGLObjects.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GCMGLObjects.m; path = BaseObjectsLibrary/GCMGLObjects.m; sourceTree = "<group>"; };
@@ -1985,7 +1949,6 @@
 		E8D49D331F0124F2005EB7BE /* container size - xlarge - 35x11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - xlarge - 35x11@2x.png"; path = "images/containers/container size - xlarge - 35x11@2x.png"; sourceTree = "<group>"; };
 		E8D49D341F0124F2005EB7BE /* container size - xlarge - 35x11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - xlarge - 35x11@3x.png"; path = "images/containers/container size - xlarge - 35x11@3x.png"; sourceTree = "<group>"; };
 		E8E3DC1B1E167C740066E903 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E8E8CFF11B64FAC900CC741A /* tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tests; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EC01A21F5518840032F168 /* KeepTrackBeeperView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KeepTrackBeeperView.xib; path = KeepTrack/KeepTrackBeeperView.xib; sourceTree = "<group>"; };
 		E8EC01A41F551A990032F168 /* KeepTrackBeeperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeepTrackBeeperView.h; path = KeepTrack/KeepTrackBeeperView.h; sourceTree = "<group>"; };
 		E8EC01A51F551A990032F168 /* KeepTrackBeeperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeepTrackBeeperView.m; path = KeepTrack/KeepTrackBeeperView.m; sourceTree = "<group>"; };
@@ -1995,7 +1958,6 @@
 		E8EC502D1F832E6B004A2338 /* FilterHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterHeaderTableViewCell.xib; path = Filters/FilterHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		E8EC50301F835798004A2338 /* FilterDirectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterDirectionTableViewCell.xib; path = Filters/FilterDirectionTableViewCell.xib; sourceTree = "<group>"; };
 		E8EC50321F836E68004A2338 /* FilterDifficultyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterDifficultyTableViewCell.xib; path = Filters/FilterDifficultyTableViewCell.xib; sourceTree = "<group>"; };
-		E8EE47B71F6B473200AB13BC /* libContribLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libContribLibrary.a; path = "../../Library/Developer/Xcode/DerivedData/Geocube-bjprugvtqrcyrnatajlgnpwinftk/Build/Products/Debug-iphonesimulator/libContribLibrary.a"; sourceTree = "<group>"; };
 		E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30.png"; path = "images/caches/cache - reverse - 30x30.png"; sourceTree = "<group>"; };
 		E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@2x.png"; path = "images/caches/cache - reverse - 30x30@2x.png"; sourceTree = "<group>"; };
 		E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@3x.png"; path = "images/caches/cache - reverse - 30x30@3x.png"; sourceTree = "<group>"; };
@@ -2005,7 +1967,6 @@
 		E8F5705A1B3F7255003F020C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E8F570611B3F7255003F020C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E8F570631B3F7255003F020C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		E8F5706C1B3F7255003F020C /* GeocubeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeocubeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F570911B3F7CAE003F020C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		E8F570AE1B3FE711003F020C /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		E8F570B71B3FF4AA003F020C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -2104,20 +2065,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E80732F51B633A74007FDC29 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E8E8CFEE1B64FAC900CC741A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E8F570501B3F7255003F020C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -2134,25 +2081,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E8F570691B3F7255003F020C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		6917C4AD2B052674BDDB3A0D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E84E89EB1F6F5547004F4BE9 /* libConvertorsLibrary.a */,
-				E84E89881F6F30D4004F4BE9 /* libNetworkLibrary.a */,
 				E84E88A31F6CFFD0004F4BE9 /* Social.framework */,
-				E895552A1F6CA70A0026582B /* libDatabaseLibrary.a */,
-				E881CA891F6BB11A00A17060 /* libToolsLibrary.a */,
-				E8EE47B71F6B473200AB13BC /* libContribLibrary.a */,
 				E858F59A1F56610B002C1F9B /* ImageIO.framework */,
 				E8EC01A71F554C8F0032F168 /* MediaPlayer.framework */,
 				E823024D1DCD54520032C5C6 /* libxml2.tbd */,
@@ -4127,9 +4062,6 @@
 			isa = PBXGroup;
 			children = (
 				E8F570531B3F7255003F020C /* Geocube.app */,
-				E8F5706C1B3F7255003F020C /* GeocubeTests.xctest */,
-				E80732F81B633A74007FDC29 /* objects */,
-				E8E8CFF11B64FAC900CC741A /* tests */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -4200,40 +4132,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E80732F71B633A74007FDC29 /* objects */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E80732FC1B633A74007FDC29 /* Build configuration list for PBXNativeTarget "objects" */;
-			buildPhases = (
-				E80732F41B633A74007FDC29 /* Sources */,
-				E80732F51B633A74007FDC29 /* Frameworks */,
-				E80732F61B633A74007FDC29 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = objects;
-			productName = objects;
-			productReference = E80732F81B633A74007FDC29 /* objects */;
-			productType = "com.apple.product-type.tool";
-		};
-		E8E8CFF01B64FAC900CC741A /* tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E8E8CFF51B64FAC900CC741A /* Build configuration list for PBXNativeTarget "tests" */;
-			buildPhases = (
-				E8E8CFED1B64FAC900CC741A /* Sources */,
-				E8E8CFEE1B64FAC900CC741A /* Frameworks */,
-				E8E8CFEF1B64FAC900CC741A /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = tests;
-			productName = tests;
-			productReference = E8E8CFF11B64FAC900CC741A /* tests */;
-			productType = "com.apple.product-type.tool";
-		};
 		E8F570521B3F7255003F020C /* Geocube */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8F570761B3F7255003F020C /* Build configuration list for PBXNativeTarget "Geocube" */;
@@ -4254,24 +4152,6 @@
 			productReference = E8F570531B3F7255003F020C /* Geocube.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E8F5706B1B3F7255003F020C /* GeocubeTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E8F570791B3F7255003F020C /* Build configuration list for PBXNativeTarget "GeocubeTests" */;
-			buildPhases = (
-				E8F570681B3F7255003F020C /* Sources */,
-				E8F570691B3F7255003F020C /* Frameworks */,
-				E8F5706A1B3F7255003F020C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E8F5706E1B3F7255003F020C /* PBXTargetDependency */,
-			);
-			name = GeocubeTests;
-			productName = GeocubeTests;
-			productReference = E8F5706C1B3F7255003F020C /* GeocubeTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -4281,12 +4161,6 @@
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Edwin Groothuis";
 				TargetAttributes = {
-					E80732F71B633A74007FDC29 = {
-						CreatedOnToolsVersion = 6.4;
-					};
-					E8E8CFF01B64FAC900CC741A = {
-						CreatedOnToolsVersion = 6.4;
-					};
 					E8F570521B3F7255003F020C = {
 						CreatedOnToolsVersion = 6.3.2;
 						SystemCapabilities = {
@@ -4304,10 +4178,6 @@
 							};
 						};
 					};
-					E8F5706B1B3F7255003F020C = {
-						CreatedOnToolsVersion = 6.3.2;
-						TestTargetID = E8F570521B3F7255003F020C;
-					};
 				};
 			};
 			buildConfigurationList = E8F5704E1B3F7255003F020C /* Build configuration list for PBXProject "Geocube" */;
@@ -4324,9 +4194,6 @@
 			projectRoot = "";
 			targets = (
 				E8F570521B3F7255003F020C /* Geocube */,
-				E8F5706B1B3F7255003F020C /* GeocubeTests */,
-				E80732F71B633A74007FDC29 /* objects */,
-				E8E8CFF01B64FAC900CC741A /* tests */,
 			);
 		};
 /* End PBXProject section */
@@ -4819,13 +4686,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E8F5706A1B3F7255003F020C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -4888,20 +4748,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E80732F41B633A74007FDC29 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E8E8CFED1B64FAC900CC741A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E8F5704F1B3F7255003F020C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -5250,22 +5096,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E8F570681B3F7255003F020C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E8F5706E1B3F7255003F020C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E8F570521B3F7255003F020C /* Geocube */;
-			targetProxy = E8F5706D1B3F7255003F020C /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E8F570601B3F7255003F020C /* Main.storyboard */ = {
@@ -5279,52 +5110,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		E80732FD1B633A74007FDC29 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
-		E80732FE1B633A74007FDC29 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		E8E8CFF61B64FAC900CC741A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
-		E8E8CFF71B64FAC900CC741A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
 		E8F570741B3F7255003F020C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -5525,57 +5310,9 @@
 			};
 			name = Release;
 		};
-		E8F5707A1B3F7255003F020C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = GeocubeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "-VJBMXRZ93.org.mavetju.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Geocube.app/Geocube";
-			};
-			name = Debug;
-		};
-		E8F5707B1B3F7255003F020C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = GeocubeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "-VJBMXRZ93.org.mavetju.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Geocube.app/Geocube";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E80732FC1B633A74007FDC29 /* Build configuration list for PBXNativeTarget "objects" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E80732FD1B633A74007FDC29 /* Debug */,
-				E80732FE1B633A74007FDC29 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E8E8CFF51B64FAC900CC741A /* Build configuration list for PBXNativeTarget "tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E8E8CFF61B64FAC900CC741A /* Debug */,
-				E8E8CFF71B64FAC900CC741A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		E8F5704E1B3F7255003F020C /* Build configuration list for PBXProject "Geocube" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -5590,15 +5327,6 @@
 			buildConfigurations = (
 				E8F570771B3F7255003F020C /* Debug */,
 				E8F570781B3F7255003F020C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E8F570791B3F7255003F020C /* Build configuration list for PBXNativeTarget "GeocubeTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E8F5707A1B3F7255003F020C /* Debug */,
-				E8F5707B1B3F7255003F020C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
