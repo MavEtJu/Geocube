@@ -35,6 +35,7 @@
 @property (nonatomic        ) NSInteger currentAltitude;
 
 @property (nonatomic, retain) GCMGLPolylineLineToMe *lineWaypointToMe;
+@property (nonatomic, retain) dbWaypoint *wpSelected;
 
 @property (nonatomic, retain) NSMutableArray<GCMGLPolylineTrack *> *linesHistory;
 @property (nonatomic        ) NSInteger historyCoordsIdx;
@@ -404,6 +405,34 @@ EMPTY_METHOD(mapViewDidLoad)
         return configManager.mapCircleFillColour;
 
     return [UIColor colorWithRed:1 green:1 blue:1 alpha:0.05];
+}
+
+/*
+ * Touch a marker for the waypoint info window
+ */
+
+- (BOOL)mapView:(MGLMapView *)mapView annotationCanShowCallout:(id<MGLAnnotation>)annotation
+{
+    // Do not show popout for markers
+    if ([annotation isKindOfClass:[GCMGLPointAnnotation class]] == YES)
+        return NO;
+    return NO;
+}
+
+- (void)mapView:(__unused MGLMapView *)mapView didSelectAnnotation:(nonnull id<MGLAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[GCMGLPointAnnotation class]] == YES) {
+GCMGLPointAnnotation *pa = (GCMGLPointAnnotation *)annotation;
+self.wpSelected = pa.waypoint;
+[self.mapvc showWaypointInfo:pa.waypoint];
+    }
+}
+
+- (void)mapView:(MGLMapView *)mapView didDeselectAnnotation:(nonnull id<MGLAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[GCMGLPointAnnotation class]] == YES)
+        [self.mapvc removeWaypointInfo];
+    [mapView deselectAnnotation:annotation animated:YES];
 }
 
 - (void)setMapType:(GCMapType)mapType
