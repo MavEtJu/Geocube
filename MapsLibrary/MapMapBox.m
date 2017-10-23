@@ -81,8 +81,24 @@ EMPTY_METHOD(mapViewDidLoad)
 
     self.linesHistory = [NSMutableArray arrayWithCapacity:100];
 
+    // Add a new waypoint
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    lpgr.minimumPressDuration = 2.0; //user needs to press for 2 seconds
+    [self.mapView addGestureRecognizer:lpgr];
+
     if (self.staticHistory == NO)
         [self showHistory];
+}
+
+- (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
+{
+    if (gestureRecognizer.state != UIGestureRecognizerStateBegan)
+        return;
+
+    CGPoint touchPoint = [gestureRecognizer locationInView:self.mapView];
+    CLLocationCoordinate2D touchMapCoordinate = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
+
+    [self.mapvc addNewWaypoint:touchMapCoordinate];
 }
 
 - (void)removeMap
@@ -293,6 +309,41 @@ EMPTY_METHOD(mapViewDidLoad)
     }];
 }
 
+- (void)placeMarker:(dbWaypoint *)wp
+{
+    [self makeMarker:wp];
+    if (self.showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES)
+        [self makeCircle:wp];
+}
+
+- (void)removeMarker:(dbWaypoint *)wp
+{
+    [self.markers enumerateObjectsUsingBlock:^(GCMGLPointAnnotation * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (a.waypoint._id == wp._id) {
+            [self.mapView removeAnnotation:a];
+            *stop = YES;
+        }
+    }];
+    [self.circleLines enumerateObjectsUsingBlock:^(GCMGLPolylineCircleEdge * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (a.waypoint._id == wp._id) {
+            [self.mapView removeOverlay:a];
+            *stop = YES;
+        }
+    }];
+    [self.circleFills enumerateObjectsUsingBlock:^(GCMGLPolygonCircleFill * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (a.waypoint._id == wp._id) {
+            [self.mapView removeOverlay:a];
+            *stop = YES;
+        }
+    }];
+}
+
+- (void)updateMarker:(dbWaypoint *)wp
+{
+    [self removeMarker:wp];
+    [self placeMarker:wp];
+}
+
 #pragma -- Callbacks
 
 - (MGLAnnotationImage *)mapView:(MGLMapView *)mapView imageForAnnotation:(id <MGLAnnotation>)annotation_
@@ -406,9 +457,6 @@ EMPTY_METHOD(mapViewDidLoad)
 - NEEDS_OVERLOADING_VOID(removeLineTapToMe)
 - NEEDS_OVERLOADING_VOID(showTrack:(dbTrack *)track)
 - NEEDS_OVERLOADING_VOID(showTrack)
-- NEEDS_OVERLOADING_VOID(placeMarker:(dbWaypoint *)wp)
-- NEEDS_OVERLOADING_VOID(removeMarker:(dbWaypoint *)wp)
-- NEEDS_OVERLOADING_VOID(updateMarker:(dbWaypoint *)wp)
 - NEEDS_OVERLOADING_VOID(loadKML:(NSString *)file)
 - NEEDS_OVERLOADING_VOID(removeKMLs)
 
