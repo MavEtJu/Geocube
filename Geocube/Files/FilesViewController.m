@@ -21,10 +21,7 @@
 
 @interface FilesViewController ()
 
-@property (nonatomic, retain) NSMutableArray<NSString *> *filesNames;
-@property (nonatomic, retain) NSMutableArray<NSNumber *> *filesSizes;
-@property (nonatomic, retain) NSMutableArray<NSDate *> *filesDates;
-@property (nonatomic, retain) NSArray<dbFileImport *> *fileImports;
+@property (nonatomic, retain) NSArray<NSDictionary *> *fileData;
 
 @end
 
@@ -60,24 +57,32 @@ enum {
     // Count files in FilesDir
 
     NSArray<NSString *> *files = [fileManager contentsOfDirectoryAtPath:[MyTools FilesDir] error:nil];
-    self.filesNames = [NSMutableArray arrayWithCapacity:20];
-    self.filesDates = [NSMutableArray arrayWithCapacity:20];
-    self.filesSizes = [NSMutableArray arrayWithCapacity:20];
+    NSMutableArray *fileData = [NSMutableArray arrayWithCapacity:20];
 
     [files enumerateObjectsUsingBlock:^(NSString * _Nonnull file, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSMutableDictionary *filedata = [NSMutableDictionary dictionaryWithCapacity:5];
         NSDictionary *a = [fileManager attributesOfItemAtPath:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], file] error:nil];
         if ([[a objectForKey:NSFileType] isEqualToString:NSFileTypeDirectory] == YES)
             return;
-        [self.filesNames addObject:file];
+        [filedata setObject:file forKey:@"name"];
         NSNumber *s = [a objectForKey:NSFileSize];
-        [self.filesSizes addObject:s];
+        [filedata setObject:s forKey:@"size"];
         NSDate *d = [a objectForKey:NSFileModificationDate];
-        [self.filesDates addObject:d];
+        [filedata setObject:d forKey:@"date"];
+        dbFileImport *fi = [dbFileImport dbGetByFilename:file];
+        [filedata setObject:(fi != nil ? fi : [NSNull null]) forKey:@"import"];
+
+        [fileData addObject:filedata];
     }];
 
-    self.fileImports = [dbFileImport dbAll];
+    [fileData sortUsingComparator:^(NSDictionary *obj1, NSDictionary *obj2) {
+        NSString *o1 = [obj1 objectForKey:@"name"];
+        NSString *o2 = [obj2 objectForKey:@"name"];
+        return (NSComparisonResult)[o1 compare:o2 options:NSCaseInsensitiveSearch];
+    }];
+    self.fileData = fileData;
 
-    [self refreshControl];
+    [self.tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -116,7 +121,7 @@ enum {
 // Rows per section
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.filesNames count];
+    return [self.fileData count];
 }
 
 // Return a cell for the index path
@@ -126,25 +131,19 @@ enum {
 
     cell.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 
-    NSString *fn = [self.filesNames objectAtIndex:indexPath.row];
-    NSNumber *fs = [self.filesSizes objectAtIndex:indexPath.row];
-
-    __block dbFileImport *fi = nil;
-    [self.fileImports enumerateObjectsUsingBlock:^(dbFileImport * _Nonnull _fi, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([_fi.filename isEqualToString:fn] == YES &&
-            _fi.filesize == [fs integerValue]) {
-            fi = _fi;
-            *stop = YES;
-        }
-    }];
+    NSDictionary *dict = [self.fileData objectAtIndex:indexPath.row];
+    NSString *fn = [dict objectForKey:@"name"];
+    NSNumber *fs = [dict objectForKey:@"size"];
+    NSDate *date = [dict objectForKey:@"date"];
+    dbFileImport *fi = [dict objectForKey:@"import"];
 
     NSString *imported = @"";
-    if (fi != nil)
-        imported = [NSString stringWithFormat:@"%@: %@", _(@"filesviewcontroller-Last imported"), [MyTools niceTimeDifference:fi.lastimport]];
+    if ([fi isKindOfClass:[NSNull class]] == NO)
+        imported = [NSString stringWithFormat:_(@"filesviewcontroller-Last imported: %@"), [MyTools niceTimeDifference:fi.lastimport]];
 
     cell.labelFilename.text = fn;
-    cell.labelSize.text = [NSString stringWithFormat:@"%@: %@", _(@"filesviewcontroller-File size"), [MyTools niceFileSize:[[self.filesSizes objectAtIndex:indexPath.row] integerValue]]];
-    cell.labelDateTime.text = [NSString stringWithFormat:@"%@: %@.", _(@"filesviewcontroller-File age"), [MyTools niceTimeDifference:[[self.filesDates objectAtIndex:indexPath.row] timeIntervalSince1970]]];
+    cell.labelSize.text = [NSString stringWithFormat:_(@"filesviewcontroller-File size: %@"), [MyTools niceFileSize:[fs integerValue]]];
+    cell.labelDateTime.text = [NSString stringWithFormat:_(@"filesviewcontroller-File age: %@"), [MyTools niceTimeDifference:[date timeIntervalSince1970]]];
     cell.labelLastImport.text = imported;
     return cell;
 }
@@ -158,7 +157,8 @@ enum {
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSString *fn = [self.filesNames objectAtIndex:indexPath.row];
+        NSDictionary *dict = [self.fileData objectAtIndex:indexPath.row];
+        NSString *fn = [dict objectForKey:@"name"];
         [self fileDelete:fn forceReload:NO];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     }
@@ -166,7 +166,8 @@ enum {
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *fn = [self.filesNames objectAtIndex:indexPath.row];
+    NSDictionary *dict = [self.fileData objectAtIndex:indexPath.row];
+    NSString *fn = [dict objectForKey:@"name"];
 
     UIAlertController *view = [UIAlertController
                                alertControllerWithTitle:fn
@@ -342,7 +343,8 @@ enum {
 - (void)fileRestore:(NSInteger)row view:(UITableViewCell *)tablecell
 {
     // If the suffix is .sqlite, restore it as the database
-    NSString *fn = [self.filesNames objectAtIndex:row];
+    NSDictionary *dict = [self.fileData objectAtIndex:row];
+    NSString *fn = [dict objectForKey:@"name"];
     if ([[fn pathExtension] isEqualToString:@"sqlite"] == YES) {
         if ([db restoreFromCopy:fn] == NO)
             [MyTools messageBox:self header:@"Restore failed" text:@"Unable to restore to the database."];
@@ -392,7 +394,8 @@ enum {
 - (void)fileImport:(NSInteger)row view:(UITableViewCell *)tablecell
 {
     // If the suffix is .geocube, import it as a Geocube datafile
-    NSString *fn = [self.filesNames objectAtIndex:row];
+    NSDictionary *dict = [self.fileData objectAtIndex:row];
+    NSString *fn = [dict objectForKey:@"name"];
     if ([[fn pathExtension] isEqualToString:@"geocube"] == YES) {
 
         BACKGROUND(fileImportGeocube:, fn);
@@ -461,14 +464,16 @@ enum {
         [accounts addObject:a];
     }];
 
+    NSDictionary *dict = [self.fileData objectAtIndex:row];
+
     [ActionSheetStringPicker
         showPickerWithTitle:_(@"filesviewcontroller-Select the source")
         rows:accountNames
         initialSelection:configManager.lastImportSource
         doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
             [configManager lastImportSourceUpdate:selectedIndex];
-            __block NSString *filename = [self.filesNames objectAtIndex:row];
-            __block NSNumber *filesize = [self.filesSizes objectAtIndex:row];
+            NSString *filename = [dict objectForKey:@"name"];
+            NSNumber *filesize = [dict objectForKey:@"size"];
             GCStringFilename *sfn = [[GCStringFilename alloc] initWithString:filename];
 
 //            [downloadsImportsViewController showImportManager];
@@ -483,15 +488,8 @@ enum {
 
             BACKGROUND(fileImportBG:, dict);
 
-            __block dbFileImport *fi = nil;
-            [self.fileImports enumerateObjectsUsingBlock:^(dbFileImport * _Nonnull _fi, NSUInteger idx, BOOL * _Nonnull stop) {
-                if ([_fi.filename isEqualToString:filename] == YES &&
-                    _fi.filesize == [filesize integerValue]) {
-                    fi = _fi;
-                    *stop = YES;
-                }
-            }];
-            if (fi == nil) {
+            dbFileImport *fi = [dict objectForKey:@"import"];
+            if ([fi isKindOfClass:[NSNull class]] == YES) {
                 dbFileImport *fi = [[dbFileImport alloc] init];
                 fi.filename = filename;
                 fi.filesize = [filesize integerValue];
