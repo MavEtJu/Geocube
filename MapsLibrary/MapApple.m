@@ -72,6 +72,7 @@
     self.mapView = [[MKMapView alloc] initWithFrame:self.mapvc.view.frame];
     self.mapView.delegate = self;
     self.mapvc.view = self.mapView;
+    self.mapView.userTrackingMode = MKUserTrackingModeFollow;
 
     if (self.staticHistory == NO)
         self.mapView.showsUserLocation = YES;
@@ -79,9 +80,9 @@
     self.minimumAltitude = 0;
 
     /* Add the scale ruler */
-    self.mapScaleView = [LXMapScaleView mapScaleForAMSMapView:self.mapView];
-    self.mapScaleView.position = kLXMapScalePositionBottomLeft;
-    self.mapScaleView.style = kLXMapScaleStyleBar;
+    self.mapScaleView = [LXMapScaleView mapScaleForGC:self];
+    [self.mapView addSubview:self.mapScaleView];
+    [self.mapScaleView update];
 
     // Add a new waypoint
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
@@ -778,9 +779,7 @@
 
 - (void)mapView:(MKMapView *)thisMapView regionWillChangeAnimated:(BOOL)animated
 {
-    BOOL mapChangedFromUserInteraction = [self mapViewRegionDidChangeFromUserInteraction];
-
-    if (mapChangedFromUserInteraction)
+    if ([self mapViewRegionDidChangeFromUserInteraction] == YES)
         [self.mapvc userInteractionStart];
 
     // Update the ruler
@@ -789,10 +788,8 @@
 
 - (void)mapView:(MKMapView *)thisMapView regionDidChangeAnimated:(BOOL)animated
 {
-    BOOL mapChangedFromUserInteraction = [self mapViewRegionDidChangeFromUserInteraction];
-
-    if (mapChangedFromUserInteraction)
-        [self.mapvc userInteractionFinished];
+    if ([self mapViewRegionDidChangeFromUserInteraction] == YES)
+        [self.mapvc userInteractionStart];
 
     // Constrain zoom levels
     if (self.minimumAltitude > self.mapView.camera.altitude && self.modifyingMap == NO) {
@@ -800,6 +797,8 @@
         self.mapView.camera.altitude = self.minimumAltitude;
         self.modifyingMap = NO;
     }
+
+    [self.mapScaleView update];
 }
 
 @end

@@ -73,9 +73,9 @@
 
     self.mapvc.view = self.mapView;
 
-    self.mapScaleView = [LXMapScaleView mapScaleForGMSMapView:self.mapView];
-    self.mapScaleView.position = kLXMapScalePositionBottomLeft;
-    self.mapScaleView.style = kLXMapScaleStyleBar;
+    /* Add the scale ruler */
+    self.mapScaleView = [LXMapScaleView mapScaleForGC:self];
+    [self.mapView addSubview:self.mapScaleView];
     [self.mapScaleView update];
 
     self.wpSelected = nil;
@@ -546,6 +546,7 @@
 - (void)mapView:(GMSMapView *)mapView idleAtCameraPosition:(nonnull GMSCameraPosition *)position
 {
     [self.mapvc userInteractionFinished];
+    [self.mapScaleView update];
 }
 
 - (void)mapView:(GMSMapView *)mapView didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate

@@ -75,6 +75,7 @@ EMPTY_METHOD(mapViewDidLoad)
 {
     self.mapView = [[MGLMapView alloc] initWithFrame:CGRectZero];
     self.mapvc.view = self.mapView;
+    self.mapView.showsUserHeadingIndicator = YES;
 
     if (self.staticHistory == NO)
         self.mapView.userTrackingMode = MGLUserTrackingModeFollow;
@@ -85,6 +86,12 @@ EMPTY_METHOD(mapViewDidLoad)
     self.circleFills = [NSMutableArray arrayWithCapacity:100];
 
     self.linesHistory = [NSMutableArray arrayWithCapacity:100];
+
+
+    /* Add the scale ruler */
+    self.mapScaleView = [LXMapScaleView mapScaleForGC:self];
+    [self.mapView addSubview:self.mapScaleView];
+    [self.mapScaleView update];
 
     // Add a new waypoint
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
@@ -123,6 +130,7 @@ EMPTY_METHOD(mapViewDidLoad)
     MGLMapCamera *camera = [MGLMapCamera cameraLookingAtCenterCoordinate:coords fromDistance:self.currentAltitude pitch:0 heading:0];
     [self.mapView setCamera:camera];
     self.mapView.delegate = self;
+    [self.mapScaleView update];
 }
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord zoom:(BOOL)zoom
@@ -136,11 +144,13 @@ EMPTY_METHOD(mapViewDidLoad)
     }
 
     [self.mapView setCamera:camera];
+    [self.mapScaleView update];
 }
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord zoomLevel:(double)zoomLevel
 {
     [self.mapView setCenterCoordinate:coord zoomLevel:zoomLevel animated:YES];
+    [self.mapScaleView update];
 }
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2
@@ -149,6 +159,7 @@ EMPTY_METHOD(mapViewDidLoad)
     [Coordinates makeNiceBoundary:c1 c2:c2 d1:&d1 d2:&d2 boundaryPercentage:10];
     MGLCoordinateBounds bbox = MGLCoordinateBoundsMake(d1, d2);
     [self.mapView setVisibleCoordinateBounds:bbox];
+    [self.mapScaleView update];
 }
 
 - (void)removeCamera
@@ -514,7 +525,33 @@ EMPTY_METHOD(mapViewDidLoad)
     NSLog(@"dealWithKMLFeature: Unknown KML feature: %@", [feature class]);
 }
 
+- (BOOL)mapViewRegionDidChangeFromUserInteraction
+{
+    //  Look through gesture recognizers to determine whether this region change is from user interaction
+    BOOL found = NO;
+    for (UIGestureRecognizer *recognizer in self.mapView.gestureRecognizers) {
+        if (recognizer.state == UIGestureRecognizerStateBegan || recognizer.state == UIGestureRecognizerStateEnded) {
+            found = YES;
+            break;
+        }
+    }
+
+    return found;
+}
+
 #pragma -- Callbacks
+
+- (void)mapView:(nonnull MGLMapView *)mapView regionWillChangeAnimated:(BOOL)animated
+{
+    if ([self mapViewRegionDidChangeFromUserInteraction] == YES)
+        [self.mapvc userInteractionStart];
+}
+
+- (void)mapView:(nonnull MGLMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+    self.currentAltitude = mapView.camera.altitude;
+    [self.mapScaleView update];
+}
 
 - (MGLAnnotationImage *)mapView:(MGLMapView *)mapView imageForAnnotation:(id <MGLAnnotation>)annotation_
 {
@@ -638,7 +675,7 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (double)currentZoom
 {
-    return self.mapView.zoomLevel;
+    return self.mapView.zoomLevel + 1;
 }
 
 - (void)currentRectangle:(CLLocationCoordinate2D *)bottomLeft topRight:(CLLocationCoordinate2D *)topRight
