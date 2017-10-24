@@ -46,7 +46,6 @@ PROTO_N (NSInteger, lastAddedGroup);
 // User settings
 
 PROTO_N (BOOL, distanceMetric);
-PROTO_N (BOOL, sendTweets);
 PROTO_N (NSInteger, mapExternal);
 PROTO_NR(NSString *, mapBrandDefault);
 PROTO_N3(UIColor *, mapTrackColour, NSString *);

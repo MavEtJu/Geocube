@@ -51,7 +51,6 @@
         // This locale doesn't default to metric system.
         defaultUsesMetric = @"0";
     CHECK(@"distance_metric", defaultUsesMetric);
-    CHECK(@"send_tweets", @"1");
     CHECK(@"waypoint_current", @"");
     CHECK(@"page_current", @"0");
     CHECK(@"pagetab_current", @"0");
@@ -190,7 +189,6 @@
     self.__field__ = [[dbConfig dbGetByKey:__key__].value doubleValue];
 
     LOAD_BOOL   (self.distanceMetric, @"distance_metric");
-    LOAD_BOOL   (self.sendTweets, @"send_tweets");
     LOAD_VALUE  (self.currentWaypoint, @"waypoint_current");
     LOAD_INTEGER(self.currentPage, @"page_current");
     LOAD_INTEGER(self.currentPageTab, @"pagetab_current");
@@ -363,7 +361,6 @@
     }
 
 UPDATE3(BOOL, distanceMetric, @"distance_metric")
-UPDATE3(BOOL, sendTweets, @"send_tweets")
 UPDATE3(BOOL, soundDirection, @"sound_direction")
 UPDATE3(BOOL, soundDistance, @"sound_distance")
 UPDATE3(BOOL, keeptrackEnable, @"keeptrack_enable")

@@ -291,7 +291,6 @@ enum sections {
     SECTION_MAPCOLOURS_MAX,
 
     SECTION_APPS_EXTERNALMAP = 0,
-    SECTION_APPS_TWITTER,
     SECTION_APPS_MAX,
 
     SECTION_MAPCACHE_ENABLED = 0,
@@ -521,8 +520,6 @@ enum sections {
                     }];
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-External Maps"), name);
                 }
-                case SECTION_APPS_TWITTER:
-                    CELL_SWITCH(_(@"settingsmainviewcontroller-Offer to send tweets"), sendTweets, updateSendTweets)
             }
             abort();
         }
@@ -894,7 +891,6 @@ SWITCH_UPDATE(updateMapcacheEnable, mapcacheEnable)
 SWITCH_UPDATE(updateDynamicmapEnable, dynamicmapEnable)
 SWITCH_UPDATE(updateOpenCageEnable, opencageEnable)
 SWITCH_UPDATE(updateOpenCageWifiOnly, opencageWifiOnly)
-SWITCH_UPDATE(updateSendTweets, sendTweets)
 SWITCH_UPDATE(updateSoundDistance, soundDistance)
 SWITCH_UPDATE(updateKeeptrackAutoRotate, keeptrackAutoRotate)
 SWITCH_UPDATE(updateKeeptrackEnable, keeptrackEnable)
