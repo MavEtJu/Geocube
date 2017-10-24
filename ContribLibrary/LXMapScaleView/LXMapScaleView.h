@@ -86,8 +86,7 @@ typedef enum
  * \param aMapView The map view for which the scale view is to be returned.
  * \return A handle to the scale view. (Note that ownership is not passed!)
  */
-+ (LXMapScaleView*)mapScaleForAMSMapView:(MKMapView*)aMapView;
-+ (LXMapScaleView*)mapScaleForGMSMapView:(GMSMapView *)aMapView;
++ (LXMapScaleView*)mapScaleForGC:(MapTemplate *)aMapView;
 
 
 /**
