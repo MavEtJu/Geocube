@@ -127,7 +127,6 @@ static const double kFeetPerMile = 5280.0;
     // 'zoom' = map.getZoom()
 
     double zoom = [mapTemplate currentZoom];
-    NSLog(@"zoom: %f", zoom);
     CLLocationCoordinate2D coord = [mapTemplate currentCenter];
     metersPerPixel = 156543.03392 * cos(coord.latitude * M_PI / 180.0) / pow(2, zoom);
 
