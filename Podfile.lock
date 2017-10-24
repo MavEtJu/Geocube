@@ -1,8 +1,8 @@
 PODS:
-  - GoogleMaps (2.4.0):
-    - GoogleMaps/Maps (= 2.4.0)
-  - GoogleMaps/Base (2.4.0)
-  - GoogleMaps/Maps (2.4.0):
+  - GoogleMaps (2.5.0):
+    - GoogleMaps/Maps (= 2.5.0)
+  - GoogleMaps/Base (2.5.0)
+  - GoogleMaps/Maps (2.5.0):
     - GoogleMaps/Base
   - Mapbox-iOS-SDK (3.6.4)
 
@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
     :podspec: https://raw.githubusercontent.com/mapbox/mapbox-gl-native/ios-v3.6.4/platform/ios/Mapbox-iOS-SDK.podspec
 
 SPEC CHECKSUMS:
-  GoogleMaps: 8436ab5d1c25e36915b2f7416d0c8e3fa2e76c61
+  GoogleMaps: c087b8e5dfe87ca6ebf59adb9b4894a4146bec4f
   Mapbox-iOS-SDK: 47847dd44285477e0dfffd0130f65c8a52823ada
 
 PODFILE CHECKSUM: 02a7bc1bb38793baf23fe3f6823d0dae0735354c
