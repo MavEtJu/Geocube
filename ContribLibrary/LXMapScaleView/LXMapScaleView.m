@@ -68,7 +68,7 @@ static const double kFeetPerMile = 5280.0;
         mapTemplate = mt;
 		metric = YES;
 		style = kLXMapScaleStyleBar;
-		position = kLXMapScalePositionTopLeft;
+		position = kLXMapScalePositionBottomLeft;
 		padding = kDefaultPadding;
 		maxWidth = kDefaultViewRect.size.width;
 
