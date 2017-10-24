@@ -125,6 +125,12 @@
             "THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.",
      }];
     [self.texts addObject:@{
+        @"name": @"Mapbox iOS SDK",
+        @"copyright": @"© Mapbox",
+        @"url": @"https://www.mapbox.com/about/maps/",
+        @"license": @"Mapbox license",
+    }];
+    [self.texts addObject:@{
         @"name": @"MHTabBarController",
         @"copyright": @"Copyright (c) 2011 Matthijs Hollemans.",
         @"url": @"https://github.com/hollance/MHTabBarController",
@@ -166,6 +172,17 @@
        @"copyright": @"Geodata copyright OpenStreetMap contributors",
        @"url": @"https://geocoder.opencagedata.com/",
        @"license": @"The geocodes the API returns are jointly licensed under the ODbL and CC-BY-SA licenses."
+     }];
+    [self.texts addObject:@{
+        @"name": @"Google Maps iOS SDK",
+        @"copyright": @"Copyright (c) Google Inc.",
+        @"url": @"https://developers.google.com/maps/",
+        @"license":
+            @"By using the Google Maps SDK for iOS you accept Google's Terms of Service and Policies. Pay attention particularly to the following aspects:\n"
+            "\n"
+            "* Depending on your app and use case, you may be required to display attribution. Read more about [attribution requirements] (https://developers.google.com/maps/documentation/ios-sdk/intro#attribution_requirements).\n"
+            "* Your API usage is subject to quota limitations. Read more about [usage limits](https://developers.google.com/maps/pricing-and-plans/).\n"
+            "* The [Terms of Service](https://developers.google.com/maps/terms) are a comprehensive description of the legal contract that you enter with Google by using the Google Maps SDK for iOS. You may want to pay special attention to [section 10] (https://developers.google.com/maps/terms#10-license-restrictions), as it talks in detail about what you can do with the API, and what you can't.",
      }];
     [self.texts addObject:@{
        @"name": @"google-maps-ios-utils",
