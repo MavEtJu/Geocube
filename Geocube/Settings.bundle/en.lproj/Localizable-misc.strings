@@ -166,4 +166,3 @@
 "=" = "=";
 "=<" = "=<";
 ">=" = ">=";
-"tweet-fail" = "You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup.";

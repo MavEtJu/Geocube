@@ -166,4 +166,3 @@
 "=" = "=";
 "=<" = "=<";
 ">=" = ">=";
-"tweet-fail" = "Momenteel kan er geen tweet verzonden worden. Zorg dat je telefoon internet verbinding heeft en dat er tenminste één Twitter profiel beschikbaar is.";

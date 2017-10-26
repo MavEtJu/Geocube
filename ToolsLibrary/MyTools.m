@@ -767,34 +767,6 @@ TIME(dateTimeString_DD_MM_YYYY_dotspace, @"d. M. yyyy")
     return topController;
 }
 
-/// Send a Tweet through the iOS Twitter interface
-+ (void)sendTweet:(UIViewController *)vc text:(NSString *)text
-{
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
-        SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-        [tweetSheet setInitialText:text];
-        [vc presentViewController:tweetSheet animated:YES completion:nil];
-    } else {
-
-        UIAlertController *alert = [UIAlertController
-                                    alertControllerWithTitle:_(@"Sorry")
-                                    message:_(@"tweet-fail")
-                                    preferredStyle:UIAlertControllerStyleAlert];
-
-        UIAlertAction *close = [UIAlertAction
-                                actionWithTitle:_(@"Close")
-                                style:UIAlertActionStyleDefault
-                                handler:^(UIAlertAction *action) {
-                                    [alert dismissViewControllerAnimated:YES completion:nil];
-                                }];
-
-        [alert addAction:close];
-        MAINQUEUE(
-            [ALERT_VC_RVC(vc) presentViewController:alert animated:YES completion:nil];
-        )
-    }
-}
-
 + (BOOL)iOSVersionAtLeast_10_0_0
 {
     NSOperatingSystemVersion ios10_0_0 = (NSOperatingSystemVersion){10, 0, 0};
