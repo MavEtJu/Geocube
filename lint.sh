@@ -96,7 +96,7 @@ grep "^[-+]\S" $MFILES
 
 echo
 echo "enumeration:"
-grep -n enumerate $MFILES | grep -v _Nonnull.*_Nonnull | grep -v "(id " | grep ":^"
+grep -n enumerate $MFILES | grep -v _Nonnull.*_Nonnull | grep -v "(id " | grep -v "(id<" | grep ":^"
 
 echo
 echo "Make sure that NSArray knows which class it represent:"
