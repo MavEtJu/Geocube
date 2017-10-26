@@ -95,7 +95,7 @@ echo "Method definitions should have a space between [-+] and name:"
 grep "^[-+]\S" $MFILES
 
 echo
-echo "enumeration: (needs _Nonnull)"
+echo "enumeration (needs _Nonnull):"
 grep -n enumerate $MFILES | grep -v _Nonnull.*_Nonnull | grep -v "(id<" | grep ":^"
 
 echo
