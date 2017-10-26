@@ -25,7 +25,7 @@
 #define MAPBRAND_GOOGLEMAPS @"Google Maps"
 #define MAPBRAND_OSM        @"OpenStreetMap"
 #define MAPBRAND_ESRI_WORLDTOPO @"ESRI WorldTopo"
-#define MAPBRAND_MAPBOX     @"MapBox"
+#define MAPBRAND_MAPBOX     @"Mapbox"
 
 @property (nonatomic, retain) NSMutableArray<dbWaypoint *> *waypointsArray;
 @property (nonatomic, retain) MapTemplate *map;
