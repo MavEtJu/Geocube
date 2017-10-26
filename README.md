@@ -4,7 +4,7 @@
 
     $ git clone
 
-Install the Google Maps and MapBox Pods, run:
+Install the Google Maps and Mapbox Pods, run:
 
     $ pod install
 

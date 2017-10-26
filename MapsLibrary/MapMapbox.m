@@ -21,7 +21,7 @@
 
 #define COORDHISTORYSIZE    100
 
-@interface MapMapBox ()
+@interface MapMapbox ()
 {
     CLLocationCoordinate2D historyCoords[COORDHISTORYSIZE];
 }
@@ -47,7 +47,7 @@
 
 @end
 
-@implementation MapMapBox
+@implementation MapMapbox
 
 EMPTY_METHOD(mapViewDidDisappear)
 EMPTY_METHOD(mapViewWillDisappear)

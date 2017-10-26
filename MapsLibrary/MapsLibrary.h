@@ -30,7 +30,7 @@
 #import "MapsLibrary/MapTemplate.h"
 #import "MapsLibrary/MapApple.h"
 #import "MapsLibrary/MapGoogle.h"
-#import "MapsLibrary/MapMapBox.h"
+#import "MapsLibrary/MapMapbox.h"
 #import "MapsLibrary/MapAppleTemplate.h"
 #import "MapsLibrary/MapOSM.h"
 #import "MapsLibrary/MapESRIWorldTopo.h"

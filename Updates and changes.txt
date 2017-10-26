@@ -3,7 +3,7 @@ Interesting additions and changes to Geocube
 Version 1.9(x)
 
   Features:
-  - Add support for MapBox 3.6.4.
+  - Add support for Mapbox 3.6.4.
   - Be able to configure the colour for the waypoint boundary circles.
   - Google Maps updated to 2.5.0.
 
