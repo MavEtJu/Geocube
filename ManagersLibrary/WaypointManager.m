@@ -93,7 +93,7 @@
     if (self.needsRefresh == NO) {
         self.needsRefresh = YES;
 
-        [self.delegatesWaypoints enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.delegatesWaypoints enumerateObjectsUsingBlock:^(id<WaypointManagerWaypointDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
             // Doing this via the main queue because Google Map Service insists on it.
             NSLog(@"%@: refreshing #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
             MAINQUEUE(
@@ -108,7 +108,7 @@
 {
     [self.currentWaypoints addObject:wp];
 
-    [self.delegatesWaypoints enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.delegatesWaypoints enumerateObjectsUsingBlock:^(id<WaypointManagerWaypointDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
         MAINQUEUE(
@@ -122,7 +122,7 @@
 {
     [self.currentWaypoints removeObject:wp];
 
-    [self.delegatesWaypoints enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.delegatesWaypoints enumerateObjectsUsingBlock:^(id<WaypointManagerWaypointDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
         MAINQUEUE(
@@ -138,7 +138,7 @@
     if (idx != NSNotFound)
         [self.currentWaypoints replaceObjectAtIndex:idx withObject:wp];
 
-    [self.delegatesWaypoints enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.delegatesWaypoints enumerateObjectsUsingBlock:^(id<WaypointManagerWaypointDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
         MAINQUEUE(

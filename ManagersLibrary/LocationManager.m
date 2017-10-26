@@ -85,28 +85,28 @@
     if (self.useGNSS == NO)
         return;
 
-    [self.delegatesLocation enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.delegatesLocation enumerateObjectsUsingBlock:^(id<LocationManagerLocationDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         [delegate updateLocationManagerLocation];
     }];
 }
 
 - (void)updateHistoryDelegates:(GCCoordsHistorical *)ch
 {
-    [self.delegatesHistory enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.delegatesHistory enumerateObjectsUsingBlock:^(id<LocationManagerHistoryDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         [delegate updateLocationManagerHistory:ch];
     }];
 }
 
 - (void)updateSpeedDelegates
 {
-    [self.delegatesSpeed enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.delegatesSpeed enumerateObjectsUsingBlock:^(id<LocationManagerSpeedDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         [delegate updateLocationManagerSpeed];
     }];
 }
 
 - (void)updateHeadingDelegates
 {
-    [self.delegatesHeading enumerateObjectsUsingBlock:^(id delegate, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.delegatesHeading enumerateObjectsUsingBlock:^(id<LocationManagerHeadingDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         [delegate updateLocationManagerHeading];
     }];
 }

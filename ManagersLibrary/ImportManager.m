@@ -67,7 +67,7 @@
 
     if ([data isKindOfClass:[GCArray class]] == YES) {
         GCArray *as = (GCArray *)data;
-        [as enumerateObjectsUsingBlock:^(id a, NSUInteger idx, BOOL * _Nonnull stop) {
+        [as enumerateObjectsUsingBlock:^(NSObject * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
             [self process:a group:group account:account options:runoptions infoViewer:iv iiImport:iii];
         }];
         return self.processedWaypoints;

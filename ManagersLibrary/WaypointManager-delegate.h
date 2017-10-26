@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@protocol WaypointManagerWaypointDelegate
+@protocol WaypointManagerWaypointDelegate <NSObject>
 
 - (void)refreshWaypoints;
 - (void)removeWaypoint:(dbWaypoint *)wp;
@@ -28,7 +28,7 @@
 
 @end
 
-@protocol WaypointManagerKMLDelegate
+@protocol WaypointManagerKMLDelegate <NSObject>
 
 - (void)reloadKMLFiles;
 
