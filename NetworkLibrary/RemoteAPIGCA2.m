@@ -326,11 +326,11 @@
 
         InfoItemID iii = [iv addImport];
         [iv setDescription:iii description:IMPORTMSG];
-        [callback remoteAPI_objectReadyToImport:0 iiImport:iii object:d2 group:group account:self.account];
+        [callback remoteAPI_objectReadyToImport:identifier iiImport:iii object:d2 group:group account:self.account];
         chunks++;
     }
 
-    [callback remoteAPI_finishedDownloads:0 numberOfChunks:chunks];
+    [callback remoteAPI_finishedDownloads:identifier numberOfChunks:chunks];
     return REMOTEAPI_OK;
 }
 

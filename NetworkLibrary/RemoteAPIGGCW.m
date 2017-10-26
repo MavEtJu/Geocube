@@ -187,9 +187,9 @@
 
     InfoItemID iii = [iv addImport];
     [iv setDescription:iii description:IMPORTMSG_PQ];
-    [callback remoteAPI_objectReadyToImport:0 iiImport:iii object:zipfilename group:group account:self.account];
+    [callback remoteAPI_objectReadyToImport:identifier iiImport:iii object:zipfilename group:group account:self.account];
 
-    [callback remoteAPI_finishedDownloads:0 numberOfChunks:1];
+    [callback remoteAPI_finishedDownloads:identifier numberOfChunks:1];
     return REMOTEAPI_OK;
 }
 
