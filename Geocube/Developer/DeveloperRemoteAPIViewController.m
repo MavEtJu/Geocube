@@ -90,6 +90,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
           @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_GCA2_GCA],
           @"coordinates": [[Coordinates alloc] init:-29.3242 longitude:143.08183333333332],
           @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
+          @"query": @"9115",
           };
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
 
@@ -308,7 +309,8 @@ typedef NS_ENUM(NSInteger, TestResult) {
 
     // loadWaypointByCodes
     testname = @"loadWaypointsByCodes";
-    if (a.remoteAPI.supportsLoadWaypointsByCodes == YES) {
+    if (a.remoteAPI.supportsLoadWaypointsByCodes == YES &&
+        [test objectForKey:@"waypoints"] != nil) {
         NSInteger identifier = ++self.identifier;
         [test setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
         [test setObject:testname forKey:@"testname"];
@@ -362,15 +364,36 @@ typedef NS_ENUM(NSInteger, TestResult) {
 
     // listQueries
     testname = @"listQueries";
+    NSArray<NSDictionary *> *queries = nil;
     if (a.remoteAPI.supportsListQueries == YES) {
         NSInteger identifier = ++self.identifier;
         [test setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
         [test setObject:testname forKey:@"testname"];
         [self reloadDataMainQueue];
 
-        NSDictionary *dict;
+        RemoteAPIResult rv = [a.remoteAPI listQueries:&queries infoViewer:nil iiDownload:0 public:NO];
+        if (rv == REMOTEAPI_OK)
+            [test setObject:[NSNumber numberWithInteger:TESTRESULT_SUCCESSFUL] forKey:testname];
+        else
+            [test setObject:[NSNumber numberWithInteger:TESTRESULT_FAILED] forKey:testname];
+    } else {
+        [test setObject:[NSNumber numberWithInteger:TESTRESULT_NOTSUPPORTED] forKey:testname];
+    }
 
-        RemoteAPIResult rv = [a.remoteAPI UserStatistics:&dict infoViewer:nil iiDownload:0];
+    // retrieveQuery
+    testname = @"retrieveQuery";
+    if ([test objectForKey:@"query"] == nil &&
+        [queries count] != 0) {
+        [test setObject:[[queries objectAtIndex:0] objectForKey:@"Id"] forKey:@"query"];
+    }
+    if (a.remoteAPI.supportsListQueries == YES &&
+        [test objectForKey:@"query"] != nil) {
+        NSInteger identifier = ++self.identifier;
+        [test setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
+        [test setObject:testname forKey:@"testname"];
+        [self reloadDataMainQueue];
+
+        RemoteAPIResult rv = [a.remoteAPI retrieveQuery:[test objectForKey:@"query"] group:dbc.groupLiveImport infoViewer:nil iiDownload:0 identifier:identifier callback:self];
         if (rv == REMOTEAPI_OK)
             [test setObject:[NSNumber numberWithInteger:TESTRESULT_SUCCESSFUL] forKey:testname];
         else
