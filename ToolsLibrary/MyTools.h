@@ -104,8 +104,6 @@
 + (UIColor *)randomColor;
 
 + (UIViewController *)topMostController;
-+ (void)sendTweet:(UIViewController *)vc text:(NSString *)text;
-
 + (BOOL)iOSVersionAtLeast_10_0_0;
 
 @end
