@@ -27,6 +27,7 @@
 }
 
 @property (nonatomic, retain) MGLMapView *mapView;
+@property (nonatomic        ) BOOL mapLoaded;
 
 @property (nonatomic, retain) NSMutableArray<GCMGLPointAnnotation *> *markers;
 @property (nonatomic, retain) NSMutableArray<GCMGLPolygonCircleFill *> *circleFills;
@@ -79,14 +80,12 @@ EMPTY_METHOD(mapViewDidLoad)
 
     if (self.staticHistory == NO)
         self.mapView.userTrackingMode = MGLUserTrackingModeFollow;
-    self.currentAltitude = 1000;
 
     self.markers = [NSMutableArray arrayWithCapacity:100];
     self.circleLines = [NSMutableArray arrayWithCapacity:100];
     self.circleFills = [NSMutableArray arrayWithCapacity:100];
 
     self.linesHistory = [NSMutableArray arrayWithCapacity:100];
-
 
     /* Add the scale ruler */
     self.mapScaleView = [LXMapScaleView mapScaleForGC:self];
@@ -142,6 +141,8 @@ EMPTY_METHOD(mapViewDidLoad)
         camera.altitude = [self altitudeForSpan:span];
         self.currentAltitude = camera.altitude;
     }
+
+    self.currentAltitude = camera.altitude;
 
     [self.mapView setCamera:camera];
     [self.mapScaleView update];
@@ -541,6 +542,13 @@ EMPTY_METHOD(mapViewDidLoad)
 
 #pragma -- Callbacks
 
+- (void)mapViewDidFinishLoadingMap:(nonnull MGLMapView *)mapView
+{
+    if (self.mapLoaded == NO)
+        [self.mapView setZoomLevel:15];
+    self.mapLoaded = YES;
+}
+
 - (void)mapView:(nonnull MGLMapView *)mapView regionWillChangeAnimated:(BOOL)animated
 {
     if ([self mapViewRegionDidChangeFromUserInteraction] == YES)
@@ -549,7 +557,8 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (void)mapView:(nonnull MGLMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    self.currentAltitude = mapView.camera.altitude;
+    if (self.mapLoaded == YES)
+        self.currentAltitude = mapView.camera.altitude;
     [self.mapScaleView update];
 }
 
