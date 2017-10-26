@@ -272,9 +272,6 @@ typedef NS_ENUM(NSInteger, TestResult) {
     [test removeObjectForKey:@"loadWaypointsByBoundingBox"];
     [test removeObjectForKey:@"listQueries"];
     [test removeObjectForKey:@"userStatistics"];
-    [test removeObjectForKey:@"loadWaypointsByCodes"];
-    [test removeObjectForKey:@"loadWaypointsByBoundingBox"];
-    [test removeObjectForKey:@"userStatistics"];
     [test removeObjectForKey:@"updatePersonalNote"];
     [test removeObjectForKey:@"listQueries"];
     [test removeObjectForKey:@"retrieveQuery"];
@@ -310,7 +307,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
     }
 
     // loadWaypointByCodes
-    testname = @"loadWaypointByCodes";
+    testname = @"loadWaypointsByCodes";
     if (a.remoteAPI.supportsLoadWaypointsByCodes == YES) {
         NSInteger identifier = ++self.identifier;
         [test setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
