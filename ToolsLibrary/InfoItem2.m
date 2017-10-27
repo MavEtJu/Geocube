@@ -77,6 +77,20 @@
     self.height = self.labelURL.font.lineHeight + 1;
     self.expanded = YES;
 
+    self.changedQueueSize = -1;
+    self.changedBytesTotal = -1;
+    self.changedBytesCount = -1;
+    self.changedChunksTotal = -1;
+    self.changedChunksCount = -1;
+    self.changedLineObjectCount = -1;
+    self.changedLineObjectTotal = -1;
+    self.changedWaypointsTotal = -1;
+    self.changedWaypointsNew = -1;
+    self.self.changedLogsTotal = -1;
+    self.changedLogsNew = -1;
+    self.changedTrackablesNew = -1;
+    self.changedTrackablesTotal = -1;
+
     self.backgroundColor = [UIColor clearColor];
 
     [self changeTheme];
