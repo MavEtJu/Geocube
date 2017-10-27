@@ -32,6 +32,7 @@
 @class DatabaseCache;
 @class DeveloperDatabaseViewController;
 @class DeveloperImagesViewController;
+@class DeveloperInfoViewViewController;
 @class DeveloperRemoteAPITableViewCell;
 @class DeveloperRemoteAPIViewController;
 @class DownloadManager;
@@ -133,6 +134,8 @@
 @class ImportTemplate;
 @class InfoItem;
 @class InfoViewer;
+@class InfoViewer2;
+@class InfoItem2;
 @class KeepTrackBeeper;
 @class KeepTrackBeeperView;
 @class KeepTrackCar;

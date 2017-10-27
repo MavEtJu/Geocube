@@ -298,6 +298,7 @@
             case RC_DEVELOPER:
                 controllers = [NSMutableArray array];
 
+                VC(DeveloperInfoViewViewController, _(@"menu-developer-InfoView"));
                 VC(DeveloperRemoteAPIViewController, _(@"menu-developer-RemoteAPI"));
                 VC(DeveloperImagesViewController, _(@"menu-developer-Images"));
                 VC(DeveloperDatabaseViewController, _(@"menu-developer-DB"));

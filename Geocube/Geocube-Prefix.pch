@@ -136,6 +136,7 @@
 #import "HelpHelpViewController.h"
 #import "Help/HelpIntroduction.h"
 
+#import "Developer/DeveloperInfoViewViewController.h"
 #import "Developer/DeveloperDatabaseViewController.h"
 #import "Developer/DeveloperImagesViewController.h"
 #import "Developer/DeveloperRemoteAPIViewController.h"

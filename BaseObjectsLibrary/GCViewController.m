@@ -52,9 +52,20 @@
     [self.view addSubview:self.infoView];
 }
 
+- (void)makeInfoView2
+{
+    self.infoView2 = [[InfoViewer2 alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:self.infoView2];
+}
+
 - (void)hideInfoView
 {
     [self.infoView hide];
+}
+
+- (void)hideInfoView2
+{
+    [self.infoView2 hide];
 }
 
 - (void)showInfoView
@@ -63,6 +74,14 @@
     if (self.infoView.superview == nil)
         [self.view addSubview:self.infoView];
     [self.infoView show:0];
+}
+
+- (void)showInfoView2
+{
+    NSAssert1(self.infoView2 != nil, @"makeInfoView2 not called for %@", [self class]);
+    if (self.infoView2.superview == nil)
+        [self.view addSubview:self.infoView2];
+    [self.infoView2 show];
 }
 
 - (void)prepareCloseButton:(UIView *)view
