@@ -10,7 +10,7 @@
 
 @interface InfoItem2 : GCView
 
-@property (nonatomic, weak) InfoViewer2 *parent;
+@property (nonatomic, weak) InfoViewer2 *infoViewer;
 @property (nonatomic      ) BOOL needsRefresh;
 
 - (void)changeExpanded:(BOOL)isExpanded;

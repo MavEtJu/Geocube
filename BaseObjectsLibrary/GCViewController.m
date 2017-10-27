@@ -46,34 +46,16 @@
     [self changeTheme];
 }
 
-- (void)makeInfoView
-{
-    self.infoView = [[InfoViewer alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:self.infoView];
-}
-
 - (void)makeInfoView2
 {
     self.infoView2 = [[InfoViewer2 alloc] initWithFrame:CGRectZero];
     [self.view addSubview:self.infoView2];
 }
 
-- (void)hideInfoView
-{
-    [self.infoView hide];
-}
-
 - (void)hideInfoView2
 {
+    NSAssert1(self.infoView2 != nil, @"makeInfoView2 not called for %@", [self class]);
     [self.infoView2 hide];
-}
-
-- (void)showInfoView
-{
-    NSAssert1(self.infoView != nil, @"makeInfoView not called for %@", [self class]);
-    if (self.infoView.superview == nil)
-        [self.view addSubview:self.infoView];
-    [self.infoView show:0];
 }
 
 - (void)showInfoView2
@@ -145,15 +127,15 @@
 
 - (void)calculateRects
 {
-    if (self.infoView != nil)
-        [self.infoView calculateRects];
+//    if (self.infoView != nil)
+//        [self.infoView calculateRects];
     // Dummy for this class
 }
 
 - (void)viewWilltransitionToSize
 {
-    if (self.infoView != nil)
-        [self.infoView viewWillTransitionToSize];
+//    if (self.infoView != nil)
+//        [self.infoView viewWillTransitionToSize];
     // Dummy for this class
 }
 

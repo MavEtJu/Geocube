@@ -31,7 +31,7 @@ enum {
 
 @property (nonatomic, retain) NSArray<dbTrackable *> *tbs;
 
-- (void)remoteAPILoadTrackables:(dbAccount *)a infoView:(InfoViewer *)iv infoItemID:(InfoItemID)iid;
+- (void)remoteAPILoadTrackables:(dbAccount *)a infoItem:(InfoItem2 *)iid;
 - (void)loadTrackables;
 - (void)adjustMenus;
 

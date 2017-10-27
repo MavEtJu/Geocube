@@ -55,7 +55,7 @@ enum {
 
     [self.tableView registerNib:[UINib nibWithNibName:XIB_QUERIESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_QUERIESTABLEVIEWCELL];
 
-    [self makeInfoView];
+    [self makeInfoView2];
 
     self.qs = nil;
 }
@@ -87,7 +87,7 @@ enum {
             }
 
             NSArray<NSDictionary *> *queries = nil;
-            RemoteAPIResult rv = [a.remoteAPI listQueries:&queries infoViewer:nil iiDownload:0 public:self.isPublic];
+            RemoteAPIResult rv = [a.remoteAPI listQueries:&queries infoItem:nil public:self.isPublic];
             if (rv != REMOTEAPI_OK)
                 failure = YES;
             self.qs = queries;
@@ -178,7 +178,7 @@ enum {
     }
 
     [self.processing clearAll];
-    [self showInfoView];
+    [self showInfoView2];
 
     NSDictionary *pq = [self.qs objectAtIndex:indexPath.row];
     BACKGROUND(doRunRetrieveQuery:, pq);
@@ -217,13 +217,13 @@ enum {
     }
     NSLog(@"PROCESSING: Nothing pending");
 
-    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil iiImport:0];
+    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoItem:nil];
 
     [self reloadDataMainQueue];
     [audioManager playSound:PLAYSOUND_IMPORTCOMPLETE];
     [waypointManager needsRefreshAll];
 
-    [self hideInfoView];
+    [self hideInfoView2];
 }
 
 - (dbGroup *)makeGroupExist:(NSString *)name
@@ -251,27 +251,27 @@ enum {
 - (void)doRunRetrieveQuery:(NSDictionary *)pq
 {
     [self.processing addIdentifier:0];
-    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoViewer:nil iiImport:0];
+    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoItem:nil];
 
     dbGroup *group = [self makeGroupExist:[pq objectForKey:@"Name"]];
 
-    InfoItemID iid = [self.infoView addDownload];
-    [self.infoView setDescription:iid description:[pq objectForKey:@"Name"]];
+    InfoItem2 *iid = [self.infoView2 addDownload];
+    [iid changeDescription:[pq objectForKey:@"Name"]];
 
     [self.processing addIdentifier:0];
-    RemoteAPIResult rv = [self.account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group infoViewer:self.infoView iiDownload:iid identifier:0 callback:self];
+    RemoteAPIResult rv = [self.account.remoteAPI retrieveQuery:[pq objectForKey:@"Id"] group:group infoItem:iid identifier:0 callback:self];
     if (rv != REMOTEAPI_OK)
         [MyTools messageBox:self header:_(@"Error") text:_(@"queriestemplateviewcontroller-Unable to retrieve the data from the query") error:self.account.remoteAPI.lastError];
 
-    [self.infoView removeItem:iid];
+    [self.infoView2 removeDownload:iid];
 }
 
-- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier iiImport:(InfoItemID)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
+- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier infoItem:(InfoItem2 *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
 {
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
     [d setObject:group forKey:@"group"];
     [d setObject:o forKey:@"object"];
-    [d setObject:[NSNumber numberWithInteger:iii] forKey:@"iii"];
+    [d setObject:iii forKey:@"infoItem"];
     [d setObject:a forKey:@"account"];
     [d setObject:[NSNumber numberWithInteger:identifier] forKey:@"identifier"];
 
@@ -284,12 +284,12 @@ enum {
 {
     dbGroup *g = [dict objectForKey:@"group"];
     NSObject *o = [dict objectForKey:@"object"];
-    InfoItemID iii = [[dict objectForKey:@"iii"] integerValue];
+    InfoItem2 *iii = [dict objectForKey:@"infoItem"];
     dbAccount *a = [dict objectForKey:@"account"];
     NSInteger identifier = [[dict objectForKey:@"identifier"] integerValue];
 
-    [importManager process:o group:g account:a options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoViewer:self.infoView iiImport:iii];
-    [self.infoView removeItem:iii];
+    [importManager process:o group:g account:a options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoItem:iii];
+    [self.infoView2 removeImport:iii];
 
     NSLog(@"PROCESSING: Processed %ld", (long)identifier);
     [self.processing increaseProcessedChunks:identifier];

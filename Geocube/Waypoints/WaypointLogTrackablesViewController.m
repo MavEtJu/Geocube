@@ -268,7 +268,7 @@ enum {
                              if (tb == nil) {
                                  [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
                                      if (a.remoteAPI.supportsTrackablesRetrieve == YES) {
-                                         [a.remoteAPI trackableFind:pin trackable:&tb infoViewer:nil iiDownload:0];
+                                         [a.remoteAPI trackableFind:pin trackable:&tb infoItem:nil];
                                          *stop = YES;
                                      }
                                  }];
@@ -321,7 +321,7 @@ enum {
                              if (tb == nil) {
                                  [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
                                      if (a.remoteAPI.supportsTrackablesRetrieve == YES && a.canDoRemoteStuff == YES) {
-                                         [a.remoteAPI trackableFind:pin trackable:&tb infoViewer:nil iiDownload:0];
+                                         [a.remoteAPI trackableFind:pin trackable:&tb infoItem:nil];
                                          *stop = YES;
                                      }
                                  }];

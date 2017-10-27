@@ -12,6 +12,8 @@
 @property (nonatomic, retain) GCLabelNormalText *headerDownloads;
 @property (nonatomic, retain) NSMutableArray<InfoItem2 *> *imports;
 @property (nonatomic, retain) GCLabelNormalText *headerImports;
+@property (nonatomic, retain) NSMutableArray<InfoItem2 *> *images;
+@property (nonatomic, retain) GCLabelNormalText *headerImages;
 
 @property (nonatomic        ) BOOL isVisible;
 
@@ -34,11 +36,17 @@
     [self.headerImports sizeToFit];
     [self addSubview:self.headerImports];
 
+    self.headerImages = [[GCLabelNormalText alloc] initWithFrame:CGRectZero];
+    self.headerImages.text = @"Imports";
+    [self.headerImages sizeToFit];
+    [self addSubview:self.headerImages];
+
     self.isVisible = NO;
     self.needsRefresh = YES;
 
     self.downloads = [NSMutableArray arrayWithCapacity:5];
     self.imports = [NSMutableArray arrayWithCapacity:5];
+    self.images = [NSMutableArray arrayWithCapacity:5];
 
     return self;
 }
@@ -46,7 +54,7 @@
 - (InfoItem2 *)addDownload
 {
     InfoItem2 *ii = [[[NSBundle mainBundle] loadNibNamed:XIB_INFOITEMVIEW2 owner:self options:nil] firstObject];
-    ii.parent = self;
+    ii.infoViewer = self;
 
     [self.downloads addObject:ii];
     self.needsRefresh = YES;
@@ -60,9 +68,23 @@
 - (InfoItem2 *)addImport
 {
     InfoItem2 *ii = [[[NSBundle mainBundle] loadNibNamed:XIB_INFOITEMVIEW2 owner:self options:nil] firstObject];
-    ii.parent = self;
+    ii.infoViewer = self;
 
     [self.imports addObject:ii];
+    self.needsRefresh = YES;
+
+    MAINQUEUE(
+              [self addSubview:ii];
+              )
+    return ii;
+}
+
+- (InfoItem2 *)addImage
+{
+    InfoItem2 *ii = [[[NSBundle mainBundle] loadNibNamed:XIB_INFOITEMVIEW2 owner:self options:nil] firstObject];
+    ii.infoViewer = self;
+
+    [self.images addObject:ii];
     self.needsRefresh = YES;
 
     MAINQUEUE(
@@ -103,6 +125,22 @@
     [import removeFromSuperview];
 }
 
+- (void)removeImage:(InfoItem2 *)image
+{
+    __block NSInteger index = -1;
+    [self.images enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (img == image) {
+            index = idx;
+            *stop = YES;
+        }
+    }];
+    if (index == -1)
+        return;
+    [self.images removeObjectAtIndex:index];
+
+    [image removeFromSuperview];
+}
+
 - (void)show
 {
     self.isVisible = YES;
@@ -122,6 +160,12 @@
         [self adjustRects];
     );
 }
+
+- (BOOL)hasItems
+{
+    return ([self.images count] + [self.imports count] + [self.downloads count]) != 0;
+}
+
 
 - (void)adjustRects
 {
@@ -167,6 +211,23 @@
         }];
     } else {
         self.headerImports.frame = CGRectMake(0, 0, 0, 0);
+    }
+
+    if ([self.images count] != 0) {
+        self.headerImages.frame = CGRectMake(0, y, 0, 0);
+        [self.headerImages sizeToFit];
+        y += self.headerImages.frame.size.height;
+        y += 4;
+
+        [self.images enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull image, NSUInteger idx, BOOL * _Nonnull stop) {
+            [image sizeToFit];
+            image.backgroundColor = [UIColor redColor];
+            image.frame = CGRectMake(0, y, image.frame.size.width, image.frame.size.height);
+            y += image.frame.size.height;
+            y += 4;
+        }];
+    } else {
+        self.headerImages.frame = CGRectMake(0, 0, 0, 0);
     }
 
     self.frame = CGRectMake(0, applicationFrame.size.height - y, width, y);

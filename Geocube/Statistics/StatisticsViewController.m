@@ -46,7 +46,7 @@ enum {
     self.accounts = [NSMutableArray arrayWithCapacity:[dbc.accounts count]];
     self.hasbeenstarted = NO;
 
-    [self makeInfoView];
+    [self makeInfoView2];
 
     return self;
 }
@@ -173,7 +173,7 @@ enum {
 
 - (void)loadStatistics
 {
-    [self showInfoView];
+    [self showInfoView2];
     [self clearTotal];
 
     [self.accounts enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull d, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -230,17 +230,17 @@ enum {
 
 - (void)runStatistics:(NSMutableDictionary *)ad
 {
-    InfoItemID iid = [self.infoView addDownload];
-    [self.infoView setDescription:iid description:[ad objectForKey:@"site"]];
+    InfoItem2 *iid = [self.infoView2 addDownload];
+    [iid changeDescription:[ad objectForKey:@"site"]];
 
     dbAccount *a = [ad objectForKey:@"account"];
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
-    NSInteger retValue = [a.remoteAPI UserStatistics:&d infoViewer:self.infoView iiDownload:iid];
+    NSInteger retValue = [a.remoteAPI UserStatistics:&d infoItem:iid];
 
     if (retValue != REMOTEAPI_OK) {
-        [self.infoView removeItem:iid];
-        if ([self.infoView hasItems] == NO)
-            [self hideInfoView];
+        [self.infoView2 removeDownload:iid];
+        if ([self.infoView2 hasItems] == NO)
+            [self hideInfoView2];
 
         NSString *header = [NSString stringWithFormat:_(@"statistics-Unable to load statistics for %@"), a.site];
         NSString *text = [NSString stringWithFormat:_(@"statistics-Returned error: %@"), a.remoteAPI.lastError];
@@ -256,9 +256,9 @@ enum {
     [ad removeObjectForKey:@"status"];
     [self updateTotals:ad];
 
-    [self.infoView removeItem:iid];
-    if ([self.infoView hasItems] == NO)
-        [self hideInfoView];
+    [self.infoView2 removeDownload:iid];
+    if ([self.infoView2 hasItems] == NO)
+        [self hideInfoView2];
     [self reloadDataMainQueue];
 }
 

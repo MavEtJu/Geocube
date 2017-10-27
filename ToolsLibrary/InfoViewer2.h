@@ -12,9 +12,14 @@
 
 - (InfoItem2 *)addDownload;
 - (InfoItem2 *)addImport;
+- (InfoItem2 *)addImage;
+
 - (void)removeDownload:(InfoItem2 *)download;
 - (void)removeImport:(InfoItem2 *)import;
+- (void)removeImage:(InfoItem2 *)image;
+
 - (void)show;
 - (void)hide;
+- (BOOL)hasItems;
 
 @end

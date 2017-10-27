@@ -35,8 +35,7 @@
 @property (nonatomic, retain) dbAccount *account;
 @property (nonatomic, retain) dbGroup *group;
 
-@property (nonatomic, retain) InfoViewer *infoViewer;
-@property (nonatomic        ) InfoItemID iiImport;
+@property (nonatomic, retain) InfoItem2 *iiImport;
 
 @property (nonatomic        ) ImportOptions run_options;
 @property (nonatomic, retain) id<ImportDelegate> delegate;
@@ -50,9 +49,9 @@
 - (void)parseString:(NSString *)data;
 - (void)parseGPX:(GCStringGPX *)gpx;
 - (void)parseDictionary:(GCDictionary *)dict;
-- (void)parseFile:(NSString *)filename infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii;
-- (void)parseData:(NSData *)data infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii;
-- (void)parseString:(NSString *)data infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii;
-- (void)parseDictionary:(GCDictionary *)dict infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii;
+- (void)parseFile:(NSString *)filename infoItem:(InfoItem2 *)iii;
+- (void)parseData:(NSData *)data infoItem:(InfoItem2 *)iii;
+- (void)parseString:(NSString *)data infoItem:(InfoItem2 *)iii;
+- (void)parseDictionary:(GCDictionary *)dict infoItem:(InfoItem2 *)iii;
 
 @end

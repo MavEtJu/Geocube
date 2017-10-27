@@ -157,7 +157,7 @@ enum {
     GCURLRequest *urlRequest = [GCURLRequest requestWithURL:url];
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error infoViewer:nil iiDownload:0];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error infoItem:nil];
 
     [bezelManager removeBezel];
 

@@ -116,10 +116,10 @@
     return YES;
 }
 
-- (GCDictionaryLiveAPI *)performURLRequest:(NSURLRequest *)urlRequest infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (GCDictionaryLiveAPI *)performURLRequest:(NSURLRequest *)urlRequest infoItem:(InfoItem2 *)iid
 {
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem infoViewer:iv iiDownload:iid];
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem infoItem:iid];
 
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
@@ -158,7 +158,7 @@
 
 /**************************************************************************/
 
-- (GCDictionaryLiveAPI *)GetYourUserProfile:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (GCDictionaryLiveAPI *)GetYourUserProfile:(InfoItem2 *)iid
 {
     NSLog(@"GetYourUserProfile");
 
@@ -197,11 +197,11 @@
     NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
     urlRequest.HTTPBody = body;
 
-    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoItem:iid];
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetCacheIdsFavoritedByUser:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (GCDictionaryLiveAPI *)GetCacheIdsFavoritedByUser:(InfoItem2 *)iid
 {
     NSLog(@"GetCacheIdsFavoritedByUser");
 
@@ -211,11 +211,11 @@
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetCacheIdsFavoritedByUser" parameters:params];
 
-    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoItem:iid];
     return json;
 }
 
-- (GCDictionaryLiveAPI *)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription imageData:(NSData *)imageData imageFilename:(NSString *)imageFilename infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (GCDictionaryLiveAPI *)CreateFieldNoteAndPublish:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription imageData:(NSData *)imageData imageFilename:(NSString *)imageFilename infoItem:(InfoItem2 *)iid
 {
     NSLog(@"CreateFieldNoteAndPublish:%@", waypointName);
 
@@ -282,11 +282,11 @@
     //NSString *_body = [NSString stringWithFormat:@"{\"AccessToken\":\"%@\",\"CacheCode\":\"%@\",\"WptLogTypeId\":%ld,\"UTCDateLogged\":\"/Date(%ld000)/\",\"Note\":\"%@\",\"PromoteToLog\":true,\"FavoriteThisCache\":%@,\"EncryptLogText\":false}", remoteAPI.oabb.token, waypointName, (long)gslogtype, (long)date, [MyTools JSONEscape:note], (favourite == YES) ? @"true" : @"false"];
     //urlRequest.HTTPBody = [_body dataUsingEncoding:NSUTF8StringEncoding];
 
-    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoItem:iid];
     return json;
 }
 
-- (GCDictionaryLiveAPI *)SearchForGeocaches_waypointname:(NSString *)wpname infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (GCDictionaryLiveAPI *)SearchForGeocaches_waypointname:(NSString *)wpname infoItem:(InfoItem2 *)iid
 {
     NSLog(@"SearchForGeocaches_waypointname:%@", wpname);
 
@@ -322,11 +322,11 @@
     NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
     urlRequest.HTTPBody = body;
 
-    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoItem:iid];
     return json;
 }
 
-- (GCDictionaryLiveAPI *)SearchForGeocaches_waypointnames:(NSArray<NSString *> *)wpnames infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (GCDictionaryLiveAPI *)SearchForGeocaches_waypointnames:(NSArray<NSString *> *)wpnames infoItem:(InfoItem2 *)iid
 {
     NSLog(@"SearchForGeocaches_waypointnames:%ld", (long)[wpnames count]);
 
@@ -361,11 +361,11 @@
     NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
     urlRequest.HTTPBody = body;
 
-    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoItem:iid];
     return json;
 }
 
-- (GCDictionaryLiveAPI *)SearchForGeocaches_boundbox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (GCDictionaryLiveAPI *)SearchForGeocaches_boundbox:(GCBoundingBox *)bb infoItem:(InfoItem2 *)iid
 {
     NSLog(@"SearchForGeocaches_boundbox:%@", [bb description]);
 
@@ -415,11 +415,11 @@
     NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
     urlRequest.HTTPBody = body;
 
-    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoItem:iid];
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetMoreGeocaches:(NSInteger)offset infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (GCDictionaryLiveAPI *)GetMoreGeocaches:(NSInteger)offset infoItem:(InfoItem2 *)iid
 {
     NSLog(@"GetMoreGeocaches:%ld", (long)offset);
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetMoreGeocaches" method:@"POST"];
@@ -449,11 +449,11 @@
     NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
     urlRequest.HTTPBody = body;
 
-    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoItem:iid];
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetPocketQueryList:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (GCDictionaryLiveAPI *)GetPocketQueryList:(InfoItem2 *)iid
 {
     NSLog(@"GetPocketQueryList");
 
@@ -463,11 +463,11 @@
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetPocketQueryList" parameters:params];
 
-    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoItem:iid];
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetPocketQueryZippedFile:(NSString *)guid infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (GCDictionaryLiveAPI *)GetPocketQueryZippedFile:(NSString *)guid infoItem:(InfoItem2 *)iid
 {
     NSLog(@"GetPocketQueryZippedFile:%@", guid);
 
@@ -479,10 +479,10 @@
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetPocketQueryZippedFile" parameters:params];
     [urlRequest setTimeoutInterval:configManager.downloadTimeoutQuery];
 
-    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoItem:iid];
     return json; }
 
-- (GCDictionaryLiveAPI *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (GCDictionaryLiveAPI *)GetFullPocketQueryData:(NSString *)guid startItem:(NSInteger)startItem numItems:(NSInteger)numItems infoItem:(InfoItem2 *)iid
 {
     NSLog(@"GetFullPocketQueryData:%@", guid);
 
@@ -496,11 +496,11 @@
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetFullPocketQueryData" parameters:params];
     [urlRequest setTimeoutInterval:configManager.downloadTimeoutSimple];
 
-    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoItem:iid];
     return json;
 }
 
-- (GCDictionaryLiveAPI *)UpdateCacheNote:(NSString *)wpt_name text:(NSString *)text infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (GCDictionaryLiveAPI *)UpdateCacheNote:(NSString *)wpt_name text:(NSString *)text infoItem:(InfoItem2 *)iid
 {
     NSLog(@"UpdateCacheNote:%@", wpt_name);
 
@@ -516,11 +516,11 @@
     NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
     urlRequest.HTTPBody = body;
 
-    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoItem:iid];
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetUsersTrackables:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (GCDictionaryLiveAPI *)GetUsersTrackables:(InfoItem2 *)iid
 {
     NSLog(@"GetUsersTrackables");
 
@@ -538,11 +538,11 @@
     NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
     urlRequest.HTTPBody = body;
 
-    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoItem:iid];
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetOwnedTrackables:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (GCDictionaryLiveAPI *)GetOwnedTrackables:(InfoItem2 *)iid
 {
     NSLog(@"GetOwnedTrackables");
 
@@ -560,11 +560,11 @@
     NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
     urlRequest.HTTPBody = body;
 
-    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoItem:iid];
     return json;
 }
 
-- (GCDictionaryLiveAPI *)GetTrackablesByPin:(NSString *)code infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (GCDictionaryLiveAPI *)GetTrackablesByPin:(NSString *)code infoItem:(InfoItem2 *)iid
 {
     NSLog(@"GetTrackablesByTrackingNumber:%@", code);
 
@@ -576,11 +576,11 @@
 
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"GetTrackablesByTrackingNumber" parameters:params];
 
-    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoItem:iid];
     return json;
 }
 
-- (GCDictionaryLiveAPI *)CreateTrackableLog:(NSString *)wpt_name logtype:(NSString *)logtype trackable:(dbTrackable *)tb note:(NSString *)note dateLogged:(NSString *)dateLogged infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (GCDictionaryLiveAPI *)CreateTrackableLog:(NSString *)wpt_name logtype:(NSString *)logtype trackable:(dbTrackable *)tb note:(NSString *)note dateLogged:(NSString *)dateLogged infoItem:(InfoItem2 *)iid
 {
     NSLog(@"CreateTrackableLog:%@", tb.tbcode);
 
@@ -618,7 +618,7 @@
     NSData *body = [NSJSONSerialization dataWithJSONObject:_dict options:kNilOptions error:&error];
     urlRequest.HTTPBody = body;
 
-    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoViewer:iv iiDownload:iid];
+    GCDictionaryLiveAPI *json = [self performURLRequest:urlRequest infoItem:iid];
     return json;
 }
 

@@ -23,7 +23,6 @@
 
 @property (nonatomic, retain) LocalMenuItems *lmi;
 @property (nonatomic        ) BOOL hasCloseButton;
-@property (nonatomic, retain) InfoViewer *infoView;
 @property (nonatomic, retain) InfoViewer2 *infoView2;
 
 @property (assign, nonatomic) NSInteger numberOfItemsInRow;
@@ -38,9 +37,6 @@
 - (void)viewWilltransitionToSize;
 
 // DownloadInfo window related
-- (void)hideInfoView;
-- (void)showInfoView;
-- (void)makeInfoView;
 - (void)hideInfoView2;
 - (void)showInfoView2;
 - (void)makeInfoView2;

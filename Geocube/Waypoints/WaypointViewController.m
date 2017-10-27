@@ -119,7 +119,7 @@ enum {
     // Restore
     if (self.hasCloseButton == NO)
         [self showWaypoint:waypointManager.currentWaypoint];
-    [self makeInfoView];
+    [self makeInfoView2];
 
     [self.tableView registerNib:[UINib nibWithNibName:XIB_WAYPOINTHEADERTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_WAYPOINTHEADERTABLEVIEWCELL];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_WAYPOINTLOGSTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_WAYPOINTLOGSTABLEVIEWCELL];
@@ -890,28 +890,28 @@ enum {
 
 - (void)runRefreshWaypoint
 {
-    [self showInfoView];
-    InfoItemID iid = [self.infoView addDownload];
-    [self.infoView setDescription:iid description:[NSString stringWithFormat:_(@"waypointviewcontroller-Updating %@"), self.waypoint.wpt_name]];
+    [self showInfoView2];
+    InfoItem2 *iid = [self.infoView2 addDownload];
+    [iid changeDescription:[NSString stringWithFormat:_(@"waypointviewcontroller-Updating %@"), self.waypoint.wpt_name]];
 
     self.chunksDownloaded = 0;
     self.chunksProcessed = 0;
-    NSInteger retValue = [self.waypoint.account.remoteAPI loadWaypoint:self.waypoint infoViewer:self.infoView iiDownload:iid identifier:0 callback:self];
+    NSInteger retValue = [self.waypoint.account.remoteAPI loadWaypoint:self.waypoint infoItem:iid identifier:0 callback:self];
 
-    [self.infoView removeItem:iid];
+    [self.infoView2 removeDownload:iid];
 
     if (retValue != REMOTEAPI_OK)
         [MyTools messageBox:self header:_(@"waypointviewcontroller-Update failed") text:_(@"waypointviewcontroller-Unable to update the waypoint.") error:self.waypoint.account.remoteAPI.lastError];
 }
 
-- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier iiImport:(InfoItemID)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
+- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier infoItem:(InfoItem2 *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
     @synchronized (self) {
         self.chunksDownloaded++;
     }
 
-    [importManager process:o group:group account:account options:IMPORTOPTION_NONE infoViewer:self.infoView iiImport:iii];
-    [self.infoView removeItem:iii];
+    [importManager process:o group:group account:account options:IMPORTOPTION_NONE infoItem:iii];
+    [self.infoView2 removeImport:iii];
 
     @synchronized (self) {
         self.chunksProcessed++;
@@ -933,7 +933,7 @@ enum {
     [waypointManager needsRefreshUpdate:self.waypoint];
     [audioManager playSound:PLAYSOUND_IMPORTCOMPLETE];
 
-    [self hideInfoView];
+    [self hideInfoView2];
 }
 
 - (void)remoteAPI_failed:(NSInteger)identifier

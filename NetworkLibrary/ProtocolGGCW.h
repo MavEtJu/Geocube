@@ -26,24 +26,24 @@
 
 - (void)storeCookie:(NSHTTPCookie *)cookie;
 
-- (GCDictionaryGGCW *)account_dashboard:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
-- (GCDictionaryGGCW *)my_statistics:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
+- (GCDictionaryGGCW *)account_dashboard:(InfoItem2 *)iid;
+- (GCDictionaryGGCW *)my_statistics:(InfoItem2 *)iid;
 
-- (GCDictionaryGGCW *)pocket_default:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
-- (GCDataZIPFile *)pocket_downloadpq:(NSString *)guid infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
+- (GCDictionaryGGCW *)pocket_default:(InfoItem2 *)iid;
+- (GCDataZIPFile *)pocket_downloadpq:(NSString *)guid infoItem:(InfoItem2 *)iid;
 
-- (NSDictionary *)geocache:(NSString *)wptname infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
-- (GCStringGPX *)geocache_gpx:(NSString *)wptname infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
-- (NSArray<NSString *> *)play_search:(CLLocationCoordinate2D)center infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
+- (NSDictionary *)geocache:(NSString *)wptname infoItem:(InfoItem2 *)iid;
+- (GCStringGPX *)geocache_gpx:(NSString *)wptname infoItem:(InfoItem2 *)iid;
+- (NSArray<NSString *> *)play_search:(CLLocationCoordinate2D)center infoItem:(InfoItem2 *)iid;
 
-- (NSArray<NSDictionary *> *)my_inventory:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
-- (NSDictionary *)track_details:(NSString *)guid id:(NSString *)_id infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
-- (NSDictionary *)track_details:(NSString *)tracker infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
-- (NSArray<NSDictionary *> *)track_search:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
-- (NSDictionary *)track_log:(NSDictionary *)dict infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
+- (NSArray<NSDictionary *> *)my_inventory:(InfoItem2 *)iid;
+- (NSDictionary *)track_details:(NSString *)guid id:(NSString *)_id infoItem:(InfoItem2 *)iid;
+- (NSDictionary *)track_details:(NSString *)tracker infoItem:(InfoItem2 *)iid;
+- (NSArray<NSDictionary *> *)track_search:(InfoItem2 *)iid;
+- (NSDictionary *)track_log:(NSDictionary *)dict infoItem:(InfoItem2 *)iid;
 
-- (GCDictionaryGGCW *)account_oauth_token:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
-- (GCStringGPXGarmin *)seek_sendtogps:(NSString *)guid infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
+- (GCDictionaryGGCW *)account_oauth_token:(InfoItem2 *)iid;
+- (GCStringGPXGarmin *)seek_sendtogps:(NSString *)guid infoItem:(InfoItem2 *)iid;
 
 - (GCDictionaryGGCW *)play_serverparameters_params;
 - (GCDictionaryGGCW *)account_oauth_token;

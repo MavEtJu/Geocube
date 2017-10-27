@@ -64,7 +64,7 @@ enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self makeInfoView];
+    [self makeInfoView2];
 }
 
 - (void)showBrowser
@@ -242,16 +242,16 @@ enum {
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
 
-    [self showInfoView];
-    InfoItemID iid = [self.infoView addDownload];
-    [self.infoView setDescription:iid description:_(@"browserbrowserviewcontroller-Downloading query")];
+    [self showInfoView2];
+    InfoItem2 *iid = [self.infoView2 addDownload];
+    [iid changeDescription:_(@"browserbrowserviewcontroller-Downloading query")];
 
-    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error infoViewer:self.infoView iiDownload:iid];
+    NSData *data = [downloadManager downloadSynchronous:urlRequest returningResponse:&response error:&error infoItem:iid];
     [self showActivity:NO];
     [self saveDataToFile:data response:response error:error];
 
-    [self.infoView removeItem:iid];
-    [self hideInfoView];
+    [self.infoView2 removeDownload:iid];
+    [self hideInfoView2];
 }
 
 - (void)saveDataToFile:data response:(NSURLResponse *)response error:(NSError *)error

@@ -653,7 +653,7 @@ enum {
     [bezelManager showBezel:self];
     [bezelManager setText:_(@"waypointlogviewcontroller-Uploading log")];
 
-    NSInteger retValue = [self.waypoint.account.remoteAPI CreateLogNote:self.logstring waypoint:self.waypoint dateLogged:self.date note:self.note favourite:self.fp image:self.image imageCaption:self.imageCaption imageDescription:self.imageLongText rating:self.ratingSelected trackables:self.trackables coordinates:self.coordinates infoViewer:nil iiDownload:0];
+    NSInteger retValue = [self.waypoint.account.remoteAPI CreateLogNote:self.logstring waypoint:self.waypoint dateLogged:self.date note:self.note favourite:self.fp image:self.image imageCaption:self.imageCaption imageDescription:self.imageLongText rating:self.ratingSelected trackables:self.trackables coordinates:self.coordinates infoItem:nil];
 
     [bezelManager removeBezel];
 

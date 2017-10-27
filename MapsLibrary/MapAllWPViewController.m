@@ -107,10 +107,10 @@ enum {
     self.waypointsOld = [NSMutableArray arrayWithArray:[dbWaypoint dbAllInRect:bl RT:tr]];
     self.waypointsNew = [NSMutableArray arrayWithCapacity:[self.waypointsOld count]];
 
-    [self showInfoView];
+    [self showInfoView2];
     [self.processing clearAll];
 
-    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoViewer:nil iiImport:0];
+    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoItem:nil];
 
     NSArray<dbAccount *> *accounts = dbc.accounts;
     __block NSInteger accountsFound = 0;
@@ -121,12 +121,12 @@ enum {
             return;
         accountsFound++;
 
-        InfoItemID iid = [self.infoView addDownload];
-        [self.infoView setDescription:iid description:account.site];
+        InfoItem2 *iid = [self.infoView2 addDownload];
+        [iid changeDescription:account.site];
 
         NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:3];
         [d setObject:bb forKey:@"boundingbox"];
-        [d setObject:[NSNumber numberWithInteger:iid] forKey:@"iid"];
+        [d setObject:iid forKey:@"iid"];
         [d setObject:account forKey:@"account"];
 
         BACKGROUND(runLoadWaypoints:, d);
@@ -162,10 +162,10 @@ enum {
 
         // Clean up if there is nothing to see
         if ([waypoints count] == 0) {
-            [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil iiImport:0];
+            [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoItem:nil];
             [waypointManager needsRefreshAll];
             self.currentRun = RUN_NONE;
-            [self hideInfoView];
+            [self hideInfoView2];
             return;
         };
 
@@ -186,14 +186,14 @@ enum {
             if ([wps count] == 0)
                 return;
 
-            InfoItemID iid = [self.infoView addDownload:YES];
-            [self.infoView setDescription:iid description:account.site];
+            InfoItem2 *iid = [self.infoView2 addDownload];
+            [iid changeDescription:account.site];
             NSMutableArray<NSString *> *wpnames = [NSMutableArray arrayWithCapacity:[wps count]];
             [wps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                 [wpnames addObject:wp.wpt_name];
             }];
             [self.processing addIdentifier:(long)account._id];
-            [account.remoteAPI loadWaypointsByCodes:wpnames infoViewer:self.infoView iiDownload:iid identifier:(long)account._id group:dbc.groupLiveImport callback:self];
+            [account.remoteAPI loadWaypointsByCodes:wpnames infoItem:iid identifier:(long)account._id group:dbc.groupLiveImport callback:self];
         }];
 
         BACKGROUND(waitForDownloadsToFinish, nil);
@@ -202,16 +202,16 @@ enum {
     }
 
     if (self.currentRun == RUN_INDIVIDUAL) {
-        [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil iiImport:0];
+        [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoItem:nil];
         [waypointManager needsRefreshAll];
         self.currentRun = RUN_NONE;
-        [self hideInfoView];
+        [self hideInfoView2];
 
         return;
     }
 }
 
-- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier iiImport:(InfoItemID)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
+- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier infoItem:(InfoItem2 *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
     // We are already in a background thread, but don't want to delay the next request until this one is processed.
 
@@ -222,7 +222,7 @@ enum {
         o = [NSNull null];
 
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
-    [dict setObject:[NSNumber numberWithInteger:iii] forKey:@"iii"];
+    [dict setObject:iii forKey:@"iii"];
     [dict setObject:o forKey:@"object"];
     [dict setObject:dbc.groupLiveImport forKey:@"group"];
     [dict setObject:account forKey:@"account"];
@@ -235,11 +235,11 @@ enum {
     dbGroup *g = [dict objectForKey:@"group"];
     dbAccount *a = [dict objectForKey:@"account"];
     NSObject *o = [dict objectForKey:@"object"];
-    InfoItemID iii = [[dict objectForKey:@"iii"] integerValue];
+    InfoItem2 *iii = [dict objectForKey:@"iii"];
     NSInteger identifier = [[dict objectForKey:@"identifier"] integerValue];
 
     if ([o isKindOfClass:[NSNull class]] == NO) {
-        NSArray<NSString *> *wps = [importManager process:o group:g account:a options:IMPORTOPTION_NOPOST|IMPORTOPTION_NOPRE infoViewer:self.infoView iiImport:iii];
+        NSArray<NSString *> *wps = [importManager process:o group:g account:a options:IMPORTOPTION_NOPOST|IMPORTOPTION_NOPRE infoItem:iii];
         @synchronized (self.waypointsNew) {
             [self.waypointsNew addObjectsFromArray:wps];
         }
@@ -247,7 +247,7 @@ enum {
 
     [self.processing increaseProcessedChunks:identifier];
     NSLog(@"PROCESSING: Processed #%ld - %@", (long)identifier, [self.processing description:identifier]);
-    [self.infoView removeItem:iii];
+    [self.infoView2 removeImport:iii];
 
     if ([self.processing hasAllProcessed:identifier] == YES) {
         NSLog(@"PROCESSING: All seen for #%ld", (long)identifier);
@@ -257,15 +257,15 @@ enum {
 
 - (void)runLoadWaypoints:(NSMutableDictionary *)dict
 {
-    InfoItemID iid = [[dict objectForKey:@"iid"] integerValue];
+    InfoItem2 *iid = [dict objectForKey:@"iid"];
     GCBoundingBox *bb = [dict objectForKey:@"boundingbox"];
     dbAccount *account = [dict objectForKey:@"account"];
 
     [self.processing addIdentifier:(long)account._id];
 
-    NSInteger rv = [account.remoteAPI loadWaypointsByBoundingBox:bb infoViewer:self.infoView iiDownload:iid identifier:(long)account._id callback:self];
+    NSInteger rv = [account.remoteAPI loadWaypointsByBoundingBox:bb infoItem:iid identifier:(long)account._id callback:self];
 
-    [self.infoView removeItem:iid];
+   [self.infoView2 removeDownload:iid];
 
     if (rv != REMOTEAPI_OK) {
         [MyTools messageBox:self header:account.site text:_(@"mapallwpviewcontroller-Unable to retrieve the data") error:account.remoteAPI.lastError];

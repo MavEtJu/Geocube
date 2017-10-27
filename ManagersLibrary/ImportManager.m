@@ -49,7 +49,7 @@
     NSAssert(NO, @"addToQueue called");
 }
 
-- (NSArray<NSString *> *)process:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(ImportOptions)runoptions infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii
+- (NSArray<NSString *> *)process:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(ImportOptions)runoptions infoItem:(InfoItem2 *)iii
 {
     if ([data isKindOfClass:[GCStringFilename class]] == YES) {
         NSString *_filename = [data description];
@@ -68,7 +68,7 @@
     if ([data isKindOfClass:[GCArray class]] == YES) {
         GCArray *as = (GCArray *)data;
         [as enumerateObjectsUsingBlock:^(NSObject * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
-            [self process:a group:group account:account options:runoptions infoViewer:iv iiImport:iii];
+            [self process:a group:group account:account options:runoptions infoItem:iii];
         }];
         return self.processedWaypoints;
     }
@@ -97,54 +97,54 @@
     imp.delegate = self;
 
     @synchronized (self) {
-        [iv expand:iii yesno:YES];
+        [iii changeExpanded:YES];
         NSLog(@"%@ - My turn to import %@", [self class], [data class]);
-        [self runImporter:imp data:(NSObject *)data run_options:runoptions infoViewer:iv iiImport:iii];
+        [self runImporter:imp data:(NSObject *)data run_options:runoptions infoItem:iii];
     }
 
     return self.processedWaypoints;
 }
 
-- (void)runImporter:(ImportTemplate *)imp data:(NSObject *)data run_options:(ImportOptions)run_options infoViewer:(InfoViewer *)iv iiImport:(InfoItemID)iii
+- (void)runImporter:(ImportTemplate *)imp data:(NSObject *)data run_options:(ImportOptions)run_options infoItem:(InfoItem2 *)iii
 {
     imp.run_options = run_options;
 
     if ((run_options & IMPORTOPTION_NOPRE) == 0)
         [imp parseBefore];
 
-    if (iv != nil) {
-        [iv setLineObjectTotal:iii total:0 isLines:NO];
-        [iv setWaypointsTotal:iii total:0];
-        [iv setLogsTotal:iii total:0];
-        [iv setTrackablesTotal:iii total:0];
+    if (iii != nil) {
+        [iii changeLineObjectTotal:0 isLines:NO];
+        [iii changeWaypointsTotal:0];
+        [iii changeLogsTotal:0];
+        [iii changeTrackablesTotal:0];
     }
 
     if ((run_options & IMPORTOPTION_NOPARSE) == 0) {
         @autoreleasepool {
             if ([data isKindOfClass:[GCStringFilename class]] == YES) {
                 [self.filenames enumerateObjectsUsingBlock:^(NSString * _Nonnull filename, NSUInteger idx, BOOL * _Nonnull stop) {
-                    [iv setDescription:iii description:filename];
-                    [imp parseFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] infoViewer:iv iiImport:iii];
+                    [iii changeDescription:filename];
+                    [imp parseFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] infoItem:iii];
                     [waypointManager needsRefreshAll];
                 }];
             } else if ([data isKindOfClass:[GCStringGPX class]] == YES) {
-                [iv setDescription:iii description:_(@"importmanager-GPX data")];
-                [imp parseString:(NSString *)data infoViewer:iv iiImport:iii];
+                [iii changeDescription:_(@"importmanager-GPX data")];
+                [imp parseString:(NSString *)data infoItem:iii];
             } else if ([data isKindOfClass:[GCStringGPXGarmin class]] == YES) {
-                [iv setDescription:iii description:_(@"importmanager-GPX Garmin data")];
-                [imp parseString:(NSString *)data infoViewer:iv iiImport:iii];
+                [iii changeDescription:_(@"importmanager-GPX Garmin data")];
+                [imp parseString:(NSString *)data infoItem:iii];
             } else if ([data isKindOfClass:[GCDictionaryLiveAPI class]] == YES) {
-                [iv setDescription:iii description:_(@"importmanager-LiveAPI data")];
-                [imp parseDictionary:(GCDictionaryLiveAPI *)data infoViewer:iv iiImport:iii];
+                [iii changeDescription:_(@"importmanager-LiveAPI data")];
+                [imp parseDictionary:(GCDictionaryLiveAPI *)data infoItem:iii];
             } else if ([data isKindOfClass:[GCDictionaryGCA2 class]] == YES) {
-                [iv setDescription:iii description:_(@"importmanager-Geocaching Australia API data")];
-                [imp parseDictionary:(GCDictionaryGCA2 *)data infoViewer:iv iiImport:iii];
+                [iii changeDescription:_(@"importmanager-Geocaching Australia API data")];
+                [imp parseDictionary:(GCDictionaryGCA2 *)data infoItem:iii];
             } else if ([data isKindOfClass:[GCDictionaryOKAPI class]] == YES) {
-                [iv setDescription:iii description:_(@"importmanager-OKAPI data")];
-                [imp parseDictionary:(GCDictionaryOKAPI *)data infoViewer:iv iiImport:iii];
+                [iii changeDescription:_(@"importmanager-OKAPI data")];
+                [imp parseDictionary:(GCDictionaryOKAPI *)data infoItem:iii];
             } else if ([data isKindOfClass:[GCDictionaryGGCW class]] == YES) {
-                [iv setDescription:iii description:_(@"importmanager-Geocaching.com data")];
-                [imp parseDictionary:(GCDictionaryGGCW *)data infoViewer:iv iiImport:iii];
+                [iii changeDescription:_(@"importmanager-Geocaching.com data")];
+                [imp parseDictionary:(GCDictionaryGGCW *)data infoItem:iii];
             } else {
                 NSAssert1(NO, @"Unknown data object type: %@", [data class]);
             }

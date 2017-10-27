@@ -11,7 +11,7 @@
  * (at your option) any later version.
  *
  * Geocube is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * but WITHOUT ANY WARRANTY; without even the  warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
@@ -47,7 +47,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
 {
     self = [super init];
 
-    [self makeInfoView];
+    [self makeInfoView2];
     [self loadTests];
 
     return self;
@@ -302,7 +302,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
         wp.wpt_urlname = [test objectForKey:@"description"];
         wp.account = [test objectForKey:@"account"];
 
-        [a.remoteAPI loadWaypoint:wp infoViewer:nil iiDownload:0 identifier:identifier callback:self];
+        [a.remoteAPI loadWaypoint:wp infoItem:nil identifier:identifier callback:self];
     } else {
         [test setObject:[NSNumber numberWithInteger:TESTRESULT_NOTSUPPORTED] forKey:testname];
     }
@@ -318,7 +318,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
 
         NSArray<NSString *> *wps = [[test objectForKey:@"waypoints"] componentsSeparatedByString:@","];
 
-        [a.remoteAPI loadWaypointsByCodes:wps infoViewer:nil iiDownload:0 identifier:identifier group:dbc.groupLiveImport callback:self];
+        [a.remoteAPI loadWaypointsByCodes:wps infoItem:nil identifier:identifier group:dbc.groupLiveImport callback:self];
     } else {
         [test setObject:[NSNumber numberWithInteger:TESTRESULT_NOTSUPPORTED] forKey:testname];
     }
@@ -338,7 +338,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
         bb.leftLon = c.longitude - 0.001;
         bb.rightLon = c.longitude + 0.001;
 
-        [a.remoteAPI loadWaypointsByBoundingBox:bb infoViewer:nil iiDownload: 0 identifier:identifier callback:self];
+        [a.remoteAPI loadWaypointsByBoundingBox:bb infoItem:nil identifier:identifier callback:self];
     } else {
         [test setObject:[NSNumber numberWithInteger:TESTRESULT_NOTSUPPORTED] forKey:testname];
     }
@@ -353,7 +353,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
 
         NSDictionary *dict;
 
-        RemoteAPIResult rv = [a.remoteAPI UserStatistics:&dict infoViewer:nil iiDownload:0];
+        RemoteAPIResult rv = [a.remoteAPI UserStatistics:&dict infoItem:nil];
         if (rv == REMOTEAPI_OK)
             [test setObject:[NSNumber numberWithInteger:TESTRESULT_SUCCESSFUL] forKey:testname];
         else
@@ -371,7 +371,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
         [test setObject:testname forKey:@"testname"];
         [self reloadDataMainQueue];
 
-        RemoteAPIResult rv = [a.remoteAPI listQueries:&queries infoViewer:nil iiDownload:0 public:NO];
+        RemoteAPIResult rv = [a.remoteAPI listQueries:&queries infoItem:nil public:NO];
         if (rv == REMOTEAPI_OK)
             [test setObject:[NSNumber numberWithInteger:TESTRESULT_SUCCESSFUL] forKey:testname];
         else
@@ -393,7 +393,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
         [test setObject:testname forKey:@"testname"];
         [self reloadDataMainQueue];
 
-        RemoteAPIResult rv = [a.remoteAPI retrieveQuery:[test objectForKey:@"query"] group:dbc.groupLiveImport infoViewer:nil iiDownload:0 identifier:identifier callback:self];
+        RemoteAPIResult rv = [a.remoteAPI retrieveQuery:[test objectForKey:@"query"] group:dbc.groupLiveImport infoItem:nil identifier:identifier callback:self];
         if (rv == REMOTEAPI_OK)
             [test setObject:[NSNumber numberWithInteger:TESTRESULT_SUCCESSFUL] forKey:testname];
         else
@@ -412,7 +412,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
 
         //
 
-        RemoteAPIResult rv = [a.remoteAPI trackablesMine:nil iiDownload:0];
+        RemoteAPIResult rv = [a.remoteAPI trackablesMine:nil];
         if (rv == REMOTEAPI_OK)
             [test setObject:[NSNumber numberWithInteger:TESTRESULT_SUCCESSFUL] forKey:testname];
         else
@@ -431,7 +431,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
 
         //
 
-        RemoteAPIResult rv = [a.remoteAPI trackablesInventory:nil iiDownload:0];
+        RemoteAPIResult rv = [a.remoteAPI trackablesInventory:nil];
         if (rv == REMOTEAPI_OK)
             [test setObject:[NSNumber numberWithInteger:TESTRESULT_SUCCESSFUL] forKey:testname];
         else
@@ -452,7 +452,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
         dbTrackable *tb;
         NSArray<NSString *> *data = [[test objectForKey:@"travelbug"] componentsSeparatedByString:@","];
 
-        RemoteAPIResult rv = [a.remoteAPI trackableFind:[data objectAtIndex:1] trackable:&tb infoViewer:nil iiDownload:0];
+        RemoteAPIResult rv = [a.remoteAPI trackableFind:[data objectAtIndex:1] trackable:&tb infoItem:nil];
         if (rv == REMOTEAPI_OK)
             [test setObject:[NSNumber numberWithInteger:TESTRESULT_SUCCESSFUL] forKey:testname];
         else
@@ -472,7 +472,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
 
         NSArray<NSString *> *data = [[test objectForKey:@"travelbug"] componentsSeparatedByString:@","];
 
-        RemoteAPIResult rv = [a.remoteAPI trackableDiscover:[data objectAtIndex:1] infoViewer:nil iiDownload:0];
+        RemoteAPIResult rv = [a.remoteAPI trackableDiscover:[data objectAtIndex:1] infoItem:nil];
         if (rv == REMOTEAPI_OK)
             [test setObject:[NSNumber numberWithInteger:TESTRESULT_SUCCESSFUL] forKey:testname];
         else
@@ -492,7 +492,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
 
         NSArray<NSString *> *data = [[test objectForKey:@"travelbug"] componentsSeparatedByString:@","];
 
-        RemoteAPIResult rv = [a.remoteAPI trackableGrab:[data objectAtIndex:1] infoViewer:nil iiDownload:0];
+        RemoteAPIResult rv = [a.remoteAPI trackableGrab:[data objectAtIndex:1] infoItem:nil];
         if (rv == REMOTEAPI_OK)
             [test setObject:[NSNumber numberWithInteger:TESTRESULT_SUCCESSFUL] forKey:testname];
         else
@@ -505,9 +505,9 @@ typedef NS_ENUM(NSInteger, TestResult) {
     [self reloadDataMainQueue];
 }
 
-- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier iiImport:(InfoItemID)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
+- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier infoItem:(InfoItem2 *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
-    NSLog(@"objectReadyToImport: %ld", identifier);
+    NSLog(@"objectReadyToImport: %ld", (long)identifier);
     @synchronized (self.tests) {
         __block NSMutableDictionary *test;
         [self.tests enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull t, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -525,7 +525,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
 
 - (void)remoteAPI_failed:(NSInteger)identifier
 {
-    NSLog(@"failed: %ld", identifier);
+    NSLog(@"failed: %ld", (long)identifier);
     @synchronized (self.tests) {
         __block NSMutableDictionary *test;
         [self.tests enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull t, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -543,7 +543,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
 
 - (void)remoteAPI_finishedDownloads:(NSInteger)identifier numberOfChunks:(NSInteger)numberOfChunks
 {
-    NSLog(@"finishedDownloads: %ld", identifier);
+    NSLog(@"finishedDownloads: %ld", (long)identifier);
 }
 
 @end

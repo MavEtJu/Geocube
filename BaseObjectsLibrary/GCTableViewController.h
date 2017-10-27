@@ -24,7 +24,7 @@
 @interface GCTableViewController : UITableViewController <MHTabBarControllerDelegate, SideMenuDelegate>
 
 @property (nonatomic, retain) LocalMenuItems *lmi;
-@property (nonatomic, retain) InfoViewer *infoView;
+@property (nonatomic, retain) InfoViewer2 *infoView2;
 @property (nonatomic        ) NSInteger numberOfItemsInRow;
 @property (nonatomic        ) BOOL hasCloseButton;
 
@@ -38,8 +38,8 @@
 - (void)viewWillTransitionToSize;
 
 // DownloadInfo window related
-- (void)hideInfoView;
-- (void)showInfoView;
-- (void)makeInfoView;
+- (void)hideInfoView2;
+- (void)showInfoView2;
+- (void)makeInfoView2;
 
 @end

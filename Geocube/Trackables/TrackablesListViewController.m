@@ -30,7 +30,7 @@
     self.tbs = [dbTrackable dbAll];
 }
 
-- (void)remoteAPILoadTrackables:(dbAccount *)a infoView:(InfoViewer *)iv infoItemID:(InfoItemID)iid
+- (void)remoteAPILoadTrackables:(dbAccount *)a infoItem:(InfoItem2 *)iid
 {
     return;
 }

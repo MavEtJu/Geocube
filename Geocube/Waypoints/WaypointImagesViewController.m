@@ -84,7 +84,7 @@ enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self makeInfoView];
+    [self makeInfoView2];
 }
 
 - (void)needsDownloadMenu
@@ -123,90 +123,88 @@ enum {
 
 - (void)downloadImage:(dbImage *)image
 {
-    [self showInfoView];
-    NSNumber *iiiImage = [NSNumber numberWithInteger:[self.infoView addImage]];
+    [self showInfoView2];
+    InfoItem2 *iiiImage = [self.infoView2 addImage];
     NSDictionary *d = @{@"iii": iiiImage, @"image": image };
     BACKGROUND(downloadImageBG:, d);
 }
 
 - (void)downloadImageBG:(NSDictionary *)dict
 {
-    InfoItemID iii = [[dict objectForKey:@"iii"]  integerValue];
+    InfoItem2 *iii = [dict objectForKey:@"iii"];
     dbImage *img = [dict objectForKey:@"image"];
-    [self.infoView setDescription:iii description:_(@"waypointimagesviewcontroller-Images")];
-    [self downloadImage:img infoViewer:self.infoView iiImage:iii];
-    [self.infoView setQueueSize:iii queueSize:0];
-    [self.infoView removeItem:iii];
-    if ([self.infoView hasItems] == NO) {
-        [self hideInfoView];
+    [iii changeDescription:_(@"waypointimagesviewcontroller-Images")];
+    [self downloadImage:img infoItem:iii];
+    [iii changeQueueSize:0];
+    [self.infoView2 removeImage:iii];
+    if ([self.infoView2 hasItems] == NO) {
+        [self hideInfoView2];
         [self needsDownloadMenu];
     }
 }
 
 - (void)downloadImages
 {
-    [self showInfoView];
-    NSNumber *iiiLogs = [NSNumber numberWithInteger:[self.infoView addImage]];
-    NSNumber *iiiCache = [NSNumber numberWithInteger:[self.infoView addImage]];
+    [self showInfoView2];
+    InfoItem2 *iiiLogs = [self.infoView2 addImage];
+    InfoItem2 *iiiCache = [self.infoView2 addImage];
     BACKGROUND(downloadImagesLogs:, iiiLogs);
     BACKGROUND(downloadImagesCache:, iiiCache);
 }
 
-- (void)downloadImagesLogs:(NSNumber *)iii_
+- (void)downloadImagesLogs:(InfoItem2 *)iii
 {
-    InfoItemID iii = [iii_ integerValue];
-    [self.infoView setDescription:iii description:_(@"waypointimagesviewcontroller-Images from the logs")];
+    [iii changeDescription:_(@"waypointimagesviewcontroller-Images from the logs")];
 
     [self.logImages enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.infoView setQueueSize:iii queueSize:[self.logImages count] - idx];
+        [iii changeQueueSize:[self.logImages count] - idx];
         if ([img imageHasBeenDowloaded] == NO) {
-            [self downloadImage:img infoViewer:self.infoView iiImage:iii];
+            [self downloadImage:img infoItem:iii];
         }
     }];
 
-    [self.infoView setQueueSize:iii queueSize:0];
-    [self.infoView removeItem:iii];
-    if ([self.infoView hasItems] == NO) {
-        [self hideInfoView];
+    [iii changeQueueSize:0];
+    [self.infoView2 removeImage:iii];
+    if ([self.infoView2 hasItems] == NO) {
+        [self hideInfoView2];
         [self needsDownloadMenu];
     }
 }
 
-- (void)downloadImagesCache:(NSNumber *)iii_
+- (void)downloadImagesCache:(InfoItem2 *)iii
 {
-    InfoItemID iii = [iii_ integerValue];
-    [self.infoView setDescription:iii description:_(@"waypointimagesviewcontroller-Images from the waypoint")];
+    [iii changeDescription:_(@"waypointimagesviewcontroller-Images from the waypoint")];
 
     [self.cacheImages enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.infoView setQueueSize:iii queueSize:[self.cacheImages count] - idx];
+        [iii changeQueueSize:[self.cacheImages count] - idx];
         if ([img imageHasBeenDowloaded] == NO)
-            [self downloadImage:img infoViewer:self.infoView iiImage:iii];
+            [self downloadImage:img infoItem:iii];
     }];
 
-    [self.infoView setQueueSize:iii queueSize:0];
-    [self.infoView removeItem:iii];
+    [iii changeQueueSize:0];
+    [self.infoView2 removeImage:iii];
 
-    if ([self.infoView hasItems] == NO) {
-        [self hideInfoView];
+    if ([self.infoView2 hasItems] == NO) {
+        [self hideInfoView2];
         [self needsDownloadMenu];
     }
 }
 
-- (void)downloadImage:(dbImage *)image infoViewer:(InfoViewer *)iv iiImage:(InfoItemID)iii
+- (void)downloadImage:(dbImage *)image infoItem:(InfoItem2 *)iii
 {
     NSURL *url = [NSURL URLWithString:image.url];
     GCURLRequest *req = [GCURLRequest requestWithURL:url];
 
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
-    NSData *data = [downloadManager downloadSynchronous:req returningResponse:&response error:&error infoViewer:iv iiDownload:iii];
+    NSData *data = [downloadManager downloadSynchronous:req returningResponse:&response error:&error infoItem:iii];
 
     if (response.statusCode == 301) {
         url = [NSURL URLWithString:[response.allHeaderFields objectForKey:@"Location"]];
         req = [GCURLRequest requestWithURL:url];
         response = nil;
         error = nil;
-        data = [downloadManager downloadSynchronous:req returningResponse:&response error:&error infoViewer:iv iiDownload:iii];
+        data = [downloadManager downloadSynchronous:req returningResponse:&response error:&error infoItem:iii];
     }
 
     if (data == nil || response.statusCode != 200)

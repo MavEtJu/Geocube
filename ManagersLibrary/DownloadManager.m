@@ -38,15 +38,15 @@
 
 /////////////////////////////////////////////////////////////////////////
 
-- (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid;
+- (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem infoItem:(InfoItem2 *)iid
 {
     NSMutableDictionary *req = [NSMutableDictionary dictionaryWithCapacity:10];
     [req setObject:urlRequest forKey:@"urlRequest"];
     [req setObject:sem forKey:@"semaphore"];
-    [req setObject:(iv == nil ? [NSNull null] : iv) forKey:@"infoViewer"];
-    [req setObject:[NSNumber numberWithInteger:iid] forKey:@"iid"];
-    if (IS_NULL(iv) == NO)
-        [iv setURL:iid url:urlRequest.URL.absoluteString];
+    if (IS_NULL(iid) == NO) {
+        [req setObject:iid forKey:@"infoItem"];
+        [iid changeURL:urlRequest.URL.absoluteString];
+    }
 
     NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     [req setObject:sessionConfiguration forKey:@"sessionConfiguration"];
@@ -71,9 +71,9 @@
     return req;
 }
 
-- (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error infoItem:(InfoItem2 *)iid
 {
-    return [self sendSynchronousRequest:urlRequest returningResponse:response error:error infoViewer:iv iiDownload:iid];
+    return [self sendSynchronousRequest:urlRequest returningResponse:response error:error infoItem:iid];
 }
 
 - (NSData *)downloadImage:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error
@@ -105,10 +105,10 @@
     return result;
 }
 
-- (NSData *)sendSynchronousRequest:(NSURLRequest *)urlRequest returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (NSData *)sendSynchronousRequest:(NSURLRequest *)urlRequest returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr infoItem:(InfoItem2 *)iid
 {
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem infoViewer:iv iiDownload:iid];
+    NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem infoItem:iid];
     dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
     NSData *data = [retDict objectForKey:@"data"];
@@ -139,12 +139,11 @@
                 // Free session information, prevent memory leak
                 [session finishTasksAndInvalidate];
 
-                InfoItemID iid = [[req objectForKey:@"iid"] integerValue];
-                InfoViewer *iv = [req objectForKey:@"infoViewer"];
-                if (iv != nil && [iv isKindOfClass:[NSNull class]] == NO) {
+                InfoItem2 *iid = [req objectForKey:@"infoItem"];
+                if (IS_NULL(iid) == NO) {
                     NSMutableData *d = [req objectForKey:@"data"];
-                    [iv setBytesCount:iid count:[d length]];
-                    [iv setBytesTotal:iid total:[d length]];
+                    [iid changeBytesCount:[d length]];
+                    [iid changeBytesTotal:[d length]];
                 }
 
                 *stop = YES;
@@ -169,10 +168,9 @@
                 NSMutableData *d = [req objectForKey:@"data"];
                 [d appendData:data];
 
-                InfoItemID iid = [[req objectForKey:@"iid"] integerValue];
-                InfoViewer *iv = [req objectForKey:@"infoViewer"];
-                if (iv != nil && [iv isKindOfClass:[NSNull class]] == NO)
-                    [iv setBytesCount:iid count:[d length]];
+                InfoItem2 *iid = [req objectForKey:@"infoItem"];
+                if (IS_NULL(iid) == NO)
+                    [iid changeBytesCount:[d length]];
 
                 *stop = YES;
                 return;
@@ -196,10 +194,9 @@
                 completionHandler(NSURLSessionResponseAllow);
                 [req setObject:response forKey:@"response"];
 
-                InfoViewer *iv = [req objectForKey:@"infoViewer"];
-                InfoItemID iid = [[req objectForKey:@"iid"] integerValue];
-                if (iv != nil && [iv isKindOfClass:[NSNull class]] == NO)
-                    [iv setBytesTotal:iid total:(long)response.expectedContentLength];
+                InfoItem2 *iid = [req objectForKey:@"infoItem"];
+                if (IS_NULL(iid) == NO)
+                    [iid changeBytesTotal:(long)response.expectedContentLength];
 
                 *stop = YES;
                 return;

@@ -65,7 +65,7 @@ enum {
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 20;
 
-    [self makeInfoView];
+    [self makeInfoView2];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -160,10 +160,10 @@ enum {
 
 - (void)menuReloadWaypoints
 {
-    [self showInfoView];
+    [self showInfoView2];
 
     [self.processing clearAll];
-    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoViewer:nil iiImport:0];
+    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoItem:nil];
 
     [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull account, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMutableArray<NSString *> *wps = [NSMutableArray arrayWithCapacity:[self.waypoints count]];
@@ -194,14 +194,14 @@ enum {
     } while ([self.processing hasIdentifiers] == YES);
     NSLog(@"PROCESSING: Nothing pending");
 
-    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoViewer:nil iiImport:0];
+    [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoItem:nil];
 
     self.waypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAllByFlag:self.flag]];
     [waypointManager needsRefreshAll];
     [self reloadDataMainQueue];
     [audioManager playSound:PLAYSOUND_IMPORTCOMPLETE];
 
-    [self hideInfoView];
+    [self hideInfoView2];
 }
 
 - (void)runReloadWaypoints:(NSDictionary *)dict
@@ -209,23 +209,23 @@ enum {
     NSArray<NSString *> *wps = [dict objectForKey:@"waypoints"];
     dbAccount *account = [dict objectForKey:@"account"];
 
-    InfoItemID iid = [self.infoView addDownload];
-    [self.infoView setChunksTotal:iid total:[wps count]];
-    [self.infoView setDescription:iid description:[NSString stringWithFormat:_(@"listtemplateviewcontroller-Downloading for %@"), account.site]];
+    InfoItem2 *iid = [self.infoView2 addDownload];
+    [iid changeChunksTotal:[wps count]];
+    [iid changeDescription:[NSString stringWithFormat:_(@"listtemplateviewcontroller-Downloading for %@"), account.site]];
 
-    NSInteger rv = [account.remoteAPI loadWaypointsByCodes:wps infoViewer:self.infoView iiDownload:iid identifier:(long)account._id group:dbc.groupLastImport callback:self];
+    NSInteger rv = [account.remoteAPI loadWaypointsByCodes:wps infoItem:iid identifier:(long)account._id group:dbc.groupLastImport callback:self];
     if (rv != REMOTEAPI_OK)
         [MyTools messageBox:self header:_(@"listtemplateviewcontroller-Reload waypoints") text:_(@"listtemplateviewcontroller-Update failed") error:account.remoteAPI.lastError];
-    [self.infoView removeItem:iid];
+    [self.infoView2 removeDownload:iid];
 }
 
-- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier iiImport:(InfoItemID)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
+- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier infoItem:(InfoItem2 *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
     NSLog(@"PROCESSING: Downloaded %ld", (long)identifier);
     [self.processing increaseDownloadedChunks:identifier];
 
-    [importManager process:o group:group account:account options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoViewer:self.infoView iiImport:iii];
-    [self.infoView removeItem:iii];
+    [importManager process:o group:group account:account options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoItem:iii];
+    [self.infoView2 removeImport:iii];
 
     NSLog(@"PROCESSING: Processed %ld", (long)identifier);
     [self.processing increaseProcessedChunks:identifier];

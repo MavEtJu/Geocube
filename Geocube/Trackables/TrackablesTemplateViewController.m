@@ -27,7 +27,7 @@
 
 @implementation TrackablesTemplateViewController
 
-- NEEDS_OVERLOADING_VOID(remoteAPILoadTrackables:(dbAccount *)a infoView:(InfoViewer *)iv infoItemID:(InfoItemID)iid)
+- NEEDS_OVERLOADING_VOID(remoteAPILoadTrackables:(dbAccount *)a infoItem:(InfoItem2 *)iid)
 - NEEDS_OVERLOADING_VOID(loadTrackables)
 - NEEDS_OVERLOADING_VOID(adjustMenus)
 
@@ -63,7 +63,7 @@
 
     [self refreshTrackables:nil];
 
-    [self makeInfoView];
+    [self makeInfoView2];
 
     self.lmi = [[LocalMenuItems alloc] init:trackablesMenuMax];
     [self.lmi addItem:trackablesMenuUpdate label:_(@"trackablestemplateviewcontroller-Update List")];
@@ -143,9 +143,9 @@
 
 - (void)menuUpdate_BG
 {
-    [self showInfoView];
-    InfoItemID iid = [self.infoView addDownload];
-    [self.infoView setDescription:iid description:_(@"trackablestemplateviewcontroller-Download trackables information")];
+    [self showInfoView2];
+    InfoItem2 *iid = [self.infoView2 addDownload];
+    [iid changeDescription:_(@"trackablestemplateviewcontroller-Download trackables information")];
 
     [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         if (a.remoteAPI.supportsTrackablesRetrieve == YES && a.canDoRemoteStuff == YES) {
@@ -155,15 +155,15 @@
                 tb.waypoint_name = nil;
                 [tb dbUpdate];
             }];
-            [self remoteAPILoadTrackables:a infoView:self.infoView infoItemID:iid];
+            [self remoteAPILoadTrackables:a infoItem:iid];
             [self refreshTrackables:nil];
             [self reloadDataMainQueue];
             *stop = YES;
         }
     }];
 
-    [self.infoView removeItem:iid];
-    [self hideInfoView];
+    [self.infoView2 removeDownload:iid];
+    [self hideInfoView2];
 }
 
 - (void)menuDiscover
@@ -187,7 +187,7 @@
                              [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
                                  if (a.remoteAPI.supportsTrackablesLog == NO || a.canDoRemoteStuff == NO)
                                      return;
-                                 rv = [a.remoteAPI trackableDiscover:value infoViewer:nil iiDownload:0];
+                                 rv = [a.remoteAPI trackableDiscover:value infoItem:nil];
                                  tried = YES;
                                  *stop = YES;
                                  error = a.remoteAPI.lastError;
@@ -239,7 +239,7 @@
                              [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
                                  if (a.remoteAPI.supportsTrackablesLog == NO || a.canDoRemoteStuff == NO)
                                      return;
-                                 rv = [a.remoteAPI trackableGrab:value infoViewer:nil iiDownload:0];
+                                 rv = [a.remoteAPI trackableGrab:value infoItem:nil];
                                  tried = YES;
                                  *stop = YES;
                                  error = a.remoteAPI.lastError;
@@ -296,7 +296,7 @@
                              [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
                                  if (a.remoteAPI.supportsTrackablesLog == NO || a.canDoRemoteStuff == NO)
                                      return;
-                                 rv = [a.remoteAPI trackableDrop:tb waypoint:wptname infoViewer:nil iiDownload:0];
+                                 rv = [a.remoteAPI trackableDrop:tb waypoint:wptname infoItem:0];
                                  tried = YES;
                                  *stop = YES;
                                  error = a.remoteAPI.lastError;

@@ -32,9 +32,9 @@
     self.tbs = [dbTrackable dbAllInventory];
 }
 
-- (void)remoteAPILoadTrackables:(dbAccount *)a infoView:(InfoViewer *)iv infoItemID:(InfoItemID)iid
+- (void)remoteAPILoadTrackables:(dbAccount *)a infoItem:(InfoItem2 *)iid
 {
-    [a.remoteAPI trackablesInventory:iv iiDownload:iid];
+    [a.remoteAPI trackablesInventory:iid];
 }
 
 - (void)adjustMenus

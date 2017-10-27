@@ -93,7 +93,7 @@
                 return __failure__; \
             }
 
-- (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict infoItem:(InfoItem2 *)iid
 /* Returns:
  * waypoints_found
  * waypoints_notfound
@@ -111,9 +111,9 @@
     [ret setValue:@"" forKey:@"recommendations_given"];
     [ret setValue:@"" forKey:@"recommendations_received"];
 
-    [iv setChunksTotal:iid total:1];
-    [iv setChunksCount:iid count:1];
-    GCDictionaryOKAPI *dict = [self.okapi services_users_byUsername:username infoViewer:iv iiDownload:iid];
+    [iid changeChunksTotal:1];
+    [iid changeChunksCount:1];
+    GCDictionaryOKAPI *dict = [self.okapi services_users_byUsername:username infoItem:iid];
     OKAPI_CHECK_STATUS(dict, @"UserStatistics", REMOTEAPI_USERSTATISTICS_LOADFAILED);
 
     [self getNumber:ret from:dict outKey:@"waypoints_found" inKey:@"caches_found"];
@@ -125,9 +125,9 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables coordinates:(CLLocationCoordinate2D)coordinates infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid
+- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables coordinates:(CLLocationCoordinate2D)coordinates infoItem:(InfoItem2 *)iid
 {
-    GCDictionaryOKAPI *json = [self.okapi services_logs_submit:logstring.logString waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite infoViewer:iv iiDownload:iid];
+    GCDictionaryOKAPI *json = [self.okapi services_logs_submit:logstring.logString waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite infoItem:iid];
     OKAPI_CHECK_STATUS(json, @"CreateLogNote", REMOTEAPI_CREATELOG_LOGFAILED);
 
     OKAPI_GET_VALUE(json, NSNumber, success, @"success", @"CreateLogNote", REMOTEAPI_CREATELOG_LOGFAILED);
@@ -140,15 +140,15 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoItem:(InfoItem2 *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     dbAccount *a = waypoint.account;
     dbGroup *g = dbc.groupLiveImport;
 
-    [iv setChunksTotal:iid total:1];
-    [iv setChunksCount:iid count:1];
+    [iid changeChunksTotal:1];
+    [iid changeChunksCount:1];
 
-    GCDictionaryOKAPI *json = [self.okapi services_caches_geocache:waypoint.wpt_name infoViewer:iv iiDownload:iid];
+    GCDictionaryOKAPI *json = [self.okapi services_caches_geocache:waypoint.wpt_name infoItem:iid];
     OKAPI_CHECK_STATUS_CB(json, @"loadWaypoint", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
@@ -156,15 +156,15 @@
     [d setObject:as forKey:@"waypoints"];
     GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
 
-    InfoItemID iii = [iv addImport:NO];
-    [iv setDescription:iii description:IMPORTMSG];
-    [callback remoteAPI_objectReadyToImport:identifier iiImport:iii object:d2 group:g account:a];
+    InfoItem2 *iii = [iid.infoViewer addImport];
+    [iii changeDescription:IMPORTMSG];
+    [callback remoteAPI_objectReadyToImport:identifier infoItem:iii object:d2 group:g account:a];
 
     [callback remoteAPI_finishedDownloads:identifier numberOfChunks:1];
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoViewer:(InfoViewer *)iv iiDownload:(InfoItemID)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoItem:(InfoItem2 *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     if ([self.account canDoRemoteStuff] == NO) {
         [self setAPIError:_(@"remoteapiokapi-[OKAPI] loadWaypointsByBoundingBox: remote API is disabled") error:REMOTEAPI_APIDISABLED];
@@ -172,10 +172,10 @@
         return REMOTEAPI_APIDISABLED;
     }
 
-    [iv setChunksTotal:iid total:2];
-    [iv setChunksCount:iid count:1];
+    [iid changeChunksTotal:2];
+    [iid changeChunksCount:1];
 
-    GCDictionaryOKAPI *json = [self.okapi services_caches_search_bbox:bb infoViewer:iv iiDownload:iid];
+    GCDictionaryOKAPI *json = [self.okapi services_caches_search_bbox:bb infoItem:iid];
     OKAPI_CHECK_STATUS_CB(json, @"loadWaypointsByBoundingBox", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
     OKAPI_GET_VALUE_CB(json, NSArray, wpcodes, @"results", @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
@@ -184,8 +184,8 @@
         return REMOTEAPI_OK;
     }
 
-    [iv setChunksCount:iid count:2];
-    json = [self.okapi services_caches_geocaches:wpcodes infoViewer:iv iiDownload:iid];
+    [iid changeChunksCount:2];
+    json = [self.okapi services_caches_geocaches:wpcodes infoItem:iid];
     OKAPI_CHECK_STATUS_CB(json, @"loadWaypoints", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
 
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:10];
@@ -197,9 +197,9 @@
 
     GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
 
-    InfoItemID iii = [iv addImport:NO];
-    [iv setDescription:iii description:IMPORTMSG];
-    [callback remoteAPI_objectReadyToImport:identifier iiImport:iii object:d2 group:nil account:self.account];
+    InfoItem2 *iii = [iid.infoViewer addImport];
+    [iii changeDescription:IMPORTMSG];
+    [callback remoteAPI_objectReadyToImport:identifier infoItem:iii object:d2 group:nil account:self.account];
 
     [callback remoteAPI_finishedDownloads:identifier numberOfChunks:1];
     return REMOTEAPI_OK;
