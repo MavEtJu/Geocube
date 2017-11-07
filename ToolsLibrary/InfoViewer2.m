@@ -203,6 +203,7 @@
             break;
     }
     self.isRefreshing = NO;
+    self.stopUpdating = NO;
 }
 
 - (void)adjustRects
