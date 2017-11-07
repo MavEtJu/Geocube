@@ -216,7 +216,7 @@ enum {
     NSInteger rv = [account.remoteAPI loadWaypointsByCodes:wps infoItem:iid identifier:(long)account._id group:dbc.groupLastImport callback:self];
     if (rv != REMOTEAPI_OK)
         [MyTools messageBox:self header:_(@"listtemplateviewcontroller-Reload waypoints") text:_(@"listtemplateviewcontroller-Update failed") error:account.remoteAPI.lastError];
-    [self.infoView2 removeDownload:iid];
+    [iid removeFromInfoViewer];
 }
 
 - (void)remoteAPI_objectReadyToImport:(NSInteger)identifier infoItem:(InfoItem2 *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
@@ -225,7 +225,7 @@ enum {
     [self.processing increaseDownloadedChunks:identifier];
 
     [importManager process:o group:group account:account options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoItem:iii];
-    [self.infoView2 removeImport:iii];
+    [iii removeFromInfoViewer];
 
     NSLog(@"PROCESSING: Processed %ld", (long)identifier);
     [self.processing increaseProcessedChunks:identifier];

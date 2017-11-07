@@ -73,6 +73,13 @@
 
     self.labelDescription.backgroundColor = [UIColor yellowColor];
     self.labelURL.backgroundColor = [UIColor yellowColor];
+    self.labelQueueSize.backgroundColor = [UIColor yellowColor];
+    self.labelBytes.backgroundColor = [UIColor yellowColor];
+    self.labelChunks.backgroundColor = [UIColor yellowColor];
+    self.labelLineObject.backgroundColor = [UIColor yellowColor];
+    self.labelWaypoints.backgroundColor = [UIColor yellowColor];
+    self.labelLogs.backgroundColor = [UIColor yellowColor];
+    self.labelTrackables.backgroundColor = [UIColor yellowColor];
 
     self.height = self.labelURL.font.lineHeight + 1;
     self.expanded = YES;
@@ -86,7 +93,7 @@
     self.changedLineObjectTotal = -1;
     self.changedWaypointsTotal = -1;
     self.changedWaypointsNew = -1;
-    self.self.changedLogsTotal = -1;
+    self.changedLogsTotal = -1;
     self.changedLogsNew = -1;
     self.changedTrackablesNew = -1;
     self.changedTrackablesTotal = -1;
@@ -104,6 +111,11 @@
 - (BOOL)isExpanded
 {
     return self.expanded;
+}
+
+- (void)removeFromInfoViewer
+{
+    [self.infoViewer removeItem:self];
 }
 
 - (void)changeTheme
@@ -169,8 +181,9 @@ CHANGE(TrackablesNew)
 
 - (void)sizeToFit
 {
-    if (self.needsRefresh == YES) {
+    if (self.needsRefresh == YES || self.infoViewer.needsRefresh == YES) {
         self.needsRefresh = NO;
+        self.infoViewer.needsRefresh = NO;
 
         if (self.changedDescription != nil) {
             self.labelDescription.text = self.changedDescription;
@@ -190,14 +203,14 @@ CHANGE(TrackablesNew)
         }
         if (self.changedChunksCount != -1 || self.changedChunksTotal != -1) {
             if (self.changedChunksTotal >= 0)
-                self.currentChunksTotal = 0;
+                self.currentChunksTotal = self.changedChunksTotal;
             if (self.changedChunksCount >= 0)
-                self.currentChunksCount = 0;
+                self.currentChunksCount = self.changedChunksCount;
 
             if (self.currentChunksTotal == 0)
                 self.labelChunks.text = [NSString stringWithFormat:_(@"Chunks: %ld"), (long)self.currentChunksCount];
             else
-                self.labelChunks.text = [NSString stringWithFormat:_(@"Chunks: %ld of %ld (%@%%)"),
+                self.labelChunks.text = [NSString stringWithFormat:_(@"Chunks: %ld of %ld (%@)"),
                                         (long)self.currentChunksCount,
                                         (long)self.currentChunksTotal,
                                         [MyTools nicePercentage:self.currentChunksCount total:self.currentChunksTotal]
@@ -208,14 +221,14 @@ CHANGE(TrackablesNew)
         }
         if (self.changedBytesCount != -1 || self.changedBytesTotal != -1) {
             if (self.changedBytesTotal >= 0)
-                self.currentBytesTotal = 0;
+                self.currentBytesTotal = self.changedBytesTotal;
             if (self.changedBytesCount >= 0)
-                self.currentBytesCount = 0;
+                self.currentBytesCount = self.changedBytesCount;
 
             if (self.currentBytesTotal == 0)
                 self.labelBytes.text = [NSString stringWithFormat:_(@"Bytes: %@"), [MyTools niceFileSize:self.currentBytesCount]];
             else
-                self.labelBytes.text = [NSString stringWithFormat:_(@"Bytes: %@ of %@ (%@%%)"),
+                self.labelBytes.text = [NSString stringWithFormat:_(@"Bytes: %@ of %@ (%@)"),
                                         [MyTools niceFileSize:self.currentBytesCount],
                                         [MyTools niceFileSize:self.currentBytesTotal],
                                         [MyTools nicePercentage:self.currentBytesCount total:self.currentBytesTotal]
@@ -226,9 +239,9 @@ CHANGE(TrackablesNew)
         }
         if (self.changedLineObjectCount >= 0 || self.changedLineObjectTotal >= 0) {
             if (self.changedLineObjectCount >= 0)
-                self.changedLineObjectCount = 0;
+                self.changedLineObjectCount = self.changedLineObjectCount;
             if (self.changedLineObjectTotal >= 0)
-                self.changedLineObjectTotal = 0;
+                self.changedLineObjectTotal = self.changedLineObjectTotal;
 
             NSString *prefix;
             if (self.isLines == YES)
@@ -239,7 +252,7 @@ CHANGE(TrackablesNew)
             if (self.currentLineObjectTotal == 0)
                 self.labelLineObject.text = [NSString stringWithFormat:_(@"%@: %ld"), prefix, (long)self.currentLineObjectTotal];
             else
-                self.labelLineObject.text = [NSString stringWithFormat:_(@"%@: %ld of %ld %@%%)"), prefix,
+                self.labelLineObject.text = [NSString stringWithFormat:_(@"%@: %ld of %ld %@)"), prefix,
                                              (long)self.currentLineObjectCount,
                                              (long)self.currentLineObjectTotal,
                                              [MyTools nicePercentage:self.currentLineObjectCount total:self.currentLineObjectTotal]
@@ -250,9 +263,9 @@ CHANGE(TrackablesNew)
         }
         if (self.changedWaypointsNew >= 0 || self.changedWaypointsTotal >= 0) {
             if (self.changedWaypointsNew >= 0)
-                self.changedWaypointsNew = 0;
+                self.changedWaypointsNew = self.changedWaypointsNew;
             if (self.changedWaypointsTotal >= 0)
-                self.changedWaypointsTotal = 0;
+                self.changedWaypointsTotal = self.changedWaypointsTotal;
 
             if (self.currentWaypointsNew == 0)
                 self.labelWaypoints.text = [NSString stringWithFormat:_(@"Waypoints: %ld"), (long)self.currentWaypointsTotal];
@@ -267,9 +280,9 @@ CHANGE(TrackablesNew)
         }
         if (self.changedLogsNew >= 0 || self.changedLogsTotal >= 0) {
             if (self.changedLogsNew >= 0)
-                self.changedLogsNew = 0;
+                self.changedLogsNew = self.changedLogsNew;
             if (self.changedLogsTotal >= 0)
-                self.changedLogsTotal = 0;
+                self.changedLogsTotal = self.changedLogsTotal;
 
             if (self.currentLogsNew == 0)
                 self.labelLogs.text = [NSString stringWithFormat:_(@"Logs: %ld"), (long)self.currentLogsTotal];
@@ -284,9 +297,9 @@ CHANGE(TrackablesNew)
         }
         if (self.changedTrackablesNew >= 0 || self.changedTrackablesTotal >= 0) {
             if (self.changedTrackablesNew >= 0)
-                self.changedTrackablesNew = 0;
+                self.changedTrackablesNew = self.changedTrackablesNew;
             if (self.changedTrackablesTotal >= 0)
-                self.changedTrackablesTotal = 0;
+                self.changedTrackablesTotal = self.changedTrackablesTotal;
 
             if (self.currentTrackablesNew == 0)
                 self.labelTrackables.text = [NSString stringWithFormat:_(@"Trackables: %ld"), (long)self.currentTrackablesTotal];

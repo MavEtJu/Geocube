@@ -250,7 +250,7 @@ enum {
     [self showActivity:NO];
     [self saveDataToFile:data response:response error:error];
 
-    [self.infoView2 removeDownload:iid];
+    [iid removeFromInfoViewer];
     [self hideInfoView2];
 }
 

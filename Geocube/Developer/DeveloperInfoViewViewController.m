@@ -31,6 +31,9 @@
     self.ii1 = [self.infoView2 addDownload];
     self.ii2 = [self.infoView2 addDownload];
     self.ii3 = [self.infoView2 addImport];
+
+    [self.ii2 changeBytesTotal:100];
+
     [self.infoView2 show];
 
     BACKGROUND(animate, nil);
@@ -44,7 +47,7 @@
         if (i % 10 == 0) {
             self.ii1 = [self.infoView2 addDownload];
         } else if (i % 10 == 5) {
-            [self.infoView2 removeDownload:self.ii1];
+            [self.ii1 removeFromInfoViewer];
             self.ii1 = nil;
         }
 
@@ -54,11 +57,11 @@
         [self.ii1 changeURL:[NSString stringWithFormat:@"1 gg jURL foo: %@", [NSNumber numberWithInteger:rand()]]];
         [self.ii1 changeDescription:[NSString stringWithFormat:@"1 gg jDescription foo: %@", [NSNumber numberWithInteger:rand()]]];
 
+        [self.ii2 changeBytesCount:rand() % 100];
         [self.ii2 changeURL:[NSString stringWithFormat:@"2 gg jURL foo: %@", [NSNumber numberWithInteger:rand()]]];
 
         [self.ii3 changeDescription:[NSString stringWithFormat:@"3 gg jDescription foo: %@", [NSNumber numberWithInteger:rand()]]];
 
-        [self.infoView2 show];
         [NSThread sleepForTimeInterval:1];
     }
 }

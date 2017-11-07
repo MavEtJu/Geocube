@@ -162,7 +162,7 @@
         }
     }];
 
-    [self.infoView2 removeDownload:iid];
+    [iid removeFromInfoViewer];
     [self hideInfoView2];
 }
 

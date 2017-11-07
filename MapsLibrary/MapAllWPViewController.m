@@ -247,7 +247,7 @@ enum {
 
     [self.processing increaseProcessedChunks:identifier];
     NSLog(@"PROCESSING: Processed #%ld - %@", (long)identifier, [self.processing description:identifier]);
-    [self.infoView2 removeImport:iii];
+    [iii removeFromInfoViewer];
 
     if ([self.processing hasAllProcessed:identifier] == YES) {
         NSLog(@"PROCESSING: All seen for #%ld", (long)identifier);
@@ -265,7 +265,7 @@ enum {
 
     NSInteger rv = [account.remoteAPI loadWaypointsByBoundingBox:bb infoItem:iid identifier:(long)account._id callback:self];
 
-   [self.infoView2 removeDownload:iid];
+    [iid removeFromInfoViewer];
 
     if (rv != REMOTEAPI_OK) {
         [MyTools messageBox:self header:account.site text:_(@"mapallwpviewcontroller-Unable to retrieve the data") error:account.remoteAPI.lastError];

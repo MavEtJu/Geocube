@@ -136,7 +136,7 @@ enum {
     [iii changeDescription:_(@"waypointimagesviewcontroller-Images")];
     [self downloadImage:img infoItem:iii];
     [iii changeQueueSize:0];
-    [self.infoView2 removeImage:iii];
+    [iii removeFromInfoViewer];
     if ([self.infoView2 hasItems] == NO) {
         [self hideInfoView2];
         [self needsDownloadMenu];
@@ -164,7 +164,7 @@ enum {
     }];
 
     [iii changeQueueSize:0];
-    [self.infoView2 removeImage:iii];
+    [iii removeFromInfoViewer];
     if ([self.infoView2 hasItems] == NO) {
         [self hideInfoView2];
         [self needsDownloadMenu];
@@ -182,7 +182,7 @@ enum {
     }];
 
     [iii changeQueueSize:0];
-    [self.infoView2 removeImage:iii];
+    [iii removeFromInfoViewer];
 
     if ([self.infoView2 hasItems] == NO) {
         [self hideInfoView2];

@@ -263,7 +263,7 @@ enum {
     if (rv != REMOTEAPI_OK)
         [MyTools messageBox:self header:_(@"Error") text:_(@"queriestemplateviewcontroller-Unable to retrieve the data from the query") error:self.account.remoteAPI.lastError];
 
-    [self.infoView2 removeDownload:iid];
+    [iid removeFromInfoViewer];
 }
 
 - (void)remoteAPI_objectReadyToImport:(NSInteger)identifier infoItem:(InfoItem2 *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
@@ -289,7 +289,7 @@ enum {
     NSInteger identifier = [[dict objectForKey:@"identifier"] integerValue];
 
     [importManager process:o group:g account:a options:IMPORTOPTION_NOPRE|IMPORTOPTION_NOPOST infoItem:iii];
-    [self.infoView2 removeImport:iii];
+    [iii removeFromInfoViewer];
 
     NSLog(@"PROCESSING: Processed %ld", (long)identifier);
     [self.processing increaseProcessedChunks:identifier];

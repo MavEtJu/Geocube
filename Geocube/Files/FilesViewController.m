@@ -387,7 +387,7 @@ enum {
         [MyTools messageBox:self header:_(@"filesviewcontroller-Import successful") text:_(@"filesviewcontroller-The import was successful.")];
     };
 
-    [self.infoView2 removeImport:iii];
+    [iii removeFromInfoViewer];
     [self hideInfoView2];
 }
 
@@ -523,7 +523,7 @@ enum {
 
     [importManager process:sfn group:group account:account options:options infoItem:iii];
 
-    [self.infoView2 removeImport:iii];
+    [iii removeFromInfoViewer];
     if ([self.infoView2 hasItems] == NO) {
         [self hideInfoView2];
         [audioManager playSound:PLAYSOUND_IMPORTCOMPLETE];

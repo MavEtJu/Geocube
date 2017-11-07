@@ -238,7 +238,7 @@ enum {
     NSInteger retValue = [a.remoteAPI UserStatistics:&d infoItem:iid];
 
     if (retValue != REMOTEAPI_OK) {
-        [self.infoView2 removeDownload:iid];
+        [iid removeFromInfoViewer];
         if ([self.infoView2 hasItems] == NO)
             [self hideInfoView2];
 
@@ -256,7 +256,7 @@ enum {
     [ad removeObjectForKey:@"status"];
     [self updateTotals:ad];
 
-    [self.infoView2 removeDownload:iid];
+    [iid removeFromInfoViewer];
     if ([self.infoView2 hasItems] == NO)
         [self hideInfoView2];
     [self reloadDataMainQueue];

@@ -898,7 +898,7 @@ enum {
     self.chunksProcessed = 0;
     NSInteger retValue = [self.waypoint.account.remoteAPI loadWaypoint:self.waypoint infoItem:iid identifier:0 callback:self];
 
-    [self.infoView2 removeDownload:iid];
+    [iid removeFromInfoViewer];
 
     if (retValue != REMOTEAPI_OK)
         [MyTools messageBox:self header:_(@"waypointviewcontroller-Update failed") text:_(@"waypointviewcontroller-Unable to update the waypoint.") error:self.waypoint.account.remoteAPI.lastError];
@@ -911,7 +911,7 @@ enum {
     }
 
     [importManager process:o group:group account:account options:IMPORTOPTION_NONE infoItem:iii];
-    [self.infoView2 removeImport:iii];
+    [iii removeFromInfoViewer];
 
     @synchronized (self) {
         self.chunksProcessed++;

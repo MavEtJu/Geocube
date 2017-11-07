@@ -15,6 +15,7 @@
 
 - (void)changeExpanded:(BOOL)isExpanded;
 - (BOOL)isExpanded;
+- (void)removeFromInfoViewer;
 
 - (void)changeDescription:(NSString *)desc;
 - (void)changeURL:(NSString *)url;

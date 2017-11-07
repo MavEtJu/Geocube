@@ -14,9 +14,7 @@
 - (InfoItem2 *)addImport;
 - (InfoItem2 *)addImage;
 
-- (void)removeDownload:(InfoItem2 *)download;
-- (void)removeImport:(InfoItem2 *)import;
-- (void)removeImage:(InfoItem2 *)image;
+- (void)removeItem:(InfoItem2 *)item;
 
 - (void)show;
 - (void)hide;

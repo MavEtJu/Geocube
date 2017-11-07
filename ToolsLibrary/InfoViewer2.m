@@ -15,7 +15,12 @@
 @property (nonatomic, retain) NSMutableArray<InfoItem2 *> *images;
 @property (nonatomic, retain) GCLabelNormalText *headerImages;
 
+@property (nonatomic, retain) NSMutableArray<InfoItem2 *> *removed;
+@property (nonatomic, retain) NSMutableArray<InfoItem2 *> *added;
+
 @property (nonatomic        ) BOOL isVisible;
+@property (nonatomic        ) BOOL isRefreshing;
+@property (nonatomic        ) BOOL stopUpdating;
 
 @end
 
@@ -47,98 +52,99 @@
     self.downloads = [NSMutableArray arrayWithCapacity:5];
     self.imports = [NSMutableArray arrayWithCapacity:5];
     self.images = [NSMutableArray arrayWithCapacity:5];
+    self.removed = [NSMutableArray arrayWithCapacity:5];
+    self.added = [NSMutableArray arrayWithCapacity:5];
 
     return self;
 }
 
 - (InfoItem2 *)addDownload
 {
-    InfoItem2 *ii = [[[NSBundle mainBundle] loadNibNamed:XIB_INFOITEMVIEW2 owner:self options:nil] firstObject];
+    InfoItem2 *ii;
+    @synchronized (self) {
+        ii = [[[NSBundle mainBundle] loadNibNamed:XIB_INFOITEMVIEW2 owner:self options:nil] firstObject];
+    }
     ii.infoViewer = self;
 
-    [self.downloads addObject:ii];
+    @synchronized (self.downloads) {
+        [self.downloads addObject:ii];
+    }
+    @synchronized (self.added) {
+        [self.added addObject:ii];
+    }
     self.needsRefresh = YES;
 
-    MAINQUEUE(
-              [self addSubview:ii];
-              )
     return ii;
 }
 
 - (InfoItem2 *)addImport
 {
-    InfoItem2 *ii = [[[NSBundle mainBundle] loadNibNamed:XIB_INFOITEMVIEW2 owner:self options:nil] firstObject];
+    InfoItem2 *ii;
+    @synchronized (self) {
+        ii = [[[NSBundle mainBundle] loadNibNamed:XIB_INFOITEMVIEW2 owner:self options:nil] firstObject];
+    }
     ii.infoViewer = self;
 
-    [self.imports addObject:ii];
+    @synchronized (self.imports) {
+        [self.imports addObject:ii];
+    }
+    @synchronized (self.added) {
+        [self.added addObject:ii];
+    }
     self.needsRefresh = YES;
 
-    MAINQUEUE(
-              [self addSubview:ii];
-              )
     return ii;
 }
 
 - (InfoItem2 *)addImage
 {
-    InfoItem2 *ii = [[[NSBundle mainBundle] loadNibNamed:XIB_INFOITEMVIEW2 owner:self options:nil] firstObject];
+    InfoItem2 *ii;
+    @synchronized (self) {
+        ii = [[[NSBundle mainBundle] loadNibNamed:XIB_INFOITEMVIEW2 owner:self options:nil] firstObject];
+    }
     ii.infoViewer = self;
 
-    [self.images addObject:ii];
+    @synchronized (self.images) {
+        [self.images addObject:ii];
+    }
+    @synchronized (self.added) {
+        [self.added addObject:ii];
+    }
     self.needsRefresh = YES;
 
-    MAINQUEUE(
-        [self addSubview:ii];
-    )
     return ii;
 }
 
-- (void)removeDownload:(InfoItem2 *)download
+- (void)removeItem:(InfoItem2 *)item
 {
-    __block NSInteger index = -1;
-    [self.downloads enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull dl, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (dl == download) {
-            index = idx;
-            *stop = YES;
-        }
-    }];
-    if (index == -1)
-        return;
-    [self.downloads removeObjectAtIndex:index];
-
-    [download removeFromSuperview];
+    if ([self removeFromItem:item elements:self.downloads] == NO) {
+    } else if ([self removeFromItem:item elements:self.imports] == NO) {
+    } else if ([self removeFromItem:item elements:self.images] == NO) {
+        NSAssert(FALSE, @"Unknown infoItem");
+    }
 }
 
-- (void)removeImport:(InfoItem2 *)import
+- (BOOL)removeFromItem:(InfoItem2 *)element elements:(NSMutableArray *)elements
 {
-    __block NSInteger index = -1;
-    [self.imports enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull ip, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (ip == import) {
-            index = idx;
-            *stop = YES;
+    @synchronized (elements) {
+        __block NSInteger index = -1;
+        [elements enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull e, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (e == element) {
+                index = idx;
+                *stop = YES;
+            }
+        }];
+        if (index == -1)
+            return NO;
+        [elements removeObjectAtIndex:index];
+        element.needsRefresh = YES;
+        @synchronized (self.removed) {
+            [self.removed addObject:element];
         }
-    }];
-    if (index == -1)
-        return;
-    [self.imports removeObjectAtIndex:index];
+        self.needsRefresh = YES;
+    }
 
-    [import removeFromSuperview];
-}
-
-- (void)removeImage:(InfoItem2 *)image
-{
-    __block NSInteger index = -1;
-    [self.images enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (img == image) {
-            index = idx;
-            *stop = YES;
-        }
-    }];
-    if (index == -1)
-        return;
-    [self.images removeObjectAtIndex:index];
-
-    [image removeFromSuperview];
+    return YES;
 }
 
 - (void)show
@@ -146,6 +152,7 @@
     self.isVisible = YES;
     self.needsRefresh = YES;
 
+    BACKGROUND(refreshItems, nil);
     MAINQUEUE(
         [self adjustRects];
     );
@@ -154,6 +161,7 @@
 - (void)hide
 {
     self.isVisible = NO;
+    self.stopUpdating = YES;
     self.needsRefresh = NO;
 
     MAINQUEUE(
@@ -166,68 +174,105 @@
     return ([self.images count] + [self.imports count] + [self.downloads count]) != 0;
 }
 
+- (void)refreshItems
+{
+    if (self.isRefreshing == YES)
+        return;
+
+    self.isRefreshing = YES;
+    while (1) {
+        [NSThread sleepForTimeInterval:0.1];
+
+        MAINQUEUE(
+            [self adjustRects];
+        );
+        if (self.stopUpdating == YES)
+            break;
+    }
+    self.isRefreshing = NO;
+}
 
 - (void)adjustRects
 {
-    if (self.isVisible == NO) {
-        self.frame = CGRectZero;
-        return;
-    }
 
     CGRect applicationFrame = self.superview.frame;
     NSInteger width = applicationFrame.size.width;
 
     __block NSInteger y = 0;
 
-    if ([self.downloads count] != 0) {
-        self.headerDownloads.frame = CGRectMake(0, y, 0, 0);
-        [self.headerDownloads sizeToFit];
-        y += self.headerDownloads.frame.size.height;
-        y += 4;
-
-        [self.downloads enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull download, NSUInteger idx, BOOL * _Nonnull stop) {
-            [download sizeToFit];
-            download.backgroundColor = [UIColor redColor];
-            download.frame = CGRectMake(0, y, download.frame.size.width, download.frame.size.height);
-            y += download.frame.size.height;
-            y += 4;
+    @synchronized (self.added) {
+        [self.added enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull add, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self addSubview:add];
         }];
-    } else {
-        self.headerDownloads.frame = CGRectMake(0, 0, 0, 0);
+        [self.added removeAllObjects];
+    }
+    @synchronized (self.removed) {
+        [self.removed enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull remove, NSUInteger idx, BOOL * _Nonnull stop) {
+            [remove removeFromSuperview];
+        }];
+        [self.removed removeAllObjects];
     }
 
-    if ([self.imports count] != 0) {
-        self.headerImports.frame = CGRectMake(0, y, 0, 0);
-        [self.headerImports sizeToFit];
-        y += self.headerImports.frame.size.height;
-        y += 4;
-
-        [self.imports enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull import, NSUInteger idx, BOOL * _Nonnull stop) {
-            [import sizeToFit];
-            import.backgroundColor = [UIColor redColor];
-            import.frame = CGRectMake(0, y, import.frame.size.width, import.frame.size.height);
-            y += import.frame.size.height;
-            y += 4;
-        }];
-    } else {
-        self.headerImports.frame = CGRectMake(0, 0, 0, 0);
+    if (self.isVisible == NO) {
+        self.frame = CGRectZero;
+        return;
     }
 
-    if ([self.images count] != 0) {
-        self.headerImages.frame = CGRectMake(0, y, 0, 0);
-        [self.headerImages sizeToFit];
-        y += self.headerImages.frame.size.height;
-        y += 4;
-
-        [self.images enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull image, NSUInteger idx, BOOL * _Nonnull stop) {
-            [image sizeToFit];
-            image.backgroundColor = [UIColor redColor];
-            image.frame = CGRectMake(0, y, image.frame.size.width, image.frame.size.height);
-            y += image.frame.size.height;
+    @synchronized(self.downloads) {
+        if ([self.downloads count] != 0) {
+            self.headerDownloads.frame = CGRectMake(0, y, 0, 0);
+            [self.headerDownloads sizeToFit];
+            y += self.headerDownloads.frame.size.height;
             y += 4;
-        }];
-    } else {
-        self.headerImages.frame = CGRectMake(0, 0, 0, 0);
+
+            [self.downloads enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull download, NSUInteger idx, BOOL * _Nonnull stop) {
+                [download sizeToFit];
+                download.backgroundColor = [UIColor redColor];
+                download.frame = CGRectMake(0, y, download.frame.size.width, download.frame.size.height);
+                y += download.frame.size.height;
+                y += 4;
+            }];
+        } else {
+            self.headerDownloads.frame = CGRectMake(0, 0, 0, 0);
+        }
+    }
+
+    @synchronized(self.imports) {
+        if ([self.imports count] != 0) {
+            self.headerImports.frame = CGRectMake(0, y, 0, 0);
+            [self.headerImports sizeToFit];
+            y += self.headerImports.frame.size.height;
+            y += 4;
+
+            [self.imports enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull import, NSUInteger idx, BOOL * _Nonnull stop) {
+                [import sizeToFit];
+                import.backgroundColor = [UIColor redColor];
+                import.frame = CGRectMake(0, y, import.frame.size.width, import.frame.size.height);
+                y += import.frame.size.height;
+                y += 4;
+            }];
+        } else {
+            self.headerImports.frame = CGRectMake(0, 0, 0, 0);
+        }
+    }
+
+    @synchronized(self.images) {
+        if ([self.images count] != 0) {
+            self.headerImages.frame = CGRectMake(0, y, 0, 0);
+            [self.headerImages sizeToFit];
+            y += self.headerImages.frame.size.height;
+            y += 4;
+
+            [self.images enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull image, NSUInteger idx, BOOL * _Nonnull stop) {
+                [image sizeToFit];
+                image.backgroundColor = [UIColor redColor];
+                image.frame = CGRectMake(0, y, image.frame.size.width, image.frame.size.height);
+                y += image.frame.size.height;
+                y += 4;
+            }];
+        } else {
+            self.headerImages.frame = CGRectMake(0, 0, 0, 0);
+        }
     }
 
     self.frame = CGRectMake(0, applicationFrame.size.height - y, width, y);
