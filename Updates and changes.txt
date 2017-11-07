@@ -7,6 +7,7 @@ Version 1.9(x)
   - Be able to configure the colour for the waypoint boundary circles.
   - Google Maps updated to 2.5.0.
   - Developer -> Remote API, add retrieveQuery.
+  - Redid implementation fo the InfoViewer.
 
   Fixes:
   - Fix the way the File Browser is dealt with with regards to element
