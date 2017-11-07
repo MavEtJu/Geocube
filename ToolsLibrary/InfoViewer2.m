@@ -117,9 +117,9 @@
 
 - (void)removeItem:(InfoItem2 *)item
 {
-    if ([self removeFromItem:item elements:self.downloads] == NO) {
-    } else if ([self removeFromItem:item elements:self.imports] == NO) {
-    } else if ([self removeFromItem:item elements:self.images] == NO) {
+    if ([self removeFromItem:item elements:self.downloads] == YES) {
+    } else if ([self removeFromItem:item elements:self.imports] == YES) {
+    } else if ([self removeFromItem:item elements:self.images] == YES) {
         NSAssert(FALSE, @"Unknown infoItem");
     }
 }
