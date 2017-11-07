@@ -84,15 +84,15 @@
     self.labelLogs.text = @"";
     self.labelTrackables.text = @"";
 
-    self.labelDescription.backgroundColor = [UIColor yellowColor];
-    self.labelURL.backgroundColor = [UIColor yellowColor];
-    self.labelQueueSize.backgroundColor = [UIColor yellowColor];
-    self.labelBytes.backgroundColor = [UIColor yellowColor];
-    self.labelChunks.backgroundColor = [UIColor yellowColor];
-    self.labelLineObject.backgroundColor = [UIColor yellowColor];
-    self.labelWaypoints.backgroundColor = [UIColor yellowColor];
-    self.labelLogs.backgroundColor = [UIColor yellowColor];
-    self.labelTrackables.backgroundColor = [UIColor yellowColor];
+    self.labelDescription.backgroundColor = [UIColor clearColor];
+    self.labelURL.backgroundColor = [UIColor clearColor];
+    self.labelQueueSize.backgroundColor = [UIColor clearColor];
+    self.labelBytes.backgroundColor = [UIColor clearColor];
+    self.labelChunks.backgroundColor = [UIColor clearColor];
+    self.labelLineObject.backgroundColor = [UIColor clearColor];
+    self.labelWaypoints.backgroundColor = [UIColor clearColor];
+    self.labelLogs.backgroundColor = [UIColor clearColor];
+    self.labelTrackables.backgroundColor = [UIColor clearColor];
 
     self.height = self.labelURL.font.lineHeight + 1;
     self.expanded = YES;
@@ -111,7 +111,7 @@
     self.changedTrackablesNew = -1;
     self.changedTrackablesTotal = -1;
 
-    self.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [UIColor lightGrayColor];
 
     [self changeTheme];
 }

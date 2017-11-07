@@ -78,6 +78,7 @@
         ii = [[[NSBundle mainBundle] loadNibNamed:XIB_INFOITEMVIEW2 owner:self options:nil] firstObject];
     }
     ii.infoViewer = self;
+    ii.backgroundColor = [UIColor clearColor];
 
     @synchronized (self.downloads) {
         [self.downloads addObject:ii];
@@ -97,6 +98,7 @@
         ii = [[[NSBundle mainBundle] loadNibNamed:XIB_INFOITEMVIEW2 owner:self options:nil] firstObject];
     }
     ii.infoViewer = self;
+    ii.backgroundColor = [UIColor clearColor];
 
     @synchronized (self.imports) {
         [self.imports addObject:ii];
@@ -116,6 +118,7 @@
         ii = [[[NSBundle mainBundle] loadNibNamed:XIB_INFOITEMVIEW2 owner:self options:nil] firstObject];
     }
     ii.infoViewer = self;
+    ii.backgroundColor = [UIColor clearColor];
 
     @synchronized (self.images) {
         [self.images addObject:ii];
@@ -240,7 +243,6 @@
 
             [self.downloads enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull download, NSUInteger idx, BOOL * _Nonnull stop) {
                 [download sizeToFit];
-                download.backgroundColor = [UIColor redColor];
                 download.frame = CGRectMake(0, y, download.frame.size.width, download.frame.size.height);
                 y += download.frame.size.height;
                 y += 4;
@@ -259,7 +261,6 @@
 
             [self.imports enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull import, NSUInteger idx, BOOL * _Nonnull stop) {
                 [import sizeToFit];
-                import.backgroundColor = [UIColor redColor];
                 import.frame = CGRectMake(0, y, import.frame.size.width, import.frame.size.height);
                 y += import.frame.size.height;
                 y += 4;
@@ -278,7 +279,6 @@
 
             [self.images enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull image, NSUInteger idx, BOOL * _Nonnull stop) {
                 [image sizeToFit];
-                image.backgroundColor = [UIColor redColor];
                 image.frame = CGRectMake(0, y, image.frame.size.width, image.frame.size.height);
                 y += image.frame.size.height;
                 y += 4;
