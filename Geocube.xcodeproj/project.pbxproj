@@ -14,8 +14,6 @@
 		E815B7831F67FCB2003A6092 /* FileKMLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E815B7821F67FCB2003A6092 /* FileKMLViewController.m */; };
 		E8182F4C1C0E41CB004AC534 /* KeyboardCoordinateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8182F4B1C0E41CB004AC534 /* KeyboardCoordinateView.m */; };
 		E82286191F8A285C00631380 /* Coordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = E82286091F8A285C00631380 /* Coordinates.m */; };
-		E822861A1F8A285C00631380 /* InfoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E822860C1F8A285C00631380 /* InfoItem.m */; };
-		E822861B1F8A285C00631380 /* InfoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = E822860E1F8A285C00631380 /* InfoViewer.m */; };
 		E822861C1F8A285C00631380 /* LocalMenuItems.m in Sources */ = {isa = PBXBuildFile; fileRef = E82286101F8A285C00631380 /* LocalMenuItems.m */; };
 		E822861D1F8A285C00631380 /* MyClock.m in Sources */ = {isa = PBXBuildFile; fileRef = E82286121F8A285C00631380 /* MyClock.m */; };
 		E822861E1F8A285C00631380 /* MyTools.m in Sources */ = {isa = PBXBuildFile; fileRef = E82286141F8A285C00631380 /* MyTools.m */; };
@@ -857,11 +855,6 @@
 		E8182F4B1C0E41CB004AC534 /* KeyboardCoordinateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardCoordinateView.m; sourceTree = "<group>"; };
 		E82286081F8A285C00631380 /* Coordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Coordinates.h; path = ToolsLibrary/Coordinates.h; sourceTree = "<group>"; };
 		E82286091F8A285C00631380 /* Coordinates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Coordinates.m; path = ToolsLibrary/Coordinates.m; sourceTree = "<group>"; };
-		E822860A1F8A285C00631380 /* InfoItem-enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "InfoItem-enum.h"; path = "ToolsLibrary/InfoItem-enum.h"; sourceTree = "<group>"; };
-		E822860B1F8A285C00631380 /* InfoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoItem.h; path = ToolsLibrary/InfoItem.h; sourceTree = "<group>"; };
-		E822860C1F8A285C00631380 /* InfoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoItem.m; path = ToolsLibrary/InfoItem.m; sourceTree = "<group>"; };
-		E822860D1F8A285C00631380 /* InfoViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoViewer.h; path = ToolsLibrary/InfoViewer.h; sourceTree = "<group>"; };
-		E822860E1F8A285C00631380 /* InfoViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoViewer.m; path = ToolsLibrary/InfoViewer.m; sourceTree = "<group>"; };
 		E822860F1F8A285C00631380 /* LocalMenuItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalMenuItems.h; path = ToolsLibrary/LocalMenuItems.h; sourceTree = "<group>"; };
 		E82286101F8A285C00631380 /* LocalMenuItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalMenuItems.m; path = ToolsLibrary/LocalMenuItems.m; sourceTree = "<group>"; };
 		E82286111F8A285C00631380 /* MyClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyClock.h; path = ToolsLibrary/MyClock.h; sourceTree = "<group>"; };
@@ -2421,7 +2414,6 @@
 				E82286131F8A285C00631380 /* MyTools.h */,
 				E82286141F8A285C00631380 /* MyTools.m */,
 				E8650D2A1FA2947D007561FF /* InfoViewer2 */,
-				E82286211F8A287000631380 /* InfoViewer */,
 				E82286201F8A286500631380 /* Menus */,
 			);
 			name = ToolsLibrary;
@@ -2437,18 +2429,6 @@
 				E82286171F8A285C00631380 /* SideMenu.m */,
 			);
 			name = Menus;
-			sourceTree = "<group>";
-		};
-		E82286211F8A287000631380 /* InfoViewer */ = {
-			isa = PBXGroup;
-			children = (
-				E822860B1F8A285C00631380 /* InfoItem.h */,
-				E822860A1F8A285C00631380 /* InfoItem-enum.h */,
-				E822860C1F8A285C00631380 /* InfoItem.m */,
-				E822860D1F8A285C00631380 /* InfoViewer.h */,
-				E822860E1F8A285C00631380 /* InfoViewer.m */,
-			);
-			name = InfoViewer;
 			sourceTree = "<group>";
 		};
 		E82286F11F8A2DA600631380 /* Classes */ = {
@@ -5007,7 +4987,6 @@
 				E82286801F8A2BD600631380 /* Database.m in Sources */,
 				E82344271EECDFB300D2CDFD /* FilterCategoryTableViewCell.m in Sources */,
 				E82286881F8A2BD600631380 /* dbExternalMap.m in Sources */,
-				E822861B1F8A285C00631380 /* InfoViewer.m in Sources */,
 				E82344BF1EECE0E800D2CDFD /* SettingsColourViewController.m in Sources */,
 				E82287131F8A2E1A00631380 /* GCTableViewCellRightImage.m in Sources */,
 				E8B6D8DA1F9AE81B00C376A2 /* GCMGLObjects.m in Sources */,
@@ -5093,7 +5072,6 @@
 				E82288741F8A34FB00631380 /* SimpleKMLBalloonStyle.m in Sources */,
 				E8650D2D1FA29597007561FF /* InfoViewer2.m in Sources */,
 				E82288301F8A34B700631380 /* TFHpple.m in Sources */,
-				E822861A1F8A285C00631380 /* InfoItem.m in Sources */,
 				E823447F1EECE09C00D2CDFD /* ListDNFViewController.m in Sources */,
 				E8EC01A61F551A990032F168 /* KeepTrackBeeperView.m in Sources */,
 				E82343DE1EECDEE200D2CDFD /* WaypointViewController.m in Sources */,

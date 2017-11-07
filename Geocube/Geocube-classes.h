@@ -132,8 +132,8 @@
 @class ImportManager;
 @class ImportOKAPIJSON;
 @class ImportTemplate;
-@class InfoViewer2;
 @class InfoItem2;
+@class InfoViewer2;
 @class KeepTrackBeeper;
 @class KeepTrackBeeperView;
 @class KeepTrackCar;

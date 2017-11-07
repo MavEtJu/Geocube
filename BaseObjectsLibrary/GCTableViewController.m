@@ -91,7 +91,6 @@
     [self.infoView2 show];
 }
 
-
 - (void)buttonMenuLocal:(id)sender
 {
     [menuGlobal.menuLocal show];

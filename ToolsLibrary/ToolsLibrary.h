@@ -21,14 +21,10 @@
 
 #import "ToolsLibrary/SideMenu-delegate.h"
 
-#import "ToolsLibrary/InfoItem-enum.h"
-
 #import "ToolsLibrary/MyTools.h"
 #import "ToolsLibrary/MyClock.h"
 #import "ToolsLibrary/Coordinates.h"
-#import "ToolsLibrary/InfoItem.h"
 #import "ToolsLibrary/InfoItem2.h"
-#import "ToolsLibrary/InfoViewer.h"
 #import "ToolsLibrary/InfoViewer2.h"
 #import "ToolsLibrary/LocalMenuItems.h"
 #import "ToolsLibrary/SideMenu.h"
