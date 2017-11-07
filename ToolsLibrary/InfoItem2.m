@@ -239,9 +239,9 @@ CHANGE(TrackablesNew)
         }
         if (self.changedLineObjectCount >= 0 || self.changedLineObjectTotal >= 0) {
             if (self.changedLineObjectCount >= 0)
-                self.changedLineObjectCount = self.changedLineObjectCount;
+                self.currentLineObjectCount = self.changedLineObjectCount;
             if (self.changedLineObjectTotal >= 0)
-                self.changedLineObjectTotal = self.changedLineObjectTotal;
+                self.currentLineObjectTotal = self.changedLineObjectTotal;
 
             NSString *prefix;
             if (self.isLines == YES)
@@ -252,7 +252,7 @@ CHANGE(TrackablesNew)
             if (self.currentLineObjectTotal == 0)
                 self.labelLineObject.text = [NSString stringWithFormat:_(@"%@: %ld"), prefix, (long)self.currentLineObjectTotal];
             else
-                self.labelLineObject.text = [NSString stringWithFormat:_(@"%@: %ld of %ld %@)"), prefix,
+                self.labelLineObject.text = [NSString stringWithFormat:_(@"%@: %ld of %ld (%@)"), prefix,
                                              (long)self.currentLineObjectCount,
                                              (long)self.currentLineObjectTotal,
                                              [MyTools nicePercentage:self.currentLineObjectCount total:self.currentLineObjectTotal]
@@ -263,9 +263,9 @@ CHANGE(TrackablesNew)
         }
         if (self.changedWaypointsNew >= 0 || self.changedWaypointsTotal >= 0) {
             if (self.changedWaypointsNew >= 0)
-                self.changedWaypointsNew = self.changedWaypointsNew;
+                self.currentWaypointsNew = self.changedWaypointsNew;
             if (self.changedWaypointsTotal >= 0)
-                self.changedWaypointsTotal = self.changedWaypointsTotal;
+                self.currentWaypointsTotal = self.changedWaypointsTotal;
 
             if (self.currentWaypointsNew == 0)
                 self.labelWaypoints.text = [NSString stringWithFormat:_(@"Waypoints: %ld"), (long)self.currentWaypointsTotal];
@@ -280,9 +280,9 @@ CHANGE(TrackablesNew)
         }
         if (self.changedLogsNew >= 0 || self.changedLogsTotal >= 0) {
             if (self.changedLogsNew >= 0)
-                self.changedLogsNew = self.changedLogsNew;
+                self.currentLogsNew = self.changedLogsNew;
             if (self.changedLogsTotal >= 0)
-                self.changedLogsTotal = self.changedLogsTotal;
+                self.currentLogsTotal = self.changedLogsTotal;
 
             if (self.currentLogsNew == 0)
                 self.labelLogs.text = [NSString stringWithFormat:_(@"Logs: %ld"), (long)self.currentLogsTotal];
@@ -297,9 +297,9 @@ CHANGE(TrackablesNew)
         }
         if (self.changedTrackablesNew >= 0 || self.changedTrackablesTotal >= 0) {
             if (self.changedTrackablesNew >= 0)
-                self.changedTrackablesNew = self.changedTrackablesNew;
+                self.currentTrackablesNew = self.changedTrackablesNew;
             if (self.changedTrackablesTotal >= 0)
-                self.changedTrackablesTotal = self.changedTrackablesTotal;
+                self.currentTrackablesTotal = self.changedTrackablesTotal;
 
             if (self.currentTrackablesNew == 0)
                 self.labelTrackables.text = [NSString stringWithFormat:_(@"Trackables: %ld"), (long)self.currentTrackablesTotal];
