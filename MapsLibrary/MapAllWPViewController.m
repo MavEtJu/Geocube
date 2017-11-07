@@ -170,6 +170,8 @@ enum {
         };
 
         self.currentRun = RUN_INDIVIDUAL;
+        NSLog(@"Picking up the leftovers");
+        [self.processing clearAll];
 
         // Deal with the waypoints by account
         NSArray<dbAccount *> *accounts = dbc.accounts;

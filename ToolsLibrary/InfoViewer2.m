@@ -46,17 +46,14 @@
 
     self.headerDownloads = [[GCLabelNormalText alloc] initWithFrame:CGRectZero];
     self.headerDownloads.text = @"Downloads";
-    [self.headerDownloads sizeToFit];
     [self addSubview:self.headerDownloads];
 
     self.headerImports = [[GCLabelNormalText alloc] initWithFrame:CGRectZero];
     self.headerImports.text = @"Imports";
-    [self.headerImports sizeToFit];
     [self addSubview:self.headerImports];
 
     self.headerImages = [[GCLabelNormalText alloc] initWithFrame:CGRectZero];
     self.headerImages.text = @"Imports";
-    [self.headerImages sizeToFit];
     [self addSubview:self.headerImages];
 
     self.isVisible = NO;
@@ -180,6 +177,21 @@
     self.stopUpdating = YES;
     self.needsRefresh = NO;
 
+    InfoItem2 *ii;
+    NSEnumerator *e;
+    e = [self.imports objectEnumerator];
+    while ((ii = [e nextObject]) != nil) {
+        [ii removeFromInfoViewer];
+    }
+    e = [self.downloads objectEnumerator];
+    while ((ii = [e nextObject]) != nil) {
+        [ii removeFromInfoViewer];
+    }
+    e = [self.images objectEnumerator];
+    while ((ii = [e nextObject]) != nil) {
+        [ii removeFromInfoViewer];
+    }
+
     MAINQUEUE(
         [self adjustRects];
     );
@@ -216,6 +228,7 @@
 
     __block NSInteger y = 0;
 
+    // Deal with modifications
     @synchronized (self.added) {
         [self.added enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull add, NSUInteger idx, BOOL * _Nonnull stop) {
             [self addSubview:add];
@@ -227,11 +240,6 @@
             [remove removeFromSuperview];
         }];
         [self.removed removeAllObjects];
-    }
-
-    if (self.isVisible == NO) {
-        self.frame = CGRectZero;
-        return;
     }
 
     @synchronized(self.downloads) {
@@ -248,7 +256,7 @@
                 y += 4;
             }];
         } else {
-            self.headerDownloads.frame = CGRectMake(0, 0, 0, 0);
+            self.headerDownloads.frame = CGRectZero;
         }
     }
 
@@ -266,7 +274,7 @@
                 y += 4;
             }];
         } else {
-            self.headerImports.frame = CGRectMake(0, 0, 0, 0);
+            self.headerImports.frame = CGRectZero;
         }
     }
 
@@ -284,8 +292,14 @@
                 y += 4;
             }];
         } else {
-            self.headerImages.frame = CGRectMake(0, 0, 0, 0);
+            self.headerImages.frame = CGRectZero;
         }
+    }
+
+    // Do not display unless....
+    if (self.isVisible == NO) {
+        self.frame = CGRectZero;
+        return;
     }
 
     self.frame = CGRectMake(0, applicationFrame.size.height - y, width, y);
