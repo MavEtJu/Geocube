@@ -54,6 +54,7 @@
 @class FilterFlagsTableViewCell;
 @class FilterGroupsTableViewCell;
 @class FilterHeaderTableViewCell;
+@class FilterIconsTableViewCell;
 @class FilterObject;
 @class FilterOthersTableViewCell;
 @class FilterSizesTableViewCell;

@@ -19,18 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface dbPin : dbObject
+#define XIB_FILTERICONSTABLEVIEWCELL @"FilterIconsTableViewCell"
 
-@property (nonatomic, retain) NSString *rgb;
-@property (nonatomic, retain) NSString *rgb_default;
-@property (nonatomic, retain) NSString *desc;
-
-@property (nonatomic, retain) UIColor *colour;
-@property (nonatomic, retain) UIImage *img;
-@property (nonatomic        ) BOOL selected;
-
-+ (NSArray<dbPin *> *)dbAll;
-+ (dbPin *)dbGet:(NSId)_id;
-- (void)dbUpdateRGB;
+@interface FilterIconsTableViewCell : FilterTableViewCell
 
 @end

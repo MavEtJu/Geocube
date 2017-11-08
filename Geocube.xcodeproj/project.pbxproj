@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		E804139D1E9EFF6D001FD7BF /* GC - logo - 512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = E804139C1E9EFF6D001FD7BF /* GC - logo - 512x512.png */; };
 		E804139F1E9F984E001FD7BF /* Menu - 640x623.png in Resources */ = {isa = PBXBuildFile; fileRef = E804139E1E9F984E001FD7BF /* Menu - 640x623.png */; };
+		E80AE5661FB3C447003EDB36 /* FilterIconsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E80AE5651FB3C447003EDB36 /* FilterIconsTableViewCell.m */; };
+		E80AE5681FB3C4C7003EDB36 /* FilterIconsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E80AE5671FB3C4C7003EDB36 /* FilterIconsTableViewCell.xib */; };
 		E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73741B533F4D00F35528 /* MapKit.framework */; };
 		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
 		E815B7831F67FCB2003A6092 /* FileKMLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E815B7821F67FCB2003A6092 /* FileKMLViewController.m */; };
@@ -845,6 +847,9 @@
 		88880BCD488967D0BA49FBE0 /* libPods-Geocube.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Geocube.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E804139C1E9EFF6D001FD7BF /* GC - logo - 512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 512x512.png"; path = "images/introduction/GC - logo - 512x512.png"; sourceTree = "<group>"; };
 		E804139E1E9F984E001FD7BF /* Menu - 640x623.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu - 640x623.png"; path = "images/introduction/Menu - 640x623.png"; sourceTree = "<group>"; };
+		E80AE5641FB3C447003EDB36 /* FilterIconsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FilterIconsTableViewCell.h; path = Filters/FilterIconsTableViewCell.h; sourceTree = "<group>"; };
+		E80AE5651FB3C447003EDB36 /* FilterIconsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = FilterIconsTableViewCell.m; path = Filters/FilterIconsTableViewCell.m; sourceTree = "<group>"; };
+		E80AE5671FB3C4C7003EDB36 /* FilterIconsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterIconsTableViewCell.xib; path = Filters/FilterIconsTableViewCell.xib; sourceTree = "<group>"; };
 		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E80F73761B53443000F35528 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E815B7811F67FCB2003A6092 /* FileKMLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileKMLViewController.h; path = Files/FileKMLViewController.h; sourceTree = "<group>"; };
@@ -3686,6 +3691,9 @@
 				E82344151EECDFB300D2CDFD /* FilterGroupsTableViewCell.h */,
 				E82344161EECDFB300D2CDFD /* FilterGroupsTableViewCell.m */,
 				E87ED1811F85F97700DE8E9B /* FilterGroupsTableViewCell.xib */,
+				E80AE5641FB3C447003EDB36 /* FilterIconsTableViewCell.h */,
+				E80AE5651FB3C447003EDB36 /* FilterIconsTableViewCell.m */,
+				E80AE5671FB3C4C7003EDB36 /* FilterIconsTableViewCell.xib */,
 				E82344191EECDFB300D2CDFD /* FilterOthersTableViewCell.h */,
 				E823441A1EECDFB300D2CDFD /* FilterOthersTableViewCell.m */,
 				E823441B1EECDFB300D2CDFD /* FilterSizesTableViewCell.h */,
@@ -4669,6 +4677,7 @@
 				E82E66E41DA07CBE00CFBDED /* cache - waymark - 30x30@3x.png in Resources */,
 				E85DC6901F95D01E007556D5 /* menu icon - gnss-off - 40x40@3x.png in Resources */,
 				E87ED1741F84495800DE8E9B /* FilterDatesTableViewCell.xib in Resources */,
+				E80AE5681FB3C4C7003EDB36 /* FilterIconsTableViewCell.xib in Resources */,
 				E82E675C1DA07D0200CFBDED /* attributes - 50.png in Resources */,
 				E82E66371DA07A8700CFBDED /* icons - sad - 30x30.png in Resources */,
 				E8FEDEA21DA7C08A007C756B /* waypoint - manually entered - 30x30@2x.png in Resources */,
@@ -5033,6 +5042,7 @@
 				E82286E91F8A2CE300631380 /* ImagesDownloadManager.m in Sources */,
 				E82344AA1EECE0C900D2CDFD /* BrowserUserViewController.m in Sources */,
 				E82286901F8A2BD600631380 /* dbLocality.m in Sources */,
+				E80AE5661FB3C447003EDB36 /* FilterIconsTableViewCell.m in Sources */,
 				E82344931EECE0AD00D2CDFD /* QueriesLiveAPIViewController.m in Sources */,
 				E82343DB1EECDEE200D2CDFD /* WaypointLogsTableViewCell.m in Sources */,
 				E82287CE1F8A32C600631380 /* ProtocolTemplate.m in Sources */,

@@ -124,6 +124,7 @@
 #import "Filters/FilterFavouritesTableViewCell.h"
 #import "Filters/FilterFlagsTableViewCell.h"
 #import "Filters/FilterGroupsTableViewCell.h"
+#import "Filters/FilterIconsTableViewCell.h"
 #import "Filters/FilterOthersTableViewCell.h"
 #import "Filters/FilterSizesTableViewCell.h"
 #import "Filters/FilterTerrainTableViewCell.h"
