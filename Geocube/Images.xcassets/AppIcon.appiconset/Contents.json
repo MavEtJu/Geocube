@@ -21,7 +21,7 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "GC - logo - 58x58.png",
+      "filename" : "GC - logo - 58x58-1.png",
       "scale" : "2x"
     },
     {
@@ -43,15 +43,13 @@
       "scale" : "3x"
     },
     {
-      "size" : "57x57",
       "idiom" : "iphone",
-      "filename" : "GC - logo - 57x57.png",
+      "size" : "57x57",
       "scale" : "1x"
     },
     {
-      "size" : "57x57",
       "idiom" : "iphone",
-      "filename" : "GC - logo - 114x114.png",
+      "size" : "57x57",
       "scale" : "2x"
     },
     {
@@ -87,7 +85,7 @@
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "GC - logo - 58x58-1.png",
+      "filename" : "GC - logo - 58x58.png",
       "scale" : "2x"
     },
     {
@@ -103,27 +101,23 @@
       "scale" : "2x"
     },
     {
-      "size" : "50x50",
       "idiom" : "ipad",
-      "filename" : "GC - logo - 50x50.png",
+      "size" : "50x50",
       "scale" : "1x"
     },
     {
-      "size" : "50x50",
       "idiom" : "ipad",
-      "filename" : "GC - logo - 100x100.png",
+      "size" : "50x50",
       "scale" : "2x"
     },
     {
-      "size" : "72x72",
       "idiom" : "ipad",
-      "filename" : "GC - logo - 72x72.png",
+      "size" : "72x72",
       "scale" : "1x"
     },
     {
-      "size" : "72x72",
       "idiom" : "ipad",
-      "filename" : "GC - logo - 144x144.png",
+      "size" : "72x72",
       "scale" : "2x"
     },
     {
@@ -145,8 +139,9 @@
       "scale" : "2x"
     },
     {
-      "idiom" : "ios-marketing",
       "size" : "1024x1024",
+      "idiom" : "ios-marketing",
+      "filename" : "GC - logo - 1024x1024.png",
       "scale" : "1x"
     }
   ],
