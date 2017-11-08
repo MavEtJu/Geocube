@@ -204,13 +204,13 @@ CHANGE(TrackablesNew)
             self.changedDescription = nil;
         }
         if (self.changedURL != nil) {
-            self.labelURL.text = [NSString stringWithFormat:_(@"URL: %@"), self.changedURL];
+            self.labelURL.text = [NSString stringWithFormat:_(@"infoviewer-URL: %@"), self.changedURL];
             [self.labelURL sizeToFit];
             self.changedURL = nil;
         }
         if (self.changedQueueSize >= 0) {
             self.currentQueueSize = self.currentQueueSize;
-            self.labelQueueSize.text = [NSString stringWithFormat:_(@"Queue: %ld"), (long)self.currentQueueSize];
+            self.labelQueueSize.text = [NSString stringWithFormat:_(@"infoviewer-Queue: %ld"), (long)self.currentQueueSize];
             [self.labelQueueSize sizeToFit];
             self.changedQueueSize = -1;
         }
@@ -221,9 +221,9 @@ CHANGE(TrackablesNew)
                 self.currentChunksCount = self.changedChunksCount;
 
             if (self.currentChunksTotal == 0)
-                self.labelChunks.text = [NSString stringWithFormat:_(@"Chunks: %ld"), (long)self.currentChunksCount];
+                self.labelChunks.text = [NSString stringWithFormat:_(@"infoviewer-Chunks: %ld"), (long)self.currentChunksCount];
             else
-                self.labelChunks.text = [NSString stringWithFormat:_(@"Chunks: %ld of %ld (%@)"),
+                self.labelChunks.text = [NSString stringWithFormat:_(@"infoviewer-Chunks: %ld of %ld (%@)"),
                                         (long)self.currentChunksCount,
                                         (long)self.currentChunksTotal,
                                         [MyTools nicePercentage:self.currentChunksCount total:self.currentChunksTotal]
@@ -239,9 +239,9 @@ CHANGE(TrackablesNew)
                 self.currentBytesCount = self.changedBytesCount;
 
             if (self.currentBytesTotal == 0)
-                self.labelBytes.text = [NSString stringWithFormat:_(@"Bytes: %@"), [MyTools niceFileSize:self.currentBytesCount]];
+                self.labelBytes.text = [NSString stringWithFormat:_(@"infoviewer-Bytes: %@"), [MyTools niceFileSize:self.currentBytesCount]];
             else
-                self.labelBytes.text = [NSString stringWithFormat:_(@"Bytes: %@ of %@ (%@)"),
+                self.labelBytes.text = [NSString stringWithFormat:_(@"infoviewer-Bytes: %@ of %@ (%@)"),
                                         [MyTools niceFileSize:self.currentBytesCount],
                                         [MyTools niceFileSize:self.currentBytesTotal],
                                         [MyTools nicePercentage:self.currentBytesCount total:self.currentBytesTotal]
@@ -263,9 +263,9 @@ CHANGE(TrackablesNew)
                 prefix = @"Objects";
 
             if (self.currentLineObjectTotal == 0)
-                self.labelLineObject.text = [NSString stringWithFormat:_(@"%@: %ld"), prefix, (long)self.currentLineObjectTotal];
+                self.labelLineObject.text = [NSString stringWithFormat:_(@"infoviewer-%@: %ld"), prefix, (long)self.currentLineObjectTotal];
             else
-                self.labelLineObject.text = [NSString stringWithFormat:_(@"%@: %ld of %ld (%@)"), prefix,
+                self.labelLineObject.text = [NSString stringWithFormat:_(@"infoviewer-%@: %ld of %ld (%@)"), prefix,
                                              (long)self.currentLineObjectCount,
                                              (long)self.currentLineObjectTotal,
                                              [MyTools nicePercentage:self.currentLineObjectCount total:self.currentLineObjectTotal]
@@ -281,9 +281,9 @@ CHANGE(TrackablesNew)
                 self.currentWaypointsTotal = self.changedWaypointsTotal;
 
             if (self.currentWaypointsNew == 0)
-                self.labelWaypoints.text = [NSString stringWithFormat:_(@"Waypoints: %ld"), (long)self.currentWaypointsTotal];
+                self.labelWaypoints.text = [NSString stringWithFormat:_(@"infoviewer-Waypoints: %ld"), (long)self.currentWaypointsTotal];
             else
-                self.labelWaypoints.text = [NSString stringWithFormat:_(@"Waypoints: %ld (%ld new)"),
+                self.labelWaypoints.text = [NSString stringWithFormat:_(@"infoviewer-Waypoints: %ld (%ld new)"),
                                             (long)self.currentWaypointsTotal,
                                             (long)self.currentWaypointsNew
                                             ];
@@ -298,9 +298,9 @@ CHANGE(TrackablesNew)
                 self.currentLogsTotal = self.changedLogsTotal;
 
             if (self.currentLogsNew == 0)
-                self.labelLogs.text = [NSString stringWithFormat:_(@"Logs: %ld"), (long)self.currentLogsTotal];
+                self.labelLogs.text = [NSString stringWithFormat:_(@"infoviewer-Logs: %ld"), (long)self.currentLogsTotal];
             else
-                self.labelLogs.text = [NSString stringWithFormat:_(@"Logs: %ld (%ld new)"),
+                self.labelLogs.text = [NSString stringWithFormat:_(@"infoviewer-Logs: %ld (%ld new)"),
                                             (long)self.currentLogsTotal,
                                             (long)self.currentLogsNew
                                             ];
@@ -315,9 +315,9 @@ CHANGE(TrackablesNew)
                 self.currentTrackablesTotal = self.changedTrackablesTotal;
 
             if (self.currentTrackablesNew == 0)
-                self.labelTrackables.text = [NSString stringWithFormat:_(@"Trackables: %ld"), (long)self.currentTrackablesTotal];
+                self.labelTrackables.text = [NSString stringWithFormat:_(@"infoviewer-Trackables: %ld"), (long)self.currentTrackablesTotal];
             else
-                self.labelTrackables.text = [NSString stringWithFormat:_(@"Trackables: %ld (%ld new)"),
+                self.labelTrackables.text = [NSString stringWithFormat:_(@"infoviewer-Trackables: %ld (%ld new)"),
                                              (long)self.currentTrackablesTotal,
                                              (long)self.currentTrackablesNew
                                             ];

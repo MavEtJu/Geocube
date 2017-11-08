@@ -45,15 +45,15 @@
     self.backgroundColor = [UIColor lightGrayColor];
 
     self.headerDownloads = [[GCLabelNormalText alloc] initWithFrame:CGRectZero];
-    self.headerDownloads.text = @"Downloads";
+    self.headerDownloads.text = _(@"infoviewer-Downloads");
     [self addSubview:self.headerDownloads];
 
     self.headerImports = [[GCLabelNormalText alloc] initWithFrame:CGRectZero];
-    self.headerImports.text = @"Imports";
+    self.headerImports.text = _(@"infoviewer-Imports");
     [self addSubview:self.headerImports];
 
     self.headerImages = [[GCLabelNormalText alloc] initWithFrame:CGRectZero];
-    self.headerImages.text = @"Imports";
+    self.headerImages.text = _(@"infoviewer-Imports");
     [self addSubview:self.headerImages];
 
     self.isVisible = NO;

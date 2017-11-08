@@ -25,6 +25,7 @@
 "menu-developer-DB" = "DB";
 "menu-developer-Images" = "Iconen";
 "menu-developer-RemoteAPI" = "RemoteAPI";
+"menu-developer-InfoView" = "InfoView";
 "menu-files-File Browser" = "File Browser";
 "menu-files-Local Files" = "Local Files";
 "menu-files-KML" = "KML";
@@ -71,6 +72,7 @@
 "menu-waypoints-Map" = "Kaart";
 
 /* View controller menus */
+"waypointdescriptionviewcontroller-Scan for waypoints" = "Zoek waypoints";
 "waypointviewcontroller-Mark as" = "Markeer als ...";
 "waypointviewcontroller-Refresh waypoint" = "Ververs waypoint";
 "waypointviewcontroller-Add to group" = "Voeg toe aan groep";

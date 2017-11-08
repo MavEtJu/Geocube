@@ -98,7 +98,7 @@
     NSArray<NSString *> *lines = [content componentsSeparatedByString:@"\n"];
     __block NSInteger c = 0;
     [lines enumerateObjectsUsingBlock:^(NSString * _Nonnull line, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([line rangeOfString:@"\"[^\"]+\" = \"[^\"]+\";" options:NSRegularExpressionSearch].location != NSNotFound) {
+        if ([line rangeOfString:@"^\"[^\"]+\" = \"[^\"]+\";" options:NSRegularExpressionSearch].location != NSNotFound) {
             NSArray<NSString *> *cs = [line componentsSeparatedByString:@"\" = \""];
             NSString *key = [cs objectAtIndex:0];
             NSString *value = [cs objectAtIndex:1];

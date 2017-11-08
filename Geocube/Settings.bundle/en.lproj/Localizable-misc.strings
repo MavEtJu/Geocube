@@ -18,20 +18,23 @@
 "thememanager-Geocube night theme, small icons" = "Geocube night theme, small icons";
 "thememanager-Geocube night theme, normal icons" = "Geocube night theme, normla icons";
 
-/* InfoViewer */
+/* InfoViewer / InfoItem */
 "infoviewer-Downloads" = "Downloads";
-"infoviewer-Images" = "Images";
 "infoviewer-Imports" = "Imports";
-
-/* InfoItem */
-"infoitem-Bytes" = "Bytes";
-"infoitem-Lines" = "Lines";
-"infoitem-Logs" = "Logs";
-"infoitem-Objects" = "Objects";
-"infoitem-Queue depth" = "Queue depth";
-"infoitem-Trackables" = "Trackables";
-"infoitem-Waypoints" = "Waypoints";
-"infoitem-Chunks" = "Chunks";
+"infoviewer-%@: %ld" = "%@: %ld";
+"infoviewer-%@: %ld of %ld (%@)" = "%@: %ld of %ld (%@)";
+"infoviewer-Bytes: %@" = "Bytes: %@";
+"infoviewer-Bytes: %@ of %@ (%@)" = "Bytes: %@ of %@ (%@)";
+"infoviewer-Chunks: %ld" = "Chunks: %ld";
+"infoviewer-Chunks: %ld of %ld (%@)" = "Chunks: %ld of %ld (%@)";
+"infoviewer-Logs: %ld" = "Logs: %ld";
+"infoviewer-Logs: %ld (%ld new)" = "Logs: %ld (%ld new)";
+"infoviewer-Queue: %ld" = "Queue: %ld";
+"infoviewer-Trackables: %ld" = "Trackables: %ld";
+"infoviewer-Trackables: %ld (%ld new)" = "Trackables: %ld (%ld new)";
+"infoviewer-URL: %@" = "URL: %@";
+"infoviewer-Waypoints: %ld" = "Waypoints: %ld";
+"infoviewer-Waypoints: %ld (%ld new)" = "Waypoints: %ld (%ld new)";
 
 /* Coordinates */
 "coordinates-Import failed" = "Import Failed";
@@ -119,27 +122,19 @@
 "compass-NNW" = "NNW";
 "compass-NESW" = "NESW";
 "compass-NESWnesw" = "NESWnesw";
-"compass-NS" = "NS";
 "compass-NSns" = "NSns";
-"compass-EW" = "EW";
 "compass-EWew" = "EWew";
-"latitude" = "latitude";
 "Latitude" = "Latitude";
-"longitude" = "longitude";
 "Longitude" = "Longitude";
 
 /* General */
 "Close" = "Close";
-"Sorry" = "Sorry";
 "Error" = "Error";
 "Cancel" = "Cancel";
 "OK" = "OK";
 "Clear" = "Clear";
 "Yes" = "Yes";
-"No" = "No";
 "NO!" = "NO!";
-"new" = "new";
-"of" = "of";
 "Delete" = "Delete";
 "Deleting" = "Deleting";
 "Edit" = "Edit";

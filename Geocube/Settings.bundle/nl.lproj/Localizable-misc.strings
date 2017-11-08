@@ -18,20 +18,23 @@
 "thememanager-Geocube night theme, small icons" = "Geocube nacht thema, kleine iconen";
 "thememanager-Geocube night theme, normal icons" = "Geocube nacht thema, normale iconen";
 
-/* InfoViewer */
-"infoviewer-Downloads" = "Downloads";
-"infoviewer-Images" = "Fotos";
-"infoviewer-Imports" = "Imports";
-
-/* InfoItem */
-"infoitem-Bytes" = "Bytes";
-"infoitem-Lines" = "Regels";
-"infoitem-Logs" = "Logs";
-"infoitem-Objects" = "Objecten";
-"infoitem-Queue depth" = "Wachtrij diepte";
-"infoitem-Trackables" = "Trackables";
-"infoitem-Waypoints" = "Waypoints";
-"infoitem-Chunks" = "Gedeeltes";
+/* InfoViewer / InfoItem */
+"infoviewer-Downloads" = "Inladen";
+"infoviewer-Imports" = "Invoeren";
+"infoviewer-%@: %ld" = "%@: %ld";
+"infoviewer-%@: %ld of %ld (%@)" = "%@: %ld van %ld (%@)";
+"infoviewer-Bytes: %@" = "Bytes: %@";
+"infoviewer-Bytes: %@ of %@ (%@)" = "Bytes: %@ van %@ (%@)";
+"infoviewer-Chunks: %ld" = "Delen: %ld";
+"infoviewer-Chunks: %ld of %ld (%@)" = "Delen: %ld van %ld (%@)";
+"infoviewer-Logs: %ld" = "Logs: %ld";
+"infoviewer-Logs: %ld (%ld new)" = "Logs: %ld (%ld nieuwe)";
+"infoviewer-Queue: %ld" = "Wachtrij: %ld";
+"infoviewer-Trackables: %ld" = "Trackables: %ld";
+"infoviewer-Trackables: %ld (%ld new)" = "Trackables: %ld (%ld nieuwe)";
+"infoviewer-URL: %@" = "URL: %@";
+"infoviewer-Waypoints: %ld" = "Waypoints: %ld";
+"infoviewer-Waypoints: %ld (%ld new)" = "Waypoints: %ld (%ld nieuwe)";
 
 /* Coordinates */
 "coordinates-Import failed" = "Import mislukt";
@@ -119,27 +122,19 @@
 "compass-NNW" = "NNW";
 "compass-NESW" = "NOZW";
 "compass-NESWnesw" = "NOZWnozw";
-"compass-NS" = "NZ";
 "compass-NSns" = "NZnz";
-"compass-EW" = "OW";
 "compass-EWew" = "OWow";
-"latitude" = "hoogtegraad";
 "Latitude" = "Hoogtegraad";
-"longitude" = "lengtegraad";
 "Longitude" = "Lengtegraad";
 
 /* General */
 "Close" = "Sluiten";
-"Sorry" = "Sorry";
 "Error" = "Foutmelding";
 "Cancel" = "Annuleer";
 "OK" = "Okay!";
 "Clear" = "Wissen";
 "Yes" = "Ja";
-"No" = "Nee";
 "NO!" = "NEE!";
-"new" = "nieuwe";
-"of" = "van";
 "Delete" = "Verwijder";
 "Deleting" = "Aan het verwijderen";
 "Edit" = "Wijzig";
