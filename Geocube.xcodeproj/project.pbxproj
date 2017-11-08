@@ -634,8 +634,6 @@
 		E8607F191F8ADA91004E273C /* cache - geocacher - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8607F161F8ADA91004E273C /* cache - geocacher - 30x30@3x.png */; };
 		E8607F1B1F8B1328004E273C /* Launch Screen-Landscape.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8607F1A1F8B1328004E273C /* Launch Screen-Landscape.storyboard */; };
 		E860CA051F81F84700C66AD8 /* FilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E860CA041F81F84700C66AD8 /* FilterButton.m */; };
-		E861B97E1EE2E6D300BD82AC /* GC - logo - 1536×2048.png in Resources */ = {isa = PBXBuildFile; fileRef = E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */; };
-		E861B9801EE2E8AC00BD82AC /* GC - logo - 768×1024.png in Resources */ = {isa = PBXBuildFile; fileRef = E861B97F1EE2E8AC00BD82AC /* GC - logo - 768×1024.png */; };
 		E86C4AAF1E321822004526E2 /* CompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C4AAD1E321822004526E2 /* CompassViewController.m */; };
 		E86C4AB01E321822004526E2 /* CompassView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86C4AAE1E321822004526E2 /* CompassView.xib */; };
 		E86D42751EF5484E00E4509F /* LocationlessTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86D42731EF5484E00E4509F /* LocationlessTableViewCell.xib */; };
@@ -1846,8 +1844,6 @@
 		E8607F1A1F8B1328004E273C /* Launch Screen-Landscape.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen-Landscape.storyboard"; sourceTree = "<group>"; };
 		E860CA031F81F84700C66AD8 /* FilterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterButton.h; path = Filters/FilterButton.h; sourceTree = "<group>"; };
 		E860CA041F81F84700C66AD8 /* FilterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterButton.m; path = Filters/FilterButton.m; sourceTree = "<group>"; };
-		E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 1536×2048.png"; path = "images/logos/GC - logo - 1536×2048.png"; sourceTree = "<group>"; };
-		E861B97F1EE2E8AC00BD82AC /* GC - logo - 768×1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 768×1024.png"; path = "images/logos/GC - logo - 768×1024.png"; sourceTree = "<group>"; };
 		E86C4AAC1E321822004526E2 /* CompassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassViewController.h; sourceTree = "<group>"; };
 		E86C4AAD1E321822004526E2 /* CompassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassViewController.m; sourceTree = "<group>"; };
 		E86C4AAE1E321822004526E2 /* CompassView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompassView.xib; sourceTree = "<group>"; };
@@ -3209,8 +3205,6 @@
 		E843A4E31BAD3F7800C58F1F /* logos */ = {
 			isa = PBXGroup;
 			children = (
-				E861B97F1EE2E8AC00BD82AC /* GC - logo - 768×1024.png */,
-				E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */,
 			);
 			name = logos;
 			sourceTree = "<group>";
@@ -4513,7 +4507,6 @@
 				E8FEDE7E1DA7AD67007C756B /* map - archived - 15x15@2x.png in Resources */,
 				E8FEDE541DA77F9D007C756B /* container size - notchosen - 35x11@2x.png in Resources */,
 				E8B7734D1F9479AD0060B415 /* menu icon - show both - 27x27.png in Resources */,
-				E861B97E1EE2E6D300BD82AC /* GC - logo - 1536×2048.png in Resources */,
 				E8FEDE931DA7AD67007C756B /* map - pin stick - 35x42@3x.png in Resources */,
 				E82E66641DA07C4900CFBDED /* container flag - in progress - 24x24.png in Resources */,
 				E8B7732E1F9479AD0060B415 /* menu icon - find me - 27x27@3x.png in Resources */,
@@ -4686,7 +4679,6 @@
 				E82E67351DA07D0200CFBDED /* attributes - 10.png in Resources */,
 				E82E67741DA07D1A00CFBDED /* image - no image - 32x32.png in Resources */,
 				E82E65B81DA0794600CFBDED /* waypoint - finish - 30x30.png in Resources */,
-				E861B9801EE2E8AC00BD82AC /* GC - logo - 768×1024.png in Resources */,
 				E8FEDEE11DA8EEE9007C756B /* cache - groundspeak hq - 30x30@3x.png in Resources */,
 				E82E676B1DA07D0200CFBDED /* attributes - 65.png in Resources */,
 				E8FEDEE71DA8EEE9007C756B /* cache - unknowntype - 30x30@3x.png in Resources */,
