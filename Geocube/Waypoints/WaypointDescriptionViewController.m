@@ -33,6 +33,7 @@
 
 enum {
     menuShowAsText,
+    menuScanForWaypoints,
     menuMax,
 };
 
@@ -48,6 +49,7 @@ enum {
         [self.lmi addItem:menuShowAsText label:_(@"waypointdescriptionviewcontroller-Show as text")];
     else
         [self.lmi addItem:menuShowAsText label:_(@"waypointdescriptionviewcontroller-Show as HTML")];
+    [self.lmi addItem:menuScanForWaypoints label:_(@"waypointdescriptionviewcontroller-Scan for waypoints")];
 
     return self;
 }
@@ -174,9 +176,18 @@ enum {
         case menuShowAsText:
             [self showAsText];
             return;
+        case menuScanForWaypoints:
+            [self scanForWaypoints];
+            return;
     }
 
     [super performLocalMenuAction:index];
+}
+
+- (void)scanForWaypoints
+{
+    NSArray<NSString *> *lines = @[[self makeHTMLString]];
+    [Coordinates scanForWaypoints:lines waypoint:self.waypoint view:self];
 }
 
 - (void)showAsText

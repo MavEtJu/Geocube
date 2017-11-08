@@ -192,6 +192,11 @@ enum {
     [self reloadDataMainQueue];
 }
 
+-  (void)WaypointDescription_refreshTable
+{
+    [self reloadDataMainQueue];
+}
+
 -  (void)WaypointLog_refreshWaypointData
 {
     BACKGROUND(runRefreshWaypoint, nil);
@@ -485,8 +490,9 @@ enum {
 #endif
 
                 case WAYPOINT_DATA_DESCRIPTION: {
-                    UIViewController *newController = [[WaypointDescriptionViewController alloc] init:self.waypoint webview:YES];
+                    WaypointDescriptionViewController *newController = [[WaypointDescriptionViewController alloc] init:self.waypoint webview:YES];
                     newController.edgesForExtendedLayout = UIRectEdgeNone;
+                    newController.delegateWaypoint = self;
                     [self.navigationController pushViewController:newController animated:YES];
                     return;
                 }

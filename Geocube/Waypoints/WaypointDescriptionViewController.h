@@ -19,8 +19,16 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@protocol WaypointDescriptionDelegate
+
+- (void)WaypointDescription_refreshTable;
+
+@end
+
 @interface WaypointDescriptionViewController : GCViewController <UIScrollViewDelegate, UIWebViewDelegate>
 
 - (instancetype)init:(dbWaypoint *)waypoint webview:(BOOL)webview;
+
+@property (nonatomic, retain) id<WaypointDescriptionDelegate> delegateWaypoint;
 
 @end

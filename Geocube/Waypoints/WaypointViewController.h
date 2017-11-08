@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface WaypointViewController : GCTableViewController <WaypointLogDelegate, WaypointImagesDelegate, WaypointPersonalNoteDelegate, WaypointWaypointsDelegate, WaypointLogsDelegate, RemoteAPIDownloadDelegate>
+@interface WaypointViewController : GCTableViewController <WaypointLogDelegate, WaypointImagesDelegate, WaypointPersonalNoteDelegate, WaypointWaypointsDelegate, WaypointLogsDelegate, RemoteAPIDownloadDelegate, WaypointDescriptionDelegate>
 
 - (void)showWaypoint:(dbWaypoint *)wp;
 
