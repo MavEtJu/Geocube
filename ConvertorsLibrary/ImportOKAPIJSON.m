@@ -25,7 +25,7 @@
 
 @implementation ImportOKAPIJSON
 
-- (void)parseDictionary:(NSDictionary *)dict infoitem:(InfoItem2 *)iii
+- (void)parseDictionary:(NSDictionary *)dict infoitem:(InfoItem *)iii
 {
     if ([dict objectForKey:@"waypoints"] != nil) {
         [self parseBefore_caches];

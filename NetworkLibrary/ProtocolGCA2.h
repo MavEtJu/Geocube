@@ -23,14 +23,14 @@
 
 - (BOOL)authenticate:(dbAccount *)account;
 
-- (GCDictionaryGCA2 *)api_services_users_by__username:(NSString *)username infoItem:(InfoItem2 *)iid;
-- (GCDictionaryGCA2 *)api_services_caches_geocache:(NSString *)wptname infoItem:(InfoItem2 *)iid;
-- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray<NSString *> *)wps infoItem:(InfoItem2 *)iid;
-- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray<NSString *> *)wps logs:(NSInteger)numlogs infoItem:(InfoItem2 *)iid;
-- (GCDictionaryGCA2 *)api_services_search_bbox:(GCBoundingBox *)bb infoItem:(InfoItem2 *)iid;
-- (GCDictionaryGCA2 *)api_services_logs_submit:(dbWaypoint *)wp logtype:(NSString *)logtype comment:(NSString *)comment when:(NSString *)dateLogged rating:(NSInteger)rating recommended:(BOOL)recommended coordinates:(CLLocationCoordinate2D)coordinates infoItem:(InfoItem2 *)iid;
-- (GCDictionaryGCA2 *)api_services_logs_images_add:(NSNumber *)logid data:(NSData *)imgdata caption:(NSString *)imageCaption description:(NSString *)imageDescription infoItem:(InfoItem2 *)iid;
-- (GCDictionaryGCA2 *)api_services_caches_query_list:(InfoItem2 *)iid public:(BOOL)public;
-- (GCDictionaryGCA2 *)api_services_caches_query_geocaches:(NSString *)queryId infoItem:(InfoItem2 *)iid;
+- (GCDictionaryGCA2 *)api_services_users_by__username:(NSString *)username infoItem:(InfoItem *)iid;
+- (GCDictionaryGCA2 *)api_services_caches_geocache:(NSString *)wptname infoItem:(InfoItem *)iid;
+- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray<NSString *> *)wps infoItem:(InfoItem *)iid;
+- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray<NSString *> *)wps logs:(NSInteger)numlogs infoItem:(InfoItem *)iid;
+- (GCDictionaryGCA2 *)api_services_search_bbox:(GCBoundingBox *)bb infoItem:(InfoItem *)iid;
+- (GCDictionaryGCA2 *)api_services_logs_submit:(dbWaypoint *)wp logtype:(NSString *)logtype comment:(NSString *)comment when:(NSString *)dateLogged rating:(NSInteger)rating recommended:(BOOL)recommended coordinates:(CLLocationCoordinate2D)coordinates infoItem:(InfoItem *)iid;
+- (GCDictionaryGCA2 *)api_services_logs_images_add:(NSNumber *)logid data:(NSData *)imgdata caption:(NSString *)imageCaption description:(NSString *)imageDescription infoItem:(InfoItem *)iid;
+- (GCDictionaryGCA2 *)api_services_caches_query_list:(InfoItem *)iid public:(BOOL)public;
+- (GCDictionaryGCA2 *)api_services_caches_query_geocaches:(NSString *)queryId infoItem:(InfoItem *)iid;
 
 @end

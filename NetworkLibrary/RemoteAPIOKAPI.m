@@ -93,7 +93,7 @@
                 return __failure__; \
             }
 
-- (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict infoItem:(InfoItem2 *)iid
+- (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict infoItem:(InfoItem *)iid
 /* Returns:
  * waypoints_found
  * waypoints_notfound
@@ -125,7 +125,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables coordinates:(CLLocationCoordinate2D)coordinates infoItem:(InfoItem2 *)iid
+- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables coordinates:(CLLocationCoordinate2D)coordinates infoItem:(InfoItem *)iid
 {
     GCDictionaryOKAPI *json = [self.okapi services_logs_submit:logstring.logString waypointName:waypoint.wpt_name dateLogged:dateLogged note:note favourite:favourite infoItem:iid];
     OKAPI_CHECK_STATUS(json, @"CreateLogNote", REMOTEAPI_CREATELOG_LOGFAILED);
@@ -140,7 +140,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoItem:(InfoItem2 *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoItem:(InfoItem *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     dbAccount *a = waypoint.account;
     dbGroup *g = dbc.groupLiveImport;
@@ -156,7 +156,7 @@
     [d setObject:as forKey:@"waypoints"];
     GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
 
-    InfoItem2 *iii = [iid.infoViewer addImport];
+    InfoItem *iii = [iid.infoViewer addImport];
     [iii changeDescription:IMPORTMSG];
     [callback remoteAPI_objectReadyToImport:identifier infoItem:iii object:d2 group:g account:a];
 
@@ -164,7 +164,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoItem:(InfoItem2 *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoItem:(InfoItem *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     if ([self.account canDoRemoteStuff] == NO) {
         [self setAPIError:_(@"remoteapiokapi-[OKAPI] loadWaypointsByBoundingBox: remote API is disabled") error:REMOTEAPI_APIDISABLED];
@@ -197,7 +197,7 @@
 
     GCDictionaryOKAPI *d2 = [[GCDictionaryOKAPI alloc] initWithDictionary:d];
 
-    InfoItem2 *iii = [iid.infoViewer addImport];
+    InfoItem *iii = [iid.infoViewer addImport];
     [iii changeDescription:IMPORTMSG];
     [callback remoteAPI_objectReadyToImport:identifier infoItem:iii object:d2 group:nil account:self.account];
 

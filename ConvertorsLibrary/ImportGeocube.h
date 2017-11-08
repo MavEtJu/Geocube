@@ -56,10 +56,10 @@ typedef NS_ENUM(NSInteger, GeocubeFileType) {
     GEOCUBEFILETYPE_OPENCAGEKEY,
 };
 
-@property (nonatomic, retain) InfoItem2 *iii;
+@property (nonatomic, retain) InfoItem *iii;
 
-+ (BOOL)parse:(NSData *)data infoItem:(InfoItem2 *)iii filetype:(GeocubeFileType)filetype;
-+ (BOOL)parse:(NSData *)data infoItem:(InfoItem2 *)iii;
++ (BOOL)parse:(NSData *)data infoItem:(InfoItem *)iii filetype:(GeocubeFileType)filetype;
++ (BOOL)parse:(NSData *)data infoItem:(InfoItem *)iii;
 + (BOOL)parse:(NSData *)data;
 + (NSString *)blockSeparator;
 + (NSString *)type_LogTemplatesAndMacros;

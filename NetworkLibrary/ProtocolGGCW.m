@@ -150,12 +150,12 @@ enum {
     return urlString;
 }
 
-- (NSData *)performURLRequest:(NSURLRequest *)urlRequest infoItem:(InfoItem2 *)iid
+- (NSData *)performURLRequest:(NSURLRequest *)urlRequest infoItem:(InfoItem *)iid
 {
     return [self performURLRequest:urlRequest returnResponse:nil infoItem:iid];
 }
 
-- (NSData *)performURLRequest:(NSURLRequest *)urlRequest returnResponse:(NSHTTPURLResponse **)returnHeader infoItem:(InfoItem2 *)iid
+- (NSData *)performURLRequest:(NSURLRequest *)urlRequest returnResponse:(NSHTTPURLResponse **)returnHeader infoItem:(InfoItem *)iid
 {
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
     NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem infoItem:iid];
@@ -215,7 +215,7 @@ enum {
 // ------------------------------------------------
 
 // Needed to get the publicGuid
-- (GCDictionaryGGCW *)account_dashboard:(InfoItem2 *)iid
+- (GCDictionaryGGCW *)account_dashboard:(InfoItem *)iid
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
 
@@ -267,7 +267,7 @@ enum {
 }
 
 // Needed to get the publicGuid
-- (GCDictionaryGGCW *)my_default:(InfoItem2 *)iid
+- (GCDictionaryGGCW *)my_default:(InfoItem *)iid
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
 
@@ -328,7 +328,7 @@ enum {
     }
 }
 
-- (GCDictionaryGGCW *)my_statistics:(InfoItem2 *)iid
+- (GCDictionaryGGCW *)my_statistics:(InfoItem *)iid
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
 
@@ -370,7 +370,7 @@ bail:
     return dict;
 }
 
-- (GCDictionaryGGCW *)pocket_default:(InfoItem2 *)iid
+- (GCDictionaryGGCW *)pocket_default:(InfoItem *)iid
 {
     NSLog(@"pocket_default");
 
@@ -466,7 +466,7 @@ bail:
     return dict;
 }
 
-- (GCDataZIPFile *)pocket_downloadpq:(NSString *)guid infoItem:(InfoItem2 *)iid
+- (GCDataZIPFile *)pocket_downloadpq:(NSString *)guid infoItem:(InfoItem *)iid
 {
     NSLog(@"pocket_downloadpq:%@", guid);
 
@@ -486,7 +486,7 @@ bail:
     return zipdata;
 }
 
-- (NSDictionary *)geocache:(NSString *)wptname infoItem:(InfoItem2 *)iid
+- (NSDictionary *)geocache:(NSString *)wptname infoItem:(InfoItem *)iid
 {
     NSLog(@"geocache:%@", wptname);
 
@@ -635,7 +635,7 @@ bail2:
     return dict;
 }
 
-- (GCStringGPX *)geocache_gpx:(NSString *)wptname infoItem:(InfoItem2 *)iid
+- (GCStringGPX *)geocache_gpx:(NSString *)wptname infoItem:(InfoItem *)iid
 {
     NSLog(@"geocache_gpx:%@", wptname);
 
@@ -708,7 +708,7 @@ bail2:
     return location;
 }
 
-- (GCDictionaryGGCW *)account_oauth_token:(InfoItem2 *)iid
+- (GCDictionaryGGCW *)account_oauth_token:(InfoItem *)iid
 {
     NSLog(@"account_oauth_token:");
 
@@ -732,7 +732,7 @@ bail2:
     return d;
 }
 
-- (GCStringGPXGarmin *)seek_sendtogps:(NSString *)guid infoItem:(InfoItem2 *)iid
+- (GCStringGPXGarmin *)seek_sendtogps:(NSString *)guid infoItem:(InfoItem *)iid
 {
     NSLog(@"seek_sendtogps:%@", guid);
     /*
@@ -781,7 +781,7 @@ bail:
     return gpx;
 }
 
-- (NSArray<NSDictionary *> *)my_inventory:(InfoItem2 *)iid
+- (NSArray<NSDictionary *> *)my_inventory:(InfoItem *)iid
 {
     NSLog(@"my_inventory");
     /*
@@ -840,7 +840,7 @@ bail:
     return tbs;
 }
 
-- (NSDictionary *)track_details:(NSString *)guid id:(NSString *)_id infoItem:(InfoItem2 *)iid
+- (NSDictionary *)track_details:(NSString *)guid id:(NSString *)_id infoItem:(InfoItem *)iid
 {
     NSLog(@"track_details:%@", guid);
     /*
@@ -955,7 +955,7 @@ bail:
     return dict;
 }
 
-- (NSDictionary *)track_details:(NSString *)pin infoItem:(InfoItem2 *)iid
+- (NSDictionary *)track_details:(NSString *)pin infoItem:(InfoItem *)iid
 {
     NSLog(@"track_details:%@", pin);
     /*
@@ -1060,7 +1060,7 @@ bail:
     return dict;
 }
 
-- (NSArray<NSDictionary *> *)track_search:(InfoItem2 *)iid
+- (NSArray<NSDictionary *> *)track_search:(InfoItem *)iid
 {
     [self determine_uid];
 
@@ -1177,7 +1177,7 @@ bail:
     return tbs;
 }
 
-- (NSDictionary *)track_log:(NSDictionary *)dict infoItem:(InfoItem2 *)iid
+- (NSDictionary *)track_log:(NSDictionary *)dict infoItem:(InfoItem *)iid
 {
     NSString *urlString = [self prepareURLString:@"/track/log.aspx"
                                           params:@{@"wid":[MyTools urlEncode:[dict objectForKey:@"guid"]],
@@ -1216,7 +1216,7 @@ bail:
     return nil;
 }
 
-- (NSArray<NSString *> *)play_search:(CLLocationCoordinate2D)center infoItem:(InfoItem2 *)iid
+- (NSArray<NSString *> *)play_search:(CLLocationCoordinate2D)center infoItem:(InfoItem *)iid
 {
     // Submit coordinates to /play/search, get the closest-by 50 caches.
     NSString *urlString = [self prepareURLString:[NSString stringWithFormat:@"/play/search/@%@,%@?origin=%@,%@",

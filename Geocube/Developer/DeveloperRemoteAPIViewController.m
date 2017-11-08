@@ -47,7 +47,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
 {
     self = [super init];
 
-    [self makeInfoView2];
+    [self makeInfoView];
     [self loadTests];
 
     return self;
@@ -505,7 +505,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
     [self reloadDataMainQueue];
 }
 
-- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier infoItem:(InfoItem2 *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
+- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier infoItem:(InfoItem *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
     NSLog(@"objectReadyToImport: %ld", (long)identifier);
     @synchronized (self.tests) {

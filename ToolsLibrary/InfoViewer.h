@@ -19,15 +19,15 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface InfoViewer2 : GCView
+@interface InfoViewer : GCView
 
 @property (nonatomic        ) BOOL needsRefresh;
 
-- (InfoItem2 *)addDownload;
-- (InfoItem2 *)addImport;
-- (InfoItem2 *)addImage;
+- (InfoItem *)addDownload;
+- (InfoItem *)addImport;
+- (InfoItem *)addImage;
 
-- (void)removeItem:(InfoItem2 *)item;
+- (void)removeItem:(InfoItem *)item;
 
 - (void)show;
 - (void)hide;

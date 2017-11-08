@@ -27,7 +27,7 @@
 
 @implementation TrackablesTemplateViewController
 
-- NEEDS_OVERLOADING_VOID(remoteAPILoadTrackables:(dbAccount *)a infoItem:(InfoItem2 *)iid)
+- NEEDS_OVERLOADING_VOID(remoteAPILoadTrackables:(dbAccount *)a infoItem:(InfoItem *)iid)
 - NEEDS_OVERLOADING_VOID(loadTrackables)
 - NEEDS_OVERLOADING_VOID(adjustMenus)
 
@@ -63,7 +63,7 @@
 
     [self refreshTrackables:nil];
 
-    [self makeInfoView2];
+    [self makeInfoView];
 
     self.lmi = [[LocalMenuItems alloc] init:trackablesMenuMax];
     [self.lmi addItem:trackablesMenuUpdate label:_(@"trackablestemplateviewcontroller-Update List")];
@@ -143,8 +143,8 @@
 
 - (void)menuUpdate_BG
 {
-    [self showInfoView2];
-    InfoItem2 *iid = [self.infoView2 addDownload];
+    [self showInfoView];
+    InfoItem *iid = [self.infoView addDownload];
     [iid changeDescription:_(@"trackablestemplateviewcontroller-Download trackables information")];
 
     [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -163,7 +163,7 @@
     }];
 
     [iid removeFromInfoViewer];
-    [self hideInfoView2];
+    [self hideInfoView];
 }
 
 - (void)menuDiscover

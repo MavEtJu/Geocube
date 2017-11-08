@@ -38,7 +38,7 @@
 
 /////////////////////////////////////////////////////////////////////////
 
-- (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem infoItem:(InfoItem2 *)iid
+- (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem infoItem:(InfoItem *)iid
 {
     NSMutableDictionary *req = [NSMutableDictionary dictionaryWithCapacity:10];
     [req setObject:urlRequest forKey:@"urlRequest"];
@@ -71,7 +71,7 @@
     return req;
 }
 
-- (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error infoItem:(InfoItem2 *)iid
+- (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error infoItem:(InfoItem *)iid
 {
     return [self sendSynchronousRequest:urlRequest returningResponse:response error:error infoItem:iid];
 }
@@ -105,7 +105,7 @@
     return result;
 }
 
-- (NSData *)sendSynchronousRequest:(NSURLRequest *)urlRequest returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr infoItem:(InfoItem2 *)iid
+- (NSData *)sendSynchronousRequest:(NSURLRequest *)urlRequest returningResponse:(NSURLResponse **)responsePtr error:(NSError **)errorPtr infoItem:(InfoItem *)iid
 {
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
     NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem infoItem:iid];
@@ -139,7 +139,7 @@
                 // Free session information, prevent memory leak
                 [session finishTasksAndInvalidate];
 
-                InfoItem2 *iid = [req objectForKey:@"infoItem"];
+                InfoItem *iid = [req objectForKey:@"infoItem"];
                 if (IS_NULL(iid) == NO) {
                     NSMutableData *d = [req objectForKey:@"data"];
                     [iid changeBytesCount:[d length]];
@@ -168,7 +168,7 @@
                 NSMutableData *d = [req objectForKey:@"data"];
                 [d appendData:data];
 
-                InfoItem2 *iid = [req objectForKey:@"infoItem"];
+                InfoItem *iid = [req objectForKey:@"infoItem"];
                 if (IS_NULL(iid) == NO)
                     [iid changeBytesCount:[d length]];
 
@@ -194,7 +194,7 @@
                 completionHandler(NSURLSessionResponseAllow);
                 [req setObject:response forKey:@"response"];
 
-                InfoItem2 *iid = [req objectForKey:@"infoItem"];
+                InfoItem *iid = [req objectForKey:@"infoItem"];
                 if (IS_NULL(iid) == NO)
                     [iid changeBytesTotal:(long)response.expectedContentLength];
 

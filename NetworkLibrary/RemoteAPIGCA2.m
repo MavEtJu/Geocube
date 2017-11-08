@@ -94,7 +94,7 @@
             return __failure__; \
         }
 
-- (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict infoItem:(InfoItem2 *)iid
+- (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict infoItem:(InfoItem *)iid
 /* Returns:
  * waypoints_found
  * waypoints_notfound
@@ -127,7 +127,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables coordinates:(CLLocationCoordinate2D)coordinates infoItem:(InfoItem2 *)iid
+- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables coordinates:(CLLocationCoordinate2D)coordinates infoItem:(InfoItem *)iid
 {
     NSData *imgdata = nil;
     if (image != nil)
@@ -152,7 +152,7 @@
     return REMOTEAPI_OK;
  }
 
-- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoItem:(InfoItem2 *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoItem:(InfoItem *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     dbAccount *a = waypoint.account;
     dbGroup *g = dbc.groupLiveImport;
@@ -168,7 +168,7 @@
     [d setObject:as forKey:@"waypoints"];
     GCDictionaryGCA2 *d2 = [[GCDictionaryGCA2 alloc] initWithDictionary:d];
 
-    InfoItem2 *iii = [iid.infoViewer addImport];
+    InfoItem *iii = [iid.infoViewer addImport];
     [iii changeDescription:IMPORTMSG];
     [callback remoteAPI_objectReadyToImport:identifier infoItem:iii object:d2 group:g account:a];
 
@@ -176,7 +176,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypointsByCodes:(NSArray<NSString *> *)wpcodes infoItem:(InfoItem2 *)iid identifier:(NSInteger)identifier group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByCodes:(NSArray<NSString *> *)wpcodes infoItem:(InfoItem *)iid identifier:(NSInteger)identifier group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     if ([self.account canDoRemoteStuff] == NO) {
         [self setAPIError:_(@"remoteapigca2-[GCA2] loadWaypointsByCodes: remote API is disabled") error:REMOTEAPI_APIDISABLED];
@@ -198,7 +198,7 @@
     [d setObject:wps forKey:@"waypoints"];
     GCDictionaryGCA2 *d2 = [[GCDictionaryGCA2 alloc] initWithDictionary:d];
 
-    InfoItem2 *iii = [iid.infoViewer addImport];
+    InfoItem *iii = [iid.infoViewer addImport];
     [iii changeDescription:IMPORTMSG];
     [callback remoteAPI_objectReadyToImport:identifier infoItem:iii object:d2 group:group account:self.account];
 
@@ -206,7 +206,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoItem:(InfoItem2 *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoItem:(InfoItem *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     if ([self.account canDoRemoteStuff] == NO) {
         [self setAPIError:_(@"remoteapigca2-[GCA2] loadWaypointsByBoundingBox: remote API is disabled") error:REMOTEAPI_APIDISABLED];
@@ -238,7 +238,7 @@
     [d setObject:wps forKey:@"waypoints"];
     GCDictionaryGCA2 *d2 = [[GCDictionaryGCA2 alloc] initWithDictionary:d];
 
-    InfoItem2 *iii = [iid.infoViewer addImport];
+    InfoItem *iii = [iid.infoViewer addImport];
     [iii changeDescription:IMPORTMSG];
     [callback remoteAPI_objectReadyToImport:identifier infoItem:iii object:d2 group:nil account:self.account];
 
@@ -246,7 +246,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)listQueries:(NSArray<NSDictionary *> **)qs infoItem:(InfoItem2 *)iid public:(BOOL)public
+- (RemoteAPIResult)listQueries:(NSArray<NSDictionary *> **)qs infoItem:(InfoItem *)iid public:(BOOL)public
 {
     /* Returns: array of dicts of
      * - Name
@@ -276,7 +276,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group infoItem:(InfoItem2 *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group infoItem:(InfoItem *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     NSInteger chunks = 0;
     [iid changeChunksTotal:2];
@@ -324,7 +324,7 @@
 
         GCDictionaryGCA2 *d2 = [[GCDictionaryGCA2 alloc] initWithDictionary:d];
 
-        InfoItem2 *iii = [iid.infoViewer addImport];
+        InfoItem *iii = [iid.infoViewer addImport];
         [iii changeDescription:IMPORTMSG];
         [callback remoteAPI_objectReadyToImport:identifier infoItem:iii object:d2 group:group account:self.account];
         chunks++;

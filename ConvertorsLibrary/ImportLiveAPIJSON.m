@@ -40,7 +40,7 @@
 {
 }
 
-- (void)parseDictionary:(NSDictionary *)dict infoItem:(InfoItem2 *)iii
+- (void)parseDictionary:(NSDictionary *)dict infoItem:(InfoItem *)iii
 {
     GCLog(@"Parsing data");
 

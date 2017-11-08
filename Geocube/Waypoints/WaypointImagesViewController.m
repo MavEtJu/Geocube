@@ -84,7 +84,7 @@ enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self makeInfoView2];
+    [self makeInfoView];
 }
 
 - (void)needsDownloadMenu
@@ -123,36 +123,36 @@ enum {
 
 - (void)downloadImage:(dbImage *)image
 {
-    [self showInfoView2];
-    InfoItem2 *iiiImage = [self.infoView2 addImage];
+    [self showInfoView];
+    InfoItem *iiiImage = [self.infoView addImage];
     NSDictionary *d = @{@"iii": iiiImage, @"image": image };
     BACKGROUND(downloadImageBG:, d);
 }
 
 - (void)downloadImageBG:(NSDictionary *)dict
 {
-    InfoItem2 *iii = [dict objectForKey:@"iii"];
+    InfoItem *iii = [dict objectForKey:@"iii"];
     dbImage *img = [dict objectForKey:@"image"];
     [iii changeDescription:_(@"waypointimagesviewcontroller-Images")];
     [self downloadImage:img infoItem:iii];
     [iii changeQueueSize:0];
     [iii removeFromInfoViewer];
-    if ([self.infoView2 hasItems] == NO) {
-        [self hideInfoView2];
+    if ([self.infoView hasItems] == NO) {
+        [self hideInfoView];
         [self needsDownloadMenu];
     }
 }
 
 - (void)downloadImages
 {
-    [self showInfoView2];
-    InfoItem2 *iiiLogs = [self.infoView2 addImage];
-    InfoItem2 *iiiCache = [self.infoView2 addImage];
+    [self showInfoView];
+    InfoItem *iiiLogs = [self.infoView addImage];
+    InfoItem *iiiCache = [self.infoView addImage];
     BACKGROUND(downloadImagesLogs:, iiiLogs);
     BACKGROUND(downloadImagesCache:, iiiCache);
 }
 
-- (void)downloadImagesLogs:(InfoItem2 *)iii
+- (void)downloadImagesLogs:(InfoItem *)iii
 {
     [iii changeDescription:_(@"waypointimagesviewcontroller-Images from the logs")];
 
@@ -165,13 +165,13 @@ enum {
 
     [iii changeQueueSize:0];
     [iii removeFromInfoViewer];
-    if ([self.infoView2 hasItems] == NO) {
-        [self hideInfoView2];
+    if ([self.infoView hasItems] == NO) {
+        [self hideInfoView];
         [self needsDownloadMenu];
     }
 }
 
-- (void)downloadImagesCache:(InfoItem2 *)iii
+- (void)downloadImagesCache:(InfoItem *)iii
 {
     [iii changeDescription:_(@"waypointimagesviewcontroller-Images from the waypoint")];
 
@@ -184,13 +184,13 @@ enum {
     [iii changeQueueSize:0];
     [iii removeFromInfoViewer];
 
-    if ([self.infoView2 hasItems] == NO) {
-        [self hideInfoView2];
+    if ([self.infoView hasItems] == NO) {
+        [self hideInfoView];
         [self needsDownloadMenu];
     }
 }
 
-- (void)downloadImage:(dbImage *)image infoItem:(InfoItem2 *)iii
+- (void)downloadImage:(dbImage *)image infoItem:(InfoItem *)iii
 {
     NSURL *url = [NSURL URLWithString:image.url];
     GCURLRequest *req = [GCURLRequest requestWithURL:url];

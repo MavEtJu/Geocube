@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="Vnk-r5-0E9" customClass="InfoItem2">
+        <view contentMode="scaleToFill" id="Vnk-r5-0E9" customClass="InfoItem">
             <rect key="frame" x="0.0" y="0.0" width="404" height="257"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>

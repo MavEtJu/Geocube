@@ -25,7 +25,7 @@
 
 @implementation ImportGCA2JSON
 
-- (void)parseDictionary:(GCDictionaryGCA2 *)dict infoItem:(InfoItem2 *)iii
+- (void)parseDictionary:(GCDictionaryGCA2 *)dict infoItem:(InfoItem *)iii
 {
     self.iiImport = iii;
     if ([dict objectForKey:@"waypoints"] != nil) {

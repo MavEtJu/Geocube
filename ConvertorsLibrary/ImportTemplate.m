@@ -92,9 +92,9 @@
     [self parseDictionary:dict infoItem:nil];
 }
 
-- NEEDS_OVERLOADING_VOID(parseFile:(NSString *)filename infoItem:(InfoItem2 *)iii)
-- NEEDS_OVERLOADING_VOID(parseData:(NSData *)data infoItem:(InfoItem2 *)iii)
-- NEEDS_OVERLOADING_VOID(parseString:(NSString *)data infoItem:(InfoItem2 *)iii)
-- NEEDS_OVERLOADING_VOID(parseDictionary:(id)dict infoItem:(InfoItem2 *)iii)
+- NEEDS_OVERLOADING_VOID(parseFile:(NSString *)filename infoItem:(InfoItem *)iii)
+- NEEDS_OVERLOADING_VOID(parseData:(NSData *)data infoItem:(InfoItem *)iii)
+- NEEDS_OVERLOADING_VOID(parseString:(NSString *)data infoItem:(InfoItem *)iii)
+- NEEDS_OVERLOADING_VOID(parseDictionary:(id)dict infoItem:(InfoItem *)iii)
 
 @end

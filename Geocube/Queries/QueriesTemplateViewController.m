@@ -55,7 +55,7 @@ enum {
 
     [self.tableView registerNib:[UINib nibWithNibName:XIB_QUERIESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_QUERIESTABLEVIEWCELL];
 
-    [self makeInfoView2];
+    [self makeInfoView];
 
     self.qs = nil;
 }
@@ -178,7 +178,7 @@ enum {
     }
 
     [self.processing clearAll];
-    [self showInfoView2];
+    [self showInfoView];
 
     NSDictionary *pq = [self.qs objectAtIndex:indexPath.row];
     BACKGROUND(doRunRetrieveQuery:, pq);
@@ -223,7 +223,7 @@ enum {
     [audioManager playSound:PLAYSOUND_IMPORTCOMPLETE];
     [waypointManager needsRefreshAll];
 
-    [self hideInfoView2];
+    [self hideInfoView];
 }
 
 - (dbGroup *)makeGroupExist:(NSString *)name
@@ -255,7 +255,7 @@ enum {
 
     dbGroup *group = [self makeGroupExist:[pq objectForKey:@"Name"]];
 
-    InfoItem2 *iid = [self.infoView2 addDownload];
+    InfoItem *iid = [self.infoView addDownload];
     [iid changeDescription:[pq objectForKey:@"Name"]];
 
     [self.processing addIdentifier:0];
@@ -266,7 +266,7 @@ enum {
     [iid removeFromInfoViewer];
 }
 
-- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier infoItem:(InfoItem2 *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
+- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier infoItem:(InfoItem *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)a
 {
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:5];
     [d setObject:group forKey:@"group"];
@@ -284,7 +284,7 @@ enum {
 {
     dbGroup *g = [dict objectForKey:@"group"];
     NSObject *o = [dict objectForKey:@"object"];
-    InfoItem2 *iii = [dict objectForKey:@"infoItem"];
+    InfoItem *iii = [dict objectForKey:@"infoItem"];
     dbAccount *a = [dict objectForKey:@"account"];
     NSInteger identifier = [[dict objectForKey:@"identifier"] integerValue];
 

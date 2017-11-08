@@ -65,7 +65,7 @@ enum {
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 20;
 
-    [self makeInfoView2];
+    [self makeInfoView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -160,7 +160,7 @@ enum {
 
 - (void)menuReloadWaypoints
 {
-    [self showInfoView2];
+    [self showInfoView];
 
     [self.processing clearAll];
     [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoItem:nil];
@@ -201,7 +201,7 @@ enum {
     [self reloadDataMainQueue];
     [audioManager playSound:PLAYSOUND_IMPORTCOMPLETE];
 
-    [self hideInfoView2];
+    [self hideInfoView];
 }
 
 - (void)runReloadWaypoints:(NSDictionary *)dict
@@ -209,7 +209,7 @@ enum {
     NSArray<NSString *> *wps = [dict objectForKey:@"waypoints"];
     dbAccount *account = [dict objectForKey:@"account"];
 
-    InfoItem2 *iid = [self.infoView2 addDownload];
+    InfoItem *iid = [self.infoView addDownload];
     [iid changeChunksTotal:[wps count]];
     [iid changeDescription:[NSString stringWithFormat:_(@"listtemplateviewcontroller-Downloading for %@"), account.site]];
 
@@ -219,7 +219,7 @@ enum {
     [iid removeFromInfoViewer];
 }
 
-- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier infoItem:(InfoItem2 *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
+- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier infoItem:(InfoItem *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
     NSLog(@"PROCESSING: Downloaded %ld", (long)identifier);
     [self.processing increaseDownloadedChunks:identifier];

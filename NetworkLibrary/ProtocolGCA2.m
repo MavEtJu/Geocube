@@ -146,7 +146,7 @@
 
 // --------------------------------------------------------------------------
 
-- (GCStringGPX *)performURLRequestGPX:(NSURLRequest *)urlRequest infoItem:(InfoItem2 *)iid
+- (GCStringGPX *)performURLRequestGPX:(NSURLRequest *)urlRequest infoItem:(InfoItem *)iid
 {
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
     NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem infoItem:iid];
@@ -185,7 +185,7 @@
     return gpx;
 }
 
-- (GCDictionaryGCA2 *)performURLRequest:(NSURLRequest *)urlRequest infoItem:(InfoItem2 *)iid
+- (GCDictionaryGCA2 *)performURLRequest:(NSURLRequest *)urlRequest infoItem:(InfoItem *)iid
 {
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
     NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem infoItem:iid];
@@ -256,7 +256,7 @@
     return urlString;
 }
 
-- (GCDictionaryGCA2 *)api_services_users_by__username:(NSString *)username infoItem:(InfoItem2 *)iid
+- (GCDictionaryGCA2 *)api_services_users_by__username:(NSString *)username infoItem:(InfoItem *)iid
 {
     NSLog(@"api_services_users_by__username:%@", username);
 
@@ -270,7 +270,7 @@
     return [self performURLRequest:req infoItem:iid];
 }
 
-- (GCDictionaryGCA2 *)api_services_caches_geocache:(NSString *)wptname infoItem:(InfoItem2 *)iid
+- (GCDictionaryGCA2 *)api_services_caches_geocache:(NSString *)wptname infoItem:(InfoItem *)iid
 {
     NSLog(@"api_services_caches_geocache:%@", wptname);
 
@@ -286,12 +286,12 @@
     return [self performURLRequest:req infoItem:iid];
 }
 
-- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray<NSString *> *)wps infoItem:(InfoItem2 *)iid
+- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray<NSString *> *)wps infoItem:(InfoItem *)iid
 {
     return [self api_services_caches_geocaches:wps logs:30 infoItem:iid];
 }
 
-- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray<NSString *> *)wps logs:(NSInteger)numlogs infoItem:(InfoItem2 *)iid
+- (GCDictionaryGCA2 *)api_services_caches_geocaches:(NSArray<NSString *> *)wps logs:(NSInteger)numlogs infoItem:(InfoItem *)iid
 {
     NSLog(@"api_services_caches_geocaches:%ld", (long)[wps count]);
 
@@ -306,7 +306,7 @@
     return [self performURLRequest:req infoItem:iid];
 }
 
-- (GCDictionaryGCA2 *)api_services_search_bbox:(GCBoundingBox *)bb infoItem:(InfoItem2 *)iid
+- (GCDictionaryGCA2 *)api_services_search_bbox:(GCBoundingBox *)bb infoItem:(InfoItem *)iid
 {
     NSLog(@"api_services_search_bbox:%@", [bb description]);
 
@@ -322,7 +322,7 @@
     return [self performURLRequest:req infoItem:iid];
 }
 
-- (GCDictionaryGCA2 *)api_services_logs_submit:(dbWaypoint *)wp logtype:(NSString *)logtype comment:(NSString *)comment when:(NSString *)dateLogged rating:(NSInteger)rating recommended:(BOOL)recommended coordinates:(CLLocationCoordinate2D)coordinates infoItem:(InfoItem2 *)iid
+- (GCDictionaryGCA2 *)api_services_logs_submit:(dbWaypoint *)wp logtype:(NSString *)logtype comment:(NSString *)comment when:(NSString *)dateLogged rating:(NSInteger)rating recommended:(BOOL)recommended coordinates:(CLLocationCoordinate2D)coordinates infoItem:(InfoItem *)iid
 {
     NSLog(@"api_services_logs_submit:%@", wp.wpt_name);
 
@@ -348,7 +348,7 @@
     return [self performURLRequest:req infoItem:iid];
 }
 
-- (GCDictionaryGCA2 *)api_services_logs_images_add:(NSNumber *)logid data:(NSData *)imgdata caption:(NSString *)imageCaption description:(NSString *)imageDescription infoItem:(InfoItem2 *)iid
+- (GCDictionaryGCA2 *)api_services_logs_images_add:(NSNumber *)logid data:(NSData *)imgdata caption:(NSString *)imageCaption description:(NSString *)imageDescription infoItem:(InfoItem *)iid
 {
     NSLog(@"api_services_logs_images_add:%ld", [logid longValue]);
 
@@ -409,7 +409,7 @@
     return [self performURLRequest:req infoItem:iid];
 }
 
-- (GCDictionaryGCA2 *)api_services_caches_query_geocaches:(NSString *)queryId infoItem:(InfoItem2 *)iid
+- (GCDictionaryGCA2 *)api_services_caches_query_geocaches:(NSString *)queryId infoItem:(InfoItem *)iid
 {
     NSLog(@"api_services_caches_query_geocaches:%@", queryId);
 

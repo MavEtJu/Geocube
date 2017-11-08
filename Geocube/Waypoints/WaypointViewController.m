@@ -119,7 +119,7 @@ enum {
     // Restore
     if (self.hasCloseButton == NO)
         [self showWaypoint:waypointManager.currentWaypoint];
-    [self makeInfoView2];
+    [self makeInfoView];
 
     [self.tableView registerNib:[UINib nibWithNibName:XIB_WAYPOINTHEADERTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_WAYPOINTHEADERTABLEVIEWCELL];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_WAYPOINTLOGSTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_WAYPOINTLOGSTABLEVIEWCELL];
@@ -896,8 +896,8 @@ enum {
 
 - (void)runRefreshWaypoint
 {
-    [self showInfoView2];
-    InfoItem2 *iid = [self.infoView2 addDownload];
+    [self showInfoView];
+    InfoItem *iid = [self.infoView addDownload];
     [iid changeDescription:[NSString stringWithFormat:_(@"waypointviewcontroller-Updating %@"), self.waypoint.wpt_name]];
 
     self.chunksDownloaded = 0;
@@ -910,7 +910,7 @@ enum {
         [MyTools messageBox:self header:_(@"waypointviewcontroller-Update failed") text:_(@"waypointviewcontroller-Unable to update the waypoint.") error:self.waypoint.account.remoteAPI.lastError];
 }
 
-- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier infoItem:(InfoItem2 *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
+- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier infoItem:(InfoItem *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
     @synchronized (self) {
         self.chunksDownloaded++;
@@ -939,7 +939,7 @@ enum {
     [waypointManager needsRefreshUpdate:self.waypoint];
     [audioManager playSound:PLAYSOUND_IMPORTCOMPLETE];
 
-    [self hideInfoView2];
+    [self hideInfoView];
 }
 
 - (void)remoteAPI_failed:(NSInteger)identifier

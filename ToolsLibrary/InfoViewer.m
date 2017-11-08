@@ -19,17 +19,17 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface InfoViewer2 ()
+@interface InfoViewer ()
 
-@property (nonatomic, retain) NSMutableArray<InfoItem2 *> *downloads;
+@property (nonatomic, retain) NSMutableArray<InfoItem *> *downloads;
 @property (nonatomic, retain) GCLabelNormalText *headerDownloads;
-@property (nonatomic, retain) NSMutableArray<InfoItem2 *> *imports;
+@property (nonatomic, retain) NSMutableArray<InfoItem *> *imports;
 @property (nonatomic, retain) GCLabelNormalText *headerImports;
-@property (nonatomic, retain) NSMutableArray<InfoItem2 *> *images;
+@property (nonatomic, retain) NSMutableArray<InfoItem *> *images;
 @property (nonatomic, retain) GCLabelNormalText *headerImages;
 
-@property (nonatomic, retain) NSMutableArray<InfoItem2 *> *removed;
-@property (nonatomic, retain) NSMutableArray<InfoItem2 *> *added;
+@property (nonatomic, retain) NSMutableArray<InfoItem *> *removed;
+@property (nonatomic, retain) NSMutableArray<InfoItem *> *added;
 
 @property (nonatomic        ) BOOL isVisible;
 @property (nonatomic        ) BOOL isRefreshing;
@@ -37,7 +37,7 @@
 
 @end
 
-@implementation InfoViewer2
+@implementation InfoViewer
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -68,11 +68,11 @@
     return self;
 }
 
-- (InfoItem2 *)addDownload
+- (InfoItem *)addDownload
 {
-    InfoItem2 *ii;
+    InfoItem *ii;
     @synchronized (self) {
-        ii = [[[NSBundle mainBundle] loadNibNamed:XIB_INFOITEMVIEW2 owner:self options:nil] firstObject];
+        ii = [[[NSBundle mainBundle] loadNibNamed:XIB_INFOITEMVIEW owner:self options:nil] firstObject];
     }
     ii.infoViewer = self;
     ii.backgroundColor = [UIColor clearColor];
@@ -88,11 +88,11 @@
     return ii;
 }
 
-- (InfoItem2 *)addImport
+- (InfoItem *)addImport
 {
-    InfoItem2 *ii;
+    InfoItem *ii;
     @synchronized (self) {
-        ii = [[[NSBundle mainBundle] loadNibNamed:XIB_INFOITEMVIEW2 owner:self options:nil] firstObject];
+        ii = [[[NSBundle mainBundle] loadNibNamed:XIB_INFOITEMVIEW owner:self options:nil] firstObject];
     }
     ii.infoViewer = self;
     ii.backgroundColor = [UIColor clearColor];
@@ -108,11 +108,11 @@
     return ii;
 }
 
-- (InfoItem2 *)addImage
+- (InfoItem *)addImage
 {
-    InfoItem2 *ii;
+    InfoItem *ii;
     @synchronized (self) {
-        ii = [[[NSBundle mainBundle] loadNibNamed:XIB_INFOITEMVIEW2 owner:self options:nil] firstObject];
+        ii = [[[NSBundle mainBundle] loadNibNamed:XIB_INFOITEMVIEW owner:self options:nil] firstObject];
     }
     ii.infoViewer = self;
     ii.backgroundColor = [UIColor clearColor];
@@ -128,7 +128,7 @@
     return ii;
 }
 
-- (void)removeItem:(InfoItem2 *)item
+- (void)removeItem:(InfoItem *)item
 {
     if ([self removeFromItem:item elements:self.downloads] == YES) {
     } else if ([self removeFromItem:item elements:self.imports] == YES) {
@@ -137,11 +137,11 @@
     }
 }
 
-- (BOOL)removeFromItem:(InfoItem2 *)element elements:(NSMutableArray<InfoItem2 *> *)elements
+- (BOOL)removeFromItem:(InfoItem *)element elements:(NSMutableArray<InfoItem *> *)elements
 {
     @synchronized (elements) {
         __block NSInteger index = -1;
-        [elements enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull e, NSUInteger idx, BOOL * _Nonnull stop) {
+        [elements enumerateObjectsUsingBlock:^(InfoItem * _Nonnull e, NSUInteger idx, BOOL * _Nonnull stop) {
             if (e == element) {
                 index = idx;
                 *stop = YES;
@@ -177,7 +177,7 @@
     self.stopUpdating = YES;
     self.needsRefresh = NO;
 
-    InfoItem2 *ii;
+    InfoItem *ii;
     NSEnumerator *e;
     e = [self.imports objectEnumerator];
     while ((ii = [e nextObject]) != nil) {
@@ -230,13 +230,13 @@
 
     // Deal with modifications
     @synchronized (self.added) {
-        [self.added enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull add, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.added enumerateObjectsUsingBlock:^(InfoItem * _Nonnull add, NSUInteger idx, BOOL * _Nonnull stop) {
             [self addSubview:add];
         }];
         [self.added removeAllObjects];
     }
     @synchronized (self.removed) {
-        [self.removed enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull remove, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.removed enumerateObjectsUsingBlock:^(InfoItem * _Nonnull remove, NSUInteger idx, BOOL * _Nonnull stop) {
             [remove removeFromSuperview];
         }];
         [self.removed removeAllObjects];
@@ -249,7 +249,7 @@
             y += self.headerDownloads.frame.size.height;
             y += 4;
 
-            [self.downloads enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull download, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.downloads enumerateObjectsUsingBlock:^(InfoItem * _Nonnull download, NSUInteger idx, BOOL * _Nonnull stop) {
                 [download sizeToFit];
                 download.frame = CGRectMake(0, y, download.frame.size.width, download.frame.size.height);
                 y += download.frame.size.height;
@@ -267,7 +267,7 @@
             y += self.headerImports.frame.size.height;
             y += 4;
 
-            [self.imports enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull import, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.imports enumerateObjectsUsingBlock:^(InfoItem * _Nonnull import, NSUInteger idx, BOOL * _Nonnull stop) {
                 [import sizeToFit];
                 import.frame = CGRectMake(0, y, import.frame.size.width, import.frame.size.height);
                 y += import.frame.size.height;
@@ -285,7 +285,7 @@
             y += self.headerImages.frame.size.height;
             y += 4;
 
-            [self.images enumerateObjectsUsingBlock:^(InfoItem2 * _Nonnull image, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.images enumerateObjectsUsingBlock:^(InfoItem * _Nonnull image, NSUInteger idx, BOOL * _Nonnull stop) {
                 [image sizeToFit];
                 image.frame = CGRectMake(0, y, image.frame.size.width, image.frame.size.height);
                 y += image.frame.size.height;

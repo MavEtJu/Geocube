@@ -73,7 +73,7 @@
     return req;
 }
 
-- (GCDictionaryOKAPI *)performURLRequest:(NSURLRequest *)urlRequest infoItem:(InfoItem2 *)iid
+- (GCDictionaryOKAPI *)performURLRequest:(NSURLRequest *)urlRequest infoItem:(InfoItem *)iid
 {
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
     NSDictionary *retDict = [downloadManager downloadAsynchronous:urlRequest semaphore:sem infoItem:iid];
@@ -117,7 +117,7 @@
 
 // -----------------------------------------------------
 
-- (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username infoItem:(InfoItem2 *)iid
+- (GCDictionaryOKAPI *)services_users_byUsername:(NSString *)username infoItem:(InfoItem *)iid
 {
     NSLog(@"services_users_byUsername");
 
@@ -135,7 +135,7 @@
     return json;
 }
 
-- (GCDictionaryOKAPI *)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite infoItem:(InfoItem2 *)iid
+- (GCDictionaryOKAPI *)services_logs_submit:(NSString *)logtype waypointName:(NSString *)waypointName dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite infoItem:(InfoItem *)iid
 {
     NSLog(@"services_logs_submit");
 
@@ -155,13 +155,13 @@
     return json;
 }
 
-- (GCDictionaryOKAPI *)services_caches_geocache:(NSString *)wpname infoItem:(InfoItem2 *)iid
+- (GCDictionaryOKAPI *)services_caches_geocache:(NSString *)wpname infoItem:(InfoItem *)iid
 {
     NSLog(@"services_caches_geocache: %@", wpname);
     return [self services_caches_geocaches:@[wpname] infoItem:iid];
 }
 
-- (GCDictionaryOKAPI *)services_caches_search_bbox:(GCBoundingBox *)bbox infoItem:(InfoItem2 *)iid
+- (GCDictionaryOKAPI *)services_caches_search_bbox:(GCBoundingBox *)bbox infoItem:(InfoItem *)iid
 {
     NSLog(@"services_caches_search_bbox:%@", [bbox description]);
 
@@ -178,7 +178,7 @@
     return json;
 }
 
-- (GCDictionaryOKAPI *)services_caches_geocaches:(NSArray<NSString *> *)wpcodes infoItem:(InfoItem2 *)iid
+- (GCDictionaryOKAPI *)services_caches_geocaches:(NSArray<NSString *> *)wpcodes infoItem:(InfoItem *)iid
 {
     NSLog(@"services_caches_geocaches: (%lu) %@", (unsigned long)[wpcodes count], [wpcodes objectAtIndex:0]);
 

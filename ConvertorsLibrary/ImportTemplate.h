@@ -35,7 +35,7 @@
 @property (nonatomic, retain) dbAccount *account;
 @property (nonatomic, retain) dbGroup *group;
 
-@property (nonatomic, retain) InfoItem2 *iiImport;
+@property (nonatomic, retain) InfoItem *iiImport;
 
 @property (nonatomic        ) ImportOptions run_options;
 @property (nonatomic, retain) id<ImportDelegate> delegate;
@@ -49,9 +49,9 @@
 - (void)parseString:(NSString *)data;
 - (void)parseGPX:(GCStringGPX *)gpx;
 - (void)parseDictionary:(GCDictionary *)dict;
-- (void)parseFile:(NSString *)filename infoItem:(InfoItem2 *)iii;
-- (void)parseData:(NSData *)data infoItem:(InfoItem2 *)iii;
-- (void)parseString:(NSString *)data infoItem:(InfoItem2 *)iii;
-- (void)parseDictionary:(GCDictionary *)dict infoItem:(InfoItem2 *)iii;
+- (void)parseFile:(NSString *)filename infoItem:(InfoItem *)iii;
+- (void)parseData:(NSData *)data infoItem:(InfoItem *)iii;
+- (void)parseString:(NSString *)data infoItem:(InfoItem *)iii;
+- (void)parseDictionary:(GCDictionary *)dict infoItem:(InfoItem *)iii;
 
 @end

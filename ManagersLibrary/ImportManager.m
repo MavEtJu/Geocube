@@ -49,7 +49,7 @@
     NSAssert(NO, @"addToQueue called");
 }
 
-- (NSArray<NSString *> *)process:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(ImportOptions)runoptions infoItem:(InfoItem2 *)iii
+- (NSArray<NSString *> *)process:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(ImportOptions)runoptions infoItem:(InfoItem *)iii
 {
     if ([data isKindOfClass:[GCStringFilename class]] == YES) {
         NSString *_filename = [data description];
@@ -105,7 +105,7 @@
     return self.processedWaypoints;
 }
 
-- (void)runImporter:(ImportTemplate *)imp data:(NSObject *)data run_options:(ImportOptions)run_options infoItem:(InfoItem2 *)iii
+- (void)runImporter:(ImportTemplate *)imp data:(NSObject *)data run_options:(ImportOptions)run_options infoItem:(InfoItem *)iii
 {
     imp.run_options = run_options;
 

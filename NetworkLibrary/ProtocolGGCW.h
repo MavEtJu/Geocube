@@ -26,24 +26,24 @@
 
 - (void)storeCookie:(NSHTTPCookie *)cookie;
 
-- (GCDictionaryGGCW *)account_dashboard:(InfoItem2 *)iid;
-- (GCDictionaryGGCW *)my_statistics:(InfoItem2 *)iid;
+- (GCDictionaryGGCW *)account_dashboard:(InfoItem *)iid;
+- (GCDictionaryGGCW *)my_statistics:(InfoItem *)iid;
 
-- (GCDictionaryGGCW *)pocket_default:(InfoItem2 *)iid;
-- (GCDataZIPFile *)pocket_downloadpq:(NSString *)guid infoItem:(InfoItem2 *)iid;
+- (GCDictionaryGGCW *)pocket_default:(InfoItem *)iid;
+- (GCDataZIPFile *)pocket_downloadpq:(NSString *)guid infoItem:(InfoItem *)iid;
 
-- (NSDictionary *)geocache:(NSString *)wptname infoItem:(InfoItem2 *)iid;
-- (GCStringGPX *)geocache_gpx:(NSString *)wptname infoItem:(InfoItem2 *)iid;
-- (NSArray<NSString *> *)play_search:(CLLocationCoordinate2D)center infoItem:(InfoItem2 *)iid;
+- (NSDictionary *)geocache:(NSString *)wptname infoItem:(InfoItem *)iid;
+- (GCStringGPX *)geocache_gpx:(NSString *)wptname infoItem:(InfoItem *)iid;
+- (NSArray<NSString *> *)play_search:(CLLocationCoordinate2D)center infoItem:(InfoItem *)iid;
 
-- (NSArray<NSDictionary *> *)my_inventory:(InfoItem2 *)iid;
-- (NSDictionary *)track_details:(NSString *)guid id:(NSString *)_id infoItem:(InfoItem2 *)iid;
-- (NSDictionary *)track_details:(NSString *)tracker infoItem:(InfoItem2 *)iid;
-- (NSArray<NSDictionary *> *)track_search:(InfoItem2 *)iid;
-- (NSDictionary *)track_log:(NSDictionary *)dict infoItem:(InfoItem2 *)iid;
+- (NSArray<NSDictionary *> *)my_inventory:(InfoItem *)iid;
+- (NSDictionary *)track_details:(NSString *)guid id:(NSString *)_id infoItem:(InfoItem *)iid;
+- (NSDictionary *)track_details:(NSString *)tracker infoItem:(InfoItem *)iid;
+- (NSArray<NSDictionary *> *)track_search:(InfoItem *)iid;
+- (NSDictionary *)track_log:(NSDictionary *)dict infoItem:(InfoItem *)iid;
 
-- (GCDictionaryGGCW *)account_oauth_token:(InfoItem2 *)iid;
-- (GCStringGPXGarmin *)seek_sendtogps:(NSString *)guid infoItem:(InfoItem2 *)iid;
+- (GCDictionaryGGCW *)account_oauth_token:(InfoItem *)iid;
+- (GCStringGPXGarmin *)seek_sendtogps:(NSString *)guid infoItem:(InfoItem *)iid;
 
 - (GCDictionaryGGCW *)play_serverparameters_params;
 - (GCDictionaryGGCW *)account_oauth_token;

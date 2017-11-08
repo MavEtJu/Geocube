@@ -32,7 +32,7 @@
     self.tbs = [dbTrackable dbAllInventory];
 }
 
-- (void)remoteAPILoadTrackables:(dbAccount *)a infoItem:(InfoItem2 *)iid
+- (void)remoteAPILoadTrackables:(dbAccount *)a infoItem:(InfoItem *)iid
 {
     [a.remoteAPI trackablesInventory:iid];
 }

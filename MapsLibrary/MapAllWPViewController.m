@@ -107,7 +107,7 @@ enum {
     self.waypointsOld = [NSMutableArray arrayWithArray:[dbWaypoint dbAllInRect:bl RT:tr]];
     self.waypointsNew = [NSMutableArray arrayWithCapacity:[self.waypointsOld count]];
 
-    [self showInfoView2];
+    [self showInfoView];
     [self.processing clearAll];
 
     [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPOST infoItem:nil];
@@ -121,7 +121,7 @@ enum {
             return;
         accountsFound++;
 
-        InfoItem2 *iid = [self.infoView2 addDownload];
+        InfoItem *iid = [self.infoView addDownload];
         [iid changeDescription:account.site];
 
         NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:3];
@@ -165,7 +165,7 @@ enum {
             [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoItem:nil];
             [waypointManager needsRefreshAll];
             self.currentRun = RUN_NONE;
-            [self hideInfoView2];
+            [self hideInfoView];
             return;
         };
 
@@ -188,7 +188,7 @@ enum {
             if ([wps count] == 0)
                 return;
 
-            InfoItem2 *iid = [self.infoView2 addDownload];
+            InfoItem *iid = [self.infoView addDownload];
             [iid changeDescription:account.site];
             NSMutableArray<NSString *> *wpnames = [NSMutableArray arrayWithCapacity:[wps count]];
             [wps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -207,13 +207,13 @@ enum {
         [importManager process:nil group:nil account:nil options:IMPORTOPTION_NOPARSE|IMPORTOPTION_NOPRE infoItem:nil];
         [waypointManager needsRefreshAll];
         self.currentRun = RUN_NONE;
-        [self hideInfoView2];
+        [self hideInfoView];
 
         return;
     }
 }
 
-- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier infoItem:(InfoItem2 *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
+- (void)remoteAPI_objectReadyToImport:(NSInteger)identifier infoItem:(InfoItem *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
     // We are already in a background thread, but don't want to delay the next request until this one is processed.
 
@@ -237,7 +237,7 @@ enum {
     dbGroup *g = [dict objectForKey:@"group"];
     dbAccount *a = [dict objectForKey:@"account"];
     NSObject *o = [dict objectForKey:@"object"];
-    InfoItem2 *iii = [dict objectForKey:@"iii"];
+    InfoItem *iii = [dict objectForKey:@"iii"];
     NSInteger identifier = [[dict objectForKey:@"identifier"] integerValue];
 
     if ([o isKindOfClass:[NSNull class]] == NO) {
@@ -259,7 +259,7 @@ enum {
 
 - (void)runLoadWaypoints:(NSMutableDictionary *)dict
 {
-    InfoItem2 *iid = [dict objectForKey:@"iid"];
+    InfoItem *iid = [dict objectForKey:@"iid"];
     GCBoundingBox *bb = [dict objectForKey:@"boundingbox"];
     dbAccount *account = [dict objectForKey:@"account"];
 

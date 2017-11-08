@@ -150,7 +150,7 @@
     [self initMapIcons];
     [self recalculateRects];
 
-    [self makeInfoView2];
+    [self makeInfoView];
 
     self.needsRefresh = YES;
     self.isVisible = NO;

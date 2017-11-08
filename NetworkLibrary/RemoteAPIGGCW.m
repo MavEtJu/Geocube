@@ -57,7 +57,7 @@
             [callback remoteAPI_failed:iv identifier:identifier]; \
         }
 
-- (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict infoItem:(InfoItem2 *)iid
+- (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict infoItem:(InfoItem *)iid
 {
 /* Returns:
  * waypoints_found
@@ -87,7 +87,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables coordinates:(CLLocationCoordinate2D)coordinates infoItem:(InfoItem2 *)iid
+- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables coordinates:(CLLocationCoordinate2D)coordinates infoItem:(InfoItem *)iid
 {
     GCDictionaryGGCW *params = [self.ggcw play_serverparameters_params];
     NSString *ownerReferenceCode = [[params objectForKey:@"user:info"] objectForKey:@"referenceCode"];
@@ -135,7 +135,7 @@
     return REMOTEAPI_CREATELOG_LOGFAILED;
 }
 
-- (RemoteAPIResult)listQueries:(NSArray<NSDictionary *> **)qs infoItem:(InfoItem2 *)iid public:(BOOL)public
+- (RemoteAPIResult)listQueries:(NSArray<NSDictionary *> **)qs infoItem:(InfoItem *)iid public:(BOOL)public
 {
     /* Returns: array of dicts of
      * - Name
@@ -173,7 +173,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group infoItem:(InfoItem2 *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group infoItem:(InfoItem *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     [iid changeChunksTotal:1];
     [iid changeChunksCount:1];
@@ -185,7 +185,7 @@
     [zipfile writeToFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] atomically:YES];
     GCStringFilename *zipfilename = [[GCStringFilename alloc] initWithString:filename];
 
-    InfoItem2 *iii = [iid.infoViewer addImport];
+    InfoItem *iii = [iid.infoViewer addImport];
     [iii changeDescription:IMPORTMSG_PQ];
     [callback remoteAPI_objectReadyToImport:identifier infoItem:iii object:zipfilename group:group account:self.account];
 
@@ -193,7 +193,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoItem:(InfoItem2 *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoItem:(InfoItem *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     [iid changeChunksTotal:1];
     [iid changeChunksCount:1];
@@ -205,7 +205,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoItem:(InfoItem2 *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoItem:(InfoItem *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     /*
      * Use /play/search with the current coordinates to obtain the list of names of nearby waypoints.
@@ -244,7 +244,7 @@
 - (void)loadWaypointsByBoundingBox_BG:(NSDictionary *)d
 {
     NSInteger identifier = [[d objectForKey:@"identifier"] integerValue];
-    InfoItem2 *iid = [d objectForKey:@"infoitem"];
+    InfoItem *iid = [d objectForKey:@"infoitem"];
     NSString *wptname = [d objectForKey:@"wptname"];
 
     if (IS_NULL(iid))
@@ -253,13 +253,13 @@
     id<RemoteAPIDownloadDelegate> callback = [d objectForKey:@"callback"];
     GCStringGPX *gpx = [self.ggcw geocache_gpx:wptname infoItem:iid];
 
-    InfoItem2 *iii = [iid.infoViewer addImport];
+    InfoItem *iii = [iid.infoViewer addImport];
     [callback remoteAPI_objectReadyToImport:identifier infoItem:iii object:gpx group:dbc.groupManualWaypoints account:self.account];
 
     @synchronized (self) { self.threadcounter--; }
 }
 
-- (RemoteAPIResult)trackablesMine:(InfoItem2 *)iid
+- (RemoteAPIResult)trackablesMine:(InfoItem *)iid
 {
     NSArray<NSDictionary *> *tbs = [self.ggcw track_search:iid];
     NSMutableArray<NSDictionary *> *tbstot = [NSMutableArray arrayWithCapacity:[tbs count]];
@@ -298,7 +298,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)trackablesInventory:(InfoItem2 *)iid
+- (RemoteAPIResult)trackablesInventory:(InfoItem *)iid
 {
     NSArray<NSDictionary *>*tbs = [self.ggcw my_inventory:iid];
     NSMutableArray<NSDictionary *> *tbstot = [NSMutableArray arrayWithCapacity:[tbs count]];
@@ -330,7 +330,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)trackableFind:(NSString *)pin trackable:(dbTrackable **)t infoItem:(InfoItem2 *)iid
+- (RemoteAPIResult)trackableFind:(NSString *)pin trackable:(dbTrackable **)t infoItem:(InfoItem *)iid
 {
     NSDictionary *d = [self.ggcw track_details:pin infoItem:iid];
 

@@ -29,12 +29,12 @@
 /*
  * Download the contents of an URL now.
  */
-- (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error infoItem:(InfoItem2 *)iid;
+- (NSData *)downloadSynchronous:(NSURLRequest *)urlRequest returningResponse:(NSHTTPURLResponse **)response error:(NSError **)error infoItem:(InfoItem *)iid;
 
 /*
  * Add  the contents of an URL to the download queue.
  */
-- (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem infoItem:(InfoItem2 *)iid;
+- (NSDictionary *)downloadAsynchronous:(NSURLRequest *)urlRequest semaphore:(dispatch_semaphore_t)sem infoItem:(InfoItem *)iid;
 
 @end
 

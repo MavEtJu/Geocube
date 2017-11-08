@@ -19,11 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define XIB_INFOITEMVIEW2 @"InfoItem2"
+#define XIB_INFOITEMVIEW @"InfoItem"
 
-@interface InfoItem2 : GCView
+@interface InfoItem : GCView
 
-@property (nonatomic, weak) InfoViewer2 *infoViewer;
+@property (nonatomic, weak) InfoViewer *infoViewer;
 @property (nonatomic      ) BOOL needsRefresh;
 
 - (void)changeExpanded:(BOOL)isExpanded;

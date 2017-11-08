@@ -164,7 +164,7 @@
                 return __failure__; \
             }
 
-- (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict infoItem:(InfoItem2 *)iid
+- (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict infoItem:(InfoItem *)iid
 /* Returns:
  * waypoints_found
  * waypoints_notfound
@@ -206,7 +206,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables coordinates:(CLLocationCoordinate2D)coordinates infoItem:(InfoItem2 *)iid
+- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables coordinates:(CLLocationCoordinate2D)coordinates infoItem:(InfoItem *)iid
 {
     NSData *imgdata = nil;
     if (image != nil)
@@ -253,7 +253,7 @@
     return errorCode;
 }
 
-- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoItem:(InfoItem2 *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoItem:(InfoItem *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     dbAccount *a = waypoint.account;
     dbGroup *g = dbc.groupLiveImport;
@@ -264,7 +264,7 @@
     GCDictionaryLiveAPI *json = [self.liveAPI SearchForGeocaches_waypointname:waypoint.wpt_name infoItem:iid];
     LIVEAPI_CHECK_STATUS_CB(json, @"loadWaypoint", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
 
-    InfoItem2 *iii = [iid.infoViewer addImport];
+    InfoItem *iii = [iid.infoViewer addImport];
     [iii changeDescription:IMPORTMSG];
     [callback remoteAPI_objectReadyToImport:identifier infoItem:iii object:json group:g account:a];
 
@@ -272,14 +272,14 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypointsByCodes:(NSArray<NSString *> *)wpcodes infoItem:(InfoItem2 *)iid identifier:(NSInteger)identifier group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByCodes:(NSArray<NSString *> *)wpcodes infoItem:(InfoItem *)iid identifier:(NSInteger)identifier group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     [iid changeChunksTotal:1];
     [iid changeChunksCount:1];
     GCDictionaryLiveAPI *json = [self.liveAPI SearchForGeocaches_waypointnames:wpcodes infoItem:iid];
     LIVEAPI_CHECK_STATUS_CB(json, @"loadWaypointsByCodes", REMOTEAPI_LOADWAYPOINT_LOADFAILED);
 
-    InfoItem2 *iii = [iid.infoViewer addImport];
+    InfoItem *iii = [iid.infoViewer addImport];
     [iii changeDescription:IMPORTMSG];
     [callback remoteAPI_objectReadyToImport:identifier infoItem:iii object:json group:group account:self.account];
 
@@ -287,7 +287,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoItem:(InfoItem2 *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoItem:(InfoItem *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     NSInteger chunks = 0;
     self.loadWaypointsLogs = 0;
@@ -311,7 +311,7 @@
     if (total != 0) {
         GCDictionaryLiveAPI *livejson = json;
         LIVEAPI_CHECK_STATUS_CB(livejson, @"loadWaypointsByBoundingBox", REMOTEAPI_LOADWAYPOINTS_LOADFAILED);
-        InfoItem2 *iii = [iid.infoViewer addImport];
+        InfoItem *iii = [iid.infoViewer addImport];
         [iii changeDescription:IMPORTMSG];
         [callback remoteAPI_objectReadyToImport:identifier infoItem:iii object:livejson group:nil account:self.account];
         chunks++;
@@ -324,7 +324,7 @@
 
             if ([json objectForKey:@"Geocaches"] != nil) {
                 GCDictionaryLiveAPI *livejson = json;
-                InfoItem2 *iii = [iid.infoViewer addImport];
+                InfoItem *iii = [iid.infoViewer addImport];
                 [iii changeDescription:IMPORTMSG];
                 [callback remoteAPI_objectReadyToImport:identifier infoItem:iii object:livejson group:nil account:self.account];
                 chunks++;
@@ -336,14 +336,14 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)updatePersonalNote:(dbPersonalNote *)note infoItem:(InfoItem2 *)iid
+- (RemoteAPIResult)updatePersonalNote:(dbPersonalNote *)note infoItem:(InfoItem *)iid
 {
     GCDictionaryLiveAPI *json = [self.liveAPI UpdateCacheNote:note.wp_name text:note.note infoItem:iid];
     LIVEAPI_CHECK_STATUS(json, @"updatePersonalNote", REMOTEAPI_PERSONALNOTE_UPDATEFAILED);
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)listQueries:(NSArray<NSDictionary *> **)qs infoItem:(InfoItem2 *)iid public:(BOOL)public
+- (RemoteAPIResult)listQueries:(NSArray<NSDictionary *> **)qs infoItem:(InfoItem *)iid public:(BOOL)public
 {
     /* Returns: array of dicts of
      * - Name
@@ -376,7 +376,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group infoItem:(InfoItem2 *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group infoItem:(InfoItem *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     NSInteger chunks = 0;
 
@@ -394,7 +394,7 @@
 
         NSInteger found = 0;
 
-        InfoItem2 *iii = [iid.infoViewer addImport];
+        InfoItem *iii = [iid.infoViewer addImport];
         [iii changeDescription:IMPORTMSG];
         [callback remoteAPI_objectReadyToImport:identifier infoItem:iii object:json group:group account:self.account];
         chunks++;
@@ -413,7 +413,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)trackablesMine:(InfoItem2 *)iid
+- (RemoteAPIResult)trackablesMine:(InfoItem *)iid
 {
     [iid changeChunksTotal:1];
     [iid changeChunksCount:1];
@@ -427,7 +427,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)trackablesInventory:(InfoItem2 *)iid
+- (RemoteAPIResult)trackablesInventory:(InfoItem *)iid
 {
     [iid changeChunksTotal:1];
     [iid changeChunksCount:1];
@@ -441,7 +441,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)trackableFind:(NSString *)pin trackable:(dbTrackable **)t infoItem:(InfoItem2 *)iid
+- (RemoteAPIResult)trackableFind:(NSString *)pin trackable:(dbTrackable **)t infoItem:(InfoItem *)iid
 {
     GCDictionaryLiveAPI *json = [self.liveAPI GetTrackablesByPin:pin infoItem:iid];
     LIVEAPI_CHECK_STATUS(json, @"trackableFind", REMOTEAPI_TRACKABLES_FINDFAILED);
@@ -465,7 +465,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)trackableDiscover:(NSString *)tbpin infoItem:(InfoItem2 *)iid
+- (RemoteAPIResult)trackableDiscover:(NSString *)tbpin infoItem:(InfoItem *)iid
 {
     dbTrackable *tb = nil;
     RemoteAPIResult r = [self trackableFind:tbpin trackable:&tb infoItem:iid];
@@ -485,7 +485,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)trackableGrab:(NSString *)tbpin infoItem:(InfoItem2 *)iid
+- (RemoteAPIResult)trackableGrab:(NSString *)tbpin infoItem:(InfoItem *)iid
 {
     dbTrackable *tb = nil;
     RemoteAPIResult r = [self trackableFind:tbpin trackable:&tb infoItem:iid];
@@ -505,7 +505,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)trackableDrop:(dbTrackable *)tb waypoint:(NSString *)wptname infoItem:(InfoItem2 *)iid
+- (RemoteAPIResult)trackableDrop:(dbTrackable *)tb waypoint:(NSString *)wptname infoItem:(InfoItem *)iid
 {
     NSString *note = @"Dropped";
 

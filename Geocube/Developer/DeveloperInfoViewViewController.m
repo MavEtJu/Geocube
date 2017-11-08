@@ -21,9 +21,9 @@
 
 @interface DeveloperInfoViewViewController ()
 
-@property (nonatomic, retain) InfoItem2 *ii1;
-@property (nonatomic, retain) InfoItem2 *ii2;
-@property (nonatomic, retain) InfoItem2 *ii3;
+@property (nonatomic, retain) InfoItem *ii1;
+@property (nonatomic, retain) InfoItem *ii2;
+@property (nonatomic, retain) InfoItem *ii3;
 
 @end
 
@@ -32,22 +32,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self makeInfoView2];
+    [self makeInfoView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
 
-    [self showInfoView2];
+    [self showInfoView];
 
-    self.ii1 = [self.infoView2 addDownload];
-    self.ii2 = [self.infoView2 addDownload];
-    self.ii3 = [self.infoView2 addImport];
+    self.ii1 = [self.infoView addDownload];
+    self.ii2 = [self.infoView addDownload];
+    self.ii3 = [self.infoView addImport];
 
     [self.ii2 changeBytesTotal:100];
 
-    [self.infoView2 show];
+    [self.infoView show];
 
     BACKGROUND(animate, nil);
 }
@@ -58,7 +58,7 @@
     while (1) {
         i++;
         if (i % 10 == 0) {
-            self.ii1 = [self.infoView2 addDownload];
+            self.ii1 = [self.infoView addDownload];
         } else if (i % 10 == 5) {
             [self.ii1 removeFromInfoViewer];
             self.ii1 = nil;

@@ -318,12 +318,12 @@
     }
 }
 
-- (RemoteAPIResult)UserStatistics:(NSDictionary **)retDict infoItem:(InfoItem2 *)iid
+- (RemoteAPIResult)UserStatistics:(NSDictionary **)retDict infoItem:(InfoItem *)iid
 {
     return [self UserStatistics:self.account.accountname.name retDict:retDict infoItem:iid];
 }
 
-- (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict infoItem:(InfoItem2 *)iid
+- (RemoteAPIResult)UserStatistics:(NSString *)username retDict:(NSDictionary **)retDict infoItem:(InfoItem *)iid
 /* Returns:
  * waypoints_found
  * waypoints_notfound
@@ -336,37 +336,37 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables coordinates:(CLLocationCoordinate2D)coordinates infoItem:(InfoItem2 *)iid
+- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables coordinates:(CLLocationCoordinate2D)coordinates infoItem:(InfoItem *)iid
 {
     [self setAPIError:@"Not implemented" error:REMOTEAPI_NOTPROCESSED];
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoItem:(InfoItem2 *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypoint:(dbWaypoint *)waypoint infoItem:(InfoItem *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     [self setAPIError:@"Not implemented" error:REMOTEAPI_NOTPROCESSED];
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)loadWaypointsByCodes:(NSArray<NSString *> *)wpcodes infoItem:(InfoItem2 *)iid identifier:(NSInteger)identifier group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByCodes:(NSArray<NSString *> *)wpcodes infoItem:(InfoItem *)iid identifier:(NSInteger)identifier group:(dbGroup *)group callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     [self setAPIError:@"Not implemented" error:REMOTEAPI_NOTPROCESSED];
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoItem:(InfoItem2 *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)loadWaypointsByBoundingBox:(GCBoundingBox *)bb infoItem:(InfoItem *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     [self setAPIError:@"Not implemented" error:REMOTEAPI_NOTPROCESSED];
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)updatePersonalNote:(dbPersonalNote *)note infoItem:(InfoItem2 *)iid
+- (RemoteAPIResult)updatePersonalNote:(dbPersonalNote *)note infoItem:(InfoItem *)iid
 {
     [self setAPIError:@"Not implemented" error:REMOTEAPI_NOTPROCESSED];
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)listQueries:(NSArray<NSDictionary *>**)qs infoItem:(InfoItem2 *)iid public:(BOOL)public
+- (RemoteAPIResult)listQueries:(NSArray<NSDictionary *>**)qs infoItem:(InfoItem *)iid public:(BOOL)public
 {
     /* Returns: array of dicts of
      * - Name
@@ -379,43 +379,43 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group infoItem:(InfoItem2 *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
+- (RemoteAPIResult)retrieveQuery:(NSString *)_id group:(dbGroup *)group infoItem:(InfoItem *)iid identifier:(NSInteger)identifier callback:(id<RemoteAPIDownloadDelegate>)callback
 {
     [self setAPIError:@"Not implemented" error:REMOTEAPI_NOTPROCESSED];
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)trackablesMine:(InfoItem2 *)iid
+- (RemoteAPIResult)trackablesMine:(InfoItem *)iid
 {
     [self setAPIError:@"Not implemented" error:REMOTEAPI_NOTPROCESSED];
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)trackablesInventory:(InfoItem2 *)iid
+- (RemoteAPIResult)trackablesInventory:(InfoItem *)iid
 {
     [self setAPIError:@"Not implemented" error:REMOTEAPI_NOTPROCESSED];
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)trackableFind:(NSString *)code trackable:(dbTrackable **)t infoItem:(InfoItem2 *)iid
+- (RemoteAPIResult)trackableFind:(NSString *)code trackable:(dbTrackable **)t infoItem:(InfoItem *)iid
 {
     [self setAPIError:@"Not implemented" error:REMOTEAPI_NOTPROCESSED];
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)trackableDrop:(dbTrackable *)trackable waypoint:(NSString *)wptname infoItem:(InfoItem2 *)iid
+- (RemoteAPIResult)trackableDrop:(dbTrackable *)trackable waypoint:(NSString *)wptname infoItem:(InfoItem *)iid
 {
     [self setAPIError:@"Not implemented" error:REMOTEAPI_NOTPROCESSED];
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)trackableGrab:(NSString *)tbpin infoItem:(InfoItem2 *)iid
+- (RemoteAPIResult)trackableGrab:(NSString *)tbpin infoItem:(InfoItem *)iid
 {
     [self setAPIError:@"Not implemented" error:REMOTEAPI_NOTPROCESSED];
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)trackableDiscover:(NSString *)tbpin infoItem:(InfoItem2 *)iid
+- (RemoteAPIResult)trackableDiscover:(NSString *)tbpin infoItem:(InfoItem *)iid
 {
     [self setAPIError:@"Not implemented" error:REMOTEAPI_NOTPROCESSED];
     return REMOTEAPI_NOTPROCESSED;

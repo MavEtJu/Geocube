@@ -73,22 +73,22 @@
     }
 }
 
-- (void)makeInfoView2
+- (void)makeInfoView
 {
-    self.infoView2 = [[InfoViewer2 alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:self.infoView2];
+    self.infoView = [[InfoViewer alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:self.infoView];
 }
 
-- (void)hideInfoView2
+- (void)hideInfoView
 {
-    NSAssert1(self.infoView2 != nil, @"makeInfoView2 not called for %@", [self class]);
-    [self.infoView2 hide];
+    NSAssert1(self.infoView != nil, @"makeInfoView2 not called for %@", [self class]);
+    [self.infoView hide];
 }
 
-- (void)showInfoView2
+- (void)showInfoView
 {
-    NSAssert1(self.infoView2 != nil, @"makeInfoView not called for %@", [self class]);
-    [self.infoView2 show];
+    NSAssert1(self.infoView != nil, @"makeInfoView not called for %@", [self class]);
+    [self.infoView show];
 }
 
 - (void)buttonMenuLocal:(id)sender
@@ -118,7 +118,7 @@
         [b addTarget:self action:@selector(closePage:) forControlEvents:UIControlEventTouchDown];
         self.closeButton = b;
     }
-    [self.infoView2 show];
+    [self.infoView show];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
@@ -215,7 +215,7 @@
         [self.view bringSubviewToFront:self.closeButton];
     }
 
-    [self.infoView2 show];
+    [self.infoView show];
 }
 
 //- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section

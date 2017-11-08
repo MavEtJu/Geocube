@@ -636,9 +636,6 @@
 		E860CA051F81F84700C66AD8 /* FilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E860CA041F81F84700C66AD8 /* FilterButton.m */; };
 		E861B97E1EE2E6D300BD82AC /* GC - logo - 1536×2048.png in Resources */ = {isa = PBXBuildFile; fileRef = E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */; };
 		E861B9801EE2E8AC00BD82AC /* GC - logo - 768×1024.png in Resources */ = {isa = PBXBuildFile; fileRef = E861B97F1EE2E8AC00BD82AC /* GC - logo - 768×1024.png */; };
-		E8650D2D1FA29597007561FF /* InfoViewer2.m in Sources */ = {isa = PBXBuildFile; fileRef = E8650D2C1FA29597007561FF /* InfoViewer2.m */; };
-		E8650D301FA2971D007561FF /* InfoItem2.m in Sources */ = {isa = PBXBuildFile; fileRef = E8650D2F1FA2971D007561FF /* InfoItem2.m */; };
-		E8650D321FA29B39007561FF /* InfoItem2.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8650D311FA29B39007561FF /* InfoItem2.xib */; };
 		E86C4AAF1E321822004526E2 /* CompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C4AAD1E321822004526E2 /* CompassViewController.m */; };
 		E86C4AB01E321822004526E2 /* CompassView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86C4AAE1E321822004526E2 /* CompassView.xib */; };
 		E86D42751EF5484E00E4509F /* LocationlessTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86D42731EF5484E00E4509F /* LocationlessTableViewCell.xib */; };
@@ -730,6 +727,9 @@
 		E8D49D351F0124F2005EB7BE /* container size - xlarge - 35x11.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D321F0124F2005EB7BE /* container size - xlarge - 35x11.png */; };
 		E8D49D361F0124F2005EB7BE /* container size - xlarge - 35x11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D331F0124F2005EB7BE /* container size - xlarge - 35x11@2x.png */; };
 		E8D49D371F0124F2005EB7BE /* container size - xlarge - 35x11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D341F0124F2005EB7BE /* container size - xlarge - 35x11@3x.png */; };
+		E8D869D01FB2F76E0033C74C /* InfoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D869CC1FB2F76D0033C74C /* InfoViewer.m */; };
+		E8D869D11FB2F76E0033C74C /* InfoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D869CD1FB2F76E0033C74C /* InfoItem.m */; };
+		E8D869D21FB2F76E0033C74C /* InfoItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8D869CE1FB2F76E0033C74C /* InfoItem.xib */; };
 		E8E3DC1C1E167C740066E903 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E3DC1B1E167C740066E903 /* AppDelegate.m */; };
 		E8EC01A31F5518840032F168 /* KeepTrackBeeperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8EC01A21F5518840032F168 /* KeepTrackBeeperView.xib */; };
 		E8EC01A61F551A990032F168 /* KeepTrackBeeperView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EC01A51F551A990032F168 /* KeepTrackBeeperView.m */; };
@@ -1848,11 +1848,6 @@
 		E860CA041F81F84700C66AD8 /* FilterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterButton.m; path = Filters/FilterButton.m; sourceTree = "<group>"; };
 		E861B97D1EE2E6D300BD82AC /* GC - logo - 1536×2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 1536×2048.png"; path = "images/logos/GC - logo - 1536×2048.png"; sourceTree = "<group>"; };
 		E861B97F1EE2E8AC00BD82AC /* GC - logo - 768×1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GC - logo - 768×1024.png"; path = "images/logos/GC - logo - 768×1024.png"; sourceTree = "<group>"; };
-		E8650D2B1FA29597007561FF /* InfoViewer2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = InfoViewer2.h; path = ToolsLibrary/InfoViewer2.h; sourceTree = "<group>"; };
-		E8650D2C1FA29597007561FF /* InfoViewer2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = InfoViewer2.m; path = ToolsLibrary/InfoViewer2.m; sourceTree = "<group>"; };
-		E8650D2E1FA2971D007561FF /* InfoItem2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = InfoItem2.h; path = ToolsLibrary/InfoItem2.h; sourceTree = "<group>"; };
-		E8650D2F1FA2971D007561FF /* InfoItem2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = InfoItem2.m; path = ToolsLibrary/InfoItem2.m; sourceTree = "<group>"; };
-		E8650D311FA29B39007561FF /* InfoItem2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = InfoItem2.xib; path = ToolsLibrary/InfoItem2.xib; sourceTree = "<group>"; };
 		E86C4AAC1E321822004526E2 /* CompassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassViewController.h; sourceTree = "<group>"; };
 		E86C4AAD1E321822004526E2 /* CompassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassViewController.m; sourceTree = "<group>"; };
 		E86C4AAE1E321822004526E2 /* CompassView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompassView.xib; sourceTree = "<group>"; };
@@ -1952,6 +1947,11 @@
 		E8D49D321F0124F2005EB7BE /* container size - xlarge - 35x11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - xlarge - 35x11.png"; path = "images/containers/container size - xlarge - 35x11.png"; sourceTree = "<group>"; };
 		E8D49D331F0124F2005EB7BE /* container size - xlarge - 35x11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - xlarge - 35x11@2x.png"; path = "images/containers/container size - xlarge - 35x11@2x.png"; sourceTree = "<group>"; };
 		E8D49D341F0124F2005EB7BE /* container size - xlarge - 35x11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - xlarge - 35x11@3x.png"; path = "images/containers/container size - xlarge - 35x11@3x.png"; sourceTree = "<group>"; };
+		E8D869CB1FB2F76D0033C74C /* InfoViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoViewer.h; path = ToolsLibrary/InfoViewer.h; sourceTree = "<group>"; };
+		E8D869CC1FB2F76D0033C74C /* InfoViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoViewer.m; path = ToolsLibrary/InfoViewer.m; sourceTree = "<group>"; };
+		E8D869CD1FB2F76E0033C74C /* InfoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoItem.m; path = ToolsLibrary/InfoItem.m; sourceTree = "<group>"; };
+		E8D869CE1FB2F76E0033C74C /* InfoItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InfoItem.xib; path = ToolsLibrary/InfoItem.xib; sourceTree = "<group>"; };
+		E8D869CF1FB2F76E0033C74C /* InfoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoItem.h; path = ToolsLibrary/InfoItem.h; sourceTree = "<group>"; };
 		E8E3DC1B1E167C740066E903 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E8EC01A21F5518840032F168 /* KeepTrackBeeperView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KeepTrackBeeperView.xib; path = KeepTrack/KeepTrackBeeperView.xib; sourceTree = "<group>"; };
 		E8EC01A41F551A990032F168 /* KeepTrackBeeperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeepTrackBeeperView.h; path = KeepTrack/KeepTrackBeeperView.h; sourceTree = "<group>"; };
@@ -2413,7 +2413,7 @@
 				E82286121F8A285C00631380 /* MyClock.m */,
 				E82286131F8A285C00631380 /* MyTools.h */,
 				E82286141F8A285C00631380 /* MyTools.m */,
-				E8650D2A1FA2947D007561FF /* InfoViewer2 */,
+				E8650D2A1FA2947D007561FF /* InfoViewer */,
 				E82286201F8A286500631380 /* Menus */,
 			);
 			name = ToolsLibrary;
@@ -3342,16 +3342,16 @@
 			name = "compass - XXX";
 			sourceTree = "<group>";
 		};
-		E8650D2A1FA2947D007561FF /* InfoViewer2 */ = {
+		E8650D2A1FA2947D007561FF /* InfoViewer */ = {
 			isa = PBXGroup;
 			children = (
-				E8650D2B1FA29597007561FF /* InfoViewer2.h */,
-				E8650D2C1FA29597007561FF /* InfoViewer2.m */,
-				E8650D2E1FA2971D007561FF /* InfoItem2.h */,
-				E8650D2F1FA2971D007561FF /* InfoItem2.m */,
-				E8650D311FA29B39007561FF /* InfoItem2.xib */,
+				E8D869CB1FB2F76D0033C74C /* InfoViewer.h */,
+				E8D869CC1FB2F76D0033C74C /* InfoViewer.m */,
+				E8D869CF1FB2F76E0033C74C /* InfoItem.h */,
+				E8D869CD1FB2F76E0033C74C /* InfoItem.m */,
+				E8D869CE1FB2F76E0033C74C /* InfoItem.xib */,
 			);
-			name = InfoViewer2;
+			name = InfoViewer;
 			sourceTree = "<group>";
 		};
 		E867E83C1B53D61C00CB126A /* attributes - XXX */ = {
@@ -4347,6 +4347,7 @@
 				E8FEDE821DA7AD67007C756B /* map - cross dnf - 9x9@2x.png in Resources */,
 				E85DC6911F95D01E007556D5 /* menu icon - gnss-on - 40x40@2x.png in Resources */,
 				E82E673F1DA07D0200CFBDED /* attributes - 21.png in Resources */,
+				E8D869D21FB2F76E0033C74C /* InfoItem.xib in Resources */,
 				E8FEDEAD1DA87AF3007C756B /* waypoint - trailhead - 30x30@3x.png in Resources */,
 				E8FEDED51DA8EEE9007C756B /* cache - benchmark - 30x30@3x.png in Resources */,
 				E85DC6931F95D01E007556D5 /* menu icon - see target - 40x40@2x.png in Resources */,
@@ -4410,7 +4411,6 @@
 				E82E67651DA07D0200CFBDED /* attributes - 59.png in Resources */,
 				E876ECAD1F7E0391002A368E /* launchscreen - background.png in Resources */,
 				E8FEDEE91DA8EEE9007C756B /* cache - webcam - 30x30@3x.png in Resources */,
-				E8650D321FA29B39007561FF /* InfoItem2.xib in Resources */,
 				E822871A1F8A2E1A00631380 /* GCTableViewCellSubtitleRightImage.xib in Resources */,
 				E82E66C01DA07CBE00CFBDED /* cache - history - 30x30@3x.png in Resources */,
 				E82E67331DA07D0200CFBDED /* attributes - 08.png in Resources */,
@@ -4847,7 +4847,7 @@
 				E82286EF1F8A2CE300631380 /* OpenCageManager.m in Sources */,
 				E822887C1F8A34FB00631380 /* SimpleKMLGeometry.m in Sources */,
 				E82287F81F8A344400631380 /* ActionSheetStringPicker.m in Sources */,
-				E8650D301FA2971D007561FF /* InfoItem2.m in Sources */,
+				E8D869D11FB2F76E0033C74C /* InfoItem.m in Sources */,
 				E82288B81F8A357700631380 /* RNCryptor.m in Sources */,
 				E82286A21F8A2BD600631380 /* dbType.m in Sources */,
 				E83C6F071EECE67100E303F5 /* FilesViewController.m in Sources */,
@@ -4939,6 +4939,7 @@
 				E822876F1F8A2EC300631380 /* GCView.m in Sources */,
 				E82286C11F8A2C8800631380 /* ImportTemplate.m in Sources */,
 				E82288191F8A347A00631380 /* CXMLDocument.m in Sources */,
+				E8D869D01FB2F76E0033C74C /* InfoViewer.m in Sources */,
 				E82287681F8A2EC300631380 /* GCScrollView.m in Sources */,
 				E823444D1EECE04B00D2CDFD /* NotesImagesViewController.m in Sources */,
 				E8587B8B1F8C24330099EA0E /* dbLogData.m in Sources */,
@@ -5070,7 +5071,6 @@
 				E82288761F8A34FB00631380 /* SimpleKMLContainer.m in Sources */,
 				E82287161F8A2E1A00631380 /* GCTableViewCellRightImageDisclosure.m in Sources */,
 				E82288741F8A34FB00631380 /* SimpleKMLBalloonStyle.m in Sources */,
-				E8650D2D1FA29597007561FF /* InfoViewer2.m in Sources */,
 				E82288301F8A34B700631380 /* TFHpple.m in Sources */,
 				E823447F1EECE09C00D2CDFD /* ListDNFViewController.m in Sources */,
 				E8EC01A61F551A990032F168 /* KeepTrackBeeperView.m in Sources */,

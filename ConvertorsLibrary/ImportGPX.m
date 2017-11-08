@@ -45,7 +45,7 @@
 
 @implementation ImportGPX
 
-- (void)parseFile:(NSString *)filename infoItem:(InfoItem2 *)iii
+- (void)parseFile:(NSString *)filename infoItem:(InfoItem *)iii
 {
     // here, for some reason you have to use NSClassFromString when trying to alloc NSXMLParser, otherwise you will get an object not found error
     // this may be necessary only for the toolchain
@@ -56,12 +56,12 @@
     [self parseData:data infoItem:iii];
 }
 
-- (void)parseString:(NSString *)string infoItem:(InfoItem2 *)iii
+- (void)parseString:(NSString *)string infoItem:(InfoItem *)iii
 {
     [self parseData:[string dataUsingEncoding:NSUTF8StringEncoding] infoItem:iii];
 }
 
-- (void)parseData:(NSData *)data infoItem:(InfoItem2 *)iii
+- (void)parseData:(NSData *)data infoItem:(InfoItem *)iii
 {
     self.runOption_LogsOnly = (self.run_options & IMPORTOPTION_LOGSONLY) != 0;
     NSLog(@"%@: Parsing data", [self class]);

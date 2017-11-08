@@ -25,7 +25,7 @@
 
 @implementation ImportGGCWJSON
 
-- (void)parseDictionary:(GCDictionaryGGCW *)dict infoItem:(InfoItem2 *)iii
+- (void)parseDictionary:(GCDictionaryGGCW *)dict infoItem:(InfoItem *)iii
 {
     self.iiImport = iii;
     if ([dict objectForKey:@"mapwaypoints"] != nil) {

@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface InfoItem2 ()
+@interface InfoItem ()
 
 @property (nonatomic, weak) IBOutlet GCLabelSmallText *labelDescription;
 @property (nonatomic, weak) IBOutlet GCLabelSmallText *labelURL;
@@ -68,7 +68,7 @@
 
 @end
 
-@implementation InfoItem2
+@implementation InfoItem
 
 - (void)awakeFromNib
 {

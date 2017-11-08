@@ -45,7 +45,7 @@ enum {
     // Make sure we get told when a new file is here
     IOSFTM.delegate = self;
 
-    [self makeInfoView2];
+    [self makeInfoView];
 
     self.lmi = [[LocalMenuItems alloc] init:menuMax];
     [self.lmi addItem:menuICloud label:_(@"filesviewcontroller-iCloud")];
@@ -356,8 +356,8 @@ enum {
 
 - (void)fileImportGeocube:(NSString *)fn
 {
-    [self showInfoView2];
-    InfoItem2 *iii = [self.infoView2 addImport];
+    [self showInfoView];
+    InfoItem *iii = [self.infoView addImport];
     [iii changeDescription:[NSString stringWithFormat:_(@"filesviewcontroller-Geocube import of %@"), fn]];
 
     NSData *data = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], fn]];
@@ -388,7 +388,7 @@ enum {
     };
 
     [iii removeFromInfoViewer];
-    [self hideInfoView2];
+    [self hideInfoView];
 }
 
 - (void)fileImport:(NSInteger)row view:(UITableViewCell *)tablecell
@@ -517,15 +517,15 @@ enum {
     NSInteger options = [[dict objectForKey:@"options"] integerValue];
     NSString *filename = [dict objectForKey:@"filename"];
 
-    [self showInfoView2];
-    InfoItem2 *iii = [self.infoView2 addImport];
+    [self showInfoView];
+    InfoItem *iii = [self.infoView addImport];
     [iii changeDescription:filename];
 
     [importManager process:sfn group:group account:account options:options infoItem:iii];
 
     [iii removeFromInfoViewer];
-    if ([self.infoView2 hasItems] == NO) {
-        [self hideInfoView2];
+    if ([self.infoView hasItems] == NO) {
+        [self hideInfoView];
         [audioManager playSound:PLAYSOUND_IMPORTCOMPLETE];
     }
 }

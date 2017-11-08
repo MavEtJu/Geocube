@@ -39,12 +39,12 @@ typedef NS_ENUM(NSInteger, Type) {
     return [self parse:data infoItem:nil filetype:GEOCUBEFILETYPE_NONE];
 }
 
-+ (BOOL)parse:(NSData *)data infoItem:(InfoItem2 *)iii
++ (BOOL)parse:(NSData *)data infoItem:(InfoItem *)iii
 {
     return [self parse:data infoItem:iii filetype:GEOCUBEFILETYPE_NONE];
 }
 
-+ (BOOL)parse:(NSData *)data infoItem:(InfoItem2 *)iii filetype:(GeocubeFileType)filetype;
++ (BOOL)parse:(NSData *)data infoItem:(InfoItem *)iii filetype:(GeocubeFileType)filetype;
 {
     NSString *d = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(0, 1)] encoding:NSASCIIStringEncoding];
 
@@ -69,7 +69,7 @@ typedef NS_ENUM(NSInteger, Type) {
     return [self parseLogMacros:data infoItem:iii];
 }
 
-+ (BOOL)parseKey:(NSData *)data filetype:(GeocubeFileType)filetype infoItem:(InfoItem2 *)iii
++ (BOOL)parseKey:(NSData *)data filetype:(GeocubeFileType)filetype infoItem:(InfoItem *)iii
 {
     // One line with a key
     NSString *d = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
@@ -91,7 +91,7 @@ typedef NS_ENUM(NSInteger, Type) {
     return NO;
 }
 
-+ (BOOL)parseLogMacros:(NSData *)data infoItem:(InfoItem2 *)iii
++ (BOOL)parseLogMacros:(NSData *)data infoItem:(InfoItem *)iii
 {
     NSString *d = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     NSArray<NSString *> *lines = [d componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
@@ -216,7 +216,7 @@ typedef NS_ENUM(NSInteger, Type) {
     return @"LogTemplatesAndMacros";
 }
 
-- (BOOL)parse:(NSData *)XMLdata infoItem:(InfoItem2 *)iii
+- (BOOL)parse:(NSData *)XMLdata infoItem:(InfoItem *)iii
 {
     NSError *error;
     NSDictionary *d;

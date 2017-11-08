@@ -22,7 +22,7 @@
 @interface ImportManager : NSObject <SSZipArchiveDelegate, ImportDelegate>
 
 - (void)addToQueue:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(NSInteger)runoptions;
-- (NSArray<NSString *> *)process:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(ImportOptions)runoptions infoItem:(InfoItem2 *)iii;
+- (NSArray<NSString *> *)process:(NSObject *)data group:(dbGroup *)group account:(dbAccount *)account options:(ImportOptions)runoptions infoItem:(InfoItem *)iii;
 
 - (void)resetImports;
 
