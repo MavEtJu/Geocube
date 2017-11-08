@@ -293,6 +293,7 @@
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord zoomLevel:(double)zoomLevel
 {
     [self.mapView animateWithCameraUpdate:[GMSCameraUpdate setTarget:coord zoom:zoomLevel]];
+    [self.mapScaleView update];
 }
 
 - (void)moveCameraTo:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2
