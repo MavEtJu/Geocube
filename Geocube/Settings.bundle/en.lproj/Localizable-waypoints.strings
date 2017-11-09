@@ -26,6 +26,7 @@
 "filtersviewcontroller-terrain" = "terrain ratings";
 "filtersviewcontroller-text" = "text";
 "filtersviewcontroller-types" = "types";
+"filtersviewcontroller-pins" = "pins";
 
 /* Waypoints - Filters - Fiters */
 "filtertableviewcell-Any %@" = "All %@";

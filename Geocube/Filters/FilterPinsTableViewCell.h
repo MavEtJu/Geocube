@@ -19,8 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define XIB_FILTERICONSTABLEVIEWCELL @"FilterIconsTableViewCell"
+#define XIB_FILTERPINSTABLEVIEWCELL @"FilterPinsTableViewCell"
 
-@interface FilterIconsTableViewCell : FilterTableViewCell
+@interface FilterPinsTableViewCell : FilterTableViewCell
 
 @end

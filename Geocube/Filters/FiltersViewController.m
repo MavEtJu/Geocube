@@ -37,7 +37,7 @@ enum {
 enum {
     filterGroups = 0,
     filterTypes,
-    filterIcons,
+    filterPins,
     filterFavourites,
     filterSizes,
     filterDifficulty,
@@ -89,7 +89,7 @@ enum {
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERGROUPSTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERGROUPSTABLEVIEWCELL];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERTYPESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERTYPESTABLEVIEWCELL];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERSIZESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERSIZESTABLEVIEWCELL];
-    [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERICONSTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERICONSTABLEVIEWCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERPINSTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERPINSTABLEVIEWCELL];
 
     self.filters = [NSMutableArray arrayWithCapacity:15];
 
@@ -126,7 +126,7 @@ enum {
             LOAD(filterDates, _(@"filtersviewcontroller-dates"), XIB_FILTERDATESTABLEVIEWCELL);
             LOAD(filterFlags, _(@"filtersviewcontroller-flags"), XIB_FILTERFLAGSTABLEVIEWCELL);
             LOAD(filterAccounts, _(@"filtersviewcontroller-accounts"), XIB_FILTERACCOUNTSTABLEVIEWCELL);
-            LOAD(filterIcons, _(@"filtersviewcontroller-icons"), XIB_FILTERICONSTABLEVIEWCELL);
+            LOAD(filterPins, _(@"filtersviewcontroller-pins"), XIB_FILTERPINSTABLEVIEWCELL);
             default:
                 NSAssert1(FALSE, @"Unknown filter %ld", (long)i);
         }
@@ -177,7 +177,7 @@ enum {
         SHOWFILTER(filterDates)
         SHOWFILTER(filterFlags)
         SHOWFILTER(filterAccounts)
-        SHOWFILTER(filterIcons)
+        SHOWFILTER(filterPins)
         default:
             NSAssert1(FALSE, @"Unknown filter: %ld", (long)indexPath.row);
     }
@@ -224,7 +224,7 @@ enum {
     SAVE(FilterDatesTableViewCell)
     SAVE(FilterFlagsTableViewCell)
     SAVE(FilterAccountsTableViewCell)
-    SAVE(FilterIconsTableViewCell)
+    SAVE(FilterPinsTableViewCell)
 }
 
 - (void)menuSaveFilter
@@ -286,7 +286,7 @@ enum {
     RELOAD(FilterDatesTableViewCell)
     RELOAD(FilterFlagsTableViewCell)
     RELOAD(FilterAccountsTableViewCell)
-    RELOAD(FilterIconsTableViewCell)
+    RELOAD(FilterPinsTableViewCell)
 
     [self loadFilters:NO];
     [self.filters enumerateObjectsUsingBlock:^(FilterObject * _Nonnull fo, NSUInteger idx, BOOL * _Nonnull stop) {

@@ -303,11 +303,34 @@
             waypoints = after;
         }
 
+        /* Filter out pins:
+         * The filter selects out the waypoints which are of a certain size.
+         * If a size is not defined then it will be considered not to be included.
+         */
+        after = [NSMutableArray arrayWithCapacity:200];
+        [clock clockShowAndReset:@"sizes"];
+        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
+
+        c = [self configGet:@"pins_enabled"];
+        if (c != nil && [c boolValue] == YES) {
+            NSLog(@"%@ - Filtering pins", [self class]);
+            [dbc.pins enumerateObjectsUsingBlock:^(dbPin * _Nonnull pin, NSUInteger idx, BOOL * _Nonnull stop) {
+                c = [self configGet:[NSString stringWithFormat:@"pins_pin_%ld", (long)pin._id]];
+                if (c == nil || [c boolValue] == NO)
+                    return;
+                [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if (wp.wpt_type.pin._id == pin._id)
+                        [after addObject:wp];
+                }];
+            }];
+
+            waypoints = after;
+        }
+
         /* Filter out sizes:
          * The filter selects out the waypoints which are of a certain size.
          * If a size is not defined then it will be considered not to be included.
          */
-
         after = [NSMutableArray arrayWithCapacity:200];
         [clock clockShowAndReset:@"sizes"];
         NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);

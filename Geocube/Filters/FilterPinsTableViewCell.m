@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface FilterIconsTableViewCell ()
+@interface FilterPinsTableViewCell ()
 
 @property (nonatomic, retain) NSArray<dbPin *> *pins;
 @property (nonatomic, retain) NSArray<FilterButton *> *buttons;
@@ -35,9 +35,9 @@
 
 @end
 
-@implementation FilterIconsTableViewCell
+@implementation FilterPinsTableViewCell
 
-#define FILTER  @"icon"
+#define FILTER  @"pin"
 
 - (void)awakeFromNib
 {
@@ -89,7 +89,7 @@
             [self.contentView addSubview:iv];
         }
 
-        // height and width 11
+        // height and width 11x11
         lc = [NSLayoutConstraint
               constraintWithItem:iv
               attribute:NSLayoutAttributeWidth
@@ -227,7 +227,7 @@
 
 + (NSString *)configPrefix
 {
-    return @"sizes";
+    return @"pins";
 }
 
 + (NSArray<NSString *> *)configFields
