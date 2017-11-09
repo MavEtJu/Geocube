@@ -37,6 +37,8 @@
 
 @implementation FilterIconsTableViewCell
 
+#define FILTER  @"icon"
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -56,7 +58,7 @@
     [self.contentView removeConstraint:self.constraintImageLeft];
 
     [self.pins enumerateObjectsUsingBlock:^(dbPin * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *s = [NSString stringWithFormat:@"icon_%ld", (long)g._id];
+        NSString *s = [NSString stringWithFormat:@"%@_%ld", FILTER, (long)g._id];
         NSString *c = [self configGet:s];
         if (c == nil)
             g.selected = NO;
@@ -87,7 +89,7 @@
             [self.contentView addSubview:iv];
         }
 
-        // height and width 35x11
+        // height and width 11
         lc = [NSLayoutConstraint
               constraintWithItem:iv
               attribute:NSLayoutAttributeWidth
@@ -95,7 +97,7 @@
               toItem:nil
               attribute:0
               multiplier:1.0
-              constant:35];
+              constant:11];
         [iv addConstraint:lc];
         lc = [NSLayoutConstraint
               constraintWithItem:iv
@@ -212,7 +214,7 @@
     self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), self.fo.name];
 
     [self.pins enumerateObjectsUsingBlock:^(dbPin * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *key = [NSString stringWithFormat:@"icon_%ld", (long)g._id];
+        NSString *key = [NSString stringWithFormat:@"%@_%ld", FILTER, (long)g._id];
         g.selected = [[self configGet:key] boolValue];
     }];
 }
@@ -232,7 +234,7 @@
 {
     NSMutableArray<NSString *> *as = [NSMutableArray arrayWithArray:@[@"enabled"]];
     [dbc.containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
-        [as addObject:[NSString stringWithFormat:@"icon_%ld", (long)c._id]];
+        [as addObject:[NSString stringWithFormat:@"%@_%ld", FILTER, (long)c._id]];
     }];
     return as;
 }
@@ -255,7 +257,7 @@
     dbPin *c = [self.pins objectAtIndex:b.index];
     c.selected = !c.selected;
     [b setTitleColor:(c.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-    [self configSet:[NSString stringWithFormat:@"icon_%ld", (long)c._id] value:[NSString stringWithFormat:@"%d", c.selected]];
+    [self configSet:[NSString stringWithFormat:@"%@_%ld", FILTER, (long)c._id] value:[NSString stringWithFormat:@"%d", c.selected]];
     [self configUpdate];
 }
 

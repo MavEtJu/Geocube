@@ -34,6 +34,8 @@
 
 @implementation FilterGroupsTableViewCell
 
+#define FILTER  @"group"
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -51,7 +53,7 @@
     [self.contentView removeConstraint:self.firstButtonRight];
 
     [self.groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *s = [NSString stringWithFormat:@"group_%ld", (long)g._id];
+        NSString *s = [NSString stringWithFormat:@"%@_%ld", FILTER, (long)g._id];
         NSString *c = [self configGet:s];
         if (c == nil)
             g.selected = NO;
@@ -157,7 +159,7 @@
     self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), self.fo.name];
 
     [self.groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *key = [NSString stringWithFormat:@"group_%ld", (long)g._id];
+        NSString *key = [NSString stringWithFormat:@"%@_%ld", FILTER, (long)g._id];
         g.selected = [[self configGet:key] boolValue];
     }];
 }
@@ -177,7 +179,7 @@
 {
     NSMutableArray<NSString *> *as = [NSMutableArray arrayWithArray:@[@"enabled"]];
     [dbc.groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
-        [as addObject:[NSString stringWithFormat:@"group_%ld", (long)g._id]];
+        [as addObject:[NSString stringWithFormat:@"%@_%ld", FILTER, (long)g._id]];
     }];
     return as;
 }
@@ -188,7 +190,7 @@
     [dict setObject:@"0" forKey:@"enabled"];
 
     [dbc.groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
-        [dict setObject:@"0" forKey:[NSString stringWithFormat:@"group_%ld", (long)g._id]];
+        [dict setObject:@"0" forKey:[NSString stringWithFormat:@"%@_%ld", FILTER, (long)g._id]];
     }];
     return dict;
 }
@@ -200,7 +202,7 @@
     dbGroup *g = [self.groups objectAtIndex:b.index];
     g.selected = !g.selected;
     [b setTitleColor:(g.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-    [self configSet:[NSString stringWithFormat:@"group_%ld", (long)g._id] value:[NSString stringWithFormat:@"%d", g.selected]];
+    [self configSet:[NSString stringWithFormat:@"%@_%ld", FILTER, (long)g._id] value:[NSString stringWithFormat:@"%d", g.selected]];
     [self configUpdate];
 }
 

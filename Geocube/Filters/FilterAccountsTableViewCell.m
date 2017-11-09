@@ -34,6 +34,8 @@
 
 @implementation FilterAccountsTableViewCell
 
+#define FILTER  @"account"
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -51,7 +53,7 @@
     [self.contentView removeConstraint:self.firstButtonRight];
 
     [self.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *s = [NSString stringWithFormat:@"group_%ld", (long)g._id];
+        NSString *s = [NSString stringWithFormat:@"%@_%ld", FILTER, (long)g._id];
         NSString *c = [self configGet:s];
         if (c == nil)
             g.selected = NO;
@@ -157,7 +159,7 @@
     self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), self.fo.name];
 
     [self.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *key = [NSString stringWithFormat:@"account_%ld", (long)g._id];
+        NSString *key = [NSString stringWithFormat:@"%@_%ld", FILTER, (long)g._id];
         g.selected = [[self configGet:key] boolValue];
     }];
 }
@@ -177,7 +179,7 @@
 {
     NSMutableArray<NSString *> *as = [NSMutableArray arrayWithArray:@[@"enabled"]];
     [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
-        [as addObject:[NSString stringWithFormat:@"account_%ld", (long)a._id]];
+        [as addObject:[NSString stringWithFormat:@"%@_%ld", FILTER, (long)a._id]];
     }];
     return as;
 }
@@ -200,7 +202,7 @@
     dbAccount *a = [self.accounts objectAtIndex:b.index];
     a.selected = !a.selected;
     [b setTitleColor:(a.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-    [self configSet:[NSString stringWithFormat:@"account_%ld", (long)a._id] value:[NSString stringWithFormat:@"%d", a.selected]];
+    [self configSet:[NSString stringWithFormat:@"%@_%ld", FILTER, (long)a._id] value:[NSString stringWithFormat:@"%d", a.selected]];
     [self configUpdate];
 }
 

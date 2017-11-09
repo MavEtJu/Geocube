@@ -37,6 +37,8 @@
 
 @implementation FilterSizesTableViewCell
 
+#define FILTER  @"container"
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -56,7 +58,7 @@
     [self.contentView removeConstraint:self.constraintImageLeft];
 
     [self.containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *s = [NSString stringWithFormat:@"container_%ld", (long)g._id];
+        NSString *s = [NSString stringWithFormat:@"%@_%ld", FILTER, (long)g._id];
         NSString *c = [self configGet:s];
         if (c == nil)
             g.selected = NO;
@@ -212,7 +214,7 @@
     self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), self.fo.name];
 
     [self.containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *key = [NSString stringWithFormat:@"container_%ld", (long)g._id];
+        NSString *key = [NSString stringWithFormat:@"%@_%ld", FILTER, (long)g._id];
         g.selected = [[self configGet:key] boolValue];
     }];
 }
@@ -232,7 +234,7 @@
 {
     NSMutableArray<NSString *> *as = [NSMutableArray arrayWithArray:@[@"enabled"]];
     [dbc.containers enumerateObjectsUsingBlock:^(dbContainer * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {
-        [as addObject:[NSString stringWithFormat:@"container_%ld", (long)c._id]];
+        [as addObject:[NSString stringWithFormat:@"%@_%ld", FILTER, (long)c._id]];
     }];
     return as;
 }
@@ -255,7 +257,7 @@
     dbContainer *c = [self.containers objectAtIndex:b.index];
     c.selected = !c.selected;
     [b setTitleColor:(c.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-    [self configSet:[NSString stringWithFormat:@"container_%ld", (long)c._id] value:[NSString stringWithFormat:@"%d", c.selected]];
+    [self configSet:[NSString stringWithFormat:@"%@_%ld", FILTER, (long)c._id] value:[NSString stringWithFormat:@"%d", c.selected]];
     [self configUpdate];
 }
 

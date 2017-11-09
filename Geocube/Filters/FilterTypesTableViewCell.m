@@ -37,6 +37,8 @@
 
 @implementation FilterTypesTableViewCell
 
+#define FILTER @"type"
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -56,7 +58,7 @@
     [self.contentView removeConstraint:self.constraintButtonTop];
 
     [self.types enumerateObjectsUsingBlock:^(dbType * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *s = [NSString stringWithFormat:@"group_%ld", (long)g._id];
+        NSString *s = [NSString stringWithFormat:@"%@_%ld", FILTER, (long)g._id];
         NSString *c = [self configGet:s];
         if (c == nil)
             g.selected = NO;
@@ -212,7 +214,7 @@
     self.labelHeader.text = [NSString stringWithFormat:_(@"filtertableviewcell-Selected %@"), self.fo.name];
 
     [self.types enumerateObjectsUsingBlock:^(dbType * _Nonnull t, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *key = [NSString stringWithFormat:@"type_%ld", (long)t._id];
+        NSString *key = [NSString stringWithFormat:@"%@_%ld", FILTER, (long)t._id];
         t.selected = [[self configGet:key] boolValue];
     }];
 }
@@ -232,7 +234,7 @@
 {
     NSMutableArray<NSString *> *as = [NSMutableArray arrayWithArray:@[@"enabled"]];
     [dbc.types enumerateObjectsUsingBlock:^(dbType * _Nonnull t, NSUInteger idx, BOOL * _Nonnull stop) {
-        [as addObject:[NSString stringWithFormat:@"type_%ld", (long)t._id]];
+        [as addObject:[NSString stringWithFormat:@"%@_%ld", FILTER, (long)t._id]];
     }];
     return as;
 }
@@ -255,7 +257,7 @@
     dbType *t = [self.types objectAtIndex:b.index];
     t.selected = !t.selected;
     [b setTitleColor:(t.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
-    [self configSet:[NSString stringWithFormat:@"type_%ld", (long)t._id] value:[NSString stringWithFormat:@"%d", t.selected]];
+    [self configSet:[NSString stringWithFormat:@"%@_%ld", FILTER, (long)t._id] value:[NSString stringWithFormat:@"%d", t.selected]];
     [self configUpdate];
 }
 
