@@ -37,12 +37,10 @@
 
 @property (nonatomic, weak) IBOutlet GCLabelNormalText *labelHeader;
 @property (nonatomic, weak) IBOutlet FilterButton *firstButton;
-@property (nonatomic, weak) IBOutlet GCImageView *firstImage;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *constraintButtonTop;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *constraintButtonRight;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *constraintImageButton;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *constraintButtomBottom;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *constraintImageLeft;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *constraintButtonLeft;
 
 @end
 
@@ -76,11 +74,10 @@
     __block NSObject *lastButton = self.labelHeader;
     __block NSLayoutConstraint *lc;
 
-    [self.contentView removeConstraint:self.constraintImageButton];
     [self.contentView removeConstraint:self.constraintButtonTop];
     [self.contentView removeConstraint:self.constraintButtomBottom];
     [self.contentView removeConstraint:self.constraintButtonRight];
-    [self.contentView removeConstraint:self.constraintImageLeft];
+    [self.contentView removeConstraint:self.constraintButtonLeft];
 
     [self.icons enumerateObjectsUsingBlock:^(FilterTypeIcon * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *s = [NSString stringWithFormat:@"%@_%ld", FILTER, (long)g.icon];
@@ -91,59 +88,21 @@
             g.selected = [c boolValue];
 
         FilterButton *b;
-        GCImageView *iv;
         if (idx == 0) {
             b = self.firstButton;
-            iv = self.firstImage;
         } else {
             b = [FilterButton buttonWithType:UIButtonTypeSystem];
             b.translatesAutoresizingMaskIntoConstraints = NO;
-            iv = [[GCImageView alloc] initWithFrame:CGRectZero];
-            iv.translatesAutoresizingMaskIntoConstraints = NO;
         }
-        iv.image = [imageManager get:g.icon];
 
         [b addTarget:self action:@selector(clickContainer:) forControlEvents:UIControlEventTouchDown];
         b.index = idx;
         b.frame = CGRectMake(0, y, 0, 0);
-        [b setTitle:s forState:UIControlStateNormal];
+        [b setImage:[imageManager get:g.icon] forState:UIControlStateNormal];
         [b sizeToFit];
 
-        if (idx != 0) {
+        if (idx != 0)
             [self.contentView addSubview:b];
-            [self.contentView addSubview:iv];
-        }
-
-        // height and width 30x30
-        lc = [NSLayoutConstraint
-              constraintWithItem:iv
-              attribute:NSLayoutAttributeWidth
-              relatedBy:NSLayoutRelationEqual
-              toItem:nil
-              attribute:0
-              multiplier:1.0
-              constant:30];
-        [iv addConstraint:lc];
-        lc = [NSLayoutConstraint
-              constraintWithItem:iv
-              attribute:NSLayoutAttributeHeight
-              relatedBy:NSLayoutRelationEqual
-              toItem:nil
-              attribute:0
-              multiplier:1.0
-              constant:30];
-        [iv addConstraint:lc];
-
-        // image to button alignment
-        lc = [NSLayoutConstraint
-              constraintWithItem:iv
-              attribute:NSLayoutAttributeCenterY
-              relatedBy:NSLayoutRelationEqual
-              toItem:b
-              attribute:NSLayoutAttributeCenterY
-              multiplier:1.0
-              constant:0];
-        [self.contentView addConstraint:lc];
 
         // button to right margin
         lc = [NSLayoutConstraint
@@ -153,27 +112,17 @@
               toItem:self.contentView
               attribute:NSLayoutAttributeTrailingMargin
               multiplier:1.0
-              constant:-35];
+              constant:-30];
         [self.contentView addConstraint:lc];
         // image to left margin
         lc = [NSLayoutConstraint
-              constraintWithItem:iv
+              constraintWithItem:b
               attribute:NSLayoutAttributeLeading
               relatedBy:NSLayoutRelationEqual
               toItem:self.contentView
               attribute:NSLayoutAttributeLeadingMargin
               multiplier:1.0
-              constant:0];
-        [self.contentView addConstraint:lc];
-        // image to button
-        lc = [NSLayoutConstraint
-              constraintWithItem:iv
-              attribute:NSLayoutAttributeTrailing
-              relatedBy:NSLayoutRelationEqual
-              toItem:b
-              attribute:NSLayoutAttributeLeading
-              multiplier:1.0
-              constant:0];
+              constant:35];
         [self.contentView addConstraint:lc];
 
         // button to top

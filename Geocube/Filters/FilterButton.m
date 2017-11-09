@@ -27,7 +27,7 @@
 
 + (instancetype)buttonWithType:(UIButtonType)buttonType
 {
-    FilterButton *button = [super buttonWithType:buttonType];
+    FilterButton *button = [super buttonWithType:UIButtonTypeCustom];
 
     return button;
 }

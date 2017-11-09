@@ -304,8 +304,8 @@
         }
 
         /* Filter out pins:
-         * The filter selects out the waypoints which are of a certain size.
-         * If a size is not defined then it will be considered not to be included.
+         * The filter selects out the waypoints which are of a certain pin.
+         * If a pin is not defined then it will be considered not to be included.
          */
         after = [NSMutableArray arrayWithCapacity:200];
         [clock clockShowAndReset:@"sizes"];
@@ -320,6 +320,30 @@
                     return;
                 [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                     if (wp.wpt_type.pin._id == pin._id)
+                        [after addObject:wp];
+                }];
+            }];
+
+            waypoints = after;
+        }
+
+        /* Filter out typeicons:
+         * The filter selects out the waypoints which are of a certain typeicon.
+         * If a typeicon is not defined then it will be considered not to be included.
+         */
+        after = [NSMutableArray arrayWithCapacity:200];
+        [clock clockShowAndReset:@"sizes"];
+        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
+
+        c = [self configGet:@"typeicons_enabled"];
+        if (c != nil && [c boolValue] == YES) {
+            NSLog(@"%@ - Filtering typeicons", [self class]);
+            [dbc.types enumerateObjectsUsingBlock:^(dbType * _Nonnull icon, NSUInteger idx, BOOL * _Nonnull stop) {
+                c = [self configGet:[NSString stringWithFormat:@"typeicons_icon_%ld", (long)icon.icon]];
+                if (c == nil || [c boolValue] == NO)
+                    return;
+                [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if (wp.wpt_type.icon == icon.icon && [after containsObject:wp] == NO)
                         [after addObject:wp];
                 }];
             }];
