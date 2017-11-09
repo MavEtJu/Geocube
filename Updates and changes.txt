@@ -9,7 +9,7 @@ Version 1.9(x)
   - Developer -> Remote API, add retrieveQuery.
   - Redid implementation fo the InfoViewer (for downloading and imported).
   - Added "scan for waypoint" into the waypoint description.
-  - In the waypoints filter, added the option to filter by icon.
+  - In the waypoints filter, added the option to filter by pin.
 
   Fixes:
   - Fix the way the File Browser is dealt with with regards to element
