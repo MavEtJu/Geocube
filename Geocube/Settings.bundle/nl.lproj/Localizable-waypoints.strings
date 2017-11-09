@@ -16,6 +16,7 @@
 "filtersviewcontroller-text" = "tekst";
 "filtersviewcontroller-types" = "types";
 "filtersviewcontroller-pins" = "pinnen";
+"filtersviewcontroller-icons" = "iconen";
 
 /* Waypoints - Filters - Fiters */
 "filtertableviewcell-Any %@" = "Alle %@";

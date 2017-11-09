@@ -130,6 +130,7 @@
 #import "Filters/FilterTerrainTableViewCell.h"
 #import "Filters/FilterTextTableViewCell.h"
 #import "Filters/FilterTypesTableViewCell.h"
+#import "Filters/FilterTypeIconsTableViewCell.h"
 #import "Filters/FiltersViewController.h"
 
 #import "Help/HelpAboutViewController.h"

@@ -38,6 +38,7 @@ enum {
     filterGroups = 0,
     filterTypes,
     filterPins,
+    filterTypeIcons,
     filterFavourites,
     filterSizes,
     filterDifficulty,
@@ -90,6 +91,8 @@ enum {
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERTYPESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERTYPESTABLEVIEWCELL];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERSIZESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERSIZESTABLEVIEWCELL];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERPINSTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERPINSTABLEVIEWCELL];
+    [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERTYPEICONSTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERTYPEICONSTABLEVIEWCELL];
+
 
     self.filters = [NSMutableArray arrayWithCapacity:15];
 
@@ -127,6 +130,7 @@ enum {
             LOAD(filterFlags, _(@"filtersviewcontroller-flags"), XIB_FILTERFLAGSTABLEVIEWCELL);
             LOAD(filterAccounts, _(@"filtersviewcontroller-accounts"), XIB_FILTERACCOUNTSTABLEVIEWCELL);
             LOAD(filterPins, _(@"filtersviewcontroller-pins"), XIB_FILTERPINSTABLEVIEWCELL);
+            LOAD(filterTypeIcons, _(@"filtersviewcontroller-icons"), XIB_FILTERTYPEICONSTABLEVIEWCELL);
             default:
                 NSAssert1(FALSE, @"Unknown filter %ld", (long)i);
         }
@@ -178,6 +182,7 @@ enum {
         SHOWFILTER(filterFlags)
         SHOWFILTER(filterAccounts)
         SHOWFILTER(filterPins)
+        SHOWFILTER(filterTypeIcons)
         default:
             NSAssert1(FALSE, @"Unknown filter: %ld", (long)indexPath.row);
     }
@@ -225,6 +230,7 @@ enum {
     SAVE(FilterFlagsTableViewCell)
     SAVE(FilterAccountsTableViewCell)
     SAVE(FilterPinsTableViewCell)
+    SAVE(FilterTypeIconsTableViewCell)
 }
 
 - (void)menuSaveFilter
@@ -287,6 +293,7 @@ enum {
     RELOAD(FilterFlagsTableViewCell)
     RELOAD(FilterAccountsTableViewCell)
     RELOAD(FilterPinsTableViewCell)
+    RELOAD(FilterTypeIconsTableViewCell)
 
     [self loadFilters:NO];
     [self.filters enumerateObjectsUsingBlock:^(FilterObject * _Nonnull fo, NSUInteger idx, BOOL * _Nonnull stop) {
