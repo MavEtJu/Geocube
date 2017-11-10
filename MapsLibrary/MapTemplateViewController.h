@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapTemplateViewController : GCViewController <LocationManagerLocationDelegate, LocationManagerHistoryDelegate, WaypointManagerWaypointDelegate>
+@interface MapTemplateViewController : GCViewController <LocationManagerLocationDelegate, LocationManagerHistoryDelegate, WaypointManagerWaypointDelegate, UIGestureRecognizerDelegate>
 
 #define MAPBRAND_APPLEMAPS  @"Apple Maps"
 #define MAPBRAND_GOOGLEMAPS @"Google Maps"
