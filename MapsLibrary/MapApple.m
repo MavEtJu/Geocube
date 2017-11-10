@@ -659,7 +659,8 @@
 
 - (void)loadKML:(NSString *)path
 {
-    SimpleKML *kml = [SimpleKML KMLWithContentsOfFile:path error:nil];
+    NSError *e = nil;
+    SimpleKML *kml = [SimpleKML KMLWithContentsOfFile:path error:&e];
 
     // look for a document feature in it per the KML spec
     //
