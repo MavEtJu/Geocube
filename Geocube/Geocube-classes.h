@@ -61,8 +61,9 @@
 @class FilterTableViewCell;
 @class FilterTerrainTableViewCell;
 @class FilterTextTableViewCell;
-@class FilterTypesTableViewCell;
+@class FilterTypeIcon;
 @class FilterTypeIconsTableViewCell;
+@class FilterTypesTableViewCell;
 @class FiltersViewController;
 @class GCArray;
 @class GCBoundingBox;

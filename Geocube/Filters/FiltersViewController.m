@@ -93,7 +93,6 @@ enum {
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERPINSTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERPINSTABLEVIEWCELL];
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILTERTYPEICONSTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILTERTYPEICONSTABLEVIEWCELL];
 
-
     self.filters = [NSMutableArray arrayWithCapacity:15];
 
     [self loadFilters:YES];
