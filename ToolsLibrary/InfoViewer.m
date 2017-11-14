@@ -133,6 +133,7 @@
     if ([self removeFromItem:item elements:self.downloads] == YES) {
     } else if ([self removeFromItem:item elements:self.imports] == YES) {
     } else if ([self removeFromItem:item elements:self.images] == YES) {
+    } else {
         NSAssert(FALSE, @"Unknown infoItem");
     }
 }
