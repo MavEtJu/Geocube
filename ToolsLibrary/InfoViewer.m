@@ -164,7 +164,6 @@
 
 - (void)adjustScroll:(NSInteger)offset
 {
-    NSLog(@"%ld, %@, %@", offset, [MyTools niceCGRect:self.frame], [MyTools niceCGRect:self.superview.frame]);
     if (self.contentOffset == offset)
         return;
     self.contentOffset = offset;
