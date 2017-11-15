@@ -2412,6 +2412,8 @@
 		E82286061F8A1DAA00631380 /* ToolsLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				E82286201F8A286500631380 /* Menus */,
+				E8650D2A1FA2947D007561FF /* InfoViewer */,
 				E82286181F8A285C00631380 /* ToolsLibrary.h */,
 				E82286081F8A285C00631380 /* Coordinates.h */,
 				E82286091F8A285C00631380 /* Coordinates.m */,
@@ -2419,8 +2421,6 @@
 				E82286121F8A285C00631380 /* MyClock.m */,
 				E82286131F8A285C00631380 /* MyTools.h */,
 				E82286141F8A285C00631380 /* MyTools.m */,
-				E8650D2A1FA2947D007561FF /* InfoViewer */,
-				E82286201F8A286500631380 /* Menus */,
 			);
 			name = ToolsLibrary;
 			sourceTree = "<group>";

@@ -129,6 +129,10 @@ enum {
     [self.tableView registerNib:sectionHeaderNib forHeaderFooterViewReuseIdentifier:XIB_WAYPOINTHEADERHEADERVIEW];
 
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELL];
+
+    InfoItem *ii = [self.infoView addDownload];
+    [ii changeDescription:@"FOobar"];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -31,6 +31,7 @@
 @property (nonatomic, retain) NSMutableArray<InfoItem *> *removed;
 @property (nonatomic, retain) NSMutableArray<InfoItem *> *added;
 
+@property (nonatomic        ) NSInteger contentOffset;
 @property (nonatomic        ) BOOL isVisible;
 @property (nonatomic        ) BOOL isRefreshing;
 @property (nonatomic        ) BOOL stopUpdating;
@@ -161,8 +162,19 @@
     return YES;
 }
 
+- (void)adjustScroll:(NSInteger)offset
+{
+    NSLog(@"%ld, %@, %@", offset, [MyTools niceCGRect:self.frame], [MyTools niceCGRect:self.superview.frame]);
+    if (self.contentOffset == offset)
+        return;
+    self.contentOffset = offset;
+    NSInteger Y = self.superview.frame.size.height - self.frame.size.height + self.contentOffset;
+    self.frame = CGRectMake(0, Y, self.frame.size.width, self.frame.size.height);
+}
+
 - (void)show
 {
+    NSLog(@"%@", [MyTools niceCGRect:self.superview.frame]);
     self.isVisible = YES;
     self.needsRefresh = YES;
 
@@ -303,7 +315,7 @@
         return;
     }
 
-    self.frame = CGRectMake(0, applicationFrame.size.height - y, width, y);
+    self.frame = CGRectMake(0, applicationFrame.size.height - y + self.contentOffset, width, y);
 }
 
 @end

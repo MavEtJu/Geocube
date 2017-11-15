@@ -29,6 +29,8 @@
 
 - (void)removeItem:(InfoItem *)item;
 
+- (void)adjustScroll:(NSInteger)offset;
+
 - (void)show;
 - (void)hide;
 - (BOOL)hasItems;
