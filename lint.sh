@@ -20,6 +20,10 @@ for fn in ${DBFILES}; do
 done
 
 echo
+echo "@synchronized():"
+grep -n "@synchronized " ${MFILES}
+
+echo
 echo "Untranslated strings:"
 grep -h "_(" $MFILES | perl findMissingLocalizations.pl
 

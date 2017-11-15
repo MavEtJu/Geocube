@@ -72,16 +72,16 @@
 - (InfoItem *)addDownload
 {
     InfoItem *ii;
-    @synchronized (self) {
+    @synchronized(self) {
         ii = [[[NSBundle mainBundle] loadNibNamed:XIB_INFOITEMVIEW owner:self options:nil] firstObject];
     }
     ii.infoViewer = self;
     ii.backgroundColor = [UIColor clearColor];
 
-    @synchronized (self.downloads) {
+    @synchronized(self.downloads) {
         [self.downloads addObject:ii];
     }
-    @synchronized (self.added) {
+    @synchronized(self.added) {
         [self.added addObject:ii];
     }
     self.needsRefresh = YES;
@@ -92,16 +92,16 @@
 - (InfoItem *)addImport
 {
     InfoItem *ii;
-    @synchronized (self) {
+    @synchronized(self) {
         ii = [[[NSBundle mainBundle] loadNibNamed:XIB_INFOITEMVIEW owner:self options:nil] firstObject];
     }
     ii.infoViewer = self;
     ii.backgroundColor = [UIColor clearColor];
 
-    @synchronized (self.imports) {
+    @synchronized(self.imports) {
         [self.imports addObject:ii];
     }
-    @synchronized (self.added) {
+    @synchronized(self.added) {
         [self.added addObject:ii];
     }
     self.needsRefresh = YES;
@@ -112,16 +112,16 @@
 - (InfoItem *)addImage
 {
     InfoItem *ii;
-    @synchronized (self) {
+    @synchronized(self) {
         ii = [[[NSBundle mainBundle] loadNibNamed:XIB_INFOITEMVIEW owner:self options:nil] firstObject];
     }
     ii.infoViewer = self;
     ii.backgroundColor = [UIColor clearColor];
 
-    @synchronized (self.images) {
+    @synchronized(self.images) {
         [self.images addObject:ii];
     }
-    @synchronized (self.added) {
+    @synchronized(self.added) {
         [self.added addObject:ii];
     }
     self.needsRefresh = YES;
@@ -141,7 +141,7 @@
 
 - (BOOL)removeFromItem:(InfoItem *)element elements:(NSMutableArray<InfoItem *> *)elements
 {
-    @synchronized (elements) {
+    @synchronized(elements) {
         __block NSInteger index = -1;
         [elements enumerateObjectsUsingBlock:^(InfoItem * _Nonnull e, NSUInteger idx, BOOL * _Nonnull stop) {
             if (e == element) {
@@ -153,7 +153,7 @@
             return NO;
         [elements removeObjectAtIndex:index];
         element.needsRefresh = YES;
-        @synchronized (self.removed) {
+        @synchronized(self.removed) {
             [self.removed addObject:element];
         }
         self.needsRefresh = YES;
@@ -242,13 +242,13 @@
     __block NSInteger y = 0;
 
     // Deal with modifications
-    @synchronized (self.added) {
+    @synchronized(self.added) {
         [self.added enumerateObjectsUsingBlock:^(InfoItem * _Nonnull add, NSUInteger idx, BOOL * _Nonnull stop) {
             [self addSubview:add];
         }];
         [self.added removeAllObjects];
     }
-    @synchronized (self.removed) {
+    @synchronized(self.removed) {
         [self.removed enumerateObjectsUsingBlock:^(InfoItem * _Nonnull remove, NSUInteger idx, BOOL * _Nonnull stop) {
             [remove removeFromSuperview];
         }];

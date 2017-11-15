@@ -256,7 +256,7 @@
     InfoItem *iii = [iid.infoViewer addImport];
     [callback remoteAPI_objectReadyToImport:identifier infoItem:iii object:gpx group:dbc.groupManualWaypoints account:self.account];
 
-    @synchronized (self) { self.threadcounter--; }
+    @synchronized(self) { self.threadcounter--; }
 }
 
 - (RemoteAPIResult)trackablesMine:(InfoItem *)iid

@@ -104,7 +104,7 @@
         self.imgToDownload = nil;
 
         NSLog(@"%@/run: Queue is %ld deep", [self class], (unsigned long)[self.todo count]);
-        @synchronized (imagesDownloadManager) {
+        @synchronized(imagesDownloadManager) {
             if ([self.todo count] != 0)
                 self.imgToDownload = [self.todo objectAtIndex:0];
         }
@@ -127,7 +127,7 @@
         // If so, only download the first one.
         if ([self.imgToDownload imageHasBeenDowloaded] == YES) {
             NSLog(@"%@/run: Already found %@", [self class], self.imgToDownload.datafile);
-            @synchronized (imagesDownloadManager) {
+            @synchronized(imagesDownloadManager) {
                 [self.todo removeObjectAtIndex:0];
             }
             continue;
@@ -148,7 +148,7 @@
             NSLog(@"Failed! %@", error);
         }
 
-        @synchronized (imagesDownloadManager) {
+        @synchronized(imagesDownloadManager) {
             [self.todo removeObjectAtIndex:0];
         }
         self.downloaded++;

@@ -916,14 +916,14 @@ enum {
 
 - (void)remoteAPI_objectReadyToImport:(NSInteger)identifier infoItem:(InfoItem *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
-    @synchronized (self) {
+    @synchronized(self) {
         self.chunksDownloaded++;
     }
 
     [importManager process:o group:group account:account options:IMPORTOPTION_NONE infoItem:iii];
     [iii removeFromInfoViewer];
 
-    @synchronized (self) {
+    @synchronized(self) {
         self.chunksProcessed++;
     }
 }

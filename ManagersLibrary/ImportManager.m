@@ -96,7 +96,7 @@
 
     imp.delegate = self;
 
-    @synchronized (self) {
+    @synchronized(self) {
         [iii changeExpanded:YES];
         NSLog(@"%@ - My turn to import %@", [self class], [data class]);
         [self runImporter:imp data:(NSObject *)data run_options:runoptions infoItem:iii];

@@ -64,7 +64,7 @@ TABLENAME(@"kml_files")
     if (where != nil)
         [sql appendString:where];
 
-    @synchronized (db) {
+    @synchronized(db) {
         DB_PREPARE_KEYSVALUES(sql, keys, values)
 
         DB_WHILE_STEP {

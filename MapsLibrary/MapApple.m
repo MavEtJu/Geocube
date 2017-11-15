@@ -344,7 +344,7 @@
     }
 
     __block MKPolylineRenderer *vlHistory = nil;
-    @synchronized (self.linesHistory) {
+    @synchronized(self.linesHistory) {
         [self.linesHistory enumerateObjectsUsingBlock:^(MKPolyline * _Nonnull lh, NSUInteger idx, BOOL * _Nonnull stop) {
             if (overlay == lh) {
                 vlHistory = [self.viewLinesHistory objectAtIndex:idx];
@@ -521,7 +521,7 @@
         vlHistory.strokeColor = configManager.mapTrackColour; \
         vlHistory.lineWidth = 5; \
         \
-        @synchronized (self.linesHistory) { \
+        @synchronized(self.linesHistory) { \
             [self.viewLinesHistory addObject:vlHistory]; \
             [self.linesHistory addObject:lh]; \
             [self.mapView addOverlay:lh]; \
@@ -557,7 +557,7 @@
     MAINQUEUE(
         if (ch.restart == NO && self.historyCoordsIdx < COORDHISTORYSIZE - 1) {
             historyCoords[self.historyCoordsIdx++] = ch.coord;
-            @synchronized (self.linesHistory) {
+            @synchronized(self.linesHistory) {
                 [self.mapView removeOverlay:[self.linesHistory lastObject]];
                 [self.linesHistory removeLastObject];
                 [self.viewLinesHistory removeLastObject];
@@ -576,7 +576,7 @@
         return;
 
     MAINQUEUE(
-        @synchronized (self.linesHistory) {
+        @synchronized(self.linesHistory) {
             NSLog(@"removing %ld history", (long)[self.linesHistory count]);
             [self.linesHistory enumerateObjectsUsingBlock:^(MKPolyline * _Nonnull lh, NSUInteger idx, BOOL * _Nonnull stop) {
                 [self.mapView removeOverlay:lh];
@@ -634,7 +634,7 @@
 
 - (void)showTrack
 {
-    @synchronized (self.linesHistory) {
+    @synchronized(self.linesHistory) {
         [self.linesHistory enumerateObjectsUsingBlock:^(MKPolyline * _Nonnull lh, NSUInteger idx, BOOL * _Nonnull stop) {
             [self.mapView addOverlay:lh];
         }];

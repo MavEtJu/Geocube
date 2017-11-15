@@ -64,7 +64,7 @@
 
     [sessionDataTask resume];
 
-    @synchronized (self.asyncRequests) {
+    @synchronized(self.asyncRequests) {
         [self.asyncRequests addObject:req];
     }
 
@@ -127,7 +127,7 @@
     NSLog(@"URLSession:(NSURLSession *) task:(NSURLSessionTask *) didCompleteWithError:(NSError *)");
 #endif
 
-    @synchronized (self.asyncRequests) {
+    @synchronized(self.asyncRequests) {
         [self.asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull req, NSUInteger idx, BOOL * _Nonnull stop) {
             if (session == [req objectForKey:@"session"] && task == [req objectForKey:@"task"]) {
                 [req setObject:[NSNumber numberWithBool:YES] forKey:@"completed"];
@@ -162,7 +162,7 @@
 //  NSLog(@"URLSession:(NSURLSession *) dataTask:(NSURLSessionTask *) didReceiveData:(NSData *)");
 #endif
 
-    @synchronized (self.asyncRequests) {
+    @synchronized(self.asyncRequests) {
         [self.asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull req, NSUInteger idx, BOOL * _Nonnull stop) {
             if (session == [req objectForKey:@"session"] && dataTask == [req objectForKey:@"task"]) {
                 NSMutableData *d = [req objectForKey:@"data"];
@@ -185,7 +185,7 @@
     NSLog(@"URLSession:(NSURLSession *) dataTask:(NSURLSessionTask *) didReceiveResponse:(NSURLResponse *)");
 #endif
 
-    @synchronized (self.asyncRequests) {
+    @synchronized(self.asyncRequests) {
         [self.asyncRequests enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull req, NSUInteger idx, BOOL * _Nonnull stop) {
             if (session == [req objectForKey:@"session"] && dataTask == [req objectForKey:@"task"]) {
 #ifdef GC_VERBOSE

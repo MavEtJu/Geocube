@@ -81,7 +81,7 @@
     if (wp.gs_country != nil && wp.gs_state != nil && wp.gca_locality != nil)
         return;
 
-    @synchronized (self) {
+    @synchronized(self) {
         [self.queue addObject:wp];
     }
     if (self.isRunning == NO)
@@ -94,7 +94,7 @@
 
     self.isRunning = YES;
     while (TRUE) {
-        @synchronized (self) {
+        @synchronized(self) {
             NSLog(@"%@ - queue size is %ld", [self class], (long)[self.queue count]);
             if ([self.queue count] == 0)
                 break;
@@ -175,7 +175,7 @@
             [wp dbUpdateCountryStateLocality];
     } else {
         self.disabled = YES;
-        @synchronized (self) {
+        @synchronized(self) {
             [self.queue removeAllObjects];
         }
 

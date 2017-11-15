@@ -242,7 +242,7 @@ enum {
 
     if ([o isKindOfClass:[NSNull class]] == NO) {
         NSArray<NSString *> *wps = [importManager process:o group:g account:a options:IMPORTOPTION_NOPOST|IMPORTOPTION_NOPRE infoItem:iii];
-        @synchronized (self.waypointsNew) {
+        @synchronized(self.waypointsNew) {
             [self.waypointsNew addObjectsFromArray:wps];
         }
     }

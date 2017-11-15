@@ -508,7 +508,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
 - (void)remoteAPI_objectReadyToImport:(NSInteger)identifier infoItem:(InfoItem *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
 {
     NSLog(@"objectReadyToImport: %ld", (long)identifier);
-    @synchronized (self.tests) {
+    @synchronized(self.tests) {
         __block NSMutableDictionary *test;
         [self.tests enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull t, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([[t objectForKey:@"identifier"] integerValue] == identifier) {
@@ -526,7 +526,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
 - (void)remoteAPI_failed:(NSInteger)identifier
 {
     NSLog(@"failed: %ld", (long)identifier);
-    @synchronized (self.tests) {
+    @synchronized(self.tests) {
         __block NSMutableDictionary *test;
         [self.tests enumerateObjectsUsingBlock:^(NSMutableDictionary * _Nonnull t, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([[t objectForKey:@"identifier"] integerValue] == identifier) {

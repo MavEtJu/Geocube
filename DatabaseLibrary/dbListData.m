@@ -36,7 +36,7 @@ TABLENAME(@"listdata")
     if (where != nil)
         [sql appendString:where];
 
-    @synchronized (db) {
+    @synchronized(db) {
         DB_PREPARE_KEYSVALUES(sql, keys, values)
 
         DB_WHILE_STEP {
@@ -69,7 +69,7 @@ TABLENAME(@"listdata")
 
 + (void)waypointSetFlag:(dbWaypoint *)wp flag:(Flag)flag
 {
-    @synchronized (db) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into listdata(waypoint_id, type, datetime) values(?, ?, ?)");
 
         SET_VAR_INT(1, wp._id);
@@ -83,7 +83,7 @@ TABLENAME(@"listdata")
 
 + (void)waypointClearFlag:(dbWaypoint *)wp flag:(Flag)flag
 {
-    @synchronized (db) {
+    @synchronized(db) {
         DB_PREPARE(@"delete from listdata where waypoint_id = ? and type = ?");
 
         SET_VAR_INT(1, wp._id);

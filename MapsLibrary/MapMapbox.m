@@ -193,7 +193,7 @@ EMPTY_METHOD(mapViewDidLoad)
     [self.linesHistory enumerateObjectsUsingBlock:^(MGLPolyline * _Nonnull line, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.mapView removeAnnotation:line];
     }];
-    @synchronized (self.linesHistory) {
+    @synchronized(self.linesHistory) {
         [self.linesHistory removeAllObjects];
     }
 }
@@ -206,7 +206,7 @@ EMPTY_METHOD(mapViewDidLoad)
 #define ADDPATH(__coords__, __count__) { \
     if (__count__ != 0) { \
         GCMGLPolylineTrack *l = [GCMGLPolylineTrack polylineWithCoordinates:__coords__ count:__count__]; \
-        @synchronized (self.linesHistory) { \
+        @synchronized(self.linesHistory) { \
             [self.linesHistory addObject:l]; \
         }; \
         [self.mapView addAnnotation:l]; \
@@ -242,7 +242,7 @@ EMPTY_METHOD(mapViewDidLoad)
     MAINQUEUE(
         if (ch.restart == NO && self.historyCoordsIdx < COORDHISTORYSIZE - 1) {
             historyCoords[self.historyCoordsIdx++] = ch.coord;
-            @synchronized (self.linesHistory) {
+            @synchronized(self.linesHistory) {
                 MGLPolyline *l = [self.linesHistory lastObject];
                 [self.linesHistory removeLastObject];
                 [self.mapView removeOverlay:l];
@@ -371,7 +371,7 @@ EMPTY_METHOD(mapViewDidLoad)
     [self.linesHistory enumerateObjectsUsingBlock:^(MGLPolyline * _Nonnull line, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.mapView removeAnnotation:line];
     }];
-    @synchronized (self.linesHistory) {
+    @synchronized(self.linesHistory) {
         [self.linesHistory removeAllObjects];
     }
 
@@ -415,7 +415,7 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (void)showTrack
 {
-    @synchronized (self.linesHistory) {
+    @synchronized(self.linesHistory) {
         [self.linesHistory enumerateObjectsUsingBlock:^(GCMGLPolylineTrack * _Nonnull track, NSUInteger idx, BOOL * _Nonnull stop) {
             [self.mapView addOverlay:track];
         }];

@@ -571,7 +571,7 @@ TIME(dateTimeString_DD_MM_YYYY_dotspace, @"d. M. yyyy")
 /// Checks if the Wifi interface is connected to the Internet
 + (BOOL)hasWifiNetwork
 {
-    @synchronized (self) {
+    @synchronized(self) {
         Reachability *reachability = [Reachability reachabilityForInternetConnection];
         [reachability startNotifier];
         NetworkStatus status = [reachability currentReachabilityStatus];

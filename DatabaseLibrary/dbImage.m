@@ -111,7 +111,7 @@ TABLENAME(@"images")
 - (BOOL)dbLinkedtoWaypoint:(dbWaypoint *)wp
 {
     BOOL linked = NO;
-    @synchronized (db) {
+    @synchronized(db) {
         DB_PREPARE(@"select id from image2waypoint where waypoint_id = ? and image_id = ?");
 
         SET_VAR_INT(1, wp._id);
@@ -127,7 +127,7 @@ TABLENAME(@"images")
 
 - (void)dbLinkToWaypoint:(dbWaypoint *)wp type:(ImageCategory)type
 {
-    @synchronized (db) {
+    @synchronized(db) {
         DB_PREPARE(@"insert into image2waypoint(image_id, waypoint_id, type) values(?, ?, ?)");
 
         SET_VAR_INT(1, self._id);
@@ -142,7 +142,7 @@ TABLENAME(@"images")
 + (NSInteger)dbCountByWaypoint:(dbWaypoint *)wp type:(ImageCategory)type
 {
     NSInteger linked = 0;
-    @synchronized (db) {
+    @synchronized(db) {
         DB_PREPARE(@"select count(id) from image2waypoint where waypoint_id = ? and type = ?");
 
         SET_VAR_INT(1, wp._id);
@@ -159,7 +159,7 @@ TABLENAME(@"images")
 + (NSInteger)dbCountByWaypoint:(dbWaypoint *)wp
 {
     NSInteger linked = 0;
-    @synchronized (db) {
+    @synchronized(db) {
         DB_PREPARE(@"select count(id) from image2waypoint where waypoint_id = ?");
 
         SET_VAR_INT(1, wp._id);
@@ -184,7 +184,7 @@ TABLENAME(@"images")
 
 - (void)dbUnlinkFromWaypoint:(dbWaypoint *)wp
 {
-    @synchronized (db) {
+    @synchronized(db) {
         DB_PREPARE(@"delete from image2waypoint where waypoint_id = ? and image_id = ?");
 
         SET_VAR_INT(1, wp._id);
@@ -197,7 +197,7 @@ TABLENAME(@"images")
 
 + (void)dbUnlinkFromWaypoint:(dbWaypoint *)wp
 {
-    @synchronized (db) {
+    @synchronized(db) {
         DB_PREPARE(@"delete from image2waypoint where waypoint_id = ?");
 
         SET_VAR_INT(1, wp._id);
