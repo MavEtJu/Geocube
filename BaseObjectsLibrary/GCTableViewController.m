@@ -215,7 +215,7 @@
         [self.view bringSubviewToFront:self.closeButton];
     }
 
-    [self.infoView show];
+    [self.infoView adjustScroll:self.verticalContentOffset];
 }
 
 //- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
