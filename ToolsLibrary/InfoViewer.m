@@ -173,7 +173,6 @@
 
 - (void)show
 {
-    NSLog(@"%@", [MyTools niceCGRect:self.superview.frame]);
     self.isVisible = YES;
     self.needsRefresh = YES;
 
