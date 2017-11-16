@@ -129,10 +129,6 @@ enum {
     [self.tableView registerNib:sectionHeaderNib forHeaderFooterViewReuseIdentifier:XIB_WAYPOINTHEADERHEADERVIEW];
 
     [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELL];
-
-    InfoItem *ii = [self.infoView addDownload];
-    [ii changeDescription:@"FOobar"];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -907,8 +903,6 @@ enum {
     self.chunksDownloaded = 0;
     self.chunksProcessed = 0;
     NSInteger retValue = [self.waypoint.account.remoteAPI loadWaypoint:self.waypoint infoItem:iid identifier:0 callback:self];
-
-    [iid removeFromInfoViewer];
 
     if (retValue != REMOTEAPI_OK)
         [MyTools messageBox:self header:_(@"waypointviewcontroller-Update failed") text:_(@"waypointviewcontroller-Unable to update the waypoint.") error:self.waypoint.account.remoteAPI.lastError];
