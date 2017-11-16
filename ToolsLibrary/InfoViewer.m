@@ -189,19 +189,14 @@
     self.stopUpdating = YES;
     self.needsRefresh = NO;
 
-    InfoItem *ii;
-    NSEnumerator *e;
-    e = [self.imports objectEnumerator];
-    while ((ii = [e nextObject]) != nil) {
-        [ii removeFromInfoViewer];
+    while ([self.imports count] != 0) {
+        [[self.imports firstObject] removeFromInfoViewer];
     }
-    e = [self.downloads objectEnumerator];
-    while ((ii = [e nextObject]) != nil) {
-        [ii removeFromInfoViewer];
+    while ([self.images count] != 0) {
+        [[self.images firstObject] removeFromInfoViewer];
     }
-    e = [self.images objectEnumerator];
-    while ((ii = [e nextObject]) != nil) {
-        [ii removeFromInfoViewer];
+    while ([self.downloads count] != 0) {
+        [[self.downloads firstObject] removeFromInfoViewer];
     }
 
     MAINQUEUE(
