@@ -558,6 +558,7 @@
     awp.wpt_date_placed_epoch = [MyTools secondsSinceEpochFromWindows:dummy];
 
     awp.wpt_type = dbc.typeManuallyEntered;
+    awp.wpt_symbol = dbc.symbolVirtualStage;
 
     awp.account = self.account;
     awp.date_lastimport_epoch = time(NULL);

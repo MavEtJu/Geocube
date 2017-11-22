@@ -23,6 +23,7 @@ Version 1.9(x)
   - No longer crashes when enabling a KML file or when deleting a KML file.
   - Removed Twitter option from iOS 11.
   - Developer -> Remote API, properly note loadWaypointsByCode
+  - Fix crash on import of Corrected Coordinates in LiveAPI.
 
 Version 1.8(32)
 
