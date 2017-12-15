@@ -850,6 +850,12 @@
         case 5:
             urlString = [NSString stringWithFormat:url.url, waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude,  LM.coords.latitude, LM.coords.longitude];
             break;
+        case 6:
+            urlString = [NSString stringWithFormat:url.url, LM.coords.longitude, LM.coords.latitude];
+            break;
+        case 7:
+            urlString = [NSString stringWithFormat:url.url, waypointManager.currentWaypoint.wpt_longitude, waypointManager.currentWaypoint.wpt_latitude];
+            break;
     }
 
     return urlString;
@@ -908,6 +914,8 @@
             NSString *urlString = [self translateURLType:urlDestination];
             url = [NSURL URLWithString:urlString];
         }
+
+        NSLog(@"URL used: %@", url);
 
         if ([[UIApplication sharedApplication] canOpenURL:url] == NO) {
             [MyTools messageBox:self header:_(@"maptemplateviewcontroller-Open external application") text:[NSString stringWithFormat:_(@"maptemplateviewcontroller-Unable to open the %@ application: URL not recognized"), em.name]];

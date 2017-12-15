@@ -81,6 +81,7 @@
 		<string>mapswithme</string>
 		<string>googlechromes</string>
 		<string>comgooglemaps</string>
+		<string>navigon</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
