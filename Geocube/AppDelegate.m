@@ -256,9 +256,9 @@
             case RC_LISTS:
                 controllers = [NSMutableArray array];
 
-                VC(ListHighlightViewController, _(@"menu-lists-Highlight"));
                 VC(ListFoundViewController, _(@"menu-lists-Found"));
                 VC(ListDNFViewController, _(@"menu-lists-DNF"));
+                VC(ListHighlightViewController, _(@"menu-lists-Highlight"));
                 VC(ListInProgressViewController, _(@"menu-lists-In Progress"));
                 VC(ListIgnoredViewController, _(@"menu-lists-Ignored"));
 
@@ -298,7 +298,6 @@
             case RC_DEVELOPER:
                 controllers = [NSMutableArray array];
 
-                VC(DeveloperInfoViewViewController, _(@"menu-developer-InfoView"));
                 VC(DeveloperRemoteAPIViewController, _(@"menu-developer-RemoteAPI"));
                 VC(DeveloperImagesViewController, _(@"menu-developer-Images"));
                 VC(DeveloperDatabaseViewController, _(@"menu-developer-DB"));

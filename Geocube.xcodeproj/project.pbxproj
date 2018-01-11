@@ -659,7 +659,6 @@
 		E87ED1871F86001E00DE8E9B /* FilterSizesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87ED1861F86001E00DE8E9B /* FilterSizesTableViewCell.xib */; };
 		E88258351E9FA03700FCF9B2 /* Close Window - 640x430.png in Resources */ = {isa = PBXBuildFile; fileRef = E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */; };
 		E88258371E9FA15F00FCF9B2 /* Map icons - 362x86.png in Resources */ = {isa = PBXBuildFile; fileRef = E88258361E9FA15F00FCF9B2 /* Map icons - 362x86.png */; };
-		E883466E1FA1FB990082305F /* DeveloperInfoViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E883466D1FA1FB990082305F /* DeveloperInfoViewViewController.m */; };
 		E8845CA91EF3628900A47F5D /* FileObjectView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8845CA81EF3628900A47F5D /* FileObjectView~ipad.xib */; };
 		E8845CAE1EF409BF00A47F5D /* WaypointWaypointsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8845CAC1EF409BF00A47F5D /* WaypointWaypointsTableViewCell.xib */; };
 		E8845CAF1EF409BF00A47F5D /* WaypointWaypointsTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8845CAD1EF409BF00A47F5D /* WaypointWaypointsTableViewCell~ipad.xib */; };
@@ -1880,8 +1879,6 @@
 		E881CA4F1F6B9CC400A17060 /* Geocube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geocube.h; sourceTree = "<group>"; };
 		E88258341E9FA03700FCF9B2 /* Close Window - 640x430.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Close Window - 640x430.png"; path = "images/introduction/Close Window - 640x430.png"; sourceTree = "<group>"; };
 		E88258361E9FA15F00FCF9B2 /* Map icons - 362x86.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Map icons - 362x86.png"; path = "images/introduction/Map icons - 362x86.png"; sourceTree = "<group>"; };
-		E883466C1FA1FB990082305F /* DeveloperInfoViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DeveloperInfoViewViewController.h; path = Developer/DeveloperInfoViewViewController.h; sourceTree = "<group>"; };
-		E883466D1FA1FB990082305F /* DeveloperInfoViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DeveloperInfoViewViewController.m; path = Developer/DeveloperInfoViewViewController.m; sourceTree = "<group>"; };
 		E8845CA81EF3628900A47F5D /* FileObjectView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "FileObjectView~ipad.xib"; path = "Files/FileObjectView~ipad.xib"; sourceTree = "<group>"; };
 		E8845CAC1EF409BF00A47F5D /* WaypointWaypointsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WaypointWaypointsTableViewCell.xib; path = Waypoints/WaypointWaypointsTableViewCell.xib; sourceTree = "<group>"; };
 		E8845CAD1EF409BF00A47F5D /* WaypointWaypointsTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "WaypointWaypointsTableViewCell~ipad.xib"; path = "Waypoints/WaypointWaypointsTableViewCell~ipad.xib"; sourceTree = "<group>"; };
@@ -3728,8 +3725,6 @@
 				E8596ACA1F73174100E26495 /* DeveloperDatabaseViewController.m */,
 				E8596ACB1F73174100E26495 /* DeveloperImagesViewController.h */,
 				E8596ACC1F73174100E26495 /* DeveloperImagesViewController.m */,
-				E883466C1FA1FB990082305F /* DeveloperInfoViewViewController.h */,
-				E883466D1FA1FB990082305F /* DeveloperInfoViewViewController.m */,
 			);
 			name = Developer;
 			sourceTree = "<group>";
@@ -4803,7 +4798,6 @@
 				E82343FA1EECDF4400D2CDFD /* WaypointTrackablesViewController.m in Sources */,
 				E822881A1F8A347A00631380 /* CXMLElement_CreationExtensions.m in Sources */,
 				E82344351EECDFB300D2CDFD /* FilterTextTableViewCell.m in Sources */,
-				E883466E1FA1FB990082305F /* DeveloperInfoViewViewController.m in Sources */,
 				E82343F81EECDF4400D2CDFD /* WaypointPersonalNoteViewController.m in Sources */,
 				E82344BE1EECE0E800D2CDFD /* SettingsColoursViewController.m in Sources */,
 				E822887F1F8A34FB00631380 /* SimpleKMLLinearRing.m in Sources */,
