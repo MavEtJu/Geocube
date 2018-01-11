@@ -106,7 +106,7 @@
     
     if (self.enableOverlay)
         self.overlay.backgroundColor = [UIColor colorWithWhite:0. alpha:.4];
-    
+
     tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap:)];
     [self.overlay addGestureRecognizer:tapGesture];
     
@@ -146,6 +146,7 @@
     [ROOTVC.view addSubview:self.view];
     [ROOTVC.view addSubview:self.tableView];
 
+    self.tableView.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.8];
     CGRect frame = [self frameShowed];
 
     [UIView animateWithDuration:0.275 animations:^
@@ -216,7 +217,7 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         
         cell.backgroundColor = [UIColor clearColor];
-        
+
         UIView *bgColorView = [[UIView alloc] init];
         [bgColorView setBackgroundColor:self.selectionColor];
         [cell setSelectedBackgroundView:bgColorView];

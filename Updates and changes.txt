@@ -25,6 +25,8 @@ Version 1.9(x)
   - Removed Twitter option from iOS 11.
   - Developer -> Remote API, properly note loadWaypointsByCode
   - Fix crash on import of Corrected Coordinates in LiveAPI.
+  - The global menu and the local menu sometimes showed up with a
+    white background, this is now resolved.
 
 Version 1.8(32)
 
