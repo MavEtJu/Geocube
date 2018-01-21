@@ -320,12 +320,52 @@ enum {
 
 - (void)determine_uid
 {
-    if (self.uid == nil) {
-        [self account_dashboard:nil];
-        if (self.uid == nil)
-            [self my_default:nil];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+
+    NSString *urlString = [self prepareURLString:@"/play/serverparameters/params" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    NSData *data = [self performURLRequest:req infoItem:nil];
+    if (data == nil)
         return;
-    }
+
+    /*
+     var serverParameters = {
+         "user:info": {
+             "username": "Team MavEtJu",
+             "referenceCode": "PR9DXXX",
+             "userType": "Premium",
+             "isLoggedIn": true,
+             "dateFormat": "yyyy-MM-dd",
+             "unitSetName": "Metric",
+             "roles": [
+                 "Public",
+                 "Premium"
+             ],
+             "publicGuid": "7d657fb4-351b-1234-1234-a96fe85309a6",
+             "avatarUrl": "https://img.geocaching.com/avatar/abdbf2c2-efdf-4e2b-8377-9d12c0bbc802.jpg",
+             "accountDomain": null
+         },
+         "app:options": {
+             "localRegion": "en-US",
+             "coordInfoUrl": "https://coord.info",
+             "paymentUrl": "https://payments.geocaching.com"
+         }
+     };
+     */
+
+    NSString *body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSRange r = [body rangeOfString:@"\"publicGuid\": \""];
+    if (r.location == NSNotFound)
+        return;
+    NSString *s = [body substringFromIndex:r.location + r.length];
+    r = [s rangeOfString:@"\","];
+    CHECK_RANGE(r, bail);
+    s = [s substringToIndex:r.location];
+    self.uid = s;
+bail:
+    return;
 }
 
 - (GCDictionaryGGCW *)my_statistics:(InfoItem *)iid
