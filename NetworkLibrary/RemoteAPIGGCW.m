@@ -230,7 +230,7 @@
 
         @synchronized(self) { self.threadcounter++; }
         NSDictionary *d = @{@"wptname":wptname,
-                            @"infoitem":iid,
+                            @"infoitem":iid == nil ? [NSNull null] : iid,
                             @"callback":callback,
                             @"identifier":[NSNumber numberWithInteger:identifier],
                             };
