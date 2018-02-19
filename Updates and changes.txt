@@ -1,18 +1,18 @@
 Interesting additions and changes to Geocube
 
-Version 1.9(x)
+Version 1.9(33)
 
   Features:
   - Add support for Mapbox 3.6.4.
   - Be able to configure the colour for the waypoint boundary circles.
   - Google Maps updated to 2.5.0.
   - Developer -> Remote API, add retrieveQuery.
-  - Redid implementation fo the InfoViewer (for downloading and imported).
+  - Redid implementation of the InfoViewer (for downloading and imported).
   - Added "scan for waypoint" into the waypoint description.
   - In the waypoints filter, added the option to filter by pin.
   - In the waypoints filter, added the option to filter type image.
   - When having unselected the GNSSr button on the map, you can hold it to
-    recenter your location withougt having to go back into GNSSr mode.
+    recenter your location without having to go back into GNSSr mode.
   - Support for Navigon external map application.
 
   Fixes:
@@ -27,7 +27,7 @@ Version 1.9(x)
   - Fix crash on import of Corrected Coordinates in LiveAPI.
   - The global menu and the local menu sometimes showed up with a
     white background, this is now resolved.
-  - The Lists menun now start with "Found" instead of "Highlighted".
+  - The Lists menu now start with "Found" instead of "Highlighted".
 
 Version 1.8(32)
 
