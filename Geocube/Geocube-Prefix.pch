@@ -28,7 +28,6 @@
 #import "objc/runtime.h"
 
 #import <ImageIO/ImageIO.h>
-#import <Social/Social.h>
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
@@ -38,8 +37,11 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <Photos/Photos.h>
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wgnu"
 #import <GoogleMaps/GoogleMaps.h>
 #import <Mapbox/Mapbox.h>
+#pragma clang diagnostic pop
 
 #import "Geocube-classes.h"
 #import "Geocube-defines.h"
