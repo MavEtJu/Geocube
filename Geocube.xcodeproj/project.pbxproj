@@ -4745,6 +4745,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Geocube/Pods-Geocube-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
