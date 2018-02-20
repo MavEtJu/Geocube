@@ -22,6 +22,7 @@
 @interface MyClock ()
 
 @property (nonatomic        ) struct timeval clock;
+@property (nonatomic        ) struct timeval clockStarted;
 @property (nonatomic        ) BOOL clockEnabled;
 @property (nonatomic, retain) NSString *clockTitle;
 
@@ -42,7 +43,7 @@
     self.clockTitle = title;
     struct timeval clock;
     gettimeofday(&clock, NULL);
-    self.clock = clock;
+    self.clock = self.clockStarted = clock;
     [self clockShowAndReset];
 
     return self;
@@ -74,6 +75,26 @@
     self.clock = now1;
     if (self.clockEnabled == NO)
         return;
+
+    NSMutableString *t = [NSMutableString stringWithString:self.clockTitle];
+    if (suffix != nil) {
+        [t appendString:@":"];
+        [t appendString:suffix];
+    }
+    NSLog(@"CLOCK: %@ %ld.%06d", t, diff.tv_sec, diff.tv_usec);
+}
+
+- (void)showTotal:(NSString *)suffix
+{
+    struct timeval now1, now, diff;
+    gettimeofday(&now1, NULL);
+    now = now1;
+    if (now.tv_usec < self.clockStarted.tv_usec) {
+        now.tv_sec--;
+        now.tv_usec += 1000000;
+    }
+    diff.tv_usec = now.tv_usec - self.clockStarted.tv_usec;
+    diff.tv_sec = now.tv_sec - self.clockStarted.tv_sec;
 
     NSMutableString *t = [NSMutableString stringWithString:self.clockTitle];
     if (suffix != nil) {

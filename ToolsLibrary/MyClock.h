@@ -24,6 +24,7 @@
 - (instancetype)initClock:(NSString *)title;
 - (void)clockShowAndReset;
 - (void)clockShowAndReset:(NSString *)title;
+- (void)showTotal:(NSString *)title;
 - (void)clockEnable:(BOOL)yesno;
 
 @end
