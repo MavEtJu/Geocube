@@ -59,8 +59,8 @@ grep @class Geocube/Geocube-Classes.h > /tmp/a
 diff /tmp/[ab]
 
 echo
-echo "Copyright:"
-grep -c "Copyright .*$(date +%Y)" $MFILES | sed -e 's/:/ /' | grep -v " 1$"
+echo "Copyright $(date +%Y):"
+grep -c "Copyright .*$(date +%Y) Edwin" $MHFILES | sed -e 's/:/ /' | grep -v " 1$"
 
 echo
 echo "Tabs:"
