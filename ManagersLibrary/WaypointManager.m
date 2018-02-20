@@ -309,7 +309,7 @@
          * If a pin is not defined then it will be considered not to be included.
          */
         after = [NSMutableArray arrayWithCapacity:[waypoints count]];
-        [clock clockShowAndReset:@"sizes"];
+        [clock clockShowAndReset:@"pins"];
 
         c = [self configGet:@"pins_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -333,7 +333,7 @@
          * If a typeicon is not defined then it will be considered not to be included.
          */
         after = [NSMutableArray arrayWithCapacity:[waypoints count]];
-        [clock clockShowAndReset:@"sizes"];
+        [clock clockShowAndReset:@"typeicons"];
 
         c = [self configGet:@"typeicons_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -358,7 +358,6 @@
          */
         after = [NSMutableArray arrayWithCapacity:[waypoints count]];
         [clock clockShowAndReset:@"sizes"];
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         c = [self configGet:@"sizes_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -417,7 +416,6 @@
             waypoints = after;
             NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
         }
-        NSLog(@"%@: Number of waypoints after filtering terrain: %ld", [self class], (unsigned long)[waypoints count]);
 
         /* Filter out dates
          */
@@ -699,6 +697,12 @@
             [clock clockShowAndReset:@"flags2"];
 
             [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
+                // Only do this for waypoints without geocaching data
+                if (wp.gs_owner != nil) {
+                    [after addObject:wp];
+                    return;
+                }
+
                 NSString *suffix = [wp.wpt_name substringFromIndex:2];
                 __block BOOL filterout = NO;
                 [filtered enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wpf, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -817,6 +821,7 @@
         }
 
         NSLog(@"%@: Number of waypoints at the end: %ld", [self class], (unsigned long)[waypoints count]);
+        [clock showTotal:@"Filtering finished"];
         self.currentWaypoints = waypoints;
         self.needsRefresh = NO;
     }
