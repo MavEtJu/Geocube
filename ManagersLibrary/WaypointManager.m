@@ -707,7 +707,7 @@
                 __block BOOL filterout = NO;
                 [filtered enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wpf, NSUInteger idx, BOOL * _Nonnull stop) {
                     NSString *fsuffix = [wpf.wpt_name substringFromIndex:2];
-                    if ([fsuffix isEqualToString:suffix] == YES) {
+                    if ([fsuffix isEqualToString:suffix] == YES && wpf.account._id == wp.account._id) {
                         filterout = YES;
                         *stop = YES;
                     }
