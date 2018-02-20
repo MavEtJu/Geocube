@@ -4,6 +4,7 @@ Version 2.0(x)
 
   Features:
   - Google Maps updated to 2.6.0
+  - Mapbox updated to 3.7.5
 
   Fixes:
 

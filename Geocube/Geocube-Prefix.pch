@@ -38,8 +38,11 @@
 #import <Photos/Photos.h>
 
 #pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wgnu"
+#pragma clang diagnostic ignored "-Wextra-semi"
 #import <GoogleMaps/GoogleMaps.h>
+#pragma clang diagnostic pop
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wvariadic-macros"
 #import <Mapbox/Mapbox.h>
 #pragma clang diagnostic pop
 

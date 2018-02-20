@@ -5,7 +5,7 @@ PODS:
   - GoogleMaps/Base (2.6.0)
   - GoogleMaps/Maps (2.6.0):
     - GoogleMaps/Base
-  - Mapbox-iOS-SDK (3.6.4)
+  - Mapbox-iOS-SDK (3.7.5)
   - TwitterCore (2.8.0):
     - Fabric
   - TwitterKit (2.8.1):
@@ -13,20 +13,20 @@ PODS:
 
 DEPENDENCIES:
   - GoogleMaps
-  - Mapbox-iOS-SDK (from `https://raw.githubusercontent.com/mapbox/mapbox-gl-native/ios-v3.6.4/platform/ios/Mapbox-iOS-SDK.podspec`)
+  - Mapbox-iOS-SDK (from `https://raw.githubusercontent.com/mapbox/mapbox-gl-native/ios-v3.7.5/platform/ios/Mapbox-iOS-SDK.podspec`)
   - TwitterKit
 
 EXTERNAL SOURCES:
   Mapbox-iOS-SDK:
-    :podspec: https://raw.githubusercontent.com/mapbox/mapbox-gl-native/ios-v3.6.4/platform/ios/Mapbox-iOS-SDK.podspec
+    :podspec: https://raw.githubusercontent.com/mapbox/mapbox-gl-native/ios-v3.7.5/platform/ios/Mapbox-iOS-SDK.podspec
 
 SPEC CHECKSUMS:
   Fabric: bb495bb9a7a7677c6d03a1f8b83d95bc49b47e41
   GoogleMaps: 42f91c68b7fa2f84d5c86597b18ceb99f5414c7f
-  Mapbox-iOS-SDK: 47847dd44285477e0dfffd0130f65c8a52823ada
+  Mapbox-iOS-SDK: 107e331a7ae02e6be902c1557d3454c54e18ce5b
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
-PODFILE CHECKSUM: 56a2bfb6e15bd679eade8cd4379ff0f31533efb3
+PODFILE CHECKSUM: 1f39f1c87fe5231e7af87271dc4b9e9438929a6a
 
 COCOAPODS: 1.3.1
