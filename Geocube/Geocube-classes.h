@@ -32,7 +32,6 @@
 @class DatabaseCache;
 @class DeveloperDatabaseViewController;
 @class DeveloperImagesViewController;
-@class DeveloperInfoViewViewController;
 @class DeveloperRemoteAPITableViewCell;
 @class DeveloperRemoteAPIViewController;
 @class DownloadManager;
