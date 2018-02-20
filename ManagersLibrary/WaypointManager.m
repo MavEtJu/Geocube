@@ -215,12 +215,12 @@
             waypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAll]];
             [clock clockShowAndReset:@"dbAll"];
         }
+        NSLog(@"%@: Number of waypoints after loading: %ld", [self class], (unsigned long)[waypoints count]);
 
         /* Filter out accounts
          */
-        after = [NSMutableArray arrayWithCapacity:200];
+        after = [NSMutableArray arrayWithCapacity:[waypoints count]];
         [clock clockShowAndReset:@"accounts"];
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         __block NSString *c = [self configGet:@"accounts_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -237,6 +237,7 @@
             }];
 
             waypoints = after;
+            NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
         }
 
         /* Filter out cache types:
@@ -244,9 +245,8 @@
          * If a type is not defined then it will be considered not to be included.
          */
 
-        after = [NSMutableArray arrayWithCapacity:200];
+        after = [NSMutableArray arrayWithCapacity:[waypoints count]];
         [clock clockShowAndReset:@"types"];
-        NSLog(@"%@: Number of waypoints before filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         c = [self configGet:@"types_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -262,6 +262,7 @@
             }];
 
             waypoints = after;
+            NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
         }
 
         /* Filter out favourites:
@@ -271,9 +272,8 @@
          * - If the min is not 0 and the max is not 100, then between min and max.
          */
 
-        after = [NSMutableArray arrayWithCapacity:200];
+        after = [NSMutableArray arrayWithCapacity:[waypoints count]];
         [clock clockShowAndReset:@"favourites"];
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         c = [self configGet:@"favourites_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -301,15 +301,15 @@
             }
 
             waypoints = after;
+            NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
         }
 
         /* Filter out pins:
          * The filter selects out the waypoints which are of a certain pin.
          * If a pin is not defined then it will be considered not to be included.
          */
-        after = [NSMutableArray arrayWithCapacity:200];
+        after = [NSMutableArray arrayWithCapacity:[waypoints count]];
         [clock clockShowAndReset:@"sizes"];
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         c = [self configGet:@"pins_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -325,15 +325,15 @@
             }];
 
             waypoints = after;
+            NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
         }
 
         /* Filter out typeicons:
          * The filter selects out the waypoints which are of a certain typeicon.
          * If a typeicon is not defined then it will be considered not to be included.
          */
-        after = [NSMutableArray arrayWithCapacity:200];
+        after = [NSMutableArray arrayWithCapacity:[waypoints count]];
         [clock clockShowAndReset:@"sizes"];
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         c = [self configGet:@"typeicons_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -349,13 +349,14 @@
             }];
 
             waypoints = after;
+            NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
         }
 
         /* Filter out sizes:
          * The filter selects out the waypoints which are of a certain size.
          * If a size is not defined then it will be considered not to be included.
          */
-        after = [NSMutableArray arrayWithCapacity:200];
+        after = [NSMutableArray arrayWithCapacity:[waypoints count]];
         [clock clockShowAndReset:@"sizes"];
         NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
@@ -373,13 +374,13 @@
             }];
 
             waypoints = after;
+            NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
         }
 
         /* Filter out difficulty rating
          */
-        after = [NSMutableArray arrayWithCapacity:200];
+        after = [NSMutableArray arrayWithCapacity:[waypoints count]];
         [clock clockShowAndReset:@"difficulty"];
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         c = [self configGet:@"difficulty_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -393,14 +394,14 @@
             }];
 
             waypoints = after;
+            NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
         }
 
         /* Filter out terrain rating
          */
 
-        after = [NSMutableArray arrayWithCapacity:200];
+        after = [NSMutableArray arrayWithCapacity:[waypoints count]];
         [clock clockShowAndReset:@"terrain"];
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         c = [self configGet:@"terrain_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -414,14 +415,14 @@
             }];
 
             waypoints = after;
+            NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
         }
         NSLog(@"%@: Number of waypoints after filtering terrain: %ld", [self class], (unsigned long)[waypoints count]);
 
         /* Filter out dates
          */
-        after = [NSMutableArray arrayWithCapacity:200];
+        after = [NSMutableArray arrayWithCapacity:[waypoints count]];
         [clock clockShowAndReset:@"dates"];
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         c = [self configGet:@"dates_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -504,14 +505,14 @@
             }
 
             waypoints = after;
+            NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
         }
 
         /* Text self
          * An empty entry means that it matches.
          */
-        after = [NSMutableArray arrayWithCapacity:200];
+        after = [NSMutableArray arrayWithCapacity:[waypoints count]];
         [clock clockShowAndReset:@"text"];
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         c = [self configGet:@"text_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -637,12 +638,12 @@
             }];
 
             waypoints = after;
+            NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
         }
 
         /* Filter by flags */
-        after = [NSMutableArray arrayWithCapacity:200];
+        after = [NSMutableArray arrayWithCapacity:[waypoints count]];
         [clock clockShowAndReset:@"flags"];
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         c = [self configGet:@"flags_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -656,6 +657,8 @@
             NSInteger flagLoggedAsDNF = [[self configGet:@"flags_loggedasdnf"] integerValue];
             NSInteger flagEnabled = [[self configGet:@"flags_isenabled"] integerValue];
             NSInteger flagArchived = [[self configGet:@"flags_isarchived"] integerValue];
+
+            NSMutableArray<dbWaypoint *> *filtered = [NSMutableArray arrayWithCapacity:[waypoints count]];
 
             [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
                 BOOL keep = YES;
@@ -683,15 +686,41 @@
 
                 if (keep == YES)
                     [after addObject:wp];
+                else
+                    [filtered addObject:wp];
             }];
 
             waypoints = after;
+            NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
+
+            // Now filter out any related waypoints
+
+            after = [NSMutableArray arrayWithCapacity:[waypoints count]];
+            [clock clockShowAndReset:@"flags2"];
+
+            [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSString *suffix = [wp.wpt_name substringFromIndex:2];
+                __block BOOL filterout = NO;
+                [filtered enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wpf, NSUInteger idx, BOOL * _Nonnull stop) {
+                    NSString *fsuffix = [wpf.wpt_name substringFromIndex:2];
+                    if ([fsuffix isEqualToString:suffix] == YES) {
+                        filterout = YES;
+                        *stop = YES;
+                    }
+                }];
+                if (filterout == YES)
+                    return;
+                [after addObject:wp];
+            }];
+
+            waypoints = after;
+            NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
         } else {
 
             /* Filter out ignored ones
              */
 
-            after = [NSMutableArray arrayWithCapacity:200];
+            after = [NSMutableArray arrayWithCapacity:[waypoints count]];
             [clock clockShowAndReset:@"ignored"];
 
             NSLog(@"%@ - Filtering ignored", [self class]);
@@ -700,6 +729,7 @@
                     [after addObject:wp];
             }];
             waypoints = after;
+            NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
         }
 
         /* Calculate the distance and the bearing */
@@ -710,9 +740,8 @@
         }];
 
         /* Filter by distance */
-        after = [NSMutableArray arrayWithCapacity:200];
+        after = [NSMutableArray arrayWithCapacity:[waypoints count]];
         [clock clockShowAndReset:@"distance"];
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         c = [self configGet:@"distance_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -743,12 +772,12 @@
                     [after addObject:wp];
             }];
             waypoints = after;
+            NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
         }
 
         /* Filter by direction */
-        after = [NSMutableArray arrayWithCapacity:200];
+        after = [NSMutableArray arrayWithCapacity:[waypoints count]];
         [clock clockShowAndReset:@"direction"];
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
 
         c = [self configGet:@"direction_enabled"];
         if (c != nil && [c boolValue] == YES) {
@@ -771,6 +800,7 @@
                     [after addObject:wp];
             }];
             waypoints = after;
+            NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
         }
 
         // Make sure there is always the current waypoint
@@ -786,7 +816,7 @@
                 [waypoints addObject:self.currentWaypoint];
         }
 
-        NSLog(@"%@: Number of waypoints after filtering: %ld", [self class], (unsigned long)[waypoints count]);
+        NSLog(@"%@: Number of waypoints at the end: %ld", [self class], (unsigned long)[waypoints count]);
         self.currentWaypoints = waypoints;
         self.needsRefresh = NO;
     }

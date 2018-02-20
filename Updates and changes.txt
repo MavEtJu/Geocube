@@ -7,6 +7,10 @@ Version 2.0(x)
   - Mapbox updated to 3.7.5
 
   Fixes:
+  - When refreshing the waypoints from the database, the additional
+    waypoints related to flags-based filtered out geocache related
+    waypoints were not filtered out also. This is now done properly:
+    You won't see these waypoints anymore.
 
 Version 1.9(33)
 
