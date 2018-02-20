@@ -598,7 +598,6 @@
 		E84B174E1F903E6C004CAE31 /* DeveloperRemoteAPIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84B174D1F903E6C004CAE31 /* DeveloperRemoteAPIViewController.m */; };
 		E84B17531F90BA2C004CAE31 /* DeveloperRemoteAPITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E84B17521F90BA2C004CAE31 /* DeveloperRemoteAPITableViewCell.m */; };
 		E84B17551F90BA51004CAE31 /* DeveloperRemoteAPITableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E84B17541F90BA51004CAE31 /* DeveloperRemoteAPITableViewCell.xib */; };
-		E84E88A41F6CFFD0004F4BE9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E84E88A31F6CFFD0004F4BE9 /* Social.framework */; };
 		E851139F1F987BB300737EC7 /* MapMapbox.m in Sources */ = {isa = PBXBuildFile; fileRef = E851139E1F987BB300737EC7 /* MapMapbox.m */; };
 		E8587B8B1F8C24330099EA0E /* dbLogData.m in Sources */ = {isa = PBXBuildFile; fileRef = E8587B8A1F8C24330099EA0E /* dbLogData.m */; };
 		E8587B8D1F8C83F40099EA0E /* GoogleMapsNight.json in Resources */ = {isa = PBXBuildFile; fileRef = E8587B8C1F8C83F40099EA0E /* GoogleMapsNight.json */; };
@@ -2076,7 +2075,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E84E88A41F6CFFD0004F4BE9 /* Social.framework in Frameworks */,
 				E858F59B1F56610B002C1F9B /* ImageIO.framework in Frameworks */,
 				E8EC01A81F554C8F0032F168 /* MediaPlayer.framework in Frameworks */,
 				E823024E1DCD54520032C5C6 /* libxml2.tbd in Frameworks */,
