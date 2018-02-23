@@ -21,6 +21,8 @@
 
 @interface HelpHelpViewController ()
 
+@property (nonatomic, retain) GCScrollView *contentView;
+
 @end
 
 @implementation HelpHelpViewController
@@ -42,10 +44,17 @@ enum {
 
 - (void)viewDidLoad
 {
+    self.hasCloseButton = NO;
     [super viewDidLoad];
 
-    NSInteger y = 10;
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
+    self.contentView = [[GCScrollView alloc] initWithFrame:applicationFrame];
+    self.contentView.delegate = self;
+    self.view = self.contentView;
+
+    [self changeTheme];
+
+    NSInteger y = 10;
     NSInteger width = applicationFrame.size.width;
 
     GCLabel *t = [[GCLabel alloc] initWithFrame:(CGRectMake(10, y, width - 20, 0))];
@@ -61,8 +70,10 @@ enum {
 
     [t sizeToFit];
     t.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    y += t.frame.size.height;
 
-    [self.view addSubview:t];
+    [self.contentView addSubview:t];
+    self.contentView.contentSize = CGSizeMake(200, y);
 }
 
 - (void)performLocalMenuAction:(NSInteger)index
