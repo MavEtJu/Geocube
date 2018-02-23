@@ -312,6 +312,7 @@
     }
 
     // Switch back to the last page the user was on.
+    NSInteger currentIndex = configManager.currentPageTab;
     if (configManager.currentPage >= [self.tabBars count])
         [configManager currentPageUpdate:0];
     [self switchController:configManager.currentPage];
@@ -320,7 +321,7 @@
     self.window.rootViewController = currentTab;
 
     [self.window makeKeyAndVisible];
-    [currentTab setSelectedIndex:configManager.currentPageTab animated:YES];
+    [currentTab setSelectedIndex:currentIndex animated:YES];
 
     // Browser View Controller
     browserTabController = [_AppDelegate.tabBars objectAtIndex:RC_BROWSER];

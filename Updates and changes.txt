@@ -11,6 +11,7 @@ Version 2.0(x)
     waypoints related to flags-based filtered out geocache related
     waypoints were not filtered out also. This is now done properly:
     You won't see these waypoints anymore.
+  - Starting the app now returns to the last tab.
 
 Version 1.9(33)
 
