@@ -361,8 +361,10 @@
         BACKGROUND(checkForDownloadConfigurationFiles, nil);
 
     // Ask for notifications
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge categories:nil];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    [center requestAuthorizationWithOptions:UNAuthorizationOptionBadge completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        // Nothing
+    }];
 
     return YES;
 }

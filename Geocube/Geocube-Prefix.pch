@@ -36,6 +36,7 @@
 #import <CommonCrypto/CommonHMAC.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <Photos/Photos.h>
+#import <UserNotifications/UserNotifications.h>
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wextra-semi"
