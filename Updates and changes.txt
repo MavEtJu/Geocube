@@ -3,8 +3,9 @@ Interesting additions and changes to Geocube
 Version 2.0(x)
 
   Features:
-  - Google Maps updated to 2.6.0
-  - Mapbox updated to 3.7.5
+  - Google Maps updated to 2.6.0.
+  - Mapbox updated to 3.7.5.
+  - Remove support for iOS 9.x.
 
   Fixes:
   - When refreshing the waypoints from the database, the additional
