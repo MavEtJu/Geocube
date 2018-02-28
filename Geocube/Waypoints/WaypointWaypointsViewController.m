@@ -200,7 +200,7 @@ enum {
 
 - (void)newWaypoint
 {
-    NSString *s = [NSString stringWithFormat:_(@"waypointwaypointsviewcontroller-Waypoint coordinates:\n%@\nCurrent coordinates:\n%@"), [Coordinates niceCoordinates:self.waypoint.wpt_latitude longitude:self.waypoint.wpt_longitude], [Coordinates niceCoordinates:LM.coords]];
+    NSString *s = [NSString stringWithFormat:_(@"waypointwaypointsviewcontroller-Waypoint coordinates:__%@__Current coordinates:__%@"), [Coordinates niceCoordinates:self.waypoint.wpt_latitude longitude:self.waypoint.wpt_longitude], [Coordinates niceCoordinates:LM.coords]];
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:_(@"waypointwaypointsviewcontroller-Add a related waypoint")
                                 message:s

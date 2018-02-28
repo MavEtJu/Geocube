@@ -221,8 +221,8 @@
 "settingsmainviewcontroller-Normal text font size" = "Normale tekst font grootte";
 "settingsmainviewcontroller-Small Text Font Size" = "Kleine tekst font grootte";
 "settingsmainviewcontroller-Small text font size" = "Kleine tekst font grootte";
-"settingsmainviewcontroller-Size of font in pixels\nSmall: 10 pixels\nNormal: 15 pixels" = "Font grootte\nKlein: 10 pixels\nNormaal: 15 pixels";
-"settingsmainviewcontroller-Size of font in pixels\nSmall: 17 pixels\nNormal: 24 pixels" = "Font grootte\nKlein: 17 pixels\nNormaal: 24 pixels";
+"settingsmainviewcontroller-Size of font in pixels__Small: 10 pixels__Normal: 15 pixels" = "Font grootte\nKlein: 10 pixels\nNormaal: 15 pixels";
+"settingsmainviewcontroller-Size of font in pixels__Small: 17 pixels__Normal: 24 pixels" = "Font grootte\nKlein: 17 pixels\nNormaal: 24 pixels";
 
 "settingsmaincolorpickerviewcontroller-Boundary Circle Fill" = "Waypoint cirkel vulling kleur";
 "settingsmaincolorpickerviewcontroller-Boundary Circle Ring" = "Waypoint cirkel grens kleur";

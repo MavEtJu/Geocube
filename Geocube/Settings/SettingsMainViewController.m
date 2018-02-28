@@ -1751,7 +1751,7 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
 {
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:_(@"settingsmainviewcontroller-Small Text Font Size")
-                                message:_(@"settingsmainviewcontroller-Size of font in pixels\nSmall: 10 pixels\nNormal: 15 pixels")
+                                message:_(@"settingsmainviewcontroller-Size of font in pixels__Small: 10 pixels__Normal: 15 pixels")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
@@ -1787,7 +1787,7 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
 {
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:_(@"settingsmainviewcontroller-Normal Text Font Size")
-                                message:_(@"settingsmainviewcontroller-Size of font in pixels\nSmall: 17 pixels\nNormal: 24 pixels")
+                                message:_(@"settingsmainviewcontroller-Size of font in pixels__Small: 17 pixels__Normal: 24 pixels")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
