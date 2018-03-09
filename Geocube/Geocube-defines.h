@@ -42,7 +42,7 @@
     (void) __name__ { NEEDS_OVERLOADING_ASSERT; }
 
 #define NEEDS_OVERLOADING_NIL(__type__, __name__) \
-(__type__) __name__ { NEEDS_OVERLOADING_ASSERT; return nil; }
+    (__type__) __name__ { NEEDS_OVERLOADING_ASSERT; return nil; }
 
 #define NEEDS_OVERLOADING_NSSTRING(__name__) \
     NEEDS_OVERLOADING_NIL(NSString *, __name__)
