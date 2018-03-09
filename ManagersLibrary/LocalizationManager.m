@@ -114,9 +114,9 @@
 - (NSString *)localize:(NSString *)s
 {
     NSString *t = [self.txtable objectForKey:s];
-    if (t != nil)
-        return t;
-    return s;
+    if (t == nil)
+        return s;
+    return [t stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
 }
 
 + (NSString *)localize:(NSString *)s
