@@ -1,6 +1,6 @@
 Interesting additions and changes to Geocube
 
-Version 2.0(x)
+Version 2.0(34)
 
   Features:
   - Google Maps updated to 2.6.0.
