@@ -35,8 +35,8 @@
 {
     self = [super init];
 
-    self.prefix = @"http://geocaching.com.au/api/services";
-    self.hostpart = @"http://geocaching.com.au";
+    self.prefix = @"https://geocaching.com.au/api/services";
+    self.hostpart = @"https://geocaching.com.au";
     self.key = keyManager.gca_api;
 
     self.remoteAPI = remoteAPI;

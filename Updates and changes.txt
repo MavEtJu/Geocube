@@ -13,6 +13,7 @@ Version 2.0(x)
     waypoints were not filtered out also. This is now done properly:
     You won't see these waypoints anymore.
   - Starting the app now returns to the last tab.
+  - Allow HTTPS for Geocaching Australia.
 
 Version 1.9(33)
 
