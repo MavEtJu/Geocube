@@ -173,6 +173,8 @@
 
     CHECK(@"font_smalltext_size", @"15");
     CHECK(@"font_normaltext_size", @"24");
+
+    CHECK(@"coordinates", @"0");
 }
 
 - (void)loadValues
@@ -275,6 +277,7 @@
     LOAD_INTEGER(self.mapsearchGGCWNumberThreads, @"mapsearch_ggcw_numberthreads");
     LOAD_INTEGER(self.fontSmallTextSize, @"font_smalltext_size");
     LOAD_INTEGER(self.fontNormalTextSize, @"font_normaltext_size");
+    LOAD_INTEGER(self.coordinatesType, @"coordinates");
 
     /* Leftovers */
     self.currentTrack = [dbTrack dbGet:[[dbConfig dbGetByKey:@"track_current"].value integerValue]];
@@ -310,6 +313,13 @@
 }
 
 - (void)NSIdUpdate:(NSString *)key value:(NSId)value
+{
+    dbConfig *c = [dbConfig dbGetByKey:key];
+    c.value = [NSString stringWithFormat:@"%ld", (long)value];
+    [c dbUpdate];
+}
+
+- (void)CoordinatesTypeUpdate:(NSString *)key value:(CoordinatesType)value
 {
     dbConfig *c = [dbConfig dbGetByKey:key];
     c.value = [NSString stringWithFormat:@"%ld", (long)value];
@@ -439,6 +449,7 @@ UPDATE3(NSInteger, mapsearchGGCWMaximumNumber, @"mapsearch_ggcw_maximumnumber")
 UPDATE3(NSInteger, mapsearchGGCWNumberThreads, @"mapsearch_ggcw_numberthreads")
 UPDATE3(NSInteger, fontSmallTextSize, @"font_smalltext_size")
 UPDATE3(NSInteger, fontNormalTextSize, @"font_normaltext_size")
+UPDATE3(CoordinatesType, coordinatesType, @"coordinates")
 
 UPDATE3(float, keeptrackTimeDeltaMin, @"keeptrack_timedelta_min")
 UPDATE3(float, keeptrackTimeDeltaMax, @"keeptrack_timedelta_max")

@@ -53,6 +53,8 @@
 @property (nonatomic, retain) NSMutableArray<NSString *> *downloadSimpleTimeouts;
 @property (nonatomic, retain) NSMutableArray<NSString *> *downloadQueryTimeouts;
 
+@property (nonatomic, retain) NSArray<NSString *> *coordinateTypes;
+
 @end
 
 @implementation SettingsMainViewController
@@ -131,6 +133,15 @@ enum {
     for (NSInteger i = 60; i < 1200; i += 30) {
         [self.downloadQueryTimeouts addObject:[NSString stringWithFormat:@"%ld %@", (long)i, _(@"time-seconds")]];
     }
+
+    self.coordinateTypes = @[
+        _(@"settingsmainviewcontroller-degrees decimal minutes (S 12° 34.567)"),
+        _(@"settingsmainviewcontroller-degrees signed (-12.345678)"),
+        _(@"settingsmainviewcontroller-degrees cardinal (S 12.345678)"),
+        _(@"settingsmainviewcontroller-degrees minutes seconds (S 12° 34' 56\")"),
+        _(@"settingsmainviewcontroller-open location code (2345678+9CF)"),
+        _(@"settingsmainviewcontroller-UTM (51H 326625E 6222609N)"),
+        ];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -247,6 +258,7 @@ enum sections {
     SECTION_THEME,
     SECTION_SOUNDS,
     SECTION_COMPASS,
+    SECTION_COORDINATES,
     SECTION_MAPCOLOURS,
     SECTION_MAPS,
     SECTION_MAPSEARCH,
@@ -279,6 +291,9 @@ enum sections {
 
     SECTION_COMPASS_ALWAYSPORTRAIT = 0,
     SECTION_COMPASS_MAX,
+
+    SECTION_COORDINATES_TYPE = 0,
+    SECTION_COORDINATES_MAX,
 
     SECTION_MAPS_DEFAULTBRAND = 0,
     SECTION_MAPS_MAPBOXKEY,
@@ -400,6 +415,7 @@ enum sections {
         SECTION_MAX(THEME);
         SECTION_MAX(SOUNDS);
         SECTION_MAX(COMPASS);
+        SECTION_MAX(COORDINATES);
         SECTION_MAX(MAPS);
         SECTION_MAX(DYNAMICMAP);
         SECTION_MAX(SPEED);
@@ -436,6 +452,8 @@ enum sections {
             return _(@"settingsmainviewcontroller-Sounds");
         case SECTION_COMPASS:
             return _(@"settingsmainviewcontroller-Compass");
+        case SECTION_COORDINATES:
+            return _(@"settingsmainviewcontroller-Coordinates");
         case SECTION_MAPCOLOURS:
             return _(@"settingsmainviewcontroller-Map colours");
         case SECTION_MAPS:
@@ -737,6 +755,15 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_COMPASS_ALWAYSPORTRAIT:
                     CELL_SWITCH(_(@"settingsmainviewcontroller-Compass is always in portrait mode"), compassAlwaysInPortraitMode, updateCompassAlwaysInPortraitMode)
+            }
+            abort();
+        }
+
+        case SECTION_COORDINATES: {
+            switch (indexPath.row) {
+                case SECTION_COORDINATES_TYPE: {
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Coordinate type"), [self.coordinateTypes objectAtIndex:configManager.coordinatesType])
+                }
             }
             abort();
         }
@@ -1116,6 +1143,14 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
                     break;
                 case SECTION_SPEED_SAMPLES:
                     [self changeSpeedSamples];
+                    break;
+            }
+            break;
+
+        case SECTION_COORDINATES:
+            switch (indexPath.row) {
+                case SECTION_COORDINATES_TYPE:
+                    [self changeCoordinatesType];
                     break;
             }
             break;
@@ -1903,6 +1938,24 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
                                 initialSelection:configManager.listSortBy
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                            [configManager listSortByUpdate:selectedIndex];
+                                           [self.tableView reloadData];
+                                       }
+                                     cancelBlock:nil
+                                          origin:cell.contentView
+     ];
+}
+
+/* ********************************************************************************* */
+
+- (void)changeCoordinatesType
+{
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_COORDINATES_TYPE inSection:SECTION_COORDINATES]];
+
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Coordinates Type")
+                                            rows:self.coordinateTypes
+                                initialSelection:configManager.coordinatesType
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           [configManager coordinatesTypeUpdate:selectedIndex];
                                            [self.tableView reloadData];
                                        }
                                      cancelBlock:nil

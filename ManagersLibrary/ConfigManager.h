@@ -129,6 +129,7 @@ PROTO_N (NSInteger, mapsearchGGCWMaximumNumber)
 PROTO_N (NSInteger, mapsearchGGCWNumberThreads)
 PROTO_N (NSInteger, fontSmallTextSize)
 PROTO_N (NSInteger, fontNormalTextSize)
+PROTO_N (CoordinatesType, coordinatesType)
 
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown
