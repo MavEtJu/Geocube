@@ -53,8 +53,6 @@
 @property (nonatomic, retain) NSMutableArray<NSString *> *downloadSimpleTimeouts;
 @property (nonatomic, retain) NSMutableArray<NSString *> *downloadQueryTimeouts;
 
-@property (nonatomic, retain) NSArray<NSString *> *coordinateTypes;
-
 @end
 
 @implementation SettingsMainViewController
@@ -133,15 +131,6 @@ enum {
     for (NSInteger i = 60; i < 1200; i += 30) {
         [self.downloadQueryTimeouts addObject:[NSString stringWithFormat:@"%ld %@", (long)i, _(@"time-seconds")]];
     }
-
-    self.coordinateTypes = @[
-        _(@"settingsmainviewcontroller-degrees decimal minutes (S 12° 34.567)"),
-        _(@"settingsmainviewcontroller-degrees signed (-12.345678)"),
-        _(@"settingsmainviewcontroller-degrees cardinal (S 12.345678)"),
-        _(@"settingsmainviewcontroller-degrees minutes seconds (S 12° 34' 56\")"),
-        _(@"settingsmainviewcontroller-open location code (2345678+9CF)"),
-        _(@"settingsmainviewcontroller-UTM (51H 326625E 6222609N)"),
-        ];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -762,7 +751,7 @@ enum sections {
         case SECTION_COORDINATES: {
             switch (indexPath.row) {
                 case SECTION_COORDINATES_TYPE: {
-                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Coordinate type"), [self.coordinateTypes objectAtIndex:configManager.coordinatesType])
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Coordinate type"), [[Coordinates coordinateTypes] objectAtIndex:configManager.coordinatesType])
                 }
             }
             abort();
@@ -1951,8 +1940,8 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
 {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_COORDINATES_TYPE inSection:SECTION_COORDINATES]];
 
-    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Coordinates Type")
-                                            rows:self.coordinateTypes
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Coordinate type")
+                                            rows:[Coordinates coordinateTypes]
                                 initialSelection:configManager.coordinatesType
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                            [configManager coordinatesTypeUpdate:selectedIndex];

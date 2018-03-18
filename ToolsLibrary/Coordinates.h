@@ -30,6 +30,7 @@ typedef NS_ENUM(NSInteger, CoordinatesType) {
     COORDINATES_DEGREES_MINUTES_SECONDS,
     COORDINATES_OPENLOCATIONCODE,
     COORDINATES_UTM,
+    COORDINATES_MAX,
 };
 
 - (instancetype)init:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude; // -34.02787 151.07357
@@ -84,5 +85,7 @@ typedef NS_ENUM(NSInteger, CoordinatesType) {
 
 + (BOOL)checkCoordinate:(NSString *)text;
 + (NSInteger)scanForWaypoints:(NSArray<NSString *> *)lines waypoint:(NSObject *)waypoint view:(UIViewController *)vc;
+
++ (NSArray<NSString *> *)coordinateTypes;
 
 @end

@@ -560,4 +560,20 @@
     return floor(((lon + 180) / 360) * pow(2, zoom));
 }
 
++ (NSArray<NSString *> *)coordinateTypes
+{
+    NSArray<NSString *> *cts = @[
+        _(@"coordinates-Degrees with decimal minutes (S 12° 34.567)"),
+        _(@"coordinates-Degrees signed (-12.345678)"),
+        _(@"coordinates-Degrees cardinal (S 12.345678)"),
+        _(@"coordinates-Degrees Minutes Seconds (S 12° 34′ 56″)"),
+        _(@"coordinates-Open Location Code (2345678+9CF)"),
+        _(@"coordinates-UTM (51H 326625E 6222609N)"),
+    ];
+
+    NSAssert([cts count] == COORDINATES_MAX, @"Number of coordinateTypes is not the size of the array");
+
+    return cts;
+}
+
 @end

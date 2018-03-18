@@ -233,3 +233,7 @@
 
 "settingsmainviewcontroller-Restart required" = "Herstart nodig";
 "settingsmainviewcontroller-When you are finished with these settings, please leave Geocube, swipe it up and restart it." = "Wanneer je klaar bent met de veranderingen, verlaat dan Geocube, schiet het omhoog en start het opnieuw.";
+
+"settingsmainviewcontroller-Coordinate type" = "Coördinate type";
+"settingsmainviewcontroller-Coordinates" = "Coördinates";
+
