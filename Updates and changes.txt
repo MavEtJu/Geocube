@@ -4,6 +4,7 @@ Version 2.1(x)
 
   Features:
   - You will be able to pick your prefered coordinate type to use.
+  - Added OpenLocationCode, UTM, MGRS.
 
   Fixes:
 
