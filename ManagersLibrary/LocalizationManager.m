@@ -98,6 +98,9 @@
     NSArray<NSString *> *lines = [content componentsSeparatedByString:@"\n"];
     __block NSInteger c = 0;
     [lines enumerateObjectsUsingBlock:^(NSString * _Nonnull line, NSUInteger idx, BOOL * _Nonnull stop) {
+        line = [line stringByReplacingOccurrencesOfString:@"/\\*.*\\*/" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [line length])];
+        if ([line isEqualToString:@""] == YES)
+            return;
         if ([line rangeOfString:@"^\"[^\"]+\" = \"[^\"]+\";" options:NSRegularExpressionSearch].location != NSNotFound) {
             NSArray<NSString *> *cs = [line componentsSeparatedByString:@"\" = \""];
             NSString *key = [cs objectAtIndex:0];
@@ -105,7 +108,8 @@
 
             [self.txtable setObject:[value substringToIndex:[value length] - 2] forKey:[key substringFromIndex:1]];
             c++;
-        }
+        } else
+            NSLog(@"%@", line);
     }];
 
     return c;
