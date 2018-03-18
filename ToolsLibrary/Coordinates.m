@@ -21,7 +21,13 @@
 
 @interface Coordinates ()
 
-@property (nonatomic) CLLocationCoordinate2D coords;
+@property (nonatomic)         CLLocationCoordinate2D coords;
+@property (nonatomic, retain) OLCConvertor *olc;
+@property (nonatomic, retain) UTM2LatLon *utm2latlon;
+@property (nonatomic, retain) LatLon2UTM *latlon2UTM;
+@property (nonatomic, retain) LatLon2MGRS *latlon2MGRS;
+@property (nonatomic, retain) MGRS2LatLon *mgrs2latlon;
+
 
 @end
 
@@ -154,6 +160,30 @@
 - (CLLocationDegrees)longitude
 {
     return self.coords.longitude;
+}
+
+// Returns OLCCode
+- (NSString *)olcEncode
+{
+    if (self.olc == nil)
+        self.olc = [[OLCConvertor alloc] init];
+    return [self.olc encodeLatitude:self.coords.latitude longitude:self.coords.longitude];
+}
+
+// Returns UTM
+- (NSString *)UTMEncode
+{
+    if (self.latlon2UTM == nil)
+        self.latlon2UTM = [[LatLon2UTM alloc] init];
+    return [self.latlon2UTM convertToUTMFromLatitude:self.coords.latitude Longitude:self.coords.longitude];
+}
+
+// Returns MGRS
+- (NSString *)MGRSEncode
+{
+    if (self.latlon2MGRS == nil)
+        self.latlon2MGRS = [[LatLon2MGRS alloc] init];
+    return [self.latlon2MGRS convertToMGRSFromLatitude:self.coords.latitude Longitude:self.coords.longitude];
 }
 
 /// Returns calculated distance towards coordinates c
@@ -342,7 +372,26 @@
 /// Returns string with coordinates like N 1° 2.3' E 4° 5.6
 - (NSString *)niceCoordinates
 {
-    return [NSString stringWithFormat:@"%@ %@", [self lat_degreesDecimalMinutes], [self lon_degreesDecimalMinutes]];
+    switch (configManager.coordinatesType) {
+        case COORDINATES_DEGREES_DECIMALMINUTES:
+            return [NSString stringWithFormat:@"%@ %@", [self lat_degreesDecimalMinutes], [self lon_degreesDecimalMinutes]];
+        case COORDINATES_DEGREES_SIGNED:
+            return [NSString stringWithFormat:@"%@ %@", [self lat_decimalDegreesSigned], [self lon_decimalDegreesSigned]];
+        case COORDINATES_DEGREES_CARDINAL:
+            return [NSString stringWithFormat:@"%@ %@", [self lat_decimalDegreesCardinal], [self lon_decimalDegreesCardinal]];
+        case COORDINATES_DEGREES_MINUTES_SECONDS:
+            return [NSString stringWithFormat:@"%@ %@", [self lat_degreesMinutesSeconds], [self lon_degreesMinutesSeconds]];
+        case COORDINATES_OPENLOCATIONCODE:
+            return [self olcEncode];
+        case COORDINATES_UTM:
+            return [self UTMEncode];
+        case COORDINATES_MGRS:
+            return [self MGRSEncode];
+        case COORDINATES_MAX:
+            return @"????";
+    }
+
+    return @"????";
 }
 
 /// Returns string with coordinates like N 1° 2.3' E 4° 5.6
@@ -569,6 +618,7 @@
         _(@"coordinates-Degrees Minutes Seconds (S 12° 34′ 56″)"),
         _(@"coordinates-Open Location Code (2345678+9CF)"),
         _(@"coordinates-UTM (51H 326625E 6222609N)"),
+        _(@"coordinates-MGRS (51H 326625E 6222609N)"),
     ];
 
     NSAssert([cts count] == COORDINATES_MAX, @"Number of coordinateTypes is not the size of the array");

@@ -134,6 +134,7 @@
 "coordinates-Degrees with decimal minutes (S 12° 34.567)" = "Degrees with decimal minutes (S 12° 34.567)";
 "coordinates-Open Location Code (2345678+9CF)" = "Open Location Code (2345678+9CF)";
 "coordinates-UTM (51H 326625E 6222609N)" = "UTM (51H 326625E 6222609N)";
+"coordinates-MGRS (51H 326625E 6222609N)" = "MGRS (51H 326625E 6222609N)";
 
 /* General */
 "Close" = "Close";

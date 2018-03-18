@@ -41,6 +41,14 @@
 #import "ContribLibrary/ActionSheetPicker/ActionSheetDistancePicker.h"
 #import "ContribLibrary/ActionSheetPicker/ActionSheetStringPicker.h"
 
+#import "ContribLibrary/OpenLocationCode/OLCArea.h"
+#import "ContribLibrary/OpenLocationCode/OLCConvertor.h"
+
+#import "ContribLibrary/GeoCoordinateConverter/UTM2LatLon.h"
+#import "ContribLibrary/GeoCoordinateConverter/LatLon2UTM.h"
+#import "ContribLibrary/GeoCoordinateConverter/LatLon2MGRS.h"
+#import "ContribLibrary/GeoCoordinateConverter/MGRS2LatLon.h"
+
 #import "ContribLibrary/GMUGeometry/GMUKMLParser.h"
 #import "ContribLibrary/GMUGeometry/GMUGeometryRenderer.h"
 

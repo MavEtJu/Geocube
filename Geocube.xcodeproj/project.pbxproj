@@ -721,6 +721,12 @@
 		E8B7737C1F94D7190060B415 /* menu icon - see target - 40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B773711F94D7190060B415 /* menu icon - see target - 40x40.png */; };
 		E8B7737D1F94D7190060B415 /* menu icon - show both - 40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B773721F94D7190060B415 /* menu icon - show both - 40x40.png */; };
 		E8C8C8C21EE26AAA00E2438D /* LogTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C8C8C11EE26AAA00E2438D /* LogTableViewCell~ipad.xib */; };
+		E8CB8907205E75E400DD55DE /* OLCArea.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB8903205E75E300DD55DE /* OLCArea.m */; };
+		E8CB8908205E75E400DD55DE /* OLCConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB8906205E75E400DD55DE /* OLCConvertor.m */; };
+		E8CB8916205E7ACE00DD55DE /* LatLon2MGRS.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB890D205E7ACD00DD55DE /* LatLon2MGRS.m */; };
+		E8CB8917205E7ACE00DD55DE /* LatLon2UTM.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB890E205E7ACD00DD55DE /* LatLon2UTM.m */; };
+		E8CB8918205E7ACE00DD55DE /* MGRS2LatLon.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB8910205E7ACD00DD55DE /* MGRS2LatLon.m */; };
+		E8CB8919205E7ACE00DD55DE /* UTM2LatLon.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB8913205E7ACE00DD55DE /* UTM2LatLon.m */; };
 		E8D49D2F1F00F9C1005EB7BE /* container size - nano - 35x11.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */; };
 		E8D49D301F00F9C1005EB7BE /* container size - nano - 35x11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */; };
 		E8D49D311F00F9C1005EB7BE /* container size - nano - 35x11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2E1F00F9C1005EB7BE /* container size - nano - 35x11@3x.png */; };
@@ -1943,6 +1949,18 @@
 		E8B773711F94D7190060B415 /* menu icon - see target - 40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - see target - 40x40.png"; path = "images/menu/menu icon - see target - 40x40.png"; sourceTree = "<group>"; };
 		E8B773721F94D7190060B415 /* menu icon - show both - 40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - show both - 40x40.png"; path = "images/menu/menu icon - show both - 40x40.png"; sourceTree = "<group>"; };
 		E8C8C8C11EE26AAA00E2438D /* LogTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LogTableViewCell~ipad.xib"; sourceTree = "<group>"; };
+		E8CB8903205E75E300DD55DE /* OLCArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OLCArea.m; path = ContribLibrary/OpenLocationCode/OLCArea.m; sourceTree = "<group>"; };
+		E8CB8904205E75E300DD55DE /* OLCConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OLCConvertor.h; path = ContribLibrary/OpenLocationCode/OLCConvertor.h; sourceTree = "<group>"; };
+		E8CB8905205E75E300DD55DE /* OLCArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OLCArea.h; path = ContribLibrary/OpenLocationCode/OLCArea.h; sourceTree = "<group>"; };
+		E8CB8906205E75E400DD55DE /* OLCConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OLCConvertor.m; path = ContribLibrary/OpenLocationCode/OLCConvertor.m; sourceTree = "<group>"; };
+		E8CB890B205E7ACC00DD55DE /* LatLon2UTM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LatLon2UTM.h; path = ContribLibrary/GeoCoordinateConverter/LatLon2UTM.h; sourceTree = "<group>"; };
+		E8CB890D205E7ACD00DD55DE /* LatLon2MGRS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LatLon2MGRS.m; path = ContribLibrary/GeoCoordinateConverter/LatLon2MGRS.m; sourceTree = "<group>"; };
+		E8CB890E205E7ACD00DD55DE /* LatLon2UTM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LatLon2UTM.m; path = ContribLibrary/GeoCoordinateConverter/LatLon2UTM.m; sourceTree = "<group>"; };
+		E8CB890F205E7ACD00DD55DE /* MGRS2LatLon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGRS2LatLon.h; path = ContribLibrary/GeoCoordinateConverter/MGRS2LatLon.h; sourceTree = "<group>"; };
+		E8CB8910205E7ACD00DD55DE /* MGRS2LatLon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGRS2LatLon.m; path = ContribLibrary/GeoCoordinateConverter/MGRS2LatLon.m; sourceTree = "<group>"; };
+		E8CB8911205E7ACD00DD55DE /* UTM2LatLon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTM2LatLon.h; path = ContribLibrary/GeoCoordinateConverter/UTM2LatLon.h; sourceTree = "<group>"; };
+		E8CB8912205E7ACE00DD55DE /* LatLon2MGRS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LatLon2MGRS.h; path = ContribLibrary/GeoCoordinateConverter/LatLon2MGRS.h; sourceTree = "<group>"; };
+		E8CB8913205E7ACE00DD55DE /* UTM2LatLon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTM2LatLon.m; path = ContribLibrary/GeoCoordinateConverter/UTM2LatLon.m; sourceTree = "<group>"; };
 		E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11.png"; path = "images/containers/container size - nano - 35x11.png"; sourceTree = "<group>"; };
 		E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11@2x.png"; path = "images/containers/container size - nano - 35x11@2x.png"; sourceTree = "<group>"; };
 		E8D49D2E1F00F9C1005EB7BE /* container size - nano - 35x11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11@3x.png"; path = "images/containers/container size - nano - 35x11@3x.png"; sourceTree = "<group>"; };
@@ -2168,14 +2186,16 @@
 			children = (
 				E82287D61F8A341300631380 /* ContribLibrary.h */,
 				E82287D71F8A341300631380 /* PSPDFUIKitMainThreadGuard.m */,
+				E82287DD1F8A343500631380 /* ActionSheetPicker */,
 				E82289011F8A404700631380 /* CMRangeSlider */,
+				E8CB8909205E7AA000DD55DE /* GeoCoordinateConverter */,
 				E822889A1F8A353300631380 /* GMUGeometry */,
 				E822888E1F8A350400631380 /* Kxintro */,
-				E82287DD1F8A343500631380 /* ActionSheetPicker */,
 				E82287D91F8A342000631380 /* LXMapScaleView */,
 				E82289041F8A407900631380 /* MHTabBarController */,
 				E82289021F8A405800631380 /* NKOColorPickerView */,
 				E82288981F8A351D00631380 /* NVHTarGzip */,
+				E8CB8902205E757700DD55DE /* OpenLocationCode */,
 				E82288991F8A352700631380 /* RNCryptor */,
 				E82288391F8A34E200631380 /* SimpleKML */,
 				E82288331F8A34C900631380 /* SSZipArchive */,
@@ -3987,6 +4007,32 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		E8CB8902205E757700DD55DE /* OpenLocationCode */ = {
+			isa = PBXGroup;
+			children = (
+				E8CB8905205E75E300DD55DE /* OLCArea.h */,
+				E8CB8903205E75E300DD55DE /* OLCArea.m */,
+				E8CB8904205E75E300DD55DE /* OLCConvertor.h */,
+				E8CB8906205E75E400DD55DE /* OLCConvertor.m */,
+			);
+			name = OpenLocationCode;
+			sourceTree = "<group>";
+		};
+		E8CB8909205E7AA000DD55DE /* GeoCoordinateConverter */ = {
+			isa = PBXGroup;
+			children = (
+				E8CB8912205E7ACE00DD55DE /* LatLon2MGRS.h */,
+				E8CB890D205E7ACD00DD55DE /* LatLon2MGRS.m */,
+				E8CB890B205E7ACC00DD55DE /* LatLon2UTM.h */,
+				E8CB890E205E7ACD00DD55DE /* LatLon2UTM.m */,
+				E8CB890F205E7ACD00DD55DE /* MGRS2LatLon.h */,
+				E8CB8910205E7ACD00DD55DE /* MGRS2LatLon.m */,
+				E8CB8911205E7ACD00DD55DE /* UTM2LatLon.h */,
+				E8CB8913205E7ACE00DD55DE /* UTM2LatLon.m */,
+			);
+			name = GeoCoordinateConverter;
+			sourceTree = "<group>";
+		};
 		E8E4400B1D88A6D800BECB49 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -4774,6 +4820,7 @@
 				E82288AD1F8A356300631380 /* XMLReader.m in Sources */,
 				E82287A01F8A30B700631380 /* MapTrackViewController.m in Sources */,
 				E82344811EECE09C00D2CDFD /* ListHighlightViewController.m in Sources */,
+				E8CB8907205E75E400DD55DE /* OLCArea.m in Sources */,
 				E82287691F8A2EC300631380 /* GCStringObjects.m in Sources */,
 				E82286841F8A2BD600631380 /* dbBookmark.m in Sources */,
 				E82289001F8A3EC900631380 /* zip.c in Sources */,
@@ -4799,6 +4846,7 @@
 				E82344351EECDFB300D2CDFD /* FilterTextTableViewCell.m in Sources */,
 				E82343F81EECDF4400D2CDFD /* WaypointPersonalNoteViewController.m in Sources */,
 				E82344BE1EECE0E800D2CDFD /* SettingsColoursViewController.m in Sources */,
+				E8CB8919205E7ACE00DD55DE /* UTM2LatLon.m in Sources */,
 				E822887F1F8A34FB00631380 /* SimpleKMLLinearRing.m in Sources */,
 				E82344341EECDFB300D2CDFD /* FilterTerrainTableViewCell.m in Sources */,
 				E822888B1F8A34FB00631380 /* SimpleKMLStyleSelector.m in Sources */,
@@ -4915,6 +4963,7 @@
 				E82286EC1F8A2CE300631380 /* LocalizationManager.m in Sources */,
 				E83C6F041EECE67100E303F5 /* FilesTableViewCell.m in Sources */,
 				E82345261EECE14A00D2CDFD /* NoticesViewController.m in Sources */,
+				E8CB8908205E75E400DD55DE /* OLCConvertor.m in Sources */,
 				E82288D61F8A359900631380 /* GMUGeoJSONParser.m in Sources */,
 				E82287621F8A2EC300631380 /* GCCloseButton.m in Sources */,
 				E822890F1F8A40A800631380 /* SVIndefiniteAnimatedView.m in Sources */,
@@ -4959,6 +5008,7 @@
 				E82288C91F8A358700631380 /* NVHFile.m in Sources */,
 				E82286E51F8A2CE300631380 /* BezelManager.m in Sources */,
 				E82288871F8A34FB00631380 /* SimpleKMLPolygon.m in Sources */,
+				E8CB8918205E7ACE00DD55DE /* MGRS2LatLon.m in Sources */,
 				E82288CC1F8A358700631380 /* NVHTarFile.m in Sources */,
 				E823442B1EECDFB300D2CDFD /* FilterDistanceTableViewCell.m in Sources */,
 				E82286F01F8A2CE300631380 /* WaypointManager.m in Sources */,
@@ -5083,6 +5133,7 @@
 				E82288801F8A34FB00631380 /* SimpleKMLLineString.m in Sources */,
 				E82344701EECE08A00D2CDFD /* GroupsSystemViewController.m in Sources */,
 				E82287371F8A2E7900631380 /* GCCoordsHistorical.m in Sources */,
+				E8CB8916205E7ACE00DD55DE /* LatLon2MGRS.m in Sources */,
 				E822888D1F8A34FB00631380 /* SimpleKMLSubStyle.m in Sources */,
 				E84B17531F90BA2C004CAE31 /* DeveloperRemoteAPITableViewCell.m in Sources */,
 				E82288851F8A34FB00631380 /* SimpleKMLPlacemark.m in Sources */,
@@ -5100,6 +5151,7 @@
 				E82286E41F8A2CE300631380 /* AudioManager.m in Sources */,
 				E82286BC1F8A2C8800631380 /* ImportGGCWJSON.m in Sources */,
 				E82345211EECE14A00D2CDFD /* HelpAboutViewController.m in Sources */,
+				E8CB8917205E7ACE00DD55DE /* LatLon2UTM.m in Sources */,
 				E85DC6671F957D9B007556D5 /* ThemeIOSNormalSize.m in Sources */,
 				E82287D11F8A32C600631380 /* RemoteAPILiveAPI.m in Sources */,
 				E82287701F8A2EC300631380 /* GCViewController.m in Sources */,
