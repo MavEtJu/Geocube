@@ -9,7 +9,7 @@ use Data::Dumper;
 
 # Find the localized strings
 my %strings = ();
-while (my $line = <>) {
+while (my $line = decode('UTF-8', <>)) {
 	chomp($line);
 	# MATCH(RC_KEEPTRACK, _(@"menu-keep_track"));
 
@@ -59,7 +59,7 @@ foreach my $langcc (@langs) {
 				print "$langcc\n";
 				$shown = 1;
 			}
-			print "\"$s\" = \"$s\";\n";
+			print encode('UTF-8', "\"$s\" = \"$s\";\n");
 		}
 	}
 
@@ -74,7 +74,7 @@ sub loadfile {
 
 	open(FIN, $file);
 	my @lines = <FIN>;
-	my $lines = Encode::decode("Guess", join("", @lines));
+	my $lines = Encode::decode("UTF-8", join("", @lines));
 	@lines = split("\n", $lines);
 
 	foreach my $line (@lines) {
@@ -96,7 +96,7 @@ sub loadfile {
 				print "$lang - $file\n";
 				$shown = 1;
 			}
-			print "Found weird line: $line\n";
+			print encode('UTF-8', "Found weird line: $line\n");
 			next;
 		}
 
@@ -105,14 +105,14 @@ sub loadfile {
 				print "$lang - $file\n";
 				$shown = 1;
 			}
-			print "Found unknown '$1' - $file\n";
+			print encode('UTF-8', "Found unknown '$1' - $file\n");
 		}
 		if ($silent == 0 && defined $foundstrings{$1}) {
 			if ($shown == 0) {
 				print "$lang - $file\n";
 				$shown = 1;
 			}
-			print "Found duplicate '$1' in $foundstrings{$1}\n";
+			print encode('UTF-8', "Found duplicate '$1' in $foundstrings{$1}\n");
 		}
 		$foundstrings{$1} = $file;
 	}
