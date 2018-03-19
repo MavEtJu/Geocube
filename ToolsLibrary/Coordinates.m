@@ -34,9 +34,9 @@
 @implementation Coordinates
 
 #define COORDS_DEGREES_DECIMALMINUTES_REGEXP @" +\\d{1,3}[º°]? +\\d{1,2}\\.\\d{1,3}['′]?"
-#define COORDS_DEGREES_SIGNED_REGEXP @" *-?\\d{1,3}\\.\\d+"
-#define COORDS_DEGREES_CARDINAL_REGEXP @" +\\-?\\d{1,3}\\.\\d"
-#define COORDS_DEGREES_MINUTES_SECONDS_REGEXP @" +\\d{1,3}[º°]? +\\d{1,2}['′] +\\d{1,2}[\"″]"
+#define COORDS_DECIMALDEGREES_SIGNED_REGEXP @" *-?\\d{1,3}\\.\\d+"
+#define COORDS_DECIMALDEGREES_CARDINAL_REGEXP @" +\\-?\\d{1,3}\\.\\d+"
+#define COORDS_DEGREES_MINUTES_SECONDS_REGEXP @" +\\d{1,3}[º°]? +\\d{1,2}['′]? +\\d{1,2}[\"″]?"
 #define COORDS_OPENLOCATIONCODE_REGEXP @"[023456789CFGHJMPQRVWX]+\\+[23456789CFGHJMPQRVWX]*"
 #define COORDS_UTM_REGEXP @"\\d{2}[ACDEFGHJKLMNPQRSTUVWXZ] \\d+ \\d+"
 #define COORDS_MGRS_REGEXP @"\\d{1,2}[^ABIOYZabioyz][A-Za-z]{2}([0-9][0-9])+"
@@ -679,10 +679,10 @@
             r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"[NESWnesw%@]%@", _(@"compass-NESW"), COORDS_DEGREES_DECIMALMINUTES_REGEXP] options:0 error:&e];
             break;
         case COORDINATES_DECIMALDEGREES_SIGNED:
-            r5 = [NSRegularExpression regularExpressionWithPattern:COORDS_DEGREES_SIGNED_REGEXP options:0 error:&e];
+            r5 = [NSRegularExpression regularExpressionWithPattern:COORDS_DECIMALDEGREES_SIGNED_REGEXP options:0 error:&e];
             break;
         case COORDINATES_DECIMALDEGREES_CARDINAL:
-            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"[NESWnesw%@]%@", _(@"compass-NESW"), COORDS_DEGREES_CARDINAL_REGEXP] options:0 error:&e];
+            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"[NESWnesw%@]%@", _(@"compass-NESW"), COORDS_DECIMALDEGREES_CARDINAL_REGEXP] options:0 error:&e];
             break;
         case COORDINATES_DEGREES_MINUTES_SECONDS:
             r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"[NESWnesw%@]%@", _(@"compass-NESW"), COORDS_DEGREES_MINUTES_SECONDS_REGEXP] options:0 error:&e];
@@ -712,14 +712,37 @@
 /// Search for something which looks like a coordinate string
 + (NSInteger)scanForWaypoints:(NSArray<NSString *> *)lines waypoint:(dbWaypoint *)waypoint view:(UIViewController *)vc
 {
+    NSInteger total = 0;
+    for (NSInteger i = 0; i < COORDINATES_MAX; i++) {
+        total += [self scanForWaypoints:lines waypoint:waypoint view:vc coordType:i];
+    }
+    if (total == 0)
+        [MyTools messageBox:vc header:_(@"coordinates-Import failed") text:_(@"coordinates-No waypoints were found")];
+    else if (total == 1)
+        [MyTools messageBox:vc header:_(@"coordinates-Import successful") text:_(@"coordinates-Succesfully added one waypoint")];
+    else
+        [MyTools messageBox:vc header:_(@"coordinates-Import successful") text:[NSString stringWithFormat:_(@"coordinates-Succesfully added %ld waypoints"), (long)total]];
+    return total;
+}
+
++ (NSInteger)scanForWaypoints:(NSArray<NSString *> *)lines waypoint:(dbWaypoint *)waypoint view:(UIViewController *)vc coordType:(CoordinatesType)coordType
+{
     NSError *e = nil;
     __block NSInteger found = 0;
 
-    NSRegularExpression *rns, *rew;
-    switch (configManager.coordinatesType) {
+    NSRegularExpression *rnsew;
+    switch (coordType) {
         case COORDINATES_DEGREES_DECIMALMINUTES:
-            rns = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([NSns%@]%@)", _(@"compass-NSns"), COORDS_DEGREES_DECIMALMINUTES_REGEXP] options:0 error:&e];
-            rew = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([EWew%@]%@)", _(@"compass-EWew"), COORDS_DEGREES_DECIMALMINUTES_REGEXP] options:0 error:&e];
+            rnsew = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([NSns%@]%@) +([EWew%@]%@)", _(@"compass-NSns"), COORDS_DEGREES_DECIMALMINUTES_REGEXP, _(@"compass-EWew"), COORDS_DEGREES_DECIMALMINUTES_REGEXP] options:0 error:&e];
+            break;
+        case COORDINATES_DECIMALDEGREES_SIGNED:
+            rnsew = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"(%@) +(%@)", COORDS_DECIMALDEGREES_SIGNED_REGEXP, COORDS_DECIMALDEGREES_SIGNED_REGEXP] options:0 error:&e];
+            break;
+        case COORDINATES_DECIMALDEGREES_CARDINAL:
+            rnsew = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([NSns%@]%@) +([EWew%@]%@)", _(@"compass-NSns"), COORDS_DECIMALDEGREES_CARDINAL_REGEXP, _(@"compass-EWew"), COORDS_DECIMALDEGREES_CARDINAL_REGEXP] options:0 error:&e];
+            break;
+        case COORDINATES_DEGREES_MINUTES_SECONDS:
+            rnsew = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([NSns%@]%@) +([EWew%@]%@)", _(@"compass-NSns"), COORDS_DEGREES_MINUTES_SECONDS_REGEXP, _(@"compass-EWew"), COORDS_DEGREES_MINUTES_SECONDS_REGEXP] options:0 error:&e];
             break;
     }
 
@@ -727,15 +750,11 @@
         NSString *NS = nil;
         NSString *EW = nil;
 
-        NSArray<NSTextCheckingResult *> *matches = [rns matchesInString:line options:0 range:NSMakeRange(0, [line length])];
+        NSArray<NSTextCheckingResult *> *matches = [rnsew matchesInString:line options:0 range:NSMakeRange(0, [line length])];
         for (NSTextCheckingResult *match in matches) {
             NSRange range = [match rangeAtIndex:1];
             NS = [line substringWithRange:range];
-        }
-
-        matches = [rew matchesInString:line options:0 range:NSMakeRange(0, [line length])];
-        for (NSTextCheckingResult *match in matches) {
-            NSRange range = [match rangeAtIndex:1];
+            range = [match rangeAtIndex:2];
             EW = [line substringWithRange:range];
         }
 
@@ -765,12 +784,6 @@
             found++;
         }
     }];
-    if (found == 0)
-        [MyTools messageBox:vc header:_(@"coordinates-Import failed") text:_(@"coordinates-No waypoints were found")];
-    else if (found == 1)
-        [MyTools messageBox:vc header:_(@"coordinates-Import successful") text:_(@"coordinates-Succesfully added one waypoint")];
-    else
-        [MyTools messageBox:vc header:_(@"coordinates-Import successful") text:[NSString stringWithFormat:_(@"coordinates-Succesfully added %ld waypoints"), (long)found]];
     return found;
 }
 
