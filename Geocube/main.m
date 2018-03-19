@@ -82,12 +82,16 @@ AudioManager *audioManager = nil;
 AppDelegate *_AppDelegate;
 
 void encryptionstuff(void);
+void testcoordinates(void);
 int main(int argc, char * argv[])
 {
     srand((unsigned int)time(NULL));
 
     // This is only needed when generating shared secret encrypted keys
     // encryptionstuff();
+
+    // This is only needed when checking coordinates
+    // testcoordinates();
 
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
@@ -108,6 +112,28 @@ void encryptionstuff(void)
         NSLog(@"%@", [keyManager decrypt:key data:[keyManager encrypt:key data:plain]]);
         NSLog(@"%@", [keyManager encrypt:key data:plain]);
     }];
+
+    exit(0);
+}
+
+void testcoordinates(void)
+{
+    fileManager = [[NSFileManager alloc] init];
+    db = [[database alloc] init];
+    [db checkVersion];
+    configManager = [[ConfigManager alloc] init];
+    localizationManager = [[LocalizationManager alloc] init];
+
+    for (NSInteger j = 0; j < 100000; j++) {
+        CLLocationDegrees lat = 90 - ((arc4random() % 18000000) / 100000.0);
+        CLLocationDegrees lon = 90 - ((arc4random() % 18000000) / 100000.0);
+        Coordinates *c = [[Coordinates alloc] init:lat longitude:lon];
+
+        for (NSInteger i = 0; i < COORDINATES_MAX; i++) {
+            if ([Coordinates checkCoordinate:[c niceCoordinates:i] coordType:i] == NO)
+                NSLog(@"%d - %@", [Coordinates checkCoordinate:[c niceCoordinates:i] coordType:i], [c niceCoordinates:i]);
+        }
+    }
 
     exit(0);
 }
