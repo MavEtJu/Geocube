@@ -28,3 +28,4 @@
 #import "ToolsLibrary/InfoViewer.h"
 #import "ToolsLibrary/LocalMenuItems.h"
 #import "ToolsLibrary/SideMenu.h"
+#import "ToolsLibrary/Keyboards/KeyboardCoordinateView.h"

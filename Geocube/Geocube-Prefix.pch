@@ -61,8 +61,6 @@
 #import "MapsLibrary/MapsLibrary.h"
 #import "ThemesLibrary/ThemesLibrary.h"
 
-#import "KeyboardCoordinateView.h"
-
 #import "AppDelegate.h"
 
 #import "Waypoints/WaypointSorter.h"

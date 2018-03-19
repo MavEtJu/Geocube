@@ -28,7 +28,6 @@
 @property (nonatomic, retain) LatLon2MGRS *latlon2MGRS;
 @property (nonatomic, retain) MGRS2LatLon *mgrs2latlon;
 
-
 @end
 
 @implementation Coordinates
@@ -90,7 +89,6 @@
 
     return self;
 }
-
 
 - (CLLocationCoordinate2D)coordinates
 {
@@ -243,7 +241,6 @@
 {
     return [self lon:configManager.coordinatesType];
 }
-
 
 /// Returns lat value
 - (CLLocationDegrees)latitude
@@ -543,7 +540,6 @@
 
     return @"????";
 }
-
 
 /// Returns string with coordinates like N 1° 2.3' E 4° 5.6
 + (NSString *)niceCoordinates:(CLLocationCoordinate2D)c
