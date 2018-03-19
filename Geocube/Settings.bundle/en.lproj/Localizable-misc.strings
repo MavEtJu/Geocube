@@ -129,8 +129,8 @@
 
 /* Coordinates related */
 "coordinates-Degrees Minutes Seconds (S 12° 34′ 56″)" = "Degrees Minutes Seconds (S 12° 34′ 56″)";
-"coordinates-Degrees cardinal (S 12.345678)" = "Degrees cardinal (S 12.345678)";
-"coordinates-Degrees signed (-12.345678)" = "Degrees signed (-12.345678)";
+"coordinates-Decimal degrees cardinal (S 12.345678)" = "Degrees cardinal (S 12.345678)";
+"coordinates-Decimal degrees signed (-12.345678)" = "Degrees signed (-12.345678)";
 "coordinates-Degrees with decimal minutes (S 12° 34.567)" = "Degrees with decimal minutes (S 12° 34.567)";
 "coordinates-Open Location Code (2345678+9CF)" = "Open Location Code (2345678+9CF)";
 "coordinates-UTM (51H 326625E 6222609N)" = "UTM (51H 326625E 6222609N)";
