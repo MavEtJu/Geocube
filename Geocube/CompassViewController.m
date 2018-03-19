@@ -104,8 +104,8 @@
     if (waypointManager.currentWaypoint != nil) {
         self.labelWPCode.text = waypointManager.currentWaypoint.wpt_name;
         self.labelWPDescription.text = waypointManager.currentWaypoint.wpt_urlname;
-        self.labelWPLat.text = [coords lat_degreesDecimalMinutes];
-        self.labelWPLon.text = [coords lon_degreesDecimalMinutes];
+        self.labelWPLat.text = [coords lat];
+        self.labelWPLon.text = [coords lon];
     } else {
         self.labelWPCode.text = @"";
         self.labelWPDescription.text = @"";
@@ -217,8 +217,8 @@
     //    NSLog(@"new location: %f, %f", LM.coords.latitude, LM.coords.longitude);
 
     Coordinates *c = [[Coordinates alloc] init:LM.coords];
-    self.labelGNSSLat.text = [c lat_degreesDecimalMinutes];
-    self.labelGNSSLon.text = [c lon_degreesDecimalMinutes];
+    self.labelGNSSLat.text = [c lat];
+    self.labelGNSSLon.text = [c lon];
 
     if (waypointManager.currentWaypoint != nil)
         self.labelGNSSDistance.text = [MyTools niceDistance:[c distance:waypointManager.currentWaypoint.wpt_latitude longitude:waypointManager.currentWaypoint.wpt_longitude]];
