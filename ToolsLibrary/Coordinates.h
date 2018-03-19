@@ -24,32 +24,26 @@
 #define CLLocationCoordinate2DZero  CLLocationCoordinate2DMake(0, 0)
 
 typedef NS_ENUM(NSInteger, CoordinatesType) {
-    COORDINATES_DEGREES_DECIMALMINUTES = 0,
-    COORDINATES_DEGREES_SIGNED,
-    COORDINATES_DEGREES_CARDINAL,
-    COORDINATES_DEGREES_MINUTES_SECONDS,
-    COORDINATES_OPENLOCATIONCODE,
-    COORDINATES_UTM,
-    COORDINATES_MGRS,
+    COORDINATES_DEGREES_DECIMALMINUTES = 0,     // S 12° 34.567
+    COORDINATES_DEGREES_SIGNED,                 // -12.34567
+    COORDINATES_DEGREES_CARDINAL,               // S 12.34567
+    COORDINATES_DEGREES_MINUTES_SECONDS,        // S 12° 34′ 56″
+    COORDINATES_OPENLOCATIONCODE,               // 2345678+9CF
+    COORDINATES_UTM,                            // 51H 326625E 6222609N
+    COORDINATES_MGRS,                           // 51H 326625E 6222609N
     COORDINATES_MAX,
 };
 
-- (instancetype)init:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude; // -34.02787 151.07357
-- (instancetype)init:(CLLocationCoordinate2D)coor;                      // { -34.02787, 151.07357 }
-- (instancetype)initString:(NSString *)latitude longitude:(NSString *)longitude;         // S 34 1.672, E 151 4.414
+- (instancetype)init:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude;    // -34.02787 151.07357
+- (instancetype)init:(CLLocationCoordinate2D)coor;                                          // { -34.02787, 151.07357 }
+- (instancetype)initString:(NSString *)latitude longitude:(NSString *)longitude;            // S 34 1.672, E 151 4.414
 - (CLLocationDegrees)latitude;
 - (CLLocationDegrees)longitude;
 - (CLLocationCoordinate2D)coordinates;
-- (NSString *)lat_decimalDegreesSigned;         // -34.02787
-- (NSString *)lon_decimalDegreesSigned;         // 151.07357
-- (NSString *)lat_decimalDegreesCardinal;       // S 34.02787
-- (NSString *)lon_decimalDegreesCardinal;       // E 151.07357
-- (NSString *)lat_degreesDecimalMinutes;        // S 34° 1.672'
-- (NSString *)lon_degreesDecimalMinutes;        // E 151° 4.414'
-- (NSString *)lat_degreesDecimalMinutesSimple;  // S 34 1.672
-- (NSString *)lon_degreesDecimalMinutesSimple;  // E 151 4.414
-- (NSString *)lat_degreesMinutesSeconds;        // S 34° 01' 40"
-- (NSString *)lon_degreesMinutesSeconds;        // E 151° 04' 25"
+- (NSString *)lat;
+- (NSString *)lat:(CoordinatesType)coordType;
+- (NSString *)lon;
+- (NSString *)lon:(CoordinatesType)coordType;
 - (NSInteger)distance:(CLLocationCoordinate2D)c;
 - (NSInteger)distance:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude;
 - (NSInteger)bearing:(CLLocationCoordinate2D)c;
@@ -71,13 +65,19 @@ typedef NS_ENUM(NSInteger, CoordinatesType) {
 + (CLLocationCoordinate2D)location:(CLLocationCoordinate2D)origin bearing:(float)bearing distance:(float)distanceMeters;
 
 - (NSString *)niceCoordinates;
+- (NSString *)niceCoordinates:(CoordinatesType)coordType;
 + (NSString *)niceCoordinates:(CLLocationCoordinate2D)c;
 + (NSString *)niceCoordinates:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude;
 + (NSString *)niceCoordinatesForEditing:(CLLocationCoordinate2D)c;
+
 + (NSString *)niceLatitude:(CLLocationDegrees)l;
++ (NSString *)niceLatitude:(CLLocationDegrees)l coordType:(CoordinatesType)coordType;
 + (NSString *)niceLongitude:(CLLocationDegrees)l;
++ (NSString *)niceLongitude:(CLLocationDegrees)l coordType:(CoordinatesType)coordType;
 + (NSString *)niceLatitudeForEditing:(CLLocationDegrees)l;
++ (NSString *)niceLatitudeForEditing:(CLLocationDegrees)l coordType:(CoordinatesType)coordType;
 + (NSString *)niceLongitudeForEditing:(CLLocationDegrees)l;
++ (NSString *)niceLongitudeForEditing:(CLLocationDegrees)l coordType:(CoordinatesType)coordType;
 
 + (CLLocationDegrees)degrees2rad:(CLLocationDegrees)d;
 + (CLLocationDegrees)rad2degrees:(CLLocationDegrees)r;

@@ -84,7 +84,7 @@
     float dummy;
     int degrees = (int)fabs(self.coords.latitude);
     float mins = modff(fabs(self.coords.latitude), &dummy);
-    return [NSString stringWithFormat:@"%@ %3d° %06.3f'", hemi, degrees, mins * 60];
+    return [NSString stringWithFormat:@"%@ %3d° %06.3f′", hemi, degrees, mins * 60];
 }
 /// Returns E 151° 4.414'
 - (NSString *)lon_degreesDecimalMinutes    // E 151° 4.414'
@@ -93,10 +93,10 @@
     float dummy;
     int degrees = (int)fabs(self.coords.longitude);
     float mins = modff(fabs(self.coords.longitude), &dummy);
-    return [NSString stringWithFormat:@"%@ %3d° %06.3f'", hemi, degrees, mins * 60];
+    return [NSString stringWithFormat:@"%@ %3d° %06.3f′", hemi, degrees, mins * 60];
 }
 /// Returns S 34 1.672
-- (NSString *)lat_degreesDecimalMinutesEdit    // S 34 1.672
+- (NSString *)latEdit_degreesDecimalMinutes    // S 34 1.672
 {
     NSString *hemi = (self.coords.latitude < 0) ? _(@"compass-S") : _(@"compass-N") ;
     float dummy;
@@ -105,31 +105,13 @@
     return [NSString stringWithFormat:@"%@ %d %0.3f", hemi, degrees, mins * 60];
 }
 /// Returns E 151 4.414
-- (NSString *)lon_degreesDecimalMinutesEdit    // E 151 4.414
+- (NSString *)lonEdit_degreesDecimalMinutes    // E 151 4.414
 {
     NSString *hemi = (self.coords.longitude < 0) ? _(@"compass-W") : _(@"compass-E") ;
     float dummy;
     int degrees = (int)fabs(self.coords.longitude);
     float mins = modff(fabs(self.coords.longitude), &dummy);
     return [NSString stringWithFormat:@"%@ %d %0.3f", hemi, degrees, mins * 60];
-}
-/// Returns S 34 1.672
-- (NSString *)lat_degreesDecimalMinutesSimple    // S 34 1.672
-{
-    NSString *hemi = (self.coords.latitude < 0) ? _(@"compass-S") : _(@"compass-N") ;
-    float dummy;
-    int degrees = (int)fabs(self.coords.latitude);
-    float mins = modff(fabs(self.coords.latitude), &dummy);
-    return [NSString stringWithFormat:@"%@ %3d %06.3f", hemi, degrees, mins * 60];
-}
-/// Returns E 151 4.414
-- (NSString *)lon_degreesDecimalMinutesSimple    // E 151 4.414
-{
-    NSString *hemi = (self.coords.longitude < 0) ? _(@"compass-W") : _(@"compass-E") ;
-    float dummy;
-    int degrees = (int)fabs(self.coords.longitude);
-    float mins = modff(fabs(self.coords.longitude), &dummy);
-    return [NSString stringWithFormat:@"%@ %3d %06.3f", hemi, degrees, mins * 60];
 }
 /// Returns S 34° 01' 40"
 - (NSString *)lat_degreesMinutesSeconds    // S 34° 01' 40"
@@ -139,7 +121,7 @@
     int degrees = (int)fabs(self.coords.latitude);
     float mins = modff(fabs(self.coords.latitude), &dummy);
     float secs = modff(60 * mins, &dummy);
-    return [NSString stringWithFormat:@"%@ %3d° %02d' %02d\"", hemi, degrees, (int)(mins * 60), (int)(secs * 60)];
+    return [NSString stringWithFormat:@"%@ %3d° %02d′ %02d″", hemi, degrees, (int)(mins * 60), (int)(secs * 60)];
 }
 /// Returns E 151° 04' 25"
 - (NSString *)lon_degreesMinutesSeconds    // E 151° 04' 25"
@@ -149,8 +131,78 @@
     int degrees = (int)fabs(self.coords.longitude);
     float mins = modff(fabs(self.coords.longitude), &dummy);
     float secs = modff(60 * mins, &dummy);
-    return [NSString stringWithFormat:@"%@ %3d° %02d' %02d\"", hemi, degrees, (int)(mins * 60), (int)(secs * 60)];
+    return [NSString stringWithFormat:@"%@ %3d° %02d′ %02d″", hemi, degrees, (int)(mins * 60), (int)(secs * 60)];
 }
+/// Returns S 34 01 40
+- (NSString *)latEdit_degreesMinutesSeconds    // S 34 01 40
+{
+    NSString *hemi = (self.coords.latitude < 0) ? _(@"compass-S") : _(@"compass-N") ;
+    float dummy;
+    int degrees = (int)fabs(self.coords.latitude);
+    float mins = modff(fabs(self.coords.latitude), &dummy);
+    float secs = modff(60 * mins, &dummy);
+    return [NSString stringWithFormat:@"%@ %3d %02d %02d", hemi, degrees, (int)(mins * 60), (int)(secs * 60)];
+}
+/// Returns E 151 04 25
+- (NSString *)lonEdit_degreesMinutesSeconds    // E 151 04 25
+{
+    NSString *hemi = (self.coords.longitude < 0) ? _(@"compass-W") : _(@"compass-E") ;
+    float dummy;
+    int degrees = (int)fabs(self.coords.longitude);
+    float mins = modff(fabs(self.coords.longitude), &dummy);
+    float secs = modff(60 * mins, &dummy);
+    return [NSString stringWithFormat:@"%@ %3d %02d %02d", hemi, degrees, (int)(mins * 60), (int)(secs * 60)];
+}
+
+- (NSString *)lat:(CoordinatesType)coordType
+{
+    switch (coordType) {
+        case COORDINATES_DEGREES_MINUTES_SECONDS:
+            return [self lat_degreesMinutesSeconds];
+        case COORDINATES_DEGREES_SIGNED:
+            return [self lat_decimalDegreesSigned];
+        case COORDINATES_DEGREES_CARDINAL:
+            return [self lat_decimalDegreesCardinal];
+        case COORDINATES_DEGREES_DECIMALMINUTES:
+            return [self lat_degreesDecimalMinutes];
+        case COORDINATES_UTM:
+        case COORDINATES_OPENLOCATIONCODE:
+        case COORDINATES_MGRS:
+        case COORDINATES_MAX:
+            return @"???";
+    }
+    return @"???";
+}
+- (NSString *)lon:(CoordinatesType)coordType
+{
+    switch (coordType) {
+        case COORDINATES_DEGREES_MINUTES_SECONDS:
+            return [self lon_degreesMinutesSeconds];
+        case COORDINATES_DEGREES_SIGNED:
+            return [self lon_decimalDegreesSigned];
+        case COORDINATES_DEGREES_CARDINAL:
+            return [self lon_decimalDegreesCardinal];
+        case COORDINATES_DEGREES_DECIMALMINUTES:
+            return [self lon_degreesDecimalMinutes];
+        case COORDINATES_UTM:
+        case COORDINATES_OPENLOCATIONCODE:
+        case COORDINATES_MGRS:
+        case COORDINATES_MAX:
+            return @"???";
+    }
+    return @"???";
+}
+
+- (NSString *)lat
+{
+    return [self lat:configManager.coordinatesType];
+}
+- (NSString *)lon
+{
+    return [self lon:configManager.coordinatesType];
+}
+
+
 /// Returns lat value
 - (CLLocationDegrees)latitude
 {
@@ -372,7 +424,13 @@
 /// Returns string with coordinates like N 1° 2.3' E 4° 5.6
 - (NSString *)niceCoordinates
 {
-    switch (configManager.coordinatesType) {
+    return [self niceCoordinates:configManager.coordinatesType];
+}
+
+/// Returns string with coordinates like N 1° 2.3' E 4° 5.6
+- (NSString *)niceCoordinates:(CoordinatesType)coordType
+{
+    switch (coordType) {
         case COORDINATES_DEGREES_DECIMALMINUTES:
             return [NSString stringWithFormat:@"%@ %@", [self lat_degreesDecimalMinutes], [self lon_degreesDecimalMinutes]];
         case COORDINATES_DEGREES_SIGNED:
@@ -394,50 +452,129 @@
     return @"????";
 }
 
+/// Returns string with coordinates like N 1 2.3
+- (NSString *)latEdit:(CoordinatesType)coordType
+{
+    switch (coordType) {
+        case COORDINATES_DEGREES_DECIMALMINUTES:
+            return [self latEdit_degreesDecimalMinutes];
+        case COORDINATES_DEGREES_SIGNED:
+            return [self lat_decimalDegreesSigned];
+        case COORDINATES_DEGREES_CARDINAL:
+            return [self lat_decimalDegreesCardinal];
+        case COORDINATES_DEGREES_MINUTES_SECONDS:
+            return [self latEdit_degreesMinutesSeconds];
+        case COORDINATES_OPENLOCATIONCODE:
+            return [self olcEncode];
+        case COORDINATES_UTM:
+            return [self UTMEncode];
+        case COORDINATES_MGRS:
+            return [self MGRSEncode];
+        case COORDINATES_MAX:
+            return @"????";
+    }
+
+    return @"????";
+}
+
+/// Returns string with coordinates like E 1 2.3
+- (NSString *)lonEdit:(CoordinatesType)coordType
+{
+    switch (coordType) {
+        case COORDINATES_DEGREES_DECIMALMINUTES:
+            return [self lonEdit_degreesDecimalMinutes];
+        case COORDINATES_DEGREES_SIGNED:
+            return [self lon_decimalDegreesSigned];
+        case COORDINATES_DEGREES_CARDINAL:
+            return [self lon_decimalDegreesCardinal];
+        case COORDINATES_DEGREES_MINUTES_SECONDS:
+            return [self lonEdit_degreesMinutesSeconds];
+        case COORDINATES_OPENLOCATIONCODE:
+            return [self olcEncode];
+        case COORDINATES_UTM:
+            return [self UTMEncode];
+        case COORDINATES_MGRS:
+            return [self MGRSEncode];
+        case COORDINATES_MAX:
+            return @"????";
+    }
+
+    return @"????";
+}
+
+
 /// Returns string with coordinates like N 1° 2.3' E 4° 5.6
 + (NSString *)niceCoordinates:(CLLocationCoordinate2D)c
 {
+    return [self niceCoordinates:c coordType:configManager.coordinatesType];
+}
++ (NSString *)niceCoordinates:(CLLocationCoordinate2D)c coordType:(CoordinatesType)coordType
+{
     Coordinates *co = [[Coordinates alloc] init:c];
-    return [NSString stringWithFormat:@"%@ %@", [co lat_degreesDecimalMinutes], [co lon_degreesDecimalMinutes]];
+    return [co niceCoordinates:coordType];
 }
 
 + (NSString *)niceCoordinates:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude
 {
+    return [self niceCoordinates:latitude longitude:longitude coordType:configManager.coordinatesType];
+}
++ (NSString *)niceCoordinates:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude coordType:(CoordinatesType)coordType
+{
     Coordinates *co = [[Coordinates alloc] init:latitude longitude:longitude];
-    return [NSString stringWithFormat:@"%@ %@", [co lat_degreesDecimalMinutes], [co lon_degreesDecimalMinutes]];
+    return [co niceCoordinates:coordType];
 }
 
 /// Returns string with coordinates like N 1 2.3 E 4 5.6
 + (NSString *)niceCoordinatesForEditing:(CLLocationCoordinate2D)c
 {
+    return [self niceCoordinatesForEditing:c coordType:configManager.coordinatesType];
+}
++ (NSString *)niceCoordinatesForEditing:(CLLocationCoordinate2D)c coordType:(CoordinatesType)coordType
+{
     Coordinates *co = [[Coordinates alloc] init:c];
-    return [NSString stringWithFormat:@"%@ %@", [co lat_degreesDecimalMinutesEdit], [co lon_degreesDecimalMinutesEdit]];
+    return [NSString stringWithFormat:@"%@ %@", [co latEdit:coordType], [co lonEdit:coordType]];
 }
 
 /// Returns string with latitude like N 1° 2.3'
 + (NSString *)niceLatitude:(CLLocationDegrees)l
 {
+    return [self niceLatitude:l coordType:configManager.coordinatesType];
+}
++ (NSString *)niceLatitude:(CLLocationDegrees)l coordType:(CoordinatesType)coordType
+{
     Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(l, 0)];
-    return [co lat_degreesDecimalMinutes];
+    return [co lat:coordType];
 }
 /// Returns string with longitude like E 1° 2.3'
 + (NSString *)niceLongitude:(CLLocationDegrees)l
 {
+    return [self niceLongitude:l coordType:configManager.coordinatesType];
+}
++ (NSString *)niceLongitude:(CLLocationDegrees)l coordType:(CoordinatesType)coordType
+{
     Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(0, l)];
-    return [co lon_degreesDecimalMinutes];
+    return [co lon:coordType];
 }
 
 /// Returns string with latitude like N 1 2.3
 + (NSString *)niceLatitudeForEditing:(CLLocationDegrees)l
 {
+    return [self niceLatitudeForEditing:l coordType:configManager.coordinatesType];
+}
++ (NSString *)niceLatitudeForEditing:(CLLocationDegrees)l coordType:(CoordinatesType)coordType
+{
     Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(l, 0)];
-    return [co lat_degreesDecimalMinutesEdit];
+    return [co latEdit:coordType];
 }
 /// Returns string with longitude like E 1 2.3
 + (NSString *)niceLongitudeForEditing:(CLLocationDegrees)l
 {
+    return [self niceLongitudeForEditing:l coordType:configManager.coordinatesType];
+}
++ (NSString *)niceLongitudeForEditing:(CLLocationDegrees)l coordType:(CoordinatesType)coordType
+{
     Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(0, l)];
-    return [co lon_degreesDecimalMinutesEdit];
+    return [co lonEdit:coordType];
 }
 
 /// Convert degrees to radians
