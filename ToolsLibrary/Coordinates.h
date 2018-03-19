@@ -30,8 +30,8 @@ typedef NS_ENUM(NSInteger, CoordinatesType) {
     COORDINATES_DEGREES_MINUTES_SECONDS,        // S 12° 34′ 56″
     COORDINATES_OPENLOCATIONCODE,               // 2345678+9CF
     COORDINATES_UTM,                            // 51H 326625E 6222609N
-    COORDINATES_MGRS,                           // 51H 326625E 6222609N
     COORDINATES_MAX,
+    COORDINATES_MGRS,                           // 51H 326625E 6222609N
 };
 
 - (instancetype)init:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude;    // -34.02787 151.07357

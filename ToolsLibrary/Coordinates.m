@@ -797,7 +797,7 @@
         _(@"coordinates-Degrees Minutes Seconds (S 12° 34′ 56″)"),
         _(@"coordinates-Open Location Code (2345678+9CF)"),
         _(@"coordinates-UTM (51H 326625E 6222609N)"),
-        _(@"coordinates-MGRS (51H 326625E 6222609N)"),
+//      _(@"coordinates-MGRS (51H 326625E 6222609N)"),
     ];
 
     NSAssert([cts count] == COORDINATES_MAX, @"Number of coordinateTypes is not the size of the array");
