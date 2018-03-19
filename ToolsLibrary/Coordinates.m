@@ -33,7 +33,13 @@
 
 @implementation Coordinates
 
-#define COORDS_REGEXP @" +\\d{1,3}[º°]? ?\\d{1,2}\\.\\d{1,3}'?"
+#define COORDS_DEGREES_DECIMALMINUTES_REGEXP @" +\\d{1,3}[º°]? +\\d{1,2}\\.\\d{1,3}['′]?"
+#define COORDS_DEGREES_SIGNED_REGEXP @" *-?\\d{1,3}\\.\\d+"
+#define COORDS_DEGREES_CARDINAL_REGEXP @" +\\-?\\d{1,3}\\.\\d"
+#define COORDS_DEGREES_MINUTES_SECONDS_REGEXP @" +\\d{1,3}[º°]? +\\d{1,2}['′] +\\d{1,2}[\"″]"
+#define COORDS_OPENLOCATIONCODE_REGEXP @"[023456789CFGHJMPQRVWX]+\\+[23456789CFGHJMPQRVWX]*"
+#define COORDS_UTM_REGEXP @"\\d{2}[ACDEFGHJKLMNPQRSTUVWXZ] \\d+ \\d+"
+#define COORDS_MGRS_REGEXP @"\\d{1,2}[^ABIOYZabioyz][A-Za-z]{2}([0-9][0-9])+"
 
 /// Initialize a Coordinates object with a lat and a lon value
 - (instancetype)init:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude       // -34.02787 151.07357
@@ -159,9 +165,9 @@
     switch (coordType) {
         case COORDINATES_DEGREES_MINUTES_SECONDS:
             return [self lat_degreesMinutesSeconds];
-        case COORDINATES_DEGREES_SIGNED:
+        case COORDINATES_DECIMALDEGREES_SIGNED:
             return [self lat_decimalDegreesSigned];
-        case COORDINATES_DEGREES_CARDINAL:
+        case COORDINATES_DECIMALDEGREES_CARDINAL:
             return [self lat_decimalDegreesCardinal];
         case COORDINATES_DEGREES_DECIMALMINUTES:
             return [self lat_degreesDecimalMinutes];
@@ -178,9 +184,9 @@
     switch (coordType) {
         case COORDINATES_DEGREES_MINUTES_SECONDS:
             return [self lon_degreesMinutesSeconds];
-        case COORDINATES_DEGREES_SIGNED:
+        case COORDINATES_DECIMALDEGREES_SIGNED:
             return [self lon_decimalDegreesSigned];
-        case COORDINATES_DEGREES_CARDINAL:
+        case COORDINATES_DECIMALDEGREES_CARDINAL:
             return [self lon_decimalDegreesCardinal];
         case COORDINATES_DEGREES_DECIMALMINUTES:
             return [self lon_degreesDecimalMinutes];
@@ -433,9 +439,9 @@
     switch (coordType) {
         case COORDINATES_DEGREES_DECIMALMINUTES:
             return [NSString stringWithFormat:@"%@ %@", [self lat_degreesDecimalMinutes], [self lon_degreesDecimalMinutes]];
-        case COORDINATES_DEGREES_SIGNED:
+        case COORDINATES_DECIMALDEGREES_SIGNED:
             return [NSString stringWithFormat:@"%@ %@", [self lat_decimalDegreesSigned], [self lon_decimalDegreesSigned]];
-        case COORDINATES_DEGREES_CARDINAL:
+        case COORDINATES_DECIMALDEGREES_CARDINAL:
             return [NSString stringWithFormat:@"%@ %@", [self lat_decimalDegreesCardinal], [self lon_decimalDegreesCardinal]];
         case COORDINATES_DEGREES_MINUTES_SECONDS:
             return [NSString stringWithFormat:@"%@ %@", [self lat_degreesMinutesSeconds], [self lon_degreesMinutesSeconds]];
@@ -458,9 +464,9 @@
     switch (coordType) {
         case COORDINATES_DEGREES_DECIMALMINUTES:
             return [self latEdit_degreesDecimalMinutes];
-        case COORDINATES_DEGREES_SIGNED:
+        case COORDINATES_DECIMALDEGREES_SIGNED:
             return [self lat_decimalDegreesSigned];
-        case COORDINATES_DEGREES_CARDINAL:
+        case COORDINATES_DECIMALDEGREES_CARDINAL:
             return [self lat_decimalDegreesCardinal];
         case COORDINATES_DEGREES_MINUTES_SECONDS:
             return [self latEdit_degreesMinutesSeconds];
@@ -483,9 +489,9 @@
     switch (coordType) {
         case COORDINATES_DEGREES_DECIMALMINUTES:
             return [self lonEdit_degreesDecimalMinutes];
-        case COORDINATES_DEGREES_SIGNED:
+        case COORDINATES_DECIMALDEGREES_SIGNED:
             return [self lon_decimalDegreesSigned];
-        case COORDINATES_DEGREES_CARDINAL:
+        case COORDINATES_DECIMALDEGREES_CARDINAL:
             return [self lon_decimalDegreesCardinal];
         case COORDINATES_DEGREES_MINUTES_SECONDS:
             return [self lonEdit_degreesMinutesSeconds];
@@ -659,15 +665,46 @@
 /// Check if a string matches a set of coordinates like ^[NESW] \d{1,3}º? ?\d{1,2}\.\d{1,3
 + (BOOL)checkCoordinate:(NSString *)text
 {
+    return [self checkCoordinate:text coordType:configManager.coordinatesType];
+}
++ (BOOL)checkCoordinate:(NSString *)text coordType:(CoordinatesType)coordType
+{
     // As long as it matches any of these, it is fine:
     // ^[NESW] \d{1,3}º? ?\d{1,2}\.\d{1,3}
 
     NSError *e = nil;
-    NSRegularExpression *r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"^[%@]%@$", _(@"compass-NESW"), COORDS_REGEXP] options:0 error:&e];
+    NSRegularExpression *r5;
+    switch (coordType) {
+        case COORDINATES_DEGREES_DECIMALMINUTES:
+            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"[NESWnesw%@]%@", _(@"compass-NESW"), COORDS_DEGREES_DECIMALMINUTES_REGEXP] options:0 error:&e];
+            break;
+        case COORDINATES_DECIMALDEGREES_SIGNED:
+            r5 = [NSRegularExpression regularExpressionWithPattern:COORDS_DEGREES_SIGNED_REGEXP options:0 error:&e];
+            break;
+        case COORDINATES_DECIMALDEGREES_CARDINAL:
+            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"[NESWnesw%@]%@", _(@"compass-NESW"), COORDS_DEGREES_CARDINAL_REGEXP] options:0 error:&e];
+            break;
+        case COORDINATES_DEGREES_MINUTES_SECONDS:
+            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"[NESWnesw%@]%@", _(@"compass-NESW"), COORDS_DEGREES_MINUTES_SECONDS_REGEXP] options:0 error:&e];
+            break;
+        case COORDINATES_OPENLOCATIONCODE:
+            r5 = [NSRegularExpression regularExpressionWithPattern:COORDS_OPENLOCATIONCODE_REGEXP options:0 error:&e];
+            break;
+        case COORDINATES_UTM:
+            r5 = [NSRegularExpression regularExpressionWithPattern:COORDS_UTM_REGEXP options:0 error:&e];
+            break;
+        case COORDINATES_MGRS:
+            r5 = [NSRegularExpression regularExpressionWithPattern:COORDS_MGRS_REGEXP options:0 error:&e];
+            break;
+        case COORDINATES_MAX:
+            r5 = nil;
+            break;
+    }
 
     NSRange range;
     range = [r5 rangeOfFirstMatchInString:text options:0 range:NSMakeRange(0, [text length])];
-    if (range.location == 0) return YES;
+    if (range.location == 0)    // Location 0, not "NSNotFound"
+        return YES;
 
     return NO;
 }
@@ -678,8 +715,13 @@
     NSError *e = nil;
     __block NSInteger found = 0;
 
-    NSRegularExpression *rns = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([%@]%@)", _(@"compass-NSns"), COORDS_REGEXP] options:0 error:&e];
-    NSRegularExpression *rew = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([%@]%@)", _(@"compass-EWew"), COORDS_REGEXP] options:0 error:&e];
+    NSRegularExpression *rns, *rew;
+    switch (configManager.coordinatesType) {
+        case COORDINATES_DEGREES_DECIMALMINUTES:
+            rns = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([NSns%@]%@)", _(@"compass-NSns"), COORDS_DEGREES_DECIMALMINUTES_REGEXP] options:0 error:&e];
+            rew = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([EWew%@]%@)", _(@"compass-EWew"), COORDS_DEGREES_DECIMALMINUTES_REGEXP] options:0 error:&e];
+            break;
+    }
 
     [lines enumerateObjectsUsingBlock:^(NSString * _Nonnull line, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *NS = nil;
@@ -750,8 +792,8 @@
 {
     NSArray<NSString *> *cts = @[
         _(@"coordinates-Degrees with decimal minutes (S 12° 34.567)"),
-        _(@"coordinates-Degrees signed (-12.345678)"),
-        _(@"coordinates-Degrees cardinal (S 12.345678)"),
+        _(@"coordinates-Decimal degrees signed (-12.345678)"),
+        _(@"coordinates-Decimal degrees cardinal (S 12.345678)"),
         _(@"coordinates-Degrees Minutes Seconds (S 12° 34′ 56″)"),
         _(@"coordinates-Open Location Code (2345678+9CF)"),
         _(@"coordinates-UTM (51H 326625E 6222609N)"),

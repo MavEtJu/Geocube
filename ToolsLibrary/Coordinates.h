@@ -25,8 +25,8 @@
 
 typedef NS_ENUM(NSInteger, CoordinatesType) {
     COORDINATES_DEGREES_DECIMALMINUTES = 0,     // S 12° 34.567
-    COORDINATES_DEGREES_SIGNED,                 // -12.34567
-    COORDINATES_DEGREES_CARDINAL,               // S 12.34567
+    COORDINATES_DECIMALDEGREES_SIGNED,          // -12.34567
+    COORDINATES_DECIMALDEGREES_CARDINAL,        // S 12.34567
     COORDINATES_DEGREES_MINUTES_SECONDS,        // S 12° 34′ 56″
     COORDINATES_OPENLOCATIONCODE,               // 2345678+9CF
     COORDINATES_UTM,                            // 51H 326625E 6222609N
@@ -85,6 +85,7 @@ typedef NS_ENUM(NSInteger, CoordinatesType) {
 + (void)makeNiceBoundary:(CLLocationCoordinate2D)c1 c2:(CLLocationCoordinate2D)c2 d1:(CLLocationCoordinate2D *)d1 d2:(CLLocationCoordinate2D *)d2 boundaryPercentage:(NSInteger)boundaryPercentage;
 
 + (BOOL)checkCoordinate:(NSString *)text;
++ (BOOL)checkCoordinate:(NSString *)text coordType:(CoordinatesType)coordType;
 + (NSInteger)scanForWaypoints:(NSArray<NSString *> *)lines waypoint:(NSObject *)waypoint view:(UIViewController *)vc;
 
 + (NSArray<NSString *> *)coordinateTypes;
