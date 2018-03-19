@@ -535,24 +535,6 @@ TIME(dateTimeString_DD_MM_YYYY_dotspace, @"d. M. yyyy")
 
 ///////////////////////////////////////////
 
-/// Check if a string matches a set of coordinates like ^[NESW] \d{1,3}º? ?\d{1,2}\.\d{1,3
-+ (BOOL)checkCoordinate:(NSString *)text
-{
-    // As long as it matches any of these, it is fine:
-    // ^[NESW] \d{1,3}º? ?\d{1,2}\.\d{1,3}
-
-    NSError *e = nil;
-    NSRegularExpression *r5 = [NSRegularExpression regularExpressionWithPattern:@"^[NESW] +\\d{1,3}°? ?\\d{1,2}\\.\\d{1,3}$" options:0 error:&e];
-
-    NSRange range;
-    range = [r5 rangeOfFirstMatchInString:text options:0 range:NSMakeRange(0, [text length])];
-    if (range.location == 0) return YES;
-
-    return NO;
-}
-
-///////////////////////////////////////////
-
 /// Return a non-existing waypoint code based on the prefix supplied
 + (NSString *)makeNewWaypoint:(NSString *)prefix
 {
