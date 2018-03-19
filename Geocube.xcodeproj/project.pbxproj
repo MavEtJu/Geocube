@@ -16,7 +16,6 @@
 		E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73741B533F4D00F35528 /* MapKit.framework */; };
 		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
 		E815B7831F67FCB2003A6092 /* FileKMLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E815B7821F67FCB2003A6092 /* FileKMLViewController.m */; };
-		E8182F4C1C0E41CB004AC534 /* KeyboardCoordinateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8182F4B1C0E41CB004AC534 /* KeyboardCoordinateView.m */; };
 		E82286191F8A285C00631380 /* Coordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = E82286091F8A285C00631380 /* Coordinates.m */; };
 		E822861C1F8A285C00631380 /* LocalMenuItems.m in Sources */ = {isa = PBXBuildFile; fileRef = E82286101F8A285C00631380 /* LocalMenuItems.m */; };
 		E822861D1F8A285C00631380 /* MyClock.m in Sources */ = {isa = PBXBuildFile; fileRef = E82286121F8A285C00631380 /* MyClock.m */; };
@@ -727,6 +726,7 @@
 		E8CB8917205E7ACE00DD55DE /* LatLon2UTM.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB890E205E7ACD00DD55DE /* LatLon2UTM.m */; };
 		E8CB8918205E7ACE00DD55DE /* MGRS2LatLon.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB8910205E7ACD00DD55DE /* MGRS2LatLon.m */; };
 		E8CB8919205E7ACE00DD55DE /* UTM2LatLon.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB8913205E7ACE00DD55DE /* UTM2LatLon.m */; };
+		E8CB891D20606D4800DD55DE /* KeyboardCoordinateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB891C20606D4800DD55DE /* KeyboardCoordinateView.m */; };
 		E8D49D2F1F00F9C1005EB7BE /* container size - nano - 35x11.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */; };
 		E8D49D301F00F9C1005EB7BE /* container size - nano - 35x11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */; };
 		E8D49D311F00F9C1005EB7BE /* container size - nano - 35x11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2E1F00F9C1005EB7BE /* container size - nano - 35x11@3x.png */; };
@@ -863,8 +863,6 @@
 		E80F73761B53443000F35528 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E815B7811F67FCB2003A6092 /* FileKMLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileKMLViewController.h; path = Files/FileKMLViewController.h; sourceTree = "<group>"; };
 		E815B7821F67FCB2003A6092 /* FileKMLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileKMLViewController.m; path = Files/FileKMLViewController.m; sourceTree = "<group>"; };
-		E8182F4A1C0E41CB004AC534 /* KeyboardCoordinateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardCoordinateView.h; sourceTree = "<group>"; };
-		E8182F4B1C0E41CB004AC534 /* KeyboardCoordinateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardCoordinateView.m; sourceTree = "<group>"; };
 		E82286081F8A285C00631380 /* Coordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Coordinates.h; path = ToolsLibrary/Coordinates.h; sourceTree = "<group>"; };
 		E82286091F8A285C00631380 /* Coordinates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Coordinates.m; path = ToolsLibrary/Coordinates.m; sourceTree = "<group>"; };
 		E822860F1F8A285C00631380 /* LocalMenuItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalMenuItems.h; path = ToolsLibrary/LocalMenuItems.h; sourceTree = "<group>"; };
@@ -1961,6 +1959,8 @@
 		E8CB8911205E7ACD00DD55DE /* UTM2LatLon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UTM2LatLon.h; path = ContribLibrary/GeoCoordinateConverter/UTM2LatLon.h; sourceTree = "<group>"; };
 		E8CB8912205E7ACE00DD55DE /* LatLon2MGRS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LatLon2MGRS.h; path = ContribLibrary/GeoCoordinateConverter/LatLon2MGRS.h; sourceTree = "<group>"; };
 		E8CB8913205E7ACE00DD55DE /* UTM2LatLon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTM2LatLon.m; path = ContribLibrary/GeoCoordinateConverter/UTM2LatLon.m; sourceTree = "<group>"; };
+		E8CB891B20606D4700DD55DE /* KeyboardCoordinateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardCoordinateView.h; path = ToolsLibrary/Keyboards/KeyboardCoordinateView.h; sourceTree = "<group>"; };
+		E8CB891C20606D4800DD55DE /* KeyboardCoordinateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardCoordinateView.m; path = ToolsLibrary/Keyboards/KeyboardCoordinateView.m; sourceTree = "<group>"; };
 		E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11.png"; path = "images/containers/container size - nano - 35x11.png"; sourceTree = "<group>"; };
 		E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11@2x.png"; path = "images/containers/container size - nano - 35x11@2x.png"; sourceTree = "<group>"; };
 		E8D49D2E1F00F9C1005EB7BE /* container size - nano - 35x11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11@3x.png"; path = "images/containers/container size - nano - 35x11@3x.png"; sourceTree = "<group>"; };
@@ -2427,6 +2427,7 @@
 		E82286061F8A1DAA00631380 /* ToolsLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				E8CB891A20606CEA00DD55DE /* Keyboards */,
 				E82286201F8A286500631380 /* Menus */,
 				E8650D2A1FA2947D007561FF /* InfoViewer */,
 				E82286181F8A285C00631380 /* ToolsLibrary.h */,
@@ -3327,8 +3328,6 @@
 			children = (
 				E82343C41EECDEA100D2CDFD /* WaypointAddViewController.h */,
 				E82343C51EECDEA100D2CDFD /* WaypointAddViewController.m */,
-				E8182F4A1C0E41CB004AC534 /* KeyboardCoordinateView.h */,
-				E8182F4B1C0E41CB004AC534 /* KeyboardCoordinateView.m */,
 			);
 			name = "Waypoint Add";
 			sourceTree = "<group>";
@@ -4031,6 +4030,15 @@
 				E8CB8913205E7ACE00DD55DE /* UTM2LatLon.m */,
 			);
 			name = GeoCoordinateConverter;
+			sourceTree = "<group>";
+		};
+		E8CB891A20606CEA00DD55DE /* Keyboards */ = {
+			isa = PBXGroup;
+			children = (
+				E8CB891B20606D4700DD55DE /* KeyboardCoordinateView.h */,
+				E8CB891C20606D4800DD55DE /* KeyboardCoordinateView.m */,
+			);
+			name = Keyboards;
 			sourceTree = "<group>";
 		};
 		E8E4400B1D88A6D800BECB49 /* GUI */ = {
@@ -4828,7 +4836,6 @@
 				E822862E1F8A2B4600631380 /* ThemeNightSmallSize.m in Sources */,
 				E82287391F8A2E7900631380 /* GCDictionaryObjects.m in Sources */,
 				E82344921EECE0AC00D2CDFD /* QueriesGGCWViewController.m in Sources */,
-				E8182F4C1C0E41CB004AC534 /* KeyboardCoordinateView.m in Sources */,
 				E822861F1F8A285C00631380 /* SideMenu.m in Sources */,
 				E82344971EECE0AD00D2CDFD /* QueriesTemplateViewController.m in Sources */,
 				E8E3DC1C1E167C740066E903 /* AppDelegate.m in Sources */,
@@ -5104,6 +5111,7 @@
 				E82287CA1F8A32C600631380 /* ProtocolGCA2.m in Sources */,
 				E82287F61F8A344400631380 /* ActionSheetLocalePicker.m in Sources */,
 				E822879F1F8A30B700631380 /* MapTemplateViewController.m in Sources */,
+				E8CB891D20606D4800DD55DE /* KeyboardCoordinateView.m in Sources */,
 				E82344A11EECE0BD00D2CDFD /* StatisticsViewController.m in Sources */,
 				E82344B01EECE0D500D2CDFD /* ToolsRot13ViewController.m in Sources */,
 				E82286E81F8A2CE300631380 /* ImageManager.m in Sources */,
