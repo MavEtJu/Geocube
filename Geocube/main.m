@@ -127,7 +127,7 @@ void testcoordinates(void)
     for (NSInteger j = 0; j < 100000; j++) {
         CLLocationDegrees lat = 90 - ((arc4random() % 18000000) / 100000.0);
         CLLocationDegrees lon = 90 - ((arc4random() % 18000000) / 100000.0);
-        Coordinates *c = [[Coordinates alloc] init:lat longitude:lon];
+        Coordinates *c = [[Coordinates alloc] initWithLatitude:lat longitude:lon];
 
         for (NSInteger i = 0; i < COORDINATES_MAX; i++) {
             if ([Coordinates checkCoordinate:[c niceCoordinates:i] coordType:i] == NO)

@@ -76,7 +76,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceDidRotate:) name:UIDeviceOrientationDidChangeNotification object:nil];
 
     /* Initiate the current cache */
-    Coordinates *coords = [[Coordinates alloc] init:waypointManager.currentWaypoint.wpt_latitude longitude:waypointManager.currentWaypoint.wpt_longitude];
+    Coordinates *coords = [[Coordinates alloc] initWithLatitude:waypointManager.currentWaypoint.wpt_latitude longitude:waypointManager.currentWaypoint.wpt_longitude];
 
     if (waypointManager.currentWaypoint == nil) {
         self.ivWPContainer.hidden = YES;
@@ -216,7 +216,7 @@
 
     //    NSLog(@"new location: %f, %f", LM.coords.latitude, LM.coords.longitude);
 
-    Coordinates *c = [[Coordinates alloc] init:LM.coords];
+    Coordinates *c = [[Coordinates alloc] initWithCoordinates:LM.coords];
     self.labelGNSSLat.text = [c lat];
     self.labelGNSSLon.text = [c lon];
 

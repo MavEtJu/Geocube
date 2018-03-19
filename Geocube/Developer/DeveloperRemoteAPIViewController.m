@@ -66,7 +66,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
           @"wpt_name": @"GC6N4RD",
           @"waypoints": @"GC6N4RD,GC5GNW7",
           @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_LIVEAPI_GS],
-          @"coordinates": [[Coordinates alloc] init:-34.04550 longitude:151.12010],
+          @"coordinates": [[Coordinates alloc] initWithLatitude:-34.04550 longitude:151.12010],
           @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
           @"travelbug": @"TB8NG8J,ARN7EA",
           };
@@ -77,7 +77,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
           @"wpt_name": @"GC6N4RD",
           @"waypoints": @"GC6N4RD,GC5GNW7",
           @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_WEB_GCCOM],
-          @"coordinates": [[Coordinates alloc] init:-34.04550 longitude:151.12010],
+          @"coordinates": [[Coordinates alloc] initWithLatitude:-34.04550 longitude:151.12010],
           @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
           @"travelbug": @"TB8NG8J,ARN7EA",
           };
@@ -88,7 +88,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
           @"wpt_name": @"GA4068",
           @"waypoints": @"GA4068,GA7968",
           @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_GCA2_GCA],
-          @"coordinates": [[Coordinates alloc] init:-29.3242 longitude:143.08183333333332],
+          @"coordinates": [[Coordinates alloc] initWithLatitude:-29.3242 longitude:143.08183333333332],
           @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
           @"query": @"9115",
           };
@@ -99,7 +99,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
           @"wpt_name": @"OB1A60",
           @"waypoints": @"OB1A60,OB1A6E",
           @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_OKAPI_OCNL],
-          @"coordinates": [[Coordinates alloc] init:51.738116666667 longitude:5.95515],
+          @"coordinates": [[Coordinates alloc] initWithLatitude:51.738116666667 longitude:5.95515],
           @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
           };
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
@@ -109,7 +109,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
           @"wpt_name": @"OC2CAA",
           @"waypoints": @"OC2CAA,OC10DB7",
           @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_OKAPI_OCDE],
-          @"coordinates": [[Coordinates alloc] init:52.42527 longitude:13.60113],
+          @"coordinates": [[Coordinates alloc] initWithLatitude:52.42527 longitude:13.60113],
           @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
           };
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
@@ -119,7 +119,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
           @"wpt_name": @"OP2A2F",
           @"waypoints": @"OP2A2F,OP81DM",
           @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_OKAPI_OCPL],
-          @"coordinates": [[Coordinates alloc] init:52.96652 longitude:19.88642],
+          @"coordinates": [[Coordinates alloc] initWithLatitude:52.96652 longitude:19.88642],
           @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
           };
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
@@ -129,7 +129,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
           @"wpt_name": @"OU0387",
           @"waypoints": @"OU0387,OU0A3B",
           @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_OKAPI_OCNA],
-          @"coordinates": [[Coordinates alloc] init:36.60077 longitude:-83.67533],
+          @"coordinates": [[Coordinates alloc] initWithLatitude:36.60077 longitude:-83.67533],
           @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
           };
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
@@ -139,7 +139,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
           @"wpt_name": @"OR01B2",
           @"waypoints": @"OR01B2,OR01B1",
           @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_OKAPI_OCRO],
-          @"coordinates": [[Coordinates alloc] init:44.85508 longitude:24.85238],
+          @"coordinates": [[Coordinates alloc] initWithLatitude:44.85508 longitude:24.85238],
           @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
           };
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];
@@ -149,7 +149,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
           @"wpt_name": @"OK041B",
           @"waypoints": @"OK041B,OK041C",
           @"account": [dbAccount dbGetByGeocubeID:ACCOUNT_OKAPI_OCUK],
-          @"coordinates": [[Coordinates alloc] init:56.02365 longitude:4.78265],
+          @"coordinates": [[Coordinates alloc] initWithLatitude:56.02365 longitude:4.78265],
           @"status": [NSNumber numberWithInteger:TESTSTATUS_IDLE],
           };
     [tests addObject:[NSMutableDictionary dictionaryWithDictionary:d]];

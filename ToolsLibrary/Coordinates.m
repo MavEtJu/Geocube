@@ -42,14 +42,14 @@
 #define COORDS_MGRS_REGEXP @"\\d{1,2}[^ABIOYZabioyz][A-Za-z]{2}([0-9][0-9])+"
 
 /// Initialize a Coordinates object with a lat and a lon value
-- (instancetype)init:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude       // -34.02787 151.07357
+- (instancetype)initWithLatitude:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude       // -34.02787 151.07357
 {
     self = [super init];
     self.coords = CLLocationCoordinate2DMake(latitude, longitude);
     return self;
 }
 /// Initialize a Coordinates object with a lat and a lon value from a set of coordinates
-- (instancetype)init:(CLLocationCoordinate2D)coords           // { -34.02787, 151.07357 }
+- (instancetype)initWithCoords:(CLLocationCoordinate2D)coords           // { -34.02787, 151.07357 }
 {
     self = [super init];
     self.coords = CLLocationCoordinate2DMake(coords.latitude, coords.longitude);
@@ -516,7 +516,7 @@
 }
 + (NSString *)niceCoordinates:(CLLocationCoordinate2D)c coordType:(CoordinatesType)coordType
 {
-    Coordinates *co = [[Coordinates alloc] init:c];
+    Coordinates *co = [[Coordinates alloc] initWithCoordinates:c];
     return [co niceCoordinates:coordType];
 }
 
@@ -526,7 +526,7 @@
 }
 + (NSString *)niceCoordinates:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude coordType:(CoordinatesType)coordType
 {
-    Coordinates *co = [[Coordinates alloc] init:latitude longitude:longitude];
+    Coordinates *co = [[Coordinates alloc] initWithLatitude:latitude longitude:longitude];
     return [co niceCoordinates:coordType];
 }
 
@@ -537,7 +537,7 @@
 }
 + (NSString *)niceCoordinatesForEditing:(CLLocationCoordinate2D)c coordType:(CoordinatesType)coordType
 {
-    Coordinates *co = [[Coordinates alloc] init:c];
+    Coordinates *co = [[Coordinates alloc] initWithCoordinates:c];
     return [NSString stringWithFormat:@"%@ %@", [co latEdit:coordType], [co lonEdit:coordType]];
 }
 
@@ -548,7 +548,7 @@
 }
 + (NSString *)niceLatitude:(CLLocationDegrees)l coordType:(CoordinatesType)coordType
 {
-    Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(l, 0)];
+    Coordinates *co = [[Coordinates alloc] initWithCoordinates:CLLocationCoordinate2DMake(l, 0)];
     return [co lat:coordType];
 }
 /// Returns string with longitude like E 1° 2.3'
@@ -558,7 +558,7 @@
 }
 + (NSString *)niceLongitude:(CLLocationDegrees)l coordType:(CoordinatesType)coordType
 {
-    Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(0, l)];
+    Coordinates *co = [[Coordinates alloc] initWithCoordinates:CLLocationCoordinate2DMake(0, l)];
     return [co lon:coordType];
 }
 
@@ -569,7 +569,7 @@
 }
 + (NSString *)niceLatitudeForEditing:(CLLocationDegrees)l coordType:(CoordinatesType)coordType
 {
-    Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(l, 0)];
+    Coordinates *co = [[Coordinates alloc] initWithCoordinates:CLLocationCoordinate2DMake(l, 0)];
     return [co latEdit:coordType];
 }
 /// Returns string with longitude like E 1 2.3
@@ -579,7 +579,7 @@
 }
 + (NSString *)niceLongitudeForEditing:(CLLocationDegrees)l coordType:(CoordinatesType)coordType
 {
-    Coordinates *co = [[Coordinates alloc] init:CLLocationCoordinate2DMake(0, l)];
+    Coordinates *co = [[Coordinates alloc] initWithCoordinates:CLLocationCoordinate2DMake(0, l)];
     return [co lonEdit:coordType];
 }
 

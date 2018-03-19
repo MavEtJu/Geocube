@@ -276,7 +276,7 @@ enum {
                           NSLog(@"Longitude '%@'", lon);
 
                           Coordinates *c;
-                          c = [[Coordinates alloc] initString:lat longitude:lon];
+                          c = [[Coordinates alloc] initWithStringLatitude:lat longitude:lon];
                           self.coords = CLLocationCoordinate2DMake(c.latitude, c.longitude);
 
                           [self.tableView reloadData];
@@ -322,7 +322,7 @@ enum {
 - (void)updateSubmit
 {
     dbWaypoint *wp = [[dbWaypoint alloc] init];
-    Coordinates *c = [[Coordinates alloc] init:self.coords];
+    Coordinates *c = [[Coordinates alloc] initWithCoordinates:self.coords];
 
     wp.wpt_latitude = [c latitude];
     wp.wpt_longitude = [c longitude];

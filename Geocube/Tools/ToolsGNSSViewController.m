@@ -350,7 +350,7 @@ enum {
     NSString *name = [NSString stringWithFormat:@"Waypoint averaged on %@", [Coordinates niceCoordinates:coord]];
 
     dbWaypoint *wp = [[dbWaypoint alloc] init];
-    Coordinates *c = [[Coordinates alloc] init:coord];
+    Coordinates *c = [[Coordinates alloc] initWithCoordinates:coord];
 
     wp.wpt_latitude= [c latitude];
     wp.wpt_longitude = [c longitude];

@@ -220,7 +220,7 @@ enum {
                     NSLog(@"Longitude '%@'", lon);
 
                     Coordinates *c;
-                    c = [[Coordinates alloc] initString:lat longitude:lon];
+                    c = [[Coordinates alloc] initWithStringLatitude:lat longitude:lon];
 
                     dbWaypoint *wp = [[dbWaypoint alloc] init];
                     wp.wpt_latitude = [c latitude];

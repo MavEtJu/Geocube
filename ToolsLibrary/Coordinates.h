@@ -34,9 +34,10 @@ typedef NS_ENUM(NSInteger, CoordinatesType) {
     COORDINATES_MGRS,                           // 51H 326625E 6222609N
 };
 
-- (instancetype)init:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude;    // -34.02787 151.07357
-- (instancetype)init:(CLLocationCoordinate2D)coor;                                          // { -34.02787, 151.07357 }
-- (instancetype)initString:(NSString *)latitude longitude:(NSString *)longitude;            // S 34 1.672, E 151 4.414
+- (instancetype)initWithLatitude:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude;    // -34.02787 151.07357
+- (instancetype)initWithCoordinates:(CLLocationCoordinate2D)coor;                                       // { -34.02787, 151.07357 }
+- (instancetype)initWithStringLatitude:(NSString *)latitude longitude:(NSString *)longitude;            // S 34 1.672, E 151 4.414
+
 - (CLLocationDegrees)latitude;
 - (CLLocationDegrees)longitude;
 - (CLLocationCoordinate2D)coordinates;
