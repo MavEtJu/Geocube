@@ -38,7 +38,7 @@
 #define COORDS_DEGREES_MINUTES_SECONDS_REGEXP @" *\\d{1,3}[º°]? +\\d{1,2}['′]? +\\d{1,2}[\"″]?"
 #define COORDS_OPENLOCATIONCODE_REGEXP @"[023456789CFGHJMPQRVWX]+\\+[23456789CFGHJMPQRVWX]*"
 #define COORDS_UTM_REGEXP @"\\d{2}[ACDEFGHJKLMNPQRSTUVWXZ] \\d+ \\d+"
-#define COORDS_MGRS_REGEXP @"\\d{1,2}[^ABIOYZabioyz][A-Za-z]{2}([0-9][0-9])+"
+#define COORDS_MGRS_REGEXP @"\\d{1,2}[^ABIOYZabioyz][A-Za-z]{2} +\\d+ +\\d+"
 
 /// Initialize a Coordinates object with a lat and a lon value
 - (instancetype)initWithLatitude:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude       // -34.02787 151.07357
@@ -755,6 +755,7 @@
     NSRegularExpression *rnsew = nil;
     NSRegularExpression *rolc = nil;
     NSRegularExpression *rutm = nil;
+    NSRegularExpression *rmgrs = nil;
     switch (coordType) {
         case COORDINATES_DEGREES_DECIMALMINUTES:
             rnsew = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([NSns%@]%@) +([EWew%@]%@)", _(@"compass-NSns"), COORDS_DEGREES_DECIMALMINUTES_REGEXP, _(@"compass-EWew"), COORDS_DEGREES_DECIMALMINUTES_REGEXP] options:0 error:&e];
@@ -773,6 +774,9 @@
             break;
         case COORDINATES_UTM:
             rutm = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"(%@)", COORDS_UTM_REGEXP] options:0 error:&e];
+            break;
+        case COORDINATES_MGRS:
+            rmgrs = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"(%@)", COORDS_MGRS_REGEXP] options:0 error:&e];
             break;
     }
 
@@ -819,6 +823,21 @@
                 [utm2ll convertUTM:s ToLatitude:&lat Longitude:&lon];
                 c = [[Coordinates alloc] initWithLatitude:lat longitude:lon];
                 NSLog(@"UTM: '%@'", s);
+                break;
+            }
+        }
+
+        if (rmgrs != nil) {
+            NSArray<NSTextCheckingResult *> *matches = [rutm matchesInString:line options:0 range:NSMakeRange(0, [line length])];
+            for (NSTextCheckingResult *match in matches) {
+                NSRange range = [match rangeAtIndex:1];
+                NSString *s = [line substringWithRange:range];
+
+                MGRS2LatLon *mgrs2ll = [[MGRS2LatLon alloc] init];
+                CLLocationDegrees lat, lon;
+                [mgrs2ll convertMGRS:s ToLatitude:&lat Longitude:&lon];
+                c = [[Coordinates alloc] initWithLatitude:lat longitude:lon];
+                NSLog(@"MGRS: '%@'", s);
                 break;
             }
         }
@@ -872,7 +891,7 @@
         _(@"coordinates-Degrees Minutes Seconds (S 12° 34′ 56″)"),
         _(@"coordinates-Open Location Code (2345678+9CF)"),
         _(@"coordinates-UTM (51H 326625E 6222609N)"),
-//      _(@"coordinates-MGRS (51H 326625E 6222609N)"),
+        _(@"coordinates-MGRS (51H 326625E 6222609N)"),
     ];
 
     NSAssert([cts count] == COORDINATES_MAX, @"Number of coordinateTypes is not the size of the array");
