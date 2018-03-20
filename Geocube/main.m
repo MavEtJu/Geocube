@@ -131,7 +131,7 @@ void testcoordinates(void)
 
         for (NSInteger i = 0; i < COORDINATES_MAX; i++) {
             if ([Coordinates checkCoordinate:[c niceCoordinates:i] coordType:i] == NO)
-                NSLog(@"%d - %@", [Coordinates checkCoordinate:[c niceCoordinates:i] coordType:i], [c niceCoordinates:i]);
+                NSLog(@"%d - %@ (%f, %f)", [Coordinates checkCoordinate:[c niceCoordinates:i] coordType:i], [c niceCoordinates:i], lat, lon);
         }
     }
 
