@@ -21,6 +21,11 @@
 
 @interface KeyboardCoordinateView : UIView
 
-- (instancetype)initWithIsLatitude:(BOOL)isLatitude;
+@property (nonatomic, weak) UITextField <UITextInput> *targetTextInput;
+
+- (void)addObservers;
+- (void)textInput:(UITextField <UITextInput> *)textInput replaceTextAtTextRange:(UITextRange *)textRange withString:(NSString *)string;
+- (UITextRange *)textRangeForRange:(NSRange)range;
+- (NSRange)rangeForTextRange:(UITextRange *)textRange;
 
 @end
