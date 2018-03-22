@@ -259,7 +259,7 @@ enum {
 {
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:_(@"waypointaddviewcontroller-Update waypoint")
-                                message:_(@"waypointaddviewcontroller-Please enter the coordinates")
+                                message:[NSString stringWithFormat:_(@"waypointaddviewcontroller-Please enter the coordinates.__Expected format: %@"), [Coordinates coordinateExample:configManager.coordinatesType]]
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     self.coordsOkButton = [UIAlertAction
@@ -286,8 +286,14 @@ enum {
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
+    UIAlertAction *changeFormat = [UIAlertAction
+                                   actionWithTitle:_(@"Change Format") style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action) {
+                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                   }];
 
     [alert addAction:self.coordsOkButton];
+    [alert addAction:changeFormat];
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {

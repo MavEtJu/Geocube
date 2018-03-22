@@ -727,6 +727,7 @@
 		E8CB8918205E7ACE00DD55DE /* MGRS2LatLon.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB8910205E7ACD00DD55DE /* MGRS2LatLon.m */; };
 		E8CB8919205E7ACE00DD55DE /* UTM2LatLon.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB8913205E7ACE00DD55DE /* UTM2LatLon.m */; };
 		E8CB891D20606D4800DD55DE /* KeyboardCoordinateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB891C20606D4800DD55DE /* KeyboardCoordinateView.m */; };
+		E8CB891F206279B500DD55DE /* KeyboardCoordinateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8CB891E206279B500DD55DE /* KeyboardCoordinateView.xib */; };
 		E8D49D2F1F00F9C1005EB7BE /* container size - nano - 35x11.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */; };
 		E8D49D301F00F9C1005EB7BE /* container size - nano - 35x11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */; };
 		E8D49D311F00F9C1005EB7BE /* container size - nano - 35x11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2E1F00F9C1005EB7BE /* container size - nano - 35x11@3x.png */; };
@@ -1961,6 +1962,7 @@
 		E8CB8913205E7ACE00DD55DE /* UTM2LatLon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTM2LatLon.m; path = ContribLibrary/GeoCoordinateConverter/UTM2LatLon.m; sourceTree = "<group>"; };
 		E8CB891B20606D4700DD55DE /* KeyboardCoordinateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardCoordinateView.h; path = ToolsLibrary/Keyboards/KeyboardCoordinateView.h; sourceTree = "<group>"; };
 		E8CB891C20606D4800DD55DE /* KeyboardCoordinateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardCoordinateView.m; path = ToolsLibrary/Keyboards/KeyboardCoordinateView.m; sourceTree = "<group>"; };
+		E8CB891E206279B500DD55DE /* KeyboardCoordinateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = KeyboardCoordinateView.xib; path = ToolsLibrary/Keyboards/KeyboardCoordinateView.xib; sourceTree = "<group>"; };
 		E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11.png"; path = "images/containers/container size - nano - 35x11.png"; sourceTree = "<group>"; };
 		E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11@2x.png"; path = "images/containers/container size - nano - 35x11@2x.png"; sourceTree = "<group>"; };
 		E8D49D2E1F00F9C1005EB7BE /* container size - nano - 35x11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11@3x.png"; path = "images/containers/container size - nano - 35x11@3x.png"; sourceTree = "<group>"; };
@@ -4037,6 +4039,7 @@
 			children = (
 				E8CB891B20606D4700DD55DE /* KeyboardCoordinateView.h */,
 				E8CB891C20606D4800DD55DE /* KeyboardCoordinateView.m */,
+				E8CB891E206279B500DD55DE /* KeyboardCoordinateView.xib */,
 			);
 			name = Keyboards;
 			sourceTree = "<group>";
@@ -4723,6 +4726,7 @@
 				E8FEDED61DA8EEE9007C756B /* cache - burke-wills - 30x30@2x.png in Resources */,
 				E87ED1701F8445C500DE8E9B /* FilterFavouritesTableViewCell.xib in Resources */,
 				E8F403E81DAF5B2600318CC6 /* cache - reverse - 30x30.png in Resources */,
+				E8CB891F206279B500DD55DE /* KeyboardCoordinateView.xib in Resources */,
 				E85DC6961F95D01E007556D5 /* menu icon - show both - 40x40@3x.png in Resources */,
 				E82E66D81DA07CBE00CFBDED /* cache - trigpoint - 30x30.png in Resources */,
 				E87ED16E1F843FBD00DE8E9B /* FilterTerrainTableViewCell.xib in Resources */,

@@ -99,7 +99,7 @@
 "waypointaddviewcontroller-Coords" = "Coördinaten";
 "waypointaddviewcontroller-Create this waypoint" = "Creëer dit waypoint";
 "waypointaddviewcontroller-New waypoint data" = "Nieuw waypoint gegevens";
-"waypointaddviewcontroller-Please enter the coordinates" = "Vul de coördinaten in";
+"waypointaddviewcontroller-Please enter the coordinates.__Expected format: %@" = "Vul de coördinaten in.\nVerwachte formaat: %@";
 "waypointaddviewcontroller-Short Name" = "Korte naam";
 "waypointaddviewcontroller-Update waypoint" = "Ververs waypoint";
 "waypointaddviewcontroller-Update waypoint code" = "Ververs waypoint code";

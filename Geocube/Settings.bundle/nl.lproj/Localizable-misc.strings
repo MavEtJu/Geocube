@@ -128,13 +128,13 @@
 "Longitude" = "Lengtegraad";
 
 /* Coordinates related */
-"coordinates-Degrees Minutes Seconds (S 12° 34′ 56″)" = "Graden Minuten Seconden (S 12° 34′ 56″)";
-"coordinates-Decimal degrees cardinal (S 12.345678)" = "Graden met hoofdwindrichting (S 12.345678)";
-"coordinates-Decimal degrees signed (-12.345678)" = "Graden met minteken (-12.345678)";
-"coordinates-Degrees with decimal minutes (S 12° 34.567)" = "Graden met decimale minuten (S 12° 34.567)";
-"coordinates-Open Location Code (2345678+9CF)" = "Open Location Code (2345678+9CF)";
-"coordinates-UTM (51H 326625E 6222609N)" = "UTM (51H 326625E 6222609N)";
-"coordinates-MGRS (51H 326625E 6222609N)" = "MGRS (51H 326625E 6222609N)";
+"coordinates-Degrees Minutes Seconds (%@)" = "Graden Minuten Seconden (%@)";
+"coordinates-Decimal degrees cardinal (%@)" = "Graden met hoofdwindrichting (%@)";
+"coordinates-Decimal degrees signed (%@)" = "Graden met minteken (%@)";
+"coordinates-Degrees with decimal minutes (%@)" = "Graden met decimale minuten (%@)";
+"coordinates-Open Location Code (%@)" = "Open Location Code (%@)";
+"coordinates-UTM (%@)" = "UTM (%@)";
+"coordinates-MGRS (%@)" = "MGRS (%@)";
 
 /* General */
 "Close" = "Sluiten";

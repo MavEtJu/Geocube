@@ -26,20 +26,48 @@
 
 @property (nonatomic        ) BOOL isLatitude;
 
-@property (nonatomic, retain) UIButton *dirNorth, *dirEast, *dirSouth, *dirWest;
-@property (nonatomic, retain) UIButton *buttonSpace, *buttonDot, *buttonDegree, *buttonBackspace;
+@property (nonatomic, retain) IBOutlet UIButton *dirNorth, *dirEast, *dirSouth, *dirWest;
+@property (nonatomic, retain) IBOutlet UIButton *buttonSpace, *buttonDot, *buttonDegree;
+@property (nonatomic, retain) IBOutlet UIButton *buttonBackspace, *buttonTick, *buttonDoubleTick;
+@property (nonatomic, retain) IBOutlet UIButton *buttonValue0, *buttonValue1, *buttonValue2;
+@property (nonatomic, retain) IBOutlet UIButton *buttonValue3, *buttonValue4, *buttonValue5;
+@property (nonatomic, retain) IBOutlet UIButton *buttonValue6, *buttonValue7, *buttonValue8;
+@property (nonatomic, retain) IBOutlet UIButton *buttonValue9;
 
 @property (nonatomic, weak) UITextField <UITextInput> *targetTextInput;
+
+@property (nonatomic, retain) UIView *firstView;
 
 @end
 
 @implementation KeyboardCoordinateView
 
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+
+    self.firstView = [[[NSBundle mainBundle] loadNibNamed:@"KeyboardCoordinateView" owner:self options:nil] firstObject];
+    self.firstView.frame = CGRectMake((frame.size.width - self.firstView.frame.size.width) / 2, 0, self.firstView.frame.size.width, self.firstView.frame.size.height);
+    [self addSubview:self.firstView];
+
+    return self;
+}
+
 - (instancetype)initWithIsLatitude:(BOOL)isLatitude
 {
-    self = [super initWithFrame:CGRectMake(0, 0, 100, 160)];
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
+    NSInteger width = applicationFrame.size.width;
+
+    self = [self initWithFrame:CGRectMake(0, 0, width, 160)];
 
     self.isLatitude = isLatitude;
+
+    return self;
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
 
     /*
      * +----------------------------------+
@@ -48,92 +76,28 @@
      * +----------------------------------+
      */
 
-    NSInteger y = 3;
-
-    if (self.isLatitude == YES) {
-        self.dirNorth = [UIButton buttonWithType:UIButtonTypeSystem];
-        self.dirNorth.frame = CGRectMake(0, y, 100, 80);
-        [self.dirNorth setTitle:_(@"compass-north") forState:UIControlStateNormal];
-        [self.dirNorth addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
-        [self addSubview:self.dirNorth];
-        y += 80;
-
-        self.dirSouth = [UIButton buttonWithType:UIButtonTypeSystem];
-        self.dirSouth.frame = CGRectMake(0, y, 100, 80);
-        [self.dirSouth setTitle:_(@"compass-south") forState:UIControlStateNormal];
-        [self.dirSouth addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
-        [self addSubview:self.dirSouth];
-        y += 80;
-    } else {
-        self.dirEast = [UIButton buttonWithType:UIButtonTypeSystem];
-        self.dirEast.frame = CGRectMake(0, y, 100, 80);
-        [self.dirEast setTitle:_(@"compass-east") forState:UIControlStateNormal];
-        [self.dirEast addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
-        [self addSubview:self.dirEast];
-        y += 80;
-
-        self.dirWest = [UIButton buttonWithType:UIButtonTypeSystem];
-        self.dirWest.frame = CGRectMake(0, y, 100, 80);
-        [self.dirWest setTitle:_(@"compass-west") forState:UIControlStateNormal];
-        [self.dirWest addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
-        [self addSubview:self.dirWest];
-        y += 80;
-    }
-
-    y = 6;
-    for (NSInteger i = 0; i < 5; i++) {
-        UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
-        b.frame = CGRectMake(100 + i * 40, y, 40, 48);
-        [b setTitle:[NSString stringWithFormat:@"%lu", (long)i] forState:UIControlStateNormal];
-        [b addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
-        [self addSubview:b];
-        value[i] = b;
-    }
-    y += 48;
-
-    for (NSInteger i = 5; i < 10; i++) {
-        UIButton *b = [UIButton buttonWithType:UIButtonTypeSystem];
-        b.frame = CGRectMake(100 + (i - 5) * 40, y, 40, 48);
-        [b setTitle:[NSString stringWithFormat:@"%ld", (long)i] forState:UIControlStateNormal];
-        [b addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
-        [self addSubview:b];
-        value[i] = b;
-    }
-
-    NSInteger x = 100;
-    y += 48;
-
-    self.buttonSpace = [UIButton buttonWithType:UIButtonTypeSystem];
-    self.buttonSpace.frame = CGRectMake(x, y, 40, 48);
-    [self.buttonSpace setTitle:@"_" forState:UIControlStateNormal];
+    [self.dirNorth addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
+    [self.dirSouth addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
+    [self.dirEast addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
+    [self.dirWest addTarget:self action:@selector(clickDirection:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonValue0 addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonValue1 addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonValue2 addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonValue3 addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonValue4 addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonValue5 addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonValue6 addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonValue7 addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonValue8 addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonValue9 addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
     [self.buttonSpace addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
-    [self addSubview:self.buttonSpace];
-    x += 45;
-
-    self.buttonDot = [UIButton buttonWithType:UIButtonTypeSystem];
-    self.buttonDot.frame = CGRectMake(x, y, 40, 48);
-    [self.buttonDot setTitle:@"." forState:UIControlStateNormal];
     [self.buttonDot addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
-    [self addSubview:self.buttonDot];
-    x += 45;
-
-    self.buttonDegree = [UIButton buttonWithType:UIButtonTypeSystem];
-    self.buttonDegree.frame = CGRectMake(x, y, 40, 48);
-    [self.buttonDegree setTitle:@"°" forState:UIControlStateNormal];
     [self.buttonDegree addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
-    [self addSubview:self.buttonDegree];
-    x += 45;
-
-    self.buttonBackspace = [UIButton buttonWithType:UIButtonTypeSystem];
-    self.buttonBackspace.frame = CGRectMake(x, y, 40, 48);
-    [self.buttonBackspace setTitle:@"⌫" forState:UIControlStateNormal];
+    [self.buttonTick addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
+    [self.buttonDoubleTick addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
     [self.buttonBackspace addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
-    [self addSubview:self.buttonBackspace];
-    x += 45;
 
     [self addObservers];
-
-    return self;
 }
 
 - (void)clickDirection:(UIButton *)b
@@ -151,6 +115,8 @@
         new = _(@"compass-S");
     if (b == self.dirWest)
         new = _(@"compass-W");
+    else
+        NSAssert(NO, @"clickDirection");
     new = [NSString stringWithFormat:@"%@ ", new];
 
     UITextPosition *firstTP = [self.targetTextInput beginningOfDocument];
@@ -175,14 +141,28 @@
         return;
 
     NSString *new = nil;
-    for (NSInteger i = 0; i < 10; i++) {
-        if (value[i] == b) {
-            new = [NSString stringWithFormat:@"%ld", (long)i];
-            break;
-        }
-    }
-    if (new == nil)
-        return;
+    if (b == self.buttonValue0)
+        new = @"0";
+    else if (b == self.buttonValue1)
+        new = @"1";
+    else if (b == self.buttonValue2)
+        new = @"2";
+    else if (b == self.buttonValue3)
+        new = @"3";
+    else if (b == self.buttonValue4)
+        new = @"4";
+    else if (b == self.buttonValue5)
+        new = @"5";
+    else if (b == self.buttonValue6)
+        new = @"6";
+    else if (b == self.buttonValue7)
+        new = @"7";
+    else if (b == self.buttonValue8)
+        new = @"8";
+    else if (b == self.buttonValue9)
+        new = @"9";
+    else
+        NSAssert(NO, @"clickValue");
 
     [self textInput:self.targetTextInput replaceTextAtTextRange:selectedTextRange withString:new];
 }
@@ -198,12 +178,11 @@
 
     if (b == self.buttonSpace)
         [self textInput:self.targetTextInput replaceTextAtTextRange:selectedTextRange withString:@" "];
-    if (b == self.buttonDot)
+    else if (b == self.buttonDot)
         [self textInput:self.targetTextInput replaceTextAtTextRange:selectedTextRange withString:@"."];
-    if (b == self.buttonDegree)
+    else if (b == self.buttonDegree)
         [self textInput:self.targetTextInput replaceTextAtTextRange:selectedTextRange withString:@"° "];
-
-    if (b == self.buttonBackspace) {
+    else if (b == self.buttonBackspace) {
         if (selectedTextRange.empty == YES && selectedTextRange.start != 0) {
             NSRange r = [self rangeForTextRange:selectedTextRange];
             r.location--;
@@ -211,7 +190,8 @@
             selectedTextRange = [self textRangeForRange:r];
         }
         [self textInput:self.targetTextInput replaceTextAtTextRange:selectedTextRange withString:@""];
-    }
+    } else
+        NSAssert(NO, @"clickButton");
 }
 
 - (void)addObservers
@@ -275,6 +255,7 @@
     UITextRange *textRange = [self.targetTextInput textRangeFromPosition:startPos toPosition:endPos];
     return textRange;
 }
+
 //
 // Calculate the location and length -> create NSRange
 //

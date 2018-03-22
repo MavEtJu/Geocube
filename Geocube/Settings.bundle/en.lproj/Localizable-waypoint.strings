@@ -83,7 +83,7 @@
 "waypointaddviewcontroller-Coords" = "Coords";
 "waypointaddviewcontroller-Create this waypoint" = "Create this waypoint";
 "waypointaddviewcontroller-New waypoint data" = "New waypoint data";
-"waypointaddviewcontroller-Please enter the coordinates" = "Please enter the coordinates";
+"waypointaddviewcontroller-Please enter the coordinates.__Expected format: %@" = "waypointaddviewcontroller-Please enter the coordinates.\nExpected format: %@";
 "waypointaddviewcontroller-Short Name" = "Short Name";
 "waypointaddviewcontroller-Update waypoint" = "Update waypoint";
 "waypointaddviewcontroller-Update waypoint code" = "Update waypoint code";

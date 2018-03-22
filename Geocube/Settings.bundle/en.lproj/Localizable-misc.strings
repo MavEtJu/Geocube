@@ -128,13 +128,13 @@
 "Longitude" = "Longitude";
 
 /* Coordinates related */
-"coordinates-Degrees Minutes Seconds (S 12° 34′ 56″)" = "Degrees Minutes Seconds (S 12° 34′ 56″)";
-"coordinates-Decimal degrees cardinal (S 12.345678)" = "Degrees cardinal (S 12.345678)";
-"coordinates-Decimal degrees signed (-12.345678)" = "Degrees signed (-12.345678)";
-"coordinates-Degrees with decimal minutes (S 12° 34.567)" = "Degrees with decimal minutes (S 12° 34.567)";
-"coordinates-Open Location Code (2345678+9CF)" = "Open Location Code (2345678+9CF)";
-"coordinates-UTM (51H 326625E 6222609N)" = "UTM (51H 326625E 6222609N)";
-"coordinates-MGRS (51H 326625E 6222609N)" = "MGRS (51H 326625E 6222609N)";
+"coordinates-Degrees Minutes Seconds (%@)" = "Degrees Minutes Seconds (%@)";
+"coordinates-Decimal degrees cardinal (%@)" = "Degrees cardinal (%@)";
+"coordinates-Decimal degrees signed (%@)" = "Degrees signed (%@)";
+"coordinates-Degrees with decimal minutes (%@)" = "Degrees with decimal minutes (%@)";
+"coordinates-Open Location Code (%@)" = "Open Location Code (%@)";
+"coordinates-UTM (%@)" = "UTM (%@)";
+"coordinates-MGRS (%@)" = "MGRS (%@)";
 
 /* General */
 "Close" = "Close";
