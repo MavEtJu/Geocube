@@ -22,10 +22,22 @@
 @interface KeyboardCoordinateView : UIView
 
 @property (nonatomic, weak) UITextField <UITextInput> *targetTextInput;
+@property (nonatomic, retain) UIView *firstView;
+
+@property (nonatomic, retain) IBOutlet UIButton *buttonBackspace;
+@property (nonatomic, retain) IBOutlet UIButton *buttonValue0, *buttonValue1, *buttonValue2;
+@property (nonatomic, retain) IBOutlet UIButton *buttonValue3, *buttonValue4, *buttonValue5;
+@property (nonatomic, retain) IBOutlet UIButton *buttonValue6, *buttonValue7, *buttonValue8;
+@property (nonatomic, retain) IBOutlet UIButton *buttonValue9;
+
+- (instancetype)initWithFrame:(CGRect)frame nibName:(NSString *)nibName;
 
 - (void)addObservers;
 - (void)textInput:(UITextField <UITextInput> *)textInput replaceTextAtTextRange:(UITextRange *)textRange withString:(NSString *)string;
 - (UITextRange *)textRangeForRange:(NSRange)range;
 - (NSRange)rangeForTextRange:(UITextRange *)textRange;
+
+- (void)clickValue:(UIButton *)b;
+- (void)clickBackspace:(UIButton *)b;
 
 @end
