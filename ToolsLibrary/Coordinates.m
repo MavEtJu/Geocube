@@ -698,16 +698,16 @@
     NSRegularExpression *r5;
     switch (coordType) {
         case COORDINATES_DEGREES_DECIMALMINUTES:
-            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"[NESWnesw%@]%@", _(@"compass-NESW"), COORDS_DEGREES_DECIMALMINUTES_REGEXP] options:0 error:&e];
+            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"^[NESWnesw%@]%@$", _(@"compass-NESW"), COORDS_DEGREES_DECIMALMINUTES_REGEXP] options:0 error:&e];
             break;
         case COORDINATES_DECIMALDEGREES_SIGNED:
-            r5 = [NSRegularExpression regularExpressionWithPattern:COORDS_DECIMALDEGREES_SIGNED_REGEXP options:0 error:&e];
+            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"^%@$", COORDS_DECIMALDEGREES_SIGNED_REGEXP] options:0 error:&e];
             break;
         case COORDINATES_DECIMALDEGREES_CARDINAL:
-            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"[NESWnesw%@]%@", _(@"compass-NESW"), COORDS_DECIMALDEGREES_CARDINAL_REGEXP] options:0 error:&e];
+            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"^[NESWnesw%@]%@$", _(@"compass-NESW"), COORDS_DECIMALDEGREES_CARDINAL_REGEXP] options:0 error:&e];
             break;
         case COORDINATES_DEGREES_MINUTES_SECONDS:
-            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"[NESWnesw%@]%@", _(@"compass-NESW"), COORDS_DEGREES_MINUTES_SECONDS_REGEXP] options:0 error:&e];
+            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"^[NESWnesw%@]%@$", _(@"compass-NESW"), COORDS_DEGREES_MINUTES_SECONDS_REGEXP] options:0 error:&e];
             break;
         case COORDINATES_OPENLOCATIONCODE:
             r5 = [NSRegularExpression regularExpressionWithPattern:COORDS_OPENLOCATIONCODE_REGEXP options:0 error:&e];
@@ -777,6 +777,8 @@
             break;
         case COORDINATES_MGRS:
             rmgrs = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"(%@)", COORDS_MGRS_REGEXP] options:0 error:&e];
+            break;
+        case COORDINATES_MAX:
             break;
     }
 
@@ -882,16 +884,39 @@
     return floor(((lon + 180) / 360) * pow(2, zoom));
 }
 
++ (NSString *)coordinateExample:(CoordinatesType)coordType
+{
+    switch (coordType) {
+        case COORDINATES_DEGREES_DECIMALMINUTES:
+            return @"S 12° 34.567";
+        case COORDINATES_DECIMALDEGREES_SIGNED:
+            return @"-12.345678";
+        case COORDINATES_DECIMALDEGREES_CARDINAL:
+            return @"S 12.345678";
+        case COORDINATES_DEGREES_MINUTES_SECONDS:
+            return @"S 12° 34′ 56″";
+        case COORDINATES_OPENLOCATIONCODE:
+            return @"2345678+9CF";
+        case COORDINATES_UTM:
+            return @"51H 326625E 6222609N";
+        case COORDINATES_MGRS:
+            return @"51H 326625E 6222609N";
+        case COORDINATES_MAX:
+            return @"????";
+    }
+    return @"????";
+}
+
 + (NSArray<NSString *> *)coordinateTypes
 {
     NSArray<NSString *> *cts = @[
-        _(@"coordinates-Degrees with decimal minutes (S 12° 34.567)"),
-        _(@"coordinates-Decimal degrees signed (-12.345678)"),
-        _(@"coordinates-Decimal degrees cardinal (S 12.345678)"),
-        _(@"coordinates-Degrees Minutes Seconds (S 12° 34′ 56″)"),
-        _(@"coordinates-Open Location Code (2345678+9CF)"),
-        _(@"coordinates-UTM (51H 326625E 6222609N)"),
-        _(@"coordinates-MGRS (51H 326625E 6222609N)"),
+        [NSString stringWithFormat:_(@"coordinates-Degrees with decimal minutes (%@)"), [self coordinateExample:COORDINATES_DEGREES_DECIMALMINUTES]],
+        [NSString stringWithFormat:_(@"coordinates-Decimal degrees signed (%@)"), [self coordinateExample:COORDINATES_DECIMALDEGREES_SIGNED]],
+        [NSString stringWithFormat:_(@"coordinates-Decimal degrees cardinal (%@)"), [self coordinateExample:COORDINATES_DECIMALDEGREES_CARDINAL]],
+        [NSString stringWithFormat:_(@"coordinates-Degrees Minutes Seconds (%@)"), [self coordinateExample:COORDINATES_DEGREES_MINUTES_SECONDS]],
+        [NSString stringWithFormat:_(@"coordinates-Open Location Code (%@)"), [self coordinateExample:COORDINATES_OPENLOCATIONCODE]],
+        [NSString stringWithFormat:_(@"coordinates-UTM (%@)"), [self coordinateExample:COORDINATES_UTM]],
+        [NSString stringWithFormat:_(@"coordinates-MGRS (%@)"), [self coordinateExample:COORDINATES_MGRS]],
     ];
 
     NSAssert([cts count] == COORDINATES_MAX, @"Number of coordinateTypes is not the size of the array");

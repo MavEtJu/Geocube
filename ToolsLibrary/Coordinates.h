@@ -93,5 +93,6 @@ typedef NS_ENUM(NSInteger, CoordinatesType) {
 + (NSInteger)scanForWaypoints:(NSArray<NSString *> *)lines waypoint:(NSObject *)waypoint view:(UIViewController *)vc;
 
 + (NSArray<NSString *> *)coordinateTypes;
++ (NSString *)coordinateExample:(CoordinatesType)coordType;
 
 @end
