@@ -287,7 +287,7 @@ enum {
         CLLocationDegrees lon = [lons floatValue];
         if ([lonref isEqualToString:@"W"] == YES)
             lon = -lon;
-        self.exifCoordinates = [[Coordinates alloc] initWithLatitude:lat longitude:lon];
+        self.exifCoordinates = [[Coordinates alloc] initWithDegrees:lat longitude:lon];
         [self.lmi enableItem:menuAddNewWaypoint];
     }
 }
