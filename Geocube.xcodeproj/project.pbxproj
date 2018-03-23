@@ -636,6 +636,8 @@
 		E8607F191F8ADA91004E273C /* cache - geocacher - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8607F161F8ADA91004E273C /* cache - geocacher - 30x30@3x.png */; };
 		E8607F1B1F8B1328004E273C /* Launch Screen-Landscape.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8607F1A1F8B1328004E273C /* Launch Screen-Landscape.storyboard */; };
 		E860CA051F81F84700C66AD8 /* FilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E860CA041F81F84700C66AD8 /* FilterButton.m */; };
+		E864BBA22064EAE60053B62D /* KeyboardCoordinateDecimalDegreesCardinal.xib in Resources */ = {isa = PBXBuildFile; fileRef = E864BB9F2064EAE50053B62D /* KeyboardCoordinateDecimalDegreesCardinal.xib */; };
+		E864BBA32064EAE60053B62D /* KeyboardCoordinateDecimalDegreesCardinal.m in Sources */ = {isa = PBXBuildFile; fileRef = E864BBA02064EAE50053B62D /* KeyboardCoordinateDecimalDegreesCardinal.m */; };
 		E86C4AAF1E321822004526E2 /* CompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C4AAD1E321822004526E2 /* CompassViewController.m */; };
 		E86C4AB01E321822004526E2 /* CompassView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86C4AAE1E321822004526E2 /* CompassView.xib */; };
 		E86D42751EF5484E00E4509F /* LocationlessTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86D42731EF5484E00E4509F /* LocationlessTableViewCell.xib */; };
@@ -728,6 +730,8 @@
 		E8CB8919205E7ACE00DD55DE /* UTM2LatLon.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB8913205E7ACE00DD55DE /* UTM2LatLon.m */; };
 		E8CB891D20606D4800DD55DE /* KeyboardCoordinateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB891C20606D4800DD55DE /* KeyboardCoordinateView.m */; };
 		E8CB891F206279B500DD55DE /* KeyboardCoordinateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8CB891E206279B500DD55DE /* KeyboardCoordinateView.xib */; };
+		E8CB89222063CCC400DD55DE /* KeyboardCoordinateDecimalDegreesSigned.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB89212063CCC400DD55DE /* KeyboardCoordinateDecimalDegreesSigned.m */; };
+		E8CB89242063CCEA00DD55DE /* KeyboardCoordinateDecimalDegreesSigned.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8CB89232063CCE900DD55DE /* KeyboardCoordinateDecimalDegreesSigned.xib */; };
 		E8D49D2F1F00F9C1005EB7BE /* container size - nano - 35x11.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */; };
 		E8D49D301F00F9C1005EB7BE /* container size - nano - 35x11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */; };
 		E8D49D311F00F9C1005EB7BE /* container size - nano - 35x11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2E1F00F9C1005EB7BE /* container size - nano - 35x11@3x.png */; };
@@ -1857,6 +1861,9 @@
 		E8607F1A1F8B1328004E273C /* Launch Screen-Landscape.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen-Landscape.storyboard"; sourceTree = "<group>"; };
 		E860CA031F81F84700C66AD8 /* FilterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterButton.h; path = Filters/FilterButton.h; sourceTree = "<group>"; };
 		E860CA041F81F84700C66AD8 /* FilterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterButton.m; path = Filters/FilterButton.m; sourceTree = "<group>"; };
+		E864BB9F2064EAE50053B62D /* KeyboardCoordinateDecimalDegreesCardinal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KeyboardCoordinateDecimalDegreesCardinal.xib; path = ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesCardinal.xib; sourceTree = "<group>"; };
+		E864BBA02064EAE50053B62D /* KeyboardCoordinateDecimalDegreesCardinal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardCoordinateDecimalDegreesCardinal.m; path = ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesCardinal.m; sourceTree = "<group>"; };
+		E864BBA12064EAE60053B62D /* KeyboardCoordinateDecimalDegreesCardinal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardCoordinateDecimalDegreesCardinal.h; path = ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesCardinal.h; sourceTree = "<group>"; };
 		E86C4AAC1E321822004526E2 /* CompassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassViewController.h; sourceTree = "<group>"; };
 		E86C4AAD1E321822004526E2 /* CompassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassViewController.m; sourceTree = "<group>"; };
 		E86C4AAE1E321822004526E2 /* CompassView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompassView.xib; sourceTree = "<group>"; };
@@ -1963,6 +1970,9 @@
 		E8CB891B20606D4700DD55DE /* KeyboardCoordinateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardCoordinateView.h; path = ToolsLibrary/Keyboards/KeyboardCoordinateView.h; sourceTree = "<group>"; };
 		E8CB891C20606D4800DD55DE /* KeyboardCoordinateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardCoordinateView.m; path = ToolsLibrary/Keyboards/KeyboardCoordinateView.m; sourceTree = "<group>"; };
 		E8CB891E206279B500DD55DE /* KeyboardCoordinateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = KeyboardCoordinateView.xib; path = ToolsLibrary/Keyboards/KeyboardCoordinateView.xib; sourceTree = "<group>"; };
+		E8CB89202063CCC400DD55DE /* KeyboardCoordinateDecimalDegreesSigned.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KeyboardCoordinateDecimalDegreesSigned.h; path = ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesSigned.h; sourceTree = "<group>"; };
+		E8CB89212063CCC400DD55DE /* KeyboardCoordinateDecimalDegreesSigned.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KeyboardCoordinateDecimalDegreesSigned.m; path = ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesSigned.m; sourceTree = "<group>"; };
+		E8CB89232063CCE900DD55DE /* KeyboardCoordinateDecimalDegreesSigned.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KeyboardCoordinateDecimalDegreesSigned.xib; path = ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesSigned.xib; sourceTree = "<group>"; };
 		E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11.png"; path = "images/containers/container size - nano - 35x11.png"; sourceTree = "<group>"; };
 		E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11@2x.png"; path = "images/containers/container size - nano - 35x11@2x.png"; sourceTree = "<group>"; };
 		E8D49D2E1F00F9C1005EB7BE /* container size - nano - 35x11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11@3x.png"; path = "images/containers/container size - nano - 35x11@3x.png"; sourceTree = "<group>"; };
@@ -4040,6 +4050,12 @@
 				E8CB891B20606D4700DD55DE /* KeyboardCoordinateView.h */,
 				E8CB891C20606D4800DD55DE /* KeyboardCoordinateView.m */,
 				E8CB891E206279B500DD55DE /* KeyboardCoordinateView.xib */,
+				E8CB89202063CCC400DD55DE /* KeyboardCoordinateDecimalDegreesSigned.h */,
+				E8CB89212063CCC400DD55DE /* KeyboardCoordinateDecimalDegreesSigned.m */,
+				E8CB89232063CCE900DD55DE /* KeyboardCoordinateDecimalDegreesSigned.xib */,
+				E864BBA12064EAE60053B62D /* KeyboardCoordinateDecimalDegreesCardinal.h */,
+				E864BBA02064EAE50053B62D /* KeyboardCoordinateDecimalDegreesCardinal.m */,
+				E864BB9F2064EAE50053B62D /* KeyboardCoordinateDecimalDegreesCardinal.xib */,
 			);
 			name = Keyboards;
 			sourceTree = "<group>";
@@ -4519,6 +4535,7 @@
 				E85DC67A1F95CFD2007556D5 /* menu icon - local night - 40x40@3x.png in Resources */,
 				E85BA8901F5449F5008E708F /* Beeper.wav in Resources */,
 				E82E663A1DA07A8700CFBDED /* icons - smiley - 15x15.png in Resources */,
+				E864BBA22064EAE60053B62D /* KeyboardCoordinateDecimalDegreesCardinal.xib in Resources */,
 				E82287201F8A2E1A00631380 /* GCTableViewCellSwitch.xib in Resources */,
 				E82E67681DA07D0200CFBDED /* attributes - 62.png in Resources */,
 				E822892E1F8A40CC00631380 /* MHTabBarIndicator@3x.png in Resources */,
@@ -4548,6 +4565,7 @@
 				E8F570B81B3FF4AA003F020C /* Settings.bundle in Resources */,
 				E82E66691DA07C4900CFBDED /* container flag - owner - 24x24@2x.png in Resources */,
 				E8FEDE901DA7AD67007C756B /* map - own overlay - 18x18@2x.png in Resources */,
+				E8CB89242063CCEA00DD55DE /* KeyboardCoordinateDecimalDegreesSigned.xib in Resources */,
 				E8B773341F9479AD0060B415 /* menu icon - global default - 27x27@3x.png in Resources */,
 				E82E65FE1DA079E500CFBDED /* log - enabled - 30x30.png in Resources */,
 				E8FEDEB91DA887A7007C756B /* image - nil - 1x1@3x.png in Resources */,
@@ -5023,6 +5041,7 @@
 				E82288CC1F8A358700631380 /* NVHTarFile.m in Sources */,
 				E823442B1EECDFB300D2CDFD /* FilterDistanceTableViewCell.m in Sources */,
 				E82286F01F8A2CE300631380 /* WaypointManager.m in Sources */,
+				E864BBA32064EAE60053B62D /* KeyboardCoordinateDecimalDegreesCardinal.m in Sources */,
 				E82344BD1EECE0E800D2CDFD /* SettingsAccountsViewController.m in Sources */,
 				E82344631EECE06E00D2CDFD /* TrackablesInventoryViewController.m in Sources */,
 				E82288A81F8A356300631380 /* PropertyUtil.m in Sources */,
@@ -5153,6 +5172,7 @@
 				E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */,
 				E82286911F8A2BD600631380 /* dbLog.m in Sources */,
 				E822881E1F8A347A00631380 /* CXMLNode_PrivateExtensions.m in Sources */,
+				E8CB89222063CCC400DD55DE /* KeyboardCoordinateDecimalDegreesSigned.m in Sources */,
 				E82288171F8A347A00631380 /* CXHTMLDocument.m in Sources */,
 				E82343FC1EECDF4400D2CDFD /* WaypointWaypointsViewController.m in Sources */,
 				E82344011EECDF6C00D2CDFD /* WaypointTableViewCell.m in Sources */,
