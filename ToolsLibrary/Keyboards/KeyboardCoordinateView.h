@@ -30,6 +30,8 @@
 @property (nonatomic, retain) IBOutlet UIButton *buttonValue6, *buttonValue7, *buttonValue8;
 @property (nonatomic, retain) IBOutlet UIButton *buttonValue9;
 
++ (KeyboardCoordinateView *)pickKeyboard:(CoordinatesType)coordType;
+
 - (instancetype)initWithFrame:(CGRect)frame nibName:(NSString *)nibName;
 
 - (void)addObservers;

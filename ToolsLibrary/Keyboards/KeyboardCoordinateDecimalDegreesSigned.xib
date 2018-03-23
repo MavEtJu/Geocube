@@ -61,7 +61,7 @@
                     <state key="normal" title="."/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MIH-g1-1Re">
-                    <rect key="frame" x="180.5" y="96" width="30" height="30"/>
+                    <rect key="frame" x="230.5" y="96" width="30" height="30"/>
                     <state key="normal" title="⌫"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vXQ-pG-7qw">
@@ -93,7 +93,7 @@
                 <constraint firstItem="Xbv-c4-RPP" firstAttribute="centerY" secondItem="vXQ-pG-7qw" secondAttribute="centerY" id="fr3-gD-RJB"/>
                 <constraint firstItem="vXQ-pG-7qw" firstAttribute="centerX" secondItem="AUW-Vd-Q5f" secondAttribute="centerX" id="gjG-qV-XWL"/>
                 <constraint firstItem="yd3-v8-v4J" firstAttribute="leading" secondItem="kee-iT-10Q" secondAttribute="trailing" constant="20" id="lrt-N6-25N"/>
-                <constraint firstItem="MIH-g1-1Re" firstAttribute="centerX" secondItem="gLJ-ry-c1V" secondAttribute="centerX" id="tfA-NK-3Mf"/>
+                <constraint firstItem="MIH-g1-1Re" firstAttribute="centerX" secondItem="bJW-d9-WJh" secondAttribute="centerX" id="tfA-NK-3Mf"/>
                 <constraint firstItem="bJW-d9-WJh" firstAttribute="leading" secondItem="gLJ-ry-c1V" secondAttribute="trailing" constant="20" id="vEQ-7c-SWf"/>
                 <constraint firstItem="BAv-Hl-Ijb" firstAttribute="centerX" secondItem="kee-iT-10Q" secondAttribute="centerX" id="xhs-7p-Ldb"/>
                 <constraint firstItem="BAv-Hl-Ijb" firstAttribute="centerY" secondItem="AUW-Vd-Q5f" secondAttribute="centerY" id="y02-Ya-AsJ"/>

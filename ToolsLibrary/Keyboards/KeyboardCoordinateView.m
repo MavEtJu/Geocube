@@ -194,5 +194,27 @@
     [self.buttonBackspace addTarget:self action:@selector(clickBackspace:) forControlEvents:UIControlEventTouchDown];
 }
 
++ (KeyboardCoordinateView *)pickKeyboard:(CoordinatesType)coordType
+{
+    switch (coordType) {
+        case COORDINATES_DECIMALDEGREES_CARDINAL:
+            return [[KeyboardCoordinateDecimalDegreesCardinal alloc] initWithFrame:CGRectZero];
+        case COORDINATES_DECIMALDEGREES_SIGNED:
+            return [[KeyboardCoordinateDecimalDegreesSigned alloc] initWithFrame:CGRectZero];
+        case COORDINATES_DEGREES_MINUTES_SECONDS:
+            // return [[KeyboardCoordinateDegreesMinutesSeconds alloc] initWithFrame:CGRectZero];
+        case COORDINATES_DEGREES_DECIMALMINUTES:
+            // return [[KeyboardCoordinateDegreesDecimalMinutes alloc] initWithFrame:CGRectZero];
+        case COORDINATES_OPENLOCATIONCODE:
+            // return [[KeyboardCoordinateOpenLocationCode alloc] initWithFrame:CGRectZero];
+        case COORDINATES_UTM:
+            // return [[KeyboardCoordinateUTM alloc] initWithFrame:CGRectZero];
+        case COORDINATES_MGRS:
+            // return [[KeyboardCoordinateMGRS alloc] initWithFrame:CGRectZero];
+        case COORDINATES_MAX:
+            NSAssert(FALSE, @"coordType");
+    }
+    return nil;
+}
 
 @end
