@@ -21,6 +21,8 @@
 
 @interface KeyboardCoordinateView ()
 
+@property (nonatomic) BOOL isLatitude;
+
 @end
 
 @implementation KeyboardCoordinateView
@@ -192,6 +194,11 @@
     [self.buttonValue8 addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
     [self.buttonValue9 addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
     [self.buttonBackspace addTarget:self action:@selector(clickBackspace:) forControlEvents:UIControlEventTouchDown];
+}
+
+- (void)showsLatitude:(BOOL)l
+{
+    self.isLatitude = l;
 }
 
 + (KeyboardCoordinateView *)pickKeyboard:(CoordinatesType)coordType

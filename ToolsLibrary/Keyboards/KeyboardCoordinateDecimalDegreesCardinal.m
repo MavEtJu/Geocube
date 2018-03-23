@@ -30,7 +30,8 @@
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
-    return [self initWithFrame:frame nibName:@"KeyboardCoordinateDecimalDegreesCardinal"];
+    self = [self initWithFrame:frame nibName:@"KeyboardCoordinateDecimalDegreesCardinal"];
+    return self;
 }
 
 - (void)awakeFromNib
@@ -43,6 +44,18 @@
     [self.buttonDirSW addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
 
     [self addObservers];
+}
+
+- (void)showsLatitude:(BOOL)l
+{
+    [super showsLatitude:l];
+    if (self.isLatitude == YES) {
+        [self.buttonDirNE setTitle:@"N" forState:UIControlStateNormal];
+        [self.buttonDirSW setTitle:@"S" forState:UIControlStateNormal];
+    } else {
+        [self.buttonDirNE setTitle:@"E" forState:UIControlStateNormal];
+        [self.buttonDirSW setTitle:@"W" forState:UIControlStateNormal];
+    }
 }
 
 - (void)clickButton:(UIButton *)b
@@ -58,11 +71,11 @@
         [self textInput:self.targetTextInput replaceTextAtTextRange:selectedTextRange withString:@"."];
     else if (b == self.buttonSpace)
         [self textInput:self.targetTextInput replaceTextAtTextRange:selectedTextRange withString:@" "];
-    else if (b == self.buttonDirNE)
-        [self textInput:self.targetTextInput replaceTextAtTextRange:selectedTextRange withString:@"(NE)"];
-    else if (b == self.buttonDirSW)
-        [self textInput:self.targetTextInput replaceTextAtTextRange:selectedTextRange withString:@"(SW)"];
-    else
+    else if (b == self.buttonDirNE) {
+        [self textInput:self.targetTextInput replaceTextAtTextRange:[self textRangeForRange:NSMakeRange(0, 1)] withString:(self.isLatitude == YES) ? _(@"N") : _(@"E")];
+    } else if (b == self.buttonDirSW) {
+        [self textInput:self.targetTextInput replaceTextAtTextRange:[self textRangeForRange:NSMakeRange(0, 1)] withString:(self.isLatitude == YES) ? _(@"S") : _(@"W")];
+    } else
         NSAssert(NO, @"clickButton");
 }
 

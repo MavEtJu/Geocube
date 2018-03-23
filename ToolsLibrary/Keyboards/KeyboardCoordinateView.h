@@ -22,7 +22,7 @@
 @interface KeyboardCoordinateView : UIView
 
 @property (nonatomic, weak) UITextField <UITextInput> *targetTextInput;
-@property (nonatomic, retain) UIView *firstView;
+@property (nonatomic, retain) KeyboardCoordinateView *firstView;
 
 @property (nonatomic, retain) IBOutlet UIButton *buttonBackspace;
 @property (nonatomic, retain) IBOutlet UIButton *buttonValue0, *buttonValue1, *buttonValue2;
@@ -30,9 +30,13 @@
 @property (nonatomic, retain) IBOutlet UIButton *buttonValue6, *buttonValue7, *buttonValue8;
 @property (nonatomic, retain) IBOutlet UIButton *buttonValue9;
 
+@property (nonatomic, readonly) BOOL isLatitude;
+
 + (KeyboardCoordinateView *)pickKeyboard:(CoordinatesType)coordType;
 
 - (instancetype)initWithFrame:(CGRect)frame nibName:(NSString *)nibName;
+
+- (void)showsLatitude:(BOOL)l;
 
 - (void)addObservers;
 - (void)textInput:(UITextField <UITextInput> *)textInput replaceTextAtTextRange:(UITextRange *)textRange withString:(NSString *)string;
