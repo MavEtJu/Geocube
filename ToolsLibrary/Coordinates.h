@@ -34,12 +34,18 @@ typedef NS_ENUM(NSInteger, CoordinatesType) {
     COORDINATES_MAX,
 };
 
-- (instancetype)initWithLatitude:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude;    // -34.02787 151.07357
 - (instancetype)initWithCoordinates:(CLLocationCoordinate2D)coor;                                       // { -34.02787, 151.07357 }
-- (instancetype)initWithStringLatitude:(NSString *)latitude longitude:(NSString *)longitude;            // S 34 1.672, E 151 4.414
+- (instancetype)initWithDegrees:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude;     // -34.02787 151.07357
+
+- (instancetype)initWithDecimalDegreesSignedLatitude:(NSString *)latitude longitude:(NSString *)longitude;   // -34.02787 151.07357
+- (instancetype)initWithDecimalDegreesCardinalLatitude:(NSString *)latitude longitude:(NSString *)longitude; // S 34.02787 E 151.07357
+- (instancetype)initWitDegreesMinutesSecondsLatitude:(NSString *)latitude longitude:(NSString *)longitude;   // S 34 27 57 E 151 7 57
+- (instancetype)initWitDegreesDecimalMinutesLatitude:(NSString *)latitude longitude:(NSString *)longitude;   // S 34 2.787 E 151 7.357
 - (instancetype)initWithUTM:(NSString *)utm;
 - (instancetype)initWithMGRS:(NSString *)mgrs;
 - (instancetype)initWithOpenLocationCode:(NSString *)olc;
+
++ (Coordinates *)parseCoordinatesWithString:(NSString *)line coordType:(CoordinatesType)coordType;
 
 - (CLLocationDegrees)latitude;
 - (CLLocationDegrees)longitude;

@@ -32,16 +32,16 @@
 
 @implementation Coordinates
 
-#define COORDS_DEGREES_DECIMALMINUTES_REGEXP @" *\\d{1,3}[º°]? +\\d{1,2}\\.\\d{1,3}['′]?"
-#define COORDS_DECIMALDEGREES_SIGNED_REGEXP @" *-?\\d{1,3}\\.\\d+"
-#define COORDS_DECIMALDEGREES_CARDINAL_REGEXP @" *\\-?\\d{1,3}\\.\\d+"
-#define COORDS_DEGREES_MINUTES_SECONDS_REGEXP @" *\\d{1,3}[º°]? +\\d{1,2}['′]? +\\d{1,2}[\"″]?"
-#define COORDS_OPENLOCATIONCODE_REGEXP @"[023456789CFGHJMPQRVWX]+\\+[23456789CFGHJMPQRVWX]*"
-#define COORDS_UTM_REGEXP @"\\d{2}[ACDEFGHJKLMNPQRSTUVWXZ] \\d+ \\d+"
-#define COORDS_MGRS_REGEXP @"\\d{1,2}[^ABIOYZabioyz][A-Za-z]{2} +\\d+ +\\d+"
+#define COORDS_DEGREES_DECIMALMINUTES_REGEXP @"(\\d{1,3})[º°]? +(\\d{1,2}\\.\\d{1,3})['′]?"
+#define COORDS_DECIMALDEGREES_SIGNED_REGEXP @"(-?\\d{1,3}\\.\\d+)"
+#define COORDS_DECIMALDEGREES_CARDINAL_REGEXP @"(\\d{1,3}\\.\\d+)"
+#define COORDS_DEGREES_MINUTES_SECONDS_REGEXP @"(\\d{1,3})[º°]? +(\\d{1,2})['′]? +(\\d{1,2})[\"″]?"
+#define COORDS_OPENLOCATIONCODE_REGEXP @"([023456789CFGHJMPQRVWX]+\\+[23456789CFGHJMPQRVWX]*)"
+#define COORDS_UTM_REGEXP @"(\\d{2}[ACDEFGHJKLMNPQRSTUVWXZ] \\d+ \\d+)"
+#define COORDS_MGRS_REGEXP @"(\\d{1,2}[^ABIOYZabioyz][A-Za-z]{2} +\\d+ +\\d+)"
 
 /// Initialize a Coordinates object with a lat and a lon value
-- (instancetype)initWithLatitude:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude       // -34.02787 151.07357
+- (instancetype)initWithDegrees:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude
 {
     self = [super init];
     self.coords = CLLocationCoordinate2DMake(latitude, longitude);
@@ -56,12 +56,34 @@
 }
 
 /// init with a S 34 1.672, E 151 4.414 string
-- (instancetype)initWithStringLatitude:(NSString *)latitude longitude:(NSString *)longitude // S 34 1.672, E 151 4.414
+- (instancetype)initWitDegreesDecimalMinutesLatitude:(NSString *)latitude longitude:(NSString *)longitude // S 34 1.672, E 151 4.414
 {
     self = [super init];
-
     self.coords = CLLocationCoordinate2DMake([Coordinates degreesDecimalMinutes2degrees:latitude], [Coordinates degreesDecimalMinutes2degrees:longitude]);
+    return self;
+}
 
+// -34.02787 151.07357
+- (instancetype)initWithDecimalDegreesSignedLatitude:(NSString *)latitude longitude:(NSString *)longitude
+{
+    self = [super init];
+    self.coords = CLLocationCoordinate2DMake([latitude doubleValue], [longitude doubleValue]);
+    return self;
+}
+
+// S 34.02787 E 151.07357
+- (instancetype)initWithDecimalDegreesCardinalLatitude:(NSString *)latitude longitude:(NSString *)longitude
+{
+    self = [super init];
+    self.coords = [Coordinates parseCoordinatesWithString:[NSString stringWithFormat:@"%@ %@", latitude, longitude]  coordType:COORDINATES_DECIMALDEGREES_CARDINAL].coords;
+    return self;
+}
+
+// S 34 27 57 E 151 7 57
+- (instancetype)initWitDegreesMinutesSecondsLatitude:(NSString *)latitude longitude:(NSString *)longitude
+{
+    self = [super init];
+    self.coords = [Coordinates parseCoordinatesWithString:[NSString stringWithFormat:@"%@ %@", latitude, longitude]  coordType:COORDINATES_DEGREES_MINUTES_SECONDS].coords;
     return self;
 }
 
@@ -85,8 +107,8 @@
 }
 - (instancetype)initWithOpenLocationCode:(NSString *)olc
 {
+    NSAssert(FALSE, @"");
     self = [super init];
-
     return self;
 }
 
@@ -558,7 +580,7 @@
 }
 + (NSString *)niceCoordinates:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude coordType:(CoordinatesType)coordType
 {
-    Coordinates *co = [[Coordinates alloc] initWithLatitude:latitude longitude:longitude];
+    Coordinates *co = [[Coordinates alloc] initWithDegrees:latitude longitude:longitude];
     return [co niceCoordinates:coordType];
 }
 
@@ -684,6 +706,143 @@
     if (d2->longitude >  180) d2->longitude =  180;
 }
 
++ (Coordinates *)parseCoordinatesWithMatch:(NSTextCheckingResult *)match line:(NSString *)line coordType:(CoordinatesType)coordType
+{
+    if (match == nil)
+        return nil;
+
+    switch (coordType) {
+        case COORDINATES_DEGREES_DECIMALMINUTES: {
+
+            NSRange range = [match rangeAtIndex:1];
+            NSString *NS = [line substringWithRange:range];
+            range = [match rangeAtIndex:2];
+            NSInteger NSdegrees = [[line substringWithRange:range] integerValue];
+            range = [match rangeAtIndex:3];
+            double NSminutes = [[line substringWithRange:range] doubleValue];
+            double NSvalue = NSdegrees + NSminutes / 60.0;
+            if ([[[NS uppercaseString] substringToIndex:1] isEqualToString:@"S"] == YES)
+                NSvalue = -NSvalue;
+
+            range = [match rangeAtIndex:4];
+            NSString *EW = [line substringWithRange:range];
+            range = [match rangeAtIndex:5];
+            NSInteger EWdegrees = [[line substringWithRange:range] integerValue];
+            range = [match rangeAtIndex:6];
+            double EWminutes = [[line substringWithRange:range] doubleValue];
+            double EWvalue = EWdegrees + EWminutes / 60.0;
+            if ([[[EW uppercaseString] substringToIndex:1] isEqualToString:@"W"] == YES)
+                EWvalue = -EWvalue;
+
+            Coordinates *c = [[Coordinates alloc] initWithDegrees:NSvalue longitude:EWvalue];
+            NSLog(@"Coordinates: '%f' '%f'", NSvalue, EWvalue);
+            return c;
+        }
+
+        case COORDINATES_DECIMALDEGREES_SIGNED: {
+            NSRange range = [match rangeAtIndex:1];
+            double NSvalue = [[line substringWithRange:range] doubleValue] ;
+            range = [match rangeAtIndex:2];
+            double EWvalue = [[line substringWithRange:range] doubleValue] ;
+
+            Coordinates *c = [[Coordinates alloc] initWithDegrees:NSvalue longitude:EWvalue];
+            NSLog(@"Coordinates: '%f' '%f'", NSvalue, EWvalue);
+            return c;
+        }
+
+        case COORDINATES_DECIMALDEGREES_CARDINAL: {
+            NSRange range = [match rangeAtIndex:1];
+            NSString *NS = [line substringWithRange:range];
+            range = [match rangeAtIndex:2];
+            double NSvalue = [[line substringWithRange:range] doubleValue];
+            if ([[[NS uppercaseString] substringToIndex:1] isEqualToString:@"S"] == YES)
+                NSvalue = -NSvalue;
+
+            range = [match rangeAtIndex:3];
+            NSString *EW = [line substringWithRange:range];
+            range = [match rangeAtIndex:4];
+            double EWvalue = [[line substringWithRange:range] doubleValue];
+            if ([[[EW uppercaseString] substringToIndex:1] isEqualToString:@"W"] == YES)
+                EWvalue = -EWvalue;
+
+            Coordinates *c = [[Coordinates alloc] initWithDegrees:NSvalue longitude:EWvalue];
+            NSLog(@"Coordinates: '%f' '%f'", NSvalue, EWvalue);
+            return c;
+        }
+
+        case COORDINATES_DEGREES_MINUTES_SECONDS: {
+            NSRange range = [match rangeAtIndex:1];
+            NSString *NS = [line substringWithRange:range];
+            range = [match rangeAtIndex:2];
+            NSInteger NSdegrees = [[line substringWithRange:range] integerValue];
+            range = [match rangeAtIndex:3];
+            NSInteger NSminutes = [[line substringWithRange:range] doubleValue];
+            range = [match rangeAtIndex:4];
+            NSInteger NSseconds = [[line substringWithRange:range] doubleValue];
+            double NSvalue = NSdegrees + NSminutes / 60.0 + NSseconds / 3600.0;
+            if ([[[NS uppercaseString] substringToIndex:1] isEqualToString:@"S"] == YES)
+                NSvalue = -NSvalue;
+
+            range = [match rangeAtIndex:5];
+            NSString *EW = [line substringWithRange:range];
+            range = [match rangeAtIndex:6];
+            NSInteger EWdegrees = [[line substringWithRange:range] integerValue];
+            range = [match rangeAtIndex:7];
+            NSInteger EWminutes = [[line substringWithRange:range] doubleValue];
+            range = [match rangeAtIndex:4];
+            NSInteger EWseconds = [[line substringWithRange:range] doubleValue];
+            double EWvalue = EWdegrees + EWminutes / 60.0 + EWseconds / 3600.0;
+            if ([[[EW uppercaseString] substringToIndex:1] isEqualToString:@"W"] == YES)
+                EWvalue = -EWvalue;
+
+            Coordinates *c = [[Coordinates alloc] initWithDegrees:NSvalue longitude:EWvalue];
+            NSLog(@"Coordinates: '%f' '%f'", NSvalue, EWvalue);
+            return c;
+        }
+
+        case COORDINATES_OPENLOCATIONCODE: {
+            NSRange range = [match rangeAtIndex:1];
+            NSString *s = [line substringWithRange:range];
+
+            OLCConvertor *oc = [[OLCConvertor alloc] init];
+            OLCArea *a = [oc decode:s];
+            Coordinates *c = nil;
+            c = [[Coordinates alloc] initWithDegrees:a.latitudeCenter longitude:a.longitudeCenter];
+            NSLog(@"OpenLocationCode: '%@'", s);
+            return c;
+        }
+
+        case COORDINATES_UTM: {
+            NSRange range = [match rangeAtIndex:1];
+            NSString *s = [line substringWithRange:range];
+
+            UTM2LatLon *utm2ll = [[UTM2LatLon alloc] init];
+            CLLocationDegrees lat, lon;
+            [utm2ll convertUTM:s ToLatitude:&lat Longitude:&lon];
+            Coordinates *c = [[Coordinates alloc] initWithDegrees:lat longitude:lon];
+            NSLog(@"UTM: '%@'", s);
+            return c;
+        }
+
+        case COORDINATES_MGRS: {
+            NSRange range = [match rangeAtIndex:1];
+            NSString *s = [line substringWithRange:range];
+
+            MGRS2LatLon *mgrs2ll = [[MGRS2LatLon alloc] init];
+            CLLocationDegrees lat, lon;
+            [mgrs2ll convertMGRS:s ToLatitude:&lat Longitude:&lon];
+            Coordinates *c = [[Coordinates alloc] initWithDegrees:lat longitude:lon];
+            NSLog(@"MGRS: '%@'", s);
+            return c;
+        }
+
+        case COORDINATES_MAX:
+            NSAssert(FALSE, @"parseCoordinatesWithMatch");
+    }
+
+    return nil;
+}
+
 /// Check if a string matches a set of coordinates like ^[NESW] \d{1,3}º? ?\d{1,2}\.\d{1,3
 + (BOOL)checkCoordinate:(NSString *)text
 {
@@ -698,16 +857,16 @@
     NSRegularExpression *r5;
     switch (coordType) {
         case COORDINATES_DEGREES_DECIMALMINUTES:
-            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"^[NESWnesw%@]%@$", _(@"compass-NESW"), COORDS_DEGREES_DECIMALMINUTES_REGEXP] options:0 error:&e];
+            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"^[NESWnesw%@] *%@ +[NESWnesw%@] *%@$", _(@"compass-NESW"), COORDS_DEGREES_DECIMALMINUTES_REGEXP, _(@"compass-NESW"), COORDS_DEGREES_DECIMALMINUTES_REGEXP] options:0 error:&e];
             break;
         case COORDINATES_DECIMALDEGREES_SIGNED:
-            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"^%@$", COORDS_DECIMALDEGREES_SIGNED_REGEXP] options:0 error:&e];
+            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"^ *%@ +%@$", COORDS_DECIMALDEGREES_SIGNED_REGEXP, COORDS_DECIMALDEGREES_SIGNED_REGEXP] options:0 error:&e];
             break;
         case COORDINATES_DECIMALDEGREES_CARDINAL:
-            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"^[NESWnesw%@]%@$", _(@"compass-NESW"), COORDS_DECIMALDEGREES_CARDINAL_REGEXP] options:0 error:&e];
+            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"^[NESWnesw%@] *%@ +[NESWnesw%@] *%@$", _(@"compass-NESW"), COORDS_DECIMALDEGREES_CARDINAL_REGEXP, _(@"compass-NESW"), COORDS_DECIMALDEGREES_CARDINAL_REGEXP] options:0 error:&e];
             break;
         case COORDINATES_DEGREES_MINUTES_SECONDS:
-            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"^[NESWnesw%@]%@$", _(@"compass-NESW"), COORDS_DEGREES_MINUTES_SECONDS_REGEXP] options:0 error:&e];
+            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"^[NESWnesw%@] *%@ +[NESWnesw%@] *%@$", _(@"compass-NESW"), COORDS_DEGREES_MINUTES_SECONDS_REGEXP, _(@"compass-NESW"), COORDS_DEGREES_MINUTES_SECONDS_REGEXP] options:0 error:&e];
             break;
         case COORDINATES_OPENLOCATIONCODE:
             r5 = [NSRegularExpression regularExpressionWithPattern:COORDS_OPENLOCATIONCODE_REGEXP options:0 error:&e];
@@ -752,97 +911,37 @@
     NSError *e = nil;
     __block NSInteger found = 0;
 
-    NSRegularExpression *rnsew = nil;
-    NSRegularExpression *rolc = nil;
-    NSRegularExpression *rutm = nil;
-    NSRegularExpression *rmgrs = nil;
+    NSRegularExpression *r = nil;
     switch (coordType) {
         case COORDINATES_DEGREES_DECIMALMINUTES:
-            rnsew = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([NSns%@]%@) +([EWew%@]%@)", _(@"compass-NSns"), COORDS_DEGREES_DECIMALMINUTES_REGEXP, _(@"compass-EWew"), COORDS_DEGREES_DECIMALMINUTES_REGEXP] options:0 error:&e];
+            r = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([NSns%@]) *%@ +([EWew%@]) *%@", _(@"compass-NSns"), COORDS_DEGREES_DECIMALMINUTES_REGEXP, _(@"compass-EWew"), COORDS_DEGREES_DECIMALMINUTES_REGEXP] options:0 error:&e];
             break;
         case COORDINATES_DECIMALDEGREES_SIGNED:
-            rnsew = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"(%@) +(%@)", COORDS_DECIMALDEGREES_SIGNED_REGEXP, COORDS_DECIMALDEGREES_SIGNED_REGEXP] options:0 error:&e];
+            r = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"%@ +%@", COORDS_DECIMALDEGREES_SIGNED_REGEXP, COORDS_DECIMALDEGREES_SIGNED_REGEXP] options:0 error:&e];
             break;
         case COORDINATES_DECIMALDEGREES_CARDINAL:
-            rnsew = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([NSns%@]%@) +([EWew%@]%@)", _(@"compass-NSns"), COORDS_DECIMALDEGREES_CARDINAL_REGEXP, _(@"compass-EWew"), COORDS_DECIMALDEGREES_CARDINAL_REGEXP] options:0 error:&e];
+            r = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([NSns%@]) *%@ +([EWew%@]) *%@", _(@"compass-NSns"), COORDS_DECIMALDEGREES_CARDINAL_REGEXP, _(@"compass-EWew"), COORDS_DECIMALDEGREES_CARDINAL_REGEXP] options:0 error:&e];
             break;
         case COORDINATES_DEGREES_MINUTES_SECONDS:
-            rnsew = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([NSns%@]%@) +([EWew%@]%@)", _(@"compass-NSns"), COORDS_DEGREES_MINUTES_SECONDS_REGEXP, _(@"compass-EWew"), COORDS_DEGREES_MINUTES_SECONDS_REGEXP] options:0 error:&e];
+            r = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([NSns%@]) *%@ +([EWew%@]) *%@", _(@"compass-NSns"), COORDS_DEGREES_MINUTES_SECONDS_REGEXP, _(@"compass-EWew"), COORDS_DEGREES_MINUTES_SECONDS_REGEXP] options:0 error:&e];
             break;
         case COORDINATES_OPENLOCATIONCODE:
-            rolc = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"(%@)", COORDS_OPENLOCATIONCODE_REGEXP] options:0 error:&e];
+            r = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"%@", COORDS_OPENLOCATIONCODE_REGEXP] options:0 error:&e];
             break;
         case COORDINATES_UTM:
-            rutm = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"(%@)", COORDS_UTM_REGEXP] options:0 error:&e];
+            r = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"%@", COORDS_UTM_REGEXP] options:0 error:&e];
             break;
         case COORDINATES_MGRS:
-            rmgrs = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"(%@)", COORDS_MGRS_REGEXP] options:0 error:&e];
+            r = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"%@", COORDS_MGRS_REGEXP] options:0 error:&e];
             break;
         case COORDINATES_MAX:
             break;
     }
 
     [lines enumerateObjectsUsingBlock:^(NSString * _Nonnull line, NSUInteger idx, BOOL * _Nonnull stop) {
-        Coordinates *c = nil;
-        NSString *NS = nil;
-        NSString *EW = nil;
-
-        if (rnsew != nil) {
-            NSArray<NSTextCheckingResult *> *matches = [rnsew matchesInString:line options:0 range:NSMakeRange(0, [line length])];
-            for (NSTextCheckingResult *match in matches) {
-                NSRange range = [match rangeAtIndex:1];
-                NS = [line substringWithRange:range];
-                range = [match rangeAtIndex:2];
-                EW = [line substringWithRange:range];
-                c = [[Coordinates alloc] initWithStringLatitude:NS longitude:EW];
-                NSLog(@"Coordinates: '%@' '%@'", NS, EW);
-                break;
-            }
-        }
-
-        if (rolc != nil) {
-            NSArray<NSTextCheckingResult *> *matches = [rolc matchesInString:line options:0 range:NSMakeRange(0, [line length])];
-            for (NSTextCheckingResult *match in matches) {
-                NSRange range = [match rangeAtIndex:1];
-                NSString *s = [line substringWithRange:range];
-
-                OLCConvertor *oc = [[OLCConvertor alloc] init];
-                OLCArea *a = [oc decode:s];
-                c = [[Coordinates alloc] initWithLatitude:a.latitudeCenter longitude:a.longitudeCenter];
-                NSLog(@"OpenLocationCode: '%@'", s);
-                break;
-            }
-        }
-
-        if (rutm != nil) {
-            NSArray<NSTextCheckingResult *> *matches = [rutm matchesInString:line options:0 range:NSMakeRange(0, [line length])];
-            for (NSTextCheckingResult *match in matches) {
-                NSRange range = [match rangeAtIndex:1];
-                NSString *s = [line substringWithRange:range];
-
-                UTM2LatLon *utm2ll = [[UTM2LatLon alloc] init];
-                CLLocationDegrees lat, lon;
-                [utm2ll convertUTM:s ToLatitude:&lat Longitude:&lon];
-                c = [[Coordinates alloc] initWithLatitude:lat longitude:lon];
-                NSLog(@"UTM: '%@'", s);
-                break;
-            }
-        }
-
-        if (rmgrs != nil) {
-            NSArray<NSTextCheckingResult *> *matches = [rutm matchesInString:line options:0 range:NSMakeRange(0, [line length])];
-            for (NSTextCheckingResult *match in matches) {
-                NSRange range = [match rangeAtIndex:1];
-                NSString *s = [line substringWithRange:range];
-
-                MGRS2LatLon *mgrs2ll = [[MGRS2LatLon alloc] init];
-                CLLocationDegrees lat, lon;
-                [mgrs2ll convertMGRS:s ToLatitude:&lat Longitude:&lon];
-                c = [[Coordinates alloc] initWithLatitude:lat longitude:lon];
-                NSLog(@"MGRS: '%@'", s);
-                break;
-            }
-        }
+        NSArray<NSTextCheckingResult *> *matches = [r matchesInString:line options:0 range:NSMakeRange(0, [line length])];
+        NSTextCheckingResult *match = [matches firstObject];
+        Coordinates *c = [self parseCoordinatesWithMatch:match line:line coordType:coordType];
 
         if (c != nil) {
             dbWaypoint *wp = [[dbWaypoint alloc] init];
@@ -868,6 +967,75 @@
         };
     }];
     return found;
+}
+
++ (Coordinates *)parseCoordinatesWithString:(NSString *)line coordType:(CoordinatesType)coordType
+{
+    NSError *e = nil;
+
+    switch (coordType) {
+        case COORDINATES_DEGREES_DECIMALMINUTES: {
+            NSRegularExpression *r = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([NSns%@]) *%@ +([EWew%@]) *%@", _(@"compass-NSns"), COORDS_DEGREES_DECIMALMINUTES_REGEXP, _(@"compass-EWew"), COORDS_DEGREES_DECIMALMINUTES_REGEXP] options:0 error:&e];
+            NSArray<NSTextCheckingResult *> *matches = [r matchesInString:line options:0 range:NSMakeRange(0, [line length])];
+            NSTextCheckingResult *match = [matches firstObject];
+
+            return [self parseCoordinatesWithMatch:match line:line coordType:coordType];
+        }
+
+        case COORDINATES_DECIMALDEGREES_SIGNED: {
+            NSRegularExpression *r = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"%@ +%@", COORDS_DECIMALDEGREES_SIGNED_REGEXP, COORDS_DECIMALDEGREES_SIGNED_REGEXP] options:0 error:&e];
+            NSArray<NSTextCheckingResult *> *matches = [r matchesInString:line options:0 range:NSMakeRange(0, [line length])];
+            NSTextCheckingResult *match = [matches firstObject];
+
+            return [self parseCoordinatesWithMatch:match line:line coordType:coordType];
+        }
+
+        case COORDINATES_DECIMALDEGREES_CARDINAL: {
+            NSRegularExpression *r = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([NSns%@]) *%@ +([EWew%@]) *%@", _(@"compass-NSns"), COORDS_DECIMALDEGREES_CARDINAL_REGEXP, _(@"compass-EWew"), COORDS_DECIMALDEGREES_CARDINAL_REGEXP] options:0 error:&e];
+            NSArray<NSTextCheckingResult *> *matches = [r matchesInString:line options:0 range:NSMakeRange(0, [line length])];
+            NSTextCheckingResult *match = [matches firstObject];
+
+            return [self parseCoordinatesWithMatch:match line:line coordType:coordType];
+        }
+
+        case COORDINATES_DEGREES_MINUTES_SECONDS: {
+            NSRegularExpression *r = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"([NSns%@]) *%@ +([EWew%@]) *%@", _(@"compass-NSns"), COORDS_DEGREES_MINUTES_SECONDS_REGEXP, _(@"compass-EWew"), COORDS_DEGREES_MINUTES_SECONDS_REGEXP] options:0 error:&e];
+            NSArray<NSTextCheckingResult *> *matches = [r matchesInString:line options:0 range:NSMakeRange(0, [line length])];
+            NSTextCheckingResult *match = [matches firstObject];
+
+            return [self parseCoordinatesWithMatch:match line:line coordType:coordType];
+        }
+
+        case COORDINATES_OPENLOCATIONCODE: {
+            NSRegularExpression *r = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"%@", COORDS_OPENLOCATIONCODE_REGEXP] options:0 error:&e];
+            NSArray<NSTextCheckingResult *> *matches = [r matchesInString:line options:0 range:NSMakeRange(0, [line length])];
+            NSTextCheckingResult *match = [matches firstObject];
+
+            return [self parseCoordinatesWithMatch:match line:line coordType:coordType];
+        }
+
+        case COORDINATES_UTM: {
+            NSRegularExpression *r = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"%@", COORDS_UTM_REGEXP] options:0 error:&e];
+            NSArray<NSTextCheckingResult *> *matches = [r matchesInString:line options:0 range:NSMakeRange(0, [line length])];
+            NSTextCheckingResult *match = [matches firstObject];
+
+            return [self parseCoordinatesWithMatch:match line:line coordType:coordType];
+        }
+
+        case COORDINATES_MGRS: {
+            NSRegularExpression *r = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"%@", COORDS_MGRS_REGEXP] options:0 error:&e];
+            NSArray<NSTextCheckingResult *> *matches = [r matchesInString:line options:0 range:NSMakeRange(0, [line length])];
+            NSTextCheckingResult *match = [matches firstObject];
+
+            return [self parseCoordinatesWithMatch:match line:line coordType:coordType];
+        }
+
+        case COORDINATES_MAX:
+            break;
+    }
+
+    return nil;
+
 }
 
 /// Convert a latitude and zoom level to a value for the tilename
