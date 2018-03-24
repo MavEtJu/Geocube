@@ -21,7 +21,7 @@
 
 @interface KeyboardCoordinateDecimalDegreesSigned ()
 
-@property (nonatomic, retain) IBOutlet UIButton *buttonDot, *buttonMinus;
+@property (nonatomic, retain) IBOutlet UIButton *buttonDot, *buttonMinus, *buttonDegrees;
 
 @end
 
@@ -36,8 +36,9 @@
 {
     [super awakeFromNib];
 
-    [self.buttonDot addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
-    [self.buttonMinus addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
+    KEYBOARD_TARGET(buttonMinus, clickButton)
+    KEYBOARD_TARGET(buttonDot, clickButton)
+    KEYBOARD_TARGET(buttonDegrees, clickButton)
 
     [self addObservers];
 }
@@ -51,12 +52,11 @@
     if (selectedTextRange == nil)
         return;
 
-    if (b == self.buttonDot)
-        [self textInput:self.targetTextInput replaceTextAtTextRange:selectedTextRange withString:@"."];
-    else if (b == self.buttonMinus)
-        [self textInput:self.targetTextInput replaceTextAtTextRange:selectedTextRange withString:@"-"];
-    else
-        NSAssert(NO, @"clickButton");
+    KEYBOARD_ACTION(buttonDot, @".")
+    KEYBOARD_ACTION(buttonMinus, @"-")
+    KEYBOARD_ACTION(buttonDegrees, @"°")
+
+    NSAssert(NO, @"clickButton");
 }
 
 @end

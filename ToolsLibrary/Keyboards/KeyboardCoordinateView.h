@@ -19,6 +19,16 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define KEYBOARD_TARGET(__button__, __sel__) \
+    [self.__button__ addTarget:self action:@selector(__sel__:) forControlEvents:UIControlEventTouchDown];
+
+#define KEYBOARD_ACTION(__button__, __string__) \
+    if (b == self.__button__) { \
+        [self textInput:self.targetTextInput replaceTextAtTextRange:selectedTextRange withString:__string__]; \
+        return; \
+    }
+
+
 @interface KeyboardCoordinateView : UIView
 
 @property (nonatomic, weak) UITextField <UITextInput> *targetTextInput;

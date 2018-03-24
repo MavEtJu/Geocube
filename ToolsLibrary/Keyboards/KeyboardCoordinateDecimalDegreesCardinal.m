@@ -21,7 +21,7 @@
 
 @interface KeyboardCoordinateDecimalDegreesCardinal ()
 
-@property (nonatomic, retain) IBOutlet UIButton *buttonDot, *buttonSpace;
+@property (nonatomic, retain) IBOutlet UIButton *buttonDot, *buttonSpace, *buttonDegrees;
 @property (nonatomic, retain) IBOutlet UIButton *buttonDirNE, *buttonDirSW;
 
 @end
@@ -38,10 +38,11 @@
 {
     [super awakeFromNib];
 
-    [self.buttonSpace addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
-    [self.buttonDot addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
-    [self.buttonDirNE addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
-    [self.buttonDirSW addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchDown];
+    KEYBOARD_TARGET(buttonSpace, clickButton)
+    KEYBOARD_TARGET(buttonDot, clickButton)
+    KEYBOARD_TARGET(buttonDegrees, clickButton)
+    KEYBOARD_TARGET(buttonDirNE, clickButton)
+    KEYBOARD_TARGET(buttonDirSW, clickButton)
 
     [self addObservers];
 }
@@ -67,16 +68,20 @@
     if (selectedTextRange == nil)
         return;
 
-    if (b == self.buttonDot)
-        [self textInput:self.targetTextInput replaceTextAtTextRange:selectedTextRange withString:@"."];
-    else if (b == self.buttonSpace)
-        [self textInput:self.targetTextInput replaceTextAtTextRange:selectedTextRange withString:@" "];
-    else if (b == self.buttonDirNE) {
+    KEYBOARD_ACTION(buttonDot, @".")
+    KEYBOARD_ACTION(buttonSpace, @" ")
+    KEYBOARD_ACTION(buttonDegrees, @"°")
+
+    if (b == self.buttonDirNE) {
         [self textInput:self.targetTextInput replaceTextAtTextRange:[self textRangeForRange:NSMakeRange(0, 1)] withString:(self.isLatitude == YES) ? _(@"N") : _(@"E")];
-    } else if (b == self.buttonDirSW) {
+        return;
+    }
+    if (b == self.buttonDirSW) {
         [self textInput:self.targetTextInput replaceTextAtTextRange:[self textRangeForRange:NSMakeRange(0, 1)] withString:(self.isLatitude == YES) ? _(@"S") : _(@"W")];
-    } else
-        NSAssert(NO, @"clickButton");
+        return;
+    }
+
+    NSAssert(NO, @"clickButton");
 }
 
 @end

@@ -110,31 +110,18 @@
     if (selectedTextRange == nil)
         return;
 
-    NSString *new = nil;
-    if (b == self.buttonValue0)
-        new = @"0";
-    else if (b == self.buttonValue1)
-        new = @"1";
-    else if (b == self.buttonValue2)
-        new = @"2";
-    else if (b == self.buttonValue3)
-        new = @"3";
-    else if (b == self.buttonValue4)
-        new = @"4";
-    else if (b == self.buttonValue5)
-        new = @"5";
-    else if (b == self.buttonValue6)
-        new = @"6";
-    else if (b == self.buttonValue7)
-        new = @"7";
-    else if (b == self.buttonValue8)
-        new = @"8";
-    else if (b == self.buttonValue9)
-        new = @"9";
-    else
-        NSAssert(NO, @"clickValue");
+    KEYBOARD_ACTION(buttonValue0, @"0")
+    KEYBOARD_ACTION(buttonValue1, @"1")
+    KEYBOARD_ACTION(buttonValue2, @"2")
+    KEYBOARD_ACTION(buttonValue3, @"3")
+    KEYBOARD_ACTION(buttonValue4, @"4")
+    KEYBOARD_ACTION(buttonValue5, @"5")
+    KEYBOARD_ACTION(buttonValue6, @"6")
+    KEYBOARD_ACTION(buttonValue7, @"7")
+    KEYBOARD_ACTION(buttonValue8, @"8")
+    KEYBOARD_ACTION(buttonValue9, @"9")
 
-    [self textInput:self.targetTextInput replaceTextAtTextRange:selectedTextRange withString:new];
+    NSAssert(NO, @"clickValue");
 }
 
 - (void)clickBackspace:(UIButton *)b
@@ -163,10 +150,14 @@
     CGRect applicationFrame = [[UIScreen mainScreen] bounds];
     NSInteger width = applicationFrame.size.width;
 
-    self = [super initWithFrame:CGRectMake(0, 0, width, 160)];
+    self = [super initWithFrame:CGRectMake(0, 0, width, 0)];
 
     self.firstView = [[[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil] firstObject];
     self.firstView.frame = CGRectMake((width - self.firstView.frame.size.width) / 2, 0, self.firstView.frame.size.width, self.firstView.frame.size.height);
+
+    // Adjust to size of keyboard.
+    self.frame = CGRectMake(0, 0, width, self.firstView.frame.size.height);
+
     [self addSubview:self.firstView];
 
     return self;
@@ -183,17 +174,17 @@
      * +----------------------------------+
      */
 
-    [self.buttonValue0 addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
-    [self.buttonValue1 addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
-    [self.buttonValue2 addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
-    [self.buttonValue3 addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
-    [self.buttonValue4 addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
-    [self.buttonValue5 addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
-    [self.buttonValue6 addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
-    [self.buttonValue7 addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
-    [self.buttonValue8 addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
-    [self.buttonValue9 addTarget:self action:@selector(clickValue:) forControlEvents:UIControlEventTouchDown];
-    [self.buttonBackspace addTarget:self action:@selector(clickBackspace:) forControlEvents:UIControlEventTouchDown];
+    KEYBOARD_TARGET(buttonValue0, clickValue)
+    KEYBOARD_TARGET(buttonValue1, clickValue)
+    KEYBOARD_TARGET(buttonValue2, clickValue)
+    KEYBOARD_TARGET(buttonValue3, clickValue)
+    KEYBOARD_TARGET(buttonValue4, clickValue)
+    KEYBOARD_TARGET(buttonValue5, clickValue)
+    KEYBOARD_TARGET(buttonValue6, clickValue)
+    KEYBOARD_TARGET(buttonValue7, clickValue)
+    KEYBOARD_TARGET(buttonValue8, clickValue)
+    KEYBOARD_TARGET(buttonValue9, clickValue)
+    KEYBOARD_TARGET(buttonBackspace, clickBackspace)
 }
 
 - (void)showsLatitude:(BOOL)l
@@ -213,9 +204,9 @@
         case COORDINATES_DEGREES_DECIMALMINUTES:
              return [[KeyboardCoordinateDegreesDecimalMinutes alloc] initWithFrame:CGRectZero];
         case COORDINATES_OPENLOCATIONCODE:
-            // return [[KeyboardCoordinateOpenLocationCode alloc] initWithFrame:CGRectZero];
+             return [[KeyboardCoordinateOpenLocationCode alloc] initWithFrame:CGRectZero];
         case COORDINATES_UTM:
-            // return [[KeyboardCoordinateUTM alloc] initWithFrame:CGRectZero];
+//             return [[KeyboardCoordinateUTM alloc] initWithFrame:CGRectZero];
         case COORDINATES_MGRS:
             // return [[KeyboardCoordinateMGRS alloc] initWithFrame:CGRectZero];
         case COORDINATES_MAX:

@@ -869,13 +869,13 @@
             r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"^[NESWnesw%@] *%@ +[NESWnesw%@] *%@$", _(@"compass-NESW"), COORDS_DEGREES_MINUTES_SECONDS_REGEXP, _(@"compass-NESW"), COORDS_DEGREES_MINUTES_SECONDS_REGEXP] options:0 error:&e];
             break;
         case COORDINATES_OPENLOCATIONCODE:
-            r5 = [NSRegularExpression regularExpressionWithPattern:COORDS_OPENLOCATIONCODE_REGEXP options:0 error:&e];
+            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"^%@$", COORDS_OPENLOCATIONCODE_REGEXP] options:0 error:&e];
             break;
         case COORDINATES_UTM:
-            r5 = [NSRegularExpression regularExpressionWithPattern:COORDS_UTM_REGEXP options:0 error:&e];
+            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"^%@$", COORDS_UTM_REGEXP] options:0 error:&e];
             break;
         case COORDINATES_MGRS:
-            r5 = [NSRegularExpression regularExpressionWithPattern:COORDS_MGRS_REGEXP options:0 error:&e];
+            r5 = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"^%@$", COORDS_MGRS_REGEXP] options:0 error:&e];
             break;
         case COORDINATES_MAX:
             r5 = nil;

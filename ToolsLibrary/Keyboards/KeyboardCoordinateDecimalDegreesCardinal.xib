@@ -13,11 +13,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="KeyboardCoordinateDecimalDegreesCardinal">
-            <rect key="frame" x="0.0" y="0.0" width="295" height="177"/>
+            <rect key="frame" x="0.0" y="0.0" width="257" height="135"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CP7-8I-DTy">
-                    <rect key="frame" x="22.5" y="23.5" width="250" height="130"/>
+                    <rect key="frame" x="3.5" y="2.5" width="250" height="130"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kee-iT-10Q">
                             <rect key="frame" x="50" y="10" width="30" height="30"/>
@@ -79,6 +79,10 @@
                             <rect key="frame" x="210" y="90" width="30" height="30"/>
                             <state key="normal" title="⌫"/>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="220-ek-xAJ">
+                            <rect key="frame" x="90" y="90" width="30" height="30"/>
+                            <state key="normal" title="°"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -93,6 +97,7 @@
                         <constraint firstItem="AUW-Vd-Q5f" firstAttribute="centerX" secondItem="1D9-OE-fDQ" secondAttribute="centerX" id="EFh-Br-8Qw"/>
                         <constraint firstItem="AUW-Vd-Q5f" firstAttribute="top" secondItem="1D9-OE-fDQ" secondAttribute="bottom" constant="10" id="JaW-ld-rYT"/>
                         <constraint firstItem="BAv-Hl-Ijb" firstAttribute="centerX" secondItem="kee-iT-10Q" secondAttribute="centerX" id="Lxh-fp-RWP"/>
+                        <constraint firstAttribute="trailing" secondItem="MIH-g1-1Re" secondAttribute="trailing" constant="10" id="M3z-5Y-Hq3"/>
                         <constraint firstItem="gLJ-ry-c1V" firstAttribute="centerY" secondItem="1D9-OE-fDQ" secondAttribute="centerY" id="MbG-VD-uUu"/>
                         <constraint firstItem="fQd-ev-2n4" firstAttribute="centerX" secondItem="bJW-d9-WJh" secondAttribute="centerX" id="Mfd-IB-ZiE"/>
                         <constraint firstItem="yd3-v8-v4J" firstAttribute="centerY" secondItem="1D9-OE-fDQ" secondAttribute="centerY" id="NTi-1C-Hc4"/>
@@ -108,7 +113,9 @@
                         <constraint firstItem="fQd-ev-2n4" firstAttribute="centerY" secondItem="AUW-Vd-Q5f" secondAttribute="centerY" id="fxE-yR-mAG"/>
                         <constraint firstItem="MIH-g1-1Re" firstAttribute="centerY" secondItem="Qzq-Op-C5c" secondAttribute="centerY" id="g9M-SF-oGu"/>
                         <constraint firstItem="gLJ-ry-c1V" firstAttribute="leading" secondItem="yd3-v8-v4J" secondAttribute="trailing" constant="10" id="h1E-LF-Kfw"/>
+                        <constraint firstItem="220-ek-xAJ" firstAttribute="centerX" secondItem="C5D-3M-Bzb" secondAttribute="centerX" id="kD2-UG-rAw"/>
                         <constraint firstItem="1D9-OE-fDQ" firstAttribute="leading" secondItem="CP7-8I-DTy" secondAttribute="leading" constant="10" id="mdS-sW-IaS"/>
+                        <constraint firstItem="220-ek-xAJ" firstAttribute="centerY" secondItem="Xbv-c4-RPP" secondAttribute="centerY" id="mwW-DU-EGv"/>
                         <constraint firstItem="kWD-Gw-Ouq" firstAttribute="centerY" secondItem="AUW-Vd-Q5f" secondAttribute="centerY" id="pYR-57-Ms3"/>
                         <constraint firstItem="iBx-JR-VM9" firstAttribute="leading" secondItem="bJW-d9-WJh" secondAttribute="trailing" constant="10" id="rnQ-7A-dCS"/>
                         <constraint firstItem="Qzq-Op-C5c" firstAttribute="top" secondItem="AUW-Vd-Q5f" secondAttribute="bottom" constant="10" id="sBI-Ui-shT"/>
@@ -128,6 +135,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="buttonBackspace" destination="MIH-g1-1Re" id="iRg-kv-YPb"/>
+                <outlet property="buttonDegrees" destination="220-ek-xAJ" id="z1G-WJ-AvT"/>
                 <outlet property="buttonDirNE" destination="iBx-JR-VM9" id="7de-oE-yPd"/>
                 <outlet property="buttonDirSW" destination="kWD-Gw-Ouq" id="tul-DX-XTk"/>
                 <outlet property="buttonDot" destination="Xbv-c4-RPP" id="1GU-UI-NWD"/>
@@ -143,7 +151,7 @@
                 <outlet property="buttonValue8" destination="Wog-Rp-NMg" id="XzI-Hp-myw"/>
                 <outlet property="buttonValue9" destination="fQd-ev-2n4" id="eoT-OK-Ujy"/>
             </connections>
-            <point key="canvasLocation" x="-47.5" y="-193.5"/>
+            <point key="canvasLocation" x="-25.5" y="-149.5"/>
         </view>
     </objects>
 </document>
