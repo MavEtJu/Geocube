@@ -208,7 +208,7 @@
         case COORDINATES_UTM:
              return [[KeyboardCoordinateUTM alloc] initWithFrame:CGRectZero];
         case COORDINATES_MGRS:
-            // return [[KeyboardCoordinateMGRS alloc] initWithFrame:CGRectZero];
+             return [[KeyboardCoordinateMGRS alloc] initWithFrame:CGRectZero];
         case COORDINATES_MAX:
             NSAssert(FALSE, @"coordType");
     }

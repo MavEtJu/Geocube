@@ -36,3 +36,4 @@
 #import "ToolsLibrary/Keyboards/KeyboardCoordinateDegreesMinutesSeconds.h"
 #import "ToolsLibrary/Keyboards/KeyboardCoordinateOpenLocationCode.h"
 #import "ToolsLibrary/Keyboards/KeyboardCoordinateUTM.h"
+#import "ToolsLibrary/Keyboards/KeyboardCoordinateMGRS.h"
