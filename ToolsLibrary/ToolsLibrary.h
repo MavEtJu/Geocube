@@ -33,3 +33,4 @@
 #import "ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesSigned.h"
 #import "ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesCardinal.h"
 #import "ToolsLibrary/Keyboards/KeyboardCoordinateDegreesDecimalMinutes.h"
+#import "ToolsLibrary/Keyboards/KeyboardCoordinateDegreesMinutesSeconds.h"
