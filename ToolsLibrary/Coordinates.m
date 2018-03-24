@@ -32,10 +32,10 @@
 
 @implementation Coordinates
 
-#define COORDS_DEGREES_DECIMALMINUTES_REGEXP @"(\\d{1,3})[º°]? +(\\d{1,2}\\.\\d{1,3})['′]?"
+#define COORDS_DEGREES_DECIMALMINUTES_REGEXP @"(\\d{1,3})[º° ] *(\\d{1,2}\\.\\d{1,3})['′]?"
 #define COORDS_DECIMALDEGREES_SIGNED_REGEXP @"(-?\\d{1,3}\\.\\d+)"
 #define COORDS_DECIMALDEGREES_CARDINAL_REGEXP @"(\\d{1,3}\\.\\d+)"
-#define COORDS_DEGREES_MINUTES_SECONDS_REGEXP @"(\\d{1,3})[º°]? +(\\d{1,2})['′]? +(\\d{1,2})[\"″]?"
+#define COORDS_DEGREES_MINUTES_SECONDS_REGEXP @"(\\d{1,3})[º° ] *(\\d{1,2})['′ ] *(\\d{1,2})[\"″]?"
 #define COORDS_OPENLOCATIONCODE_REGEXP @"([023456789CFGHJMPQRVWX]+\\+[23456789CFGHJMPQRVWX]*)"
 #define COORDS_UTM_REGEXP @"(\\d{2}[ACDEFGHJKLMNPQRSTUVWXZ] \\d+ \\d+)"
 #define COORDS_MGRS_REGEXP @"(\\d{1,2}[^ABIOYZabioyz][A-Za-z]{2} +\\d+ +\\d+)"

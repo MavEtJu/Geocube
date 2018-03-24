@@ -1,7 +1,7 @@
 /*
  * Geocube
  * By Edwin Groothuis <geocube@mavetju.org>
- * Copyright 2017, 2018 Edwin Groothuis
+ * Copyright 2015, 2016, 2017, 2018 Edwin Groothuis
  *
  * This file is part of Geocube.
  *
@@ -19,17 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "ToolsLibrary/SideMenu-delegate.h"
+@interface KeyboardCoordinateDegreesDecimalMinutes : KeyboardCoordinateView
 
-#import "ToolsLibrary/MyTools.h"
-#import "ToolsLibrary/MyClock.h"
-#import "ToolsLibrary/Coordinates.h"
-#import "ToolsLibrary/InfoItem.h"
-#import "ToolsLibrary/InfoViewer.h"
-#import "ToolsLibrary/LocalMenuItems.h"
-#import "ToolsLibrary/SideMenu.h"
-
-#import "ToolsLibrary/Keyboards/KeyboardCoordinateView.h"
-#import "ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesSigned.h"
-#import "ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesCardinal.h"
-#import "ToolsLibrary/Keyboards/KeyboardCoordinateDegreesDecimalMinutes.h"
+@end

@@ -211,7 +211,7 @@
         case COORDINATES_DEGREES_MINUTES_SECONDS:
             // return [[KeyboardCoordinateDegreesMinutesSeconds alloc] initWithFrame:CGRectZero];
         case COORDINATES_DEGREES_DECIMALMINUTES:
-            // return [[KeyboardCoordinateDegreesDecimalMinutes alloc] initWithFrame:CGRectZero];
+             return [[KeyboardCoordinateDegreesDecimalMinutes alloc] initWithFrame:CGRectZero];
         case COORDINATES_OPENLOCATIONCODE:
             // return [[KeyboardCoordinateOpenLocationCode alloc] initWithFrame:CGRectZero];
         case COORDINATES_UTM:
