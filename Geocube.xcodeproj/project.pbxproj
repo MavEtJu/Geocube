@@ -644,6 +644,8 @@
 		E864BBAD206624EE0053B62D /* KeyboardCoordinateDegreesMinutesSeconds.xib in Resources */ = {isa = PBXBuildFile; fileRef = E864BBAB206624ED0053B62D /* KeyboardCoordinateDegreesMinutesSeconds.xib */; };
 		E864BBB1206627580053B62D /* KeyboardCoordinateOpenLocationCode.m in Sources */ = {isa = PBXBuildFile; fileRef = E864BBAE206627570053B62D /* KeyboardCoordinateOpenLocationCode.m */; };
 		E864BBB2206627580053B62D /* KeyboardCoordinateOpenLocationCode.xib in Resources */ = {isa = PBXBuildFile; fileRef = E864BBB0206627580053B62D /* KeyboardCoordinateOpenLocationCode.xib */; };
+		E864BBB6206667EB0053B62D /* KeyboardCoordinateUTM.xib in Resources */ = {isa = PBXBuildFile; fileRef = E864BBB3206667EA0053B62D /* KeyboardCoordinateUTM.xib */; };
+		E864BBB7206667EB0053B62D /* KeyboardCoordinateUTM.m in Sources */ = {isa = PBXBuildFile; fileRef = E864BBB5206667EB0053B62D /* KeyboardCoordinateUTM.m */; };
 		E86C4AAF1E321822004526E2 /* CompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C4AAD1E321822004526E2 /* CompassViewController.m */; };
 		E86C4AB01E321822004526E2 /* CompassView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86C4AAE1E321822004526E2 /* CompassView.xib */; };
 		E86D42751EF5484E00E4509F /* LocationlessTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86D42731EF5484E00E4509F /* LocationlessTableViewCell.xib */; };
@@ -1878,6 +1880,9 @@
 		E864BBAE206627570053B62D /* KeyboardCoordinateOpenLocationCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardCoordinateOpenLocationCode.m; path = ToolsLibrary/Keyboards/KeyboardCoordinateOpenLocationCode.m; sourceTree = "<group>"; };
 		E864BBAF206627580053B62D /* KeyboardCoordinateOpenLocationCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardCoordinateOpenLocationCode.h; path = ToolsLibrary/Keyboards/KeyboardCoordinateOpenLocationCode.h; sourceTree = "<group>"; };
 		E864BBB0206627580053B62D /* KeyboardCoordinateOpenLocationCode.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KeyboardCoordinateOpenLocationCode.xib; path = ToolsLibrary/Keyboards/KeyboardCoordinateOpenLocationCode.xib; sourceTree = "<group>"; };
+		E864BBB3206667EA0053B62D /* KeyboardCoordinateUTM.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KeyboardCoordinateUTM.xib; path = ToolsLibrary/Keyboards/KeyboardCoordinateUTM.xib; sourceTree = "<group>"; };
+		E864BBB4206667EA0053B62D /* KeyboardCoordinateUTM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardCoordinateUTM.h; path = ToolsLibrary/Keyboards/KeyboardCoordinateUTM.h; sourceTree = "<group>"; };
+		E864BBB5206667EB0053B62D /* KeyboardCoordinateUTM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardCoordinateUTM.m; path = ToolsLibrary/Keyboards/KeyboardCoordinateUTM.m; sourceTree = "<group>"; };
 		E86C4AAC1E321822004526E2 /* CompassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassViewController.h; sourceTree = "<group>"; };
 		E86C4AAD1E321822004526E2 /* CompassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassViewController.m; sourceTree = "<group>"; };
 		E86C4AAE1E321822004526E2 /* CompassView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompassView.xib; sourceTree = "<group>"; };
@@ -4077,6 +4082,9 @@
 				E864BBAF206627580053B62D /* KeyboardCoordinateOpenLocationCode.h */,
 				E864BBAE206627570053B62D /* KeyboardCoordinateOpenLocationCode.m */,
 				E864BBB0206627580053B62D /* KeyboardCoordinateOpenLocationCode.xib */,
+				E864BBB4206667EA0053B62D /* KeyboardCoordinateUTM.h */,
+				E864BBB5206667EB0053B62D /* KeyboardCoordinateUTM.m */,
+				E864BBB3206667EA0053B62D /* KeyboardCoordinateUTM.xib */,
 			);
 			name = Keyboards;
 			sourceTree = "<group>";
@@ -4514,6 +4522,7 @@
 				E82E66C01DA07CBE00CFBDED /* cache - history - 30x30@3x.png in Resources */,
 				E82E67331DA07D0200CFBDED /* attributes - 08.png in Resources */,
 				E82E65F81DA079E500CFBDED /* log - announcement - 30x30.png in Resources */,
+				E864BBB6206667EB0053B62D /* KeyboardCoordinateUTM.xib in Resources */,
 				E8B773461F9479AD0060B415 /* menu icon - local night - 27x27.png in Resources */,
 				E8B773401F9479AD0060B415 /* menu icon - show both - 27x27@3x.png in Resources */,
 				E82289261F8A40CB00631380 /* MHTabBarActiveTab@2x.png in Resources */,
@@ -5154,6 +5163,7 @@
 				E82343DB1EECDEE200D2CDFD /* WaypointLogsTableViewCell.m in Sources */,
 				E82287CE1F8A32C600631380 /* ProtocolTemplate.m in Sources */,
 				E823444C1EECE04B00D2CDFD /* NotesFieldnotesViewController.m in Sources */,
+				E864BBB7206667EB0053B62D /* KeyboardCoordinateUTM.m in Sources */,
 				E83B10A51EF4FDFA00F2C5FA /* LocationlessTemplateViewController.m in Sources */,
 				E82287CA1F8A32C600631380 /* ProtocolGCA2.m in Sources */,
 				E82287F61F8A344400631380 /* ActionSheetLocalePicker.m in Sources */,
