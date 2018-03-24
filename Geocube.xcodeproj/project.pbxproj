@@ -638,6 +638,12 @@
 		E860CA051F81F84700C66AD8 /* FilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E860CA041F81F84700C66AD8 /* FilterButton.m */; };
 		E864BBA22064EAE60053B62D /* KeyboardCoordinateDecimalDegreesCardinal.xib in Resources */ = {isa = PBXBuildFile; fileRef = E864BB9F2064EAE50053B62D /* KeyboardCoordinateDecimalDegreesCardinal.xib */; };
 		E864BBA32064EAE60053B62D /* KeyboardCoordinateDecimalDegreesCardinal.m in Sources */ = {isa = PBXBuildFile; fileRef = E864BBA02064EAE50053B62D /* KeyboardCoordinateDecimalDegreesCardinal.m */; };
+		E864BBA72064F48C0053B62D /* KeyboardCoordinateDegreesDecimalMinutes.xib in Resources */ = {isa = PBXBuildFile; fileRef = E864BBA42064F48B0053B62D /* KeyboardCoordinateDegreesDecimalMinutes.xib */; };
+		E864BBA82064F48C0053B62D /* KeyboardCoordinateDegreesDecimalMinutes.m in Sources */ = {isa = PBXBuildFile; fileRef = E864BBA52064F48C0053B62D /* KeyboardCoordinateDegreesDecimalMinutes.m */; };
+		E864BBAC206624EE0053B62D /* KeyboardCoordinateDegreesMinutesSeconds.m in Sources */ = {isa = PBXBuildFile; fileRef = E864BBAA206624ED0053B62D /* KeyboardCoordinateDegreesMinutesSeconds.m */; };
+		E864BBAD206624EE0053B62D /* KeyboardCoordinateDegreesMinutesSeconds.xib in Resources */ = {isa = PBXBuildFile; fileRef = E864BBAB206624ED0053B62D /* KeyboardCoordinateDegreesMinutesSeconds.xib */; };
+		E864BBB1206627580053B62D /* KeyboardCoordinateOpenLocationCode.m in Sources */ = {isa = PBXBuildFile; fileRef = E864BBAE206627570053B62D /* KeyboardCoordinateOpenLocationCode.m */; };
+		E864BBB2206627580053B62D /* KeyboardCoordinateOpenLocationCode.xib in Resources */ = {isa = PBXBuildFile; fileRef = E864BBB0206627580053B62D /* KeyboardCoordinateOpenLocationCode.xib */; };
 		E86C4AAF1E321822004526E2 /* CompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C4AAD1E321822004526E2 /* CompassViewController.m */; };
 		E86C4AB01E321822004526E2 /* CompassView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86C4AAE1E321822004526E2 /* CompassView.xib */; };
 		E86D42751EF5484E00E4509F /* LocationlessTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86D42731EF5484E00E4509F /* LocationlessTableViewCell.xib */; };
@@ -729,7 +735,6 @@
 		E8CB8918205E7ACE00DD55DE /* MGRS2LatLon.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB8910205E7ACD00DD55DE /* MGRS2LatLon.m */; };
 		E8CB8919205E7ACE00DD55DE /* UTM2LatLon.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB8913205E7ACE00DD55DE /* UTM2LatLon.m */; };
 		E8CB891D20606D4800DD55DE /* KeyboardCoordinateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB891C20606D4800DD55DE /* KeyboardCoordinateView.m */; };
-		E8CB891F206279B500DD55DE /* KeyboardCoordinateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8CB891E206279B500DD55DE /* KeyboardCoordinateView.xib */; };
 		E8CB89222063CCC400DD55DE /* KeyboardCoordinateDecimalDegreesSigned.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB89212063CCC400DD55DE /* KeyboardCoordinateDecimalDegreesSigned.m */; };
 		E8CB89242063CCEA00DD55DE /* KeyboardCoordinateDecimalDegreesSigned.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8CB89232063CCE900DD55DE /* KeyboardCoordinateDecimalDegreesSigned.xib */; };
 		E8D49D2F1F00F9C1005EB7BE /* container size - nano - 35x11.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */; };
@@ -1864,6 +1869,15 @@
 		E864BB9F2064EAE50053B62D /* KeyboardCoordinateDecimalDegreesCardinal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KeyboardCoordinateDecimalDegreesCardinal.xib; path = ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesCardinal.xib; sourceTree = "<group>"; };
 		E864BBA02064EAE50053B62D /* KeyboardCoordinateDecimalDegreesCardinal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardCoordinateDecimalDegreesCardinal.m; path = ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesCardinal.m; sourceTree = "<group>"; };
 		E864BBA12064EAE60053B62D /* KeyboardCoordinateDecimalDegreesCardinal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardCoordinateDecimalDegreesCardinal.h; path = ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesCardinal.h; sourceTree = "<group>"; };
+		E864BBA42064F48B0053B62D /* KeyboardCoordinateDegreesDecimalMinutes.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KeyboardCoordinateDegreesDecimalMinutes.xib; path = ToolsLibrary/Keyboards/KeyboardCoordinateDegreesDecimalMinutes.xib; sourceTree = "<group>"; };
+		E864BBA52064F48C0053B62D /* KeyboardCoordinateDegreesDecimalMinutes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardCoordinateDegreesDecimalMinutes.m; path = ToolsLibrary/Keyboards/KeyboardCoordinateDegreesDecimalMinutes.m; sourceTree = "<group>"; };
+		E864BBA62064F48C0053B62D /* KeyboardCoordinateDegreesDecimalMinutes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardCoordinateDegreesDecimalMinutes.h; path = ToolsLibrary/Keyboards/KeyboardCoordinateDegreesDecimalMinutes.h; sourceTree = "<group>"; };
+		E864BBA9206624ED0053B62D /* KeyboardCoordinateDegreesMinutesSeconds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardCoordinateDegreesMinutesSeconds.h; path = ToolsLibrary/Keyboards/KeyboardCoordinateDegreesMinutesSeconds.h; sourceTree = "<group>"; };
+		E864BBAA206624ED0053B62D /* KeyboardCoordinateDegreesMinutesSeconds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardCoordinateDegreesMinutesSeconds.m; path = ToolsLibrary/Keyboards/KeyboardCoordinateDegreesMinutesSeconds.m; sourceTree = "<group>"; };
+		E864BBAB206624ED0053B62D /* KeyboardCoordinateDegreesMinutesSeconds.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KeyboardCoordinateDegreesMinutesSeconds.xib; path = ToolsLibrary/Keyboards/KeyboardCoordinateDegreesMinutesSeconds.xib; sourceTree = "<group>"; };
+		E864BBAE206627570053B62D /* KeyboardCoordinateOpenLocationCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardCoordinateOpenLocationCode.m; path = ToolsLibrary/Keyboards/KeyboardCoordinateOpenLocationCode.m; sourceTree = "<group>"; };
+		E864BBAF206627580053B62D /* KeyboardCoordinateOpenLocationCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardCoordinateOpenLocationCode.h; path = ToolsLibrary/Keyboards/KeyboardCoordinateOpenLocationCode.h; sourceTree = "<group>"; };
+		E864BBB0206627580053B62D /* KeyboardCoordinateOpenLocationCode.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KeyboardCoordinateOpenLocationCode.xib; path = ToolsLibrary/Keyboards/KeyboardCoordinateOpenLocationCode.xib; sourceTree = "<group>"; };
 		E86C4AAC1E321822004526E2 /* CompassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassViewController.h; sourceTree = "<group>"; };
 		E86C4AAD1E321822004526E2 /* CompassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassViewController.m; sourceTree = "<group>"; };
 		E86C4AAE1E321822004526E2 /* CompassView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompassView.xib; sourceTree = "<group>"; };
@@ -1969,7 +1983,6 @@
 		E8CB8913205E7ACE00DD55DE /* UTM2LatLon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UTM2LatLon.m; path = ContribLibrary/GeoCoordinateConverter/UTM2LatLon.m; sourceTree = "<group>"; };
 		E8CB891B20606D4700DD55DE /* KeyboardCoordinateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardCoordinateView.h; path = ToolsLibrary/Keyboards/KeyboardCoordinateView.h; sourceTree = "<group>"; };
 		E8CB891C20606D4800DD55DE /* KeyboardCoordinateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardCoordinateView.m; path = ToolsLibrary/Keyboards/KeyboardCoordinateView.m; sourceTree = "<group>"; };
-		E8CB891E206279B500DD55DE /* KeyboardCoordinateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = KeyboardCoordinateView.xib; path = ToolsLibrary/Keyboards/KeyboardCoordinateView.xib; sourceTree = "<group>"; };
 		E8CB89202063CCC400DD55DE /* KeyboardCoordinateDecimalDegreesSigned.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KeyboardCoordinateDecimalDegreesSigned.h; path = ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesSigned.h; sourceTree = "<group>"; };
 		E8CB89212063CCC400DD55DE /* KeyboardCoordinateDecimalDegreesSigned.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KeyboardCoordinateDecimalDegreesSigned.m; path = ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesSigned.m; sourceTree = "<group>"; };
 		E8CB89232063CCE900DD55DE /* KeyboardCoordinateDecimalDegreesSigned.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KeyboardCoordinateDecimalDegreesSigned.xib; path = ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesSigned.xib; sourceTree = "<group>"; };
@@ -4049,13 +4062,21 @@
 			children = (
 				E8CB891B20606D4700DD55DE /* KeyboardCoordinateView.h */,
 				E8CB891C20606D4800DD55DE /* KeyboardCoordinateView.m */,
-				E8CB891E206279B500DD55DE /* KeyboardCoordinateView.xib */,
 				E8CB89202063CCC400DD55DE /* KeyboardCoordinateDecimalDegreesSigned.h */,
 				E8CB89212063CCC400DD55DE /* KeyboardCoordinateDecimalDegreesSigned.m */,
 				E8CB89232063CCE900DD55DE /* KeyboardCoordinateDecimalDegreesSigned.xib */,
 				E864BBA12064EAE60053B62D /* KeyboardCoordinateDecimalDegreesCardinal.h */,
 				E864BBA02064EAE50053B62D /* KeyboardCoordinateDecimalDegreesCardinal.m */,
 				E864BB9F2064EAE50053B62D /* KeyboardCoordinateDecimalDegreesCardinal.xib */,
+				E864BBA62064F48C0053B62D /* KeyboardCoordinateDegreesDecimalMinutes.h */,
+				E864BBA52064F48C0053B62D /* KeyboardCoordinateDegreesDecimalMinutes.m */,
+				E864BBA42064F48B0053B62D /* KeyboardCoordinateDegreesDecimalMinutes.xib */,
+				E864BBA9206624ED0053B62D /* KeyboardCoordinateDegreesMinutesSeconds.h */,
+				E864BBAA206624ED0053B62D /* KeyboardCoordinateDegreesMinutesSeconds.m */,
+				E864BBAB206624ED0053B62D /* KeyboardCoordinateDegreesMinutesSeconds.xib */,
+				E864BBAF206627580053B62D /* KeyboardCoordinateOpenLocationCode.h */,
+				E864BBAE206627570053B62D /* KeyboardCoordinateOpenLocationCode.m */,
+				E864BBB0206627580053B62D /* KeyboardCoordinateOpenLocationCode.xib */,
 			);
 			name = Keyboards;
 			sourceTree = "<group>";
@@ -4310,6 +4331,7 @@
 				E8B773331F9479AD0060B415 /* menu icon - global default - 27x27@2x.png in Resources */,
 				E82E65E31DA079AE00CFBDED /* map - pin stick - 35x42.png in Resources */,
 				E8B773371F9479AD0060B415 /* menu icon - gnss-off - 27x27@3x.png in Resources */,
+				E864BBA72064F48C0053B62D /* KeyboardCoordinateDegreesDecimalMinutes.xib in Resources */,
 				E82E66CF1DA07CBE00CFBDED /* cache - night - 30x30.png in Resources */,
 				E8FEDEDB1DA8EEE9007C756B /* cache - earth - 30x30@3x.png in Resources */,
 				E804139F1E9F984E001FD7BF /* Menu - 640x623.png in Resources */,
@@ -4578,6 +4600,7 @@
 				E82E66BA1DA07CBE00CFBDED /* cache - earth - 30x30.png in Resources */,
 				E82E67761DA07D1A00CFBDED /* image - no image - 32x32@3x.png in Resources */,
 				E8B7734C1F9479AD0060B415 /* menu icon - see target - 27x27.png in Resources */,
+				E864BBAD206624EE0053B62D /* KeyboardCoordinateDegreesMinutesSeconds.xib in Resources */,
 				E82E66821DA07C6F00CFBDED /* compass - white arrow on black@3x.png in Resources */,
 				E82E676D1DA07D0200CFBDED /* attributes - 67.png in Resources */,
 				E8FEDE861DA7AD67007C756B /* map - dnf stick - 35x42@2x.png in Resources */,
@@ -4674,6 +4697,7 @@
 				E82E67731DA07D1A00CFBDED /* image - nil - 1x1.png in Resources */,
 				E8FEDEA51DA7C08A007C756B /* waypoint - parking - 30x30@3x.png in Resources */,
 				E82E66C91DA07CBE00CFBDED /* cache - multi - 30x30.png in Resources */,
+				E864BBB2206627580053B62D /* KeyboardCoordinateOpenLocationCode.xib in Resources */,
 				E82E65E11DA079AE00CFBDED /* map - marked found - 9x9.png in Resources */,
 				E8B773771F94D7190060B415 /* menu icon - global night - 40x40.png in Resources */,
 				E82E65F91DA079E500CFBDED /* log - archived - 30x30.png in Resources */,
@@ -4744,7 +4768,6 @@
 				E8FEDED61DA8EEE9007C756B /* cache - burke-wills - 30x30@2x.png in Resources */,
 				E87ED1701F8445C500DE8E9B /* FilterFavouritesTableViewCell.xib in Resources */,
 				E8F403E81DAF5B2600318CC6 /* cache - reverse - 30x30.png in Resources */,
-				E8CB891F206279B500DD55DE /* KeyboardCoordinateView.xib in Resources */,
 				E85DC6961F95D01E007556D5 /* menu icon - show both - 40x40@3x.png in Resources */,
 				E82E66D81DA07CBE00CFBDED /* cache - trigpoint - 30x30.png in Resources */,
 				E87ED16E1F843FBD00DE8E9B /* FilterTerrainTableViewCell.xib in Resources */,
@@ -5086,6 +5109,7 @@
 				E822871F1F8A2E1A00631380 /* GCTableViewCellSwitch.m in Sources */,
 				E82287971F8A30B700631380 /* MapAppleTemplate.m in Sources */,
 				E82287661F8A2EC300631380 /* GCLabelNormalText.m in Sources */,
+				E864BBAC206624EE0053B62D /* KeyboardCoordinateDegreesMinutesSeconds.m in Sources */,
 				E82288CD1F8A358700631380 /* NVHTarGzip.m in Sources */,
 				E82286931F8A2BD600631380 /* dbLogString.m in Sources */,
 				E82287CF1F8A32C600631380 /* RemoteAPIGCA2.m in Sources */,
@@ -5142,7 +5166,9 @@
 				E822868E1F8A2BD600631380 /* dbKMLFile.m in Sources */,
 				E82288821F8A34FB00631380 /* SimpleKMLMultiGeometry.m in Sources */,
 				E823451E1EECE14A00D2CDFD /* HelpAboutTableViewCell.m in Sources */,
+				E864BBB1206627580053B62D /* KeyboardCoordinateOpenLocationCode.m in Sources */,
 				E82286891F8A2BD600631380 /* dbExternalMapURL.m in Sources */,
+				E864BBA82064F48C0053B62D /* KeyboardCoordinateDegreesDecimalMinutes.m in Sources */,
 				E82288EE1F8A3E8500631380 /* GMUGroundOverlay.m in Sources */,
 				E82344281EECDFB300D2CDFD /* FilterDatesTableViewCell.m in Sources */,
 				E82287101F8A2E1A00631380 /* GCTableViewCellKeyValue.m in Sources */,
