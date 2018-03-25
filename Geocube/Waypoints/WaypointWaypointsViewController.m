@@ -23,8 +23,11 @@
 
 @property (nonatomic, retain) NSArray<dbWaypoint *> *wps;
 @property (nonatomic, retain) dbWaypoint *waypoint;
-@property (nonatomic, retain) UITextField *tfLatitude, *tfLongitude;
 @property (nonatomic, retain) UIAlertAction *okButton;
+@property (nonatomic, retain) UITextField *coordsField1;
+@property (nonatomic, retain) UITextField *coordsField2;
+@property (nonatomic        ) CoordinatesType coordType;
+
 
 @end
 
@@ -57,6 +60,7 @@ enum {
 
 - (void)viewDidLoad
 {
+    self.coordType = configManager.coordinatesTypeEdit;
     self.hasCloseButton = YES;
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -200,7 +204,7 @@ enum {
 
 - (void)newWaypoint
 {
-    NSString *s = [NSString stringWithFormat:_(@"waypointwaypointsviewcontroller-Waypoint coordinates:__%@__Current coordinates:__%@"), [Coordinates niceCoordinates:self.waypoint.wpt_latitude longitude:self.waypoint.wpt_longitude], [Coordinates niceCoordinates:LM.coords]];
+    NSString *s = [NSString stringWithFormat:_(@"waypointwaypointsviewcontroller-Waypoint coordinates:__%@__Current coordinates:__%@"), [Coordinates niceCoordinates:self.waypoint.wpt_latitude longitude:self.waypoint.wpt_longitude coordType:self.coordType], [Coordinates niceCoordinates:LM.coords coordType:self.coordType]];
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:_(@"waypointwaypointsviewcontroller-Add a related waypoint")
                                 message:s
@@ -212,15 +216,21 @@ enum {
                 handler:^(UIAlertAction *action) {
                     //Do Some action
                     UITextField *tf = [alert.textFields objectAtIndex:0];
-                    NSString *lat = tf.text;
-                    NSLog(@"Latitude '%@'", lat);
+                    NSString *field1 = tf.text;
+                    NSLog(@"Field 1: '%@'", field1);
 
-                    tf = [alert.textFields objectAtIndex:1];
-                    NSString *lon = tf.text;
-                    NSLog(@"Longitude '%@'", lon);
+                    NSString *field2 = nil;
+                    if (self.coordsField2 != nil) {
+                        tf = [alert.textFields objectAtIndex:1];
+                        field2 = tf.text;
+                        NSLog(@"Field 2: '%@'", field2);
+                    }
 
                     Coordinates *c;
-                    c = [[Coordinates alloc] initWithStringLatitude:lat longitude:lon];
+                    if (self.coordsField2 == nil)
+                        c = [Coordinates parseCoordinatesWithString:field1 coordType:self.coordType];
+                    else
+                        c = [Coordinates parseCoordinatesWithString:[NSString stringWithFormat:@"%@ %@", field1, field2] coordType:self.coordType];
 
                     dbWaypoint *wp = [[dbWaypoint alloc] init];
                     wp.wpt_latitude = [c latitude];
@@ -253,40 +263,54 @@ enum {
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
+    UIAlertAction *changeFormat = [UIAlertAction
+                                   actionWithTitle:_(@"coordinates-Change Format") style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action) {
+                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                       self.coordType = (self.coordType + 1) % COORDINATES_MAX;
+                                       [self newWaypoint];
+                                   }];
 
     [alert addAction:self.okButton];
+    [alert addAction:changeFormat];
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = _(@"waypointwaypointsviewcontroller-Latitude (like S 12 34.567)");
-        textField.keyboardType = UIKeyboardTypeDecimalPad;
-        textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:YES];
-        textField.text = [NSString stringWithString:[Coordinates niceLatitudeForEditing:self.waypoint.wpt_latitude]];
+        textField.text = [Coordinates niceLatitudeForEditing:self.waypoint.wpt_latitude coordType:self.coordType];
+        textField.placeholder = [NSString stringWithFormat:@"%@ (%@ %@)", _(@"Latitude"), _(@"waypointaddviewcontroller-like"), [Coordinates coordinateExample:self.coordType]];
+        KeyboardCoordinateView *kb = [KeyboardCoordinateView pickKeyboard:self.coordType];
+        [kb.firstView showsLatitude:YES];
+        textField.inputView = kb;
         [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-        self.tfLatitude = textField;
-    }];
-    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = _(@"waypointwaypointsviewcontroller-Longitude (like E 23 45.678)");
-        textField.keyboardType = UIKeyboardTypeDecimalPad;
-        textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:NO];
-        textField.text = [NSString stringWithString:[Coordinates niceLongitudeForEditing:self.waypoint.wpt_longitude]];
-        [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-        self.tfLongitude = textField;
+        self.coordsField1 = textField;
     }];
 
-    if ([Coordinates checkCoordinate:self.tfLatitude.text] == YES &&
-        [Coordinates checkCoordinate:self.tfLongitude.text] == YES)
-        self.okButton.enabled = YES;
-    else
-        self.okButton.enabled = NO;
+    self.coordsField2 = nil;
+    if (self.coordType != COORDINATES_UTM &&
+        self.coordType != COORDINATES_MGRS &&
+        self.coordType != COORDINATES_OPENLOCATIONCODE) {
+        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.text = [Coordinates niceLongitudeForEditing:self.waypoint.wpt_longitude coordType:self.coordType];
+            textField.placeholder = [NSString stringWithFormat:@"%@ (%@ %@)", _(@"Longitude"), _(@"waypointaddviewcontroller-like"), [Coordinates coordinateExample:self.coordType]];
+            KeyboardCoordinateView *kb = [KeyboardCoordinateView pickKeyboard:self.coordType];
+            [kb.firstView showsLatitude:NO];
+            textField.inputView = kb;
+            [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+            self.coordsField2 = textField;
+        }];
+    }
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)alertControllerTextFieldDidChange:(UITextField *)sender
 {
-    if ([Coordinates checkCoordinate:self.tfLatitude.text] == YES &&
-        [Coordinates checkCoordinate:self.tfLongitude.text] == YES)
+    NSString *s;
+    if (self.coordsField2 == nil)
+        s = self.coordsField1.text;
+    else
+        s = [NSString stringWithFormat:@"%@ %@", self.coordsField1.text, self.coordsField2.text];
+    if ([Coordinates checkCoordinate:s coordType:self.coordType] == YES)
         self.okButton.enabled = YES;
     else
         self.okButton.enabled = NO;
