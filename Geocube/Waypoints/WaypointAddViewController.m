@@ -270,14 +270,21 @@ enum {
                       handler:^(UIAlertAction *action) {
                           //Do Some action
                           UITextField *tf = [alert.textFields objectAtIndex:0];
-                          NSString *lat = tf.text;
-                          NSLog(@"Latitude '%@'", lat);
+                          NSString *field1 = tf.text;
+                          NSLog(@"Field 1: '%@'", field1);
 
-                          tf = [alert.textFields objectAtIndex:1];
-                          NSString *lon = tf.text;
-                          NSLog(@"Longitude '%@'", lon);
+                          NSString *field2 = nil;
+                          if (self.coordsField2 != nil) {
+                              tf = [alert.textFields objectAtIndex:1];
+                              field2 = tf.text;
+                              NSLog(@"Field 2: '%@'", field2);
+                          }
 
-                          Coordinates *c = [Coordinates parseCoordinatesWithString:[NSString stringWithFormat:@"%@ %@", lat, lon] coordType:self.coordType];
+                          Coordinates *c;
+                          if (self.coordsField2 == nil)
+                              c = [Coordinates parseCoordinatesWithString:field1 coordType:self.coordType];
+                          else
+                              c = [Coordinates parseCoordinatesWithString:[NSString stringWithFormat:@"%@ %@", field1, field2] coordType:self.coordType];
                           self.coords = CLLocationCoordinate2DMake(c.latitude, c.longitude);
 
                           [self.tableView reloadData];
