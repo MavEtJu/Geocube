@@ -38,7 +38,7 @@
 #define COORDS_DEGREES_MINUTES_SECONDS_REGEXP @"(\\d{1,3})[º°\\s] *(\\d{1,2})['′\\s] *(\\d{1,2})[\"″]?"
 #define COORDS_OPENLOCATIONCODE_REGEXP @"([023456789CFGHJMPQRVWX]+\\+[23456789CFGHJMPQRVWX]*)"
 #define COORDS_UTM_REGEXP @"(\\d{2}[ACDEFGHJKLMNPQRSTUVWXZ] \\d+ \\d+)"
-#define COORDS_MGRS_REGEXP @"(\\d{1,2}[^ABIOYZabioyz][A-Za-z]{2} +\\d+ +\\d+)"
+#define COORDS_MGRS_REGEXP @"(\\d{1,2}[^ABIOYZabioyz][A-Za-z]{2} +\\d+[NESW]? +\\d+[NESW]?)"
 
 /// Initialize a Coordinates object with a lat and a lon value
 - (instancetype)initWithDegrees:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude
@@ -257,11 +257,11 @@
 
 - (NSString *)lat
 {
-    return [self lat:configManager.coordinatesType];
+    return [self lat:configManager.coordinatesTypeShow];
 }
 - (NSString *)lon
 {
-    return [self lon:configManager.coordinatesType];
+    return [self lon:configManager.coordinatesTypeShow];
 }
 
 /// Returns lat value
@@ -485,7 +485,7 @@
 /// Returns string with coordinates like N 1° 2.3' E 4° 5.6
 - (NSString *)niceCoordinates
 {
-    return [self niceCoordinates:configManager.coordinatesType];
+    return [self niceCoordinates:configManager.coordinatesTypeShow];
 }
 
 /// Returns string with coordinates like N 1° 2.3' E 4° 5.6
@@ -566,7 +566,7 @@
 /// Returns string with coordinates like N 1° 2.3' E 4° 5.6
 + (NSString *)niceCoordinates:(CLLocationCoordinate2D)c
 {
-    return [self niceCoordinates:c coordType:configManager.coordinatesType];
+    return [self niceCoordinates:c coordType:configManager.coordinatesTypeShow];
 }
 + (NSString *)niceCoordinates:(CLLocationCoordinate2D)c coordType:(CoordinatesType)coordType
 {
@@ -576,7 +576,7 @@
 
 + (NSString *)niceCoordinates:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude
 {
-    return [self niceCoordinates:latitude longitude:longitude coordType:configManager.coordinatesType];
+    return [self niceCoordinates:latitude longitude:longitude coordType:configManager.coordinatesTypeShow];
 }
 + (NSString *)niceCoordinates:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude coordType:(CoordinatesType)coordType
 {
@@ -587,7 +587,7 @@
 /// Returns string with coordinates like N 1 2.3 E 4 5.6
 + (NSString *)niceCoordinatesForEditing:(CLLocationCoordinate2D)c
 {
-    return [self niceCoordinatesForEditing:c coordType:configManager.coordinatesType];
+    return [self niceCoordinatesForEditing:c coordType:configManager.coordinatesTypeEdit];
 }
 + (NSString *)niceCoordinatesForEditing:(CLLocationCoordinate2D)c coordType:(CoordinatesType)coordType
 {
@@ -598,7 +598,7 @@
 /// Returns string with latitude like N 1° 2.3'
 + (NSString *)niceLatitude:(CLLocationDegrees)l
 {
-    return [self niceLatitude:l coordType:configManager.coordinatesType];
+    return [self niceLatitude:l coordType:configManager.coordinatesTypeShow];
 }
 + (NSString *)niceLatitude:(CLLocationDegrees)l coordType:(CoordinatesType)coordType
 {
@@ -608,7 +608,7 @@
 /// Returns string with longitude like E 1° 2.3'
 + (NSString *)niceLongitude:(CLLocationDegrees)l
 {
-    return [self niceLongitude:l coordType:configManager.coordinatesType];
+    return [self niceLongitude:l coordType:configManager.coordinatesTypeShow];
 }
 + (NSString *)niceLongitude:(CLLocationDegrees)l coordType:(CoordinatesType)coordType
 {
@@ -619,7 +619,7 @@
 /// Returns string with latitude like N 1 2.3
 + (NSString *)niceLatitudeForEditing:(CLLocationDegrees)l
 {
-    return [self niceLatitudeForEditing:l coordType:configManager.coordinatesType];
+    return [self niceLatitudeForEditing:l coordType:configManager.coordinatesTypeEdit];
 }
 + (NSString *)niceLatitudeForEditing:(CLLocationDegrees)l coordType:(CoordinatesType)coordType
 {
@@ -629,7 +629,7 @@
 /// Returns string with longitude like E 1 2.3
 + (NSString *)niceLongitudeForEditing:(CLLocationDegrees)l
 {
-    return [self niceLongitudeForEditing:l coordType:configManager.coordinatesType];
+    return [self niceLongitudeForEditing:l coordType:configManager.coordinatesTypeEdit];
 }
 + (NSString *)niceLongitudeForEditing:(CLLocationDegrees)l coordType:(CoordinatesType)coordType
 {
@@ -846,7 +846,7 @@
 /// Check if a string matches a set of coordinates like ^[NESW] \d{1,3}º? ?\d{1,2}\.\d{1,3
 + (BOOL)checkCoordinate:(NSString *)text
 {
-    return [self checkCoordinate:text coordType:configManager.coordinatesType];
+    return [self checkCoordinate:text coordType:configManager.coordinatesTypeShow];
 }
 + (BOOL)checkCoordinate:(NSString *)text coordType:(CoordinatesType)coordType
 {
