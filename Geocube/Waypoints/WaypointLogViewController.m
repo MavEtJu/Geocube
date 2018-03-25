@@ -33,7 +33,9 @@
 
 @property (nonatomic, retain) NSMutableArray<dbTrackable *> *trackables;
 @property (nonatomic, retain) UIAlertAction *coordsOkButton;
-@property (nonatomic, retain) UITextField *coordsLatitude, *coordsLongitude;
+@property (nonatomic, retain) UITextField *coordsField1;
+@property (nonatomic, retain) UITextField *coordsField2;
+@property (nonatomic        ) CoordinatesType coordType;
 
 @property (nonatomic        ) CLLocationCoordinate2D coordinates;
 @property (nonatomic        ) NSInteger ratingSelected;
@@ -76,6 +78,7 @@ enum {
     self.image = nil;
     self.ratingSelected = 0;
     self.delegateWaypoint = nil;
+    self.coordType = configManager.coordinatesTypeEdit;
 
     LogStringWPType wptype = [dbLogString wptTypeToWPType:self.waypoint.wpt_type.type_full];
     self.logstrings = [dbLogString dbAllByProtocolWPType_LogOnly:self.waypoint.account.protocol wptype:wptype];
@@ -447,7 +450,7 @@ enum {
 {
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:_(@"waypointlogviewcontroller-Update coordinates")
-                                message:_(@"waypointlogviewcontroller-Please enter the coordinates")
+                                message:[NSString stringWithFormat:_(@"waypointlogviewcontroller-Please enter the coordinates.__Expected format: %@"), [Coordinates coordinateExample:self.coordType]]
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     self.coordsOkButton = [UIAlertAction
@@ -456,15 +459,18 @@ enum {
                       handler:^(UIAlertAction *action) {
                           //Do Some action
                           UITextField *tf = [alert.textFields objectAtIndex:0];
-                          NSString *lat = tf.text;
-                          NSLog(@"Latitude '%@'", lat);
+                          NSString *field1 = tf.text;
+                          NSLog(@"Field 1: '%@'", field1);
 
                           tf = [alert.textFields objectAtIndex:1];
-                          NSString *lon = tf.text;
-                          NSLog(@"Longitude '%@'", lon);
+                          NSString *field2 = tf.text;
+                          NSLog(@"Field 2: '%@'", field2);
 
                           Coordinates *c;
-                          c = [[Coordinates alloc] initWithStringLatitude:lat longitude:lon];
+                          if (self.coordsField2 == nil)
+                              c = [Coordinates parseCoordinatesWithString:field1 coordType:self.coordType];
+                          else
+                              c = [Coordinates parseCoordinatesWithString:[NSString stringWithFormat:@"%@ %@", field1, field2] coordType:self.coordType];
                           self.coordinates = CLLocationCoordinate2DMake(c.latitude, c.longitude);
 
                           [self.tableView reloadData];
@@ -474,40 +480,55 @@ enum {
                              handler:^(UIAlertAction * action) {
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
+    UIAlertAction *changeFormat = [UIAlertAction
+                                   actionWithTitle:_(@"coordinates-Change Format") style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action) {
+                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                       self.coordType = (self.coordType + 1) % COORDINATES_MAX;
+                                       [self changeCoordinates];
+                                   }];
+
 
     [alert addAction:self.coordsOkButton];
+    [alert addAction:changeFormat];
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = [Coordinates niceLatitudeForEditing:self.coordinates.latitude];
-        textField.placeholder = [NSString stringWithFormat:@"%@ (%@ %@ 12 34.567)", _(@"Latitude"), _(@"waypointlogviewcontroller-like"), _(@"compass-S")];
-        textField.keyboardType = UIKeyboardTypeDecimalPad;
-        textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:YES];
+        textField.text = [Coordinates niceLatitudeForEditing:self.coordinates.latitude coordType:self.coordType];
+        textField.placeholder = [NSString stringWithFormat:@"%@ (%@ %@)", _(@"Latitude"), _(@"waypointaddviewcontroller-like"), [Coordinates coordinateExample:self.coordType]];
+        KeyboardCoordinateView *kb = [KeyboardCoordinateView pickKeyboard:self.coordType];
+        [kb.firstView showsLatitude:YES];
+        textField.inputView = kb;
         [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-        self.coordsLatitude = textField;
-    }];
-    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = [Coordinates niceLongitudeForEditing:self.coordinates.longitude];
-        textField.placeholder = [NSString stringWithFormat:@"%@ (%@ %@ 12 34.567)", _(@"Longitude"), _(@"waypointlogviewcontroller-like"), _(@"compass-E")];
-        textField.keyboardType = UIKeyboardTypeDecimalPad;
-        textField.inputView = [[KeyboardCoordinateView alloc] initWithIsLatitude:NO];
-        [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-        self.coordsLongitude = textField;
+        self.coordsField1 = textField;
     }];
 
-    if ([Coordinates checkCoordinate:self.coordsLatitude.text] == YES &&
-        [Coordinates checkCoordinate:self.coordsLongitude.text] == YES)
-        self.coordsOkButton.enabled = YES;
-    else
-        self.coordsOkButton.enabled = NO;
+    self.coordsField2 = nil;
+    if (self.coordType != COORDINATES_UTM &&
+        self.coordType != COORDINATES_MGRS &&
+        self.coordType != COORDINATES_OPENLOCATIONCODE) {
+        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.text = [Coordinates niceLongitudeForEditing:self.coordinates.longitude coordType:self.coordType];
+            textField.placeholder = [NSString stringWithFormat:@"%@ (%@ %@)", _(@"Longitude"), _(@"waypointaddviewcontroller-like"), [Coordinates coordinateExample:self.coordType]];
+            KeyboardCoordinateView *kb = [KeyboardCoordinateView pickKeyboard:self.coordType];
+            [kb.firstView showsLatitude:NO];
+            textField.inputView = kb;
+            [textField addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+            self.coordsField2 = textField;
+        }];
+    }
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)alertControllerTextFieldDidChange:(UITextField *)sender
 {
-    if ([Coordinates checkCoordinate:self.coordsLatitude.text] == YES &&
-        [Coordinates checkCoordinate:self.coordsLongitude.text] == YES)
+    NSString *s;
+    if (self.coordsField2 == nil)
+        s = self.coordsField1.text;
+    else
+        s = [NSString stringWithFormat:@"%@ %@", self.coordsField1.text, self.coordsField2.text];
+    if ([Coordinates checkCoordinate:s coordType:self.coordType] == YES)
         self.coordsOkButton.enabled = YES;
     else
         self.coordsOkButton.enabled = NO;
