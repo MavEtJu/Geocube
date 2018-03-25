@@ -281,7 +281,8 @@ enum sections {
     SECTION_COMPASS_ALWAYSPORTRAIT = 0,
     SECTION_COMPASS_MAX,
 
-    SECTION_COORDINATES_TYPE = 0,
+    SECTION_COORDINATES_TYPE_SHOW = 0,
+    SECTION_COORDINATES_TYPE_EDIT,
     SECTION_COORDINATES_MAX,
 
     SECTION_MAPS_DEFAULTBRAND = 0,
@@ -750,9 +751,10 @@ enum sections {
 
         case SECTION_COORDINATES: {
             switch (indexPath.row) {
-                case SECTION_COORDINATES_TYPE: {
-                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Coordinate type"), [[Coordinates coordinateTypes] objectAtIndex:configManager.coordinatesType])
-                }
+                case SECTION_COORDINATES_TYPE_SHOW:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Coordinate type for showing"), [[Coordinates coordinateTypes] objectAtIndex:configManager.coordinatesTypeShow])
+                case SECTION_COORDINATES_TYPE_EDIT:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Coordinate type for editing"), [[Coordinates coordinateTypes] objectAtIndex:configManager.coordinatesTypeEdit])
             }
             abort();
         }
@@ -1138,8 +1140,11 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
 
         case SECTION_COORDINATES:
             switch (indexPath.row) {
-                case SECTION_COORDINATES_TYPE:
-                    [self changeCoordinatesType];
+                case SECTION_COORDINATES_TYPE_SHOW:
+                    [self changeCoordinatesTypeShow];
+                    break;
+                case SECTION_COORDINATES_TYPE_EDIT:
+                    [self changeCoordinatesTypeEdit];
                     break;
             }
             break;
@@ -1936,15 +1941,31 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
 
 /* ********************************************************************************* */
 
-- (void)changeCoordinatesType
+- (void)changeCoordinatesTypeShow
 {
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_COORDINATES_TYPE inSection:SECTION_COORDINATES]];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_COORDINATES_TYPE_SHOW inSection:SECTION_COORDINATES]];
 
-    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Coordinate type")
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Coordinate type for showing")
                                             rows:[Coordinates coordinateTypes]
-                                initialSelection:configManager.coordinatesType
+                                initialSelection:configManager.coordinatesTypeShow
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                           [configManager coordinatesTypeUpdate:selectedIndex];
+                                           [configManager coordinatesTypeShowUpdate:selectedIndex];
+                                           [self.tableView reloadData];
+                                       }
+                                     cancelBlock:nil
+                                          origin:cell.contentView
+     ];
+}
+
+- (void)changeCoordinatesTypeEdit
+{
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_COORDINATES_TYPE_EDIT inSection:SECTION_COORDINATES]];
+
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Coordinate type for editing")
+                                            rows:[Coordinates coordinateTypes]
+                                initialSelection:configManager.coordinatesTypeEdit
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           [configManager coordinatesTypeEditUpdate:selectedIndex];
                                            [self.tableView reloadData];
                                        }
                                      cancelBlock:nil
