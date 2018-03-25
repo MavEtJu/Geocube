@@ -32,10 +32,10 @@
 
 @implementation Coordinates
 
-#define COORDS_DEGREES_DECIMALMINUTES_REGEXP @"(\\d{1,3})[º° ] *(\\d{1,2}\\.\\d{1,3})['′]?"
+#define COORDS_DEGREES_DECIMALMINUTES_REGEXP @"(\\d{1,3})[º°\\s] *(\\d{1,2}\\.\\d{1,3})['′]?"
 #define COORDS_DECIMALDEGREES_SIGNED_REGEXP @"(-?\\d{1,3}\\.\\d+)"
 #define COORDS_DECIMALDEGREES_CARDINAL_REGEXP @"(\\d{1,3}\\.\\d+)"
-#define COORDS_DEGREES_MINUTES_SECONDS_REGEXP @"(\\d{1,3})[º° ] *(\\d{1,2})['′ ] *(\\d{1,2})[\"″]?"
+#define COORDS_DEGREES_MINUTES_SECONDS_REGEXP @"(\\d{1,3})[º°\\s] *(\\d{1,2})['′\\s] *(\\d{1,2})[\"″]?"
 #define COORDS_OPENLOCATIONCODE_REGEXP @"([023456789CFGHJMPQRVWX]+\\+[23456789CFGHJMPQRVWX]*)"
 #define COORDS_UTM_REGEXP @"(\\d{2}[ACDEFGHJKLMNPQRSTUVWXZ] \\d+ \\d+)"
 #define COORDS_MGRS_REGEXP @"(\\d{1,2}[^ABIOYZabioyz][A-Za-z]{2} +\\d+ +\\d+)"
@@ -1035,7 +1035,6 @@
     }
 
     return nil;
-
 }
 
 /// Convert a latitude and zoom level to a value for the tilename
@@ -1056,11 +1055,11 @@
 {
     switch (coordType) {
         case COORDINATES_DEGREES_DECIMALMINUTES:
-            return @"S 12° 34.567";
+            return @"S 12° 34.567′";
         case COORDINATES_DECIMALDEGREES_SIGNED:
-            return @"-12.345678";
+            return @"-12.345678°";
         case COORDINATES_DECIMALDEGREES_CARDINAL:
-            return @"S 12.345678";
+            return @"S 12.345678°";
         case COORDINATES_DEGREES_MINUTES_SECONDS:
             return @"S 12° 34′ 56″";
         case COORDINATES_OPENLOCATIONCODE:
