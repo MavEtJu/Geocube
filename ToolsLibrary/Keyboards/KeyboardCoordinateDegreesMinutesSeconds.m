@@ -53,11 +53,11 @@
 {
     [super showsLatitude:l];
     if (self.isLatitude == YES) {
-        [self.buttonDirNE setTitle:@"N" forState:UIControlStateNormal];
-        [self.buttonDirSW setTitle:@"S" forState:UIControlStateNormal];
+        [self.buttonDirNE setTitle:@"compass-N" forState:UIControlStateNormal];
+        [self.buttonDirSW setTitle:@"compass-S" forState:UIControlStateNormal];
     } else {
-        [self.buttonDirNE setTitle:@"E" forState:UIControlStateNormal];
-        [self.buttonDirSW setTitle:@"W" forState:UIControlStateNormal];
+        [self.buttonDirNE setTitle:@"compass-E" forState:UIControlStateNormal];
+        [self.buttonDirSW setTitle:@"compass-W" forState:UIControlStateNormal];
     }
 }
 
@@ -77,11 +77,11 @@
     KEYBOARD_ACTION(buttonSeconds, @"″")
 
     if (b == self.buttonDirNE) {
-        [self textInput:self.targetTextInput replaceTextAtTextRange:[self textRangeForRange:NSMakeRange(0, 1)] withString:(self.isLatitude == YES) ? _(@"N") : _(@"E")];
+        [self textInput:self.targetTextInput replaceTextAtTextRange:[self textRangeForRange:NSMakeRange(0, 1)] withString:(self.isLatitude == YES) ? _(@"compass-N") : _(@"compass-E")];
         return;
     }
     if (b == self.buttonDirSW) {
-        [self textInput:self.targetTextInput replaceTextAtTextRange:[self textRangeForRange:NSMakeRange(0, 1)] withString:(self.isLatitude == YES) ? _(@"S") : _(@"W")];
+        [self textInput:self.targetTextInput replaceTextAtTextRange:[self textRangeForRange:NSMakeRange(0, 1)] withString:(self.isLatitude == YES) ? _(@"compass-S") : _(@"compass-W")];
         return;
     }
 

@@ -135,6 +135,7 @@
 "coordinates-Open Location Code (%@)" = "Open Location Code (%@)";
 "coordinates-UTM (%@)" = "UTM (%@)";
 "coordinates-MGRS (%@)" = "MGRS (%@)";
+"coordinates-Change Format" = "Change Format";
 
 /* General */
 "Close" = "Close";

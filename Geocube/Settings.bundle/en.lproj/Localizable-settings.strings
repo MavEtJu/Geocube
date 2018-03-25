@@ -232,5 +232,8 @@
 "settingsmainviewcontroller-Restart required" = "Restart required";
 "settingsmainviewcontroller-When you are finished with these settings, please leave Geocube, swipe it up and restart it." = "When you are finished with these settings, please leave Geocube, swipe it up and restart it.";
 
-"settingsmainviewcontroller-Coordinate type" = "Coordinate type";
 "settingsmainviewcontroller-Coordinates" = "Coordinates";
+"settingsmainviewcontroller-Coordinate type for editing" = "Coordinate type for editing";
+"settingsmainviewcontroller-Coordinate type for showing" = "Coordinate type for showing";
+
+

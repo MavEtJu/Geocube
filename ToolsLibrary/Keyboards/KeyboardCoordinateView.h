@@ -28,7 +28,6 @@
         return; \
     }
 
-
 @interface KeyboardCoordinateView : UIView
 
 @property (nonatomic, weak) UITextField <UITextInput> *targetTextInput;
