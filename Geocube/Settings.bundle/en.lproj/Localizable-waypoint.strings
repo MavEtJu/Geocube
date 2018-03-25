@@ -206,7 +206,5 @@
 /* Waypoint waypoints */
 "waypointwaypointsviewcontroller-Add a related waypoint" = "Add a related waypoint";
 "waypointwaypointsviewcontroller-Waypoint coordinates:__%@__Current coordinates:__%@" = "Waypoint coordinates:\n%@\nCurrent coordinates:\n%@";
-"waypointwaypointsviewcontroller-Latitude (like S 12 34.567)" = "Latitude (like S 12 34.567)";
-"waypointwaypointsviewcontroller-Longitude (like E 23 45.678)" = "Longitude (like E 23 45.678)";
 
 

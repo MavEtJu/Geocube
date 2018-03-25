@@ -28,7 +28,6 @@
 @property (nonatomic, retain) UITextField *coordsField2;
 @property (nonatomic        ) CoordinatesType coordType;
 
-
 @end
 
 @implementation WaypointWaypointsViewController
