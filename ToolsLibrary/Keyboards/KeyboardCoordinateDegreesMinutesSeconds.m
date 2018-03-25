@@ -53,11 +53,11 @@
 {
     [super showsLatitude:l];
     if (self.isLatitude == YES) {
-        [self.buttonDirNE setTitle:@"compass-N" forState:UIControlStateNormal];
-        [self.buttonDirSW setTitle:@"compass-S" forState:UIControlStateNormal];
+        [self.buttonDirNE setTitle:_(@"compass-N") forState:UIControlStateNormal];
+        [self.buttonDirSW setTitle:_(@"compass-S") forState:UIControlStateNormal];
     } else {
-        [self.buttonDirNE setTitle:@"compass-E" forState:UIControlStateNormal];
-        [self.buttonDirSW setTitle:@"compass-W" forState:UIControlStateNormal];
+        [self.buttonDirNE setTitle:_(@"compass-E") forState:UIControlStateNormal];
+        [self.buttonDirSW setTitle:_(@"compass-W") forState:UIControlStateNormal];
     }
 }
 
