@@ -142,6 +142,13 @@
 @class KeepTrackTracks;
 @class KeepTracksTrackTableViewCell;
 @class KeyManager;
+@class KeyboardCoordinateDecimalDegreesCardinal;
+@class KeyboardCoordinateDecimalDegreesSigned;
+@class KeyboardCoordinateDegreesDecimalMinutes;
+@class KeyboardCoordinateDegreesMinutesSeconds;
+@class KeyboardCoordinateMGRS;
+@class KeyboardCoordinateOpenLocationCode;
+@class KeyboardCoordinateUTM;
 @class KeyboardCoordinateView;
 @class ListDNFViewController;
 @class ListFoundViewController;
