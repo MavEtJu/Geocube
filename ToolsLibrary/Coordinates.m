@@ -32,7 +32,7 @@
 
 @implementation Coordinates
 
-#define COORDS_DEGREES_DECIMALMINUTES_REGEXP @"(\\d{1,3})[º°\\s] *(\\d{1,2}\\.\\d{1,3})['′]?"
+#define COORDS_DEGREES_DECIMALMINUTES_REGEXP @"(\\d{1,3})[º°\\s] *(\\d{1,2}\\.\\d+)['′]?"
 #define COORDS_DECIMALDEGREES_SIGNED_REGEXP @"(-?\\d{1,3}\\.\\d+)"
 #define COORDS_DECIMALDEGREES_CARDINAL_REGEXP @"(\\d{1,3}\\.\\d+)"
 #define COORDS_DEGREES_MINUTES_SECONDS_REGEXP @"(\\d{1,3})[º°\\s] *(\\d{1,2})['′\\s] *(\\d{1,2})[\"″]?"
