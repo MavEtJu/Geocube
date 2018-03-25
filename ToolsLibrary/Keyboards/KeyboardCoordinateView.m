@@ -157,6 +157,7 @@
 
     // Adjust to size of keyboard.
     self.frame = CGRectMake(0, 0, width, self.firstView.frame.size.height);
+    self.backgroundColor = currentTheme.viewControllerBackgroundColor;
 
     [self addSubview:self.firstView];
 
