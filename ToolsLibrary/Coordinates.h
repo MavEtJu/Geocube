@@ -78,7 +78,9 @@ typedef NS_ENUM(NSInteger, CoordinatesType) {
 - (NSString *)niceCoordinates:(CoordinatesType)coordType;
 + (NSString *)niceCoordinates:(CLLocationCoordinate2D)c;
 + (NSString *)niceCoordinates:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude;
++ (NSString *)niceCoordinates:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude coordType:(CoordinatesType)coordType;
 + (NSString *)niceCoordinatesForEditing:(CLLocationCoordinate2D)c;
++ (NSString *)niceCoordinates:(CLLocationCoordinate2D)c coordType:(CoordinatesType)coordType;
 
 + (NSString *)niceLatitude:(CLLocationDegrees)l;
 + (NSString *)niceLatitude:(CLLocationDegrees)l coordType:(CoordinatesType)coordType;
