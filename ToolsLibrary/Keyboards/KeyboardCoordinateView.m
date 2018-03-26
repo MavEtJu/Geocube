@@ -200,8 +200,8 @@
             return [[KeyboardCoordinateDecimalDegreesCardinal alloc] initWithFrame:CGRectZero];
         case COORDINATES_DECIMALDEGREES_SIGNED:
             return [[KeyboardCoordinateDecimalDegreesSigned alloc] initWithFrame:CGRectZero];
-        case COORDINATES_DEGREES_MINUTES_SECONDS:
-             return [[KeyboardCoordinateDegreesMinutesSeconds alloc] initWithFrame:CGRectZero];
+        case COORDINATES_DEGREES_MINUTES_DECIMALSECONDS:
+             return [[KeyboardCoordinateDegreesMinutesDecimalSeconds alloc] initWithFrame:CGRectZero];
         case COORDINATES_DEGREES_DECIMALMINUTES:
              return [[KeyboardCoordinateDegreesDecimalMinutes alloc] initWithFrame:CGRectZero];
         case COORDINATES_OPENLOCATIONCODE:

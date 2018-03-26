@@ -128,7 +128,7 @@
 "Longitude" = "Lengtegraad";
 
 /* Coordinates related */
-"coordinates-Degrees Minutes Seconds (%@)" = "Graden Minuten Seconden (%@)";
+"coordinates-Degrees Minutes with Decimal Seconds (%@)" = "Graden minuten met decimale seconden (%@)";
 "coordinates-Decimal degrees cardinal (%@)" = "Graden met hoofdwindrichting (%@)";
 "coordinates-Decimal degrees signed (%@)" = "Graden met minteken (%@)";
 "coordinates-Degrees with decimal minutes (%@)" = "Graden met decimale minuten (%@)";
@@ -136,6 +136,9 @@
 "coordinates-UTM (%@)" = "UTM (%@)";
 "coordinates-MGRS (%@)" = "MGRS (%@)";
 "coordinates-Change Format" = "Verander formaat";
+
+/* */
+"misc-decimals" = "Decimalen";
 
 /* General */
 "Close" = "Sluiten";

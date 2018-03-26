@@ -147,7 +147,7 @@
 "waypointlogviewcontroller-Log successful" = "Log successful";
 "waypointlogviewcontroller-No rating selected" = "No rating selected";
 "waypointlogviewcontroller-Photo" = "Photo";
-"waypointlogviewcontroller-Please enter the coordinates" = "Please enter the coordinates";
+"waypointlogviewcontroller-Please enter the coordinates.__Expected format: %@" = "waypointlogviewcontroller-Please enter the coordinates.\nExpected format: %@";
 "waypointlogviewcontroller-Please fill in the comment" = "Please fill in the comment";
 "waypointlogviewcontroller-Rating" = "Rating";
 "waypointlogviewcontroller-Select a Logtype" = "Select a Logtype";
@@ -162,7 +162,6 @@
 "waypointlogviewcontroller-Uploading log" = "Uploading log";
 "waypointlogviewcontroller-discovered" = "discovered";
 "waypointlogviewcontroller-dropped off" = "dropped off";
-"waypointlogviewcontroller-like" = "like";
 "waypointlogviewcontroller-none" = "none";
 "waypointlogviewcontroller-picked up" = "picked up";
 "waypointlogviewcontroller-visited" = "visited";

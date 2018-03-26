@@ -235,5 +235,9 @@
 "settingsmainviewcontroller-When you are finished with these settings, please leave Geocube, swipe it up and restart it." = "Wanneer je klaar bent met de veranderingen, verlaat dan Geocube, schiet het omhoog en start het opnieuw.";
 
 "settingsmainviewcontroller-Coordinates" = "Coördinates";
-"settingsmainviewcontroller-Coordinate type for editing" = "Coördinate type voor bewerking";
-"settingsmainviewcontroller-Coordinate type for showing" = "Coördinate type voor weergave";
+"settingsmainviewcontroller-Coordinate type for editing" = "Coördinaat type voor bewerking";
+"settingsmainviewcontroller-Coordinate type for showing" = "Coördinaat type voor weergave";
+"settingsmainviewcontroller-Decimals in coordinates" = "Decimalen in coördinaten";
+"settingsmainviewcontroller-Number of decimals in decimal degrees" = "Aantal decimalen in graden";
+"settingsmainviewcontroller-Number of decimals in decimal minutes" = "Aantal decimalen in minuten";
+"settingsmainviewcontroller-Number of decimals in decimal seconds" = "Aantal decimalen in secondes ";

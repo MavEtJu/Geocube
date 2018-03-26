@@ -128,14 +128,17 @@
 "Longitude" = "Longitude";
 
 /* Coordinates related */
-"coordinates-Degrees Minutes Seconds (%@)" = "Degrees Minutes Seconds (%@)";
 "coordinates-Decimal degrees cardinal (%@)" = "Degrees cardinal (%@)";
 "coordinates-Decimal degrees signed (%@)" = "Degrees signed (%@)";
 "coordinates-Degrees with decimal minutes (%@)" = "Degrees with decimal minutes (%@)";
+"coordinates-Degrees Minutes with Decimal Seconds (%@)" = "Degrees Minutes with Decimal Seconds (%@)";
 "coordinates-Open Location Code (%@)" = "Open Location Code (%@)";
 "coordinates-UTM (%@)" = "UTM (%@)";
 "coordinates-MGRS (%@)" = "MGRS (%@)";
 "coordinates-Change Format" = "Change Format";
+
+/* */
+"misc-decimals" = "Decimals";
 
 /* General */
 "Close" = "Close";

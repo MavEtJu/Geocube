@@ -176,6 +176,9 @@
 
     CHECK(@"coordinates_show", @"0");
     CHECK(@"coordinates_edit", @"0");
+    CHECK(@"coordinates_decimals_seconds", @"2");
+    CHECK(@"coordinates_decimals_minutes", @"3");
+    CHECK(@"coordinates_decimals_degrees", @"7");
 }
 
 - (void)loadValues
@@ -280,6 +283,9 @@
     LOAD_INTEGER(self.fontNormalTextSize, @"font_normaltext_size");
     LOAD_INTEGER(self.coordinatesTypeShow, @"coordinates_show");
     LOAD_INTEGER(self.coordinatesTypeEdit, @"coordinates_edit");
+    LOAD_INTEGER(self.coordinatesDecimalsSeconds, @"coordinates_decimals_seconds");
+    LOAD_INTEGER(self.coordinatesDecimalsMinutes, @"coordinates_decimals_minutes");
+    LOAD_INTEGER(self.coordinatesDecimalsDegrees, @"coordinates_decimals_degrees");
 
     /* Leftovers */
     self.currentTrack = [dbTrack dbGet:[[dbConfig dbGetByKey:@"track_current"].value integerValue]];
@@ -453,6 +459,9 @@ UPDATE3(NSInteger, fontSmallTextSize, @"font_smalltext_size")
 UPDATE3(NSInteger, fontNormalTextSize, @"font_normaltext_size")
 UPDATE3(CoordinatesType, coordinatesTypeShow, @"coordinates_show")
 UPDATE3(CoordinatesType, coordinatesTypeEdit, @"coordinates_edit")
+UPDATE3(NSInteger, coordinatesDecimalsDegrees, @"coordinates_decimals_degrees")
+UPDATE3(NSInteger, coordinatesDecimalsMinutes, @"coordinates_decimals_minutes")
+UPDATE3(NSInteger, coordinatesDecimalsSeconds, @"coordinates_decimals_seconds")
 
 UPDATE3(float, keeptrackTimeDeltaMin, @"keeptrack_timedelta_min")
 UPDATE3(float, keeptrackTimeDeltaMax, @"keeptrack_timedelta_max")

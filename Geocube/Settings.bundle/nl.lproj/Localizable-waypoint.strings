@@ -147,7 +147,8 @@
 "waypointlogviewcontroller-Log successful" = "Log geplaatst";
 "waypointlogviewcontroller-No rating selected" = "Geen geselecteerd";
 "waypointlogviewcontroller-Photo" = "Foto";
-"waypointlogviewcontroller-Please enter the coordinates" = "Vul de coördinaten in";
+"waypointlogviewcontroller-Please enter the coordinates.__Expected format: %@" = "Vul de coördinaten in.\nVerwachte formaat: %@";
+
 "waypointlogviewcontroller-Please fill in the comment" = "Vul het commentaar in";
 "waypointlogviewcontroller-Rating" = "Beoordeling";
 "waypointlogviewcontroller-Select a Logtype" = "Selecteer een Logtype";
@@ -162,7 +163,6 @@
 "waypointlogviewcontroller-Uploading log" = "Uploaden van de log";
 "waypointlogviewcontroller-discovered" = "ontdekt";
 "waypointlogviewcontroller-dropped off" = "geplaatst";
-"waypointlogviewcontroller-like" = "als";
 "waypointlogviewcontroller-none" = "niets";
 "waypointlogviewcontroller-picked up" = "opgepakt";
 "waypointlogviewcontroller-visited" = "bezocht";

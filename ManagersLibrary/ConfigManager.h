@@ -131,6 +131,9 @@ PROTO_N (NSInteger, fontSmallTextSize)
 PROTO_N (NSInteger, fontNormalTextSize)
 PROTO_N (CoordinatesType, coordinatesTypeShow)
 PROTO_N (CoordinatesType, coordinatesTypeEdit)
+PROTO_N (NSInteger, coordinatesDecimalsDegrees)
+PROTO_N (NSInteger, coordinatesDecimalsMinutes)
+PROTO_N (NSInteger, coordinatesDecimalsSeconds)
 
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown

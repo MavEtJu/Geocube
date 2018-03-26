@@ -145,7 +145,7 @@
 @class KeyboardCoordinateDecimalDegreesCardinal;
 @class KeyboardCoordinateDecimalDegreesSigned;
 @class KeyboardCoordinateDegreesDecimalMinutes;
-@class KeyboardCoordinateDegreesMinutesSeconds;
+@class KeyboardCoordinateDegreesMinutesDecimalSeconds;
 @class KeyboardCoordinateMGRS;
 @class KeyboardCoordinateOpenLocationCode;
 @class KeyboardCoordinateUTM;

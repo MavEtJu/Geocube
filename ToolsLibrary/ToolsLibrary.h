@@ -33,7 +33,7 @@
 #import "ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesSigned.h"
 #import "ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesCardinal.h"
 #import "ToolsLibrary/Keyboards/KeyboardCoordinateDegreesDecimalMinutes.h"
-#import "ToolsLibrary/Keyboards/KeyboardCoordinateDegreesMinutesSeconds.h"
+#import "ToolsLibrary/Keyboards/KeyboardCoordinateDegreesMinutesDecimalSeconds.h"
 #import "ToolsLibrary/Keyboards/KeyboardCoordinateOpenLocationCode.h"
 #import "ToolsLibrary/Keyboards/KeyboardCoordinateUTM.h"
 #import "ToolsLibrary/Keyboards/KeyboardCoordinateMGRS.h"

@@ -27,7 +27,7 @@ typedef NS_ENUM(NSInteger, CoordinatesType) {
     COORDINATES_DEGREES_DECIMALMINUTES = 0,     // S 12° 34.567
     COORDINATES_DECIMALDEGREES_SIGNED,          // -12.34567
     COORDINATES_DECIMALDEGREES_CARDINAL,        // S 12.34567
-    COORDINATES_DEGREES_MINUTES_SECONDS,        // S 12° 34′ 56″
+    COORDINATES_DEGREES_MINUTES_DECIMALSECONDS, // S 12° 34′ 56.78″
     COORDINATES_OPENLOCATIONCODE,               // 2345678+9CF
     COORDINATES_UTM,                            // 51H 326625E 6222609N
     COORDINATES_MGRS,                           // 51H 326625E 6222609N
@@ -39,7 +39,7 @@ typedef NS_ENUM(NSInteger, CoordinatesType) {
 
 - (instancetype)initWithDecimalDegreesSignedLatitude:(NSString *)latitude longitude:(NSString *)longitude;   // -34.02787 151.07357
 - (instancetype)initWithDecimalDegreesCardinalLatitude:(NSString *)latitude longitude:(NSString *)longitude; // S 34.02787 E 151.07357
-- (instancetype)initWitDegreesMinutesSecondsLatitude:(NSString *)latitude longitude:(NSString *)longitude;   // S 34 27 57 E 151 7 57
+- (instancetype)initWitDegreesMinutesDecimalSecondsLatitude:(NSString *)latitude longitude:(NSString *)longitude;   // S 34 27 57.78 E 151 7 57.78
 - (instancetype)initWitDegreesDecimalMinutesLatitude:(NSString *)latitude longitude:(NSString *)longitude;   // S 34 2.787 E 151 7.357
 - (instancetype)initWithUTM:(NSString *)utm;
 - (instancetype)initWithMGRS:(NSString *)mgrs;

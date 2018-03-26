@@ -283,6 +283,9 @@ enum sections {
 
     SECTION_COORDINATES_TYPE_SHOW = 0,
     SECTION_COORDINATES_TYPE_EDIT,
+    SECTION_COORDINATES_DECIMALS_DEGREESMINUTESDECIMALSECONDS,
+    SECTION_COORDINATES_DECIMALS_DEGREESDECIMALMINUTES,
+    SECTION_COORDINATES_DECIMALS_DECIMALDEGREES,
     SECTION_COORDINATES_MAX,
 
     SECTION_MAPS_DEFAULTBRAND = 0,
@@ -755,6 +758,18 @@ enum sections {
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-Coordinate type for showing"), [[Coordinates coordinateTypes] objectAtIndex:configManager.coordinatesTypeShow])
                 case SECTION_COORDINATES_TYPE_EDIT:
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-Coordinate type for editing"), [[Coordinates coordinateTypes] objectAtIndex:configManager.coordinatesTypeEdit])
+                case SECTION_COORDINATES_DECIMALS_DECIMALDEGREES: {
+                    NSString *s = [NSString stringWithFormat:@"%ld %@", (long)configManager.coordinatesDecimalsDegrees, _(@"misc-decimals")];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Number of decimals in decimal degrees"), s);
+                }
+                case SECTION_COORDINATES_DECIMALS_DEGREESDECIMALMINUTES: {
+                    NSString *s = [NSString stringWithFormat:@"%ld %@", (long)configManager.coordinatesDecimalsMinutes, _(@"misc-decimals")];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Number of decimals in decimal minutes"), s);
+                }
+                case SECTION_COORDINATES_DECIMALS_DEGREESMINUTESDECIMALSECONDS: {
+                    NSString *s = [NSString stringWithFormat:@"%ld %@", (long)configManager.coordinatesDecimalsSeconds, _(@"misc-decimals")];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Number of decimals in decimal seconds"), s);
+                }
             }
             abort();
         }
@@ -1145,6 +1160,15 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
                     break;
                 case SECTION_COORDINATES_TYPE_EDIT:
                     [self changeCoordinatesTypeEdit];
+                    break;
+                case SECTION_COORDINATES_DECIMALS_DECIMALDEGREES:
+                    [self changeCoordinatesDecimalsDegrees];
+                    break;
+                case SECTION_COORDINATES_DECIMALS_DEGREESDECIMALMINUTES:
+                    [self changeCoordinatesDecimalsinutes];
+                    break;
+                case SECTION_COORDINATES_DECIMALS_DEGREESMINUTESDECIMALSECONDS:
+                    [self changeCoordinatesDecimalsSeconds];
                     break;
             }
             break;
@@ -1971,6 +1995,114 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
                                      cancelBlock:nil
                                           origin:cell.contentView
      ];
+}
+
+- (void)changeCoordinatesDecimalsDegrees
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:_(@"settingsmainviewcontroller-Decimals in coordinates")
+                                message:_(@"settingsmainviewcontroller-Number of decimals in decimal degrees")
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:_(@"OK")
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *value = tf.text;
+                             NSInteger i = [value integerValue];
+                             if (i > 0)
+                                 [configManager coordinatesDecimalsDegreesUpdate:i];
+                             [self.tableView reloadData];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = [NSString stringWithFormat:@"%ld", (long)configManager.coordinatesDecimalsDegrees];
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)changeCoordinatesDecimalsinutes
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:_(@"settingsmainviewcontroller-Decimals in coordinates")
+                                message:_(@"settingsmainviewcontroller-Number of decimals in decimal minutes")
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:_(@"OK")
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *value = tf.text;
+                             NSInteger i = [value integerValue];
+                             if (i > 0)
+                                 [configManager coordinatesDecimalsMinutesUpdate:i];
+                             [self.tableView reloadData];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = [NSString stringWithFormat:@"%ld", (long)configManager.coordinatesDecimalsMinutes];
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)changeCoordinatesDecimalsSeconds
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:_(@"settingsmainviewcontroller-Decimals in coordinates")
+                                message:_(@"settingsmainviewcontroller-Number of decimals in decimal seconds")
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:_(@"OK")
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *value = tf.text;
+                             NSInteger i = [value integerValue];
+                             if (i > 0)
+                                 [configManager coordinatesDecimalsSecondsUpdate:i];
+                             [self.tableView reloadData];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = [NSString stringWithFormat:@"%ld", (long)configManager.coordinatesDecimalsSeconds];
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
 /* ********************************************************************************* */

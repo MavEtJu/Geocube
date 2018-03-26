@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface KeyboardCoordinateDegreesMinutesSeconds ()
+@interface KeyboardCoordinateDegreesMinutesDecimalSeconds ()
 
 @property (nonatomic, retain) IBOutlet UIButton *buttonDot, *buttonSpace;
 @property (nonatomic, retain) IBOutlet UIButton *buttonDegrees, *buttonMinutes, *buttonSeconds;
@@ -27,11 +27,11 @@
 
 @end
 
-@implementation KeyboardCoordinateDegreesMinutesSeconds
+@implementation KeyboardCoordinateDegreesMinutesDecimalSeconds
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
-    return [self initWithFrame:frame nibName:@"KeyboardCoordinateDegreesMinutesSeconds"];
+    return [self initWithFrame:frame nibName:@"KeyboardCoordinateDegreesMinutesDecimalSeconds"];
 }
 
 - (void)awakeFromNib

@@ -235,5 +235,9 @@
 "settingsmainviewcontroller-Coordinates" = "Coordinates";
 "settingsmainviewcontroller-Coordinate type for editing" = "Coordinate type for editing";
 "settingsmainviewcontroller-Coordinate type for showing" = "Coordinate type for showing";
+"settingsmainviewcontroller-Decimals in coordinates" = "Decimals in coordinates";
+"settingsmainviewcontroller-Number of decimals in decimal degrees" = "Number of decimals in decimal degrees";
+"settingsmainviewcontroller-Number of decimals in decimal minutes" = "Number of decimals in decimal minutes";
+"settingsmainviewcontroller-Number of decimals in decimal seconds" = "Number of decimals in decimal seconds";
 
 
