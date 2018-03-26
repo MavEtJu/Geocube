@@ -592,7 +592,10 @@
 + (NSString *)niceCoordinatesForEditing:(CLLocationCoordinate2D)c coordType:(CoordinatesType)coordType
 {
     Coordinates *co = [[Coordinates alloc] initWithCoordinates:c];
-    return [NSString stringWithFormat:@"%@ %@", [co latEdit:coordType], [co lonEdit:coordType]];
+    if ([self numberOfFields:coordType] == 1)
+        return [NSString stringWithFormat:@"%@", [co latEdit:coordType]];
+    else
+        return [NSString stringWithFormat:@"%@ %@", [co latEdit:coordType], [co lonEdit:coordType]];
 }
 
 /// Returns string with latitude like N 1° 2.3'

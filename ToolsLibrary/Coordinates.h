@@ -80,6 +80,7 @@ typedef NS_ENUM(NSInteger, CoordinatesType) {
 + (NSString *)niceCoordinates:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude;
 + (NSString *)niceCoordinates:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude coordType:(CoordinatesType)coordType;
 + (NSString *)niceCoordinatesForEditing:(CLLocationCoordinate2D)c;
++ (NSString *)niceCoordinatesForEditing:(CLLocationCoordinate2D)c coordType:(CoordinatesType)coordType;
 + (NSString *)niceCoordinates:(CLLocationCoordinate2D)c coordType:(CoordinatesType)coordType;
 
 + (NSString *)niceLatitude:(CLLocationDegrees)l;

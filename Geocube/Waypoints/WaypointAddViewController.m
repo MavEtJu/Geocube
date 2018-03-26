@@ -307,8 +307,13 @@ enum {
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = [Coordinates niceLatitudeForEditing:self.coords.latitude coordType:self.coordType];
-        textField.placeholder = [NSString stringWithFormat:@"%@ (%@ %@)", _(@"Latitude"), _(@"waypointaddviewcontroller-like"), [Coordinates coordinateExample:self.coordType]];
+        if ([Coordinates numberOfFields:self.coordType] == 2) {
+            textField.text = [Coordinates niceLatitudeForEditing:self.coords.latitude coordType:self.coordType];
+            textField.placeholder = [NSString stringWithFormat:@"%@ (%@ %@)", _(@"Latitude"), _(@"waypointaddviewcontroller-like"), [Coordinates coordinateExample:self.coordType]];
+        } else {
+            textField.text = [Coordinates niceCoordinatesForEditing:self.coords coordType:self.coordType];
+            textField.placeholder = [NSString stringWithFormat:@"(%@ %@)", _(@"waypointaddviewcontroller-like"), [Coordinates coordinateExample:self.coordType]];
+        }
         KeyboardCoordinateView *kb = [KeyboardCoordinateView pickKeyboard:self.coordType];
         [kb.firstView showsLatitude:YES];
         textField.inputView = kb;
