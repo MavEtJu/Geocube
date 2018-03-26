@@ -102,5 +102,6 @@ typedef NS_ENUM(NSInteger, CoordinatesType) {
 
 + (NSArray<NSString *> *)coordinateTypes;
 + (NSString *)coordinateExample:(CoordinatesType)coordType;
++ (NSInteger)numberOfFields:(CoordinatesType)coordType;
 
 @end

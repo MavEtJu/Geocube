@@ -317,9 +317,7 @@ enum {
     }];
 
     self.coordsField2 = nil;
-    if (self.coordType != COORDINATES_UTM &&
-        self.coordType != COORDINATES_MGRS &&
-        self.coordType != COORDINATES_OPENLOCATIONCODE) {
+    if ([Coordinates numberOfFields:self.coordType] == 2) {
         [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
             textField.text = [Coordinates niceLongitudeForEditing:self.coords.longitude coordType:self.coordType];
             textField.placeholder = [NSString stringWithFormat:@"%@ (%@ %@)", (@"Longitude"), _(@"waypointaddviewcontroller-like"), [Coordinates coordinateExample:self.coordType]];

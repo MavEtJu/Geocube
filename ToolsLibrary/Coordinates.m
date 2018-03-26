@@ -1091,4 +1091,31 @@
     return cts;
 }
 
++ (NSInteger)numberOfFields:(CoordinatesType)coordType
+{
+    switch (coordType) {
+        case COORDINATES_DECIMALDEGREES_SIGNED:
+            /* Fallthrough */
+        case COORDINATES_DECIMALDEGREES_CARDINAL:
+            /* Fallthrough */
+        case COORDINATES_DEGREES_DECIMALMINUTES:
+            /* Fallthrough */
+        case COORDINATES_DEGREES_MINUTES_SECONDS:
+            return 2;
+
+        case COORDINATES_OPENLOCATIONCODE:
+            /* Fallthrough */
+        case COORDINATES_UTM:
+            /* Fallthrough */
+        case COORDINATES_MGRS:
+            return 1;
+
+        case COORDINATES_MAX:
+            break;
+    }
+    NSAssert(FALSE, @"numberOfFields");
+    /* Not reached */
+    return 0;
+}
+
 @end
