@@ -7,6 +7,8 @@ Version 2.1(x)
     displaying and for editing.
   - Added OpenLocationCode, UTM, MGRS for display.
   - Created new keyboards for various coordinate inputs.
+  - You are able to define the number of decimals in decimal degrees,
+    decimal minutes and decimal seconds.
 
   Fixes:
 
