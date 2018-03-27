@@ -201,33 +201,6 @@ EMPTY_METHOD(mapViewDidLoad)
     }
 }
 
-- (void)openWaypointsPicker:(NSArray<NSString *> *)names origin:(UIView *)origin
-{
-    NSAssert(NO, @"XXX");
-    NSLog(@"amount: %lu", (unsigned long)[names count]);
-
-    NSMutableArray<NSString *> *descs = [NSMutableArray arrayWithCapacity:[names count]];
-    [names enumerateObjectsUsingBlock:^(NSString * _Nonnull name, NSUInteger idx, BOOL * _Nonnull stop) {
-        dbWaypoint *wp = [waypointManager waypoint_byName:name];
-
-        [descs addObject:[NSString stringWithFormat:@"%@ - %@", name, wp.wpt_urlname]];
-    }];
-
-    [ActionSheetStringPicker
-     showPickerWithTitle:_(@"maptemplate-Select a waypoint")
-     rows:descs
-     initialSelection:0
-     doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, NSString *selectedValue) {
-         dbWaypoint *wp = [waypointManager waypoint_byName:[names objectAtIndex:selectedIndex]];
-         [self openWaypointView:wp];
-     }
-     cancelBlock:^(ActionSheetStringPicker *picker) {
-         NSLog(@"Block Picker Canceled");
-     }
-     origin:origin
-     ];
-}
-
 - (void)recalculateRects
 {
 }

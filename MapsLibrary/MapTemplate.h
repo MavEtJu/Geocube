@@ -91,6 +91,5 @@
 
 // User related actions
 - (void)openWaypointView:(dbWaypoint *)wp;
-- (void)openWaypointsPicker:(NSArray<NSString *> *)names origin:(UIView *)origin;
 
 @end
