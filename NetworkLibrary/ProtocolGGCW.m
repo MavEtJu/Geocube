@@ -543,7 +543,7 @@ bail:
     req.HTTPMethod = @"POST";
 
     NSHTTPURLResponse *resp = nil;
-    NSData *data = [self performURLRequest:req returnResponse:&resp infoItem:iid];
+    [self performURLRequest:req returnResponse:&resp infoItem:iid]; // retval ignored
 
     // Expecting a 301.
     if (resp.statusCode != 301)
@@ -553,7 +553,7 @@ bail:
     // Request the page with the data for the GPX file
     url = [NSURL URLWithString:location];
     req = [NSMutableURLRequest requestWithURL:url];
-    data = [self performURLRequest:req returnResponse:&resp infoItem:iid];
+    NSData *data = [self performURLRequest:req returnResponse:&resp infoItem:iid];
     if (data == nil)
         return nil;
 

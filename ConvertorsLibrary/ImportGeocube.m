@@ -46,8 +46,6 @@ typedef NS_ENUM(NSInteger, Type) {
 
 + (BOOL)parse:(NSData *)data infoItem:(InfoItem *)iii filetype:(GeocubeFileType)filetype;
 {
-    NSString *d = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(0, 1)] encoding:NSASCIIStringEncoding];
-
     switch (filetype) {
         case GEOCUBEFILETYPE_NONE: {
             ImportGeocube *ig = [[ImportGeocube alloc] init];
@@ -60,6 +58,7 @@ typedef NS_ENUM(NSInteger, Type) {
             return [self parseKey:data filetype:filetype infoItem:iii];
     }
 
+    NSString *d = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(0, 1)] encoding:NSASCIIStringEncoding];
     if ([d isEqualToString:@"<"] == YES) {
         // Assume XML
         ImportGeocube *ig = [[ImportGeocube alloc] init];

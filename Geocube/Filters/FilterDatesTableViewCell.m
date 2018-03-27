@@ -151,11 +151,10 @@
 
 - (void)clickCompare:(FilterButton *)b
 {
-    FilterDate compare = -1;
     if (b == self.buttonCompareLastLog)
-        compare = self.compareLastLog = (self.compareLastLog + 1) % 3;
+        self.compareLastLog = (self.compareLastLog + 1) % 3;
     if (b == self.buttonComparePlaced)
-        compare = self.comparePlaced = (self.comparePlaced + 1) % 3;
+        self.comparePlaced = (self.comparePlaced + 1) % 3;
     [self configUpdate];
     [self viewRefresh];
 }
