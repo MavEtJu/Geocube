@@ -120,24 +120,24 @@
 /// Returns -34.02787
 - (NSString *)lat_decimalDegreesSigned     // -34.02787
 {
-    return [NSString stringWithFormat:@"%9.*f", configManager.coordinatesDecimalsDegrees, self.coords.latitude];
+    return [NSString stringWithFormat:@"%9.*f", (int)configManager.coordinatesDecimalsDegrees, self.coords.latitude];
 }
 /// Returns 151.07357
 - (NSString *)lon_decimalDegreesSigned     // 151.07357
 {
-    return [NSString stringWithFormat:@"%9.*f", configManager.coordinatesDecimalsDegrees, self.coords.longitude];
+    return [NSString stringWithFormat:@"%9.*f", (int)configManager.coordinatesDecimalsDegrees, self.coords.longitude];
 }
 /// Returns S 34.02787
 - (NSString *)lat_decimalDegreesCardinal   // S 34.02787
 {
     NSString *hemi = (self.coords.latitude < 0) ? _(@"compass-S") : _(@"compass-N") ;
-    return [NSString stringWithFormat:@"%@ %9.*f", hemi, configManager.coordinatesDecimalsDegrees, fabs(self.coords.latitude)];
+    return [NSString stringWithFormat:@"%@ %9.*f", hemi, (int)configManager.coordinatesDecimalsDegrees, fabs(self.coords.latitude)];
 }
 /// Returns E 151.07357
 - (NSString *)lon_decimalDegreesCardinal   // E 151.07357
 {
     NSString *hemi = (self.coords.longitude < 0) ? _(@"compass-W") : _(@"compass-E") ;
-    return [NSString stringWithFormat:@"%@ %9.*f", hemi, configManager.coordinatesDecimalsDegrees, fabs(self.coords.longitude)];
+    return [NSString stringWithFormat:@"%@ %9.*f", hemi, (int)configManager.coordinatesDecimalsDegrees, fabs(self.coords.longitude)];
 }
 /// Returns S 34° 1.672'
 - (NSString *)lat_degreesDecimalMinutes    // S 34° 1.672'
@@ -146,7 +146,7 @@
     float dummy;
     int degrees = (int)fabs(self.coords.latitude);
     float mins = modff(fabs(self.coords.latitude), &dummy);
-    return [NSString stringWithFormat:@"%@ %3d° %06.*f′", hemi, degrees, configManager.coordinatesDecimalsMinutes, mins * 60];
+    return [NSString stringWithFormat:@"%@ %3d° %06.*f′", hemi, degrees, (int)configManager.coordinatesDecimalsMinutes, mins * 60];
 }
 /// Returns E 151° 4.414'
 - (NSString *)lon_degreesDecimalMinutes    // E 151° 4.414'
@@ -155,7 +155,7 @@
     float dummy;
     int degrees = (int)fabs(self.coords.longitude);
     float mins = modff(fabs(self.coords.longitude), &dummy);
-    return [NSString stringWithFormat:@"%@ %3d° %06.*f′", hemi, degrees, configManager.coordinatesDecimalsMinutes, mins * 60];
+    return [NSString stringWithFormat:@"%@ %3d° %06.*f′", hemi, degrees, (int)configManager.coordinatesDecimalsMinutes, mins * 60];
 }
 /// Returns S 34 1.672
 - (NSString *)latEdit_degreesDecimalMinutes    // S 34 1.672
@@ -164,7 +164,7 @@
     float dummy;
     int degrees = (int)fabs(self.coords.latitude);
     float mins = modff(fabs(self.coords.latitude), &dummy);
-    return [NSString stringWithFormat:@"%@ %d %0.*f", hemi, degrees, configManager.coordinatesDecimalsMinutes, mins * 60];
+    return [NSString stringWithFormat:@"%@ %d %0.*f", hemi, degrees, (int)configManager.coordinatesDecimalsMinutes, mins * 60];
 }
 /// Returns E 151 4.414
 - (NSString *)lonEdit_degreesDecimalMinutes    // E 151 4.414
@@ -173,7 +173,7 @@
     float dummy;
     int degrees = (int)fabs(self.coords.longitude);
     float mins = modff(fabs(self.coords.longitude), &dummy);
-    return [NSString stringWithFormat:@"%@ %d %0.*f", hemi, degrees, configManager.coordinatesDecimalsMinutes, mins * 60];
+    return [NSString stringWithFormat:@"%@ %d %0.*f", hemi, degrees, (int)configManager.coordinatesDecimalsMinutes, mins * 60];
 }
 /// Returns S 34° 01' 40"
 - (NSString *)lat_degreesMinutesDecimalSeconds    // S 34° 01' 40.67"
@@ -183,7 +183,7 @@
     int degrees = (int)fabs(self.coords.latitude);
     float mins = modff(fabs(self.coords.latitude), &dummy);
     float secs = modff(60 * mins, &dummy);
-    return [NSString stringWithFormat:@"%@ %3d° %02d′ %02.*f″", hemi, degrees, (int)(mins * 60), configManager.coordinatesDecimalsSeconds, secs * 60];
+    return [NSString stringWithFormat:@"%@ %3d° %02d′ %02.*f″", hemi, degrees, (int)(mins * 60), (int)configManager.coordinatesDecimalsSeconds, secs * 60];
 }
 /// Returns E 151° 04' 25"
 - (NSString *)lon_degreesMinutesDecimalSeconds    // E 151° 04' 25.67"
@@ -193,7 +193,7 @@
     int degrees = (int)fabs(self.coords.longitude);
     float mins = modff(fabs(self.coords.longitude), &dummy);
     float secs = modff(60 * mins, &dummy);
-    return [NSString stringWithFormat:@"%@ %3d° %02d′ %02.*f″", hemi, degrees, (int)(mins * 60), configManager.coordinatesDecimalsSeconds, secs * 60];
+    return [NSString stringWithFormat:@"%@ %3d° %02d′ %02.*f″", hemi, degrees, (int)(mins * 60), (int)configManager.coordinatesDecimalsSeconds, secs * 60];
 }
 /// Returns S 34 01 40
 - (NSString *)latEdit_degreesMinutesDecimalSeconds    // S 34 01 40.12
@@ -203,7 +203,7 @@
     int degrees = (int)fabs(self.coords.latitude);
     float mins = modff(fabs(self.coords.latitude), &dummy);
     float secs = modff(60 * mins, &dummy);
-    return [NSString stringWithFormat:@"%@ %3d %02d %02.*f", hemi, degrees, (int)(mins * 60), configManager.coordinatesDecimalsSeconds, secs * 60];
+    return [NSString stringWithFormat:@"%@ %3d %02d %02.*f", hemi, degrees, (int)(mins * 60), (int)configManager.coordinatesDecimalsSeconds, secs * 60];
 }
 /// Returns E 151 04 25
 - (NSString *)lonEdit_degreesMinutesDecimalSeconds    // E 151 04 25.23
@@ -213,7 +213,7 @@
     int degrees = (int)fabs(self.coords.longitude);
     float mins = modff(fabs(self.coords.longitude), &dummy);
     float secs = modff(60 * mins, &dummy);
-    return [NSString stringWithFormat:@"%@ %3d %02d %02.*f", hemi, degrees, (int)(mins * 60), configManager.coordinatesDecimalsSeconds, secs * 60];
+    return [NSString stringWithFormat:@"%@ %3d %02d %02.*f", hemi, degrees, (int)(mins * 60), (int)configManager.coordinatesDecimalsSeconds, secs * 60];
 }
 
 - (NSString *)lat:(CoordinatesType)coordType
