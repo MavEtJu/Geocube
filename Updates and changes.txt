@@ -11,6 +11,7 @@ Version 2.1(x)
     decimal minutes and decimal seconds.
 
   Fixes:
+  - Making a photo on iOS 11 works again.
 
 Version 2.0(34)
 

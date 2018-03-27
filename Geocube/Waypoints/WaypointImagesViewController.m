@@ -454,6 +454,20 @@ enum {
 
 - (void)showImagePickerForSourceType:(UIImagePickerControllerSourceType)sourceType
 {
+    if (sourceType == UIImagePickerControllerSourceTypeCamera) {
+        switch ([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo]) {
+            case AVAuthorizationStatusRestricted:
+                [MyTools messageBox:self header:_(@"waypointimagesviewcontroller-Access denied") text:_(@"waypointimagesviewcontroller-Unable to access the camera.")];
+                return;
+            case AVAuthorizationStatusDenied:
+                [MyTools messageBox:self header:_(@"waypointimagesviewcontroller-Access denied") text:_(@"waypointimagesviewcontroller-Unable to access the camera. Go to the Settings app to change the permission.")];
+                return;
+            case AVAuthorizationStatusNotDetermined:
+                /* Fall through */
+            case AVAuthorizationStatusAuthorized:
+                break;
+        }
+    }
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.modalPresentationStyle = UIModalPresentationCurrentContext;
     imagePickerController.sourceType = sourceType;
@@ -512,7 +526,8 @@ enum {
         img.lon = LM.coords.longitude;
         [img dbCreate];
 
-        UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+        if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized)
+            UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
     }
 
     if ([img dbLinkedtoWaypoint:self.waypoint] == NO)
