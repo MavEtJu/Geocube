@@ -56,6 +56,9 @@
 "waypointimagesviewcontroller-User images" = "User Images";
 "waypointimagesviewcontroller-Waypoint images" = "Waypoint Images";
 "waypointimagesviewcontroller-Images" = "Images";
+"waypointimagesviewcontroller-Access denied" = "Access denied";
+"waypointimagesviewcontroller-Unable to access the camera." = "Unable to access the camera.";
+"waypointimagesviewcontroller-Unable to access the camera. Go to the Settings app to change the permission." = "Unable to access the camera. Go to the Settings app to change the permission.";
 
 /* WaypointImage viewcontroller */
 "waypointimageviewcontroller-The new waypoint has been added to the map" = "The new waypoint has been added to the map";

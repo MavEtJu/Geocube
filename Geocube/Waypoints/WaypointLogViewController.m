@@ -488,7 +488,6 @@ enum {
                                        [self changeCoordinates];
                                    }];
 
-
     [alert addAction:self.coordsOkButton];
     [alert addAction:changeFormat];
     [alert addAction:cancel];

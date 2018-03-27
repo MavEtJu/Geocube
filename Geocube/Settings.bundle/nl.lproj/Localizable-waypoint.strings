@@ -55,6 +55,9 @@
 "waypointimagesviewcontroller-User images" = "Jouw fotos";
 "waypointimagesviewcontroller-Waypoint images" = "Waypoint fotos";
 "waypointimagesviewcontroller-Images" = "Fotos";
+"waypointimagesviewcontroller-Access denied" = "Toegang gewijgerd";
+"waypointimagesviewcontroller-Unable to access the camera." = "Het was niet mogelijk om de camera te gebruiken.";
+"waypointimagesviewcontroller-Unable to access the camera. Go to the Settings app to change the permission." = "Het was niet mogelijk om de camera te gebruiken. Ga naar de Instellingen app om de toegang te veranderen.";
 
 /* WaypointImage viewcontroller */
 "waypointimageviewcontroller-The new waypoint has been added to the map" = "Het nieuwe waypoint is toegevoegd aan de kaart";
