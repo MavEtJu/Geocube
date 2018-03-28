@@ -190,7 +190,10 @@ enum {
                 case SECTION_LOGDETAILS_COMMENT: {
                     GCTableViewCellWithSubtitle *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
                     c.textLabel.text = _(@"waypointlogviewcontroller-Comment");
-                    c.detailTextLabel.text = self.note;
+                    if (IS_EMPTY(self.note) == YES)
+                        c.detailTextLabel.text = _(@"waypointlogviewcontroller-(none yet)");
+                    else
+                        c.detailTextLabel.text = self.note;
                     cell = c;
                     break;
                 }
@@ -262,7 +265,7 @@ enum {
                     if ([self.waypoint.account.remoteAPI supportsLoggingTrackables] == NO) {
                         c.userInteractionEnabled = NO;
                         c.textLabel.textColor = currentTheme.labelTextColorDisabled;
-                        c.detailTextLabel.text = @"";
+                        c.detailTextLabel.text = @"waypointlogviewcontroller-(none)";
                     } else {
                         __block NSInteger visited = 0;
                         __block NSInteger discovered = 0;

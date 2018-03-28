@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,7 +21,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cc2-k3-fzQ" customClass="GCLabelNormalText">
-                        <rect key="frame" x="16" y="11" width="42" height="21"/>
+                        <rect key="frame" x="16" y="11" width="42" height="22"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -35,10 +35,11 @@
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Cc2-k3-fzQ" firstAttribute="leading" secondItem="viZ-vd-Mde" secondAttribute="leadingMargin" constant="8" id="Huq-aF-3A5"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Cc2-k3-fzQ" secondAttribute="bottom" id="Alh-uQ-3H6"/>
+                    <constraint firstItem="Ig1-US-Gj0" firstAttribute="centerY" secondItem="viZ-vd-Mde" secondAttribute="centerY" id="GUX-jf-NDn"/>
+                    <constraint firstItem="Cc2-k3-fzQ" firstAttribute="leading" secondItem="viZ-vd-Mde" secondAttribute="leadingMargin" id="Huq-aF-3A5"/>
+                    <constraint firstItem="Cc2-k3-fzQ" firstAttribute="top" secondItem="viZ-vd-Mde" secondAttribute="topMargin" id="af5-oH-PYE"/>
                     <constraint firstAttribute="trailing" secondItem="Ig1-US-Gj0" secondAttribute="trailing" constant="10" id="bO9-kc-77f"/>
-                    <constraint firstItem="Ig1-US-Gj0" firstAttribute="centerY" secondItem="viZ-vd-Mde" secondAttribute="centerY" id="dDd-dg-yWj"/>
-                    <constraint firstItem="Cc2-k3-fzQ" firstAttribute="centerY" secondItem="viZ-vd-Mde" secondAttribute="centerY" id="lut-Rc-I8A"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

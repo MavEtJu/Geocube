@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,14 +26,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAE-ND-a6x" customClass="GCLabelNormalText">
-                        <rect key="frame" x="325" y="11.5" width="42" height="21"/>
+                        <rect key="frame" x="317" y="11.5" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="pW7-fI-tR5" firstAttribute="leading" secondItem="f7T-kC-6gb" secondAttribute="leadingMargin" constant="8" id="3a8-KX-kVI"/>
+                    <constraint firstItem="pW7-fI-tR5" firstAttribute="leading" secondItem="f7T-kC-6gb" secondAttribute="leadingMargin" id="3a8-KX-kVI"/>
                     <constraint firstAttribute="trailingMargin" secondItem="VAE-ND-a6x" secondAttribute="trailing" id="Q2P-8T-rJL"/>
                     <constraint firstItem="pW7-fI-tR5" firstAttribute="centerY" secondItem="f7T-kC-6gb" secondAttribute="centerY" id="WJP-Sd-IJq"/>
                     <constraint firstItem="VAE-ND-a6x" firstAttribute="centerY" secondItem="f7T-kC-6gb" secondAttribute="centerY" id="jFk-JF-m1B"/>

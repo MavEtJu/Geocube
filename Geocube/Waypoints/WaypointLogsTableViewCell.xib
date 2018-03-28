@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,56 +13,56 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="5ew-8F-jOf" customClass="WaypointLogsTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="109" id="5ew-8F-jOf" customClass="WaypointLogsTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="109"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5ew-8F-jOf" id="ent-gB-LoU">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="108.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTl-VS-Dbh" customClass="GCLabelNormalText">
-                        <rect key="frame" x="16" y="16" width="42" height="11.5"/>
+                        <rect key="frame" x="16" y="19" width="42" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lja-xK-CZ8" customClass="GCImageView">
-                        <rect key="frame" x="345" y="7" width="30" height="30.5"/>
+                        <rect key="frame" x="345" y="15" width="30" height="30.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="32n-T2-9nv"/>
                             <constraint firstAttribute="width" secondItem="Lja-xK-CZ8" secondAttribute="height" multiplier="1:1" id="C2l-P4-7tH"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ue7-15-W89" customClass="GCImageView">
-                        <rect key="frame" x="315" y="7" width="30" height="30.5"/>
+                        <rect key="frame" x="315" y="15" width="30" height="30.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="VSo-Dt-XYb"/>
                             <constraint firstAttribute="width" secondItem="Ue7-15-W89" secondAttribute="height" multiplier="1:1" id="wdx-Qt-KZr"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HSs-2q-kfm" customClass="GCImageView">
-                        <rect key="frame" x="285" y="7" width="30" height="30.5"/>
+                        <rect key="frame" x="285" y="15" width="30" height="30.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="HSs-2q-kfm" secondAttribute="height" multiplier="1:1" id="Ocf-Et-JgW"/>
                             <constraint firstAttribute="width" constant="30" id="kd8-qq-ees"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JFu-H1-fbu" customClass="GCImageView">
-                        <rect key="frame" x="255" y="7" width="30" height="30.5"/>
+                        <rect key="frame" x="255" y="15" width="30" height="30.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="2zo-4C-1wq"/>
                             <constraint firstAttribute="width" secondItem="JFu-H1-fbu" secondAttribute="height" multiplier="1:1" id="MCw-4Y-OuT"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hix-8X-mpu" customClass="GCImageView">
-                        <rect key="frame" x="225" y="7" width="30" height="30.5"/>
+                        <rect key="frame" x="225" y="15" width="30" height="30.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="hix-8X-mpu" secondAttribute="height" multiplier="1:1" id="hSn-Mt-abk"/>
                             <constraint firstAttribute="width" constant="30" id="y0J-d9-Qp4"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="umU-H1-2zX" customClass="GCImageView">
-                        <rect key="frame" x="195" y="7" width="30" height="30.5"/>
+                        <rect key="frame" x="195" y="15" width="30" height="30.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="LwC-Mv-akB"/>
                             <constraint firstAttribute="width" secondItem="umU-H1-2zX" secondAttribute="height" multiplier="1:1" id="a5e-Gd-r8z"/>
@@ -71,8 +71,8 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="Lja-xK-CZ8" firstAttribute="leading" secondItem="Ue7-15-W89" secondAttribute="trailing" id="31z-9F-H5j"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="XTl-VS-Dbh" secondAttribute="bottom" constant="8" id="5UT-Y9-HyJ"/>
-                    <constraint firstItem="XTl-VS-Dbh" firstAttribute="leading" secondItem="ent-gB-LoU" secondAttribute="leadingMargin" constant="8" id="AO8-jT-hIZ"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="XTl-VS-Dbh" secondAttribute="bottom" constant="8" id="5UT-Y9-HyJ"/>
+                    <constraint firstItem="XTl-VS-Dbh" firstAttribute="leading" secondItem="ent-gB-LoU" secondAttribute="leadingMargin" id="AO8-jT-hIZ"/>
                     <constraint firstItem="hix-8X-mpu" firstAttribute="centerY" secondItem="XTl-VS-Dbh" secondAttribute="centerY" id="GKv-C8-BFB"/>
                     <constraint firstItem="XTl-VS-Dbh" firstAttribute="centerY" secondItem="umU-H1-2zX" secondAttribute="centerY" id="IsG-H7-jT2"/>
                     <constraint firstItem="Lja-xK-CZ8" firstAttribute="centerY" secondItem="XTl-VS-Dbh" secondAttribute="centerY" id="JQg-Zc-JMX"/>
@@ -96,7 +96,7 @@
                 <outlet property="image5" destination="umU-H1-2zX" id="435-xM-N0J"/>
                 <outlet property="logs" destination="XTl-VS-Dbh" id="Fhe-s7-QhC"/>
             </connections>
-            <point key="canvasLocation" x="10.5" y="86"/>
+            <point key="canvasLocation" x="10.5" y="118.5"/>
         </tableViewCell>
     </objects>
 </document>

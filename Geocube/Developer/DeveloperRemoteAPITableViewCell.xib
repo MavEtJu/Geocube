@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,91 +20,91 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRF-IM-V4w" customClass="GCLabelNormalText">
-                        <rect key="frame" x="16" y="8" width="343" height="21"/>
+                        <rect key="frame" x="16" y="11" width="343" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0UV-sM-DB3" customClass="GCLabelSmallText">
-                        <rect key="frame" x="16" y="37" width="28.5" height="14"/>
+                        <rect key="frame" x="16" y="40" width="28.5" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rba-DR-Elf" customClass="GCLabelSmallText">
-                        <rect key="frame" x="16" y="51" width="28.5" height="14"/>
+                        <rect key="frame" x="16" y="54" width="28.5" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMJ-lk-YhT" customClass="GCLabelSmallText">
-                        <rect key="frame" x="16" y="65" width="28.5" height="14"/>
+                        <rect key="frame" x="16" y="68" width="28.5" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6el-Pw-Q61" customClass="GCLabelSmallText">
-                        <rect key="frame" x="16" y="79" width="28.5" height="14"/>
+                        <rect key="frame" x="16" y="82" width="28.5" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ixQ-Xx-F38" customClass="GCLabelSmallText">
-                        <rect key="frame" x="16" y="93" width="28.5" height="14"/>
+                        <rect key="frame" x="16" y="96" width="28.5" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lls-nV-Mcm" customClass="GCLabelSmallText">
-                        <rect key="frame" x="16" y="107" width="28.5" height="14"/>
+                        <rect key="frame" x="16" y="110" width="28.5" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBY-Qw-WWe" customClass="GCLabelSmallText">
-                        <rect key="frame" x="16" y="121" width="28.5" height="14"/>
+                        <rect key="frame" x="16" y="124" width="28.5" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EcE-RH-HEh" customClass="GCLabelSmallText">
-                        <rect key="frame" x="16" y="135" width="28.5" height="14"/>
+                        <rect key="frame" x="16" y="138" width="28.5" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nGo-76-iEJ" customClass="GCLabelSmallText">
-                        <rect key="frame" x="16" y="149" width="28.5" height="14"/>
+                        <rect key="frame" x="16" y="152" width="28.5" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLP-6y-MLS" customClass="GCLabelSmallText">
-                        <rect key="frame" x="16" y="163" width="28.5" height="14"/>
+                        <rect key="frame" x="16" y="166" width="28.5" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H44-ut-tTu" customClass="GCLabelSmallText">
-                        <rect key="frame" x="16" y="177" width="28.5" height="14"/>
+                        <rect key="frame" x="16" y="180" width="28.5" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X8M-sD-mC1" customClass="GCLabelSmallText">
-                        <rect key="frame" x="16" y="191" width="28.5" height="14"/>
+                        <rect key="frame" x="16" y="194" width="28.5" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtF-5y-zLw" customClass="GCLabelSmallText">
-                        <rect key="frame" x="16" y="205" width="28.5" height="14"/>
+                        <rect key="frame" x="16" y="208" width="28.5" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7X-GE-rGw" customClass="GCLabelSmallText">
-                        <rect key="frame" x="16" y="219" width="28.5" height="14"/>
+                        <rect key="frame" x="16" y="222" width="28.5" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -116,7 +116,7 @@
                     <constraint firstItem="ixQ-Xx-F38" firstAttribute="top" secondItem="6el-Pw-Q61" secondAttribute="bottom" id="8gN-nd-c96"/>
                     <constraint firstItem="X8M-sD-mC1" firstAttribute="leading" secondItem="RRF-IM-V4w" secondAttribute="leading" id="B4O-rr-AeW"/>
                     <constraint firstItem="vtF-5y-zLw" firstAttribute="leading" secondItem="RRF-IM-V4w" secondAttribute="leading" id="Bw8-ZI-BZb"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="RRF-IM-V4w" secondAttribute="trailing" constant="8" id="C3g-pW-rUL"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="RRF-IM-V4w" secondAttribute="trailing" id="C3g-pW-rUL"/>
                     <constraint firstItem="zMJ-lk-YhT" firstAttribute="leading" secondItem="RRF-IM-V4w" secondAttribute="leading" id="ChU-EP-cca"/>
                     <constraint firstItem="nGo-76-iEJ" firstAttribute="top" secondItem="EcE-RH-HEh" secondAttribute="bottom" id="GwZ-zm-r5F"/>
                     <constraint firstItem="H44-ut-tTu" firstAttribute="top" secondItem="DLP-6y-MLS" secondAttribute="bottom" id="HPQ-iD-Edl"/>
@@ -124,7 +124,7 @@
                     <constraint firstItem="rba-DR-Elf" firstAttribute="leading" secondItem="RRF-IM-V4w" secondAttribute="leading" id="JIQ-f3-mqv"/>
                     <constraint firstItem="n7X-GE-rGw" firstAttribute="top" secondItem="vtF-5y-zLw" secondAttribute="bottom" id="Og9-ol-yvi"/>
                     <constraint firstItem="6el-Pw-Q61" firstAttribute="top" secondItem="zMJ-lk-YhT" secondAttribute="bottom" id="Wp9-7n-0g3"/>
-                    <constraint firstItem="RRF-IM-V4w" firstAttribute="leading" secondItem="CrN-Tj-wDQ" secondAttribute="leadingMargin" constant="8" id="Wzm-FY-Sxe"/>
+                    <constraint firstItem="RRF-IM-V4w" firstAttribute="leading" secondItem="CrN-Tj-wDQ" secondAttribute="leadingMargin" id="Wzm-FY-Sxe"/>
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="n7X-GE-rGw" secondAttribute="bottom" id="d1s-nw-Cuj"/>
                     <constraint firstItem="6el-Pw-Q61" firstAttribute="leading" secondItem="RRF-IM-V4w" secondAttribute="leading" id="ejF-bk-zgf"/>
                     <constraint firstItem="zMJ-lk-YhT" firstAttribute="top" secondItem="rba-DR-Elf" secondAttribute="bottom" id="iAR-bb-Y2a"/>

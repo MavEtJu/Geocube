@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,22 +19,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7uP-gR-S9a" customClass="GCLabelNormalText">
-                        <rect key="frame" x="16" y="11" width="245" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7uP-gR-S9a" customClass="GCLabelNormalText">
+                        <rect key="frame" x="16" y="11" width="239" height="22"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bKC-tU-H1b" customClass="GCSwitch">
-                        <rect key="frame" x="261" y="6.5" width="51" height="31"/>
+                        <rect key="frame" x="263" y="6" width="51" height="31"/>
                     </switch>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="7uP-gR-S9a" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="0VJ-xx-1pg"/>
-                    <constraint firstAttribute="trailing" secondItem="bKC-tU-H1b" secondAttribute="trailing" constant="10" id="dwz-X3-hlo"/>
-                    <constraint firstItem="bKC-tU-H1b" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ika-0L-dgd"/>
-                    <constraint firstItem="bKC-tU-H1b" firstAttribute="leading" secondItem="7uP-gR-S9a" secondAttribute="trailing" id="kU5-yW-w7o"/>
-                    <constraint firstItem="7uP-gR-S9a" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="x5O-Il-Rpf"/>
+                    <constraint firstItem="bKC-tU-H1b" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Kv1-cO-yzb"/>
+                    <constraint firstAttribute="trailing" secondItem="bKC-tU-H1b" secondAttribute="trailing" constant="8" id="NtZ-5m-9HK"/>
+                    <constraint firstItem="7uP-gR-S9a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="caQ-lO-Jyj"/>
+                    <constraint firstItem="bKC-tU-H1b" firstAttribute="leading" secondItem="7uP-gR-S9a" secondAttribute="trailing" constant="8" id="kl8-oq-TzR"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="7uP-gR-S9a" secondAttribute="bottom" id="xgt-85-AgW"/>
+                    <constraint firstItem="7uP-gR-S9a" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="z5J-63-Md8"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
