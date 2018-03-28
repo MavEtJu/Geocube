@@ -261,6 +261,7 @@ enum sections {
     SECTION_LOCATIONLESS,
     SECTION_SPEED,
     SECTION_BACKUPS,
+    SECTION_SERVICES,
     SECTION_MAX,
 
     SECTION_DISTANCE_METRIC = 0,
@@ -386,6 +387,11 @@ enum sections {
     SECTION_MAPSEARCH_GGCW_MAXIMUMLOADED = 0,
     SECTION_MAPSEARCH_GGCW_NUMBERTHREADS,
     SECTION_MAPSEARCH_MAX,
+
+    SECTION_SERVICES_SHOWLOCATIONLESS = 0,
+    SECTION_SERVICES_SHOWTRACKABLES,
+    SECTION_SERVICES_SHOWMOVEABLES,
+    SECTION_SERVICES_MAX,
 };
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
@@ -420,6 +426,7 @@ enum sections {
         SECTION_MAX(BACKUPS);
         SECTION_MAX(ACCURACY);
         SECTION_MAX(MAPSEARCH);
+        SECTION_MAX(SERVICES);
         default:
             NSAssert1(0, @"Unknown section %ld", (long)section);
     }
@@ -471,6 +478,8 @@ enum sections {
             return _(@"settingsmainviewcontroller-Speed");
         case SECTION_MAPSEARCH:
             return _(@"settingsmainviewcontroller-Map search");
+        case SECTION_SERVICES:
+            return _(@"settingsmainviewcontroller-Services");
         default:
             NSAssert1(0, @"Unknown section %ld", (long)section);
     }
@@ -887,6 +896,17 @@ enum sections {
             abort();
         }
 
+        case SECTION_SERVICES: {
+            switch (indexPath.row) {
+                case SECTION_SERVICES_SHOWMOVEABLES:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Show moveables"), serviceShowMoveables, updateServicesShowMoveables)
+                case SECTION_SERVICES_SHOWLOCATIONLESS:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Show locationless"), serviceShowLocationless, updateServicesShowLocationless)
+                case SECTION_SERVICES_SHOWTRACKABLES:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Show trackables"), serviceShowTrackables, updateServicesShowTrackables)
+            }
+        }
+
     }
 
     // Not reached
@@ -897,6 +917,13 @@ enum sections {
     - (void)__func__:(GCSwitch *)s \
     { \
         [configManager __field__ ## Update:s.on]; \
+    }
+
+#define SWITCH_UPDATE_RELOAD(__func__, __field__) \
+    - (void)__func__:(GCSwitch *)s \
+    { \
+        [configManager __field__ ## Update:s.on]; \
+        [self reloadMessage]; \
     }
 
 SWITCH_UPDATE(updateAccountKeepUsername, accountsSaveAuthenticationName)
@@ -926,6 +953,9 @@ SWITCH_UPDATE(updateShowStateAsAbbrevationWithLocality, showStateAsAbbrevationIf
 SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
 SWITCH_UPDATE(updateSpeedEnable, speedEnable)
 SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
+SWITCH_UPDATE_RELOAD(updateServicesShowMoveables, serviceShowMoveables)
+SWITCH_UPDATE_RELOAD(updateServicesShowLocationless, serviceShowLocationless)
+SWITCH_UPDATE_RELOAD(updateServicesShowTrackables, serviceShowTrackables)
 
 - (void)updateDistanceMetric:(GCSwitch *)s
 {

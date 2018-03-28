@@ -82,7 +82,7 @@
     // Localization manager - after configManager
     localizationManager = [[LocalizationManager alloc] init];
 
-    // Initialize the global menu - after localizationManager
+    // Initialize the global menu - after localizationManager and configManager
     menuGlobal = [[SideMenu alloc] init];
 
     // After configManager

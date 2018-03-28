@@ -9,6 +9,8 @@ Version 2.1(x)
   - Created new keyboards for various coordinate inputs.
   - You are able to define the number of decimals in decimal degrees,
     decimal minutes and decimal seconds.
+  - For users not interested in Trackables, Locationless or Moveables,
+    the menus for these features can now be disabled.
 
   Fixes:
   - Making a photo on iOS 11 works again.

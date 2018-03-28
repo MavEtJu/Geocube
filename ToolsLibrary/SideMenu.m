@@ -22,6 +22,7 @@
 @interface SideMenu ()
 
 @property (nonatomic, retain) NSMutableArray<NSString *> *items;
+@property (nonatomic, retain) NSMutableArray<NSNumber *> *item2controller;
 @property (nonatomic, retain) LocalMenuItems *localMenuItems;
 @property (nonatomic, retain) id localMenuTarget;
 
@@ -65,17 +66,19 @@
     self = [super init];
 
     #define MATCH(__i__, __s__) \
-        case __i__: [self.items addObject:__s__]; \
-        break;
+        case __i__: \
+            [self.items addObject:__s__]; \
+            [self.item2controller addObject:[NSNumber numberWithInteger:__i__]]; \
+            break;
 
     self.items = [NSMutableArray arrayWithCapacity:RC_MAX];
+    self.item2controller = [NSMutableArray arrayWithCapacity:RC_MAX];
     for (NSInteger i = 0; i < RC_MAX; i++) {
         switch (i) {
             MATCH(RC_NAVIGATE, _(@"menu-Navigate"));
             MATCH(RC_WAYPOINTS, _(@"menu-Waypoints"));
             MATCH(RC_KEEPTRACK, _(@"menu-Keep Track"));
             MATCH(RC_NOTESANDLOGS, _(@"menu-Notes + Logs"));
-            MATCH(RC_TRACKABLES, _(@"menu-Trackables"));
             MATCH(RC_GROUPS, _(@"menu-Groups"));
             MATCH(RC_BROWSER, _(@"menu-Browser"));
             MATCH(RC_FILES, _(@"menu-Files"));
@@ -85,10 +88,20 @@
             MATCH(RC_LISTS, _(@"menu-Lists"));
             MATCH(RC_QUERIES, _(@"menu-Queries"));
             MATCH(RC_TOOLS, _(@"menu-Tools"));
-            MATCH(RC_LOCATIONSLESS, _(@"menu-Locationless"));
             MATCH(RC_DEVELOPER, _(@"menu-Developer"));
             default:
-                NSAssert1(FALSE, @"Menu not matched: %ld", (long)i);
+                if (i == RC_TRACKABLES) {
+                    if (configManager.serviceShowTrackables == YES) {
+                        [self.items addObject:_(@"menu-Trackables")];
+                        [self.item2controller addObject:[NSNumber numberWithInteger:RC_TRACKABLES]];
+                    }
+                } else if (i == RC_LOCATIONSLESS) {
+                    if (configManager.serviceShowLocationless == YES) {
+                        [self.items addObject:_(@"menu-Locationless")];
+                        [self.item2controller addObject:[NSNumber numberWithInteger:RC_LOCATIONSLESS]];
+                    }
+                } else
+                    NSAssert1(FALSE, @"Menu not matched: %ld", (long)i);
         }
     }
 
@@ -171,11 +184,11 @@
 
 - (void)sideMenu:(VKSideMenu *)sideMenu didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"globalMenu didSelectRow: %@", indexPath);
     if (sideMenu == self.menuGlobal) {
-        NSLog(@"Switching to %ld", (long)indexPath.row);
-        [configManager currentPageUpdate:indexPath.row];
-        [_AppDelegate switchController:indexPath.row];
+        NSInteger i = [[self.item2controller objectAtIndex:indexPath.row] integerValue];
+        NSLog(@"Global menu action: %ld -> %ld", indexPath.row, (long)i);
+        [configManager currentPageUpdate:i];
+        [_AppDelegate switchController:i];
     } else {
         NSLog(@"Local menu action %ld", (long)indexPath.row);
         [self.localMenuTarget performLocalMenuAction:indexPath.row];

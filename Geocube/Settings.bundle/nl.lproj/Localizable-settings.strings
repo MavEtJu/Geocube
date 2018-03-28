@@ -240,3 +240,8 @@
 "settingsmainviewcontroller-Number of decimals in decimal degrees" = "Aantal decimalen in graden";
 "settingsmainviewcontroller-Number of decimals in decimal minutes" = "Aantal decimalen in minuten";
 "settingsmainviewcontroller-Number of decimals in decimal seconds" = "Aantal decimalen in secondes ";
+
+"settingsmainviewcontroller-Services" = "Services";
+"settingsmainviewcontroller-Show locationless" = "Laat locationless zien";
+"settingsmainviewcontroller-Show moveables" = "Laat moveables zien";
+"settingsmainviewcontroller-Show trackables" = "Laat trackables zien";
