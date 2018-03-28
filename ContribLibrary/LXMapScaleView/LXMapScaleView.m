@@ -26,6 +26,7 @@ static const double kFeetPerMile = 5280.0;
 	UILabel* maxLabel;
 	UILabel* unitLabel;
 	CGFloat scaleWidth;
+    CGFloat kMaximumWidth;
 }
 
 - (void)constructLabels;
@@ -59,6 +60,9 @@ static const double kFeetPerMile = 5280.0;
 // -----------------------------------------------------------------------------
 - (id)initWithMapTemplate:(MapTemplate*)mt
 {
+    CGRect applicationFrame = [[UIScreen mainScreen] bounds];
+    kMaximumWidth = MAX(applicationFrame.size.width, applicationFrame.size.height);
+
 	if ( (self = [super initWithFrame:kDefaultViewRect]) )
 	{
 		self.opaque = NO;
@@ -242,12 +246,17 @@ static const double kFeetPerMile = 5280.0;
 // -----------------------------------------------------------------------------
 - (void)setMaxWidth:(CGFloat)aMaxWidth
 {
-	if ( maxWidth != aMaxWidth && aMaxWidth >= kMinimumWidth )
-	{
+    // Already there.
+	if (maxWidth == aMaxWidth)
+        return;
+
+    // Don't go overboard
+    if (aMaxWidth >= kMinimumWidth && aMaxWidth < kMaximumWidth) {
 		maxWidth = aMaxWidth;
-		
 		[self setNeedsLayout];
-	}
+    } else {
+        NSLog(@"Silly aMaxWidth: %f (expected > %f and < %f", aMaxWidth, kMinimumWidth, kMaximumWidth);
+    }
 }
 
 

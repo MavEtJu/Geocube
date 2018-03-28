@@ -12,6 +12,8 @@ Version 2.1(x)
 
   Fixes:
   - Making a photo on iOS 11 works again.
+  - When Google Maps is used as initial map, the scale view could
+    be too large for the screen.
 
 Version 2.0(34)
 
