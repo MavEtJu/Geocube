@@ -169,6 +169,7 @@
 "waypointlogviewcontroller-none" = "niets";
 "waypointlogviewcontroller-picked up" = "opgepakt";
 "waypointlogviewcontroller-visited" = "bezocht";
+"waypointlogviewcontroller-(none yet)" = "Nog niets.";
 
 /* Waypoint sorter */
 "waypointsorter-Code (ascending)" = "Code (oplopend)";

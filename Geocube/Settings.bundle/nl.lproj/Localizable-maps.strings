@@ -21,9 +21,6 @@
 /* WapOneWPViewController */
 "maponewpviewcontroller-Refreshing database" = "Verversen van de data";
 
-/* Map template */
-"maptemplate-Select a waypoint" = "Selecteer een waypoint";
-
 /* Map waypoint info view */
 "mapwaypointinfoview-Placed on %@" = "Geplaatst op %@";
 "mapwaypointinfoview-Yours on %@" = "Jouw op %@";
