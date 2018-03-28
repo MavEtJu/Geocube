@@ -137,6 +137,7 @@ PROTO_N (NSInteger, coordinatesDecimalsSeconds)
 PROTO_N (BOOL, serviceShowLocationless)
 PROTO_N (BOOL, serviceShowTrackables)
 PROTO_N (BOOL, serviceShowMoveables)
+PROTO_N (BOOL, serviceShowDeveloper)
 
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown

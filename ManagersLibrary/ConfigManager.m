@@ -183,6 +183,7 @@
     CHECK(@"service_showlocationless", @"1");
     CHECK(@"service_showtrackables", @"1");
     CHECK(@"service_showmoveables", @"1");
+    CHECK(@"service_showdeveloper", @"0");
 }
 
 - (void)loadValues
@@ -293,6 +294,7 @@
     LOAD_BOOL   (self.serviceShowMoveables, @"service_showmoveables");
     LOAD_BOOL   (self.serviceShowTrackables, @"service_showtrackables");
     LOAD_BOOL   (self.serviceShowLocationless, @"service_showlocationless");
+    LOAD_BOOL   (self.serviceShowDeveloper, @"service_showdeveloper");
 
     /* Leftovers */
     self.currentTrack = [dbTrack dbGet:[[dbConfig dbGetByKey:@"track_current"].value integerValue]];
@@ -418,6 +420,7 @@ UPDATE3(BOOL, speedEnable, @"speed_enable")
 UPDATE3(BOOL, serviceShowMoveables, @"service_showmoveables")
 UPDATE3(BOOL, serviceShowLocationless, @"service_showlocationless")
 UPDATE3(BOOL, serviceShowTrackables, @"service_showtrackables")
+UPDATE3(BOOL, serviceShowDeveloper, @"service_showdeveloper")
 
 UPDATE4(LM_ACCURACY, NSInteger, accuracyDynamicAccuracyNear, @"accuracy_dynamic_accuracy_near")
 UPDATE4(LM_ACCURACY, NSInteger, accuracyDynamicAccuracyMidrange, @"accuracy_dynamic_accuracy_midrange")

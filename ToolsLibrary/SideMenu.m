@@ -88,7 +88,6 @@
             MATCH(RC_LISTS, _(@"menu-Lists"));
             MATCH(RC_QUERIES, _(@"menu-Queries"));
             MATCH(RC_TOOLS, _(@"menu-Tools"));
-            MATCH(RC_DEVELOPER, _(@"menu-Developer"));
             default:
                 if (i == RC_TRACKABLES) {
                     if (configManager.serviceShowTrackables == YES) {
@@ -99,6 +98,11 @@
                     if (configManager.serviceShowLocationless == YES) {
                         [self.items addObject:_(@"menu-Locationless")];
                         [self.item2controller addObject:[NSNumber numberWithInteger:RC_LOCATIONSLESS]];
+                    }
+                } else if (i == RC_DEVELOPER) {
+                    if (configManager.serviceShowDeveloper == YES) {
+                        [self.items addObject:_(@"menu-Developer")];
+                        [self.item2controller addObject:[NSNumber numberWithInteger:RC_DEVELOPER]];
                     }
                 } else
                     NSAssert1(FALSE, @"Menu not matched: %ld", (long)i);

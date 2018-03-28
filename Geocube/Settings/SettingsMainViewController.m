@@ -391,6 +391,7 @@ enum sections {
     SECTION_SERVICES_SHOWLOCATIONLESS = 0,
     SECTION_SERVICES_SHOWTRACKABLES,
     SECTION_SERVICES_SHOWMOVEABLES,
+    SECTION_SERVICES_SHOWDEVELOPER,
     SECTION_SERVICES_MAX,
 };
 
@@ -904,6 +905,8 @@ enum sections {
                     CELL_SWITCH(_(@"settingsmainviewcontroller-Show locationless"), serviceShowLocationless, updateServicesShowLocationless)
                 case SECTION_SERVICES_SHOWTRACKABLES:
                     CELL_SWITCH(_(@"settingsmainviewcontroller-Show trackables"), serviceShowTrackables, updateServicesShowTrackables)
+                case SECTION_SERVICES_SHOWDEVELOPER:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Show developer"), serviceShowDeveloper, updateServicesShowDeveloper:)
             }
         }
 
@@ -956,6 +959,7 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
 SWITCH_UPDATE_RELOAD(updateServicesShowMoveables, serviceShowMoveables)
 SWITCH_UPDATE_RELOAD(updateServicesShowLocationless, serviceShowLocationless)
 SWITCH_UPDATE_RELOAD(updateServicesShowTrackables, serviceShowTrackables)
+SWITCH_UPDATE_RELOAD(updateServicesShowDeveloper, serviceShowDeveloper)
 
 - (void)updateDistanceMetric:(GCSwitch *)s
 {
