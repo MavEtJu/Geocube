@@ -134,6 +134,9 @@ PROTO_N (CoordinatesType, coordinatesTypeEdit)
 PROTO_N (NSInteger, coordinatesDecimalsDegrees)
 PROTO_N (NSInteger, coordinatesDecimalsMinutes)
 PROTO_N (NSInteger, coordinatesDecimalsSeconds)
+PROTO_N (BOOL, serviceShowLocationless)
+PROTO_N (BOOL, serviceShowTrackables)
+PROTO_N (BOOL, serviceShowMoveables)
 
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown

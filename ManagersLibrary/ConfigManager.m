@@ -179,6 +179,10 @@
     CHECK(@"coordinates_decimals_seconds", @"2");
     CHECK(@"coordinates_decimals_minutes", @"3");
     CHECK(@"coordinates_decimals_degrees", @"7");
+
+    CHECK(@"service_showlocationless", @"1");
+    CHECK(@"service_showtrackables", @"1");
+    CHECK(@"service_showmoveables", @"1");
 }
 
 - (void)loadValues
@@ -286,6 +290,9 @@
     LOAD_INTEGER(self.coordinatesDecimalsSeconds, @"coordinates_decimals_seconds");
     LOAD_INTEGER(self.coordinatesDecimalsMinutes, @"coordinates_decimals_minutes");
     LOAD_INTEGER(self.coordinatesDecimalsDegrees, @"coordinates_decimals_degrees");
+    LOAD_BOOL   (self.serviceShowMoveables, @"service_showmoveables");
+    LOAD_BOOL   (self.serviceShowTrackables, @"service_showtrackables");
+    LOAD_BOOL   (self.serviceShowLocationless, @"service_showlocationless");
 
     /* Leftovers */
     self.currentTrack = [dbTrack dbGet:[[dbConfig dbGetByKey:@"track_current"].value integerValue]];
@@ -408,6 +415,9 @@ UPDATE3(BOOL, opencageWifiOnly, @"opencage_wifionly")
 UPDATE3(BOOL, automaticDatabaseBackup, @"automaticdatabasebackup_enable")
 UPDATE3(BOOL, accuracyDynamicEnable, @"accuracy_dynamic_enable")
 UPDATE3(BOOL, speedEnable, @"speed_enable")
+UPDATE3(BOOL, serviceShowMoveables, @"service_showmoveables")
+UPDATE3(BOOL, serviceShowLocationless, @"service_showlocationless")
+UPDATE3(BOOL, serviceShowTrackables, @"service_showtrackables")
 
 UPDATE4(LM_ACCURACY, NSInteger, accuracyDynamicAccuracyNear, @"accuracy_dynamic_accuracy_near")
 UPDATE4(LM_ACCURACY, NSInteger, accuracyDynamicAccuracyMidrange, @"accuracy_dynamic_accuracy_midrange")
