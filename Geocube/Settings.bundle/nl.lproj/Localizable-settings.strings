@@ -245,3 +245,5 @@
 "settingsmainviewcontroller-Show locationless" = "Laat locationless zien";
 "settingsmainviewcontroller-Show moveables" = "Laat moveables zien";
 "settingsmainviewcontroller-Show trackables" = "Laat trackables zien";
+"settingsmainviewcontroller-Show developer" = "Laat developer zien";
+
