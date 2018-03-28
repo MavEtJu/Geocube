@@ -242,7 +242,6 @@ enum {
 
 enum sections {
     SECTION_DISTANCE = 0,
-    SECTION_APPS,
     SECTION_IMPORTS,
     SECTION_THEME,
     SECTION_SOUNDS,
@@ -290,6 +289,7 @@ enum sections {
 
     SECTION_MAPS_DEFAULTBRAND = 0,
     SECTION_MAPS_MAPBOXKEY,
+    SECTION_MAPS_EXTERNALMAP,
     SECTION_MAPS_MAX,
 
     SECTION_MAPCOLOURS_TRACK = 0,
@@ -297,9 +297,6 @@ enum sections {
     SECTION_MAPCOLOURS_CIRCLERING,
     SECTION_MAPCOLOURS_CIRCLEFILL,
     SECTION_MAPCOLOURS_MAX,
-
-    SECTION_APPS_EXTERNALMAP = 0,
-    SECTION_APPS_MAX,
 
     SECTION_MAPCACHE_ENABLED = 0,
     SECTION_MAPCACHE_MAXAGE,
@@ -404,7 +401,6 @@ enum sections {
     case SECTION_##__d__: \
         return SECTION_##__d__##_MAX;
         SECTION_MAX(DISTANCE);
-        SECTION_MAX(APPS);
         SECTION_MAX(THEME);
         SECTION_MAX(SOUNDS);
         SECTION_MAX(COMPASS);
@@ -437,8 +433,6 @@ enum sections {
     switch (section) {
         case SECTION_DISTANCE:
             return _(@"settingsmainviewcontroller-Distances");
-        case SECTION_APPS:
-            return _(@"settingsmainviewcontroller-External apps");
         case SECTION_THEME:
             return _(@"settingsmainviewcontroller-Theme");
         case SECTION_SOUNDS:
@@ -515,22 +509,6 @@ enum sections {
             switch (indexPath.row) {
                 case SECTION_DISTANCE_METRIC:
                     CELL_SWITCH(_(@"settingsmainviewcontroller-Use metric units"), distanceMetric, updateDistanceMetric)
-            }
-            abort();
-        }
-
-        case SECTION_APPS: {
-            switch (indexPath.row) {
-                case SECTION_APPS_EXTERNALMAP: {
-                    __block NSString *name = nil;
-                    [[dbExternalMap dbAll] enumerateObjectsUsingBlock:^(dbExternalMap * _Nonnull em, NSUInteger idx, BOOL * _Nonnull stop) {
-                        if (em.geocube_id == configManager.mapExternal) {
-                            name = em.name;
-                            *stop = YES;
-                        }
-                    }];
-                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-External Maps"), name);
-                }
             }
             abort();
         }
@@ -616,6 +594,17 @@ enum sections {
                 }
                 case SECTION_MAPS_MAPBOXKEY:
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-Mapbox key"), configManager.mapboxKey);
+
+                case SECTION_MAPS_EXTERNALMAP: {
+                    __block NSString *name = nil;
+                    [[dbExternalMap dbAll] enumerateObjectsUsingBlock:^(dbExternalMap * _Nonnull em, NSUInteger idx, BOOL * _Nonnull stop) {
+                        if (em.geocube_id == configManager.mapExternal) {
+                            name = em.name;
+                            *stop = YES;
+                        }
+                    }];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-External Maps"), name);
+                }
             }
             abort();
         }
@@ -975,13 +964,6 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
                     break;
             }
             break;
-        case SECTION_APPS:
-            switch (indexPath.row) {
-                case SECTION_APPS_EXTERNALMAP:
-                    [self changeAppsExternalMap];
-                    break;
-            }
-            break;
         case SECTION_MAPS:
             switch (indexPath.row) {
                 case SECTION_MAPS_DEFAULTBRAND:
@@ -989,6 +971,9 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
                     break;
                 case SECTION_MAPS_MAPBOXKEY:
                     [self changeMapboxKey];
+                    break;
+                case SECTION_MAPS_EXTERNALMAP:
+                    [self changeAppsExternalMap];
                     break;
             }
             break;
@@ -2161,7 +2146,7 @@ SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
         }
     }];
 
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_APPS_EXTERNALMAP inSection:SECTION_APPS]];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_MAPS_EXTERNALMAP inSection:SECTION_MAPS]];
 
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select External Maps")
                                             rows:self.externalMapTypes
