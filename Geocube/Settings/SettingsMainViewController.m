@@ -906,7 +906,7 @@ enum sections {
                 case SECTION_SERVICES_SHOWTRACKABLES:
                     CELL_SWITCH(_(@"settingsmainviewcontroller-Show trackables"), serviceShowTrackables, updateServicesShowTrackables)
                 case SECTION_SERVICES_SHOWDEVELOPER:
-                    CELL_SWITCH(_(@"settingsmainviewcontroller-Show developer"), serviceShowDeveloper, updateServicesShowDeveloper:)
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Show developer"), serviceShowDeveloper, updateServicesShowDeveloper)
             }
         }
 
