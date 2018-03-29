@@ -11,6 +11,7 @@ Version 2.1(x)
     decimal minutes and decimal seconds.
   - For users not interested in Trackables, Locationless or Moveables,
     the menus for these features can now be disabled.
+  - Add a menu item for Moveables.
 
   Fixes:
   - Making a photo on iOS 11 works again.

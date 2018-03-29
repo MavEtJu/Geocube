@@ -69,6 +69,11 @@
 "menu-waypoints-Filters" = "Filters";
 "menu-waypoints-List" = "Lijst";
 "menu-waypoints-Map" = "Kaart";
+"menu-Moveables" = "Moveables";
+"menu-moveables-Inventory" = "Inventaris";
+"menu-moveables-List" = "Lijst";
+"menu-moveables-Mine" = "Mijn";
+
 
 /* View controller menus */
 "waypointdescriptionviewcontroller-Scan for waypoints" = "Zoek waypoints";

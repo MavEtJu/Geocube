@@ -185,6 +185,11 @@
 #import "Locationless/LocationlessPlannedViewController.h"
 #import "Locationless/LocationlessTableViewCell.h"
 
+#import "Moveables/MoveablesTemplateViewController.h"
+#import "Moveables/MoveablesListViewController.h"
+#import "Moveables/MoveablesMineViewController.h"
+#import "Moveables/MoveablesInventoryViewController.h"
+
 #import "Lists/ListTemplateViewController.h"
 #import "Lists/ListDNFViewController.h"
 #import "Lists/ListFoundViewController.h"

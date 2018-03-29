@@ -71,6 +71,14 @@
             [self.item2controller addObject:[NSNumber numberWithInteger:__i__]]; \
             break;
 
+    #define SHOWORHIDE(__i__, __s__, __c__) \
+        if (i == __i__) { \
+            if (configManager.__c__ == YES) { \
+                [self.items addObject:_(__s__)]; \
+                [self.item2controller addObject:[NSNumber numberWithInteger:__i__]]; \
+            } \
+        }
+
     self.items = [NSMutableArray arrayWithCapacity:RC_MAX];
     self.item2controller = [NSMutableArray arrayWithCapacity:RC_MAX];
     for (NSInteger i = 0; i < RC_MAX; i++) {
@@ -89,23 +97,11 @@
             MATCH(RC_QUERIES, _(@"menu-Queries"));
             MATCH(RC_TOOLS, _(@"menu-Tools"));
             default:
-                if (i == RC_TRACKABLES) {
-                    if (configManager.serviceShowTrackables == YES) {
-                        [self.items addObject:_(@"menu-Trackables")];
-                        [self.item2controller addObject:[NSNumber numberWithInteger:RC_TRACKABLES]];
-                    }
-                } else if (i == RC_LOCATIONSLESS) {
-                    if (configManager.serviceShowLocationless == YES) {
-                        [self.items addObject:_(@"menu-Locationless")];
-                        [self.item2controller addObject:[NSNumber numberWithInteger:RC_LOCATIONSLESS]];
-                    }
-                } else if (i == RC_DEVELOPER) {
-                    if (configManager.serviceShowDeveloper == YES) {
-                        [self.items addObject:_(@"menu-Developer")];
-                        [self.item2controller addObject:[NSNumber numberWithInteger:RC_DEVELOPER]];
-                    }
-                } else
-                    NSAssert1(FALSE, @"Menu not matched: %ld", (long)i);
+                SHOWORHIDE(RC_TRACKABLES, _(@"menu-Trackables"), serviceShowTrackables)
+                else SHOWORHIDE(RC_LOCATIONSLESS, _(@"menu-Locationless"), serviceShowLocationless)
+                else SHOWORHIDE(RC_MOVEABLES, _(@"menu-Moveables"), serviceShowMoveables)
+                else SHOWORHIDE(RC_DEVELOPER, _(@"menu-Developer"), serviceShowDeveloper)
+                else NSAssert1(FALSE, @"Menu not matched: %ld", (long)i);
         }
     }
 

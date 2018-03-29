@@ -676,6 +676,10 @@
 		E88DB00A1F334E4300FEF795 /* cache - gadget - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E88DB0071F334E4300FEF795 /* cache - gadget - 30x30.png */; };
 		E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
+		E8A3652C206CF15B00EE2B63 /* MoveablesMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A3652B206CF15B00EE2B63 /* MoveablesMineViewController.m */; };
+		E8A3652F206CF17800EE2B63 /* MoveablesInventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A3652E206CF17800EE2B63 /* MoveablesInventoryViewController.m */; };
+		E8A36532206CF19600EE2B63 /* MoveablesTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A36531206CF19600EE2B63 /* MoveablesTemplateViewController.m */; };
+		E8A36535206CFA3E00EE2B63 /* MoveablesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A36534206CFA3E00EE2B63 /* MoveablesListViewController.m */; };
 		E8B6D8DA1F9AE81B00C376A2 /* GCMGLObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B6D8D91F9AE81B00C376A2 /* GCMGLObjects.m */; };
 		E8B772FC1F9462250060B415 /* cache - gadget - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B772FA1F9462250060B415 /* cache - gadget - 30x30@2x.png */; };
 		E8B772FD1F9462250060B415 /* cache - gadget - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B772FB1F9462250060B415 /* cache - gadget - 30x30@3x.png */; };
@@ -1922,6 +1926,14 @@
 		E88DB0071F334E4300FEF795 /* cache - gadget - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - gadget - 30x30.png"; path = "images/caches/cache - gadget - 30x30.png"; sourceTree = "<group>"; };
 		E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - empty - 30x30.png"; path = "images/logs/log - empty - 30x30.png"; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
+		E8A3652A206CF15B00EE2B63 /* MoveablesMineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MoveablesMineViewController.h; path = Moveables/MoveablesMineViewController.h; sourceTree = "<group>"; };
+		E8A3652B206CF15B00EE2B63 /* MoveablesMineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MoveablesMineViewController.m; path = Moveables/MoveablesMineViewController.m; sourceTree = "<group>"; };
+		E8A3652D206CF17800EE2B63 /* MoveablesInventoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MoveablesInventoryViewController.h; path = Moveables/MoveablesInventoryViewController.h; sourceTree = "<group>"; };
+		E8A3652E206CF17800EE2B63 /* MoveablesInventoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MoveablesInventoryViewController.m; path = Moveables/MoveablesInventoryViewController.m; sourceTree = "<group>"; };
+		E8A36530206CF19600EE2B63 /* MoveablesTemplateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MoveablesTemplateViewController.h; path = Moveables/MoveablesTemplateViewController.h; sourceTree = "<group>"; };
+		E8A36531206CF19600EE2B63 /* MoveablesTemplateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MoveablesTemplateViewController.m; path = Moveables/MoveablesTemplateViewController.m; sourceTree = "<group>"; };
+		E8A36533206CFA3E00EE2B63 /* MoveablesListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MoveablesListViewController.h; path = Moveables/MoveablesListViewController.h; sourceTree = "<group>"; };
+		E8A36534206CFA3E00EE2B63 /* MoveablesListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MoveablesListViewController.m; path = Moveables/MoveablesListViewController.m; sourceTree = "<group>"; };
 		E8B6D8D81F9AE81B00C376A2 /* GCMGLObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GCMGLObjects.h; path = BaseObjectsLibrary/GCMGLObjects.h; sourceTree = "<group>"; };
 		E8B6D8D91F9AE81B00C376A2 /* GCMGLObjects.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GCMGLObjects.m; path = BaseObjectsLibrary/GCMGLObjects.m; sourceTree = "<group>"; };
 		E8B772FA1F9462250060B415 /* cache - gadget - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - gadget - 30x30@2x.png"; path = "images/caches/cache - gadget - 30x30@2x.png"; sourceTree = "<group>"; };
@@ -3838,6 +3850,21 @@
 			name = Tools;
 			sourceTree = "<group>";
 		};
+		E8A36529206BB13400EE2B63 /* Moveables */ = {
+			isa = PBXGroup;
+			children = (
+				E8A36530206CF19600EE2B63 /* MoveablesTemplateViewController.h */,
+				E8A36531206CF19600EE2B63 /* MoveablesTemplateViewController.m */,
+				E8A36533206CFA3E00EE2B63 /* MoveablesListViewController.h */,
+				E8A36534206CFA3E00EE2B63 /* MoveablesListViewController.m */,
+				E8A3652A206CF15B00EE2B63 /* MoveablesMineViewController.h */,
+				E8A3652B206CF15B00EE2B63 /* MoveablesMineViewController.m */,
+				E8A3652D206CF17800EE2B63 /* MoveablesInventoryViewController.h */,
+				E8A3652E206CF17800EE2B63 /* MoveablesInventoryViewController.m */,
+			);
+			name = Moveables;
+			sourceTree = "<group>";
+		};
 		E8A3F44F1B51D932009F2F46 /* map */ = {
 			isa = PBXGroup;
 			children = (
@@ -4106,11 +4133,12 @@
 				E857078E1CA1E6FE00467CE0 /* Waypoints */,
 				E8A4BEEB1BD4B8F000BCA5A5 /* Keep Track */,
 				E82002261B7B1B8F009AE50F /* Notes and logs */,
-				E857078C1CA1E68F00467CE0 /* Trackables */,
 				E857078A1CA1E67200467CE0 /* Groups */,
 				E833B72F1C522E8D00B9FB45 /* Lists */,
 				E84D6FD01C5826140000A6A0 /* Queries */,
+				E857078C1CA1E68F00467CE0 /* Trackables */,
 				E83B10921EF4D7BD00F2C5FA /* Locationless */,
+				E8A36529206BB13400EE2B63 /* Moveables */,
 				E8FD610D1BE8C46100859A58 /* Files */,
 				E857078D1CA1E6A200467CE0 /* Statistics */,
 				E8A7FA921B777616003F4132 /* Browser */,
@@ -4949,6 +4977,7 @@
 				E82344821EECE09C00D2CDFD /* ListIgnoredViewController.m in Sources */,
 				E8596ACD1F73174100E26495 /* DeveloperDatabaseViewController.m in Sources */,
 				E82288181F8A347A00631380 /* CXMLDocument_PrivateExtensions.m in Sources */,
+				E8A3652F206CF17800EE2B63 /* MoveablesInventoryViewController.m in Sources */,
 				E823442E1EECDFB300D2CDFD /* FilterGroupsTableViewCell.m in Sources */,
 				E82288311F8A34B700631380 /* TFHppleElement.m in Sources */,
 				E82287D01F8A32C600631380 /* RemoteAPIGGCW.m in Sources */,
@@ -5036,6 +5065,7 @@
 				E8CB8908205E75E400DD55DE /* OLCConvertor.m in Sources */,
 				E82288D61F8A359900631380 /* GMUGeoJSONParser.m in Sources */,
 				E82287621F8A2EC300631380 /* GCCloseButton.m in Sources */,
+				E8A3652C206CF15B00EE2B63 /* MoveablesMineViewController.m in Sources */,
 				E822890F1F8A40A800631380 /* SVIndefiniteAnimatedView.m in Sources */,
 				E822887B1F8A34FB00631380 /* SimpleKMLFolder.m in Sources */,
 				E822887E1F8A34FB00631380 /* SimpleKMLIconStyle.m in Sources */,
@@ -5049,6 +5079,7 @@
 				E82288841F8A34FB00631380 /* SimpleKMLOverlay.m in Sources */,
 				E82286991F8A2BD600631380 /* dbPersonalNote.m in Sources */,
 				E82286A11F8A2BD600631380 /* dbTrackElement.m in Sources */,
+				E8A36535206CFA3E00EE2B63 /* MoveablesListViewController.m in Sources */,
 				E82343BA1EECDE6C00D2CDFD /* WaypointLogEditViewController.m in Sources */,
 				E82343BC1EECDE6C00D2CDFD /* WaypointLogTrackablesViewController.m in Sources */,
 				E82344941EECE0AD00D2CDFD /* QueriesTableViewCell.m in Sources */,
@@ -5136,6 +5167,7 @@
 				E822888A1F8A34FB00631380 /* SimpleKMLStyle.m in Sources */,
 				E82286821F8A2BD600631380 /* dbAccount.m in Sources */,
 				E84B174B1F8F6C18004CAE31 /* QueriesGCAPublicViewController.m in Sources */,
+				E8A36532206CF19600EE2B63 /* MoveablesTemplateViewController.m in Sources */,
 				E82286B91F8A2C8800631380 /* ExportGPX.m in Sources */,
 				E82344C21EECE0E800D2CDFD /* SettingsMainViewController.m in Sources */,
 				E822876C1F8A2EC300631380 /* GCTableViewController.m in Sources */,

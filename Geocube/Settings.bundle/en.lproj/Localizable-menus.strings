@@ -69,6 +69,11 @@
 "menu-waypoints-Filters" = "Filters";
 "menu-waypoints-List" = "List";
 "menu-waypoints-Map" = "Map";
+"menu-Moveables" = "Moveables";
+"menu-moveables-Inventory" = "Inventory";
+"menu-moveables-List" = "List";
+"menu-moveables-Mine" = "Mine";
+
 
 /* View controller menus */
 "waypointdescriptionviewcontroller-Scan for waypoints" = "Scan for waypoints";

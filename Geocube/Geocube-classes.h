@@ -179,6 +179,10 @@
 @class MapTemplateViewController;
 @class MapTrackViewController;
 @class MapWaypointInfoView;
+@class MoveablesInventoryViewController;
+@class MoveablesListViewController;
+@class MoveablesMineViewController;
+@class MoveablesTemplateViewController;
 @class MyClock;
 @class MyTools;
 @class NotesFieldnotesViewController;

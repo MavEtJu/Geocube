@@ -305,6 +305,16 @@
                 TABBARCONTROLLER(RC_DEVELOPER, controllers)
                 break;
 
+            case RC_MOVEABLES:
+                controllers = [NSMutableArray array];
+
+                VC(MoveablesInventoryViewController, _(@"menu-moveables-Inventory"));
+                VC(MoveablesMineViewController, _(@"menu-moveables-Mine"));
+                VC(MoveablesMineViewController, _(@"menu-moveables-List"));
+
+                TABBARCONTROLLER(RC_DEVELOPER, controllers)
+                break;
+
             default:
                 NSAssert1(FALSE, @"Tabbar missing item %ld", (long)i);
 
