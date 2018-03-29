@@ -21,4 +21,6 @@
 
 @interface MoveablesTemplateViewController : GCTableViewController
 
+@property (nonatomic, retain) NSArray<dbWaypoint *> *waypoints;
+
 @end

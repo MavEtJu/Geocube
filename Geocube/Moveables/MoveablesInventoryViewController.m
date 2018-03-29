@@ -25,4 +25,9 @@
 
 @implementation MoveablesInventoryViewController
 
+- (void)loadWaypoints
+{
+    self.waypoints = [dbWaypoint dbAllMoveablesInventory];
+}
+
 @end

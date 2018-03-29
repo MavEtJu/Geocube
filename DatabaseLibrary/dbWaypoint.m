@@ -640,6 +640,21 @@ TABLENAME(@"waypoints")
     return [dbWaypoint dbAllXXX:@"where gs_country_id = (select id from countries where name = 'Locationless') and planned = 1 and ignore = 0" keys:nil values:nil];
 }
 
++ (NSArray<dbWaypoint *> *)dbAllMoveables
+{
+    return [dbWaypoint dbAllXXX:@"where wpt_type_id = (select id from types where type_minor = 'Moveable')" keys:nil values:nil];
+}
+
++ (NSArray<dbWaypoint *> *)dbAllMoveablesMine
+{
+    return [dbWaypoint dbAllXXX:@"where wpt_type_id = (select id from types where type_minor = 'Moveable') and gs_owner_id in (select accountname_id from accounts where accountname_id != 0)" keys:nil values:nil];
+}
+
++ (NSArray<dbWaypoint *> *)dbAllMoveablesInventory
+{
+    return nil;
+}
+
 + (dbWaypoint *)dbGetByName:(NSString *)name
 {
     return [[self dbAllXXX:@"where wpt_name = ?" keys:@"s" values:@[name]] firstObject];

@@ -118,6 +118,10 @@
 + (NSArray<dbWaypoint *> *)dbAllByFlag:(Flag)flag;
 + (NSArray<dbWaypoint *> *)dbAllInRect:(CLLocationCoordinate2D)lt RT:(CLLocationCoordinate2D)rt;
 
++ (NSArray<dbWaypoint *> *)dbAllMoveables;
++ (NSArray<dbWaypoint *> *)dbAllMoveablesMine;
++ (NSArray<dbWaypoint *> *)dbAllMoveablesInventory;
+
 - (BOOL)hasGSData;
 
 @end

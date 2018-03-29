@@ -25,4 +25,9 @@
 
 @implementation MoveablesListViewController
 
+- (void)loadWaypoints
+{
+    self.waypoints = [dbWaypoint dbAllMoveables];
+}
+
 @end
