@@ -119,6 +119,7 @@
 + (NSArray<dbWaypoint *> *)dbAllInRect:(CLLocationCoordinate2D)lt RT:(CLLocationCoordinate2D)rt;
 
 + (NSArray<dbWaypoint *> *)dbAllMoveables;
++ (NSArray<dbWaypoint *> *)dbAllMoveablesNotFound;
 + (NSArray<dbWaypoint *> *)dbAllMoveablesMine;
 + (NSArray<dbWaypoint *> *)dbAllMoveablesInventory;
 

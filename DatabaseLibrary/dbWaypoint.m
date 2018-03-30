@@ -645,6 +645,11 @@ TABLENAME(@"waypoints")
     return [dbWaypoint dbAllXXX:@"where wpt_type_id = (select id from types where type_minor = 'Moveable')" keys:nil values:nil];
 }
 
++ (NSArray<dbWaypoint *> *)dbAllMoveablesNotFound
+{
+    return [dbWaypoint dbAllXXX:@"where wpt_type_id = (select id from types where type_minor = 'Moveable') and log_status != 2 and markedfound != 1" keys:nil values:nil];
+}
+
 + (NSArray<dbWaypoint *> *)dbAllMoveablesMine
 {
     return [dbWaypoint dbAllXXX:@"where wpt_type_id = (select id from types where type_minor = 'Moveable') and gs_owner_id in (select accountname_id from accounts where accountname_id != 0)" keys:nil values:nil];

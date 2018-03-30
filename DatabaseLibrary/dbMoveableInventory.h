@@ -25,5 +25,6 @@
 
 + (NSArray<dbMoveableInventory *> *)dbAll;
 + (dbMoveableInventory *)dbGet:(NSId)_id;
++ (dbMoveableInventory *)dbGetByWaypoint:(dbWaypoint *)wp;
 
 @end

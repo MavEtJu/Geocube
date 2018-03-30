@@ -78,4 +78,9 @@ TABLENAME(@"moveable_inventory")
     return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithId:_id]]] firstObject];
 }
 
++ (dbMoveableInventory *)dbGetByWaypoint:(dbWaypoint *)wp
+{
+    return [[self dbAllXXX:@"where waypoint_id = ?" keys:@"i" values:@[[NSNumber numberWithId:wp._id]]] firstObject];
+}
+
 @end

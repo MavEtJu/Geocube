@@ -27,7 +27,31 @@
 
 - (void)loadWaypoints
 {
-    self.waypoints = [dbWaypoint dbAllMoveables];
+    if (configManager.moveablesShowFound == YES)
+        self.waypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAllMoveables]];
+    else
+        self.waypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAllMoveablesNotFound]];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        dbWaypoint *wp = [self.waypoints objectAtIndex:indexPath.row];
+
+        dbMoveableInventory *mi = [[dbMoveableInventory alloc] init];
+        mi.waypoint = wp;
+        [mi dbCreate];
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return _(@"moveableslistviewcontroller-Grab");
 }
 
 @end

@@ -27,7 +27,7 @@
 
 - (void)loadWaypoints
 {
-    self.waypoints = [dbWaypoint dbAllMoveablesMine];
+    self.waypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAllMoveablesMine]];
 }
 
 @end

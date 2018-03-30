@@ -63,8 +63,15 @@ enum {
 
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.definesPresentationContext = YES;
+}
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self loadWaypoints];
+    self.waypoints = [NSMutableArray arrayWithArray:[WaypointSorter resortWaypoints:self.waypoints waypointsSortOrder:self.currentSortOrder]];
+
+    [self.tableView reloadData];
 }
 
 - NEEDS_OVERLOADING_VOID(loadWaypoints)
@@ -129,7 +136,7 @@ enum {
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction *action) {
                                      self.currentSortOrder = i;
-                                     self.waypoints = [WaypointSorter resortWaypoints:self.waypoints waypointsSortOrder:self.currentSortOrder];
+                                     self.waypoints = [NSMutableArray arrayWithArray:[WaypointSorter resortWaypoints:self.waypoints waypointsSortOrder:self.currentSortOrder]];
                                      [self.tableView reloadData];
                                  }];
         [alert addAction:action];

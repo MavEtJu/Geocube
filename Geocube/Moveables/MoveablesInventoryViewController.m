@@ -27,7 +27,31 @@
 
 - (void)loadWaypoints
 {
-    self.waypoints = [dbWaypoint dbAllMoveablesInventory];
+    self.waypoints = [NSMutableArray arrayWithArray:[dbWaypoint dbAllMoveablesInventory]];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        dbWaypoint *wp = [self.waypoints objectAtIndex:indexPath.row];
+
+        dbMoveableInventory *mi = [dbMoveableInventory dbGetByWaypoint:wp];
+        [mi dbDelete];
+
+        [self.waypoints removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        [self.tableView reloadData];
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return _(@"moveablesinventoryviewcontroller-Remove from list");
 }
 
 @end

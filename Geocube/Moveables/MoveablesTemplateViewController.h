@@ -21,6 +21,6 @@
 
 @interface MoveablesTemplateViewController : GCTableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UISearchResultsUpdating>
 
-@property (nonatomic, retain) NSArray<dbWaypoint *> *waypoints;
+@property (nonatomic, retain) NSMutableArray<dbWaypoint *> *waypoints;
 
 @end
