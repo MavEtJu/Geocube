@@ -51,6 +51,7 @@
 #import "DatabaseLibrary/dbLogString.h"
 #import "DatabaseLibrary/dbLogStringWaypoint.h"
 #import "DatabaseLibrary/dbLogTemplate.h"
+#import "DatabaseLibrary/dbMoveableInventory.h"
 #import "DatabaseLibrary/dbName.h"
 #import "DatabaseLibrary/dbNotice.h"
 #import "DatabaseLibrary/dbPersonalNote.h"

@@ -652,7 +652,7 @@ TABLENAME(@"waypoints")
 
 + (NSArray<dbWaypoint *> *)dbAllMoveablesInventory
 {
-    return nil;
+    return [dbWaypoint dbAllXXX:@"where wpt_type_id = (select id from types where type_minor = 'Moveable') and id in (select waypoint_id from moveable_inventory)" keys:nil values:nil];
 }
 
 + (dbWaypoint *)dbGetByName:(NSString *)name

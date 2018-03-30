@@ -18,7 +18,7 @@ insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.6.geocube");
 insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.6.geocube");
 insert into config(key, value) values("url_versions", "https://geocube.mavetju.org/geocube_versions.geocube");
-insert into config(key, value) values("version", "69");
+insert into config(key, value) values("version", "70");
 
 create table filters (
     id integer primary key,
@@ -441,3 +441,9 @@ create table log_data (
     type integer		-- 0: Found, 1: DNF
 );
 create index log_data_idx_id on log_data(id);
+
+create table moveable_inventory (
+    id integer primary key,
+    waypoint_id integer 	-- points to waypoints(id)
+);
+

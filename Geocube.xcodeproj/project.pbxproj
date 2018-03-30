@@ -680,6 +680,7 @@
 		E8A3652F206CF17800EE2B63 /* MoveablesInventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A3652E206CF17800EE2B63 /* MoveablesInventoryViewController.m */; };
 		E8A36532206CF19600EE2B63 /* MoveablesTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A36531206CF19600EE2B63 /* MoveablesTemplateViewController.m */; };
 		E8A36535206CFA3E00EE2B63 /* MoveablesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A36534206CFA3E00EE2B63 /* MoveablesListViewController.m */; };
+		E8A36538206E10A400EE2B63 /* dbMoveableInventory.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A36537206E10A400EE2B63 /* dbMoveableInventory.m */; };
 		E8B6D8DA1F9AE81B00C376A2 /* GCMGLObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B6D8D91F9AE81B00C376A2 /* GCMGLObjects.m */; };
 		E8B772FC1F9462250060B415 /* cache - gadget - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B772FA1F9462250060B415 /* cache - gadget - 30x30@2x.png */; };
 		E8B772FD1F9462250060B415 /* cache - gadget - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B772FB1F9462250060B415 /* cache - gadget - 30x30@3x.png */; };
@@ -1934,6 +1935,8 @@
 		E8A36531206CF19600EE2B63 /* MoveablesTemplateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MoveablesTemplateViewController.m; path = Moveables/MoveablesTemplateViewController.m; sourceTree = "<group>"; };
 		E8A36533206CFA3E00EE2B63 /* MoveablesListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MoveablesListViewController.h; path = Moveables/MoveablesListViewController.h; sourceTree = "<group>"; };
 		E8A36534206CFA3E00EE2B63 /* MoveablesListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MoveablesListViewController.m; path = Moveables/MoveablesListViewController.m; sourceTree = "<group>"; };
+		E8A36536206E10A400EE2B63 /* dbMoveableInventory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = dbMoveableInventory.h; path = DatabaseLibrary/dbMoveableInventory.h; sourceTree = "<group>"; };
+		E8A36537206E10A400EE2B63 /* dbMoveableInventory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = dbMoveableInventory.m; path = DatabaseLibrary/dbMoveableInventory.m; sourceTree = "<group>"; };
 		E8B6D8D81F9AE81B00C376A2 /* GCMGLObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GCMGLObjects.h; path = BaseObjectsLibrary/GCMGLObjects.h; sourceTree = "<group>"; };
 		E8B6D8D91F9AE81B00C376A2 /* GCMGLObjects.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GCMGLObjects.m; path = BaseObjectsLibrary/GCMGLObjects.m; sourceTree = "<group>"; };
 		E8B772FA1F9462250060B415 /* cache - gadget - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - gadget - 30x30@2x.png"; path = "images/caches/cache - gadget - 30x30@2x.png"; sourceTree = "<group>"; };
@@ -2394,6 +2397,8 @@
 				E822865E1F8A2BD500631380 /* dbLogStringWaypoint.m */,
 				E822865F1F8A2BD500631380 /* dbLogTemplate.h */,
 				E82286601F8A2BD500631380 /* dbLogTemplate.m */,
+				E8A36536206E10A400EE2B63 /* dbMoveableInventory.h */,
+				E8A36537206E10A400EE2B63 /* dbMoveableInventory.m */,
 				E82286611F8A2BD500631380 /* dbName.h */,
 				E82286621F8A2BD500631380 /* dbName.m */,
 				E82286631F8A2BD500631380 /* dbNotice.h */,
@@ -5174,6 +5179,7 @@
 				E82287F91F8A344400631380 /* DistancePickerView.m in Sources */,
 				E82344A91EECE0C900D2CDFD /* BrowserBrowserViewController.m in Sources */,
 				E82344361EECDFB300D2CDFD /* FilterTypesTableViewCell.m in Sources */,
+				E8A36538206E10A400EE2B63 /* dbMoveableInventory.m in Sources */,
 				E82286BB1F8A2C8800631380 /* ImportGeocube.m in Sources */,
 				E82288321F8A34B700631380 /* XPathQuery.m in Sources */,
 				E82288831F8A34FB00631380 /* SimpleKMLObject.m in Sources */,

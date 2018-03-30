@@ -279,6 +279,7 @@
 @class dbLogString;
 @class dbLogStringWaypoint;
 @class dbLogTemplate;
+@class dbMoveableInventory;
 @class dbName;
 @class dbNotice;
 @class dbObject;

@@ -109,6 +109,8 @@ enum {
     [vs addObject:[[NSNumber numberWithInteger:[dbLogStringWaypoint dbCount]] stringValue]];
     [fs addObject:@"LogTemplates"];
     [vs addObject:[[NSNumber numberWithInteger:[dbLogTemplate dbCount]] stringValue]];
+    [fs addObject:@"MoveableInventory"];
+    [vs addObject:[[NSNumber numberWithInteger:[dbMoveableInventory dbCount]] stringValue]];
     [fs addObject:@"Names"];
     [vs addObject:[[NSNumber numberWithInteger:[dbName dbCount]] stringValue]];
     [fs addObject:@"Notices"];

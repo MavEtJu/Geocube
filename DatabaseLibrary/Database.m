@@ -870,6 +870,12 @@
     @"update accounts set hidden = 0",
     ];
     [self.upgradeSteps addObject:a];
+
+    // Version 70
+    a = @[
+    @"create table moveable_inventory (id integer primary key, waypoint_id integer)"
+    ];
+    [self.upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

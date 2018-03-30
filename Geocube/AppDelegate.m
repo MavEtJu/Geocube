@@ -310,7 +310,7 @@
 
                 VC(MoveablesInventoryViewController, _(@"menu-moveables-Inventory"));
                 VC(MoveablesMineViewController, _(@"menu-moveables-Mine"));
-                VC(MoveablesMineViewController, _(@"menu-moveables-List"));
+                VC(MoveablesListViewController, _(@"menu-moveables-List"));
 
                 TABBARCONTROLLER(RC_DEVELOPER, controllers)
                 break;
