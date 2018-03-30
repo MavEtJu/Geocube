@@ -26,3 +26,4 @@
 @end
 
 extern MapLogsViewController *locationlessMapViewController;
+extern MapLogsViewController *moveablesMapViewController;

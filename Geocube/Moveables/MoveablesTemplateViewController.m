@@ -109,6 +109,19 @@ enum {
     return cell;
 }
 
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    dbWaypoint *wp = [self.waypoints objectAtIndex:indexPath.row];
+    NSString *newTitle = wp.description;
+
+    WaypointViewController *newController = [[WaypointViewController alloc] init];
+    newController.hasCloseButton = YES;
+    [newController showWaypoint:wp];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    newController.title = newTitle;
+    [self.navigationController pushViewController:newController animated:YES];
+}
+
 #pragma mark - Local menu related functions
 
 - (void)performLocalMenuAction:(NSInteger)index

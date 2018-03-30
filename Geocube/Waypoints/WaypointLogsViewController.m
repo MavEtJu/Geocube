@@ -182,10 +182,16 @@ enum {
 
 - (void)mapLogs
 {
-    [_AppDelegate switchController:RC_LOCATIONSLESS];
-    [locationlessMapTabController setSelectedIndex:VC_LOCATIONLESS_MAP animated:YES];
-    [locationlessMapViewController showLogLocations:self.waypoint];
-    return;
+    if ([self.waypoint.gs_country.name isEqualToString:@"Locationless"] == YES) {
+        [_AppDelegate switchController:RC_LOCATIONSLESS];
+        [locationlessMapTabController setSelectedIndex:VC_LOCATIONLESS_MAP animated:YES];
+        [locationlessMapViewController showLogLocations:self.waypoint];
+    }
+    if ([self.waypoint.wpt_type.type_minor isEqualToString:@"Moveable"] == YES) {
+        [_AppDelegate switchController:RC_MOVEABLES];
+        [moveablesMapTabController setSelectedIndex:VC_MOVEABLES_MAP animated:YES];
+        [moveablesMapViewController showLogLocations:self.waypoint];
+    }
 }
 
 - (void)scanForWaypoints

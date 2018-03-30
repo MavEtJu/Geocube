@@ -61,6 +61,8 @@ MapTrackViewController *keepTrackMapViewController = nil;
 // Locationless Map
 MHTabBarController *locationlessMapTabController;
 MapLogsViewController *locationlessMapViewController;
+MHTabBarController *moveablesMapTabController;
+MapLogsViewController *moveablesMapViewController;
 
 // Download manager
 DownloadManager *downloadManager = nil;

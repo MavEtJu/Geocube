@@ -311,6 +311,7 @@
                 VC(MoveablesInventoryViewController, _(@"menu-moveables-Inventory"));
                 VC(MoveablesMineViewController, _(@"menu-moveables-Mine"));
                 VC(MoveablesListViewController, _(@"menu-moveables-List"));
+                VC(MapLogsViewController, _(@"menu-moveables-Map"));
 
                 TABBARCONTROLLER(RC_DEVELOPER, controllers)
                 break;
@@ -347,6 +348,11 @@
     locationlessMapTabController = [_AppDelegate.tabBars objectAtIndex:RC_LOCATIONSLESS];
     nvc = [locationlessMapTabController.viewControllers objectAtIndex:VC_LOCATIONLESS_MAP];
     locationlessMapViewController = [nvc.viewControllers objectAtIndex:0];
+
+    // Moveables Map
+    moveablesMapTabController = [_AppDelegate.tabBars objectAtIndex:RC_MOVEABLES];
+    nvc = [moveablesMapTabController.viewControllers objectAtIndex:VC_MOVEABLES_MAP];
+    moveablesMapViewController = [nvc.viewControllers objectAtIndex:0];
 
     // Download View Controller and Manager
     downloadManager = [[DownloadManager alloc] init];

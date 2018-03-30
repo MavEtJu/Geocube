@@ -58,4 +58,5 @@
 extern MHTabBarController *browserTabController;
 extern MHTabBarController *keepTrackTabController;
 extern MHTabBarController *locationlessMapTabController;
+extern MHTabBarController *moveablesMapTabController;
 

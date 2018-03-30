@@ -73,7 +73,7 @@
 "menu-moveables-Inventory" = "Inventaris";
 "menu-moveables-List" = "Lijst";
 "menu-moveables-Mine" = "Mijn";
-
+"menu-moveables-Map" = "Kaart";
 
 /* View controller menus */
 "waypointdescriptionviewcontroller-Scan for waypoints" = "Zoek waypoints";

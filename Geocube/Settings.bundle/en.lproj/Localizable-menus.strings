@@ -73,7 +73,7 @@
 "menu-moveables-Inventory" = "Inventory";
 "menu-moveables-List" = "List";
 "menu-moveables-Mine" = "Mine";
-
+"menu-moveables-Map" = "Map";
 
 /* View controller menus */
 "waypointdescriptionviewcontroller-Scan for waypoints" = "Scan for waypoints";
