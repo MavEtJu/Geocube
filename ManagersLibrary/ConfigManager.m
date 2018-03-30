@@ -184,6 +184,9 @@
     CHECK(@"service_showtrackables", @"1");
     CHECK(@"service_showmoveables", @"1");
     CHECK(@"service_showdeveloper", @"0");
+
+    CHECK(@"moveables_showfound", @"1");
+    CHECK(@"moveables_listsortby", @"0");
 }
 
 - (void)loadValues
@@ -295,6 +298,8 @@
     LOAD_BOOL   (self.serviceShowTrackables, @"service_showtrackables");
     LOAD_BOOL   (self.serviceShowLocationless, @"service_showlocationless");
     LOAD_BOOL   (self.serviceShowDeveloper, @"service_showdeveloper");
+    LOAD_BOOL   (self.moveablesShowFound, @"moveables_showfound");
+    LOAD_INTEGER(self.moveablesListSortBy, @"moveables_listsortby");
 
     /* Leftovers */
     self.currentTrack = [dbTrack dbGet:[[dbConfig dbGetByKey:@"track_current"].value integerValue]];
@@ -421,6 +426,7 @@ UPDATE3(BOOL, serviceShowMoveables, @"service_showmoveables")
 UPDATE3(BOOL, serviceShowLocationless, @"service_showlocationless")
 UPDATE3(BOOL, serviceShowTrackables, @"service_showtrackables")
 UPDATE3(BOOL, serviceShowDeveloper, @"service_showdeveloper")
+UPDATE3(BOOL, moveablesShowFound, @"moveables_showfound")
 
 UPDATE4(LM_ACCURACY, NSInteger, accuracyDynamicAccuracyNear, @"accuracy_dynamic_accuracy_near")
 UPDATE4(LM_ACCURACY, NSInteger, accuracyDynamicAccuracyMidrange, @"accuracy_dynamic_accuracy_midrange")
@@ -475,6 +481,7 @@ UPDATE3(CoordinatesType, coordinatesTypeEdit, @"coordinates_edit")
 UPDATE3(NSInteger, coordinatesDecimalsDegrees, @"coordinates_decimals_degrees")
 UPDATE3(NSInteger, coordinatesDecimalsMinutes, @"coordinates_decimals_minutes")
 UPDATE3(NSInteger, coordinatesDecimalsSeconds, @"coordinates_decimals_seconds")
+UPDATE3(NSInteger, moveablesListSortBy, @"moveables_listsortby")
 
 UPDATE3(float, keeptrackTimeDeltaMin, @"keeptrack_timedelta_min")
 UPDATE3(float, keeptrackTimeDeltaMax, @"keeptrack_timedelta_max")

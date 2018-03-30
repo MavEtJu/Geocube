@@ -138,6 +138,8 @@ PROTO_N (BOOL, serviceShowLocationless)
 PROTO_N (BOOL, serviceShowTrackables)
 PROTO_N (BOOL, serviceShowMoveables)
 PROTO_N (BOOL, serviceShowDeveloper)
+PROTO_N (NSInteger, moveablesListSortBy);
+PROTO_N (BOOL, moveablesShowFound);
 
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown

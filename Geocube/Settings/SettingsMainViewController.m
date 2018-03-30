@@ -259,6 +259,7 @@ enum sections {
     SECTION_LISTS,
     SECTION_ACCOUNTS,
     SECTION_LOCATIONLESS,
+    SECTION_MOVEABLES,
     SECTION_SPEED,
     SECTION_BACKUPS,
     SECTION_SERVICES,
@@ -359,6 +360,10 @@ enum sections {
     SECTION_LOCATIONLESS_SHOWFOUND,
     SECTION_LOCATIONLESS_MAX,
 
+    SECTION_MOVEABLES_SORTBY = 0,
+    SECTION_MOVEABLES_SHOWFOUND,
+    SECTION_MOVEABLES_MAX,
+
     SECTION_BACKUPS_ENABLED = 0,
     SECTION_BACKUPS_INTERVAL,
     SECTION_BACKUPS_ROTATION,
@@ -424,6 +429,7 @@ enum sections {
         SECTION_MAX(LISTS);
         SECTION_MAX(ACCOUNTS);
         SECTION_MAX(LOCATIONLESS);
+        SECTION_MAX(MOVEABLES);
         SECTION_MAX(BACKUPS);
         SECTION_MAX(ACCURACY);
         SECTION_MAX(MAPSEARCH);
@@ -471,6 +477,8 @@ enum sections {
             return _(@"settingsmainviewcontroller-Accounts");
         case SECTION_LOCATIONLESS:
             return _(@"settingsmainviewcontroller-Locationless");
+        case SECTION_MOVEABLES:
+            return _(@"settingsmainviewcontroller-Moveables");
         case SECTION_BACKUPS:
             return _(@"settingsmainviewcontroller-Backups");
         case SECTION_ACCURACY:
@@ -829,6 +837,18 @@ enum sections {
             abort();
         }
 
+        case SECTION_MOVEABLES: {
+            switch (indexPath.row) {
+                case SECTION_MOVEABLES_SHOWFOUND:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Show found in list"), moveablesShowFound, updateMoveablesShowFound)
+                case SECTION_MOVEABLES_SORTBY: {
+                    NSArray<NSString *> *order = [WaypointSorter waypointsSortOrders];
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Sort by"), [order objectAtIndex:configManager.moveablesListSortBy])
+                }
+            }
+            abort();
+        }
+
         case SECTION_BACKUPS: {
             switch (indexPath.row) {
                 case SECTION_BACKUPS_ENABLED:
@@ -954,6 +974,7 @@ SWITCH_UPDATE(updateShowCountryAsAbbrevation, showCountryAsAbbrevation)
 SWITCH_UPDATE(updateShowStateAsAbbrevation, showStateAsAbbrevation)
 SWITCH_UPDATE(updateShowStateAsAbbrevationWithLocality, showStateAsAbbrevationIfLocalityExists)
 SWITCH_UPDATE(updateLocationlessShowFound, locationlessShowFound)
+SWITCH_UPDATE(updateMoveablesShowFound, moveablesShowFound)
 SWITCH_UPDATE(updateSpeedEnable, speedEnable)
 SWITCH_UPDATE(updateLoggingGGCWOfferFavourites, loggingGGCWOfferFavourites)
 SWITCH_UPDATE_RELOAD(updateServicesShowMoveables, serviceShowMoveables)
@@ -1123,6 +1144,14 @@ SWITCH_UPDATE_RELOAD(updateServicesShowDeveloper, serviceShowDeveloper)
             switch (indexPath.row) {
                 case SECTION_LOCATIONLESS_SORTBY:
                     [self changeLocationlessSortOrder];
+                    break;
+            }
+            break;
+
+        case SECTION_MOVEABLES:
+            switch (indexPath.row) {
+                case SECTION_MOVEABLES_SORTBY:
+                    [self changeMoveablesSortOrder];
                     break;
             }
             break;
@@ -2135,6 +2164,24 @@ SWITCH_UPDATE_RELOAD(updateServicesShowDeveloper, serviceShowDeveloper)
                                 initialSelection:configManager.locationlessListSortBy
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                            [configManager locationlessListSortByUpdate:selectedIndex];
+                                           [self.tableView reloadData];
+                                       }
+                                     cancelBlock:nil
+                                          origin:cell.contentView
+     ];
+}
+
+/* ********************************************************************************* */
+
+- (void)changeMoveablesSortOrder
+{
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_MOVEABLES_SORTBY inSection:SECTION_MOVEABLES]];
+
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Sort moveables by")
+                                            rows:[WaypointSorter waypointsSortOrders]
+                                initialSelection:configManager.moveablesListSortBy
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           [configManager moveablesListSortByUpdate:selectedIndex];
                                            [self.tableView reloadData];
                                        }
                                      cancelBlock:nil

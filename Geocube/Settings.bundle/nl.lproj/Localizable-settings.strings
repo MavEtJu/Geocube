@@ -247,3 +247,6 @@
 "settingsmainviewcontroller-Show trackables" = "Laat trackables zien";
 "settingsmainviewcontroller-Show developer" = "Laat developer zien";
 
+"settingsmainviewcontroller-Moveables" = "Moveables";
+"settingsmainviewcontroller-Sort moveables by" = "Sorteer de moveables bij";
+

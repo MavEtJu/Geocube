@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MoveablesTemplateViewController : GCTableViewController
+@interface MoveablesTemplateViewController : GCTableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UISearchResultsUpdating>
 
 @property (nonatomic, retain) NSArray<dbWaypoint *> *waypoints;
 
