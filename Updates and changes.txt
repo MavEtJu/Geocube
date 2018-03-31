@@ -1,5 +1,11 @@
 Interesting additions and changes to Geocube
 
+Version 2.2(x)
+
+  Features:
+
+  Fixes:
+
 Version 2.1(35)
 
   Features:
