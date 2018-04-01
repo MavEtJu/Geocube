@@ -168,7 +168,7 @@
 "waypointlogviewcontroller-none" = "none";
 "waypointlogviewcontroller-picked up" = "picked up";
 "waypointlogviewcontroller-visited" = "visited";
-"waypointlogviewcontroller-(none yet)" = "(none yet)";
+"waypointlogviewcontroller-(none)" = "(none)";
 
 /* Waypoint sorter */
 "waypointsorter-Code (ascending)" = "Code (ascending)";
