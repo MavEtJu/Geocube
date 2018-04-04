@@ -4,20 +4,20 @@ PODS:
   - GoogleMaps/Base (2.6.0)
   - GoogleMaps/Maps (2.6.0):
     - GoogleMaps/Base
-  - Mapbox-iOS-SDK (3.7.5)
+  - Mapbox-iOS-SDK (3.7.6)
 
 DEPENDENCIES:
   - GoogleMaps
-  - Mapbox-iOS-SDK (from `https://raw.githubusercontent.com/mapbox/mapbox-gl-native/ios-v3.7.5/platform/ios/Mapbox-iOS-SDK.podspec`)
+  - Mapbox-iOS-SDK (from `https://raw.githubusercontent.com/mapbox/mapbox-gl-native/ios-v3.7.6/platform/ios/Mapbox-iOS-SDK.podspec`)
 
 EXTERNAL SOURCES:
   Mapbox-iOS-SDK:
-    :podspec: https://raw.githubusercontent.com/mapbox/mapbox-gl-native/ios-v3.7.5/platform/ios/Mapbox-iOS-SDK.podspec
+    :podspec: https://raw.githubusercontent.com/mapbox/mapbox-gl-native/ios-v3.7.6/platform/ios/Mapbox-iOS-SDK.podspec
 
 SPEC CHECKSUMS:
   GoogleMaps: 42f91c68b7fa2f84d5c86597b18ceb99f5414c7f
-  Mapbox-iOS-SDK: 107e331a7ae02e6be902c1557d3454c54e18ce5b
+  Mapbox-iOS-SDK: 23ececda1d90c3b436b45e2c88e9677f025303c0
 
-PODFILE CHECKSUM: ad3b1e164fa18b733eb4649a0096c283956e7553
+PODFILE CHECKSUM: d71ecd5e9a0c34f4675018d3d9e6b2d9528da090
 
 COCOAPODS: 1.4.0

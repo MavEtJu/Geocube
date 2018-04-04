@@ -8,6 +8,7 @@ Version 2.2(x)
 
   Fixes:
   - Fix some subtitles in the cells when logging a find at GCA.
+  - Updated Mapbox to 3.7.6
 
 Version 2.1(35)
 
