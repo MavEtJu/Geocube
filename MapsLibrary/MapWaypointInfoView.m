@@ -196,23 +196,23 @@
 
 #pragma -- WaypointManagerDelegate
 
-- (void)refreshWaypoints
+- (void)waypointManagerRefreshWaypoints
 {
     self.ivContainer.image = [imageManager getType:self.waypoint];
 }
 
-- (void)addWaypoint:(dbWaypoint *)wp
+- (void)waypointManagerAddWaypoint:(dbWaypoint *)wp
 {
     self.ivContainer.image = [imageManager getType:self.waypoint];
 }
 
-- (void)updateWaypoint:(dbWaypoint *)wp
+- (void)waypointManagerUpdateWaypoint:(dbWaypoint *)wp
 {
     self.waypoint = wp;
     self.ivContainer.image = [imageManager getType:self.waypoint];
 }
 
-- (void)removeWaypoint:(dbWaypoint *)wp
+- (void)waypointManagerRemoveWaypoint:(dbWaypoint *)wp
 {
     // Nothing!
 }

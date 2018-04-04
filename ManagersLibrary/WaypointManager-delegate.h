@@ -21,15 +21,15 @@
 
 @protocol WaypointManagerWaypointDelegate <NSObject>
 
-- (void)refreshWaypoints;
-- (void)removeWaypoint:(dbWaypoint *)wp;
-- (void)addWaypoint:(dbWaypoint *)wp;
-- (void)updateWaypoint:(dbWaypoint *)wp;
+- (void)waypointManagerRefreshWaypoints;
+- (void)waypointManagerRemoveWaypoint:(dbWaypoint *)wp;
+- (void)waypointManagerAddWaypoint:(dbWaypoint *)wp;
+- (void)waypointManagerUpdateWaypoint:(dbWaypoint *)wp;
 
 @end
 
 @protocol WaypointManagerKMLDelegate <NSObject>
 
-- (void)reloadKMLFiles;
+- (void)waypointManagerReloadKMLFiles;
 
 @end

@@ -598,7 +598,7 @@
 
 #pragma mark - Waypoint manager callbacks
 
-- (void)refreshWaypoints
+- (void)waypointManagerRefreshWaypoints
 {
     self.needsRefresh = YES;
     if (self.isVisible == YES) {
@@ -609,7 +609,7 @@
 
 - NEEDS_OVERLOADING_VOID(refreshWaypointsData)
 
-- (void)removeWaypoint:(dbWaypoint *)wp
+- (void)waypointManagerRemoveWaypoint:(dbWaypoint *)wp
 {
     NSUInteger idx = [self.waypointsArray indexOfObject:wp];
     if (idx != NSNotFound)
@@ -617,7 +617,7 @@
     [self.map removeMarker:wp];
 }
 
-- (void)addWaypoint:(dbWaypoint *)wp
+- (void)waypointManagerAddWaypoint:(dbWaypoint *)wp
 {
     NSUInteger idx = [self.waypointsArray indexOfObject:wp];
     if (idx == NSNotFound)
@@ -625,7 +625,7 @@
     [self.map placeMarker:wp];
 }
 
-- (void)updateWaypoint:(dbWaypoint *)wp
+- (void)waypointManagerUpdateWaypoint:(dbWaypoint *)wp
 {
     NSUInteger idx = [self.waypointsArray indexOfObject:wp];
     if (idx == NSNotFound)
@@ -842,7 +842,7 @@
             urlString = [NSString stringWithFormat:url.url, LM.coords.latitude, LM.coords.longitude];
             break;
         case 3:
-             urlString = [NSString stringWithFormat:url.url, waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude];
+            urlString = [NSString stringWithFormat:url.url, waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude];
             break;
         case 4:
             urlString = [NSString stringWithFormat:url.url, LM.coords.latitude, LM.coords.longitude, waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude];

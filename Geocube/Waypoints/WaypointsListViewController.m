@@ -216,26 +216,26 @@ enum {
 
 #pragma mark - Waypoint manager callbacks
 
-- (void)refreshWaypoints
+- (void)waypointManagerRefreshWaypoints
 {
     self.needsRefresh = YES;
     if (self.isVisible == YES)
         [self refreshCachesData:nil];
 }
 
-- (void)removeWaypoint:(dbWaypoint *)wp
+- (void)waypointManagerRemoveWaypoint:(dbWaypoint *)wp
 {
     self.waypoints = [WaypointSorter resortWaypoints:waypointManager.currentWaypoints waypointsSortOrder:self.currentSortOrder];
     [self reloadDataMainQueue];
 }
 
-- (void)addWaypoint:(dbWaypoint *)wp
+- (void)waypointManagerAddWaypoint:(dbWaypoint *)wp
 {
     self.waypoints = [WaypointSorter resortWaypoints:waypointManager.currentWaypoints waypointsSortOrder:self.currentSortOrder];
     [self reloadDataMainQueue];
 }
 
-- (void)updateWaypoint:(dbWaypoint *)wp
+- (void)waypointManagerUpdateWaypoint:(dbWaypoint *)wp
 {
     self.waypoints = [WaypointSorter resortWaypoints:waypointManager.currentWaypoints waypointsSortOrder:self.currentSortOrder];
     [self reloadDataMainQueue];

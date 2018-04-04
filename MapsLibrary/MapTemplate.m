@@ -243,7 +243,7 @@ EMPTY_METHOD(mapViewDidLoad)
     }];
 }
 
-- (void)reloadKMLFiles
+- (void)waypointManagerReloadKMLFiles
 {
     [self removeKMLs];
     [self loadKMLs];

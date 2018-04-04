@@ -99,7 +99,7 @@
             // Doing this via the main queue because Google Map Service insists on it.
             NSLog(@"%@: refreshing #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
             MAINQUEUE(
-                [delegate refreshWaypoints];
+                [delegate waypointManagerRefreshWaypoints];
             )
         }];
     }
@@ -114,7 +114,7 @@
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
         MAINQUEUE(
-            [delegate addWaypoint:wp];
+            [delegate waypointManagerAddWaypoint:wp];
         )
     }];
     [self updateBadges];
@@ -128,7 +128,7 @@
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
         MAINQUEUE(
-            [delegate removeWaypoint:wp];
+            [delegate waypointManagerRemoveWaypoint:wp];
         )
     }];
     [self updateBadges];
@@ -144,7 +144,7 @@
         // Doing this via the main queue because Google Map Service insists on it.
         NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
         MAINQUEUE(
-            [delegate updateWaypoint:wp];
+            [delegate waypointManagerUpdateWaypoint:wp];
         )
     }];
     [self updateBadges];
@@ -894,7 +894,7 @@
     [self.delegatesKML enumerateObjectsUsingBlock:^(id<WaypointManagerKMLDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         // Doing this via the main queue because Google Map Service insists on it.
         MAINQUEUE(
-            [delegate reloadKMLFiles];
+            [delegate waypointManagerReloadKMLFiles];
         )
     }];
 }
