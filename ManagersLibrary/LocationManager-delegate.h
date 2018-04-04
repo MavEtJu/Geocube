@@ -21,24 +21,24 @@
 
 @protocol LocationManagerLocationDelegate
 
-- (void)updateLocationManagerLocation;
+- (void)locationManagerUpdateLocation;
 
 @end
 
 @protocol LocationManagerHeadingDelegate
 
-- (void)updateLocationManagerHeading;
+- (void)locationManagerUpdateHeading;
 
 @end
 
 @protocol LocationManagerSpeedDelegate
 
-- (void)updateLocationManagerSpeed;
+- (void)locationManagerUpdateSpeed;
 
 @end
 
 @protocol LocationManagerHistoryDelegate
 
-- (void)updateLocationManagerHistory:(GCCoordsHistorical *)ch;
+- (void)locationManagerUpdateHistory:(GCCoordsHistorical *)ch;
 
 @end

@@ -206,7 +206,7 @@
         [LM startDelegationLocation:self isNavigating:isNavigating];
         [LM startDelegationHistory:self];
         if (self.meLocation.longitude == 0 && self.meLocation.latitude == 0)
-            [self updateLocationManagerLocation];
+            [self locationManagerUpdateLocation];
     }
 
     [self updateMapButtons];
@@ -435,7 +435,7 @@
 }
 
 /* Delegated from GCLocationManager */
-- (void)updateLocationManagerLocation
+- (void)locationManagerUpdateLocation
 {
     if (self.useGNSS == NO)
         return;
@@ -512,7 +512,7 @@
     )
 }
 
-- (void)updateLocationManagerHistory:(GCCoordsHistorical *)ch
+- (void)locationManagerUpdateHistory:(GCCoordsHistorical *)ch
 {
     if (ch == nil) {
         [self.map removeHistory];
@@ -752,7 +752,7 @@
 
     [self.map showBoundaries:self.showBoundaries];
 
-    [self updateLocationManagerLocation];
+    [self locationManagerUpdateLocation];
 }
 
 - (void)menuMapType

@@ -290,7 +290,7 @@ enum {
     return MARGIN + (y - y0) * ((Y - 2 * MARGIN) / (y3 - y0));
 }
 
-- (void)updateLocationManagerLocation
+- (void)locationManagerUpdateLocation
 {
     GCLocationCoordinate2D *c = [[GCLocationCoordinate2D alloc] init];
     c.lat = LM.coords.latitude;
@@ -333,7 +333,7 @@ enum {
         if (now - lastc < 1)
             continue;
 
-        [self updateLocationManagerLocation];
+        [self locationManagerUpdateLocation];
     }
 }
 
@@ -375,7 +375,7 @@ enum {
     switch (index) {
         case menuRestart:
             [self.coords removeAllObjects];
-            [self updateLocationManagerLocation];
+            [self locationManagerUpdateLocation];
             return;
 
         case menuCopyCoordsLast:

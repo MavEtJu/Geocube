@@ -844,7 +844,7 @@
 }
 
 /* Receive data from the location manager */
-- (void)updateLocationManagerLocation
+- (void)locationManagerUpdateLocation
 {
     // If a distance filter is enabled, and the current location is more than a quarter of the way that distance from the lastCoordinates, refresh the filter.
     NSString *c = [self configGet:@"distance_enabled"];

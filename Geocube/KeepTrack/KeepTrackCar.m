@@ -115,7 +115,7 @@ enum {
         self.buttonSetAsTarget.userInteractionEnabled = YES;
     }
 
-    [self updateLocationManagerLocation];
+    [self locationManagerUpdateLocation];
 
     [self changeTheme];
 }
@@ -167,7 +167,7 @@ enum {
     self.buttonSetAsTarget.frame = self.rectButtonSetAsTarget;
 }
 
-- (void)updateLocationManagerLocation
+- (void)locationManagerUpdateLocation
 {
     self.labelCurrentLocationCoordinates.text = [Coordinates niceCoordinates:[LM coords]];
     if (self.coordsRecordedLocation.latitude != 0 && self.coordsRecordedLocation.longitude != 0) {
@@ -196,7 +196,7 @@ enum {
 - (void)remember
 {
     self.coordsRecordedLocation = [LM coords];
-    [self updateLocationManagerLocation];
+    [self locationManagerUpdateLocation];
 
     // Update waypoint
     dbWaypoint *waypoint = [dbWaypoint dbGetByName:@"MYCAR"];
@@ -257,7 +257,7 @@ enum {
             return;
         case menuClearCoordinates:
             self.coordsRecordedLocation = CLLocationCoordinate2DZero;
-            [self updateLocationManagerLocation];
+            [self locationManagerUpdateLocation];
             dbWaypoint *wp = [dbWaypoint dbGetByName:@"MYCAR"];
             [wp dbDelete];
             return;

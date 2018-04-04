@@ -86,28 +86,28 @@
         return;
 
     [self.delegatesLocation enumerateObjectsUsingBlock:^(id<LocationManagerLocationDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
-        [delegate updateLocationManagerLocation];
+        [delegate locationManagerUpdateLocation];
     }];
 }
 
 - (void)updateHistoryDelegates:(GCCoordsHistorical *)ch
 {
     [self.delegatesHistory enumerateObjectsUsingBlock:^(id<LocationManagerHistoryDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
-        [delegate updateLocationManagerHistory:ch];
+        [delegate locationManagerUpdateHistory:ch];
     }];
 }
 
 - (void)updateSpeedDelegates
 {
     [self.delegatesSpeed enumerateObjectsUsingBlock:^(id<LocationManagerSpeedDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
-        [delegate updateLocationManagerSpeed];
+        [delegate locationManagerUpdateSpeed];
     }];
 }
 
 - (void)updateHeadingDelegates
 {
     [self.delegatesHeading enumerateObjectsUsingBlock:^(id<LocationManagerHeadingDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
-        [delegate updateLocationManagerHeading];
+        [delegate locationManagerUpdateHeading];
     }];
 }
 
@@ -133,7 +133,7 @@
 
     if (_delegate != nil) {
         [self.delegatesLocation addObject:_delegate];
-        [_delegate updateLocationManagerLocation];
+        [_delegate locationManagerUpdateLocation];
     }
 }
 
@@ -149,7 +149,7 @@
 {
     NSLog(@"%@: History starting for %@", [self class], [_delegate class]);
     [self.delegatesHistory addObject:_delegate];
-    [_delegate updateLocationManagerHistory:nil];
+    [_delegate locationManagerUpdateHistory:nil];
 }
 
 - (void)stopDelegationHistory:(id)_delegate
@@ -163,7 +163,7 @@
 {
     NSLog(@"%@: Speed starting for %@", [self class], [_delegate class]);
     [self.delegatesSpeed addObject:_delegate];
-    [_delegate updateLocationManagerSpeed];
+    [_delegate locationManagerUpdateSpeed];
 }
 
 - (void)stopDelegationSpeed:(id)_delegate
@@ -177,7 +177,7 @@
 {
     NSLog(@"%@: Heading starting for %@", [self class], [_delegate class]);
     [self.delegatesHeading addObject:_delegate];
-    [_delegate updateLocationManagerHeading];
+    [_delegate locationManagerUpdateHeading];
 }
 
 - (void)stopDelegationHeading:(id)_delegate

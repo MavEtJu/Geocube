@@ -193,7 +193,7 @@
 }
 
 /* Receive data from the location manager */
-- (void)updateLocationManagerSpeed
+- (void)locationManagerUpdateSpeed
 {
     NSString *t = @"";
     float speedkmph = LM.speed * 3.6;
@@ -205,7 +205,7 @@
 }
 
 /* Receive data from the location manager */
-- (void)updateLocationManagerLocation
+- (void)locationManagerUpdateLocation
 {
     NSString *t1 = [NSString stringWithFormat:_(@"compassviewcontroller-Accuracy: %@"), [MyTools niceDistance:LM.accuracy]];
     NSString *t2 = [NSString stringWithFormat:_(@"compassviewcontroller-Altitude: %@"), [MyTools niceDistance:LM.altitude]];
@@ -225,7 +225,7 @@
 }
 
 /* Receive data from the location manager */
-- (void)updateLocationManagerHeading
+- (void)locationManagerUpdateHeading
 {
     /* Draw the compass */
     float newCompass = -LM.direction * M_PI / 180.0f + self.bearingAdjustment;
