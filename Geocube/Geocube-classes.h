@@ -82,6 +82,7 @@
 @class GCLabelNormalText;
 @class GCLabelSmallText;
 @class GCLocationCoordinate2D;
+@class GCMGLCenteredAnnotation;
 @class GCMGLPointAnnotation;
 @class GCMGLPointAnnotationKML;
 @class GCMGLPolygonCircleFill;
@@ -90,6 +91,7 @@
 @class GCMGLPolylineKML;
 @class GCMGLPolylineLineToMe;
 @class GCMGLPolylineTrack;
+@class GCMKCenteredAnnotation;
 @class GCMKCircle;
 @class GCMutableArray;
 @class GCMutableURLRequest;
