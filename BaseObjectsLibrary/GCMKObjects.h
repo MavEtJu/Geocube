@@ -24,3 +24,13 @@
 @property (nonatomic, retain) dbWaypoint *waypoint;
 
 @end
+
+@interface GCWaypointAnnotation : MKPointAnnotation
+
+@property (nonatomic, retain) dbWaypoint *waypoint;
+
+@end
+
+@interface GCMKCenteredAnnotation : MKPointAnnotation
+
+@end

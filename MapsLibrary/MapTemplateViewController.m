@@ -968,6 +968,8 @@
         self.meLocation = [self.map currentCenter];
         self.followWhom = SHOW_FOLLOWME;
     }
+
+    [self.map showCenteredCoordinates:self.useGNSS coords:self.meLocation];
     [waypointManager needsRefreshAll];
 }
 

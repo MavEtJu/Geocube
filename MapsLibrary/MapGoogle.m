@@ -37,6 +37,8 @@
 @property (nonatomic, retain) GMUGeometryRenderer *KMLrenderer;
 @property (nonatomic, retain) NSMutableArray<GMUGeometryRenderer *> *KMLrenderers;
 
+@property (nonatomic, retain) GMSMarker *centeredAnnotation;
+
 @end
 
 @implementation MapGoogle
@@ -236,6 +238,22 @@
 
     [self.markers replaceObjectAtIndex:idx withObject:[self makeMarker:wp]];
 }
+
+- (void)showCenteredCoordinates:(BOOL)showIt coords:(CLLocationCoordinate2D)coords
+{
+    if (showIt == YES) {
+        if (self.centeredAnnotation != nil)
+            self.centeredAnnotation.map = nil;
+        self.centeredAnnotation = nil;
+    } else {
+        self.centeredAnnotation = [[GMSMarker alloc] init];
+        self.centeredAnnotation.position = coords;
+        self.centeredAnnotation.groundAnchor = CGPointMake(0.5, 0.5);
+        self.centeredAnnotation.map = self.mapView;
+        self.centeredAnnotation.icon = [imageManager get:ImageMap_CenteredCoordinates];
+    }
+}
+
 
 - (void)showBoundaries:(BOOL)yesno
 {

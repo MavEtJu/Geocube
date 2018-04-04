@@ -45,6 +45,8 @@
 @property (nonatomic, retain) SimpleKML *simpleKML;
 @property (nonatomic, retain) NSMutableArray<id> *KMLfeatures;
 
+@property (nonatomic, retain) GCMGLCenteredAnnotation *centeredAnnotation;
+
 @end
 
 @implementation MapMapbox
@@ -364,6 +366,19 @@ EMPTY_METHOD(mapViewDidLoad)
     [self placeMarker:wp];
 }
 
+- (void)showCenteredCoordinates:(BOOL)showIt coords:(CLLocationCoordinate2D)coords
+{
+    if (showIt == YES) {
+        if (self.centeredAnnotation != nil)
+            [self.mapView removeAnnotation:self.centeredAnnotation];
+        self.centeredAnnotation = nil;
+    } else {
+        self.centeredAnnotation = [[GCMGLCenteredAnnotation alloc] init];
+        [self.centeredAnnotation setCoordinate:coords];
+        [self.mapView addAnnotation:self.centeredAnnotation];
+    }
+}
+
 - (void)showTrack:(dbTrack *)track
 {
     NSAssert(self.staticHistory == YES, @"Should only be called with static history");
@@ -566,6 +581,8 @@ EMPTY_METHOD(mapViewDidLoad)
 - (MGLAnnotationImage *)mapView:(MGLMapView *)mapView imageForAnnotation:(id <MGLAnnotation>)annotation_
 {
     MGLAnnotationImage *annotationImage = nil;
+
+    // A waypoint
     if ([annotation_ isKindOfClass:[GCMGLPointAnnotation class]] == YES) {
         GCMGLPointAnnotation *annotation = (GCMGLPointAnnotation *)annotation_;
         annotationImage = [mapView dequeueReusableAnnotationImageWithIdentifier:[imageManager getCode:annotation.waypoint]];
@@ -576,9 +593,18 @@ EMPTY_METHOD(mapViewDidLoad)
             image = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(0, 0, image.size.height/2, 0)];
             annotationImage = [MGLAnnotationImage annotationImageWithImage:image reuseIdentifier:[imageManager getCode:annotation.waypoint]];
         }
+        return annotationImage;
     }
 
-    return annotationImage;
+    // centered self
+    if ([annotation_ isKindOfClass:[GCMGLCenteredAnnotation class]] == YES) {
+        UIImage *image = [imageManager get:ImageMap_CenteredCoordinates];
+        annotationImage = [MGLAnnotationImage annotationImageWithImage:image reuseIdentifier:@"centered"];
+
+        return annotationImage;
+    }
+
+    return nil;
 }
 
 - (CGFloat)mapView:(MGLMapView *)mapView lineWidthForPolylineAnnotation:(nonnull MGLPolyline *)annotation

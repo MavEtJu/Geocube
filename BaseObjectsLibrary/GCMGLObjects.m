@@ -27,6 +27,10 @@
 @end
 @implementation GCMGLPointAnnotationKML
 @end
+@interface GCMGLCenteredAnnotation ()
+@end
+@implementation GCMGLCenteredAnnotation
+@end
 @interface GCMGLPolygonKML ()
 @end
 @implementation GCMGLPolygonKML

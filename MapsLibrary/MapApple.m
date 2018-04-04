@@ -43,6 +43,8 @@
 @property (nonatomic, retain) SimpleKML *simpleKML;
 @property (nonatomic, retain) NSMutableArray<id> *KMLfeatures;
 
+@property (nonatomic, retain) GCMKCenteredAnnotation *centeredAnnotation;
+
 @end
 
 @implementation MapApple
@@ -268,6 +270,19 @@
     }
 }
 
+- (void)showCenteredCoordinates:(BOOL)showIt coords:(CLLocationCoordinate2D)coords
+{
+    if (showIt == YES) {
+        if (self.centeredAnnotation != nil)
+            [self.mapView removeAnnotation:self.centeredAnnotation];
+        self.centeredAnnotation = nil;
+    } else {
+        self.centeredAnnotation = [[GCMKCenteredAnnotation alloc] init];
+        [self.centeredAnnotation setCoordinate:coords];
+        [self.mapView addAnnotation:self.centeredAnnotation];
+    }
+}
+
 - (void)showBoundaries:(BOOL)yesno
 {
     if (yesno == YES) {
@@ -308,7 +323,7 @@
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     // If it is the user location, just return nil.
-    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+    if ([annotation isKindOfClass:[MKUserLocation class]] == YES) {
         ((MKUserLocation *)annotation).title = @"";
         return nil;
     }
@@ -325,6 +340,17 @@
         dropPin.annotation = annotation;
 
         return dropPin;
+    }
+
+    // If it is a self-centered annotation, add an image to it.
+    if ([annotation isKindOfClass:[GCMKCenteredAnnotation class]] == YES) {
+        MKAnnotationView *center = (MKAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"centered"];
+        if (center == nil)
+            center = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"centered"];
+        center.image = [imageManager get:ImageMap_CenteredCoordinates];
+        center.annotation = annotation;
+
+        return center;
     }
 
     return nil;
@@ -354,6 +380,15 @@
     }
     if (vlHistory != nil)
         return vlHistory;
+
+    if (overlay == self.centeredAnnotation) {
+        MKCircleRenderer *circleRenderer = nil;
+        circleRenderer = [[MKCircleRenderer alloc] initWithCircle:overlay];
+        circleRenderer.strokeColor = [UIColor blueColor];
+        circleRenderer.fillColor = [[UIColor blueColor] colorWithAlphaComponent:0.85];
+        circleRenderer.lineWidth = 1;
+        return circleRenderer;
+    }
 
     __block MKCircleRenderer *circleRenderer = nil;
     [self.circles enumerateObjectsUsingBlock:^(GCMKCircle * _Nonnull c, NSUInteger idx, BOOL * _Nonnull stop) {

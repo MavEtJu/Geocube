@@ -63,6 +63,7 @@ EMPTY_METHOD(mapViewDidLoad)
 - NEEDS_OVERLOADING_VOID(updateMarker:(dbWaypoint *)wp)
 - NEEDS_OVERLOADING_VOID(loadKML:(NSString *)file)
 - NEEDS_OVERLOADING_VOID(removeKMLs)
+- NEEDS_OVERLOADING_VOID(showCenteredCoordinates:(BOOL)showIt coords:(CLLocationCoordinate2D)coords)
 
 - (instancetype)initMapObject:(MapTemplateViewController *)mvc
 {

@@ -250,6 +250,8 @@
 
     [self addToLibrary:@"image - no image - 32x32" index:Image_NoImageFile];
 
+    [self addToLibrary:@"map - centeredcoords - 22x22" index:ImageMap_CenteredCoordinates];
+
     /* Pin and type images */
     self.pinImages = [NSMutableDictionary dictionaryWithCapacity:25];
     self.typeImages = [NSMutableDictionary dictionaryWithCapacity:25];

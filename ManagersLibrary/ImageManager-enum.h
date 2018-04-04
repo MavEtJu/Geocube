@@ -227,6 +227,8 @@ typedef NS_ENUM(NSInteger, ImageNumber) {
 
     Image_NoImageFile,
 
+    ImageMap_CenteredCoordinates,
+
     ImageCompass_RedArrowOnBlueCompass,
     ImageCompass_RedArrowOnBlueArrow,
     ImageCompass_WhiteArrowOnBlack,

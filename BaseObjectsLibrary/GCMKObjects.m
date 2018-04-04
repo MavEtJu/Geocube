@@ -26,3 +26,19 @@
 @implementation GCMKCircle
 
 @end
+
+@interface GCWaypointAnnotation ()
+
+@end
+
+@implementation GCWaypointAnnotation
+
+@end
+
+@interface GCMKCenteredAnnotation ()
+
+@end
+
+@implementation GCMKCenteredAnnotation
+
+@end

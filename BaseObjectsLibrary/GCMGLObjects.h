@@ -29,6 +29,10 @@
 
 @end
 
+@interface GCMGLCenteredAnnotation : MGLPointAnnotation
+
+@end
+
 @interface GCMGLPolygonCircleFill : MGLPolygon
 
 @property (nonatomic, retain) dbWaypoint *waypoint;

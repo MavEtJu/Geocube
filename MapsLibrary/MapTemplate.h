@@ -67,6 +67,7 @@
 - (void)placeMarker:(dbWaypoint *)wp;
 - (void)removeMarker:(dbWaypoint *)wp;
 - (void)updateMarker:(dbWaypoint *)wp;
+- (void)showCenteredCoordinates:(BOOL)showIt coords:(CLLocationCoordinate2D)coords;
 
 - (void)addLineMeToWaypoint;
 - (void)removeLineMeToWaypoint;

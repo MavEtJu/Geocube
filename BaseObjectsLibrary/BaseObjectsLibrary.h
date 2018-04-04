@@ -30,7 +30,6 @@
 
 /* Maps */
 #import "BaseObjectsLibrary/GCCoordsHistorical.h"
-#import "BaseObjectsLibrary/GCWaypointAnnotation.h"
 #import "BaseObjectsLibrary/GCMKObjects.h"
 #import "BaseObjectsLibrary/GCGMSObjects.h"
 #import "BaseObjectsLibrary/GCMGLObjects.h"

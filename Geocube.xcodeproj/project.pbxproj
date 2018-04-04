@@ -111,7 +111,6 @@
 		E82287391F8A2E7900631380 /* GCDictionaryObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E822872E1F8A2E7900631380 /* GCDictionaryObjects.m */; };
 		E822873A1F8A2E7900631380 /* GCLocationCoordinate2D.m in Sources */ = {isa = PBXBuildFile; fileRef = E82287301F8A2E7900631380 /* GCLocationCoordinate2D.m */; };
 		E822873B1F8A2E7900631380 /* GCURLRequestObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E82287321F8A2E7900631380 /* GCURLRequestObjects.m */; };
-		E822873C1F8A2E7900631380 /* GCWaypointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E82287341F8A2E7900631380 /* GCWaypointAnnotation.m */; };
 		E82287601F8A2EC300631380 /* GCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E822873F1F8A2EC300631380 /* GCButton.m */; };
 		E82287611F8A2EC300631380 /* GCMKObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E82287411F8A2EC300631380 /* GCMKObjects.m */; };
 		E82287621F8A2EC300631380 /* GCCloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E82287431F8A2EC300631380 /* GCCloseButton.m */; };
@@ -676,6 +675,7 @@
 		E88DB00A1F334E4300FEF795 /* cache - gadget - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E88DB0071F334E4300FEF795 /* cache - gadget - 30x30.png */; };
 		E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
+		E89D556D2074726C004D9E3A /* map - centeredcoords - 22x22@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E89D556C2074726B004D9E3A /* map - centeredcoords - 22x22@2x.png */; };
 		E8A3652C206CF15B00EE2B63 /* MoveablesMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A3652B206CF15B00EE2B63 /* MoveablesMineViewController.m */; };
 		E8A3652F206CF17800EE2B63 /* MoveablesInventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A3652E206CF17800EE2B63 /* MoveablesInventoryViewController.m */; };
 		E8A36532206CF19600EE2B63 /* MoveablesTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A36531206CF19600EE2B63 /* MoveablesTemplateViewController.m */; };
@@ -1079,8 +1079,6 @@
 		E82287301F8A2E7900631380 /* GCLocationCoordinate2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCLocationCoordinate2D.m; path = BaseObjectsLibrary/GCLocationCoordinate2D.m; sourceTree = "<group>"; };
 		E82287311F8A2E7900631380 /* GCURLRequestObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCURLRequestObjects.h; path = BaseObjectsLibrary/GCURLRequestObjects.h; sourceTree = "<group>"; };
 		E82287321F8A2E7900631380 /* GCURLRequestObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCURLRequestObjects.m; path = BaseObjectsLibrary/GCURLRequestObjects.m; sourceTree = "<group>"; };
-		E82287331F8A2E7900631380 /* GCWaypointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCWaypointAnnotation.h; path = BaseObjectsLibrary/GCWaypointAnnotation.h; sourceTree = "<group>"; };
-		E82287341F8A2E7900631380 /* GCWaypointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCWaypointAnnotation.m; path = BaseObjectsLibrary/GCWaypointAnnotation.m; sourceTree = "<group>"; };
 		E822873D1F8A2EB000631380 /* BaseObjectsLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseObjectsLibrary.h; path = BaseObjectsLibrary/BaseObjectsLibrary.h; sourceTree = "<group>"; };
 		E822873E1F8A2EC300631380 /* GCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCButton.h; path = BaseObjectsLibrary/GCButton.h; sourceTree = "<group>"; };
 		E822873F1F8A2EC300631380 /* GCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCButton.m; path = BaseObjectsLibrary/GCButton.m; sourceTree = "<group>"; };
@@ -1927,6 +1925,7 @@
 		E88DB0071F334E4300FEF795 /* cache - gadget - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - gadget - 30x30.png"; path = "images/caches/cache - gadget - 30x30.png"; sourceTree = "<group>"; };
 		E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - empty - 30x30.png"; path = "images/logs/log - empty - 30x30.png"; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
+		E89D556C2074726B004D9E3A /* map - centeredcoords - 22x22@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - centeredcoords - 22x22@2x.png"; path = "images/map/map - centeredcoords - 22x22@2x.png"; sourceTree = "<group>"; };
 		E8A3652A206CF15B00EE2B63 /* MoveablesMineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MoveablesMineViewController.h; path = Moveables/MoveablesMineViewController.h; sourceTree = "<group>"; };
 		E8A3652B206CF15B00EE2B63 /* MoveablesMineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MoveablesMineViewController.m; path = Moveables/MoveablesMineViewController.m; sourceTree = "<group>"; };
 		E8A3652D206CF17800EE2B63 /* MoveablesInventoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MoveablesInventoryViewController.h; path = Moveables/MoveablesInventoryViewController.h; sourceTree = "<group>"; };
@@ -2607,8 +2606,6 @@
 				E82287451F8A2EC300631380 /* GCGMSObjects.m */,
 				E8B6D8D81F9AE81B00C376A2 /* GCMGLObjects.h */,
 				E8B6D8D91F9AE81B00C376A2 /* GCMGLObjects.m */,
-				E82287331F8A2E7900631380 /* GCWaypointAnnotation.h */,
-				E82287341F8A2E7900631380 /* GCWaypointAnnotation.m */,
 			);
 			name = "Map objects";
 			sourceTree = "<group>";
@@ -3873,6 +3870,7 @@
 		E8A3F44F1B51D932009F2F46 /* map */ = {
 			isa = PBXGroup;
 			children = (
+				E89D556C2074726B004D9E3A /* map - centeredcoords - 22x22@2x.png */,
 				E82E65CA1DA079AE00CFBDED /* map - archived - 15x15.png */,
 				E8FEDE661DA7AD67007C756B /* map - archived - 15x15@2x.png */,
 				E8FEDE671DA7AD67007C756B /* map - archived - 15x15@3x.png */,
@@ -4437,6 +4435,7 @@
 				E82E66051DA079E500CFBDED /* log - published - 30x30.png in Resources */,
 				E82E67601DA07D0200CFBDED /* attributes - 54.png in Resources */,
 				E8B7737B1F94D7190060B415 /* menu icon - local night - 40x40.png in Resources */,
+				E89D556D2074726C004D9E3A /* map - centeredcoords - 22x22@2x.png in Resources */,
 				E82E66CB1DA07CBE00CFBDED /* cache - multi - 30x30@3x.png in Resources */,
 				E8FEDEE61DA8EEE9007C756B /* cache - unknowntype - 30x30@2x.png in Resources */,
 				E8FEDE841DA7AD67007C756B /* map - disabled - 15x15@2x.png in Resources */,
@@ -5089,7 +5088,6 @@
 				E82343BC1EECDE6C00D2CDFD /* WaypointLogTrackablesViewController.m in Sources */,
 				E82344941EECE0AD00D2CDFD /* QueriesTableViewCell.m in Sources */,
 				E82287F31F8A344400631380 /* ActionSheetCustomPicker.m in Sources */,
-				E822873C1F8A2E7900631380 /* GCWaypointAnnotation.m in Sources */,
 				E82288891F8A34FB00631380 /* SimpleKMLSchemaData.m in Sources */,
 				E82343F31EECDF4400D2CDFD /* WaypointAttributesViewController.m in Sources */,
 				E82287221F8A2E1A00631380 /* GCTableViewCellWithSubtitle.m in Sources */,
