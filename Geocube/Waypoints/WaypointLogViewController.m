@@ -265,7 +265,8 @@ enum {
                     if ([self.waypoint.account.remoteAPI supportsLoggingTrackables] == NO) {
                         c.userInteractionEnabled = NO;
                         c.textLabel.textColor = currentTheme.labelTextColorDisabled;
-                        c.detailTextLabel.text = @"waypointlogviewcontroller-(none)";
+                        c.detailTextLabel.text = _(@"waypointlogviewcontroller-(none)");
+                        c.detailTextLabel.textColor = currentTheme.labelTextColorDisabled;
                     } else {
                         __block NSInteger visited = 0;
                         __block NSInteger discovered = 0;

@@ -5,6 +5,7 @@ Version 2.2(x)
   Features:
 
   Fixes:
+  - Fix some subtitles in the cells when logging a find at GCA.
 
 Version 2.1(35)
 
