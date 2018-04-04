@@ -121,7 +121,7 @@ enum {
     BACKGROUND(updatePersonalNote, nil);
 
     if (self.delegateWaypoint != nil)
-        [self.delegateWaypoint WaypointPersonalNote_refreshTable];
+        [self.delegateWaypoint waypointPersonalNoteRefreshTable];
 }
 
 - (void)updatePersonalNote
@@ -144,7 +144,7 @@ enum {
     switch (index) {
         case menuScanForWaypoints:
             [self scanForWaypoints];
-            [self.delegateWaypoint WaypointPersonalNote_refreshTable];
+            [self.delegateWaypoint waypointPersonalNoteRefreshTable];
             return;
         case menuCopyLog:
             [self menuCopyLog];

@@ -21,6 +21,6 @@
 
 @protocol WaypointPersonalNoteDelegate
 
-- (void)WaypointPersonalNote_refreshTable;
+- (void)waypointPersonalNoteRefreshTable;
 
 @end

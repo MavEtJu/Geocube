@@ -172,7 +172,7 @@ enum {
     [self reloadDataMainQueue];
 }
 
--  (void)WaypointPersonalNote_refreshTable
+-  (void)waypointPersonalNoteRefreshTable
 {
     [self reloadDataMainQueue];
 }
