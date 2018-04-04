@@ -84,7 +84,7 @@ enum {
     [fileManager moveItemAtPath:fromFile toPath:toFile error:nil];
     NSLog(@"Importing from AirDrop or attachment: %@", file);
 
-    [self.delegate refreshFilelist];
+    [self.delegate IOSFileTransferRefreshFilelist];
 }
 
 #pragma mark - iTunes related functions
@@ -112,7 +112,7 @@ enum {
         NSLog(@"Importing from iTunes: %@", file);
     }];
 
-    [self.delegate refreshFilelist];
+    [self.delegate IOSFileTransferRefreshFilelist];
 }
 
 #pragma mark - iCloud related functions
@@ -165,7 +165,7 @@ enum {
 
         if ([fileManager copyItemAtURL:url toURL:destinationName error:&error] == YES) {
             [MyTools messageBox:self.ICloudVC header:_(@"iosfiletransfers-Download complete") text:_(@"iosfiletransfers-You can find the saved file in the Files menu")];
-            [self.delegate refreshFilelist];
+            [self.delegate IOSFileTransferRefreshFilelist];
         } else {
             [MyTools messageBox:self.ICloudVC header:_(@"iosfiletransfers-Download failed") text:[NSString stringWithFormat:(@"iosfiletransfers-Error message: %@"), error]];
         }

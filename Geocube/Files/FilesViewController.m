@@ -99,7 +99,7 @@ enum {
 }
 
 // Part of IOSFileTransfersDelegate
-- (void)refreshFilelist
+- (void)IOSFileTransferRefreshFilelist
 {
     [self refreshFileData];
     [self.tableView reloadData];

@@ -21,6 +21,6 @@
 
 @protocol IOSFileTransfersDelegate
 
-- (void)refreshFilelist;
+- (void)IOSFileTransferRefreshFilelist;
 
 @end
