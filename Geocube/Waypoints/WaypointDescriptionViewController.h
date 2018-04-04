@@ -21,7 +21,7 @@
 
 @protocol WaypointDescriptionDelegate
 
-- (void)WaypointDescription_refreshTable;
+- (void)waypointDescriptionRefreshTable;
 
 @end
 

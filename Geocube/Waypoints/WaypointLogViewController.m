@@ -129,7 +129,7 @@ enum {
     [super viewDidLoad];
 }
 
-- (void)refreshTable
+- (void)waypointLogTrackablesRefreshTable
 {
     [self.tableView reloadData];
 }
@@ -413,7 +413,7 @@ enum {
                 case SECTION_SUBMIT_SUBMIT:
                     [self submitLog];
                     if (self.delegateWaypoint != nil)
-                        [self.delegateWaypoint WaypointLog_refreshTable];
+                        [self.delegateWaypoint waypointLogRefreshTable];
                     break;
             }
             break;
@@ -586,13 +586,13 @@ enum {
     [self.navigationController pushViewController:newController animated:YES];
 }
 
-- (void)didFinishEditing:(NSString *)text
+- (void)waypointLogDidFinishEditing:(NSString *)text
 {
     self.note = text;
     [self reloadDataMainQueue];
 }
 
-- (void)imageSelected:(dbImage *)img caption:(NSString *)caption longtext:(NSString *)longtext;
+- (void)waypointLogImageSelected:(dbImage *)img caption:(NSString *)caption longtext:(NSString *)longtext;
 {
     self.image = img;
     self.imageCaption = caption;
@@ -717,7 +717,7 @@ enum {
         }
 
         if (self.delegateWaypoint != nil)
-            [self.delegateWaypoint WaypointLog_refreshWaypointData];
+            [self.delegateWaypoint waypointLogRefreshWaypointData];
 
         MAINQUEUE(
             [self.navigationController popViewControllerAnimated:YES];

@@ -80,7 +80,7 @@ enum {
     if (cancelled == NO) {
         self.text = self.tv.text;
         if (self.delegate != nil)
-            [self.delegate didFinishEditing:self.text];
+            [self.delegate waypointLogDidFinishEditing:self.text];
     }
 
     [self.navigationController popViewControllerAnimated:YES];

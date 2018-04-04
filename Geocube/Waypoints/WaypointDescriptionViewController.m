@@ -188,7 +188,7 @@ enum {
 {
     NSArray<NSString *> *lines = @[[self makeHTMLString]];
     [Coordinates scanForWaypoints:lines waypoint:self.waypoint view:self];
-    [self.delegateWaypoint WaypointDescription_refreshTable];
+    [self.delegateWaypoint waypointDescriptionRefreshTable];
 }
 
 - (void)showAsText

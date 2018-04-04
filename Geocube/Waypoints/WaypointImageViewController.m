@@ -130,7 +130,7 @@ enum {
 - (void)swipeUp:(UISwipeGestureRecognizer *)gestureRecognizer
 {
     if (self.delegate != nil) {
-        [self.delegate WaypointImage_swipeToUp];
+        [self.delegate waypointImageSwipeToUp];
         [self loadImage];
     }
 }
@@ -138,7 +138,7 @@ enum {
 - (void)swipeDown:(UISwipeGestureRecognizer *)gestureRecognizer
 {
     if (self.delegate != nil) {
-        [self.delegate WaypointImage_swipeToDown];
+        [self.delegate waypointImageSwipeToDown];
         [self loadImage];
     }
 }
@@ -314,7 +314,7 @@ enum {
             return;
         case menuDeletePhoto:
             [fileManager removeItemAtPath:[MyTools ImageFile:self.img.datafile] error:nil];
-            [self.delegate WaypointImage_refreshTable];
+            [self.delegate waypointImageRefreshTable];
             [self.navigationController popViewControllerAnimated:YES];
             return;
         case menuAddNewWaypoint:
@@ -361,7 +361,7 @@ enum {
 
     [MyTools messageBox:self header:_(@"waypointimageviewcontroller-Waypoint added") text:_(@"waypointimageviewcontroller-The new waypoint has been added to the map")];
 
-    [self.delegate WaypointImage_refreshWaypoint];
+    [self.delegate waypointImageRefreshWaypoint];
 }
 
 @end

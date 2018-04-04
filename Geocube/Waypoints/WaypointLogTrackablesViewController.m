@@ -77,7 +77,7 @@ enum {
         tb.logtype = lt;
     }];
 
-    [_delegate refreshTable];
+    [_delegate waypointLogTrackablesRefreshTable];
 
     [super willClosePage];
 }

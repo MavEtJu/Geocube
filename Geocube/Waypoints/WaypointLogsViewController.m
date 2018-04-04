@@ -152,7 +152,7 @@ enum {
         [l dbDelete];
         [self.logs removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-        [self.delegateWaypoint WaypointLogs_refreshTable];
+        [self.delegateWaypoint waypointLogsRefreshTable];
         [self.tableView reloadData];
     }
 }
@@ -201,7 +201,7 @@ enum {
 
     NSArray<NSString *> *lines = [self.selectedLog.log componentsSeparatedByString:@"\n"];
     [Coordinates scanForWaypoints:lines waypoint:self.waypoint view:self];
-    [self.delegateWaypoint WaypointLogs_refreshTable];
+    [self.delegateWaypoint waypointLogsRefreshTable];
 }
 
 - (void)menuCopyLog
@@ -224,7 +224,7 @@ enum {
     [self reloadDataMainQueue];
 
     if (self.delegateWaypoint != nil)
-        [self.delegateWaypoint WaypointLogs_refreshTable];
+        [self.delegateWaypoint waypointLogsRefreshTable];
 }
 
 @end

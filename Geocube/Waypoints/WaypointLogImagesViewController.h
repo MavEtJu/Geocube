@@ -21,7 +21,7 @@
 
 @protocol WaypointLogImagesDelegate
 
-- (void)imageSelected:(dbImage *)image caption:(NSString *)caption longtext:(NSString *)longtext;
+- (void)waypointLogImageSelected:(dbImage *)image caption:(NSString *)caption longtext:(NSString *)longtext;
 
 @end
 

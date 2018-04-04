@@ -133,7 +133,7 @@ enum {
         self.wps = [self.waypoint hasWaypoints];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
         if (self.delegateWaypoint != nil)
-            [self.delegateWaypoint WaypointWaypoints_refreshTable];
+            [self.delegateWaypoint waypointWaypointsRefreshTable];
     }
 }
 
@@ -198,7 +198,7 @@ enum {
     [self.tableView reloadData];
 
     if (self.delegateWaypoint != nil)
-        [self.delegateWaypoint WaypointWaypoints_refreshTable];
+        [self.delegateWaypoint waypointWaypointsRefreshTable];
 }
 
 - (void)newWaypoint
@@ -255,7 +255,7 @@ enum {
                     [self.tableView reloadData];
                     [waypointManager needsRefreshAdd:wp];
                     if (self.delegateWaypoint != nil)
-                        [self.delegateWaypoint WaypointWaypoints_refreshTable];
+                        [self.delegateWaypoint waypointWaypointsRefreshTable];
                 }];
     UIAlertAction *cancel = [UIAlertAction
                              actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault

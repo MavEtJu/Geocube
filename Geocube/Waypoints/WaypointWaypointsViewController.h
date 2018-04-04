@@ -21,7 +21,7 @@
 
 @protocol WaypointWaypointsDelegate
 
-- (void)WaypointWaypoints_refreshTable;
+- (void)waypointWaypointsRefreshTable;
 
 @end
 

@@ -167,7 +167,7 @@ enum {
 
 #pragma mark - Delegates
 
--  (void)WaypointImages_refreshTable
+-  (void)waypointImagesRefreshTable
 {
     [self reloadDataMainQueue];
 }
@@ -177,27 +177,27 @@ enum {
     [self reloadDataMainQueue];
 }
 
--  (void)WaypointLog_refreshTable
+-  (void)waypointLogRefreshTable
 {
     [self reloadDataMainQueue];
 }
 
--  (void)WaypointWaypoints_refreshTable
+-  (void)waypointWaypointsRefreshTable
 {
     [self reloadDataMainQueue];
 }
 
--  (void)WaypointLogs_refreshTable
+-  (void)waypointLogsRefreshTable
 {
     [self reloadDataMainQueue];
 }
 
--  (void)WaypointDescription_refreshTable
+-  (void)waypointDescriptionRefreshTable
 {
     [self reloadDataMainQueue];
 }
 
--  (void)WaypointLog_refreshWaypointData
+-  (void)waypointLogRefreshWaypointData
 {
     BACKGROUND(runRefreshWaypoint, nil);
 }

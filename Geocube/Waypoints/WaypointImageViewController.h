@@ -21,10 +21,10 @@
 
 @protocol WaypointImageViewControllerDelegate
 
-- (void)WaypointImage_swipeToUp;
-- (void)WaypointImage_swipeToDown;
-- (void)WaypointImage_refreshTable;
-- (void)WaypointImage_refreshWaypoint;
+- (void)waypointImageSwipeToUp;
+- (void)waypointImageSwipeToDown;
+- (void)waypointImageRefreshTable;
+- (void)waypointImageRefreshWaypoint;
 
 @end
 

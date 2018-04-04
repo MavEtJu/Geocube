@@ -21,7 +21,7 @@
 
 @protocol WaypointImagesDelegate
 
-- (void)WaypointImages_refreshTable;
+- (void)waypointImagesRefreshTable;
 
 @end
 

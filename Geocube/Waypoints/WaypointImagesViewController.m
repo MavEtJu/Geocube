@@ -262,7 +262,7 @@ enum {
         self.userImages = [dbImage dbAllByWaypoint:self.waypoint type:IMAGECATEGORY_USER];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
         if (self.delegateWaypoint != nil)
-            [self.delegateWaypoint WaypointImages_refreshTable];
+            [self.delegateWaypoint waypointImagesRefreshTable];
     }
 }
 
@@ -353,18 +353,18 @@ enum {
     return;
 }
 
-- (void)WaypointImage_refreshTable
+- (void)waypointImageRefreshTable
 {
     [self.tableView reloadData];
     [self needsDownloadMenu];
 }
 
-- (void)WaypointImage_refreshWaypoint
+- (void)waypointImageRefreshWaypoint
 {
-    [self.delegateWaypoint WaypointImages_refreshTable];
+    [self.delegateWaypoint waypointImagesRefreshTable];
 }
 
-- (void)WaypointImage_swipeToDown
+- (void)waypointImageSwipeToDown
 {
     NSInteger max = 0;
 
@@ -387,7 +387,7 @@ enum {
     }
 }
 
-- (void)WaypointImage_swipeToUp
+- (void)waypointImageSwipeToUp
 {
     NSInteger max = 0;
 
@@ -536,7 +536,7 @@ enum {
     self.userImages = [dbImage dbAllByWaypoint:self.waypoint type:IMAGECATEGORY_USER];
     [self.tableView reloadData];
     if (self.delegateWaypoint != nil)
-        [self.delegateWaypoint WaypointImages_refreshTable];
+        [self.delegateWaypoint waypointImagesRefreshTable];
 
     [self finishAndUpdate];
     [picker dismissViewControllerAnimated:YES completion:NULL];
@@ -546,7 +546,7 @@ enum {
 {
     [picker dismissViewControllerAnimated:YES completion:NULL];
     if (self.delegateWaypoint != nil)
-        [self.delegateWaypoint WaypointImages_refreshTable];
+        [self.delegateWaypoint waypointImagesRefreshTable];
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo

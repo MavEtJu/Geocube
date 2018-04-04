@@ -21,7 +21,7 @@
 
 @protocol  WaypointLogEditDelegate
 
-- (void)didFinishEditing:(NSString *)text;
+- (void)waypointLogDidFinishEditing:(NSString *)text;
 
 @end
 

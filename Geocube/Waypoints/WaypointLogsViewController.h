@@ -21,7 +21,7 @@
 
 @protocol WaypointLogsDelegate
 
-- (void)WaypointLogs_refreshTable;
+- (void)waypointLogsRefreshTable;
 
 @end
 
