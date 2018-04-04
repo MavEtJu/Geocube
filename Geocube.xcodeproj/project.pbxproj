@@ -676,6 +676,7 @@
 		E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
 		E89D556D2074726C004D9E3A /* map - centeredcoords - 22x22@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E89D556C2074726B004D9E3A /* map - centeredcoords - 22x22@2x.png */; };
+		E89D556F2074F59C004D9E3A /* map - centeredcoords - 22x22@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E89D556E2074F59C004D9E3A /* map - centeredcoords - 22x22@3x.png */; };
 		E8A3652C206CF15B00EE2B63 /* MoveablesMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A3652B206CF15B00EE2B63 /* MoveablesMineViewController.m */; };
 		E8A3652F206CF17800EE2B63 /* MoveablesInventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A3652E206CF17800EE2B63 /* MoveablesInventoryViewController.m */; };
 		E8A36532206CF19600EE2B63 /* MoveablesTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A36531206CF19600EE2B63 /* MoveablesTemplateViewController.m */; };
@@ -1926,6 +1927,7 @@
 		E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - empty - 30x30.png"; path = "images/logs/log - empty - 30x30.png"; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
 		E89D556C2074726B004D9E3A /* map - centeredcoords - 22x22@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - centeredcoords - 22x22@2x.png"; path = "images/map/map - centeredcoords - 22x22@2x.png"; sourceTree = "<group>"; };
+		E89D556E2074F59C004D9E3A /* map - centeredcoords - 22x22@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - centeredcoords - 22x22@3x.png"; path = "images/map/map - centeredcoords - 22x22@3x.png"; sourceTree = "<group>"; };
 		E8A3652A206CF15B00EE2B63 /* MoveablesMineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MoveablesMineViewController.h; path = Moveables/MoveablesMineViewController.h; sourceTree = "<group>"; };
 		E8A3652B206CF15B00EE2B63 /* MoveablesMineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MoveablesMineViewController.m; path = Moveables/MoveablesMineViewController.m; sourceTree = "<group>"; };
 		E8A3652D206CF17800EE2B63 /* MoveablesInventoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MoveablesInventoryViewController.h; path = Moveables/MoveablesInventoryViewController.h; sourceTree = "<group>"; };
@@ -3870,13 +3872,14 @@
 		E8A3F44F1B51D932009F2F46 /* map */ = {
 			isa = PBXGroup;
 			children = (
-				E89D556C2074726B004D9E3A /* map - centeredcoords - 22x22@2x.png */,
 				E82E65CA1DA079AE00CFBDED /* map - archived - 15x15.png */,
 				E8FEDE661DA7AD67007C756B /* map - archived - 15x15@2x.png */,
 				E8FEDE671DA7AD67007C756B /* map - archived - 15x15@3x.png */,
 				E82E65CB1DA079AE00CFBDED /* map - background - 35x42.png */,
 				E8FEDE681DA7AD67007C756B /* map - background - 35x42@2x.png */,
 				E8FEDE691DA7AD67007C756B /* map - background - 35x42@3x.png */,
+				E89D556C2074726B004D9E3A /* map - centeredcoords - 22x22@2x.png */,
+				E89D556E2074F59C004D9E3A /* map - centeredcoords - 22x22@3x.png */,
 				E82E65CC1DA079AE00CFBDED /* map - cross dnf - 9x9.png */,
 				E8FEDE6A1DA7AD67007C756B /* map - cross dnf - 9x9@2x.png */,
 				E8FEDE6B1DA7AD67007C756B /* map - cross dnf - 9x9@3x.png */,
@@ -4434,6 +4437,7 @@
 				E82E66D51DA07CBE00CFBDED /* cache - traditional - 30x30.png in Resources */,
 				E82E66051DA079E500CFBDED /* log - published - 30x30.png in Resources */,
 				E82E67601DA07D0200CFBDED /* attributes - 54.png in Resources */,
+				E89D556F2074F59C004D9E3A /* map - centeredcoords - 22x22@3x.png in Resources */,
 				E8B7737B1F94D7190060B415 /* menu icon - local night - 40x40.png in Resources */,
 				E89D556D2074726C004D9E3A /* map - centeredcoords - 22x22@2x.png in Resources */,
 				E82E66CB1DA07CBE00CFBDED /* cache - multi - 30x30@3x.png in Resources */,
