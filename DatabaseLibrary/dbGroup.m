@@ -165,9 +165,18 @@ TABLENAME(@"groups")
 
 - (void)addWaypointsToGroup:(NSArray<dbWaypoint *> *)waypoints
 {
-    [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self addWaypointToGroup:wp];
-    }];
+    @synchronized(db) {
+        DB_PREPARE(@"insert into group2waypoints(group_id, waypoint_id) values(?, ?)");
+        [waypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
+            SET_VAR_INT(1, self._id);
+            SET_VAR_INT(2, wp._id);
+
+            DB_CHECK_OKAY;
+            DB_RESET;
+        }];
+
+        DB_FINISH;
+    }
 }
 
 - (BOOL)containsWaypoint:(dbWaypoint *)wp

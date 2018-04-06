@@ -80,6 +80,8 @@
     if (sqlite3_step(req) == SQLITE_ROW)
 #define DB_WHILE_STEP \
     while (sqlite3_step(req) == SQLITE_ROW)
+#define DB_RESET \
+    sqlite3_reset(req);
 #define DB_CHECK_OKAY \
     if (sqlite3_step(req) != SQLITE_DONE) \
         DB_ASSERT_STEP
