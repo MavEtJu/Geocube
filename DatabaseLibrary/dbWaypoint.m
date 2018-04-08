@@ -525,9 +525,19 @@ TABLENAME(@"waypoints")
     return [dbWaypoint dbAllXXX:@"where wp.gs_date_found = 0 and (wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 0) and logger_id in (select accountname_id from accounts))) and not (wp.gs_date_found != 0 or wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select accountname_id from accounts)))" keys:nil values:nil];
 }
 
++ (NSArray<dbWaypoint *> *)dbAllNotFoundButNotInGroupAllNotFound
+{
+    return [dbWaypoint dbAllXXX:@"where (wp.id not in (select waypoint_id from group2waypoints where group_id = ?)) and (wp.gs_date_found = 0 and (wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 0) and logger_id in (select accountname_id from accounts))) and not (wp.gs_date_found != 0 or wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select accountname_id from accounts))))" keys:@"i" values:@[[NSNumber numberWithInteger:dbc.groupAllWaypointsNotFound._id]]];
+}
+
 + (NSArray<dbWaypoint *> *)dbAllFound
 {
     return [dbWaypoint dbAllXXX:@"where wp.gs_date_found != 0 or wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select accountname_id from accounts))" keys:nil values:nil];
+}
+
++ (NSArray<dbWaypoint *> *)dbAllFoundButNotInGroupAllFound
+{
+    return [dbWaypoint dbAllXXX:@"where (wp.id not in (select waypoint_id from group2waypoints where group_id = ?)) and (wp.gs_date_found != 0 or wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select accountname_id from accounts)))" keys:@"i" values:@[[NSNumber numberWithInteger:dbc.groupAllWaypointsFound._id]]];
 }
 
 + (NSArray<dbWaypoint *> *)dbAllIgnored

@@ -89,7 +89,9 @@
 - (void)dbUpdate;
 + (NSArray<dbWaypoint *> *)dbAll;
 + (NSArray<dbWaypoint *> *)dbAllFound;
++ (NSArray<dbWaypoint *> *)dbAllFoundButNotInGroupAllFound;
 + (NSArray<dbWaypoint *> *)dbAllNotFound;
++ (NSArray<dbWaypoint *> *)dbAllNotFoundButNotInGroupAllNotFound;
 + (NSArray<dbWaypoint *> *)dbAllIgnored;
 + (NSArray<dbWaypoint *> *)dbAllLocationless;
 + (NSArray<dbWaypoint *> *)dbAllLocationlessNotFound;

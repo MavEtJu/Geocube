@@ -61,14 +61,41 @@
 {
     NSLog(@"%@: Parsing done", [self class]);
 
-    [dbc.groupAllWaypointsFound emptyGroup];
-    [dbc.groupAllWaypointsFound addWaypointsToGroup:[dbWaypoint dbAllFound]];
-    [dbc.groupAllWaypointsNotFound emptyGroup];
-    [dbc.groupAllWaypointsNotFound addWaypointsToGroup:[dbWaypoint dbAllNotFound]];
+    MyClock *clock = [[MyClock alloc] initClock:@"parseAfter"];
+    [clock clockEnable:YES];
+    [clock clockShowAndReset:@"Start"];
+
+    NSArray <dbWaypoint *> *wps = [dbWaypoint dbAllFoundButNotInGroupAllFound];
+    [clock clockShowAndReset:[NSString stringWithFormat:@"Found dbAllFoundButNotInGroupAllFound (%ld items)", [wps count]]];
+    [dbc.groupAllWaypointsFound addWaypointsToGroup:wps];
+    [clock clockShowAndReset:@"Found addWaypoints"];
+
+    wps = [dbWaypoint dbAllNotFoundButNotInGroupAllNotFound];
+    [clock clockShowAndReset:[NSString stringWithFormat:@"NotFound dbAllNotFoundButNotInGroupAllFound (%ld items)", [wps count]]];
+    [dbc.groupAllWaypointsNotFound addWaypointsToGroup:wps];
+    [clock clockShowAndReset:@"NotFound addWaypoints"];
+
+//    [dbc.groupAllWaypointsNotFound emptyGroup];
+//    [clock clockShowAndReset:@"NotFound emptyGroup"];
+//    wps = [dbWaypoint dbAllNotFound];
+//    [clock clockShowAndReset:[NSString stringWithFormat:@"NotFound dbAll (%ld items)", [wps count]]];
+//    [dbc.groupAllWaypointsNotFound addWaypointsToGroup:wps];
+//    [clock clockShowAndReset:@"NotFound addWaypoints"];
+
     [dbc.groupAllWaypointsIgnored emptyGroup];
-    [dbc.groupAllWaypointsIgnored addWaypointsToGroup:[dbWaypoint dbAllIgnored]];
+    [clock clockShowAndReset:@"Ignored emptyGroup"];
+    wps = [dbWaypoint dbAllIgnored];
+    [clock clockShowAndReset:[NSString stringWithFormat:@"Ignored dbAll (%ld items)", [wps count]]];
+    [dbc.groupAllWaypointsIgnored addWaypointsToGroup:wps];
+    [clock clockShowAndReset:@"Ignored addWaypoints"];
+
     [db cleanupAfterDelete];
+    [clock clockShowAndReset:@"cleanupAfterDelete"];
+
     [dbWaypoint dbUpdateLogStatus];
+    [clock clockShowAndReset:@"updateLogStatus"];
+
+    [clock showTotal:@"Total time"];
 }
 
 - (void)parseFile:(NSString *)filename
