@@ -221,6 +221,7 @@
         if (self.index == 1 && [elementName isEqualToString:@"wpt"] == YES) {
             [self.currentWP finish];
             self.currentWP.date_lastimport_epoch = time(NULL);
+            self.currentWP.dirty_logs = YES;
 
             // Determine if it is a new waypoint or an existing one
             self.currentWP._id = [dbWaypoint dbGetByName:self.currentWP.wpt_name]._id;

@@ -250,6 +250,7 @@
     // Now see what we had and what we need to change
     [wp finish];
     wp.date_lastimport_epoch = time(NULL);
+    wp.dirty_logs = YES;
 
     if (wp._id == 0) {
         GCLog(@"Creating %@", wp.wpt_name);
@@ -564,6 +565,7 @@
     awp.date_lastimport_epoch = time(NULL);
 
     [awp finish];
+    awp.dirty_logs = YES;
 
     dbWaypoint *wpold = [dbWaypoint dbGetByName:awp.wpt_name];
     if (wpold == nil) {
@@ -659,6 +661,7 @@
 
     awp.account = self.account;
     [awp finish];
+    awp.dirty_logs = YES;
 
     dbWaypoint *wpold = [dbWaypoint dbGetByName:awp.wpt_name];
     if (wpold == nil) {

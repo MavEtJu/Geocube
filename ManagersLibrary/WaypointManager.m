@@ -112,7 +112,7 @@
 
     [self.delegatesWaypoints enumerateObjectsUsingBlock:^(id<WaypointManagerWaypointDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         // Doing this via the main queue because Google Map Service insists on it.
-        NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
+        NSLog(@"%@: adding for #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
         MAINQUEUE(
             [delegate waypointManagerAddWaypoint:wp];
         )
@@ -126,7 +126,7 @@
 
     [self.delegatesWaypoints enumerateObjectsUsingBlock:^(id<WaypointManagerWaypointDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         // Doing this via the main queue because Google Map Service insists on it.
-        NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
+        NSLog(@"%@: removing for #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
         MAINQUEUE(
             [delegate waypointManagerRemoveWaypoint:wp];
         )
@@ -142,7 +142,7 @@
 
     [self.delegatesWaypoints enumerateObjectsUsingBlock:^(id<WaypointManagerWaypointDelegate> delegate, NSUInteger idx, BOOL * _Nonnull stop) {
         // Doing this via the main queue because Google Map Service insists on it.
-        NSLog(@"%@: adding #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
+        NSLog(@"%@: update for #%ld: %@", [self class], (unsigned long)idx, [delegate class]);
         MAINQUEUE(
             [delegate waypointManagerUpdateWaypoint:wp];
         )

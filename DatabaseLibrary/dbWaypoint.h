@@ -63,6 +63,7 @@
 @property (nonatomic) NSInteger date_lastimport_epoch;
 
 @property (nonatomic) dbLocality *gca_locality;
+@property (nonatomic) bool dirty_logs;
 
 @property (nonatomic) NSInteger calculatedDistance;
 @property (nonatomic) NSInteger calculatedBearing;
@@ -110,6 +111,7 @@
 - (void)dbUpdateMarkedDNF;
 - (void)dbUpdatePlanned;
 - (void)dbUpdateCountryStateLocality;
+- (void)dbUpdateDirtyLogs;
 
 - (NSString *)makeLocalityStateCountry;
 + (NSString *)makeName:(NSString *)suffix;

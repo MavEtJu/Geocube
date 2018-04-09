@@ -123,6 +123,7 @@
     wp.account = self.account;
     [wp finish];
     wp.date_lastimport_epoch = time(NULL);
+    wp.dirty_logs = YES;
 
     if (wp._id == 0) {
         NSLog(@"Created waypoint %@", wp.wpt_name);

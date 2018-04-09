@@ -876,6 +876,14 @@
     @"create table moveable_inventory (id integer primary key, waypoint_id integer)"
     ];
     [self.upgradeSteps addObject:a];
+
+    // Version 71
+    a = @[
+    @"alter table waypoints add column dirty_logs bool",
+    @"create index waypoint_idx_dirtylogs on waypoints(dirty_logs)",
+    @"update waypoints set dirty_logs = 0",
+    ];
+    [self.upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql
@@ -898,6 +906,10 @@
 
 - (void)cleanupAfterDelete
 {
+    MyClock *clock = [[MyClock alloc] initClock:@"cleanupAfterDelete"];
+    [clock clockEnable:YES];
+
+    [clock clockShowAndReset:@"Start"];
     @synchronized(db) {
         sqlite3_stmt *req;
 
@@ -905,37 +917,45 @@
         DB_PREPARE(@"delete from group2waypoints where waypoint_id not in (select id from waypoints)");
         DB_CHECK_OKAY;
         DB_FINISH;
+        [clock clockShowAndReset:@"1"];
 
         // Delete all logs from non-existing waypoints
         DB_PREPARE(@"delete from logs where waypoint_id not in (select id from waypoints)");
         DB_CHECK_OKAY;
         DB_FINISH;
+        [clock clockShowAndReset:@"2"];
 
         // Delete all trackables from non-existing waypoints
         DB_PREPARE(@"delete from travelbug2waypoint where waypoint_id not in (select id from waypoints)");
         DB_CHECK_OKAY;
         DB_FINISH;
+        [clock clockShowAndReset:@"3"];
 
         // Delete all attributes from non-existing waypoints
         DB_PREPARE(@"delete from attribute2waypoints where waypoint_id not in (select id from waypoints)");
         DB_CHECK_OKAY;
         DB_FINISH;
+        [clock clockShowAndReset:@"4"];
 
         // Delete all trackables from non-existing waypoints
         DB_PREPARE(@"delete from travelbug2waypoint where waypoint_id not in (select id from waypoints)");
         DB_CHECK_OKAY;
         DB_FINISH;
+        [clock clockShowAndReset:@"5"];
 
         // Delete all images from non-existing waypoints
         DB_PREPARE(@"delete from image2waypoint where waypoint_id not in (select id from waypoints)");
         DB_CHECK_OKAY;
         DB_FINISH;
+        [clock clockShowAndReset:@"6"];
 
         // Delete all waypoints which are not longer in a usergroup
-        DB_PREPARE(@"delete from waypoints where id not in (select id from waypoints)");
+        DB_PREPARE(@"delete from group2waypoints where waypoint_id not in (select id from waypoints)");
         DB_CHECK_OKAY;
         DB_FINISH;
+        [clock clockShowAndReset:@"7"];
     }
+    [clock showTotal:@"Total time"];
 }
 
 @end

@@ -81,7 +81,7 @@
     NSInteger totalFileSize = 0;
     NSInteger filesize;
     NSInteger checked = 0, deletedAge = 0, deletedSize = 0;
-    MyClock *clock = [[MyClock alloc] initClock:@"cleanup"];
+    MyClock *clock = [[MyClock alloc] initClock:@"cleanupCacheBackground"];
 
     [clock clockEnable:YES];
     [clock clockShowAndReset:@"start"];
