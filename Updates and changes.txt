@@ -9,6 +9,9 @@ Version 2.2(x)
   Fixes:
   - Fix some subtitles in the cells when logging a find at GCA.
   - Updated Mapbox to 3.7.6
+  - Speed up the after-an-import cleanup of the database. It went
+    from 9 seconds to 2 seconds on a database with 30k waypoints
+    and 300k logs.
 
 Version 2.1(35)
 
