@@ -21,6 +21,7 @@
 /* InfoViewer / InfoItem */
 "infoviewer-Downloads" = "Downloads";
 "infoviewer-Imports" = "Imports";
+"infoviewer-Images" = "Images";
 "infoviewer-%@: %ld" = "%@: %ld";
 "infoviewer-%@: %ld of %ld (%@)" = "%@: %ld of %ld (%@)";
 "infoviewer-Bytes: %@" = "Bytes: %@";
