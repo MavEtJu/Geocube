@@ -82,9 +82,6 @@
     [dbc.groupAllWaypointsIgnored addWaypointsToGroup:wps];
     [clock clockShowAndReset:@"Ignored addWaypoints"];
 
-    [db cleanupAfterDelete];
-    [clock clockShowAndReset:@"cleanupAfterDelete"];
-
     [dbWaypoint dbUpdateLogStatus];
     [clock clockShowAndReset:@"updateLogStatus"];
 
