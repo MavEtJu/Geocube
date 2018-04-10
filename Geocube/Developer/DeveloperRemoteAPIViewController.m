@@ -24,7 +24,8 @@
 @interface DeveloperRemoteAPIViewController ()
 
 @property (nonatomic, retain) NSArray<NSMutableDictionary *> *tests;
-@property (nonatomic) NSInteger identifier;
+@property (nonatomic        ) NSInteger identifier;
+@property (nonatomic, retain) NSOperationQueue *runqueue;
 
 @end
 
@@ -163,6 +164,8 @@ typedef NS_ENUM(NSInteger, TestResult) {
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [self.tableView registerNib:[UINib nibWithNibName:XIB_DEVELOPERREMOTEAPITABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_DEVELOPERREMOTEAPITABLEVIEWCELL];
+
+    self.runqueue = [[NSOperationQueue alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -263,7 +266,9 @@ typedef NS_ENUM(NSInteger, TestResult) {
 {
     NSMutableDictionary *test = [self.tests objectAtIndex:indexPath.row];
     [test setObject:indexPath forKey:@"indexPath"];
-    [self performSelectorInBackground:@selector(tryTest:) withObject:test];
+    [self.runqueue addOperationWithBlock:^{
+        [self tryTest:test];
+    }];
 }
 
 - (void)tryTest:(NSMutableDictionary *)test
