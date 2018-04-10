@@ -25,9 +25,9 @@
 @property (nonatomic, retain) NSArray<NSString *> *state_order;
 @property (nonatomic, retain) NSArray<NSString *> *country_order;
 @property (nonatomic, retain) NSString *urlFormat;
-@property (nonatomic, retain) NSMutableArray<dbWaypoint *> *queue;
 @property (nonatomic        ) BOOL isRunning;
-@property (nonatomic        ) BOOL disabled;
+
+@property (nonatomic, retain) NSOperationQueue *runqueue;
 
 @end
 
@@ -62,16 +62,17 @@
                      ];
 
     self.urlFormat = @"https://api.opencagedata.com/geocode/v1/json?q=%f,%f&no_annotations=1&key=%@&language=en";
-    self.queue = [NSMutableArray arrayWithCapacity:20];
-    self.isRunning = NO;
-    self.disabled = NO;
+
+    // Just one at the time, don't stress their servers because we can.
+    self.runqueue = [[NSOperationQueue alloc] init];
+    self.runqueue.maxConcurrentOperationCount = 1;
 
     return self;
 }
 
 - (void)addForProcessing:(dbWaypoint *)wp
 {
-    if (self.disabled == YES)
+    if (self.runqueue.suspended == YES)
         return;
     if (configManager.opencageEnable == NO)
         return;
@@ -81,40 +82,23 @@
     if (wp.gs_country != nil && wp.gs_state != nil && wp.gca_locality != nil)
         return;
 
-    @synchronized(self) {
-        [self.queue addObject:wp];
-    }
-    if (self.isRunning == NO)
-        BACKGROUND(runQueue, nil);
-}
+    if ([MyTools hasWifiNetwork] == NO && configManager.opencageWifiOnly == YES)
+        return;
 
-- (void)runQueue
-{
-    dbWaypoint *wp;
+    [self.runqueue addOperationWithBlock:^{
+        [self runQueue:wp];
 
-    self.isRunning = YES;
-    while (TRUE) {
-        @synchronized(self) {
-            NSLog(@"%@ - queue size is %ld", [self class], (long)[self.queue count]);
-            if ([self.queue count] == 0)
-                break;
-            wp = [self.queue lastObject];
-            [self.queue removeLastObject];
-        }
-        if (wp != nil) {
-            if ([MyTools hasWifiNetwork] == NO && configManager.opencageWifiOnly == YES)
-                continue;
-            NSLog(@"%@ - running for %@", [self class], wp.wpt_name);
-            [self runQueue:wp];
-        }
+        // With the free account on OpenCage you can have only one request per second.
         [NSThread sleepForTimeInterval:1];
-    }
-    NSLog(@"%@ - finished", [self class]);
-    self.isRunning = NO;
+    }];
+
+    NSLog(@"%@ - queue size is %ld", [self class], (long)[self.runqueue operationCount]);
 }
 
 - (void)runQueue:(dbWaypoint *)wp
 {
+    NSLog(@"%@ - running for %@, queue size is %ld", [self class], wp.wpt_name, (long)[self.runqueue operationCount]);
+
     NSString *urlString = [NSString stringWithFormat:self.urlFormat, wp.wpt_latitude, wp.wpt_longitude, configManager.opencageKey];
     NSURL *url = [NSURL URLWithString:urlString];
 
@@ -173,21 +157,21 @@
 
         if (needsUpdate == YES)
             [wp dbUpdateCountryStateLocality];
-    } else {
-        self.disabled = YES;
-        @synchronized(self) {
-            [self.queue removeAllObjects];
-        }
 
-        if (error != nil) {
-            NSLog(@"%@ - Error %@, bailing", [self class], [error description]);
-            [MyTools messageBox:[MyTools topMostController] header:_(@"opencagemanager-OpenCage Manager") text:_(@"opencagemanager-The OpenCage interface ran into a problem. It will be disabled until Geocube has been restarted.") error:[error description]];
-        } else {
-            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-            NSDictionary *status = [json objectForKey:@"status"];
-            NSLog(@"%@ - Error %@, bailing", [self class], [status objectForKey:@"message"]);
-            [MyTools messageBox:[MyTools topMostController] header:_(@"opencagemanager-OpenCage Manager") text:_(@"opencagemanager-The OpenCage interface ran into a problem. It will be disabled until Geocube has been restarted.") error:[status objectForKey:@"message"]];
-        }
+        return;
+    }
+
+    // Something went wrong, suspend it.
+    [self.runqueue setSuspended:YES];
+
+    if (error != nil) {
+        NSLog(@"%@ - Error %@, bailing", [self class], [error description]);
+        [MyTools messageBox:[MyTools topMostController] header:_(@"opencagemanager-OpenCage Manager") text:_(@"opencagemanager-The OpenCage interface ran into a problem. It will be disabled until Geocube has been restarted.") error:[error description]];
+    } else {
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+        NSDictionary *status = [json objectForKey:@"status"];
+        NSLog(@"%@ - Error %@, bailing", [self class], [status objectForKey:@"message"]);
+        [MyTools messageBox:[MyTools topMostController] header:_(@"opencagemanager-OpenCage Manager") text:_(@"opencagemanager-The OpenCage interface ran into a problem. It will be disabled until Geocube has been restarted.") error:[status objectForKey:@"message"]];
     }
 }
 
