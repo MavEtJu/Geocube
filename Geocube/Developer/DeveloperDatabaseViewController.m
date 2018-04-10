@@ -26,6 +26,7 @@
 @property (nonatomic, retain) NSArray<NSString *> *fieldsDBCount;
 @property (nonatomic, retain) NSArray<NSString *> *valuesDBCount;
 @property (nonatomic, retain) NSArray<dbConfig *> *config;
+@property (nonatomic, retain) NSOperationQueue *runqueue;
 
 @end
 
@@ -49,6 +50,8 @@ enum {
     self.lmi = [[LocalMenuItems alloc] init:menuMax];
     [self.lmi addItem:menuDumpDatabase label:_(@"helpdatabaseviewcontroller-Dump database")];
 
+    self.runqueue = [[NSOperationQueue alloc] init];
+
     [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLKEYVALUE bundle:nil] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLKEYVALUE];
 
     return self;
@@ -58,7 +61,7 @@ enum {
 {
     [super viewWillAppear:animated];
     [self reloadNumbers];
-    BACKGROUND(reloadDiskUtilization, nil);
+    [self reloadDiskUtilization];
     [self.tableView reloadData];
 }
 
@@ -151,33 +154,51 @@ enum {
     self.fieldsSizes = fs;
     self.valuesSizes = vs;
 
-    [vs addObject:[MyTools niceFileSize:[db getDatabaseSize]]];
-    [fs addObject:@"Database size"];
-    [self reloadDataMainQueue];
+    [self.runqueue addOperationWithBlock:^{
+        NSInteger size = [db getDatabaseSize];
+        @synchronized(vs) {
+            [vs addObject:[MyTools niceFileSize:size]];
+            [fs addObject:@"Database size"];
+        };
+        [self reloadDataMainQueue];
+    }];
 
-    NSInteger size = [MyTools determineDirectorySize:[MyTools FilesDir]];
-    [vs addObject:[MyTools niceFileSize:size]];
-    [fs addObject:@"Files directory size"];
-    [self reloadDataMainQueue];
+    [self.runqueue addOperationWithBlock:^{
+        NSInteger size = [MyTools determineDirectorySize:[MyTools FilesDir]];
+        @synchronized(vs) {
+            [vs addObject:[MyTools niceFileSize:size]];
+            [fs addObject:@"Files directory size"];
+        }
+        [self reloadDataMainQueue];
+    }];
 
     NSArray<MapBrand *> *mbs = [MapTemplateViewController initMapBrands];
     [mbs enumerateObjectsUsingBlock:^(MapBrand * _Nonnull mb, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([mb.mapObject respondsToSelector:@selector(cachePrefix)] == NO)
             return;
-        NSString *prefix = [mb.mapObject cachePrefix];
 
-        NSInteger size = [MyTools determineDirectorySize:[NSString stringWithFormat:@"%@/%@", [MyTools MapCacheDir], prefix]];
-        [vs addObject:[MyTools niceFileSize:size]];
-        [self reloadDataMainQueue];
+        [self.runqueue addOperationWithBlock:^{
+            NSString *prefix = [mb.mapObject cachePrefix];
 
-        [fs addObject:[NSString stringWithFormat:@"MapCache %@", prefix]];
+            NSInteger size = [MyTools determineDirectorySize:[NSString stringWithFormat:@"%@/%@", [MyTools MapCacheDir], prefix]];
+            @synchronized(vs) {
+                [vs addObject:[MyTools niceFileSize:size]];
+                [fs addObject:[NSString stringWithFormat:@"MapCache %@", prefix]];
+            }
+
+            [self reloadDataMainQueue];
+        }];
+
     }];
 
-    size = [MyTools determineDirectorySize:[MyTools ImagesDir]];
-    [vs addObject:[MyTools niceFileSize:size]];
-    [fs addObject:@"Images directory size"];
-
-    [self reloadDataMainQueue];
+    [self.runqueue addOperationWithBlock:^{
+        NSInteger size = [MyTools determineDirectorySize:[MyTools ImagesDir]];
+        @synchronized(vs) {
+            [vs addObject:[MyTools niceFileSize:size]];
+            [fs addObject:@"Images directory size"];
+        }
+        [self reloadDataMainQueue];
+    }];
 }
 
 - (void)viewDidLoad
