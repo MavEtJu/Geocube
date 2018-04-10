@@ -25,7 +25,7 @@
 @property (nonatomic, retain) NSMutableArray<NSMutableDictionary *> *accounts;
 @property (nonatomic, retain) NSMutableDictionary *totalDictionary;
 
-@property (nonatomic        ) BOOL hasbeenstarted;
+@property (nonatomic, retain) NSOperationQueue *runqueue;
 
 @end
 
@@ -44,9 +44,10 @@ enum {
     [self.lmi addItem:menuReload label:_(@"statisticsviewcontroller-Reload")];
 
     self.accounts = [NSMutableArray arrayWithCapacity:[dbc.accounts count]];
-    self.hasbeenstarted = NO;
 
     [self makeInfoView];
+
+    self.runqueue = [[NSOperationQueue alloc] init];
 
     return self;
 }
@@ -62,8 +63,7 @@ enum {
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (self.hasbeenstarted == NO) {
-        self.hasbeenstarted = YES;
+    if ([self.accounts count] == 0) {
         [self createStatistics];
         [self loadStatistics];
     }
@@ -80,8 +80,8 @@ enum {
 {
     if (section == 0)
         return _(@"statistics-Accounts");
-    else
-        return _(@"statistics-Total");
+
+    return _(@"statistics-Total");
 }
 
 // Rows per section
@@ -89,8 +89,8 @@ enum {
 {
     if (section == 1)
         return 1;
-    else
-        return [self.accounts count];
+
+    return [self.accounts count];
 }
 
 // Return a cell for the index path
@@ -195,7 +195,10 @@ enum {
             return;
         }
 
-        BACKGROUND(runStatistics:, d);
+        [self.runqueue addOperationWithBlock:^{
+            [self runStatistics:d];
+        }];
+
         [d setObject:_(@"statistics-Polling...") forKey:@"status"];
     }];
 
@@ -268,6 +271,8 @@ enum {
 {
     switch (index) {
         case menuReload:
+            if ([self.runqueue operationCount] != 0)
+                return;
             if ([self.accounts count] == 0)
                 [self createStatistics];
             [self loadStatistics];
