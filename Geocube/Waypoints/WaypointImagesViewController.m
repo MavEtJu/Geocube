@@ -29,6 +29,8 @@
 @property (nonatomic, retain) NSIndexPath *currentIndexPath;
 @property (nonatomic, retain) WaypointImageViewController *ivc;
 
+@property (nonatomic, retain) NSOperationQueue *runqueue;
+
 @end
 
 @implementation WaypointImagesViewController
@@ -78,6 +80,9 @@ enum {
 
     [self needsDownloadMenu];
 
+    self.runqueue = [[NSOperationQueue alloc] init];
+    self.runqueue.maxConcurrentOperationCount = 2;
+
     return self;
 }
 
@@ -121,73 +126,74 @@ enum {
 
 #pragma mark - Functions for downloading of images
 
-- (void)downloadImage:(dbImage *)image
+- (void)downloadImage:(dbImage *)img
 {
-    [self showInfoView];
-    InfoItem *iiiImage = [self.infoView addImage];
-    NSDictionary *d = @{@"iii": iiiImage, @"image": image };
-    BACKGROUND(downloadImageBG:, d);
-}
+    [self.runqueue addOperationWithBlock:^{
+        [self showInfoView];
+        InfoItem *iii = [self.infoView addImage];
 
-- (void)downloadImageBG:(NSDictionary *)dict
-{
-    InfoItem *iii = [dict objectForKey:@"iii"];
-    dbImage *img = [dict objectForKey:@"image"];
-    [iii changeDescription:_(@"waypointimagesviewcontroller-Images")];
-    [self downloadImage:img infoItem:iii];
-    [iii changeQueueSize:0];
-    [iii removeFromInfoViewer];
-    if ([self.infoView hasItems] == NO) {
-        [self hideInfoView];
-        [self needsDownloadMenu];
-    }
+        [iii changeDescription:_(@"waypointimagesviewcontroller-Images")];
+        [self downloadImage:img infoItem:iii];
+
+        [iii changeQueueSize:0];
+        [iii removeFromInfoViewer];
+
+        if ([self.infoView hasItems] == NO) {
+            [self hideInfoView];
+            [self needsDownloadMenu];
+        }
+    }];
 }
 
 - (void)downloadImages
 {
     [self showInfoView];
-    InfoItem *iiiLogs = [self.infoView addImage];
-    InfoItem *iiiCache = [self.infoView addImage];
-    BACKGROUND(downloadImagesLogs:, iiiLogs);
-    BACKGROUND(downloadImagesCache:, iiiCache);
+    [self downloadImagesLogs];
+    [self downloadImagesCache];
 }
 
-- (void)downloadImagesLogs:(InfoItem *)iii
+- (void)downloadImagesLogs
 {
-    [iii changeDescription:_(@"waypointimagesviewcontroller-Images from the logs")];
-
     [self.logImages enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
-        [iii changeQueueSize:[self.logImages count] - idx];
-        if ([img imageHasBeenDowloaded] == NO) {
-            [self downloadImage:img infoItem:iii];
-        }
-    }];
+        [self.runqueue addOperationWithBlock:^{
+            InfoItem *iii = [self.infoView addImage];
+            [iii changeDescription:_(@"waypointimagesviewcontroller-Images from the logs")];
+            [iii changeQueueSize:[self.logImages count] - idx];
 
-    [iii changeQueueSize:0];
-    [iii removeFromInfoViewer];
-    if ([self.infoView hasItems] == NO) {
-        [self hideInfoView];
-        [self needsDownloadMenu];
-    }
+            if ([img imageHasBeenDowloaded] == NO)
+                [self downloadImage:img infoItem:iii];
+
+            [iii changeQueueSize:0];
+            [iii removeFromInfoViewer];
+
+            if ([self.infoView hasItems] == NO) {
+                [self hideInfoView];
+                [self needsDownloadMenu];
+            }
+        }];
+    }];
 }
 
-- (void)downloadImagesCache:(InfoItem *)iii
+- (void)downloadImagesCache
 {
-    [iii changeDescription:_(@"waypointimagesviewcontroller-Images from the waypoint")];
-
     [self.cacheImages enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
-        [iii changeQueueSize:[self.cacheImages count] - idx];
-        if ([img imageHasBeenDowloaded] == NO)
-            [self downloadImage:img infoItem:iii];
+        [self.runqueue addOperationWithBlock:^{
+            InfoItem *iii = [self.infoView addImage];
+            [iii changeDescription:_(@"waypointimagesviewcontroller-Images from the waypoint")];
+            [iii changeQueueSize:[self.cacheImages count] - idx];
+
+            if ([img imageHasBeenDowloaded] == NO)
+                [self downloadImage:img infoItem:iii];
+
+            [iii changeQueueSize:0];
+            [iii removeFromInfoViewer];
+
+            if ([self.infoView hasItems] == NO) {
+                [self hideInfoView];
+                [self needsDownloadMenu];
+            }
+        }];
     }];
-
-    [iii changeQueueSize:0];
-    [iii removeFromInfoViewer];
-
-    if ([self.infoView hasItems] == NO) {
-        [self hideInfoView];
-        [self needsDownloadMenu];
-    }
 }
 
 - (void)downloadImage:(dbImage *)image infoItem:(InfoItem *)iii
