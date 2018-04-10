@@ -23,6 +23,7 @@
 
 @property (nonatomic        ) SortOrderList currentSortOrder;
 @property (nonatomic, retain) RemoteAPIProcessingGroup *processing;
+@property (nonatomic, retain) NSOperationQueue *runqueue;
 
 @end
 
@@ -51,6 +52,7 @@ enum {
 
     self.currentSortOrder = configManager.listSortBy;
     self.processing = [[RemoteAPIProcessingGroup alloc] init];
+    self.runqueue = [[NSOperationQueue alloc] init];
 
     return self;
 }
@@ -174,16 +176,14 @@ enum {
         if ([wps count] == 0)
             return;
 
-        NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
-        [dict setObject:wps forKey:@"waypoints"];
-        [dict setObject:account forKey:@"account"];
-
         [self.processing addIdentifier:(long)account._id];
         NSLog(@"PROCESSING: Adding %ld (%@)", (long)account._id, account.site);
-        BACKGROUND(runReloadWaypoints:, dict);
+        [self runReloadWaypoints:wps account:account];
     }];
 
-    BACKGROUND(waitForDownloadsToFinish, nil);
+    [self.runqueue addOperationWithBlock:^{
+        [self waitForDownloadsToFinish];
+    }];
 }
 
 - (void)waitForDownloadsToFinish
@@ -204,19 +204,18 @@ enum {
     [self hideInfoView];
 }
 
-- (void)runReloadWaypoints:(NSDictionary *)dict
+- (void)runReloadWaypoints:(NSArray<NSString *> *)wps account:(dbAccount *)account
 {
-    NSArray<NSString *> *wps = [dict objectForKey:@"waypoints"];
-    dbAccount *account = [dict objectForKey:@"account"];
+    [self.runqueue addOperationWithBlock:^{
+        InfoItem *iid = [self.infoView addDownload];
+        [iid changeChunksTotal:[wps count]];
+        [iid changeDescription:[NSString stringWithFormat:_(@"listtemplateviewcontroller-Downloading for %@"), account.site]];
 
-    InfoItem *iid = [self.infoView addDownload];
-    [iid changeChunksTotal:[wps count]];
-    [iid changeDescription:[NSString stringWithFormat:_(@"listtemplateviewcontroller-Downloading for %@"), account.site]];
-
-    NSInteger rv = [account.remoteAPI loadWaypointsByCodes:wps infoItem:iid identifier:(long)account._id group:dbc.groupLastImport callback:self];
-    if (rv != REMOTEAPI_OK)
-        [MyTools messageBox:self header:_(@"listtemplateviewcontroller-Reload waypoints") text:_(@"listtemplateviewcontroller-Update failed") error:account.remoteAPI.lastError];
-    [iid removeFromInfoViewer];
+        NSInteger rv = [account.remoteAPI loadWaypointsByCodes:wps infoItem:iid identifier:(long)account._id group:dbc.groupLastImport callback:self];
+        if (rv != REMOTEAPI_OK)
+            [MyTools messageBox:self header:_(@"listtemplateviewcontroller-Reload waypoints") text:_(@"listtemplateviewcontroller-Update failed") error:account.remoteAPI.lastError];
+        [iid removeFromInfoViewer];
+    }];
 }
 
 - (void)remoteAPI_objectReadyToImport:(NSInteger)identifier infoItem:(InfoItem *)iii object:(NSObject *)o group:(dbGroup *)group account:(dbAccount *)account
