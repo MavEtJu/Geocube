@@ -884,6 +884,12 @@
     @"update waypoints set dirty_logs = 0",
     ];
     [self.upgradeSteps addObject:a];
+
+    // Version 72
+    a = @[
+    @"create index logs_idx_loggerlogstring on logs(logger_id, log_string_id)",
+    ];
+    [self.upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql
