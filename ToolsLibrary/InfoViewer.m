@@ -54,7 +54,7 @@
     [self addSubview:self.headerImports];
 
     self.headerImages = [[GCLabelNormalText alloc] initWithFrame:CGRectZero];
-    self.headerImages.text = _(@"infoviewer-Imports");
+    self.headerImages.text = _(@"infoviewer-Images");
     [self addSubview:self.headerImages];
 
     self.isVisible = NO;
