@@ -21,10 +21,10 @@
 
 @interface ImagesDownloadManager : NSObject
 
-+ (NSInteger)findImagesInDescription:(dbWaypoint *)wp text:(NSString *)desc type:(NSInteger)type;
-+ (BOOL)downloadImage:(dbWaypoint *)wp url:(NSString *)url name:(NSString *)name type:(NSInteger)type;
-+ (void)addToQueue:(dbImage *)img imageType:(ImageCategory)imageType;
-+ (void)addToQueueImmediately:(dbImage *)img;
+- (NSInteger)findImagesInDescription:(dbWaypoint *)wp text:(NSString *)desc type:(NSInteger)type;
+- (BOOL)downloadImage:(dbWaypoint *)wp url:(NSString *)url name:(NSString *)name type:(NSInteger)type;
+- (void)addToQueue:(dbImage *)img imageType:(ImageCategory)imageType;
+- (void)addToQueueImmediately:(dbImage *)img;
 
 @end
 

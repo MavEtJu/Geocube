@@ -22,18 +22,7 @@
 @interface ImagesDownloadManager ()
 
 @property (nonatomic        ) NSInteger downloaded;
-
-@property (nonatomic, retain) dbImage *imgToDownload;
-
-@property (nonatomic, retain) NSMutableData *activeDownload;
-@property (nonatomic, retain) NSURLConnection *imageConnection;
-@property (nonatomic, retain) NSURLConnection *conn;
-
-@property (nonatomic        ) NSInteger running;
-
-@property (nonatomic, retain) NSMutableArray<dbImage *> *todo;
-
-- (void)start;
+@property (nonatomic, retain) NSOperationQueue *runqueue;
 
 @end
 
@@ -78,84 +67,47 @@
         [fileManager moveItemAtPath:oldName toPath:[MyTools ImageFile:file] error:nil];
     }];
 
-    // Queued files to download
+    self.runqueue = [[NSOperationQueue alloc] init];
+    [self.runqueue setMaxConcurrentOperationCount:5];
 
-    self.todo = [NSMutableArray<dbImage *> arrayWithCapacity:20];
-
-    self.running = 0;
     self.downloaded = 0;
 
     return self;
 }
 
-- (void)start
+// Called by the self.runqueue
+- (void)downloadOneImage:(dbImage *)img
 {
-    if (self.running == 0) {
-        NSLog(@"%@/starting", [self class]);
-        self.running = 10;
-        BACKGROUND(run, nil);
+    NSLog(@"%@/downloadOneImage: Queue is %ld deep", [self class], (unsigned long)[self.runqueue operationCount]);
+
+    // It could be that multiple entries for the same URL is here.
+    // If so, only download the first one.
+    if ([img imageHasBeenDowloaded] == YES) {
+        NSLog(@"%@/downloadOneImage: Already found %@", [self class], img.datafile);
+        return;
     }
-    self.running = 10;
-}
 
-- (void)run
-{
-    while (TRUE) {
-        self.imgToDownload = nil;
+    NSLog(@"%@/downloadOneImage: Downloading %@", [self class], img.url);
 
-        NSLog(@"%@/run: Queue is %ld deep", [self class], (unsigned long)[self.todo count]);
-        @synchronized(imagesDownloadManager) {
-            if ([self.todo count] != 0)
-                self.imgToDownload = [self.todo objectAtIndex:0];
-        }
-        // After 10 attempts stop, enough for now
-        if (--self.running == 0) {
-            NSLog(@"%@/stopping", [self class]);
-            return;
-        }
+    // Send a synchronous request
+    GCURLRequest *urlRequest = [GCURLRequest requestWithURL:[NSURL URLWithString:img.url]];
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [downloadManager downloadImage:urlRequest returningResponse:&response error:&error];
 
-        // Nothing to download, wait one second and try again.
-        if (self.imgToDownload == nil) {
-            [NSThread sleepForTimeInterval:1.0];
-            continue;
-        }
+    if (error == nil) {
+        NSLog(@"%@/downloadOneImage: Downloaded %@ (%ld bytes)", [self class], img.url, (unsigned long)[data length]);
+        [data writeToFile:[MyTools ImageFile:img.datafile] atomically:NO];
+    } else {
+        NSLog(@"Failed! %@", error);
+    }
 
-        // Make sure we don't accidently fall asleep
-        self.running = 10;
-
-        // It could be that multiple entries for the same URL is here.
-        // If so, only download the first one.
-        if ([self.imgToDownload imageHasBeenDowloaded] == YES) {
-            NSLog(@"%@/run: Already found %@", [self class], self.imgToDownload.datafile);
-            @synchronized(imagesDownloadManager) {
-                [self.todo removeObjectAtIndex:0];
-            }
-            continue;
-        }
-
-        NSLog(@"%@/run: Downloading %@", [self class], self.imgToDownload.url);
-
-        // Send a synchronous request
-        GCURLRequest *urlRequest = [GCURLRequest requestWithURL:[NSURL URLWithString:self.imgToDownload.url]];
-        NSURLResponse *response = nil;
-        NSError *error = nil;
-        NSData *data = [downloadManager downloadImage:urlRequest returningResponse:&response error:&error];
-
-        if (error == nil) {
-            NSLog(@"%@/run: Downloaded %@ (%ld bytes)", [self class], self.imgToDownload.url, (unsigned long)[data length]);
-            [data writeToFile:[MyTools ImageFile:self.imgToDownload.datafile] atomically:NO];
-        } else {
-            NSLog(@"Failed! %@", error);
-        }
-
-        @synchronized(imagesDownloadManager) {
-            [self.todo removeObjectAtIndex:0];
-        }
+    @synchronized(self) {
         self.downloaded++;
     }
 }
 
-+ (NSInteger)findImagesInDescription:(dbWaypoint *)wp text:(NSString *)desc type:(NSInteger)type
+- (NSInteger)findImagesInDescription:(dbWaypoint *)wp text:(NSString *)desc type:(NSInteger)type
 {
     NSInteger found = 0;
     NSString *next = desc;
@@ -178,7 +130,6 @@
             continue;
 
         imgtag = [imgtag substringToIndex:s.location];
-        //NSLog(@"%@", imgtag);
 
         // Save the string after the '>'
         next = [d substringFromIndex:s.location + r.location];
@@ -201,7 +152,6 @@
         while ([[imgtag substringToIndex:1] isEqualToString:@" "] == YES) {
             imgtag = [imgtag substringFromIndex:1];
         }
-        //NSLog(@"%@", imgtag);
 
         // Search for the " or '
         NSString *quote = [imgtag substringToIndex:1];
@@ -210,39 +160,39 @@
         imgtag = [imgtag substringFromIndex:1];
         r = [imgtag rangeOfString:quote];
         if (r.location == NSNotFound) {
-            NSLog(@"%@/parse: No trailing %@", [self class], quote);
+            NSLog(@"%@/findImagesInDescription: No trailing %@", [self class], quote);
             continue;
         }
 
         imgtag = [imgtag substringToIndex:r.location];
 
         if ([imgtag length] < 5) {
-            NSLog(@"%@/parse: Not long enough %@", [self class], quote);
+            NSLog(@"%@/findImagesInDescription: Not long enough %@", [self class], quote);
             continue;
         }
 
         if ([[imgtag substringToIndex:5] isEqualToString:@"file:"] == YES) {
-            NSLog(@"%@/parse: file:// URL", [self class]);
+            NSLog(@"%@/findImagesInDescription: file:// URL", [self class]);
             continue;
         }
 
         if ([[imgtag substringToIndex:5] isEqualToString:@"data:"] == YES) {
             if ([self downloadImage:wp url:imgtag name:[dbImage filename:imgtag] type:type] == YES)
                 found++;
-            NSLog(@"%@/parse: Found image: data:-URL", [self class]);
+            NSLog(@"%@/findImagesInDescription: Found image: data:-URL", [self class]);
             continue;
         }
 
         if ([self downloadImage:wp url:imgtag name:[dbImage filename:imgtag] type:type] == YES)
             found++;
-        NSLog(@"%@/parse: Found image: %@", [self class], imgtag);
+        NSLog(@"%@/findImagesInDescription: Found image: %@", [self class], imgtag);
 
     } while (next != nil);
 
     return found;
 }
 
-+ (BOOL)downloadImage:(dbWaypoint *)wp url:(NSString *)url name:(NSString *)name type:(NSInteger)type
+- (BOOL)downloadImage:(dbWaypoint *)wp url:(NSString *)url name:(NSString *)name type:(NSInteger)type
 {
     NSString *datafile = [dbImage createDataFilename:url];
     dbImage *img = [dbImage dbGetByURL:url];
@@ -262,13 +212,13 @@
         if (type != IMAGECATEGORY_CACHE && configManager.downloadImagesLogs == NO)
             return NO;
 
-        [ImagesDownloadManager addToQueueImmediately:img];
+        [self addToQueueImmediately:img];
     }
 
     return YES;
 }
 
-+ (void)addToQueue:(dbImage *)img imageType:(ImageCategory)imageType
+- (void)addToQueue:(dbImage *)img imageType:(ImageCategory)imageType
 {
     // Do not download images if disabled.
     if (configManager.downloadImagesWaypoints == NO)
@@ -289,13 +239,13 @@
     [self addToQueueImmediately:img];
 }
 
-+ (void)addToQueueImmediately:(dbImage *)img
+- (void)addToQueueImmediately:(dbImage *)img
 {
-    @synchronized(imagesDownloadManager) {
-        NSLog(@"%@/parse: Queue for downloading", [self class]);
-        [imagesDownloadManager.todo addObject:img];
-        [imagesDownloadManager start];
-    }
+    [self.runqueue addOperationWithBlock:^{
+        NSLog(@"%@/addToQueueImmediately: Queue for downloading", [self class]);
+        [imagesDownloadManager downloadOneImage:img];
+    }];
+    NSLog(@"%@/addToQueueImmediately: Queue size is now %ld", [self class], [self.runqueue operationCount]);
 }
 
 @end

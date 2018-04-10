@@ -273,8 +273,8 @@
 
     [self.delegate Import_WaypointProcessed:wp];
 
-    [ImagesDownloadManager findImagesInDescription:wp text:wp.gs_long_desc type:IMAGECATEGORY_CACHE];
-    [ImagesDownloadManager findImagesInDescription:wp text:wp.gs_short_desc type:IMAGECATEGORY_CACHE];
+    [imagesDownloadManager findImagesInDescription:wp text:wp.gs_long_desc type:IMAGECATEGORY_CACHE];
+    [imagesDownloadManager findImagesInDescription:wp text:wp.gs_short_desc type:IMAGECATEGORY_CACHE];
 
     NSArray<NSDictionary *> *images = [dict objectForKey:@"images"];
     if ([images count] != 0)
@@ -332,7 +332,7 @@
     if ([image dbLinkedtoWaypoint:wp] == NO)
         [image dbLinkToWaypoint:wp type:imagetype];
 
-    [ImagesDownloadManager addToQueue:image imageType:imagetype];
+    [imagesDownloadManager addToQueue:image imageType:imagetype];
 }
 
 - (void)parseData_logs:(NSArray<NSDictionary *> *)logs waypoint:(dbWaypoint *)wp
@@ -384,7 +384,7 @@
 
     name = [dbName dbGetByName:loggername account:self.account];
 
-    [ImagesDownloadManager findImagesInDescription:wp text:comment type:IMAGECATEGORY_LOG];
+    [imagesDownloadManager findImagesInDescription:wp text:comment type:IMAGECATEGORY_LOG];
 
     __block BOOL found = NO;
     [logs enumerateObjectsUsingBlock:^(dbLog * _Nonnull log, NSUInteger idx, BOOL * _Nonnull stop) {

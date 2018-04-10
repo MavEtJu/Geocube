@@ -250,23 +250,23 @@
 
                 [dbc.groupLastImport addWaypointToGroup:self.currentWP];
                 if (self.currentWP.gs_long_desc != nil)
-                    self.newImagesCount += [ImagesDownloadManager findImagesInDescription:self.currentWP text:self.currentWP.gs_long_desc type:IMAGECATEGORY_CACHE];
+                    self.newImagesCount += [imagesDownloadManager findImagesInDescription:self.currentWP text:self.currentWP.gs_long_desc type:IMAGECATEGORY_CACHE];
                 if (self.currentWP.gs_short_desc != nil)
-                    self.newImagesCount += [ImagesDownloadManager findImagesInDescription:self.currentWP text:self.currentWP.gs_short_desc type:IMAGECATEGORY_CACHE];
+                    self.newImagesCount += [imagesDownloadManager findImagesInDescription:self.currentWP text:self.currentWP.gs_short_desc type:IMAGECATEGORY_CACHE];
             }
 
             // Link images to cache
             [self.imagesCache enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
-                self.newImagesCount += [ImagesDownloadManager downloadImage:self.currentWP url:img.url name:img.name type:IMAGECATEGORY_CACHE];
+                self.newImagesCount += [imagesDownloadManager downloadImage:self.currentWP url:img.url name:img.name type:IMAGECATEGORY_CACHE];
             }];
 
             [self.imagesLog enumerateObjectsUsingBlock:^(dbImage * _Nonnull img, NSUInteger idx, BOOL * _Nonnull stop) {
-                self.newImagesCount += [ImagesDownloadManager downloadImage:self.currentWP url:img.url name:img.name type:IMAGECATEGORY_LOG];
+                self.newImagesCount += [imagesDownloadManager downloadImage:self.currentWP url:img.url name:img.name type:IMAGECATEGORY_LOG];
             }];
 
             // Link logs to cache
             [self.logs enumerateObjectsUsingBlock:^(dbLog * _Nonnull l, NSUInteger idx, BOOL * _Nonnull stop) {
-                self.newImagesCount += [ImagesDownloadManager findImagesInDescription:self.currentWP text:l.log type:IMAGECATEGORY_LOG];
+                self.newImagesCount += [imagesDownloadManager findImagesInDescription:self.currentWP text:l.log type:IMAGECATEGORY_LOG];
                 l.waypoint = self.currentWP;
                 [l finish];
 
