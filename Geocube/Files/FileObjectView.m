@@ -30,6 +30,8 @@
     self = [super initWithFrame:frame];
 
     UIView *firstViewUIView = [[[NSBundle mainBundle] loadNibNamed:@"FileObjectView" owner:self options:nil] firstObject];
+
+    firstViewUIView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
     [self addSubview:firstViewUIView];
 
     [self changeTheme];

@@ -26,7 +26,7 @@
 @property (nonatomic, retain) FileObject *rootFO;
 @property (nonatomic, retain) FileObject *shownFO;
 @property (nonatomic, retain) NSMutableArray<FileObject *> *stackFO;
-@property (nonatomic) NSInteger y;
+@property (nonatomic, retain) NSOperationQueue *runqueue;
 
 @end
 
@@ -42,6 +42,9 @@
     self.contentView.delegate = self;
     self.view = self.contentView;
 
+    self.runqueue = [[NSOperationQueue alloc] init];
+    [self.runqueue addObserver:self forKeyPath:@"operations" options:0 context:nil];
+
     [self changeTheme];
 }
 
@@ -53,7 +56,7 @@
     self.rootFO.filename = @"";
     self.rootFO.isDir = YES;
     self.rootFO.cwd = @"";
-    BACKGROUND(loadContents:, self.rootFO);
+    [self loadContents:self.rootFO];
 
     self.shownFO = self.rootFO;
     self.stackFO = [NSMutableArray arrayWithCapacity:10];
@@ -66,35 +69,49 @@
 {
     NSMutableArray<FileObject *> *fos = [NSMutableArray arrayWithCapacity:20];
 
-    FileObject *fo = [[FileObject alloc] init];
-    fo.filename = @"Files";
-    fo.isDir = YES;
-    fo.cwd = @"";
-    [self loadContentsOfDir:fo start:[MyTools FilesDir]];
-    [fos addObject:fo];
+    [self.runqueue addOperationWithBlock:^{
+        FileObject *fo = [[FileObject alloc] init];
+        fo.filename = @"Files";
+        fo.isDir = YES;
+        fo.cwd = @"";
+        [self loadContentsOfDir:fo start:[MyTools FilesDir]];
+        [fos addObject:fo];
+    }];
 
-    fo = [[FileObject alloc] init];
-    fo.filename = @"KML";
-    fo.isDir = YES;
-    fo.cwd = @"";
-    [self loadContentsOfDir:fo start:[MyTools KMLDir]];
-    [fos addObject:fo];
+    [self.runqueue addOperationWithBlock:^{
+        FileObject *fo = [[FileObject alloc] init];
+        fo.filename = @"KML";
+        fo.isDir = YES;
+        fo.cwd = @"";
+        [self loadContentsOfDir:fo start:[MyTools KMLDir]];
+        [fos addObject:fo];
+    }];
 
-    fo = [[FileObject alloc] init];
-    fo.filename = @"Application Support";
-    fo.isDir = YES;
-    fo.cwd = @"";
-    [self loadContentsOfDir:fo start:[MyTools ApplicationSupportRoot]];
-    [fos addObject:fo];
+    [self.runqueue addOperationWithBlock:^{
+        FileObject *fo = [[FileObject alloc] init];
+        fo.filename = @"Application Support";
+        fo.isDir = YES;
+        fo.cwd = @"";
+        [self loadContentsOfDir:fo start:[MyTools ApplicationSupportRoot]];
+        [fos addObject:fo];
+    }];
 
     rootFO.contents = fos;
+}
 
-    if ([rootFO.cwd isEqualToString:@""] == YES) {
-        MAINQUEUE(
-            [bezelManager removeBezel];
-            [self refreshContentsView];
-        )
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (object == self.runqueue && [keyPath isEqualToString:@"operations"]) {
+        if (self.runqueue.operationCount == 0) {
+            MAINQUEUE(
+                [bezelManager removeBezel];
+                [self refreshContentsView];
+            )
+        }
+        return;
     }
+
+    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }
 
 - (void)loadContentsOfDir:(FileObject *)rootFO start:(NSString *)startdir
@@ -159,12 +176,13 @@
         }
     }
 
-    self.y = 0;
+    __block NSInteger y = 0;
 
-    GCLabelNormalText *l = [[GCLabelNormalText alloc] initWithFrame:CGRectMake(0, self.y, 0, 0)];
+    // Header with the directory
+    GCLabelNormalText *l = [[GCLabelNormalText alloc] initWithFrame:CGRectMake(0, y, width, 0)];
     l.text = [self determineVisiblePath];
     [l sizeToFit];
-    self.y += l.frame.size.height;
+    y += l.frame.size.height;
 
     l.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapUp:)];
@@ -173,7 +191,7 @@
     [self.contentView addSubview:l];
 
     [self.shownFO.contents enumerateObjectsUsingBlock:^(FileObject * _Nonnull fo, NSUInteger idx, BOOL * _Nonnull stop) {
-        FileObjectView *fov = [[FileObjectView alloc] initWithFrame:CGRectMake(0, self.y, width, currentTheme.GCLabelNormalSizeFont.pointSize)];
+        FileObjectView *fov = [[FileObjectView alloc] initWithFrame:CGRectMake(0, y, width, configManager.fontNormalTextSize)];
         fov.filename.text = fo.filename;
         fov.filesize.text = [MyTools niceFileSize:fo.filesize];
         fov.filetype.text = _(@"filebrowserviewcontroller-(f)");
@@ -195,12 +213,11 @@
 
         [fov changeTheme];
 
-        [fov sizeToFit];
-        self.y += fov.frame.size.height;
+        y += fov.frame.size.height;
         [self.contentView addSubview:fov];
     }];
 
-    [self.contentView setContentSize:CGSizeMake(width, self.y)];
+    [self.contentView setContentSize:CGSizeMake(width, y)];
 }
 
 - (NSString *)determineFullPath
