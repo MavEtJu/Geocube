@@ -25,6 +25,7 @@
 @property (nonatomic, retain) NSArray<dbQueryImport *> *qis;
 
 @property (nonatomic, retain) RemoteAPIProcessingGroup *processing;
+@property (nonatomic, retain) NSOperationQueue *runqueue;
 
 @end
 
@@ -57,6 +58,7 @@ enum {
 
     [self makeInfoView];
 
+    self.runqueue = [[NSOperationQueue alloc] init];
     self.qs = nil;
 }
 
@@ -66,7 +68,9 @@ enum {
 
     if (self.qs == nil) {
         self.qs = @[];
-        BACKGROUND(reloadQueries, nil);
+        [self.runqueue addOperationWithBlock:^{
+            [self reloadQueries];
+        }];
     }
     self.qis = [dbQueryImport dbAll];
 }
@@ -181,8 +185,10 @@ enum {
     [self showInfoView];
 
     NSDictionary *pq = [self.qs objectAtIndex:indexPath.row];
-    BACKGROUND(doRunRetrieveQuery:, pq);
-    BACKGROUND(waitForDownloadsToFinish, nil);
+    [self.runqueue addOperationWithBlock:^{
+        [self doRunRetrieveQuery:pq];
+        [self waitForDownloadsToFinish];
+    }];
 
     // Update historical data for this query.
     __block dbQueryImport *foundqi = nil;
@@ -320,7 +326,9 @@ enum {
 {
     switch (index) {
         case menuReload:
-            BACKGROUND(reloadQueries, nil);
+            [self.runqueue addOperationWithBlock:^{
+                [self reloadQueries];
+            }];
             return;
     }
 
