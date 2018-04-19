@@ -40,9 +40,8 @@
 @end
 
 @interface VKSideMenu() <UITableViewDelegate, UITableViewDataSource>
-{
-    UITapGestureRecognizer *tapGesture;
-}
+
+@property (nonatomic, retain) UITapGestureRecognizer *tapGesture;
 
 @property (nonatomic, strong) UIView *overlay;
 
@@ -107,8 +106,8 @@
     if (self.enableOverlay)
         self.overlay.backgroundColor = [UIColor colorWithWhite:0. alpha:.4];
 
-    tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap:)];
-    [self.overlay addGestureRecognizer:tapGesture];
+    self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap:)];
+    [self.overlay addGestureRecognizer:self.tapGesture];
     
     CGRect frame = [self frameHidden];
     
@@ -157,8 +156,8 @@
      }
                      completion:^(BOOL finished)
      {
-         if (_delegate && [_delegate respondsToSelector:@selector(sideMenuDidShow:)])
-             [_delegate sideMenuDidShow:self];
+         if (self.delegate && [self.delegate respondsToSelector:@selector(sideMenuDidShow:)])
+             [self.delegate sideMenuDidShow:self];
      }];
 }
 
@@ -178,13 +177,13 @@
      }
                      completion:^(BOOL finished)
      {
-         if (_delegate && [_delegate respondsToSelector:@selector(sideMenuDidHide:)])
-             [_delegate sideMenuDidHide:self];
+         if (self.delegate && [self.delegate respondsToSelector:@selector(sideMenuDidHide:)])
+             [self.delegate sideMenuDidHide:self];
 
          [self.tableView removeFromSuperview];
          [self.view removeFromSuperview];
          [self.overlay removeFromSuperview];
-         [self.overlay removeGestureRecognizer:tapGesture];
+         [self.overlay removeGestureRecognizer:self.tapGesture];
          
          self.overlay = nil;
          self.tableView = nil;

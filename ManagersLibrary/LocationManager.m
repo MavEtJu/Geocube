@@ -384,10 +384,12 @@
     [self.coordsHistorical removeAllObjects];
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(nonnull NSArray<CLLocation *> *)locations
 {
     if (self.useGNSS == NO)
         return;
+
+    CLLocation *newLocation = [locations lastObject];
 
     if (self.altitude == manager.location.altitude &&
         self.coords.latitude == newLocation.coordinate.latitude &&

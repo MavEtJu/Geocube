@@ -24,6 +24,12 @@
 #import "Model/GMUPolygon.h"
 #import "Model/GMUStyle.h"
 
+@interface GMUGeometryRenderer ()
+
+@property (nonatomic) BOOL isMapCleared;
+
+@end
+
 @implementation GMUGeometryRenderer {
   NSMutableArray<GMSOverlay *> *_mapOverlays;
 
@@ -50,7 +56,6 @@
   /**
    * Whether the map has been marked as cleared.
    */
-  BOOL _isMapCleared;
 }
 
 - (instancetype)initWithMap:(GMSMapView *)map
@@ -176,7 +181,7 @@
         GMSMarker *strongMarker = weakMarker;
         GMSMapView *strongMap = weakMap;
         strongMarker.icon = image;
-        if (!_isMapCleared) {
+        if (!self.isMapCleared) {
           strongMarker.map = strongMap;
         }
       });
@@ -272,7 +277,7 @@
       GMSGroundOverlay *strongGroundOverlay = weakGroundOverlay;
       GMSMapView *strongMap = weakMap;
       strongGroundOverlay.icon = image;
-      if (!_isMapCleared) {
+      if (!self.isMapCleared) {
         strongGroundOverlay.map = strongMap;
       }
     });

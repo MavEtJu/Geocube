@@ -157,6 +157,9 @@ typedef enum {
 - (void)stopCaretShiftTimer;
 - (void)shiftCaret;
 
+@property (nonatomic, retain) UIView*     backgroundView;
+@property (nonatomic, retain) UIView*     popupView;
+
 @end
 
 
@@ -165,8 +168,6 @@ typedef enum {
     NSUInteger      _maxCount;
     UIEdgeInsets    _textViewInsets;
     
-    UIView*     _backgroundView;
-    UIView*     _popupView;
     UILabel*    _countLabel;
     UIButton*   _closeButton;
     UIButton*   _acceptButton;
@@ -426,7 +427,7 @@ typedef enum {
     [_popupView.layer addAnimation:animation forKey:@"popupAnimation"];
     
     [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-        _backgroundView.alpha = 1;
+        self.backgroundView.alpha = 1;
     }];
     
     [self _changePopupViewFrameWithNotification:nil];
@@ -466,7 +467,7 @@ typedef enum {
     
     [UIView animateWithDuration:ANIMATION_DURATION animations:^{
         
-        _backgroundView.alpha = 0;
+        self.backgroundView.alpha = 0;
         
     } completion:^(BOOL finished) {
         
@@ -475,9 +476,9 @@ typedef enum {
                 [self.delegate popupTextView:self didDismissWithText:self.text cancelled:cancelled];
             }
             
-            [_backgroundView removeFromSuperview];
-            _backgroundView = nil;
-            _popupView = nil;
+            [self.backgroundView removeFromSuperview];
+            self.backgroundView = nil;
+            self.popupView = nil;
         }
         
     }];

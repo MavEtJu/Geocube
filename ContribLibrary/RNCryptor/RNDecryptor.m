@@ -84,13 +84,14 @@ static const NSUInteger kPreambleSize = 2;
 @property (nonatomic, readwrite, copy) NSString *password;
 @property (nonatomic, readwrite, assign) BOOL hasV1HMAC;
 
+@property (nonatomic) CCHmacContext HMACContext;
+
 @property (nonatomic, readwrite, assign) RNCryptorSettings settings;
 
 @end
 
 @implementation RNDecryptor
 {
-  CCHmacContext _HMACContext;
   NSMutableData *__inData;
 }
 @synthesize encryptionKey = _encryptionKey;
@@ -166,7 +167,9 @@ static const NSUInteger kPreambleSize = 2;
 {
   dispatch_async(self.queue, ^{
     if (self.hasHMAC) {
-      CCHmacUpdate(&_HMACContext, data.bytes, data.length);
+      CCHmacContext HMACContext = self.HMACContext;
+      CCHmacUpdate(&HMACContext, data.bytes, data.length);
+      self.HMACContext = HMACContext;
     }
 
     NSError *error = nil;
@@ -309,7 +312,9 @@ static const NSUInteger kPreambleSize = 2;
       
     if (self.hasHMAC) {
       NSMutableData *HMACData = [NSMutableData dataWithLength:self.HMACLength];
-      CCHmacFinal(&_HMACContext, [HMACData mutableBytes]);
+      CCHmacContext HMACContext = self.HMACContext;
+      CCHmacFinal(&HMACContext, [HMACData mutableBytes]);
+      self.HMACContext = HMACContext;
       
       if (![HMACData rnc_isEqualInConsistentTime:self.inData]) {
           [self cleanupAndNotifyWithError:[NSError errorWithDomain:kRNCryptorErrorDomain

@@ -35,12 +35,13 @@
 @property (nonatomic, readwrite, strong) NSData *HMACSalt;
 @property (nonatomic, readwrite, strong) NSData *IV;
 @property (nonatomic, readwrite, assign) BOOL haveWrittenHeader;
+
+@property (nonatomic) CCHmacContext HMACContext;
+
 @end
 
 @implementation RNEncryptor
-{
-  CCHmacContext _HMACContext;
-}
+
 @synthesize encryptionSalt = _encryptionSalt;
 @synthesize HMACSalt = _HMACSalt;
 @synthesize IV = _IV;
@@ -118,7 +119,9 @@
     self.IV = anIV;
 
     if (anHMACKey) {
-      CCHmacInit(&_HMACContext, theSettings.HMACAlgorithm, anHMACKey.bytes, anHMACKey.length);
+      CCHmacContext HMACContext = self.HMACContext;
+      CCHmacInit(&HMACContext, theSettings.HMACAlgorithm, anHMACKey.bytes, anHMACKey.length);
+      self.HMACContext = HMACContext;
       self.HMACLength = theSettings.HMACLength;
     }
 
@@ -199,7 +202,9 @@
       NSData *header = [self header];
       [self.outData setData:header];
       if (self.hasHMAC) {
-        CCHmacUpdate(&_HMACContext, [header bytes], [header length]);
+        CCHmacContext HMACContext = self.HMACContext;
+        CCHmacUpdate(&HMACContext, [header bytes], [header length]);
+        self.HMACContext = HMACContext;
       }
       self.haveWrittenHeader = YES;
     }
@@ -210,7 +215,9 @@
       [self cleanupAndNotifyWithError:error];
     }
     if (self.hasHMAC) {
-      CCHmacUpdate(&_HMACContext, encryptedData.bytes, encryptedData.length);
+      CCHmacContext HMACContext = self.HMACContext;
+      CCHmacUpdate(&HMACContext, encryptedData.bytes, encryptedData.length);
+      self.HMACContext = HMACContext;
     }
 
     [self.outData appendData:encryptedData];
@@ -233,9 +240,11 @@
     NSData *encryptedData = [self.engine finishWithError:&error];
     [self.outData appendData:encryptedData];
     if (self.hasHMAC) {
-      CCHmacUpdate(&_HMACContext, encryptedData.bytes, encryptedData.length);
+      CCHmacContext HMACContext = self.HMACContext;
+      CCHmacUpdate(&HMACContext, encryptedData.bytes, encryptedData.length);
       NSMutableData *HMACData = [NSMutableData dataWithLength:self.HMACLength];
-      CCHmacFinal(&_HMACContext, [HMACData mutableBytes]);
+      CCHmacFinal(&HMACContext, [HMACData mutableBytes]);
+      self.HMACContext = HMACContext;
       [self.outData appendData:HMACData];
     }
     [self cleanupAndNotifyWithError:error];

@@ -20,29 +20,28 @@
  */
 
 @interface GCOAuthBlackbox ()
-{
-    NSString *nonce;
-    NSString *timestamp;
-    NSString *consumerKey;
-    NSString *consumerSecret;
-    NSString *signatureMethod;
-    NSString *version;
-    NSString *signature;
-    NSString *tokenSecret;
-    NSString *verifier;
 
-    NSString *URLRequestToken;
-    NSString *URLAuthorize;
-    NSString *URLAccessToken;
+@property (nonatomic, retain) NSString *nonce;
+@property (nonatomic, retain) NSString *timestamp;
+@property (nonatomic, retain) NSString *consumerKey;
+@property (nonatomic, retain) NSString *consumerSecret;
+@property (nonatomic, retain) NSString *signatureMethod;
+@property (nonatomic, retain) NSString *version;
+@property (nonatomic, retain) NSString *signature;
+@property (nonatomic, retain) NSString *tokenSecret;
+@property (nonatomic, retain) NSString *verifier;
 
-    NSString *body;
+@property (nonatomic, retain) NSString *URLRequestToken;
+@property (nonatomic, retain) NSString *URLAuthorize;
+@property (nonatomic, retain) NSString *URLAccessToken;
 
-    NSURL *RequestTokenURL;
-    NSURL *AuthorizeURL;
-    NSURL *AccessTokenURL;
+@property (nonatomic, retain) NSString *body;
 
-    NSString *server;
-}
+@property (nonatomic, retain) NSURL *RequestTokenURL;
+@property (nonatomic, retain) NSURL *AuthorizeURL;
+@property (nonatomic, retain) NSURL *AccessTokenURL;
+
+@property (nonatomic, retain) NSString *server;
 
 @property (nonatomic, retain, readwrite) NSString *token;
 @property (nonatomic, retain, readwrite) NSString *callback;
@@ -55,60 +54,60 @@
 {
     self = [super init];
 
-    nonce = nil;
-    consumerKey = nil;
-    consumerSecret = nil;
-    timestamp = nonce;
-    signatureMethod = @"HMAC-SHA1";
-    version = @"1.0";
+    self.nonce = nil;
+    self.consumerKey = nil;
+    self.consumerSecret = nil;
+    self.timestamp = self.nonce;
+    self.signatureMethod = @"HMAC-SHA1";
+    self.version = @"1.0";
     self.callback = @"http://geocube/authentication";
-    signature = nil;
-    body = nil;
+    self.signature = nil;
+    self.body = nil;
     self.token = nil;
-    tokenSecret = nil;
-    verifier = nil;
+    self.tokenSecret = nil;
+    self.verifier = nil;
 
-    URLRequestToken = nil;
-    URLAuthorize = nil;
-    URLAccessToken = nil;
+    self.URLRequestToken = nil;
+    self.URLAuthorize = nil;
+    self.URLAccessToken = nil;
 
     self.delegate = nil;
-    server = nil;
+    self.server = nil;
 
     return self;
 }
 
 - (void)server:(NSString *)s
 {
-    server = s;
+    self.server = s;
 }
 
 - (void)URLRequestToken:(NSString *)s
 {
-    URLRequestToken = s;
-    RequestTokenURL = [NSURL URLWithString:s];
+    self.URLRequestToken = s;
+    self.RequestTokenURL = [NSURL URLWithString:s];
 }
 
 - (void)URLAuthorize:(NSString *)s
 {
-    URLAuthorize = s;
-    AuthorizeURL = [NSURL URLWithString:s];
+    self.URLAuthorize = s;
+    self.AuthorizeURL = [NSURL URLWithString:s];
 }
 
 - (void)URLAccessToken:(NSString *)s
 {
-    URLAccessToken = s;
-    AccessTokenURL = [NSURL URLWithString:s];
+    self.URLAccessToken = s;
+    self.AccessTokenURL = [NSURL URLWithString:s];
 }
 
 - (void)consumerKey:(NSString *)s
 {
-    consumerKey = s;
+    self.consumerKey = s;
 }
 
 - (void)consumerSecret:(NSString *)s
 {
-    consumerSecret = s;
+    self.consumerSecret = s;
 }
 
 - (void)URLCallback:(NSString *)s
@@ -123,27 +122,27 @@
 
 - (void)tokenSecret:(NSString *)s
 {
-    tokenSecret = s;
+    self.tokenSecret = s;
 }
 
 - (void)nonce:(NSString *)s
 {
-    nonce = s;
+    self.nonce = s;
 }
 
 - (void)timestamp:(NSString *)s
 {
-    timestamp = s;
+    self.timestamp = s;
 }
 
 - (void)verifier:(NSString *)s
 {
-    verifier = s;
+    self.verifier = s;
 }
 
 - (void)body:(NSString *)s
 {
-    body = s;
+    self.body = s;
 }
 
 - (NSString *)oauth_header:(GCMutableURLRequest *)urlRequest
@@ -152,25 +151,25 @@
 
     struct timeval tp;
     gettimeofday(&tp, NULL);
-    nonce = [[NSString stringWithFormat:@"%ld%06d", tp.tv_sec, tp.tv_usec] substringToIndex:13];
-    timestamp = [NSString stringWithFormat:@"%ld", (long)time(NULL)];
+    self.nonce = [[NSString stringWithFormat:@"%ld%06d", tp.tv_sec, tp.tv_usec] substringToIndex:13];
+    self.timestamp = [NSString stringWithFormat:@"%ld", (long)time(NULL)];
 
-    timestamp = [NSString stringWithFormat:@"%ld", (long)time(NULL)];
+    self.timestamp = [NSString stringWithFormat:@"%ld", (long)time(NULL)];
 
-    [oauth appendFormat:@"oauth_consumer_key=\"%@\"", [ MyTools urlEncode:consumerKey]];
-    [oauth appendFormat:@", oauth_nonce=\"%@\"", [MyTools urlEncode:nonce]];
-    [oauth appendFormat:@", oauth_timestamp=\"%@\"", timestamp];
-    [oauth appendFormat:@", oauth_signature_method=\"%@\"", signatureMethod];
-    [oauth appendFormat:@", oauth_version=\"%@\"", [MyTools urlEncode:version]];
+    [oauth appendFormat:@"oauth_consumer_key=\"%@\"", [ MyTools urlEncode:self.consumerKey]];
+    [oauth appendFormat:@", oauth_nonce=\"%@\"", [MyTools urlEncode:self.nonce]];
+    [oauth appendFormat:@", oauth_timestamp=\"%@\"", self.timestamp];
+    [oauth appendFormat:@", oauth_signature_method=\"%@\"", self.signatureMethod];
+    [oauth appendFormat:@", oauth_version=\"%@\"", [MyTools urlEncode:self.version]];
     if (self.callback != nil)
         [oauth appendFormat:@", oauth_callback=\"%@\"", [MyTools urlEncode:self.callback]];
     if (self.token != nil)
         [oauth appendFormat:@", oauth_token=\"%@\"", [MyTools urlEncode:self.token]];
-    if (verifier != nil)
-        [oauth appendFormat:@", oauth_verifier=\"%@\"", [MyTools urlEncode:verifier]];
+    if (self.verifier != nil)
+        [oauth appendFormat:@", oauth_verifier=\"%@\"", [MyTools urlEncode:self.verifier]];
 
     [self calculateSignature:urlRequest];
-    [oauth appendFormat:@", oauth_signature=\"%@\"", [MyTools urlEncode:signature]];
+    [oauth appendFormat:@", oauth_signature=\"%@\"", [MyTools urlEncode:self.signature]];
 
     return oauth;
 }
@@ -179,7 +178,7 @@
 {
     NSLog(@"obtainAccessToken");
 
-    GCMutableURLRequest *urlRequest = [GCMutableURLRequest requestWithURL:AccessTokenURL];
+    GCMutableURLRequest *urlRequest = [GCMutableURLRequest requestWithURL:self.AccessTokenURL];
 
     self.callback = nil;
     NSString *oauth = [self oauth_header:urlRequest];
@@ -198,7 +197,7 @@
         NSLog(@"%@ - token is nil after obtainAccessToken, not further authenticating", [self class]);
         if (self.delegate != nil)
             [self.delegate oauthtripped:@"Unable to obtain access token."  error:error];
-        tokenSecret = nil;
+        self.tokenSecret = nil;
         self.token = nil;
         return;
     }
@@ -215,17 +214,17 @@
         if ([key isEqualToString:@"oauth_token"] == YES)
             self.token = [MyTools urlDecode:value];
         if ([key isEqualToString:@"oauth_token_secret"] == YES)
-            tokenSecret = [MyTools urlDecode:value];
+            self.tokenSecret = [MyTools urlDecode:value];
     }];
     if (self.delegate != nil)
-        [self.delegate oauthdanced:self.token secret:tokenSecret];
+        [self.delegate oauthdanced:self.token secret:self.tokenSecret];
 }
 
 - (void)obtainRequestToken
 {
     NSLog(@"obtainRequestToken");
 
-    GCMutableURLRequest *urlRequest = [GCMutableURLRequest requestWithURL:RequestTokenURL];
+    GCMutableURLRequest *urlRequest = [GCMutableURLRequest requestWithURL:self.RequestTokenURL];
 
     NSString *oauth = [self oauth_header:urlRequest];
     [urlRequest addValue:oauth forHTTPHeaderField:@"Authorization"];
@@ -241,7 +240,7 @@
     if (error != nil || response.statusCode != 200) {
         NSLog(@"%@ - Unable to obtain request token, aborting", [self class]);
         self.token = nil;
-        tokenSecret = nil;
+        self.tokenSecret = nil;
         if (self.delegate != nil)
             [self.delegate oauthtripped:@"Unable to obtain request token, aborting" error:error];
         return;
@@ -260,11 +259,11 @@
         if ([key isEqualToString:@"oauth_token"] == YES)
             self.token = [MyTools urlDecode:value];
         if ([key isEqualToString:@"oauth_token_secret"] == YES)
-            tokenSecret = [MyTools urlDecode:value];
+            self.tokenSecret = [MyTools urlDecode:value];
     }];
 
     NSLog(@"token: %@", self.token);
-    NSLog(@"token_secret: %@", tokenSecret);
+    NSLog(@"token_secret: %@", self.tokenSecret);
 }
 
 - (void)webview:(BrowserBrowserViewController *)bbvc url:(NSString *)url
@@ -290,11 +289,11 @@
             if ([key isEqualToString:@"oauth_token"] == YES)
                 self.token = [MyTools urlDecode:value];
             if ([key isEqualToString:@"oauth_verifier"] == YES)
-                verifier = [MyTools urlDecode:value];
+                self.verifier = [MyTools urlDecode:value];
         }];
 
         NSLog(@"token: %@", self.token);
-        NSLog(@"verifier: %@", verifier);
+        NSLog(@"verifier: %@", self.verifier);
 
         [self obtainAccessToken];
         return NO;
@@ -333,7 +332,7 @@
 
     // - From the HTTP body
     {
-        NSArray<NSString *> *queries = [body componentsSeparatedByString:@"&"];
+        NSArray<NSString *> *queries = [self.body componentsSeparatedByString:@"&"];
         [queries enumerateObjectsUsingBlock:^(NSString * _Nonnull s, NSUInteger idx, BOOL * _Nonnull stop) {
             NSArray<NSString *> *ss = [s componentsSeparatedByString:@"="];
             [paramDict setValue:[MyTools urlDecode:[ss objectAtIndex:1]] forKey:[ss objectAtIndex:0]];
@@ -341,16 +340,16 @@
     }
 
     // - From the OAuth data
-    [paramDict setValue:consumerKey forKey:@"oauth_consumer_key"];
-    [paramDict setValue:nonce forKey:@"oauth_nonce"];
-    [paramDict setValue:signatureMethod forKey:@"oauth_signature_method"];
-    [paramDict setValue:timestamp forKey:@"oauth_timestamp"];
-    [paramDict setValue:version forKey:@"oauth_version"];
+    [paramDict setValue:self.consumerKey forKey:@"oauth_consumer_key"];
+    [paramDict setValue:self.nonce forKey:@"oauth_nonce"];
+    [paramDict setValue:self.signatureMethod forKey:@"oauth_signature_method"];
+    [paramDict setValue:self.timestamp forKey:@"oauth_timestamp"];
+    [paramDict setValue:self.version forKey:@"oauth_version"];
 
     if (self.callback != nil)
         [paramDict setValue:self.callback forKey:@"oauth_callback"];
-    if (verifier != nil)
-        [paramDict setValue:verifier forKey:@"oauth_verifier"];
+    if (self.verifier != nil)
+        [paramDict setValue:self.verifier forKey:@"oauth_verifier"];
     if (self.token != nil)
         [paramDict setValue:self.token forKey:@"oauth_token"];
 
@@ -403,10 +402,10 @@
     // Getting a signing key
 
     NSMutableString *sk = [NSMutableString stringWithString:@""];
-    [sk appendString:[MyTools urlEncode:consumerSecret]];
+    [sk appendString:[MyTools urlEncode:self.consumerSecret]];
     [sk appendString:@"&"];
-    if (tokenSecret != nil)
-        [sk appendString:[MyTools urlEncode:tokenSecret]];
+    if (self.tokenSecret != nil)
+        [sk appendString:[MyTools urlEncode:self.tokenSecret]];
 
     /*
     expected = @"kAcSOqF21Fu85e7zjz7ZN2U4ZRhfV3WpwPAoE3Z7kBw&LswwdoUaIvS8ltyTt5jkRh4J50vUPVVHtR2YPi5kE";
@@ -436,8 +435,8 @@
 
     NSData *HMAC = [[NSData alloc] initWithBytes:cHMAC length:sizeof(cHMAC)];
 
-    signature = [HMAC base64EncodedStringWithOptions:0];
-    NSLog(@"Signature: %@", signature);
+    self.signature = [HMAC base64EncodedStringWithOptions:0];
+    NSLog(@"Signature: %@", self.signature);
 }
 
 @end

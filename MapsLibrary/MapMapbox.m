@@ -22,9 +22,8 @@
 #define COORDHISTORYSIZE    100
 
 @interface MapMapbox ()
-{
-    CLLocationCoordinate2D historyCoords[COORDHISTORYSIZE];
-}
+
+@property (nonatomic        ) CLLocationCoordinate2D *historyCoords;
 
 @property (nonatomic, retain) MGLMapView *mapView;
 @property (nonatomic        ) BOOL mapLoaded;
@@ -76,6 +75,8 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (void)initMap
 {
+    self.historyCoords = calloc(COORDHISTORYSIZE, sizeof(CLLocationCoordinate2D));
+
     self.mapView = [[MGLMapView alloc] initWithFrame:CGRectZero];
     self.mapvc.view = self.mapView;
     self.mapView.showsUserHeadingIndicator = YES;
@@ -231,9 +232,9 @@ EMPTY_METHOD(mapViewDidLoad)
 
     free(coordinateArray);
 
-    historyCoords[0] = LM.coords;
+    self.historyCoords[0] = LM.coords;
     self.historyCoordsIdx = 1;
-    ADDPATH(historyCoords, self.historyCoordsIdx)
+    ADDPATH(self.historyCoords, self.historyCoordsIdx)
 }
 
 - (void)addHistory:(GCCoordsHistorical *)ch
@@ -243,7 +244,7 @@ EMPTY_METHOD(mapViewDidLoad)
 
     MAINQUEUE(
         if (ch.restart == NO && self.historyCoordsIdx < COORDHISTORYSIZE - 1) {
-            historyCoords[self.historyCoordsIdx++] = ch.coord;
+            self.historyCoords[self.historyCoordsIdx++] = ch.coord;
             @synchronized(self.linesHistory) {
                 MGLPolyline *l = [self.linesHistory lastObject];
                 [self.linesHistory removeLastObject];
@@ -251,9 +252,9 @@ EMPTY_METHOD(mapViewDidLoad)
             }
         } else {
             self.historyCoordsIdx = 0;
-            historyCoords[self.historyCoordsIdx++] = ch.coord;
+            self.historyCoords[self.historyCoordsIdx++] = ch.coord;
         }
-        ADDPATH(historyCoords, self.historyCoordsIdx)
+        ADDPATH(self.historyCoords, self.historyCoordsIdx)
     )
 }
 

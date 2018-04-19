@@ -22,9 +22,8 @@
 #define COORDHISTORYSIZE    100
 
 @interface MapApple ()
-{
-    CLLocationCoordinate2D historyCoords[COORDHISTORYSIZE];
-}
+
+@property (nonatomic        ) CLLocationCoordinate2D *historyCoords;
 
 @property (nonatomic, retain) NSMutableArray<GCWaypointAnnotation *> *markers;
 @property (nonatomic, retain) NSMutableArray<GCMKCircle *> *circles;
@@ -71,6 +70,7 @@
 
 - (void)initMap
 {
+    self.historyCoords = calloc(COORDHISTORYSIZE, sizeof(CLLocationCoordinate2D));
     self.mapView = [[MKMapView alloc] initWithFrame:self.mapvc.view.frame];
     self.mapView.delegate = self;
     self.mapvc.view = self.mapView;
@@ -579,9 +579,9 @@
 
     free(coordinateArray);
 
-    historyCoords[0] = LM.coords;
+    self.historyCoords[0] = LM.coords;
     self.historyCoordsIdx = 1;
-    ADDPATH(historyCoords, self.historyCoordsIdx)
+    ADDPATH(self.historyCoords, self.historyCoordsIdx)
 }
 
 - (void)addHistory:(GCCoordsHistorical *)ch
@@ -591,7 +591,7 @@
 
     MAINQUEUE(
         if (ch.restart == NO && self.historyCoordsIdx < COORDHISTORYSIZE - 1) {
-            historyCoords[self.historyCoordsIdx++] = ch.coord;
+            self.historyCoords[self.historyCoordsIdx++] = ch.coord;
             @synchronized(self.linesHistory) {
                 [self.mapView removeOverlay:[self.linesHistory lastObject]];
                 [self.linesHistory removeLastObject];
@@ -599,9 +599,9 @@
             }
         } else {
             self.historyCoordsIdx = 0;
-            historyCoords[self.historyCoordsIdx++] = ch.coord;
+            self.historyCoords[self.historyCoordsIdx++] = ch.coord;
         }
-        ADDPATH(historyCoords, self.historyCoordsIdx)
+        ADDPATH(self.historyCoords, self.historyCoordsIdx)
     )
 }
 

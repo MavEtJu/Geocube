@@ -112,7 +112,7 @@ enum {
                              //Do Some action
                              UITextField *caption = [alert.textFields objectAtIndex:0];
                              UITextField *longtext = [alert.textFields objectAtIndex:1];
-                             [_delegate waypointLogImageSelected:img caption:caption.text longtext:longtext.text];
+                             [self.delegate waypointLogImageSelected:img caption:caption.text longtext:longtext.text];
 
                              [self.navigationController popViewControllerAnimated:YES];
                          }];

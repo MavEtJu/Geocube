@@ -25,14 +25,18 @@
 
 static const NSInteger TagOffset = 1000;
 
-@implementation MHTabBarController
-{
-	UIView *tabButtonsContainerView;
-	UIView *contentContainerView;
-	UIImageView *indicatorImageView;
+@interface MHTabBarController ()
 
-    UIButton *globalMenuButton, *localMenuButton;
-}
+@property (nonatomic, retain) UIView *tabButtonsContainerView;
+@property (nonatomic, retain) UIView *contentContainerView;
+@property (nonatomic, retain) UIImageView *indicatorImageView;
+
+@property (nonatomic, retain) UIButton *localMenuButton;
+@property (nonatomic, retain) UIButton *globalMenuButton;
+
+@end
+
+@implementation MHTabBarController
 
 - (void)viewDidLoad
 {
@@ -41,21 +45,21 @@ static const NSInteger TagOffset = 1000;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 
 	CGRect rect = CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, self.tabBarHeight);
-	tabButtonsContainerView = [[UIView alloc] initWithFrame:rect];
-	tabButtonsContainerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    tabButtonsContainerView.backgroundColor = currentTheme.tabBarBackgroundColor;
+	self.tabButtonsContainerView = [[UIView alloc] initWithFrame:rect];
+	self.tabButtonsContainerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    self.tabButtonsContainerView.backgroundColor = currentTheme.tabBarBackgroundColor;
 //    tabButtonsContainerView.backgroundColor = [UIColor redColor];
-	[self.view addSubview:tabButtonsContainerView];
+	[self.view addSubview:self.tabButtonsContainerView];
 
 	rect.origin.y = self.tabBarHeight;
 	rect.size.height = self.view.bounds.size.height - self.tabBarHeight;
-	contentContainerView = [[UIView alloc] initWithFrame:rect];
-	contentContainerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    contentContainerView.backgroundColor = [UIColor clearColor];
-	[self.view addSubview:contentContainerView];
+	self.contentContainerView = [[UIView alloc] initWithFrame:rect];
+	self.contentContainerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.contentContainerView.backgroundColor = [UIColor clearColor];
+	[self.view addSubview:self.contentContainerView];
 
-	indicatorImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MHTabBarIndicator"]];
-	[self.view addSubview:indicatorImageView];
+	self.indicatorImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MHTabBarIndicator"]];
+	[self.view addSubview:self.indicatorImageView];
 
     _buttonsEnabled = YES;
 	[self reloadTabButtons];
@@ -66,28 +70,17 @@ static const NSInteger TagOffset = 1000;
 - (void)viewWillLayoutSubviews
 {
 	[super viewWillLayoutSubviews];
-    tabButtonsContainerView.frame = CGRectMake(tabButtonsContainerView.frame.origin.x, tabButtonsContainerView.frame.origin.y, tabButtonsContainerView.frame.size.width, [self tabBarHeight]);
-    tabButtonsContainerView.frame = CGRectMake(0, 0, tabButtonsContainerView.frame.size.width, [self tabBarHeight]);
-    contentContainerView.frame = CGRectMake(0, tabButtonsContainerView.frame.size.height, contentContainerView.frame.size.width, self.view.frame.size.height - tabButtonsContainerView.frame.size.height);
+    self.tabButtonsContainerView.frame = CGRectMake(self.tabButtonsContainerView.frame.origin.x, self.tabButtonsContainerView.frame.origin.y, self.tabButtonsContainerView.frame.size.width, [self tabBarHeight]);
+    self.tabButtonsContainerView.frame = CGRectMake(0, 0, self.tabButtonsContainerView.frame.size.width, [self tabBarHeight]);
+    self.contentContainerView.frame = CGRectMake(0, self.tabButtonsContainerView.frame.size.height, self.contentContainerView.frame.size.width, self.view.frame.size.height - self.tabButtonsContainerView.frame.size.height);
 
     CGSize size = self.view.frame.size;
     UIImage *imgMenu = currentTheme.menuLocalIcon;
-    localMenuButton.frame = CGRectMake(size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
+    self.localMenuButton.frame = CGRectMake(size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
     imgMenu = currentTheme.menuGlobalIcon;
-    globalMenuButton.frame = CGRectMake(1, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
+    self.globalMenuButton.frame = CGRectMake(1, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
 
 	[self layoutTabButtons];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-	// Only rotate if all child view controllers agree on the new orientation.
-	for (UIViewController *viewController in self.viewControllers)
-	{
-		if (![viewController shouldAutorotateToInterfaceOrientation:interfaceOrientation])
-			return NO;
-	}
-	return YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -97,9 +90,9 @@ static const NSInteger TagOffset = 1000;
 	if ([self isViewLoaded] && self.view.window == nil)
 	{
 		self.view = nil;
-		tabButtonsContainerView = nil;
-		contentContainerView = nil;
-		indicatorImageView = nil;
+		self.tabButtonsContainerView = nil;
+		self.contentContainerView = nil;
+		self.indicatorImageView = nil;
 	}
 }
 
@@ -135,7 +128,7 @@ static const NSInteger TagOffset = 1000;
 		[button addTarget:self action:@selector(tabButtonPressed:) forControlEvents:UIControlEventTouchDown];
 
 		[self deselectTabButton:button];
-		[tabButtonsContainerView addSubview:button];
+		[self.tabButtonsContainerView addSubview:button];
 
 		++index;
 	}
@@ -143,15 +136,15 @@ static const NSInteger TagOffset = 1000;
 
 - (void)removeTabButtons
 {
-	while ([tabButtonsContainerView.subviews count] > 0)
+	while ([self.tabButtonsContainerView.subviews count] > 0)
 	{
-		[[tabButtonsContainerView.subviews lastObject] removeFromSuperview];
+		[[self.tabButtonsContainerView.subviews lastObject] removeFromSuperview];
 	}
 }
 
 - (void)enableTabButtons:(BOOL)YESNO
 {
-    [tabButtonsContainerView.subviews enumerateObjectsUsingBlock:^(UIButton *tabbutton, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.tabButtonsContainerView.subviews enumerateObjectsUsingBlock:^(UIButton *tabbutton, NSUInteger idx, BOOL * _Nonnull stop) {
         tabbutton.enabled = YESNO;
     }];
 }
@@ -170,12 +163,12 @@ static const NSInteger TagOffset = 1000;
 	NSUInteger count = [self.viewControllers count];
     BOOL portrait = (self.view.bounds.size.width < self.view.bounds.size.height);
 
-    CGRect rect = CGRectMake(globalMenuButton.frame.size.width, 0.0f, floorf((self.view.bounds.size.width - 2 * globalMenuButton.frame.size.width) / count), self.tabBarHeight);
+    CGRect rect = CGRectMake(self.globalMenuButton.frame.size.width, 0.0f, floorf((self.view.bounds.size.width - 2 * self.globalMenuButton.frame.size.width) / count), self.tabBarHeight);
 //	rect = CGRectMake(0, 0.0f, floorf((self.view.bounds.size.width) / count), self.tabBarHeight);
 
-	indicatorImageView.hidden = YES;
+	self.indicatorImageView.hidden = YES;
 
-	NSArray *buttons = [tabButtonsContainerView subviews];
+	NSArray *buttons = [self.tabButtonsContainerView subviews];
 	for (UIButton *button in buttons)
 	{
 		button.frame = rect;
@@ -195,11 +188,11 @@ static const NSInteger TagOffset = 1000;
 
 - (void)centerIndicatorOnButton:(UIButton *)button
 {
-	CGRect rect = indicatorImageView.frame;
-	rect.origin.x = button.center.x - floorf(indicatorImageView.frame.size.width/2.0f);
-	rect.origin.y = self.tabBarHeight - indicatorImageView.frame.size.height;
-	indicatorImageView.frame = rect;
-	indicatorImageView.hidden = NO;
+	CGRect rect = self.indicatorImageView.frame;
+	rect.origin.x = button.center.x - floorf(self.indicatorImageView.frame.size.width/2.0f);
+	rect.origin.y = self.tabBarHeight - self.indicatorImageView.frame.size.height;
+	self.indicatorImageView.frame = rect;
+	self.indicatorImageView.hidden = NO;
 }
 
 - (void)setViewControllers:(NSArray *)newViewControllers
@@ -270,7 +263,7 @@ static const NSInteger TagOffset = 1000;
 
 		if (_selectedIndex != NSNotFound)
 		{
-			UIButton *fromButton = (UIButton *)[tabButtonsContainerView viewWithTag:TagOffset + _selectedIndex];
+			UIButton *fromButton = (UIButton *)[self.tabButtonsContainerView viewWithTag:TagOffset + _selectedIndex];
 			[self deselectTabButton:fromButton];
 			fromViewController = self.selectedViewController;
 		}
@@ -281,7 +274,7 @@ static const NSInteger TagOffset = 1000;
 		UIButton *toButton;
 		if (_selectedIndex != NSNotFound)
 		{
-			toButton = (UIButton *)[tabButtonsContainerView viewWithTag:TagOffset + _selectedIndex];
+			toButton = (UIButton *)[self.tabButtonsContainerView viewWithTag:TagOffset + _selectedIndex];
 			[self selectTabButton:toButton];
 			toViewController = self.selectedViewController;
 		}
@@ -292,8 +285,8 @@ static const NSInteger TagOffset = 1000;
 		}
 		else if (fromViewController == nil)  // don't animate
 		{
-			toViewController.view.frame = contentContainerView.bounds;
-			[contentContainerView addSubview:toViewController.view];
+			toViewController.view.frame = self.contentContainerView.bounds;
+			[self.contentContainerView addSubview:toViewController.view];
 			[self centerIndicatorOnButton:toButton];
 
 			if ([self.delegate respondsToSelector:@selector(mh_tabBarController:didSelectViewController:atIndex:)])
@@ -301,14 +294,14 @@ static const NSInteger TagOffset = 1000;
 		}
 		else if (animated)
 		{
-			CGRect rect = contentContainerView.bounds;
+			CGRect rect = self.contentContainerView.bounds;
 			if (oldSelectedIndex < newSelectedIndex)
 				rect.origin.x = rect.size.width;
 			else
 				rect.origin.x = -rect.size.width;
 
 			toViewController.view.frame = rect;
-			tabButtonsContainerView.userInteractionEnabled = NO;
+			self.tabButtonsContainerView.userInteractionEnabled = NO;
 
 			[self transitionFromViewController:fromViewController
 				toViewController:toViewController
@@ -323,12 +316,12 @@ static const NSInteger TagOffset = 1000;
 						rect.origin.x = rect.size.width;
 
 					fromViewController.view.frame = rect;
-					toViewController.view.frame = contentContainerView.bounds;
+					toViewController.view.frame = self.contentContainerView.bounds;
 					[self centerIndicatorOnButton:toButton];
 				}
 				completion:^(BOOL finished)
 				{
-					tabButtonsContainerView.userInteractionEnabled = YES;
+					self.tabButtonsContainerView.userInteractionEnabled = YES;
 
 					if ([self.delegate respondsToSelector:@selector(mh_tabBarController:didSelectViewController:atIndex:)])
 						[self.delegate mh_tabBarController:self didSelectViewController:toViewController atIndex:newSelectedIndex];
@@ -338,8 +331,8 @@ static const NSInteger TagOffset = 1000;
 		{
 			[fromViewController.view removeFromSuperview];
 
-			toViewController.view.frame = contentContainerView.bounds;
-			[contentContainerView addSubview:toViewController.view];
+			toViewController.view.frame = self.contentContainerView.bounds;
+			[self.contentContainerView addSubview:toViewController.view];
 			[self centerIndicatorOnButton:toButton];
 
 			if ([self.delegate respondsToSelector:@selector(mh_tabBarController:didSelectViewController:atIndex:)])
@@ -415,9 +408,9 @@ static const NSInteger TagOffset = 1000;
 
     [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
                                      UIImage *imgMenu = currentTheme.menuLocalIcon;
-                                     localMenuButton.frame = CGRectMake(size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
+                                     self.localMenuButton.frame = CGRectMake(size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
                                      imgMenu = currentTheme.menuGlobalIcon;
-                                     globalMenuButton.frame = CGRectMake(1, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
+                                     self.globalMenuButton.frame = CGRectMake(1, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
                                  }
                                  completion:nil
      ];
@@ -427,7 +420,7 @@ static const NSInteger TagOffset = 1000;
 {
     [super viewWillAppear:animated];
     CGRect bounds = self.view.bounds;
-    UIButton *b = localMenuButton;
+    UIButton *b = self.localMenuButton;
     UIImage *imgMenu = currentTheme.menuLocalIcon;
     b.frame = CGRectMake(bounds.size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
 
@@ -436,13 +429,13 @@ static const NSInteger TagOffset = 1000;
     // XXX I'm not sure why you even have multiple local menu buttons, but
     // XXX you need to ensure that menuGlobal.menuLocalButton is set to the
     // XXX appropriate one!
-    if (localMenuButton != menuGlobal.menuLocalButton) {
+    if (self.localMenuButton != menuGlobal.menuLocalButton) {
         NSLog(@"Warning! menuGlobal doesn't have the same local menu button!");
-        menuGlobal.menuLocalButton = localMenuButton;
+        menuGlobal.menuLocalButton = self.localMenuButton;
     }
-    if (globalMenuButton != menuGlobal.menuGlobalButton) {
+    if (self.globalMenuButton != menuGlobal.menuGlobalButton) {
         NSLog(@"XXX menuGlobal doesn't have the same global menu button");
-        menuGlobal.menuGlobalButton = globalMenuButton;
+        menuGlobal.menuGlobalButton = self.globalMenuButton;
     }
 }
 
@@ -460,7 +453,7 @@ static const NSInteger TagOffset = 1000;
     [self.view addSubview:b];
 
     [b addTarget:menuGlobal action:@selector(buttonMenuGlobal:) forControlEvents:UIControlEventTouchDown];
-    globalMenuButton = b;
+    self.globalMenuButton = b;
     menuGlobal.menuGlobalButton = b;
     /***** Global Menu ****/
 
@@ -472,21 +465,21 @@ static const NSInteger TagOffset = 1000;
 
     [self.view addSubview:b];
     [b addTarget:menuGlobal action:@selector(buttonMenuLocal:) forControlEvents:UIControlEventTouchDown];
-    localMenuButton = b;
+    self.localMenuButton = b;
     menuGlobal.menuLocalButton = b;
     /***** Global Menu ****/
 }
 
 - (void)changeTheme
 {
-	NSArray *buttons = [tabButtonsContainerView subviews];
+	NSArray *buttons = [self.tabButtonsContainerView subviews];
     for (UIButton *button in buttons) {
         [button setBackgroundColor:currentTheme.tabBarBackgroundColor];
         [button setTitleColor:currentTheme.tabBarForegroundColor forState:UIControlStateNormal];
     }
-    tabButtonsContainerView.backgroundColor = currentTheme.tabBarBackgroundColor;
-    globalMenuButton.imageView.image = currentTheme.menuGlobalIcon;
-    localMenuButton.imageView.image = currentTheme.menuLocalIcon;
+    self.tabButtonsContainerView.backgroundColor = currentTheme.tabBarBackgroundColor;
+    self.globalMenuButton.imageView.image = currentTheme.menuGlobalIcon;
+    self.localMenuButton.imageView.image = currentTheme.menuLocalIcon;
 }
 
 @end
