@@ -13,6 +13,7 @@ Version 2.2(x)
     from 9 seconds to 2 seconds on a database with 30k waypoints
     and 300k logs.
   - The key/value table cells now properly adjust to the sides.
+  - Update to defaults for Xcode 9.3.
 
 Version 2.1(35)
 
