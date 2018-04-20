@@ -77,7 +77,7 @@
             "THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.",
      }];
     [self.texts addObject:@{
-        @"name": @"'Beeper' sound (original Beep-2.wav)",
+        @"name": @"Sound: 'Beeper' sound (original Beep-2.wav)",
         @"copyright": @"Copyright (c) SoundJay.com",
         @"url": @"https://www.soundjay.com/beep-sounds-1.html",
         @"license": @"You are allowed to use the sounds free of charge and royalty free in your projects (such as films, videos, games, presentations, animations, stage plays, radio plays, audio books, apps) be it for commercial or non-commercial purposes.",
@@ -107,7 +107,7 @@
             "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
      }];
     [self.texts addObject:@{
-        @"name": @"'Import Complete' sound",
+        @"name": @"Sound: 'Import Complete'",
         @"copyright": @"Copyright (c) 2011, Brandon Morris",
         @"url": @"http://opengameart.org/content/completion-sound",
         @"license": @"CC-BY 3.0",
@@ -310,6 +310,10 @@
         @"url": @"https://github.com/inamiy/YIPopupTextView)",
         @"license": @"`YIPopupTextView` is available under the [Beerware](http://en.wikipedia.org/wiki/Beerware) license. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return.",
      }];
+
+    [self.texts sortUsingComparator:^NSComparisonResult(NSDictionary *a, NSDictionary *b) {
+        return [[a objectForKey:@"name"] compare:[b objectForKey:@"name"]];
+    }];
 }
 
 #pragma clang diagnostic pop

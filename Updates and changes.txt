@@ -16,6 +16,7 @@ Version 2.2(x)
   - Update to defaults for Xcode 9.3.
   - KML files imported from Google Earth uses MultiGeometry. Support
     for this is now added.
+  - Sort items on Help -> About
 
 Version 2.1(35)
 
