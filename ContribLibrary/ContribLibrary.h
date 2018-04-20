@@ -60,6 +60,7 @@
 #import "ContribLibrary/SimpleKML/SimpleKMLFeature.h"
 #import "ContribLibrary/SimpleKML/SimpleKMLFolder.h"
 #import "ContribLibrary/SimpleKML/SimpleKMLDocument.h"
+#import "ContribLibrary/SimpleKML/SimpleKMLMultiGeometry.h"
 #import "ContribLibrary/SimpleKML/SimpleKMLPlacemark.h"
 #import "ContribLibrary/SimpleKML/SimpleKMLPolygon.h"
 #import "ContribLibrary/SimpleKML/SimpleKMLPoint.h"
