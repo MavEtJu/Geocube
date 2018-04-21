@@ -120,7 +120,7 @@ enum {
 - (void)uploadICloud:(NSString *)path vc:(UIViewController *)vc
 {
     NSURL *url = [[NSURL alloc] initFileURLWithPath:path isDirectory:NO];
-    UIDocumentMenuViewController *exportICloudMenu = [[UIDocumentMenuViewController alloc] initWithURL:url inMode:UIDocumentPickerModeExportToService];
+    UIDocumentPickerViewController *exportICloudMenu = [[UIDocumentPickerViewController alloc] initWithURL:url inMode:UIDocumentPickerModeExportToService];
     exportICloudMenu.delegate = self;
     exportICloudMenu.popoverPresentationController.sourceView = vc.view;
     exportICloudMenu.popoverPresentationController.sourceRect = vc.view.bounds;
@@ -131,7 +131,7 @@ enum {
 
 - (void)downloadICloud:(UIViewController *)vc
 {
-    UIDocumentMenuViewController *importICloudMenu = [[UIDocumentMenuViewController alloc] initWithDocumentTypes:@[@"public.item"] inMode:UIDocumentPickerModeImport];
+    UIDocumentPickerViewController *importICloudMenu = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:@[@"public.item"] inMode:UIDocumentPickerModeImport];
     importICloudMenu.delegate = self;
     importICloudMenu.popoverPresentationController.sourceView = vc.view;
     importICloudMenu.popoverPresentationController.sourceRect = vc.view.bounds;
@@ -141,34 +141,36 @@ enum {
     [ALERT_VC_RVC(tmc) presentViewController:importICloudMenu animated:YES completion:nil];
 }
 
-- (void)documentMenu:(UIDocumentMenuViewController *)documentMenu didPickDocumentPicker:(UIDocumentPickerViewController *)documentPicker
+- (void)documentMenu:(UIDocumentPickerViewController *)documentMenu didPickDocumentPicker:(UIDocumentPickerViewController *)documentPicker
 {
     documentPicker.delegate = self;
     [ALERT_VC_RVC(self.ICloudVC) presentViewController:documentPicker animated:YES completion:nil];
 }
 
-- (void)documentMenuWasCancelled:(UIDocumentMenuViewController *)documentMenu
+- (void)documentMenuWasCancelled:(UIDocumentPickerViewController *)documentMenu
 {
     NSLog(@"Foo");
     self.currentICloud = iCloudNone;
 }
 
-- (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentAtURL:(NSURL *)url
+- (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentsAtURLs:(NSArray<NSURL *> *)urls
 {
     if (self.currentICloud == iCloudDownload) {
-        NSError *error = nil;
-        NSURL *destinationName = [[NSURL alloc] initFileURLWithPath:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], [url lastPathComponent]] isDirectory:NO];
+        [urls enumerateObjectsUsingBlock:^(NSURL * _Nonnull url, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSError *error = nil;
+            NSURL *destinationName = [[NSURL alloc] initFileURLWithPath:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], [url lastPathComponent]] isDirectory:NO];
 
-        /* Remove this file is it already exists. Ignore the error. */
-        [fileManager removeItemAtURL:destinationName error:&error];
-        error = nil;
+            /* Remove this file is it already exists. Ignore the error. */
+            [fileManager removeItemAtURL:destinationName error:&error];
+            error = nil;
 
-        if ([fileManager copyItemAtURL:url toURL:destinationName error:&error] == YES) {
-            [MyTools messageBox:self.ICloudVC header:_(@"iosfiletransfers-Download complete") text:_(@"iosfiletransfers-You can find the saved file in the Files menu")];
-            [self.delegate IOSFileTransferRefreshFilelist];
-        } else {
-            [MyTools messageBox:self.ICloudVC header:_(@"iosfiletransfers-Download failed") text:[NSString stringWithFormat:(@"iosfiletransfers-Error message: %@"), error]];
-        }
+            if ([fileManager copyItemAtURL:url toURL:destinationName error:&error] == YES) {
+                [MyTools messageBox:self.ICloudVC header:_(@"iosfiletransfers-Download complete") text:_(@"iosfiletransfers-You can find the saved file in the Files menu")];
+                [self.delegate IOSFileTransferRefreshFilelist];
+            } else {
+                [MyTools messageBox:self.ICloudVC header:_(@"iosfiletransfers-Download failed") text:[NSString stringWithFormat:(@"iosfiletransfers-Error message: %@"), error]];
+            }
+        }];
         self.currentICloud = iCloudNone;
     }
 
