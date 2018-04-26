@@ -5,6 +5,8 @@ Version 2.3(x)
   Features:
 
   Fixes:
+  - In OpenStreetMap and ESRIWorldTopo maps, the KML data and the
+    track history are now drawn on top of the tiles loaded.
 
 Version 2.2(36)
 
