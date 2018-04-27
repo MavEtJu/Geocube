@@ -10,6 +10,8 @@ Version 2.3(x)
     track history are now drawn on top of the tiles loaded.
   - KML files support for MultiGeometry also added to Mapbox.
   - KML overlays are now loaded at the right time for Mapbox.
+  - Google Maps updated to 2.7.0
+  - Mapbox updated to 4.0.0.
 
 Version 2.2(36)
 
