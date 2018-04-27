@@ -91,6 +91,13 @@ foreach my $line (@lines) {
 		next;
 	}
 
+	# UPDATECOLOUR(distanceMetric, @"distance_metric")
+	if ($line =~ /UPDATECOLOUR.([^,]+), ..([^"]+)"/) {
+		$update_fields{$1} = 1;
+		$update_keys{$2} = 1;
+		next;
+	}
+
 	# - (void)mapTrackColourUpdate:(NSString *)value
 	# but not:
 	# - (void)doubleUpdate:(NSString *)key value:(double)value
