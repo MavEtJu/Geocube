@@ -26,6 +26,8 @@ typedef NS_ENUM(NSInteger, SettingsPicker) {
     SettingsMainColorPickerDestination,
     SettingsMainColorPickerCircleRing,
     SettingsMainColorPickerCircleFill,
+    SettingsMainColorPickerKMLBorder,
+    SettingsMainColorPickerKMLFill,
 };
 
 - (instancetype)init:(SettingsPicker)type;

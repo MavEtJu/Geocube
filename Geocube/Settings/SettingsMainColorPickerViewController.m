@@ -71,6 +71,14 @@
             l.text = _(@"settingsmaincolorpickerviewcontroller-Boundary Circle Fill");
             self.currentColour = configManager.mapCircleFillColour;
             break;
+        case SettingsMainColorPickerKMLBorder:
+            l.text = _(@"settingsmaincolorpickerviewcontroller-KML Border");
+            self.currentColour = configManager.mapKMLBorderColour;
+            break;
+        case SettingsMainColorPickerKMLFill:
+            l.text = _(@"settingsmaincolorpickerviewcontroller-KML Fill");
+            self.currentColour = configManager.mapKMLFillColour;
+            break;
         default:
             l.text = _(@"settingsmaincolorpickerviewcontroller-Wot?");
             break;
@@ -142,6 +150,12 @@
         case SettingsMainColorPickerCircleFill:
             [configManager mapCircleFillColourUpdate:hexString];
             break;
+        case SettingsMainColorPickerKMLBorder:
+            [configManager mapKMLBorderColourUpdate:hexString];
+            break;
+        case SettingsMainColorPickerKMLFill:
+            [configManager mapKMLFillColourUpdate:hexString];
+            break;
     }
 
     [self.navigationController popViewControllerAnimated:YES];
@@ -162,6 +176,12 @@
             break;
         case SettingsMainColorPickerCircleFill:
             [self.colorPickerView setColor:configManager.mapCircleFillColour];
+            break;
+        case SettingsMainColorPickerKMLBorder:
+            [self.colorPickerView setColor:configManager.mapKMLBorderColour];
+            break;
+        case SettingsMainColorPickerKMLFill:
+            [self.colorPickerView setColor:configManager.mapKMLFillColour];
             break;
     }
 }

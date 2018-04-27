@@ -64,7 +64,11 @@
     CHECK(@"map_track_colour", @"00F0F0");
     CHECK(@"map_destination_colour", @"FF0000");
     CHECK(@"map_circle_ring_colour", @"0000FF");
+    CHECK(@"map_circle_ring_size", @"1");
     CHECK(@"map_circle_fill_colour", @"000013");
+    CHECK(@"map_kml_fill_colour", @"0000FF");
+    CHECK(@"map_kml_border_colour", @"FF0000");
+    CHECK(@"map_kml_border_size", @"2");
 
     CHECK(@"compass_type", @"0");
     NSString *s = [NSString stringWithFormat:@"%ld", (long)THEME_IOS_NORMALSIZE];
@@ -300,6 +304,8 @@
     LOAD_BOOL   (self.serviceShowDeveloper, @"service_showdeveloper");
     LOAD_BOOL   (self.moveablesShowFound, @"moveables_showfound");
     LOAD_INTEGER(self.moveablesListSortBy, @"moveables_listsortby");
+    LOAD_INTEGER(self.mapKMLBorderSize, @"map_kml_border_size");
+    LOAD_INTEGER(self.mapCircleRingSize, @"map_circle_ring_size");
 
     /* Leftovers */
     self.currentTrack = [dbTrack dbGet:[[dbConfig dbGetByKey:@"track_current"].value integerValue]];
@@ -307,6 +313,8 @@
     self.mapDestinationColour = [ImageManager RGBtoColor:[dbConfig dbGetByKey:@"map_destination_colour"].value];
     self.mapCircleFillColour = [ImageManager RGBtoColor:[dbConfig dbGetByKey:@"map_circle_ring_colour"].value];
     self.mapCircleRingColour = [ImageManager RGBtoColor:[dbConfig dbGetByKey:@"map_circle_fill_colour"].value];
+    self.mapKMLBorderColour = [ImageManager RGBtoColor:[dbConfig dbGetByKey:@"map_kml_border_colour"].value];
+    self.mapKMLFillColour = [ImageManager RGBtoColor:[dbConfig dbGetByKey:@"map_kml_fill_colour"].value];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_resetpage"] == TRUE) {
         NSLog(@"Erasing page settings.");
@@ -390,6 +398,12 @@
     { \
         self.__field__ = value; \
         [self __func__ ## Update:__key__ value:value.__field2__]; \
+    }
+#define UPDATECOLOUR(__field__, __key__) \
+    - (void)__field__ ## Update:(NSString *)value \
+    { \
+        self.__field__ = [ImageManager RGBtoColor:value]; \
+        [self NSStringUpdate:__key__ value:value]; \
     }
 
 UPDATE3(BOOL, distanceMetric, @"distance_metric")
@@ -482,6 +496,8 @@ UPDATE3(NSInteger, coordinatesDecimalsDegrees, @"coordinates_decimals_degrees")
 UPDATE3(NSInteger, coordinatesDecimalsMinutes, @"coordinates_decimals_minutes")
 UPDATE3(NSInteger, coordinatesDecimalsSeconds, @"coordinates_decimals_seconds")
 UPDATE3(NSInteger, moveablesListSortBy, @"moveables_listsortby")
+UPDATE3(NSInteger, mapKMLBorderSize, @"map_kml_border_size")
+UPDATE3(NSInteger, mapCircleRingSize, @"map_circle_ring_size")
 
 UPDATE3(float, keeptrackTimeDeltaMin, @"keeptrack_timedelta_min")
 UPDATE3(float, keeptrackTimeDeltaMax, @"keeptrack_timedelta_max")
@@ -497,27 +513,11 @@ UPDATE4(NSTimeInterval, double, automaticDatabaseBackupLast, @"automaticdatabase
 
 UPDATE5(dbTrack *, NSId, currentTrack, @"track_current", _id)
 
-///////
-
-- (void)mapTrackColourUpdate:(NSString *)value
-{
-    self.mapTrackColour = [ImageManager RGBtoColor:value];
-    [self NSStringUpdate:@"map_track_colour" value:value];
-}
-- (void)mapDestinationColourUpdate:(NSString *)value
-{
-    self.mapDestinationColour = [ImageManager RGBtoColor:value];
-    [self NSStringUpdate:@"map_destination_colour" value:value];
-}
-- (void)mapCircleRingColourUpdate:(NSString *)value
-{
-    self.mapCircleRingColour = [ImageManager RGBtoColor:value];
-    [self NSStringUpdate:@"map_circle_ring_colour" value:value];
-}
-- (void)mapCircleFillColourUpdate:(NSString *)value
-{
-    self.mapCircleFillColour = [ImageManager RGBtoColor:value];
-    [self NSStringUpdate:@"map_circle_fill_colour" value:value];
-}
+UPDATECOLOUR(mapTrackColour, @"map_track_colour")
+UPDATECOLOUR(mapDestinationColour, @"map_destination_colour")
+UPDATECOLOUR(mapCircleRingColour, @"map_circle_ring_colour")
+UPDATECOLOUR(mapCircleFillColour, @"map_circle_fill_colour")
+UPDATECOLOUR(mapKMLFillColour, @"map_kml_fill_colour")
+UPDATECOLOUR(mapKMLBorderColour, @"map_kml_border_colour")
 
 @end

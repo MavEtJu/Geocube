@@ -298,6 +298,8 @@ enum sections {
     SECTION_MAPCOLOURS_DESTINATION,
     SECTION_MAPCOLOURS_CIRCLERING,
     SECTION_MAPCOLOURS_CIRCLEFILL,
+    SECTION_MAPCOLOURS_KMLBORDER,
+    SECTION_MAPCOLOURS_KMLFILL,
     SECTION_MAPCOLOURS_MAX,
 
     SECTION_MAPCACHE_ENABLED = 0,
@@ -593,6 +595,10 @@ enum sections {
                     CELL_RIGHTIMAGE(_(@"settingsmainviewcontroller-Boundary circle ring"), [ImageManager circleWithColour:configManager.mapCircleRingColour])
                 case SECTION_MAPCOLOURS_CIRCLEFILL:
                     CELL_RIGHTIMAGE(_(@"settingsmainviewcontroller-Boundary circle fill"), [ImageManager circleWithColour:configManager.mapCircleFillColour])
+                case SECTION_MAPCOLOURS_KMLBORDER:
+                    CELL_RIGHTIMAGE(_(@"settingsmainviewcontroller-KML border"), [ImageManager circleWithColour:configManager.mapKMLBorderColour])
+                case SECTION_MAPCOLOURS_KMLFILL:
+                    CELL_RIGHTIMAGE(_(@"settingsmainviewcontroller-KML polygon fill"), [ImageManager circleWithColour:configManager.mapKMLFillColour])
             }
             abort();
         }
@@ -1079,6 +1085,18 @@ SWITCH_UPDATE_RELOAD(updateServicesShowDeveloper, serviceShowDeveloper)
                 }
                 case SECTION_MAPCOLOURS_CIRCLEFILL: {
                     UIViewController *newController = [[SettingsMainColorPickerViewController alloc] init:SettingsMainColorPickerCircleFill];
+                    newController.edgesForExtendedLayout = UIRectEdgeNone;
+                    [self.navigationController pushViewController:newController animated:YES];
+                    break;
+                }
+                case SECTION_MAPCOLOURS_KMLBORDER: {
+                    UIViewController *newController = [[SettingsMainColorPickerViewController alloc] init:SettingsMainColorPickerKMLBorder];
+                    newController.edgesForExtendedLayout = UIRectEdgeNone;
+                    [self.navigationController pushViewController:newController animated:YES];
+                    break;
+                }
+                case SECTION_MAPCOLOURS_KMLFILL: {
+                    UIViewController *newController = [[SettingsMainColorPickerViewController alloc] init:SettingsMainColorPickerKMLFill];
                     newController.edgesForExtendedLayout = UIRectEdgeNone;
                     [self.navigationController pushViewController:newController animated:YES];
                     break;
