@@ -644,7 +644,7 @@ EMPTY_METHOD(mapViewDidLoad)
 {
     NSLog(@"lineWidthForPolylineAnnotation: %@", [annotation class]);
     if ([annotation isKindOfClass:[GCMGLPolylineCircleEdge class]] == YES)
-        return 1;
+        return configManager.mapCircleRingSize;
 
     if ([annotation isKindOfClass:[GCMGLPolylineLineToMe class]] == YES)
         return 3;
@@ -653,9 +653,9 @@ EMPTY_METHOD(mapViewDidLoad)
         return 3;
 
     if ([annotation isKindOfClass:[GCMGLPolylineKML class]] == YES)
-        return 2;
+        return configManager.mapKMLBorderSize;
     if ([annotation isKindOfClass:[GCMGLPolygonKML class]] == YES)
-        return 2;
+        return configManager.mapKMLBorderSize;
 
     return 100;
 }
@@ -691,9 +691,9 @@ EMPTY_METHOD(mapViewDidLoad)
         return configManager.mapTrackColour;
 
     if ([annotation isKindOfClass:[GCMGLPolygonKML class]] == YES)
-        return [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.75];
+        return configManager.mapKMLBorderColour;
     if ([annotation isKindOfClass:[GCMGLPolylineKML class]] == YES)
-        return [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.75];
+        return configManager.mapKMLBorderColour;
 
     return [UIColor whiteColor];
 }
@@ -705,9 +705,9 @@ EMPTY_METHOD(mapViewDidLoad)
         return configManager.mapCircleFillColour;
 
     if ([annotation isKindOfClass:[GCMGLPolygonKML class]] == YES)
-        return [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.25];
+        return configManager.mapKMLFillColour;
     if ([annotation isKindOfClass:[GCMGLPolylineKML class]] == YES)
-        return [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.25];
+        return configManager.mapKMLFillColour;
 
     return [UIColor colorWithRed:1 green:1 blue:1 alpha:0.05];
 }

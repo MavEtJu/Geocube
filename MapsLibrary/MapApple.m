@@ -396,31 +396,31 @@
             circleRenderer = [[MKCircleRenderer alloc] initWithCircle:overlay];
             circleRenderer.strokeColor = configManager.mapCircleRingColour;
             circleRenderer.fillColor = [configManager.mapCircleFillColour colorWithAlphaComponent:0.05];
-            circleRenderer.lineWidth = 1;
+            circleRenderer.lineWidth = configManager.mapCircleRingSize;
             *stop = YES;
         }
     }];
     if (circleRenderer != nil)
         return circleRenderer;
 
-    if ([overlay isKindOfClass:[MKPolygon class]] == YES) {
+    if ([overlay isKindOfClass:[GCMKPolygonKML class]] == YES) {
         MKPolygonRenderer *polygonRenderer = [[MKPolygonRenderer alloc] initWithPolygon:(MKPolygon *)overlay];
 
         // use some sensible defaults - normally, you'd probably look for LineStyle & PolyStyle in the KML
-        polygonRenderer.fillColor   = [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.25];
-        polygonRenderer.strokeColor = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.75];
-        polygonRenderer.lineWidth = 2.0;
+        polygonRenderer.fillColor   = [configManager.mapKMLFillColour colorWithAlphaComponent:0.25];
+        polygonRenderer.strokeColor = [configManager.mapKMLBorderColour colorWithAlphaComponent:0.75];
+        polygonRenderer.lineWidth = configManager.mapKMLBorderSize;
 
         return polygonRenderer;
     }
 
-    if ([overlay isKindOfClass:[MKPolyline class]] == YES) {
+    if ([overlay isKindOfClass:[GCMKPolylineKML class]] == YES) {
         MKPolylineRenderer *polylineRenderer = [[MKPolylineRenderer alloc] initWithPolyline:(MKPolyline *)overlay];
 
         // use some sensible defaults - normally, you'd probably look for LineStyle & PolyStyle in the KML
-        polylineRenderer.fillColor   = [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.25];
-        polylineRenderer.strokeColor = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.75];
-        polylineRenderer.lineWidth = 2.0;
+        polylineRenderer.fillColor   = [configManager.mapKMLFillColour colorWithAlphaComponent:0.25];
+        polylineRenderer.strokeColor = [configManager.mapKMLBorderColour colorWithAlphaComponent:0.75];
+        polylineRenderer.lineWidth = configManager.mapKMLBorderSize;
 
         return polylineRenderer;
     }
@@ -745,7 +745,7 @@
         [coords enumerateObjectsUsingBlock:^(CLLocation * _Nonnull coordinate, NSUInteger idx, BOOL * _Nonnull stop) {
             points[i++] = coordinate.coordinate;
         }];
-        MKPolyline *overlayPolyline = [MKPolyline polylineWithCoordinates:points count:i];
+        GCMKPolylineKML *overlayPolyline = [GCMKPolylineKML polylineWithCoordinates:points count:i];
         free(points);
 
         [self.mapView addOverlay:overlayPolyline];
@@ -777,7 +777,7 @@
                 points[i++] = coordinate.coordinate;
 
             // create a polygon annotation for it
-            MKPolygon *overlayPolygon = [MKPolygon polygonWithCoordinates:points count:[outerRing.coordinates count]];
+            GCMKPolygonKML *overlayPolygon = [GCMKPolygonKML polygonWithCoordinates:points count:[outerRing.coordinates count]];
 
             [self.mapView addOverlay:overlayPolygon];
             [self.KMLfeatures addObject:overlayPolygon];
@@ -798,7 +798,7 @@
             points[i++] = coordinate.coordinate;
 
         // create a polygon annotation for it
-        MKPolygon *overlayPolygon = [MKPolygon polygonWithCoordinates:points count:[outerRing.coordinates count]];
+        GCMKPolygonKML *overlayPolygon = [GCMKPolygonKML polygonWithCoordinates:points count:[outerRing.coordinates count]];
 
         [self.mapView addOverlay:overlayPolygon];
         [self.KMLfeatures addObject:overlayPolygon];
