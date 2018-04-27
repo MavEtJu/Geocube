@@ -642,7 +642,6 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (CGFloat)mapView:(MGLMapView *)mapView lineWidthForPolylineAnnotation:(nonnull MGLPolyline *)annotation
 {
-    NSLog(@"lineWidthForPolylineAnnotation: %@", [annotation class]);
     if ([annotation isKindOfClass:[GCMGLPolylineCircleEdge class]] == YES)
         return configManager.mapCircleRingSize;
 
@@ -662,7 +661,6 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (CGFloat)mapView:(MGLMapView *)mapView alphaForShapeAnnotation:(MGLShape *)annotation
 {
-    NSLog(@"alphaForShapeAnnotation: %@", [annotation class]);
     if ([annotation isKindOfClass:[GCMGLPolygonCircleFill class]] == YES)
         return 0.05;
 
@@ -676,7 +674,6 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (UIColor *)mapView:(MGLMapView *)mapView strokeColorForShapeAnnotation:(MGLShape *)annotation
 {
-    NSLog(@"strokeColorForShapeAnnotation: %@", [annotation class]);
     // Set the stroke color for shape annotations
     if (annotation == self.lineWaypointToMe)
         return [UIColor redColor];
@@ -700,7 +697,6 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (UIColor *)mapView:(MGLMapView *)mapView fillColorForPolygonAnnotation:(MGLPolygon *)annotation
 {
-    NSLog(@"fillColorForPolygonAnnotation: %@", [annotation class]);
     if ([annotation isKindOfClass:[GCMGLPolygonCircleFill class]] == YES)
         return configManager.mapCircleFillColour;
 
