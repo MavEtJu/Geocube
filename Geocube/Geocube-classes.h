@@ -93,6 +93,8 @@
 @class GCMGLPolylineTrack;
 @class GCMKCenteredAnnotation;
 @class GCMKCircle;
+@class GCMKPolygonKML;
+@class GCMKPolylineKML;
 @class GCMutableArray;
 @class GCMutableURLRequest;
 @class GCOAuthBlackbox;

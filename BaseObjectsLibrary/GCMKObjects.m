@@ -20,25 +20,22 @@
  */
 
 @interface GCMKCircle ()
-
 @end
-
 @implementation GCMKCircle
-
 @end
-
 @interface GCWaypointAnnotation ()
-
 @end
-
 @implementation GCWaypointAnnotation
-
 @end
-
 @interface GCMKCenteredAnnotation ()
-
 @end
-
 @implementation GCMKCenteredAnnotation
-
+@end
+@interface GCMKPolygonKML ()
+@end
+@implementation GCMKPolygonKML
+@end
+@interface GCMKPolylineKML ()
+@end
+@implementation GCMKPolylineKML
 @end

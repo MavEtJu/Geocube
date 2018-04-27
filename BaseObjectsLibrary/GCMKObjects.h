@@ -34,3 +34,11 @@
 @interface GCMKCenteredAnnotation : MKPointAnnotation
 
 @end
+
+@interface GCMKPolylineKML : MKPolyline
+
+@end
+
+@interface GCMKPolygonKML : MKPolygon
+
+@end
