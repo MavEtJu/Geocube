@@ -8,6 +8,7 @@ Version 2.3(x)
   - In OpenStreetMap and ESRIWorldTopo maps, the KML data and the
     track history are now drawn on top of the tiles loaded.
   - KML files support for MultiGeometry also added to Mapbox.
+  - KML overlays are now loaded at the right time for Mapbox.
 
 Version 2.2(36)
 

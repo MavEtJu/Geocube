@@ -104,7 +104,6 @@ EMPTY_METHOD(mapViewDidLoad)
         [self showHistory];
 
     self.KMLfeatures = [NSMutableArray arrayWithCapacity:3];
-    [self loadKMLs];
 }
 
 - (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
@@ -592,8 +591,10 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (void)mapViewDidFinishLoadingMap:(nonnull MGLMapView *)mapView
 {
+    [self loadKMLs];
+
     if (self.mapLoaded == NO)
-        [self.mapView setZoomLevel:15];
+        [self.mapView setZoomLevel:13];
     self.mapLoaded = YES;
 }
 
@@ -641,8 +642,9 @@ EMPTY_METHOD(mapViewDidLoad)
 
 - (CGFloat)mapView:(MGLMapView *)mapView lineWidthForPolylineAnnotation:(nonnull MGLPolyline *)annotation
 {
+    NSLog(@"lineWidthForPolylineAnnotation: %@", [annotation class]);
     if ([annotation isKindOfClass:[GCMGLPolylineCircleEdge class]] == YES)
-        return 3;
+        return 1;
 
     if ([annotation isKindOfClass:[GCMGLPolylineLineToMe class]] == YES)
         return 3;
@@ -650,19 +652,31 @@ EMPTY_METHOD(mapViewDidLoad)
     if ([annotation isKindOfClass:[GCMGLPolylineTrack class]] == YES)
         return 3;
 
+    if ([annotation isKindOfClass:[GCMGLPolylineKML class]] == YES)
+        return 2;
+    if ([annotation isKindOfClass:[GCMGLPolygonKML class]] == YES)
+        return 2;
+
     return 100;
 }
 
 - (CGFloat)mapView:(MGLMapView *)mapView alphaForShapeAnnotation:(MGLShape *)annotation
 {
+    NSLog(@"alphaForShapeAnnotation: %@", [annotation class]);
     if ([annotation isKindOfClass:[GCMGLPolygonCircleFill class]] == YES)
         return 0.05;
+
+    if ([annotation isKindOfClass:[GCMGLPolylineKML class]] == YES)
+        return 0.75;
+    if ([annotation isKindOfClass:[GCMGLPolygonKML class]] == YES)
+        return 0.75;
 
     return 1;
 }
 
 - (UIColor *)mapView:(MGLMapView *)mapView strokeColorForShapeAnnotation:(MGLShape *)annotation
 {
+    NSLog(@"strokeColorForShapeAnnotation: %@", [annotation class]);
     // Set the stroke color for shape annotations
     if (annotation == self.lineWaypointToMe)
         return [UIColor redColor];
@@ -676,13 +690,24 @@ EMPTY_METHOD(mapViewDidLoad)
     if ([annotation isKindOfClass:[GCMGLPolylineTrack class]] == YES)
         return configManager.mapTrackColour;
 
+    if ([annotation isKindOfClass:[GCMGLPolygonKML class]] == YES)
+        return [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.75];
+    if ([annotation isKindOfClass:[GCMGLPolylineKML class]] == YES)
+        return [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.75];
+
     return [UIColor whiteColor];
 }
 
 - (UIColor *)mapView:(MGLMapView *)mapView fillColorForPolygonAnnotation:(MGLPolygon *)annotation
 {
+    NSLog(@"fillColorForPolygonAnnotation: %@", [annotation class]);
     if ([annotation isKindOfClass:[GCMGLPolygonCircleFill class]] == YES)
         return configManager.mapCircleFillColour;
+
+    if ([annotation isKindOfClass:[GCMGLPolygonKML class]] == YES)
+        return [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.25];
+    if ([annotation isKindOfClass:[GCMGLPolylineKML class]] == YES)
+        return [UIColor colorWithRed:0.0 green:0.0 blue:1.0 alpha:0.25];
 
     return [UIColor colorWithRed:1 green:1 blue:1 alpha:0.05];
 }
