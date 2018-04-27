@@ -248,4 +248,8 @@
 "settingsmainviewcontroller-Moveables" = "Moveables";
 "settingsmainviewcontroller-Sort moveables by" = "Sort moveables by";
 
+"settingsmaincolorpickerviewcontroller-KML Border" = "KML Border";
+"settingsmaincolorpickerviewcontroller-KML Fill" = "KML Fill";
+"settingsmainviewcontroller-KML border" = "KML border";
+"settingsmainviewcontroller-KML polygon fill" = "KML polygon fill";
 
