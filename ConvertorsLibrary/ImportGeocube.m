@@ -593,6 +593,10 @@ typedef NS_ENUM(NSInteger, Type) {
         BOOL hasBoundary = NO;
         if (b != nil)
             hasBoundary = [b boolValue];
+        b = [type objectForKey:@"hasCodeword"];
+        BOOL hasCodeword = NO;
+        if (b != nil)
+            hasCodeword = [b boolValue];
 
         dbType *t = [dbType dbGetByMajor:major minor:minor];
         if (t != nil) {
@@ -601,6 +605,7 @@ typedef NS_ENUM(NSInteger, Type) {
             t.icon = icon;
             t.pin = [dbPin dbGet:pin];
             t.hasBoundary = hasBoundary;
+            t.hasCodeword = hasCodeword;
             [t finish];
             [t dbUpdate];
         } else {
@@ -610,6 +615,7 @@ typedef NS_ENUM(NSInteger, Type) {
             t.icon = icon;
             t.pin = [dbPin dbGet:pin];
             t.hasBoundary = hasBoundary;
+            t.hasCodeword = hasCodeword;
             [t finish];
             [t dbCreate];
             [dbc typeAdd:t];

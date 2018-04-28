@@ -26,6 +26,7 @@
 @property (nonatomic, retain) dbLogString *logstring;
 @property (nonatomic, retain) NSString *note;
 @property (nonatomic, retain) NSString *date;
+@property (nonatomic, retain) NSString *codeword;
 
 @property (nonatomic, retain) dbImage *image;
 @property (nonatomic, retain) NSString *imageCaption;
@@ -61,6 +62,7 @@ enum {
     SECTION_EXTRADETAILS_RATING,
     SECTION_EXTRADETAILS_TRACKABLE,
     SECTION_EXTRADETAILS_COORDINATES,
+    SECTION_EXTRADETAILS_CODEWORD,
     SECTION_EXTRADETAILS_MAX,
 
     SECTION_SUBMIT_UPLOAD = 0,
@@ -322,6 +324,24 @@ enum {
                     break;
                 }
 
+                case SECTION_EXTRADETAILS_CODEWORD: {
+                    GCTableViewCellWithSubtitle *c = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
+                    c.textLabel.text = _(@"waypointlogviewcontroller-Codeword");
+                    if ([self.waypoint.account.remoteAPI supportsLoggingCodeword] == NO) {
+                        c.userInteractionEnabled = NO;
+                        c.textLabel.textColor = currentTheme.labelTextColorDisabled;
+                        c.detailTextLabel.text = @"";
+                    } else {
+                        if (IS_EMPTY(self.codeword) == YES)
+                            c.detailTextLabel.text = _(@"waypointlogviewcontroller-(None)");
+                        else
+                            c.detailTextLabel.text = self.codeword;
+                    }
+
+                    cell = c;
+                    break;
+                }
+
             }
             break;
         }
@@ -404,6 +424,9 @@ enum {
                     break;
                 case SECTION_EXTRADETAILS_COORDINATES:
                     [self changeCoordinates];
+                    break;
+                case SECTION_EXTRADETAILS_CODEWORD:
+                    [self changeCodeword];
                     break;
             }
             break;
@@ -644,6 +667,41 @@ enum {
     }
 }
 
+- (void)changeCodeword
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:_(@"waypointlogviewcontroller-Update codeword")
+                                message:_(@"waypointlogviewcontroller-Please enter the codeword")
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *OkButton = [UIAlertAction
+                               actionWithTitle:_(@"OK")
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction *action) {
+                                   //Do Some action
+                                   UITextField *tf = [alert.textFields objectAtIndex:0];
+                                   NSString *field1 = tf.text;
+                                   NSLog(@"Field 1: '%@'", field1);
+
+                                   self.codeword = field1;
+                                   [self.tableView reloadData];
+                               }];
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:OkButton];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = self.codeword;
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
 - (void)submitLog
 {
     // Keep record of logged waypoints
@@ -668,6 +726,14 @@ enum {
         return;
     }
 
+    // Check codeword:
+    // - When the waypoint type supports it
+    // - When it is a "found" type of log.
+    if (self.waypoint.wpt_type.hasCodeword == YES && IS_EMPTY(self.codeword) && self.logstring.defaultFound == YES) {
+        [MyTools messageBox:self header:_(@"waypointlogviewcontroller-Please fill in the codeword") text:_(@"waypointlogviewcontroller-A codeword is required for this kind of cache when you log it as found.")];
+        return;
+    }
+
     self.note = [self replaceMacros:self.note];
 
     BACKGROUND(submitLogBackground, nil);
@@ -681,7 +747,7 @@ enum {
     [bezelManager showBezel:self];
     [bezelManager setText:_(@"waypointlogviewcontroller-Uploading log")];
 
-    NSInteger retValue = [self.waypoint.account.remoteAPI CreateLogNote:self.logstring waypoint:self.waypoint dateLogged:self.date note:self.note favourite:self.fp image:self.image imageCaption:self.imageCaption imageDescription:self.imageLongText rating:self.ratingSelected trackables:self.trackables coordinates:self.coordinates infoItem:nil];
+    NSInteger retValue = [self.waypoint.account.remoteAPI CreateLogNote:self.logstring waypoint:self.waypoint dateLogged:self.date note:self.note favourite:self.fp image:self.image imageCaption:self.imageCaption imageDescription:self.imageLongText rating:self.ratingSelected trackables:self.trackables coordinates:self.coordinates codeword:self.codeword infoItem:nil];
 
     [bezelManager removeBezel];
 

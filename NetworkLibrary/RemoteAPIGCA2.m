@@ -37,6 +37,7 @@
 - (BOOL)supportsLoggingPhotos { return YES; }
 - (BOOL)supportsLoggingCoordinates { return YES; }
 - (BOOL)supportsLoggingTrackables { return NO; }
+- (BOOL)supportsLoggingCodeword { return YES; }
 - (BOOL)supportsLoggingRating { return YES; }
 - (NSRange)supportsLoggingRatingRange { return NSMakeRange(1, 5); }
 
@@ -127,7 +128,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables coordinates:(CLLocationCoordinate2D)coordinates infoItem:(InfoItem *)iid
+- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables coordinates:(CLLocationCoordinate2D)coordinates codeword:(NSString *)codeword infoItem:(InfoItem *)iid
 {
     NSData *imgdata = nil;
     if (image != nil)
@@ -138,7 +139,7 @@
         [n appendFormat:@"\n*Overall Experience: %ld*\n", (long)rating];
     if (favourite == YES)
         [n appendFormat:@"\n*Recommended*\n"];
-    GCDictionaryGCA2 *json = [self.gca2 api_services_logs_submit:waypoint logtype:logstring.logString comment:n when:dateLogged rating:rating recommended:favourite coordinates:coordinates infoItem:iid];
+    GCDictionaryGCA2 *json = [self.gca2 api_services_logs_submit:waypoint logtype:logstring.logString comment:n when:dateLogged rating:rating recommended:favourite coordinates:coordinates codeword:codeword infoItem:iid];
     GCA2_CHECK_STATUS(json, @"CreateLogNote/log", REMOTEAPI_CREATELOG_LOGFAILED);
 
     GCA2_GET_VALUE(json, NSDictionary, data, @"data", @"CreateLogNote/log", REMOTEAPI_CREATELOG_LOGFAILED);

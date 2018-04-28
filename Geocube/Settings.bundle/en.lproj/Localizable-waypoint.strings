@@ -170,6 +170,12 @@
 "waypointlogviewcontroller-visited" = "visited";
 "waypointlogviewcontroller-(none)" = "(none)";
 "waypointlogviewcontroller-(none yet)" = "(none yet)";
+"waypointlogviewcontroller-(None)" = "(None)";
+"waypointlogviewcontroller-A codeword is required for this kind of cache when you log it as found." = "A codeword is required for this kind of cache when you log it as found.";
+"waypointlogviewcontroller-Codeword" = "Codeword";
+"waypointlogviewcontroller-Please enter the codeword" = "Please enter the codeword";
+"waypointlogviewcontroller-Please fill in the codeword" = "Please fill in the codeword";
+"waypointlogviewcontroller-Update codeword" = "Update codeword";
 
 /* Waypoint sorter */
 "waypointsorter-Code (ascending)" = "Code (ascending)";

@@ -12,13 +12,13 @@ insert into config(key, value) values("url_externalmaps", "https://geocube.mavet
 insert into config(key, value) values("url_countries", "https://geocube.mavetju.org/geocube_countries.6.geocube");
 insert into config(key, value) values("url_states", "https://geocube.mavetju.org/geocube_states.6.geocube");
 insert into config(key, value) values("url_attributes", "https://geocube.mavetju.org/geocube_attributes.6.geocube");
-insert into config(key, value) values("url_types", "https://geocube.mavetju.org/geocube_types.6.geocube");
+insert into config(key, value) values("url_types", "https://geocube.mavetju.org/geocube_types.7.geocube");
 insert into config(key, value) values("url_pins", "https://geocube.mavetju.org/geocube_pins.6.geocube");
 insert into config(key, value) values("url_bookmarks", "https://geocube.mavetju.org/geocube_bookmarks.6.geocube");
 insert into config(key, value) values("url_containers", "https://geocube.mavetju.org/geocube_containers.6.geocube");
 insert into config(key, value) values("url_logstrings", "https://geocube.mavetju.org/geocube_logstrings.6.geocube");
 insert into config(key, value) values("url_versions", "https://geocube.mavetju.org/geocube_versions.geocube");
-insert into config(key, value) values("version", "72");
+insert into config(key, value) values("version", "73");
 
 create table filters (
     id integer primary key,
@@ -167,7 +167,8 @@ create table types (
     type_minor text,
     icon integer,
     pin_id integer,	-- points to pins(id)
-    has_boundary bool
+    has_boundary bool,
+    has_codeword bool
 );
 create index types_idx_id on types(id);
 

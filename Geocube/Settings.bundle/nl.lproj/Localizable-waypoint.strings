@@ -151,6 +151,12 @@
 "waypointlogviewcontroller-No rating selected" = "Geen geselecteerd";
 "waypointlogviewcontroller-Photo" = "Foto";
 "waypointlogviewcontroller-Please enter the coordinates.__Expected format: %@" = "Vul de coördinaten in.\nVerwachte formaat: %@";
+"waypointlogviewcontroller-(None)" = "(None)";
+"waypointlogviewcontroller-A codeword is required for this kind of cache when you log it as found." = "Een codewoord is nodig voor dit soort waypoints als je het logs als gevonden.";
+"waypointlogviewcontroller-Codeword" = "Codewoord";
+"waypointlogviewcontroller-Please enter the codeword" = "Vul het codewoord in";
+"waypointlogviewcontroller-Please fill in the codeword" = "Vul het codewoord in";
+"waypointlogviewcontroller-Update codeword" = "Verander het codewoord";
 
 "waypointlogviewcontroller-Please fill in the comment" = "Vul het commentaar in";
 "waypointlogviewcontroller-Rating" = "Beoordeling";

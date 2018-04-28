@@ -890,6 +890,14 @@
     @"create index logs_idx_loggerlogstring on logs(logger_id, log_string_id)",
     ];
     [self.upgradeSteps addObject:a];
+
+    // Version 73
+    a = @[
+    @"update config set value = 'https://geocube.mavetju.org/geocube_types.7.geocube' where key = 'url_types'",
+    @"alter table types add column has_codeword bool",
+    @"update types set has_codeword = 0"
+    ];
+    [self.upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

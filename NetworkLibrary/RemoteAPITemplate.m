@@ -45,6 +45,7 @@
 - NEEDS_OVERLOADING_BOOL(supportsLoggingPhotos)
 - NEEDS_OVERLOADING_BOOL(supportsLoggingCoordinates)
 - NEEDS_OVERLOADING_BOOL(supportsLoggingTrackables)
+- NEEDS_OVERLOADING_BOOL(supportsLoggingCodeword)
 - NEEDS_OVERLOADING_BOOL(supportsLoggingRating)
 - NEEDS_OVERLOADING_NSRANGE(supportsLoggingRatingRange)
 - NEEDS_OVERLOADING_BOOL(supportsLoadWaypoint)
@@ -336,7 +337,7 @@
     return REMOTEAPI_NOTPROCESSED;
 }
 
-- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables coordinates:(CLLocationCoordinate2D)coordinates infoItem:(InfoItem *)iid
+- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables coordinates:(CLLocationCoordinate2D)coordinates codeword:(NSString *)codeword infoItem:(InfoItem *)iid
 {
     [self setAPIError:@"Not implemented" error:REMOTEAPI_NOTPROCESSED];
     return REMOTEAPI_NOTPROCESSED;

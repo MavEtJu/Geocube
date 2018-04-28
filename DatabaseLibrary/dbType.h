@@ -27,6 +27,7 @@
 @property (nonatomic) NSInteger icon;
 @property (nonatomic) dbPin *pin;
 @property (nonatomic) BOOL hasBoundary;
+@property (nonatomic) BOOL hasCodeword;
 @property (nonatomic) BOOL selected;
 
 + (NSArray<dbType *> *)dbAll;

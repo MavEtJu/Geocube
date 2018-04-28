@@ -38,13 +38,14 @@ TABLENAME(@"types")
     ASSERT_FINISHED;
     ASSERT_SELF_FIELD_EXISTS(pin);
     @synchronized(db) {
-        DB_PREPARE(@"insert into types(type_major, type_minor, icon, pin_id, has_boundary) values(?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into types(type_major, type_minor, icon, pin_id, has_boundary, has_codeword) values(?, ?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT(1, self.type_major);
         SET_VAR_TEXT(2, self.type_minor);
         SET_VAR_INT (3, self.icon);
         SET_VAR_INT (4, self.pin._id);
         SET_VAR_BOOL(5, self.hasBoundary);
+        SET_VAR_BOOL(6, self.hasCodeword);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(self._id);
@@ -58,14 +59,15 @@ TABLENAME(@"types")
 {
     ASSERT_FINISHED;
     @synchronized(db) {
-        DB_PREPARE(@"update types set type_major = ?, type_minor = ?, icon = ?, pin_id = ?, has_boundary = ? where id = ?");
+        DB_PREPARE(@"update types set type_major = ?, type_minor = ?, icon = ?, pin_id = ?, has_boundary = ?, has_codeword = ? where id = ?");
 
         SET_VAR_TEXT(1, self.type_major);
         SET_VAR_TEXT(2, self.type_minor);
         SET_VAR_INT (3, self.icon);
         SET_VAR_INT (4, self.pin._id);
-        SET_VAR_INT (5, self.hasBoundary);
-        SET_VAR_INT (6, self._id);
+        SET_VAR_BOOL(5, self.hasBoundary);
+        SET_VAR_BOOL(6, self.hasCodeword);
+        SET_VAR_INT (7, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -77,7 +79,7 @@ TABLENAME(@"types")
     NSMutableArray<dbType *> *ts = [[NSMutableArray alloc] initWithCapacity:20];
     NSId i;
 
-    NSMutableString *sql = [NSMutableString stringWithString:@"select id, type_major, type_minor, icon, pin_id, has_boundary from types "];
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, type_major, type_minor, icon, pin_id, has_boundary, has_codeword from types "];
     if (where != nil)
         [sql appendString:where];
 
@@ -93,6 +95,7 @@ TABLENAME(@"types")
             INT_FETCH (4, i);
             t.pin = [dbc pinGet:i];
             BOOL_FETCH(5, t.hasBoundary);
+            BOOL_FETCH(6, t.hasCodeword);
             [t finish];
             [ts addObject:t];
         }

@@ -37,6 +37,7 @@
 - (BOOL)supportsLoggingPhotos { return YES; }
 - (BOOL)supportsLoggingCoordinates { return YES; }
 - (BOOL)supportsLoggingTrackables { return YES; }
+- (BOOL)supportsLoggingCodeword { return NO; }
 - (BOOL)supportsLoggingRating { return NO; }
 - (NSRange)supportsLoggingRatingRange { return NSMakeRange(0, 0); }
 
@@ -206,7 +207,7 @@
     return REMOTEAPI_OK;
 }
 
-- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables coordinates:(CLLocationCoordinate2D)coordinates infoItem:(InfoItem *)iid
+- (RemoteAPIResult)CreateLogNote:(dbLogString *)logstring waypoint:(dbWaypoint *)waypoint dateLogged:(NSString *)dateLogged note:(NSString *)note favourite:(BOOL)favourite image:(dbImage *)image imageCaption:(NSString *)imageCaption imageDescription:(NSString *)imageDescription rating:(NSInteger)rating trackables:(NSArray<dbTrackable *> *)trackables coordinates:(CLLocationCoordinate2D)coordinates codeword:(NSString *)codeword infoItem:(InfoItem *)iid
 {
     NSData *imgdata = nil;
     if (image != nil)

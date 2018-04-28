@@ -322,7 +322,7 @@
     return [self performURLRequest:req infoItem:iid];
 }
 
-- (GCDictionaryGCA2 *)api_services_logs_submit:(dbWaypoint *)wp logtype:(NSString *)logtype comment:(NSString *)comment when:(NSString *)dateLogged rating:(NSInteger)rating recommended:(BOOL)recommended coordinates:(CLLocationCoordinate2D)coordinates infoItem:(InfoItem *)iid
+- (GCDictionaryGCA2 *)api_services_logs_submit:(dbWaypoint *)wp logtype:(NSString *)logtype comment:(NSString *)comment when:(NSString *)dateLogged rating:(NSInteger)rating recommended:(BOOL)recommended coordinates:(CLLocationCoordinate2D)coordinates codeword:(NSString *)codeword infoItem:(InfoItem *)iid
 {
     NSLog(@"api_services_logs_submit:%@", wp.wpt_name);
 
@@ -334,6 +334,8 @@
     [ps appendFormat:@"&logtype=%@", [MyTools urlEncode:logtype]];
     [ps appendFormat:@"&comment=%@", [MyTools urlEncode:comment]];
     [ps appendFormat:@"&when=%@", [MyTools urlEncode:dateLogged]];
+    if (IS_EMPTY(codeword) == NO)
+        [ps appendFormat:@"&password=%@", [MyTools urlEncode:codeword]];
     if (coordinates.latitude != 0 && coordinates.longitude != 0)
         [ps appendFormat:@"&coordinates=%@", [MyTools urlEncode:[NSString stringWithFormat:@"%f %f", coordinates.latitude, coordinates.latitude]]];
 
