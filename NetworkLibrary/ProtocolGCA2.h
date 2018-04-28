@@ -30,6 +30,7 @@
 - (GCDictionaryGCA2 *)api_services_search_bbox:(GCBoundingBox *)bb infoItem:(InfoItem *)iid;
 - (GCDictionaryGCA2 *)api_services_logs_submit:(dbWaypoint *)wp logtype:(NSString *)logtype comment:(NSString *)comment when:(NSString *)dateLogged rating:(NSInteger)rating recommended:(BOOL)recommended coordinates:(CLLocationCoordinate2D)coordinates codeword:(NSString *)codeword infoItem:(InfoItem *)iid;
 - (GCDictionaryGCA2 *)api_services_logs_images_add:(NSNumber *)logid data:(NSData *)imgdata caption:(NSString *)imageCaption description:(NSString *)imageDescription infoItem:(InfoItem *)iid;
+- (GCDictionaryGCA2 *)api_services_rating_submit:(dbWaypoint *)wp rating:(NSInteger)rating infoItem:(InfoItem *)iid;
 - (GCDictionaryGCA2 *)api_services_caches_query_list:(InfoItem *)iid public:(BOOL)public;
 - (GCDictionaryGCA2 *)api_services_caches_query_geocaches:(NSString *)queryId infoItem:(InfoItem *)iid;
 

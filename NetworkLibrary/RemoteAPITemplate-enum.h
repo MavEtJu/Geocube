@@ -32,6 +32,7 @@ typedef NS_ENUM(NSInteger, RemoteAPIResult) {
     REMOTEAPI_USERSTATISTICS_LOADFAILED,    // Unable to load user statistics
     REMOTEAPI_CREATELOG_LOGFAILED,          // Unable to create the log
     REMOTEAPI_CREATELOG_IMAGEFAILED,        // Unable to upload the image
+    REMOTEAPI_CREATELOG_RATINGFAILED,       // Unable to rate the waypoint
     REMOTEAPI_LOADWAYPOINT_LOADFAILED,      // Unable to load the waypoint
     REMOTEAPI_LOADWAYPOINTS_LOADFAILED,     // Unable to load the waypoints
     REMOTEAPI_LISTQUERIES_LOADFAILED,       // Unable to load the list of queries

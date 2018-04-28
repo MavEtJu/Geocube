@@ -135,8 +135,6 @@
         imgdata = [NSData dataWithContentsOfFile:[MyTools ImageFile:image.datafile]];
 
     NSMutableString *n = [NSMutableString stringWithString:note];
-    if (rating != 0)
-        [n appendFormat:@"\n*Overall Experience: %ld*\n", (long)rating];
     if (favourite == YES)
         [n appendFormat:@"\n*Recommended*\n"];
     GCDictionaryGCA2 *json = [self.gca2 api_services_logs_submit:waypoint logtype:logstring.logString comment:n when:dateLogged rating:rating recommended:favourite coordinates:coordinates codeword:codeword infoItem:iid];
@@ -144,6 +142,11 @@
 
     GCA2_GET_VALUE(json, NSDictionary, data, @"data", @"CreateLogNote/log", REMOTEAPI_CREATELOG_LOGFAILED);
     GCA2_GET_VALUE(data, NSNumber, logid, @"log_uuid", @"CreateLogNote/log", REMOTEAPI_CREATELOG_LOGFAILED);
+
+    if (rating != 0) {
+        json = [self.gca2 api_services_rating_submit:waypoint rating:rating infoItem:iid];
+        GCA2_CHECK_STATUS(json, @"CreateLogNote/rating", REMOTEAPI_CREATELOG_IMAGEFAILED);
+    }
 
     if (image != nil) {
         json = [self.gca2 api_services_logs_images_add:logid data:imgdata caption:imageCaption description:imageDescription infoItem:iid];

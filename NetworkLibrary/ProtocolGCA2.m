@@ -350,6 +350,26 @@
     return [self performURLRequest:req infoItem:iid];
 }
 
+- (GCDictionaryGCA2 *)api_services_rating_submit:(dbWaypoint *)wp rating:(NSInteger)rating infoItem:(InfoItem *)iid
+{
+    NSLog(@"api_services_rating_submit:%@", wp.wpt_name);
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:10];
+    if (IS_EMPTY(self.key) == YES)
+        self.key = keyManager.gca_api;
+    [params setObject:[MyTools urlEncode:self.key] forKey:@"consumer_key"];
+    [params setObject:[MyTools urlEncode:wp.wpt_name] forKey:@"cache_code"];
+    [params setObject:@"add" forKey:@"action"];
+    [params setObject:@"overallexperience" forKey:@"type"];
+    [params setObject:[NSNumber numberWithInteger:rating] forKey:@"value"];
+
+    NSString *urlString = [self prepareURLString:@"/rating/submit" params:params];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+
+    return [self performURLRequest:req infoItem:iid];
+}
+
 - (GCDictionaryGCA2 *)api_services_logs_images_add:(NSNumber *)logid data:(NSData *)imgdata caption:(NSString *)imageCaption description:(NSString *)imageDescription infoItem:(InfoItem *)iid
 {
     NSLog(@"api_services_logs_images_add:%ld", [logid longValue]);

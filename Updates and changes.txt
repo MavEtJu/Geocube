@@ -4,6 +4,7 @@ Version 2.3(x)
 
   Features:
   - KML overlays can now be configured with colour, border and size.
+  - Add support for the codeword for GCA caches.
 
   Fixes:
   - In OpenStreetMap and ESRIWorldTopo maps, the KML data and the
@@ -12,6 +13,7 @@ Version 2.3(x)
   - KML overlays are now loaded at the right time for Mapbox.
   - Google Maps updated to 2.7.0
   - Mapbox updated to 4.0.0.
+  - Ratings for GCA are now using the right API.
 
 Version 2.2(36)
 
