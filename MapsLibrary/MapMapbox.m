@@ -593,8 +593,12 @@ EMPTY_METHOD(mapViewDidLoad)
 {
     [self loadKMLs];
 
-    if (self.mapLoaded == NO)
-        [self.mapView setZoomLevel:13];
+    if (self.mapLoaded == NO) {
+        if (waypointManager.currentWaypoint == nil)
+            [self.mapView setZoomLevel:13];
+        else
+            [self moveCameraTo:LM.coords c2:CLLocationCoordinate2DMake(waypointManager.currentWaypoint.wpt_latitude, waypointManager.currentWaypoint.wpt_longitude)];
+    }
     self.mapLoaded = YES;
 }
 
