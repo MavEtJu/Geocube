@@ -227,7 +227,7 @@
             self.currentWP.date_lastimport_epoch = time(NULL);
             self.currentWP.dirty_logs = YES;
 
-            // Geosphere GPX files can be there wiethout an owner.
+            // Geosphere GPX files can be without an owner.
             if (self.currentWP.gs_owner == nil) {
                 [dbName makeNameExist:NAME_NONAMESUPPLIED code:0 account:self.currentWP.account];
                 self.currentWP.gs_owner = [dbName dbGetByName:NAME_NONAMESUPPLIED account:self.currentWP.account];
