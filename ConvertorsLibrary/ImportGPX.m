@@ -189,12 +189,16 @@
 
         if ([self.currentElement isEqualToString:@"gsak:CacheImage"] == YES) {
             self.currentImage = [[dbImage alloc] init];
+            self.currentImage.url = [attributeDict objectForKey:@"iimage"];
+            self.currentImage.name = [attributeDict objectForKey:@"iname"];
             self.inImageCache = YES;
             return;
         }
 
         if ([self.currentElement isEqualToString:@"gsak:LogImage"] == YES) {
             self.currentImage = [[dbImage alloc] init];
+            self.currentImage.url = [attributeDict objectForKey:@"iimage"];
+            self.currentImage.name = [attributeDict objectForKey:@"iname"];
             self.inImageLog = YES;
             return;
         }
@@ -222,6 +226,13 @@
             [self.currentWP finish];
             self.currentWP.date_lastimport_epoch = time(NULL);
             self.currentWP.dirty_logs = YES;
+
+            // Geosphere GPX files can be there wiethout an owner.
+            if (self.currentWP.gs_owner == nil) {
+                [dbName makeNameExist:NAME_NONAMESUPPLIED code:0 account:self.currentWP.account];
+                self.currentWP.gs_owner = [dbName dbGetByName:NAME_NONAMESUPPLIED account:self.currentWP.account];
+            }
+
 
             // Determine if it is a new waypoint or an existing one
             self.currentWP._id = [dbWaypoint dbGetByName:self.currentWP.wpt_name]._id;
@@ -402,6 +413,8 @@
         }
 
         // Deal with the data of the GSAK image
+        // Sometimes it's here, sometimes it's in its own XML:
+        //    <gsak:CacheImage iname="3 guys" idescription="3 guys" iimage="http://img.geocaching.com/xxx"/>
         if (self.inImageLog == YES || self.inImageCache == YES) {
             if (self.index == 5 && cleanText != nil) {
                 if ([elementName isEqualToString:@"gsak:iimage"] == YES) {
@@ -492,11 +505,15 @@
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:owner"] == YES) {
+                    if (IS_EMPTY(cleanText) == YES)
+                        cleanText = [NSMutableString stringWithString:_(@"importgpx-(No name specified)")];
                     [dbName makeNameExist:cleanText code:self.gsOwnerNameId account:self.account];
                     [self.currentWP set_gs_owner_str:cleanText];
                     goto bye;
                 }
                 if ([elementName isEqualToString:@"groundspeak:placed_by"] == YES) {
+                    if (IS_EMPTY(cleanText) == YES)
+                        cleanText = [NSMutableString stringWithString:_(@"importgpx-(No name specified)")];
                     [self.currentWP setGs_placed_by:cleanText];
                     goto bye;
                 }

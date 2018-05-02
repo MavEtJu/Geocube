@@ -14,6 +14,7 @@ Version 2.3(x)
   - Google Maps updated to 2.7.0
   - Mapbox updated to 4.0.0.
   - Ratings for GCA are now using the right API.
+  - Various fixes on the import of the Geosphere exported GPX files.
 
 Version 2.2(36)
 
