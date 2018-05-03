@@ -233,7 +233,6 @@
                 self.currentWP.gs_owner = [dbName dbGetByName:NAME_NONAMESUPPLIED account:self.currentWP.account];
             }
 
-
             // Determine if it is a new waypoint or an existing one
             self.currentWP._id = [dbWaypoint dbGetByName:self.currentWP.wpt_name]._id;
             self.totalWaypointsCount++;
