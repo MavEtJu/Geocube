@@ -1,6 +1,12 @@
 Interesting additions and changes to Geocube
 
-Version 2.3(x)
+Version 2.4(x)
+
+  Features:
+
+  Fixes:
+
+Version 2.3(37)
 
   Features:
   - KML overlays can now be configured with colour, border and size.
