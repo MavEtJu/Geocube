@@ -3,6 +3,7 @@
 /* ImportGPX */
 "importgpx-Error parsing XML code" = "Error parsing XML code";
 "importgpx-An error occured while importing the GPX file." = "An error occured while importing the GPX file. This is most likely a corruption in the XML data. Please check the last part of the GPX file, if it looks okay please contact Geocube support.";
+"importgpx-(No name specified)" = "(No name specified)";
 
 /* Import manager */
 "importmanager-OKAPI data" = "OKAPI data";
