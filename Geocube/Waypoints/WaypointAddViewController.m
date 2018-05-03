@@ -71,6 +71,7 @@ enum {
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [self.tableView registerNib:[UINib nibWithNibName:XIB_GCTABLEVIEWCELLWITHSUBTITLE bundle:nil] forCellReuseIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
+    [self.tableView registerClass:[GCTableViewCell class] forCellReuseIdentifier:XIB_GCTABLEVIEWCELL];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -99,9 +100,9 @@ enum {
 }
 
 // Return a cell for the index path
-- (GCTableViewCellWithSubtitle *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (GCTableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    GCTableViewCellWithSubtitle *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
+    GCTableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELLWITHSUBTITLE];
 
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.userInteractionEnabled = YES;
@@ -126,15 +127,17 @@ enum {
             else
                 cell.detailTextLabel.text = self.account.site;
             break;
-        case cellSubmit:
+        case cellSubmit: {
+            // Make it a normal tableviewcell
+            cell = [aTableView dequeueReusableCellWithIdentifier:XIB_GCTABLEVIEWCELL];
             cell.textLabel.text = _(@"waypointaddviewcontroller-Create this waypoint");
-            cell.detailTextLabel.text = @"";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             if (self.account == nil) {
                 cell.textLabel.textColor = currentTheme.labelTextColorDisabled;
                 cell.userInteractionEnabled = NO;
             }
             break;
+        }
     }
 
     return cell;
