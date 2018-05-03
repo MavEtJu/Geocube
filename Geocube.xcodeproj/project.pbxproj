@@ -633,7 +633,6 @@
 		E8607F171F8ADA91004E273C /* cache - geocacher - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8607F141F8ADA91004E273C /* cache - geocacher - 30x30.png */; };
 		E8607F181F8ADA91004E273C /* cache - geocacher - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8607F151F8ADA91004E273C /* cache - geocacher - 30x30@2x.png */; };
 		E8607F191F8ADA91004E273C /* cache - geocacher - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8607F161F8ADA91004E273C /* cache - geocacher - 30x30@3x.png */; };
-		E8607F1B1F8B1328004E273C /* Launch Screen-Landscape.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8607F1A1F8B1328004E273C /* Launch Screen-Landscape.storyboard */; };
 		E860CA051F81F84700C66AD8 /* FilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E860CA041F81F84700C66AD8 /* FilterButton.m */; };
 		E864BBA22064EAE60053B62D /* KeyboardCoordinateDecimalDegreesCardinal.xib in Resources */ = {isa = PBXBuildFile; fileRef = E864BB9F2064EAE50053B62D /* KeyboardCoordinateDecimalDegreesCardinal.xib */; };
 		E864BBA32064EAE60053B62D /* KeyboardCoordinateDecimalDegreesCardinal.m in Sources */ = {isa = PBXBuildFile; fileRef = E864BBA02064EAE50053B62D /* KeyboardCoordinateDecimalDegreesCardinal.m */; };
@@ -1871,7 +1870,6 @@
 		E8607F141F8ADA91004E273C /* cache - geocacher - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - geocacher - 30x30.png"; path = "images/caches/cache - geocacher - 30x30.png"; sourceTree = "<group>"; };
 		E8607F151F8ADA91004E273C /* cache - geocacher - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - geocacher - 30x30@2x.png"; path = "images/caches/cache - geocacher - 30x30@2x.png"; sourceTree = "<group>"; };
 		E8607F161F8ADA91004E273C /* cache - geocacher - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - geocacher - 30x30@3x.png"; path = "images/caches/cache - geocacher - 30x30@3x.png"; sourceTree = "<group>"; };
-		E8607F1A1F8B1328004E273C /* Launch Screen-Landscape.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen-Landscape.storyboard"; sourceTree = "<group>"; };
 		E860CA031F81F84700C66AD8 /* FilterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterButton.h; path = Filters/FilterButton.h; sourceTree = "<group>"; };
 		E860CA041F81F84700C66AD8 /* FilterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterButton.m; path = Filters/FilterButton.m; sourceTree = "<group>"; };
 		E864BB9F2064EAE50053B62D /* KeyboardCoordinateDecimalDegreesCardinal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KeyboardCoordinateDecimalDegreesCardinal.xib; path = ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesCardinal.xib; sourceTree = "<group>"; };
@@ -4133,8 +4131,6 @@
 		E8E4400B1D88A6D800BECB49 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
-				E8F5705A1B3F7255003F020C /* AppDelegate.h */,
-				E8E3DC1B1E167C740066E903 /* AppDelegate.m */,
 				E857078F1CA1E77B00467CE0 /* Navigate */,
 				E857078E1CA1E6FE00467CE0 /* Waypoints */,
 				E8A4BEEB1BD4B8F000BCA5A5 /* Keep Track */,
@@ -4222,6 +4218,8 @@
 		E8F570551B3F7255003F020C /* Geocube */ = {
 			isa = PBXGroup;
 			children = (
+				E8F5705A1B3F7255003F020C /* AppDelegate.h */,
+				E8E3DC1B1E167C740066E903 /* AppDelegate.m */,
 				E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */,
 				E832E7D71B8D124900A3CCF6 /* Geocube-classes.h */,
 				E87FE7951EFFD25F009FA65B /* Geocube-defines.h */,
@@ -4242,7 +4240,6 @@
 			isa = PBXGroup;
 			children = (
 				E85DC6631F956143007556D5 /* Launch Screen.storyboard */,
-				E8607F1A1F8B1328004E273C /* Launch Screen-Landscape.storyboard */,
 				E82341861EECA19300D2CDFD /* EncryptionKeys.plist */,
 				E823419A1EECAF4F00D2CDFD /* EncryptionKeysExample.plist */,
 				E879F9CB1B7B527200220EA7 /* Geocube.entitlements */,
@@ -4685,7 +4682,6 @@
 				E8FEDEA41DA7C08A007C756B /* waypoint - parking - 30x30@2x.png in Resources */,
 				E8B773421F9479AD0060B415 /* menu icon - local default - 27x27.png in Resources */,
 				E82E67431DA07D0200CFBDED /* attributes - 25.png in Resources */,
-				E8607F1B1F8B1328004E273C /* Launch Screen-Landscape.storyboard in Resources */,
 				E87ED1801F859EFE00DE8E9B /* FilterAccountsTableViewCell.xib in Resources */,
 				E82E66DC1DA07CBE00CFBDED /* cache - unknown - 30x30@2x.png in Resources */,
 				E823449F1EECE0BD00D2CDFD /* StatisticsTableViewCell.xib in Resources */,
