@@ -144,6 +144,7 @@ PROTO_N (BOOL, serviceShowMoveables)
 PROTO_N (BOOL, serviceShowDeveloper)
 PROTO_N (NSInteger, moveablesListSortBy);
 PROTO_N (BOOL, moveablesShowFound);
+PROTO_N (NSInteger, myAccountLastNumber);
 
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown

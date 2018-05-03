@@ -191,6 +191,8 @@
 
     CHECK(@"moveables_showfound", @"1");
     CHECK(@"moveables_listsortby", @"0");
+
+    CHECK(@"myaccount_lastnumber", @"0");
 }
 
 - (void)loadValues
@@ -306,6 +308,7 @@
     LOAD_INTEGER(self.moveablesListSortBy, @"moveables_listsortby");
     LOAD_INTEGER(self.mapKMLBorderSize, @"map_kml_border_size");
     LOAD_INTEGER(self.mapCircleRingSize, @"map_circle_ring_size");
+    LOAD_INTEGER(self.myAccountLastNumber, @"myaccount_lastnumber");
 
     /* Leftovers */
     self.currentTrack = [dbTrack dbGet:[[dbConfig dbGetByKey:@"track_current"].value integerValue]];
@@ -498,6 +501,7 @@ UPDATE3(NSInteger, coordinatesDecimalsSeconds, @"coordinates_decimals_seconds")
 UPDATE3(NSInteger, moveablesListSortBy, @"moveables_listsortby")
 UPDATE3(NSInteger, mapKMLBorderSize, @"map_kml_border_size")
 UPDATE3(NSInteger, mapCircleRingSize, @"map_circle_ring_size")
+UPDATE3(NSInteger, myAccountLastNumber, @"myaccount_lastnumber")
 
 UPDATE3(float, keeptrackTimeDeltaMin, @"keeptrack_timedelta_min")
 UPDATE3(float, keeptrackTimeDeltaMax, @"keeptrack_timedelta_max")

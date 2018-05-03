@@ -346,7 +346,7 @@ enum {
 
 - (void)createWaypoint:(CLLocationCoordinate2D)coord
 {
-    NSString *code = [MyTools makeNewWaypoint:@"MY"];
+    NSString *code = [MyTools makeNewMyWaypoint];
     NSString *name = [NSString stringWithFormat:@"Waypoint averaged on %@", [Coordinates niceCoordinates:coord]];
 
     dbWaypoint *wp = [[dbWaypoint alloc] init];

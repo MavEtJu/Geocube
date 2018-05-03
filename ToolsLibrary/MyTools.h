@@ -85,7 +85,7 @@
 + (NSString *)HTMLUnescape:(NSString *)in;
 + (NSString *)removeJSONWrapper:(NSString *)s jsonWrapper:(NSString *)jQueryCallback;
 
-+ (NSString *)makeNewWaypoint:(NSString *)prefix;
++ (NSString *)makeNewMyWaypoint;
 
 + (NSDictionary *)imageEXIFDataFile:(NSString *)file;
 + (NSDictionary *)imageEXIFDataURL:(NSURL *)url;

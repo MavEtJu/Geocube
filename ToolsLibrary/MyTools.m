@@ -536,14 +536,16 @@ TIME(dateTimeString_DD_MM_YYYY_dotspace, @"d. M. yyyy")
 ///////////////////////////////////////////
 
 /// Return a non-existing waypoint code based on the prefix supplied
-+ (NSString *)makeNewWaypoint:(NSString *)prefix
++ (NSString *)makeNewMyWaypoint
 {
     NSString *name;
-    NSInteger i = 1;
+    NSInteger i = configManager.myAccountLastNumber;
 
     do {
-        name = [NSString stringWithFormat:@"%@%06ld", prefix, (long)i++];
+        name = [NSString stringWithFormat:@"MY%06ld", (long)++i];
     } while ([dbWaypoint dbGetByName:name] != 0);
+
+    [configManager myAccountLastNumberUpdate:i];
 
     return name;
 }

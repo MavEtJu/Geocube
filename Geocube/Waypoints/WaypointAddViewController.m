@@ -49,7 +49,7 @@ enum {
 
     self.lmi = nil;
 
-    self.code = [MyTools makeNewWaypoint:@"MY"];
+    self.code = [MyTools makeNewMyWaypoint];
     self.name = @"A new name";
     self.coords = [LM coords];
     self.coordType = configManager.coordinatesTypeEdit;
