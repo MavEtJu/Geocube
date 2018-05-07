@@ -652,6 +652,9 @@
 		E86D42761EF5484E00E4509F /* LocationlessTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86D42741EF5484E00E4509F /* LocationlessTableViewCell~ipad.xib */; };
 		E86D427D1EF68CC800E4509F /* container flag - planned - 24x21.png in Resources */ = {isa = PBXBuildFile; fileRef = E86D427A1EF68CC800E4509F /* container flag - planned - 24x21.png */; };
 		E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FEB1B509575002527DA /* LogTableViewCell.m */; };
+		E8757BB820A072EE00E498FD /* cache - ephemeral - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8757BB520A072ED00E498FD /* cache - ephemeral - 30x30@2x.png */; };
+		E8757BB920A072EE00E498FD /* cache - ephemeral - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8757BB620A072ED00E498FD /* cache - ephemeral - 30x30@3x.png */; };
+		E8757BBA20A072EE00E498FD /* cache - ephemeral - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8757BB720A072EE00E498FD /* cache - ephemeral - 30x30.png */; };
 		E876EC831F7BCAA0002A368E /* log - photographed - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E876EC801F7BCAA0002A368E /* log - photographed - 30x30.png */; };
 		E876ECAD1F7E0391002A368E /* launchscreen - background.png in Resources */ = {isa = PBXBuildFile; fileRef = E876ECAB1F7E0391002A368E /* launchscreen - background.png */; };
 		E876ECAE1F7E0391002A368E /* launchscreen - logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E876ECAC1F7E0391002A368E /* launchscreen - logo.png */; };
@@ -1898,6 +1901,9 @@
 		E86D427A1EF68CC800E4509F /* container flag - planned - 24x21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container flag - planned - 24x21.png"; path = "images/containers/container flag - planned - 24x21.png"; sourceTree = "<group>"; };
 		E8740FEA1B509575002527DA /* LogTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogTableViewCell.h; sourceTree = "<group>"; };
 		E8740FEB1B509575002527DA /* LogTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogTableViewCell.m; sourceTree = "<group>"; };
+		E8757BB520A072ED00E498FD /* cache - ephemeral - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - ephemeral - 30x30@2x.png"; path = "images/caches/cache - ephemeral - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8757BB620A072ED00E498FD /* cache - ephemeral - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - ephemeral - 30x30@3x.png"; path = "images/caches/cache - ephemeral - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8757BB720A072EE00E498FD /* cache - ephemeral - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - ephemeral - 30x30.png"; path = "images/caches/cache - ephemeral - 30x30.png"; sourceTree = "<group>"; };
 		E876EC801F7BCAA0002A368E /* log - photographed - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - photographed - 30x30.png"; path = "images/logs/log - photographed - 30x30.png"; sourceTree = "<group>"; };
 		E876ECAB1F7E0391002A368E /* launchscreen - background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launchscreen - background.png"; path = "images/launchscreen/launchscreen - background.png"; sourceTree = "<group>"; };
 		E876ECAC1F7E0391002A368E /* launchscreen - logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launchscreen - logo.png"; path = "images/launchscreen/launchscreen - logo.png"; sourceTree = "<group>"; };
@@ -3513,6 +3519,9 @@
 				E82E66871DA07CBE00CFBDED /* cache - earth - 30x30.png */,
 				E8FEDEC21DA8EEE9007C756B /* cache - earth - 30x30@2x.png */,
 				E8FEDEC31DA8EEE9007C756B /* cache - earth - 30x30@3x.png */,
+				E8757BB720A072EE00E498FD /* cache - ephemeral - 30x30.png */,
+				E8757BB520A072ED00E498FD /* cache - ephemeral - 30x30@2x.png */,
+				E8757BB620A072ED00E498FD /* cache - ephemeral - 30x30@3x.png */,
 				E82E66881DA07CBE00CFBDED /* cache - event - 30x30.png */,
 				E8FEDEC41DA8EEE9007C756B /* cache - event - 30x30@2x.png */,
 				E8FEDEC51DA8EEE9007C756B /* cache - event - 30x30@3x.png */,
@@ -4617,6 +4626,8 @@
 				E8B773471F9479AD0060B415 /* menu icon - local night - 27x27@2x.png in Resources */,
 				E82E66BF1DA07CBE00CFBDED /* cache - history - 30x30@2x.png in Resources */,
 				E8B773761F94D7190060B415 /* menu icon - global default - 40x40.png in Resources */,
+				E8757BB820A072EE00E498FD /* cache - ephemeral - 30x30@2x.png in Resources */,
+				E8757BB920A072EE00E498FD /* cache - ephemeral - 30x30@3x.png in Resources */,
 				E82E66611DA07C4900CFBDED /* container flag - archived - 24x24.png in Resources */,
 				E82E66391DA07A8700CFBDED /* icons - sad - 30x30@3x.png in Resources */,
 				E82E65FB1DA079E500CFBDED /* log - coordinates - 30x30.png in Resources */,
@@ -4718,6 +4729,7 @@
 				E82E65D91DA079AE00CFBDED /* map - background - 35x42.png in Resources */,
 				E8FEDEB11DA87DBB007C756B /* waypoint - finish - 30x30@3x.png in Resources */,
 				E82E66631DA07C4900CFBDED /* container flag - disabled - 24x24.png in Resources */,
+				E8757BBA20A072EE00E498FD /* cache - ephemeral - 30x30.png in Resources */,
 				E82E66621DA07C4900CFBDED /* container flag - cross dnf - 19x19.png in Resources */,
 				E8FEDEAC1DA87AF3007C756B /* waypoint - trailhead - 30x30@2x.png in Resources */,
 				E8FEDE8F1DA7AD67007C756B /* map - marked found - 9x9@3x.png in Resources */,
