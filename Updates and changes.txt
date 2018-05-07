@@ -4,6 +4,8 @@ Version 2.4(x)
 
   Features:
   - Add support for Geocaching Australia "Ephemeral" cache types.
+  - If something goes wrong with the loading of the KML files, you
+    can disable the loading of all of them in the Settings app.
 
   Fixes:
 

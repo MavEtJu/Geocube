@@ -26,5 +26,6 @@
 
 + (dbKMLFile *)dbGetByFilename:(NSString *)filename;
 + (NSArray<dbKMLFile *> *)dbAll;
++ (void)dbDisableAll;
 
 @end

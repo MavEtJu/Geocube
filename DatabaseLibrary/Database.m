@@ -157,6 +157,14 @@
 
     sqlite3_open([self.dbname UTF8String], &tdb);
     self.db = tdb;
+
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"option_ignorekml"] == TRUE) {
+        NSLog(@"Disableing all KML files.");
+        [[NSUserDefaults standardUserDefaults] setBool:FALSE forKey:@"option_ignorekml"];
+
+        [dbKMLFile dbDisableAll];
+    }
+
 }
 
 - (void)checkAndCreateDatabase

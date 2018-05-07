@@ -90,4 +90,14 @@ TABLENAME(@"kml_files")
     return [[self dbAllXXX:@"where filename = ?" keys:@"s" values:@[filename]] firstObject];
 }
 
++ (void)dbDisableAll
+{
+    @synchronized(db) {
+        DB_PREPARE(@"update kml_files set enabled = 0");
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 @end
