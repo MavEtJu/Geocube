@@ -253,7 +253,7 @@ typedef NS_OPTIONS(NSUInteger, GMUParserState) {
 - (CLLocation *)locationFromString:(NSString *)string {
   NSString *trimmedString =
     [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-  NSArray *coordinateStrings = [trimmedString componentsSeparatedByString:@","];
+  NSArray *coordinateStrings = [trimmedString componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
   CLLocationDegrees longitude = [coordinateStrings[0] doubleValue];
   CLLocationDegrees latitude = [coordinateStrings[1] doubleValue];
 
