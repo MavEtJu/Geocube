@@ -898,6 +898,13 @@
     @"update types set has_codeword = 0"
     ];
     [self.upgradeSteps addObject:a];
+
+    // Version 74
+    a = @[
+    @"update config set value = 'https://geocube.mavetju.org/geocube_types.8.geocube' where key = 'url_types'",
+    ];
+    [self.upgradeSteps addObject:a];
+
 }
 
 - (void)singleStatement:(NSString *)sql

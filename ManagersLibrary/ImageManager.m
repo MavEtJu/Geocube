@@ -72,6 +72,7 @@
     [self addToLibrary:@"cache - reverse - 30x30" index:ImageTypes_Reverse];
     [self addToLibrary:@"cache - gadget - 30x30" index:ImageTypes_Gadget];
     [self addToLibrary:@"cache - geocacher - 30x30" index:ImageTypes_Geocacher];
+    [self addToLibrary:@"cache - ephemeral - 30x30" index:ImageTypes_Ephemeral];
 
     [self addToLibrary:@"waypoint - finish - 30x30" index:ImageWaypoints_FinalLocation];
     [self addToLibrary:@"waypoint - flag - 30x30" index:ImageWaypoints_Flag];
