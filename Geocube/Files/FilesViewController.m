@@ -21,7 +21,7 @@
 
 @interface FilesViewController ()
 
-@property (nonatomic, retain) NSArray<NSDictionary *> *fileData;
+@property (nonatomic, retain) NSMutableArray<NSDictionary *> *fileData;
 
 @end
 
@@ -40,6 +40,7 @@ enum {
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILESTABLEVIEWCELL];
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.fileData = [NSMutableArray arrayWithCapacity:20];
     [self refreshFileData];
 
     // Make sure we get told when a new file is here
@@ -56,8 +57,9 @@ enum {
 {
     // Count files in FilesDir
 
+    [self.fileData removeAllObjects];
+
     NSArray<NSString *> *files = [fileManager contentsOfDirectoryAtPath:[MyTools FilesDir] error:nil];
-    NSMutableArray<NSDictionary *> *fileData = [NSMutableArray arrayWithCapacity:20];
 
     [files enumerateObjectsUsingBlock:^(NSString * _Nonnull file, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMutableDictionary *filedata = [NSMutableDictionary dictionaryWithCapacity:5];
@@ -72,15 +74,14 @@ enum {
         dbFileImport *fi = [dbFileImport dbGetByFilename:file];
         [filedata setObject:(fi != nil ? fi : [NSNull null]) forKey:@"import"];
 
-        [fileData addObject:filedata];
+        [self.fileData addObject:filedata];
     }];
 
-    [fileData sortUsingComparator:^(NSDictionary *obj1, NSDictionary *obj2) {
+    [self.fileData sortUsingComparator:^(NSDictionary *obj1, NSDictionary *obj2) {
         NSString *o1 = [obj1 objectForKey:@"name"];
         NSString *o2 = [obj2 objectForKey:@"name"];
         return (NSComparisonResult)[o1 compare:o2 options:NSCaseInsensitiveSearch];
     }];
-    self.fileData = fileData;
 
     [self.tableView reloadData];
 }
@@ -157,9 +158,7 @@ enum {
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSDictionary *dict = [self.fileData objectAtIndex:indexPath.row];
-        NSString *fn = [dict objectForKey:@"name"];
-        [self fileDelete:fn forceReload:NO];
+        [self fileDelete:indexPath.row forceReload:NO];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     }
 }
@@ -180,7 +179,7 @@ enum {
                              actionWithTitle:_(@"filesviewcontroller-Delete")
                              style:UIAlertActionStyleDestructive
                              handler:^(UIAlertAction * action) {
-                                 [self fileDelete:fn forceReload:YES];
+                                 [self fileDelete:indexPath.row forceReload:YES];
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
 
@@ -301,13 +300,15 @@ enum {
     [IOSFTM uploadICloud:[NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename] vc:self];
 }
 
-- (void)fileDelete:(NSString *)filename forceReload:(BOOL)forceReload
+- (void)fileDelete:(NSInteger)index forceReload:(BOOL)forceReload
 {
-    NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], filename];
+    NSDictionary *dict = [self.fileData objectAtIndex:index];
+    NSString *fn = [dict objectForKey:@"name"];
+    NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], fn];
     NSLog(@"Removing file '%@'", fullname);
     [fileManager removeItemAtPath:fullname error:nil];
 
-    [self refreshFileData];
+    [self.fileData removeObjectAtIndex:index];
     if (forceReload == YES)
         [self.tableView reloadData];
 }

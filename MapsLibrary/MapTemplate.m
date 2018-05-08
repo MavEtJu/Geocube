@@ -239,6 +239,10 @@ EMPTY_METHOD(mapViewDidLoad)
         if (f.enabled == NO)
             return;
         NSString *path = [NSString stringWithFormat:@"%@/%@", [MyTools KMLDir], f.filename];
+        if ([fileManager fileExistsAtPath:path] == NO) {
+            [f dbDelete];
+            return;
+        }
         [self loadKML:path];
     }];
 }

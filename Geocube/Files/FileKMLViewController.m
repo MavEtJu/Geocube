@@ -21,7 +21,7 @@
 
 @interface FileKMLViewController ()
 
-@property (nonatomic, retain) NSArray<NSDictionary *> *fileData;
+@property (nonatomic, retain) NSMutableArray<NSDictionary *> *fileData;
 
 @end
 
@@ -34,6 +34,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:XIB_FILESTABLEVIEWCELL bundle:nil] forCellReuseIdentifier:XIB_FILESTABLEVIEWCELL];
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.fileData = [NSMutableArray arrayWithCapacity:3];
     [self refreshFileData];
 
     self.lmi = nil;
@@ -41,10 +42,11 @@
 
 - (void)refreshFileData
 {
-    // Count files in KLMDir
+    // Count files in KMLDir
 
     NSArray<NSString *> *files = [fileManager contentsOfDirectoryAtPath:[MyTools KMLDir] error:nil];
-    NSMutableArray<NSDictionary *> *fileData = [NSMutableArray arrayWithCapacity:3];
+
+    [self.fileData removeAllObjects];
 
     [files enumerateObjectsUsingBlock:^(NSString * _Nonnull file, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMutableDictionary *filedata = [NSMutableDictionary dictionaryWithCapacity:3];
@@ -57,17 +59,14 @@
         NSDate *d = [a objectForKey:NSFileModificationDate];
         [filedata setObject:d forKey:@"date"];
 
-        [fileData addObject:filedata];
+        [self.fileData addObject:filedata];
     }];
 
-    [fileData sortUsingComparator:^(NSDictionary *obj1, NSDictionary *obj2) {
+    [self.fileData sortUsingComparator:^(NSDictionary *obj1, NSDictionary *obj2) {
         NSString *o1 = [obj1 objectForKey:@"name"];
         NSString *o2 = [obj2 objectForKey:@"name"];
         return (NSComparisonResult)[o1 compare:o2 options:NSCaseInsensitiveSearch];
     }];
-
-    self.fileData = fileData;
-    [self.tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -129,9 +128,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSDictionary *dict = [self.fileData objectAtIndex:indexPath.row];
-        NSString *fn = [dict objectForKey:@"name"];
-        [self fileDelete:fn];
+        [self fileDelete:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     }
 }
@@ -156,17 +153,20 @@
     [self.tableView reloadData];
 }
 
-- (void)fileDelete:(NSString *)filename
+- (void)fileDelete:(NSInteger)index
 {
-    NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools KMLDir], filename];
+    NSDictionary *dict = [self.fileData objectAtIndex:index];
+    NSString *fn = [dict objectForKey:@"name"];
+
+    NSString *fullname = [NSString stringWithFormat:@"%@/%@", [MyTools KMLDir], fn];
     NSLog(@"Removing file '%@'", fullname);
     [fileManager removeItemAtPath:fullname error:nil];
 
-    dbKMLFile *kml = [dbKMLFile dbGetByFilename:filename];
+    dbKMLFile *kml = [dbKMLFile dbGetByFilename:fn];
     [kml dbDelete];
     [waypointManager refreshKMLs];
 
-    [self refreshFileData];
+    [self.fileData removeObjectAtIndex:index];
 //    [self.tableView reloadData];
 }
 

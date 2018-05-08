@@ -8,6 +8,10 @@ Version 2.4(x)
     can disable the loading of all of them in the Settings app.
 
   Fixes:
+  - Fix crashes in deleting files by swipe left in Files -> Local
+    Files and Files -> KML.
+  - Fix crash in loading of KML files which are still in the database
+    but not in the KML directory anymore. Yes, you read that right.
 
 Version 2.3(37)
 
