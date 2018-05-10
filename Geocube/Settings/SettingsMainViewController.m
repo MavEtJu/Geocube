@@ -325,6 +325,9 @@ enum sections {
     SECTION_KEEPTRACK_DISTANCEDELTA_MAX,
     SECTION_KEEPTRACK_PURGEAGE,
     SECTION_KEEPTRACK_SYNC,
+    SECTION_KEEPTRACK_OWNTRACKS_URL,
+    SECTION_KEEPTRACK_OWNTRACKS_USERNAME,
+    SECTION_KEEPTRACK_OWNTRACKS_SECRET,
     SECTION_KEEPTRACK_MAX,
 
     SECTION_IMPORTS_TIMEOUT_SIMPLE = 0,
@@ -701,6 +704,12 @@ enum sections {
                     NSString *s = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Every %ld seconds"), (long)configManager.keeptrackSync];
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-Sync track data"), s)
                 }
+                case SECTION_KEEPTRACK_OWNTRACKS_URL:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-OwnTracks URL"), configManager.owntracksURL)
+                case SECTION_KEEPTRACK_OWNTRACKS_USERNAME:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-OwnTracks Username"), configManager.owntracksUsername)
+                case SECTION_KEEPTRACK_OWNTRACKS_SECRET:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-OwnTracks Secret"), configManager.owntracksSecret)
             }
             abort();
         }
@@ -1136,6 +1145,15 @@ SWITCH_UPDATE_RELOAD(updateServicesShowDeveloper, serviceShowDeveloper)
                 case SECTION_KEEPTRACK_SYNC:
                     [self keeptrackChange:indexPath.row];
                     break;
+                case SECTION_KEEPTRACK_OWNTRACKS_URL:
+                    [self changeKeeptrackOwntracksURL];
+                    break;
+                case SECTION_KEEPTRACK_OWNTRACKS_USERNAME:
+                    [self changeKeeptrackOwntracksUsername];
+                    break;
+                case SECTION_KEEPTRACK_OWNTRACKS_SECRET:
+                    [self changeKeeptrackOwntracksSecret];
+                    break;
             }
             break;
 
@@ -1400,6 +1418,108 @@ SWITCH_UPDATE_RELOAD(updateServicesShowDeveloper, serviceShowDeveloper)
                 break;
         }
         textField.placeholder = _(@"settingsmainviewcontroller-Enter value...");
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)changeKeeptrackOwntracksURL
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:_(@"settingsmainviewcontroller-OwnTracks URL")
+                                message:_(@"settingsmainviewcontroller-Enter the URL for the OwnTracks server")
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:_(@"OK")
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             [configManager owntracksURLUpdate:tf.text];
+                             [self.tableView reloadData];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = configManager.owntracksURL;
+        textField.placeholder = _(@"settingsmainviewcontroller-OwnTracks server URL");
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)changeKeeptrackOwntracksUsername
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:_(@"settingsmainviewcontroller-OwnTracks Username")
+                                message:_(@"settingsmainviewcontroller-Enter the username for the OwnTracks server")
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:_(@"OK")
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             [configManager owntracksUsernameUpdate:tf.text];
+                             [self.tableView reloadData];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = configManager.owntracksUsername;
+        textField.placeholder = _(@"settingsmainviewcontroller-OwnTracks username");
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)changeKeeptrackOwntracksSecret
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:_(@"settingsmainviewcontroller-OwnTracks Secret")
+                                message:_(@"settingsmainviewcontroller-Enter the shared secret for the OwnTracks server")
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:_(@"OK")
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             [configManager owntracksSecretUpdate:tf.text];
+                             [self.tableView reloadData];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = configManager.owntracksSecret;
+        textField.placeholder = _(@"settingsmainviewcontroller-OwnTracks server Shared Secret");
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];

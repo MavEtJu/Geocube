@@ -193,6 +193,10 @@
     CHECK(@"moveables_listsortby", @"0");
 
     CHECK(@"myaccount_lastnumber", @"0");
+
+    CHECK(@"owntracks_url", @"");
+    CHECK(@"owntracks_username", @"");
+    CHECK(@"owntracks_secret", @"");
 }
 
 - (void)loadValues
@@ -309,6 +313,9 @@
     LOAD_INTEGER(self.mapKMLBorderSize, @"map_kml_border_size");
     LOAD_INTEGER(self.mapCircleRingSize, @"map_circle_ring_size");
     LOAD_INTEGER(self.myAccountLastNumber, @"myaccount_lastnumber");
+    LOAD_VALUE  (self.owntracksURL, @"owntracks_url");
+    LOAD_VALUE  (self.owntracksUsername, @"owntracks_username");
+    LOAD_VALUE  (self.owntracksSecret, @"owntracks_secret");
 
     /* Leftovers */
     self.currentTrack = [dbTrack dbGet:[[dbConfig dbGetByKey:@"track_current"].value integerValue]];
@@ -512,6 +519,9 @@ UPDATE4(NSString *, NSString, logTemporaryText, @"log_temporary_text")
 UPDATE4(NSString *, NSString, opencageKey, @"opencage_key")
 UPDATE4(NSString *, NSString, mapboxKey, @"mapbox_key")
 UPDATE4(NSString *, NSString, configUpdateLastVersion, @"configupdate_lastversion")
+UPDATE4(NSString *, NSString, owntracksURL, @"owntracks_url")
+UPDATE4(NSString *, NSString, owntracksUsername, @"owntracks_username")
+UPDATE4(NSString *, NSString, owntracksSecret, @"owntracks_secret")
 
 UPDATE4(NSTimeInterval, double, automaticDatabaseBackupLast, @"automaticdatabasebackup_last")
 
