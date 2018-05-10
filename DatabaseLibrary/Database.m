@@ -164,7 +164,6 @@
 
         [dbKMLFile dbDisableAll];
     }
-
 }
 
 - (void)checkAndCreateDatabase
@@ -912,7 +911,6 @@
     @"update config set value = 'https://geocube.mavetju.org/geocube_types.8.geocube' where key = 'url_types'",
     ];
     [self.upgradeSteps addObject:a];
-
 }
 
 - (void)singleStatement:(NSString *)sql
