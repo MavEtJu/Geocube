@@ -194,6 +194,7 @@
 
     CHECK(@"myaccount_lastnumber", @"0");
 
+    CHECK(@"owntracks_enable", @"0");
     CHECK(@"owntracks_url", @"");
     CHECK(@"owntracks_username", @"");
     CHECK(@"owntracks_secret", @"");
@@ -316,6 +317,7 @@
     LOAD_VALUE  (self.owntracksURL, @"owntracks_url");
     LOAD_VALUE  (self.owntracksUsername, @"owntracks_username");
     LOAD_VALUE  (self.owntracksSecret, @"owntracks_secret");
+    LOAD_BOOL   (self.ownTracksEnable, @"owntracks_enable");
 
     /* Leftovers */
     self.currentTrack = [dbTrack dbGet:[[dbConfig dbGetByKey:@"track_current"].value integerValue]];
@@ -451,6 +453,7 @@ UPDATE3(BOOL, serviceShowLocationless, @"service_showlocationless")
 UPDATE3(BOOL, serviceShowTrackables, @"service_showtrackables")
 UPDATE3(BOOL, serviceShowDeveloper, @"service_showdeveloper")
 UPDATE3(BOOL, moveablesShowFound, @"moveables_showfound")
+UPDATE3(BOOL, ownTracksEnable, @"owntracks_enable")
 
 UPDATE4(LM_ACCURACY, NSInteger, accuracyDynamicAccuracyNear, @"accuracy_dynamic_accuracy_near")
 UPDATE4(LM_ACCURACY, NSInteger, accuracyDynamicAccuracyMidrange, @"accuracy_dynamic_accuracy_midrange")

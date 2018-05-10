@@ -325,6 +325,7 @@ enum sections {
     SECTION_KEEPTRACK_DISTANCEDELTA_MAX,
     SECTION_KEEPTRACK_PURGEAGE,
     SECTION_KEEPTRACK_SYNC,
+    SECTION_KEEPTRACK_OWNTRACKS_ENABLE,
     SECTION_KEEPTRACK_OWNTRACKS_URL,
     SECTION_KEEPTRACK_OWNTRACKS_USERNAME,
     SECTION_KEEPTRACK_OWNTRACKS_SECRET,
@@ -704,6 +705,8 @@ enum sections {
                     NSString *s = [NSString stringWithFormat:_(@"settingsmainviewcontroller-Every %ld seconds"), (long)configManager.keeptrackSync];
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-Sync track data"), s)
                 }
+                case SECTION_KEEPTRACK_OWNTRACKS_ENABLE:
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Enable OwnTracks"), ownTracksEnable, updateOwnTracksEnabled)
                 case SECTION_KEEPTRACK_OWNTRACKS_URL:
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-OwnTracks URL"), configManager.owntracksURL)
                 case SECTION_KEEPTRACK_OWNTRACKS_USERNAME:
@@ -996,6 +999,7 @@ SWITCH_UPDATE_RELOAD(updateServicesShowMoveables, serviceShowMoveables)
 SWITCH_UPDATE_RELOAD(updateServicesShowLocationless, serviceShowLocationless)
 SWITCH_UPDATE_RELOAD(updateServicesShowTrackables, serviceShowTrackables)
 SWITCH_UPDATE_RELOAD(updateServicesShowDeveloper, serviceShowDeveloper)
+SWITCH_UPDATE(updateOwnTracksEnabled, ownTracksEnable)
 
 - (void)updateDistanceMetric:(GCSwitch *)s
 {
