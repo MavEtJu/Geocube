@@ -328,7 +328,7 @@ enum sections {
     SECTION_KEEPTRACK_OWNTRACKS_ENABLE,
     SECTION_KEEPTRACK_OWNTRACKS_URL,
     SECTION_KEEPTRACK_OWNTRACKS_USERNAME,
-    SECTION_KEEPTRACK_OWNTRACKS_SECRET,
+    SECTION_KEEPTRACK_OWNTRACKS_PASSWORD,
     SECTION_KEEPTRACK_MAX,
 
     SECTION_IMPORTS_TIMEOUT_SIMPLE = 0,
@@ -706,13 +706,13 @@ enum sections {
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-Sync track data"), s)
                 }
                 case SECTION_KEEPTRACK_OWNTRACKS_ENABLE:
-                    CELL_SWITCH(_(@"settingsmainviewcontroller-Enable OwnTracks"), ownTracksEnable, updateOwnTracksEnabled)
+                    CELL_SWITCH(_(@"settingsmainviewcontroller-Enable OwnTracks"), ownTracksEnable, updateOwnTracksEnable)
                 case SECTION_KEEPTRACK_OWNTRACKS_URL:
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-OwnTracks URL"), configManager.owntracksURL)
                 case SECTION_KEEPTRACK_OWNTRACKS_USERNAME:
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-OwnTracks Username"), configManager.owntracksUsername)
-                case SECTION_KEEPTRACK_OWNTRACKS_SECRET:
-                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-OwnTracks Secret"), configManager.owntracksSecret)
+                case SECTION_KEEPTRACK_OWNTRACKS_PASSWORD:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-OwnTracks Password"), configManager.owntracksPassword)
             }
             abort();
         }
@@ -999,7 +999,17 @@ SWITCH_UPDATE_RELOAD(updateServicesShowMoveables, serviceShowMoveables)
 SWITCH_UPDATE_RELOAD(updateServicesShowLocationless, serviceShowLocationless)
 SWITCH_UPDATE_RELOAD(updateServicesShowTrackables, serviceShowTrackables)
 SWITCH_UPDATE_RELOAD(updateServicesShowDeveloper, serviceShowDeveloper)
-SWITCH_UPDATE(updateOwnTracksEnabled, ownTracksEnable)
+
+- (void)updateOwnTracksEnable:(GCSwitch *)s
+{
+    [configManager ownTracksEnableUpdate:s.on];
+    if (s.on == YES) {
+        [owntracksManager startDelivering];
+    } else {
+        [owntracksManager stopDelivering];
+    }
+    [self.tableView reloadData];
+}
 
 - (void)updateDistanceMetric:(GCSwitch *)s
 {
@@ -1155,8 +1165,8 @@ SWITCH_UPDATE(updateOwnTracksEnabled, ownTracksEnable)
                 case SECTION_KEEPTRACK_OWNTRACKS_USERNAME:
                     [self changeKeeptrackOwntracksUsername];
                     break;
-                case SECTION_KEEPTRACK_OWNTRACKS_SECRET:
-                    [self changeKeeptrackOwntracksSecret];
+                case SECTION_KEEPTRACK_OWNTRACKS_PASSWORD:
+                    [self changeKeeptrackOwntracksPassword];
                     break;
             }
             break;
@@ -1441,6 +1451,7 @@ SWITCH_UPDATE(updateOwnTracksEnabled, ownTracksEnable)
                              //Do Some action
                              UITextField *tf = [alert.textFields objectAtIndex:0];
                              [configManager owntracksURLUpdate:tf.text];
+                             [owntracksManager startDelivering];
                              [self.tableView reloadData];
                          }];
 
@@ -1475,6 +1486,8 @@ SWITCH_UPDATE(updateOwnTracksEnabled, ownTracksEnable)
                              //Do Some action
                              UITextField *tf = [alert.textFields objectAtIndex:0];
                              [configManager owntracksUsernameUpdate:tf.text];
+                             [owntracksManager startDelivering];
+                             [owntracksManager alertAppChangePassword];
                              [self.tableView reloadData];
                          }];
 
@@ -1495,20 +1508,20 @@ SWITCH_UPDATE(updateOwnTracksEnabled, ownTracksEnable)
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)changeKeeptrackOwntracksSecret
+- (void)changeKeeptrackOwntracksPassword
 {
     UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:_(@"settingsmainviewcontroller-OwnTracks Secret")
-                                message:_(@"settingsmainviewcontroller-Enter the shared secret for the OwnTracks server")
+                                alertControllerWithTitle:_(@"settingsmainviewcontroller-OwnTracks Password")
+                                message:_(@"settingsmainviewcontroller-Enter the password for the OwnTracks webserver")
                                 preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
                          actionWithTitle:_(@"OK")
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction *action) {
-                             //Do Some action
                              UITextField *tf = [alert.textFields objectAtIndex:0];
-                             [configManager owntracksSecretUpdate:tf.text];
+                             [configManager owntracksPasswordUpdate:tf.text];
+                             [owntracksManager alertAppChangePassword];
                              [self.tableView reloadData];
                          }];
 
@@ -1522,8 +1535,8 @@ SWITCH_UPDATE(updateOwnTracksEnabled, ownTracksEnable)
     [alert addAction:cancel];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = configManager.owntracksSecret;
-        textField.placeholder = _(@"settingsmainviewcontroller-OwnTracks server Shared Secret");
+        textField.text = configManager.owntracksPassword;
+        textField.placeholder = _(@"settingsmainviewcontroller-OwnTracks server password");
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];

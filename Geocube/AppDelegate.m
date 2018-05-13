@@ -359,6 +359,9 @@
     importManager = [[ImportManager alloc] init];
     imagesDownloadManager = [[ImagesDownloadManager alloc] init];
 
+    // OwnTracks Manager - after configManager and downloadManager
+    owntracksManager = [[OwnTracksManager alloc] init];
+
     /* No site information yet? */
     dbConfig *db = [dbConfig dbGetByKey:@"sites_revision"];
     if (db == nil) {

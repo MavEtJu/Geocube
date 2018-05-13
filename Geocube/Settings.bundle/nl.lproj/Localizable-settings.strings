@@ -256,13 +256,14 @@
 "settingsmainviewcontroller-KML polygon fill" = "KML vulling";
 
 "settingsmainviewcontroller-Enter the URL for the OwnTracks server" = "Geef de URL voor de OwnTracks server";
-"settingsmainviewcontroller-Enter the shared secret for the OwnTracks server" = "Geef de Shared Secret van de OwnTracks server";
 "settingsmainviewcontroller-Enter the username for the OwnTracks server" = "Geef de OwnTracks server gebruikersnaam";
-"settingsmainviewcontroller-OwnTracks Secret" = "OwnTracks Secret";
 "settingsmainviewcontroller-OwnTracks URL" = "OwnTracks URL";
 "settingsmainviewcontroller-OwnTracks Username" = "OwnTracks gebruikersnaam";
-"settingsmainviewcontroller-OwnTracks server Shared Secret" = "OwnTracks server Shared Secret";
 "settingsmainviewcontroller-OwnTracks server URL" = "OwnTracks server URL";
 "settingsmainviewcontroller-OwnTracks username" = "OwnTracks gebruikersnaam";
 "settingsmainviewcontroller-Enable OwnTracks" = "Gebruik OwnTracks";
+"settingsmainviewcontroller-Enter the password for the OwnTracks webserver" = "Geef het wachtwoord van de OwnTracks webserver";
+"settingsmainviewcontroller-OwnTracks Password" = "OwnTracks wachtwoord";
+"settingsmainviewcontroller-OwnTracks server password" = "OwnTracks server password";
+
 

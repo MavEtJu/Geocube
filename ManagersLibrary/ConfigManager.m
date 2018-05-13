@@ -198,6 +198,7 @@
     CHECK(@"owntracks_url", @"https://geocube.mavetju.org/owntracks/");
     CHECK(@"owntracks_username", @"");
     CHECK(@"owntracks_secret", @"");
+    CHECK(@"owntracks_password", @"");
 }
 
 - (void)loadValues
@@ -318,6 +319,7 @@
     LOAD_VALUE  (self.owntracksUsername, @"owntracks_username");
     LOAD_VALUE  (self.owntracksSecret, @"owntracks_secret");
     LOAD_BOOL   (self.ownTracksEnable, @"owntracks_enable");
+    LOAD_VALUE  (self.owntracksPassword, @"owntracks_password");
 
     /* Leftovers */
     self.currentTrack = [dbTrack dbGet:[[dbConfig dbGetByKey:@"track_current"].value integerValue]];
@@ -525,6 +527,7 @@ UPDATE4(NSString *, NSString, configUpdateLastVersion, @"configupdate_lastversio
 UPDATE4(NSString *, NSString, owntracksURL, @"owntracks_url")
 UPDATE4(NSString *, NSString, owntracksUsername, @"owntracks_username")
 UPDATE4(NSString *, NSString, owntracksSecret, @"owntracks_secret")
+UPDATE4(NSString *, NSString, owntracksPassword, @"owntracks_password")
 
 UPDATE4(NSTimeInterval, double, automaticDatabaseBackupLast, @"automaticdatabasebackup_last")
 

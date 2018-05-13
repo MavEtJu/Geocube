@@ -80,6 +80,9 @@ LocalizationManager *localizationManager = nil;
 // AudioManager
 AudioManager *audioManager = nil;
 
+// OwnTracksManager
+OwnTracksManager *owntracksManager = nil;
+
 //
 AppDelegate *_AppDelegate;
 

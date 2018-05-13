@@ -25,6 +25,9 @@
 #import "NetworkLibrary/ProtocolGGCW-delegate.h"
 #import "NetworkLibrary/RemoteAPITemplate-enum.h"
 
+#import "NetworkLibrary/OwnTracksObject.h"
+#import "NetworkLibrary/OwnTracksManager.h"
+
 #import "NetworkLibrary/GCOAuthBlackbox.h"
 #import "NetworkLibrary/IOSFileTransfers.h"
 #import "NetworkLibrary/RemoteAPIProcessingGroup.h"

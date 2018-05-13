@@ -196,6 +196,8 @@
 @class NoticeTableViewCell;
 @class NoticesViewController;
 @class OpenCageManager;
+@class OwnTracksManager;
+@class OwnTracksObject;
 @class PersonalNoteTableViewCell;
 @class ProtocolGCA2;
 @class ProtocolGGCW;

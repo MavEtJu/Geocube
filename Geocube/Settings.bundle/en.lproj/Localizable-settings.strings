@@ -254,12 +254,13 @@
 "settingsmainviewcontroller-KML polygon fill" = "KML polygon fill";
 
 "settingsmainviewcontroller-Enter the URL for the OwnTracks server" = "Enter the URL for the OwnTracks server";
-"settingsmainviewcontroller-Enter the shared secret for the OwnTracks server" = "Enter the shared secret for the OwnTracks server";
 "settingsmainviewcontroller-Enter the username for the OwnTracks server" = "Enter the username for the OwnTracks server";
-"settingsmainviewcontroller-OwnTracks Secret" = "OwnTracks Secret";
 "settingsmainviewcontroller-OwnTracks URL" = "OwnTracks URL";
 "settingsmainviewcontroller-OwnTracks Username" = "OwnTracks Username";
-"settingsmainviewcontroller-OwnTracks server Shared Secret" = "OwnTracks server Shared Secret";
 "settingsmainviewcontroller-OwnTracks server URL" = "OwnTracks server URL";
 "settingsmainviewcontroller-OwnTracks username" = "OwnTracks username";
 "settingsmainviewcontroller-Enable OwnTracks" = "Enable OwnTracks";
+"settingsmainviewcontroller-Enter the password for the OwnTracks webserver" = "Enter the password for the OwnTracks webserver";
+"settingsmainviewcontroller-OwnTracks Password" = "OwnTracks Password";
+"settingsmainviewcontroller-OwnTracks server password" = "OwnTracks server password";
+

@@ -149,6 +149,7 @@ PROTO_N (BOOL, ownTracksEnable);
 PROTO_NR(NSString *, owntracksURL);
 PROTO_NR(NSString *, owntracksUsername);
 PROTO_NR(NSString *, owntracksSecret);
+PROTO_NR(NSString *, owntracksPassword);
 
 // Bitmask of:
 // UIInterfaceOrientationMaskPortrait, UIInterfaceOrientationMaskPortraitUpsideDown
