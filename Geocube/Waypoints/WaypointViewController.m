@@ -652,6 +652,7 @@ enum {
 {
     if ([waypointManager currentWaypoint] != nil &&
         [[waypointManager currentWaypoint].wpt_name isEqualToString:self.waypoint.wpt_name] == YES) {
+        [owntracksManager alertWaypointRemoveTarget:waypointManager.currentWaypoint];
         [waypointManager setTheCurrentWaypoint:nil];
         [self showWaypoint:nil];
         [self.navigationController popViewControllerAnimated:YES];
@@ -659,6 +660,7 @@ enum {
     }
 
     [waypointManager setTheCurrentWaypoint:self.waypoint];
+    [owntracksManager alertWaypointSetTarget:waypointManager.currentWaypoint];
     [self reloadDataMainQueue];
 
     MHTabBarController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
@@ -736,6 +738,7 @@ enum {
 
                                   // Add to log data
                                   [dbLogData addEntry:self.waypoint type:LOGDATATYPE_DNF datetime:time(NULL)];
+                                  [owntracksManager alertWaypointMarkAs:self.waypoint markAs:FLAGS_MARKEDDNF];
                               }
                               [self.tableView reloadData];
                           }];
@@ -756,6 +759,7 @@ enum {
                                 if (self.waypoint.flag_markedfound == YES) {
                                     // Add to log data
                                     [dbLogData addEntry:self.waypoint type:LOGDATATYPE_FOUND datetime:time(NULL)];
+                                    [owntracksManager alertWaypointMarkAs:self.waypoint markAs:FLAGS_MARKEDFOUND];
 
                                     // Mark all related waypoints as found.
                                     NSArray<dbWaypoint *> *wps = [self.waypoint hasWaypoints];
@@ -788,6 +792,7 @@ enum {
 
                                  if (self.waypoint.flag_ignore == YES) {
                                      [dbc.groupAllWaypointsIgnored addWaypointToGroup:self.waypoint];
+                                     [owntracksManager alertWaypointMarkAs:self.waypoint markAs:FLAGS_IGNORED];
                                  } else {
                                      [dbc.groupAllWaypointsIgnored removeWaypointFromGroup:self.waypoint];
                                  }
@@ -804,6 +809,9 @@ enum {
                                      self.waypoint.flag_inprogress = !self.waypoint.flag_inprogress;
                                      [self.waypoint dbUpdateInProgress];
                                      [waypointManager needsRefreshUpdate:self.waypoint];
+                                     if (self.waypoint.flag_inprogress == YES) {
+                                         [owntracksManager alertWaypointMarkAs:self.waypoint markAs:FLAGS_IGNORED];
+                                     }
                                      [self.tableView reloadData];
                                  }];
     TITLE(self.waypoint.flag_highlight, _(@"waypointviewcontroller-Highlight"))
@@ -818,6 +826,9 @@ enum {
                                     self.waypoint.flag_highlight = !self.waypoint.flag_highlight;
                                     [self.waypoint dbUpdateHighlight];
                                     [waypointManager needsRefreshUpdate:self.waypoint];
+                                    if (self.waypoint.flag_highlight == YES) {
+                                        [owntracksManager alertWaypointMarkAs:self.waypoint markAs:FLAGS_HIGHLIGHTED];
+                                    }
                                     [self.tableView reloadData];
                                 }];
     UIAlertAction *planned = nil;
@@ -833,6 +844,9 @@ enum {
                        else
                            [self addLocalLog:_(@"waypointviewcontroller-Marked as Planned")];
                        self.waypoint.flag_planned = !self.waypoint.flag_planned;
+                       if (self.waypoint.flag_planned == YES) {
+                           [owntracksManager alertWaypointMarkAs:self.waypoint markAs:FLAGS_PLANNED];
+                       }
                        [self.waypoint dbUpdatePlanned];
                    }];
     }

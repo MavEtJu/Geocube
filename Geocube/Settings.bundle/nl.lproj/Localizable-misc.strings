@@ -38,6 +38,10 @@
 "infoviewer-Waypoints: %ld" = "Waypoints: %ld";
 "infoviewer-Waypoints: %ld (%ld new)" = "Waypoints: %ld (%ld nieuwe)";
 
+/* OwnTracks */
+"owntracks-OwnTracks disabled" = "OwnTracks gestopt";
+"owntracks-The OwnTracks service has been disabled because of the more than 10 errors received from the server." = "De OwnTracks service is gestopt omdat er meer dan 10 fouten van de server zijn ontvangen.";
+
 /* Coordinates */
 "coordinates-Import failed" = "Import mislukt";
 "coordinates-Import successful" = "Import gelukt";

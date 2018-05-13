@@ -22,7 +22,7 @@
 @interface OwnTracksManager : NSObject
 
 - (void)startDelivering;
-- (void)stopDelivering;
+- (void)stopDelivering:(BOOL)sendLWT;
 
 - (void)alertAppStarted;
 - (void)alertAppStopped;

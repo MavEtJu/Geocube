@@ -1006,7 +1006,7 @@ SWITCH_UPDATE_RELOAD(updateServicesShowDeveloper, serviceShowDeveloper)
     if (s.on == YES) {
         [owntracksManager startDelivering];
     } else {
-        [owntracksManager stopDelivering];
+        [owntracksManager stopDelivering:YES];
     }
     [self.tableView reloadData];
 }

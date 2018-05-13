@@ -141,6 +141,7 @@
 - (void)actionSetAsTarget:(UIButton *)setAsTarget
 {
     [waypointManager setTheCurrentWaypoint:self.waypoint];
+    [owntracksManager alertWaypointSetTarget:self.waypoint];
 
     MHTabBarController *tb = [_AppDelegate.tabBars objectAtIndex:RC_NAVIGATE];
     UINavigationController *nvc = [tb.viewControllers objectAtIndex:VC_NAVIGATE_TARGET];

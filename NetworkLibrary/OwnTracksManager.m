@@ -23,6 +23,8 @@
 
 @property (nonatomic, retain) NSOperationQueue *runqueue;
 @property (nonatomic        ) BOOL isRunning;
+@property (nonatomic        ) NSInteger errorCount;
+@property (nonatomic        ) BOOL alertedNoConnection;
 
 @end
 
@@ -62,10 +64,11 @@
     [self alertAppStarted];
 }
 
-- (void)stopDelivering
+- (void)stopDelivering:(BOOL)sendLWT
 {
     [self.runqueue cancelAllOperations];
-    [self alertAppStopped];
+    if (sendLWT == YES)
+        [self alertAppStopped];
 
     self.isRunning = NO;
 }
@@ -158,6 +161,24 @@
 
 - (void)send:(OwnTracksObject *)o
 {
+    // Keep it in the queue when there is no network connectivity
+    if ([MyTools hasAnyNetwork] == NO) {
+        if (self.alertedNoConnection == YES) {
+            // Keep it in the queue
+            [self.runqueue addOperationWithBlock:^{
+                [self send:o];
+            }];
+            return;
+        }
+        [self alertedNoConnection];
+        self.alertedNoConnection = YES;
+        [NSThread sleepForTimeInterval:10];
+    }
+    if (self.alertedNoConnection == YES) {
+        [self alertReconnectedToInternet];
+        self.alertedNoConnection = NO;
+    }
+
     GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"post.php" method:@"POST"];
 
     o.timeDelivered = time(NULL);
@@ -188,6 +209,20 @@
     urlRequest.HTTPBody = body;
 
     GCDictionary *json = [self performURLRequest:urlRequest];
+
+    // If something fails then retry later
+    if (json == nil) {
+        self.errorCount++;
+        [self.runqueue addOperationWithBlock:^{
+            [self send:o];
+        }];
+        if (self.errorCount > 10) {
+            [self stopDelivering:FALSE];
+            [MyTools messageBox:[MyTools topMostController] header:_(@"owntracks-OwnTracks disabled") text:_(@"owntracks-The OwnTracks service has been disabled because of the more than 10 errors received from the server.")];
+        }
+    } else {
+        self.errorCount = 0;
+    }
 }
 
 - (NSString *)encrypt:(NSData *)sin

@@ -139,6 +139,10 @@
 "coordinates-MGRS (%@)" = "MGRS (%@)";
 "coordinates-Change Format" = "Change Format";
 
+/* OwnTracks related */
+"owntracks-OwnTracks disabled" = "OwnTracks disabled";
+"owntracks-The OwnTracks service has been disabled because of the more than 10 errors received from the server." = "The OwnTracks service has been disabled because of the more than 10 errors received from the server.";
+
 /* */
 "misc-decimals" = "decimals";
 

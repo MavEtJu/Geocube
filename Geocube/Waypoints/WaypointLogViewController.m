@@ -736,6 +736,8 @@ enum {
 
     self.note = [self replaceMacros:self.note];
 
+    [owntracksManager alertWaypointLog:self.waypoint];
+
     BACKGROUND(submitLogBackground, nil);
 }
 
