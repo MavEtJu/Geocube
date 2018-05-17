@@ -55,7 +55,7 @@
     self._LM.headingFilter = 1;
     self._LM.delegate = self;
 
-    self.coords = self._LM.location.coordinate;
+    self.coordsRealNotFake = self.coords = self._LM.location.coordinate;
     NSLog(@"%@: Starting at %@", [self class], [Coordinates niceCoordinates:self.coords]);
 
     self.delegatesHistory = [NSMutableArray arrayWithCapacity:5];
@@ -386,8 +386,10 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(nonnull NSArray<CLLocation *> *)locations
 {
-    if (self.useGNSS == NO)
+    if (self.useGNSS == NO) {
+        self.coordsRealNotFake = [locations lastObject].coordinate;
         return;
+    }
 
     CLLocation *newLocation = [locations lastObject];
 
@@ -399,7 +401,7 @@
 
     // Keep track of new values
     self.altitude = manager.location.altitude;
-    self.coords = newLocation.coordinate;
+    self.coordsRealNotFake = self.coords = newLocation.coordinate;
     self.accuracy = newLocation.horizontalAccuracy;
 
     // Send out the location and direction changes

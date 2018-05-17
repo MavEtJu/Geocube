@@ -30,7 +30,7 @@
     self = [super init];
 
     self.timeSubmitted = time(NULL);
-    self.coord = LM.coords;
+    self.coord = LM.coordsRealNotFake;
     self.altitude = LM.altitude;
     self.accuracy = LM.accuracy;
     self.batteryLevel = [[UIDevice currentDevice] batteryLevel];

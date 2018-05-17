@@ -31,6 +31,7 @@
 @property (nonatomic) CLLocationDistance altitude;
 @property (nonatomic) CLLocationDirection direction;
 @property (nonatomic) CLLocationCoordinate2D coords;
+@property (nonatomic) CLLocationCoordinate2D coordsRealNotFake;
 @property (nonatomic) NSMutableArray<GCCoordsHistorical *> *coordsHistorical;
 @property (nonatomic, readonly) BOOL useGNSS;
 
