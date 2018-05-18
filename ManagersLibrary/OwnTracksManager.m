@@ -239,65 +239,42 @@
     return [sout base64EncodedStringWithOptions:0];
 }
 
-- (void)alertAppStarted
-{
-    OwnTracksObject *o = [[OwnTracksObject alloc] init];
-    o.info = @"App started";
-    [self.runqueue addOperationWithBlock:^{
-        [self send:o];
-    }];
-}
+#define ALERT(__funcname__, __info__) \
+    - (void)__funcname__ \
+    { \
+        OwnTracksObject *o = [[OwnTracksObject alloc] init]; \
+        o.info = __info__; \
+        [self.runqueue addOperationWithBlock:^{ \
+            [self send:o]; \
+        }]; \
+    }
 
-- (void)alertAppStopped
-{
-    OwnTracksObject *o = [[OwnTracksObject alloc] init];
-    o.info = @"Delivery stopped";
-    [self.runqueue addOperationWithBlock:^{
-        [self send:o];
-    }];
-}
+#define ALERT_WP(__funcname__, __info__) \
+    - (void)__funcname__:(dbWaypoint *)wp \
+    { \
+        OwnTracksObject *o = [[OwnTracksObject alloc] init]; \
+        o.info = [NSString stringWithFormat:__info__, wp.wpt_name]; \
+        [self.runqueue addOperationWithBlock:^{ \
+            [self send:o]; \
+        }]; \
+    }
+
+ALERT(alertAppStarted, @"App started")
+ALERT(alertAppStopped, @"Delivery stopped")
+ALERT(alertLostConnectionToInternet, @"Lost connection to the internet")
+ALERT(alertReconnectedToInternet, @"Regained connection to the internet")
+ALERT(alertCarParked, @"Keep Track: Remember location")
+ALERT(alertBeeperStarted, @"Keep Track: Beeper started")
+
+ALERT_WP(alertWaypointLog, @"Logged %@")
+ALERT_WP(alertWaypointSetTarget, @"Set target to %@")
+ALERT_WP(alertWaypointRemoveTarget, @"Remove target from %@")
 
 - (void)alertAppChangePassword
 {
     OwnTracksObject *o = [[OwnTracksObject alloc] init];
     o.info = @"Password changed";
     o.password = configManager.owntracksPassword;
-    [self.runqueue addOperationWithBlock:^{
-        [self send:o];
-    }];
-}
-
-- (void)alertLostConnectionToInternet
-{
-    OwnTracksObject *o = [[OwnTracksObject alloc] init];
-    o.info = @"Lost connection to the internet";
-    [self.runqueue addOperationWithBlock:^{
-        [self send:o];
-    }];
-}
-
-- (void)alertReconnectedToInternet
-{
-    OwnTracksObject *o = [[OwnTracksObject alloc] init];
-    o.info = @"Regained connection to the internet";
-    [self.runqueue addOperationWithBlock:^{
-        [self send:o];
-    }];
-}
-
-- (void)alertWaypointSetTarget:(dbWaypoint *)wp
-{
-    OwnTracksObject *o = [[OwnTracksObject alloc] init];
-    o.info = [NSString stringWithFormat:@"Set target to %@", wp.wpt_name];
-    [self.runqueue addOperationWithBlock:^{
-        [self send:o];
-    }];
-}
-
-- (void)alertWaypointRemoveTarget:(dbWaypoint *)wp
-{
-    OwnTracksObject *o = [[OwnTracksObject alloc] init];
-    o.info = [NSString stringWithFormat:@"Remove target from %@", wp.wpt_name];
     [self.runqueue addOperationWithBlock:^{
         [self send:o];
     }];
@@ -326,24 +303,6 @@
             o.info = [NSString stringWithFormat:@"Marked %@ as found", wp.wpt_name];
             break;
     }
-    [self.runqueue addOperationWithBlock:^{
-        [self send:o];
-    }];
-}
-
-- (void)alertWaypointLog:(dbWaypoint *)wp;
-{
-    OwnTracksObject *o = [[OwnTracksObject alloc] init];
-    o.info = [NSString stringWithFormat:@"Logged %@", wp.wpt_name];
-    [self.runqueue addOperationWithBlock:^{
-        [self send:o];
-    }];
-}
-
-- (void)alertKeepTrackRememberLocation:(dbWaypoint *)wp
-{
-    OwnTracksObject *o = [[OwnTracksObject alloc] init];
-    o.info = [NSString stringWithFormat:@"Keep Track: Remember location"];
     [self.runqueue addOperationWithBlock:^{
         [self send:o];
     }];

@@ -223,6 +223,8 @@ enum {
     [waypoint finish];
     [waypoint dbUpdate];
 
+    [owntracksManager alertCarParked];
+
     // Enable "set as target"
     self.buttonSetAsTarget.userInteractionEnabled = YES;
 }
