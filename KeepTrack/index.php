@@ -111,7 +111,14 @@ function GenerateDates()
 
     var select = document.createElement("SELECT");
     select.name = "date";
-    for (var i = 1; i < dates.length; i++) {
+
+    var option = document.createElement("OPTION");
+    option.value = "";
+    var t = document.createTextNode("----");
+    option.appendChild(t);
+    select.appendChild(option);
+
+    for (var i = 0; i < dates.length; i++) {
 	var option = document.createElement("OPTION");
 	option.value = dates[i].epoch + 60 * offset;;
 	var t = document.createTextNode(dates[i].text);
@@ -151,7 +158,7 @@ function GenerateTable()
 //    }
  
     //Add the data rows.
-    for (var i = 1; i < tableData.length; i++) {
+    for (var i = 0; i < tableData.length; i++) {
         row = table.insertRow(-1);
 	t = "";
         for (var j = 0; j < columnCount; j++) {
