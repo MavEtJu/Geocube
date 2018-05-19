@@ -766,8 +766,8 @@
 		E8EC502F1F832E6B004A2338 /* FilterHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8EC502D1F832E6B004A2338 /* FilterHeaderTableViewCell.xib */; };
 		E8EC50311F835798004A2338 /* FilterDirectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8EC50301F835798004A2338 /* FilterDirectionTableViewCell.xib */; };
 		E8EC50331F836E68004A2338 /* FilterDifficultyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8EC50321F836E68004A2338 /* FilterDifficultyTableViewCell.xib */; };
-		E8F0007720AEF7C4003B5D47 /* OwnTracksObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F0007420AEF7C3003B5D47 /* OwnTracksObject.m */; };
 		E8F0007820AEF7C4003B5D47 /* OwnTracksManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F0007520AEF7C4003B5D47 /* OwnTracksManager.m */; };
+		E8F0007B20AEF95C003B5D47 /* dbOwnTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F0007A20AEF95C003B5D47 /* dbOwnTrack.m */; };
 		E8F403E81DAF5B2600318CC6 /* cache - reverse - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */; };
 		E8F403EB1DAFA23600318CC6 /* cache - reverse - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */; };
 		E8F403EC1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */; };
@@ -2040,9 +2040,9 @@
 		E8EC50301F835798004A2338 /* FilterDirectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterDirectionTableViewCell.xib; path = Filters/FilterDirectionTableViewCell.xib; sourceTree = "<group>"; };
 		E8EC50321F836E68004A2338 /* FilterDifficultyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterDifficultyTableViewCell.xib; path = Filters/FilterDifficultyTableViewCell.xib; sourceTree = "<group>"; };
 		E8F0007320AEF7C3003B5D47 /* OwnTracksManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OwnTracksManager.h; path = ManagersLibrary/OwnTracksManager.h; sourceTree = "<group>"; };
-		E8F0007420AEF7C3003B5D47 /* OwnTracksObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OwnTracksObject.m; path = ManagersLibrary/OwnTracksObject.m; sourceTree = "<group>"; };
 		E8F0007520AEF7C4003B5D47 /* OwnTracksManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OwnTracksManager.m; path = ManagersLibrary/OwnTracksManager.m; sourceTree = "<group>"; };
-		E8F0007620AEF7C4003B5D47 /* OwnTracksObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OwnTracksObject.h; path = ManagersLibrary/OwnTracksObject.h; sourceTree = "<group>"; };
+		E8F0007920AEF95C003B5D47 /* dbOwnTrack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = dbOwnTrack.h; path = DatabaseLibrary/dbOwnTrack.h; sourceTree = "<group>"; };
+		E8F0007A20AEF95C003B5D47 /* dbOwnTrack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = dbOwnTrack.m; path = DatabaseLibrary/dbOwnTrack.m; sourceTree = "<group>"; };
 		E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30.png"; path = "images/caches/cache - reverse - 30x30.png"; sourceTree = "<group>"; };
 		E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@2x.png"; path = "images/caches/cache - reverse - 30x30@2x.png"; sourceTree = "<group>"; };
 		E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@3x.png"; path = "images/caches/cache - reverse - 30x30@3x.png"; sourceTree = "<group>"; };
@@ -2329,7 +2329,8 @@
 				E82286DB1F8A2CE300631380 /* LocationManager.m */,
 				E82286DE1F8A2CE300631380 /* OpenCageManager.h */,
 				E82286DF1F8A2CE300631380 /* OpenCageManager.m */,
-				E8A4A5C120A41A8500E959D7 /* OwnTracks */,
+				E8F0007320AEF7C3003B5D47 /* OwnTracksManager.h */,
+				E8F0007520AEF7C4003B5D47 /* OwnTracksManager.m */,
 				E82286E11F8A2CE300631380 /* WaypointManager.h */,
 				E82286E01F8A2CE300631380 /* WaypointManager-delegate.h */,
 				E82286E21F8A2CE300631380 /* WaypointManager.m */,
@@ -2417,6 +2418,8 @@
 				E82286641F8A2BD500631380 /* dbNotice.m */,
 				E82286651F8A2BD500631380 /* dbObject.h */,
 				E82286661F8A2BD500631380 /* dbObject.m */,
+				E8F0007920AEF95C003B5D47 /* dbOwnTrack.h */,
+				E8F0007A20AEF95C003B5D47 /* dbOwnTrack.m */,
 				E82286671F8A2BD500631380 /* dbPersonalNote.h */,
 				E82286681F8A2BD500631380 /* dbPersonalNote.m */,
 				E82286691F8A2BD500631380 /* dbPin.h */,
@@ -3928,17 +3931,6 @@
 			name = map;
 			sourceTree = "<group>";
 		};
-		E8A4A5C120A41A8500E959D7 /* OwnTracks */ = {
-			isa = PBXGroup;
-			children = (
-				E8F0007320AEF7C3003B5D47 /* OwnTracksManager.h */,
-				E8F0007520AEF7C4003B5D47 /* OwnTracksManager.m */,
-				E8F0007620AEF7C4003B5D47 /* OwnTracksObject.h */,
-				E8F0007420AEF7C3003B5D47 /* OwnTracksObject.m */,
-			);
-			name = OwnTracks;
-			sourceTree = "<group>";
-		};
 		E8A4BEEB1BD4B8F000BCA5A5 /* Keep Track */ = {
 			isa = PBXGroup;
 			children = (
@@ -5060,7 +5052,6 @@
 				E82289131F8A40A800631380 /* SVRadialGradientLayer.m in Sources */,
 				E82286BD1F8A2C8800631380 /* ImportGPX.m in Sources */,
 				E82287351F8A2E7900631380 /* GCArrayObjects.m in Sources */,
-				E8F0007720AEF7C4003B5D47 /* OwnTracksObject.m in Sources */,
 				E82344911EECE0AC00D2CDFD /* QueriesGCAViewController.m in Sources */,
 				E82288281F8A349500631380 /* YISSTextView.m in Sources */,
 				E82287F21F8A344400631380 /* AbstractActionSheetPicker.m in Sources */,
@@ -5085,6 +5076,7 @@
 				E860CA051F81F84700C66AD8 /* FilterButton.m in Sources */,
 				E822873A1F8A2E7900631380 /* GCLocationCoordinate2D.m in Sources */,
 				E82287951F8A30B700631380 /* MapApple.m in Sources */,
+				E8F0007B20AEF95C003B5D47 /* dbOwnTrack.m in Sources */,
 				E82345251EECE14A00D2CDFD /* HelpIntroduction.m in Sources */,
 				E822861D1F8A285C00631380 /* MyClock.m in Sources */,
 				E82288CA1F8A358700631380 /* NVHGzipFile.m in Sources */,

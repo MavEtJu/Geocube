@@ -35,7 +35,7 @@
     self = [super init];
 
     self.runqueue = [[NSOperationQueue alloc] init];
-    self.runqueue.maxConcurrentOperationCount = 1;
+    // Gets started in startDelivering
 
     // Needed for the battery level
     [[UIDevice currentDevice] setBatteryMonitoringEnabled:YES];
@@ -62,6 +62,10 @@
 
     self.isRunning = YES;
     [self alertAppStarted];
+    [self.runqueue addOperationWithBlock:^{
+        [self processSendQueue];
+    }];
+
 }
 
 - (void)stopDelivering:(BOOL)sendLWT
@@ -159,69 +163,77 @@
     [configManager owntracksSecretUpdate:[json objectForKey:@"secret"]];
 }
 
-- (void)send:(OwnTracksObject *)o
+- (void)processSendQueue
 {
-    // Keep it in the queue when there is no network connectivity
-    if ([MyTools hasAnyNetwork] == NO) {
-        if (self.alertedNoConnection == YES) {
-            // Keep it in the queue
-            [self.runqueue addOperationWithBlock:^{
-                [self send:o];
-            }];
-            return;
+    while (TRUE) {
+        // Delay if there is nothing, retry if there is nothing afterwards.
+        if ([dbOwnTrack dbCount] == 0) {
+            [NSThread sleepForTimeInterval:10];
+            if ([dbOwnTrack dbCount] == 0)
+                continue;
         }
-        [self alertedNoConnection];
-        self.alertedNoConnection = YES;
-        [NSThread sleepForTimeInterval:10];
-    }
-    if (self.alertedNoConnection == YES) {
-        [self alertReconnectedToInternet];
-        self.alertedNoConnection = NO;
-    }
 
-    GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"post.php" method:@"POST"];
+        // Keep it in the queue when there is no network connectivity
+        if ([MyTools hasAnyNetwork] == NO) {
+            if (self.alertedNoConnection == YES) {
+                [NSThread sleepForTimeInterval:10];
+                continue;
+            }
+            [self alertedNoConnection];
+            self.alertedNoConnection = YES;
+            [NSThread sleepForTimeInterval:10];
+            continue;
+        }
 
-    o.timeDelivered = time(NULL);
+        if (self.alertedNoConnection == YES) {
+            [self alertReconnectedToInternet];
+            self.alertedNoConnection = NO;
+        }
 
-    NSDictionary *dict = @{
+        GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"post.php" method:@"POST"];
+
+        dbOwnTrack *o = [dbOwnTrack dbGetFirst];
+        o.timeDelivered = time(NULL);
+
+        NSDictionary *dict = @{
+        @"id": [NSNumber numberWithInteger:o._id],
         @"info": o.info,
         @"timeSubmitted": [NSNumber numberWithInteger:o.timeSubmitted],
         @"timeDelivered": [NSNumber numberWithInteger:o.timeDelivered],
         @"batteryLevel": [NSNumber numberWithInteger:o.batteryLevel],
         @"password": IS_EMPTY(o.password) == YES ? [NSNull null] : o.password,
         @"coordinate": @{
-            @"latitude": [NSNumber numberWithFloat:o.coord.latitude],
-            @"longitude": [NSNumber numberWithFloat:o.coord.longitude],
-            @"accuracy": [NSNumber numberWithFloat:o.accuracy],
-            @"altitude": [NSNumber numberWithInteger:o.altitude],
-            },
+                @"latitude": [NSNumber numberWithFloat:o.coord.latitude],
+                @"longitude": [NSNumber numberWithFloat:o.coord.longitude],
+                @"accuracy": [NSNumber numberWithFloat:o.accuracy],
+                @"altitude": [NSNumber numberWithInteger:o.altitude],
+                },
         };
-    NSError *error = nil;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:&error];
-    NSString *encryptedData = [self encrypt:data];
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:&error];
+        NSString *encryptedData = [self encrypt:data];
 
-    dict = @{
-        @"username": configManager.owntracksUsername,
-        @"data": encryptedData,
+        dict = @{
+             @"username": configManager.owntracksUsername,
+             @"data": encryptedData,
         };
 
-    NSData *body = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:&error];
-    urlRequest.HTTPBody = body;
+        NSData *body = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:&error];
+        urlRequest.HTTPBody = body;
 
-    GCDictionary *json = [self performURLRequest:urlRequest];
+        GCDictionary *json = [self performURLRequest:urlRequest];
 
-    // If something fails then retry later
-    if (json == nil) {
-        self.errorCount++;
-        [self.runqueue addOperationWithBlock:^{
-            [self send:o];
-        }];
-        if (self.errorCount > 10) {
-            [self stopDelivering:FALSE];
-            [MyTools messageBox:[MyTools topMostController] header:_(@"owntracks-OwnTracks disabled") text:_(@"owntracks-The OwnTracks service has been disabled because of the more than 10 errors received from the server.")];
+        // If something fails then retry later
+        if (json == nil) {
+            self.errorCount++;
+            if (self.errorCount > 10) {
+                [self stopDelivering:FALSE];
+                [MyTools messageBox:[MyTools topMostController] header:_(@"owntracks-OwnTracks disabled") text:_(@"owntracks-The OwnTracks service has been disabled because of the more than 10 errors received from the server.")];
+            }
+        } else {
+            self.errorCount = 0;
+            [o dbDelete];
         }
-    } else {
-        self.errorCount = 0;
     }
 }
 
@@ -242,21 +254,17 @@
 #define ALERT(__funcname__, __info__) \
     - (void)__funcname__ \
     { \
-        OwnTracksObject *o = [[OwnTracksObject alloc] init]; \
+        dbOwnTrack *o = [[dbOwnTrack alloc] initInitialized]; \
         o.info = __info__; \
-        [self.runqueue addOperationWithBlock:^{ \
-            [self send:o]; \
-        }]; \
+        [o dbCreate]; \
     }
 
 #define ALERT_WP(__funcname__, __info__) \
     - (void)__funcname__:(dbWaypoint *)wp \
     { \
-        OwnTracksObject *o = [[OwnTracksObject alloc] init]; \
+        dbOwnTrack *o = [[dbOwnTrack alloc] initInitialized]; \
         o.info = [NSString stringWithFormat:__info__, wp.wpt_name]; \
-        [self.runqueue addOperationWithBlock:^{ \
-            [self send:o]; \
-        }]; \
+        [o dbCreate]; \
     }
 
 ALERT(alertAppStarted, @"App started")
@@ -272,17 +280,15 @@ ALERT_WP(alertWaypointRemoveTarget, @"Remove target from %@")
 
 - (void)alertAppChangePassword
 {
-    OwnTracksObject *o = [[OwnTracksObject alloc] init];
+    dbOwnTrack *o = [[dbOwnTrack alloc] initInitialized];
     o.info = @"Password changed";
     o.password = configManager.owntracksPassword;
-    [self.runqueue addOperationWithBlock:^{
-        [self send:o];
-    }];
+    [o dbCreate];
 }
 
 - (void)alertWaypointMarkAs:(dbWaypoint *)wp markAs:(Flag)markAs;
 {
-    OwnTracksObject *o = [[OwnTracksObject alloc] init];
+    dbOwnTrack *o = [[dbOwnTrack alloc] initInitialized];
     switch (markAs) {
         case FLAGS_IGNORED:
             o.info = [NSString stringWithFormat:@"Marked %@ as ignored", wp.wpt_name];
@@ -303,9 +309,7 @@ ALERT_WP(alertWaypointRemoveTarget, @"Remove target from %@")
             o.info = [NSString stringWithFormat:@"Marked %@ as found", wp.wpt_name];
             break;
     }
-    [self.runqueue addOperationWithBlock:^{
-        [self send:o];
-    }];
+    [o dbCreate];
 }
 
 @end

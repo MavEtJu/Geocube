@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface OwnTracksObject : NSObject
+@interface dbOwnTrack : dbObject
 
 @property (nonatomic)         NSInteger timeSubmitted;
 @property (nonatomic)         NSInteger timeDelivered;
@@ -32,5 +32,9 @@
 
 @property (nonatomic, retain) NSString *info;
 @property (nonatomic, retain) NSString *password;
+
+- (instancetype)initInitialized;
+- (instancetype)initEmpty;
++ (dbOwnTrack *)dbGetFirst;
 
 @end
