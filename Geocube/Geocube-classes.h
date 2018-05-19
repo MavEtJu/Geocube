@@ -197,7 +197,6 @@
 @class NoticesViewController;
 @class OpenCageManager;
 @class OwnTracksManager;
-@class OwnTracksObject;
 @class PersonalNoteTableViewCell;
 @class ProtocolGCA2;
 @class ProtocolGGCW;
@@ -289,6 +288,7 @@
 @class dbName;
 @class dbNotice;
 @class dbObject;
+@class dbOwnTrack;
 @class dbPersonalNote;
 @class dbPin;
 @class dbProtocol;

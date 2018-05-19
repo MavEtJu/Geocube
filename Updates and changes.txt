@@ -6,6 +6,7 @@ Version 2.4(x)
   - Add support for Geocaching Australia "Ephemeral" cache types.
   - If something goes wrong with the loading of the KML files, you
     can disable the loading of all of them in the Settings app.
+  - Added KeepTrack, a website to keep track of where you are.
 
   Fixes:
   - Fix crashes in deleting files by swipe left in Files -> Local

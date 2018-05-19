@@ -195,7 +195,7 @@
     CHECK(@"myaccount_lastnumber", @"0");
 
     CHECK(@"owntracks_enable", @"0");
-    CHECK(@"owntracks_url", @"https://geocube.mavetju.org/owntracks/");
+    CHECK(@"owntracks_url", @"https://geocube.mavetju.org/keeptrack/");
     CHECK(@"owntracks_username", @"");
     CHECK(@"owntracks_secret", @"");
     CHECK(@"owntracks_password", @"");

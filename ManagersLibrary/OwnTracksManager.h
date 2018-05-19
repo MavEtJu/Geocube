@@ -30,12 +30,13 @@
 - (void)alertLostConnectionToInternet;
 - (void)alertReconnectedToInternet;
 
+- (void)alertCarParked;
+- (void)alertBeeperStarted;
+
 - (void)alertWaypointSetTarget:(dbWaypoint *)wp;
 - (void)alertWaypointRemoveTarget:(dbWaypoint *)wp;
 - (void)alertWaypointMarkAs:(dbWaypoint *)wp markAs:(Flag)markAs;
 - (void)alertWaypointLog:(dbWaypoint *)wp;
-
-- (void)alertKeepTrackRememberLocation:(dbWaypoint *)wp;
 
 @end
 

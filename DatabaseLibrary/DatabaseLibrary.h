@@ -54,6 +54,7 @@
 #import "DatabaseLibrary/dbMoveableInventory.h"
 #import "DatabaseLibrary/dbName.h"
 #import "DatabaseLibrary/dbNotice.h"
+#import "DatabaseLibrary/dbOwnTrack.h"
 #import "DatabaseLibrary/dbPersonalNote.h"
 #import "DatabaseLibrary/dbPin.h"
 #import "DatabaseLibrary/dbProtocol.h"

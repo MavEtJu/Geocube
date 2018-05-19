@@ -37,4 +37,5 @@
 #import "ManagersLibrary/LocalizationManager.h"
 #import "ManagersLibrary/LocationManager.h"
 #import "ManagersLibrary/OpenCageManager.h"
+#import "ManagersLibrary/OwnTracksManager.h"
 #import "ManagersLibrary/WaypointManager.h"

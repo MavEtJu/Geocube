@@ -64,6 +64,7 @@
 {
     self.isBeeping = YES;
     BACKGROUND(performBeeping, nil);
+    [owntracksManager alertBeeperStarted];
 }
 
 - (void)buttonStopPressed
