@@ -914,7 +914,7 @@
 
     // Version 75
     a = @[
-    @"create table owntracks (id integer primary key, info text, pw text, time_submitted integer, coord_lat float, coord_lon float, accuracy integer, altitude integer, battery_level float)",
+    @"create table owntracks (id integer primary key autoincrement, info text, pw text, time_submitted integer, coord_lat float, coord_lon float, accuracy integer, altitude integer, battery_level float)",
     @"create index owntracks_idx_id on owntracks(id)",
     ];
     [self.upgradeSteps addObject:a];

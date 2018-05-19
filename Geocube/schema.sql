@@ -453,7 +453,7 @@ create table moveable_inventory (
 );
 
 create table owntracks (
-    id integer primary key,
+    id integer primary key autoincrement,
     info text,
     pw text,
     time_submitted integer,
