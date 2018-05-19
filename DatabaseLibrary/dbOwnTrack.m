@@ -55,16 +55,13 @@ TABLENAME(@"owntracks")
 - (NSId)dbCreate
 {
     @synchronized(db) {
-        CLLocationDegrees lat = 0, lon = 0;
-
         DB_PREPARE(@"insert into owntracks(info, pw, time_submitted, coord_lat, coord_lon, accuracy, altitude, battery_level) values(?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT  (1, self.info);
         SET_VAR_TEXT  (2, self.password);
         SET_VAR_INT   (3, self.timeSubmitted);
-        SET_VAR_DOUBLE(4, lat);
-        SET_VAR_DOUBLE(5, lon);
-        self.coord = CLLocationCoordinate2DMake(lat, lon);
+        SET_VAR_DOUBLE(4, self.coord.latitude);
+        SET_VAR_DOUBLE(5, self.coord.longitude);
         SET_VAR_INT   (6, self.accuracy);
         SET_VAR_INT   (7, self.altitude);
         SET_VAR_DOUBLE(8, self.batteryLevel);
