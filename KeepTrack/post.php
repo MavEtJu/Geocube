@@ -13,6 +13,7 @@ $input = json_decode($inputJSON, TRUE);
 
 	Array
 	(
+	    [id] => 1
 	    [info] => App started
 	    [batteryLevel] => -1
 	    [coordinate] => Array
@@ -58,6 +59,7 @@ if (!isset($input["data"])) {
 	$db->exec("
 		CREATE TABLE IF NOT EXISTS waypoints(
 			id INTEGER PRIMARY KEY, 
+		     	_id INT,
 		     	timeSubmitted INT,
 		     	timeDelivered INT,
 		     	timeInserted INT,
@@ -108,8 +110,9 @@ if ($data["password"] != "") {
 
 // At the end, add the waypoint
 
-$stm = $db->prepare("INSERT INTO waypoints(timeSubmitted, timeDelivered, timeInserted, coordLatitude, coordLongitude, coordAccuracy, coordAltitude, batteryLevel, info) values(:timeSubmitted, :timeDelivered, :timeInserted, :coordLatitude, :coordLongitude, :coordAccuracy, :coordAltitude, :batteryLevel, :info)");
+$stm = $db->prepare("INSERT INTO waypoints(_id, timeSubmitted, timeDelivered, timeInserted, coordLatitude, coordLongitude, coordAccuracy, coordAltitude, batteryLevel, info) values(:_id, :timeSubmitted, :timeDelivered, :timeInserted, :coordLatitude, :coordLongitude, :coordAccuracy, :coordAltitude, :batteryLevel, :info)");
 
+$stm->bindParam(":_id",  	   $data["id"]);
 $stm->bindParam(":timeSubmitted",  $data["timeSubmitted"]);
 $stm->bindParam(":timeDelivered",  $data["timeDelivered"]);
 $stm->bindParam(":timeInserted",   time());

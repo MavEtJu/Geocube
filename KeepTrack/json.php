@@ -3,6 +3,8 @@
 $input["username"] = "Mavvie6s";
 $input["password"] = "pass";
 
+$dateSelected = $_REQUEST["dateSelected"];
+
 date_default_timezone_set("Australia/Sydney");
 
 // Attach to the database, based on the username provided.
@@ -24,15 +26,37 @@ $password = $array["value"];
 if ($password != $input["password"])
 	exit(0);
 
-$stm = $db->prepare("SELECT timeSubmitted, timeDelivered, timeInserted, coordLatitude, coordLongitude, coordAccuracy, coordAltitude, batteryLevel, info FROM waypoints WHERE 1526306400 < timeSubmitted and timeSubmitted < 1526306400 + 86400 ORDER BY timeSubmitted");
+echo "eqfeed_callback({\"type\":\"FeatureCollection\",";
+
+// Find some metadata
+$stm = $db->prepare("SELECT DISTINCT timeSubmitted / 86400 AS c, COUNT(*) FROM waypoints GROUP BY c ORDER BY c DESC"); 
 $stm->execute();
-echo "eqfeed_callback({\"type\":\"FeatureCollection\",\"features\":[\n";
+$dates = array();
+$first = 1;
+echo "\"dates\":[\n";
+while (($array = $stm->fetch()) != FALSE) {
+	if ($first == 0)
+		echo ",\n";
+	echo "{\"epoch\": ", 86400 * $array["c"], ", \"text\": \"" . strftime("%Y-%m-%d", 86400 * $array["c"]), "\"}";
+	$first = 0;
+}
+echo "],\n";
+
+// Grab the data
+$stm = $db->prepare("SELECT _id, timeSubmitted, timeDelivered, timeInserted, coordLatitude, coordLongitude, coordAccuracy, coordAltitude, batteryLevel, info FROM waypoints WHERE :timeStart < timeSubmitted and timeSubmitted < :timeEnd ORDER BY timeSubmitted");
+$ts1 = $dateSelected;
+$stm->bindParam(":timeStart", $ts1); 
+$ts2 = $ts1 + 86400;
+$stm->bindParam(":timeEnd", $ts2);
+$stm->execute();
+echo "\"features\":[\n";
 $first = 1;
 while (($array = $stm->fetch()) != FALSE) {
 	if ($first == 0)
 		echo ",{\n";
 	else
 		echo "{\n";
+	echo "\"id\": " . $array[_id] . ",\n";
 	echo "\"lat\": " . $array[coordLatitude] . ",\n";
 	echo "\"lon\": " . $array[coordLongitude] . ",\n";
 	echo "\"latlon\": \"" . sprintf("%0.5f %0.5f", $array[coordLatitude], $array[coordLongitude]) . "\",\n";
