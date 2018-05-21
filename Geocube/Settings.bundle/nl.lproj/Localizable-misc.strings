@@ -40,7 +40,7 @@
 
 /* OwnTracks */
 "owntracks-OwnTracks disabled" = "OwnTracks gestopt";
-"owntracks-The OwnTracks service has been disabled because of the more than 10 errors received from the server." = "De OwnTracks service is gestopt omdat er meer dan 10 fouten van de server zijn ontvangen.";
+"owntracks-The OwnTracks service has been interrupted because of the more than 10 errors received from the server." = "De OwnTracks service is gestopt omdat er meer dan 10 fouten van de server zijn ontvangen.";
 
 /* Coordinates */
 "coordinates-Import failed" = "Import mislukt";
