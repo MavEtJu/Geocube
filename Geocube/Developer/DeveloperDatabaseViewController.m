@@ -118,6 +118,8 @@ enum {
     [vs addObject:[[NSNumber numberWithInteger:[dbName dbCount]] stringValue]];
     [fs addObject:@"Notices"];
     [vs addObject:[[NSNumber numberWithInteger:[dbNotice dbCount]] stringValue]];
+    [fs addObject:@"OwnTrack"];
+    [vs addObject:[[NSNumber numberWithInteger:[dbOwnTrack dbCount]] stringValue]];
     [fs addObject:@"PersonalNotes"];
     [vs addObject:[[NSNumber numberWithInteger:[dbPersonalNote dbCount]] stringValue]];
     [fs addObject:@"Pins"];
