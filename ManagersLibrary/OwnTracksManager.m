@@ -62,7 +62,6 @@
     [self.runqueue addOperationWithBlock:^{
         [self processSendQueue];
     }];
-
 }
 
 - (void)stopDelivering:(BOOL)sendLWT
@@ -168,7 +167,7 @@
             }
             [self alertedNoConnection];
             self.alertedNoConnection = YES;
-            [NSThread sleepForTimeInterval:30];
+            [NSThread sleepForTimeInterval:configManager.owntracksIntervalOffline];
             continue;
         }
 
@@ -179,7 +178,7 @@
 
         // Delay if there is nothing, retry if there is nothing afterwards.
         if ([dbOwnTrack dbCount] == 0) {
-            [NSThread sleepForTimeInterval:10];
+            [NSThread sleepForTimeInterval:configManager.owntracksInterval];
             if ([dbOwnTrack dbCount] == 0)
                 continue;
         }
@@ -190,7 +189,7 @@
         o.timeDelivered = time(NULL);
 
         NSDictionary *dict = @{
-        @"id": [NSNumber numberWithInteger:o._id],
+        @"id": [NSNumber numberWithLong:o._id],
         @"info": o.info,
         @"timeSubmitted": [NSNumber numberWithInteger:o.timeSubmitted],
         @"timeDelivered": [NSNumber numberWithInteger:o.timeDelivered],
@@ -220,9 +219,9 @@
         // If something fails then retry later
         if (json == nil) {
             self.errorCount++;
-            if (self.errorCount == 10) {
+            if (self.errorCount == configManager.owntracksFailure) {
                 [self stopDelivering:FALSE];
-                [NSThread sleepForTimeInterval:10];
+                [NSThread sleepForTimeInterval:configManager.owntracksIntervalFailure];
                 [MyTools messageBox:[MyTools topMostController] header:_(@"owntracks-OwnTracks disabled") text:_(@"owntracks-The OwnTracks service has been interrupted because of the more than 10 errors received from the server.")];
             }
         } else {

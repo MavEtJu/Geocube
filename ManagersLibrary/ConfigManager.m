@@ -44,161 +44,165 @@
 #define CHECK(__key__, __default__) \
     c = [dbConfig dbGetByKey:__key__]; \
     if (c == nil) \
-        [dbConfig dbUpdateOrInsert:__key__ value:__default__]
+[dbConfig dbUpdateOrInsert:__key__ value:__default__];
 
     NSString *defaultUsesMetric = @"1";
     if ([MyTools iOSVersionAtLeast_10_0_0] == YES && [[NSLocale currentLocale] usesMetricSystem] == NO)
         // This locale doesn't default to metric system.
         defaultUsesMetric = @"0";
-    CHECK(@"distance_metric", defaultUsesMetric);
-    CHECK(@"waypoint_current", @"");
-    CHECK(@"page_current", @"0");
-    CHECK(@"pagetab_current", @"0");
-    CHECK(@"track_current", @"0");
-    CHECK(@"lastimport_group", @"0");
-    CHECK(@"lastadded_group", @"0");
-    CHECK(@"lastimport_source", @"0");
+    CHECK(@"distance_metric", defaultUsesMetric)
+    CHECK(@"waypoint_current", @"")
+    CHECK(@"page_current", @"0")
+    CHECK(@"pagetab_current", @"0")
+    CHECK(@"track_current", @"0")
+    CHECK(@"lastimport_group", @"0")
+    CHECK(@"lastadded_group", @"0")
+    CHECK(@"lastimport_source", @"0")
 
-    CHECK(@"map_external", @"1");
-    CHECK(@"map_branddefault", @"apple");
-    CHECK(@"map_track_colour", @"00F0F0");
-    CHECK(@"map_destination_colour", @"FF0000");
-    CHECK(@"map_circle_ring_colour", @"0000FF");
-    CHECK(@"map_circle_ring_size", @"1");
-    CHECK(@"map_circle_fill_colour", @"000013");
-    CHECK(@"map_kml_fill_colour", @"0000FF");
-    CHECK(@"map_kml_border_colour", @"FF0000");
-    CHECK(@"map_kml_border_size", @"2");
+    CHECK(@"map_external", @"1")
+    CHECK(@"map_branddefault", @"apple")
+    CHECK(@"map_track_colour", @"00F0F0")
+    CHECK(@"map_destination_colour", @"FF0000")
+    CHECK(@"map_circle_ring_colour", @"0000FF")
+    CHECK(@"map_circle_ring_size", @"1")
+    CHECK(@"map_circle_fill_colour", @"000013")
+    CHECK(@"map_kml_fill_colour", @"0000FF")
+    CHECK(@"map_kml_border_colour", @"FF0000")
+    CHECK(@"map_kml_border_size", @"2")
 
-    CHECK(@"compass_type", @"0");
+    CHECK(@"compass_type", @"0")
     NSString *s = [NSString stringWithFormat:@"%ld", (long)THEME_IOS_NORMALSIZE];
-    CHECK(@"theme_type", s);
+    CHECK(@"theme_type", s)
     s = [NSString stringWithFormat:@"%ld", (long)(UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown | UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight)];
-    CHECK(@"orientations_allowed", s);
+    CHECK(@"orientations_allowed", s)
 
-    CHECK(@"sound_direction", @"0");
-    CHECK(@"sound_distance", @"0");
+    CHECK(@"sound_direction", @"0")
+    CHECK(@"sound_distance", @"0")
 
-    CHECK(@"keeptrack_enable", @"1");
-    CHECK(@"keeptrack_memoryonly", @"0");
-    CHECK(@"keeptrack_autorotate", @"1");
-    CHECK(@"keeptrack_timedelta_min", @"5.0");
-    CHECK(@"keeptrack_timedelta_max", @"10.0");
-    CHECK(@"keeptrack_distancedelta_min", @"100");
-    CHECK(@"keeptrack_distancedelta_max", @"200");
-    CHECK(@"keeptrack_purgeage", @"30");
-    CHECK(@"keeptrack_sync", @"120");
-    CHECK(@"keeptrack_beeper_interval", @"10");
+    CHECK(@"keeptrack_enable", @"1")
+    CHECK(@"keeptrack_memoryonly", @"0")
+    CHECK(@"keeptrack_autorotate", @"1")
+    CHECK(@"keeptrack_timedelta_min", @"5.0")
+    CHECK(@"keeptrack_timedelta_max", @"10.0")
+    CHECK(@"keeptrack_distancedelta_min", @"100")
+    CHECK(@"keeptrack_distancedelta_max", @"200")
+    CHECK(@"keeptrack_purgeage", @"30")
+    CHECK(@"keeptrack_sync", @"120")
+    CHECK(@"keeptrack_beeper_interval", @"10")
 
-    CHECK(@"dynamicmap_enable", @"1");
-    CHECK(@"dynamicmap_speed_walking", @"7");
-    CHECK(@"dynamicmap_speed_cycling", @"40");
-    CHECK(@"dynamicmap_speed_driving", @"120");
-    CHECK(@"dynamicmap_distance_walking", @"100");
-    CHECK(@"dynamicmap_distance_cycling", @"1000");
-    CHECK(@"dynamicmap_distance_driving", @"5000");
+    CHECK(@"dynamicmap_enable", @"1")
+    CHECK(@"dynamicmap_speed_walking", @"7")
+    CHECK(@"dynamicmap_speed_cycling", @"40")
+    CHECK(@"dynamicmap_speed_driving", @"120")
+    CHECK(@"dynamicmap_distance_walking", @"100")
+    CHECK(@"dynamicmap_distance_cycling", @"1000")
+    CHECK(@"dynamicmap_distance_driving", @"5000")
 
-    CHECK(@"mapcache_enable", @"1");
-    CHECK(@"mapcache_maxsize", @"250");
-    CHECK(@"mapcache_maxage", @"30");
+    CHECK(@"mapcache_enable", @"1")
+    CHECK(@"mapcache_maxsize", @"250")
+    CHECK(@"mapcache_maxage", @"30")
 
-    CHECK(@"download_images_logs", @"0");
-    CHECK(@"download_images_waypoints", @"1");
-    CHECK(@"download_images_mobile", @"0");
-    CHECK(@"download_queries_mobile", @"0");
-    CHECK(@"download_timeout_query", @"600");
-    CHECK(@"download_timeout_simple", @"120");
+    CHECK(@"download_images_logs", @"0")
+    CHECK(@"download_images_waypoints", @"1")
+    CHECK(@"download_images_mobile", @"0")
+    CHECK(@"download_queries_mobile", @"0")
+    CHECK(@"download_timeout_query", @"600")
+    CHECK(@"download_timeout_simple", @"120")
 
-    CHECK(@"markas_founddnf_clearstarget", @"1");
-    CHECK(@"markas_foundmarksallwaypoints", @"1");
-    CHECK(@"logging_removesmarkedasfounddnf", @"1");
-    CHECK(@"logging_ggcwofferfavourites", @"0");
+    CHECK(@"markas_founddnf_clearstarget", @"1")
+    CHECK(@"markas_foundmarksallwaypoints", @"1")
+    CHECK(@"logging_removesmarkedasfounddnf", @"1")
+    CHECK(@"logging_ggcwofferfavourites", @"0")
 
-    CHECK(@"compass_alwaysinportraitmode", @"1");
-    CHECK(@"showasabbrevation_country", @"1");
-    CHECK(@"showasabbrevation_state", @"0");
-    CHECK(@"showasabbrevation_statewithlocale", @"1");
+    CHECK(@"compass_alwaysinportraitmode", @"1")
+    CHECK(@"showasabbrevation_country", @"1")
+    CHECK(@"showasabbrevation_state", @"0")
+    CHECK(@"showasabbrevation_statewithlocale", @"1")
 
-    CHECK(@"waypointlist_sortby", @"0");
+    CHECK(@"waypointlist_sortby", @"0")
 
-    CHECK(@"waypoint_refreshafterlog", @"1");
+    CHECK(@"waypoint_refreshafterlog", @"1")
 
-    CHECK(@"list_sortby", @"0");
+    CHECK(@"list_sortby", @"0")
 
-    CHECK(@"accounts_save_authenticationname", @"1");
-    CHECK(@"accounts_save_authenticationpassword", @"0");
+    CHECK(@"accounts_save_authenticationname", @"1")
+    CHECK(@"accounts_save_authenticationpassword", @"0")
 
-    CHECK(@"intro_seen", @"0");
+    CHECK(@"intro_seen", @"0")
 
-    CHECK(@"log_temporary_text", @"");
+    CHECK(@"log_temporary_text", @"")
 
-    CHECK(@"locationless_showfound", @"1");
-    CHECK(@"locationless_sortby", @"0");
+    CHECK(@"locationless_showfound", @"1")
+    CHECK(@"locationless_sortby", @"0")
 
-    CHECK(@"opencage_enable", @"0");
-    CHECK(@"opencage_key", @"");
-    CHECK(@"opencage_wifionly", @"1");
-    CHECK(@"mapbox_key", @"");
+    CHECK(@"opencage_enable", @"0")
+    CHECK(@"opencage_key", @"")
+    CHECK(@"opencage_wifionly", @"1")
+    CHECK(@"mapbox_key", @"")
 
-    CHECK(@"configupdate_lastversion", @"1.3");
+    CHECK(@"configupdate_lastversion", @"1.3")
     s = [NSString stringWithFormat:@"%ld", time(NULL)];
-    CHECK(@"configupdate_lasttime", s);
+    CHECK(@"configupdate_lasttime", s)
 
-    CHECK(@"automaticdatabasebackup_enable", @"0");
-    CHECK(@"automaticdatabasebackup_last", @"0");
-    CHECK(@"automaticdatabasebackup_period", @"7");
-    CHECK(@"automaticdatabasebackup_rotate", @"5");
+    CHECK(@"automaticdatabasebackup_enable", @"0")
+    CHECK(@"automaticdatabasebackup_last", @"0")
+    CHECK(@"automaticdatabasebackup_period", @"7")
+    CHECK(@"automaticdatabasebackup_rotate", @"5")
 
-    CHECK(@"accuracy_dynamic_enable", @"1");
+    CHECK(@"accuracy_dynamic_enable", @"1")
     s = [NSString stringWithFormat:@"%ld", (long)LMACCURACY_BEST];
-    CHECK(@"accuracy_dynamic_accuracy_near", s);
+    CHECK(@"accuracy_dynamic_accuracy_near", s)
     s = [NSString stringWithFormat:@"%ld", (long)LMACCURACY_10M];
-    CHECK(@"accuracy_dynamic_accuracy_midrange", s);
+    CHECK(@"accuracy_dynamic_accuracy_midrange", s)
     s = [NSString stringWithFormat:@"%ld", (long)LMACCURACY_100M];
-    CHECK(@"accuracy_dynamic_accuracy_far", s);
-    CHECK(@"accuracy_dynamic_deltad_near", @"0");
-    CHECK(@"accuracy_dynamic_deltad_midrange", @"5");
-    CHECK(@"accuracy_dynamic_deltad_far", @"10");
-    CHECK(@"accuracy_dynamic_distance_neartomidrange", @"50");
-    CHECK(@"accuracy_dynamic_distance_midrangetofar", @"250");
+    CHECK(@"accuracy_dynamic_accuracy_far", s)
+    CHECK(@"accuracy_dynamic_deltad_near", @"0")
+    CHECK(@"accuracy_dynamic_deltad_midrange", @"5")
+    CHECK(@"accuracy_dynamic_deltad_far", @"10")
+    CHECK(@"accuracy_dynamic_distance_neartomidrange", @"50")
+    CHECK(@"accuracy_dynamic_distance_midrangetofar", @"250")
     s = [NSString stringWithFormat:@"%ld", (long)LMACCURACY_BEST];
-    CHECK(@"accuracy_static_accuracy_navigating", s);
+    CHECK(@"accuracy_static_accuracy_navigating", s)
     s = [NSString stringWithFormat:@"%ld", (long)LMACCURACY_100M];
-    CHECK(@"accuracy_static_accuracy_nonnavigating", s);
-    CHECK(@"accuracy_static_deltad_navigating", @"0");
-    CHECK(@"accuracy_static_deltad_nonnavigating", @"10");
+    CHECK(@"accuracy_static_accuracy_nonnavigating", s)
+    CHECK(@"accuracy_static_deltad_navigating", @"0")
+    CHECK(@"accuracy_static_deltad_nonnavigating", @"10")
 
-    CHECK(@"speed_enable", @"1");
-    CHECK(@"speed_samples", @"10");
-    CHECK(@"speed_minimum", @"3");
+    CHECK(@"speed_enable", @"1")
+    CHECK(@"speed_samples", @"10")
+    CHECK(@"speed_minimum", @"3")
 
-    CHECK(@"mapsearch_ggcw_maximumnumber", @"50");
-    CHECK(@"mapsearch_ggcw_numberthreads", @"10");
+    CHECK(@"mapsearch_ggcw_maximumnumber", @"50")
+    CHECK(@"mapsearch_ggcw_numberthreads", @"10")
 
-    CHECK(@"font_smalltext_size", @"15");
-    CHECK(@"font_normaltext_size", @"24");
+    CHECK(@"font_smalltext_size", @"15")
+    CHECK(@"font_normaltext_size", @"24")
 
-    CHECK(@"coordinates_show", @"0");
-    CHECK(@"coordinates_edit", @"0");
-    CHECK(@"coordinates_decimals_seconds", @"2");
-    CHECK(@"coordinates_decimals_minutes", @"3");
-    CHECK(@"coordinates_decimals_degrees", @"7");
+    CHECK(@"coordinates_show", @"0")
+    CHECK(@"coordinates_edit", @"0")
+    CHECK(@"coordinates_decimals_seconds", @"2")
+    CHECK(@"coordinates_decimals_minutes", @"3")
+    CHECK(@"coordinates_decimals_degrees", @"7")
 
-    CHECK(@"service_showlocationless", @"1");
-    CHECK(@"service_showtrackables", @"1");
-    CHECK(@"service_showmoveables", @"1");
-    CHECK(@"service_showdeveloper", @"0");
+    CHECK(@"service_showlocationless", @"1")
+    CHECK(@"service_showtrackables", @"1")
+    CHECK(@"service_showmoveables", @"1")
+    CHECK(@"service_showdeveloper", @"0")
 
-    CHECK(@"moveables_showfound", @"1");
-    CHECK(@"moveables_listsortby", @"0");
+    CHECK(@"moveables_showfound", @"1")
+    CHECK(@"moveables_listsortby", @"0")
 
-    CHECK(@"myaccount_lastnumber", @"0");
+    CHECK(@"myaccount_lastnumber", @"0")
 
-    CHECK(@"owntracks_enable", @"0");
-    CHECK(@"owntracks_url", @"https://geocube.mavetju.org/keeptrack/");
-    CHECK(@"owntracks_username", @"");
-    CHECK(@"owntracks_secret", @"");
-    CHECK(@"owntracks_password", @"");
+    CHECK(@"owntracks_enable", @"0")
+    CHECK(@"owntracks_url", @"https://geocube.mavetju.org/keeptrack/")
+    CHECK(@"owntracks_username", @"")
+    CHECK(@"owntracks_secret", @"")
+    CHECK(@"owntracks_password", @"")
+    CHECK(@"owntracks_interval", @"10")
+    CHECK(@"owntracks_interval_failure", @"10")
+    CHECK(@"owntracks_interval_offline", @"30")
+    CHECK(@"owntracks_failure", @"10")
 }
 
 - (void)loadValues
@@ -320,6 +324,10 @@
     LOAD_VALUE  (self.owntracksSecret, @"owntracks_secret");
     LOAD_BOOL   (self.ownTracksEnable, @"owntracks_enable");
     LOAD_VALUE  (self.owntracksPassword, @"owntracks_password");
+    LOAD_INTEGER(self.owntracksInterval, @"owntracks_interval");
+    LOAD_INTEGER(self.owntracksIntervalFailure, @"owntracks_interval_failure");
+    LOAD_INTEGER(self.owntracksIntervalOffline, @"owntracks_interval_offline");
+    LOAD_INTEGER(self.owntracksFailure, @"owntracks_failure");
 
     /* Leftovers */
     self.currentTrack = [dbTrack dbGet:[[dbConfig dbGetByKey:@"track_current"].value integerValue]];
@@ -514,6 +522,10 @@ UPDATE3(NSInteger, moveablesListSortBy, @"moveables_listsortby")
 UPDATE3(NSInteger, mapKMLBorderSize, @"map_kml_border_size")
 UPDATE3(NSInteger, mapCircleRingSize, @"map_circle_ring_size")
 UPDATE3(NSInteger, myAccountLastNumber, @"myaccount_lastnumber")
+UPDATE3(NSInteger, owntracksInterval, @"owntracks_interval")
+UPDATE3(NSInteger, owntracksIntervalFailure, @"owntracks_interval_failure")
+UPDATE3(NSInteger, owntracksIntervalOffline, @"owntracks_interval_offline")
+UPDATE3(NSInteger, owntracksFailure, @"owntracks_failure")
 
 UPDATE3(float, keeptrackTimeDeltaMin, @"keeptrack_timedelta_min")
 UPDATE3(float, keeptrackTimeDeltaMax, @"keeptrack_timedelta_max")

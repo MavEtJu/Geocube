@@ -515,7 +515,7 @@ TABLENAME(@"waypoints")
 
 + (NSArray<dbWaypoint *> *)dbAllNotFoundButNotInGroupAllNotFound
 {
-    return [dbWaypoint dbAllXXX:@"where (wp.id not in (select waypoint_id from group2waypoints where group_id = ?)) and (wp.gs_date_found = 0 and (wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 0) and logger_id in (select accountname_id from accounts))) and not (wp.gs_date_found != 0 or wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select accountname_id from accounts))))" keys:@"i" values:@[[NSNumber numberWithInteger:dbc.groupAllWaypointsNotFound._id]]];
+    return [dbWaypoint dbAllXXX:@"where (wp.id not in (select waypoint_id from group2waypoints where group_id = ?)) and (wp.gs_date_found = 0 and (wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 0) and logger_id in (select accountname_id from accounts))) and not (wp.gs_date_found != 0 or wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select accountname_id from accounts))))" keys:@"i" values:@[[NSNumber numberWithLong:dbc.groupAllWaypointsNotFound._id]]];
 }
 
 + (NSArray<dbWaypoint *> *)dbAllFound
