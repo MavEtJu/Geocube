@@ -66,19 +66,19 @@
     [clock clockShowAndReset:@"Start"];
 
     NSArray<dbWaypoint *> *wps = [dbWaypoint dbAllFoundButNotInGroupAllFound];
-    [clock clockShowAndReset:[NSString stringWithFormat:@"Found dbAllFoundButNotInGroupAllFound (%ld items)", [wps count]]];
+    [clock clockShowAndReset:[NSString stringWithFormat:@"Found dbAllFoundButNotInGroupAllFound (%ld items)", (long)[wps count]]];
     [dbc.groupAllWaypointsFound addWaypointsToGroup:wps];
     [clock clockShowAndReset:@"Found addWaypoints"];
 
     wps = [dbWaypoint dbAllNotFoundButNotInGroupAllNotFound];
-    [clock clockShowAndReset:[NSString stringWithFormat:@"NotFound dbAllNotFoundButNotInGroupAllFound (%ld items)", [wps count]]];
+    [clock clockShowAndReset:[NSString stringWithFormat:@"NotFound dbAllNotFoundButNotInGroupAllFound (%ld items)", (long)[wps count]]];
     [dbc.groupAllWaypointsNotFound addWaypointsToGroup:wps];
     [clock clockShowAndReset:@"NotFound addWaypoints"];
 
     [dbc.groupAllWaypointsIgnored emptyGroup];
     [clock clockShowAndReset:@"Ignored emptyGroup"];
     wps = [dbWaypoint dbAllIgnored];
-    [clock clockShowAndReset:[NSString stringWithFormat:@"Ignored dbAll (%ld items)", [wps count]]];
+    [clock clockShowAndReset:[NSString stringWithFormat:@"Ignored dbAll (%ld items)", (long)[wps count]]];
     [dbc.groupAllWaypointsIgnored addWaypointsToGroup:wps];
     [clock clockShowAndReset:@"Ignored addWaypoints"];
 

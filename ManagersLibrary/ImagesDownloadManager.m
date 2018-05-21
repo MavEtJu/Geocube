@@ -245,7 +245,7 @@
         NSLog(@"%@/addToQueueImmediately: Queue for downloading", [self class]);
         [imagesDownloadManager downloadOneImage:img];
     }];
-    NSLog(@"%@/addToQueueImmediately: Queue size is now %ld", [self class], [self.runqueue operationCount]);
+    NSLog(@"%@/addToQueueImmediately: Queue size is now %ld", [self class], (long)[self.runqueue operationCount]);
 }
 
 @end

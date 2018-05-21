@@ -186,7 +186,7 @@
 {
     if (sideMenu == self.menuGlobal) {
         NSInteger i = [[self.item2controller objectAtIndex:indexPath.row] integerValue];
-        NSLog(@"Global menu action: %ld -> %ld", indexPath.row, (long)i);
+        NSLog(@"Global menu action: %ld -> %ld", (long)indexPath.row, (long)i);
         [configManager currentPageUpdate:i];
         [_AppDelegate switchController:i];
     } else {
