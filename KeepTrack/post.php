@@ -82,6 +82,9 @@ if (!isset($input["data"])) {
 	$stm = $db->prepare("INSERT INTO config(key, value) values('password', '')");
 	$stm->execute();
 
+	$stm = $db->prepare("INSERT INTO config(key, value) values('session', '')");
+	$stm->execute();
+
 	$d = array("secret" => $secret);
 	$output = json_encode($d);
 	echo "$output\n";
@@ -104,7 +107,7 @@ $data = json_decode($dataJSON, TRUE);
 // If a password is set, then update it
 if ($data["password"] != "") {
 	$stm = $db->prepare("UPDATE config SET value = :password WHERE key = 'password'");
-	$stm->bindParam(":password", $data["password"]);
+	$stm->bindParam(":password", password_hash($data["password"], PASSWORD_DEFAULT));
 	$stm->execute();
 }
 
