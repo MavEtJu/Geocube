@@ -1,14 +1,14 @@
 <?php
 
-$input["username"] = "Mavvie6s";
-$input["password"] = "pass";
+$user = $_COOKIE["geocube_owntracks_user"];
+$session = $_COOKIE["geocube_owntracks_session"];
 
 $dateSelected = $_REQUEST["dateSelected"];
 
 date_default_timezone_set("Australia/Sydney");
 
 // Attach to the database, based on the username provided.
-$b64username = base64_encode($input["username"]);
+$b64username = base64_encode($user);
 $dbdir = "db/" .  substr($b64username, 0, 1) .
 	"/" .  substr($b64username, 1, 1) .
 	"/" .  substr($b64username, 2, 1) .
@@ -18,12 +18,12 @@ if (file_exists($dbdir) == FALSE)
 $dbname = $dbdir . "/" . $b64username;
 $db = new PDO("sqlite:$dbname");
 
-// Grab password to confirm
-$stm = $db->prepare("SELECT value FROM config WHERE key='password'");
+// Grab session to confirm
+$stm = $db->prepare("SELECT value FROM config WHERE key='session'");
 $stm->execute();
 $array = $stm->fetch();
-$password = $array["value"];
-if ($password != $input["password"])
+$session2 = $array["value"];
+if ($session != $session2)
 	exit(0);
 
 echo "eqfeed_callback({\"type\":\"FeatureCollection\",";
