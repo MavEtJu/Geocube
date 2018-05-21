@@ -420,6 +420,21 @@
     NSLog(@"%@ - %@ - memory warning", [application class], [self class]);
 }
 
+- (void)applicationWillResignActive:(UIApplication *)application
+{
+    [owntracksManager alertForegroundToBackground];
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    [owntracksManager alertBackgroundToForeground];
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+    [owntracksManager alertAppStopped];
+}
+
 - (BOOL)mh_tabBarController:(MHTabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController atIndex:(NSUInteger)index
 {
     NSLog(@"mh_tabBarController %@ shouldSelectViewController %@ at index %lu", tabBarController, viewController, (unsigned long)index);

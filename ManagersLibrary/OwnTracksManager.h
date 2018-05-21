@@ -23,6 +23,8 @@
 
 - (void)startDelivering;
 - (void)stopDelivering:(BOOL)sendLWT;
+- (void)alertForegroundToBackground;
+- (void)alertBackgroundToForeground;
 
 - (void)alertAppStarted;
 - (void)alertAppStopped;
