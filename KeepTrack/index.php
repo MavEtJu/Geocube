@@ -52,6 +52,12 @@ function form()
 	global $user;
 ?>
 	<h1>Geocube Keep Track</h1>
+
+	<p>
+	In Geocube -> Settings, set the OwnTracks Password. Once set you
+	can login here with the OwnTracks Username as defined there.
+	</p>
+
 	<form method="post" action="<?= $_SERVER["PHP_SELF"] ?>">
 	Username: <input type="text" name="user" value="<?= $user ?>">
 	<br />
