@@ -111,5 +111,4 @@ TABLENAME(@"owntracks")
     return [[self dbAllXXX:@"order by id limit 1" keys:nil values:nil] firstObject];
 }
 
-
 @end

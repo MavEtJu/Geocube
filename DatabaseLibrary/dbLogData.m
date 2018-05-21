@@ -104,7 +104,7 @@ TABLENAME(@"log_data")
     // You can habe only one Found per waypoint.
 
     if (type == LOGDATATYPE_FOUND) {
-        NSArray<dbLogData *> *lds = [dbLogData dbAllXXX:@"where waypoint_id = ? and type = ?" keys:@"ii" values:@[[NSNumber numberWithInteger:waypoint._id], [NSNumber numberWithInteger:type]]];
+        NSArray<dbLogData *> *lds = [dbLogData dbAllXXX:@"where waypoint_id = ? and type = ?" keys:@"ii" values:@[[NSNumber numberWithLongLong:waypoint._id], [NSNumber numberWithInteger:type]]];
         [lds enumerateObjectsUsingBlock:^(dbLogData * _Nonnull ld, NSUInteger idx, BOOL * _Nonnull stop) {
             [ld dbDelete];
         }];
