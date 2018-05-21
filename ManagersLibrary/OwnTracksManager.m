@@ -227,7 +227,6 @@
             }
         } else {
             self.errorCount = 0;
-[MyTools messageBox:[MyTools topMostController] header:_(@"owntracks-OwnTracks disabled") text:[NSString stringWithFormat:@"%f", o.batteryLevel]];
             [o dbDelete];
         }
     }
