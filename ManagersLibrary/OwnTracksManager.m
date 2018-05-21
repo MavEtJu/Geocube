@@ -22,7 +22,6 @@
 @interface OwnTracksManager ()
 
 @property (nonatomic, retain) NSOperationQueue *runqueue;
-@property (nonatomic        ) BOOL isRunning;
 @property (nonatomic        ) NSInteger errorCount;
 @property (nonatomic        ) BOOL alertedNoConnection;
 
@@ -46,7 +45,6 @@
 
 - (void)startDelivering
 {
-    self.isRunning = NO;
     if (configManager.ownTracksEnable == NO)
         return;
 
@@ -60,7 +58,6 @@
     if (IS_EMPTY(configManager.owntracksSecret) == YES)
         return;
 
-    self.isRunning = YES;
     [self alertAppStarted];
     [self.runqueue addOperationWithBlock:^{
         [self processSendQueue];
@@ -70,11 +67,8 @@
 
 - (void)stopDelivering:(BOOL)sendLWT
 {
-    [self.runqueue cancelAllOperations];
     if (sendLWT == YES)
         [self alertAppStopped];
-
-    self.isRunning = NO;
 }
 
 - (GCMutableURLRequest *)prepareURLRequest:(NSString *)url parameters:(NSString *)parameters
@@ -166,28 +160,28 @@
 - (void)processSendQueue
 {
     while (TRUE) {
-        // Delay if there is nothing, retry if there is nothing afterwards.
-        if ([dbOwnTrack dbCount] == 0) {
-            [NSThread sleepForTimeInterval:10];
-            if ([dbOwnTrack dbCount] == 0)
-                continue;
-        }
-
         // Keep it in the queue when there is no network connectivity
         if ([MyTools hasAnyNetwork] == NO) {
             if (self.alertedNoConnection == YES) {
-                [NSThread sleepForTimeInterval:10];
+                [NSThread sleepForTimeInterval:30];
                 continue;
             }
             [self alertedNoConnection];
             self.alertedNoConnection = YES;
-            [NSThread sleepForTimeInterval:10];
+            [NSThread sleepForTimeInterval:30];
             continue;
         }
 
         if (self.alertedNoConnection == YES) {
             [self alertReconnectedToInternet];
             self.alertedNoConnection = NO;
+        }
+
+        // Delay if there is nothing, retry if there is nothing afterwards.
+        if ([dbOwnTrack dbCount] == 0) {
+            [NSThread sleepForTimeInterval:10];
+            if ([dbOwnTrack dbCount] == 0)
+                continue;
         }
 
         GCMutableURLRequest *urlRequest = [self prepareURLRequest:@"post.php" method:@"POST"];
@@ -200,7 +194,7 @@
         @"info": o.info,
         @"timeSubmitted": [NSNumber numberWithInteger:o.timeSubmitted],
         @"timeDelivered": [NSNumber numberWithInteger:o.timeDelivered],
-        @"batteryLevel": [NSNumber numberWithInteger:o.batteryLevel],
+        @"batteryLevel": [NSNumber numberWithFloat:o.batteryLevel],
         @"password": IS_EMPTY(o.password) == YES ? [NSNull null] : o.password,
         @"coordinate": @{
                 @"latitude": [NSNumber numberWithFloat:o.coord.latitude],
@@ -226,12 +220,14 @@
         // If something fails then retry later
         if (json == nil) {
             self.errorCount++;
-            if (self.errorCount > 10) {
+            if (self.errorCount == 10) {
                 [self stopDelivering:FALSE];
-                [MyTools messageBox:[MyTools topMostController] header:_(@"owntracks-OwnTracks disabled") text:_(@"owntracks-The OwnTracks service has been disabled because of the more than 10 errors received from the server.")];
+                [NSThread sleepForTimeInterval:10];
+                [MyTools messageBox:[MyTools topMostController] header:_(@"owntracks-OwnTracks disabled") text:_(@"owntracks-The OwnTracks service has been interrupted because of the more than 10 errors received from the server.")];
             }
         } else {
             self.errorCount = 0;
+[MyTools messageBox:[MyTools topMostController] header:_(@"owntracks-OwnTracks disabled") text:[NSString stringWithFormat:@"%f", o.batteryLevel]];
             [o dbDelete];
         }
     }
@@ -269,6 +265,8 @@
 
 ALERT(alertAppStarted, @"App started")
 ALERT(alertAppStopped, @"Delivery stopped")
+ALERT(alertForegroundToBackground, @"App to background")
+ALERT(alertBackgroundToForeground, @"App to foreground")
 ALERT(alertLostConnectionToInternet, @"Lost connection to the internet")
 ALERT(alertReconnectedToInternet, @"Regained connection to the internet")
 ALERT(alertCarParked, @"Keep Track: Remember location")
