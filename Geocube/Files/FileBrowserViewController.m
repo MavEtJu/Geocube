@@ -227,7 +227,8 @@
         [s appendString:fo.filename];
         [s appendString:@"/"];
     }];
-    [s appendString:self.shownFO.filename];
+    if (self.shownFO.filename != nil)
+        [s appendString:self.shownFO.filename];
     return s;
 }
 
