@@ -8,6 +8,7 @@ Version 2.4(x)
     can disable the loading of all of them in the Settings app.
   - Added KeepTrack, a website to keep track of where you are.
   - Be able to export the recorded track to a GPX track file.
+  - Be able to save images of a waypoint to the library.
 
   Fixes:
   - Fix crashes in deleting files by swipe left in Files -> Local
