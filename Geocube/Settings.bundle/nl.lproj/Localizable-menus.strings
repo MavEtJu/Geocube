@@ -155,6 +155,7 @@
 "waypointimageviewcontroller-Add waypoint" = "Voeg waypoint toe";
 "waypointlogimagesviewcontroller-Import photo" = "Importeer een foto";
 "waypointlogimagesviewcontroller-Make photo" = "Maak een foto";
+"waypointimageviewcontroller-Save to library" = "Bewaar in de Foto library";
 "waypointlogsviewcontroller-Copy log to clipboard" = "Copieër log naar klembord";
 "waypointlogsviewcontroller-Delete log" = "Verwijder de log";
 "waypointlogsviewcontroller-Extract waypoints" = "Zoek coördinaten";

@@ -42,6 +42,7 @@
 enum {
     menuUploadAirdrop,
     menuUploadICloud,
+    menuSaveToLibrary,
     menuDeletePhoto,
     menuAddNewWaypoint,
     menuMax,
@@ -58,6 +59,11 @@ enum {
     [self.lmi addItem:menuUploadICloud label:_(@"waypointimageviewcontroller-iCloud")];
     [self.lmi addItem:menuDeletePhoto label:_(@"waypointimageviewcontroller-Delete photo")];
     [self.lmi addItem:menuAddNewWaypoint label:_(@"waypointimageviewcontroller-Add waypoint")];
+    [self.lmi addItem:menuSaveToLibrary label:_(@"waypointimageviewcontroller-Save to library")];
+
+    if ([PHPhotoLibrary authorizationStatus] != PHAuthorizationStatusAuthorized)
+        [self.lmi disableItem:menuSaveToLibrary];
+
     self.image = nil;
     self.delegate = nil;
 
@@ -320,6 +326,9 @@ enum {
         case menuAddNewWaypoint:
             [self addNewWaypoint];
             return;
+        case menuSaveToLibrary:
+            [self saveToLibrary];
+            return;
     }
 
     [super performLocalMenuAction:index];
@@ -335,6 +344,17 @@ enum {
 {
     NSString *filename = [MyTools ImageFile:self.img.datafile];
     [IOSFTM uploadICloud:filename vc:self];
+}
+
+- (void)saveToLibrary
+{
+    if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized)
+        UIImageWriteToSavedPhotosAlbum(self.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    [MyTools messageBox:self header:@"Save successfull" text:@"The image is saved to the Photo Library"];
 }
 
 - (void)addNewWaypoint

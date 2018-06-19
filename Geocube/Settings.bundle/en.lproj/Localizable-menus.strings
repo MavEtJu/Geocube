@@ -150,6 +150,7 @@
 "waypointimageviewcontroller-Delete photo" = "Delete Photo";
 "waypointimageviewcontroller-iCloud" = "iCloud";
 "waypointimageviewcontroller-Add waypoint" = "Add waypoint";
+"waypointimageviewcontroller-Save to library" = "Save to library";
 "waypointlogimagesviewcontroller-Import photo" = "Import Photo";
 "waypointlogimagesviewcontroller-Make photo" = "Make Photo";
 "waypointlogsviewcontroller-Copy log to clipboard" = "Copy Log to Clipboard";

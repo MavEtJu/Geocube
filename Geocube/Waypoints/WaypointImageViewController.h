@@ -28,7 +28,7 @@
 
 @end
 
-@interface WaypointImageViewController : GCViewController
+@interface WaypointImageViewController : GCViewController <UIImagePickerControllerDelegate>
 
 @property (nonatomic) id<WaypointImageViewControllerDelegate> delegate;
 
