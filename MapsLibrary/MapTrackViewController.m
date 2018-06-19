@@ -33,7 +33,6 @@
     self.followWhom = SHOW_NEITHER;
 
     [self.lmi disableItem:MVCmenuLoadWaypoints];
-    [self.lmi disableItem:MVCmenuExportVisible];
 
     [self.lmi disableItem:MVCmenuLoadWaypoints];
     [self.lmi disableItem:MVCmenuDirections];
@@ -41,7 +40,6 @@
     [self.lmi disableItem:MVCmenuRecenter];
     [self.lmi disableItem:MVCmenuRemoveTarget];
     [self.lmi disableItem:MVCmenuShowBoundaries];
-    [self.lmi disableItem:MVCmenuExportVisible];
     [self.lmi disableItem:MVCmenuRemoveHistory];
 
     self.currentTrack = nil;
@@ -70,5 +68,13 @@
     [super menuChangeMapbrand:mapBrand];
     [self showTrack:self.currentTrack];
 }
+
+- (void)menuExportVisible
+{
+    NSArray<dbTrackElement *> *tes = [dbTrackElement dbAllByTrack:self.currentTrack];
+    NSString *filename = [ExportGPX exportTrack:self.currentTrack elements:tes];
+    [MyTools messageBox:self header:_(@"maptrackviewcontroller-Export successful") text:[NSString stringWithFormat:_(@"maptrackviewcontroller-The exported file '%@' can be found in the Files section"), filename]];
+}
+
 
 @end

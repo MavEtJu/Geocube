@@ -249,10 +249,11 @@ enum {
         case menuAddWaypoint:
             [self addWaypoint];
             return;
-        case menuExportGPX:
-            [ExportGPX exports:self.waypoints];
-            [MyTools messageBox:self header:_(@"waypointslistviewcontroller-Export successful") text:_(@"waypointslistviewcontroller-The exported file can be found in the Files section")];
+        case menuExportGPX: {
+            NSString *filename = [ExportGPX exportWaypoints:self.waypoints];
+            [MyTools messageBox:self header:_(@"waypointslistviewcontroller-Export successful") text:[NSString stringWithFormat:_(@"waypointslistviewcontroller-The exported file '%@' can be found in the Files section"), filename]];
             return;
+            }
         case menuSortBy:
             [self menuSortBy];
             return;

@@ -27,24 +27,61 @@
 
 @implementation ExportGPX
 
-+ (void)export:(dbWaypoint *)wp
++ (NSString *)exportWaypoint:(dbWaypoint *)wp
 {
     ExportGPX *e = [[ExportGPX alloc] init];
-    [e header];
+    [e headerWaypoint];
     [e waypoint:wp];
-    [e trailer];
-    [e writeToFile:[NSString stringWithFormat:@"Export - %@.gpx", [MyTools dateTimeString_YYYYMMDD_hhmmss]]];
+    [e trailerWaypoint];
+
+    NSString *filename = [NSString stringWithFormat:@"Export - %@.gpx", [MyTools dateTimeString_YYYYMMDD_hhmmss]];
+    [e writeToFile:filename];
+    return filename;
 }
 
-+ (void)exports:(NSArray<dbWaypoint *>*)wps
++ (NSString *)exportWaypoints:(NSArray<dbWaypoint *>*)wps
 {
     ExportGPX *e = [[ExportGPX alloc] init];
-    [e header];
+    [e headerWaypoint];
     [wps enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
         [e waypoint:wp];
     }];
-    [e trailer];
-    [e writeToFile:[NSString stringWithFormat:@"Export - %@.gpx", [MyTools dateTimeString_YYYYMMDD_hhmmss]]];
+    [e trailerWaypoint];
+
+    NSString *filename = [NSString stringWithFormat:@"Export - %@.gpx", [MyTools dateTimeString_YYYYMMDD_hhmmss]];
+    [e writeToFile:filename];
+    return filename;
+}
+
++ (NSString *)exportTrack:(dbTrack *)track elements:(NSArray<dbTrackElement *> *)tes
+{
+    __block BOOL inSegment = NO;
+
+    ExportGPX *e = [[ExportGPX alloc] init];
+    [e headerTrack:track element:[tes firstObject]];
+    [tes enumerateObjectsUsingBlock:^(dbTrackElement * _Nonnull te, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (te.restart == YES) {
+            if (inSegment == NO) {
+                [e.lines addObject:@"\t\t<trkseg>"];
+                inSegment = YES;
+            } else {
+                [e.lines addObject:@"\t\t</trkseg><trkseg>"];
+            }
+        }
+        [e trackElement:te inSegment:inSegment];
+    }];
+    [e trailerTrack];
+
+    NSString *filename = [track.name stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+    filename = [filename stringByReplacingOccurrencesOfString:@":" withString:@"_"];
+    filename = [filename stringByReplacingOccurrencesOfString:@"/" withString:@"_"];
+    filename = [filename stringByReplacingOccurrencesOfString:@"\\" withString:@"_"];
+    filename = [filename stringByAppendingString:@".gpx"];
+
+    [e writeToFile:filename];
+
+    return filename;
+//    [MyTools messageBox:self header:@"Export complete" text:[NSString stringWithFormat:@"Exported %@. You can find them in the Files menu.", filename]];
 }
 
 - (instancetype)init
@@ -63,7 +100,7 @@
 #define LINE_F(__tag__, __fmt__, __value__) \
     [self.lines addObject:[NSString stringWithFormat:@"<%@>%.*f</%@>", __tag__, __fmt__, __value__, __tag__]]
 
-- (void)header
+- (void)headerWaypoint
 {
     [self.lines addObject:@"<?xml version=\"1.0\" encoding=\"utf-8\"?>"];
     [self.lines addObject:@"<gpx xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" version=\"1.0\" creator=\"Geocube Exporter\" xsi:schemaLocation=\"http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd http://www.groundspeak.com/cache/1/0/1 http://www.groundspeak.com/cache/1/0/1/cache.xsd\" xmlns=\"http://www.topografix.com/GPX/1/0\">"];
@@ -75,7 +112,7 @@
     [self.lines addObject:@"<keywords>cache, geocache, geocube</keywords>"];
 }
 
-- (void)trailer
+- (void)trailerWaypoint
 {
     [self.lines addObject:@"</gpx>"];
 }
@@ -193,6 +230,32 @@
         [self.lines addObject:@"</groundspeak:cache>"];
     }
     [self.lines addObject:@"</wpt>"];
+}
+
+- (void)headerTrack:(dbTrack *)track element:(dbTrackElement *)te
+{
+    [self.lines addObject:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"];
+    [self.lines addObject:@"<gpx xmlns=\"http://www.topografix.com/GPX/1/1\" creator=\"Geocube\" version=\"1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd\">"];
+    [self.lines addObject:@"\t<metadata>"];
+    [self.lines addObject:[NSString stringWithFormat:@"\t\t<time>%@</time>", [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:te.timestamp_epoch]]];
+    [self.lines addObject:@"\t</metadata>"];
+    [self.lines addObject:@"\t<trk>"];
+    [self.lines addObject:[NSString stringWithFormat:@"\t\t<name>%@</name>", track.name]];
+}
+
+- (void)trailerTrack
+{
+    [self.lines addObject:@"\t\t</trkseg>"];
+    [self.lines addObject:@"\t</trk>"];
+    [self.lines addObject:@"</gpx>"];
+}
+
+- (void)trackElement:(dbTrackElement *)te inSegment:(BOOL)inSegment
+{
+    [self.lines addObject:[NSString stringWithFormat:@"\t\t\t<trkpt lat=\"%f\" lon=\"%f\">", te.lat, te.lon]];
+    [self.lines addObject:[NSString stringWithFormat:@"\t\t\t\t<ele>%ld</ele>", (long)te.height]];
+    [self.lines addObject:[NSString stringWithFormat:@"\t\t\t\t<time>%@</time>", [MyTools dateTimeString_YYYY_MM_DDThh_mm_ss:te.timestamp_epoch]]];
+    [self.lines addObject:@"\t\t\t</trkpt>"];
 }
 
 - (void)writeToFile:(NSString *)filename

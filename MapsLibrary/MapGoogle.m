@@ -27,7 +27,7 @@
 
 @property (nonatomic, retain) GMSPolyline *lineMeToWaypoint;
 @property (nonatomic, retain) GMSPolyline *lineTapToMe;
-@property (nonatomic, retain) NSMutableArray<GMSPolyline *> *linesHistory;
+@property (nonatomic, retain) NSMutableArray<GMSOverlay *> *linesHistory;
 @property (nonatomic, retain) GMSMutablePath *lastPathHistory;
 
 @property (nonatomic        ) CLLocationCoordinate2D trackBL, trackTR;
@@ -458,6 +458,12 @@
     [self.linesHistory removeAllObjects];
     [self.lastPathHistory removeAllCoordinates];
 
+#define ADDSINGLE(__circle__, __lat__, __lon__) \
+    GMSCircle *__circle__ = [GMSCircle circleWithPosition:CLLocationCoordinate2DMake(__lat__, __lon__) radius:1]; \
+        __circle__.strokeWidth = 2.f; \
+        __circle__.strokeColor = configManager.mapTrackColour; \
+        __circle__.map = self.mapView;
+
 #define ADDPATH(__path__, __line__) \
     GMSPolyline *__line__ = [GMSPolyline polylineWithPath:__path__]; \
         __line__.strokeWidth = 2.f; \
@@ -470,7 +476,9 @@
     top = -180;
     bottom = 180;
 
-    [[dbTrackElement dbAllByTrack:track] enumerateObjectsUsingBlock:^(dbTrackElement * _Nonnull te, NSUInteger idx, BOOL * _Nonnull stop) {
+    NSArray<dbTrackElement *> *tes = [dbTrackElement dbAllByTrack:track];
+
+    [tes enumerateObjectsUsingBlock:^(dbTrackElement * _Nonnull te, NSUInteger idx, BOOL * _Nonnull stop) {
         bottom = MIN(bottom, te.lat);
         top = MAX(top, te.lat);
         right = MAX(right, te.lon);
@@ -481,13 +489,24 @@
             return;
         }
 
-        ADDPATH(self.lastPathHistory, lineHistory)
-        [self.linesHistory addObject:lineHistory];
+        // te.restart == YES
+
+        if ([self.lastPathHistory count] == 1) {
+            ADDSINGLE(circle, te.lat, te.lon)
+            [self.linesHistory addObject:circle];
+        } else {
+            ADDPATH(self.lastPathHistory, lineHistory)
+            [self.linesHistory addObject:lineHistory];
+        }
 
         [self.lastPathHistory removeAllCoordinates];
     }];
 
-    if ([self.lastPathHistory count] != 0) {
+    if ([self.lastPathHistory count] == 1) {
+        dbTrackElement *te = [tes lastObject];
+        ADDSINGLE(circle, te.lat, te.lon)
+        [self.linesHistory addObject:circle];
+    } else if ([self.lastPathHistory count] > 1) {
         ADDPATH(self.lastPathHistory, lineHistory)
         [self.linesHistory addObject:lineHistory];
     }
@@ -500,7 +519,7 @@
 
 - (void)showTrack
 {
-    [self.linesHistory enumerateObjectsUsingBlock:^(GMSPolyline * _Nonnull line, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.linesHistory enumerateObjectsUsingBlock:^(GMSOverlay * _Nonnull line, NSUInteger idx, BOOL * _Nonnull stop) {
         line.map = self.mapView;
     }];
     [self moveCameraTo:self.trackBL c2:self.trackTR];

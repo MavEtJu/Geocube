@@ -1021,8 +1021,10 @@
             [wps addObject:wp];
         }
     }];
-    if ([wps count] > 0)
-        [ExportGPX exports:wps];
+    if ([wps count] > 0) {
+        NSString *filename = [ExportGPX exportWaypoints:wps];
+        [MyTools messageBox:self header:_(@"maptemplateviewcontroller-Export successful") text:[NSString stringWithFormat:_(@"maptemplateviewcontroller-The exported file '%@' can be found in the Files section"), filename]];
+    }
 }
 
 - (void)menuRemoveHistory
