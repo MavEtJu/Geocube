@@ -7,6 +7,7 @@ Version 2.4(x)
   - If something goes wrong with the loading of the KML files, you
     can disable the loading of all of them in the Settings app.
   - Added KeepTrack, a website to keep track of where you are.
+  - Be able to export the recorded track to a GPX track file.
 
   Fixes:
   - Fix crashes in deleting files by swipe left in Files -> Local
