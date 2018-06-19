@@ -358,6 +358,7 @@
                     te.lat = self.coords.latitude;
                     te.lon = self.coords.longitude;
                     te.height = self.altitude;
+                    te.timestamp_epoch = time(NULL);
                     te.restart = jump;
                     [te dbCreate];
                     [self.historyData addObject:te];
