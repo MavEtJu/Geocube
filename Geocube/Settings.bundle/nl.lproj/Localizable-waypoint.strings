@@ -26,7 +26,7 @@
 "waypointviewcontroller-Remove mark as %@" = "Verwijder als %1@";
 "waypointviewcontroller-Select a group" = "Selecteer een groep";
 "waypointviewcontroller-Set as target" = "Zet als doel";
-"waypointviewcontroller-The exported file can be found in the Files section." = "De geëxporteerde file kun je vinden in de Bestanden sektie.";
+"waypointviewcontroller-The exported file '%@' can be found in the Files section." = "De geëxporteerde file '%@' kun je vinden in de Bestanden sektie.";
 "waypointviewcontroller-Unable to update the waypoint." = "Dit waypoint kon niet worden ververst.";
 "waypointviewcontroller-Update failed" = "Verversing mislukt";
 "waypointviewcontroller-Updating %@" = "Verversing %1@";

@@ -76,5 +76,4 @@
     [MyTools messageBox:self header:_(@"maptrackviewcontroller-Export successful") text:[NSString stringWithFormat:_(@"maptrackviewcontroller-The exported file '%@' can be found in the Files section"), filename]];
 }
 
-
 @end

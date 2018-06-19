@@ -6,7 +6,7 @@
 "waypointslistviewcontroller-Downloading for %@" = "Downloading for %@";
 "waypointslistviewcontroller-Export successful" = "Export successful";
 "waypointslistviewcontroller-Refreshing database" = "Refreshing database";
-"waypointslistviewcontroller-The exported file can be found in the Files section" = "The exported file can be found in the Files section";
+"waypointslistviewcontroller-The exported file '%@' can be found in the Files section" = "The exported file '%@' can be found in the Files section";
 "waypointslistviewcontroller-Update failed" = "Update failed";
 "waypointslistviewcontroller-Waypoint" = "Waypoint";
 "waypointslistviewcontroller-Waypoints" = "Waypoints";

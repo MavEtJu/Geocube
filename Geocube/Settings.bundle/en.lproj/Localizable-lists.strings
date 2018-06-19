@@ -3,5 +3,5 @@
 "listtemplateviewcontroller-Downloading for %@" = "Downloading for %@";
 "listtemplateviewcontroller-Export successful" = "Export successful";
 "listtemplateviewcontroller-Remove mark" = "Remove mark";
-"listtemplateviewcontroller-The exported file can be found in the Files section" = "The exported file can be found in the Files section";
+"listtemplateviewcontroller-The exported file '%@' can be found in the Files section" = "The exported file '%@' can be found in the Files section";
 "listtemplateviewcontroller-Update failed" = "Update failed";

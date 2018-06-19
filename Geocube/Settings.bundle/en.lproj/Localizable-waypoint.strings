@@ -26,7 +26,7 @@
 "waypointviewcontroller-Remove mark as %@" = "Remove mark as %1@";
 "waypointviewcontroller-Select a group" = "Select a group";
 "waypointviewcontroller-Set as target" = "Set as target";
-"waypointviewcontroller-The exported file can be found in the Files section." = "The exported file can be found in the Files section";
+"waypointviewcontroller-The exported file '%@' can be found in the Files section." = "The exported file '%@' can be found in the Files section";
 "waypointviewcontroller-Unable to update the waypoint." = "Unable to update the waypoint.";
 "waypointviewcontroller-Update failed" = "Update failed";
 "waypointviewcontroller-Updating %@" = "Updating %1@";
@@ -47,7 +47,6 @@
 "waypointviewcontroller-Unmarked as Ignored" = "Unmarked as Ignored";
 "waypointviewcontroller-Unmarked as In Progress" = "Unmarked as In Progress";
 "waypointviewcontroller-Unmarked as Planned" = "Unmarked as Planned";
-
 
 /* WaypointImages viewcontroller */
 "waypointimagesviewcontroller-Images from the logs" = "Images from the logs";

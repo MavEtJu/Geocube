@@ -78,7 +78,7 @@
 "waypointslistviewcontroller-Downloading for %@" = "Download voor %@";
 "waypointslistviewcontroller-Export successful" = "Export gelukt";
 "waypointslistviewcontroller-Refreshing database" = "Ververs database";
-"waypointslistviewcontroller-The exported file can be found in the Files section" = "Het geëxporteerde bestand bevindt zich nu in de Bestanden menu.";
+"waypointslistviewcontroller-The exported file '%@' can be found in the Files section" = "Het geëxporteerde bestand '%@' bevindt zich nu in de Bestanden menu.";
 "waypointslistviewcontroller-Update failed" = "Ververs mislukt";
 "waypointslistviewcontroller-Waypoint" = "waypoint";
 "waypointslistviewcontroller-Waypoints" = "Waypoints";

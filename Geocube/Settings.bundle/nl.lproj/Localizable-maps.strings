@@ -9,6 +9,8 @@
 "maptemplateviewcontroller-Map" = "Kaart";
 "maptemplateviewcontroller-Map/Aerial" = "Kaart/Bovengronds";
 "maptemplateviewcontroller-Terrain" = "Terrein";
+"maptemplateviewcontroller-Export successful" = "Export succesvol";
+"maptemplateviewcontroller-The exported file '%@' can be found in the Files section" = "Het gemaakte bestand '%@' kan gevonden worden in de Bestanden sektie";
 
 /* WapAllWPViewController */
 "mapallwpviewcontroller-Adjustment" = "Aanpassing";
@@ -26,3 +28,7 @@
 "mapwaypointinfoview-Yours on %@" = "Jouw op %@";
 "mapwaypointinfoview-by %@ on %@" = "Door %@ op %@";
 "mapwaypointinfoview-at" = "op";
+
+/* MapTrackViewController */
+"maptrackviewcontroller-Export successful" = "Export succesvol";
+"maptrackviewcontroller-The exported file '%@' can be found in the Files section" = "Het gemaakte bestand '%@' kan gevonden worden in de Bestanden sektie";

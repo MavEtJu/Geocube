@@ -9,6 +9,8 @@
 "maptemplateviewcontroller-Aerial" = "Aerial";
 "maptemplateviewcontroller-Map/Aerial" = "Map/Aerial";
 "maptemplateviewcontroller-Terrain" = "Terrain";
+"maptemplateviewcontroller-Export successful" = "Export successful";
+"maptemplateviewcontroller-The exported file '%@' can be found in the Files section" = "The exported file '%@' can be found in the Files section";
 
 /* WapAllWPViewController */
 "mapallwpviewcontroller-Adjustment" = "Adjustment";
@@ -26,3 +28,7 @@
 "mapwaypointinfoview-Yours on %@" = "Yours on %@";
 "mapwaypointinfoview-by %@ on %@" = "by %@ on %@";
 "mapwaypointinfoview-at" = "at";
+
+/* MapTrackViewController */
+"maptrackviewcontroller-Export successful" = "Export successful";
+"maptrackviewcontroller-The exported file '%@' can be found in the Files section" = "The exported file '%@' can be found in the Files section";
