@@ -1,6 +1,6 @@
 Interesting additions and changes to Geocube
 
-Version 2.4(x)
+Version 2.4(38)
 
   Features:
   - Add support for Geocaching Australia "Ephemeral" cache types.
