@@ -15,6 +15,8 @@ Version 2.4(x)
     Files and Files -> KML.
   - Fix crash in loading of KML files which are still in the database
     but not in the KML directory anymore. Yes, you read that right.
+  - Fix longitude value in the coordinates logged by specifying
+    them for Geocaching Australia.
 
 Version 2.3(37)
 

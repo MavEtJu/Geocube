@@ -337,7 +337,7 @@
     if (IS_EMPTY(codeword) == NO)
         [ps appendFormat:@"&password=%@", [MyTools urlEncode:codeword]];
     if (coordinates.latitude != 0 && coordinates.longitude != 0)
-        [ps appendFormat:@"&coordinates=%@", [MyTools urlEncode:[NSString stringWithFormat:@"%f %f", coordinates.latitude, coordinates.latitude]]];
+        [ps appendFormat:@"&coordinates=%@", [MyTools urlEncode:[NSString stringWithFormat:@"%f %f", coordinates.latitude, coordinates.longitude]]];
 
     NSString *urlString = [self prepareURLString:@"/logs/submit" params:nil];
     NSURL *url = [NSURL URLWithString:urlString];
