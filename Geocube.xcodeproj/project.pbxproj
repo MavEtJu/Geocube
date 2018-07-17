@@ -646,6 +646,7 @@
 		E864BBB7206667EB0053B62D /* KeyboardCoordinateUTM.m in Sources */ = {isa = PBXBuildFile; fileRef = E864BBB5206667EB0053B62D /* KeyboardCoordinateUTM.m */; };
 		E864BBBB206674400053B62D /* KeyboardCoordinateMGRS.m in Sources */ = {isa = PBXBuildFile; fileRef = E864BBB82066743E0053B62D /* KeyboardCoordinateMGRS.m */; };
 		E864BBBC206674400053B62D /* KeyboardCoordinateMGRS.xib in Resources */ = {isa = PBXBuildFile; fileRef = E864BBB92066743F0053B62D /* KeyboardCoordinateMGRS.xib */; };
+		E86A4A7120FE22B90043D130 /* MapsWithMeAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E86A4A6F20FE22B80043D130 /* MapsWithMeAPI.m */; };
 		E86C4AAF1E321822004526E2 /* CompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C4AAD1E321822004526E2 /* CompassViewController.m */; };
 		E86C4AB01E321822004526E2 /* CompassView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86C4AAE1E321822004526E2 /* CompassView.xib */; };
 		E86D42751EF5484E00E4509F /* LocationlessTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86D42731EF5484E00E4509F /* LocationlessTableViewCell.xib */; };
@@ -1895,6 +1896,8 @@
 		E864BBB82066743E0053B62D /* KeyboardCoordinateMGRS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardCoordinateMGRS.m; path = ToolsLibrary/Keyboards/KeyboardCoordinateMGRS.m; sourceTree = "<group>"; };
 		E864BBB92066743F0053B62D /* KeyboardCoordinateMGRS.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KeyboardCoordinateMGRS.xib; path = ToolsLibrary/Keyboards/KeyboardCoordinateMGRS.xib; sourceTree = "<group>"; };
 		E864BBBA2066743F0053B62D /* KeyboardCoordinateMGRS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardCoordinateMGRS.h; path = ToolsLibrary/Keyboards/KeyboardCoordinateMGRS.h; sourceTree = "<group>"; };
+		E86A4A6F20FE22B80043D130 /* MapsWithMeAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapsWithMeAPI.m; path = ContribLibrary/MapsWithMeAPI/MapsWithMeAPI.m; sourceTree = "<group>"; };
+		E86A4A7020FE22B90043D130 /* MapsWithMeAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapsWithMeAPI.h; path = ContribLibrary/MapsWithMeAPI/MapsWithMeAPI.h; sourceTree = "<group>"; };
 		E86C4AAC1E321822004526E2 /* CompassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassViewController.h; sourceTree = "<group>"; };
 		E86C4AAD1E321822004526E2 /* CompassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassViewController.m; sourceTree = "<group>"; };
 		E86C4AAE1E321822004526E2 /* CompassView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompassView.xib; sourceTree = "<group>"; };
@@ -2253,6 +2256,7 @@
 				E822889A1F8A353300631380 /* GMUGeometry */,
 				E822888E1F8A350400631380 /* Kxintro */,
 				E82287D91F8A342000631380 /* LXMapScaleView */,
+				E86A4A6E20FE229C0043D130 /* MapsWithMeAPI */,
 				E82289041F8A407900631380 /* MHTabBarController */,
 				E82289021F8A405800631380 /* NKOColorPickerView */,
 				E82288981F8A351D00631380 /* NVHTarGzip */,
@@ -3509,6 +3513,15 @@
 				E82E672B1DA07D0200CFBDED /* attributes - unknown.png */,
 			);
 			name = "attributes - XXX";
+			sourceTree = "<group>";
+		};
+		E86A4A6E20FE229C0043D130 /* MapsWithMeAPI */ = {
+			isa = PBXGroup;
+			children = (
+				E86A4A7020FE22B90043D130 /* MapsWithMeAPI.h */,
+				E86A4A6F20FE22B80043D130 /* MapsWithMeAPI.m */,
+			);
+			name = MapsWithMeAPI;
 			sourceTree = "<group>";
 		};
 		E86C65751B4BCE2E00E2ABFE /* cache icons */ = {
@@ -4992,6 +5005,7 @@
 				E851139F1F987BB300737EC7 /* MapMapbox.m in Sources */,
 				E82286871F8A2BD600631380 /* dbCountry.m in Sources */,
 				E82344321EECDFB300D2CDFD /* FiltersViewController.m in Sources */,
+				E86A4A7120FE22B90043D130 /* MapsWithMeAPI.m in Sources */,
 				E82288D81F8A359900631380 /* GMUKMLParser.m in Sources */,
 				E82288C81F8A358700631380 /* NSFileManager+NVHFileSize.m in Sources */,
 				E83B109C1EF4FC9500F2C5FA /* LocationlessPlannedViewController.m in Sources */,

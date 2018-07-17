@@ -11,6 +11,7 @@
 "maptemplateviewcontroller-Terrain" = "Terrein";
 "maptemplateviewcontroller-Export successful" = "Export succesvol";
 "maptemplateviewcontroller-The exported file '%@' can be found in the Files section" = "Het gemaakte bestand '%@' kan gevonden worden in de Bestanden sektie";
+"maptemplateviewcontroller-Open in..." = "Open in...";
 
 /* WapAllWPViewController */
 "mapallwpviewcontroller-Adjustment" = "Aanpassing";

@@ -104,4 +104,9 @@
     return [super mapView:mv rendererForOverlay:ol];
 }
 
+- (BOOL)menuOpenInSupported
+{
+    return NO;
+}
+
 @end

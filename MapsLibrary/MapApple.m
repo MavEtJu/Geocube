@@ -103,6 +103,24 @@
     [self loadKMLs];
 }
 
+- (void)menuOpenIn
+{
+    NSMutableArray<MKMapItem *> *items = [NSMutableArray array];
+
+    [waypointManager.currentWaypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
+        MKMapItem *item = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude)]];
+        item.name = wp.wpt_name;
+        [items addObject:item];
+    }];
+
+    [MKMapItem openMapsWithItems:items launchOptions:nil];
+}
+
+- (BOOL)menuOpenInSupported
+{
+    return YES;
+}
+
 - (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
 {
     if (gestureRecognizer.state != UIGestureRecognizerStateBegan)

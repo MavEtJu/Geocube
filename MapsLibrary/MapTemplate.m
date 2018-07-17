@@ -32,6 +32,7 @@ EMPTY_METHOD(mapViewWillAppear)
 EMPTY_METHOD(mapViewDidLoad)
 
 - NEEDS_OVERLOADING_VOID(initCamera:(CLLocationCoordinate2D)coords)
+- NEEDS_OVERLOADING_VOID(menuOpenIn)
 - NEEDS_OVERLOADING_VOID(removeCamera)
 - NEEDS_OVERLOADING_VOID(initMap)
 - NEEDS_OVERLOADING_VOID(removeMap)
@@ -64,6 +65,11 @@ EMPTY_METHOD(mapViewDidLoad)
 - NEEDS_OVERLOADING_VOID(loadKML:(NSString *)file)
 - NEEDS_OVERLOADING_VOID(removeKMLs)
 - NEEDS_OVERLOADING_VOID(showCenteredCoordinates:(BOOL)showIt coords:(CLLocationCoordinate2D)coords)
+
+- (BOOL)menuOpenInSupported
+{
+    return NO;
+}
 
 - (instancetype)initMapObject:(MapTemplateViewController *)mvc
 {

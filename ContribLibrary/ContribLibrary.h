@@ -21,6 +21,7 @@
 
 #import "ContribLibrary/CMRangeSlider/RangeSlider.h"
 #import "ContribLibrary/LXMapScaleView/LXMapScaleView.h"
+#import "ContribLibrary/MapsWithMeAPI/MapsWithMeAPI.h"
 #import "ContribLibrary/MHTabBarController/MHTabBarController.h"
 #import "ContribLibrary/NKOColorPickerView/NKOColorPickerView.h"
 #import "ContribLibrary/NVHTarGzip/NVHTarGzip.h"

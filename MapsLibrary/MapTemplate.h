@@ -58,6 +58,9 @@
 - (void)moveCameraTo:(CLLocationCoordinate2D)coord zoomLevel:(double)zoomLevel;
 - (void)moveCameraToAll;
 
+- (void)menuOpenIn;
+- (BOOL)menuOpenInSupported;
+
 - (void)updateMapScaleView;
 
 - (void)showBoundaries:(BOOL)yesno;

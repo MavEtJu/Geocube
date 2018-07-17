@@ -39,4 +39,22 @@
     self.minimumAltitude = 287;
 }
 
+- (BOOL)menuOpenInSupported
+{
+    return [MWMApi isApiSupported];
+}
+
+- (void)menuOpenIn
+{
+//    [MWMApi showMap];
+
+    NSMutableArray<MWMPin *> *pins = [NSMutableArray array];
+
+    [waypointManager.currentWaypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
+        MWMPin *pin = [[MWMPin alloc] initWithLat:wp.wpt_latitude lon:wp.wpt_longitude title:[NSString stringWithFormat:@"%@ - %@", wp.wpt_name, wp.wpt_urlname] idOrUrl:nil];
+        [pins addObject:pin];
+    }];
+    [MWMApi showPins:pins];
+}
+
 @end

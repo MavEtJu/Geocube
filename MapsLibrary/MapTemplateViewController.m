@@ -107,10 +107,14 @@
     [self.lmi addItem:MVCmenuMapType label:_(@"maptemplateviewcontroller-Map Type")];
 
     [self.lmi addItem:MVCmenuLoadWaypoints label:_(@"maptemplateviewcontroller-Load waypoints")];
-    [self.lmi addItem:MVCmenuDirections label:_(@"maptemplateviewcontroller-Directions")];
     [self.lmi addItem:MVCmenuRemoveTarget label:_(@"maptemplateviewcontroller-Remove target")];
     [self.lmi addItem:MVCmenuRecenter label:_(@"maptemplateviewcontroller-Recenter")];
     [self.lmi addItem:MVCmenuExportVisible label:_(@"maptemplateviewcontroller-Export visible")];
+
+    [self.lmi addItem:MVCmenuDirections label:_(@"maptemplateviewcontroller-Directions")];
+    [self.lmi addItem:MVCmenuOpenIn label:_(@"maptemplateviewcontroller-Open in...")];
+    if ([self.map menuOpenInSupported] == NO)
+        [self.lmi disableItem:MVCmenuOpenIn];
 
     self.showBoundaries = NO;
     [self.lmi addItem:MVCmenuShowBoundaries label:_(@"maptemplateviewcontroller-Show boundaries")];
@@ -700,6 +704,11 @@
                                     [self.lmi disableItem:MVCmenuMapType];
                                 else
                                     [self.lmi enableItem:MVCmenuMapType];
+
+                                if ([self.map menuOpenInSupported] == NO)
+                                    [self.lmi disableItem:MVCmenuOpenIn];
+                                else
+                                    [self.lmi enableItem:MVCmenuOpenIn];
                             }];
         [view addAction:a];
     }];
@@ -1033,6 +1042,11 @@
     [self.map removeHistory];
 }
 
+- (void)menuOpenIn
+{
+    [self.map menuOpenIn];
+}
+
 - NEEDS_OVERLOADING_VOID(menuLoadWaypoints)
 
 - (void)performLocalMenuAction:(NSInteger)index
@@ -1043,6 +1057,9 @@
             [self menuMapType];
             return;
 
+        case MVCmenuOpenIn:
+            [self menuOpenIn];
+            return;
         case MVCmenuDirections:
             [self menuDirections];
             return;
