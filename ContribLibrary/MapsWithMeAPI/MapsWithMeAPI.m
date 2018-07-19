@@ -111,7 +111,7 @@ static NSString * const mapsWithMeIsNotInstalledPage =
 
 + (NSString *)urlEncode:(NSString *)str
 {
-  return (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)str, NULL, CFSTR("!$&'()*+,-./:;=?@_~"), kCFStringEncodingUTF8);
+    return [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"!$&'()*+,-./:;=?@_~"]];
 }
 
 + (BOOL)isMapsWithMeUrl:(nonnull NSURL *)url
@@ -145,9 +145,9 @@ static NSString * const mapsWithMeIsNotInstalledPage =
           }
         }
         else if ([key isEqualToString:@"n"])
-          pin.title = [values[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+          pin.title = values[1].stringByRemovingPercentEncoding;
         else if ([key isEqualToString:@"id"])
-          pin.idOrUrl = [values[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            pin.idOrUrl = values[1].stringByRemovingPercentEncoding;
         else
           NSLog(@"Unsupported url parameters: %@", values);
       }
@@ -166,7 +166,17 @@ static NSString * const mapsWithMeIsNotInstalledPage =
 
 + (BOOL)showMap
 {
-  return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[kMWMUrlScheme stringByAppendingFormat:@"map?v=%f", MAPSWITHME_API_VERSION]]];
+    dispatch_semaphore_t sem;
+    sem = dispatch_semaphore_create(0);
+
+    __block BOOL result;
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[kMWMUrlScheme stringByAppendingFormat:@"map?v=%f", MAPSWITHME_API_VERSION]] options:@{} completionHandler:^(BOOL success) {
+        result = success;
+        dispatch_semaphore_signal(sem);
+    } ];
+
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+    return result;
 }
 
 + (BOOL)showLat:(double)lat lon:(double)lon title:(nullable NSString *)title idOrUrl:(nullable NSString *)idOrUrl
@@ -217,7 +227,17 @@ static NSString * const mapsWithMeIsNotInstalledPage =
     [str appendString:@"&balloonAction=kOpenUrlOnBalloonClick"];
 
   NSURL * url = [NSURL URLWithString:str];
-  BOOL const result = [[UIApplication sharedApplication] openURL:url];
+  __block BOOL result;
+
+  dispatch_semaphore_t sem;
+  sem = dispatch_semaphore_create(0);
+
+  [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
+    result = success;
+    dispatch_semaphore_signal(sem);
+  }];
+
+  dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
   return result;
 }
 
@@ -240,7 +260,7 @@ static NSString * const mapsWithMeIsNotInstalledPage =
 
 + (void)showMapsWithMeIsNotInstalledDialog
 {
-  UIWebView * webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
+  UIWebView * webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
   // check that we have Internet connection and display fresh online page if possible
   [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://maps.me/api_mwm_not_installed"]]];
   MWMNViewController * webController = [[MWMNViewController alloc] init];
