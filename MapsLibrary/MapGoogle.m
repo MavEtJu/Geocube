@@ -165,7 +165,7 @@
     [self.mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.markers addObject:[self makeMarker:wp]];
 
-        if (self.showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES)
+        if (self.showBoundary == YES && wp.account.distance_minimum != 0 && (wp.wpt_type.hasBoundary == YES || wp.isPhysical == YES))
             [self.circles addObject:[self makeCircle:wp]];
     }];
 }
@@ -187,7 +187,7 @@
     [self.markers addObject:[self makeMarker:wp]];
 
     // Add the boundary if needed
-    if (self.showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
+    if (self.showBoundary == YES && wp.account.distance_minimum != 0 && (wp.wpt_type.hasBoundary == YES || wp.isPhysical == YES)) {
         GCGMSCircle *circle = [self makeCircle:wp];
         circle.map = self.mapView;
         [self.circles addObject:circle];

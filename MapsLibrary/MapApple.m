@@ -167,7 +167,7 @@
 
             [self.markers addObject:annotation];
 
-            if (self.showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES) {
+            if (self.showBoundary == YES && wp.account.distance_minimum != 0 && (wp.wpt_type.hasBoundary == YES || wp.isPhysical == YES)) {
                 GCMKCircle *circle = [GCMKCircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(wp.wpt_latitude, wp.wpt_longitude) radius:wp.account.distance_minimum];
                 circle.waypoint = wp;
                 [self.circles addObject:circle];

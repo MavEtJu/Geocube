@@ -5,6 +5,8 @@ Version 2.5(x)
   Features:
   - Be able to show all the pins in the native Maps or maps.me
     application for easier navigating.
+  - Be able to edit some metadata of the waypoint like name, code,
+    difficulty/terrain rating and being a physical waypoint.
 
   Fixes:
 

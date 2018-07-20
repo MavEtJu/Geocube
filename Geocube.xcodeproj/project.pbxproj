@@ -750,6 +750,7 @@
 		E8CB891D20606D4800DD55DE /* KeyboardCoordinateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB891C20606D4800DD55DE /* KeyboardCoordinateView.m */; };
 		E8CB89222063CCC400DD55DE /* KeyboardCoordinateDecimalDegreesSigned.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB89212063CCC400DD55DE /* KeyboardCoordinateDecimalDegreesSigned.m */; };
 		E8CB89242063CCEA00DD55DE /* KeyboardCoordinateDecimalDegreesSigned.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8CB89232063CCE900DD55DE /* KeyboardCoordinateDecimalDegreesSigned.xib */; };
+		E8D3AA0A210043FC00EB55B6 /* WaypointEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D3AA09210043FC00EB55B6 /* WaypointEditViewController.m */; };
 		E8D49D2F1F00F9C1005EB7BE /* container size - nano - 35x11.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */; };
 		E8D49D301F00F9C1005EB7BE /* container size - nano - 35x11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */; };
 		E8D49D311F00F9C1005EB7BE /* container size - nano - 35x11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2E1F00F9C1005EB7BE /* container size - nano - 35x11@3x.png */; };
@@ -2021,6 +2022,9 @@
 		E8CB89202063CCC400DD55DE /* KeyboardCoordinateDecimalDegreesSigned.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KeyboardCoordinateDecimalDegreesSigned.h; path = ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesSigned.h; sourceTree = "<group>"; };
 		E8CB89212063CCC400DD55DE /* KeyboardCoordinateDecimalDegreesSigned.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KeyboardCoordinateDecimalDegreesSigned.m; path = ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesSigned.m; sourceTree = "<group>"; };
 		E8CB89232063CCE900DD55DE /* KeyboardCoordinateDecimalDegreesSigned.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KeyboardCoordinateDecimalDegreesSigned.xib; path = ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesSigned.xib; sourceTree = "<group>"; };
+		E8D3AA08210043FC00EB55B6 /* WaypointEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WaypointEditViewController.h; path = Waypoints/WaypointEditViewController.h; sourceTree = "<group>"; };
+		E8D3AA09210043FC00EB55B6 /* WaypointEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = WaypointEditViewController.m; path = Waypoints/WaypointEditViewController.m; sourceTree = "<group>"; };
+		E8D3AA0C2100586100EB55B6 /* WaypointEditViewController-delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WaypointEditViewController-delegate.h"; path = "Waypoints/WaypointEditViewController-delegate.h"; sourceTree = "<group>"; };
 		E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11.png"; path = "images/containers/container size - nano - 35x11.png"; sourceTree = "<group>"; };
 		E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11@2x.png"; path = "images/containers/container size - nano - 35x11@2x.png"; sourceTree = "<group>"; };
 		E8D49D2E1F00F9C1005EB7BE /* container size - nano - 35x11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11@3x.png"; path = "images/containers/container size - nano - 35x11@3x.png"; sourceTree = "<group>"; };
@@ -3409,6 +3413,7 @@
 				E83C6F301EEEB1AD00E303F5 /* Header */,
 				E83C6F2F1EEEB19D00E303F5 /* Logs */,
 				E85707901CA1E7AC00467CE0 /* Waypoint Add */,
+				E8D3AA07210043BB00EB55B6 /* Waypoint Edit */,
 				E83C204B1E2D84DD006C523E /* Waypoint Subviews */,
 			);
 			name = "Single Waypoint";
@@ -4158,6 +4163,16 @@
 				E864BBB92066743F0053B62D /* KeyboardCoordinateMGRS.xib */,
 			);
 			name = Keyboards;
+			sourceTree = "<group>";
+		};
+		E8D3AA07210043BB00EB55B6 /* Waypoint Edit */ = {
+			isa = PBXGroup;
+			children = (
+				E8D3AA08210043FC00EB55B6 /* WaypointEditViewController.h */,
+				E8D3AA0C2100586100EB55B6 /* WaypointEditViewController-delegate.h */,
+				E8D3AA09210043FC00EB55B6 /* WaypointEditViewController.m */,
+			);
+			name = "Waypoint Edit";
 			sourceTree = "<group>";
 		};
 		E8E4400B1D88A6D800BECB49 /* GUI */ = {
@@ -5225,6 +5240,7 @@
 				E82344641EECE06E00D2CDFD /* TrackablesListViewController.m in Sources */,
 				E822868A1F8A2BD600631380 /* dbFileImport.m in Sources */,
 				E82286191F8A285C00631380 /* Coordinates.m in Sources */,
+				E8D3AA0A210043FC00EB55B6 /* WaypointEditViewController.m in Sources */,
 				E83C6F021EECE67100E303F5 /* FileObjectView.m in Sources */,
 				E82286971F8A2BD600631380 /* dbNotice.m in Sources */,
 				E82286951F8A2BD600631380 /* dbLogTemplate.m in Sources */,

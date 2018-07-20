@@ -918,6 +918,13 @@
     @"create index owntracks_idx_id on owntracks(id)",
     ];
     [self.upgradeSteps addObject:a];
+
+    // Version 76
+    a = @[
+    @"alter table waypoints add column is_physical bool",
+    @"update waypoints set is_physical = 0",
+    ];
+    [self.upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

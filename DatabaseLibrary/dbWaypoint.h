@@ -33,6 +33,8 @@
 
 @property (nonatomic) LogStringWPType logstring_wptype;
 @property (nonatomic) LogStatus logStatus;
+@property (nonatomic) BOOL isPhysical;
+
 @property (nonatomic) BOOL flag_highlight;
 @property (nonatomic) BOOL flag_ignore;
 @property (nonatomic) BOOL flag_markedfound;

@@ -326,7 +326,7 @@ EMPTY_METHOD(mapViewDidLoad)
     // Add the new markers to the map
     [self.mapvc.waypointsArray enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
         [self makeMarker:wp];
-        if (self.showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES)
+        if (self.showBoundary == YES && wp.account.distance_minimum != 0 && (wp.wpt_type.hasBoundary == YES || wp.isPhysical == YES))
             [self makeCircle:wp];
     }];
 }
@@ -334,7 +334,7 @@ EMPTY_METHOD(mapViewDidLoad)
 - (void)placeMarker:(dbWaypoint *)wp
 {
     [self makeMarker:wp];
-    if (self.showBoundary == YES && wp.account.distance_minimum != 0 && wp.wpt_type.hasBoundary == YES)
+    if (self.showBoundary == YES && wp.account.distance_minimum != 0 && (wp.wpt_type.hasBoundary == YES || wp.isPhysical == YES))
         [self makeCircle:wp];
 }
 

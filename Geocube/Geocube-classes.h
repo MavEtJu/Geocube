@@ -240,6 +240,7 @@
 @class WaypointAddViewController;
 @class WaypointAttributesViewController;
 @class WaypointDescriptionViewController;
+@class WaypointEditViewController;
 @class WaypointGroupsViewController;
 @class WaypointHeaderHeaderView;
 @class WaypointHeaderTableViewCell;

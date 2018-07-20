@@ -72,9 +72,10 @@ enum {
     menuLogThisWaypoint,
     menuOpenInBrowser,
     menuAddToGroup,
-    menuViewRaw,
     menuExportGPX,
     menuDeleteWaypoint,
+    menuEditWaypoint,
+    menuViewRaw,
     menuMax
 };
 
@@ -92,6 +93,7 @@ enum {
     [self.lmi addItem:menuOpenInBrowser label:_(@"waypointviewcontroller-Open in browser")];
     [self.lmi addItem:menuExportGPX label:_(@"waypointviewcontroller-Export GPX")];
     [self.lmi addItem:menuDeleteWaypoint label:_(@"waypointviewcontroller-Delete waypoint")];
+    [self.lmi addItem:menuEditWaypoint label:_(@"waypointviewcontroller-Edit waypoint")];
 
     self.hasCloseButton = NO;
     self.isLocationless = NO;
@@ -197,6 +199,11 @@ enum {
     [self reloadDataMainQueue];
 }
 
+-  (void)waypointEditRefreshTable
+{
+    [self reloadDataMainQueue];
+}
+
 -  (void)waypointLogRefreshWaypointData
 {
     BACKGROUND(runRefreshWaypoint, nil);
@@ -281,7 +288,7 @@ enum {
                     break;
 #endif
 
-               case WAYPOINT_DATA_DESCRIPTION:
+                case WAYPOINT_DATA_DESCRIPTION:
                     cell.textLabel.text = _(@"waypointviewcontroller-Description");
                     if ([self.waypoint.gs_short_desc isEqualToString:@""] == YES && [self.waypoint.gs_long_desc isEqualToString:@""] == YES && [self.waypoint.description isEqualToString:@""] == YES) {
                         tc = currentTheme.labelTextColorDisabled;
@@ -309,10 +316,10 @@ enum {
                 }
 
 #define IMAGE(__idx__) \
-    if ([logs count] > __idx__) { \
-        dbLog *log = [logs objectAtIndex:__idx__]; \
-        cell.image ## __idx__.image = [imageManager get:log.logstring.icon]; \
-    }
+if ([logs count] > __idx__) { \
+dbLog *log = [logs objectAtIndex:__idx__]; \
+cell.image ## __idx__.image = [imageManager get:log.logstring.icon]; \
+}
                 case WAYPOINT_DATA_FIELDNOTES: {
                     WaypointLogsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:XIB_WAYPOINTLOGSTABLEVIEWCELL forIndexPath:indexPath];
                     cell.logs.text = _(@"waypointviewcontroller-Field notes");
@@ -368,10 +375,10 @@ enum {
 
                         NSArray<dbLog *> *logs = [dbLog dbLast7ByWaypoint:self.waypoint];
 #define IMAGE(__idx__) \
-    if ([logs count] > __idx__) { \
-        dbLog *log = [logs objectAtIndex:__idx__]; \
-        cell.image ## __idx__.image = [imageManager get:log.logstring.icon]; \
-    }
+if ([logs count] > __idx__) { \
+dbLog *log = [logs objectAtIndex:__idx__]; \
+cell.image ## __idx__.image = [imageManager get:log.logstring.icon]; \
+}
                         IMAGE(0);
                         IMAGE(1);
                         IMAGE(2);
@@ -615,9 +622,12 @@ enum {
             NSString *filename = [ExportGPX exportWaypoint:self.waypoint];
             [MyTools messageBox:self header:_(@"waypointviewcontroller-Export successful") text:[NSString stringWithFormat:_(@"waypointviewcontroller-The exported file '%@' can be found in the Files section."), filename]];
             return;
-            }
+        }
         case menuDeleteWaypoint:
             [self menuDeleteWaypoint];
+            return;
+        case menuEditWaypoint:
+            [self menuEditWaypoint];
             return;
     }
 
@@ -633,6 +643,14 @@ enum {
 - (void)menuLogThisWaypoint
 {
     WaypointLogViewController *newController = [[WaypointLogViewController alloc] init:self.waypoint];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    newController.delegateWaypoint = self;
+    [self.navigationController pushViewController:newController animated:YES];
+}
+
+- (void)menuEditWaypoint
+{
+    WaypointEditViewController *newController = [[WaypointEditViewController alloc] init:self.waypoint];
     newController.edgesForExtendedLayout = UIRectEdgeNone;
     newController.delegateWaypoint = self;
     [self.navigationController pushViewController:newController animated:YES];
@@ -894,19 +912,19 @@ enum {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:WAYPOINT_DATA_GROUPMEMBERS inSection:WAYPOINT_DATA]];
 
     [ActionSheetStringPicker showPickerWithTitle:_(@"waypointviewcontroller-Select a group")
-        rows:groupNames
-        initialSelection:configManager.lastAddedGroup
-        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-            [configManager lastAddedGroupUpdate:selectedIndex];
-            dbGroup *group = [groups objectAtIndex:selectedIndex];
-            [group removeWaypointFromGroup:self.waypoint];
-            [group addWaypointToGroup:self.waypoint];
-        }
-        cancelBlock:^(ActionSheetStringPicker *picker) {
-            NSLog(@"Block Picker Canceled");
-        }
-        origin:cell.contentView
-    ];
+                                            rows:groupNames
+                                initialSelection:configManager.lastAddedGroup
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           [configManager lastAddedGroupUpdate:selectedIndex];
+                                           dbGroup *group = [groups objectAtIndex:selectedIndex];
+                                           [group removeWaypointFromGroup:self.waypoint];
+                                           [group addWaypointToGroup:self.waypoint];
+                                       }
+                                     cancelBlock:^(ActionSheetStringPicker *picker) {
+                                         NSLog(@"Block Picker Canceled");
+                                     }
+                                          origin:cell.contentView
+     ];
 }
 
 - (void)runRefreshWaypoint

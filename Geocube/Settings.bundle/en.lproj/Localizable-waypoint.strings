@@ -216,4 +216,15 @@
 "waypointwaypointsviewcontroller-Add a related waypoint" = "Add a related waypoint";
 "waypointwaypointsviewcontroller-Waypoint coordinates:__%@__Current coordinates:__%@" = "Waypoint coordinates:\n%@\nCurrent coordinates:\n%@";
 
-
+/* Waypoint Editing */
+"waypointeditviewcontroller-Difficulty rating" = "Difficulty rating";
+"waypointeditviewcontroller-Please enter the difficulty rating" = "Please enter the difficulty rating";
+"waypointeditviewcontroller-Please enter the name" = "Please enter the name";
+"waypointeditviewcontroller-Please enter the terrain rating" = "Please enter the terrain rating";
+"waypointeditviewcontroller-Terrain rating" = "Terrain rating";
+"waypointeditviewcontroller-Update difficulty rating" = "Update difficulty rating";
+"waypointeditviewcontroller-Update name" = "Update name";
+"waypointeditviewcontroller-Update terrain rating" = "Update terrain rating";
+"waypointeditviewcontroller-Waypoint name" = "Waypoint name";
+"waypointlogviewcontroller-Is a physical waypoint" = "Is a physical waypoint";
+"waypointviewcontroller-Edit waypoint" = "Edit waypoint";

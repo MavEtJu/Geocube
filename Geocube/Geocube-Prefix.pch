@@ -95,10 +95,12 @@
 #import "Notes/NotesSavedViewController.h"
 
 #import "Waypoints/WaypointPersonalNoteViewController-delegate.h"
+#import "Waypoints/WaypointEditViewController-delegate.h"
 #import "Waypoints/WaypointWaypointsViewController.h"
 #import "Waypoints/WaypointWaypointsTableViewCell.h"
 #import "Waypoints/WaypointAttributesViewController.h"
 #import "Waypoints/WaypointDescriptionViewController.h"
+#import "Waypoints/WaypointEditViewController.h"
 #import "Waypoints/WaypointGroupsViewController.h"
 #import "Waypoints/WaypointHintViewController.h"
 #import "Waypoints/WaypointImageViewController.h"

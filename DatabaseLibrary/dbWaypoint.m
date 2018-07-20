@@ -126,7 +126,7 @@ TABLENAME(@"waypoints")
     ASSERT_SELF_FIELD_EXISTS(account);
     NSId _id = 0;
     @synchronized(db) {
-        DB_PREPARE(@"insert into waypoints(wpt_name, wpt_description, wpt_lat, wpt_lon, wpt_date_placed_epoch, wpt_url, wpt_type_id, wpt_symbol_id, wpt_urlname, log_status, highlight, account_id, ignore, gs_country_id, gs_state_id, gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_long_desc_html, gs_long_desc, gs_short_desc_html, gs_short_desc, gs_hint, gs_container_id, gs_archived, gs_available, gs_owner_id, gs_placed_by, markedfound, inprogress, gs_date_found, dnfed, date_lastlog_epoch, gca_locale_id, date_lastimport_epoch, planned, dirty_logs) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into waypoints(wpt_name, wpt_description, wpt_lat, wpt_lon, wpt_date_placed_epoch, wpt_url, wpt_type_id, wpt_symbol_id, wpt_urlname, log_status, highlight, account_id, ignore, gs_country_id, gs_state_id, gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_long_desc_html, gs_long_desc, gs_short_desc_html, gs_short_desc, gs_hint, gs_container_id, gs_archived, gs_available, gs_owner_id, gs_placed_by, markedfound, inprogress, gs_date_found, dnfed, date_lastlog_epoch, gca_locale_id, date_lastimport_epoch, planned, dirty_logs, is_physical) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT  ( 1, self.wpt_name);
         SET_VAR_TEXT  ( 2, self.wpt_description);
@@ -169,6 +169,7 @@ TABLENAME(@"waypoints")
         SET_VAR_INT   (36, self.flag_planned);
 
         SET_VAR_BOOL  (37, self.dirty_logs);
+        SET_VAR_BOOL  (38, self.isPhysical);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(_id);
@@ -182,7 +183,7 @@ TABLENAME(@"waypoints")
 {
     ASSERT_FINISHED;
     @synchronized(db) {
-        DB_PREPARE(@"update waypoints set wpt_name = ?, wpt_description = ?, wpt_lat = ?, wpt_lon = ?, wpt_date_placed_epoch = ?, wpt_url = ?, wpt_type_id = ?, wpt_symbol_id = ?, wpt_urlname = ?, log_status = ?, highlight = ?, account_id = ?, ignore = ?, gs_country_id = ?, gs_state_id = ?, gs_rating_difficulty = ?, gs_rating_terrain = ?, gs_favourites = ?, gs_long_desc_html = ?, gs_long_desc = ?, gs_short_desc_html = ?, gs_short_desc = ?, gs_hint = ?, gs_container_id = ?, gs_archived = ?, gs_available = ?, gs_owner_id = ?, gs_placed_by = ?, markedfound = ?, inprogress = ?, gs_date_found = ?, dnfed = ?, date_lastlog_epoch = ?, gca_locale_id = ?, date_lastimport_epoch = ?, planned = ?, dirty_logs = ? where id = ?");
+        DB_PREPARE(@"update waypoints set wpt_name = ?, wpt_description = ?, wpt_lat = ?, wpt_lon = ?, wpt_date_placed_epoch = ?, wpt_url = ?, wpt_type_id = ?, wpt_symbol_id = ?, wpt_urlname = ?, log_status = ?, highlight = ?, account_id = ?, ignore = ?, gs_country_id = ?, gs_state_id = ?, gs_rating_difficulty = ?, gs_rating_terrain = ?, gs_favourites = ?, gs_long_desc_html = ?, gs_long_desc = ?, gs_short_desc_html = ?, gs_short_desc = ?, gs_hint = ?, gs_container_id = ?, gs_archived = ?, gs_available = ?, gs_owner_id = ?, gs_placed_by = ?, markedfound = ?, inprogress = ?, gs_date_found = ?, dnfed = ?, date_lastlog_epoch = ?, gca_locale_id = ?, date_lastimport_epoch = ?, planned = ?, dirty_logs = ?, is_physical = ? where id = ?");
 
         SET_VAR_TEXT  ( 1, self.wpt_name);
         SET_VAR_TEXT  ( 2, self.wpt_description);
@@ -225,8 +226,9 @@ TABLENAME(@"waypoints")
         SET_VAR_INT   (36, self.flag_planned);
 
         SET_VAR_BOOL  (37, self.dirty_logs);
+        SET_VAR_BOOL  (38, self.isPhysical);
 
-        SET_VAR_INT   (38, self._id);
+        SET_VAR_INT   (39, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -432,7 +434,7 @@ TABLENAME(@"waypoints")
     NSMutableArray<dbWaypoint *> *wps = [[NSMutableArray alloc] initWithCapacity:20];
     dbWaypoint *wp;
 
-    NSMutableString *sql = [NSMutableString stringWithString:@"select id, wpt_name, wpt_description, wpt_lat, wpt_lon, wpt_date_placed_epoch, wpt_url, wpt_type_id, wpt_symbol_id, wpt_urlname, log_status, highlight, account_id, ignore, gs_country_id, gs_state_id, gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_long_desc_html, gs_long_desc, gs_short_desc_html, gs_short_desc, gs_hint, gs_container_id, gs_archived, gs_available, gs_owner_id, gs_placed_by, markedfound, inprogress, gs_date_found, dnfed, date_lastlog_epoch, gca_locale_id, date_lastimport_epoch, planned, dirty_logs from waypoints wp "];
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, wpt_name, wpt_description, wpt_lat, wpt_lon, wpt_date_placed_epoch, wpt_url, wpt_type_id, wpt_symbol_id, wpt_urlname, log_status, highlight, account_id, ignore, gs_country_id, gs_state_id, gs_rating_difficulty, gs_rating_terrain, gs_favourites, gs_long_desc_html, gs_long_desc, gs_short_desc_html, gs_short_desc, gs_hint, gs_container_id, gs_archived, gs_available, gs_owner_id, gs_placed_by, markedfound, inprogress, gs_date_found, dnfed, date_lastlog_epoch, gca_locale_id, date_lastimport_epoch, planned, dirty_logs, is_physical from waypoints wp "];
     if (where != nil)
         [sql appendString:where];
 
@@ -494,6 +496,7 @@ TABLENAME(@"waypoints")
             INT_FETCH   (36, wp.flag_planned);
 
             BOOL_FETCH  (37, wp.dirty_logs);
+            BOOL_FETCH  (38, wp.isPhysical);
 
             [wp finish];
             [wps addObject:wp];
@@ -515,7 +518,7 @@ TABLENAME(@"waypoints")
 
 + (NSArray<dbWaypoint *> *)dbAllNotFoundButNotInGroupAllNotFound
 {
-    return [dbWaypoint dbAllXXX:@"where (wp.id not in (select waypoint_id from group2waypoints where group_id = ?)) and (wp.gs_date_found = 0 and (wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 0) and logger_id in (select accountname_id from accounts))) and not (wp.gs_date_found != 0 or wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select accountname_id from accounts))))" keys:@"i" values:@[[NSNumber numberWithLong:dbc.groupAllWaypointsNotFound._id]]];
+    return [dbWaypoint dbAllXXX:@"where (wp.id not in (select waypoint_id from group2waypoints where group_id = ?)) and (wp.gs_date_found = 0 and (wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 0) and logger_id in (select accountname_id from accounts))) and not (wp.gs_date_found != 0 or wp.id in (select waypoint_id from logs where log_string_id in (select id from log_strings where found = 1) and logger_id in (select accountname_id from accounts))))" keys:@"i" values:@[[NSNumber numberWithLongLong:dbc.groupAllWaypointsNotFound._id]]];
 }
 
 + (NSArray<dbWaypoint *> *)dbAllFound
@@ -808,7 +811,7 @@ TABLENAME(@"waypoints")
 
 - (BOOL)hasGSData
 {
-    // If the difficulty or terrain is not zero, then pretend the Groundspeak specific data is available
+    // If there is an owner for this waypoint, then assume that it has all the Groundspeak specific data
     return (self.gs_owner != nil);
 }
 

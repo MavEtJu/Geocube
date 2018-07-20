@@ -217,3 +217,16 @@
 /* Waypoint waypoints */
 "waypointwaypointsviewcontroller-Add a related waypoint" = "Voeg een waypoint toe";
 "waypointwaypointsviewcontroller-Waypoint coordinates:__%@__Current coordinates:__%@" = "Waypoint coördinaten:\n%@\nHuidige coördinaten:\n%@";
+
+/* Waypoint editing */
+"waypointeditviewcontroller-Difficulty rating" = "Moeilijkheidsgraad";
+"waypointeditviewcontroller-Please enter the difficulty rating" = "Voer de nieuwe moeilijkheidsgraad in";
+"waypointeditviewcontroller-Please enter the name" = "Voer de nieuwe naam in";
+"waypointeditviewcontroller-Please enter the terrain rating" = "Voer de nieuwe terrein rating in";
+"waypointeditviewcontroller-Terrain rating" = "Terrein graad";
+"waypointeditviewcontroller-Update difficulty rating" = "Verander de moeilijkheidsgraad";
+"waypointeditviewcontroller-Update name" = "Verander de naam";
+"waypointeditviewcontroller-Update terrain rating" = "Verander de terrein rating";
+"waypointeditviewcontroller-Waypoint name" = "Waypoint naam";
+"waypointlogviewcontroller-Is a physical waypoint" = "Is een fysiek waypoint";
+"waypointviewcontroller-Edit waypoint" = "Verander het waypoint";
