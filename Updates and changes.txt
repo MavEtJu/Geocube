@@ -9,7 +9,8 @@ Version 2.5(x)
     difficulty/terrain rating and being a physical waypoint.
 
   Fixes:
-
+  - Fixed the name of the KeyboardCoordinateDegreesMinutesDecimalSeconds.
+ 
 Version 2.4(38)
 
   Features:
