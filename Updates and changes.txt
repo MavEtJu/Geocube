@@ -10,7 +10,9 @@ Version 2.5(x)
 
   Fixes:
   - Fixed the name of the KeyboardCoordinateDegreesMinutesDecimalSeconds.
- 
+  - The close button can be hidden on the waypoint description,
+    hint and personal note views.
+
 Version 2.4(38)
 
   Features:

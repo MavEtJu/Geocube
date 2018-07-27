@@ -97,6 +97,16 @@
         [self.view bringSubviewToFront:self.closeButton];
 }
 
+- (void)temporaryHideCloseButton:(BOOL)show
+{
+    if (self.hasCloseButton == YES) {
+        if (show == YES)
+            self.closeButton.hidden = NO;
+        else
+            self.closeButton.hidden = YES;
+    }
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

@@ -71,11 +71,16 @@ enum {
     frame.size.width = applicationFrame.size.width;
     self.l.frame = frame;
 
+    [self.view addSubview:self.l];
+
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelTapped)];
     tapGestureRecognizer.numberOfTapsRequired = 1;
-    [self.l addGestureRecognizer:tapGestureRecognizer];
+    [self.view addGestureRecognizer:tapGestureRecognizer];
 
-    [self.view addSubview:self.l];
+    // To hide the close button
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressDidFire:)];
+    longPress.minimumPressDuration = 0.5;
+    [self.view addGestureRecognizer:longPress];
 
     view.contentSize = self.l.frame.size;
     [self.view sizeToFit];
@@ -95,6 +100,15 @@ enum {
     self.tv.text = self.l.text;
 
     [self.tv showInViewController:self];
+}
+
+- (void)longPressDidFire:(UILongPressGestureRecognizer *)lpgr
+{
+    if (lpgr.state == UIGestureRecognizerStateBegan) {
+        [self temporaryHideCloseButton:NO];
+    } else if (lpgr.state == UIGestureRecognizerStateEnded) {
+        [self temporaryHideCloseButton:YES];
+    }
 }
 
 - (void)popupTextView:(YIPopupTextView *)textView didDismissWithText:(NSString *)text cancelled:(BOOL)cancelled

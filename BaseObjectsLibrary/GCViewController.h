@@ -31,6 +31,7 @@
 - (void)changeTheme;
 - (void)willClosePage;
 - (void)prepareCloseButton:(UIView *)view;
+- (void)temporaryHideCloseButton:(BOOL)show;
 
 // Required for rotating
 - (void)calculateRects;

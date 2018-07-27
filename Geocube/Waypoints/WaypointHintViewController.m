@@ -56,6 +56,11 @@
     [self.scrollview addSubview:self.block];
     [self.block sizeToFit];
 
+    // To hide the close button
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressDidFire:)];
+    longPress.minimumPressDuration = 0.5;
+    [self.scrollview addGestureRecognizer:longPress];
+
     [self.scrollview sizeToFit];
     self.view = self.scrollview;
 
@@ -70,6 +75,15 @@
 
     self.block.frame = CGRectMake(0, 0, width, 0);
     [self.block sizeToFit];
+}
+
+- (void)longPressDidFire:(UILongPressGestureRecognizer *)lpgr
+{
+    if (lpgr.state == UIGestureRecognizerStateBegan) {
+        [self temporaryHideCloseButton:NO];
+    } else if (lpgr.state == UIGestureRecognizerStateEnded) {
+        [self temporaryHideCloseButton:YES];
+    }
 }
 
 @end

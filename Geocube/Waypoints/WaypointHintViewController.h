@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface WaypointHintViewController : GCViewController <UIScrollViewDelegate, UIWebViewDelegate>
+@interface WaypointHintViewController : GCViewController <UIScrollViewDelegate>
 
 - (instancetype)init:(dbWaypoint *)waypoint;
 
