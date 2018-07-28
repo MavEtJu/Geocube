@@ -10,6 +10,8 @@ Version 2.5(x)
 
   Fixes:
   - Fixed the name of the KeyboardCoordinateDegreesMinutesDecimalSeconds.
+  - Properly decode the decimal seconds part of the east/west part
+    of the entered degrees minutes decimal seconds coordinate.
   - The close button can be hidden on the waypoint description,
     hint and personal note views.
 
