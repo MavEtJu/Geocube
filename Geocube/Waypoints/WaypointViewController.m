@@ -316,10 +316,10 @@ enum {
                 }
 
 #define IMAGE(__idx__) \
-if ([logs count] > __idx__) { \
-dbLog *log = [logs objectAtIndex:__idx__]; \
-cell.image ## __idx__.image = [imageManager get:log.logstring.icon]; \
-}
+    if ([logs count] > __idx__) { \
+        dbLog *log = [logs objectAtIndex:__idx__]; \
+        cell.image ## __idx__.image = [imageManager get:log.logstring.icon]; \
+    }
                 case WAYPOINT_DATA_FIELDNOTES: {
                     WaypointLogsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:XIB_WAYPOINTLOGSTABLEVIEWCELL forIndexPath:indexPath];
                     cell.logs.text = _(@"waypointviewcontroller-Field notes");
@@ -375,10 +375,10 @@ cell.image ## __idx__.image = [imageManager get:log.logstring.icon]; \
 
                         NSArray<dbLog *> *logs = [dbLog dbLast7ByWaypoint:self.waypoint];
 #define IMAGE(__idx__) \
-if ([logs count] > __idx__) { \
-dbLog *log = [logs objectAtIndex:__idx__]; \
-cell.image ## __idx__.image = [imageManager get:log.logstring.icon]; \
-}
+    if ([logs count] > __idx__) { \
+        dbLog *log = [logs objectAtIndex:__idx__]; \
+        cell.image ## __idx__.image = [imageManager get:log.logstring.icon]; \
+    }
                         IMAGE(0);
                         IMAGE(1);
                         IMAGE(2);
