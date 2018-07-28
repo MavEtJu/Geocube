@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface WaypointEditViewController : GCTableViewController
+@interface WaypointEditViewController : GCTableViewController <UITextFieldDelegate>
 
 @property (nonatomic, retain) id<WaypointEditDelegate> delegateWaypoint;
 

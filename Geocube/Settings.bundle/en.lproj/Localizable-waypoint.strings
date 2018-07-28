@@ -228,3 +228,8 @@
 "waypointeditviewcontroller-Waypoint name" = "Waypoint name";
 "waypointlogviewcontroller-Is a physical waypoint" = "Is a physical waypoint";
 "waypointviewcontroller-Edit waypoint" = "Edit waypoint";
+"waypointeditviewcontroller-Coordinates" = "Coordinates";
+"waypointeditviewcontroller-Please enter the coordinates.__Expected format: %@" = "Please enter the coordinates.\nExpected format: %@";
+"waypointeditviewcontroller-Update coordinates" = "Update coordinates";
+"waypointeditviewcontroller-like" = "like";
+

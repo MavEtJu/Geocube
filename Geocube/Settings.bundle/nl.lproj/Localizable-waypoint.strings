@@ -230,3 +230,7 @@
 "waypointeditviewcontroller-Waypoint name" = "Waypoint naam";
 "waypointlogviewcontroller-Is a physical waypoint" = "Is een fysiek waypoint";
 "waypointviewcontroller-Edit waypoint" = "Verander het waypoint";
+"waypointeditviewcontroller-Coordinates" = "Coördinaten";
+"waypointeditviewcontroller-Please enter the coordinates.__Expected format: %@" = "Geef de nieuwe coördinaten.\nVerwachte formaat: %@";
+"waypointeditviewcontroller-Update coordinates" = "Verander de coördinaten";
+"waypointeditviewcontroller-like" = "als";
