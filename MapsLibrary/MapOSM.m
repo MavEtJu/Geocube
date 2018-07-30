@@ -25,18 +25,25 @@
 
 @implementation MapOSM
 
-+ (NSString *)cachePrefix
++ (NSArray<NSString *> *)cachePrefixes
 {
-    return @"OSM";
+    return @[@"OSM" ];
 }
 
 - (void)initMap
 {
     self.creditsText = @"© OpenStreetMap";
     self.tileServerTemplate = @"http://tile.openstreetmap.org/{z}/{x}/{y}.png";
-    self.cachePrefix = [MapOSM cachePrefix];
+    self.cachePrefixes = [MapOSM cachePrefixes];
     [super initMap];
     self.minimumAltitude = 287;
+}
+
+- (NSArray<NSNumber *> *)mapHasViews
+{
+    return @[
+             [NSNumber numberWithInteger:MAPTYPE_NORMAL],
+             ];
 }
 
 - (BOOL)menuOpenInSupported

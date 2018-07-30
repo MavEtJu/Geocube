@@ -29,13 +29,7 @@
 
 @implementation MapAppleTemplate
 
-- (NSArray<NSNumber *> *)mapHasViews
-{
-    return @[
-             [NSNumber numberWithInteger:MAPTYPE_NORMAL],
-             ];
-}
-
+- NEEDS_OVERLOADING_NSARRAY_NSNUMBER(mapHasViews)
 + NEEDS_OVERLOADING_NSSTRING(cachePrefix)
 
 - (void)initMap
@@ -73,7 +67,7 @@
     NSString *template = self.tileServerTemplate;
 
     // template = @"https://api.mapbox.com/v4/mapbox.dark/{z}/{x}/{y}.png?access_token=...";
-    overlay = [[MapAppleCache alloc] initWithURLTemplate:template prefix:self.cachePrefix];
+    overlay = [[MapAppleCache alloc] initWithURLTemplate:template prefix:[self.cachePrefixes objectAtIndex:0]];
     overlay.canReplaceMapContent = YES;
     // Instead of adding it, put them at the bottom so other overlays
     // will be rendered over it.

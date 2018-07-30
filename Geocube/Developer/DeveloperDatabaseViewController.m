@@ -180,15 +180,16 @@ enum {
             return;
 
         [self.runqueue addOperationWithBlock:^{
-            NSString *prefix = [mb.mapObject cachePrefix];
+            [[mb.mapObject cachePrefixes] enumerateObjectsUsingBlock:^(NSString * _Nonnull prefix, NSUInteger idx, BOOL * _Nonnull stop) {
 
-            NSInteger size = [MyTools determineDirectorySize:[NSString stringWithFormat:@"%@/%@", [MyTools MapCacheDir], prefix]];
-            @synchronized(vs) {
-                [vs addObject:[MyTools niceFileSize:size]];
-                [fs addObject:[NSString stringWithFormat:@"MapCache %@", prefix]];
-            }
+                NSInteger size = [MyTools determineDirectorySize:[NSString stringWithFormat:@"%@/%@", [MyTools MapCacheDir], prefix]];
+                @synchronized(vs) {
+                    [vs addObject:[MyTools niceFileSize:size]];
+                    [fs addObject:[NSString stringWithFormat:@"MapCache %@", prefix]];
+                }
 
-            [self reloadDataMainQueue];
+                [self reloadDataMainQueue];
+            }];
         }];
 
     }];

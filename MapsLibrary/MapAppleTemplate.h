@@ -23,8 +23,8 @@
 
 @property (nonatomic, retain) NSString *creditsText;
 @property (nonatomic, retain) NSString *tileServerTemplate;
-@property (nonatomic, retain) NSString *cachePrefix;
+@property (nonatomic, retain) NSArray<NSString *> *cachePrefixes;
 
-+ (NSString *)cachePrefix;
++ (NSArray<NSString *> *)cachePrefixes;
 
 @end
