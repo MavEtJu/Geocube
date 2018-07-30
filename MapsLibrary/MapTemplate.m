@@ -54,10 +54,7 @@ EMPTY_METHOD(mapViewDidLoad)
 - NEEDS_OVERLOADING_VOID(showTrack)
 - NEEDS_OVERLOADING_CLLOCATIONCOORDINATE2D(currentCenter)
 - NEEDS_OVERLOADING_DOUBLE(currentZoom)
-- NEEDS_OVERLOADING_BOOL(mapHasViewMap)
-- NEEDS_OVERLOADING_BOOL(mapHasViewAerial)
-- NEEDS_OVERLOADING_BOOL(mapHasViewHybridMapAerial)
-- NEEDS_OVERLOADING_BOOL(mapHasViewTerrain)
+- NEEDS_OVERLOADING_NSARRAY_NSNUMBER(mapHasViews)
 - NEEDS_OVERLOADING_VOID(currentRectangle:(CLLocationCoordinate2D *)bottomLeft topRight:(CLLocationCoordinate2D *)topRight)
 - NEEDS_OVERLOADING_VOID(placeMarker:(dbWaypoint *)wp)
 - NEEDS_OVERLOADING_VOID(removeMarker:(dbWaypoint *)wp)
@@ -69,6 +66,18 @@ EMPTY_METHOD(mapViewDidLoad)
 - (BOOL)menuOpenInSupported
 {
     return NO;
+}
+
+- (BOOL)mapHasView:(GCMapType)maptype
+{
+    __block BOOL rv = NO;
+    [[self mapHasViews] enumerateObjectsUsingBlock:^(NSNumber * _Nonnull mt, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (maptype == [mt integerValue]) {
+            *stop = YES;
+            rv = YES;
+        }
+    }];
+    return rv;
 }
 
 - (instancetype)initMapObject:(MapTemplateViewController *)mvc

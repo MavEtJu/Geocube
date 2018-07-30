@@ -50,6 +50,8 @@
     NEEDS_OVERLOADING_NIL(NSArray<dbObject *> *, __name__)
 #define NEEDS_OVERLOADING_DBOBJECT(__name__) \
     NEEDS_OVERLOADING_NIL(dbObject *, __name__)
+#define NEEDS_OVERLOADING_NSARRAY_NSNUMBER(__name__) \
+    NEEDS_OVERLOADING_NIL(NSArray<NSNumber *> *, __name__)
 #define NEEDS_OVERLOADING_NSARRAY_NSSTRING(__name__) \
     NEEDS_OVERLOADING_NIL(NSArray<NSString *> *, __name__)
 #define NEEDS_OVERLOADING_NSDICTIONARY(__name__) \

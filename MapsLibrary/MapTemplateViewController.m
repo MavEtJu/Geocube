@@ -695,11 +695,7 @@
                                 [self menuChangeMapbrand:mb];
                                 [view dismissViewControllerAnimated:YES completion:nil];
 
-                                NSInteger count = 0;
-                                if ([self.map mapHasViewMap] == TRUE) count++;
-                                if ([self.map mapHasViewAerial] == TRUE) count++;
-                                if ([self.map mapHasViewHybridMapAerial] == TRUE) count++;
-                                if ([self.map mapHasViewTerrain] == TRUE) count++;
+                                NSInteger count = [[self.map mapHasViews] count];
                                 if (count <= 1)
                                     [self.lmi disableItem:MVCmenuMapType];
                                 else
@@ -773,7 +769,7 @@
     view.popoverPresentationController.sourceView = self.view;
     view.popoverPresentationController.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0);
 
-    if ([self.map mapHasViewMap] == TRUE) {
+    if ([self.map mapHasView:MAPTYPE_NORMAL] == YES) {
         UIAlertAction *a = [UIAlertAction
                             actionWithTitle:_(@"maptemplateviewcontroller-Map")
                             style:UIAlertActionStyleDefault
@@ -783,7 +779,7 @@
                             }];
         [view addAction:a];
     }
-    if ([self.map mapHasViewAerial] == TRUE) {
+    if ([self.map mapHasView:MAPTYPE_AERIAL] == YES) {
         UIAlertAction *a = [UIAlertAction
                             actionWithTitle:_(@"maptemplateviewcontroller-Aerial")
                             style:UIAlertActionStyleDefault
@@ -793,7 +789,7 @@
                             }];
         [view addAction:a];
     }
-    if ([self.map mapHasViewHybridMapAerial] == TRUE) {
+    if ([self.map mapHasView:MAPTYPE_HYBRIDMAPAERIAL] == YES) {
         UIAlertAction *a = [UIAlertAction
                             actionWithTitle:_(@"maptemplateviewcontroller-Map/Aerial")
                             style:UIAlertActionStyleDefault
@@ -803,7 +799,7 @@
                             }];
         [view addAction:a];
     }
-    if ([self.map mapHasViewTerrain] == TRUE) {
+    if ([self.map mapHasView:MAPTYPE_TERRAIN] == YES) {
         UIAlertAction *a = [UIAlertAction
                             actionWithTitle:_(@"maptemplateviewcontroller-Terrain")
                             style:UIAlertActionStyleDefault

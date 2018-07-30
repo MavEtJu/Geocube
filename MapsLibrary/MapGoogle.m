@@ -43,24 +43,14 @@
 
 @implementation MapGoogle
 
-- (BOOL)mapHasViewMap
+- (NSArray<NSNumber *> *)mapHasViews
 {
-    return YES;
-}
-
-- (BOOL)mapHasViewAerial
-{
-    return YES;
-}
-
-- (BOOL)mapHasViewHybridMapAerial
-{
-    return YES;
-}
-
-- (BOOL)mapHasViewTerrain;
-{
-    return YES;
+    return @[
+             [NSNumber numberWithInteger:MAPTYPE_NORMAL],
+             [NSNumber numberWithInteger:MAPTYPE_AERIAL],
+             [NSNumber numberWithInteger:MAPTYPE_TERRAIN],
+             [NSNumber numberWithInteger:MAPTYPE_HYBRIDMAPAERIAL],
+             ];
 }
 
 - (void)initMap

@@ -29,24 +29,11 @@
 
 @implementation MapAppleTemplate
 
-- (BOOL)mapHasViewMap
+- (NSArray<NSNumber *> *)mapHasViews
 {
-    return YES;
-}
-
-- (BOOL)mapHasViewAerial
-{
-    return NO;
-}
-
-- (BOOL)mapHasViewHybridMapAerial
-{
-    return NO;
-}
-
-- (BOOL)mapHasViewTerrain;
-{
-    return NO;
+    return @[
+             [NSNumber numberWithInteger:MAPTYPE_NORMAL],
+             ];
 }
 
 + NEEDS_OVERLOADING_NSSTRING(cachePrefix)

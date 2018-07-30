@@ -42,10 +42,8 @@
 
 // To be implemented by inherited classes:
 
-- (BOOL)mapHasViewMap;
-- (BOOL)mapHasViewAerial;
-- (BOOL)mapHasViewHybridMapAerial;
-- (BOOL)mapHasViewTerrain;
+- (NSArray<NSNumber *> *)mapHasViews;
+- (BOOL)mapHasView:(GCMapType)maptype;
 
 - (void)initMap;
 - (void)removeMap;
