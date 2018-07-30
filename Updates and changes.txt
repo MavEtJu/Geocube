@@ -14,6 +14,8 @@ Version 2.5(x)
     of the entered degrees minutes decimal seconds coordinate.
   - The close button can be hidden on the waypoint description,
     hint and personal note views.
+  - The OpenCage geolocation will not crash anymore when no results
+    are returned.
 
 Version 2.4(38)
 

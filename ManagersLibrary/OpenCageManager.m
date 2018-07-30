@@ -110,6 +110,11 @@
     if (error == nil && response.statusCode == 200) {
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         NSArray<NSDictionary *> *results = [json objectForKey:@"results"];
+
+        // No results returned, maybe it was too far in the water?
+        if ([results count] == 0)
+            return;
+
         NSDictionary *annotation = [results objectAtIndex:0];
         NSDictionary *components = [annotation objectForKey:@"components"];
 
