@@ -20,27 +20,26 @@
  */
 
 @interface MapAppleTemplate ()
-{
-    MKTileOverlay *overlay;
-    UILabel *creditsLabel;
-}
+
+@property (nonatomic, retain) MKTileOverlay *overlay;
+@property (nonatomic, retain) UILabel *creditsLabel;
 
 @end
 
 @implementation MapAppleTemplate
 
 - NEEDS_OVERLOADING_NSARRAY_NSNUMBER(mapHasViews)
-+ NEEDS_OVERLOADING_NSSTRING(cachePrefix)
++ NEEDS_OVERLOADING_NSSTRING(cachePrefixes)
 
 - (void)initMap
 {
     [super initMap];
 
     /* Credits label for OSM */
-    creditsLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    creditsLabel.font = [UIFont systemFontOfSize:10];
-    creditsLabel.text = self.creditsText;
-    [self.mapvc.view addSubview:creditsLabel];
+    self.creditsLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    self.creditsLabel.font = [UIFont systemFontOfSize:10];
+    self.creditsLabel.text = self.creditsText;
+    [self.mapvc.view addSubview:self.creditsLabel];
 }
 
 - (void)recalculateRects
@@ -58,7 +57,7 @@
 {
     CGRect r = self.mapvc.view.frame;
     NSLog(@"%@", [MyTools niceCGRect:r]);
-    creditsLabel.frame = CGRectMake(2, r.size.height - 20, 200, 20);
+    self.creditsLabel.frame = CGRectMake(2, r.size.height - 20, 200, 20);
 }
 
 - (void)mapViewDidLoad
@@ -66,13 +65,16 @@
     // From http://www.glimsoft.com/01/31/how-to-use-openstreetmap-on-ios-7-in-7-lines-of-code/
     NSString *template = self.tileServerTemplate;
 
+    if (self.overlay != nil)
+        [self.mapView removeOverlay:self.overlay];
+
     // template = @"https://api.mapbox.com/v4/mapbox.dark/{z}/{x}/{y}.png?access_token=...";
-    overlay = [[MapAppleCache alloc] initWithURLTemplate:template prefix:[self.cachePrefixes objectAtIndex:0]];
-    overlay.canReplaceMapContent = YES;
+    self.overlay = [[MapAppleCache alloc] initWithURLTemplate:template prefix:self.cachePrefix];
+    self.overlay.canReplaceMapContent = YES;
     // Instead of adding it, put them at the bottom so other overlays
     // will be rendered over it.
     //[self.mapView addOverlay:overlay level:MKOverlayLevelAboveLabels];
-    [self.mapView insertOverlay:overlay atIndex:0];
+    [self.mapView insertOverlay:self.overlay atIndex:0];
 
     self.mapView.delegate = self;
 }
@@ -80,8 +82,8 @@
 // From http://www.glimsoft.com/01/31/how-to-use-openstreetmap-on-ios-7-in-7-lines-of-code/
 - (MKOverlayRenderer *)mapView:(MKMapView *)mv rendererForOverlay:(id<MKOverlay>)ol
 {
-    if (ol == overlay)
-        return [[MKTileOverlayRenderer alloc] initWithTileOverlay:overlay];
+    if (ol == self.overlay)
+        return [[MKTileOverlayRenderer alloc] initWithTileOverlay:self.overlay];
     return [super mapView:mv rendererForOverlay:ol];
 }
 

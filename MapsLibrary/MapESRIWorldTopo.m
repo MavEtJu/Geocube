@@ -37,9 +37,24 @@
 {
     self.creditsText = @"© Esri";
     self.tileServerTemplate = @"http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.png";
-    self.cachePrefixes = [MapESRIWorldTopo cachePrefixes];
+    self.cachePrefix = [[MapESRIWorldTopo cachePrefixes] objectAtIndex:0];
     [super initMap];
     self.minimumAltitude = 287;
+}
+
+- (void)setMapType:(GCMapType)mapType
+{
+    switch (mapType) {
+        case MAPTYPE_NORMAL:
+            self.tileServerTemplate = @"http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.png";
+            self.cachePrefix = [[MapESRIWorldTopo cachePrefixes] objectAtIndex:0];
+            break;
+        case MAPTYPE_AERIAL:
+            self.tileServerTemplate = @"http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png";
+            self.cachePrefix = [[MapESRIWorldTopo cachePrefixes] objectAtIndex:1];
+            break;
+    }
+    [self mapViewDidLoad];
 }
 
 - (NSArray<NSNumber *> *)mapHasViews
