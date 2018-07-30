@@ -769,46 +769,22 @@
     view.popoverPresentationController.sourceView = self.view;
     view.popoverPresentationController.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0);
 
-    if ([self.map mapHasView:MAPTYPE_NORMAL] == YES) {
-        UIAlertAction *a = [UIAlertAction
-                            actionWithTitle:_(@"maptemplateviewcontroller-Map")
-                            style:UIAlertActionStyleDefault
-                            handler:^(UIAlertAction * action) {
-                                [self.map setMapType:MAPTYPE_NORMAL];
-                                [view dismissViewControllerAnimated:YES completion:nil];
-                            }];
-        [view addAction:a];
+#define MAPTYPE(__type__, __label__) \
+    if ([self.map mapHasView:__type__] == YES) { \
+        UIAlertAction *a = [UIAlertAction \
+                            actionWithTitle:_(__label__) \
+                            style:UIAlertActionStyleDefault \
+                            handler:^(UIAlertAction * action) { \
+                                [self.map setMapType:__type__]; \
+                                [view dismissViewControllerAnimated:YES completion:nil]; \
+                            }]; \
+        [view addAction:a]; \
     }
-    if ([self.map mapHasView:MAPTYPE_AERIAL] == YES) {
-        UIAlertAction *a = [UIAlertAction
-                            actionWithTitle:_(@"maptemplateviewcontroller-Aerial")
-                            style:UIAlertActionStyleDefault
-                            handler:^(UIAlertAction * action) {
-                                [self.map setMapType:MAPTYPE_AERIAL];
-                                [view dismissViewControllerAnimated:YES completion:nil];
-                            }];
-        [view addAction:a];
-    }
-    if ([self.map mapHasView:MAPTYPE_HYBRIDMAPAERIAL] == YES) {
-        UIAlertAction *a = [UIAlertAction
-                            actionWithTitle:_(@"maptemplateviewcontroller-Map/Aerial")
-                            style:UIAlertActionStyleDefault
-                            handler:^(UIAlertAction * action) {
-                                [self.map setMapType:MAPTYPE_HYBRIDMAPAERIAL];
-                                [view dismissViewControllerAnimated:YES completion:nil];
-                            }];
-        [view addAction:a];
-    }
-    if ([self.map mapHasView:MAPTYPE_TERRAIN] == YES) {
-        UIAlertAction *a = [UIAlertAction
-                            actionWithTitle:_(@"maptemplateviewcontroller-Terrain")
-                            style:UIAlertActionStyleDefault
-                            handler:^(UIAlertAction * action) {
-                                [self.map setMapType:MAPTYPE_TERRAIN];
-                                [view dismissViewControllerAnimated:YES completion:nil];
-                            }];
-        [view addAction:a];
-    }
+
+    MAPTYPE(MAPTYPE_NORMAL, @"maptemplateviewcontroller-Map")
+    MAPTYPE(MAPTYPE_AERIAL, @"maptemplateviewcontroller-Aerial")
+    MAPTYPE(MAPTYPE_HYBRIDMAPAERIAL, @"maptemplateviewcontroller-Map/Aerial")
+    MAPTYPE(MAPTYPE_TERRAIN, @"maptemplateviewcontroller-Terrain")
 
     UIAlertAction *cancel = [UIAlertAction
                              actionWithTitle:_(@"Cancel")
