@@ -7,6 +7,7 @@ Version 2.5(x)
     application for easier navigating.
   - Be able to edit some metadata of the waypoint like name, code,
     difficulty/terrain rating, coordinates and being a physical waypoint.
+  - Add support for Thunderforest maps.
 
   Fixes:
   - Fixed the name of the KeyboardCoordinateDegreesMinutesDecimalSeconds.
