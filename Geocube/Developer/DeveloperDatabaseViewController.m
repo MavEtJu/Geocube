@@ -176,12 +176,11 @@ enum {
 
     NSArray<MapBrand *> *mbs = [MapTemplateViewController initMapBrands];
     [mbs enumerateObjectsUsingBlock:^(MapBrand * _Nonnull mb, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([mb.mapObject respondsToSelector:@selector(cachePrefix)] == NO)
+        if ([mb.mapObject respondsToSelector:@selector(cachePrefixes)] == NO)
             return;
 
-        [self.runqueue addOperationWithBlock:^{
-            [[mb.mapObject cachePrefixes] enumerateObjectsUsingBlock:^(NSString * _Nonnull prefix, NSUInteger idx, BOOL * _Nonnull stop) {
-
+        [[mb.mapObject cachePrefixes] enumerateObjectsUsingBlock:^(NSString * _Nonnull prefix, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.runqueue addOperationWithBlock:^{
                 NSInteger size = [MyTools determineDirectorySize:[NSString stringWithFormat:@"%@/%@", [MyTools MapCacheDir], prefix]];
                 @synchronized(vs) {
                     [vs addObject:[MyTools niceFileSize:size]];
