@@ -173,7 +173,7 @@
 @class MapAppleCache;
 @class MapAppleTemplate;
 @class MapBrand;
-@class MapESRIWorldTopo;
+@class MapEsri;
 @class MapGoogle;
 @class MapLogsViewController;
 @class MapMapbox;

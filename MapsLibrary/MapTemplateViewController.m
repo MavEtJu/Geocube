@@ -59,7 +59,7 @@
     [mapBrands addObject:[MapBrand mapBrandWithData:[MapGoogle class] defaultString:@"google" menuLabel:@"Google Maps" key:MAPBRAND_GOOGLEMAPS]];
     [mapBrands addObject:[MapBrand mapBrandWithData:[MapApple class] defaultString:@"apple" menuLabel:@"Apple Maps" key:MAPBRAND_APPLEMAPS]];
     [mapBrands addObject:[MapBrand mapBrandWithData:[MapOSM class] defaultString:@"osm" menuLabel:@"OSM" key:MAPBRAND_OSM]];
-    [mapBrands addObject:[MapBrand mapBrandWithData:[MapESRIWorldTopo class] defaultString:@"esri_worldtopo" menuLabel:@"ESRI WorldTopo" key:MAPBRAND_ESRI_WORLDTOPO]];
+    [mapBrands addObject:[MapBrand mapBrandWithData:[MapEsri class] defaultString:@"esri" menuLabel:@"Esri" key:MAPBRAND_ESRI]];
     [mapBrands addObject:[MapBrand mapBrandWithData:[MapMapbox class] defaultString:@"mapbox" menuLabel:@"Mapbox" key:MAPBRAND_MAPBOX]];
 
     return mapBrands;

@@ -133,7 +133,7 @@
 		E82287961F8A30B700631380 /* MapAppleCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E82287791F8A30B700631380 /* MapAppleCache.m */; };
 		E82287971F8A30B700631380 /* MapAppleTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E822877B1F8A30B700631380 /* MapAppleTemplate.m */; };
 		E82287981F8A30B700631380 /* MapBrand.m in Sources */ = {isa = PBXBuildFile; fileRef = E822877D1F8A30B700631380 /* MapBrand.m */; };
-		E82287991F8A30B700631380 /* MapESRIWorldTopo.m in Sources */ = {isa = PBXBuildFile; fileRef = E822877F1F8A30B700631380 /* MapESRIWorldTopo.m */; };
+		E82287991F8A30B700631380 /* MapEsri.m in Sources */ = {isa = PBXBuildFile; fileRef = E822877F1F8A30B700631380 /* MapEsri.m */; };
 		E822879A1F8A30B700631380 /* MapGoogle.m in Sources */ = {isa = PBXBuildFile; fileRef = E82287811F8A30B700631380 /* MapGoogle.m */; };
 		E822879B1F8A30B700631380 /* MapLogsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82287831F8A30B700631380 /* MapLogsViewController.m */; };
 		E822879C1F8A30B700631380 /* MapOneWPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82287851F8A30B700631380 /* MapOneWPViewController.m */; };
@@ -1131,8 +1131,8 @@
 		E822877B1F8A30B700631380 /* MapAppleTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapAppleTemplate.m; path = MapsLibrary/MapAppleTemplate.m; sourceTree = "<group>"; };
 		E822877C1F8A30B700631380 /* MapBrand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapBrand.h; path = MapsLibrary/MapBrand.h; sourceTree = "<group>"; };
 		E822877D1F8A30B700631380 /* MapBrand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapBrand.m; path = MapsLibrary/MapBrand.m; sourceTree = "<group>"; };
-		E822877E1F8A30B700631380 /* MapESRIWorldTopo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapESRIWorldTopo.h; path = MapsLibrary/MapESRIWorldTopo.h; sourceTree = "<group>"; };
-		E822877F1F8A30B700631380 /* MapESRIWorldTopo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapESRIWorldTopo.m; path = MapsLibrary/MapESRIWorldTopo.m; sourceTree = "<group>"; };
+		E822877E1F8A30B700631380 /* MapEsri.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapEsri.h; path = MapsLibrary/MapEsri.h; sourceTree = "<group>"; };
+		E822877F1F8A30B700631380 /* MapEsri.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapEsri.m; path = MapsLibrary/MapEsri.m; sourceTree = "<group>"; };
 		E82287801F8A30B700631380 /* MapGoogle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapGoogle.h; path = MapsLibrary/MapGoogle.h; sourceTree = "<group>"; };
 		E82287811F8A30B700631380 /* MapGoogle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapGoogle.m; path = MapsLibrary/MapGoogle.m; sourceTree = "<group>"; };
 		E82287821F8A30B700631380 /* MapLogsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapLogsViewController.h; path = MapsLibrary/MapLogsViewController.h; sourceTree = "<group>"; };
@@ -2643,8 +2643,8 @@
 				E82287771F8A30B700631380 /* MapApple.m */,
 				E822877A1F8A30B700631380 /* MapAppleTemplate.h */,
 				E822877B1F8A30B700631380 /* MapAppleTemplate.m */,
-				E822877E1F8A30B700631380 /* MapESRIWorldTopo.h */,
-				E822877F1F8A30B700631380 /* MapESRIWorldTopo.m */,
+				E822877E1F8A30B700631380 /* MapEsri.h */,
+				E822877F1F8A30B700631380 /* MapEsri.m */,
 				E82287801F8A30B700631380 /* MapGoogle.h */,
 				E82287811F8A30B700631380 /* MapGoogle.m */,
 				E82287861F8A30B700631380 /* MapOSM.h */,
@@ -5159,7 +5159,7 @@
 				E82343D51EECDEE200D2CDFD /* WaypointHeaderHeaderView.m in Sources */,
 				E82286EB1F8A2CE300631380 /* KeyManager.m in Sources */,
 				E82288F01F8A3E8500631380 /* GMUPlacemark.m in Sources */,
-				E82287991F8A30B700631380 /* MapESRIWorldTopo.m in Sources */,
+				E82287991F8A30B700631380 /* MapEsri.m in Sources */,
 				E82344061EECDF9C00D2CDFD /* WaypointsListViewController.m in Sources */,
 				E82288C91F8A358700631380 /* NVHFile.m in Sources */,
 				E82286E51F8A2CE300631380 /* BezelManager.m in Sources */,

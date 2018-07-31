@@ -33,7 +33,7 @@
 #import "MapsLibrary/MapMapbox.h"
 #import "MapsLibrary/MapAppleTemplate.h"
 #import "MapsLibrary/MapOSM.h"
-#import "MapsLibrary/MapESRIWorldTopo.h"
+#import "MapsLibrary/MapEsri.h"
 
 #import "MapsLibrary/MapAppleCache.h"
 #import "MapsLibrary/MapBrand.h"
