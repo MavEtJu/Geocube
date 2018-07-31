@@ -21,11 +21,12 @@
 
 @interface MapTemplateViewController : GCViewController <LocationManagerLocationDelegate, LocationManagerHistoryDelegate, WaypointManagerWaypointDelegate, UIGestureRecognizerDelegate>
 
-#define MAPBRAND_APPLEMAPS  @"Apple Maps"
-#define MAPBRAND_GOOGLEMAPS @"Google Maps"
-#define MAPBRAND_OSM        @"OpenStreetMap"
-#define MAPBRAND_ESRI       @"Esri"
-#define MAPBRAND_MAPBOX     @"Mapbox"
+#define MAPBRAND_APPLEMAPS      @"Apple Maps"
+#define MAPBRAND_GOOGLEMAPS     @"Google Maps"
+#define MAPBRAND_OSM            @"OpenStreetMap"
+#define MAPBRAND_ESRI           @"Esri"
+#define MAPBRAND_MAPBOX         @"Mapbox"
+#define MAPBRAND_THUNDERFOREST  @"Thunderforest"
 
 @property (nonatomic, retain) NSMutableArray<dbWaypoint *> *waypointsArray;
 @property (nonatomic, retain) MapTemplate *map;

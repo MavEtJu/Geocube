@@ -181,6 +181,7 @@
 @class MapOneWPViewController;
 @class MapTemplate;
 @class MapTemplateViewController;
+@class MapThunderforest;
 @class MapTrackViewController;
 @class MapWaypointInfoView;
 @class MoveablesInventoryViewController;

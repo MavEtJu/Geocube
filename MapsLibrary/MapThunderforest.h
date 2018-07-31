@@ -1,7 +1,7 @@
 /*
  * Geocube
  * By Edwin Groothuis <geocube@mavetju.org>
- * Copyright 2017, 2018 Edwin Groothuis
+ * Copyright 2015, 2016, 2017, 2018 Edwin Groothuis
  *
  * This file is part of Geocube.
  *
@@ -19,23 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "MapsLibrary/MapTemplateViewController-enum.h"
+@interface MapThunderforest : MapAppleTemplate
 
-#import "MapsLibrary/MapTemplateViewController.h"
-#import "MapsLibrary/MapAllWPViewController.h"
-#import "MapsLibrary/MapOneWPViewController.h"
-#import "MapsLibrary/MapTrackViewController.h"
-#import "MapsLibrary/MapLogsViewController.h"
-
-#import "MapsLibrary/MapTemplate.h"
-#import "MapsLibrary/MapApple.h"
-#import "MapsLibrary/MapGoogle.h"
-#import "MapsLibrary/MapMapbox.h"
-#import "MapsLibrary/MapAppleTemplate.h"
-#import "MapsLibrary/MapOSM.h"
-#import "MapsLibrary/MapEsri.h"
-#import "MapsLibrary/MapThunderforest.h"
-
-#import "MapsLibrary/MapAppleCache.h"
-#import "MapsLibrary/MapBrand.h"
-#import "MapsLibrary/MapWaypointInfoView.h"
+@end

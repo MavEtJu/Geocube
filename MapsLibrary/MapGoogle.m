@@ -272,6 +272,9 @@
         case MAPTYPE_HYBRIDMAPAERIAL:
             self.mapView.mapType = kGMSTypeHybrid;
             break;
+        default:
+            // Not reached
+            break;
     }
 }
 

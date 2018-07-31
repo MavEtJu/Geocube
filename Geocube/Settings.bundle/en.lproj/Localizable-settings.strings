@@ -227,6 +227,8 @@
 "settingsmainviewcontroller-Boundary circle ring" = "Boundary circle ring";
 "settingsmainviewcontroller-Enter your Mapbox key" = "Enter your Mapbox key";
 "settingsmainviewcontroller-Mapbox key" = "Mapbox key";
+"settingsmainviewcontroller-Enter your Thunderforest key" = "Enter your Thunderforest key";
+"settingsmainviewcontroller-Thunderforest key" = "Thunderforest key";
 
 "settingsmainviewcontroller-Restart required" = "Restart required";
 "settingsmainviewcontroller-When you are finished with these settings, please leave Geocube, swipe it up and restart it." = "When you are finished with these settings, please leave Geocube, swipe it up and restart it.";

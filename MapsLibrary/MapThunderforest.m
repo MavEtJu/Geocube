@@ -19,43 +19,54 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapEsri ()
+@interface MapThunderforest ()
 
 @end
 
-@implementation MapEsri
+@implementation MapThunderforest
 
 + (NSArray<NSString *> *)cachePrefixes
 {
     return @[
-             @"ESRIWorldTopo",
-             @"ESRIWorldImagery",
+             @"ThunderforestNeighbourhood",
+             @"ThunderforestOutdoors",
+             @"ThunderforestLandscape",
+             @"ThunderforestSpinalTap",
+             @"ThunderforestCycling",
+             @"ThunderforestTransport",
              ];
 }
 
 - (NSArray<NSString *> *)tileServices
 {
     return @[
-            @"http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.png",
-            @"http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png",
-            ];
+             @"https://tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png",
+             @"https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png",
+             @"https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png",
+             @"https://tile.thunderforest.com/spinal-map/{z}/{x}/{y}.png",
+             @"https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png",
+             @"https://tile.thunderforest.com/transport/{z}/{x}/{y}.png",
+             ];
 }
 
 - (NSArray<NSNumber *> *)mapHasViews
 {
     return @[
-             [NSNumber numberWithInteger:MAPTYPE_NORMAL],
-             [NSNumber numberWithInteger:MAPTYPE_AERIAL],
+             [NSNumber numberWithInteger:MAPTYPE_NEIGHBOURHOOD],
+             [NSNumber numberWithInteger:MAPTYPE_OUTDOORS],
+             [NSNumber numberWithInteger:MAPTYPE_LANDSCAPE],
+             [NSNumber numberWithInteger:MAPTYPE_SPINALMAP],
+             [NSNumber numberWithInteger:MAPTYPE_CYCLING],
+             [NSNumber numberWithInteger:MAPTYPE_PUBLICTRANSPORT],
              ];
 }
 
 - (void)initMap
 {
-    self.creditsText = @"© Esri";
-    self.tileServerTemplate = [[self tileServices] objectAtIndex:0];
-    self.cachePrefix = [[MapEsri cachePrefixes] objectAtIndex:0];
+    self.creditsText = @"© Thunderforest";
+    self.tileServerTemplate = [NSString stringWithFormat:@"%@?apikey=%@", [[self tileServices] objectAtIndex:0], configManager.thunderforestKey];
+    self.cachePrefix = [[MapThunderforest cachePrefixes] objectAtIndex:0];
     [super initMap];
-    self.minimumAltitude = 287;
 }
 
 - (void)setMapType:(GCMapType)mapType

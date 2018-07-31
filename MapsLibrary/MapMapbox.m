@@ -749,6 +749,9 @@ EMPTY_METHOD(mapViewDidLoad)
         case MAPTYPE_HYBRIDMAPAERIAL:
             styleURL = [MGLStyle satelliteStreetsStyleURL];
             break;
+        default:
+            // Not reached
+            break;
     }
 
     self.mapView.styleURL = styleURL;

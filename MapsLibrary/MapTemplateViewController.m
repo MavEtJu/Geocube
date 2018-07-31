@@ -39,6 +39,7 @@
 
 @property (nonatomic        ) BOOL hasGMS;
 @property (nonatomic        ) BOOL hasMapbox;
+@property (nonatomic        ) BOOL hasThunderforest;
 @property (nonatomic        ) BOOL showBoundaries;
 
 @property (nonatomic        ) BOOL isVisible;
@@ -61,6 +62,7 @@
     [mapBrands addObject:[MapBrand mapBrandWithData:[MapOSM class] defaultString:@"osm" menuLabel:@"OSM" key:MAPBRAND_OSM]];
     [mapBrands addObject:[MapBrand mapBrandWithData:[MapEsri class] defaultString:@"esri" menuLabel:@"Esri" key:MAPBRAND_ESRI]];
     [mapBrands addObject:[MapBrand mapBrandWithData:[MapMapbox class] defaultString:@"mapbox" menuLabel:@"Mapbox" key:MAPBRAND_MAPBOX]];
+    [mapBrands addObject:[MapBrand mapBrandWithData:[MapThunderforest class] defaultString:@"thunderforest" menuLabel:@"Thunderforest" key:MAPBRAND_THUNDERFOREST]];
 
     return mapBrands;
 }
@@ -91,12 +93,11 @@
         self.currentMapBrand = [MapBrand findMapBrand:MAPBRAND_APPLEMAPS brands:self.mapBrands];
 
     // Disable GoogleMaps if there is no key
-    self.hasGMS = YES;
-    if (IS_EMPTY(keyManager.googlemaps) == YES)
-        self.hasGMS = NO;
-    self.hasMapbox = YES;
-    if (IS_EMPTY(configManager.mapboxKey) == YES)
-        self.hasMapbox = NO;
+    self.hasGMS = (IS_EMPTY(keyManager.googlemaps)) == NO;
+    self.hasMapbox = (IS_EMPTY(configManager.mapboxKey)) == NO;
+    self.hasThunderforest = (IS_EMPTY(configManager.thunderforestKey)) == NO;
+    if ([self.currentMapBrand.key isEqualToString:MAPBRAND_THUNDERFOREST] == YES && self.hasThunderforest == NO)
+        self.currentMapBrand = [MapBrand findMapBrand:MAPBRAND_APPLEMAPS brands:self.mapBrands];
     if ([self.currentMapBrand.key isEqualToString:MAPBRAND_MAPBOX] == YES && self.hasMapbox == NO)
         self.currentMapBrand = [MapBrand findMapBrand:MAPBRAND_APPLEMAPS brands:self.mapBrands];
     if ([self.currentMapBrand.key isEqualToString:MAPBRAND_GOOGLEMAPS] == YES && self.hasGMS == NO)
@@ -687,6 +688,9 @@
         // Do not enable Mapbox until available
         if ([mb.key isEqualToString:MAPBRAND_MAPBOX] == YES && (IS_EMPTY(configManager.mapboxKey) == YES))
             return;
+        // Do not enable Thunderforest until available
+        if ([mb.key isEqualToString:MAPBRAND_THUNDERFOREST] == YES && (IS_EMPTY(configManager.thunderforestKey) == YES))
+            return;
 
         UIAlertAction *a = [UIAlertAction
                             actionWithTitle:mb.key
@@ -781,10 +785,16 @@
         [view addAction:a]; \
     }
 
-    MAPTYPE(MAPTYPE_NORMAL, @"maptemplateviewcontroller-Map")
-    MAPTYPE(MAPTYPE_AERIAL, @"maptemplateviewcontroller-Aerial")
-    MAPTYPE(MAPTYPE_HYBRIDMAPAERIAL, @"maptemplateviewcontroller-Map/Aerial")
-    MAPTYPE(MAPTYPE_TERRAIN, @"maptemplateviewcontroller-Terrain")
+    MAPTYPE(MAPTYPE_NORMAL, _(@"maptemplateviewcontroller-Map"))
+    MAPTYPE(MAPTYPE_AERIAL, _(@"maptemplateviewcontroller-Aerial"))
+    MAPTYPE(MAPTYPE_HYBRIDMAPAERIAL, _(@"maptemplateviewcontroller-Map/Aerial"))
+    MAPTYPE(MAPTYPE_TERRAIN, _(@"maptemplateviewcontroller-Terrain"))
+    MAPTYPE(MAPTYPE_NEIGHBOURHOOD, _(@"maptemplateviewcontroller-Neighbourhood"))
+    MAPTYPE(MAPTYPE_CYCLING, _(@"maptemplateviewcontroller-OpenCycleMap"))
+    MAPTYPE(MAPTYPE_PUBLICTRANSPORT, _(@"maptemplateviewcontroller-Public transport"))
+    MAPTYPE(MAPTYPE_LANDSCAPE, _(@"maptemplateviewcontroller-Landscape"))
+    MAPTYPE(MAPTYPE_OUTDOORS, _(@"maptemplateviewcontroller-Outdoors"))
+    MAPTYPE(MAPTYPE_SPINALMAP, _(@"maptemplateviewcontroller-Spinal Map"))
 
     UIAlertAction *cancel = [UIAlertAction
                              actionWithTitle:_(@"Cancel")

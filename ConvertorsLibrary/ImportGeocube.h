@@ -54,6 +54,7 @@ typedef NS_ENUM(NSInteger, GeocubeFileType) {
     GEOCUBEFILETYPE_LOGMACROS,
     GEOCUBEFILETYPE_MAPBOXKEY,
     GEOCUBEFILETYPE_OPENCAGEKEY,
+    GEOCUBEFILETYPE_THUNDERFORESTKEY,
 };
 
 @property (nonatomic, retain) InfoItem *iii;

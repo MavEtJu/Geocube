@@ -291,6 +291,7 @@ enum sections {
 
     SECTION_MAPS_DEFAULTBRAND = 0,
     SECTION_MAPS_MAPBOXKEY,
+    SECTION_MAPS_THUNDERFORESTKEY,
     SECTION_MAPS_EXTERNALMAP,
     SECTION_MAPS_MAX,
 
@@ -622,6 +623,8 @@ enum sections {
                 }
                 case SECTION_MAPS_MAPBOXKEY:
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-Mapbox key"), configManager.mapboxKey);
+                case SECTION_MAPS_THUNDERFORESTKEY:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Thunderforest key"), configManager.thunderforestKey);
 
                 case SECTION_MAPS_EXTERNALMAP: {
                     __block NSString *name = nil;
@@ -1055,6 +1058,9 @@ SWITCH_UPDATE_RELOAD(updateServicesShowDeveloper, serviceShowDeveloper)
                     break;
                 case SECTION_MAPS_MAPBOXKEY:
                     [self changeMapboxKey];
+                    break;
+                case SECTION_MAPS_THUNDERFORESTKEY:
+                    [self changeThunderforestKey];
                     break;
                 case SECTION_MAPS_EXTERNALMAP:
                     [self changeAppsExternalMap];
@@ -2427,6 +2433,41 @@ SWITCH_UPDATE_RELOAD(updateServicesShowDeveloper, serviceShowDeveloper)
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.text = configManager.mapboxKey;
         textField.placeholder = _(@"settingsmainviewcontroller-Mapbox key");
+    }];
+
+    [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)changeThunderforestKey
+{
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:_(@"settingsmainviewcontroller-Thunderforest key")
+                                message:_(@"settingsmainviewcontroller-Enter your Thunderforest key")
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:_(@"OK")
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction *action) {
+                             //Do Some action
+                             UITextField *tf = [alert.textFields objectAtIndex:0];
+                             NSString *value = tf.text;
+                             [configManager thunderforestKeyUpdate:value];
+                             [self.tableView reloadData];
+                         }];
+
+    UIAlertAction *cancel = [UIAlertAction
+                             actionWithTitle:_(@"Cancel") style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                             }];
+
+    [alert addAction:ok];
+    [alert addAction:cancel];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = configManager.thunderforestKey;
+        textField.placeholder = _(@"settingsmainviewcontroller-Thunderforest key");
     }];
 
     [ALERT_VC_RVC(self) presentViewController:alert animated:YES completion:nil];

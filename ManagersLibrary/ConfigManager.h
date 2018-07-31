@@ -107,6 +107,7 @@ PROTO_N (BOOL, opencageEnable);
 PROTO_NR(NSString *, opencageKey);
 PROTO_N (BOOL, opencageWifiOnly);
 PROTO_NR(NSString *, mapboxKey);
+PROTO_NR(NSString *, thunderforestKey);
 PROTO_N (NSInteger, configUpdateLastTime);
 PROTO_NR(NSString *, configUpdateLastVersion);
 PROTO_N (BOOL, automaticDatabaseBackup);

@@ -27,7 +27,7 @@
 
 + (NSArray<NSString *> *)cachePrefixes
 {
-    return @[@"OSM" ];
+    return @[@"OSM"];
 }
 
 - (void)initMap

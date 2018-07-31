@@ -229,6 +229,8 @@
 "settingsmainviewcontroller-Boundary circle ring" = "Waypoint cirkel grens";
 "settingsmainviewcontroller-Enter your Mapbox key" = "Geef je Mapbox key hier";
 "settingsmainviewcontroller-Mapbox key" = "Mapbox key";
+"settingsmainviewcontroller-Enter your Thunderforest key" = "Geef je Thunderforest key hier";
+"settingsmainviewcontroller-Thunderforest key" = "Thunderforest key";
 
 "settingsmainviewcontroller-Restart required" = "Herstart nodig";
 "settingsmainviewcontroller-When you are finished with these settings, please leave Geocube, swipe it up and restart it." = "Wanneer je klaar bent met de veranderingen, verlaat dan Geocube, schiet het omhoog en start het opnieuw.";

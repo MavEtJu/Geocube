@@ -54,6 +54,7 @@ typedef NS_ENUM(NSInteger, Type) {
         case GEOCUBEFILETYPE_LOGMACROS:
             return [self parseLogMacros:data infoItem:iii];
         case GEOCUBEFILETYPE_MAPBOXKEY:
+        case GEOCUBEFILETYPE_THUNDERFORESTKEY:
         case GEOCUBEFILETYPE_OPENCAGEKEY:
             return [self parseKey:data filetype:filetype infoItem:iii];
     }
@@ -82,6 +83,9 @@ typedef NS_ENUM(NSInteger, Type) {
             return YES;
         case GEOCUBEFILETYPE_MAPBOXKEY:
             [configManager mapboxKeyUpdate:key];
+            return YES;
+        case GEOCUBEFILETYPE_THUNDERFORESTKEY:
+            [configManager thunderforestKeyUpdate:key];
             return YES;
         default:
             NSLog(@"ImportGeocube: Unknown filetype %ld", (long)filetype);

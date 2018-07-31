@@ -373,6 +373,10 @@ enum {
         done = YES;
         success = [ImportGeocube parse:data infoItem:iii filetype:GEOCUBEFILETYPE_OPENCAGEKEY];
     }
+    if (done == NO && [fn isEqualToString:@"thunderforest.geocube"] == YES) {
+        done = YES;
+        success = [ImportGeocube parse:data infoItem:iii filetype:GEOCUBEFILETYPE_THUNDERFORESTKEY];
+    }
     if (done == NO && [fn isEqualToString:@"Log Templates and Macros.geocube"] == YES) {
         done = YES;
         success = [ImportGeocube parse:data infoItem:iii filetype:GEOCUBEFILETYPE_LOGMACROS];

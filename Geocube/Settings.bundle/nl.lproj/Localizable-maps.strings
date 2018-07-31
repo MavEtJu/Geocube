@@ -5,13 +5,21 @@
 "maptemplateviewcontroller-Unable to open the %@ application: URL not recognized" = "Het was niet mogelijk om %@ te starten: URL  was niet herkend.";
 "maptemplateviewcontroller-Choose your map" = "Kies de nieuwe kaart";
 "maptemplateviewcontroller-Choose the map type" = "Kies het kaart type";
-"maptemplateviewcontroller-Aerial" = "Bovengronds";
-"maptemplateviewcontroller-Map" = "Kaart";
-"maptemplateviewcontroller-Map/Aerial" = "Kaart/Bovengronds";
-"maptemplateviewcontroller-Terrain" = "Terrein";
 "maptemplateviewcontroller-Export successful" = "Export succesvol";
 "maptemplateviewcontroller-The exported file '%@' can be found in the Files section" = "Het gemaakte bestand '%@' kan gevonden worden in de Bestanden sektie";
 "maptemplateviewcontroller-Open in..." = "Open in...";
+
+/* Map Types */
+"maptemplateviewcontroller-Map" = "Kaart";
+"maptemplateviewcontroller-Aerial" = "Bovengronds";
+"maptemplateviewcontroller-Map/Aerial" = "Kaart/Bovengronds";
+"maptemplateviewcontroller-Terrain" = "Terrein";
+"maptemplateviewcontroller-Landscape" = "Landschap";
+"maptemplateviewcontroller-Neighbourhood" = "Omgeving";
+"maptemplateviewcontroller-OpenCycleMap" = "OpenCycleMap";
+"maptemplateviewcontroller-Outdoors" = "Recreatie";
+"maptemplateviewcontroller-Public transport" = "Openbaar vervoer";
+"maptemplateviewcontroller-Spinal Map" = "Spinal Map";
 
 /* WapAllWPViewController */
 "mapallwpviewcontroller-Adjustment" = "Aanpassing";

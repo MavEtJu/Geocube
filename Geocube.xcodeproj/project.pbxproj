@@ -592,6 +592,7 @@
 		E83C6F071EECE67100E303F5 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E83C6EFF1EECE67100E303F5 /* FilesViewController.m */; };
 		E83C6F151EEE8B6C00E303F5 /* NoticeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C6F131EEE8B6C00E303F5 /* NoticeTableViewCell.xib */; };
 		E83C6F161EEE8B6C00E303F5 /* NoticeTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E83C6F141EEE8B6C00E303F5 /* NoticeTableViewCell~ipad.xib */; };
+		E83F8566210FE5D50053D129 /* MapThunderforest.m in Sources */ = {isa = PBXBuildFile; fileRef = E83F8565210FE5D50053D129 /* MapThunderforest.m */; };
 		E84B174B1F8F6C18004CAE31 /* QueriesGCAPublicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84B174A1F8F6C18004CAE31 /* QueriesGCAPublicViewController.m */; };
 		E84B174E1F903E6C004CAE31 /* DeveloperRemoteAPIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84B174D1F903E6C004CAE31 /* DeveloperRemoteAPIViewController.m */; };
 		E84B17531F90BA2C004CAE31 /* DeveloperRemoteAPITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E84B17521F90BA2C004CAE31 /* DeveloperRemoteAPITableViewCell.m */; };
@@ -1823,6 +1824,8 @@
 		E83C6EFF1EECE67100E303F5 /* FilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilesViewController.m; path = Files/FilesViewController.m; sourceTree = "<group>"; };
 		E83C6F131EEE8B6C00E303F5 /* NoticeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoticeTableViewCell.xib; path = Help/NoticeTableViewCell.xib; sourceTree = "<group>"; };
 		E83C6F141EEE8B6C00E303F5 /* NoticeTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "NoticeTableViewCell~ipad.xib"; path = "Help/NoticeTableViewCell~ipad.xib"; sourceTree = "<group>"; };
+		E83F8564210FE5D50053D129 /* MapThunderforest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MapThunderforest.h; path = MapsLibrary/MapThunderforest.h; sourceTree = "<group>"; };
+		E83F8565210FE5D50053D129 /* MapThunderforest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MapThunderforest.m; path = MapsLibrary/MapThunderforest.m; sourceTree = "<group>"; };
 		E8467C8F1B4E06F800FFA253 /* Geocube-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geocube-Prefix.pch"; sourceTree = "<group>"; };
 		E84B17491F8F6C18004CAE31 /* QueriesGCAPublicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QueriesGCAPublicViewController.h; path = Queries/QueriesGCAPublicViewController.h; sourceTree = "<group>"; };
 		E84B174A1F8F6C18004CAE31 /* QueriesGCAPublicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QueriesGCAPublicViewController.m; path = Queries/QueriesGCAPublicViewController.m; sourceTree = "<group>"; };
@@ -2647,10 +2650,12 @@
 				E822877F1F8A30B700631380 /* MapEsri.m */,
 				E82287801F8A30B700631380 /* MapGoogle.h */,
 				E82287811F8A30B700631380 /* MapGoogle.m */,
-				E82287861F8A30B700631380 /* MapOSM.h */,
-				E82287871F8A30B700631380 /* MapOSM.m */,
 				E851139D1F987BB300737EC7 /* MapMapbox.h */,
 				E851139E1F987BB300737EC7 /* MapMapbox.m */,
+				E82287861F8A30B700631380 /* MapOSM.h */,
+				E82287871F8A30B700631380 /* MapOSM.m */,
+				E83F8564210FE5D50053D129 /* MapThunderforest.h */,
+				E83F8565210FE5D50053D129 /* MapThunderforest.m */,
 			);
 			name = "Map Suppliers";
 			sourceTree = "<group>";
@@ -5041,6 +5046,7 @@
 				E82288FF1F8A3EC900631380 /* unzip.c in Sources */,
 				E82344541EECE05E00D2CDFD /* PersonalNoteTableViewCell.m in Sources */,
 				E82288FE1F8A3EC900631380 /* mztools.c in Sources */,
+				E83F8566210FE5D50053D129 /* MapThunderforest.m in Sources */,
 				E83C6F001EECE67100E303F5 /* FileBrowserViewController.m in Sources */,
 				E822871C1F8A2E1A00631380 /* GCTableViewCellSubtitleRightImageDisclosure.m in Sources */,
 				E82287671F8A2EC300631380 /* GCLabelSmallText.m in Sources */,

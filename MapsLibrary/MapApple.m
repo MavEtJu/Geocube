@@ -513,8 +513,8 @@
         case MAPTYPE_HYBRIDMAPAERIAL:
             self.mapView.mapType = MKMapTypeHybrid;
             break;
-        case MAPTYPE_TERRAIN:
-            // Nothing, not supported here.
+        default:
+            // Not reached
             break;
     }
 }
