@@ -786,9 +786,15 @@
     }
 
     MAPTYPE(MAPTYPE_NORMAL, _(@"maptemplateviewcontroller-Map"))
-    MAPTYPE(MAPTYPE_AERIAL, _(@"maptemplateviewcontroller-Aerial"))
-    MAPTYPE(MAPTYPE_HYBRIDMAPAERIAL, _(@"maptemplateviewcontroller-Map/Aerial"))
+    MAPTYPE(MAPTYPE_AERIAL, _(@"maptemplateviewcontroller-Aerial view"))
+    MAPTYPE(MAPTYPE_HYBRIDMAPAERIAL, _(@"maptemplateviewcontroller-Map/Aerial view"))
     MAPTYPE(MAPTYPE_TERRAIN, _(@"maptemplateviewcontroller-Terrain"))
+    MAPTYPE(MAPTYPE_AERIALFLYOVER, _(@"maptemplateviewcontroller-Aerial view flyover"))
+    MAPTYPE(MAPTYPE_HYBRIDFLYOVER, _(@"maptemplateviewcontroller-Hybrid flyover"))
+    if (@available(iOS 11.0, *)) {
+        MAPTYPE(MAPTYPE_MUTEDMAP, _(@"maptemplateviewcontroller-Muted Map"))
+    }
+    MAPTYPE(MAPTYPE_AERIALFLYOVER, _(@"maptemplateviewcontroller-Map/Aerial view"))
     MAPTYPE(MAPTYPE_NEIGHBOURHOOD, _(@"maptemplateviewcontroller-Neighbourhood"))
     MAPTYPE(MAPTYPE_CYCLING, _(@"maptemplateviewcontroller-OpenCycleMap"))
     MAPTYPE(MAPTYPE_PUBLICTRANSPORT, _(@"maptemplateviewcontroller-Public transport"))

@@ -751,12 +751,6 @@ TIME(dateTimeString_DD_MM_YYYY_dotspace, @"d. M. yyyy")
     return topController;
 }
 
-+ (BOOL)iOSVersionAtLeast_10_0_0
-{
-    NSOperatingSystemVersion ios10_0_0 = (NSOperatingSystemVersion){10, 0, 0};
-    return [[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:ios10_0_0];
-}
-
 /*
 _(@"distance-metre");
 _(@"distance-metres");

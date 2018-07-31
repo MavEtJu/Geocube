@@ -52,12 +52,18 @@ typedef NS_ENUM(NSInteger, GCMapType) {
     MAPTYPE_NORMAL = 0,
     MAPTYPE_AERIAL,
     MAPTYPE_HYBRIDMAPAERIAL,
-    MAPTYPE_TERRAIN,
-    MAPTYPE_NEIGHBOURHOOD,
-    MAPTYPE_CYCLING,
-    MAPTYPE_PUBLICTRANSPORT,
-    MAPTYPE_OUTDOORS,
-    MAPTYPE_LANDSCAPE,
-    MAPTYPE_SPINALMAP,
+
+    MAPTYPE_TERRAIN,        // Google Maps
+
+    MAPTYPE_AERIALFLYOVER,  // Apple Maps
+    MAPTYPE_HYBRIDFLYOVER,  // Apple Maps
+    MAPTYPE_MUTEDMAP,       // Apple Maps
+
+    MAPTYPE_NEIGHBOURHOOD,  // Thunderforest
+    MAPTYPE_CYCLING,        // Thunderforest
+    MAPTYPE_PUBLICTRANSPORT,    // Thunderforest
+    MAPTYPE_OUTDOORS,       // Thunderforest
+    MAPTYPE_LANDSCAPE,      // Thunderforest
+    MAPTYPE_SPINALMAP,      // Thunderforest
 
 };

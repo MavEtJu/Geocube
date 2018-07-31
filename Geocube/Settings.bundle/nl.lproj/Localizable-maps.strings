@@ -11,8 +11,8 @@
 
 /* Map Types */
 "maptemplateviewcontroller-Map" = "Kaart";
-"maptemplateviewcontroller-Aerial" = "Bovengronds";
-"maptemplateviewcontroller-Map/Aerial" = "Kaart/Bovengronds";
+"maptemplateviewcontroller-Aerial view" = "Luchtfoto";
+"maptemplateviewcontroller-Map/Aerial view" = "Luchtfoto met kaart";
 "maptemplateviewcontroller-Terrain" = "Terrein";
 "maptemplateviewcontroller-Landscape" = "Landschap";
 "maptemplateviewcontroller-Neighbourhood" = "Omgeving";
@@ -20,6 +20,9 @@
 "maptemplateviewcontroller-Outdoors" = "Recreatie";
 "maptemplateviewcontroller-Public transport" = "Openbaar vervoer";
 "maptemplateviewcontroller-Spinal Map" = "Spinal Map";
+"maptemplateviewcontroller-Aerial view flyover" = "Luchtfoto flyover";
+"maptemplateviewcontroller-Hybrid flyover" = "Luchtfoto flyover met kaart";
+"maptemplateviewcontroller-Muted Map" = "Gedempte kaart";
 
 /* WapAllWPViewController */
 "mapallwpviewcontroller-Adjustment" = "Aanpassing";

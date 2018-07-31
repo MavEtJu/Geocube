@@ -54,6 +54,9 @@
              [NSNumber numberWithInteger:MAPTYPE_NORMAL],
              [NSNumber numberWithInteger:MAPTYPE_AERIAL],
              [NSNumber numberWithInteger:MAPTYPE_HYBRIDMAPAERIAL],
+             [NSNumber numberWithInteger:MAPTYPE_AERIALFLYOVER],
+             [NSNumber numberWithInteger:MAPTYPE_HYBRIDFLYOVER],
+             [NSNumber numberWithInteger:MAPTYPE_MUTEDMAP],
              ];
 }
 
@@ -512,6 +515,17 @@
             break;
         case MAPTYPE_HYBRIDMAPAERIAL:
             self.mapView.mapType = MKMapTypeHybrid;
+            break;
+        case MAPTYPE_AERIALFLYOVER:
+            self.mapView.mapType = MKMapTypeSatelliteFlyover;
+            break;
+        case MAPTYPE_HYBRIDFLYOVER:
+            self.mapView.mapType = MKMapTypeHybridFlyover;
+            break;
+        case MAPTYPE_MUTEDMAP:
+            if (@available(iOS 11.0, *)) {
+                self.mapView.mapType = MKMapTypeMutedStandard;
+            }
             break;
         default:
             // Not reached

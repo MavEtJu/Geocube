@@ -11,8 +11,8 @@
 
 /* Map Types */
 "maptemplateviewcontroller-Map" = "Map";
-"maptemplateviewcontroller-Aerial" = "Aerial";
-"maptemplateviewcontroller-Map/Aerial" = "Map/Aerial";
+"maptemplateviewcontroller-Aerial view" = "Aerial view";
+"maptemplateviewcontroller-Map/Aerial view" = "Map/Aerial view";
 "maptemplateviewcontroller-Terrain" = "Terrain";
 "maptemplateviewcontroller-Landscape" = "Landscape";
 "maptemplateviewcontroller-Neighbourhood" = "Neighbourhood";
@@ -20,6 +20,9 @@
 "maptemplateviewcontroller-Outdoors" = "Outdoors";
 "maptemplateviewcontroller-Public transport" = "Public transport";
 "maptemplateviewcontroller-Spinal Map" = "Spinal Map";
+"maptemplateviewcontroller-Aerial view flyover" = "Aerial view flyover";
+"maptemplateviewcontroller-Hybrid flyover" = "Hybrid flyover";
+"maptemplateviewcontroller-Muted Map" = "Muted Map";
 
 /* WapAllWPViewController */
 "mapallwpviewcontroller-Adjustment" = "Adjustment";
