@@ -8,6 +8,7 @@ Version 2.5(x)
   - Be able to edit some metadata of the waypoint like name, code,
     difficulty/terrain rating, coordinates and being a physical waypoint.
   - Add support for Thunderforest maps.
+  - Add support for more Apple Maps types.
 
   Fixes:
   - Fixed the name of the KeyboardCoordinateDegreesMinutesDecimalSeconds.
