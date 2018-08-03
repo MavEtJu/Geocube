@@ -9,6 +9,7 @@ Version 2.5(x)
     difficulty/terrain rating, coordinates and being a physical waypoint.
   - Add support for Thunderforest maps.
   - Add support for more Apple Maps types.
+  - Add support for Google Maps based OSM maps.
 
   Fixes:
   - Fixed the name of the KeyboardCoordinateDegreesMinutesDecimalSeconds.
