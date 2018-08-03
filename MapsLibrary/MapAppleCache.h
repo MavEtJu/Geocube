@@ -27,6 +27,5 @@
 @property (nonatomic) NSInteger notfounds;
 
 - (instancetype)initWithURLTemplate:(NSString *)template prefix:(NSString *)prefix;
-+ (void)cleanupCache;
 
 @end

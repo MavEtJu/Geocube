@@ -23,10 +23,11 @@
 
 #define MAPBRAND_APPLEMAPS      @"Apple Maps"
 #define MAPBRAND_GOOGLEMAPS     @"Google Maps"
-#define MAPBRAND_OSM            @"OpenStreetMap"
-#define MAPBRAND_ESRI           @"Esri"
+#define MAPBRAND_APPLEOSM       @"OpenStreetMap (Apple)"
+#define MAPBRAND_GOOGLEOSM      @"OpenStreetMap (Google)"
+#define MAPBRAND_APPLEESRI      @"Esri"
 #define MAPBRAND_MAPBOX         @"Mapbox"
-#define MAPBRAND_THUNDERFOREST  @"Thunderforest"
+#define MAPBRAND_APPLETHUNDERFOREST  @"Thunderforest"
 
 @property (nonatomic, retain) NSMutableArray<dbWaypoint *> *waypointsArray;
 @property (nonatomic, retain) MapTemplate *map;

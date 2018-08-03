@@ -21,7 +21,6 @@
 
 @interface MapGoogle ()
 
-@property (nonatomic, retain) GMSMapView *mapView;
 @property (nonatomic, retain) NSMutableArray<GMSMarker *> *markers;
 @property (nonatomic, retain) NSMutableArray<GCGMSCircle *> *circles;
 

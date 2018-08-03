@@ -1,7 +1,7 @@
 /*
  * Geocube
  * By Edwin Groothuis <geocube@mavetju.org>
- * Copyright 2015, 2016, 2017, 2018 Edwin Groothuis
+ * Copyright 2018 Edwin Groothuis
  *
  * This file is part of Geocube.
  *
@@ -19,11 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapThunderforest ()
+@interface MapAppleThunderforest ()
 
 @end
 
-@implementation MapThunderforest
+@implementation MapAppleThunderforest
 
 + (NSArray<NSString *> *)cachePrefixes
 {
@@ -65,7 +65,7 @@
 {
     self.creditsText = @"© Thunderforest";
     self.tileServerTemplate = [NSString stringWithFormat:@"%@?apikey=%@", [[self tileServices] objectAtIndex:0], configManager.thunderforestKey];
-    self.cachePrefix = [[MapThunderforest cachePrefixes] objectAtIndex:0];
+    self.cachePrefix = [[MapAppleThunderforest cachePrefixes] objectAtIndex:0];
     [super initMap];
 }
 
@@ -74,7 +74,7 @@
     [[self mapHasViews] enumerateObjectsUsingBlock:^(NSNumber * _Nonnull mt, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([mt integerValue] == mapType) {
             self.tileServerTemplate = [NSString stringWithFormat:@"%@?apikey=%@", [[self tileServices] objectAtIndex:idx], configManager.thunderforestKey];
-            self.cachePrefix = [[MapThunderforest cachePrefixes] objectAtIndex:idx];
+            self.cachePrefix = [[MapAppleThunderforest cachePrefixes] objectAtIndex:idx];
             *stop = YES;
         }
     }];

@@ -59,10 +59,11 @@
     NSMutableArray<MapBrand *> *mapBrands = [NSMutableArray arrayWithCapacity:5];
     [mapBrands addObject:[MapBrand mapBrandWithData:[MapGoogle class] defaultString:@"google" menuLabel:@"Google Maps" key:MAPBRAND_GOOGLEMAPS]];
     [mapBrands addObject:[MapBrand mapBrandWithData:[MapApple class] defaultString:@"apple" menuLabel:@"Apple Maps" key:MAPBRAND_APPLEMAPS]];
-    [mapBrands addObject:[MapBrand mapBrandWithData:[MapOSM class] defaultString:@"osm" menuLabel:@"OSM" key:MAPBRAND_OSM]];
-    [mapBrands addObject:[MapBrand mapBrandWithData:[MapEsri class] defaultString:@"esri" menuLabel:@"Esri" key:MAPBRAND_ESRI]];
+    [mapBrands addObject:[MapBrand mapBrandWithData:[MapGoogleOSM class] defaultString:@"osm" menuLabel:@"OSM (Google)" key:MAPBRAND_GOOGLEOSM]];
+    [mapBrands addObject:[MapBrand mapBrandWithData:[MapAppleOSM class] defaultString:@"osm" menuLabel:@"OSM (Apple)" key:MAPBRAND_APPLEOSM]];
+    [mapBrands addObject:[MapBrand mapBrandWithData:[MapAppleEsri class] defaultString:@"esri" menuLabel:@"Esri (Apple)" key:MAPBRAND_APPLEESRI]];
     [mapBrands addObject:[MapBrand mapBrandWithData:[MapMapbox class] defaultString:@"mapbox" menuLabel:@"Mapbox" key:MAPBRAND_MAPBOX]];
-    [mapBrands addObject:[MapBrand mapBrandWithData:[MapThunderforest class] defaultString:@"thunderforest" menuLabel:@"Thunderforest" key:MAPBRAND_THUNDERFOREST]];
+    [mapBrands addObject:[MapBrand mapBrandWithData:[MapAppleThunderforest class] defaultString:@"thunderforest" menuLabel:@"Thunderforest (Apple)" key:MAPBRAND_APPLETHUNDERFOREST]];
 
     return mapBrands;
 }
@@ -96,7 +97,7 @@
     self.hasGMS = (IS_EMPTY(keyManager.googlemaps)) == NO;
     self.hasMapbox = (IS_EMPTY(configManager.mapboxKey)) == NO;
     self.hasThunderforest = (IS_EMPTY(configManager.thunderforestKey)) == NO;
-    if ([self.currentMapBrand.key isEqualToString:MAPBRAND_THUNDERFOREST] == YES && self.hasThunderforest == NO)
+    if ([self.currentMapBrand.key isEqualToString:MAPBRAND_APPLETHUNDERFOREST] == YES && self.hasThunderforest == NO)
         self.currentMapBrand = [MapBrand findMapBrand:MAPBRAND_APPLEMAPS brands:self.mapBrands];
     if ([self.currentMapBrand.key isEqualToString:MAPBRAND_MAPBOX] == YES && self.hasMapbox == NO)
         self.currentMapBrand = [MapBrand findMapBrand:MAPBRAND_APPLEMAPS brands:self.mapBrands];
@@ -689,7 +690,7 @@
         if ([mb.key isEqualToString:MAPBRAND_MAPBOX] == YES && (IS_EMPTY(configManager.mapboxKey) == YES))
             return;
         // Do not enable Thunderforest until available
-        if ([mb.key isEqualToString:MAPBRAND_THUNDERFOREST] == YES && (IS_EMPTY(configManager.thunderforestKey) == YES))
+        if ([mb.key isEqualToString:MAPBRAND_APPLETHUNDERFOREST] == YES && (IS_EMPTY(configManager.thunderforestKey) == YES))
             return;
 
         UIAlertAction *a = [UIAlertAction

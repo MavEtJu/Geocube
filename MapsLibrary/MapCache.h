@@ -19,6 +19,9 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapThunderforest : MapAppleTemplate
+@interface MapCache : NSObject
+
++ (NSString *)createPrefix:(NSString *)prefix;
++ (void)cleanupCache;
 
 @end

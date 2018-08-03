@@ -19,11 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapOSM ()
+@interface MapAppleOSM ()
 
 @end
 
-@implementation MapOSM
+@implementation MapAppleOSM
 
 + (NSArray<NSString *> *)cachePrefixes
 {
@@ -34,7 +34,7 @@
 {
     self.creditsText = @"© OpenStreetMap";
     self.tileServerTemplate = @"http://tile.openstreetmap.org/{z}/{x}/{y}.png";
-    self.cachePrefix = [[MapOSM cachePrefixes] objectAtIndex:0];
+    self.cachePrefix = [[MapAppleOSM cachePrefixes] objectAtIndex:0];
     [super initMap];
     self.minimumAltitude = 287;
 }

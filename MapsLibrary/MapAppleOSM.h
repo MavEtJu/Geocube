@@ -19,8 +19,6 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapGoogle : MapTemplate <GMSMapViewDelegate>
-
-@property (nonatomic, retain) GMSMapView *mapView;
+@interface MapAppleOSM : MapAppleTemplate
 
 @end

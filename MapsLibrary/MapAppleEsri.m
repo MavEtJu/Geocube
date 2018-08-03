@@ -19,11 +19,11 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapEsri ()
+@interface MapAppleEsri ()
 
 @end
 
-@implementation MapEsri
+@implementation MapAppleEsri
 
 + (NSArray<NSString *> *)cachePrefixes
 {
@@ -53,7 +53,7 @@
 {
     self.creditsText = @"© Esri";
     self.tileServerTemplate = [[self tileServices] objectAtIndex:0];
-    self.cachePrefix = [[MapEsri cachePrefixes] objectAtIndex:0];
+    self.cachePrefix = [[MapAppleEsri cachePrefixes] objectAtIndex:0];
     [super initMap];
     self.minimumAltitude = 287;
 }
@@ -63,7 +63,7 @@
     [[self mapHasViews] enumerateObjectsUsingBlock:^(NSNumber * _Nonnull mt, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([mt integerValue] == mapType) {
             self.tileServerTemplate = [NSString stringWithFormat:@"%@?apikey=%@", [[self tileServices] objectAtIndex:idx], configManager.thunderforestKey];
-            self.cachePrefix = [[MapThunderforest cachePrefixes] objectAtIndex:idx];
+            self.cachePrefix = [[MapAppleEsri cachePrefixes] objectAtIndex:idx];
             *stop = YES;
         }
     }];

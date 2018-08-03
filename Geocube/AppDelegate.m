@@ -99,7 +99,7 @@
     [MGLAccountManager setAccessToken:configManager.mapboxKey];
 
     // Clean the map cache - after configurationManager
-    [MapAppleCache cleanupCache];
+    [MapCache cleanupCache];
 
     // Auto rotate the kept tracks
     [KeepTrackTracks trackAutoRotate];
