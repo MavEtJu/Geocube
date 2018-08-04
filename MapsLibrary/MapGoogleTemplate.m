@@ -73,7 +73,7 @@
     [[self.mapBrand mapHasViews] enumerateObjectsUsingBlock:^(NSNumber * _Nonnull mt, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([mt integerValue] == mapType) {
             self.tileServerTemplate = [[self.mapBrand tileServices] objectAtIndex:idx];
-            self.cachePrefix = [[[self class] cachePrefixes] objectAtIndex:idx];
+            self.cachePrefix = [[self.mapBrand cachePrefixes] objectAtIndex:idx];
             *stop = YES;
         }
     }];

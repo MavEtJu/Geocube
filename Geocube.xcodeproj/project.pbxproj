@@ -678,6 +678,8 @@
 		E8845CAF1EF409BF00A47F5D /* WaypointWaypointsTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8845CAD1EF409BF00A47F5D /* WaypointWaypointsTableViewCell~ipad.xib */; };
 		E8845CB21EF493B200A47F5D /* FilterAccountsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8845CB11EF493B200A47F5D /* FilterAccountsTableViewCell.m */; };
 		E88DB00A1F334E4300FEF795 /* cache - gadget - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E88DB0071F334E4300FEF795 /* cache - gadget - 30x30.png */; };
+		E891DB7E2115C291009A4D52 /* MapGoogleEsri.m in Sources */ = {isa = PBXBuildFile; fileRef = E891DB7D2115C291009A4D52 /* MapGoogleEsri.m */; };
+		E891DB812115C2B8009A4D52 /* MapGoogleThunderforest.m in Sources */ = {isa = PBXBuildFile; fileRef = E891DB802115C2B8009A4D52 /* MapGoogleThunderforest.m */; };
 		E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
 		E89D556D2074726C004D9E3A /* map - centeredcoords - 22x22@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E89D556C2074726B004D9E3A /* map - centeredcoords - 22x22@2x.png */; };
@@ -1951,6 +1953,10 @@
 		E8845CB01EF493B200A47F5D /* FilterAccountsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterAccountsTableViewCell.h; path = Filters/FilterAccountsTableViewCell.h; sourceTree = "<group>"; };
 		E8845CB11EF493B200A47F5D /* FilterAccountsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterAccountsTableViewCell.m; path = Filters/FilterAccountsTableViewCell.m; sourceTree = "<group>"; };
 		E88DB0071F334E4300FEF795 /* cache - gadget - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - gadget - 30x30.png"; path = "images/caches/cache - gadget - 30x30.png"; sourceTree = "<group>"; };
+		E891DB7C2115C291009A4D52 /* MapGoogleEsri.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MapGoogleEsri.h; path = MapsLibrary/MapGoogleEsri.h; sourceTree = "<group>"; };
+		E891DB7D2115C291009A4D52 /* MapGoogleEsri.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MapGoogleEsri.m; path = MapsLibrary/MapGoogleEsri.m; sourceTree = "<group>"; };
+		E891DB7F2115C2B8009A4D52 /* MapGoogleThunderforest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MapGoogleThunderforest.h; path = MapsLibrary/MapGoogleThunderforest.h; sourceTree = "<group>"; };
+		E891DB802115C2B8009A4D52 /* MapGoogleThunderforest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MapGoogleThunderforest.m; path = MapsLibrary/MapGoogleThunderforest.m; sourceTree = "<group>"; };
 		E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - empty - 30x30.png"; path = "images/logs/log - empty - 30x30.png"; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
 		E89D556C2074726B004D9E3A /* map - centeredcoords - 22x22@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - centeredcoords - 22x22@2x.png"; path = "images/map/map - centeredcoords - 22x22@2x.png"; sourceTree = "<group>"; };
@@ -2691,8 +2697,12 @@
 				E82287811F8A30B700631380 /* MapGoogle.m */,
 				E8B29D0721156BC300F85543 /* MapGoogleTemplate.h */,
 				E8B29D0821156BC300F85543 /* MapGoogleTemplate.m */,
+				E891DB7C2115C291009A4D52 /* MapGoogleEsri.h */,
+				E891DB7D2115C291009A4D52 /* MapGoogleEsri.m */,
 				E8500B30211287570012814A /* MapGoogleOSM.h */,
 				E8500B31211287580012814A /* MapGoogleOSM.m */,
+				E891DB7F2115C2B8009A4D52 /* MapGoogleThunderforest.h */,
+				E891DB802115C2B8009A4D52 /* MapGoogleThunderforest.m */,
 				E851139D1F987BB300737EC7 /* MapMapbox.h */,
 				E851139E1F987BB300737EC7 /* MapMapbox.m */,
 			);
@@ -5232,6 +5242,7 @@
 				E823442C1EECDFB300D2CDFD /* FilterFavouritesTableViewCell.m in Sources */,
 				E82288ED1F8A3E8500631380 /* GMUGeometryCollection.m in Sources */,
 				E822876F1F8A2EC300631380 /* GCView.m in Sources */,
+				E891DB7E2115C291009A4D52 /* MapGoogleEsri.m in Sources */,
 				E82286C11F8A2C8800631380 /* ImportTemplate.m in Sources */,
 				E82288191F8A347A00631380 /* CXMLDocument.m in Sources */,
 				E8D869D01FB2F76E0033C74C /* InfoViewer.m in Sources */,
@@ -5411,6 +5422,7 @@
 				E82345211EECE14A00D2CDFD /* HelpAboutViewController.m in Sources */,
 				E8CB8917205E7ACE00DD55DE /* LatLon2UTM.m in Sources */,
 				E85DC6671F957D9B007556D5 /* ThemeIOSNormalSize.m in Sources */,
+				E891DB812115C2B8009A4D52 /* MapGoogleThunderforest.m in Sources */,
 				E82287D11F8A32C600631380 /* RemoteAPILiveAPI.m in Sources */,
 				E82287701F8A2EC300631380 /* GCViewController.m in Sources */,
 				E8F0007820AEF7C4003B5D47 /* OwnTracksManager.m in Sources */,
