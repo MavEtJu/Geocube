@@ -32,7 +32,7 @@
 + (NSArray<NSString *> *)cachePrefixes
 {
     return @[
-             @"GoogleOSM"
+             @"OSM"
              ];
 }
 
