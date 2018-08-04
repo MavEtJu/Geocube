@@ -21,7 +21,7 @@
 
 @interface MapGoogleOSM ()
 
-@property (nonatomic, retain) MapGoogleCache *layer;
+@property (nonatomic, retain) MapCacheGoogle *layer;
 @property (nonatomic, retain) NSString *cachePrefix;
 @property (nonatomic, retain) NSString *tileServerTemplate;
 
@@ -61,7 +61,7 @@
     self.tileServerTemplate = [[self tileServices] objectAtIndex:0];
     self.cachePrefix = [[[self class] cachePrefixes] objectAtIndex:0];
 
-    self.layer = [[MapGoogleCache alloc] initWithPrefix:self.cachePrefix tileServerTemplate:self.tileServerTemplate];
+    self.layer = [[MapCacheGoogle alloc] initWithPrefix:self.cachePrefix tileServerTemplate:self.tileServerTemplate];
 
     self.layer.zIndex = 1;
     self.layer.opacity= 0.5;

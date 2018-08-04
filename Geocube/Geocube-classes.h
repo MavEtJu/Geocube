@@ -170,15 +170,15 @@
 @class LogTableViewCell;
 @class MapAllWPViewController;
 @class MapApple;
-@class MapAppleCache;
 @class MapAppleEsri;
 @class MapAppleOSM;
 @class MapAppleTemplate;
 @class MapAppleThunderforest;
 @class MapBrand;
 @class MapCache;
+@class MapCacheAPple;
+@class MapCacheGoogle;
 @class MapGoogle;
-@class MapGoogleCache;
 @class MapGoogleOSM;
 @class MapLogsViewController;
 @class MapMapbox;

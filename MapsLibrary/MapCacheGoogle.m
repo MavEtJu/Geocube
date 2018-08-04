@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapGoogleCache ()
+@interface MapCacheGoogle ()
 
 @property (nonatomic, retain) NSString *shortprefix;
 @property (nonatomic, retain) NSString *prefix;
@@ -28,7 +28,7 @@
 
 @end
 
-@implementation MapGoogleCache
+@implementation MapCacheGoogle
 
 - (instancetype)initWithPrefix:(NSString *)cachePrefix tileServerTemplate:(NSString *)tileServerTemplate
 {

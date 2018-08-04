@@ -38,7 +38,7 @@
 #import "MapsLibrary/MapAppleThunderforest.h"
 
 #import "MapsLibrary/MapCache.h"
-#import "MapsLibrary/MapAppleCache.h"
-#import "MapsLibrary/MapGoogleCache.h"
+#import "MapsLibrary/MapCacheApple.h"
+#import "MapsLibrary/MapCacheGoogle.h"
 #import "MapsLibrary/MapBrand.h"
 #import "MapsLibrary/MapWaypointInfoView.h"

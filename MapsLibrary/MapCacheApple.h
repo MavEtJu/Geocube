@@ -1,7 +1,7 @@
 /*
  * Geocube
  * By Edwin Groothuis <geocube@mavetju.org>
- * Copyright 2018 Edwin Groothuis
+ * Copyright 2015, 2016, 2017, 2018 Edwin Groothuis
  *
  * This file is part of Geocube.
  *
@@ -19,13 +19,13 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapGoogleCache : GMSTileLayer
+@interface MapCacheApple : MKTileOverlay
 
 @property (nonatomic) NSInteger hits;
 @property (nonatomic) NSInteger misses;
 @property (nonatomic) NSInteger saves;
 @property (nonatomic) NSInteger notfounds;
 
-- (instancetype)initWithPrefix:(NSString *)cachePrefix tileServerTemplate:(NSString *)tileServerTemplate;
+- (instancetype)initWithURLTemplate:(NSString *)template prefix:(NSString *)prefix;
 
 @end

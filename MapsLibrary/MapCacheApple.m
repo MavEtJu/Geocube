@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapAppleCache ()
+@interface MapCacheApple ()
 
 @property (nonatomic, retain) NSString *shortprefix;
 @property (nonatomic, retain) NSString *prefix;
@@ -27,7 +27,7 @@
 
 @end
 
-@implementation MapAppleCache
+@implementation MapCacheApple
 
 - (instancetype)initWithURLTemplate:(NSString *)template prefix:(NSString *)prefix
 {

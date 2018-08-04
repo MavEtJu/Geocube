@@ -69,7 +69,7 @@
         [self.mapView removeOverlay:self.overlay];
 
     // template = @"https://api.mapbox.com/v4/mapbox.dark/{z}/{x}/{y}.png?access_token=...";
-    self.overlay = [[MapAppleCache alloc] initWithURLTemplate:template prefix:self.cachePrefix];
+    self.overlay = [[MapCacheApple alloc] initWithURLTemplate:template prefix:self.cachePrefix];
     self.overlay.canReplaceMapContent = YES;
     // Instead of adding it, put them at the bottom so other overlays
     // will be rendered over it.
