@@ -176,7 +176,7 @@
 @class MapAppleThunderforest;
 @class MapBrand;
 @class MapCache;
-@class MapCacheAPple;
+@class MapCacheApple;
 @class MapCacheGoogle;
 @class MapGoogle;
 @class MapGoogleOSM;

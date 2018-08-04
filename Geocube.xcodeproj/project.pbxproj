@@ -2366,12 +2366,7 @@
 				E82287881F8A30B700631380 /* MapsLibrary.h */,
 				E82287731F8A304F00631380 /* Map Viewcontrollers */,
 				E82287721F8A304800631380 /* Map Suppliers */,
-				E8B29CFE2114797900F85543 /* MapCache.h */,
-				E8B29CFF2114797900F85543 /* MapCache.m */,
-				E82287781F8A30B700631380 /* MapCacheApple.h */,
-				E82287791F8A30B700631380 /* MapCacheApple.m */,
-				E8B29CFB2114777600F85543 /* MapCacheGoogle.h */,
-				E8B29CFC2114777600F85543 /* MapCacheGoogle.m */,
+				E8B29D03211569C000F85543 /* Map Caches */,
 				E822877C1F8A30B700631380 /* MapBrand.h */,
 				E822877D1F8A30B700631380 /* MapBrand.m */,
 				E82287901F8A30B700631380 /* MapWaypointInfoView.h */,
@@ -4012,6 +4007,19 @@
 				E83C6F261EEEA8A200E303F5 /* Notices */,
 			);
 			name = Help;
+			sourceTree = "<group>";
+		};
+		E8B29D03211569C000F85543 /* Map Caches */ = {
+			isa = PBXGroup;
+			children = (
+				E8B29CFE2114797900F85543 /* MapCache.h */,
+				E8B29CFF2114797900F85543 /* MapCache.m */,
+				E82287781F8A30B700631380 /* MapCacheApple.h */,
+				E82287791F8A30B700631380 /* MapCacheApple.m */,
+				E8B29CFB2114777600F85543 /* MapCacheGoogle.h */,
+				E8B29CFC2114777600F85543 /* MapCacheGoogle.m */,
+			);
+			name = "Map Caches";
 			sourceTree = "<group>";
 		};
 		E8B772ED1F92BDED0060B415 /* RemoteAPI */ = {
