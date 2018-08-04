@@ -105,6 +105,12 @@
         self.currentMapBrand = [MapBrand findMapBrand:MAPBRAND_APPLEMAPS brands:self.mapBrands];
     if ([self.currentMapBrand.key isEqualToString:MAPBRAND_GOOGLEMAPS] == YES && self.hasGMS == NO)
         self.currentMapBrand = [MapBrand findMapBrand:MAPBRAND_APPLEMAPS brands:self.mapBrands];
+    if ([self.currentMapBrand.key isEqualToString:MAPBRAND_GOOGLEOSM] == YES && self.hasGMS == NO)
+        self.currentMapBrand = [MapBrand findMapBrand:MAPBRAND_APPLEMAPS brands:self.mapBrands];
+    if ([self.currentMapBrand.key isEqualToString:MAPBRAND_GOOGLEESRI] == YES && self.hasGMS == NO)
+        self.currentMapBrand = [MapBrand findMapBrand:MAPBRAND_APPLEMAPS brands:self.mapBrands];
+    if ([self.currentMapBrand.key isEqualToString:MAPBRAND_GOOGLETHUNDERFOREST] == YES && self.hasGMS == NO)
+        self.currentMapBrand = [MapBrand findMapBrand:MAPBRAND_APPLEMAPS brands:self.mapBrands];
 
     self.lmi = [[LocalMenuItems alloc] init:MVCmenuMax];
     [self.lmi addItem:MVCmenuBrandChange label:_(@"maptemplaceviewcontroller-Map Change")];
@@ -687,6 +693,12 @@
     [self.mapBrands enumerateObjectsUsingBlock:^(MapBrand * _Nonnull mb, NSUInteger idx, BOOL * _Nonnull stop) {
         // Do not enable Google Maps until available
         if ([mb.key isEqualToString:MAPBRAND_GOOGLEMAPS] == YES && (IS_EMPTY(keyManager.googlemaps) == YES))
+            return;
+        if ([mb.key isEqualToString:MAPBRAND_GOOGLEOSM] == YES && (IS_EMPTY(keyManager.googlemaps) == YES))
+            return;
+        if ([mb.key isEqualToString:MAPBRAND_GOOGLEESRI] == YES && (IS_EMPTY(keyManager.googlemaps) == YES))
+            return;
+        if ([mb.key isEqualToString:MAPBRAND_GOOGLETHUNDERFOREST] == YES && (IS_EMPTY(keyManager.googlemaps) == YES))
             return;
         // Do not enable Mapbox until available
         if ([mb.key isEqualToString:MAPBRAND_MAPBOX] == YES && (IS_EMPTY(configManager.mapboxKey) == YES))
