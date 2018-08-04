@@ -45,37 +45,60 @@
     return self;
 }
 
+- (UIImage *)loadURL:(NSString *)URLString cacheFile:(NSString *)cachefile receiver:(id<GMSTileReceiver>)receiver x:(NSInteger)x y:(NSInteger)y z:(NSInteger)z cache:(BOOL)cache
+{
+    NSURL *URL = [NSURL URLWithString:URLString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+
+    __block UIImage *img;
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *resp, NSData *data, NSError *error) {
+
+                               NSHTTPURLResponse *response = (NSHTTPURLResponse *)resp;
+                               if (error != nil) {
+                                   NSLog(@"Error downloading %@ tile (%ld, %ld, %ld) (%@)\n", self.shortprefix, (long)z, (long)y, (long)x, error.description);
+                                   img = kGMSTileLayerNoTile;
+                                   self.notfounds++;
+                               } else if (response.statusCode != 200) {
+                                   NSLog(@"Error downloading %@ tile (%ld, %ld, %ld) (HTTP %ld)\n", self.shortprefix, (long)z, (long)y, (long)x, response.statusCode);
+                                   img = kGMSTileLayerNoTile;
+                                   self.notfounds++;
+                               } else {
+                                   img = [UIImage imageWithData:data];
+                                   if (img == nil) {
+                                       NSLog(@"Error parsing data for %@ tile (%ld, %ld, %ld)\n", self.shortprefix, (long)z, (long)y, (long)x);
+                                       img = kGMSTileLayerNoTile;
+                                       self.notfounds++;
+                                   } else {
+                                       if (cache == YES) {
+                                           NSLog(@"Saving %@ tile (%ld, %ld, %ld)", self.shortprefix, (long)z, (long)y, (long)x);
+                                           [data writeToFile:cachefile atomically:YES];
+                                           self.saves++;
+                                       } else {
+                                           NSLog(@"Serving %@ tile (%ld, %ld, %ld)", self.shortprefix, (long)z, (long)y, (long)x);
+                                       }
+                                   };
+                               }
+                               self.misses++;
+                               [receiver receiveTileWithX:x y:y zoom:z image:img];
+                           }];
+    return img;
+}
+
 - (void)requestTileForX:(NSUInteger)x y:(NSUInteger)y zoom:(NSUInteger)z receiver:(id<GMSTileReceiver>)receiver
 {
-    NSString *cachefile = [NSString stringWithFormat:@"%@/%d/%d/%d/tile_%ld_%ld_%ld", self.prefix, (int)z, (int)y % 10, (int)x % 10, (long)z, (long)y, (long)x];
+    NSString *cachefile = [MapCache cacheFileForTile:self.prefix z:z x:x y:y];
 
     if (configManager.mapcacheEnable == NO) {
-        [receiver receiveTileWithX:x y:y zoom:z image:kGMSTileLayerNoTile];
+        NSString *URLString = [MapCache templateToString:self.tileServerTemplate z:z x:x y:y];
+        [self loadURL:URLString cacheFile:cachefile receiver:receiver x:x y:y z:z cache:NO];
         return;
     }
 
     if ([fileManager fileExistsAtPath:cachefile] == NO) {
-        NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:self.tileServerTemplate, z, x, y]];
-        NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-
-        [NSURLConnection sendAsynchronousRequest:request
-                                           queue:[NSOperationQueue mainQueue]
-                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-
-                                   UIImage *img = [UIImage imageWithData:data];
-                                   if (error != nil) {
-                                       NSLog(@"Error downloading tile! \n");
-                                       img = kGMSTileLayerNoTile;
-                                       self.notfounds++;
-                                   } else {
-                                       NSLog(@"Saving %@ tile (%ld, %ld, %ld)", self.shortprefix, (long)z, (long)y, (long)x);
-                                       [data writeToFile:cachefile atomically:YES];
-                                       img = [UIImage imageWithData:data];
-                                       self.saves++;
-                                   }
-                                   self.misses++;
-                                   [receiver receiveTileWithX:x y:y zoom:z image:img];
-                               }];
+        NSString *URLString = [MapCache templateToString:self.tileServerTemplate z:z x:x y:y];
+        [self loadURL:URLString cacheFile:cachefile receiver:receiver x:x y:y z:z cache:YES];
         return;
     }
 

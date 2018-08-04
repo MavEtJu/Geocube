@@ -22,6 +22,8 @@
 @interface MapCache : NSObject
 
 + (NSString *)createPrefix:(NSString *)prefix;
++ (NSString *)cacheFileForTile:(NSString *)prefix z:(NSInteger)z x:(NSInteger)x y:(NSInteger)y;
++ (NSString *)templateToString:(NSString *)template z:(NSInteger)z x:(NSInteger)x y:(NSInteger)y;
 + (void)cleanupCache;
 
 @end

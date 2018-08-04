@@ -31,7 +31,23 @@
 
 + (NSArray<NSString *> *)cachePrefixes
 {
-    return @[@"GoogleOSM"];
+    return @[
+             @"GoogleOSM"
+             ];
+}
+
+- (NSArray<NSString *> *)tileServices
+{
+    return @[
+             @"https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+             ];
+}
+
+- (NSArray<NSNumber *> *)mapHasViews
+{
+    return @[
+             [NSNumber numberWithInteger:MAPTYPE_NORMAL],
+             ];
 }
 
 - (void)initMap
@@ -42,9 +58,8 @@
     self.mapView.buildingsEnabled = NO;
     self.mapView.indoorEnabled = NO;
 
-    self.tileServerTemplate = @"https://tile.openstreetmap.org/{z}/{x}/{y}.png";
-    self.tileServerTemplate = @"https://tile.openstreetmap.org/%ld/%ld/%ld.png";
-    self.cachePrefix = [[MapGoogleOSM cachePrefixes] objectAtIndex:0];
+    self.tileServerTemplate = [[self tileServices] objectAtIndex:0];
+    self.cachePrefix = [[[self class] cachePrefixes] objectAtIndex:0];
 
     self.layer = [[MapGoogleCache alloc] initWithPrefix:self.cachePrefix tileServerTemplate:self.tileServerTemplate];
 
@@ -52,6 +67,22 @@
     self.layer.opacity= 0.5;
 
     self.layer.map = self.mapView;
+}
+
+- (BOOL)menuOpenInSupported
+{
+    return [MWMApi isApiSupported];
+}
+
+- (void)menuOpenIn
+{
+    NSMutableArray<MWMPin *> *pins = [NSMutableArray array];
+
+    [waypointManager.currentWaypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
+        MWMPin *pin = [[MWMPin alloc] initWithLat:wp.wpt_latitude lon:wp.wpt_longitude title:[NSString stringWithFormat:@"%@ - %@", wp.wpt_name, wp.wpt_urlname] idOrUrl:nil];
+        [pins addObject:pin];
+    }];
+    [MWMApi showPins:pins];
 }
 
 @end

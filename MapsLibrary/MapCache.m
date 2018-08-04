@@ -153,4 +153,21 @@
     NSLog(@"%@ - Checked %ld tiles in %ld Mb, deleted %ld tiles for age, deleted %ld tiles for size", [self class], (long)checked, (long)totalFileSize / (1024 * 1024), (long)deletedAge, (long)deletedSize);
 }
 
++ (NSString *)cacheFileForTile:(NSString *)prefix z:(NSInteger)z x:(NSInteger)x y:(NSInteger)y
+{
+    return [NSString stringWithFormat:@"%@/%d/%d/%d/tile_%ld_%ld_%ld", prefix, (int)z, (int)y % 10, (int)x % 10, (long)z, (long)y, (long)x];
+}
+
++ (NSString *)templateToString:(NSString *)template z:(NSInteger)z x:(NSInteger)x y:(NSInteger)y
+{
+    NSString *s = [NSString stringWithString:template];
+    s = [s stringByReplacingOccurrencesOfString:@"{x}" withString:@"%ld"];
+    s = [NSString stringWithFormat:s, x];
+    s = [s stringByReplacingOccurrencesOfString:@"{y}" withString:@"%ld"];
+    s = [NSString stringWithFormat:s, y];
+    s = [s stringByReplacingOccurrencesOfString:@"{z}" withString:@"%ld"];
+    s = [NSString stringWithFormat:s, z];
+    return s;
+}
+
 @end

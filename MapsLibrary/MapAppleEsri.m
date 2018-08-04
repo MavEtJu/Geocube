@@ -53,7 +53,7 @@
 {
     self.creditsText = @"© Esri";
     self.tileServerTemplate = [[self tileServices] objectAtIndex:0];
-    self.cachePrefix = [[MapAppleEsri cachePrefixes] objectAtIndex:0];
+    self.cachePrefix = [[[self class] cachePrefixes] objectAtIndex:0];
     [super initMap];
     self.minimumAltitude = 287;
 }
@@ -63,7 +63,7 @@
     [[self mapHasViews] enumerateObjectsUsingBlock:^(NSNumber * _Nonnull mt, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([mt integerValue] == mapType) {
             self.tileServerTemplate = [NSString stringWithFormat:@"%@?apikey=%@", [[self tileServices] objectAtIndex:idx], configManager.thunderforestKey];
-            self.cachePrefix = [[MapAppleEsri cachePrefixes] objectAtIndex:idx];
+            self.cachePrefix = [[[self class] cachePrefixes] objectAtIndex:idx];
             *stop = YES;
         }
     }];

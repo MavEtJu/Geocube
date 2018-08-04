@@ -51,7 +51,7 @@
 
 - (void)loadTileAtPath:(MKTileOverlayPath)path result:(void (^)(NSData *tileData, NSError *error))result
 {
-    NSString *cachefile = [NSString stringWithFormat:@"%@/%d/%d/%d/tile_%ld_%ld_%ld", self.prefix, (int)path.z, (int)path.y % 10, (int)path.x % 10, (long)path.z, (long)path.y, (long)path.x];
+    NSString *cachefile = [MapCache cacheFileForTile:self.prefix z:path.z x:path.x y:path.y];
 
     if (configManager.mapcacheEnable == NO) {
         [super loadTileAtPath:path result:^(NSData *tileData, NSError *error) {
@@ -62,10 +62,14 @@
 
     if ([fileManager fileExistsAtPath:cachefile] == NO) {
         [super loadTileAtPath:path result:^(NSData *tileData, NSError *error) {
-            if (error == nil) {
-                NSString *s = [[NSString alloc] initWithData:tileData encoding:NSUTF8StringEncoding];
-                if ([s containsString:@"404 Not Found"] == YES) {
-                    NSLog(@"Tile (%ld, %ld, %ld) not found", (long)path.z, (long)path.y, (long)path.x);
+            if (error != nil) {
+                NSLog(@"Error downloading %@ tile (%ld, %ld, %ld)", self.shortprefix, (long)path.z, (long)path.y, (long)path.x);
+                tileData = nil;
+                self.notfounds++;
+            } else {
+                UIImage *img = [UIImage imageWithData:tileData];
+                if (img == nil) {
+                    NSLog(@"Error parsing data for %@ tile (%ld, %ld, %ld)\n", self.shortprefix, (long)path.z, (long)path.y, (long)path.x);
                     tileData = nil;
                     self.notfounds++;
                 } else {

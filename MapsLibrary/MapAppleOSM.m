@@ -27,16 +27,16 @@
 
 + (NSArray<NSString *> *)cachePrefixes
 {
-    return @[@"OSM"];
+    return @[
+             @"OSM",
+             ];
 }
 
-- (void)initMap
+- (NSArray<NSString *> *)tileServices
 {
-    self.creditsText = @"© OpenStreetMap";
-    self.tileServerTemplate = @"http://tile.openstreetmap.org/{z}/{x}/{y}.png";
-    self.cachePrefix = [[MapAppleOSM cachePrefixes] objectAtIndex:0];
-    [super initMap];
-    self.minimumAltitude = 287;
+    return @[
+             @"https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+             ];
 }
 
 - (NSArray<NSNumber *> *)mapHasViews
@@ -46,6 +46,15 @@
              ];
 }
 
+- (void)initMap
+{
+    self.creditsText = @"© OpenStreetMap";
+    self.tileServerTemplate = [[self tileServices] objectAtIndex:0];
+    self.cachePrefix = [[[self class] cachePrefixes] objectAtIndex:0];
+    [super initMap];
+    self.minimumAltitude = 287;
+}
+
 - (BOOL)menuOpenInSupported
 {
     return [MWMApi isApiSupported];
@@ -53,8 +62,6 @@
 
 - (void)menuOpenIn
 {
-//    [MWMApi showMap];
-
     NSMutableArray<MWMPin *> *pins = [NSMutableArray array];
 
     [waypointManager.currentWaypoints enumerateObjectsUsingBlock:^(dbWaypoint * _Nonnull wp, NSUInteger idx, BOOL * _Nonnull stop) {
