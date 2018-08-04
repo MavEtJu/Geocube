@@ -21,7 +21,6 @@
 
 @interface MapGoogleOSM ()
 
-@property (nonatomic, retain) MapCacheGoogle *layer;
 
 @end
 
@@ -31,9 +30,6 @@
 {
     self.mapBrand = [[MapBrandOSM alloc] init];
     [super initMap:self.mapBrand];
-
-    self.layer = [[MapCacheGoogle alloc] initWithPrefix:self.cachePrefix tileServerTemplate:self.tileServerTemplate];
-    self.layer.map = self.mapView;
 }
 
 - (BOOL)menuOpenInSupported

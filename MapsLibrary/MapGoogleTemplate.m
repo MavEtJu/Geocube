@@ -21,8 +21,8 @@
 
 @interface MapGoogleTemplate ()
 
-@property (nonatomic, retain) MKTileOverlay *overlay;
 @property (nonatomic, retain) UILabel *creditsLabel;
+@property (nonatomic, retain) MapCacheGoogle *layer;
 
 @end
 
@@ -43,6 +43,9 @@
 
     self.mapView.mapType = kGMSTypeNone;
     self.mapView.buildingsEnabled = NO;
+
+    self.layer = [[MapCacheGoogle alloc] initWithPrefix:self.cachePrefix tileServerTemplate:self.tileServerTemplate];
+    self.layer.map = self.mapView;
 }
 
 - (void)recalculateRects
@@ -74,6 +77,10 @@
         if ([mt integerValue] == mapType) {
             self.tileServerTemplate = [[self.mapBrand tileServices] objectAtIndex:idx];
             self.cachePrefix = [[self.mapBrand cachePrefixes] objectAtIndex:idx];
+
+            self.layer = [[MapCacheGoogle alloc] initWithPrefix:self.cachePrefix tileServerTemplate:self.tileServerTemplate];
+            self.layer.map = self.mapView;
+
             *stop = YES;
         }
     }];
