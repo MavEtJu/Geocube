@@ -176,6 +176,7 @@ typedef NS_ENUM(NSInteger, ImageNumber) {
     ImageMap_archived,
     ImageMap_background,
     ImageMap_pinOutlineHighlight,
+    ImageMap_tileNotFound,
 
     ImageMap_pinCrossDNF,
     ImageMap_pinMarkedFound,

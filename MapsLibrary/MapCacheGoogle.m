@@ -33,6 +33,7 @@
 - (instancetype)initWithPrefix:(NSString *)cachePrefix tileServerTemplate:(NSString *)tileServerTemplate
 {
     self = [super init];
+    self.tileSize = 512;
 
     self.shortprefix = cachePrefix;
     self.prefix = [MapCache createPrefix:cachePrefix];
@@ -58,11 +59,11 @@
                                NSHTTPURLResponse *response = (NSHTTPURLResponse *)resp;
                                if (error != nil) {
                                    NSLog(@"Error downloading %@ tile (%ld, %ld, %ld) (%@)\n", self.shortprefix, (long)z, (long)y, (long)x, error.description);
-                                   img = kGMSTileLayerNoTile;
+                                   img = [imageManager get:ImageMap_tileNotFound];
                                    self.notfounds++;
                                } else if (response.statusCode != 200) {
                                    NSLog(@"Error downloading %@ tile (%ld, %ld, %ld) (HTTP %ld)\n", self.shortprefix, (long)z, (long)y, (long)x, response.statusCode);
-                                   img = kGMSTileLayerNoTile;
+                                   img = [imageManager get:ImageMap_tileNotFound];
                                    self.notfounds++;
                                } else {
                                    img = [UIImage imageWithData:data];

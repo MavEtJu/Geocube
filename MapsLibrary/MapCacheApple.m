@@ -64,13 +64,13 @@
         [super loadTileAtPath:path result:^(NSData *tileData, NSError *error) {
             if (error != nil) {
                 NSLog(@"Error downloading %@ tile (%ld, %ld, %ld)", self.shortprefix, (long)path.z, (long)path.y, (long)path.x);
-                tileData = nil;
+                tileData = UIImagePNGRepresentation([imageManager get:ImageMap_tileNotFound]);
                 self.notfounds++;
             } else {
                 UIImage *img = [UIImage imageWithData:tileData];
                 if (img == nil) {
                     NSLog(@"Error parsing data for %@ tile (%ld, %ld, %ld)\n", self.shortprefix, (long)path.z, (long)path.y, (long)path.x);
-                    tileData = nil;
+                    tileData = UIImagePNGRepresentation([imageManager get:ImageMap_tileNotFound]);
                     self.notfounds++;
                 } else {
                     [tileData writeToFile:cachefile atomically:NO];

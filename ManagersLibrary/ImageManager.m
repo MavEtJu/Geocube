@@ -121,6 +121,7 @@
 
     [self addToLibrary:@"ratings - favourites 20x30" index:ImageCacheView_favourites];
 
+    [self addToLibrary:@"Tile not found - 256x256" index:ImageMap_tileNotFound];
     [self addToLibrary:@"map - pin stick - 35x42" index:ImageMap_pin];
     [self addToLibrary:@"map - dnf stick - 35x42" index:ImageMap_dnf];
     [self addToLibrary:@"map - found stick - 35x42" index:ImageMap_found];

@@ -689,6 +689,7 @@
 		E8A36538206E10A400EE2B63 /* dbMoveableInventory.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A36537206E10A400EE2B63 /* dbMoveableInventory.m */; };
 		E8B29CFD2114777600F85543 /* MapCacheGoogle.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B29CFC2114777600F85543 /* MapCacheGoogle.m */; };
 		E8B29D002114797900F85543 /* MapCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B29CFF2114797900F85543 /* MapCache.m */; };
+		E8B29D022115599800F85543 /* Tile not found - 256x256.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B29D012115599700F85543 /* Tile not found - 256x256.png */; };
 		E8B6D8DA1F9AE81B00C376A2 /* GCMGLObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B6D8D91F9AE81B00C376A2 /* GCMGLObjects.m */; };
 		E8B772FC1F9462250060B415 /* cache - gadget - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B772FA1F9462250060B415 /* cache - gadget - 30x30@2x.png */; };
 		E8B772FD1F9462250060B415 /* cache - gadget - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B772FB1F9462250060B415 /* cache - gadget - 30x30@3x.png */; };
@@ -1960,6 +1961,7 @@
 		E8B29CFC2114777600F85543 /* MapCacheGoogle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MapCacheGoogle.m; path = MapsLibrary/MapCacheGoogle.m; sourceTree = "<group>"; };
 		E8B29CFE2114797900F85543 /* MapCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MapCache.h; path = MapsLibrary/MapCache.h; sourceTree = "<group>"; };
 		E8B29CFF2114797900F85543 /* MapCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MapCache.m; path = MapsLibrary/MapCache.m; sourceTree = "<group>"; };
+		E8B29D012115599700F85543 /* Tile not found - 256x256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tile not found - 256x256.png"; path = "images/map/Tile not found - 256x256.png"; sourceTree = "<group>"; };
 		E8B6D8D81F9AE81B00C376A2 /* GCMGLObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GCMGLObjects.h; path = BaseObjectsLibrary/GCMGLObjects.h; sourceTree = "<group>"; };
 		E8B6D8D91F9AE81B00C376A2 /* GCMGLObjects.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GCMGLObjects.m; path = BaseObjectsLibrary/GCMGLObjects.m; sourceTree = "<group>"; };
 		E8B772FA1F9462250060B415 /* cache - gadget - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - gadget - 30x30@2x.png"; path = "images/caches/cache - gadget - 30x30@2x.png"; sourceTree = "<group>"; };
@@ -3965,6 +3967,7 @@
 				E82E65D61DA079AE00CFBDED /* map - tick found - 9x9.png */,
 				E8FEDE7C1DA7AD67007C756B /* map - tick found - 9x9@2x.png */,
 				E8FEDE7D1DA7AD67007C756B /* map - tick found - 9x9@3x.png */,
+				E8B29D012115599700F85543 /* Tile not found - 256x256.png */,
 			);
 			name = map;
 			sourceTree = "<group>";
@@ -4788,6 +4791,7 @@
 				E8FEDEB11DA87DBB007C756B /* waypoint - finish - 30x30@3x.png in Resources */,
 				E82E66631DA07C4900CFBDED /* container flag - disabled - 24x24.png in Resources */,
 				E8757BBA20A072EE00E498FD /* cache - ephemeral - 30x30.png in Resources */,
+				E8B29D022115599800F85543 /* Tile not found - 256x256.png in Resources */,
 				E82E66621DA07C4900CFBDED /* container flag - cross dnf - 19x19.png in Resources */,
 				E8FEDEAC1DA87AF3007C756B /* waypoint - trailhead - 30x30@2x.png in Resources */,
 				E8FEDE8F1DA7AD67007C756B /* map - marked found - 9x9@3x.png in Resources */,

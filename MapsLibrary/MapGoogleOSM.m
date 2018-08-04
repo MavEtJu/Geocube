@@ -56,15 +56,11 @@
 
     self.mapView.mapType = kGMSTypeNone;
     self.mapView.buildingsEnabled = NO;
-    self.mapView.indoorEnabled = NO;
 
     self.tileServerTemplate = [[self tileServices] objectAtIndex:0];
     self.cachePrefix = [[[self class] cachePrefixes] objectAtIndex:0];
 
     self.layer = [[MapCacheGoogle alloc] initWithPrefix:self.cachePrefix tileServerTemplate:self.tileServerTemplate];
-
-    self.layer.zIndex = 1;
-    self.layer.opacity= 0.5;
 
     self.layer.map = self.mapView;
 }
