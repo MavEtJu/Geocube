@@ -22,6 +22,7 @@
 @interface MapTemplate : NSObject <WaypointManagerKMLDelegate>
 
 @property (nonatomic, retain) MapTemplateViewController *mapvc;
+@property (nonatomic, retain) MapBrandTemplate *mapBrand;
 @property (nonatomic, retain) LXMapScaleView *mapScaleView;
 @property (nonatomic        ) BOOL circlesShown;
 @property (nonatomic        ) BOOL staticHistory;
@@ -42,10 +43,7 @@
 
 // To be implemented by inherited classes:
 
-- (NSArray<NSNumber *> *)mapHasViews;
-- (BOOL)mapHasView:(GCMapType)maptype;
-
-- (void)initMap;
+- (void)initMap:(MapBrandTemplate *)mapBrandTemplate;
 - (void)removeMap;
 - (void)setMapType:(GCMapType)maptype;
 

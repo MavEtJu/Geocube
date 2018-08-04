@@ -19,6 +19,32 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapGoogleOSM : MapGoogleTemplate
+@interface MapBrandTemplate ()
+
+@end
+
+@implementation MapBrandTemplate
+
++ NEEDS_OVERLOADING_NSARRAY_NSSTRING(cachePrefixes)
+- NEEDS_OVERLOADING_NSARRAY_NSNUMBER(mapHasViews)
+- NEEDS_OVERLOADING_NSARRAY_NSSTRING(tileServices)
+- NEEDS_OVERLOADING_NSSTRING(credits)
+
+- (NSArray<NSString *> *)cachePrefixes
+{
+    return [[self class] cachePrefixes];
+}
+
+- (BOOL)mapHasView:(GCMapType)maptype
+{
+    __block BOOL rv = NO;
+    [[self mapHasViews] enumerateObjectsUsingBlock:^(NSNumber * _Nonnull mt, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (maptype == [mt integerValue]) {
+            *stop = YES;
+            rv = YES;
+        }
+    }];
+    return rv;
+}
 
 @end

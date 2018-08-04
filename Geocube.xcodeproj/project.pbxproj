@@ -690,6 +690,14 @@
 		E8B29CFD2114777600F85543 /* MapCacheGoogle.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B29CFC2114777600F85543 /* MapCacheGoogle.m */; };
 		E8B29D002114797900F85543 /* MapCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B29CFF2114797900F85543 /* MapCache.m */; };
 		E8B29D022115599800F85543 /* Tile not found - 256x256.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B29D012115599700F85543 /* Tile not found - 256x256.png */; };
+		E8B29D0921156BC300F85543 /* MapGoogleTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B29D0821156BC300F85543 /* MapGoogleTemplate.m */; };
+		E8B29D0D21156F2800F85543 /* MapBrandTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B29D0C21156F2800F85543 /* MapBrandTemplate.m */; };
+		E8B29D1021156F8800F85543 /* MapBrandGoogle.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B29D0F21156F8800F85543 /* MapBrandGoogle.m */; };
+		E8B29D1B2115701100F85543 /* MapBrandApple.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B29D132115700F00F85543 /* MapBrandApple.m */; };
+		E8B29D1C2115701100F85543 /* MapBrandMapbox.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B29D142115700F00F85543 /* MapBrandMapbox.m */; };
+		E8B29D1D2115701100F85543 /* MapBrandOSM.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B29D162115701000F85543 /* MapBrandOSM.m */; };
+		E8B29D1E2115701100F85543 /* MapBrandThunderforest.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B29D172115701000F85543 /* MapBrandThunderforest.m */; };
+		E8B29D1F2115701100F85543 /* MapBrandEsri.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B29D182115701000F85543 /* MapBrandEsri.m */; };
 		E8B6D8DA1F9AE81B00C376A2 /* GCMGLObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B6D8D91F9AE81B00C376A2 /* GCMGLObjects.m */; };
 		E8B772FC1F9462250060B415 /* cache - gadget - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B772FA1F9462250060B415 /* cache - gadget - 30x30@2x.png */; };
 		E8B772FD1F9462250060B415 /* cache - gadget - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B772FB1F9462250060B415 /* cache - gadget - 30x30@3x.png */; };
@@ -1962,6 +1970,22 @@
 		E8B29CFE2114797900F85543 /* MapCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MapCache.h; path = MapsLibrary/MapCache.h; sourceTree = "<group>"; };
 		E8B29CFF2114797900F85543 /* MapCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MapCache.m; path = MapsLibrary/MapCache.m; sourceTree = "<group>"; };
 		E8B29D012115599700F85543 /* Tile not found - 256x256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tile not found - 256x256.png"; path = "images/map/Tile not found - 256x256.png"; sourceTree = "<group>"; };
+		E8B29D0721156BC300F85543 /* MapGoogleTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapGoogleTemplate.h; path = MapsLibrary/MapGoogleTemplate.h; sourceTree = "<group>"; };
+		E8B29D0821156BC300F85543 /* MapGoogleTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapGoogleTemplate.m; path = MapsLibrary/MapGoogleTemplate.m; sourceTree = "<group>"; };
+		E8B29D0B21156F2800F85543 /* MapBrandTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MapBrandTemplate.h; path = MapsLibrary/MapBrandTemplate.h; sourceTree = "<group>"; };
+		E8B29D0C21156F2800F85543 /* MapBrandTemplate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MapBrandTemplate.m; path = MapsLibrary/MapBrandTemplate.m; sourceTree = "<group>"; };
+		E8B29D0E21156F8700F85543 /* MapBrandGoogle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MapBrandGoogle.h; path = MapsLibrary/MapBrandGoogle.h; sourceTree = "<group>"; };
+		E8B29D0F21156F8800F85543 /* MapBrandGoogle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MapBrandGoogle.m; path = MapsLibrary/MapBrandGoogle.m; sourceTree = "<group>"; };
+		E8B29D112115700F00F85543 /* MapBrandMapbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapBrandMapbox.h; path = MapsLibrary/MapBrandMapbox.h; sourceTree = "<group>"; };
+		E8B29D122115700F00F85543 /* MapBrandThunderforest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapBrandThunderforest.h; path = MapsLibrary/MapBrandThunderforest.h; sourceTree = "<group>"; };
+		E8B29D132115700F00F85543 /* MapBrandApple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapBrandApple.m; path = MapsLibrary/MapBrandApple.m; sourceTree = "<group>"; };
+		E8B29D142115700F00F85543 /* MapBrandMapbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapBrandMapbox.m; path = MapsLibrary/MapBrandMapbox.m; sourceTree = "<group>"; };
+		E8B29D152115700F00F85543 /* MapBrandOSM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapBrandOSM.h; path = MapsLibrary/MapBrandOSM.h; sourceTree = "<group>"; };
+		E8B29D162115701000F85543 /* MapBrandOSM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapBrandOSM.m; path = MapsLibrary/MapBrandOSM.m; sourceTree = "<group>"; };
+		E8B29D172115701000F85543 /* MapBrandThunderforest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapBrandThunderforest.m; path = MapsLibrary/MapBrandThunderforest.m; sourceTree = "<group>"; };
+		E8B29D182115701000F85543 /* MapBrandEsri.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapBrandEsri.m; path = MapsLibrary/MapBrandEsri.m; sourceTree = "<group>"; };
+		E8B29D192115701000F85543 /* MapBrandEsri.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapBrandEsri.h; path = MapsLibrary/MapBrandEsri.h; sourceTree = "<group>"; };
+		E8B29D1A2115701000F85543 /* MapBrandApple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapBrandApple.h; path = MapsLibrary/MapBrandApple.h; sourceTree = "<group>"; };
 		E8B6D8D81F9AE81B00C376A2 /* GCMGLObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GCMGLObjects.h; path = BaseObjectsLibrary/GCMGLObjects.h; sourceTree = "<group>"; };
 		E8B6D8D91F9AE81B00C376A2 /* GCMGLObjects.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GCMGLObjects.m; path = BaseObjectsLibrary/GCMGLObjects.m; sourceTree = "<group>"; };
 		E8B772FA1F9462250060B415 /* cache - gadget - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - gadget - 30x30@2x.png"; path = "images/caches/cache - gadget - 30x30@2x.png"; sourceTree = "<group>"; };
@@ -2365,7 +2389,8 @@
 			children = (
 				E82287881F8A30B700631380 /* MapsLibrary.h */,
 				E82287731F8A304F00631380 /* Map Viewcontrollers */,
-				E82287721F8A304800631380 /* Map Suppliers */,
+				E82287721F8A304800631380 /* Map Backends */,
+				E8B29D0A21156EDE00F85543 /* Map Brands */,
 				E8B29D03211569C000F85543 /* Map Caches */,
 				E822877C1F8A30B700631380 /* MapBrand.h */,
 				E822877D1F8A30B700631380 /* MapBrand.m */,
@@ -2647,7 +2672,7 @@
 			name = "Map objects";
 			sourceTree = "<group>";
 		};
-		E82287721F8A304800631380 /* Map Suppliers */ = {
+		E82287721F8A304800631380 /* Map Backends */ = {
 			isa = PBXGroup;
 			children = (
 				E82287891F8A30B700631380 /* MapTemplate.h */,
@@ -2664,12 +2689,14 @@
 				E83F8565210FE5D50053D129 /* MapAppleThunderforest.m */,
 				E82287801F8A30B700631380 /* MapGoogle.h */,
 				E82287811F8A30B700631380 /* MapGoogle.m */,
+				E8B29D0721156BC300F85543 /* MapGoogleTemplate.h */,
+				E8B29D0821156BC300F85543 /* MapGoogleTemplate.m */,
 				E8500B30211287570012814A /* MapGoogleOSM.h */,
 				E8500B31211287580012814A /* MapGoogleOSM.m */,
 				E851139D1F987BB300737EC7 /* MapMapbox.h */,
 				E851139E1F987BB300737EC7 /* MapMapbox.m */,
 			);
-			name = "Map Suppliers";
+			name = "Map Backends";
 			sourceTree = "<group>";
 		};
 		E82287731F8A304F00631380 /* Map Viewcontrollers */ = {
@@ -4022,6 +4049,27 @@
 			name = "Map Caches";
 			sourceTree = "<group>";
 		};
+		E8B29D0A21156EDE00F85543 /* Map Brands */ = {
+			isa = PBXGroup;
+			children = (
+				E8B29D0B21156F2800F85543 /* MapBrandTemplate.h */,
+				E8B29D0C21156F2800F85543 /* MapBrandTemplate.m */,
+				E8B29D1A2115701000F85543 /* MapBrandApple.h */,
+				E8B29D132115700F00F85543 /* MapBrandApple.m */,
+				E8B29D192115701000F85543 /* MapBrandEsri.h */,
+				E8B29D182115701000F85543 /* MapBrandEsri.m */,
+				E8B29D0E21156F8700F85543 /* MapBrandGoogle.h */,
+				E8B29D0F21156F8800F85543 /* MapBrandGoogle.m */,
+				E8B29D112115700F00F85543 /* MapBrandMapbox.h */,
+				E8B29D142115700F00F85543 /* MapBrandMapbox.m */,
+				E8B29D152115700F00F85543 /* MapBrandOSM.h */,
+				E8B29D162115701000F85543 /* MapBrandOSM.m */,
+				E8B29D122115700F00F85543 /* MapBrandThunderforest.h */,
+				E8B29D172115701000F85543 /* MapBrandThunderforest.m */,
+			);
+			name = "Map Brands";
+			sourceTree = "<group>";
+		};
 		E8B772ED1F92BDED0060B415 /* RemoteAPI */ = {
 			isa = PBXGroup;
 			children = (
@@ -5010,6 +5058,7 @@
 				E82289001F8A3EC900631380 /* zip.c in Sources */,
 				E82288A91F8A356300631380 /* Reachability.m in Sources */,
 				E822862E1F8A2B4600631380 /* ThemeNightSmallSize.m in Sources */,
+				E8B29D1021156F8800F85543 /* MapBrandGoogle.m in Sources */,
 				E82287391F8A2E7900631380 /* GCDictionaryObjects.m in Sources */,
 				E82344921EECE0AC00D2CDFD /* QueriesGGCWViewController.m in Sources */,
 				E822861F1F8A285C00631380 /* SideMenu.m in Sources */,
@@ -5049,6 +5098,7 @@
 				E82286C01F8A2C8800631380 /* ImportOKAPIJSON.m in Sources */,
 				E82286941F8A2BD600631380 /* dbLogStringWaypoint.m in Sources */,
 				E822879B1F8A30B700631380 /* MapLogsViewController.m in Sources */,
+				E8B29D1C2115701100F85543 /* MapBrandMapbox.m in Sources */,
 				E851139F1F987BB300737EC7 /* MapMapbox.m in Sources */,
 				E82286871F8A2BD600631380 /* dbCountry.m in Sources */,
 				E82344321EECDFB300D2CDFD /* FiltersViewController.m in Sources */,
@@ -5070,6 +5120,7 @@
 				E82287D01F8A32C600631380 /* RemoteAPIGGCW.m in Sources */,
 				E82287C91F8A32C600631380 /* IOSFileTransfers.m in Sources */,
 				E823444F1EECE04B00D2CDFD /* NotesSavedViewController.m in Sources */,
+				E8B29D0921156BC300F85543 /* MapGoogleTemplate.m in Sources */,
 				E82288FF1F8A3EC900631380 /* unzip.c in Sources */,
 				E82344541EECE05E00D2CDFD /* PersonalNoteTableViewCell.m in Sources */,
 				E82288FE1F8A3EC900631380 /* mztools.c in Sources */,
@@ -5169,6 +5220,7 @@
 				E82288841F8A34FB00631380 /* SimpleKMLOverlay.m in Sources */,
 				E82286991F8A2BD600631380 /* dbPersonalNote.m in Sources */,
 				E82286A11F8A2BD600631380 /* dbTrackElement.m in Sources */,
+				E8B29D1E2115701100F85543 /* MapBrandThunderforest.m in Sources */,
 				E8A36535206CFA3E00EE2B63 /* MoveablesListViewController.m in Sources */,
 				E82343BA1EECDE6C00D2CDFD /* WaypointLogEditViewController.m in Sources */,
 				E82343BC1EECDE6C00D2CDFD /* WaypointLogTrackablesViewController.m in Sources */,
@@ -5200,6 +5252,7 @@
 				E82288871F8A34FB00631380 /* SimpleKMLPolygon.m in Sources */,
 				E8CB8918205E7ACE00DD55DE /* MGRS2LatLon.m in Sources */,
 				E82288CC1F8A358700631380 /* NVHTarFile.m in Sources */,
+				E8B29D0D21156F2800F85543 /* MapBrandTemplate.m in Sources */,
 				E823442B1EECDFB300D2CDFD /* FilterDistanceTableViewCell.m in Sources */,
 				E82286F01F8A2CE300631380 /* WaypointManager.m in Sources */,
 				E864BBA32064EAE60053B62D /* KeyboardCoordinateDecimalDegreesCardinal.m in Sources */,
@@ -5237,6 +5290,7 @@
 				E82287131F8A2E1A00631380 /* GCTableViewCellRightImage.m in Sources */,
 				E8B6D8DA1F9AE81B00C376A2 /* GCMGLObjects.m in Sources */,
 				E82289271F8A40CB00631380 /* MHTabBarController.m in Sources */,
+				E8B29D1F2115701100F85543 /* MapBrandEsri.m in Sources */,
 				E82286831F8A2BD600631380 /* dbAttribute.m in Sources */,
 				E822881D1F8A347A00631380 /* CXMLNamespaceNode.m in Sources */,
 				E82286EA1F8A2CE300631380 /* ImportManager.m in Sources */,
@@ -5257,6 +5311,7 @@
 				E82286821F8A2BD600631380 /* dbAccount.m in Sources */,
 				E84B174B1F8F6C18004CAE31 /* QueriesGCAPublicViewController.m in Sources */,
 				E8A36532206CF19600EE2B63 /* MoveablesTemplateViewController.m in Sources */,
+				E8B29D1D2115701100F85543 /* MapBrandOSM.m in Sources */,
 				E82286B91F8A2C8800631380 /* ExportGPX.m in Sources */,
 				E82344C21EECE0E800D2CDFD /* SettingsMainViewController.m in Sources */,
 				E822876C1F8A2EC300631380 /* GCTableViewController.m in Sources */,
@@ -5331,6 +5386,7 @@
 				E823447F1EECE09C00D2CDFD /* ListDNFViewController.m in Sources */,
 				E8EC01A61F551A990032F168 /* KeepTrackBeeperView.m in Sources */,
 				E82343DE1EECDEE200D2CDFD /* WaypointViewController.m in Sources */,
+				E8B29D1B2115701100F85543 /* MapBrandApple.m in Sources */,
 				E82288801F8A34FB00631380 /* SimpleKMLLineString.m in Sources */,
 				E82344701EECE08A00D2CDFD /* GroupsSystemViewController.m in Sources */,
 				E82287371F8A2E7900631380 /* GCCoordsHistorical.m in Sources */,

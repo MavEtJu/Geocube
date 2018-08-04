@@ -42,18 +42,13 @@
 
 @implementation MapGoogle
 
-- (NSArray<NSNumber *> *)mapHasViews
+- (void)initMap:(MapBrandTemplate *)mapBrand;
 {
-    return @[
-             [NSNumber numberWithInteger:MAPTYPE_NORMAL],
-             [NSNumber numberWithInteger:MAPTYPE_AERIAL],
-             [NSNumber numberWithInteger:MAPTYPE_TERRAIN],
-             [NSNumber numberWithInteger:MAPTYPE_HYBRIDMAPAERIAL],
-             ];
-}
+    if (mapBrand == nil)
+        self.mapBrand = [[MapBrandGoogle alloc] init];
+    else
+        self.mapBrand = mapBrand;
 
-- (void)initMap
-{
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithTarget:LM.coords zoom:15];
     self.mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     self.mapView.mapType = kGMSTypeNormal;

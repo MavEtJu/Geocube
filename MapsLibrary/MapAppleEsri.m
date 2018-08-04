@@ -25,49 +25,12 @@
 
 @implementation MapAppleEsri
 
-+ (NSArray<NSString *> *)cachePrefixes
+- (void)initMap:(MapBrandTemplate *)mapBrandTemplate
 {
-    return @[
-             @"ESRIWorldTopo",
-             @"ESRIWorldImagery",
-             ];
-}
+    self.mapBrand = [[MapBrandEsri alloc] init];
+    [super initMap:self.mapBrand];
 
-- (NSArray<NSString *> *)tileServices
-{
-    return @[
-            @"http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.png",
-            @"http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png",
-            ];
-}
-
-- (NSArray<NSNumber *> *)mapHasViews
-{
-    return @[
-             [NSNumber numberWithInteger:MAPTYPE_NORMAL],
-             [NSNumber numberWithInteger:MAPTYPE_AERIAL],
-             ];
-}
-
-- (void)initMap
-{
-    self.creditsText = @"© Esri";
-    self.tileServerTemplate = [[self tileServices] objectAtIndex:0];
-    self.cachePrefix = [[[self class] cachePrefixes] objectAtIndex:0];
-    [super initMap];
     self.minimumAltitude = 287;
-}
-
-- (void)setMapType:(GCMapType)mapType
-{
-    [[self mapHasViews] enumerateObjectsUsingBlock:^(NSNumber * _Nonnull mt, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([mt integerValue] == mapType) {
-            self.tileServerTemplate = [NSString stringWithFormat:@"%@?apikey=%@", [[self tileServices] objectAtIndex:idx], configManager.thunderforestKey];
-            self.cachePrefix = [[[self class] cachePrefixes] objectAtIndex:idx];
-            *stop = YES;
-        }
-    }];
-    [self mapViewDidLoad];
 }
 
 @end

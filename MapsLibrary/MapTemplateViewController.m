@@ -151,7 +151,7 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    [self.map initMap];
+    [self.map initMap:nil];
     [self.map initCamera:LM.coords];
     [self.map mapViewDidLoad];
 
@@ -700,7 +700,7 @@
                                 [self menuChangeMapbrand:mb];
                                 [view dismissViewControllerAnimated:YES completion:nil];
 
-                                NSInteger count = [[self.map mapHasViews] count];
+                                NSInteger count = [[self.map.mapBrand mapHasViews] count];
                                 if (count <= 1)
                                     [self.lmi disableItem:MVCmenuMapType];
                                 else
@@ -746,7 +746,7 @@
     self.map.staticHistory = self.staticHistory;
     self.currentMapBrand = mapBrand;
 
-    [self.map initMap];
+    [self.map initMap:nil];
     [self.map mapViewDidLoad];
     [self.map initCamera:currentCoords];
     [self.map moveCameraTo:currentCoords zoomLevel:currentZoom];
@@ -775,7 +775,7 @@
     view.popoverPresentationController.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0);
 
 #define MAPTYPE(__type__, __label__) \
-    if ([self.map mapHasView:__type__] == YES) { \
+    if ([self.map.mapBrand mapHasView:__type__] == YES) { \
         UIAlertAction *a = [UIAlertAction \
                             actionWithTitle:_(__label__) \
                             style:UIAlertActionStyleDefault \

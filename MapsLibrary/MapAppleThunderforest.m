@@ -25,60 +25,10 @@
 
 @implementation MapAppleThunderforest
 
-+ (NSArray<NSString *> *)cachePrefixes
+- (void)initMap:(MapBrandTemplate *)mapBrandTemplate
 {
-    return @[
-             @"ThunderforestNeighbourhood",
-             @"ThunderforestOutdoors",
-             @"ThunderforestLandscape",
-             @"ThunderforestSpinalTap",
-             @"ThunderforestCycling",
-             @"ThunderforestTransport",
-             ];
-}
-
-- (NSArray<NSString *> *)tileServices
-{
-    return @[
-             @"https://tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png",
-             @"https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png",
-             @"https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png",
-             @"https://tile.thunderforest.com/spinal-map/{z}/{x}/{y}.png",
-             @"https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png",
-             @"https://tile.thunderforest.com/transport/{z}/{x}/{y}.png",
-             ];
-}
-
-- (NSArray<NSNumber *> *)mapHasViews
-{
-    return @[
-             [NSNumber numberWithInteger:MAPTYPE_NEIGHBOURHOOD],
-             [NSNumber numberWithInteger:MAPTYPE_OUTDOORS],
-             [NSNumber numberWithInteger:MAPTYPE_LANDSCAPE],
-             [NSNumber numberWithInteger:MAPTYPE_SPINALMAP],
-             [NSNumber numberWithInteger:MAPTYPE_CYCLING],
-             [NSNumber numberWithInteger:MAPTYPE_PUBLICTRANSPORT],
-             ];
-}
-
-- (void)initMap
-{
-    self.creditsText = @"© Thunderforest";
-    self.tileServerTemplate = [NSString stringWithFormat:@"%@?apikey=%@", [[self tileServices] objectAtIndex:0], configManager.thunderforestKey];
-    self.cachePrefix = [[[self class] cachePrefixes] objectAtIndex:0];
-    [super initMap];
-}
-
-- (void)setMapType:(GCMapType)mapType
-{
-    [[self mapHasViews] enumerateObjectsUsingBlock:^(NSNumber * _Nonnull mt, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([mt integerValue] == mapType) {
-            self.tileServerTemplate = [NSString stringWithFormat:@"%@?apikey=%@", [[self tileServices] objectAtIndex:idx], configManager.thunderforestKey];
-            self.cachePrefix = [[[self class] cachePrefixes] objectAtIndex:idx];
-            *stop = YES;
-        }
-    }];
-    [self mapViewDidLoad];
+    self.mapBrand = [[MapBrandThunderforest alloc] init];
+    [super initMap:self.mapBrand];
 }
 
 @end

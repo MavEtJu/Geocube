@@ -56,18 +56,10 @@ EMPTY_METHOD(mapViewDidAppear)
 EMPTY_METHOD(mapViewWillAppear)
 EMPTY_METHOD(mapViewDidLoad)
 
-- (NSArray<NSNumber *> *)mapHasViews
+- (void)initMap:(MapBrandTemplate *)mapBrandTemplate
 {
-    return @[
-             [NSNumber numberWithInteger:MAPTYPE_NORMAL],
-             [NSNumber numberWithInteger:MAPTYPE_AERIAL],
-             [NSNumber numberWithInteger:MAPTYPE_TERRAIN],
-             [NSNumber numberWithInteger:MAPTYPE_HYBRIDMAPAERIAL],
-             ];
-}
+    self.mapBrand = [[MapBrandMapbox alloc] init];
 
-- (void)initMap
-{
     self.historyCoords = calloc(COORDHISTORYSIZE, sizeof(CLLocationCoordinate2D));
 
     self.mapView = [[MGLMapView alloc] initWithFrame:CGRectZero];

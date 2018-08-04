@@ -19,6 +19,36 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapGoogleOSM : MapGoogleTemplate
+@interface MapBrandOSM ()
+
+@end
+
+@implementation MapBrandOSM
+
++ (NSArray<NSString *> *)cachePrefixes
+{
+    return @[
+             @"OSM",
+             ];
+}
+
+- (NSArray<NSString *> *)tileServices
+{
+    return @[
+             @"https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+             ];
+}
+
+- (NSArray<NSNumber *> *)mapHasViews
+{
+    return @[
+             [NSNumber numberWithInteger:MAPTYPE_NORMAL],
+             ];
+}
+
+- (NSString *)credits
+{
+    return @"© OpenStreetMap";
+}
 
 @end

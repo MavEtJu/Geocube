@@ -19,6 +19,20 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapGoogleOSM : MapGoogleTemplate
+@interface MapBrandMapbox ()
+
+@end
+
+@implementation MapBrandMapbox
+
+- (NSArray<NSNumber *> *)mapHasViews
+{
+    return @[
+             [NSNumber numberWithInteger:MAPTYPE_NORMAL],
+             [NSNumber numberWithInteger:MAPTYPE_AERIAL],
+             [NSNumber numberWithInteger:MAPTYPE_TERRAIN],
+             [NSNumber numberWithInteger:MAPTYPE_HYBRIDMAPAERIAL],
+             ];
+}
 
 @end

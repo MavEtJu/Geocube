@@ -19,6 +19,39 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapGoogleOSM : MapGoogleTemplate
+@interface MapBrandEsri ()
+
+@end
+
+@implementation MapBrandEsri
+
++ (NSArray<NSString *> *)cachePrefixes
+{
+    return @[
+             @"ESRIWorldTopo",
+             @"ESRIWorldImagery",
+             ];
+}
+
+- (NSArray<NSString *> *)tileServices
+{
+    return @[
+             @"http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.png",
+             @"http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png",
+             ];
+}
+
+- (NSArray<NSNumber *> *)mapHasViews
+{
+    return @[
+             [NSNumber numberWithInteger:MAPTYPE_NORMAL],
+             [NSNumber numberWithInteger:MAPTYPE_AERIAL],
+             ];
+}
+
+- (NSString *)credits
+{
+    return @"© Esri";
+}
 
 @end

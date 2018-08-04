@@ -27,9 +27,18 @@
 #import "MapsLibrary/MapTrackViewController.h"
 #import "MapsLibrary/MapLogsViewController.h"
 
+#import "MapsLibrary/MapBrandTemplate.h"
+#import "MapsLibrary/MapBrandGoogle.h"
+#import "MapsLibrary/MapBrandApple.h"
+#import "MapsLibrary/MapBrandOSM.h"
+#import "MapsLibrary/MapBrandEsri.h"
+#import "MapsLibrary/MapBrandThunderforest.h"
+#import "MapsLibrary/MapBrandMapbox.h"
+
 #import "MapsLibrary/MapTemplate.h"
 #import "MapsLibrary/MapApple.h"
 #import "MapsLibrary/MapGoogle.h"
+#import "MapsLibrary/MapGoogleTemplate.h"
 #import "MapsLibrary/MapGoogleOSM.h"
 #import "MapsLibrary/MapMapbox.h"
 #import "MapsLibrary/MapAppleTemplate.h"

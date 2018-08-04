@@ -34,7 +34,7 @@ EMPTY_METHOD(mapViewDidLoad)
 - NEEDS_OVERLOADING_VOID(initCamera:(CLLocationCoordinate2D)coords)
 - NEEDS_OVERLOADING_VOID(menuOpenIn)
 - NEEDS_OVERLOADING_VOID(removeCamera)
-- NEEDS_OVERLOADING_VOID(initMap)
+- NEEDS_OVERLOADING_VOID(initMap:(MapBrandTemplate *)mapBrandTemplate)
 - NEEDS_OVERLOADING_VOID(removeMap)
 - NEEDS_OVERLOADING_VOID(moveCameraTo:(CLLocationCoordinate2D)coord zoom:(BOOL)zoom)
 - NEEDS_OVERLOADING_VOID(moveCameraTo:(CLLocationCoordinate2D)coord zoomLevel:(double)zoomLevel)
@@ -66,18 +66,6 @@ EMPTY_METHOD(mapViewDidLoad)
 - (BOOL)menuOpenInSupported
 {
     return NO;
-}
-
-- (BOOL)mapHasView:(GCMapType)maptype
-{
-    __block BOOL rv = NO;
-    [[self mapHasViews] enumerateObjectsUsingBlock:^(NSNumber * _Nonnull mt, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (maptype == [mt integerValue]) {
-            *stop = YES;
-            rv = YES;
-        }
-    }];
-    return rv;
 }
 
 - (instancetype)initMapObject:(MapTemplateViewController *)mvc

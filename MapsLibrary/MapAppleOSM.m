@@ -25,33 +25,11 @@
 
 @implementation MapAppleOSM
 
-+ (NSArray<NSString *> *)cachePrefixes
+- (void)initMap:(MapBrandTemplate *)mapBrandTemplate
 {
-    return @[
-             @"OSM",
-             ];
-}
+    self.mapBrand = [[MapBrandOSM alloc] init];
+    [super initMap:self.mapBrand];
 
-- (NSArray<NSString *> *)tileServices
-{
-    return @[
-             @"https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-             ];
-}
-
-- (NSArray<NSNumber *> *)mapHasViews
-{
-    return @[
-             [NSNumber numberWithInteger:MAPTYPE_NORMAL],
-             ];
-}
-
-- (void)initMap
-{
-    self.creditsText = @"© OpenStreetMap";
-    self.tileServerTemplate = [[self tileServices] objectAtIndex:0];
-    self.cachePrefix = [[[self class] cachePrefixes] objectAtIndex:0];
-    [super initMap];
     self.minimumAltitude = 287;
 }
 

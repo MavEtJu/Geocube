@@ -21,10 +21,9 @@
 
 @interface MapAppleTemplate : MapApple
 
-@property (nonatomic, retain) NSString *creditsText;
 @property (nonatomic, retain) NSString *tileServerTemplate;
 @property (nonatomic, retain) NSString *cachePrefix;
 
-+ (NSArray<NSString *> *)cachePrefixes;
+- (void)initMap:(MapBrandTemplate *)mapBrand;
 
 @end

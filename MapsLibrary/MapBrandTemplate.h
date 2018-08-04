@@ -19,6 +19,15 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface MapGoogleOSM : MapGoogleTemplate
+@interface MapBrandTemplate : NSObject
+
++ (NSArray<NSString *> *)cachePrefixes;
+
+- (NSArray<NSString *> *)cachePrefixes;
+- (NSArray<NSString *> *)tileServices;
+- (NSArray<NSNumber *> *)mapHasViews;
+- (NSString *)credits;
+
+- (BOOL)mapHasView:(GCMapType)maptype;
 
 @end

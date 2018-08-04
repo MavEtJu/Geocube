@@ -22,46 +22,17 @@
 @interface MapGoogleOSM ()
 
 @property (nonatomic, retain) MapCacheGoogle *layer;
-@property (nonatomic, retain) NSString *cachePrefix;
-@property (nonatomic, retain) NSString *tileServerTemplate;
 
 @end
 
 @implementation MapGoogleOSM
 
-+ (NSArray<NSString *> *)cachePrefixes
+- (void)initMap:(MapBrandTemplate *)mapBrandTemplate
 {
-    return @[
-             @"OSM"
-             ];
-}
-
-- (NSArray<NSString *> *)tileServices
-{
-    return @[
-             @"https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-             ];
-}
-
-- (NSArray<NSNumber *> *)mapHasViews
-{
-    return @[
-             [NSNumber numberWithInteger:MAPTYPE_NORMAL],
-             ];
-}
-
-- (void)initMap
-{
-    [super initMap];
-
-    self.mapView.mapType = kGMSTypeNone;
-    self.mapView.buildingsEnabled = NO;
-
-    self.tileServerTemplate = [[self tileServices] objectAtIndex:0];
-    self.cachePrefix = [[[self class] cachePrefixes] objectAtIndex:0];
+    self.mapBrand = [[MapBrandOSM alloc] init];
+    [super initMap:self.mapBrand];
 
     self.layer = [[MapCacheGoogle alloc] initWithPrefix:self.cachePrefix tileServerTemplate:self.tileServerTemplate];
-
     self.layer.map = self.mapView;
 }
 

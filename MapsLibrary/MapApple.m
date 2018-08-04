@@ -48,20 +48,13 @@
 
 @implementation MapApple
 
-- (NSArray<NSNumber *> *)mapHasViews
+- (void)initMap:(MapBrandTemplate *)mapBrandTemplate
 {
-    return @[
-             [NSNumber numberWithInteger:MAPTYPE_NORMAL],
-             [NSNumber numberWithInteger:MAPTYPE_AERIAL],
-             [NSNumber numberWithInteger:MAPTYPE_HYBRIDMAPAERIAL],
-             [NSNumber numberWithInteger:MAPTYPE_AERIALFLYOVER],
-             [NSNumber numberWithInteger:MAPTYPE_HYBRIDFLYOVER],
-             [NSNumber numberWithInteger:MAPTYPE_MUTEDMAP],
-             ];
-}
+    if (mapBrandTemplate == nil)
+        self.mapBrand = [[MapBrandApple alloc] init];
+    else
+        self.mapBrand = mapBrandTemplate;
 
-- (void)initMap
-{
     self.historyCoords = calloc(COORDHISTORYSIZE, sizeof(CLLocationCoordinate2D));
     self.mapView = [[MKMapView alloc] initWithFrame:self.mapvc.view.frame];
     self.mapView.delegate = self;

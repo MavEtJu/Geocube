@@ -158,9 +158,9 @@
     return [NSString stringWithFormat:@"%@/%d/%d/%d/tile_%ld_%ld_%ld", prefix, (int)z, (int)y % 10, (int)x % 10, (long)z, (long)y, (long)x];
 }
 
-+ (NSString *)templateToString:(NSString *)template z:(NSInteger)z x:(NSInteger)x y:(NSInteger)y
++ (NSString *)templateToString:(NSString *)t z:(NSInteger)z x:(NSInteger)x y:(NSInteger)y
 {
-    NSString *s = [NSString stringWithString:template];
+    NSString *s = [NSString stringWithString:t];
     s = [s stringByReplacingOccurrencesOfString:@"{x}" withString:@"%ld"];
     s = [NSString stringWithFormat:s, x];
     s = [s stringByReplacingOccurrencesOfString:@"{y}" withString:@"%ld"];
