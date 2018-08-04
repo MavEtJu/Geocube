@@ -24,9 +24,8 @@
 @property (nonatomic, retain) NSString *key;
 @property (nonatomic, retain) Class mapObject;
 @property (nonatomic, retain) NSString *defaultString;
-@property (nonatomic, retain) NSString *menuLabel;
 
-+ (MapBrand *)mapBrandWithData:(Class)mapClass defaultString:(NSString *)defaultString menuLabel:(NSString *)menuLabel key:(NSString *)key;
++ (MapBrand *)mapBrandWithData:(Class)mapClass defaultString:(NSString *)defaultString key:(NSString *)key;
 + (MapBrand *)findMapBrand:(NSString *)key brands:(NSArray<MapBrand *> *)brands;
 
 @end

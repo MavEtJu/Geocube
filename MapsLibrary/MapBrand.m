@@ -25,11 +25,10 @@
 
 @implementation MapBrand
 
-+ (MapBrand *)mapBrandWithData:(Class)mapClass defaultString:(NSString *)defaultString menuLabel:(NSString *)menuLabel key:(NSString *)key
++ (MapBrand *)mapBrandWithData:(Class)mapClass defaultString:(NSString *)defaultString key:(NSString *)key
 {
     MapBrand *mp = [[MapBrand alloc] init];
 
-    mp.menuLabel = menuLabel;
     mp.key = key;
     mp.defaultString = defaultString;
     mp.mapObject = mapClass;

@@ -57,15 +57,15 @@
 + (NSArray<MapBrand *> *)initMapBrands
 {
     NSMutableArray<MapBrand *> *mapBrands = [NSMutableArray arrayWithCapacity:5];
-    [mapBrands addObject:[MapBrand mapBrandWithData:[MapGoogle class] defaultString:@"google" menuLabel:@"Google Maps" key:MAPBRAND_GOOGLEMAPS]];
-    [mapBrands addObject:[MapBrand mapBrandWithData:[MapApple class] defaultString:@"apple" menuLabel:@"Apple Maps" key:MAPBRAND_APPLEMAPS]];
-    [mapBrands addObject:[MapBrand mapBrandWithData:[MapGoogleOSM class] defaultString:@"osm" menuLabel:@"OSM (Google Maps)" key:MAPBRAND_GOOGLEOSM]];
-    [mapBrands addObject:[MapBrand mapBrandWithData:[MapAppleOSM class] defaultString:@"osm" menuLabel:@"OSM (Apple Maps)" key:MAPBRAND_APPLEOSM]];
-    [mapBrands addObject:[MapBrand mapBrandWithData:[MapAppleEsri class] defaultString:@"esri" menuLabel:@"Esri (Apple Maps)" key:MAPBRAND_APPLEESRI]];
-    [mapBrands addObject:[MapBrand mapBrandWithData:[MapGoogleEsri class] defaultString:@"esri" menuLabel:@"Esri (Google Maps)" key:MAPBRAND_GOOGLEESRI]];
-    [mapBrands addObject:[MapBrand mapBrandWithData:[MapMapbox class] defaultString:@"mapbox" menuLabel:@"Mapbox" key:MAPBRAND_MAPBOX]];
-    [mapBrands addObject:[MapBrand mapBrandWithData:[MapAppleThunderforest class] defaultString:@"thunderforest" menuLabel:@"Thunderforest (Apple Maps)" key:MAPBRAND_APPLETHUNDERFOREST]];
-    [mapBrands addObject:[MapBrand mapBrandWithData:[MapGoogleThunderforest class] defaultString:@"thunderforest" menuLabel:@"Thunderforest (Google Maps)" key:MAPBRAND_GOOGLETHUNDERFOREST]];
+    [mapBrands addObject:[MapBrand mapBrandWithData:[MapGoogle class] defaultString:@"google" key:MAPBRAND_GOOGLEMAPS]];
+    [mapBrands addObject:[MapBrand mapBrandWithData:[MapApple class] defaultString:@"apple" key:MAPBRAND_APPLEMAPS]];
+    [mapBrands addObject:[MapBrand mapBrandWithData:[MapAppleOSM class] defaultString:@"osm_apple" key:MAPBRAND_APPLEOSM]];
+    [mapBrands addObject:[MapBrand mapBrandWithData:[MapGoogleOSM class] defaultString:@"osm_google" key:MAPBRAND_GOOGLEOSM]];
+    [mapBrands addObject:[MapBrand mapBrandWithData:[MapAppleEsri class] defaultString:@"esri_apple" key:MAPBRAND_APPLEESRI]];
+    [mapBrands addObject:[MapBrand mapBrandWithData:[MapGoogleEsri class] defaultString:@"esri_google" key:MAPBRAND_GOOGLEESRI]];
+    [mapBrands addObject:[MapBrand mapBrandWithData:[MapMapbox class] defaultString:@"mapbox" key:MAPBRAND_MAPBOX]];
+    [mapBrands addObject:[MapBrand mapBrandWithData:[MapAppleThunderforest class] defaultString:@"thunderforest_apple" key:MAPBRAND_APPLETHUNDERFOREST]];
+    [mapBrands addObject:[MapBrand mapBrandWithData:[MapGoogleThunderforest class] defaultString:@"thunderforest_google" key:MAPBRAND_GOOGLETHUNDERFOREST]];
 
     return mapBrands;
 }
