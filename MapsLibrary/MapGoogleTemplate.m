@@ -39,6 +39,7 @@
     self.creditsLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     self.creditsLabel.font = [UIFont systemFontOfSize:10];
     self.creditsLabel.text = [self.mapBrand credits];
+    [self.creditsLabel sizeToFit];
     [self.mapvc.view addSubview:self.creditsLabel];
 
     self.mapView.mapType = kGMSTypeNone;
@@ -62,8 +63,7 @@
 - (void)redrawCreditsLabel
 {
     CGRect r = self.mapvc.view.frame;
-    NSLog(@"%@", [MyTools niceCGRect:r]);
-    self.creditsLabel.frame = CGRectMake(2, r.size.height - 15, 200, 20);
+    self.creditsLabel.frame = CGRectMake(r.size.width - self.creditsLabel.frame.size.width - 10, r.size.height - 15, self.creditsLabel.frame.size.width, self.creditsLabel.frame.size.height);
 }
 
 - (BOOL)menuOpenInSupported
