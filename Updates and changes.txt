@@ -1,6 +1,6 @@
 Interesting additions and changes to Geocube
 
-Version 2.5(x)
+Version 2.5(39)
 
   Features:
   - Be able to show all the pins in the native Maps or maps.me
