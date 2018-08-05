@@ -925,6 +925,12 @@
     @"update waypoints set is_physical = 0",
     ];
     [self.upgradeSteps addObject:a];
+
+    // Version 77
+    a = @[
+    @"update config set value = 'https://geocube.mavetju.org/geocube_types.9.geocube' where key = 'url_types'",
+    ];
+    [self.upgradeSteps addObject:a];
 }
 
 - (void)singleStatement:(NSString *)sql

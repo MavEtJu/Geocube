@@ -680,6 +680,9 @@
 		E88DB00A1F334E4300FEF795 /* cache - gadget - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E88DB0071F334E4300FEF795 /* cache - gadget - 30x30.png */; };
 		E891DB7E2115C291009A4D52 /* MapGoogleEsri.m in Sources */ = {isa = PBXBuildFile; fileRef = E891DB7D2115C291009A4D52 /* MapGoogleEsri.m */; };
 		E891DB812115C2B8009A4D52 /* MapGoogleThunderforest.m in Sources */ = {isa = PBXBuildFile; fileRef = E891DB802115C2B8009A4D52 /* MapGoogleThunderforest.m */; };
+		E891DB8B211716A9009A4D52 /* cache - augmented reality - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E891DB88211716A9009A4D52 /* cache - augmented reality - 30x30@2x.png */; };
+		E891DB8C211716A9009A4D52 /* cache - augmented reality - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E891DB89211716A9009A4D52 /* cache - augmented reality - 30x30.png */; };
+		E891DB8D211716A9009A4D52 /* cache - augmented reality - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E891DB8A211716A9009A4D52 /* cache - augmented reality - 30x30@3x.png */; };
 		E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
 		E89D556D2074726C004D9E3A /* map - centeredcoords - 22x22@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E89D556C2074726B004D9E3A /* map - centeredcoords - 22x22@2x.png */; };
@@ -1957,6 +1960,9 @@
 		E891DB7D2115C291009A4D52 /* MapGoogleEsri.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MapGoogleEsri.m; path = MapsLibrary/MapGoogleEsri.m; sourceTree = "<group>"; };
 		E891DB7F2115C2B8009A4D52 /* MapGoogleThunderforest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MapGoogleThunderforest.h; path = MapsLibrary/MapGoogleThunderforest.h; sourceTree = "<group>"; };
 		E891DB802115C2B8009A4D52 /* MapGoogleThunderforest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MapGoogleThunderforest.m; path = MapsLibrary/MapGoogleThunderforest.m; sourceTree = "<group>"; };
+		E891DB88211716A9009A4D52 /* cache - augmented reality - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - augmented reality - 30x30@2x.png"; path = "images/caches/cache - augmented reality - 30x30@2x.png"; sourceTree = "<group>"; };
+		E891DB89211716A9009A4D52 /* cache - augmented reality - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - augmented reality - 30x30.png"; path = "images/caches/cache - augmented reality - 30x30.png"; sourceTree = "<group>"; };
+		E891DB8A211716A9009A4D52 /* cache - augmented reality - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - augmented reality - 30x30@3x.png"; path = "images/caches/cache - augmented reality - 30x30@3x.png"; sourceTree = "<group>"; };
 		E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - empty - 30x30.png"; path = "images/logs/log - empty - 30x30.png"; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
 		E89D556C2074726B004D9E3A /* map - centeredcoords - 22x22@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - centeredcoords - 22x22@2x.png"; path = "images/map/map - centeredcoords - 22x22@2x.png"; sourceTree = "<group>"; };
@@ -3586,6 +3592,9 @@
 		E86C65751B4BCE2E00E2ABFE /* cache icons */ = {
 			isa = PBXGroup;
 			children = (
+				E891DB89211716A9009A4D52 /* cache - augmented reality - 30x30.png */,
+				E891DB88211716A9009A4D52 /* cache - augmented reality - 30x30@2x.png */,
+				E891DB8A211716A9009A4D52 /* cache - augmented reality - 30x30@3x.png */,
 				E82E66831DA07CBE00CFBDED /* cache - beacon - 30x30.png */,
 				E8FEDEBA1DA8EEE9007C756B /* cache - beacon - 30x30@2x.png */,
 				E8FEDEBB1DA8EEE9007C756B /* cache - beacon - 30x30@3x.png */,
@@ -4614,6 +4623,7 @@
 				E85DC6791F95CFD2007556D5 /* menu icon - local night - 40x40@2x.png in Resources */,
 				E82288221F8A347A00631380 /* Tidy in Resources */,
 				E82288161F8A347A00631380 /* Creation in Resources */,
+				E891DB8B211716A9009A4D52 /* cache - augmented reality - 30x30@2x.png in Resources */,
 				E82E66CD1DA07CBE00CFBDED /* cache - mystery - 30x30@2x.png in Resources */,
 				E8FEDEB81DA887A7007C756B /* image - nil - 1x1@2x.png in Resources */,
 				E822871B1F8A2E1A00631380 /* GCTableViewCellSubtitleRightImage~ipad.xib in Resources */,
@@ -4935,12 +4945,14 @@
 				E82E673C1DA07D0200CFBDED /* attributes - 18.png in Resources */,
 				E82E672F1DA07D0200CFBDED /* attributes - 04.png in Resources */,
 				E82289251F8A40CB00631380 /* MHTabBarActiveTab.png in Resources */,
+				E891DB8C211716A9009A4D52 /* cache - augmented reality - 30x30.png in Resources */,
 				E82E676A1DA07D0200CFBDED /* attributes - 64.png in Resources */,
 				E82E66E31DA07CBE00CFBDED /* cache - waymark - 30x30@2x.png in Resources */,
 				E82E67511DA07D0200CFBDED /* attributes - 39.png in Resources */,
 				E8F570641B3F7255003F020C /* Images.xcassets in Resources */,
 				E82E66E11DA07CBE00CFBDED /* cache - virtual - 30x30@3x.png in Resources */,
 				E82287121F8A2E1A00631380 /* GCTableViewCellKeyValue~ipad.xib in Resources */,
+				E891DB8D211716A9009A4D52 /* cache - augmented reality - 30x30@3x.png in Resources */,
 				E8B773791F94D7190060B415 /* menu icon - gnss-on - 40x40.png in Resources */,
 				E822892B1F8A40CC00631380 /* MHTabBarIndicator.xcf in Resources */,
 				E8FEDE511DA77F9D007C756B /* container size - micro - 35x11@2x.png in Resources */,
