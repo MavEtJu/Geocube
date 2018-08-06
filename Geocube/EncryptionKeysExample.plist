@@ -6,8 +6,6 @@
 	<string></string>
 	<key>googlemaps</key>
 	<string></string>
-	<key>mapbox</key>
-	<string></string>
 	<key>sharedsecret_${key}</key>
 	<string></string>
 </dict>
