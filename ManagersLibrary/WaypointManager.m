@@ -826,6 +826,9 @@
         [clock showTotal:@"Filtering finished"];
         self.currentWaypoints = waypoints;
         self.needsRefresh = NO;
+
+        // Alert home
+        [owntracksManager alertWaypointsReloaded];
     }
 }
 

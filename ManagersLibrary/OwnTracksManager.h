@@ -35,6 +35,8 @@
 - (void)alertCarParked;
 - (void)alertBeeperStarted;
 
+- (void)alertWaypointsReloaded;
+
 - (void)alertWaypointSetTarget:(dbWaypoint *)wp;
 - (void)alertWaypointRemoveTarget:(dbWaypoint *)wp;
 - (void)alertWaypointMarkAs:(dbWaypoint *)wp markAs:(Flag)markAs;

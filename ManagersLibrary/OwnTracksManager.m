@@ -269,6 +269,7 @@ ALERT(alertLostConnectionToInternet, @"Lost connection to the internet")
 ALERT(alertReconnectedToInternet, @"Regained connection to the internet")
 ALERT(alertCarParked, @"Keep Track: Remember location")
 ALERT(alertBeeperStarted, @"Keep Track: Beeper started")
+ALERT(alertWaypointsReloaded, @"Waypoint Manager: waypoints reloaded")
 
 ALERT_WP(alertWaypointLog, @"Logged %@")
 ALERT_WP(alertWaypointSetTarget, @"Set target to %@")
