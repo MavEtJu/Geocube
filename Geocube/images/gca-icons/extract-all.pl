@@ -1,15 +1,28 @@
 #!/usr/bin/perl
 
-#
-# Get the file https://geocaching.com.au/pics/icon.php
-# Rename it to gca-icons.svg
-# ./extract.pl
-# 
-# And convert:
-# for i in *.svg; do f=$(echo $i | sed -e 's/.svg$//'); /Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 90 -h 90 -e $(pwd)/$i@3x.png $(pwd)/$f.svg; done
-# for i in *.svg; do f=$(echo $i | sed -e 's/.svg$//'); /Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 60 -h 60 -e $(pwd)/$i@2x.png $(pwd)/$f.svg; done
-# for i in *.svg; do f=$(echo $i | sed -e 's/.svg$//'); /Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 30 -h 30 -e $(pwd)/$i.png $(pwd)/$f.svg; done
-#
+=comment
+
+
+1. Get the file https://geocaching.com.au/pics/icon.php
+2. Rename it to gca-icons.svg
+3. Run ./extract.pl
+
+4. And convert:
+
+for i in icon_geocache*.svg; do
+	f=$(echo $i | sed -e 's/.svg$//');
+	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 90 -h 90 -e $(pwd)/$f@3x.png $(pwd)/$f.svg
+	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 60 -h 60 -e $(pwd)/$f@2x.png $(pwd)/$f.svg
+	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 30 -h 30 -e $(pwd)/$f.png $(pwd)/$f.svg
+done
+for i in icon_log*.svg; do
+	f=$(echo $i | sed -e 's/.svg$//');
+	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 90 -h 90 -e $(pwd)/$f@3x.png $(pwd)/$f.svg
+	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 60 -h 60 -e $(pwd)/$f@2x.png $(pwd)/$f.svg
+	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 30 -h 30 -e $(pwd)/$f.png $(pwd)/$f.svg
+done
+
+=cut
 
 use strict;
 use warnings;
