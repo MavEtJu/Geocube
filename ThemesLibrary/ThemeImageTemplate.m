@@ -42,7 +42,7 @@
 
 - NEEDS_OVERLOADING_CGPOINT(centerOffsetAppleMaps)
 - NEEDS_OVERLOADING_CGPOINT(groundAnchorGoogleMaps)
-- NEEDS_OVERLOADING_CGPOINT(infoWindowdAnchorGoogleMaps)
+- NEEDS_OVERLOADING_CGPOINT(infoWindowAnchorGoogleMaps)
 
 - (void)loadImages:(NSString *)jsonfile
 {

@@ -60,8 +60,6 @@
     NEEDS_OVERLOADING_NIL(instancetype, __name__)
 #define NEEDS_OVERLOADING_UIIMAGE(__name__) \
     NEEDS_OVERLOADING_NIL(UIImage *, __name__)
-#define NEEDS_OVERLOADING_CGPOINT(__name__) \
-    NEEDS_OVERLOADING_NIL(CGPoint, __name__)
 
 #define NEEDS_OVERLOADING_BOOL(__name__) \
     (BOOL) __name__ { NEEDS_OVERLOADING_ASSERT; return NO; }
@@ -77,6 +75,8 @@
     (double) __name__ { NEEDS_OVERLOADING_ASSERT; return 0; }
 #define NEEDS_OVERLOADING_NSID(__name__) \
     (NSId) __name__ { NEEDS_OVERLOADING_ASSERT; return 0; }
+#define NEEDS_OVERLOADING_CGPOINT(__name__) \
+    (CGPoint) __name__ { NEEDS_OVERLOADING_ASSERT; return CGPointZero; }
 
 #define EMPTY_METHOD(__name__) \
     - (void) __name__ { }
