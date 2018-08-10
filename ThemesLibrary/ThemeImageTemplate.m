@@ -40,6 +40,9 @@
 - NEEDS_OVERLOADING_UIIMAGE(_getPin:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF)
 - NEEDS_OVERLOADING_UIIMAGE(_getType:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF planned:(BOOL)planned)
 
+- NEEDS_OVERLOADING_CGPOINT(centerOffsetAppleMaps)
+- NEEDS_OVERLOADING_CGPOINT(groundAnchorGoogleMaps)
+- NEEDS_OVERLOADING_CGPOINT(infoWindowdAnchorGoogleMaps)
 
 - (void)loadImages:(NSString *)jsonfile
 {

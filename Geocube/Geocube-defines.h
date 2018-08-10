@@ -60,6 +60,8 @@
     NEEDS_OVERLOADING_NIL(instancetype, __name__)
 #define NEEDS_OVERLOADING_UIIMAGE(__name__) \
     NEEDS_OVERLOADING_NIL(UIImage *, __name__)
+#define NEEDS_OVERLOADING_CGPOINT(__name__) \
+    NEEDS_OVERLOADING_NIL(CGPoint, __name__)
 
 #define NEEDS_OVERLOADING_BOOL(__name__) \
     (BOOL) __name__ { NEEDS_OVERLOADING_ASSERT; return NO; }

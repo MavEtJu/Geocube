@@ -286,4 +286,21 @@
     return [self _getType:wp.wpt_type found:wp.logStatus disabled:(wp.gs_available == NO) archived:(wp.gs_archived == YES) highlight:wp.flag_highlight owner:[dbc accountIsOwner:wp] markedFound:wp.flag_markedfound inProgress:wp.flag_inprogress markedDNF:wp.flag_dnf planned:wp.flag_planned];
 }
 
+// ----------------------------------
+
+- (CGPoint)centerOffsetAppleMaps
+{
+    return CGPointMake(7, -17);
+}
+
+- (CGPoint)groundAnchorGoogleMaps
+{
+    return CGPointMake(11.0 / 35.0, 38.0 / 42.0);
+}
+- (CGPoint)infoWindowAnchorGoogleMaps
+{
+    return CGPointMake(11.0 / 35.0, 3.0 / 42.0);
+}
+
+
 @end

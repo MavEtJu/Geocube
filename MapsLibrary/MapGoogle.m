@@ -117,8 +117,8 @@
     marker.title = wp.wpt_name;
     marker.snippet = wp.wpt_urlname;
     marker.map = self.mapView;
-    marker.groundAnchor = CGPointMake(11.0 / 35.0, 38.0 / 42.0);
-    marker.infoWindowAnchor = CGPointMake(11.0 / 35.0, 3.0 / 42.0);
+    marker.groundAnchor = [currentImageTheme groundAnchorGoogleMaps];
+    marker.infoWindowAnchor = [currentImageTheme infoWindowAnchorGoogleMaps];
     marker.userData = wp;
     marker.icon = [self waypointImage:wp];
     return marker;
