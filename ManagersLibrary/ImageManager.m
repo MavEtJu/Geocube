@@ -734,87 +734,87 @@
     return newImage;
 }
 
-- (UIImage *)getSquareWithNumber:(NSInteger)num
-{
-    NSInteger width = 0;
-    if (num < 10)
-        width = 1 * 14;
-    else if (num < 100)
-        width = 2 * 14;
-    else if (num < 1000)
-        width = 3 * 14;
-    else
-        width = 4 * 14;
-    width += 4;
-
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(width, 20), NO, 0);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-
-    /*
-     *              1         2
-     *    0123456789012345678901234
-     *  0 .........xxxxxxx.........
-     *  1 ......xxx.......xxx......
-     *  2 ....xx.............xx....
-     *  3 ...x.................x...
-     *  4 ..x...................x..
-     *  5 .x.....................x.
-     *  6 .x.....................x.
-     *  7 x.......................x
-     *  8 x.......................x
-     *  9 x.......................x
-     * 10 x.......................x
-     *  1 x.......................x
-     *  2 x.......................x
-     *  3 .x.....................x.
-     *  4 .x.....................x.
-     *  5 ..x...................x..
-     *  6 ...x.................x...
-     *  7 ....xx.............xx....
-     *  8 ......xxx.......xxx......
-     *  9 .........xxxxxxx.........
-     */
-
-    CGContextSetStrokeColorWithColor(context, [[UIColor colorWithRed:0 green:0 blue:0 alpha:0.9] CGColor]);
-    NSInteger w = width - 1;
-    VLINE(0    ,  7, 12);
-    VLINE(w - 0,  7, 12);
-    VLINE(1    ,  5,  6);
-    VLINE(w - 1,  5,  6);
-    VLINE(1    , 13, 14);
-    VLINE(w - 1, 13, 14);
-
-    HLINE( 1,     6,     8);
-    HLINE( 1, w - 8, w - 6);
-    HLINE( 2,     4,     5);
-    HLINE( 2, w - 5, w - 4);
-    HLINE(17,     4,     5);
-    HLINE(17, w - 5, w - 4);
-    HLINE(18,     6,     8);
-    HLINE(18, w - 8, w - 6);
-
-    DOT  (2,  4);
-    DOT  (3,  3);
-    DOT  (2, 15);
-    DOT  (3, 16);
-    DOT  (w - 2,  4);
-    DOT  (w - 3,  3);
-    DOT  (w - 2, 15);
-    DOT  (w - 3, 16);
-
-    HLINE( 0, 9, width - 10);
-    HLINE(19, 9, width - 10);
-
-    UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 20)];
-    l.text = [NSString stringWithFormat:@"%ld", (long)num];
-    l.textAlignment = NSTextAlignmentCenter;
-    [l.layer drawInContext:context];
-
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-
-    return newImage;
-}
+//- (UIImage *)getSquareWithNumber:(NSInteger)num
+//{
+//    NSInteger width = 0;
+//    if (num < 10)
+//        width = 1 * 14;
+//    else if (num < 100)
+//        width = 2 * 14;
+//    else if (num < 1000)
+//        width = 3 * 14;
+//    else
+//        width = 4 * 14;
+//    width += 4;
+//
+//    UIGraphicsBeginImageContextWithOptions(CGSizeMake(width, 20), NO, 0);
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//
+//    /*
+//     *              1         2
+//     *    0123456789012345678901234
+//     *  0 .........xxxxxxx.........
+//     *  1 ......xxx.......xxx......
+//     *  2 ....xx.............xx....
+//     *  3 ...x.................x...
+//     *  4 ..x...................x..
+//     *  5 .x.....................x.
+//     *  6 .x.....................x.
+//     *  7 x.......................x
+//     *  8 x.......................x
+//     *  9 x.......................x
+//     * 10 x.......................x
+//     *  1 x.......................x
+//     *  2 x.......................x
+//     *  3 .x.....................x.
+//     *  4 .x.....................x.
+//     *  5 ..x...................x..
+//     *  6 ...x.................x...
+//     *  7 ....xx.............xx....
+//     *  8 ......xxx.......xxx......
+//     *  9 .........xxxxxxx.........
+//     */
+//
+//    CGContextSetStrokeColorWithColor(context, [[UIColor colorWithRed:0 green:0 blue:0 alpha:0.9] CGColor]);
+//    NSInteger w = width - 1;
+//    VLINE(0    ,  7, 12);
+//    VLINE(w - 0,  7, 12);
+//    VLINE(1    ,  5,  6);
+//    VLINE(w - 1,  5,  6);
+//    VLINE(1    , 13, 14);
+//    VLINE(w - 1, 13, 14);
+//
+//    HLINE( 1,     6,     8);
+//    HLINE( 1, w - 8, w - 6);
+//    HLINE( 2,     4,     5);
+//    HLINE( 2, w - 5, w - 4);
+//    HLINE(17,     4,     5);
+//    HLINE(17, w - 5, w - 4);
+//    HLINE(18,     6,     8);
+//    HLINE(18, w - 8, w - 6);
+//
+//    DOT  (2,  4);
+//    DOT  (3,  3);
+//    DOT  (2, 15);
+//    DOT  (3, 16);
+//    DOT  (w - 2,  4);
+//    DOT  (w - 3,  3);
+//    DOT  (w - 2, 15);
+//    DOT  (w - 3, 16);
+//
+//    HLINE( 0, 9, width - 10);
+//    HLINE(19, 9, width - 10);
+//
+//    UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 20)];
+//    l.text = [NSString stringWithFormat:@"%ld", (long)num];
+//    l.textAlignment = NSTextAlignmentCenter;
+//    [l.layer drawInContext:context];
+//
+//    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//
+//    return newImage;
+//}
 
 + (UIImage *)circleWithColour:(UIColor *)c
 {

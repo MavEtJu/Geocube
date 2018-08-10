@@ -34,7 +34,7 @@
 - (void)reloadImages;
 - (void)addToLibrary:(NSString *)name index:(NSInteger)index;
 
-- (UIImage *)getSquareWithNumber:(NSInteger)num;
+//- (UIImage *)getSquareWithNumber:(NSInteger)num;
 
 - (NSString *)getName:(ImageNumber)imgnum;
 
