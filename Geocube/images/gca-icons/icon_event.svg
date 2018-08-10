@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+xmlns:svg="http://www.w3.org/2000/svg"
+xmlns:cc="http://creativecommons.org/ns#"
+xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns="http://www.w3.org/2000/svg"
+xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+>
+<rect
+height="63.63961"
+x="6.99559999999997"
+id="rect4045"
+y="31.4106399999999"
+width="86.267029"
+style="fill:#ffffff"
+/>
+<path
+d="M 75.1701,50.29592 69.2744,45 l -27.1089,24.39796 -11.78,-10.60204 -5.8844,5.29592 17.6644,15.90816 33.0046,-29.70408 0,0 z M 88.8888999999999,10 l -5.5556,0 0,-10 -11.1111,0 0,10 -44.4444,0 0,-10 -11.1111,0 0,10 -5.5556,0 c -6.1338,0 -11.0544,4.47959 -11.0544,10 L 0,90 c 0,5.52041 4.9773,10 11.1111,10 l 77.7778,0 c 6.1338,0 11.1111,-4.47959 11.1111,-10 l 0,-70 c 0,-5.52041 -4.9773,-10 -11.1111,-10 l 0,0 z m 0,80 -77.7778,0 0,-55 77.7778,0 0,55 z"
+id="path4047"
+style="fill:#606060"
+/>
+</svg>

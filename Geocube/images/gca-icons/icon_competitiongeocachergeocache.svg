@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns="http://www.w3.org/2000/svg"
+xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:cc="http://creativecommons.org/ns#"
+xmlns:svg="http://www.w3.org/2000/svg"
+xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+>
+<path
+style="fill:#ed6a00;fill-opacity:1;stroke:#000000;stroke-width:0.99995005;stroke-opacity:1"
+id="path8201"
+d="M 99.5,50.2488000000001 A 49.251286,49.251259 0 0 1 50.24872,99.5 l 0,-49.2512 z"
+/>
+<path
+style="fill:#00539e;fill-opacity:1;stroke:#000000;stroke-width:0.99995005;stroke-opacity:1"
+id="path8203"
+d="m 49.75125,99.5 a 49.251286,49.251259 0 0 1 -49.25128,-49.2512 l 49.25128,0 z"
+/>
+<path
+d="M 0.499970000000019,49.7511999999999 A 49.251286,49.251259 0 0 1 49.75125,0.5 l 0,49.2512 z"
+id="path8205"
+style="fill:#f9ce16;fill-opacity:1;stroke:#000000;stroke-width:0.99995005;stroke-opacity:1"
+/>
+<path
+id="path8207"
+style="fill:#018650;fill-opacity:1;stroke:#000000;stroke-width:0.99995005;stroke-opacity:1"
+d="M 50.24872,0.5 A 49.251286,49.251259 0 0 1 99.5,49.7511999999999 l -49.25128,0 z"
+/>
+<path
+id="path4197-8"
+style="fill:#c0c0c0;fill-opacity:1;stroke:#000000;stroke-width:0.78450322;stroke-opacity:1"
+d="m 26.09747,87.0698 c 0.004,-3.3175 1.46299,-9.6224 3.00508,-13.0653 1.24141,-2.7996 3.10871,-5.348 6.41205,-8.7799 l 4.65581,-4.8348 3.7215,1.2043 c 4.62778,1.498 7.74866,1.498 11.92636,-2e-4 l 3.24445,-1.1646 2.14662,1.7648 c 7.29843,6.0027 11.0194,12.9308 12.20269,22.7119 l 0.39134,3.2466 -23.4373,3.3953 c 0,0 -24.26894,-3.4636 -24.2686,-4.4773 z m 18.96579,-30.0329 c -7.70778,-3.0009 -11.71485,-9.2651 -11.09428,-17.3527 0.69949,-9.0197 7.15582,-15.1861 15.92415,-15.203 8.55435,0 15.14833,6.159 15.9116,14.9061 0.84279,9.6532 -5.69237,17.6277 -14.94047,18.2436 -2.18609,0.146 -4.51091,-0.096 -5.801,-0.594 z"
+/>
+<circle
+r="45"
+cy="50"
+style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-opacity:1"
+id="path8257"
+cx="50"
+/>
+</svg>

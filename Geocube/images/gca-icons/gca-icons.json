@@ -1,0 +1,164 @@
+{
+	"logs": [
+		{
+			"missing": [
+				"gca-icon_loghidden",
+				"gca-icon_logretracted",
+				"gca-icon_logreview"
+			]
+		}, {
+			"log": "Announcement",
+			"image": "gca-icon_logannouncement"
+		}, {
+			"log": "Archived",
+			"image": "gca-icon_logarchived"
+		}, {
+			"log": "Attended",
+			"image": "gca-icon_logattended"
+		}, {
+			"log": "Coordinates",
+			"image": "gca-icon_logcoordsupdated"
+		}, {
+			"log": "DidNotFind",
+			"image": "gca-icon_logdidnotfind"
+		}, {
+			"log": "Disabled",
+			"image": "gca-icon_logdisabled"
+		}, {
+			"log": "Enabled",
+			"image": "gca-icon_logenabled"
+		}, {
+			"log": "Found",
+			"image": "gca-icon_logfoundit"
+		}, {
+			"log": "Moved",
+			"image": "gca-icon_logmoved"
+		}, {
+			"log": "NeedsArchiving",
+			"image": "gca-icon_logneedsarchiving"
+		}, {
+			"log": "NeedsMaintenance",
+			"image": "gca-icon_logneedsmaintenance"
+		}, {
+			"log": "Note",
+			"image": "gca-icon_lognoted"
+		}, {
+			"log": "OwnerMaintenance",
+			"image": "gca-icon_logmaintained"
+		}, {
+			"log": "Published",
+			"image": "gca-icon_logpublished"
+		}, {
+			"log": "ReviewerNote",
+			"image": "gca-icon_logadminreview"
+		}, {
+			"log": "Unarchived",
+			"image": "gca-icon_logunarchived"
+		}, {
+			"log": "Unknown",
+			"image": "gca-icon_logother"
+		}, {
+			"log": "WebcamPhoto",
+			"image": "gca-icon_logphotographed"
+		}, {
+			"log": "WillAttend",
+			"image": "gca-icon_logwillattend"
+		}
+	],
+
+	"types": [
+		{
+			"missing": [
+				"GroundspeakHQ",
+				"Maze",
+				"Waymark",
+
+				"gca-icon_geocachereverse",
+				"gca-icon_geocacheprojectape"
+			]
+		}, {
+			"type": "AugmentedReality",
+			"image": "gca-icon_geocacheaugmentedreality"
+		}, {
+			"type": "Beacon",
+			"image": "gca-icon_geocachebeacon"
+		}, {
+			"type": "Benchmark",
+			"image": "gca-icon_geocachetrigpoint"
+		}, {
+			"type": "BurkeWills",
+			"image": "gca-icon_geocacheburkeandwills"
+		}, {
+			"type": "CITO",
+			"image": "gca-icon_geocachecito"
+		}, {
+			"type": "EarthCache",
+			"image": "gca-icon_geocacheearthcache"
+		}, {
+			"type": "Ephemeral",
+			"image": "gca-icon_geocacheephemeral"
+		}, {
+			"type": "Event",
+			"image": "gca-icon_geocacheevent"
+		}, {
+			"type": "Gadget",
+			"image": "gca-icon_geocachegadget"
+		}, {
+			"type": "Geocacher",
+			"image": "gca-icon_geocachegeocacher"
+		}, {
+			"type": "Giga",
+			"type": "gca-icon_geocachemegaevent"
+		}, {
+			"type": "History",
+			"image": "gca-icon_geocachehistory"
+		}, {
+			"type": "Letterbox",
+			"image": "gca-icon_geocacheletterbox"
+		}, {
+			"type": "Mega",
+			"image": "gca-icon_geocachemegaevent"
+		}, {
+			"type": "Moveable",
+			"image": "gca-icon_geocachemoveable"
+		}, {
+			"type": "MultiCache",
+			"image": "gca-icon_geocachemulticache"
+		}, {
+			"type": "Mystery",
+			"image": "gca-icon_geocacheunknownormystery"
+		}, {
+			"type": "Night",
+			"image": "gca-icon_geocachenightcache"
+		}, {
+			"type": "Other",
+			"image": "gca-icon_geocacheother"
+		}, {
+			"type": "Podcast",
+			"image": "gca-icon_geocachepodcache"
+		}, {
+			"type": "Reverse",
+			"image": "gca-icon_geocachelocationless"
+		}, {
+			"type": "TraditionalCache",
+			"image": "gca-icon_geocachetraditional"
+		}, {
+			"type": "Trigpoint",
+			"image": "gca-icon_geocachetrigpoint"
+		}, {
+			"type": "UnknownCache",
+			"image": "gca-icon_geocacheunknownormystery"
+		}, {
+			"type": "VirtualCache",
+			"image": "gca-icon_geocachevirtual"
+		}, {
+			"type": "WebcamCache",
+			"image": "gca-icon_geocachewebcam"
+		}, {
+			"type": "WhereigoCache",
+			"image": "gca-icon_geocachewherigo"
+		}
+
+	]
+}
+

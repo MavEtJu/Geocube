@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+xmlns:svg="http://www.w3.org/2000/svg"
+xmlns:cc="http://creativecommons.org/ns#"
+xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns="http://www.w3.org/2000/svg"
+xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+>
+<circle
+style="fill:#008000;fill-opacity:1"
+cy="50"
+id="path4575"
+cx="50"
+r="50"
+/>
+<path
+style="fill:#ffffff;fill-opacity:1"
+id="path4577"
+d="m 27,80 0,-60 60,30 z"
+/>
+</svg>

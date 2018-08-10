@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+xmlns:cc="http://creativecommons.org/ns#"
+xmlns:svg="http://www.w3.org/2000/svg"
+xmlns="http://www.w3.org/2000/svg"
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+>
+<path
+d="m 66.66667,66.6660000000001 0,-33.333 L 100,49.9995 Z"
+style="fill:#008751;fill-opacity:1"
+id="path4917"
+/>
+<path
+id="path4936"
+style="fill:#fcd116;fill-opacity:1"
+d="m 66.66667,33.333 -33.33334,0 L 50,0 Z"
+/>
+<path
+d="m 33.33333,33.333 0,33.333 L 0,49.9995 Z"
+style="fill:#0054a0;fill-opacity:1"
+id="path4938"
+/>
+<path
+style="fill:#ef6b00;fill-opacity:1"
+id="path4941"
+d="m 33.33333,66.667 33.33334,0 L 50,100 Z"
+/>
+<ellipse
+ry="10"
+cy="50"
+style="fill:#666666;fill-opacity:1"
+id="path4943"
+cx="50.00049"
+rx="10.0001"
+/>
+</svg>

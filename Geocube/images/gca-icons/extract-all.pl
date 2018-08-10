@@ -11,15 +11,15 @@
 
 for i in icon_geocache*.svg; do
 	f=$(echo $i | sed -e 's/.svg$//');
-	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 90 -h 90 -e $(pwd)/$f@3x.png $(pwd)/$f.svg
-	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 60 -h 60 -e $(pwd)/$f@2x.png $(pwd)/$f.svg
-	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 30 -h 30 -e $(pwd)/$f.png $(pwd)/$f.svg
+	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 90 -h 90 -e $(pwd)/gca-$f@3x.png $(pwd)/$f.svg
+	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 60 -h 60 -e $(pwd)/gca-$f@2x.png $(pwd)/$f.svg
+	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 30 -h 30 -e $(pwd)/gca-$f.png $(pwd)/$f.svg
 done
 for i in icon_log*.svg; do
 	f=$(echo $i | sed -e 's/.svg$//');
-	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 90 -h 90 -e $(pwd)/$f@3x.png $(pwd)/$f.svg
-	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 60 -h 60 -e $(pwd)/$f@2x.png $(pwd)/$f.svg
-	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 30 -h 30 -e $(pwd)/$f.png $(pwd)/$f.svg
+	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 90 -h 90 -e $(pwd)/gca-$f@3x.png $(pwd)/$f.svg
+	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 60 -h 60 -e $(pwd)/gca-$f@2x.png $(pwd)/$f.svg
+	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 30 -h 30 -e $(pwd)/gca-$f.png $(pwd)/$f.svg
 done
 
 =cut
