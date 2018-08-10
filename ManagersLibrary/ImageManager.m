@@ -35,6 +35,17 @@
     self = [super init];
     NSLog(@"ImageLibrary: %ld elements", (long)ImageLibraryImagesMax);
 
+    [self reloadImages];
+
+    /* Pin and type images */
+    self.pinImages = [NSMutableDictionary dictionaryWithCapacity:25];
+    self.typeImages = [NSMutableDictionary dictionaryWithCapacity:25];
+
+    return self;
+}
+
+- (void)reloadImages
+{
     self.imgs = [NSMutableArray arrayWithCapacity:ImageLibraryImagesMax];
     self.names = [NSMutableArray arrayWithCapacity:ImageLibraryImagesMax];
     for (NSInteger i = 0; i < ImageLibraryImagesMax; i++) {
@@ -254,12 +265,6 @@
     [self addToLibrary:@"image - no image - 32x32" index:Image_NoImageFile];
 
     [self addToLibrary:@"map - centeredcoords - 22x22" index:ImageMap_CenteredCoordinates];
-
-    /* Pin and type images */
-    self.pinImages = [NSMutableDictionary dictionaryWithCapacity:25];
-    self.typeImages = [NSMutableDictionary dictionaryWithCapacity:25];
-
-    return self;
 }
 
 - (void)addToLibrary:(NSString *)name index:(NSInteger)index
