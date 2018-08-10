@@ -23,8 +23,6 @@
 
 @property (nonatomic, retain) NSMutableArray<id> *imgs;
 @property (nonatomic, retain) NSMutableArray<NSString *> *names;
-@property (nonatomic, retain) NSMutableDictionary<NSString *, UIImage *> *pinImages;
-@property (nonatomic, retain) NSMutableDictionary<NSString *, UIImage *> *typeImages;
 
 @end
 
@@ -36,10 +34,6 @@
     NSLog(@"ImageLibrary: %ld elements", (long)ImageLibraryImagesMax);
 
     [self reloadImages];
-
-    /* Pin and type images */
-    self.pinImages = [NSMutableDictionary dictionaryWithCapacity:25];
-    self.typeImages = [NSMutableDictionary dictionaryWithCapacity:25];
 
     return self;
 }
@@ -276,99 +270,15 @@
     [self.names replaceObjectAtIndex:index withObject:name];
 }
 
-// -------------------------------------------------------------
-- (void)addpinhead:(NSInteger)index image:(UIImage *)img
+- (void)replaceInLibrary:(UIImage *)img name:(NSString *)name index:(NSInteger)index
 {
-    [self.imgs replaceObjectAtIndex:index withObject:img];
-    NSString *name = [NSString stringWithFormat:@"pinhead: %ld", (long)index];
-    [self.names replaceObjectAtIndex:index withObject:name];
+    if (img != nil)
+        [self.imgs replaceObjectAtIndex:index withObject:img];
+    if (name != nil)
+        [self.names replaceObjectAtIndex:index withObject:name];
 }
 
-- (UIImage *)mergePinhead:(UIImage *)bottom topImg:(UIImage *)top
-{
-    UIImage *out = [self addImageToImage:bottom withImage2:top andRect:CGRectMake(3, 3, 15, 15)];
-    return out;
-}
-- (UIImage *)mergePinhead2:(UIImage *)bottom top:(NSInteger)top
-{
-    UIImage *out = [self addImageToImage:bottom withImage2:[self get:top] andRect:CGRectMake(3, 3, 15, 15)];
-    return out;
-}
-- (UIImage *)mergePinhead:(UIImage *)bottom top:(NSInteger)top
-{
-    return [self mergePinhead2:bottom top:top];
-}
-- (void)mergePinhead:(NSInteger)bottom top:(NSInteger)top index:(NSInteger)index
-{
-    UIImage *out = [self mergePinhead2:[self get:bottom] top:top];
-    [self.imgs replaceObjectAtIndex:index withObject:out];
-    NSString *name = [NSString stringWithFormat:@"Merge of %ld and %ld", (long)bottom, (long)top];
-    [self.names replaceObjectAtIndex:index withObject:name];
-}
-
-- (UIImage *)mergeXXX:(UIImage *)bottom top:(NSInteger)top
-{
-    return [self addImageToImage:bottom withImage2:[self get:top] andRect:CGRectMake(6, 6, 13, 13)];
-}
-- (UIImage *)mergeDNF:(UIImage *)bottom top:(NSInteger)top
-{
-    return [self mergeXXX:bottom top:top];
-}
-- (UIImage *)mergeFound:(UIImage *)bottom top:(NSInteger)top
-{
-    return [self mergeXXX:bottom top:top];
-}
-
-- (UIImage *)mergeHighlight:(UIImage *)bottom top:(NSInteger)top
-{
-    return [self addImageToImage:bottom withImage2:[self get:top] andRect:CGRectMake(0, 0, 21, 21)];
-}
-
-- (UIImage *)mergeStick:(UIImage *)bottom top:(NSInteger)top
-{
-    return [self addImageToImage:bottom withImage2:[self get:top] andRect:CGRectMake(0, 0, 35, 42)];
-}
-- (UIImage *)mergePin:(UIImage *)bottom top:(NSInteger)top
-{
-    return [self addImageToImage:bottom withImage2:[self get:top] andRect:CGRectMake(0, 0, 35, 42)];
-}
-- (UIImage *)mergePin:(UIImage *)bottom topImg:(UIImage *)top
-{
-    return [self addImageToImage:bottom withImage2:top andRect:CGRectMake(0, 0, 35, 42)];
-}
-- (UIImage *)mergeOwner:(UIImage *)bottom top:(NSInteger)top
-{
-    return [self addImageToImage:bottom withImage2:[self get:top] andRect:CGRectMake(3, 3, 15, 15)];
-}
-
-- (UIImage *)mergeYYY:(UIImage *)bottom top:(NSInteger)top
-{
-    return [self addImageToImage:bottom withImage2:[self get:top] andRect:CGRectMake(3, 3, 15, 15)];
-}
-- (UIImage *)mergeDisabled:(UIImage *)bottom top:(NSInteger)top
-{
-    return [self mergeYYY:bottom top:top];
-}
-- (UIImage *)mergeArchived:(UIImage *)bottom top:(NSInteger)top
-{
-    return [self mergeYYY:bottom top:top];
-}
-
-- (UIImage *)addImageToImage:(UIImage *)img1 withImage2:(UIImage *)img2 andRect:(CGRect)cropRect
-{
-    CGSize size = img1.size;
-    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
-
-    CGPoint pointImg1 = CGPointMake(0, 0);
-    [img1 drawAtPoint:pointImg1];
-
-    CGPoint pointImg2 = cropRect.origin;
-    [img2 drawAtPoint:pointImg2];
-
-    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return result;
-}
+// -----------------------------------------------------------
 
 - (UIImage *)get:(ImageNumber)imgnum
 {
@@ -386,7 +296,22 @@
     return name;
 }
 
-// -----------------------------------------------------------
+- (UIImage *)getPin:(dbWaypoint *)wp
+{
+    return [currentImageTheme _getPin:wp];
+}
+- (UIImage *)getType:(dbWaypoint *)wp
+{
+    return [currentImageTheme _getType:wp];
+}
+- (UIImage *)getPin:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF
+{
+    return [currentImageTheme _getPin:pin found:found disabled:disabled archived:archived highlight:highlight owner:owner markedFound:markedFound inProgress:inProgress markedDNF:markedDNF];
+}
+- (UIImage *)getType:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF planned:(BOOL)planned
+{
+    return [currentImageTheme _getType:type found:found disabled:disabled archived:archived highlight:highlight owner:owner markedFound:markedFound inProgress:inProgress markedDNF:markedDNF planned:planned];
+}
 
 - (NSString *)getCode:(dbObject *)o found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF planned:(BOOL)planned
 {
@@ -446,156 +371,6 @@
     else
         [s appendString:@"p"];
     return s;
-}
-
-// -----------------------------------------------------------
-
-- (UIImage *)getPin:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF
-{
-    NSString *s = [self getCode:pin found:found disabled:disabled archived:archived highlight:highlight owner:owner markedFound:markedFound inProgress:inProgress markedDNF:markedDNF planned:NO];
-    UIImage *img = [self.pinImages valueForKey:s];
-    if (img == nil) {
-        NSLog(@"Creating pin %@s", s);
-        img = [self getPinImage:pin found:found disabled:disabled archived:archived highlight:highlight owner:owner markedFound:markedFound inProgress:inProgress markedDNF:markedDNF];
-        [self.pinImages setObject:img forKey:s];
-    }
-
-    return img;
-}
-
-- (UIImage *)getPin:(dbWaypoint *)wp
-{
-    __block BOOL owner = NO;
-    [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (a._id == wp.account._id && a.accountname._id == wp.gs_owner._id) {
-            *stop = YES;
-            owner = YES;
-        }
-    }];
-
-    return [self getPin:wp.wpt_type.pin found:wp.logStatus disabled:(wp.gs_available == NO) archived:(wp.gs_archived == YES) highlight:wp.flag_highlight owner:owner markedFound:wp.flag_markedfound inProgress:wp.flag_inprogress markedDNF:wp.flag_dnf];
-}
-
-- (UIImage *)getPinImage:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF
-{
-    UIImage *img = [imageManager get:ImageMap_background];
-
-    switch (found) {
-        case LOGSTATUS_NOTLOGGED:
-            // Do not overlay anything
-            img = [self mergeStick:img top:ImageMap_pin];
-            break;
-        case LOGSTATUS_NOTFOUND:
-            img = [self mergeStick:img top:ImageMap_dnf];
-            // Overlay the blue cross
-            break;
-        case LOGSTATUS_FOUND:
-            img = [self mergeStick:img top:ImageMap_found];
-            // Overlay the yellow tick
-            break;
-    }
-
-    if (highlight == YES)
-        img = [self mergeHighlight:img top:ImageMap_pinOutlineHighlight];
-
-    img = [self mergePinhead:img topImg:pin.img];
-
-    if (owner == YES)
-        img = [self mergeOwner:img top:ImageMap_pinOwner];
-
-    if (inProgress == YES)
-        img = [self mergeOwner:img top:ImageMap_pinInProgress];
-
-    if (markedFound == YES) {
-        img = [self mergeFound:img top:ImageMap_pinMarkedFound];
-    } else {
-        switch (found) {
-            case LOGSTATUS_NOTLOGGED:
-                // Do not overlay anything
-                break;
-            case LOGSTATUS_NOTFOUND:
-                img = [self mergeFound:img top:ImageMap_pinCrossDNF];
-                // Overlay the blue cross
-                break;
-            case LOGSTATUS_FOUND:
-                img = [self mergeFound:img top:ImageMap_pinTickFound];
-                // Overlay the yellow tick
-                break;
-        }
-    }
-
-    if (markedDNF == YES)
-        img = [self mergeDNF:img top:ImageMap_pinCrossDNF];
-
-    if (disabled == YES)
-        img = [self mergeDisabled:img top:ImageMap_pinOutlineDisabled];
-
-    if (archived == YES)
-        img = [self mergeArchived:img top:ImageMap_pinOutlineArchived];
-
-    return img;
-}
-
-// -----------------------------------------------------------
-
-- (UIImage *)getType:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF planned:(BOOL)planned
-{
-    NSString *s = [self getCode:type found:found disabled:disabled archived:archived highlight:highlight owner:owner markedFound:markedFound inProgress:inProgress markedDNF:markedDNF planned:planned];
-    UIImage *img = [self.typeImages valueForKey:s];
-    if (img == nil) {
-        img = [self getTypeImage:type found:found disabled:disabled archived:archived highlight:highlight owner:owner markedFound:markedFound inProgress:inProgress markedDNF:markedDNF planned:planned];
-        [self.typeImages setObject:img forKey:s];
-    }
-
-    return img;
-}
-
-- (UIImage *)getTypeImage:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF planned:(BOOL)planned
-{
-    UIImage *img = [imageManager get:type.icon];
-
-    if (owner == YES)
-        img = [self mergeOwner:img top:ImageContainerFlag_owner];
-
-    if (inProgress == YES)
-        img = [self mergeArchived:img top:ImageContainerFlag_inProgress];
-
-    if (markedFound == YES) {
-        img = [self mergeFound:img top:ImageContainerFlag_markedFound];
-    } else {
-        switch (found) {
-            case LOGSTATUS_NOTLOGGED:
-                // Do not overlay anything
-                break;
-            case LOGSTATUS_NOTFOUND:
-                img = [self mergeFound:img top:ImageContainerFlag_crossDNF];
-                // Overlay the blue cross
-                break;
-            case LOGSTATUS_FOUND:
-                img = [self mergeFound:img top:ImageContainerFlag_tickFound];
-                // Overlay the yellow tick
-                break;
-        }
-    }
-
-    if (markedDNF == YES)
-        img = [self mergeDNF:img top:ImageContainerFlag_crossDNF];
-
-    if (disabled == YES)
-        img = [self mergeDisabled:img top:ImageContainerFlag_outlineDisabled];
-
-    if (archived == YES)
-        img = [self mergeArchived:img top:ImageContainerFlag_outlineArchived];
-
-    if (planned == YES)
-        img = [self mergeArchived:img top:ImageContainerFlag_planned];
-
-    return img;
-}
-
-- (UIImage *)getType:(dbWaypoint *)wp
-{
-    return [self getType:wp.wpt_type found:wp.logStatus disabled:(wp.gs_available == NO) archived:(wp.gs_archived == YES) highlight:wp.flag_highlight owner:[dbc accountIsOwner:wp] markedFound:wp.flag_markedfound inProgress:wp.flag_inprogress markedDNF:wp.flag_dnf planned:wp.flag_planned];
 }
 
 - (NSString *)getCode:(dbWaypoint *)wp

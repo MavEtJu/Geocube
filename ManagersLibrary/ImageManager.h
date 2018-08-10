@@ -28,11 +28,13 @@
 - (UIImage *)getPin:(dbWaypoint *)wp;
 - (UIImage *)getType:(dbWaypoint *)wp;
 
+- (NSString *)getCode:(dbObject *)o found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF planned:(BOOL)planned;
 - (UIImage *)getPin:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF;
 - (UIImage *)getType:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF planned:(BOOL)planned;
 
 - (void)reloadImages;
 - (void)addToLibrary:(NSString *)name index:(NSInteger)index;
+- (void)replaceInLibrary:(UIImage *)img name:(NSString *)name index:(NSInteger)index;
 
 //- (UIImage *)getSquareWithNumber:(NSInteger)num;
 

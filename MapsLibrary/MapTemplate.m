@@ -82,6 +82,7 @@ EMPTY_METHOD(mapViewDidLoad)
 - (UIImage *)waypointImage:(dbWaypoint *)wp
 {
     return [imageManager getPin:wp];
+//    return [imageManager getPin:wp];
 }
 
 - (NSInteger)calculateSpan
