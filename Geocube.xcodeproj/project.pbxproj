@@ -166,6 +166,119 @@
 		E8157B33211D6EAC00CCB63B /* gca-icon_logcoordsupdated.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157AA0211D6EAC00CCB63B /* gca-icon_logcoordsupdated.png */; };
 		E8157B34211D6EAC00CCB63B /* gca-icon_logwillattend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157AA1211D6EAC00CCB63B /* gca-icon_logwillattend@2x.png */; };
 		E8157B36211D6F2F00CCB63B /* gca-icons.json in Resources */ = {isa = PBXBuildFile; fileRef = E8157B35211D6F2F00CCB63B /* gca-icons.json */; };
+		E8157B39211D74DA00CCB63B /* geocube-images.json in Resources */ = {isa = PBXBuildFile; fileRef = E8157B38211D74D900CCB63B /* geocube-images.json */; };
+		E8157B96211D752B00CCB63B /* cache - trigpoint - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B3C211D751400CCB63B /* cache - trigpoint - 30x30@3x.png */; };
+		E8157B97211D752B00CCB63B /* cache - unknowntype - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B3D211D751500CCB63B /* cache - unknowntype - 30x30@3x.png */; };
+		E8157B98211D752B00CCB63B /* cache - whereigo - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B3E211D751500CCB63B /* cache - whereigo - 30x30.png */; };
+		E8157B99211D752B00CCB63B /* cache - earth - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B3F211D751500CCB63B /* cache - earth - 30x30@3x.png */; };
+		E8157B9A211D752B00CCB63B /* cache - night - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B40211D751500CCB63B /* cache - night - 30x30@2x.png */; };
+		E8157B9B211D752B00CCB63B /* cache - giga - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B41211D751600CCB63B /* cache - giga - 30x30@3x.png */; };
+		E8157B9C211D752B00CCB63B /* cache - mega - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B42211D751600CCB63B /* cache - mega - 30x30.png */; };
+		E8157B9D211D752B00CCB63B /* cache - traditional - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B43211D751600CCB63B /* cache - traditional - 30x30@3x.png */; };
+		E8157B9E211D752B00CCB63B /* cache - burke-wills - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B44211D751600CCB63B /* cache - burke-wills - 30x30.png */; };
+		E8157B9F211D752B00CCB63B /* cache - whereigo - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B45211D751600CCB63B /* cache - whereigo - 30x30@2x.png */; };
+		E8157BA0211D752B00CCB63B /* cache - reverse - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B46211D751600CCB63B /* cache - reverse - 30x30@3x.png */; };
+		E8157BA1211D752B00CCB63B /* cache - trigpoint - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B47211D751600CCB63B /* cache - trigpoint - 30x30@2x.png */; };
+		E8157BA2211D752B00CCB63B /* cache - waymark - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B48211D751700CCB63B /* cache - waymark - 30x30@3x.png */; };
+		E8157BA3211D752B00CCB63B /* cache - benchmark - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B49211D751700CCB63B /* cache - benchmark - 30x30@2x.png */; };
+		E8157BA4211D752B00CCB63B /* cache - gadget - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B4A211D751700CCB63B /* cache - gadget - 30x30.png */; };
+		E8157BA5211D752B00CCB63B /* cache - ephemeral - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B4B211D751700CCB63B /* cache - ephemeral - 30x30@3x.png */; };
+		E8157BA6211D752B00CCB63B /* cache - giga - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B4C211D751700CCB63B /* cache - giga - 30x30@2x.png */; };
+		E8157BA7211D752B00CCB63B /* cache - maze - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B4D211D751800CCB63B /* cache - maze - 30x30.png */; };
+		E8157BA8211D752B00CCB63B /* cache - ephemeral - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B4E211D751800CCB63B /* cache - ephemeral - 30x30@2x.png */; };
+		E8157BA9211D752B00CCB63B /* cache - mega - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B4F211D751800CCB63B /* cache - mega - 30x30@3x.png */; };
+		E8157BAA211D752B00CCB63B /* cache - mystery - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B50211D751800CCB63B /* cache - mystery - 30x30.png */; };
+		E8157BAB211D752B00CCB63B /* cache - gadget - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B51211D751900CCB63B /* cache - gadget - 30x30@2x.png */; };
+		E8157BAC211D752B00CCB63B /* cache - burke-wills - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B52211D751900CCB63B /* cache - burke-wills - 30x30@3x.png */; };
+		E8157BAD211D752B00CCB63B /* cache - groundspeak hq - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B53211D751900CCB63B /* cache - groundspeak hq - 30x30@3x.png */; };
+		E8157BAE211D752B00CCB63B /* cache - cito - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B54211D751900CCB63B /* cache - cito - 30x30@2x.png */; };
+		E8157BAF211D752B00CCB63B /* cache - moveable - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B55211D751A00CCB63B /* cache - moveable - 30x30@2x.png */; };
+		E8157BB0211D752B00CCB63B /* cache - trigpoint - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B56211D751A00CCB63B /* cache - trigpoint - 30x30.png */; };
+		E8157BB1211D752B00CCB63B /* cache - virtual - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B57211D751A00CCB63B /* cache - virtual - 30x30.png */; };
+		E8157BB2211D752B00CCB63B /* cache - reverse - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B58211D751A00CCB63B /* cache - reverse - 30x30@2x.png */; };
+		E8157BB3211D752B00CCB63B /* cache - burke-wills - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B59211D751B00CCB63B /* cache - burke-wills - 30x30@2x.png */; };
+		E8157BB4211D752B00CCB63B /* cache - event - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B5A211D751B00CCB63B /* cache - event - 30x30.png */; };
+		E8157BB5211D752B00CCB63B /* cache - mega - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B5B211D751B00CCB63B /* cache - mega - 30x30@2x.png */; };
+		E8157BB6211D752B00CCB63B /* cache - letterbox - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B5C211D751B00CCB63B /* cache - letterbox - 30x30@3x.png */; };
+		E8157BB7211D752B00CCB63B /* cache - unknowntype - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B5D211D751C00CCB63B /* cache - unknowntype - 30x30@2x.png */; };
+		E8157BB8211D752B00CCB63B /* cache - geocacher - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B5E211D751C00CCB63B /* cache - geocacher - 30x30@2x.png */; };
+		E8157BB9211D752B00CCB63B /* cache - cito - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B5F211D751C00CCB63B /* cache - cito - 30x30@3x.png */; };
+		E8157BBA211D752B00CCB63B /* cache - traditional - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B60211D751C00CCB63B /* cache - traditional - 30x30@2x.png */; };
+		E8157BBB211D752B00CCB63B /* cache - augmented reality - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B61211D751C00CCB63B /* cache - augmented reality - 30x30@3x.png */; };
+		E8157BBC211D752B00CCB63B /* cache - geocacher - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B62211D751D00CCB63B /* cache - geocacher - 30x30@3x.png */; };
+		E8157BBD211D752B00CCB63B /* cache - benchmark - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B63211D751D00CCB63B /* cache - benchmark - 30x30.png */; };
+		E8157BBE211D752B00CCB63B /* cache - reverse - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B64211D751D00CCB63B /* cache - reverse - 30x30.png */; };
+		E8157BBF211D752B00CCB63B /* cache - webcam - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B65211D751D00CCB63B /* cache - webcam - 30x30@3x.png */; };
+		E8157BC0211D752B00CCB63B /* cache - letterbox - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B66211D751E00CCB63B /* cache - letterbox - 30x30@2x.png */; };
+		E8157BC1211D752B00CCB63B /* cache - unknowntype - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B67211D751E00CCB63B /* cache - unknowntype - 30x30.png */; };
+		E8157BC2211D752B00CCB63B /* cache - cito - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B68211D751E00CCB63B /* cache - cito - 30x30.png */; };
+		E8157BC3211D752B00CCB63B /* cache - moveable - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B69211D751E00CCB63B /* cache - moveable - 30x30@3x.png */; };
+		E8157BC4211D752B00CCB63B /* cache - beacon - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B6A211D751F00CCB63B /* cache - beacon - 30x30@3x.png */; };
+		E8157BC5211D752B00CCB63B /* cache - maze - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B6B211D751F00CCB63B /* cache - maze - 30x30@2x.png */; };
+		E8157BC6211D752B00CCB63B /* cache - beacon - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B6C211D751F00CCB63B /* cache - beacon - 30x30@2x.png */; };
+		E8157BC7211D752B00CCB63B /* cache - history - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B6D211D751F00CCB63B /* cache - history - 30x30@3x.png */; };
+		E8157BC8211D752B00CCB63B /* cache - mystery - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B6E211D751F00CCB63B /* cache - mystery - 30x30@2x.png */; };
+		E8157BC9211D752B00CCB63B /* cache - webcam - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B6F211D752000CCB63B /* cache - webcam - 30x30.png */; };
+		E8157BCA211D752B00CCB63B /* cache - earth - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B70211D752000CCB63B /* cache - earth - 30x30.png */; };
+		E8157BCB211D752B00CCB63B /* cache - unknown - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B71211D752000CCB63B /* cache - unknown - 30x30@3x.png */; };
+		E8157BCC211D752B00CCB63B /* cache - virtual - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B72211D752000CCB63B /* cache - virtual - 30x30@2x.png */; };
+		E8157BCD211D752B00CCB63B /* cache - geocacher - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B73211D752100CCB63B /* cache - geocacher - 30x30.png */; };
+		E8157BCE211D752B00CCB63B /* cache - mystery - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B74211D752100CCB63B /* cache - mystery - 30x30@3x.png */; };
+		E8157BCF211D752B00CCB63B /* cache - night - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B75211D752100CCB63B /* cache - night - 30x30.png */; };
+		E8157BD0211D752B00CCB63B /* cache - waymark - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B76211D752100CCB63B /* cache - waymark - 30x30.png */; };
+		E8157BD1211D752B00CCB63B /* cache - groundspeak hq - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B77211D752100CCB63B /* cache - groundspeak hq - 30x30@2x.png */; };
+		E8157BD2211D752B00CCB63B /* cache - augmented reality - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B78211D752200CCB63B /* cache - augmented reality - 30x30.png */; };
+		E8157BD3211D752B00CCB63B /* cache - augmented reality - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B79211D752200CCB63B /* cache - augmented reality - 30x30@2x.png */; };
+		E8157BD4211D752B00CCB63B /* cache - giga - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B7A211D752200CCB63B /* cache - giga - 30x30.png */; };
+		E8157BD5211D752B00CCB63B /* cache - letterbox - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B7B211D752200CCB63B /* cache - letterbox - 30x30.png */; };
+		E8157BD6211D752B00CCB63B /* cache - multi - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B7C211D752300CCB63B /* cache - multi - 30x30@3x.png */; };
+		E8157BD7211D752B00CCB63B /* cache - night - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B7D211D752300CCB63B /* cache - night - 30x30@3x.png */; };
+		E8157BD8211D752B00CCB63B /* cache - event - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B7E211D752300CCB63B /* cache - event - 30x30@3x.png */; };
+		E8157BD9211D752B00CCB63B /* cache - podcast - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B7F211D752300CCB63B /* cache - podcast - 30x30@2x.png */; };
+		E8157BDA211D752B00CCB63B /* cache - unknown - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B80211D752400CCB63B /* cache - unknown - 30x30@2x.png */; };
+		E8157BDB211D752B00CCB63B /* cache - virtual - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B81211D752400CCB63B /* cache - virtual - 30x30@3x.png */; };
+		E8157BDC211D752B00CCB63B /* cache - traditional - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B82211D752400CCB63B /* cache - traditional - 30x30.png */; };
+		E8157BDD211D752B00CCB63B /* cache - event - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B83211D752400CCB63B /* cache - event - 30x30@2x.png */; };
+		E8157BDE211D752B00CCB63B /* cache - multi - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B84211D752400CCB63B /* cache - multi - 30x30@2x.png */; };
+		E8157BDF211D752B00CCB63B /* cache - history - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B85211D752500CCB63B /* cache - history - 30x30@2x.png */; };
+		E8157BE0211D752B00CCB63B /* cache - multi - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B86211D752500CCB63B /* cache - multi - 30x30.png */; };
+		E8157BE1211D752B00CCB63B /* cache - benchmark - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B87211D752500CCB63B /* cache - benchmark - 30x30@3x.png */; };
+		E8157BE2211D752B00CCB63B /* cache - ephemeral - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B88211D752500CCB63B /* cache - ephemeral - 30x30.png */; };
+		E8157BE3211D752B00CCB63B /* cache - history - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B89211D752500CCB63B /* cache - history - 30x30.png */; };
+		E8157BE4211D752B00CCB63B /* cache - waymark - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B8A211D752500CCB63B /* cache - waymark - 30x30@2x.png */; };
+		E8157BE5211D752B00CCB63B /* cache - whereigo - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B8B211D752500CCB63B /* cache - whereigo - 30x30@3x.png */; };
+		E8157BE6211D752B00CCB63B /* cache - unknown - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B8C211D752500CCB63B /* cache - unknown - 30x30.png */; };
+		E8157BE7211D752B00CCB63B /* cache - maze - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B8D211D752500CCB63B /* cache - maze - 30x30@3x.png */; };
+		E8157BE8211D752B00CCB63B /* cache - webcam - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B8E211D752500CCB63B /* cache - webcam - 30x30@2x.png */; };
+		E8157BE9211D752B00CCB63B /* cache - earth - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B8F211D752600CCB63B /* cache - earth - 30x30@2x.png */; };
+		E8157BEA211D752B00CCB63B /* cache - gadget - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B90211D752600CCB63B /* cache - gadget - 30x30@3x.png */; };
+		E8157BEB211D752B00CCB63B /* cache - groundspeak hq - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B91211D752600CCB63B /* cache - groundspeak hq - 30x30.png */; };
+		E8157BEC211D752B00CCB63B /* cache - moveable - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B92211D752600CCB63B /* cache - moveable - 30x30.png */; };
+		E8157BED211D752B00CCB63B /* cache - beacon - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B93211D752A00CCB63B /* cache - beacon - 30x30.png */; };
+		E8157BEE211D752B00CCB63B /* cache - podcast - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B94211D752A00CCB63B /* cache - podcast - 30x30.png */; };
+		E8157BEF211D752B00CCB63B /* cache - podcast - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157B95211D752B00CCB63B /* cache - podcast - 30x30@3x.png */; };
+		E8157C06211D754000CCB63B /* log - unarchived - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157BF0211D753C00CCB63B /* log - unarchived - 30x30.png */; };
+		E8157C07211D754000CCB63B /* log - photographed - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157BF1211D753C00CCB63B /* log - photographed - 30x30@2x.png */; };
+		E8157C08211D754000CCB63B /* log - coordinates - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157BF2211D753C00CCB63B /* log - coordinates - 30x30.png */; };
+		E8157C09211D754000CCB63B /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157BF3211D753D00CCB63B /* log - empty - 30x30.png */; };
+		E8157C0A211D754000CCB63B /* log - ownermaintenance - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157BF4211D753D00CCB63B /* log - ownermaintenance - 30x30.png */; };
+		E8157C0B211D754000CCB63B /* log - published - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157BF5211D753D00CCB63B /* log - published - 30x30.png */; };
+		E8157C0C211D754000CCB63B /* log - enabled - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157BF6211D753D00CCB63B /* log - enabled - 30x30.png */; };
+		E8157C0D211D754000CCB63B /* log - photographed - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157BF7211D753D00CCB63B /* log - photographed - 30x30.png */; };
+		E8157C0E211D754000CCB63B /* log - unknown - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157BF8211D753D00CCB63B /* log - unknown - 30x30.png */; };
+		E8157C0F211D754000CCB63B /* log - willattend - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157BF9211D753E00CCB63B /* log - willattend - 30x30.png */; };
+		E8157C10211D754000CCB63B /* log - moved - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157BFA211D753E00CCB63B /* log - moved - 30x30.png */; };
+		E8157C11211D754000CCB63B /* log - announcement - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157BFB211D753E00CCB63B /* log - announcement - 30x30.png */; };
+		E8157C12211D754000CCB63B /* log - disabled - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157BFC211D753F00CCB63B /* log - disabled - 30x30.png */; };
+		E8157C13211D754000CCB63B /* log - didnotfind - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157BFD211D753F00CCB63B /* log - didnotfind - 30x30.png */; };
+		E8157C14211D754000CCB63B /* log - note - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157BFE211D753F00CCB63B /* log - note - 30x30.png */; };
+		E8157C15211D754000CCB63B /* log - reviewernote - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157BFF211D753F00CCB63B /* log - reviewernote - 30x30.png */; };
+		E8157C16211D754000CCB63B /* log - needsarchiving - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157C00211D753F00CCB63B /* log - needsarchiving - 30x30.png */; };
+		E8157C17211D754000CCB63B /* log - archived - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157C01211D753F00CCB63B /* log - archived - 30x30.png */; };
+		E8157C18211D754000CCB63B /* log - needsmaintenance - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157C02211D754000CCB63B /* log - needsmaintenance - 30x30.png */; };
+		E8157C19211D754000CCB63B /* log - attended - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157C03211D754000CCB63B /* log - attended - 30x30.png */; };
+		E8157C1A211D754000CCB63B /* log - found - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157C04211D754000CCB63B /* log - found - 30x30.png */; };
+		E8157C1B211D754000CCB63B /* log - photographed - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157C05211D754000CCB63B /* log - photographed - 30x30@3x.png */; };
 		E815B7831F67FCB2003A6092 /* FileKMLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E815B7821F67FCB2003A6092 /* FileKMLViewController.m */; };
 		E82286191F8A285C00631380 /* Coordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = E82286091F8A285C00631380 /* Coordinates.m */; };
 		E822861C1F8A285C00631380 /* LocalMenuItems.m in Sources */ = {isa = PBXBuildFile; fileRef = E82286101F8A285C00631380 /* LocalMenuItems.m */; };
@@ -531,7 +644,6 @@
 		E82345251EECE14A00D2CDFD /* HelpIntroduction.m in Sources */ = {isa = PBXBuildFile; fileRef = E82345191EECE14A00D2CDFD /* HelpIntroduction.m */; };
 		E82345261EECE14A00D2CDFD /* NoticesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E823451B1EECE14A00D2CDFD /* NoticesViewController.m */; };
 		E82345271EECE14A00D2CDFD /* NoticeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E823451D1EECE14A00D2CDFD /* NoticeTableViewCell.m */; };
-		E8257F281EE41B8A0089C106 /* log - disabled - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8257F271EE41B8A0089C106 /* log - disabled - 30x30.png */; };
 		E82E65B81DA0794600CFBDED /* waypoint - finish - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65B01DA0794600CFBDED /* waypoint - finish - 30x30.png */; };
 		E82E65B91DA0794600CFBDED /* waypoint - flag - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65B11DA0794600CFBDED /* waypoint - flag - 30x30.png */; };
 		E82E65BA1DA0794600CFBDED /* waypoint - manually entered - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65B21DA0794600CFBDED /* waypoint - manually entered - 30x30.png */; };
@@ -557,23 +669,6 @@
 		E82E65E21DA079AE00CFBDED /* map - own overlay - 18x18.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65D41DA079AE00CFBDED /* map - own overlay - 18x18.png */; };
 		E82E65E31DA079AE00CFBDED /* map - pin stick - 35x42.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65D51DA079AE00CFBDED /* map - pin stick - 35x42.png */; };
 		E82E65E41DA079AE00CFBDED /* map - tick found - 9x9.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65D61DA079AE00CFBDED /* map - tick found - 9x9.png */; };
-		E82E65F81DA079E500CFBDED /* log - announcement - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65E61DA079E500CFBDED /* log - announcement - 30x30.png */; };
-		E82E65F91DA079E500CFBDED /* log - archived - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65E71DA079E500CFBDED /* log - archived - 30x30.png */; };
-		E82E65FA1DA079E500CFBDED /* log - attended - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65E81DA079E500CFBDED /* log - attended - 30x30.png */; };
-		E82E65FB1DA079E500CFBDED /* log - coordinates - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65E91DA079E500CFBDED /* log - coordinates - 30x30.png */; };
-		E82E65FC1DA079E500CFBDED /* log - didnotfind - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65EA1DA079E500CFBDED /* log - didnotfind - 30x30.png */; };
-		E82E65FE1DA079E500CFBDED /* log - enabled - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65EC1DA079E500CFBDED /* log - enabled - 30x30.png */; };
-		E82E65FF1DA079E500CFBDED /* log - found - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65ED1DA079E500CFBDED /* log - found - 30x30.png */; };
-		E82E66001DA079E500CFBDED /* log - moved - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65EE1DA079E500CFBDED /* log - moved - 30x30.png */; };
-		E82E66011DA079E500CFBDED /* log - needsarchiving - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65EF1DA079E500CFBDED /* log - needsarchiving - 30x30.png */; };
-		E82E66021DA079E500CFBDED /* log - needsmaintenance - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65F01DA079E500CFBDED /* log - needsmaintenance - 30x30.png */; };
-		E82E66031DA079E500CFBDED /* log - note - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65F11DA079E500CFBDED /* log - note - 30x30.png */; };
-		E82E66041DA079E500CFBDED /* log - ownermaintenance - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65F21DA079E500CFBDED /* log - ownermaintenance - 30x30.png */; };
-		E82E66051DA079E500CFBDED /* log - published - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65F31DA079E500CFBDED /* log - published - 30x30.png */; };
-		E82E66061DA079E500CFBDED /* log - reviewernote - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65F41DA079E500CFBDED /* log - reviewernote - 30x30.png */; };
-		E82E66071DA079E500CFBDED /* log - unarchived - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65F51DA079E500CFBDED /* log - unarchived - 30x30.png */; };
-		E82E66081DA079E500CFBDED /* log - unknown - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65F61DA079E500CFBDED /* log - unknown - 30x30.png */; };
-		E82E66091DA079E500CFBDED /* log - willattend - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E65F71DA079E500CFBDED /* log - willattend - 30x30.png */; };
 		E82E66341DA07A8700CFBDED /* icons - dead - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66271DA07A8700CFBDED /* icons - dead - 30x30.png */; };
 		E82E66351DA07A8700CFBDED /* icons - dead - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66281DA07A8700CFBDED /* icons - dead - 30x30@2x.png */; };
 		E82E66361DA07A8700CFBDED /* icons - dead - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66291DA07A8700CFBDED /* icons - dead - 30x30@3x.png */; };
@@ -606,57 +701,6 @@
 		E82E66801DA07C6F00CFBDED /* compass - white arrow on black.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66781DA07C6F00CFBDED /* compass - white arrow on black.png */; };
 		E82E66811DA07C6F00CFBDED /* compass - white arrow on black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66791DA07C6F00CFBDED /* compass - white arrow on black@2x.png */; };
 		E82E66821DA07C6F00CFBDED /* compass - white arrow on black@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E667A1DA07C6F00CFBDED /* compass - white arrow on black@3x.png */; };
-		E82E66B61DA07CBE00CFBDED /* cache - beacon - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66831DA07CBE00CFBDED /* cache - beacon - 30x30.png */; };
-		E82E66B71DA07CBE00CFBDED /* cache - benchmark - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66841DA07CBE00CFBDED /* cache - benchmark - 30x30.png */; };
-		E82E66B81DA07CBE00CFBDED /* cache - burke-wills - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66851DA07CBE00CFBDED /* cache - burke-wills - 30x30.png */; };
-		E82E66B91DA07CBE00CFBDED /* cache - cito - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66861DA07CBE00CFBDED /* cache - cito - 30x30.png */; };
-		E82E66BA1DA07CBE00CFBDED /* cache - earth - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66871DA07CBE00CFBDED /* cache - earth - 30x30.png */; };
-		E82E66BB1DA07CBE00CFBDED /* cache - event - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66881DA07CBE00CFBDED /* cache - event - 30x30.png */; };
-		E82E66BC1DA07CBE00CFBDED /* cache - giga - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66891DA07CBE00CFBDED /* cache - giga - 30x30.png */; };
-		E82E66BD1DA07CBE00CFBDED /* cache - groundspeak hq - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E668A1DA07CBE00CFBDED /* cache - groundspeak hq - 30x30.png */; };
-		E82E66BE1DA07CBE00CFBDED /* cache - history - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E668B1DA07CBE00CFBDED /* cache - history - 30x30.png */; };
-		E82E66BF1DA07CBE00CFBDED /* cache - history - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E668C1DA07CBE00CFBDED /* cache - history - 30x30@2x.png */; };
-		E82E66C01DA07CBE00CFBDED /* cache - history - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E668D1DA07CBE00CFBDED /* cache - history - 30x30@3x.png */; };
-		E82E66C11DA07CBE00CFBDED /* cache - letterbox - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E668E1DA07CBE00CFBDED /* cache - letterbox - 30x30.png */; };
-		E82E66C21DA07CBE00CFBDED /* cache - letterbox - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E668F1DA07CBE00CFBDED /* cache - letterbox - 30x30@2x.png */; };
-		E82E66C31DA07CBE00CFBDED /* cache - letterbox - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66901DA07CBE00CFBDED /* cache - letterbox - 30x30@3x.png */; };
-		E82E66C41DA07CBE00CFBDED /* cache - maze - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66911DA07CBE00CFBDED /* cache - maze - 30x30.png */; };
-		E82E66C51DA07CBE00CFBDED /* cache - mega - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66921DA07CBE00CFBDED /* cache - mega - 30x30.png */; };
-		E82E66C61DA07CBE00CFBDED /* cache - moveable - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66931DA07CBE00CFBDED /* cache - moveable - 30x30.png */; };
-		E82E66C71DA07CBE00CFBDED /* cache - moveable - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66941DA07CBE00CFBDED /* cache - moveable - 30x30@2x.png */; };
-		E82E66C81DA07CBE00CFBDED /* cache - moveable - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66951DA07CBE00CFBDED /* cache - moveable - 30x30@3x.png */; };
-		E82E66C91DA07CBE00CFBDED /* cache - multi - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66961DA07CBE00CFBDED /* cache - multi - 30x30.png */; };
-		E82E66CA1DA07CBE00CFBDED /* cache - multi - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66971DA07CBE00CFBDED /* cache - multi - 30x30@2x.png */; };
-		E82E66CB1DA07CBE00CFBDED /* cache - multi - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66981DA07CBE00CFBDED /* cache - multi - 30x30@3x.png */; };
-		E82E66CC1DA07CBE00CFBDED /* cache - mystery - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66991DA07CBE00CFBDED /* cache - mystery - 30x30.png */; };
-		E82E66CD1DA07CBE00CFBDED /* cache - mystery - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E669A1DA07CBE00CFBDED /* cache - mystery - 30x30@2x.png */; };
-		E82E66CE1DA07CBE00CFBDED /* cache - mystery - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E669B1DA07CBE00CFBDED /* cache - mystery - 30x30@3x.png */; };
-		E82E66CF1DA07CBE00CFBDED /* cache - night - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E669C1DA07CBE00CFBDED /* cache - night - 30x30.png */; };
-		E82E66D01DA07CBE00CFBDED /* cache - night - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E669D1DA07CBE00CFBDED /* cache - night - 30x30@2x.png */; };
-		E82E66D11DA07CBE00CFBDED /* cache - night - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E669E1DA07CBE00CFBDED /* cache - night - 30x30@3x.png */; };
-		E82E66D21DA07CBE00CFBDED /* cache - podcast - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E669F1DA07CBE00CFBDED /* cache - podcast - 30x30.png */; };
-		E82E66D31DA07CBE00CFBDED /* cache - podcast - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66A01DA07CBE00CFBDED /* cache - podcast - 30x30@2x.png */; };
-		E82E66D41DA07CBE00CFBDED /* cache - podcast - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66A11DA07CBE00CFBDED /* cache - podcast - 30x30@3x.png */; };
-		E82E66D51DA07CBE00CFBDED /* cache - traditional - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66A21DA07CBE00CFBDED /* cache - traditional - 30x30.png */; };
-		E82E66D61DA07CBE00CFBDED /* cache - traditional - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66A31DA07CBE00CFBDED /* cache - traditional - 30x30@2x.png */; };
-		E82E66D71DA07CBE00CFBDED /* cache - traditional - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66A41DA07CBE00CFBDED /* cache - traditional - 30x30@3x.png */; };
-		E82E66D81DA07CBE00CFBDED /* cache - trigpoint - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66A51DA07CBE00CFBDED /* cache - trigpoint - 30x30.png */; };
-		E82E66D91DA07CBE00CFBDED /* cache - trigpoint - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66A61DA07CBE00CFBDED /* cache - trigpoint - 30x30@2x.png */; };
-		E82E66DA1DA07CBE00CFBDED /* cache - trigpoint - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66A71DA07CBE00CFBDED /* cache - trigpoint - 30x30@3x.png */; };
-		E82E66DB1DA07CBE00CFBDED /* cache - unknown - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66A81DA07CBE00CFBDED /* cache - unknown - 30x30.png */; };
-		E82E66DC1DA07CBE00CFBDED /* cache - unknown - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66A91DA07CBE00CFBDED /* cache - unknown - 30x30@2x.png */; };
-		E82E66DD1DA07CBE00CFBDED /* cache - unknown - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66AA1DA07CBE00CFBDED /* cache - unknown - 30x30@3x.png */; };
-		E82E66DE1DA07CBE00CFBDED /* cache - unknowntype - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66AB1DA07CBE00CFBDED /* cache - unknowntype - 30x30.png */; };
-		E82E66DF1DA07CBE00CFBDED /* cache - virtual - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66AC1DA07CBE00CFBDED /* cache - virtual - 30x30.png */; };
-		E82E66E01DA07CBE00CFBDED /* cache - virtual - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66AD1DA07CBE00CFBDED /* cache - virtual - 30x30@2x.png */; };
-		E82E66E11DA07CBE00CFBDED /* cache - virtual - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66AE1DA07CBE00CFBDED /* cache - virtual - 30x30@3x.png */; };
-		E82E66E21DA07CBE00CFBDED /* cache - waymark - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66AF1DA07CBE00CFBDED /* cache - waymark - 30x30.png */; };
-		E82E66E31DA07CBE00CFBDED /* cache - waymark - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66B01DA07CBE00CFBDED /* cache - waymark - 30x30@2x.png */; };
-		E82E66E41DA07CBE00CFBDED /* cache - waymark - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66B11DA07CBE00CFBDED /* cache - waymark - 30x30@3x.png */; };
-		E82E66E51DA07CBE00CFBDED /* cache - webcam - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66B21DA07CBE00CFBDED /* cache - webcam - 30x30.png */; };
-		E82E66E61DA07CBE00CFBDED /* cache - whereigo - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66B31DA07CBE00CFBDED /* cache - whereigo - 30x30.png */; };
-		E82E66E71DA07CBE00CFBDED /* cache - whereigo - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66B41DA07CBE00CFBDED /* cache - whereigo - 30x30@2x.png */; };
-		E82E66E81DA07CBE00CFBDED /* cache - whereigo - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66B51DA07CBE00CFBDED /* cache - whereigo - 30x30@3x.png */; };
 		E82E672C1DA07D0200CFBDED /* attributes - 01.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66E91DA07D0200CFBDED /* attributes - 01.png */; };
 		E82E672D1DA07D0200CFBDED /* attributes - 02.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66EA1DA07D0200CFBDED /* attributes - 02.png */; };
 		E82E672E1DA07D0200CFBDED /* attributes - 03.png in Resources */ = {isa = PBXBuildFile; fileRef = E82E66EB1DA07D0200CFBDED /* attributes - 03.png */; };
@@ -783,9 +827,6 @@
 		E85DC6941F95D01E007556D5 /* menu icon - see target - 40x40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E85DC6861F95D01E007556D5 /* menu icon - see target - 40x40@3x.png */; };
 		E85DC6951F95D01E007556D5 /* menu icon - show both - 40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E85DC6871F95D01E007556D5 /* menu icon - show both - 40x40@2x.png */; };
 		E85DC6961F95D01E007556D5 /* menu icon - show both - 40x40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E85DC6881F95D01E007556D5 /* menu icon - show both - 40x40@3x.png */; };
-		E8607F171F8ADA91004E273C /* cache - geocacher - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8607F141F8ADA91004E273C /* cache - geocacher - 30x30.png */; };
-		E8607F181F8ADA91004E273C /* cache - geocacher - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8607F151F8ADA91004E273C /* cache - geocacher - 30x30@2x.png */; };
-		E8607F191F8ADA91004E273C /* cache - geocacher - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8607F161F8ADA91004E273C /* cache - geocacher - 30x30@3x.png */; };
 		E860CA051F81F84700C66AD8 /* FilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E860CA041F81F84700C66AD8 /* FilterButton.m */; };
 		E864BBA22064EAE60053B62D /* KeyboardCoordinateDecimalDegreesCardinal.xib in Resources */ = {isa = PBXBuildFile; fileRef = E864BB9F2064EAE50053B62D /* KeyboardCoordinateDecimalDegreesCardinal.xib */; };
 		E864BBA32064EAE60053B62D /* KeyboardCoordinateDecimalDegreesCardinal.m in Sources */ = {isa = PBXBuildFile; fileRef = E864BBA02064EAE50053B62D /* KeyboardCoordinateDecimalDegreesCardinal.m */; };
@@ -806,10 +847,6 @@
 		E86D42761EF5484E00E4509F /* LocationlessTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86D42741EF5484E00E4509F /* LocationlessTableViewCell~ipad.xib */; };
 		E86D427D1EF68CC800E4509F /* container flag - planned - 24x21.png in Resources */ = {isa = PBXBuildFile; fileRef = E86D427A1EF68CC800E4509F /* container flag - planned - 24x21.png */; };
 		E8740FEC1B509575002527DA /* LogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8740FEB1B509575002527DA /* LogTableViewCell.m */; };
-		E8757BB820A072EE00E498FD /* cache - ephemeral - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8757BB520A072ED00E498FD /* cache - ephemeral - 30x30@2x.png */; };
-		E8757BB920A072EE00E498FD /* cache - ephemeral - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8757BB620A072ED00E498FD /* cache - ephemeral - 30x30@3x.png */; };
-		E8757BBA20A072EE00E498FD /* cache - ephemeral - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8757BB720A072EE00E498FD /* cache - ephemeral - 30x30.png */; };
-		E876EC831F7BCAA0002A368E /* log - photographed - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E876EC801F7BCAA0002A368E /* log - photographed - 30x30.png */; };
 		E876ECAD1F7E0391002A368E /* launchscreen - background.png in Resources */ = {isa = PBXBuildFile; fileRef = E876ECAB1F7E0391002A368E /* launchscreen - background.png */; };
 		E876ECAE1F7E0391002A368E /* launchscreen - logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E876ECAC1F7E0391002A368E /* launchscreen - logo.png */; };
 		E87ED16E1F843FBD00DE8E9B /* FilterTerrainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87ED16D1F843FBD00DE8E9B /* FilterTerrainTableViewCell.xib */; };
@@ -828,13 +865,8 @@
 		E8845CAE1EF409BF00A47F5D /* WaypointWaypointsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8845CAC1EF409BF00A47F5D /* WaypointWaypointsTableViewCell.xib */; };
 		E8845CAF1EF409BF00A47F5D /* WaypointWaypointsTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8845CAD1EF409BF00A47F5D /* WaypointWaypointsTableViewCell~ipad.xib */; };
 		E8845CB21EF493B200A47F5D /* FilterAccountsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8845CB11EF493B200A47F5D /* FilterAccountsTableViewCell.m */; };
-		E88DB00A1F334E4300FEF795 /* cache - gadget - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E88DB0071F334E4300FEF795 /* cache - gadget - 30x30.png */; };
 		E891DB7E2115C291009A4D52 /* MapGoogleEsri.m in Sources */ = {isa = PBXBuildFile; fileRef = E891DB7D2115C291009A4D52 /* MapGoogleEsri.m */; };
 		E891DB812115C2B8009A4D52 /* MapGoogleThunderforest.m in Sources */ = {isa = PBXBuildFile; fileRef = E891DB802115C2B8009A4D52 /* MapGoogleThunderforest.m */; };
-		E891DB8B211716A9009A4D52 /* cache - augmented reality - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E891DB88211716A9009A4D52 /* cache - augmented reality - 30x30@2x.png */; };
-		E891DB8C211716A9009A4D52 /* cache - augmented reality - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E891DB89211716A9009A4D52 /* cache - augmented reality - 30x30.png */; };
-		E891DB8D211716A9009A4D52 /* cache - augmented reality - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E891DB8A211716A9009A4D52 /* cache - augmented reality - 30x30@3x.png */; };
-		E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */; };
 		E897702F1BA39110000573FB /* Import Complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = E897702E1BA3910F000573FB /* Import Complete.wav */; };
 		E89D556D2074726C004D9E3A /* map - centeredcoords - 22x22@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E89D556C2074726B004D9E3A /* map - centeredcoords - 22x22@2x.png */; };
 		E89D556F2074F59C004D9E3A /* map - centeredcoords - 22x22@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E89D556E2074F59C004D9E3A /* map - centeredcoords - 22x22@3x.png */; };
@@ -855,12 +887,8 @@
 		E8B29D1E2115701100F85543 /* MapBrandThunderforest.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B29D172115701000F85543 /* MapBrandThunderforest.m */; };
 		E8B29D1F2115701100F85543 /* MapBrandEsri.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B29D182115701000F85543 /* MapBrandEsri.m */; };
 		E8B6D8DA1F9AE81B00C376A2 /* GCMGLObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B6D8D91F9AE81B00C376A2 /* GCMGLObjects.m */; };
-		E8B772FC1F9462250060B415 /* cache - gadget - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B772FA1F9462250060B415 /* cache - gadget - 30x30@2x.png */; };
-		E8B772FD1F9462250060B415 /* cache - gadget - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B772FB1F9462250060B415 /* cache - gadget - 30x30@3x.png */; };
 		E8B773001F9462410060B415 /* container flag - planned - 24x21@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B772FE1F9462410060B415 /* container flag - planned - 24x21@2x.png */; };
 		E8B773011F9462410060B415 /* container flag - planned - 24x21@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B772FF1F9462410060B415 /* container flag - planned - 24x21@3x.png */; };
-		E8B773041F9462600060B415 /* log - photographed - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B773021F9462600060B415 /* log - photographed - 30x30@2x.png */; };
-		E8B773051F9462600060B415 /* log - photographed - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B773031F9462600060B415 /* log - photographed - 30x30@3x.png */; };
 		E8B7732A1F9479AD0060B415 /* menu icon - close - 15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B773061F9479AD0060B415 /* menu icon - close - 15x15.png */; };
 		E8B7732B1F9479AD0060B415 /* menu icon - close - 15x15@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B773071F9479AD0060B415 /* menu icon - close - 15x15@2x.png */; };
 		E8B7732C1F9479AD0060B415 /* menu icon - close - 15x15@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8B773081F9479AD0060B415 /* menu icon - close - 15x15@3x.png */; };
@@ -939,9 +967,6 @@
 		E8EC50331F836E68004A2338 /* FilterDifficultyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8EC50321F836E68004A2338 /* FilterDifficultyTableViewCell.xib */; };
 		E8F0007820AEF7C4003B5D47 /* OwnTracksManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F0007520AEF7C4003B5D47 /* OwnTracksManager.m */; };
 		E8F0007B20AEF95C003B5D47 /* dbOwnTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F0007A20AEF95C003B5D47 /* dbOwnTrack.m */; };
-		E8F403E81DAF5B2600318CC6 /* cache - reverse - 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */; };
-		E8F403EB1DAFA23600318CC6 /* cache - reverse - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */; };
-		E8F403EC1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */; };
 		E8F570591B3F7255003F020C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570581B3F7255003F020C /* main.m */; };
 		E8F570621B3F7255003F020C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8F570601B3F7255003F020C /* Main.storyboard */; };
 		E8F570641B3F7255003F020C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8F570631B3F7255003F020C /* Images.xcassets */; };
@@ -1015,30 +1040,6 @@
 		E8FEDEB51DA88474007C756B /* waypoint - multi - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEB31DA88474007C756B /* waypoint - multi - 30x30@3x.png */; };
 		E8FEDEB81DA887A7007C756B /* image - nil - 1x1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEB61DA887A7007C756B /* image - nil - 1x1@2x.png */; };
 		E8FEDEB91DA887A7007C756B /* image - nil - 1x1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEB71DA887A7007C756B /* image - nil - 1x1@3x.png */; };
-		E8FEDED21DA8EEE9007C756B /* cache - beacon - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEBA1DA8EEE9007C756B /* cache - beacon - 30x30@2x.png */; };
-		E8FEDED31DA8EEE9007C756B /* cache - beacon - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEBB1DA8EEE9007C756B /* cache - beacon - 30x30@3x.png */; };
-		E8FEDED41DA8EEE9007C756B /* cache - benchmark - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEBC1DA8EEE9007C756B /* cache - benchmark - 30x30@2x.png */; };
-		E8FEDED51DA8EEE9007C756B /* cache - benchmark - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEBD1DA8EEE9007C756B /* cache - benchmark - 30x30@3x.png */; };
-		E8FEDED61DA8EEE9007C756B /* cache - burke-wills - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEBE1DA8EEE9007C756B /* cache - burke-wills - 30x30@2x.png */; };
-		E8FEDED71DA8EEE9007C756B /* cache - burke-wills - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEBF1DA8EEE9007C756B /* cache - burke-wills - 30x30@3x.png */; };
-		E8FEDED81DA8EEE9007C756B /* cache - cito - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEC01DA8EEE9007C756B /* cache - cito - 30x30@2x.png */; };
-		E8FEDED91DA8EEE9007C756B /* cache - cito - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEC11DA8EEE9007C756B /* cache - cito - 30x30@3x.png */; };
-		E8FEDEDA1DA8EEE9007C756B /* cache - earth - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEC21DA8EEE9007C756B /* cache - earth - 30x30@2x.png */; };
-		E8FEDEDB1DA8EEE9007C756B /* cache - earth - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEC31DA8EEE9007C756B /* cache - earth - 30x30@3x.png */; };
-		E8FEDEDC1DA8EEE9007C756B /* cache - event - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEC41DA8EEE9007C756B /* cache - event - 30x30@2x.png */; };
-		E8FEDEDD1DA8EEE9007C756B /* cache - event - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEC51DA8EEE9007C756B /* cache - event - 30x30@3x.png */; };
-		E8FEDEDE1DA8EEE9007C756B /* cache - giga - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEC61DA8EEE9007C756B /* cache - giga - 30x30@2x.png */; };
-		E8FEDEDF1DA8EEE9007C756B /* cache - giga - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEC71DA8EEE9007C756B /* cache - giga - 30x30@3x.png */; };
-		E8FEDEE01DA8EEE9007C756B /* cache - groundspeak hq - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEC81DA8EEE9007C756B /* cache - groundspeak hq - 30x30@2x.png */; };
-		E8FEDEE11DA8EEE9007C756B /* cache - groundspeak hq - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDEC91DA8EEE9007C756B /* cache - groundspeak hq - 30x30@3x.png */; };
-		E8FEDEE21DA8EEE9007C756B /* cache - maze - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDECA1DA8EEE9007C756B /* cache - maze - 30x30@2x.png */; };
-		E8FEDEE31DA8EEE9007C756B /* cache - maze - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDECB1DA8EEE9007C756B /* cache - maze - 30x30@3x.png */; };
-		E8FEDEE41DA8EEE9007C756B /* cache - mega - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDECC1DA8EEE9007C756B /* cache - mega - 30x30@2x.png */; };
-		E8FEDEE51DA8EEE9007C756B /* cache - mega - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDECD1DA8EEE9007C756B /* cache - mega - 30x30@3x.png */; };
-		E8FEDEE61DA8EEE9007C756B /* cache - unknowntype - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDECE1DA8EEE9007C756B /* cache - unknowntype - 30x30@2x.png */; };
-		E8FEDEE71DA8EEE9007C756B /* cache - unknowntype - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDECF1DA8EEE9007C756B /* cache - unknowntype - 30x30@3x.png */; };
-		E8FEDEE81DA8EEE9007C756B /* cache - webcam - 30x30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDED01DA8EEE9007C756B /* cache - webcam - 30x30@2x.png */; };
-		E8FEDEE91DA8EEE9007C756B /* cache - webcam - 30x30@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FEDED11DA8EEE9007C756B /* cache - webcam - 30x30@3x.png */; };
 		ED9C520343AE9414E4500616 /* libPods-Geocube.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88880BCD488967D0BA49FBE0 /* libPods-Geocube.a */; };
 /* End PBXBuildFile section */
 
@@ -1210,6 +1211,119 @@
 		E8157AA0211D6EAC00CCB63B /* gca-icon_logcoordsupdated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logcoordsupdated.png"; path = "images/gca-icons/gca-icon_logcoordsupdated.png"; sourceTree = "<group>"; };
 		E8157AA1211D6EAC00CCB63B /* gca-icon_logwillattend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logwillattend@2x.png"; path = "images/gca-icons/gca-icon_logwillattend@2x.png"; sourceTree = "<group>"; };
 		E8157B35211D6F2F00CCB63B /* gca-icons.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "gca-icons.json"; path = "images/gca-icons/gca-icons.json"; sourceTree = "<group>"; };
+		E8157B38211D74D900CCB63B /* geocube-images.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "geocube-images.json"; path = "images/geocube-images/geocube-images.json"; sourceTree = "<group>"; };
+		E8157B3C211D751400CCB63B /* cache - trigpoint - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - trigpoint - 30x30@3x.png"; path = "images/geocube-images/caches/cache - trigpoint - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B3D211D751500CCB63B /* cache - unknowntype - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - unknowntype - 30x30@3x.png"; path = "images/geocube-images/caches/cache - unknowntype - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B3E211D751500CCB63B /* cache - whereigo - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - whereigo - 30x30.png"; path = "images/geocube-images/caches/cache - whereigo - 30x30.png"; sourceTree = "<group>"; };
+		E8157B3F211D751500CCB63B /* cache - earth - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - earth - 30x30@3x.png"; path = "images/geocube-images/caches/cache - earth - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B40211D751500CCB63B /* cache - night - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - night - 30x30@2x.png"; path = "images/geocube-images/caches/cache - night - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B41211D751600CCB63B /* cache - giga - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - giga - 30x30@3x.png"; path = "images/geocube-images/caches/cache - giga - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B42211D751600CCB63B /* cache - mega - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - mega - 30x30.png"; path = "images/geocube-images/caches/cache - mega - 30x30.png"; sourceTree = "<group>"; };
+		E8157B43211D751600CCB63B /* cache - traditional - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - traditional - 30x30@3x.png"; path = "images/geocube-images/caches/cache - traditional - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B44211D751600CCB63B /* cache - burke-wills - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - burke-wills - 30x30.png"; path = "images/geocube-images/caches/cache - burke-wills - 30x30.png"; sourceTree = "<group>"; };
+		E8157B45211D751600CCB63B /* cache - whereigo - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - whereigo - 30x30@2x.png"; path = "images/geocube-images/caches/cache - whereigo - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B46211D751600CCB63B /* cache - reverse - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@3x.png"; path = "images/geocube-images/caches/cache - reverse - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B47211D751600CCB63B /* cache - trigpoint - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - trigpoint - 30x30@2x.png"; path = "images/geocube-images/caches/cache - trigpoint - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B48211D751700CCB63B /* cache - waymark - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - waymark - 30x30@3x.png"; path = "images/geocube-images/caches/cache - waymark - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B49211D751700CCB63B /* cache - benchmark - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - benchmark - 30x30@2x.png"; path = "images/geocube-images/caches/cache - benchmark - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B4A211D751700CCB63B /* cache - gadget - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - gadget - 30x30.png"; path = "images/geocube-images/caches/cache - gadget - 30x30.png"; sourceTree = "<group>"; };
+		E8157B4B211D751700CCB63B /* cache - ephemeral - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - ephemeral - 30x30@3x.png"; path = "images/geocube-images/caches/cache - ephemeral - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B4C211D751700CCB63B /* cache - giga - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - giga - 30x30@2x.png"; path = "images/geocube-images/caches/cache - giga - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B4D211D751800CCB63B /* cache - maze - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - maze - 30x30.png"; path = "images/geocube-images/caches/cache - maze - 30x30.png"; sourceTree = "<group>"; };
+		E8157B4E211D751800CCB63B /* cache - ephemeral - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - ephemeral - 30x30@2x.png"; path = "images/geocube-images/caches/cache - ephemeral - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B4F211D751800CCB63B /* cache - mega - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - mega - 30x30@3x.png"; path = "images/geocube-images/caches/cache - mega - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B50211D751800CCB63B /* cache - mystery - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - mystery - 30x30.png"; path = "images/geocube-images/caches/cache - mystery - 30x30.png"; sourceTree = "<group>"; };
+		E8157B51211D751900CCB63B /* cache - gadget - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - gadget - 30x30@2x.png"; path = "images/geocube-images/caches/cache - gadget - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B52211D751900CCB63B /* cache - burke-wills - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - burke-wills - 30x30@3x.png"; path = "images/geocube-images/caches/cache - burke-wills - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B53211D751900CCB63B /* cache - groundspeak hq - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - groundspeak hq - 30x30@3x.png"; path = "images/geocube-images/caches/cache - groundspeak hq - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B54211D751900CCB63B /* cache - cito - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - cito - 30x30@2x.png"; path = "images/geocube-images/caches/cache - cito - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B55211D751A00CCB63B /* cache - moveable - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - moveable - 30x30@2x.png"; path = "images/geocube-images/caches/cache - moveable - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B56211D751A00CCB63B /* cache - trigpoint - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - trigpoint - 30x30.png"; path = "images/geocube-images/caches/cache - trigpoint - 30x30.png"; sourceTree = "<group>"; };
+		E8157B57211D751A00CCB63B /* cache - virtual - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - virtual - 30x30.png"; path = "images/geocube-images/caches/cache - virtual - 30x30.png"; sourceTree = "<group>"; };
+		E8157B58211D751A00CCB63B /* cache - reverse - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@2x.png"; path = "images/geocube-images/caches/cache - reverse - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B59211D751B00CCB63B /* cache - burke-wills - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - burke-wills - 30x30@2x.png"; path = "images/geocube-images/caches/cache - burke-wills - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B5A211D751B00CCB63B /* cache - event - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - event - 30x30.png"; path = "images/geocube-images/caches/cache - event - 30x30.png"; sourceTree = "<group>"; };
+		E8157B5B211D751B00CCB63B /* cache - mega - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - mega - 30x30@2x.png"; path = "images/geocube-images/caches/cache - mega - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B5C211D751B00CCB63B /* cache - letterbox - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - letterbox - 30x30@3x.png"; path = "images/geocube-images/caches/cache - letterbox - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B5D211D751C00CCB63B /* cache - unknowntype - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - unknowntype - 30x30@2x.png"; path = "images/geocube-images/caches/cache - unknowntype - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B5E211D751C00CCB63B /* cache - geocacher - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - geocacher - 30x30@2x.png"; path = "images/geocube-images/caches/cache - geocacher - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B5F211D751C00CCB63B /* cache - cito - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - cito - 30x30@3x.png"; path = "images/geocube-images/caches/cache - cito - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B60211D751C00CCB63B /* cache - traditional - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - traditional - 30x30@2x.png"; path = "images/geocube-images/caches/cache - traditional - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B61211D751C00CCB63B /* cache - augmented reality - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - augmented reality - 30x30@3x.png"; path = "images/geocube-images/caches/cache - augmented reality - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B62211D751D00CCB63B /* cache - geocacher - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - geocacher - 30x30@3x.png"; path = "images/geocube-images/caches/cache - geocacher - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B63211D751D00CCB63B /* cache - benchmark - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - benchmark - 30x30.png"; path = "images/geocube-images/caches/cache - benchmark - 30x30.png"; sourceTree = "<group>"; };
+		E8157B64211D751D00CCB63B /* cache - reverse - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30.png"; path = "images/geocube-images/caches/cache - reverse - 30x30.png"; sourceTree = "<group>"; };
+		E8157B65211D751D00CCB63B /* cache - webcam - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - webcam - 30x30@3x.png"; path = "images/geocube-images/caches/cache - webcam - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B66211D751E00CCB63B /* cache - letterbox - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - letterbox - 30x30@2x.png"; path = "images/geocube-images/caches/cache - letterbox - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B67211D751E00CCB63B /* cache - unknowntype - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - unknowntype - 30x30.png"; path = "images/geocube-images/caches/cache - unknowntype - 30x30.png"; sourceTree = "<group>"; };
+		E8157B68211D751E00CCB63B /* cache - cito - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - cito - 30x30.png"; path = "images/geocube-images/caches/cache - cito - 30x30.png"; sourceTree = "<group>"; };
+		E8157B69211D751E00CCB63B /* cache - moveable - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - moveable - 30x30@3x.png"; path = "images/geocube-images/caches/cache - moveable - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B6A211D751F00CCB63B /* cache - beacon - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - beacon - 30x30@3x.png"; path = "images/geocube-images/caches/cache - beacon - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B6B211D751F00CCB63B /* cache - maze - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - maze - 30x30@2x.png"; path = "images/geocube-images/caches/cache - maze - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B6C211D751F00CCB63B /* cache - beacon - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - beacon - 30x30@2x.png"; path = "images/geocube-images/caches/cache - beacon - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B6D211D751F00CCB63B /* cache - history - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - history - 30x30@3x.png"; path = "images/geocube-images/caches/cache - history - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B6E211D751F00CCB63B /* cache - mystery - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - mystery - 30x30@2x.png"; path = "images/geocube-images/caches/cache - mystery - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B6F211D752000CCB63B /* cache - webcam - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - webcam - 30x30.png"; path = "images/geocube-images/caches/cache - webcam - 30x30.png"; sourceTree = "<group>"; };
+		E8157B70211D752000CCB63B /* cache - earth - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - earth - 30x30.png"; path = "images/geocube-images/caches/cache - earth - 30x30.png"; sourceTree = "<group>"; };
+		E8157B71211D752000CCB63B /* cache - unknown - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - unknown - 30x30@3x.png"; path = "images/geocube-images/caches/cache - unknown - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B72211D752000CCB63B /* cache - virtual - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - virtual - 30x30@2x.png"; path = "images/geocube-images/caches/cache - virtual - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B73211D752100CCB63B /* cache - geocacher - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - geocacher - 30x30.png"; path = "images/geocube-images/caches/cache - geocacher - 30x30.png"; sourceTree = "<group>"; };
+		E8157B74211D752100CCB63B /* cache - mystery - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - mystery - 30x30@3x.png"; path = "images/geocube-images/caches/cache - mystery - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B75211D752100CCB63B /* cache - night - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - night - 30x30.png"; path = "images/geocube-images/caches/cache - night - 30x30.png"; sourceTree = "<group>"; };
+		E8157B76211D752100CCB63B /* cache - waymark - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - waymark - 30x30.png"; path = "images/geocube-images/caches/cache - waymark - 30x30.png"; sourceTree = "<group>"; };
+		E8157B77211D752100CCB63B /* cache - groundspeak hq - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - groundspeak hq - 30x30@2x.png"; path = "images/geocube-images/caches/cache - groundspeak hq - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B78211D752200CCB63B /* cache - augmented reality - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - augmented reality - 30x30.png"; path = "images/geocube-images/caches/cache - augmented reality - 30x30.png"; sourceTree = "<group>"; };
+		E8157B79211D752200CCB63B /* cache - augmented reality - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - augmented reality - 30x30@2x.png"; path = "images/geocube-images/caches/cache - augmented reality - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B7A211D752200CCB63B /* cache - giga - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - giga - 30x30.png"; path = "images/geocube-images/caches/cache - giga - 30x30.png"; sourceTree = "<group>"; };
+		E8157B7B211D752200CCB63B /* cache - letterbox - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - letterbox - 30x30.png"; path = "images/geocube-images/caches/cache - letterbox - 30x30.png"; sourceTree = "<group>"; };
+		E8157B7C211D752300CCB63B /* cache - multi - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - multi - 30x30@3x.png"; path = "images/geocube-images/caches/cache - multi - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B7D211D752300CCB63B /* cache - night - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - night - 30x30@3x.png"; path = "images/geocube-images/caches/cache - night - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B7E211D752300CCB63B /* cache - event - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - event - 30x30@3x.png"; path = "images/geocube-images/caches/cache - event - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B7F211D752300CCB63B /* cache - podcast - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - podcast - 30x30@2x.png"; path = "images/geocube-images/caches/cache - podcast - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B80211D752400CCB63B /* cache - unknown - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - unknown - 30x30@2x.png"; path = "images/geocube-images/caches/cache - unknown - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B81211D752400CCB63B /* cache - virtual - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - virtual - 30x30@3x.png"; path = "images/geocube-images/caches/cache - virtual - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B82211D752400CCB63B /* cache - traditional - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - traditional - 30x30.png"; path = "images/geocube-images/caches/cache - traditional - 30x30.png"; sourceTree = "<group>"; };
+		E8157B83211D752400CCB63B /* cache - event - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - event - 30x30@2x.png"; path = "images/geocube-images/caches/cache - event - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B84211D752400CCB63B /* cache - multi - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - multi - 30x30@2x.png"; path = "images/geocube-images/caches/cache - multi - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B85211D752500CCB63B /* cache - history - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - history - 30x30@2x.png"; path = "images/geocube-images/caches/cache - history - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B86211D752500CCB63B /* cache - multi - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - multi - 30x30.png"; path = "images/geocube-images/caches/cache - multi - 30x30.png"; sourceTree = "<group>"; };
+		E8157B87211D752500CCB63B /* cache - benchmark - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - benchmark - 30x30@3x.png"; path = "images/geocube-images/caches/cache - benchmark - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B88211D752500CCB63B /* cache - ephemeral - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - ephemeral - 30x30.png"; path = "images/geocube-images/caches/cache - ephemeral - 30x30.png"; sourceTree = "<group>"; };
+		E8157B89211D752500CCB63B /* cache - history - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - history - 30x30.png"; path = "images/geocube-images/caches/cache - history - 30x30.png"; sourceTree = "<group>"; };
+		E8157B8A211D752500CCB63B /* cache - waymark - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - waymark - 30x30@2x.png"; path = "images/geocube-images/caches/cache - waymark - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B8B211D752500CCB63B /* cache - whereigo - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - whereigo - 30x30@3x.png"; path = "images/geocube-images/caches/cache - whereigo - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B8C211D752500CCB63B /* cache - unknown - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - unknown - 30x30.png"; path = "images/geocube-images/caches/cache - unknown - 30x30.png"; sourceTree = "<group>"; };
+		E8157B8D211D752500CCB63B /* cache - maze - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - maze - 30x30@3x.png"; path = "images/geocube-images/caches/cache - maze - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B8E211D752500CCB63B /* cache - webcam - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - webcam - 30x30@2x.png"; path = "images/geocube-images/caches/cache - webcam - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B8F211D752600CCB63B /* cache - earth - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - earth - 30x30@2x.png"; path = "images/geocube-images/caches/cache - earth - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157B90211D752600CCB63B /* cache - gadget - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - gadget - 30x30@3x.png"; path = "images/geocube-images/caches/cache - gadget - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157B91211D752600CCB63B /* cache - groundspeak hq - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - groundspeak hq - 30x30.png"; path = "images/geocube-images/caches/cache - groundspeak hq - 30x30.png"; sourceTree = "<group>"; };
+		E8157B92211D752600CCB63B /* cache - moveable - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - moveable - 30x30.png"; path = "images/geocube-images/caches/cache - moveable - 30x30.png"; sourceTree = "<group>"; };
+		E8157B93211D752A00CCB63B /* cache - beacon - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - beacon - 30x30.png"; path = "images/geocube-images/caches/cache - beacon - 30x30.png"; sourceTree = "<group>"; };
+		E8157B94211D752A00CCB63B /* cache - podcast - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - podcast - 30x30.png"; path = "images/geocube-images/caches/cache - podcast - 30x30.png"; sourceTree = "<group>"; };
+		E8157B95211D752B00CCB63B /* cache - podcast - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - podcast - 30x30@3x.png"; path = "images/geocube-images/caches/cache - podcast - 30x30@3x.png"; sourceTree = "<group>"; };
+		E8157BF0211D753C00CCB63B /* log - unarchived - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - unarchived - 30x30.png"; path = "images/geocube-images/logs/log - unarchived - 30x30.png"; sourceTree = "<group>"; };
+		E8157BF1211D753C00CCB63B /* log - photographed - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - photographed - 30x30@2x.png"; path = "images/geocube-images/logs/log - photographed - 30x30@2x.png"; sourceTree = "<group>"; };
+		E8157BF2211D753C00CCB63B /* log - coordinates - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - coordinates - 30x30.png"; path = "images/geocube-images/logs/log - coordinates - 30x30.png"; sourceTree = "<group>"; };
+		E8157BF3211D753D00CCB63B /* log - empty - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - empty - 30x30.png"; path = "images/geocube-images/logs/log - empty - 30x30.png"; sourceTree = "<group>"; };
+		E8157BF4211D753D00CCB63B /* log - ownermaintenance - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - ownermaintenance - 30x30.png"; path = "images/geocube-images/logs/log - ownermaintenance - 30x30.png"; sourceTree = "<group>"; };
+		E8157BF5211D753D00CCB63B /* log - published - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - published - 30x30.png"; path = "images/geocube-images/logs/log - published - 30x30.png"; sourceTree = "<group>"; };
+		E8157BF6211D753D00CCB63B /* log - enabled - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - enabled - 30x30.png"; path = "images/geocube-images/logs/log - enabled - 30x30.png"; sourceTree = "<group>"; };
+		E8157BF7211D753D00CCB63B /* log - photographed - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - photographed - 30x30.png"; path = "images/geocube-images/logs/log - photographed - 30x30.png"; sourceTree = "<group>"; };
+		E8157BF8211D753D00CCB63B /* log - unknown - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - unknown - 30x30.png"; path = "images/geocube-images/logs/log - unknown - 30x30.png"; sourceTree = "<group>"; };
+		E8157BF9211D753E00CCB63B /* log - willattend - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - willattend - 30x30.png"; path = "images/geocube-images/logs/log - willattend - 30x30.png"; sourceTree = "<group>"; };
+		E8157BFA211D753E00CCB63B /* log - moved - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - moved - 30x30.png"; path = "images/geocube-images/logs/log - moved - 30x30.png"; sourceTree = "<group>"; };
+		E8157BFB211D753E00CCB63B /* log - announcement - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - announcement - 30x30.png"; path = "images/geocube-images/logs/log - announcement - 30x30.png"; sourceTree = "<group>"; };
+		E8157BFC211D753F00CCB63B /* log - disabled - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - disabled - 30x30.png"; path = "images/geocube-images/logs/log - disabled - 30x30.png"; sourceTree = "<group>"; };
+		E8157BFD211D753F00CCB63B /* log - didnotfind - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - didnotfind - 30x30.png"; path = "images/geocube-images/logs/log - didnotfind - 30x30.png"; sourceTree = "<group>"; };
+		E8157BFE211D753F00CCB63B /* log - note - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - note - 30x30.png"; path = "images/geocube-images/logs/log - note - 30x30.png"; sourceTree = "<group>"; };
+		E8157BFF211D753F00CCB63B /* log - reviewernote - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - reviewernote - 30x30.png"; path = "images/geocube-images/logs/log - reviewernote - 30x30.png"; sourceTree = "<group>"; };
+		E8157C00211D753F00CCB63B /* log - needsarchiving - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - needsarchiving - 30x30.png"; path = "images/geocube-images/logs/log - needsarchiving - 30x30.png"; sourceTree = "<group>"; };
+		E8157C01211D753F00CCB63B /* log - archived - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - archived - 30x30.png"; path = "images/geocube-images/logs/log - archived - 30x30.png"; sourceTree = "<group>"; };
+		E8157C02211D754000CCB63B /* log - needsmaintenance - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - needsmaintenance - 30x30.png"; path = "images/geocube-images/logs/log - needsmaintenance - 30x30.png"; sourceTree = "<group>"; };
+		E8157C03211D754000CCB63B /* log - attended - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - attended - 30x30.png"; path = "images/geocube-images/logs/log - attended - 30x30.png"; sourceTree = "<group>"; };
+		E8157C04211D754000CCB63B /* log - found - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - found - 30x30.png"; path = "images/geocube-images/logs/log - found - 30x30.png"; sourceTree = "<group>"; };
+		E8157C05211D754000CCB63B /* log - photographed - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - photographed - 30x30@3x.png"; path = "images/geocube-images/logs/log - photographed - 30x30@3x.png"; sourceTree = "<group>"; };
 		E815B7811F67FCB2003A6092 /* FileKMLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileKMLViewController.h; path = Files/FileKMLViewController.h; sourceTree = "<group>"; };
 		E815B7821F67FCB2003A6092 /* FileKMLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileKMLViewController.m; path = Files/FileKMLViewController.m; sourceTree = "<group>"; };
 		E82286081F8A285C00631380 /* Coordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Coordinates.h; path = ToolsLibrary/Coordinates.h; sourceTree = "<group>"; };
@@ -1924,7 +2038,6 @@
 		E823451B1EECE14A00D2CDFD /* NoticesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoticesViewController.m; path = Help/NoticesViewController.m; sourceTree = "<group>"; };
 		E823451C1EECE14A00D2CDFD /* NoticeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoticeTableViewCell.h; path = Help/NoticeTableViewCell.h; sourceTree = "<group>"; };
 		E823451D1EECE14A00D2CDFD /* NoticeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoticeTableViewCell.m; path = Help/NoticeTableViewCell.m; sourceTree = "<group>"; };
-		E8257F271EE41B8A0089C106 /* log - disabled - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - disabled - 30x30.png"; path = "images/logs/log - disabled - 30x30.png"; sourceTree = "<group>"; };
 		E82E65B01DA0794600CFBDED /* waypoint - finish - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - finish - 30x30.png"; path = "images/waypoints/waypoint - finish - 30x30.png"; sourceTree = "<group>"; };
 		E82E65B11DA0794600CFBDED /* waypoint - flag - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - flag - 30x30.png"; path = "images/waypoints/waypoint - flag - 30x30.png"; sourceTree = "<group>"; };
 		E82E65B21DA0794600CFBDED /* waypoint - manually entered - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - manually entered - 30x30.png"; path = "images/waypoints/waypoint - manually entered - 30x30.png"; sourceTree = "<group>"; };
@@ -1950,23 +2063,6 @@
 		E82E65D41DA079AE00CFBDED /* map - own overlay - 18x18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - own overlay - 18x18.png"; path = "images/map/map - own overlay - 18x18.png"; sourceTree = "<group>"; };
 		E82E65D51DA079AE00CFBDED /* map - pin stick - 35x42.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - pin stick - 35x42.png"; path = "images/map/map - pin stick - 35x42.png"; sourceTree = "<group>"; };
 		E82E65D61DA079AE00CFBDED /* map - tick found - 9x9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - tick found - 9x9.png"; path = "images/map/map - tick found - 9x9.png"; sourceTree = "<group>"; };
-		E82E65E61DA079E500CFBDED /* log - announcement - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - announcement - 30x30.png"; path = "images/logs/log - announcement - 30x30.png"; sourceTree = "<group>"; };
-		E82E65E71DA079E500CFBDED /* log - archived - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - archived - 30x30.png"; path = "images/logs/log - archived - 30x30.png"; sourceTree = "<group>"; };
-		E82E65E81DA079E500CFBDED /* log - attended - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - attended - 30x30.png"; path = "images/logs/log - attended - 30x30.png"; sourceTree = "<group>"; };
-		E82E65E91DA079E500CFBDED /* log - coordinates - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - coordinates - 30x30.png"; path = "images/logs/log - coordinates - 30x30.png"; sourceTree = "<group>"; };
-		E82E65EA1DA079E500CFBDED /* log - didnotfind - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - didnotfind - 30x30.png"; path = "images/logs/log - didnotfind - 30x30.png"; sourceTree = "<group>"; };
-		E82E65EC1DA079E500CFBDED /* log - enabled - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - enabled - 30x30.png"; path = "images/logs/log - enabled - 30x30.png"; sourceTree = "<group>"; };
-		E82E65ED1DA079E500CFBDED /* log - found - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - found - 30x30.png"; path = "images/logs/log - found - 30x30.png"; sourceTree = "<group>"; };
-		E82E65EE1DA079E500CFBDED /* log - moved - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - moved - 30x30.png"; path = "images/logs/log - moved - 30x30.png"; sourceTree = "<group>"; };
-		E82E65EF1DA079E500CFBDED /* log - needsarchiving - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - needsarchiving - 30x30.png"; path = "images/logs/log - needsarchiving - 30x30.png"; sourceTree = "<group>"; };
-		E82E65F01DA079E500CFBDED /* log - needsmaintenance - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - needsmaintenance - 30x30.png"; path = "images/logs/log - needsmaintenance - 30x30.png"; sourceTree = "<group>"; };
-		E82E65F11DA079E500CFBDED /* log - note - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - note - 30x30.png"; path = "images/logs/log - note - 30x30.png"; sourceTree = "<group>"; };
-		E82E65F21DA079E500CFBDED /* log - ownermaintenance - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - ownermaintenance - 30x30.png"; path = "images/logs/log - ownermaintenance - 30x30.png"; sourceTree = "<group>"; };
-		E82E65F31DA079E500CFBDED /* log - published - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - published - 30x30.png"; path = "images/logs/log - published - 30x30.png"; sourceTree = "<group>"; };
-		E82E65F41DA079E500CFBDED /* log - reviewernote - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - reviewernote - 30x30.png"; path = "images/logs/log - reviewernote - 30x30.png"; sourceTree = "<group>"; };
-		E82E65F51DA079E500CFBDED /* log - unarchived - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - unarchived - 30x30.png"; path = "images/logs/log - unarchived - 30x30.png"; sourceTree = "<group>"; };
-		E82E65F61DA079E500CFBDED /* log - unknown - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - unknown - 30x30.png"; path = "images/logs/log - unknown - 30x30.png"; sourceTree = "<group>"; };
-		E82E65F71DA079E500CFBDED /* log - willattend - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - willattend - 30x30.png"; path = "images/logs/log - willattend - 30x30.png"; sourceTree = "<group>"; };
 		E82E66271DA07A8700CFBDED /* icons - dead - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - dead - 30x30.png"; path = "images/icons/icons - dead - 30x30.png"; sourceTree = "<group>"; };
 		E82E66281DA07A8700CFBDED /* icons - dead - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - dead - 30x30@2x.png"; path = "images/icons/icons - dead - 30x30@2x.png"; sourceTree = "<group>"; };
 		E82E66291DA07A8700CFBDED /* icons - dead - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons - dead - 30x30@3x.png"; path = "images/icons/icons - dead - 30x30@3x.png"; sourceTree = "<group>"; };
@@ -1999,57 +2095,6 @@
 		E82E66781DA07C6F00CFBDED /* compass - white arrow on black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass - white arrow on black.png"; path = "images/compass/compass - white arrow on black.png"; sourceTree = "<group>"; };
 		E82E66791DA07C6F00CFBDED /* compass - white arrow on black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass - white arrow on black@2x.png"; path = "images/compass/compass - white arrow on black@2x.png"; sourceTree = "<group>"; };
 		E82E667A1DA07C6F00CFBDED /* compass - white arrow on black@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass - white arrow on black@3x.png"; path = "images/compass/compass - white arrow on black@3x.png"; sourceTree = "<group>"; };
-		E82E66831DA07CBE00CFBDED /* cache - beacon - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - beacon - 30x30.png"; path = "images/caches/cache - beacon - 30x30.png"; sourceTree = "<group>"; };
-		E82E66841DA07CBE00CFBDED /* cache - benchmark - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - benchmark - 30x30.png"; path = "images/caches/cache - benchmark - 30x30.png"; sourceTree = "<group>"; };
-		E82E66851DA07CBE00CFBDED /* cache - burke-wills - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - burke-wills - 30x30.png"; path = "images/caches/cache - burke-wills - 30x30.png"; sourceTree = "<group>"; };
-		E82E66861DA07CBE00CFBDED /* cache - cito - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - cito - 30x30.png"; path = "images/caches/cache - cito - 30x30.png"; sourceTree = "<group>"; };
-		E82E66871DA07CBE00CFBDED /* cache - earth - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - earth - 30x30.png"; path = "images/caches/cache - earth - 30x30.png"; sourceTree = "<group>"; };
-		E82E66881DA07CBE00CFBDED /* cache - event - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - event - 30x30.png"; path = "images/caches/cache - event - 30x30.png"; sourceTree = "<group>"; };
-		E82E66891DA07CBE00CFBDED /* cache - giga - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - giga - 30x30.png"; path = "images/caches/cache - giga - 30x30.png"; sourceTree = "<group>"; };
-		E82E668A1DA07CBE00CFBDED /* cache - groundspeak hq - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - groundspeak hq - 30x30.png"; path = "images/caches/cache - groundspeak hq - 30x30.png"; sourceTree = "<group>"; };
-		E82E668B1DA07CBE00CFBDED /* cache - history - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - history - 30x30.png"; path = "images/caches/cache - history - 30x30.png"; sourceTree = "<group>"; };
-		E82E668C1DA07CBE00CFBDED /* cache - history - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - history - 30x30@2x.png"; path = "images/caches/cache - history - 30x30@2x.png"; sourceTree = "<group>"; };
-		E82E668D1DA07CBE00CFBDED /* cache - history - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - history - 30x30@3x.png"; path = "images/caches/cache - history - 30x30@3x.png"; sourceTree = "<group>"; };
-		E82E668E1DA07CBE00CFBDED /* cache - letterbox - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - letterbox - 30x30.png"; path = "images/caches/cache - letterbox - 30x30.png"; sourceTree = "<group>"; };
-		E82E668F1DA07CBE00CFBDED /* cache - letterbox - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - letterbox - 30x30@2x.png"; path = "images/caches/cache - letterbox - 30x30@2x.png"; sourceTree = "<group>"; };
-		E82E66901DA07CBE00CFBDED /* cache - letterbox - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - letterbox - 30x30@3x.png"; path = "images/caches/cache - letterbox - 30x30@3x.png"; sourceTree = "<group>"; };
-		E82E66911DA07CBE00CFBDED /* cache - maze - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - maze - 30x30.png"; path = "images/caches/cache - maze - 30x30.png"; sourceTree = "<group>"; };
-		E82E66921DA07CBE00CFBDED /* cache - mega - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - mega - 30x30.png"; path = "images/caches/cache - mega - 30x30.png"; sourceTree = "<group>"; };
-		E82E66931DA07CBE00CFBDED /* cache - moveable - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - moveable - 30x30.png"; path = "images/caches/cache - moveable - 30x30.png"; sourceTree = "<group>"; };
-		E82E66941DA07CBE00CFBDED /* cache - moveable - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - moveable - 30x30@2x.png"; path = "images/caches/cache - moveable - 30x30@2x.png"; sourceTree = "<group>"; };
-		E82E66951DA07CBE00CFBDED /* cache - moveable - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - moveable - 30x30@3x.png"; path = "images/caches/cache - moveable - 30x30@3x.png"; sourceTree = "<group>"; };
-		E82E66961DA07CBE00CFBDED /* cache - multi - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - multi - 30x30.png"; path = "images/caches/cache - multi - 30x30.png"; sourceTree = "<group>"; };
-		E82E66971DA07CBE00CFBDED /* cache - multi - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - multi - 30x30@2x.png"; path = "images/caches/cache - multi - 30x30@2x.png"; sourceTree = "<group>"; };
-		E82E66981DA07CBE00CFBDED /* cache - multi - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - multi - 30x30@3x.png"; path = "images/caches/cache - multi - 30x30@3x.png"; sourceTree = "<group>"; };
-		E82E66991DA07CBE00CFBDED /* cache - mystery - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - mystery - 30x30.png"; path = "images/caches/cache - mystery - 30x30.png"; sourceTree = "<group>"; };
-		E82E669A1DA07CBE00CFBDED /* cache - mystery - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - mystery - 30x30@2x.png"; path = "images/caches/cache - mystery - 30x30@2x.png"; sourceTree = "<group>"; };
-		E82E669B1DA07CBE00CFBDED /* cache - mystery - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - mystery - 30x30@3x.png"; path = "images/caches/cache - mystery - 30x30@3x.png"; sourceTree = "<group>"; };
-		E82E669C1DA07CBE00CFBDED /* cache - night - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - night - 30x30.png"; path = "images/caches/cache - night - 30x30.png"; sourceTree = "<group>"; };
-		E82E669D1DA07CBE00CFBDED /* cache - night - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - night - 30x30@2x.png"; path = "images/caches/cache - night - 30x30@2x.png"; sourceTree = "<group>"; };
-		E82E669E1DA07CBE00CFBDED /* cache - night - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - night - 30x30@3x.png"; path = "images/caches/cache - night - 30x30@3x.png"; sourceTree = "<group>"; };
-		E82E669F1DA07CBE00CFBDED /* cache - podcast - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - podcast - 30x30.png"; path = "images/caches/cache - podcast - 30x30.png"; sourceTree = "<group>"; };
-		E82E66A01DA07CBE00CFBDED /* cache - podcast - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - podcast - 30x30@2x.png"; path = "images/caches/cache - podcast - 30x30@2x.png"; sourceTree = "<group>"; };
-		E82E66A11DA07CBE00CFBDED /* cache - podcast - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - podcast - 30x30@3x.png"; path = "images/caches/cache - podcast - 30x30@3x.png"; sourceTree = "<group>"; };
-		E82E66A21DA07CBE00CFBDED /* cache - traditional - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - traditional - 30x30.png"; path = "images/caches/cache - traditional - 30x30.png"; sourceTree = "<group>"; };
-		E82E66A31DA07CBE00CFBDED /* cache - traditional - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - traditional - 30x30@2x.png"; path = "images/caches/cache - traditional - 30x30@2x.png"; sourceTree = "<group>"; };
-		E82E66A41DA07CBE00CFBDED /* cache - traditional - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - traditional - 30x30@3x.png"; path = "images/caches/cache - traditional - 30x30@3x.png"; sourceTree = "<group>"; };
-		E82E66A51DA07CBE00CFBDED /* cache - trigpoint - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - trigpoint - 30x30.png"; path = "images/caches/cache - trigpoint - 30x30.png"; sourceTree = "<group>"; };
-		E82E66A61DA07CBE00CFBDED /* cache - trigpoint - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - trigpoint - 30x30@2x.png"; path = "images/caches/cache - trigpoint - 30x30@2x.png"; sourceTree = "<group>"; };
-		E82E66A71DA07CBE00CFBDED /* cache - trigpoint - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - trigpoint - 30x30@3x.png"; path = "images/caches/cache - trigpoint - 30x30@3x.png"; sourceTree = "<group>"; };
-		E82E66A81DA07CBE00CFBDED /* cache - unknown - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - unknown - 30x30.png"; path = "images/caches/cache - unknown - 30x30.png"; sourceTree = "<group>"; };
-		E82E66A91DA07CBE00CFBDED /* cache - unknown - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - unknown - 30x30@2x.png"; path = "images/caches/cache - unknown - 30x30@2x.png"; sourceTree = "<group>"; };
-		E82E66AA1DA07CBE00CFBDED /* cache - unknown - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - unknown - 30x30@3x.png"; path = "images/caches/cache - unknown - 30x30@3x.png"; sourceTree = "<group>"; };
-		E82E66AB1DA07CBE00CFBDED /* cache - unknowntype - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - unknowntype - 30x30.png"; path = "images/caches/cache - unknowntype - 30x30.png"; sourceTree = "<group>"; };
-		E82E66AC1DA07CBE00CFBDED /* cache - virtual - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - virtual - 30x30.png"; path = "images/caches/cache - virtual - 30x30.png"; sourceTree = "<group>"; };
-		E82E66AD1DA07CBE00CFBDED /* cache - virtual - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - virtual - 30x30@2x.png"; path = "images/caches/cache - virtual - 30x30@2x.png"; sourceTree = "<group>"; };
-		E82E66AE1DA07CBE00CFBDED /* cache - virtual - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - virtual - 30x30@3x.png"; path = "images/caches/cache - virtual - 30x30@3x.png"; sourceTree = "<group>"; };
-		E82E66AF1DA07CBE00CFBDED /* cache - waymark - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - waymark - 30x30.png"; path = "images/caches/cache - waymark - 30x30.png"; sourceTree = "<group>"; };
-		E82E66B01DA07CBE00CFBDED /* cache - waymark - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - waymark - 30x30@2x.png"; path = "images/caches/cache - waymark - 30x30@2x.png"; sourceTree = "<group>"; };
-		E82E66B11DA07CBE00CFBDED /* cache - waymark - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - waymark - 30x30@3x.png"; path = "images/caches/cache - waymark - 30x30@3x.png"; sourceTree = "<group>"; };
-		E82E66B21DA07CBE00CFBDED /* cache - webcam - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - webcam - 30x30.png"; path = "images/caches/cache - webcam - 30x30.png"; sourceTree = "<group>"; };
-		E82E66B31DA07CBE00CFBDED /* cache - whereigo - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - whereigo - 30x30.png"; path = "images/caches/cache - whereigo - 30x30.png"; sourceTree = "<group>"; };
-		E82E66B41DA07CBE00CFBDED /* cache - whereigo - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - whereigo - 30x30@2x.png"; path = "images/caches/cache - whereigo - 30x30@2x.png"; sourceTree = "<group>"; };
-		E82E66B51DA07CBE00CFBDED /* cache - whereigo - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - whereigo - 30x30@3x.png"; path = "images/caches/cache - whereigo - 30x30@3x.png"; sourceTree = "<group>"; };
 		E82E66E91DA07D0200CFBDED /* attributes - 01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attributes - 01.png"; path = "images/attributes/attributes - 01.png"; sourceTree = "<group>"; };
 		E82E66EA1DA07D0200CFBDED /* attributes - 02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attributes - 02.png"; path = "images/attributes/attributes - 02.png"; sourceTree = "<group>"; };
 		E82E66EB1DA07D0200CFBDED /* attributes - 03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attributes - 03.png"; path = "images/attributes/attributes - 03.png"; sourceTree = "<group>"; };
@@ -2201,9 +2246,6 @@
 		E85DC6861F95D01E007556D5 /* menu icon - see target - 40x40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - see target - 40x40@3x.png"; path = "images/menu/menu icon - see target - 40x40@3x.png"; sourceTree = "<group>"; };
 		E85DC6871F95D01E007556D5 /* menu icon - show both - 40x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - show both - 40x40@2x.png"; path = "images/menu/menu icon - show both - 40x40@2x.png"; sourceTree = "<group>"; };
 		E85DC6881F95D01E007556D5 /* menu icon - show both - 40x40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - show both - 40x40@3x.png"; path = "images/menu/menu icon - show both - 40x40@3x.png"; sourceTree = "<group>"; };
-		E8607F141F8ADA91004E273C /* cache - geocacher - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - geocacher - 30x30.png"; path = "images/caches/cache - geocacher - 30x30.png"; sourceTree = "<group>"; };
-		E8607F151F8ADA91004E273C /* cache - geocacher - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - geocacher - 30x30@2x.png"; path = "images/caches/cache - geocacher - 30x30@2x.png"; sourceTree = "<group>"; };
-		E8607F161F8ADA91004E273C /* cache - geocacher - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - geocacher - 30x30@3x.png"; path = "images/caches/cache - geocacher - 30x30@3x.png"; sourceTree = "<group>"; };
 		E860CA031F81F84700C66AD8 /* FilterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterButton.h; path = Filters/FilterButton.h; sourceTree = "<group>"; };
 		E860CA041F81F84700C66AD8 /* FilterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterButton.m; path = Filters/FilterButton.m; sourceTree = "<group>"; };
 		E864BB9F2064EAE50053B62D /* KeyboardCoordinateDecimalDegreesCardinal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KeyboardCoordinateDecimalDegreesCardinal.xib; path = ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesCardinal.xib; sourceTree = "<group>"; };
@@ -2234,10 +2276,6 @@
 		E86D427A1EF68CC800E4509F /* container flag - planned - 24x21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container flag - planned - 24x21.png"; path = "images/containers/container flag - planned - 24x21.png"; sourceTree = "<group>"; };
 		E8740FEA1B509575002527DA /* LogTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogTableViewCell.h; sourceTree = "<group>"; };
 		E8740FEB1B509575002527DA /* LogTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogTableViewCell.m; sourceTree = "<group>"; };
-		E8757BB520A072ED00E498FD /* cache - ephemeral - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - ephemeral - 30x30@2x.png"; path = "images/caches/cache - ephemeral - 30x30@2x.png"; sourceTree = "<group>"; };
-		E8757BB620A072ED00E498FD /* cache - ephemeral - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - ephemeral - 30x30@3x.png"; path = "images/caches/cache - ephemeral - 30x30@3x.png"; sourceTree = "<group>"; };
-		E8757BB720A072EE00E498FD /* cache - ephemeral - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - ephemeral - 30x30.png"; path = "images/caches/cache - ephemeral - 30x30.png"; sourceTree = "<group>"; };
-		E876EC801F7BCAA0002A368E /* log - photographed - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - photographed - 30x30.png"; path = "images/logs/log - photographed - 30x30.png"; sourceTree = "<group>"; };
 		E876ECAB1F7E0391002A368E /* launchscreen - background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launchscreen - background.png"; path = "images/launchscreen/launchscreen - background.png"; sourceTree = "<group>"; };
 		E876ECAC1F7E0391002A368E /* launchscreen - logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launchscreen - logo.png"; path = "images/launchscreen/launchscreen - logo.png"; sourceTree = "<group>"; };
 		E879F9CB1B7B527200220EA7 /* Geocube.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Geocube.entitlements; sourceTree = "<group>"; };
@@ -2260,15 +2298,10 @@
 		E8845CAD1EF409BF00A47F5D /* WaypointWaypointsTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "WaypointWaypointsTableViewCell~ipad.xib"; path = "Waypoints/WaypointWaypointsTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		E8845CB01EF493B200A47F5D /* FilterAccountsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterAccountsTableViewCell.h; path = Filters/FilterAccountsTableViewCell.h; sourceTree = "<group>"; };
 		E8845CB11EF493B200A47F5D /* FilterAccountsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterAccountsTableViewCell.m; path = Filters/FilterAccountsTableViewCell.m; sourceTree = "<group>"; };
-		E88DB0071F334E4300FEF795 /* cache - gadget - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - gadget - 30x30.png"; path = "images/caches/cache - gadget - 30x30.png"; sourceTree = "<group>"; };
 		E891DB7C2115C291009A4D52 /* MapGoogleEsri.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MapGoogleEsri.h; path = MapsLibrary/MapGoogleEsri.h; sourceTree = "<group>"; };
 		E891DB7D2115C291009A4D52 /* MapGoogleEsri.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MapGoogleEsri.m; path = MapsLibrary/MapGoogleEsri.m; sourceTree = "<group>"; };
 		E891DB7F2115C2B8009A4D52 /* MapGoogleThunderforest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MapGoogleThunderforest.h; path = MapsLibrary/MapGoogleThunderforest.h; sourceTree = "<group>"; };
 		E891DB802115C2B8009A4D52 /* MapGoogleThunderforest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MapGoogleThunderforest.m; path = MapsLibrary/MapGoogleThunderforest.m; sourceTree = "<group>"; };
-		E891DB88211716A9009A4D52 /* cache - augmented reality - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - augmented reality - 30x30@2x.png"; path = "images/caches/cache - augmented reality - 30x30@2x.png"; sourceTree = "<group>"; };
-		E891DB89211716A9009A4D52 /* cache - augmented reality - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - augmented reality - 30x30.png"; path = "images/caches/cache - augmented reality - 30x30.png"; sourceTree = "<group>"; };
-		E891DB8A211716A9009A4D52 /* cache - augmented reality - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - augmented reality - 30x30@3x.png"; path = "images/caches/cache - augmented reality - 30x30@3x.png"; sourceTree = "<group>"; };
-		E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - empty - 30x30.png"; path = "images/logs/log - empty - 30x30.png"; sourceTree = "<group>"; };
 		E897702E1BA3910F000573FB /* Import Complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Import Complete.wav"; sourceTree = "<group>"; };
 		E89D556C2074726B004D9E3A /* map - centeredcoords - 22x22@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - centeredcoords - 22x22@2x.png"; path = "images/map/map - centeredcoords - 22x22@2x.png"; sourceTree = "<group>"; };
 		E89D556E2074F59C004D9E3A /* map - centeredcoords - 22x22@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map - centeredcoords - 22x22@3x.png"; path = "images/map/map - centeredcoords - 22x22@3x.png"; sourceTree = "<group>"; };
@@ -2305,12 +2338,8 @@
 		E8B29D1A2115701000F85543 /* MapBrandApple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapBrandApple.h; path = MapsLibrary/MapBrandApple.h; sourceTree = "<group>"; };
 		E8B6D8D81F9AE81B00C376A2 /* GCMGLObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GCMGLObjects.h; path = BaseObjectsLibrary/GCMGLObjects.h; sourceTree = "<group>"; };
 		E8B6D8D91F9AE81B00C376A2 /* GCMGLObjects.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GCMGLObjects.m; path = BaseObjectsLibrary/GCMGLObjects.m; sourceTree = "<group>"; };
-		E8B772FA1F9462250060B415 /* cache - gadget - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - gadget - 30x30@2x.png"; path = "images/caches/cache - gadget - 30x30@2x.png"; sourceTree = "<group>"; };
-		E8B772FB1F9462250060B415 /* cache - gadget - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - gadget - 30x30@3x.png"; path = "images/caches/cache - gadget - 30x30@3x.png"; sourceTree = "<group>"; };
 		E8B772FE1F9462410060B415 /* container flag - planned - 24x21@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container flag - planned - 24x21@2x.png"; path = "images/containers/container flag - planned - 24x21@2x.png"; sourceTree = "<group>"; };
 		E8B772FF1F9462410060B415 /* container flag - planned - 24x21@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container flag - planned - 24x21@3x.png"; path = "images/containers/container flag - planned - 24x21@3x.png"; sourceTree = "<group>"; };
-		E8B773021F9462600060B415 /* log - photographed - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - photographed - 30x30@2x.png"; path = "images/logs/log - photographed - 30x30@2x.png"; sourceTree = "<group>"; };
-		E8B773031F9462600060B415 /* log - photographed - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "log - photographed - 30x30@3x.png"; path = "images/logs/log - photographed - 30x30@3x.png"; sourceTree = "<group>"; };
 		E8B773061F9479AD0060B415 /* menu icon - close - 15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - close - 15x15.png"; path = "images/menu/menu icon - close - 15x15.png"; sourceTree = "<group>"; };
 		E8B773071F9479AD0060B415 /* menu icon - close - 15x15@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - close - 15x15@2x.png"; path = "images/menu/menu icon - close - 15x15@2x.png"; sourceTree = "<group>"; };
 		E8B773081F9479AD0060B415 /* menu icon - close - 15x15@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - close - 15x15@3x.png"; path = "images/menu/menu icon - close - 15x15@3x.png"; sourceTree = "<group>"; };
@@ -2405,9 +2434,6 @@
 		E8F0007520AEF7C4003B5D47 /* OwnTracksManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OwnTracksManager.m; path = ManagersLibrary/OwnTracksManager.m; sourceTree = "<group>"; };
 		E8F0007920AEF95C003B5D47 /* dbOwnTrack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = dbOwnTrack.h; path = DatabaseLibrary/dbOwnTrack.h; sourceTree = "<group>"; };
 		E8F0007A20AEF95C003B5D47 /* dbOwnTrack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = dbOwnTrack.m; path = DatabaseLibrary/dbOwnTrack.m; sourceTree = "<group>"; };
-		E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30.png"; path = "images/caches/cache - reverse - 30x30.png"; sourceTree = "<group>"; };
-		E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@2x.png"; path = "images/caches/cache - reverse - 30x30@2x.png"; sourceTree = "<group>"; };
-		E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - reverse - 30x30@3x.png"; path = "images/caches/cache - reverse - 30x30@3x.png"; sourceTree = "<group>"; };
 		E8F570531B3F7255003F020C /* Geocube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F570571B3F7255003F020C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8F570581B3F7255003F020C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -2485,30 +2511,6 @@
 		E8FEDEB31DA88474007C756B /* waypoint - multi - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "waypoint - multi - 30x30@3x.png"; path = "images/waypoints/waypoint - multi - 30x30@3x.png"; sourceTree = "<group>"; };
 		E8FEDEB61DA887A7007C756B /* image - nil - 1x1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "image - nil - 1x1@2x.png"; path = "images/images/image - nil - 1x1@2x.png"; sourceTree = "<group>"; };
 		E8FEDEB71DA887A7007C756B /* image - nil - 1x1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "image - nil - 1x1@3x.png"; path = "images/images/image - nil - 1x1@3x.png"; sourceTree = "<group>"; };
-		E8FEDEBA1DA8EEE9007C756B /* cache - beacon - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - beacon - 30x30@2x.png"; path = "images/caches/cache - beacon - 30x30@2x.png"; sourceTree = "<group>"; };
-		E8FEDEBB1DA8EEE9007C756B /* cache - beacon - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - beacon - 30x30@3x.png"; path = "images/caches/cache - beacon - 30x30@3x.png"; sourceTree = "<group>"; };
-		E8FEDEBC1DA8EEE9007C756B /* cache - benchmark - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - benchmark - 30x30@2x.png"; path = "images/caches/cache - benchmark - 30x30@2x.png"; sourceTree = "<group>"; };
-		E8FEDEBD1DA8EEE9007C756B /* cache - benchmark - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - benchmark - 30x30@3x.png"; path = "images/caches/cache - benchmark - 30x30@3x.png"; sourceTree = "<group>"; };
-		E8FEDEBE1DA8EEE9007C756B /* cache - burke-wills - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - burke-wills - 30x30@2x.png"; path = "images/caches/cache - burke-wills - 30x30@2x.png"; sourceTree = "<group>"; };
-		E8FEDEBF1DA8EEE9007C756B /* cache - burke-wills - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - burke-wills - 30x30@3x.png"; path = "images/caches/cache - burke-wills - 30x30@3x.png"; sourceTree = "<group>"; };
-		E8FEDEC01DA8EEE9007C756B /* cache - cito - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - cito - 30x30@2x.png"; path = "images/caches/cache - cito - 30x30@2x.png"; sourceTree = "<group>"; };
-		E8FEDEC11DA8EEE9007C756B /* cache - cito - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - cito - 30x30@3x.png"; path = "images/caches/cache - cito - 30x30@3x.png"; sourceTree = "<group>"; };
-		E8FEDEC21DA8EEE9007C756B /* cache - earth - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - earth - 30x30@2x.png"; path = "images/caches/cache - earth - 30x30@2x.png"; sourceTree = "<group>"; };
-		E8FEDEC31DA8EEE9007C756B /* cache - earth - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - earth - 30x30@3x.png"; path = "images/caches/cache - earth - 30x30@3x.png"; sourceTree = "<group>"; };
-		E8FEDEC41DA8EEE9007C756B /* cache - event - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - event - 30x30@2x.png"; path = "images/caches/cache - event - 30x30@2x.png"; sourceTree = "<group>"; };
-		E8FEDEC51DA8EEE9007C756B /* cache - event - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - event - 30x30@3x.png"; path = "images/caches/cache - event - 30x30@3x.png"; sourceTree = "<group>"; };
-		E8FEDEC61DA8EEE9007C756B /* cache - giga - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - giga - 30x30@2x.png"; path = "images/caches/cache - giga - 30x30@2x.png"; sourceTree = "<group>"; };
-		E8FEDEC71DA8EEE9007C756B /* cache - giga - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - giga - 30x30@3x.png"; path = "images/caches/cache - giga - 30x30@3x.png"; sourceTree = "<group>"; };
-		E8FEDEC81DA8EEE9007C756B /* cache - groundspeak hq - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - groundspeak hq - 30x30@2x.png"; path = "images/caches/cache - groundspeak hq - 30x30@2x.png"; sourceTree = "<group>"; };
-		E8FEDEC91DA8EEE9007C756B /* cache - groundspeak hq - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - groundspeak hq - 30x30@3x.png"; path = "images/caches/cache - groundspeak hq - 30x30@3x.png"; sourceTree = "<group>"; };
-		E8FEDECA1DA8EEE9007C756B /* cache - maze - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - maze - 30x30@2x.png"; path = "images/caches/cache - maze - 30x30@2x.png"; sourceTree = "<group>"; };
-		E8FEDECB1DA8EEE9007C756B /* cache - maze - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - maze - 30x30@3x.png"; path = "images/caches/cache - maze - 30x30@3x.png"; sourceTree = "<group>"; };
-		E8FEDECC1DA8EEE9007C756B /* cache - mega - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - mega - 30x30@2x.png"; path = "images/caches/cache - mega - 30x30@2x.png"; sourceTree = "<group>"; };
-		E8FEDECD1DA8EEE9007C756B /* cache - mega - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - mega - 30x30@3x.png"; path = "images/caches/cache - mega - 30x30@3x.png"; sourceTree = "<group>"; };
-		E8FEDECE1DA8EEE9007C756B /* cache - unknowntype - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - unknowntype - 30x30@2x.png"; path = "images/caches/cache - unknowntype - 30x30@2x.png"; sourceTree = "<group>"; };
-		E8FEDECF1DA8EEE9007C756B /* cache - unknowntype - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - unknowntype - 30x30@3x.png"; path = "images/caches/cache - unknowntype - 30x30@3x.png"; sourceTree = "<group>"; };
-		E8FEDED01DA8EEE9007C756B /* cache - webcam - 30x30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - webcam - 30x30@2x.png"; path = "images/caches/cache - webcam - 30x30@2x.png"; sourceTree = "<group>"; };
-		E8FEDED11DA8EEE9007C756B /* cache - webcam - 30x30@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cache - webcam - 30x30@3x.png"; path = "images/caches/cache - webcam - 30x30@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2582,6 +2584,151 @@
 			isa = PBXGroup;
 			children = (
 				E8157B35211D6F2F00CCB63B /* gca-icons.json */,
+				E8157C1D211D758300CCB63B /* logs */,
+				E8157C1C211D757800CCB63B /* types */,
+			);
+			name = "gca-images";
+			sourceTree = "<group>";
+		};
+		E8157B37211D744B00CCB63B /* geocube-images */ = {
+			isa = PBXGroup;
+			children = (
+				E8157B38211D74D900CCB63B /* geocube-images.json */,
+				E8157B3B211D74E500CCB63B /* types */,
+				E8157B3A211D74DF00CCB63B /* logs */,
+			);
+			name = "geocube-images";
+			sourceTree = "<group>";
+		};
+		E8157B3A211D74DF00CCB63B /* logs */ = {
+			isa = PBXGroup;
+			children = (
+				E8157BFB211D753E00CCB63B /* log - announcement - 30x30.png */,
+				E8157C01211D753F00CCB63B /* log - archived - 30x30.png */,
+				E8157C03211D754000CCB63B /* log - attended - 30x30.png */,
+				E8157BF2211D753C00CCB63B /* log - coordinates - 30x30.png */,
+				E8157BFD211D753F00CCB63B /* log - didnotfind - 30x30.png */,
+				E8157BFC211D753F00CCB63B /* log - disabled - 30x30.png */,
+				E8157BF3211D753D00CCB63B /* log - empty - 30x30.png */,
+				E8157BF6211D753D00CCB63B /* log - enabled - 30x30.png */,
+				E8157C04211D754000CCB63B /* log - found - 30x30.png */,
+				E8157BFA211D753E00CCB63B /* log - moved - 30x30.png */,
+				E8157C00211D753F00CCB63B /* log - needsarchiving - 30x30.png */,
+				E8157C02211D754000CCB63B /* log - needsmaintenance - 30x30.png */,
+				E8157BFE211D753F00CCB63B /* log - note - 30x30.png */,
+				E8157BF4211D753D00CCB63B /* log - ownermaintenance - 30x30.png */,
+				E8157BF7211D753D00CCB63B /* log - photographed - 30x30.png */,
+				E8157BF1211D753C00CCB63B /* log - photographed - 30x30@2x.png */,
+				E8157C05211D754000CCB63B /* log - photographed - 30x30@3x.png */,
+				E8157BF5211D753D00CCB63B /* log - published - 30x30.png */,
+				E8157BFF211D753F00CCB63B /* log - reviewernote - 30x30.png */,
+				E8157BF0211D753C00CCB63B /* log - unarchived - 30x30.png */,
+				E8157BF8211D753D00CCB63B /* log - unknown - 30x30.png */,
+				E8157BF9211D753E00CCB63B /* log - willattend - 30x30.png */,
+			);
+			name = logs;
+			sourceTree = "<group>";
+		};
+		E8157B3B211D74E500CCB63B /* types */ = {
+			isa = PBXGroup;
+			children = (
+				E8157B78211D752200CCB63B /* cache - augmented reality - 30x30.png */,
+				E8157B79211D752200CCB63B /* cache - augmented reality - 30x30@2x.png */,
+				E8157B61211D751C00CCB63B /* cache - augmented reality - 30x30@3x.png */,
+				E8157B93211D752A00CCB63B /* cache - beacon - 30x30.png */,
+				E8157B6C211D751F00CCB63B /* cache - beacon - 30x30@2x.png */,
+				E8157B6A211D751F00CCB63B /* cache - beacon - 30x30@3x.png */,
+				E8157B63211D751D00CCB63B /* cache - benchmark - 30x30.png */,
+				E8157B49211D751700CCB63B /* cache - benchmark - 30x30@2x.png */,
+				E8157B87211D752500CCB63B /* cache - benchmark - 30x30@3x.png */,
+				E8157B44211D751600CCB63B /* cache - burke-wills - 30x30.png */,
+				E8157B59211D751B00CCB63B /* cache - burke-wills - 30x30@2x.png */,
+				E8157B52211D751900CCB63B /* cache - burke-wills - 30x30@3x.png */,
+				E8157B68211D751E00CCB63B /* cache - cito - 30x30.png */,
+				E8157B54211D751900CCB63B /* cache - cito - 30x30@2x.png */,
+				E8157B5F211D751C00CCB63B /* cache - cito - 30x30@3x.png */,
+				E8157B70211D752000CCB63B /* cache - earth - 30x30.png */,
+				E8157B8F211D752600CCB63B /* cache - earth - 30x30@2x.png */,
+				E8157B3F211D751500CCB63B /* cache - earth - 30x30@3x.png */,
+				E8157B88211D752500CCB63B /* cache - ephemeral - 30x30.png */,
+				E8157B4E211D751800CCB63B /* cache - ephemeral - 30x30@2x.png */,
+				E8157B4B211D751700CCB63B /* cache - ephemeral - 30x30@3x.png */,
+				E8157B5A211D751B00CCB63B /* cache - event - 30x30.png */,
+				E8157B83211D752400CCB63B /* cache - event - 30x30@2x.png */,
+				E8157B7E211D752300CCB63B /* cache - event - 30x30@3x.png */,
+				E8157B4A211D751700CCB63B /* cache - gadget - 30x30.png */,
+				E8157B51211D751900CCB63B /* cache - gadget - 30x30@2x.png */,
+				E8157B90211D752600CCB63B /* cache - gadget - 30x30@3x.png */,
+				E8157B73211D752100CCB63B /* cache - geocacher - 30x30.png */,
+				E8157B5E211D751C00CCB63B /* cache - geocacher - 30x30@2x.png */,
+				E8157B62211D751D00CCB63B /* cache - geocacher - 30x30@3x.png */,
+				E8157B7A211D752200CCB63B /* cache - giga - 30x30.png */,
+				E8157B4C211D751700CCB63B /* cache - giga - 30x30@2x.png */,
+				E8157B41211D751600CCB63B /* cache - giga - 30x30@3x.png */,
+				E8157B91211D752600CCB63B /* cache - groundspeak hq - 30x30.png */,
+				E8157B77211D752100CCB63B /* cache - groundspeak hq - 30x30@2x.png */,
+				E8157B53211D751900CCB63B /* cache - groundspeak hq - 30x30@3x.png */,
+				E8157B89211D752500CCB63B /* cache - history - 30x30.png */,
+				E8157B85211D752500CCB63B /* cache - history - 30x30@2x.png */,
+				E8157B6D211D751F00CCB63B /* cache - history - 30x30@3x.png */,
+				E8157B7B211D752200CCB63B /* cache - letterbox - 30x30.png */,
+				E8157B66211D751E00CCB63B /* cache - letterbox - 30x30@2x.png */,
+				E8157B5C211D751B00CCB63B /* cache - letterbox - 30x30@3x.png */,
+				E8157B4D211D751800CCB63B /* cache - maze - 30x30.png */,
+				E8157B6B211D751F00CCB63B /* cache - maze - 30x30@2x.png */,
+				E8157B8D211D752500CCB63B /* cache - maze - 30x30@3x.png */,
+				E8157B42211D751600CCB63B /* cache - mega - 30x30.png */,
+				E8157B5B211D751B00CCB63B /* cache - mega - 30x30@2x.png */,
+				E8157B4F211D751800CCB63B /* cache - mega - 30x30@3x.png */,
+				E8157B92211D752600CCB63B /* cache - moveable - 30x30.png */,
+				E8157B55211D751A00CCB63B /* cache - moveable - 30x30@2x.png */,
+				E8157B69211D751E00CCB63B /* cache - moveable - 30x30@3x.png */,
+				E8157B86211D752500CCB63B /* cache - multi - 30x30.png */,
+				E8157B84211D752400CCB63B /* cache - multi - 30x30@2x.png */,
+				E8157B7C211D752300CCB63B /* cache - multi - 30x30@3x.png */,
+				E8157B50211D751800CCB63B /* cache - mystery - 30x30.png */,
+				E8157B6E211D751F00CCB63B /* cache - mystery - 30x30@2x.png */,
+				E8157B74211D752100CCB63B /* cache - mystery - 30x30@3x.png */,
+				E8157B75211D752100CCB63B /* cache - night - 30x30.png */,
+				E8157B40211D751500CCB63B /* cache - night - 30x30@2x.png */,
+				E8157B7D211D752300CCB63B /* cache - night - 30x30@3x.png */,
+				E8157B94211D752A00CCB63B /* cache - podcast - 30x30.png */,
+				E8157B7F211D752300CCB63B /* cache - podcast - 30x30@2x.png */,
+				E8157B95211D752B00CCB63B /* cache - podcast - 30x30@3x.png */,
+				E8157B64211D751D00CCB63B /* cache - reverse - 30x30.png */,
+				E8157B58211D751A00CCB63B /* cache - reverse - 30x30@2x.png */,
+				E8157B46211D751600CCB63B /* cache - reverse - 30x30@3x.png */,
+				E8157B82211D752400CCB63B /* cache - traditional - 30x30.png */,
+				E8157B60211D751C00CCB63B /* cache - traditional - 30x30@2x.png */,
+				E8157B43211D751600CCB63B /* cache - traditional - 30x30@3x.png */,
+				E8157B56211D751A00CCB63B /* cache - trigpoint - 30x30.png */,
+				E8157B47211D751600CCB63B /* cache - trigpoint - 30x30@2x.png */,
+				E8157B3C211D751400CCB63B /* cache - trigpoint - 30x30@3x.png */,
+				E8157B8C211D752500CCB63B /* cache - unknown - 30x30.png */,
+				E8157B80211D752400CCB63B /* cache - unknown - 30x30@2x.png */,
+				E8157B71211D752000CCB63B /* cache - unknown - 30x30@3x.png */,
+				E8157B67211D751E00CCB63B /* cache - unknowntype - 30x30.png */,
+				E8157B5D211D751C00CCB63B /* cache - unknowntype - 30x30@2x.png */,
+				E8157B3D211D751500CCB63B /* cache - unknowntype - 30x30@3x.png */,
+				E8157B57211D751A00CCB63B /* cache - virtual - 30x30.png */,
+				E8157B72211D752000CCB63B /* cache - virtual - 30x30@2x.png */,
+				E8157B81211D752400CCB63B /* cache - virtual - 30x30@3x.png */,
+				E8157B76211D752100CCB63B /* cache - waymark - 30x30.png */,
+				E8157B8A211D752500CCB63B /* cache - waymark - 30x30@2x.png */,
+				E8157B48211D751700CCB63B /* cache - waymark - 30x30@3x.png */,
+				E8157B6F211D752000CCB63B /* cache - webcam - 30x30.png */,
+				E8157B8E211D752500CCB63B /* cache - webcam - 30x30@2x.png */,
+				E8157B65211D751D00CCB63B /* cache - webcam - 30x30@3x.png */,
+				E8157B3E211D751500CCB63B /* cache - whereigo - 30x30.png */,
+				E8157B45211D751600CCB63B /* cache - whereigo - 30x30@2x.png */,
+				E8157B8B211D752500CCB63B /* cache - whereigo - 30x30@3x.png */,
+			);
+			name = types;
+			sourceTree = "<group>";
+		};
+		E8157C1C211D757800CCB63B /* types */ = {
+			isa = PBXGroup;
+			children = (
 				E8157A5E211D6EA100CCB63B /* gca-icon_geocacheaugmentedreality.png */,
 				E8157A7E211D6EA600CCB63B /* gca-icon_geocacheaugmentedreality@2x.png */,
 				E8157A70211D6EA400CCB63B /* gca-icon_geocacheaugmentedreality@3x.png */,
@@ -2660,6 +2807,13 @@
 				E8157A44211D6E9D00CCB63B /* gca-icon_geocachewherigo.png */,
 				E8157A89211D6EA800CCB63B /* gca-icon_geocachewherigo@2x.png */,
 				E8157A46211D6E9D00CCB63B /* gca-icon_geocachewherigo@3x.png */,
+			);
+			name = types;
+			sourceTree = "<group>";
+		};
+		E8157C1D211D758300CCB63B /* logs */ = {
+			isa = PBXGroup;
+			children = (
 				E8157A7C211D6EA600CCB63B /* gca-icon_logadminreview.png */,
 				E8157A2F211D6E9900CCB63B /* gca-icon_logadminreview@2x.png */,
 				E8157A35211D6E9A00CCB63B /* gca-icon_logadminreview@3x.png */,
@@ -2730,7 +2884,7 @@
 				E8157AA1211D6EAC00CCB63B /* gca-icon_logwillattend@2x.png */,
 				E8157A98211D6EAA00CCB63B /* gca-icon_logwillattend@3x.png */,
 			);
-			name = "gca-images";
+			name = logs;
 			sourceTree = "<group>";
 		};
 		E82002261B7B1B8F009AE50F /* Notes and logs */ = {
@@ -4055,103 +4209,6 @@
 			name = MapsWithMeAPI;
 			sourceTree = "<group>";
 		};
-		E86C65751B4BCE2E00E2ABFE /* cache icons */ = {
-			isa = PBXGroup;
-			children = (
-				E891DB89211716A9009A4D52 /* cache - augmented reality - 30x30.png */,
-				E891DB88211716A9009A4D52 /* cache - augmented reality - 30x30@2x.png */,
-				E891DB8A211716A9009A4D52 /* cache - augmented reality - 30x30@3x.png */,
-				E82E66831DA07CBE00CFBDED /* cache - beacon - 30x30.png */,
-				E8FEDEBA1DA8EEE9007C756B /* cache - beacon - 30x30@2x.png */,
-				E8FEDEBB1DA8EEE9007C756B /* cache - beacon - 30x30@3x.png */,
-				E82E66841DA07CBE00CFBDED /* cache - benchmark - 30x30.png */,
-				E8FEDEBC1DA8EEE9007C756B /* cache - benchmark - 30x30@2x.png */,
-				E8FEDEBD1DA8EEE9007C756B /* cache - benchmark - 30x30@3x.png */,
-				E82E66851DA07CBE00CFBDED /* cache - burke-wills - 30x30.png */,
-				E8FEDEBE1DA8EEE9007C756B /* cache - burke-wills - 30x30@2x.png */,
-				E8FEDEBF1DA8EEE9007C756B /* cache - burke-wills - 30x30@3x.png */,
-				E82E66861DA07CBE00CFBDED /* cache - cito - 30x30.png */,
-				E8FEDEC01DA8EEE9007C756B /* cache - cito - 30x30@2x.png */,
-				E8FEDEC11DA8EEE9007C756B /* cache - cito - 30x30@3x.png */,
-				E82E66871DA07CBE00CFBDED /* cache - earth - 30x30.png */,
-				E8FEDEC21DA8EEE9007C756B /* cache - earth - 30x30@2x.png */,
-				E8FEDEC31DA8EEE9007C756B /* cache - earth - 30x30@3x.png */,
-				E8757BB720A072EE00E498FD /* cache - ephemeral - 30x30.png */,
-				E8757BB520A072ED00E498FD /* cache - ephemeral - 30x30@2x.png */,
-				E8757BB620A072ED00E498FD /* cache - ephemeral - 30x30@3x.png */,
-				E82E66881DA07CBE00CFBDED /* cache - event - 30x30.png */,
-				E8FEDEC41DA8EEE9007C756B /* cache - event - 30x30@2x.png */,
-				E8FEDEC51DA8EEE9007C756B /* cache - event - 30x30@3x.png */,
-				E88DB0071F334E4300FEF795 /* cache - gadget - 30x30.png */,
-				E8B772FA1F9462250060B415 /* cache - gadget - 30x30@2x.png */,
-				E8B772FB1F9462250060B415 /* cache - gadget - 30x30@3x.png */,
-				E8607F141F8ADA91004E273C /* cache - geocacher - 30x30.png */,
-				E8607F151F8ADA91004E273C /* cache - geocacher - 30x30@2x.png */,
-				E8607F161F8ADA91004E273C /* cache - geocacher - 30x30@3x.png */,
-				E82E66891DA07CBE00CFBDED /* cache - giga - 30x30.png */,
-				E8FEDEC61DA8EEE9007C756B /* cache - giga - 30x30@2x.png */,
-				E8FEDEC71DA8EEE9007C756B /* cache - giga - 30x30@3x.png */,
-				E82E668A1DA07CBE00CFBDED /* cache - groundspeak hq - 30x30.png */,
-				E8FEDEC81DA8EEE9007C756B /* cache - groundspeak hq - 30x30@2x.png */,
-				E8FEDEC91DA8EEE9007C756B /* cache - groundspeak hq - 30x30@3x.png */,
-				E82E668B1DA07CBE00CFBDED /* cache - history - 30x30.png */,
-				E82E668C1DA07CBE00CFBDED /* cache - history - 30x30@2x.png */,
-				E82E668D1DA07CBE00CFBDED /* cache - history - 30x30@3x.png */,
-				E82E668E1DA07CBE00CFBDED /* cache - letterbox - 30x30.png */,
-				E82E668F1DA07CBE00CFBDED /* cache - letterbox - 30x30@2x.png */,
-				E82E66901DA07CBE00CFBDED /* cache - letterbox - 30x30@3x.png */,
-				E82E66911DA07CBE00CFBDED /* cache - maze - 30x30.png */,
-				E8FEDECA1DA8EEE9007C756B /* cache - maze - 30x30@2x.png */,
-				E8FEDECB1DA8EEE9007C756B /* cache - maze - 30x30@3x.png */,
-				E82E66921DA07CBE00CFBDED /* cache - mega - 30x30.png */,
-				E8FEDECC1DA8EEE9007C756B /* cache - mega - 30x30@2x.png */,
-				E8FEDECD1DA8EEE9007C756B /* cache - mega - 30x30@3x.png */,
-				E82E66931DA07CBE00CFBDED /* cache - moveable - 30x30.png */,
-				E82E66941DA07CBE00CFBDED /* cache - moveable - 30x30@2x.png */,
-				E82E66951DA07CBE00CFBDED /* cache - moveable - 30x30@3x.png */,
-				E82E66961DA07CBE00CFBDED /* cache - multi - 30x30.png */,
-				E82E66971DA07CBE00CFBDED /* cache - multi - 30x30@2x.png */,
-				E82E66981DA07CBE00CFBDED /* cache - multi - 30x30@3x.png */,
-				E82E66991DA07CBE00CFBDED /* cache - mystery - 30x30.png */,
-				E82E669A1DA07CBE00CFBDED /* cache - mystery - 30x30@2x.png */,
-				E82E669B1DA07CBE00CFBDED /* cache - mystery - 30x30@3x.png */,
-				E82E669C1DA07CBE00CFBDED /* cache - night - 30x30.png */,
-				E82E669D1DA07CBE00CFBDED /* cache - night - 30x30@2x.png */,
-				E82E669E1DA07CBE00CFBDED /* cache - night - 30x30@3x.png */,
-				E82E669F1DA07CBE00CFBDED /* cache - podcast - 30x30.png */,
-				E82E66A01DA07CBE00CFBDED /* cache - podcast - 30x30@2x.png */,
-				E82E66A11DA07CBE00CFBDED /* cache - podcast - 30x30@3x.png */,
-				E8F403E71DAF5B2600318CC6 /* cache - reverse - 30x30.png */,
-				E8F403E91DAFA23600318CC6 /* cache - reverse - 30x30@2x.png */,
-				E8F403EA1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png */,
-				E82E66A21DA07CBE00CFBDED /* cache - traditional - 30x30.png */,
-				E82E66A31DA07CBE00CFBDED /* cache - traditional - 30x30@2x.png */,
-				E82E66A41DA07CBE00CFBDED /* cache - traditional - 30x30@3x.png */,
-				E82E66A51DA07CBE00CFBDED /* cache - trigpoint - 30x30.png */,
-				E82E66A61DA07CBE00CFBDED /* cache - trigpoint - 30x30@2x.png */,
-				E82E66A71DA07CBE00CFBDED /* cache - trigpoint - 30x30@3x.png */,
-				E82E66A81DA07CBE00CFBDED /* cache - unknown - 30x30.png */,
-				E82E66A91DA07CBE00CFBDED /* cache - unknown - 30x30@2x.png */,
-				E82E66AA1DA07CBE00CFBDED /* cache - unknown - 30x30@3x.png */,
-				E82E66AB1DA07CBE00CFBDED /* cache - unknowntype - 30x30.png */,
-				E8FEDECE1DA8EEE9007C756B /* cache - unknowntype - 30x30@2x.png */,
-				E8FEDECF1DA8EEE9007C756B /* cache - unknowntype - 30x30@3x.png */,
-				E82E66AC1DA07CBE00CFBDED /* cache - virtual - 30x30.png */,
-				E82E66AD1DA07CBE00CFBDED /* cache - virtual - 30x30@2x.png */,
-				E82E66AE1DA07CBE00CFBDED /* cache - virtual - 30x30@3x.png */,
-				E82E66AF1DA07CBE00CFBDED /* cache - waymark - 30x30.png */,
-				E82E66B01DA07CBE00CFBDED /* cache - waymark - 30x30@2x.png */,
-				E82E66B11DA07CBE00CFBDED /* cache - waymark - 30x30@3x.png */,
-				E82E66B21DA07CBE00CFBDED /* cache - webcam - 30x30.png */,
-				E8FEDED01DA8EEE9007C756B /* cache - webcam - 30x30@2x.png */,
-				E8FEDED11DA8EEE9007C756B /* cache - webcam - 30x30@3x.png */,
-				E82E66B31DA07CBE00CFBDED /* cache - whereigo - 30x30.png */,
-				E82E66B41DA07CBE00CFBDED /* cache - whereigo - 30x30@2x.png */,
-				E82E66B51DA07CBE00CFBDED /* cache - whereigo - 30x30@3x.png */,
-			);
-			name = "cache icons";
-			sourceTree = "<group>";
-		};
 		E86C65961B4BCE7D00E2ABFE /* waypoint view */ = {
 			isa = PBXGroup;
 			children = (
@@ -4193,35 +4250,6 @@
 				E85707911CA1E7CE00467CE0 /* Single Waypoint */,
 			);
 			name = "Waypoint Viewing";
-			sourceTree = "<group>";
-		};
-		E8740FA31B4E86BB002527DA /* logs */ = {
-			isa = PBXGroup;
-			children = (
-				E82E65E61DA079E500CFBDED /* log - announcement - 30x30.png */,
-				E82E65E71DA079E500CFBDED /* log - archived - 30x30.png */,
-				E82E65E81DA079E500CFBDED /* log - attended - 30x30.png */,
-				E82E65E91DA079E500CFBDED /* log - coordinates - 30x30.png */,
-				E82E65EA1DA079E500CFBDED /* log - didnotfind - 30x30.png */,
-				E8257F271EE41B8A0089C106 /* log - disabled - 30x30.png */,
-				E892865C1EDCE68E008894E6 /* log - empty - 30x30.png */,
-				E82E65EC1DA079E500CFBDED /* log - enabled - 30x30.png */,
-				E82E65ED1DA079E500CFBDED /* log - found - 30x30.png */,
-				E82E65EE1DA079E500CFBDED /* log - moved - 30x30.png */,
-				E82E65EF1DA079E500CFBDED /* log - needsarchiving - 30x30.png */,
-				E82E65F01DA079E500CFBDED /* log - needsmaintenance - 30x30.png */,
-				E82E65F11DA079E500CFBDED /* log - note - 30x30.png */,
-				E82E65F21DA079E500CFBDED /* log - ownermaintenance - 30x30.png */,
-				E876EC801F7BCAA0002A368E /* log - photographed - 30x30.png */,
-				E8B773021F9462600060B415 /* log - photographed - 30x30@2x.png */,
-				E8B773031F9462600060B415 /* log - photographed - 30x30@3x.png */,
-				E82E65F31DA079E500CFBDED /* log - published - 30x30.png */,
-				E82E65F41DA079E500CFBDED /* log - reviewernote - 30x30.png */,
-				E82E65F51DA079E500CFBDED /* log - unarchived - 30x30.png */,
-				E82E65F61DA079E500CFBDED /* log - unknown - 30x30.png */,
-				E82E65F71DA079E500CFBDED /* log - willattend - 30x30.png */,
-			);
-			name = logs;
 			sourceTree = "<group>";
 		};
 		E8740FCE1B4E9D49002527DA /* containers */ = {
@@ -4650,7 +4678,6 @@
 		E8BD82481B46A4CB0029CDC9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				E8157A0E211D6E6700CCB63B /* gca-images */,
 				E82E676F1DA07D1A00CFBDED /* image - nil - 1x1.png */,
 				E8FEDEB61DA887A7007C756B /* image - nil - 1x1@2x.png */,
 				E8FEDEB71DA887A7007C756B /* image - nil - 1x1@3x.png */,
@@ -4658,18 +4685,18 @@
 				E82E67711DA07D1A00CFBDED /* image - no image - 32x32@2x.png */,
 				E82E67721DA07D1A00CFBDED /* image - no image - 32x32@3x.png */,
 				E867E83C1B53D61C00CB126A /* attributes - XXX */,
-				E86C65751B4BCE2E00E2ABFE /* cache icons */,
 				E8611A981B8ABC8F00B9D7C3 /* compass - XXX */,
 				E8740FCE1B4E9D49002527DA /* containers */,
 				E887201C1B5EF5F300994BE0 /* icons */,
 				E80413971E9EFCB4001FD7BF /* introduction */,
 				E876ECA61F7E0340002A368E /* launchscreen */,
 				E843A4E31BAD3F7800C58F1F /* logos */,
-				E8740FA31B4E86BB002527DA /* logs */,
 				E8A3F44F1B51D932009F2F46 /* map */,
 				E82E660A1DA07A0300CFBDED /* menu */,
 				E80732D21B60FA90007FDC29 /* ratings */,
 				E86C65961B4BCE7D00E2ABFE /* waypoint view */,
+				E8157B37211D744B00CCB63B /* geocube-images */,
+				E8157A0E211D6E6700CCB63B /* gca-images */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -4966,32 +4993,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8B7732D1F9479AD0060B415 /* menu icon - find me - 27x27@2x.png in Resources */,
+				E8157C11211D754000CCB63B /* log - announcement - 30x30.png in Resources */,
 				E82344031EECDF6C00D2CDFD /* WaypointTableViewCell~ipad.xib in Resources */,
 				E8157AD1211D6EAC00CCB63B /* gca-icon_geocachehistory.png in Resources */,
 				E85DC6951F95D01E007556D5 /* menu icon - show both - 40x40@2x.png in Resources */,
-				E82E66011DA079E500CFBDED /* log - needsarchiving - 30x30.png in Resources */,
 				E8FEDEA31DA7C08A007C756B /* waypoint - manually entered - 30x30@3x.png in Resources */,
-				E8FEDEDD1DA8EEE9007C756B /* cache - event - 30x30@3x.png in Resources */,
 				E82E67481DA07D0200CFBDED /* attributes - 30.png in Resources */,
-				E82E66C61DA07CBE00CFBDED /* cache - moveable - 30x30.png in Resources */,
 				E8157AE0211D6EAC00CCB63B /* gca-icon_logdisabled@3x.png in Resources */,
-				E82E66E21DA07CBE00CFBDED /* cache - waymark - 30x30.png in Resources */,
 				E82E67691DA07D0200CFBDED /* attributes - 63.png in Resources */,
-				E8FEDEDE1DA8EEE9007C756B /* cache - giga - 30x30@2x.png in Resources */,
 				E82E67751DA07D1A00CFBDED /* image - no image - 32x32@2x.png in Resources */,
 				E88258351E9FA03700FCF9B2 /* Close Window - 640x430.png in Resources */,
-				E82E66CA1DA07CBE00CFBDED /* cache - multi - 30x30@2x.png in Resources */,
+				E8157C12211D754000CCB63B /* log - disabled - 30x30.png in Resources */,
 				E8FEDE551DA77F9D007C756B /* container size - notchosen - 35x11@3x.png in Resources */,
 				E8157ACE211D6EAC00CCB63B /* gca-icon_geocachewebcam@3x.png in Resources */,
 				E8157B04211D6EAC00CCB63B /* gca-icon_geocacheburkeandwills.png in Resources */,
-				E8FEDEE01DA8EEE9007C756B /* cache - groundspeak hq - 30x30@2x.png in Resources */,
 				E87ED1841F85FE3400DE8E9B /* FilterTypesTableViewCell.xib in Resources */,
-				E82E66BB1DA07CBE00CFBDED /* cache - event - 30x30.png in Resources */,
+				E8157BBC211D752B00CCB63B /* cache - geocacher - 30x30@3x.png in Resources */,
+				E8157C0F211D754000CCB63B /* log - willattend - 30x30.png in Resources */,
 				E8157B32211D6EAC00CCB63B /* gca-icon_logfoundit.png in Resources */,
 				E8B773361F9479AD0060B415 /* menu icon - gnss-off - 27x27@2x.png in Resources */,
 				E8157AD5211D6EAC00CCB63B /* gca-icon_geocacheletterbox.png in Resources */,
+				E8157C0D211D754000CCB63B /* log - photographed - 30x30.png in Resources */,
 				E8B773741F94D7190060B415 /* menu icon - find target - 40x40.png in Resources */,
+				E8157BB9211D752B00CCB63B /* cache - cito - 30x30@3x.png in Resources */,
 				E82E65D81DA079AE00CFBDED /* map - archived - 15x15.png in Resources */,
+				E8157B39211D74DA00CCB63B /* geocube-images.json in Resources */,
 				E8157B1C211D6EAC00CCB63B /* gca-icon_geocachewherigo@2x.png in Resources */,
 				E82E65E41DA079AE00CFBDED /* map - tick found - 9x9.png in Resources */,
 				E8B773331F9479AD0060B415 /* menu icon - global default - 27x27@2x.png in Resources */,
@@ -5001,59 +5027,63 @@
 				E8157AA2211D6EAC00CCB63B /* gca-icon_geocachecito@3x.png in Resources */,
 				E8157B27211D6EAC00CCB63B /* gca-icon_logannouncement@2x.png in Resources */,
 				E8157B1E211D6EAC00CCB63B /* gca-icon_geocachevirtual.png in Resources */,
-				E82E66CF1DA07CBE00CFBDED /* cache - night - 30x30.png in Resources */,
-				E8FEDEDB1DA8EEE9007C756B /* cache - earth - 30x30@3x.png in Resources */,
 				E804139F1E9F984E001FD7BF /* Menu - 640x623.png in Resources */,
 				E82287171F8A2E1A00631380 /* GCTableViewCellRightImageDisclosure.xib in Resources */,
 				E8FEDE951DA7AD67007C756B /* map - tick found - 9x9@3x.png in Resources */,
-				E82E66DE1DA07CBE00CFBDED /* cache - unknowntype - 30x30.png in Resources */,
 				E8D49D301F00F9C1005EB7BE /* container size - nano - 35x11@2x.png in Resources */,
 				E8B7734A1F9479AD0060B415 /* menu icon - find target - 27x27.png in Resources */,
 				E8157B34211D6EAC00CCB63B /* gca-icon_logwillattend@2x.png in Resources */,
+				E8157B9E211D752B00CCB63B /* cache - burke-wills - 30x30.png in Resources */,
 				E822871E1F8A2E1A00631380 /* GCTableViewCellSubtitleRightImageDisclosure~ipad.xib in Resources */,
+				E8157BCF211D752B00CCB63B /* cache - night - 30x30.png in Resources */,
 				E8B773451F9479AD0060B415 /* menu icon - global night - 27x27@3x.png in Resources */,
 				E82E65DF1DA079AE00CFBDED /* map - highlight - 21x21.png in Resources */,
 				E82E65E01DA079AE00CFBDED /* map - in progress - 18x18.png in Resources */,
 				E8FEDEA01DA7C08A007C756B /* waypoint - flag - 30x30@2x.png in Resources */,
+				E8157BE9211D752B00CCB63B /* cache - earth - 30x30@2x.png in Resources */,
+				E8157BAA211D752B00CCB63B /* cache - mystery - 30x30.png in Resources */,
 				E8157AE4211D6EAC00CCB63B /* gca-icon_logneedsarchiving@2x.png in Resources */,
 				E8157B26211D6EAC00CCB63B /* gca-icon_geocacheevent.png in Resources */,
 				E8157AC7211D6EAC00CCB63B /* gca-icon_geocachelocationless@2x.png in Resources */,
 				E8FEDE591DA77F9D007C756B /* container size - regular - 35x11.png in Resources */,
-				E8FEDEDC1DA8EEE9007C756B /* cache - event - 30x30@2x.png in Resources */,
+				E8157BB4211D752B00CCB63B /* cache - event - 30x30.png in Resources */,
 				E82E675F1DA07D0200CFBDED /* attributes - 53.png in Resources */,
 				E86C4AB01E321822004526E2 /* CompassView.xib in Resources */,
+				E8157C19211D754000CCB63B /* log - attended - 30x30.png in Resources */,
 				E82E65B91DA0794600CFBDED /* waypoint - flag - 30x30.png in Resources */,
-				E82E66C21DA07CBE00CFBDED /* cache - letterbox - 30x30@2x.png in Resources */,
-				E8FEDED31DA8EEE9007C756B /* cache - beacon - 30x30@3x.png in Resources */,
 				E82E66401DA07A8700CFBDED /* icons - target - 30x30@3x.png in Resources */,
 				E8FEDE501DA77F9D007C756B /* container size - micro - 35x11.png in Resources */,
+				E8157BD4211D752B00CCB63B /* cache - giga - 30x30.png in Resources */,
 				E822892C1F8A40CC00631380 /* MHTabBarIndicator@2x.png in Resources */,
 				E85DC6731F95CFD2007556D5 /* menu icon - global default - 40x40@2x.png in Resources */,
 				E8157AB7211D6EAC00CCB63B /* gca-icon_logfoundit@3x.png in Resources */,
 				E8157ADD211D6EAC00CCB63B /* gca-icon_geocachemoveable@3x.png in Resources */,
 				E83C6F061EECE67100E303F5 /* FilesTableViewCell~ipad.xib in Resources */,
 				E82343DC1EECDEE200D2CDFD /* WaypointLogsTableViewCell.xib in Resources */,
-				E82E66B81DA07CBE00CFBDED /* cache - burke-wills - 30x30.png in Resources */,
 				E82345201EECE14A00D2CDFD /* HelpAboutTableViewCell~ipad.xib in Resources */,
-				E82E66B61DA07CBE00CFBDED /* cache - beacon - 30x30.png in Resources */,
 				E82E67461DA07D0200CFBDED /* attributes - 28.png in Resources */,
+				E8157C15211D754000CCB63B /* log - reviewernote - 30x30.png in Resources */,
 				E82E67551DA07D0200CFBDED /* attributes - 43.png in Resources */,
 				E8FEDE871DA7AD67007C756B /* map - dnf stick - 35x42@3x.png in Resources */,
 				E8FEDE5F1DA77F9D007C756B /* container size - unknown - 35x11.png in Resources */,
+				E8157BC3211D752B00CCB63B /* cache - moveable - 30x30@3x.png in Resources */,
 				E82E66381DA07A8700CFBDED /* icons - sad - 30x30@2x.png in Resources */,
-				E82E66E01DA07CBE00CFBDED /* cache - virtual - 30x30@2x.png in Resources */,
 				E82289171F8A40BA00631380 /* nko_colormap.png in Resources */,
 				E8D49D311F00F9C1005EB7BE /* container size - nano - 35x11@3x.png in Resources */,
+				E8157BE2211D752B00CCB63B /* cache - ephemeral - 30x30.png in Resources */,
 				E8157AD9211D6EAC00CCB63B /* gca-icon_geocachewherigo@3x.png in Resources */,
 				E8157AD6211D6EAC00CCB63B /* gca-icon_geocachegeocacher@3x.png in Resources */,
 				E85DC6921F95D01E007556D5 /* menu icon - gnss-on - 40x40@3x.png in Resources */,
 				E8FEDE921DA7AD67007C756B /* map - pin stick - 35x42@2x.png in Resources */,
 				E8FEDE4F1DA77F9D007C756B /* container size - large - 35x11@3x.png in Resources */,
 				E82E67631DA07D0200CFBDED /* attributes - 57.png in Resources */,
+				E8157BE7211D752B00CCB63B /* cache - maze - 30x30@3x.png in Resources */,
+				E8157B98211D752B00CCB63B /* cache - whereigo - 30x30.png in Resources */,
 				E8157AE3211D6EAC00CCB63B /* gca-icon_geocacheburkeandwills@3x.png in Resources */,
 				E8FEDE561DA77F9D007C756B /* container size - other - 35x11.png in Resources */,
 				E80AE56C1FB42A07003EDB36 /* FilterTypeIconsTableViewCell.xib in Resources */,
 				E8157B06211D6EAC00CCB63B /* gca-icon_geocacheprojectape.png in Resources */,
+				E8157C0E211D754000CCB63B /* log - unknown - 30x30.png in Resources */,
 				E8157B2D211D6EAC00CCB63B /* gca-icon_geocacheephemeral@3x.png in Resources */,
 				E8FEDE571DA77F9D007C756B /* container size - other - 35x11@2x.png in Resources */,
 				E8157B02211D6EAC00CCB63B /* gca-icon_geocacheephemeral@2x.png in Resources */,
@@ -5061,27 +5091,22 @@
 				E82E667C1DA07C6F00CFBDED /* compass - airplane - compass.png in Resources */,
 				E82287A21F8A30B700631380 /* MapWaypointInfoView.xib in Resources */,
 				E82E67421DA07D0200CFBDED /* attributes - 24.png in Resources */,
-				E82E66E51DA07CBE00CFBDED /* cache - webcam - 30x30.png in Resources */,
-				E82E66E81DA07CBE00CFBDED /* cache - whereigo - 30x30@3x.png in Resources */,
 				E82E667D1DA07C6F00CFBDED /* compass - red arrow on black.png in Resources */,
-				E8607F171F8ADA91004E273C /* cache - geocacher - 30x30.png in Resources */,
 				E8157AAD211D6EAC00CCB63B /* gca-icon_geocachebeacon.png in Resources */,
-				E82E66D51DA07CBE00CFBDED /* cache - traditional - 30x30.png in Resources */,
-				E82E66051DA079E500CFBDED /* log - published - 30x30.png in Resources */,
 				E82E67601DA07D0200CFBDED /* attributes - 54.png in Resources */,
 				E8157ACB211D6EAC00CCB63B /* gca-icon_geocacheearthcache.png in Resources */,
 				E89D556F2074F59C004D9E3A /* map - centeredcoords - 22x22@3x.png in Resources */,
 				E8157AF0211D6EAC00CCB63B /* gca-icon_geocachetrigpoint@2x.png in Resources */,
 				E8B7737B1F94D7190060B415 /* menu icon - local night - 40x40.png in Resources */,
 				E89D556D2074726C004D9E3A /* map - centeredcoords - 22x22@2x.png in Resources */,
-				E82E66CB1DA07CBE00CFBDED /* cache - multi - 30x30@3x.png in Resources */,
-				E8FEDEE61DA8EEE9007C756B /* cache - unknowntype - 30x30@2x.png in Resources */,
 				E8FEDE841DA7AD67007C756B /* map - disabled - 15x15@2x.png in Resources */,
 				E8157B33211D6EAC00CCB63B /* gca-icon_logcoordsupdated.png in Resources */,
+				E8157BAF211D752B00CCB63B /* cache - moveable - 30x30@2x.png in Resources */,
 				E8B773001F9462410060B415 /* container flag - planned - 24x21@2x.png in Resources */,
+				E8157C16211D754000CCB63B /* log - needsarchiving - 30x30.png in Resources */,
+				E8157BC4211D752B00CCB63B /* cache - beacon - 30x30@3x.png in Resources */,
 				E85DC68D1F95D01E007556D5 /* menu icon - follow me - 40x40@2x.png in Resources */,
 				E82E65DD1DA079AE00CFBDED /* map - dnf stick - 35x42.png in Resources */,
-				E82E66041DA079E500CFBDED /* log - ownermaintenance - 30x30.png in Resources */,
 				E8FEDEA81DA7C08A007C756B /* waypoint - unknown - 30x30@2x.png in Resources */,
 				E83C6F031EECE67100E303F5 /* FileObjectView.xib in Resources */,
 				E8157ABA211D6EAC00CCB63B /* gca-icon_geocachepodcache@2x.png in Resources */,
@@ -5090,9 +5115,9 @@
 				E82E67471DA07D0200CFBDED /* attributes - 29.png in Resources */,
 				E87ED17C1F84EECB00DE8E9B /* FilterTextTableViewCell.xib in Resources */,
 				E8157AFE211D6EAC00CCB63B /* gca-icon_logenabled.png in Resources */,
+				E8157C09211D754000CCB63B /* log - empty - 30x30.png in Resources */,
 				E82344411EECE01500D2CDFD /* KeepTracksTrackTableViewCell.xib in Resources */,
 				E82E66811DA07C6F00CFBDED /* compass - white arrow on black@2x.png in Resources */,
-				E82E65FF1DA079E500CFBDED /* log - found - 30x30.png in Resources */,
 				E8157AAA211D6EAC00CCB63B /* gca-icon_logmoved.png in Resources */,
 				E82287241F8A2E1A00631380 /* GCTableViewCellWithSubtitle~ipad.xib in Resources */,
 				E8157AE7211D6EAC00CCB63B /* gca-icon_logphotographed@3x.png in Resources */,
@@ -5102,9 +5127,7 @@
 				E82344951EECE0AD00D2CDFD /* QueriesTableViewCell.xib in Resources */,
 				E8157AE9211D6EAC00CCB63B /* gca-icon_logreview@2x.png in Resources */,
 				E8FEDE601DA77F9D007C756B /* container size - unknown - 35x11@2x.png in Resources */,
-				E82E66071DA079E500CFBDED /* log - unarchived - 30x30.png in Resources */,
 				E85DC68A1F95D01E007556D5 /* menu icon - find me - 40x40@3x.png in Resources */,
-				E82E66B91DA07CBE00CFBDED /* cache - cito - 30x30.png in Resources */,
 				E8EC50331F836E68004A2338 /* FilterDifficultyTableViewCell.xib in Resources */,
 				E85DC68E1F95D01E007556D5 /* menu icon - follow me - 40x40@3x.png in Resources */,
 				E8B7733D1F9479AD0060B415 /* menu icon - see target - 27x27@2x.png in Resources */,
@@ -5112,7 +5135,6 @@
 				E85DC6761F95CFD2007556D5 /* menu icon - global night - 40x40@3x.png in Resources */,
 				E82E65BB1DA0794600CFBDED /* waypoint - multi - 30x30.png in Resources */,
 				E8157B20211D6EAC00CCB63B /* gca-icon_logcoordsupdated@2x.png in Resources */,
-				E82E66CC1DA07CBE00CFBDED /* cache - mystery - 30x30.png in Resources */,
 				E8157AE8211D6EAC00CCB63B /* gca-icon_logphotographed@2x.png in Resources */,
 				E8B7737A1F94D7190060B415 /* menu icon - local default - 40x40.png in Resources */,
 				E8157B11211D6EAC00CCB63B /* gca-icon_geocacheaugmentedreality@2x.png in Resources */,
@@ -5125,42 +5147,40 @@
 				E82343D61EECDEE200D2CDFD /* WaypointHeaderHeaderView.xib in Resources */,
 				E82289361F8A40DB00631380 /* fullrange.png in Resources */,
 				E85DC6791F95CFD2007556D5 /* menu icon - local night - 40x40@2x.png in Resources */,
+				E8157C0C211D754000CCB63B /* log - enabled - 30x30.png in Resources */,
 				E82288221F8A347A00631380 /* Tidy in Resources */,
+				E8157BED211D752B00CCB63B /* cache - beacon - 30x30.png in Resources */,
 				E82288161F8A347A00631380 /* Creation in Resources */,
-				E891DB8B211716A9009A4D52 /* cache - augmented reality - 30x30@2x.png in Resources */,
-				E82E66CD1DA07CBE00CFBDED /* cache - mystery - 30x30@2x.png in Resources */,
 				E8157AD7211D6EAC00CCB63B /* gca-icon_geocachewherigo.png in Resources */,
 				E8FEDEB81DA887A7007C756B /* image - nil - 1x1@2x.png in Resources */,
 				E8157AD8211D6EAC00CCB63B /* gca-icon_geocachemulticache.png in Resources */,
 				E822871B1F8A2E1A00631380 /* GCTableViewCellSubtitleRightImage~ipad.xib in Resources */,
 				E8B7732A1F9479AD0060B415 /* menu icon - close - 15x15.png in Resources */,
+				E8157BCA211D752B00CCB63B /* cache - earth - 30x30.png in Resources */,
 				E8157AA3211D6EAC00CCB63B /* gca-icon_logoapi@3x.png in Resources */,
 				E8157B00211D6EAC00CCB63B /* gca-icon_logneedsmaintenance@3x.png in Resources */,
+				E8157BC9211D752B00CCB63B /* cache - webcam - 30x30.png in Resources */,
 				E8157B01211D6EAC00CCB63B /* gca-icon_geocachegadget@2x.png in Resources */,
 				E8FEDE5E1DA77F9D007C756B /* container size - small - 35x11@3x.png in Resources */,
 				E8157B0D211D6EAC00CCB63B /* gca-icon_logwillattend.png in Resources */,
 				E82E65C71DA0797E00CFBDED /* ratings - star half 18x18.png in Resources */,
-				E82E66021DA079E500CFBDED /* log - needsmaintenance - 30x30.png in Resources */,
 				E82343DA1EECDEE200D2CDFD /* WaypointHeaderTableViewCell~ipad.xib in Resources */,
-				E82E66E71DA07CBE00CFBDED /* cache - whereigo - 30x30@2x.png in Resources */,
 				E8B7732F1F9479AD0060B415 /* menu icon - find target - 27x27@2x.png in Resources */,
 				E82341871EECA19300D2CDFD /* EncryptionKeys.plist in Resources */,
+				E8157BCD211D752B00CCB63B /* cache - geocacher - 30x30.png in Resources */,
+				E8157B9C211D752B00CCB63B /* cache - mega - 30x30.png in Resources */,
 				E82344681EECE06E00D2CDFD /* TrackableTableViewCell.xib in Resources */,
-				E82E66B71DA07CBE00CFBDED /* cache - benchmark - 30x30.png in Resources */,
 				E8157AAE211D6EAC00CCB63B /* gca-icon_geocachepodcache@3x.png in Resources */,
 				E8B773431F9479AD0060B415 /* menu icon - global night - 27x27.png in Resources */,
 				E8FEDE821DA7AD67007C756B /* map - cross dnf - 9x9@2x.png in Resources */,
 				E85DC6911F95D01E007556D5 /* menu icon - gnss-on - 40x40@2x.png in Resources */,
 				E82E673F1DA07D0200CFBDED /* attributes - 21.png in Resources */,
 				E8157B0E211D6EAC00CCB63B /* gca-icon_geocachenightcache@2x.png in Resources */,
+				E8157BEF211D752B00CCB63B /* cache - podcast - 30x30@3x.png in Resources */,
 				E8D869D21FB2F76E0033C74C /* InfoItem.xib in Resources */,
 				E8FEDEAD1DA87AF3007C756B /* waypoint - trailhead - 30x30@3x.png in Resources */,
-				E8FEDED51DA8EEE9007C756B /* cache - benchmark - 30x30@3x.png in Resources */,
 				E85DC6931F95D01E007556D5 /* menu icon - see target - 40x40@2x.png in Resources */,
-				E82E66D21DA07CBE00CFBDED /* cache - podcast - 30x30.png in Resources */,
 				E8157AF4211D6EAC00CCB63B /* gca-icon_geocachereverse@2x.png in Resources */,
-				E8FEDED91DA8EEE9007C756B /* cache - cito - 30x30@3x.png in Resources */,
-				E876EC831F7BCAA0002A368E /* log - photographed - 30x30.png in Resources */,
 				E8157AF7211D6EAC00CCB63B /* gca-icon_logdisabled@2x.png in Resources */,
 				E8FEDE8C1DA7AD67007C756B /* map - in progress - 18x18@2x.png in Resources */,
 				E87ED1821F85F97700DE8E9B /* FilterGroupsTableViewCell.xib in Resources */,
@@ -5170,52 +5190,51 @@
 				E8FEDE891DA7AD67007C756B /* map - found stick - 35x42@3x.png in Resources */,
 				E82E66671DA07C4900CFBDED /* container flag - marked found - 24x21@3x.png in Resources */,
 				E82E65BA1DA0794600CFBDED /* waypoint - manually entered - 30x30.png in Resources */,
+				E8157C14211D754000CCB63B /* log - note - 30x30.png in Resources */,
 				E82E67381DA07D0200CFBDED /* attributes - 13.png in Resources */,
 				E8157AA7211D6EAC00CCB63B /* gca-icon_geocacheunknownormystery@2x.png in Resources */,
 				E82287111F8A2E1A00631380 /* GCTableViewCellKeyValue.xib in Resources */,
+				E8157BE1211D752B00CCB63B /* cache - benchmark - 30x30@3x.png in Resources */,
 				E82E67391DA07D0200CFBDED /* attributes - 14.png in Resources */,
 				E8B7732C1F9479AD0060B415 /* menu icon - close - 15x15@3x.png in Resources */,
 				E82E65DA1DA079AE00CFBDED /* map - cross dnf - 9x9.png in Resources */,
-				E8FEDEE21DA8EEE9007C756B /* cache - maze - 30x30@2x.png in Resources */,
-				E82E66D31DA07CBE00CFBDED /* cache - podcast - 30x30@2x.png in Resources */,
+				E8157BC7211D752B00CCB63B /* cache - history - 30x30@3x.png in Resources */,
+				E8157BB8211D752B00CCB63B /* cache - geocacher - 30x30@2x.png in Resources */,
+				E8157C1A211D754000CCB63B /* log - found - 30x30.png in Resources */,
+				E8157C13211D754000CCB63B /* log - didnotfind - 30x30.png in Resources */,
 				E8FEDE4E1DA77F9D007C756B /* container size - large - 35x11@2x.png in Resources */,
 				E8157AC5211D6EAC00CCB63B /* gca-icon_logattended@2x.png in Resources */,
 				E82E66661DA07C4900CFBDED /* container flag - marked found - 24x21@2x.png in Resources */,
 				E85DC6891F95D01E007556D5 /* menu icon - find me - 40x40@2x.png in Resources */,
 				E8157B0A211D6EAC00CCB63B /* gca-icon_lognoted@3x.png in Resources */,
 				E88258371E9FA15F00FCF9B2 /* Map icons - 362x86.png in Resources */,
-				E82E66C51DA07CBE00CFBDED /* cache - mega - 30x30.png in Resources */,
 				E82E67581DA07D0200CFBDED /* attributes - 46.png in Resources */,
 				E82344A01EECE0BD00D2CDFD /* StatisticsTableViewCell~ipad.xib in Resources */,
 				E8FEDE521DA77F9D007C756B /* container size - micro - 35x11@3x.png in Resources */,
-				E82E66DD1DA07CBE00CFBDED /* cache - unknown - 30x30@3x.png in Resources */,
 				E82343D71EECDEE200D2CDFD /* WaypointHeaderHeaderView~ipad.xib in Resources */,
 				E8FEDEA61DA7C08A007C756B /* waypoint - question - 30x30@2x.png in Resources */,
+				E8157BCB211D752B00CCB63B /* cache - unknown - 30x30@3x.png in Resources */,
 				E8845CAF1EF409BF00A47F5D /* WaypointWaypointsTableViewCell~ipad.xib in Resources */,
 				E82E672E1DA07D0200CFBDED /* attributes - 03.png in Resources */,
 				E82E65C51DA0797E00CFBDED /* ratings - favourites 20x30.png in Resources */,
 				E82344021EECDF6C00D2CDFD /* WaypointTableViewCell.xib in Resources */,
-				E8607F181F8ADA91004E273C /* cache - geocacher - 30x30@2x.png in Resources */,
 				E8B7733A1F9479AD0060B415 /* menu icon - gnss-on - 27x27@3x.png in Resources */,
 				E8FEDE581DA77F9D007C756B /* container size - other - 35x11@3x.png in Resources */,
-				E82E66D01DA07CBE00CFBDED /* cache - night - 30x30@2x.png in Resources */,
 				E82E67501DA07D0200CFBDED /* attributes - 38.png in Resources */,
 				E82E674D1DA07D0200CFBDED /* attributes - 35.png in Resources */,
 				E8157AB9211D6EAC00CCB63B /* gca-icon_logattended.png in Resources */,
 				E82289281F8A40CC00631380 /* MHTabBarInactiveTab.png in Resources */,
-				E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */,
 				E823451F1EECE14A00D2CDFD /* HelpAboutTableViewCell.xib in Resources */,
 				E85DC68F1F95D01E007556D5 /* menu icon - gnss-off - 40x40@2x.png in Resources */,
 				E8D49D371F0124F2005EB7BE /* container size - xlarge - 35x11@3x.png in Resources */,
 				E82E65BE1DA0794600CFBDED /* waypoint - trailhead - 30x30.png in Resources */,
-				E82E66BC1DA07CBE00CFBDED /* cache - giga - 30x30.png in Resources */,
 				E8FEDEB51DA88474007C756B /* waypoint - multi - 30x30@3x.png in Resources */,
 				E804139D1E9EFF6D001FD7BF /* GC - logo - 512x512.png in Resources */,
 				E8FEDEB01DA87DBB007C756B /* waypoint - finish - 30x30@2x.png in Resources */,
-				E82E66BE1DA07CBE00CFBDED /* cache - history - 30x30.png in Resources */,
 				E8157AFC211D6EAC00CCB63B /* gca-icon_geocacheletterbox@2x.png in Resources */,
 				E8D49D351F0124F2005EB7BE /* container size - xlarge - 35x11.png in Resources */,
 				E8157AE5211D6EAC00CCB63B /* gca-icon_lognoted.png in Resources */,
+				E8157BB1211D752B00CCB63B /* cache - virtual - 30x30.png in Resources */,
 				E82E67521DA07D0200CFBDED /* attributes - 40.png in Resources */,
 				E858F5991F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib in Resources */,
 				E82E67301DA07D0200CFBDED /* attributes - 05.png in Resources */,
@@ -5224,13 +5243,12 @@
 				E8B773391F9479AD0060B415 /* menu icon - gnss-on - 27x27@2x.png in Resources */,
 				E8157B0C211D6EAC00CCB63B /* gca-icon_geocachetraditional.png in Resources */,
 				E82E67651DA07D0200CFBDED /* attributes - 59.png in Resources */,
+				E8157B9D211D752B00CCB63B /* cache - traditional - 30x30@3x.png in Resources */,
 				E876ECAD1F7E0391002A368E /* launchscreen - background.png in Resources */,
-				E8FEDEE91DA8EEE9007C756B /* cache - webcam - 30x30@3x.png in Resources */,
 				E822871A1F8A2E1A00631380 /* GCTableViewCellSubtitleRightImage.xib in Resources */,
 				E8157ADF211D6EAC00CCB63B /* gca-icon_logdisabled.png in Resources */,
-				E82E66C01DA07CBE00CFBDED /* cache - history - 30x30@3x.png in Resources */,
 				E82E67331DA07D0200CFBDED /* attributes - 08.png in Resources */,
-				E82E65F81DA079E500CFBDED /* log - announcement - 30x30.png in Resources */,
+				E8157BA4211D752B00CCB63B /* cache - gadget - 30x30.png in Resources */,
 				E864BBB6206667EB0053B62D /* KeyboardCoordinateUTM.xib in Resources */,
 				E8B773461F9479AD0060B415 /* menu icon - local night - 27x27.png in Resources */,
 				E8157B07211D6EAC00CCB63B /* gca-icon_logphotographed.png in Resources */,
@@ -5239,7 +5257,6 @@
 				E85DC6641F956143007556D5 /* Launch Screen.storyboard in Resources */,
 				E82289291F8A40CC00631380 /* MHTabBarInactiveTab@2x.png in Resources */,
 				E8157B0B211D6EAC00CCB63B /* gca-icon_logother.png in Resources */,
-				E8FEDED81DA8EEE9007C756B /* cache - cito - 30x30@2x.png in Resources */,
 				E82E675D1DA07D0200CFBDED /* attributes - 51.png in Resources */,
 				E82E663C1DA07A8700CFBDED /* icons - smiley - 30x30@2x.png in Resources */,
 				E8157B16211D6EAC00CCB63B /* gca-icon_geocachetraditional@2x.png in Resources */,
@@ -5248,24 +5265,29 @@
 				E82287231F8A2E1A00631380 /* GCTableViewCellWithSubtitle.xib in Resources */,
 				E8B773301F9479AD0060B415 /* menu icon - find target - 27x27@3x.png in Resources */,
 				E8FEDE7F1DA7AD67007C756B /* map - archived - 15x15@3x.png in Resources */,
+				E8157BB6211D752B00CCB63B /* cache - letterbox - 30x30@3x.png in Resources */,
 				E8157ACC211D6EAC00CCB63B /* gca-icon_lognoted@2x.png in Resources */,
 				E8B773441F9479AD0060B415 /* menu icon - global night - 27x27@2x.png in Resources */,
 				E82E67441DA07D0200CFBDED /* attributes - 26.png in Resources */,
-				E82E66091DA079E500CFBDED /* log - willattend - 30x30.png in Resources */,
 				E8B773411F9479AD0060B415 /* menu icon - global default - 27x27.png in Resources */,
 				E8157AB3211D6EAC00CCB63B /* gca-icon_geocacheevent@3x.png in Resources */,
 				E82E673A1DA07D0200CFBDED /* attributes - 15.png in Resources */,
 				E8157AD3211D6EAC00CCB63B /* gca-icon_geocachecito@2x.png in Resources */,
+				E8157BAD211D752B00CCB63B /* cache - groundspeak hq - 30x30@3x.png in Resources */,
+				E8157BEE211D752B00CCB63B /* cache - podcast - 30x30.png in Resources */,
+				E8157BA7211D752B00CCB63B /* cache - maze - 30x30.png in Resources */,
 				E82E67311DA07D0200CFBDED /* attributes - 06.png in Resources */,
+				E8157BE4211D752B00CCB63B /* cache - waymark - 30x30@2x.png in Resources */,
 				E8FEDE941DA7AD67007C756B /* map - tick found - 9x9@2x.png in Resources */,
+				E8157C06211D754000CCB63B /* log - unarchived - 30x30.png in Resources */,
 				E82E65C81DA0797E00CFBDED /* ratings - star off 18x18.png in Resources */,
 				E8845CAE1EF409BF00A47F5D /* WaypointWaypointsTableViewCell.xib in Resources */,
 				E8157AD4211D6EAC00CCB63B /* gca-icon_geocachemegaevent@2x.png in Resources */,
 				E82E66801DA07C6F00CFBDED /* compass - white arrow on black.png in Resources */,
 				E8157B25211D6EAC00CCB63B /* gca-icon_logoapi.png in Resources */,
+				E8157BC1211D752B00CCB63B /* cache - unknowntype - 30x30.png in Resources */,
 				E822892D1F8A40CC00631380 /* MHTabBarIndicator@2x.xcf in Resources */,
 				E8F570BE1B400137003F020C /* empty.db in Resources */,
-				E8FEDEE41DA8EEE9007C756B /* cache - mega - 30x30@2x.png in Resources */,
 				E82344421EECE01500D2CDFD /* KeepTracksTrackTableViewCell~ipad.xib in Resources */,
 				E8157ABB211D6EAC00CCB63B /* gca-icon_geocachetrigpoint@3x.png in Resources */,
 				E8FEDE5C1DA77F9D007C756B /* container size - small - 35x11.png in Resources */,
@@ -5274,27 +5296,24 @@
 				E87ED1871F86001E00DE8E9B /* FilterSizesTableViewCell.xib in Resources */,
 				E85DC68C1F95D01E007556D5 /* menu icon - find target - 40x40@3x.png in Resources */,
 				E84B17551F90BA51004CAE31 /* DeveloperRemoteAPITableViewCell.xib in Resources */,
-				E82E65FC1DA079E500CFBDED /* log - didnotfind - 30x30.png in Resources */,
 				E8157AEE211D6EAC00CCB63B /* gca-icon_geocachemoveable.png in Resources */,
-				E82E66C31DA07CBE00CFBDED /* cache - letterbox - 30x30@3x.png in Resources */,
+				E8157BBA211D752B00CCB63B /* cache - traditional - 30x30@2x.png in Resources */,
 				E8157AAB211D6EAC00CCB63B /* gca-icon_logpublished@2x.png in Resources */,
-				E82E66CE1DA07CBE00CFBDED /* cache - mystery - 30x30@3x.png in Resources */,
 				E82E66361DA07A8700CFBDED /* icons - dead - 30x30@3x.png in Resources */,
 				E8157B23211D6EAC00CCB63B /* gca-icon_logneedsarchiving@3x.png in Resources */,
 				E8157AA4211D6EAC00CCB63B /* gca-icon_geocachebeacon@3x.png in Resources */,
 				E82E67661DA07D0200CFBDED /* attributes - 60.png in Resources */,
 				E82E67671DA07D0200CFBDED /* attributes - 61.png in Resources */,
 				E8F570621B3F7255003F020C /* Main.storyboard in Resources */,
-				E8F403EC1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png in Resources */,
 				E85DC67A1F95CFD2007556D5 /* menu icon - local night - 40x40@3x.png in Resources */,
 				E8157AEB211D6EAC00CCB63B /* gca-icon_logoapi@2x.png in Resources */,
 				E85BA8901F5449F5008E708F /* Beeper.wav in Resources */,
 				E82E663A1DA07A8700CFBDED /* icons - smiley - 15x15.png in Resources */,
+				E8157BD5211D752B00CCB63B /* cache - letterbox - 30x30.png in Resources */,
 				E864BBA22064EAE60053B62D /* KeyboardCoordinateDecimalDegreesCardinal.xib in Resources */,
 				E82287201F8A2E1A00631380 /* GCTableViewCellSwitch.xib in Resources */,
 				E82E67681DA07D0200CFBDED /* attributes - 62.png in Resources */,
 				E822892E1F8A40CC00631380 /* MHTabBarIndicator@3x.png in Resources */,
-				E8F403EB1DAFA23600318CC6 /* cache - reverse - 30x30@2x.png in Resources */,
 				E8157AB5211D6EAC00CCB63B /* gca-icon_geocacheprojectape@3x.png in Resources */,
 				E8C8C8C21EE26AAA00E2438D /* LogTableViewCell~ipad.xib in Resources */,
 				E87ED1781F84B10400DE8E9B /* FilterFlagsTableViewCell.xib in Resources */,
@@ -5302,69 +5321,68 @@
 				E8157B22211D6EAC00CCB63B /* gca-icon_logneedsarchiving.png in Resources */,
 				E8157B29211D6EAC00CCB63B /* gca-icon_logfoundit@2x.png in Resources */,
 				E8157ACD211D6EAC00CCB63B /* gca-icon_geocachebeacon@2x.png in Resources */,
-				E82E66BF1DA07CBE00CFBDED /* cache - history - 30x30@2x.png in Resources */,
 				E8B773761F94D7190060B415 /* menu icon - global default - 40x40.png in Resources */,
-				E8757BB820A072EE00E498FD /* cache - ephemeral - 30x30@2x.png in Resources */,
-				E8757BB920A072EE00E498FD /* cache - ephemeral - 30x30@3x.png in Resources */,
 				E8157B24211D6EAC00CCB63B /* gca-icon_geocachevirtual@2x.png in Resources */,
 				E82E66611DA07C4900CFBDED /* container flag - archived - 24x24.png in Resources */,
 				E82E66391DA07A8700CFBDED /* icons - sad - 30x30@3x.png in Resources */,
-				E82E65FB1DA079E500CFBDED /* log - coordinates - 30x30.png in Resources */,
 				E8B773731F94D7190060B415 /* menu icon - find me - 40x40.png in Resources */,
-				E82E66DB1DA07CBE00CFBDED /* cache - unknown - 30x30.png in Resources */,
 				E8157B0F211D6EAC00CCB63B /* gca-icon_logadminreview.png in Resources */,
+				E8157BDC211D752B00CCB63B /* cache - traditional - 30x30.png in Resources */,
+				E8157BB3211D752B00CCB63B /* cache - burke-wills - 30x30@2x.png in Resources */,
 				E82E673E1DA07D0200CFBDED /* attributes - 20.png in Resources */,
+				E8157BEB211D752B00CCB63B /* cache - groundspeak hq - 30x30.png in Resources */,
 				E82E675B1DA07D0200CFBDED /* attributes - 49.png in Resources */,
 				E82E663E1DA07A8700CFBDED /* icons - target - 30x30.png in Resources */,
 				E8157AC3211D6EAC00CCB63B /* gca-icon_geocachehistory@3x.png in Resources */,
 				E86D42751EF5484E00E4509F /* LocationlessTableViewCell.xib in Resources */,
-				E8B772FD1F9462250060B415 /* cache - gadget - 30x30@3x.png in Resources */,
 				E8157AF1211D6EAC00CCB63B /* gca-icon_geocacheaugmentedreality.png in Resources */,
 				E82289351F8A40DB00631380 /* fillrange.png in Resources */,
-				E82E66C41DA07CBE00CFBDED /* cache - maze - 30x30.png in Resources */,
+				E8157BBE211D752B00CCB63B /* cache - reverse - 30x30.png in Resources */,
 				E8157AF2211D6EAC00CCB63B /* gca-icon_logdidnotfind@3x.png in Resources */,
 				E82E66351DA07A8700CFBDED /* icons - dead - 30x30@2x.png in Resources */,
+				E8157BDB211D752B00CCB63B /* cache - virtual - 30x30@3x.png in Resources */,
 				E8157AEF211D6EAC00CCB63B /* gca-icon_geocachetraditional@3x.png in Resources */,
-				E8607F191F8ADA91004E273C /* cache - geocacher - 30x30@3x.png in Resources */,
 				E8157AAF211D6EAC00CCB63B /* gca-icon_logcoordsupdated@3x.png in Resources */,
 				E8157AC4211D6EAC00CCB63B /* gca-icon_geocacheother.png in Resources */,
 				E83C205C1E2F0695006C523E /* LogTableViewCell.xib in Resources */,
-				E8FEDED41DA8EEE9007C756B /* cache - benchmark - 30x30@2x.png in Resources */,
 				E8FEDE911DA7AD67007C756B /* map - own overlay - 18x18@3x.png in Resources */,
 				E8F570B81B3FF4AA003F020C /* Settings.bundle in Resources */,
 				E82E66691DA07C4900CFBDED /* container flag - owner - 24x24@2x.png in Resources */,
 				E8FEDE901DA7AD67007C756B /* map - own overlay - 18x18@2x.png in Resources */,
 				E8CB89242063CCEA00DD55DE /* KeyboardCoordinateDecimalDegreesSigned.xib in Resources */,
 				E8B773341F9479AD0060B415 /* menu icon - global default - 27x27@3x.png in Resources */,
-				E82E65FE1DA079E500CFBDED /* log - enabled - 30x30.png in Resources */,
 				E8FEDEB91DA887A7007C756B /* image - nil - 1x1@3x.png in Resources */,
 				E82E674C1DA07D0200CFBDED /* attributes - 34.png in Resources */,
 				E82E67611DA07D0200CFBDED /* attributes - 55.png in Resources */,
 				E82E67531DA07D0200CFBDED /* attributes - 41.png in Resources */,
-				E82E66C11DA07CBE00CFBDED /* cache - letterbox - 30x30.png in Resources */,
 				E82E66341DA07A8700CFBDED /* icons - dead - 30x30.png in Resources */,
+				E8157C17211D754000CCB63B /* log - archived - 30x30.png in Resources */,
+				E8157BC8211D752B00CCB63B /* cache - mystery - 30x30@2x.png in Resources */,
 				E8157AA6211D6EAC00CCB63B /* gca-icon_geocacheother@3x.png in Resources */,
 				E82E672D1DA07D0200CFBDED /* attributes - 02.png in Resources */,
-				E82E66BA1DA07CBE00CFBDED /* cache - earth - 30x30.png in Resources */,
 				E82E67761DA07D1A00CFBDED /* image - no image - 32x32@3x.png in Resources */,
+				E8157BD9211D752B00CCB63B /* cache - podcast - 30x30@2x.png in Resources */,
+				E8157BAB211D752B00CCB63B /* cache - gadget - 30x30@2x.png in Resources */,
 				E8157AB6211D6EAC00CCB63B /* gca-icon_geocachereverse.png in Resources */,
 				E8B7734C1F9479AD0060B415 /* menu icon - see target - 27x27.png in Resources */,
 				E864BBAD206624EE0053B62D /* KeyboardCoordinateDegreesMinutesDecimalSeconds.xib in Resources */,
 				E82E66821DA07C6F00CFBDED /* compass - white arrow on black@3x.png in Resources */,
 				E82E676D1DA07D0200CFBDED /* attributes - 67.png in Resources */,
 				E8FEDE861DA7AD67007C756B /* map - dnf stick - 35x42@2x.png in Resources */,
+				E8157BE8211D752B00CCB63B /* cache - webcam - 30x30@2x.png in Resources */,
 				E8157AF6211D6EAC00CCB63B /* gca-icon_geocachemoveable@2x.png in Resources */,
+				E8157BA0211D752B00CCB63B /* cache - reverse - 30x30@3x.png in Resources */,
 				E8157AC9211D6EAC00CCB63B /* gca-icon_logother@3x.png in Resources */,
 				E8B773481F9479AD0060B415 /* menu icon - local night - 27x27@3x.png in Resources */,
 				E8157B21211D6EAC00CCB63B /* gca-icon_geocachemulticache@2x.png in Resources */,
 				E82E67401DA07D0200CFBDED /* attributes - 22.png in Resources */,
+				E8157BA1211D752B00CCB63B /* cache - trigpoint - 30x30@2x.png in Resources */,
 				E8587B8D1F8C83F40099EA0E /* GoogleMapsNight.json in Resources */,
 				E8157AC2211D6EAC00CCB63B /* gca-icon_logadminreview@2x.png in Resources */,
-				E82E66C81DA07CBE00CFBDED /* cache - moveable - 30x30@3x.png in Resources */,
 				E8D49D2F1F00F9C1005EB7BE /* container size - nano - 35x11.png in Resources */,
+				E8157C1B211D754000CCB63B /* log - photographed - 30x30@3x.png in Resources */,
 				E86D427D1EF68CC800E4509F /* container flag - planned - 24x21.png in Resources */,
 				E8157ADB211D6EAC00CCB63B /* gca-icon_geocacheevent@2x.png in Resources */,
-				E8FEDEE31DA8EEE9007C756B /* cache - maze - 30x30@3x.png in Resources */,
 				E8157ABF211D6EAC00CCB63B /* gca-icon_logmaintained.png in Resources */,
 				E8B773381F9479AD0060B415 /* menu icon - gnss-on - 27x27.png in Resources */,
 				E8FEDE7E1DA7AD67007C756B /* map - archived - 15x15@2x.png in Resources */,
@@ -5375,90 +5393,90 @@
 				E8157B2C211D6EAC00CCB63B /* gca-icon_geocacheletterbox@3x.png in Resources */,
 				E8FEDE931DA7AD67007C756B /* map - pin stick - 35x42@3x.png in Resources */,
 				E8157AB4211D6EAC00CCB63B /* gca-icon_geocachegeocacher.png in Resources */,
+				E8157BDA211D752B00CCB63B /* cache - unknown - 30x30@2x.png in Resources */,
 				E82E66641DA07C4900CFBDED /* container flag - in progress - 24x24.png in Resources */,
 				E8B7732E1F9479AD0060B415 /* menu icon - find me - 27x27@3x.png in Resources */,
 				E822871D1F8A2E1A00631380 /* GCTableViewCellSubtitleRightImageDisclosure.xib in Resources */,
-				E8B773051F9462600060B415 /* log - photographed - 30x30@3x.png in Resources */,
 				E82287181F8A2E1A00631380 /* GCTableViewCellRightImageDisclosure~ipad.xib in Resources */,
 				E8FEDE4D1DA77F9D007C756B /* container size - large - 35x11.png in Resources */,
 				E8EC50311F835798004A2338 /* FilterDirectionTableViewCell.xib in Resources */,
-				E82E66D11DA07CBE00CFBDED /* cache - night - 30x30@3x.png in Resources */,
 				E8B773491F9479AD0060B415 /* menu icon - find me - 27x27.png in Resources */,
-				E8FEDEE51DA8EEE9007C756B /* cache - mega - 30x30@3x.png in Resources */,
-				E82E66D41DA07CBE00CFBDED /* cache - podcast - 30x30@3x.png in Resources */,
 				E822892F1F8A40CC00631380 /* MHTabBarIndicator@3x.xcf in Resources */,
 				E876ECAE1F7E0391002A368E /* launchscreen - logo.png in Resources */,
 				E8FEDEA41DA7C08A007C756B /* waypoint - parking - 30x30@2x.png in Resources */,
 				E8B773421F9479AD0060B415 /* menu icon - local default - 27x27.png in Resources */,
 				E8157B05211D6EAC00CCB63B /* gca-icon_geocacheburkeandwills@2x.png in Resources */,
+				E8157BBF211D752B00CCB63B /* cache - webcam - 30x30@3x.png in Resources */,
 				E82E67431DA07D0200CFBDED /* attributes - 25.png in Resources */,
 				E87ED1801F859EFE00DE8E9B /* FilterAccountsTableViewCell.xib in Resources */,
-				E82E66DC1DA07CBE00CFBDED /* cache - unknown - 30x30@2x.png in Resources */,
+				E8157BC6211D752B00CCB63B /* cache - beacon - 30x30@2x.png in Resources */,
 				E8157B12211D6EAC00CCB63B /* gca-icon_logmoved@3x.png in Resources */,
 				E8157B30211D6EAC00CCB63B /* gca-icon_geocachereverse@3x.png in Resources */,
 				E823449F1EECE0BD00D2CDFD /* StatisticsTableViewCell.xib in Resources */,
-				E82E66D71DA07CBE00CFBDED /* cache - traditional - 30x30@3x.png in Resources */,
-				E88DB00A1F334E4300FEF795 /* cache - gadget - 30x30.png in Resources */,
+				E8157C10211D754000CCB63B /* log - moved - 30x30.png in Resources */,
 				E8FEDE831DA7AD67007C756B /* map - cross dnf - 9x9@3x.png in Resources */,
+				E8157BD8211D752B00CCB63B /* cache - event - 30x30@3x.png in Resources */,
 				E8F570BC1B400124003F020C /* schema.sql in Resources */,
 				E8157AFA211D6EAC00CCB63B /* gca-icon_logreview.png in Resources */,
 				E8FEDE8D1DA7AD67007C756B /* map - in progress - 18x18@3x.png in Resources */,
+				E8157BC5211D752B00CCB63B /* cache - maze - 30x30@2x.png in Resources */,
 				E8D49D361F0124F2005EB7BE /* container size - xlarge - 35x11@2x.png in Resources */,
+				E8157C07211D754000CCB63B /* log - photographed - 30x30@2x.png in Resources */,
+				E8157B99211D752B00CCB63B /* cache - earth - 30x30@3x.png in Resources */,
 				E83C6F051EECE67100E303F5 /* FilesTableViewCell.xib in Resources */,
-				E82E66BD1DA07CBE00CFBDED /* cache - groundspeak hq - 30x30.png in Resources */,
 				E8157AA8211D6EAC00CCB63B /* gca-icon_logarchived.png in Resources */,
 				E82E67361DA07D0200CFBDED /* attributes - 11.png in Resources */,
 				E8FEDEA71DA7C08A007C756B /* waypoint - question - 30x30@3x.png in Resources */,
 				E82287141F8A2E1A00631380 /* GCTableViewCellRightImage.xib in Resources */,
 				E8157ADE211D6EAC00CCB63B /* gca-icon_geocachepodcache.png in Resources */,
-				E8B773041F9462600060B415 /* log - photographed - 30x30@2x.png in Resources */,
 				E8B7733B1F9479AD0060B415 /* menu icon - local default - 27x27@2x.png in Resources */,
 				E8B773591F947EF80060B415 /* menu icon - close - 30x30.png in Resources */,
+				E8157B9A211D752B00CCB63B /* cache - night - 30x30@2x.png in Resources */,
+				E8157BAC211D752B00CCB63B /* cache - burke-wills - 30x30@3x.png in Resources */,
 				E8157AC1211D6EAC00CCB63B /* gca-icon_logmoved@2x.png in Resources */,
 				E8157B36211D6F2F00CCB63B /* gca-icons.json in Resources */,
 				E82E67561DA07D0200CFBDED /* attributes - 44.png in Resources */,
 				E85DC6751F95CFD2007556D5 /* menu icon - global night - 40x40@2x.png in Resources */,
 				E82287A31F8A30B700631380 /* MapWaypointInfoView~ipad.xib in Resources */,
-				E8FEDED21DA8EEE9007C756B /* cache - beacon - 30x30@2x.png in Resources */,
 				E8845CA91EF3628900A47F5D /* FileObjectView~ipad.xib in Resources */,
 				E8FEDEB41DA88474007C756B /* waypoint - multi - 30x30@2x.png in Resources */,
 				E8157ADC211D6EAC00CCB63B /* gca-icon_geocachegeocacher@2x.png in Resources */,
 				E8B773011F9462410060B415 /* container flag - planned - 24x21@3x.png in Resources */,
-				E82E66DA1DA07CBE00CFBDED /* cache - trigpoint - 30x30@3x.png in Resources */,
 				E82E667E1DA07C6F00CFBDED /* compass - red on blue compass - arrow.png in Resources */,
-				E82E66C71DA07CBE00CFBDED /* cache - moveable - 30x30@2x.png in Resources */,
 				E82344691EECE06E00D2CDFD /* TrackableTableViewCell~ipad.xib in Resources */,
 				E8157AB1211D6EAC00CCB63B /* gca-icon_logunarchived@3x.png in Resources */,
 				E8B7733E1F9479AD0060B415 /* menu icon - see target - 27x27@3x.png in Resources */,
 				E8B7737C1F94D7190060B415 /* menu icon - see target - 40x40.png in Resources */,
 				E82E67571DA07D0200CFBDED /* attributes - 45.png in Resources */,
+				E8157BA2211D752B00CCB63B /* cache - waymark - 30x30@3x.png in Resources */,
+				E8157BD7211D752B00CCB63B /* cache - night - 30x30@3x.png in Resources */,
 				E8B7733C1F9479AD0060B415 /* menu icon - local default - 27x27@3x.png in Resources */,
 				E86D42761EF5484E00E4509F /* LocationlessTableViewCell~ipad.xib in Resources */,
 				E82E65D91DA079AE00CFBDED /* map - background - 35x42.png in Resources */,
 				E8FEDEB11DA87DBB007C756B /* waypoint - finish - 30x30@3x.png in Resources */,
 				E82E66631DA07C4900CFBDED /* container flag - disabled - 24x24.png in Resources */,
-				E8757BBA20A072EE00E498FD /* cache - ephemeral - 30x30.png in Resources */,
 				E8157AE2211D6EAC00CCB63B /* gca-icon_logmaintained@2x.png in Resources */,
 				E8B29D022115599800F85543 /* Tile not found - 256x256.png in Resources */,
 				E82E66621DA07C4900CFBDED /* container flag - cross dnf - 19x19.png in Resources */,
+				E8157BBD211D752B00CCB63B /* cache - benchmark - 30x30.png in Resources */,
 				E8FEDEAC1DA87AF3007C756B /* waypoint - trailhead - 30x30@2x.png in Resources */,
 				E8157B09211D6EAC00CCB63B /* gca-icon_loghidden@3x.png in Resources */,
 				E8157B1D211D6EAC00CCB63B /* gca-icon_geocachenightcache.png in Resources */,
 				E8FEDE8F1DA7AD67007C756B /* map - marked found - 9x9@3x.png in Resources */,
 				E85DC68B1F95D01E007556D5 /* menu icon - find target - 40x40@2x.png in Resources */,
 				E82E675E1DA07D0200CFBDED /* attributes - 52.png in Resources */,
-				E82E66001DA079E500CFBDED /* log - moved - 30x30.png in Resources */,
-				E82E65FA1DA079E500CFBDED /* log - attended - 30x30.png in Resources */,
 				E8157B14211D6EAC00CCB63B /* gca-icon_logpublished@3x.png in Resources */,
-				E8FEDEE81DA8EEE9007C756B /* cache - webcam - 30x30@2x.png in Resources */,
-				E82E66081DA079E500CFBDED /* log - unknown - 30x30.png in Resources */,
 				E82E666B1DA07C4900CFBDED /* container flag - tick found - 24x21.png in Resources */,
 				E82E674A1DA07D0200CFBDED /* attributes - 32.png in Resources */,
+				E8157BA9211D752B00CCB63B /* cache - mega - 30x30@3x.png in Resources */,
 				E8EC502F1F832E6B004A2338 /* FilterHeaderTableViewCell.xib in Resources */,
 				E82E65DE1DA079AE00CFBDED /* map - found stick - 35x42.png in Resources */,
+				E8157BE0211D752B00CCB63B /* cache - multi - 30x30.png in Resources */,
 				E8157ACF211D6EAC00CCB63B /* gca-icon_geocachetrigpoint.png in Resources */,
 				E8157B1A211D6EAC00CCB63B /* gca-icon_geocachehistory@2x.png in Resources */,
 				E8FEDE5A1DA77F9D007C756B /* container size - regular - 35x11@2x.png in Resources */,
+				E8157BD1211D752B00CCB63B /* cache - groundspeak hq - 30x30@2x.png in Resources */,
+				E8157C0A211D754000CCB63B /* log - ownermaintenance - 30x30.png in Resources */,
 				E85DC6941F95D01E007556D5 /* menu icon - see target - 40x40@3x.png in Resources */,
 				E8FEDE641DA7A051007C756B /* ratings - favourites 20x30@2x.png in Resources */,
 				E83C6F161EEE8B6C00E303F5 /* NoticeTableViewCell~ipad.xib in Resources */,
@@ -5471,23 +5489,26 @@
 				E8157AB2211D6EAC00CCB63B /* gca-icon_logmaintained@3x.png in Resources */,
 				E82287211F8A2E1A00631380 /* GCTableViewCellSwitch~ipad.xib in Resources */,
 				E8157B18211D6EAC00CCB63B /* gca-icon_logannouncement@3x.png in Resources */,
-				E82E66031DA079E500CFBDED /* log - note - 30x30.png in Resources */,
 				E82E67731DA07D1A00CFBDED /* image - nil - 1x1.png in Resources */,
 				E8FEDEA51DA7C08A007C756B /* waypoint - parking - 30x30@3x.png in Resources */,
+				E8157BB5211D752B00CCB63B /* cache - mega - 30x30@2x.png in Resources */,
 				E8157B2A211D6EAC00CCB63B /* gca-icon_logunarchived@2x.png in Resources */,
+				E8157BA8211D752B00CCB63B /* cache - ephemeral - 30x30@2x.png in Resources */,
 				E8157ABE211D6EAC00CCB63B /* gca-icon_geocachemegaevent.png in Resources */,
-				E82E66C91DA07CBE00CFBDED /* cache - multi - 30x30.png in Resources */,
+				E8157BC0211D752B00CCB63B /* cache - letterbox - 30x30@2x.png in Resources */,
 				E864BBB2206627580053B62D /* KeyboardCoordinateOpenLocationCode.xib in Resources */,
 				E8157AE1211D6EAC00CCB63B /* gca-icon_loghidden@2x.png in Resources */,
 				E8157B31211D6EAC00CCB63B /* gca-icon_logarchived@3x.png in Resources */,
+				E8157BCC211D752B00CCB63B /* cache - virtual - 30x30@2x.png in Resources */,
 				E8157B15211D6EAC00CCB63B /* gca-icon_geocachelocationless.png in Resources */,
 				E82E65E11DA079AE00CFBDED /* map - marked found - 9x9.png in Resources */,
+				E8157C18211D754000CCB63B /* log - needsmaintenance - 30x30.png in Resources */,
 				E8B773771F94D7190060B415 /* menu icon - global night - 40x40.png in Resources */,
-				E82E65F91DA079E500CFBDED /* log - archived - 30x30.png in Resources */,
+				E8157BA6211D752B00CCB63B /* cache - giga - 30x30@2x.png in Resources */,
 				E82E676C1DA07D0200CFBDED /* attributes - 66.png in Resources */,
 				E82E67371DA07D0200CFBDED /* attributes - 12.png in Resources */,
 				E8FEDE8A1DA7AD67007C756B /* map - highlight - 21x21@2x.png in Resources */,
-				E82E66DF1DA07CBE00CFBDED /* cache - virtual - 30x30.png in Resources */,
+				E8157BA5211D752B00CCB63B /* cache - ephemeral - 30x30@3x.png in Resources */,
 				E82E67321DA07D0200CFBDED /* attributes - 07.png in Resources */,
 				E82344561EECE05E00D2CDFD /* PersonalNoteTableViewCell~ipad.xib in Resources */,
 				E823419B1EECAF4F00D2CDFD /* EncryptionKeysExample.plist in Resources */,
@@ -5499,25 +5520,26 @@
 				E8FEDE651DA7A051007C756B /* ratings - favourites 20x30@3x.png in Resources */,
 				E82E67451DA07D0200CFBDED /* attributes - 27.png in Resources */,
 				E82E667F1DA07C6F00CFBDED /* compass - red on blue compass - compass.png in Resources */,
+				E8157BB2211D752B00CCB63B /* cache - reverse - 30x30@2x.png in Resources */,
 				E822892A1F8A40CC00631380 /* MHTabBarIndicator.png in Resources */,
 				E82E67641DA07D0200CFBDED /* attributes - 58.png in Resources */,
-				E82E66E61DA07CBE00CFBDED /* cache - whereigo - 30x30.png in Resources */,
 				E8157ABD211D6EAC00CCB63B /* gca-icon_geocacheearthcache@3x.png in Resources */,
-				E8FEDED71DA8EEE9007C756B /* cache - burke-wills - 30x30@3x.png in Resources */,
 				E8FEDE5D1DA77F9D007C756B /* container size - small - 35x11@2x.png in Resources */,
 				E82E672C1DA07D0200CFBDED /* attributes - 01.png in Resources */,
+				E8157BDD211D752B00CCB63B /* cache - event - 30x30@2x.png in Resources */,
 				E8EC01A31F5518840032F168 /* KeepTrackBeeperView.xib in Resources */,
 				E8FEDE5B1DA77F9D007C756B /* container size - regular - 35x11@3x.png in Resources */,
 				E82E674F1DA07D0200CFBDED /* attributes - 37.png in Resources */,
-				E82E66061DA079E500CFBDED /* log - reviewernote - 30x30.png in Resources */,
+				E8157BDF211D752B00CCB63B /* cache - history - 30x30@2x.png in Resources */,
 				E82E67491DA07D0200CFBDED /* attributes - 31.png in Resources */,
 				E82E663D1DA07A8700CFBDED /* icons - smiley - 30x30@3x.png in Resources */,
 				E8157B13211D6EAC00CCB63B /* gca-icon_geocacheunknownormystery.png in Resources */,
 				E8157B1B211D6EAC00CCB63B /* gca-icon_logdidnotfind@2x.png in Resources */,
+				E8157B97211D752B00CCB63B /* cache - unknowntype - 30x30@3x.png in Resources */,
+				E8157BD0211D752B00CCB63B /* cache - waymark - 30x30.png in Resources */,
 				E82E67411DA07D0200CFBDED /* attributes - 23.png in Resources */,
 				E82E663F1DA07A8700CFBDED /* icons - target - 30x30@2x.png in Resources */,
 				E8FEDE8B1DA7AD67007C756B /* map - highlight - 21x21@3x.png in Resources */,
-				E8FEDEDF1DA8EEE9007C756B /* cache - giga - 30x30@3x.png in Resources */,
 				E8157B17211D6EAC00CCB63B /* gca-icon_logretracted@2x.png in Resources */,
 				E82E673B1DA07D0200CFBDED /* attributes - 17.png in Resources */,
 				E8157AB0211D6EAC00CCB63B /* gca-icon_loghidden.png in Resources */,
@@ -5528,33 +5550,42 @@
 				E82E67591DA07D0200CFBDED /* attributes - 47.png in Resources */,
 				E8B7733F1F9479AD0060B415 /* menu icon - show both - 27x27@2x.png in Resources */,
 				E82E66681DA07C4900CFBDED /* container flag - owner - 24x24.png in Resources */,
+				E8157BD3211D752B00CCB63B /* cache - augmented reality - 30x30@2x.png in Resources */,
 				E82E65E21DA079AE00CFBDED /* map - own overlay - 18x18.png in Resources */,
+				E8157B9B211D752B00CCB63B /* cache - giga - 30x30@3x.png in Resources */,
+				E8157BBB211D752B00CCB63B /* cache - augmented reality - 30x30@3x.png in Resources */,
 				E8FEDE8E1DA7AD67007C756B /* map - marked found - 9x9@2x.png in Resources */,
 				E8FEDE811DA7AD67007C756B /* map - background - 35x42@3x.png in Resources */,
+				E8157BD6211D752B00CCB63B /* cache - multi - 30x30@3x.png in Resources */,
+				E8157BE6211D752B00CCB63B /* cache - unknown - 30x30.png in Resources */,
+				E8157BB0211D752B00CCB63B /* cache - trigpoint - 30x30.png in Resources */,
 				E82E66651DA07C4900CFBDED /* container flag - marked found - 24x21.png in Resources */,
 				E82287151F8A2E1A00631380 /* GCTableViewCellRightImage~ipad.xib in Resources */,
+				E8157BEA211D752B00CCB63B /* cache - gadget - 30x30@3x.png in Resources */,
 				E82343DD1EECDEE200D2CDFD /* WaypointLogsTableViewCell~ipad.xib in Resources */,
 				E8157AEA211D6EAC00CCB63B /* gca-icon_geocachegadget@3x.png in Resources */,
 				E82E673C1DA07D0200CFBDED /* attributes - 18.png in Resources */,
+				E8157BEC211D752B00CCB63B /* cache - moveable - 30x30.png in Resources */,
 				E8157AAC211D6EAC00CCB63B /* gca-icon_logretracted@3x.png in Resources */,
 				E8157B03211D6EAC00CCB63B /* gca-icon_geocacheaugmentedreality@3x.png in Resources */,
 				E8157AF5211D6EAC00CCB63B /* gca-icon_geocacheunknownormystery@3x.png in Resources */,
+				E8157BDE211D752B00CCB63B /* cache - multi - 30x30@2x.png in Resources */,
 				E8157B1F211D6EAC00CCB63B /* gca-icon_logretracted.png in Resources */,
 				E82E672F1DA07D0200CFBDED /* attributes - 04.png in Resources */,
 				E82289251F8A40CB00631380 /* MHTabBarActiveTab.png in Resources */,
-				E891DB8C211716A9009A4D52 /* cache - augmented reality - 30x30.png in Resources */,
 				E82E676A1DA07D0200CFBDED /* attributes - 64.png in Resources */,
-				E82E66E31DA07CBE00CFBDED /* cache - waymark - 30x30@2x.png in Resources */,
 				E82E67511DA07D0200CFBDED /* attributes - 39.png in Resources */,
+				E8157BCE211D752B00CCB63B /* cache - mystery - 30x30@3x.png in Resources */,
 				E8157ACA211D6EAC00CCB63B /* gca-icon_logreview@3x.png in Resources */,
+				E8157BAE211D752B00CCB63B /* cache - cito - 30x30@2x.png in Resources */,
+				E8157B96211D752B00CCB63B /* cache - trigpoint - 30x30@3x.png in Resources */,
 				E8157B28211D6EAC00CCB63B /* gca-icon_logpublished.png in Resources */,
 				E8F570641B3F7255003F020C /* Images.xcassets in Resources */,
-				E82E66E11DA07CBE00CFBDED /* cache - virtual - 30x30@3x.png in Resources */,
 				E82287121F8A2E1A00631380 /* GCTableViewCellKeyValue~ipad.xib in Resources */,
 				E8157B2E211D6EAC00CCB63B /* gca-icon_logother@2x.png in Resources */,
-				E891DB8D211716A9009A4D52 /* cache - augmented reality - 30x30@3x.png in Resources */,
 				E8B773791F94D7190060B415 /* menu icon - gnss-on - 40x40.png in Resources */,
 				E822892B1F8A40CC00631380 /* MHTabBarIndicator.xcf in Resources */,
+				E8157BD2211D752B00CCB63B /* cache - augmented reality - 30x30.png in Resources */,
 				E8FEDE511DA77F9D007C756B /* container size - micro - 35x11@2x.png in Resources */,
 				E82E65C91DA0797E00CFBDED /* ratings - star on 19x18.png in Resources */,
 				E82289111F8A40A800631380 /* SVProgressHUD.bundle in Resources */,
@@ -5563,52 +5594,49 @@
 				E8B773751F94D7190060B415 /* menu icon - follow me - 40x40.png in Resources */,
 				E8157ADA211D6EAC00CCB63B /* gca-icon_geocachelocationless@3x.png in Resources */,
 				E8157ABC211D6EAC00CCB63B /* gca-icon_logneedsmaintenance.png in Resources */,
-				E82E66D61DA07CBE00CFBDED /* cache - traditional - 30x30@2x.png in Resources */,
 				E8157B19211D6EAC00CCB63B /* gca-icon_geocachevirtual@3x.png in Resources */,
-				E8257F281EE41B8A0089C106 /* log - disabled - 30x30.png in Resources */,
 				E8157AEC211D6EAC00CCB63B /* gca-icon_logenabled@3x.png in Resources */,
 				E82344551EECE05E00D2CDFD /* PersonalNoteTableViewCell.xib in Resources */,
+				E8157C0B211D754000CCB63B /* log - published - 30x30.png in Resources */,
 				E8157AC6211D6EAC00CCB63B /* gca-icon_logneedsmaintenance@2x.png in Resources */,
 				E8FEDE531DA77F9D007C756B /* container size - notchosen - 35x11.png in Resources */,
 				E87ED17A1F84E74D00DE8E9B /* FilterDistanceTableViewCell.xib in Resources */,
-				E82E66D91DA07CBE00CFBDED /* cache - trigpoint - 30x30@2x.png in Resources */,
-				E8FEDED61DA8EEE9007C756B /* cache - burke-wills - 30x30@2x.png in Resources */,
 				E8157AF9211D6EAC00CCB63B /* gca-icon_logannouncement.png in Resources */,
 				E864BBBC206674400053B62D /* KeyboardCoordinateMGRS.xib in Resources */,
 				E87ED1701F8445C500DE8E9B /* FilterFavouritesTableViewCell.xib in Resources */,
-				E8F403E81DAF5B2600318CC6 /* cache - reverse - 30x30.png in Resources */,
 				E85DC6961F95D01E007556D5 /* menu icon - show both - 40x40@3x.png in Resources */,
-				E82E66D81DA07CBE00CFBDED /* cache - trigpoint - 30x30.png in Resources */,
 				E87ED16E1F843FBD00DE8E9B /* FilterTerrainTableViewCell.xib in Resources */,
 				E82E674E1DA07D0200CFBDED /* attributes - 36.png in Resources */,
 				E85DC6771F95CFD2007556D5 /* menu icon - local default - 40x40@2x.png in Resources */,
+				E8157BC2211D752B00CCB63B /* cache - cito - 30x30.png in Resources */,
 				E82E667B1DA07C6F00CFBDED /* compass - airplane - airplane.png in Resources */,
 				E8157AFB211D6EAC00CCB63B /* gca-icon_logarchived@2x.png in Resources */,
 				E8157AA5211D6EAC00CCB63B /* gca-icon_geocachewebcam@2x.png in Resources */,
 				E8157AC8211D6EAC00CCB63B /* gca-icon_logadminreview@3x.png in Resources */,
 				E83C6F151EEE8B6C00E303F5 /* NoticeTableViewCell.xib in Resources */,
-				E82E66E41DA07CBE00CFBDED /* cache - waymark - 30x30@3x.png in Resources */,
 				E85DC6901F95D01E007556D5 /* menu icon - gnss-off - 40x40@3x.png in Resources */,
 				E87ED1741F84495800DE8E9B /* FilterDatesTableViewCell.xib in Resources */,
+				E8157C08211D754000CCB63B /* log - coordinates - 30x30.png in Resources */,
 				E8157B2B211D6EAC00CCB63B /* gca-icon_logwillattend@3x.png in Resources */,
+				E8157B9F211D752B00CCB63B /* cache - whereigo - 30x30@2x.png in Resources */,
+				E8157BB7211D752B00CCB63B /* cache - unknowntype - 30x30@2x.png in Resources */,
 				E80AE5681FB3C4C7003EDB36 /* FilterPinsTableViewCell.xib in Resources */,
+				E8157BE3211D752B00CCB63B /* cache - history - 30x30.png in Resources */,
 				E8157AC0211D6EAC00CCB63B /* gca-icon_logdidnotfind.png in Resources */,
 				E82E675C1DA07D0200CFBDED /* attributes - 50.png in Resources */,
 				E82E66371DA07A8700CFBDED /* icons - sad - 30x30.png in Resources */,
 				E8157AFD211D6EAC00CCB63B /* gca-icon_geocachemegaevent@3x.png in Resources */,
 				E8FEDEA21DA7C08A007C756B /* waypoint - manually entered - 30x30@2x.png in Resources */,
 				E8157AB8211D6EAC00CCB63B /* gca-icon_logunarchived.png in Resources */,
+				E8157BE5211D752B00CCB63B /* cache - whereigo - 30x30@3x.png in Resources */,
 				E8FEDE611DA77F9D007C756B /* container size - unknown - 35x11@3x.png in Resources */,
 				E8157AED211D6EAC00CCB63B /* gca-icon_logattended@3x.png in Resources */,
-				E8FEDEDA1DA8EEE9007C756B /* cache - earth - 30x30@2x.png in Resources */,
 				E8FEDEA11DA7C08A007C756B /* waypoint - flag - 30x30@3x.png in Resources */,
-				E8B772FC1F9462250060B415 /* cache - gadget - 30x30@2x.png in Resources */,
 				E82E67351DA07D0200CFBDED /* attributes - 10.png in Resources */,
 				E82E67741DA07D1A00CFBDED /* image - no image - 32x32.png in Resources */,
 				E82E65B81DA0794600CFBDED /* waypoint - finish - 30x30.png in Resources */,
-				E8FEDEE11DA8EEE9007C756B /* cache - groundspeak hq - 30x30@3x.png in Resources */,
 				E82E676B1DA07D0200CFBDED /* attributes - 65.png in Resources */,
-				E8FEDEE71DA8EEE9007C756B /* cache - unknowntype - 30x30@3x.png in Resources */,
+				E8157BA3211D752B00CCB63B /* cache - benchmark - 30x30@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
