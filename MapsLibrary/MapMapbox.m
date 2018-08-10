@@ -610,7 +610,7 @@ EMPTY_METHOD(mapViewDidLoad)
         annotationImage = [mapView dequeueReusableAnnotationImageWithIdentifier:[imageManager getCode:annotation.waypoint]];
 
         if (annotationImage == nil) {
-            UIImage *image = [imageManager getPin:annotation.waypoint];
+            UIImage *image = [self waypointImage:annotation.waypoint];
 
             image = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(0, 0, image.size.height/2, 0)];
             annotationImage = [MGLAnnotationImage annotationImageWithImage:image reuseIdentifier:[imageManager getCode:annotation.waypoint]];
