@@ -53,28 +53,79 @@
         return; \
     }
 
-        LOG(Announcement, @"Announcement")
-        LOG(Archived, @"Archived")
-        LOG(Attended, @"Attended")
-        LOG(Coordinates, @"Coordinates")
-        LOG(DidNotFind, @"DidNotFind")
-        LOG(Disabled, @"Disabled")
-        LOG(Empty, @"Empty")
-        LOG(Enabled, @"Enabled")
-        LOG(Found, @"Found")
-        LOG(Moved, @"Moved")
-        LOG(NeedsArchiving, @"NeedsArchiving")
-        LOG(NeedsMaintenance, @"NeedsMaintenance")
-        LOG(Note, @"Note")
-        LOG(OwnerMaintenance, @"OwnerMaintenance")
-        LOG(Published, @"Published")
-        LOG(ReviewerNote, @"ReviewerNote")
-        LOG(Unarchived, @"Unarchived")
-        LOG(Unknown, @"Unknown")
-        LOG(WebcamPhoto, @"WebcamPhoto")
-        LOG(WillAttend, @"WillAttend")
+        if (log != nil && image != nil) {
+            LOG(Announcement, @"Announcement")
+            LOG(Archived, @"Archived")
+            LOG(Attended, @"Attended")
+            LOG(Coordinates, @"Coordinates")
+            LOG(DidNotFind, @"DidNotFind")
+            LOG(Disabled, @"Disabled")
+            LOG(Empty, @"Empty")
+            LOG(Enabled, @"Enabled")
+            LOG(Found, @"Found")
+            LOG(Moved, @"Moved")
+            LOG(NeedsArchiving, @"NeedsArchiving")
+            LOG(NeedsMaintenance, @"NeedsMaintenance")
+            LOG(Note, @"Note")
+            LOG(OwnerMaintenance, @"OwnerMaintenance")
+            LOG(Published, @"Published")
+            LOG(ReviewerNote, @"ReviewerNote")
+            LOG(Unarchived, @"Unarchived")
+            LOG(Unknown, @"Unknown")
+            LOG(WebcamPhoto, @"WebcamPhoto")
+            LOG(WillAttend, @"WillAttend")
 
+            NSAssert1(FALSE, @"Unknown log: %@", log);
+        }
     }];
+
+    NSArray<NSDictionary *> *types = [dictionary objectForKey:@"types"];
+    [types enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dict, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *type = [dict objectForKey:@"type"];
+        NSString *image = [dict objectForKey:@"image"];
+
+#define TYPE(__id__, __string__) \
+    if ([__string__ isEqualToString:type] == YES) { \
+        [imageManager addToLibrary:image index:ImageTypes_ ## __id__]; \
+        return; \
+    }
+
+        if (type != nil && image != nil) {
+            TYPE(AugmentedReality, @"AugmentedReality")
+            TYPE(Beacon, @"Beacon")
+            TYPE(Benchmark, @"Benchmark")
+            TYPE(BurkeWills, @"BurkeWills")
+            TYPE(CITO, @"CITO")
+            TYPE(EarthCache, @"EarthCache")
+            TYPE(Ephemeral, @"Ephemeral")
+            TYPE(Event, @"Event")
+            TYPE(Gadget, @"Gadget")
+            TYPE(Geocacher, @"Geocacher")
+            TYPE(Giga, @"Giga")
+            TYPE(GroundspeakHQ, @"GroundspeakHQ")
+            TYPE(History, @"History")
+            TYPE(Letterbox, @"Letterbox")
+            TYPE(Maze, @"Maze")
+            TYPE(Mega, @"Mega")
+            TYPE(Moveable, @"Moveable")
+            TYPE(MultiCache, @"MultiCache")
+            TYPE(Mystery, @"Mystery")
+            TYPE(Night, @"Night")
+            TYPE(Other, @"Other")
+            TYPE(Podcast, @"Podcast")
+            TYPE(Reverse, @"Reverse")
+            TYPE(TraditionalCache, @"TraditionalCache")
+            TYPE(Trigpoint, @"Trigpoint")
+            TYPE(UnknownCache, @"UnknownCache")
+            TYPE(VirtualCache, @"VirtualCache")
+            TYPE(Waymark, @"Waymark")
+            TYPE(WebcamCache, @"WebcamCache")
+            TYPE(WhereigoCache, @"WhereigoCache")
+
+            NSAssert1(FALSE, @"Unknown type: %@", type);
+        }
+    }];
+
 }
 
 @end
