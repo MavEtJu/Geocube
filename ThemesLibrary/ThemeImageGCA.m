@@ -1,7 +1,7 @@
 /*
  * Geocube
  * By Edwin Groothuis <geocube@mavetju.org>
- * Copyright 2015, 2016, 2017, 2018 Edwin Groothuis
+ * Copyright 2018 Edwin Groothuis
  *
  * This file is part of Geocube.
  *
@@ -19,23 +19,15 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ThemeManager : NSObject
-
-@property (nonatomic, retain) NSArray<NSString *> *themeImageNames;
-@property (nonatomic, retain) NSArray<NSString *> *themeStyleNames;
-
-- (GCThemeStyleType)currentThemeStyle;
-- (void)setThemeStyle:(GCThemeStyleType)nr;
-
-- (GCThemeImageType)currentThemeImage;
-- (void)setThemeImage:(GCThemeImageType)nr;
-
-- (void)changeThemeStyleView:(UIView *)v;
-- (void)changeThemeStyleViewController:(UIViewController *)v;
-- (void)changeThemeStyleArray:(NSArray<UIView *> *)vs;
+@interface ThemeImageGCA ()
 
 @end
 
-extern ThemeStyleTemplate *currentStyleTheme;
-extern ThemeImageTemplate *currentImageTheme;
-extern ThemeManager *themeManager;
+@implementation ThemeImageGCA
+
+- (void)loadImages
+{
+    [self loadImages:@"gca-icons.json"];
+}
+
+@end

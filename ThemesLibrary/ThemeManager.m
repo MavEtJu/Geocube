@@ -22,11 +22,14 @@
 @interface ThemeManager ()
 
 @property (nonatomic) GCThemeStyleType themeStyleNr;
+@property (nonatomic) GCThemeImageType themeImageNr;
 
 @end
 
-// Current Theme
+// Current themes
 ThemeStyleTemplate *currentStyleTheme;
+ThemeImageTemplate *currentImageTheme;
+
 ThemeManager *themeManager;
 
 @implementation ThemeManager
@@ -36,13 +39,39 @@ ThemeManager *themeManager;
     self = [super init];
 
     self.themeStyleNames = @[
-                        _(@"thememanager-Default iOS theme, small icons"),
-                        _(@"thememanager-Geocube night theme, small icons"),
-                        _(@"thememanager-Default iOS theme, normal icons"),
-                        _(@"thememanager-Geocube night theme, normal icons"),
-                        ];
+                             _(@"thememanager-Default iOS theme, small icons"),
+                             _(@"thememanager-Geocube night theme, small icons"),
+                             _(@"thememanager-Default iOS theme, normal icons"),
+                             _(@"thememanager-Geocube night theme, normal icons"),
+                             ];
+
+    self.themeImageNames = @[
+                             _(@"thememanager-Default Geocube icons"),
+                             _(@"thememanager-Geocaching Australia icons"),
+                             ];
 
     return self;
+}
+
+- (GCThemeImageType)currentThemeImage
+{
+    return self.themeImageNr;
+}
+
+- (void)setThemeImage:(GCThemeImageType)nr
+{
+    self.themeImageNr = nr;
+    switch (nr) {
+        case THEME_IMAGE_GEOCUBE:
+            currentImageTheme = [[ThemeImageGeocube alloc] init];
+            break;
+        case THEME_IMAGE_GCA:
+            currentImageTheme = [[ThemeImageGCA alloc] init];
+            break;
+        default:
+            currentImageTheme = [[ThemeImageGeocube alloc] init];
+            break;
+    }
 }
 
 - (GCThemeStyleType)currentThemeStyle

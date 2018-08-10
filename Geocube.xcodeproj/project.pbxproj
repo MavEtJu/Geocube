@@ -15,6 +15,157 @@
 		E80AE56D1FB42A07003EDB36 /* FilterTypeIconsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E80AE56B1FB42A07003EDB36 /* FilterTypeIconsTableViewCell.m */; };
 		E80F73751B533F4D00F35528 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73741B533F4D00F35528 /* MapKit.framework */; };
 		E80F73771B53443000F35528 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80F73761B53443000F35528 /* CoreLocation.framework */; };
+		E8157A00211D494200CCB63B /* ThemeImageTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E81579FF211D494200CCB63B /* ThemeImageTemplate.m */; };
+		E8157A03211D496E00CCB63B /* ThemeImageGeocube.m in Sources */ = {isa = PBXBuildFile; fileRef = E8157A02211D496E00CCB63B /* ThemeImageGeocube.m */; };
+		E8157A06211D498200CCB63B /* ThemeImageGCA.m in Sources */ = {isa = PBXBuildFile; fileRef = E8157A05211D498200CCB63B /* ThemeImageGCA.m */; };
+		E8157AA2211D6EAC00CCB63B /* gca-icon_geocachecito@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A0F211D6E9500CCB63B /* gca-icon_geocachecito@3x.png */; };
+		E8157AA3211D6EAC00CCB63B /* gca-icon_logoapi@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A10211D6E9500CCB63B /* gca-icon_logoapi@3x.png */; };
+		E8157AA4211D6EAC00CCB63B /* gca-icon_geocachebeacon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A11211D6E9500CCB63B /* gca-icon_geocachebeacon@3x.png */; };
+		E8157AA5211D6EAC00CCB63B /* gca-icon_geocachewebcam@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A12211D6E9500CCB63B /* gca-icon_geocachewebcam@2x.png */; };
+		E8157AA6211D6EAC00CCB63B /* gca-icon_geocacheother@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A13211D6E9500CCB63B /* gca-icon_geocacheother@3x.png */; };
+		E8157AA7211D6EAC00CCB63B /* gca-icon_geocacheunknownormystery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A14211D6E9500CCB63B /* gca-icon_geocacheunknownormystery@2x.png */; };
+		E8157AA8211D6EAC00CCB63B /* gca-icon_logarchived.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A15211D6E9500CCB63B /* gca-icon_logarchived.png */; };
+		E8157AA9211D6EAC00CCB63B /* gca-icon_geocachegadget.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A16211D6E9600CCB63B /* gca-icon_geocachegadget.png */; };
+		E8157AAA211D6EAC00CCB63B /* gca-icon_logmoved.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A17211D6E9600CCB63B /* gca-icon_logmoved.png */; };
+		E8157AAB211D6EAC00CCB63B /* gca-icon_logpublished@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A18211D6E9600CCB63B /* gca-icon_logpublished@2x.png */; };
+		E8157AAC211D6EAC00CCB63B /* gca-icon_logretracted@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A19211D6E9600CCB63B /* gca-icon_logretracted@3x.png */; };
+		E8157AAD211D6EAC00CCB63B /* gca-icon_geocachebeacon.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A1A211D6E9600CCB63B /* gca-icon_geocachebeacon.png */; };
+		E8157AAE211D6EAC00CCB63B /* gca-icon_geocachepodcache@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A1B211D6E9600CCB63B /* gca-icon_geocachepodcache@3x.png */; };
+		E8157AAF211D6EAC00CCB63B /* gca-icon_logcoordsupdated@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A1C211D6E9600CCB63B /* gca-icon_logcoordsupdated@3x.png */; };
+		E8157AB0211D6EAC00CCB63B /* gca-icon_loghidden.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A1D211D6E9700CCB63B /* gca-icon_loghidden.png */; };
+		E8157AB1211D6EAC00CCB63B /* gca-icon_logunarchived@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A1E211D6E9700CCB63B /* gca-icon_logunarchived@3x.png */; };
+		E8157AB2211D6EAC00CCB63B /* gca-icon_logmaintained@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A1F211D6E9700CCB63B /* gca-icon_logmaintained@3x.png */; };
+		E8157AB3211D6EAC00CCB63B /* gca-icon_geocacheevent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A20211D6E9700CCB63B /* gca-icon_geocacheevent@3x.png */; };
+		E8157AB4211D6EAC00CCB63B /* gca-icon_geocachegeocacher.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A21211D6E9700CCB63B /* gca-icon_geocachegeocacher.png */; };
+		E8157AB5211D6EAC00CCB63B /* gca-icon_geocacheprojectape@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A22211D6E9700CCB63B /* gca-icon_geocacheprojectape@3x.png */; };
+		E8157AB6211D6EAC00CCB63B /* gca-icon_geocachereverse.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A23211D6E9700CCB63B /* gca-icon_geocachereverse.png */; };
+		E8157AB7211D6EAC00CCB63B /* gca-icon_logfoundit@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A24211D6E9800CCB63B /* gca-icon_logfoundit@3x.png */; };
+		E8157AB8211D6EAC00CCB63B /* gca-icon_logunarchived.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A25211D6E9800CCB63B /* gca-icon_logunarchived.png */; };
+		E8157AB9211D6EAC00CCB63B /* gca-icon_logattended.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A26211D6E9800CCB63B /* gca-icon_logattended.png */; };
+		E8157ABA211D6EAC00CCB63B /* gca-icon_geocachepodcache@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A27211D6E9800CCB63B /* gca-icon_geocachepodcache@2x.png */; };
+		E8157ABB211D6EAC00CCB63B /* gca-icon_geocachetrigpoint@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A28211D6E9800CCB63B /* gca-icon_geocachetrigpoint@3x.png */; };
+		E8157ABC211D6EAC00CCB63B /* gca-icon_logneedsmaintenance.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A29211D6E9800CCB63B /* gca-icon_logneedsmaintenance.png */; };
+		E8157ABD211D6EAC00CCB63B /* gca-icon_geocacheearthcache@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A2A211D6E9900CCB63B /* gca-icon_geocacheearthcache@3x.png */; };
+		E8157ABE211D6EAC00CCB63B /* gca-icon_geocachemegaevent.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A2B211D6E9900CCB63B /* gca-icon_geocachemegaevent.png */; };
+		E8157ABF211D6EAC00CCB63B /* gca-icon_logmaintained.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A2C211D6E9900CCB63B /* gca-icon_logmaintained.png */; };
+		E8157AC0211D6EAC00CCB63B /* gca-icon_logdidnotfind.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A2D211D6E9900CCB63B /* gca-icon_logdidnotfind.png */; };
+		E8157AC1211D6EAC00CCB63B /* gca-icon_logmoved@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A2E211D6E9900CCB63B /* gca-icon_logmoved@2x.png */; };
+		E8157AC2211D6EAC00CCB63B /* gca-icon_logadminreview@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A2F211D6E9900CCB63B /* gca-icon_logadminreview@2x.png */; };
+		E8157AC3211D6EAC00CCB63B /* gca-icon_geocachehistory@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A30211D6E9A00CCB63B /* gca-icon_geocachehistory@3x.png */; };
+		E8157AC4211D6EAC00CCB63B /* gca-icon_geocacheother.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A31211D6E9A00CCB63B /* gca-icon_geocacheother.png */; };
+		E8157AC5211D6EAC00CCB63B /* gca-icon_logattended@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A32211D6E9A00CCB63B /* gca-icon_logattended@2x.png */; };
+		E8157AC6211D6EAC00CCB63B /* gca-icon_logneedsmaintenance@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A33211D6E9A00CCB63B /* gca-icon_logneedsmaintenance@2x.png */; };
+		E8157AC7211D6EAC00CCB63B /* gca-icon_geocachelocationless@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A34211D6E9A00CCB63B /* gca-icon_geocachelocationless@2x.png */; };
+		E8157AC8211D6EAC00CCB63B /* gca-icon_logadminreview@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A35211D6E9A00CCB63B /* gca-icon_logadminreview@3x.png */; };
+		E8157AC9211D6EAC00CCB63B /* gca-icon_logother@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A36211D6E9B00CCB63B /* gca-icon_logother@3x.png */; };
+		E8157ACA211D6EAC00CCB63B /* gca-icon_logreview@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A37211D6E9B00CCB63B /* gca-icon_logreview@3x.png */; };
+		E8157ACB211D6EAC00CCB63B /* gca-icon_geocacheearthcache.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A38211D6E9B00CCB63B /* gca-icon_geocacheearthcache.png */; };
+		E8157ACC211D6EAC00CCB63B /* gca-icon_lognoted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A39211D6E9B00CCB63B /* gca-icon_lognoted@2x.png */; };
+		E8157ACD211D6EAC00CCB63B /* gca-icon_geocachebeacon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A3A211D6E9B00CCB63B /* gca-icon_geocachebeacon@2x.png */; };
+		E8157ACE211D6EAC00CCB63B /* gca-icon_geocachewebcam@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A3B211D6E9B00CCB63B /* gca-icon_geocachewebcam@3x.png */; };
+		E8157ACF211D6EAC00CCB63B /* gca-icon_geocachetrigpoint.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A3C211D6E9B00CCB63B /* gca-icon_geocachetrigpoint.png */; };
+		E8157AD0211D6EAC00CCB63B /* gca-icon_geocachecito.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A3D211D6E9C00CCB63B /* gca-icon_geocachecito.png */; };
+		E8157AD1211D6EAC00CCB63B /* gca-icon_geocachehistory.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A3E211D6E9C00CCB63B /* gca-icon_geocachehistory.png */; };
+		E8157AD2211D6EAC00CCB63B /* gca-icon_geocachemulticache@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A3F211D6E9C00CCB63B /* gca-icon_geocachemulticache@3x.png */; };
+		E8157AD3211D6EAC00CCB63B /* gca-icon_geocachecito@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A40211D6E9C00CCB63B /* gca-icon_geocachecito@2x.png */; };
+		E8157AD4211D6EAC00CCB63B /* gca-icon_geocachemegaevent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A41211D6E9C00CCB63B /* gca-icon_geocachemegaevent@2x.png */; };
+		E8157AD5211D6EAC00CCB63B /* gca-icon_geocacheletterbox.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A42211D6E9C00CCB63B /* gca-icon_geocacheletterbox.png */; };
+		E8157AD6211D6EAC00CCB63B /* gca-icon_geocachegeocacher@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A43211D6E9D00CCB63B /* gca-icon_geocachegeocacher@3x.png */; };
+		E8157AD7211D6EAC00CCB63B /* gca-icon_geocachewherigo.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A44211D6E9D00CCB63B /* gca-icon_geocachewherigo.png */; };
+		E8157AD8211D6EAC00CCB63B /* gca-icon_geocachemulticache.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A45211D6E9D00CCB63B /* gca-icon_geocachemulticache.png */; };
+		E8157AD9211D6EAC00CCB63B /* gca-icon_geocachewherigo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A46211D6E9D00CCB63B /* gca-icon_geocachewherigo@3x.png */; };
+		E8157ADA211D6EAC00CCB63B /* gca-icon_geocachelocationless@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A47211D6E9D00CCB63B /* gca-icon_geocachelocationless@3x.png */; };
+		E8157ADB211D6EAC00CCB63B /* gca-icon_geocacheevent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A48211D6E9D00CCB63B /* gca-icon_geocacheevent@2x.png */; };
+		E8157ADC211D6EAC00CCB63B /* gca-icon_geocachegeocacher@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A49211D6E9D00CCB63B /* gca-icon_geocachegeocacher@2x.png */; };
+		E8157ADD211D6EAC00CCB63B /* gca-icon_geocachemoveable@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A4A211D6E9E00CCB63B /* gca-icon_geocachemoveable@3x.png */; };
+		E8157ADE211D6EAC00CCB63B /* gca-icon_geocachepodcache.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A4B211D6E9E00CCB63B /* gca-icon_geocachepodcache.png */; };
+		E8157ADF211D6EAC00CCB63B /* gca-icon_logdisabled.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A4C211D6E9E00CCB63B /* gca-icon_logdisabled.png */; };
+		E8157AE0211D6EAC00CCB63B /* gca-icon_logdisabled@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A4D211D6E9E00CCB63B /* gca-icon_logdisabled@3x.png */; };
+		E8157AE1211D6EAC00CCB63B /* gca-icon_loghidden@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A4E211D6E9E00CCB63B /* gca-icon_loghidden@2x.png */; };
+		E8157AE2211D6EAC00CCB63B /* gca-icon_logmaintained@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A4F211D6E9E00CCB63B /* gca-icon_logmaintained@2x.png */; };
+		E8157AE3211D6EAC00CCB63B /* gca-icon_geocacheburkeandwills@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A50211D6E9F00CCB63B /* gca-icon_geocacheburkeandwills@3x.png */; };
+		E8157AE4211D6EAC00CCB63B /* gca-icon_logneedsarchiving@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A51211D6E9F00CCB63B /* gca-icon_logneedsarchiving@2x.png */; };
+		E8157AE5211D6EAC00CCB63B /* gca-icon_lognoted.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A52211D6E9F00CCB63B /* gca-icon_lognoted.png */; };
+		E8157AE6211D6EAC00CCB63B /* gca-icon_geocacheother@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A53211D6E9F00CCB63B /* gca-icon_geocacheother@2x.png */; };
+		E8157AE7211D6EAC00CCB63B /* gca-icon_logphotographed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A54211D6E9F00CCB63B /* gca-icon_logphotographed@3x.png */; };
+		E8157AE8211D6EAC00CCB63B /* gca-icon_logphotographed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A55211D6E9F00CCB63B /* gca-icon_logphotographed@2x.png */; };
+		E8157AE9211D6EAC00CCB63B /* gca-icon_logreview@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A56211D6EA000CCB63B /* gca-icon_logreview@2x.png */; };
+		E8157AEA211D6EAC00CCB63B /* gca-icon_geocachegadget@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A57211D6EA000CCB63B /* gca-icon_geocachegadget@3x.png */; };
+		E8157AEB211D6EAC00CCB63B /* gca-icon_logoapi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A58211D6EA000CCB63B /* gca-icon_logoapi@2x.png */; };
+		E8157AEC211D6EAC00CCB63B /* gca-icon_logenabled@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A59211D6EA000CCB63B /* gca-icon_logenabled@3x.png */; };
+		E8157AED211D6EAC00CCB63B /* gca-icon_logattended@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A5A211D6EA000CCB63B /* gca-icon_logattended@3x.png */; };
+		E8157AEE211D6EAC00CCB63B /* gca-icon_geocachemoveable.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A5B211D6EA000CCB63B /* gca-icon_geocachemoveable.png */; };
+		E8157AEF211D6EAC00CCB63B /* gca-icon_geocachetraditional@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A5C211D6EA000CCB63B /* gca-icon_geocachetraditional@3x.png */; };
+		E8157AF0211D6EAC00CCB63B /* gca-icon_geocachetrigpoint@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A5D211D6EA100CCB63B /* gca-icon_geocachetrigpoint@2x.png */; };
+		E8157AF1211D6EAC00CCB63B /* gca-icon_geocacheaugmentedreality.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A5E211D6EA100CCB63B /* gca-icon_geocacheaugmentedreality.png */; };
+		E8157AF2211D6EAC00CCB63B /* gca-icon_logdidnotfind@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A5F211D6EA100CCB63B /* gca-icon_logdidnotfind@3x.png */; };
+		E8157AF3211D6EAC00CCB63B /* gca-icon_geocacheearthcache@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A60211D6EA100CCB63B /* gca-icon_geocacheearthcache@2x.png */; };
+		E8157AF4211D6EAC00CCB63B /* gca-icon_geocachereverse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A61211D6EA100CCB63B /* gca-icon_geocachereverse@2x.png */; };
+		E8157AF5211D6EAC00CCB63B /* gca-icon_geocacheunknownormystery@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A62211D6EA100CCB63B /* gca-icon_geocacheunknownormystery@3x.png */; };
+		E8157AF6211D6EAC00CCB63B /* gca-icon_geocachemoveable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A63211D6EA200CCB63B /* gca-icon_geocachemoveable@2x.png */; };
+		E8157AF7211D6EAC00CCB63B /* gca-icon_logdisabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A64211D6EA200CCB63B /* gca-icon_logdisabled@2x.png */; };
+		E8157AF8211D6EAC00CCB63B /* gca-icon_geocacheprojectape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A65211D6EA200CCB63B /* gca-icon_geocacheprojectape@2x.png */; };
+		E8157AF9211D6EAC00CCB63B /* gca-icon_logannouncement.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A66211D6EA200CCB63B /* gca-icon_logannouncement.png */; };
+		E8157AFA211D6EAC00CCB63B /* gca-icon_logreview.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A67211D6EA200CCB63B /* gca-icon_logreview.png */; };
+		E8157AFB211D6EAC00CCB63B /* gca-icon_logarchived@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A68211D6EA200CCB63B /* gca-icon_logarchived@2x.png */; };
+		E8157AFC211D6EAC00CCB63B /* gca-icon_geocacheletterbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A69211D6EA300CCB63B /* gca-icon_geocacheletterbox@2x.png */; };
+		E8157AFD211D6EAC00CCB63B /* gca-icon_geocachemegaevent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A6A211D6EA300CCB63B /* gca-icon_geocachemegaevent@3x.png */; };
+		E8157AFE211D6EAC00CCB63B /* gca-icon_logenabled.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A6B211D6EA300CCB63B /* gca-icon_logenabled.png */; };
+		E8157AFF211D6EAC00CCB63B /* gca-icon_logenabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A6C211D6EA300CCB63B /* gca-icon_logenabled@2x.png */; };
+		E8157B00211D6EAC00CCB63B /* gca-icon_logneedsmaintenance@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A6D211D6EA300CCB63B /* gca-icon_logneedsmaintenance@3x.png */; };
+		E8157B01211D6EAC00CCB63B /* gca-icon_geocachegadget@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A6E211D6EA300CCB63B /* gca-icon_geocachegadget@2x.png */; };
+		E8157B02211D6EAC00CCB63B /* gca-icon_geocacheephemeral@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A6F211D6EA400CCB63B /* gca-icon_geocacheephemeral@2x.png */; };
+		E8157B03211D6EAC00CCB63B /* gca-icon_geocacheaugmentedreality@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A70211D6EA400CCB63B /* gca-icon_geocacheaugmentedreality@3x.png */; };
+		E8157B04211D6EAC00CCB63B /* gca-icon_geocacheburkeandwills.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A71211D6EA400CCB63B /* gca-icon_geocacheburkeandwills.png */; };
+		E8157B05211D6EAC00CCB63B /* gca-icon_geocacheburkeandwills@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A72211D6EA400CCB63B /* gca-icon_geocacheburkeandwills@2x.png */; };
+		E8157B06211D6EAC00CCB63B /* gca-icon_geocacheprojectape.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A73211D6EA400CCB63B /* gca-icon_geocacheprojectape.png */; };
+		E8157B07211D6EAC00CCB63B /* gca-icon_logphotographed.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A74211D6EA400CCB63B /* gca-icon_logphotographed.png */; };
+		E8157B08211D6EAC00CCB63B /* gca-icon_geocacheephemeral.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A75211D6EA500CCB63B /* gca-icon_geocacheephemeral.png */; };
+		E8157B09211D6EAC00CCB63B /* gca-icon_loghidden@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A76211D6EA500CCB63B /* gca-icon_loghidden@3x.png */; };
+		E8157B0A211D6EAC00CCB63B /* gca-icon_lognoted@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A77211D6EA500CCB63B /* gca-icon_lognoted@3x.png */; };
+		E8157B0B211D6EAC00CCB63B /* gca-icon_logother.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A78211D6EA500CCB63B /* gca-icon_logother.png */; };
+		E8157B0C211D6EAC00CCB63B /* gca-icon_geocachetraditional.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A79211D6EA500CCB63B /* gca-icon_geocachetraditional.png */; };
+		E8157B0D211D6EAC00CCB63B /* gca-icon_logwillattend.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A7A211D6EA500CCB63B /* gca-icon_logwillattend.png */; };
+		E8157B0E211D6EAC00CCB63B /* gca-icon_geocachenightcache@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A7B211D6EA600CCB63B /* gca-icon_geocachenightcache@2x.png */; };
+		E8157B0F211D6EAC00CCB63B /* gca-icon_logadminreview.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A7C211D6EA600CCB63B /* gca-icon_logadminreview.png */; };
+		E8157B10211D6EAC00CCB63B /* gca-icon_geocachewebcam.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A7D211D6EA600CCB63B /* gca-icon_geocachewebcam.png */; };
+		E8157B11211D6EAC00CCB63B /* gca-icon_geocacheaugmentedreality@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A7E211D6EA600CCB63B /* gca-icon_geocacheaugmentedreality@2x.png */; };
+		E8157B12211D6EAC00CCB63B /* gca-icon_logmoved@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A7F211D6EA600CCB63B /* gca-icon_logmoved@3x.png */; };
+		E8157B13211D6EAC00CCB63B /* gca-icon_geocacheunknownormystery.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A80211D6EA600CCB63B /* gca-icon_geocacheunknownormystery.png */; };
+		E8157B14211D6EAC00CCB63B /* gca-icon_logpublished@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A81211D6EA600CCB63B /* gca-icon_logpublished@3x.png */; };
+		E8157B15211D6EAC00CCB63B /* gca-icon_geocachelocationless.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A82211D6EA700CCB63B /* gca-icon_geocachelocationless.png */; };
+		E8157B16211D6EAC00CCB63B /* gca-icon_geocachetraditional@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A83211D6EA700CCB63B /* gca-icon_geocachetraditional@2x.png */; };
+		E8157B17211D6EAC00CCB63B /* gca-icon_logretracted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A84211D6EA700CCB63B /* gca-icon_logretracted@2x.png */; };
+		E8157B18211D6EAC00CCB63B /* gca-icon_logannouncement@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A85211D6EA700CCB63B /* gca-icon_logannouncement@3x.png */; };
+		E8157B19211D6EAC00CCB63B /* gca-icon_geocachevirtual@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A86211D6EA700CCB63B /* gca-icon_geocachevirtual@3x.png */; };
+		E8157B1A211D6EAC00CCB63B /* gca-icon_geocachehistory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A87211D6EA700CCB63B /* gca-icon_geocachehistory@2x.png */; };
+		E8157B1B211D6EAC00CCB63B /* gca-icon_logdidnotfind@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A88211D6EA800CCB63B /* gca-icon_logdidnotfind@2x.png */; };
+		E8157B1C211D6EAC00CCB63B /* gca-icon_geocachewherigo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A89211D6EA800CCB63B /* gca-icon_geocachewherigo@2x.png */; };
+		E8157B1D211D6EAC00CCB63B /* gca-icon_geocachenightcache.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A8A211D6EA800CCB63B /* gca-icon_geocachenightcache.png */; };
+		E8157B1E211D6EAC00CCB63B /* gca-icon_geocachevirtual.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A8B211D6EA800CCB63B /* gca-icon_geocachevirtual.png */; };
+		E8157B1F211D6EAC00CCB63B /* gca-icon_logretracted.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A8C211D6EA800CCB63B /* gca-icon_logretracted.png */; };
+		E8157B20211D6EAC00CCB63B /* gca-icon_logcoordsupdated@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A8D211D6EA800CCB63B /* gca-icon_logcoordsupdated@2x.png */; };
+		E8157B21211D6EAC00CCB63B /* gca-icon_geocachemulticache@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A8E211D6EA900CCB63B /* gca-icon_geocachemulticache@2x.png */; };
+		E8157B22211D6EAC00CCB63B /* gca-icon_logneedsarchiving.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A8F211D6EA900CCB63B /* gca-icon_logneedsarchiving.png */; };
+		E8157B23211D6EAC00CCB63B /* gca-icon_logneedsarchiving@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A90211D6EA900CCB63B /* gca-icon_logneedsarchiving@3x.png */; };
+		E8157B24211D6EAC00CCB63B /* gca-icon_geocachevirtual@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A91211D6EA900CCB63B /* gca-icon_geocachevirtual@2x.png */; };
+		E8157B25211D6EAC00CCB63B /* gca-icon_logoapi.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A92211D6EA900CCB63B /* gca-icon_logoapi.png */; };
+		E8157B26211D6EAC00CCB63B /* gca-icon_geocacheevent.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A93211D6EA900CCB63B /* gca-icon_geocacheevent.png */; };
+		E8157B27211D6EAC00CCB63B /* gca-icon_logannouncement@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A94211D6EAA00CCB63B /* gca-icon_logannouncement@2x.png */; };
+		E8157B28211D6EAC00CCB63B /* gca-icon_logpublished.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A95211D6EAA00CCB63B /* gca-icon_logpublished.png */; };
+		E8157B29211D6EAC00CCB63B /* gca-icon_logfoundit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A96211D6EAA00CCB63B /* gca-icon_logfoundit@2x.png */; };
+		E8157B2A211D6EAC00CCB63B /* gca-icon_logunarchived@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A97211D6EAA00CCB63B /* gca-icon_logunarchived@2x.png */; };
+		E8157B2B211D6EAC00CCB63B /* gca-icon_logwillattend@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A98211D6EAA00CCB63B /* gca-icon_logwillattend@3x.png */; };
+		E8157B2C211D6EAC00CCB63B /* gca-icon_geocacheletterbox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A99211D6EAA00CCB63B /* gca-icon_geocacheletterbox@3x.png */; };
+		E8157B2D211D6EAC00CCB63B /* gca-icon_geocacheephemeral@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A9A211D6EAB00CCB63B /* gca-icon_geocacheephemeral@3x.png */; };
+		E8157B2E211D6EAC00CCB63B /* gca-icon_logother@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A9B211D6EAB00CCB63B /* gca-icon_logother@2x.png */; };
+		E8157B2F211D6EAC00CCB63B /* gca-icon_geocachenightcache@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A9C211D6EAB00CCB63B /* gca-icon_geocachenightcache@3x.png */; };
+		E8157B30211D6EAC00CCB63B /* gca-icon_geocachereverse@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A9D211D6EAB00CCB63B /* gca-icon_geocachereverse@3x.png */; };
+		E8157B31211D6EAC00CCB63B /* gca-icon_logarchived@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A9E211D6EAB00CCB63B /* gca-icon_logarchived@3x.png */; };
+		E8157B32211D6EAC00CCB63B /* gca-icon_logfoundit.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157A9F211D6EAB00CCB63B /* gca-icon_logfoundit.png */; };
+		E8157B33211D6EAC00CCB63B /* gca-icon_logcoordsupdated.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157AA0211D6EAC00CCB63B /* gca-icon_logcoordsupdated.png */; };
+		E8157B34211D6EAC00CCB63B /* gca-icon_logwillattend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8157AA1211D6EAC00CCB63B /* gca-icon_logwillattend@2x.png */; };
+		E8157B36211D6F2F00CCB63B /* gca-icons.json in Resources */ = {isa = PBXBuildFile; fileRef = E8157B35211D6F2F00CCB63B /* gca-icons.json */; };
 		E815B7831F67FCB2003A6092 /* FileKMLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E815B7821F67FCB2003A6092 /* FileKMLViewController.m */; };
 		E82286191F8A285C00631380 /* Coordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = E82286091F8A285C00631380 /* Coordinates.m */; };
 		E822861C1F8A285C00631380 /* LocalMenuItems.m in Sources */ = {isa = PBXBuildFile; fileRef = E82286101F8A285C00631380 /* LocalMenuItems.m */; };
@@ -905,6 +1056,160 @@
 		E80AE56B1FB42A07003EDB36 /* FilterTypeIconsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterTypeIconsTableViewCell.m; path = Filters/FilterTypeIconsTableViewCell.m; sourceTree = "<group>"; };
 		E80F73741B533F4D00F35528 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E80F73761B53443000F35528 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E81579FE211D494200CCB63B /* ThemeImageTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ThemeImageTemplate.h; path = ThemesLibrary/ThemeImageTemplate.h; sourceTree = "<group>"; };
+		E81579FF211D494200CCB63B /* ThemeImageTemplate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ThemeImageTemplate.m; path = ThemesLibrary/ThemeImageTemplate.m; sourceTree = "<group>"; };
+		E8157A01211D496E00CCB63B /* ThemeImageGeocube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ThemeImageGeocube.h; path = ThemesLibrary/ThemeImageGeocube.h; sourceTree = "<group>"; };
+		E8157A02211D496E00CCB63B /* ThemeImageGeocube.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ThemeImageGeocube.m; path = ThemesLibrary/ThemeImageGeocube.m; sourceTree = "<group>"; };
+		E8157A04211D498200CCB63B /* ThemeImageGCA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ThemeImageGCA.h; path = ThemesLibrary/ThemeImageGCA.h; sourceTree = "<group>"; };
+		E8157A05211D498200CCB63B /* ThemeImageGCA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ThemeImageGCA.m; path = ThemesLibrary/ThemeImageGCA.m; sourceTree = "<group>"; };
+		E8157A0F211D6E9500CCB63B /* gca-icon_geocachecito@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachecito@3x.png"; path = "images/gca-icons/gca-icon_geocachecito@3x.png"; sourceTree = "<group>"; };
+		E8157A10211D6E9500CCB63B /* gca-icon_logoapi@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logoapi@3x.png"; path = "images/gca-icons/gca-icon_logoapi@3x.png"; sourceTree = "<group>"; };
+		E8157A11211D6E9500CCB63B /* gca-icon_geocachebeacon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachebeacon@3x.png"; path = "images/gca-icons/gca-icon_geocachebeacon@3x.png"; sourceTree = "<group>"; };
+		E8157A12211D6E9500CCB63B /* gca-icon_geocachewebcam@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachewebcam@2x.png"; path = "images/gca-icons/gca-icon_geocachewebcam@2x.png"; sourceTree = "<group>"; };
+		E8157A13211D6E9500CCB63B /* gca-icon_geocacheother@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheother@3x.png"; path = "images/gca-icons/gca-icon_geocacheother@3x.png"; sourceTree = "<group>"; };
+		E8157A14211D6E9500CCB63B /* gca-icon_geocacheunknownormystery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheunknownormystery@2x.png"; path = "images/gca-icons/gca-icon_geocacheunknownormystery@2x.png"; sourceTree = "<group>"; };
+		E8157A15211D6E9500CCB63B /* gca-icon_logarchived.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logarchived.png"; path = "images/gca-icons/gca-icon_logarchived.png"; sourceTree = "<group>"; };
+		E8157A16211D6E9600CCB63B /* gca-icon_geocachegadget.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachegadget.png"; path = "images/gca-icons/gca-icon_geocachegadget.png"; sourceTree = "<group>"; };
+		E8157A17211D6E9600CCB63B /* gca-icon_logmoved.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logmoved.png"; path = "images/gca-icons/gca-icon_logmoved.png"; sourceTree = "<group>"; };
+		E8157A18211D6E9600CCB63B /* gca-icon_logpublished@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logpublished@2x.png"; path = "images/gca-icons/gca-icon_logpublished@2x.png"; sourceTree = "<group>"; };
+		E8157A19211D6E9600CCB63B /* gca-icon_logretracted@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logretracted@3x.png"; path = "images/gca-icons/gca-icon_logretracted@3x.png"; sourceTree = "<group>"; };
+		E8157A1A211D6E9600CCB63B /* gca-icon_geocachebeacon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachebeacon.png"; path = "images/gca-icons/gca-icon_geocachebeacon.png"; sourceTree = "<group>"; };
+		E8157A1B211D6E9600CCB63B /* gca-icon_geocachepodcache@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachepodcache@3x.png"; path = "images/gca-icons/gca-icon_geocachepodcache@3x.png"; sourceTree = "<group>"; };
+		E8157A1C211D6E9600CCB63B /* gca-icon_logcoordsupdated@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logcoordsupdated@3x.png"; path = "images/gca-icons/gca-icon_logcoordsupdated@3x.png"; sourceTree = "<group>"; };
+		E8157A1D211D6E9700CCB63B /* gca-icon_loghidden.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_loghidden.png"; path = "images/gca-icons/gca-icon_loghidden.png"; sourceTree = "<group>"; };
+		E8157A1E211D6E9700CCB63B /* gca-icon_logunarchived@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logunarchived@3x.png"; path = "images/gca-icons/gca-icon_logunarchived@3x.png"; sourceTree = "<group>"; };
+		E8157A1F211D6E9700CCB63B /* gca-icon_logmaintained@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logmaintained@3x.png"; path = "images/gca-icons/gca-icon_logmaintained@3x.png"; sourceTree = "<group>"; };
+		E8157A20211D6E9700CCB63B /* gca-icon_geocacheevent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheevent@3x.png"; path = "images/gca-icons/gca-icon_geocacheevent@3x.png"; sourceTree = "<group>"; };
+		E8157A21211D6E9700CCB63B /* gca-icon_geocachegeocacher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachegeocacher.png"; path = "images/gca-icons/gca-icon_geocachegeocacher.png"; sourceTree = "<group>"; };
+		E8157A22211D6E9700CCB63B /* gca-icon_geocacheprojectape@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheprojectape@3x.png"; path = "images/gca-icons/gca-icon_geocacheprojectape@3x.png"; sourceTree = "<group>"; };
+		E8157A23211D6E9700CCB63B /* gca-icon_geocachereverse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachereverse.png"; path = "images/gca-icons/gca-icon_geocachereverse.png"; sourceTree = "<group>"; };
+		E8157A24211D6E9800CCB63B /* gca-icon_logfoundit@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logfoundit@3x.png"; path = "images/gca-icons/gca-icon_logfoundit@3x.png"; sourceTree = "<group>"; };
+		E8157A25211D6E9800CCB63B /* gca-icon_logunarchived.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logunarchived.png"; path = "images/gca-icons/gca-icon_logunarchived.png"; sourceTree = "<group>"; };
+		E8157A26211D6E9800CCB63B /* gca-icon_logattended.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logattended.png"; path = "images/gca-icons/gca-icon_logattended.png"; sourceTree = "<group>"; };
+		E8157A27211D6E9800CCB63B /* gca-icon_geocachepodcache@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachepodcache@2x.png"; path = "images/gca-icons/gca-icon_geocachepodcache@2x.png"; sourceTree = "<group>"; };
+		E8157A28211D6E9800CCB63B /* gca-icon_geocachetrigpoint@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachetrigpoint@3x.png"; path = "images/gca-icons/gca-icon_geocachetrigpoint@3x.png"; sourceTree = "<group>"; };
+		E8157A29211D6E9800CCB63B /* gca-icon_logneedsmaintenance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logneedsmaintenance.png"; path = "images/gca-icons/gca-icon_logneedsmaintenance.png"; sourceTree = "<group>"; };
+		E8157A2A211D6E9900CCB63B /* gca-icon_geocacheearthcache@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheearthcache@3x.png"; path = "images/gca-icons/gca-icon_geocacheearthcache@3x.png"; sourceTree = "<group>"; };
+		E8157A2B211D6E9900CCB63B /* gca-icon_geocachemegaevent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachemegaevent.png"; path = "images/gca-icons/gca-icon_geocachemegaevent.png"; sourceTree = "<group>"; };
+		E8157A2C211D6E9900CCB63B /* gca-icon_logmaintained.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logmaintained.png"; path = "images/gca-icons/gca-icon_logmaintained.png"; sourceTree = "<group>"; };
+		E8157A2D211D6E9900CCB63B /* gca-icon_logdidnotfind.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logdidnotfind.png"; path = "images/gca-icons/gca-icon_logdidnotfind.png"; sourceTree = "<group>"; };
+		E8157A2E211D6E9900CCB63B /* gca-icon_logmoved@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logmoved@2x.png"; path = "images/gca-icons/gca-icon_logmoved@2x.png"; sourceTree = "<group>"; };
+		E8157A2F211D6E9900CCB63B /* gca-icon_logadminreview@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logadminreview@2x.png"; path = "images/gca-icons/gca-icon_logadminreview@2x.png"; sourceTree = "<group>"; };
+		E8157A30211D6E9A00CCB63B /* gca-icon_geocachehistory@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachehistory@3x.png"; path = "images/gca-icons/gca-icon_geocachehistory@3x.png"; sourceTree = "<group>"; };
+		E8157A31211D6E9A00CCB63B /* gca-icon_geocacheother.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheother.png"; path = "images/gca-icons/gca-icon_geocacheother.png"; sourceTree = "<group>"; };
+		E8157A32211D6E9A00CCB63B /* gca-icon_logattended@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logattended@2x.png"; path = "images/gca-icons/gca-icon_logattended@2x.png"; sourceTree = "<group>"; };
+		E8157A33211D6E9A00CCB63B /* gca-icon_logneedsmaintenance@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logneedsmaintenance@2x.png"; path = "images/gca-icons/gca-icon_logneedsmaintenance@2x.png"; sourceTree = "<group>"; };
+		E8157A34211D6E9A00CCB63B /* gca-icon_geocachelocationless@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachelocationless@2x.png"; path = "images/gca-icons/gca-icon_geocachelocationless@2x.png"; sourceTree = "<group>"; };
+		E8157A35211D6E9A00CCB63B /* gca-icon_logadminreview@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logadminreview@3x.png"; path = "images/gca-icons/gca-icon_logadminreview@3x.png"; sourceTree = "<group>"; };
+		E8157A36211D6E9B00CCB63B /* gca-icon_logother@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logother@3x.png"; path = "images/gca-icons/gca-icon_logother@3x.png"; sourceTree = "<group>"; };
+		E8157A37211D6E9B00CCB63B /* gca-icon_logreview@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logreview@3x.png"; path = "images/gca-icons/gca-icon_logreview@3x.png"; sourceTree = "<group>"; };
+		E8157A38211D6E9B00CCB63B /* gca-icon_geocacheearthcache.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheearthcache.png"; path = "images/gca-icons/gca-icon_geocacheearthcache.png"; sourceTree = "<group>"; };
+		E8157A39211D6E9B00CCB63B /* gca-icon_lognoted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_lognoted@2x.png"; path = "images/gca-icons/gca-icon_lognoted@2x.png"; sourceTree = "<group>"; };
+		E8157A3A211D6E9B00CCB63B /* gca-icon_geocachebeacon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachebeacon@2x.png"; path = "images/gca-icons/gca-icon_geocachebeacon@2x.png"; sourceTree = "<group>"; };
+		E8157A3B211D6E9B00CCB63B /* gca-icon_geocachewebcam@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachewebcam@3x.png"; path = "images/gca-icons/gca-icon_geocachewebcam@3x.png"; sourceTree = "<group>"; };
+		E8157A3C211D6E9B00CCB63B /* gca-icon_geocachetrigpoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachetrigpoint.png"; path = "images/gca-icons/gca-icon_geocachetrigpoint.png"; sourceTree = "<group>"; };
+		E8157A3D211D6E9C00CCB63B /* gca-icon_geocachecito.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachecito.png"; path = "images/gca-icons/gca-icon_geocachecito.png"; sourceTree = "<group>"; };
+		E8157A3E211D6E9C00CCB63B /* gca-icon_geocachehistory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachehistory.png"; path = "images/gca-icons/gca-icon_geocachehistory.png"; sourceTree = "<group>"; };
+		E8157A3F211D6E9C00CCB63B /* gca-icon_geocachemulticache@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachemulticache@3x.png"; path = "images/gca-icons/gca-icon_geocachemulticache@3x.png"; sourceTree = "<group>"; };
+		E8157A40211D6E9C00CCB63B /* gca-icon_geocachecito@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachecito@2x.png"; path = "images/gca-icons/gca-icon_geocachecito@2x.png"; sourceTree = "<group>"; };
+		E8157A41211D6E9C00CCB63B /* gca-icon_geocachemegaevent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachemegaevent@2x.png"; path = "images/gca-icons/gca-icon_geocachemegaevent@2x.png"; sourceTree = "<group>"; };
+		E8157A42211D6E9C00CCB63B /* gca-icon_geocacheletterbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheletterbox.png"; path = "images/gca-icons/gca-icon_geocacheletterbox.png"; sourceTree = "<group>"; };
+		E8157A43211D6E9D00CCB63B /* gca-icon_geocachegeocacher@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachegeocacher@3x.png"; path = "images/gca-icons/gca-icon_geocachegeocacher@3x.png"; sourceTree = "<group>"; };
+		E8157A44211D6E9D00CCB63B /* gca-icon_geocachewherigo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachewherigo.png"; path = "images/gca-icons/gca-icon_geocachewherigo.png"; sourceTree = "<group>"; };
+		E8157A45211D6E9D00CCB63B /* gca-icon_geocachemulticache.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachemulticache.png"; path = "images/gca-icons/gca-icon_geocachemulticache.png"; sourceTree = "<group>"; };
+		E8157A46211D6E9D00CCB63B /* gca-icon_geocachewherigo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachewherigo@3x.png"; path = "images/gca-icons/gca-icon_geocachewherigo@3x.png"; sourceTree = "<group>"; };
+		E8157A47211D6E9D00CCB63B /* gca-icon_geocachelocationless@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachelocationless@3x.png"; path = "images/gca-icons/gca-icon_geocachelocationless@3x.png"; sourceTree = "<group>"; };
+		E8157A48211D6E9D00CCB63B /* gca-icon_geocacheevent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheevent@2x.png"; path = "images/gca-icons/gca-icon_geocacheevent@2x.png"; sourceTree = "<group>"; };
+		E8157A49211D6E9D00CCB63B /* gca-icon_geocachegeocacher@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachegeocacher@2x.png"; path = "images/gca-icons/gca-icon_geocachegeocacher@2x.png"; sourceTree = "<group>"; };
+		E8157A4A211D6E9E00CCB63B /* gca-icon_geocachemoveable@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachemoveable@3x.png"; path = "images/gca-icons/gca-icon_geocachemoveable@3x.png"; sourceTree = "<group>"; };
+		E8157A4B211D6E9E00CCB63B /* gca-icon_geocachepodcache.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachepodcache.png"; path = "images/gca-icons/gca-icon_geocachepodcache.png"; sourceTree = "<group>"; };
+		E8157A4C211D6E9E00CCB63B /* gca-icon_logdisabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logdisabled.png"; path = "images/gca-icons/gca-icon_logdisabled.png"; sourceTree = "<group>"; };
+		E8157A4D211D6E9E00CCB63B /* gca-icon_logdisabled@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logdisabled@3x.png"; path = "images/gca-icons/gca-icon_logdisabled@3x.png"; sourceTree = "<group>"; };
+		E8157A4E211D6E9E00CCB63B /* gca-icon_loghidden@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_loghidden@2x.png"; path = "images/gca-icons/gca-icon_loghidden@2x.png"; sourceTree = "<group>"; };
+		E8157A4F211D6E9E00CCB63B /* gca-icon_logmaintained@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logmaintained@2x.png"; path = "images/gca-icons/gca-icon_logmaintained@2x.png"; sourceTree = "<group>"; };
+		E8157A50211D6E9F00CCB63B /* gca-icon_geocacheburkeandwills@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheburkeandwills@3x.png"; path = "images/gca-icons/gca-icon_geocacheburkeandwills@3x.png"; sourceTree = "<group>"; };
+		E8157A51211D6E9F00CCB63B /* gca-icon_logneedsarchiving@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logneedsarchiving@2x.png"; path = "images/gca-icons/gca-icon_logneedsarchiving@2x.png"; sourceTree = "<group>"; };
+		E8157A52211D6E9F00CCB63B /* gca-icon_lognoted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_lognoted.png"; path = "images/gca-icons/gca-icon_lognoted.png"; sourceTree = "<group>"; };
+		E8157A53211D6E9F00CCB63B /* gca-icon_geocacheother@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheother@2x.png"; path = "images/gca-icons/gca-icon_geocacheother@2x.png"; sourceTree = "<group>"; };
+		E8157A54211D6E9F00CCB63B /* gca-icon_logphotographed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logphotographed@3x.png"; path = "images/gca-icons/gca-icon_logphotographed@3x.png"; sourceTree = "<group>"; };
+		E8157A55211D6E9F00CCB63B /* gca-icon_logphotographed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logphotographed@2x.png"; path = "images/gca-icons/gca-icon_logphotographed@2x.png"; sourceTree = "<group>"; };
+		E8157A56211D6EA000CCB63B /* gca-icon_logreview@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logreview@2x.png"; path = "images/gca-icons/gca-icon_logreview@2x.png"; sourceTree = "<group>"; };
+		E8157A57211D6EA000CCB63B /* gca-icon_geocachegadget@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachegadget@3x.png"; path = "images/gca-icons/gca-icon_geocachegadget@3x.png"; sourceTree = "<group>"; };
+		E8157A58211D6EA000CCB63B /* gca-icon_logoapi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logoapi@2x.png"; path = "images/gca-icons/gca-icon_logoapi@2x.png"; sourceTree = "<group>"; };
+		E8157A59211D6EA000CCB63B /* gca-icon_logenabled@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logenabled@3x.png"; path = "images/gca-icons/gca-icon_logenabled@3x.png"; sourceTree = "<group>"; };
+		E8157A5A211D6EA000CCB63B /* gca-icon_logattended@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logattended@3x.png"; path = "images/gca-icons/gca-icon_logattended@3x.png"; sourceTree = "<group>"; };
+		E8157A5B211D6EA000CCB63B /* gca-icon_geocachemoveable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachemoveable.png"; path = "images/gca-icons/gca-icon_geocachemoveable.png"; sourceTree = "<group>"; };
+		E8157A5C211D6EA000CCB63B /* gca-icon_geocachetraditional@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachetraditional@3x.png"; path = "images/gca-icons/gca-icon_geocachetraditional@3x.png"; sourceTree = "<group>"; };
+		E8157A5D211D6EA100CCB63B /* gca-icon_geocachetrigpoint@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachetrigpoint@2x.png"; path = "images/gca-icons/gca-icon_geocachetrigpoint@2x.png"; sourceTree = "<group>"; };
+		E8157A5E211D6EA100CCB63B /* gca-icon_geocacheaugmentedreality.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheaugmentedreality.png"; path = "images/gca-icons/gca-icon_geocacheaugmentedreality.png"; sourceTree = "<group>"; };
+		E8157A5F211D6EA100CCB63B /* gca-icon_logdidnotfind@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logdidnotfind@3x.png"; path = "images/gca-icons/gca-icon_logdidnotfind@3x.png"; sourceTree = "<group>"; };
+		E8157A60211D6EA100CCB63B /* gca-icon_geocacheearthcache@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheearthcache@2x.png"; path = "images/gca-icons/gca-icon_geocacheearthcache@2x.png"; sourceTree = "<group>"; };
+		E8157A61211D6EA100CCB63B /* gca-icon_geocachereverse@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachereverse@2x.png"; path = "images/gca-icons/gca-icon_geocachereverse@2x.png"; sourceTree = "<group>"; };
+		E8157A62211D6EA100CCB63B /* gca-icon_geocacheunknownormystery@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheunknownormystery@3x.png"; path = "images/gca-icons/gca-icon_geocacheunknownormystery@3x.png"; sourceTree = "<group>"; };
+		E8157A63211D6EA200CCB63B /* gca-icon_geocachemoveable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachemoveable@2x.png"; path = "images/gca-icons/gca-icon_geocachemoveable@2x.png"; sourceTree = "<group>"; };
+		E8157A64211D6EA200CCB63B /* gca-icon_logdisabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logdisabled@2x.png"; path = "images/gca-icons/gca-icon_logdisabled@2x.png"; sourceTree = "<group>"; };
+		E8157A65211D6EA200CCB63B /* gca-icon_geocacheprojectape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheprojectape@2x.png"; path = "images/gca-icons/gca-icon_geocacheprojectape@2x.png"; sourceTree = "<group>"; };
+		E8157A66211D6EA200CCB63B /* gca-icon_logannouncement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logannouncement.png"; path = "images/gca-icons/gca-icon_logannouncement.png"; sourceTree = "<group>"; };
+		E8157A67211D6EA200CCB63B /* gca-icon_logreview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logreview.png"; path = "images/gca-icons/gca-icon_logreview.png"; sourceTree = "<group>"; };
+		E8157A68211D6EA200CCB63B /* gca-icon_logarchived@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logarchived@2x.png"; path = "images/gca-icons/gca-icon_logarchived@2x.png"; sourceTree = "<group>"; };
+		E8157A69211D6EA300CCB63B /* gca-icon_geocacheletterbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheletterbox@2x.png"; path = "images/gca-icons/gca-icon_geocacheletterbox@2x.png"; sourceTree = "<group>"; };
+		E8157A6A211D6EA300CCB63B /* gca-icon_geocachemegaevent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachemegaevent@3x.png"; path = "images/gca-icons/gca-icon_geocachemegaevent@3x.png"; sourceTree = "<group>"; };
+		E8157A6B211D6EA300CCB63B /* gca-icon_logenabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logenabled.png"; path = "images/gca-icons/gca-icon_logenabled.png"; sourceTree = "<group>"; };
+		E8157A6C211D6EA300CCB63B /* gca-icon_logenabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logenabled@2x.png"; path = "images/gca-icons/gca-icon_logenabled@2x.png"; sourceTree = "<group>"; };
+		E8157A6D211D6EA300CCB63B /* gca-icon_logneedsmaintenance@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logneedsmaintenance@3x.png"; path = "images/gca-icons/gca-icon_logneedsmaintenance@3x.png"; sourceTree = "<group>"; };
+		E8157A6E211D6EA300CCB63B /* gca-icon_geocachegadget@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachegadget@2x.png"; path = "images/gca-icons/gca-icon_geocachegadget@2x.png"; sourceTree = "<group>"; };
+		E8157A6F211D6EA400CCB63B /* gca-icon_geocacheephemeral@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheephemeral@2x.png"; path = "images/gca-icons/gca-icon_geocacheephemeral@2x.png"; sourceTree = "<group>"; };
+		E8157A70211D6EA400CCB63B /* gca-icon_geocacheaugmentedreality@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheaugmentedreality@3x.png"; path = "images/gca-icons/gca-icon_geocacheaugmentedreality@3x.png"; sourceTree = "<group>"; };
+		E8157A71211D6EA400CCB63B /* gca-icon_geocacheburkeandwills.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheburkeandwills.png"; path = "images/gca-icons/gca-icon_geocacheburkeandwills.png"; sourceTree = "<group>"; };
+		E8157A72211D6EA400CCB63B /* gca-icon_geocacheburkeandwills@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheburkeandwills@2x.png"; path = "images/gca-icons/gca-icon_geocacheburkeandwills@2x.png"; sourceTree = "<group>"; };
+		E8157A73211D6EA400CCB63B /* gca-icon_geocacheprojectape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheprojectape.png"; path = "images/gca-icons/gca-icon_geocacheprojectape.png"; sourceTree = "<group>"; };
+		E8157A74211D6EA400CCB63B /* gca-icon_logphotographed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logphotographed.png"; path = "images/gca-icons/gca-icon_logphotographed.png"; sourceTree = "<group>"; };
+		E8157A75211D6EA500CCB63B /* gca-icon_geocacheephemeral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheephemeral.png"; path = "images/gca-icons/gca-icon_geocacheephemeral.png"; sourceTree = "<group>"; };
+		E8157A76211D6EA500CCB63B /* gca-icon_loghidden@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_loghidden@3x.png"; path = "images/gca-icons/gca-icon_loghidden@3x.png"; sourceTree = "<group>"; };
+		E8157A77211D6EA500CCB63B /* gca-icon_lognoted@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_lognoted@3x.png"; path = "images/gca-icons/gca-icon_lognoted@3x.png"; sourceTree = "<group>"; };
+		E8157A78211D6EA500CCB63B /* gca-icon_logother.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logother.png"; path = "images/gca-icons/gca-icon_logother.png"; sourceTree = "<group>"; };
+		E8157A79211D6EA500CCB63B /* gca-icon_geocachetraditional.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachetraditional.png"; path = "images/gca-icons/gca-icon_geocachetraditional.png"; sourceTree = "<group>"; };
+		E8157A7A211D6EA500CCB63B /* gca-icon_logwillattend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logwillattend.png"; path = "images/gca-icons/gca-icon_logwillattend.png"; sourceTree = "<group>"; };
+		E8157A7B211D6EA600CCB63B /* gca-icon_geocachenightcache@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachenightcache@2x.png"; path = "images/gca-icons/gca-icon_geocachenightcache@2x.png"; sourceTree = "<group>"; };
+		E8157A7C211D6EA600CCB63B /* gca-icon_logadminreview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logadminreview.png"; path = "images/gca-icons/gca-icon_logadminreview.png"; sourceTree = "<group>"; };
+		E8157A7D211D6EA600CCB63B /* gca-icon_geocachewebcam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachewebcam.png"; path = "images/gca-icons/gca-icon_geocachewebcam.png"; sourceTree = "<group>"; };
+		E8157A7E211D6EA600CCB63B /* gca-icon_geocacheaugmentedreality@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheaugmentedreality@2x.png"; path = "images/gca-icons/gca-icon_geocacheaugmentedreality@2x.png"; sourceTree = "<group>"; };
+		E8157A7F211D6EA600CCB63B /* gca-icon_logmoved@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logmoved@3x.png"; path = "images/gca-icons/gca-icon_logmoved@3x.png"; sourceTree = "<group>"; };
+		E8157A80211D6EA600CCB63B /* gca-icon_geocacheunknownormystery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheunknownormystery.png"; path = "images/gca-icons/gca-icon_geocacheunknownormystery.png"; sourceTree = "<group>"; };
+		E8157A81211D6EA600CCB63B /* gca-icon_logpublished@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logpublished@3x.png"; path = "images/gca-icons/gca-icon_logpublished@3x.png"; sourceTree = "<group>"; };
+		E8157A82211D6EA700CCB63B /* gca-icon_geocachelocationless.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachelocationless.png"; path = "images/gca-icons/gca-icon_geocachelocationless.png"; sourceTree = "<group>"; };
+		E8157A83211D6EA700CCB63B /* gca-icon_geocachetraditional@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachetraditional@2x.png"; path = "images/gca-icons/gca-icon_geocachetraditional@2x.png"; sourceTree = "<group>"; };
+		E8157A84211D6EA700CCB63B /* gca-icon_logretracted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logretracted@2x.png"; path = "images/gca-icons/gca-icon_logretracted@2x.png"; sourceTree = "<group>"; };
+		E8157A85211D6EA700CCB63B /* gca-icon_logannouncement@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logannouncement@3x.png"; path = "images/gca-icons/gca-icon_logannouncement@3x.png"; sourceTree = "<group>"; };
+		E8157A86211D6EA700CCB63B /* gca-icon_geocachevirtual@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachevirtual@3x.png"; path = "images/gca-icons/gca-icon_geocachevirtual@3x.png"; sourceTree = "<group>"; };
+		E8157A87211D6EA700CCB63B /* gca-icon_geocachehistory@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachehistory@2x.png"; path = "images/gca-icons/gca-icon_geocachehistory@2x.png"; sourceTree = "<group>"; };
+		E8157A88211D6EA800CCB63B /* gca-icon_logdidnotfind@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logdidnotfind@2x.png"; path = "images/gca-icons/gca-icon_logdidnotfind@2x.png"; sourceTree = "<group>"; };
+		E8157A89211D6EA800CCB63B /* gca-icon_geocachewherigo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachewherigo@2x.png"; path = "images/gca-icons/gca-icon_geocachewherigo@2x.png"; sourceTree = "<group>"; };
+		E8157A8A211D6EA800CCB63B /* gca-icon_geocachenightcache.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachenightcache.png"; path = "images/gca-icons/gca-icon_geocachenightcache.png"; sourceTree = "<group>"; };
+		E8157A8B211D6EA800CCB63B /* gca-icon_geocachevirtual.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachevirtual.png"; path = "images/gca-icons/gca-icon_geocachevirtual.png"; sourceTree = "<group>"; };
+		E8157A8C211D6EA800CCB63B /* gca-icon_logretracted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logretracted.png"; path = "images/gca-icons/gca-icon_logretracted.png"; sourceTree = "<group>"; };
+		E8157A8D211D6EA800CCB63B /* gca-icon_logcoordsupdated@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logcoordsupdated@2x.png"; path = "images/gca-icons/gca-icon_logcoordsupdated@2x.png"; sourceTree = "<group>"; };
+		E8157A8E211D6EA900CCB63B /* gca-icon_geocachemulticache@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachemulticache@2x.png"; path = "images/gca-icons/gca-icon_geocachemulticache@2x.png"; sourceTree = "<group>"; };
+		E8157A8F211D6EA900CCB63B /* gca-icon_logneedsarchiving.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logneedsarchiving.png"; path = "images/gca-icons/gca-icon_logneedsarchiving.png"; sourceTree = "<group>"; };
+		E8157A90211D6EA900CCB63B /* gca-icon_logneedsarchiving@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logneedsarchiving@3x.png"; path = "images/gca-icons/gca-icon_logneedsarchiving@3x.png"; sourceTree = "<group>"; };
+		E8157A91211D6EA900CCB63B /* gca-icon_geocachevirtual@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachevirtual@2x.png"; path = "images/gca-icons/gca-icon_geocachevirtual@2x.png"; sourceTree = "<group>"; };
+		E8157A92211D6EA900CCB63B /* gca-icon_logoapi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logoapi.png"; path = "images/gca-icons/gca-icon_logoapi.png"; sourceTree = "<group>"; };
+		E8157A93211D6EA900CCB63B /* gca-icon_geocacheevent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheevent.png"; path = "images/gca-icons/gca-icon_geocacheevent.png"; sourceTree = "<group>"; };
+		E8157A94211D6EAA00CCB63B /* gca-icon_logannouncement@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logannouncement@2x.png"; path = "images/gca-icons/gca-icon_logannouncement@2x.png"; sourceTree = "<group>"; };
+		E8157A95211D6EAA00CCB63B /* gca-icon_logpublished.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logpublished.png"; path = "images/gca-icons/gca-icon_logpublished.png"; sourceTree = "<group>"; };
+		E8157A96211D6EAA00CCB63B /* gca-icon_logfoundit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logfoundit@2x.png"; path = "images/gca-icons/gca-icon_logfoundit@2x.png"; sourceTree = "<group>"; };
+		E8157A97211D6EAA00CCB63B /* gca-icon_logunarchived@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logunarchived@2x.png"; path = "images/gca-icons/gca-icon_logunarchived@2x.png"; sourceTree = "<group>"; };
+		E8157A98211D6EAA00CCB63B /* gca-icon_logwillattend@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logwillattend@3x.png"; path = "images/gca-icons/gca-icon_logwillattend@3x.png"; sourceTree = "<group>"; };
+		E8157A99211D6EAA00CCB63B /* gca-icon_geocacheletterbox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheletterbox@3x.png"; path = "images/gca-icons/gca-icon_geocacheletterbox@3x.png"; sourceTree = "<group>"; };
+		E8157A9A211D6EAB00CCB63B /* gca-icon_geocacheephemeral@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocacheephemeral@3x.png"; path = "images/gca-icons/gca-icon_geocacheephemeral@3x.png"; sourceTree = "<group>"; };
+		E8157A9B211D6EAB00CCB63B /* gca-icon_logother@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logother@2x.png"; path = "images/gca-icons/gca-icon_logother@2x.png"; sourceTree = "<group>"; };
+		E8157A9C211D6EAB00CCB63B /* gca-icon_geocachenightcache@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachenightcache@3x.png"; path = "images/gca-icons/gca-icon_geocachenightcache@3x.png"; sourceTree = "<group>"; };
+		E8157A9D211D6EAB00CCB63B /* gca-icon_geocachereverse@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_geocachereverse@3x.png"; path = "images/gca-icons/gca-icon_geocachereverse@3x.png"; sourceTree = "<group>"; };
+		E8157A9E211D6EAB00CCB63B /* gca-icon_logarchived@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logarchived@3x.png"; path = "images/gca-icons/gca-icon_logarchived@3x.png"; sourceTree = "<group>"; };
+		E8157A9F211D6EAB00CCB63B /* gca-icon_logfoundit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logfoundit.png"; path = "images/gca-icons/gca-icon_logfoundit.png"; sourceTree = "<group>"; };
+		E8157AA0211D6EAC00CCB63B /* gca-icon_logcoordsupdated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logcoordsupdated.png"; path = "images/gca-icons/gca-icon_logcoordsupdated.png"; sourceTree = "<group>"; };
+		E8157AA1211D6EAC00CCB63B /* gca-icon_logwillattend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-icon_logwillattend@2x.png"; path = "images/gca-icons/gca-icon_logwillattend@2x.png"; sourceTree = "<group>"; };
+		E8157B35211D6F2F00CCB63B /* gca-icons.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "gca-icons.json"; path = "images/gca-icons/gca-icons.json"; sourceTree = "<group>"; };
 		E815B7811F67FCB2003A6092 /* FileKMLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileKMLViewController.h; path = Files/FileKMLViewController.h; sourceTree = "<group>"; };
 		E815B7821F67FCB2003A6092 /* FileKMLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileKMLViewController.m; path = Files/FileKMLViewController.m; sourceTree = "<group>"; };
 		E82286081F8A285C00631380 /* Coordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Coordinates.h; path = ToolsLibrary/Coordinates.h; sourceTree = "<group>"; };
@@ -2273,6 +2578,161 @@
 			name = ratings;
 			sourceTree = "<group>";
 		};
+		E8157A0E211D6E6700CCB63B /* gca-images */ = {
+			isa = PBXGroup;
+			children = (
+				E8157B35211D6F2F00CCB63B /* gca-icons.json */,
+				E8157A5E211D6EA100CCB63B /* gca-icon_geocacheaugmentedreality.png */,
+				E8157A7E211D6EA600CCB63B /* gca-icon_geocacheaugmentedreality@2x.png */,
+				E8157A70211D6EA400CCB63B /* gca-icon_geocacheaugmentedreality@3x.png */,
+				E8157A1A211D6E9600CCB63B /* gca-icon_geocachebeacon.png */,
+				E8157A3A211D6E9B00CCB63B /* gca-icon_geocachebeacon@2x.png */,
+				E8157A11211D6E9500CCB63B /* gca-icon_geocachebeacon@3x.png */,
+				E8157A71211D6EA400CCB63B /* gca-icon_geocacheburkeandwills.png */,
+				E8157A72211D6EA400CCB63B /* gca-icon_geocacheburkeandwills@2x.png */,
+				E8157A50211D6E9F00CCB63B /* gca-icon_geocacheburkeandwills@3x.png */,
+				E8157A3D211D6E9C00CCB63B /* gca-icon_geocachecito.png */,
+				E8157A40211D6E9C00CCB63B /* gca-icon_geocachecito@2x.png */,
+				E8157A0F211D6E9500CCB63B /* gca-icon_geocachecito@3x.png */,
+				E8157A38211D6E9B00CCB63B /* gca-icon_geocacheearthcache.png */,
+				E8157A60211D6EA100CCB63B /* gca-icon_geocacheearthcache@2x.png */,
+				E8157A2A211D6E9900CCB63B /* gca-icon_geocacheearthcache@3x.png */,
+				E8157A75211D6EA500CCB63B /* gca-icon_geocacheephemeral.png */,
+				E8157A6F211D6EA400CCB63B /* gca-icon_geocacheephemeral@2x.png */,
+				E8157A9A211D6EAB00CCB63B /* gca-icon_geocacheephemeral@3x.png */,
+				E8157A93211D6EA900CCB63B /* gca-icon_geocacheevent.png */,
+				E8157A48211D6E9D00CCB63B /* gca-icon_geocacheevent@2x.png */,
+				E8157A20211D6E9700CCB63B /* gca-icon_geocacheevent@3x.png */,
+				E8157A16211D6E9600CCB63B /* gca-icon_geocachegadget.png */,
+				E8157A6E211D6EA300CCB63B /* gca-icon_geocachegadget@2x.png */,
+				E8157A57211D6EA000CCB63B /* gca-icon_geocachegadget@3x.png */,
+				E8157A21211D6E9700CCB63B /* gca-icon_geocachegeocacher.png */,
+				E8157A49211D6E9D00CCB63B /* gca-icon_geocachegeocacher@2x.png */,
+				E8157A43211D6E9D00CCB63B /* gca-icon_geocachegeocacher@3x.png */,
+				E8157A3E211D6E9C00CCB63B /* gca-icon_geocachehistory.png */,
+				E8157A87211D6EA700CCB63B /* gca-icon_geocachehistory@2x.png */,
+				E8157A30211D6E9A00CCB63B /* gca-icon_geocachehistory@3x.png */,
+				E8157A42211D6E9C00CCB63B /* gca-icon_geocacheletterbox.png */,
+				E8157A69211D6EA300CCB63B /* gca-icon_geocacheletterbox@2x.png */,
+				E8157A99211D6EAA00CCB63B /* gca-icon_geocacheletterbox@3x.png */,
+				E8157A82211D6EA700CCB63B /* gca-icon_geocachelocationless.png */,
+				E8157A34211D6E9A00CCB63B /* gca-icon_geocachelocationless@2x.png */,
+				E8157A47211D6E9D00CCB63B /* gca-icon_geocachelocationless@3x.png */,
+				E8157A2B211D6E9900CCB63B /* gca-icon_geocachemegaevent.png */,
+				E8157A41211D6E9C00CCB63B /* gca-icon_geocachemegaevent@2x.png */,
+				E8157A6A211D6EA300CCB63B /* gca-icon_geocachemegaevent@3x.png */,
+				E8157A5B211D6EA000CCB63B /* gca-icon_geocachemoveable.png */,
+				E8157A63211D6EA200CCB63B /* gca-icon_geocachemoveable@2x.png */,
+				E8157A4A211D6E9E00CCB63B /* gca-icon_geocachemoveable@3x.png */,
+				E8157A45211D6E9D00CCB63B /* gca-icon_geocachemulticache.png */,
+				E8157A8E211D6EA900CCB63B /* gca-icon_geocachemulticache@2x.png */,
+				E8157A3F211D6E9C00CCB63B /* gca-icon_geocachemulticache@3x.png */,
+				E8157A8A211D6EA800CCB63B /* gca-icon_geocachenightcache.png */,
+				E8157A7B211D6EA600CCB63B /* gca-icon_geocachenightcache@2x.png */,
+				E8157A9C211D6EAB00CCB63B /* gca-icon_geocachenightcache@3x.png */,
+				E8157A31211D6E9A00CCB63B /* gca-icon_geocacheother.png */,
+				E8157A53211D6E9F00CCB63B /* gca-icon_geocacheother@2x.png */,
+				E8157A13211D6E9500CCB63B /* gca-icon_geocacheother@3x.png */,
+				E8157A4B211D6E9E00CCB63B /* gca-icon_geocachepodcache.png */,
+				E8157A27211D6E9800CCB63B /* gca-icon_geocachepodcache@2x.png */,
+				E8157A1B211D6E9600CCB63B /* gca-icon_geocachepodcache@3x.png */,
+				E8157A73211D6EA400CCB63B /* gca-icon_geocacheprojectape.png */,
+				E8157A65211D6EA200CCB63B /* gca-icon_geocacheprojectape@2x.png */,
+				E8157A22211D6E9700CCB63B /* gca-icon_geocacheprojectape@3x.png */,
+				E8157A23211D6E9700CCB63B /* gca-icon_geocachereverse.png */,
+				E8157A61211D6EA100CCB63B /* gca-icon_geocachereverse@2x.png */,
+				E8157A9D211D6EAB00CCB63B /* gca-icon_geocachereverse@3x.png */,
+				E8157A79211D6EA500CCB63B /* gca-icon_geocachetraditional.png */,
+				E8157A83211D6EA700CCB63B /* gca-icon_geocachetraditional@2x.png */,
+				E8157A5C211D6EA000CCB63B /* gca-icon_geocachetraditional@3x.png */,
+				E8157A3C211D6E9B00CCB63B /* gca-icon_geocachetrigpoint.png */,
+				E8157A5D211D6EA100CCB63B /* gca-icon_geocachetrigpoint@2x.png */,
+				E8157A28211D6E9800CCB63B /* gca-icon_geocachetrigpoint@3x.png */,
+				E8157A80211D6EA600CCB63B /* gca-icon_geocacheunknownormystery.png */,
+				E8157A14211D6E9500CCB63B /* gca-icon_geocacheunknownormystery@2x.png */,
+				E8157A62211D6EA100CCB63B /* gca-icon_geocacheunknownormystery@3x.png */,
+				E8157A8B211D6EA800CCB63B /* gca-icon_geocachevirtual.png */,
+				E8157A91211D6EA900CCB63B /* gca-icon_geocachevirtual@2x.png */,
+				E8157A86211D6EA700CCB63B /* gca-icon_geocachevirtual@3x.png */,
+				E8157A7D211D6EA600CCB63B /* gca-icon_geocachewebcam.png */,
+				E8157A12211D6E9500CCB63B /* gca-icon_geocachewebcam@2x.png */,
+				E8157A3B211D6E9B00CCB63B /* gca-icon_geocachewebcam@3x.png */,
+				E8157A44211D6E9D00CCB63B /* gca-icon_geocachewherigo.png */,
+				E8157A89211D6EA800CCB63B /* gca-icon_geocachewherigo@2x.png */,
+				E8157A46211D6E9D00CCB63B /* gca-icon_geocachewherigo@3x.png */,
+				E8157A7C211D6EA600CCB63B /* gca-icon_logadminreview.png */,
+				E8157A2F211D6E9900CCB63B /* gca-icon_logadminreview@2x.png */,
+				E8157A35211D6E9A00CCB63B /* gca-icon_logadminreview@3x.png */,
+				E8157A66211D6EA200CCB63B /* gca-icon_logannouncement.png */,
+				E8157A94211D6EAA00CCB63B /* gca-icon_logannouncement@2x.png */,
+				E8157A85211D6EA700CCB63B /* gca-icon_logannouncement@3x.png */,
+				E8157A15211D6E9500CCB63B /* gca-icon_logarchived.png */,
+				E8157A68211D6EA200CCB63B /* gca-icon_logarchived@2x.png */,
+				E8157A9E211D6EAB00CCB63B /* gca-icon_logarchived@3x.png */,
+				E8157A26211D6E9800CCB63B /* gca-icon_logattended.png */,
+				E8157A32211D6E9A00CCB63B /* gca-icon_logattended@2x.png */,
+				E8157A5A211D6EA000CCB63B /* gca-icon_logattended@3x.png */,
+				E8157AA0211D6EAC00CCB63B /* gca-icon_logcoordsupdated.png */,
+				E8157A8D211D6EA800CCB63B /* gca-icon_logcoordsupdated@2x.png */,
+				E8157A1C211D6E9600CCB63B /* gca-icon_logcoordsupdated@3x.png */,
+				E8157A2D211D6E9900CCB63B /* gca-icon_logdidnotfind.png */,
+				E8157A88211D6EA800CCB63B /* gca-icon_logdidnotfind@2x.png */,
+				E8157A5F211D6EA100CCB63B /* gca-icon_logdidnotfind@3x.png */,
+				E8157A4C211D6E9E00CCB63B /* gca-icon_logdisabled.png */,
+				E8157A64211D6EA200CCB63B /* gca-icon_logdisabled@2x.png */,
+				E8157A4D211D6E9E00CCB63B /* gca-icon_logdisabled@3x.png */,
+				E8157A6B211D6EA300CCB63B /* gca-icon_logenabled.png */,
+				E8157A6C211D6EA300CCB63B /* gca-icon_logenabled@2x.png */,
+				E8157A59211D6EA000CCB63B /* gca-icon_logenabled@3x.png */,
+				E8157A9F211D6EAB00CCB63B /* gca-icon_logfoundit.png */,
+				E8157A96211D6EAA00CCB63B /* gca-icon_logfoundit@2x.png */,
+				E8157A24211D6E9800CCB63B /* gca-icon_logfoundit@3x.png */,
+				E8157A1D211D6E9700CCB63B /* gca-icon_loghidden.png */,
+				E8157A4E211D6E9E00CCB63B /* gca-icon_loghidden@2x.png */,
+				E8157A76211D6EA500CCB63B /* gca-icon_loghidden@3x.png */,
+				E8157A2C211D6E9900CCB63B /* gca-icon_logmaintained.png */,
+				E8157A4F211D6E9E00CCB63B /* gca-icon_logmaintained@2x.png */,
+				E8157A1F211D6E9700CCB63B /* gca-icon_logmaintained@3x.png */,
+				E8157A17211D6E9600CCB63B /* gca-icon_logmoved.png */,
+				E8157A2E211D6E9900CCB63B /* gca-icon_logmoved@2x.png */,
+				E8157A7F211D6EA600CCB63B /* gca-icon_logmoved@3x.png */,
+				E8157A8F211D6EA900CCB63B /* gca-icon_logneedsarchiving.png */,
+				E8157A51211D6E9F00CCB63B /* gca-icon_logneedsarchiving@2x.png */,
+				E8157A90211D6EA900CCB63B /* gca-icon_logneedsarchiving@3x.png */,
+				E8157A29211D6E9800CCB63B /* gca-icon_logneedsmaintenance.png */,
+				E8157A33211D6E9A00CCB63B /* gca-icon_logneedsmaintenance@2x.png */,
+				E8157A6D211D6EA300CCB63B /* gca-icon_logneedsmaintenance@3x.png */,
+				E8157A52211D6E9F00CCB63B /* gca-icon_lognoted.png */,
+				E8157A39211D6E9B00CCB63B /* gca-icon_lognoted@2x.png */,
+				E8157A77211D6EA500CCB63B /* gca-icon_lognoted@3x.png */,
+				E8157A92211D6EA900CCB63B /* gca-icon_logoapi.png */,
+				E8157A58211D6EA000CCB63B /* gca-icon_logoapi@2x.png */,
+				E8157A10211D6E9500CCB63B /* gca-icon_logoapi@3x.png */,
+				E8157A78211D6EA500CCB63B /* gca-icon_logother.png */,
+				E8157A9B211D6EAB00CCB63B /* gca-icon_logother@2x.png */,
+				E8157A36211D6E9B00CCB63B /* gca-icon_logother@3x.png */,
+				E8157A74211D6EA400CCB63B /* gca-icon_logphotographed.png */,
+				E8157A55211D6E9F00CCB63B /* gca-icon_logphotographed@2x.png */,
+				E8157A54211D6E9F00CCB63B /* gca-icon_logphotographed@3x.png */,
+				E8157A95211D6EAA00CCB63B /* gca-icon_logpublished.png */,
+				E8157A18211D6E9600CCB63B /* gca-icon_logpublished@2x.png */,
+				E8157A81211D6EA600CCB63B /* gca-icon_logpublished@3x.png */,
+				E8157A8C211D6EA800CCB63B /* gca-icon_logretracted.png */,
+				E8157A84211D6EA700CCB63B /* gca-icon_logretracted@2x.png */,
+				E8157A19211D6E9600CCB63B /* gca-icon_logretracted@3x.png */,
+				E8157A67211D6EA200CCB63B /* gca-icon_logreview.png */,
+				E8157A56211D6EA000CCB63B /* gca-icon_logreview@2x.png */,
+				E8157A37211D6E9B00CCB63B /* gca-icon_logreview@3x.png */,
+				E8157A25211D6E9800CCB63B /* gca-icon_logunarchived.png */,
+				E8157A97211D6EAA00CCB63B /* gca-icon_logunarchived@2x.png */,
+				E8157A1E211D6E9700CCB63B /* gca-icon_logunarchived@3x.png */,
+				E8157A7A211D6EA500CCB63B /* gca-icon_logwillattend.png */,
+				E8157AA1211D6EAC00CCB63B /* gca-icon_logwillattend@2x.png */,
+				E8157A98211D6EAA00CCB63B /* gca-icon_logwillattend@3x.png */,
+			);
+			name = "gca-images";
+			sourceTree = "<group>";
+		};
 		E82002261B7B1B8F009AE50F /* Notes and logs */ = {
 			isa = PBXGroup;
 			children = (
@@ -2535,6 +2995,12 @@
 				E82286251F8A2B4600631380 /* ThemeManager.h */,
 				E82286241F8A2B4600631380 /* ThemeManager-enum.h */,
 				E82286261F8A2B4600631380 /* ThemeManager.m */,
+				E81579FE211D494200CCB63B /* ThemeImageTemplate.h */,
+				E81579FF211D494200CCB63B /* ThemeImageTemplate.m */,
+				E8157A01211D496E00CCB63B /* ThemeImageGeocube.h */,
+				E8157A02211D496E00CCB63B /* ThemeImageGeocube.m */,
+				E8157A04211D498200CCB63B /* ThemeImageGCA.h */,
+				E8157A05211D498200CCB63B /* ThemeImageGCA.m */,
 				E822862A1F8A2B4600631380 /* ThemeStyleTemplate.h */,
 				E822862B1F8A2B4600631380 /* ThemeStyleTemplate.m */,
 				E85DC6651F957D9B007556D5 /* ThemeStyleIOSNormalSize.h */,
@@ -4184,6 +4650,7 @@
 		E8BD82481B46A4CB0029CDC9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E8157A0E211D6E6700CCB63B /* gca-images */,
 				E82E676F1DA07D1A00CFBDED /* image - nil - 1x1.png */,
 				E8FEDEB61DA887A7007C756B /* image - nil - 1x1@2x.png */,
 				E8FEDEB71DA887A7007C756B /* image - nil - 1x1@3x.png */,
@@ -4500,12 +4967,14 @@
 			files = (
 				E8B7732D1F9479AD0060B415 /* menu icon - find me - 27x27@2x.png in Resources */,
 				E82344031EECDF6C00D2CDFD /* WaypointTableViewCell~ipad.xib in Resources */,
+				E8157AD1211D6EAC00CCB63B /* gca-icon_geocachehistory.png in Resources */,
 				E85DC6951F95D01E007556D5 /* menu icon - show both - 40x40@2x.png in Resources */,
 				E82E66011DA079E500CFBDED /* log - needsarchiving - 30x30.png in Resources */,
 				E8FEDEA31DA7C08A007C756B /* waypoint - manually entered - 30x30@3x.png in Resources */,
 				E8FEDEDD1DA8EEE9007C756B /* cache - event - 30x30@3x.png in Resources */,
 				E82E67481DA07D0200CFBDED /* attributes - 30.png in Resources */,
 				E82E66C61DA07CBE00CFBDED /* cache - moveable - 30x30.png in Resources */,
+				E8157AE0211D6EAC00CCB63B /* gca-icon_logdisabled@3x.png in Resources */,
 				E82E66E21DA07CBE00CFBDED /* cache - waymark - 30x30.png in Resources */,
 				E82E67691DA07D0200CFBDED /* attributes - 63.png in Resources */,
 				E8FEDEDE1DA8EEE9007C756B /* cache - giga - 30x30@2x.png in Resources */,
@@ -4513,17 +4982,25 @@
 				E88258351E9FA03700FCF9B2 /* Close Window - 640x430.png in Resources */,
 				E82E66CA1DA07CBE00CFBDED /* cache - multi - 30x30@2x.png in Resources */,
 				E8FEDE551DA77F9D007C756B /* container size - notchosen - 35x11@3x.png in Resources */,
+				E8157ACE211D6EAC00CCB63B /* gca-icon_geocachewebcam@3x.png in Resources */,
+				E8157B04211D6EAC00CCB63B /* gca-icon_geocacheburkeandwills.png in Resources */,
 				E8FEDEE01DA8EEE9007C756B /* cache - groundspeak hq - 30x30@2x.png in Resources */,
 				E87ED1841F85FE3400DE8E9B /* FilterTypesTableViewCell.xib in Resources */,
 				E82E66BB1DA07CBE00CFBDED /* cache - event - 30x30.png in Resources */,
+				E8157B32211D6EAC00CCB63B /* gca-icon_logfoundit.png in Resources */,
 				E8B773361F9479AD0060B415 /* menu icon - gnss-off - 27x27@2x.png in Resources */,
+				E8157AD5211D6EAC00CCB63B /* gca-icon_geocacheletterbox.png in Resources */,
 				E8B773741F94D7190060B415 /* menu icon - find target - 40x40.png in Resources */,
 				E82E65D81DA079AE00CFBDED /* map - archived - 15x15.png in Resources */,
+				E8157B1C211D6EAC00CCB63B /* gca-icon_geocachewherigo@2x.png in Resources */,
 				E82E65E41DA079AE00CFBDED /* map - tick found - 9x9.png in Resources */,
 				E8B773331F9479AD0060B415 /* menu icon - global default - 27x27@2x.png in Resources */,
 				E82E65E31DA079AE00CFBDED /* map - pin stick - 35x42.png in Resources */,
 				E8B773371F9479AD0060B415 /* menu icon - gnss-off - 27x27@3x.png in Resources */,
 				E864BBA72064F48C0053B62D /* KeyboardCoordinateDegreesDecimalMinutes.xib in Resources */,
+				E8157AA2211D6EAC00CCB63B /* gca-icon_geocachecito@3x.png in Resources */,
+				E8157B27211D6EAC00CCB63B /* gca-icon_logannouncement@2x.png in Resources */,
+				E8157B1E211D6EAC00CCB63B /* gca-icon_geocachevirtual.png in Resources */,
 				E82E66CF1DA07CBE00CFBDED /* cache - night - 30x30.png in Resources */,
 				E8FEDEDB1DA8EEE9007C756B /* cache - earth - 30x30@3x.png in Resources */,
 				E804139F1E9F984E001FD7BF /* Menu - 640x623.png in Resources */,
@@ -4532,11 +5009,15 @@
 				E82E66DE1DA07CBE00CFBDED /* cache - unknowntype - 30x30.png in Resources */,
 				E8D49D301F00F9C1005EB7BE /* container size - nano - 35x11@2x.png in Resources */,
 				E8B7734A1F9479AD0060B415 /* menu icon - find target - 27x27.png in Resources */,
+				E8157B34211D6EAC00CCB63B /* gca-icon_logwillattend@2x.png in Resources */,
 				E822871E1F8A2E1A00631380 /* GCTableViewCellSubtitleRightImageDisclosure~ipad.xib in Resources */,
 				E8B773451F9479AD0060B415 /* menu icon - global night - 27x27@3x.png in Resources */,
 				E82E65DF1DA079AE00CFBDED /* map - highlight - 21x21.png in Resources */,
 				E82E65E01DA079AE00CFBDED /* map - in progress - 18x18.png in Resources */,
 				E8FEDEA01DA7C08A007C756B /* waypoint - flag - 30x30@2x.png in Resources */,
+				E8157AE4211D6EAC00CCB63B /* gca-icon_logneedsarchiving@2x.png in Resources */,
+				E8157B26211D6EAC00CCB63B /* gca-icon_geocacheevent.png in Resources */,
+				E8157AC7211D6EAC00CCB63B /* gca-icon_geocachelocationless@2x.png in Resources */,
 				E8FEDE591DA77F9D007C756B /* container size - regular - 35x11.png in Resources */,
 				E8FEDEDC1DA8EEE9007C756B /* cache - event - 30x30@2x.png in Resources */,
 				E82E675F1DA07D0200CFBDED /* attributes - 53.png in Resources */,
@@ -4548,6 +5029,8 @@
 				E8FEDE501DA77F9D007C756B /* container size - micro - 35x11.png in Resources */,
 				E822892C1F8A40CC00631380 /* MHTabBarIndicator@2x.png in Resources */,
 				E85DC6731F95CFD2007556D5 /* menu icon - global default - 40x40@2x.png in Resources */,
+				E8157AB7211D6EAC00CCB63B /* gca-icon_logfoundit@3x.png in Resources */,
+				E8157ADD211D6EAC00CCB63B /* gca-icon_geocachemoveable@3x.png in Resources */,
 				E83C6F061EECE67100E303F5 /* FilesTableViewCell~ipad.xib in Resources */,
 				E82343DC1EECDEE200D2CDFD /* WaypointLogsTableViewCell.xib in Resources */,
 				E82E66B81DA07CBE00CFBDED /* cache - burke-wills - 30x30.png in Resources */,
@@ -4561,13 +5044,19 @@
 				E82E66E01DA07CBE00CFBDED /* cache - virtual - 30x30@2x.png in Resources */,
 				E82289171F8A40BA00631380 /* nko_colormap.png in Resources */,
 				E8D49D311F00F9C1005EB7BE /* container size - nano - 35x11@3x.png in Resources */,
+				E8157AD9211D6EAC00CCB63B /* gca-icon_geocachewherigo@3x.png in Resources */,
+				E8157AD6211D6EAC00CCB63B /* gca-icon_geocachegeocacher@3x.png in Resources */,
 				E85DC6921F95D01E007556D5 /* menu icon - gnss-on - 40x40@3x.png in Resources */,
 				E8FEDE921DA7AD67007C756B /* map - pin stick - 35x42@2x.png in Resources */,
 				E8FEDE4F1DA77F9D007C756B /* container size - large - 35x11@3x.png in Resources */,
 				E82E67631DA07D0200CFBDED /* attributes - 57.png in Resources */,
+				E8157AE3211D6EAC00CCB63B /* gca-icon_geocacheburkeandwills@3x.png in Resources */,
 				E8FEDE561DA77F9D007C756B /* container size - other - 35x11.png in Resources */,
 				E80AE56C1FB42A07003EDB36 /* FilterTypeIconsTableViewCell.xib in Resources */,
+				E8157B06211D6EAC00CCB63B /* gca-icon_geocacheprojectape.png in Resources */,
+				E8157B2D211D6EAC00CCB63B /* gca-icon_geocacheephemeral@3x.png in Resources */,
 				E8FEDE571DA77F9D007C756B /* container size - other - 35x11@2x.png in Resources */,
+				E8157B02211D6EAC00CCB63B /* gca-icon_geocacheephemeral@2x.png in Resources */,
 				E8B773311F9479AD0060B415 /* menu icon - follow me - 27x27@2x.png in Resources */,
 				E82E667C1DA07C6F00CFBDED /* compass - airplane - compass.png in Resources */,
 				E82287A21F8A30B700631380 /* MapWaypointInfoView.xib in Resources */,
@@ -4576,32 +5065,42 @@
 				E82E66E81DA07CBE00CFBDED /* cache - whereigo - 30x30@3x.png in Resources */,
 				E82E667D1DA07C6F00CFBDED /* compass - red arrow on black.png in Resources */,
 				E8607F171F8ADA91004E273C /* cache - geocacher - 30x30.png in Resources */,
+				E8157AAD211D6EAC00CCB63B /* gca-icon_geocachebeacon.png in Resources */,
 				E82E66D51DA07CBE00CFBDED /* cache - traditional - 30x30.png in Resources */,
 				E82E66051DA079E500CFBDED /* log - published - 30x30.png in Resources */,
 				E82E67601DA07D0200CFBDED /* attributes - 54.png in Resources */,
+				E8157ACB211D6EAC00CCB63B /* gca-icon_geocacheearthcache.png in Resources */,
 				E89D556F2074F59C004D9E3A /* map - centeredcoords - 22x22@3x.png in Resources */,
+				E8157AF0211D6EAC00CCB63B /* gca-icon_geocachetrigpoint@2x.png in Resources */,
 				E8B7737B1F94D7190060B415 /* menu icon - local night - 40x40.png in Resources */,
 				E89D556D2074726C004D9E3A /* map - centeredcoords - 22x22@2x.png in Resources */,
 				E82E66CB1DA07CBE00CFBDED /* cache - multi - 30x30@3x.png in Resources */,
 				E8FEDEE61DA8EEE9007C756B /* cache - unknowntype - 30x30@2x.png in Resources */,
 				E8FEDE841DA7AD67007C756B /* map - disabled - 15x15@2x.png in Resources */,
+				E8157B33211D6EAC00CCB63B /* gca-icon_logcoordsupdated.png in Resources */,
 				E8B773001F9462410060B415 /* container flag - planned - 24x21@2x.png in Resources */,
 				E85DC68D1F95D01E007556D5 /* menu icon - follow me - 40x40@2x.png in Resources */,
 				E82E65DD1DA079AE00CFBDED /* map - dnf stick - 35x42.png in Resources */,
 				E82E66041DA079E500CFBDED /* log - ownermaintenance - 30x30.png in Resources */,
 				E8FEDEA81DA7C08A007C756B /* waypoint - unknown - 30x30@2x.png in Resources */,
 				E83C6F031EECE67100E303F5 /* FileObjectView.xib in Resources */,
+				E8157ABA211D6EAC00CCB63B /* gca-icon_geocachepodcache@2x.png in Resources */,
 				E82E663B1DA07A8700CFBDED /* icons - smiley - 30x30.png in Resources */,
+				E8157AF3211D6EAC00CCB63B /* gca-icon_geocacheearthcache@2x.png in Resources */,
 				E82E67471DA07D0200CFBDED /* attributes - 29.png in Resources */,
 				E87ED17C1F84EECB00DE8E9B /* FilterTextTableViewCell.xib in Resources */,
+				E8157AFE211D6EAC00CCB63B /* gca-icon_logenabled.png in Resources */,
 				E82344411EECE01500D2CDFD /* KeepTracksTrackTableViewCell.xib in Resources */,
 				E82E66811DA07C6F00CFBDED /* compass - white arrow on black@2x.png in Resources */,
 				E82E65FF1DA079E500CFBDED /* log - found - 30x30.png in Resources */,
+				E8157AAA211D6EAC00CCB63B /* gca-icon_logmoved.png in Resources */,
 				E82287241F8A2E1A00631380 /* GCTableViewCellWithSubtitle~ipad.xib in Resources */,
+				E8157AE7211D6EAC00CCB63B /* gca-icon_logphotographed@3x.png in Resources */,
 				E82E65BC1DA0794600CFBDED /* waypoint - parking - 30x30.png in Resources */,
 				E85DC6781F95CFD2007556D5 /* menu icon - local default - 40x40@3x.png in Resources */,
 				E82E67341DA07D0200CFBDED /* attributes - 09.png in Resources */,
 				E82344951EECE0AD00D2CDFD /* QueriesTableViewCell.xib in Resources */,
+				E8157AE9211D6EAC00CCB63B /* gca-icon_logreview@2x.png in Resources */,
 				E8FEDE601DA77F9D007C756B /* container size - unknown - 35x11@2x.png in Resources */,
 				E82E66071DA079E500CFBDED /* log - unarchived - 30x30.png in Resources */,
 				E85DC68A1F95D01E007556D5 /* menu icon - find me - 40x40@3x.png in Resources */,
@@ -4612,11 +5111,16 @@
 				E8B773351F9479AD0060B415 /* menu icon - gnss-off - 27x27.png in Resources */,
 				E85DC6761F95CFD2007556D5 /* menu icon - global night - 40x40@3x.png in Resources */,
 				E82E65BB1DA0794600CFBDED /* waypoint - multi - 30x30.png in Resources */,
+				E8157B20211D6EAC00CCB63B /* gca-icon_logcoordsupdated@2x.png in Resources */,
 				E82E66CC1DA07CBE00CFBDED /* cache - mystery - 30x30.png in Resources */,
+				E8157AE8211D6EAC00CCB63B /* gca-icon_logphotographed@2x.png in Resources */,
 				E8B7737A1F94D7190060B415 /* menu icon - local default - 40x40.png in Resources */,
+				E8157B11211D6EAC00CCB63B /* gca-icon_geocacheaugmentedreality@2x.png in Resources */,
+				E8157B10211D6EAC00CCB63B /* gca-icon_geocachewebcam.png in Resources */,
 				E85DC6741F95CFD2007556D5 /* menu icon - global default - 40x40@3x.png in Resources */,
 				E82E65BF1DA0794600CFBDED /* waypoint - unknown - 30x30.png in Resources */,
 				E8B7734B1F9479AD0060B415 /* menu icon - follow me - 27x27.png in Resources */,
+				E8157AE6211D6EAC00CCB63B /* gca-icon_geocacheother@2x.png in Resources */,
 				E82E673D1DA07D0200CFBDED /* attributes - 19.png in Resources */,
 				E82343D61EECDEE200D2CDFD /* WaypointHeaderHeaderView.xib in Resources */,
 				E82289361F8A40DB00631380 /* fullrange.png in Resources */,
@@ -4625,10 +5129,16 @@
 				E82288161F8A347A00631380 /* Creation in Resources */,
 				E891DB8B211716A9009A4D52 /* cache - augmented reality - 30x30@2x.png in Resources */,
 				E82E66CD1DA07CBE00CFBDED /* cache - mystery - 30x30@2x.png in Resources */,
+				E8157AD7211D6EAC00CCB63B /* gca-icon_geocachewherigo.png in Resources */,
 				E8FEDEB81DA887A7007C756B /* image - nil - 1x1@2x.png in Resources */,
+				E8157AD8211D6EAC00CCB63B /* gca-icon_geocachemulticache.png in Resources */,
 				E822871B1F8A2E1A00631380 /* GCTableViewCellSubtitleRightImage~ipad.xib in Resources */,
 				E8B7732A1F9479AD0060B415 /* menu icon - close - 15x15.png in Resources */,
+				E8157AA3211D6EAC00CCB63B /* gca-icon_logoapi@3x.png in Resources */,
+				E8157B00211D6EAC00CCB63B /* gca-icon_logneedsmaintenance@3x.png in Resources */,
+				E8157B01211D6EAC00CCB63B /* gca-icon_geocachegadget@2x.png in Resources */,
 				E8FEDE5E1DA77F9D007C756B /* container size - small - 35x11@3x.png in Resources */,
+				E8157B0D211D6EAC00CCB63B /* gca-icon_logwillattend.png in Resources */,
 				E82E65C71DA0797E00CFBDED /* ratings - star half 18x18.png in Resources */,
 				E82E66021DA079E500CFBDED /* log - needsmaintenance - 30x30.png in Resources */,
 				E82343DA1EECDEE200D2CDFD /* WaypointHeaderTableViewCell~ipad.xib in Resources */,
@@ -4637,17 +5147,21 @@
 				E82341871EECA19300D2CDFD /* EncryptionKeys.plist in Resources */,
 				E82344681EECE06E00D2CDFD /* TrackableTableViewCell.xib in Resources */,
 				E82E66B71DA07CBE00CFBDED /* cache - benchmark - 30x30.png in Resources */,
+				E8157AAE211D6EAC00CCB63B /* gca-icon_geocachepodcache@3x.png in Resources */,
 				E8B773431F9479AD0060B415 /* menu icon - global night - 27x27.png in Resources */,
 				E8FEDE821DA7AD67007C756B /* map - cross dnf - 9x9@2x.png in Resources */,
 				E85DC6911F95D01E007556D5 /* menu icon - gnss-on - 40x40@2x.png in Resources */,
 				E82E673F1DA07D0200CFBDED /* attributes - 21.png in Resources */,
+				E8157B0E211D6EAC00CCB63B /* gca-icon_geocachenightcache@2x.png in Resources */,
 				E8D869D21FB2F76E0033C74C /* InfoItem.xib in Resources */,
 				E8FEDEAD1DA87AF3007C756B /* waypoint - trailhead - 30x30@3x.png in Resources */,
 				E8FEDED51DA8EEE9007C756B /* cache - benchmark - 30x30@3x.png in Resources */,
 				E85DC6931F95D01E007556D5 /* menu icon - see target - 40x40@2x.png in Resources */,
 				E82E66D21DA07CBE00CFBDED /* cache - podcast - 30x30.png in Resources */,
+				E8157AF4211D6EAC00CCB63B /* gca-icon_geocachereverse@2x.png in Resources */,
 				E8FEDED91DA8EEE9007C756B /* cache - cito - 30x30@3x.png in Resources */,
 				E876EC831F7BCAA0002A368E /* log - photographed - 30x30.png in Resources */,
+				E8157AF7211D6EAC00CCB63B /* gca-icon_logdisabled@2x.png in Resources */,
 				E8FEDE8C1DA7AD67007C756B /* map - in progress - 18x18@2x.png in Resources */,
 				E87ED1821F85F97700DE8E9B /* FilterGroupsTableViewCell.xib in Resources */,
 				E82E65C61DA0797E00CFBDED /* ratings - star base 95x18.png in Resources */,
@@ -4657,6 +5171,7 @@
 				E82E66671DA07C4900CFBDED /* container flag - marked found - 24x21@3x.png in Resources */,
 				E82E65BA1DA0794600CFBDED /* waypoint - manually entered - 30x30.png in Resources */,
 				E82E67381DA07D0200CFBDED /* attributes - 13.png in Resources */,
+				E8157AA7211D6EAC00CCB63B /* gca-icon_geocacheunknownormystery@2x.png in Resources */,
 				E82287111F8A2E1A00631380 /* GCTableViewCellKeyValue.xib in Resources */,
 				E82E67391DA07D0200CFBDED /* attributes - 14.png in Resources */,
 				E8B7732C1F9479AD0060B415 /* menu icon - close - 15x15@3x.png in Resources */,
@@ -4664,8 +5179,10 @@
 				E8FEDEE21DA8EEE9007C756B /* cache - maze - 30x30@2x.png in Resources */,
 				E82E66D31DA07CBE00CFBDED /* cache - podcast - 30x30@2x.png in Resources */,
 				E8FEDE4E1DA77F9D007C756B /* container size - large - 35x11@2x.png in Resources */,
+				E8157AC5211D6EAC00CCB63B /* gca-icon_logattended@2x.png in Resources */,
 				E82E66661DA07C4900CFBDED /* container flag - marked found - 24x21@2x.png in Resources */,
 				E85DC6891F95D01E007556D5 /* menu icon - find me - 40x40@2x.png in Resources */,
+				E8157B0A211D6EAC00CCB63B /* gca-icon_lognoted@3x.png in Resources */,
 				E88258371E9FA15F00FCF9B2 /* Map icons - 362x86.png in Resources */,
 				E82E66C51DA07CBE00CFBDED /* cache - mega - 30x30.png in Resources */,
 				E82E67581DA07D0200CFBDED /* attributes - 46.png in Resources */,
@@ -4684,6 +5201,7 @@
 				E82E66D01DA07CBE00CFBDED /* cache - night - 30x30@2x.png in Resources */,
 				E82E67501DA07D0200CFBDED /* attributes - 38.png in Resources */,
 				E82E674D1DA07D0200CFBDED /* attributes - 35.png in Resources */,
+				E8157AB9211D6EAC00CCB63B /* gca-icon_logattended.png in Resources */,
 				E82289281F8A40CC00631380 /* MHTabBarInactiveTab.png in Resources */,
 				E892865D1EDCE68E008894E6 /* log - empty - 30x30.png in Resources */,
 				E823451F1EECE14A00D2CDFD /* HelpAboutTableViewCell.xib in Resources */,
@@ -4695,62 +5213,81 @@
 				E804139D1E9EFF6D001FD7BF /* GC - logo - 512x512.png in Resources */,
 				E8FEDEB01DA87DBB007C756B /* waypoint - finish - 30x30@2x.png in Resources */,
 				E82E66BE1DA07CBE00CFBDED /* cache - history - 30x30.png in Resources */,
+				E8157AFC211D6EAC00CCB63B /* gca-icon_geocacheletterbox@2x.png in Resources */,
 				E8D49D351F0124F2005EB7BE /* container size - xlarge - 35x11.png in Resources */,
+				E8157AE5211D6EAC00CCB63B /* gca-icon_lognoted.png in Resources */,
 				E82E67521DA07D0200CFBDED /* attributes - 40.png in Resources */,
 				E858F5991F562AFD002C1F9B /* KeepTrackBeeperView~ipad.xib in Resources */,
 				E82E67301DA07D0200CFBDED /* attributes - 05.png in Resources */,
 				E82344961EECE0AD00D2CDFD /* QueriesTableViewCell~ipad.xib in Resources */,
 				E8B7737D1F94D7190060B415 /* menu icon - show both - 40x40.png in Resources */,
 				E8B773391F9479AD0060B415 /* menu icon - gnss-on - 27x27@2x.png in Resources */,
+				E8157B0C211D6EAC00CCB63B /* gca-icon_geocachetraditional.png in Resources */,
 				E82E67651DA07D0200CFBDED /* attributes - 59.png in Resources */,
 				E876ECAD1F7E0391002A368E /* launchscreen - background.png in Resources */,
 				E8FEDEE91DA8EEE9007C756B /* cache - webcam - 30x30@3x.png in Resources */,
 				E822871A1F8A2E1A00631380 /* GCTableViewCellSubtitleRightImage.xib in Resources */,
+				E8157ADF211D6EAC00CCB63B /* gca-icon_logdisabled.png in Resources */,
 				E82E66C01DA07CBE00CFBDED /* cache - history - 30x30@3x.png in Resources */,
 				E82E67331DA07D0200CFBDED /* attributes - 08.png in Resources */,
 				E82E65F81DA079E500CFBDED /* log - announcement - 30x30.png in Resources */,
 				E864BBB6206667EB0053B62D /* KeyboardCoordinateUTM.xib in Resources */,
 				E8B773461F9479AD0060B415 /* menu icon - local night - 27x27.png in Resources */,
+				E8157B07211D6EAC00CCB63B /* gca-icon_logphotographed.png in Resources */,
 				E8B773401F9479AD0060B415 /* menu icon - show both - 27x27@3x.png in Resources */,
 				E82289261F8A40CB00631380 /* MHTabBarActiveTab@2x.png in Resources */,
 				E85DC6641F956143007556D5 /* Launch Screen.storyboard in Resources */,
 				E82289291F8A40CC00631380 /* MHTabBarInactiveTab@2x.png in Resources */,
+				E8157B0B211D6EAC00CCB63B /* gca-icon_logother.png in Resources */,
 				E8FEDED81DA8EEE9007C756B /* cache - cito - 30x30@2x.png in Resources */,
 				E82E675D1DA07D0200CFBDED /* attributes - 51.png in Resources */,
 				E82E663C1DA07A8700CFBDED /* icons - smiley - 30x30@2x.png in Resources */,
+				E8157B16211D6EAC00CCB63B /* gca-icon_geocachetraditional@2x.png in Resources */,
 				E82E666A1DA07C4900CFBDED /* container flag - owner - 24x24@3x.png in Resources */,
 				E8FEDE881DA7AD67007C756B /* map - found stick - 35x42@2x.png in Resources */,
 				E82287231F8A2E1A00631380 /* GCTableViewCellWithSubtitle.xib in Resources */,
 				E8B773301F9479AD0060B415 /* menu icon - find target - 27x27@3x.png in Resources */,
 				E8FEDE7F1DA7AD67007C756B /* map - archived - 15x15@3x.png in Resources */,
+				E8157ACC211D6EAC00CCB63B /* gca-icon_lognoted@2x.png in Resources */,
 				E8B773441F9479AD0060B415 /* menu icon - global night - 27x27@2x.png in Resources */,
 				E82E67441DA07D0200CFBDED /* attributes - 26.png in Resources */,
 				E82E66091DA079E500CFBDED /* log - willattend - 30x30.png in Resources */,
 				E8B773411F9479AD0060B415 /* menu icon - global default - 27x27.png in Resources */,
+				E8157AB3211D6EAC00CCB63B /* gca-icon_geocacheevent@3x.png in Resources */,
 				E82E673A1DA07D0200CFBDED /* attributes - 15.png in Resources */,
+				E8157AD3211D6EAC00CCB63B /* gca-icon_geocachecito@2x.png in Resources */,
 				E82E67311DA07D0200CFBDED /* attributes - 06.png in Resources */,
 				E8FEDE941DA7AD67007C756B /* map - tick found - 9x9@2x.png in Resources */,
 				E82E65C81DA0797E00CFBDED /* ratings - star off 18x18.png in Resources */,
 				E8845CAE1EF409BF00A47F5D /* WaypointWaypointsTableViewCell.xib in Resources */,
+				E8157AD4211D6EAC00CCB63B /* gca-icon_geocachemegaevent@2x.png in Resources */,
 				E82E66801DA07C6F00CFBDED /* compass - white arrow on black.png in Resources */,
+				E8157B25211D6EAC00CCB63B /* gca-icon_logoapi.png in Resources */,
 				E822892D1F8A40CC00631380 /* MHTabBarIndicator@2x.xcf in Resources */,
 				E8F570BE1B400137003F020C /* empty.db in Resources */,
 				E8FEDEE41DA8EEE9007C756B /* cache - mega - 30x30@2x.png in Resources */,
 				E82344421EECE01500D2CDFD /* KeepTracksTrackTableViewCell~ipad.xib in Resources */,
+				E8157ABB211D6EAC00CCB63B /* gca-icon_geocachetrigpoint@3x.png in Resources */,
 				E8FEDE5C1DA77F9D007C756B /* container size - small - 35x11.png in Resources */,
 				E82E67541DA07D0200CFBDED /* attributes - 42.png in Resources */,
+				E8157AD2211D6EAC00CCB63B /* gca-icon_geocachemulticache@3x.png in Resources */,
 				E87ED1871F86001E00DE8E9B /* FilterSizesTableViewCell.xib in Resources */,
 				E85DC68C1F95D01E007556D5 /* menu icon - find target - 40x40@3x.png in Resources */,
 				E84B17551F90BA51004CAE31 /* DeveloperRemoteAPITableViewCell.xib in Resources */,
 				E82E65FC1DA079E500CFBDED /* log - didnotfind - 30x30.png in Resources */,
+				E8157AEE211D6EAC00CCB63B /* gca-icon_geocachemoveable.png in Resources */,
 				E82E66C31DA07CBE00CFBDED /* cache - letterbox - 30x30@3x.png in Resources */,
+				E8157AAB211D6EAC00CCB63B /* gca-icon_logpublished@2x.png in Resources */,
 				E82E66CE1DA07CBE00CFBDED /* cache - mystery - 30x30@3x.png in Resources */,
 				E82E66361DA07A8700CFBDED /* icons - dead - 30x30@3x.png in Resources */,
+				E8157B23211D6EAC00CCB63B /* gca-icon_logneedsarchiving@3x.png in Resources */,
+				E8157AA4211D6EAC00CCB63B /* gca-icon_geocachebeacon@3x.png in Resources */,
 				E82E67661DA07D0200CFBDED /* attributes - 60.png in Resources */,
 				E82E67671DA07D0200CFBDED /* attributes - 61.png in Resources */,
 				E8F570621B3F7255003F020C /* Main.storyboard in Resources */,
 				E8F403EC1DAFA23600318CC6 /* cache - reverse - 30x30@3x.png in Resources */,
 				E85DC67A1F95CFD2007556D5 /* menu icon - local night - 40x40@3x.png in Resources */,
+				E8157AEB211D6EAC00CCB63B /* gca-icon_logoapi@2x.png in Resources */,
 				E85BA8901F5449F5008E708F /* Beeper.wav in Resources */,
 				E82E663A1DA07A8700CFBDED /* icons - smiley - 15x15.png in Resources */,
 				E864BBA22064EAE60053B62D /* KeyboardCoordinateDecimalDegreesCardinal.xib in Resources */,
@@ -4758,27 +5295,39 @@
 				E82E67681DA07D0200CFBDED /* attributes - 62.png in Resources */,
 				E822892E1F8A40CC00631380 /* MHTabBarIndicator@3x.png in Resources */,
 				E8F403EB1DAFA23600318CC6 /* cache - reverse - 30x30@2x.png in Resources */,
+				E8157AB5211D6EAC00CCB63B /* gca-icon_geocacheprojectape@3x.png in Resources */,
 				E8C8C8C21EE26AAA00E2438D /* LogTableViewCell~ipad.xib in Resources */,
 				E87ED1781F84B10400DE8E9B /* FilterFlagsTableViewCell.xib in Resources */,
 				E8B773471F9479AD0060B415 /* menu icon - local night - 27x27@2x.png in Resources */,
+				E8157B22211D6EAC00CCB63B /* gca-icon_logneedsarchiving.png in Resources */,
+				E8157B29211D6EAC00CCB63B /* gca-icon_logfoundit@2x.png in Resources */,
+				E8157ACD211D6EAC00CCB63B /* gca-icon_geocachebeacon@2x.png in Resources */,
 				E82E66BF1DA07CBE00CFBDED /* cache - history - 30x30@2x.png in Resources */,
 				E8B773761F94D7190060B415 /* menu icon - global default - 40x40.png in Resources */,
 				E8757BB820A072EE00E498FD /* cache - ephemeral - 30x30@2x.png in Resources */,
 				E8757BB920A072EE00E498FD /* cache - ephemeral - 30x30@3x.png in Resources */,
+				E8157B24211D6EAC00CCB63B /* gca-icon_geocachevirtual@2x.png in Resources */,
 				E82E66611DA07C4900CFBDED /* container flag - archived - 24x24.png in Resources */,
 				E82E66391DA07A8700CFBDED /* icons - sad - 30x30@3x.png in Resources */,
 				E82E65FB1DA079E500CFBDED /* log - coordinates - 30x30.png in Resources */,
 				E8B773731F94D7190060B415 /* menu icon - find me - 40x40.png in Resources */,
 				E82E66DB1DA07CBE00CFBDED /* cache - unknown - 30x30.png in Resources */,
+				E8157B0F211D6EAC00CCB63B /* gca-icon_logadminreview.png in Resources */,
 				E82E673E1DA07D0200CFBDED /* attributes - 20.png in Resources */,
 				E82E675B1DA07D0200CFBDED /* attributes - 49.png in Resources */,
 				E82E663E1DA07A8700CFBDED /* icons - target - 30x30.png in Resources */,
+				E8157AC3211D6EAC00CCB63B /* gca-icon_geocachehistory@3x.png in Resources */,
 				E86D42751EF5484E00E4509F /* LocationlessTableViewCell.xib in Resources */,
 				E8B772FD1F9462250060B415 /* cache - gadget - 30x30@3x.png in Resources */,
+				E8157AF1211D6EAC00CCB63B /* gca-icon_geocacheaugmentedreality.png in Resources */,
 				E82289351F8A40DB00631380 /* fillrange.png in Resources */,
 				E82E66C41DA07CBE00CFBDED /* cache - maze - 30x30.png in Resources */,
+				E8157AF2211D6EAC00CCB63B /* gca-icon_logdidnotfind@3x.png in Resources */,
 				E82E66351DA07A8700CFBDED /* icons - dead - 30x30@2x.png in Resources */,
+				E8157AEF211D6EAC00CCB63B /* gca-icon_geocachetraditional@3x.png in Resources */,
 				E8607F191F8ADA91004E273C /* cache - geocacher - 30x30@3x.png in Resources */,
+				E8157AAF211D6EAC00CCB63B /* gca-icon_logcoordsupdated@3x.png in Resources */,
+				E8157AC4211D6EAC00CCB63B /* gca-icon_geocacheother.png in Resources */,
 				E83C205C1E2F0695006C523E /* LogTableViewCell.xib in Resources */,
 				E8FEDED41DA8EEE9007C756B /* cache - benchmark - 30x30@2x.png in Resources */,
 				E8FEDE911DA7AD67007C756B /* map - own overlay - 18x18@3x.png in Resources */,
@@ -4794,26 +5343,38 @@
 				E82E67531DA07D0200CFBDED /* attributes - 41.png in Resources */,
 				E82E66C11DA07CBE00CFBDED /* cache - letterbox - 30x30.png in Resources */,
 				E82E66341DA07A8700CFBDED /* icons - dead - 30x30.png in Resources */,
+				E8157AA6211D6EAC00CCB63B /* gca-icon_geocacheother@3x.png in Resources */,
 				E82E672D1DA07D0200CFBDED /* attributes - 02.png in Resources */,
 				E82E66BA1DA07CBE00CFBDED /* cache - earth - 30x30.png in Resources */,
 				E82E67761DA07D1A00CFBDED /* image - no image - 32x32@3x.png in Resources */,
+				E8157AB6211D6EAC00CCB63B /* gca-icon_geocachereverse.png in Resources */,
 				E8B7734C1F9479AD0060B415 /* menu icon - see target - 27x27.png in Resources */,
 				E864BBAD206624EE0053B62D /* KeyboardCoordinateDegreesMinutesDecimalSeconds.xib in Resources */,
 				E82E66821DA07C6F00CFBDED /* compass - white arrow on black@3x.png in Resources */,
 				E82E676D1DA07D0200CFBDED /* attributes - 67.png in Resources */,
 				E8FEDE861DA7AD67007C756B /* map - dnf stick - 35x42@2x.png in Resources */,
+				E8157AF6211D6EAC00CCB63B /* gca-icon_geocachemoveable@2x.png in Resources */,
+				E8157AC9211D6EAC00CCB63B /* gca-icon_logother@3x.png in Resources */,
 				E8B773481F9479AD0060B415 /* menu icon - local night - 27x27@3x.png in Resources */,
+				E8157B21211D6EAC00CCB63B /* gca-icon_geocachemulticache@2x.png in Resources */,
 				E82E67401DA07D0200CFBDED /* attributes - 22.png in Resources */,
 				E8587B8D1F8C83F40099EA0E /* GoogleMapsNight.json in Resources */,
+				E8157AC2211D6EAC00CCB63B /* gca-icon_logadminreview@2x.png in Resources */,
 				E82E66C81DA07CBE00CFBDED /* cache - moveable - 30x30@3x.png in Resources */,
 				E8D49D2F1F00F9C1005EB7BE /* container size - nano - 35x11.png in Resources */,
 				E86D427D1EF68CC800E4509F /* container flag - planned - 24x21.png in Resources */,
+				E8157ADB211D6EAC00CCB63B /* gca-icon_geocacheevent@2x.png in Resources */,
 				E8FEDEE31DA8EEE9007C756B /* cache - maze - 30x30@3x.png in Resources */,
+				E8157ABF211D6EAC00CCB63B /* gca-icon_logmaintained.png in Resources */,
 				E8B773381F9479AD0060B415 /* menu icon - gnss-on - 27x27.png in Resources */,
 				E8FEDE7E1DA7AD67007C756B /* map - archived - 15x15@2x.png in Resources */,
+				E8157B2F211D6EAC00CCB63B /* gca-icon_geocachenightcache@3x.png in Resources */,
 				E8FEDE541DA77F9D007C756B /* container size - notchosen - 35x11@2x.png in Resources */,
 				E8B7734D1F9479AD0060B415 /* menu icon - show both - 27x27.png in Resources */,
+				E8157AF8211D6EAC00CCB63B /* gca-icon_geocacheprojectape@2x.png in Resources */,
+				E8157B2C211D6EAC00CCB63B /* gca-icon_geocacheletterbox@3x.png in Resources */,
 				E8FEDE931DA7AD67007C756B /* map - pin stick - 35x42@3x.png in Resources */,
+				E8157AB4211D6EAC00CCB63B /* gca-icon_geocachegeocacher.png in Resources */,
 				E82E66641DA07C4900CFBDED /* container flag - in progress - 24x24.png in Resources */,
 				E8B7732E1F9479AD0060B415 /* menu icon - find me - 27x27@3x.png in Resources */,
 				E822871D1F8A2E1A00631380 /* GCTableViewCellSubtitleRightImageDisclosure.xib in Resources */,
@@ -4829,35 +5390,45 @@
 				E876ECAE1F7E0391002A368E /* launchscreen - logo.png in Resources */,
 				E8FEDEA41DA7C08A007C756B /* waypoint - parking - 30x30@2x.png in Resources */,
 				E8B773421F9479AD0060B415 /* menu icon - local default - 27x27.png in Resources */,
+				E8157B05211D6EAC00CCB63B /* gca-icon_geocacheburkeandwills@2x.png in Resources */,
 				E82E67431DA07D0200CFBDED /* attributes - 25.png in Resources */,
 				E87ED1801F859EFE00DE8E9B /* FilterAccountsTableViewCell.xib in Resources */,
 				E82E66DC1DA07CBE00CFBDED /* cache - unknown - 30x30@2x.png in Resources */,
+				E8157B12211D6EAC00CCB63B /* gca-icon_logmoved@3x.png in Resources */,
+				E8157B30211D6EAC00CCB63B /* gca-icon_geocachereverse@3x.png in Resources */,
 				E823449F1EECE0BD00D2CDFD /* StatisticsTableViewCell.xib in Resources */,
 				E82E66D71DA07CBE00CFBDED /* cache - traditional - 30x30@3x.png in Resources */,
 				E88DB00A1F334E4300FEF795 /* cache - gadget - 30x30.png in Resources */,
 				E8FEDE831DA7AD67007C756B /* map - cross dnf - 9x9@3x.png in Resources */,
 				E8F570BC1B400124003F020C /* schema.sql in Resources */,
+				E8157AFA211D6EAC00CCB63B /* gca-icon_logreview.png in Resources */,
 				E8FEDE8D1DA7AD67007C756B /* map - in progress - 18x18@3x.png in Resources */,
 				E8D49D361F0124F2005EB7BE /* container size - xlarge - 35x11@2x.png in Resources */,
 				E83C6F051EECE67100E303F5 /* FilesTableViewCell.xib in Resources */,
 				E82E66BD1DA07CBE00CFBDED /* cache - groundspeak hq - 30x30.png in Resources */,
+				E8157AA8211D6EAC00CCB63B /* gca-icon_logarchived.png in Resources */,
 				E82E67361DA07D0200CFBDED /* attributes - 11.png in Resources */,
 				E8FEDEA71DA7C08A007C756B /* waypoint - question - 30x30@3x.png in Resources */,
 				E82287141F8A2E1A00631380 /* GCTableViewCellRightImage.xib in Resources */,
+				E8157ADE211D6EAC00CCB63B /* gca-icon_geocachepodcache.png in Resources */,
 				E8B773041F9462600060B415 /* log - photographed - 30x30@2x.png in Resources */,
 				E8B7733B1F9479AD0060B415 /* menu icon - local default - 27x27@2x.png in Resources */,
 				E8B773591F947EF80060B415 /* menu icon - close - 30x30.png in Resources */,
+				E8157AC1211D6EAC00CCB63B /* gca-icon_logmoved@2x.png in Resources */,
+				E8157B36211D6F2F00CCB63B /* gca-icons.json in Resources */,
 				E82E67561DA07D0200CFBDED /* attributes - 44.png in Resources */,
 				E85DC6751F95CFD2007556D5 /* menu icon - global night - 40x40@2x.png in Resources */,
 				E82287A31F8A30B700631380 /* MapWaypointInfoView~ipad.xib in Resources */,
 				E8FEDED21DA8EEE9007C756B /* cache - beacon - 30x30@2x.png in Resources */,
 				E8845CA91EF3628900A47F5D /* FileObjectView~ipad.xib in Resources */,
 				E8FEDEB41DA88474007C756B /* waypoint - multi - 30x30@2x.png in Resources */,
+				E8157ADC211D6EAC00CCB63B /* gca-icon_geocachegeocacher@2x.png in Resources */,
 				E8B773011F9462410060B415 /* container flag - planned - 24x21@3x.png in Resources */,
 				E82E66DA1DA07CBE00CFBDED /* cache - trigpoint - 30x30@3x.png in Resources */,
 				E82E667E1DA07C6F00CFBDED /* compass - red on blue compass - arrow.png in Resources */,
 				E82E66C71DA07CBE00CFBDED /* cache - moveable - 30x30@2x.png in Resources */,
 				E82344691EECE06E00D2CDFD /* TrackableTableViewCell~ipad.xib in Resources */,
+				E8157AB1211D6EAC00CCB63B /* gca-icon_logunarchived@3x.png in Resources */,
 				E8B7733E1F9479AD0060B415 /* menu icon - see target - 27x27@3x.png in Resources */,
 				E8B7737C1F94D7190060B415 /* menu icon - see target - 40x40.png in Resources */,
 				E82E67571DA07D0200CFBDED /* attributes - 45.png in Resources */,
@@ -4867,20 +5438,26 @@
 				E8FEDEB11DA87DBB007C756B /* waypoint - finish - 30x30@3x.png in Resources */,
 				E82E66631DA07C4900CFBDED /* container flag - disabled - 24x24.png in Resources */,
 				E8757BBA20A072EE00E498FD /* cache - ephemeral - 30x30.png in Resources */,
+				E8157AE2211D6EAC00CCB63B /* gca-icon_logmaintained@2x.png in Resources */,
 				E8B29D022115599800F85543 /* Tile not found - 256x256.png in Resources */,
 				E82E66621DA07C4900CFBDED /* container flag - cross dnf - 19x19.png in Resources */,
 				E8FEDEAC1DA87AF3007C756B /* waypoint - trailhead - 30x30@2x.png in Resources */,
+				E8157B09211D6EAC00CCB63B /* gca-icon_loghidden@3x.png in Resources */,
+				E8157B1D211D6EAC00CCB63B /* gca-icon_geocachenightcache.png in Resources */,
 				E8FEDE8F1DA7AD67007C756B /* map - marked found - 9x9@3x.png in Resources */,
 				E85DC68B1F95D01E007556D5 /* menu icon - find target - 40x40@2x.png in Resources */,
 				E82E675E1DA07D0200CFBDED /* attributes - 52.png in Resources */,
 				E82E66001DA079E500CFBDED /* log - moved - 30x30.png in Resources */,
 				E82E65FA1DA079E500CFBDED /* log - attended - 30x30.png in Resources */,
+				E8157B14211D6EAC00CCB63B /* gca-icon_logpublished@3x.png in Resources */,
 				E8FEDEE81DA8EEE9007C756B /* cache - webcam - 30x30@2x.png in Resources */,
 				E82E66081DA079E500CFBDED /* log - unknown - 30x30.png in Resources */,
 				E82E666B1DA07C4900CFBDED /* container flag - tick found - 24x21.png in Resources */,
 				E82E674A1DA07D0200CFBDED /* attributes - 32.png in Resources */,
 				E8EC502F1F832E6B004A2338 /* FilterHeaderTableViewCell.xib in Resources */,
 				E82E65DE1DA079AE00CFBDED /* map - found stick - 35x42.png in Resources */,
+				E8157ACF211D6EAC00CCB63B /* gca-icon_geocachetrigpoint.png in Resources */,
+				E8157B1A211D6EAC00CCB63B /* gca-icon_geocachehistory@2x.png in Resources */,
 				E8FEDE5A1DA77F9D007C756B /* container size - regular - 35x11@2x.png in Resources */,
 				E85DC6941F95D01E007556D5 /* menu icon - see target - 40x40@3x.png in Resources */,
 				E8FEDE641DA7A051007C756B /* ratings - favourites 20x30@2x.png in Resources */,
@@ -4891,12 +5468,19 @@
 				E8B773781F94D7190060B415 /* menu icon - gnss-off - 40x40.png in Resources */,
 				E82E675A1DA07D0200CFBDED /* attributes - 48.png in Resources */,
 				E897702F1BA39110000573FB /* Import Complete.wav in Resources */,
+				E8157AB2211D6EAC00CCB63B /* gca-icon_logmaintained@3x.png in Resources */,
 				E82287211F8A2E1A00631380 /* GCTableViewCellSwitch~ipad.xib in Resources */,
+				E8157B18211D6EAC00CCB63B /* gca-icon_logannouncement@3x.png in Resources */,
 				E82E66031DA079E500CFBDED /* log - note - 30x30.png in Resources */,
 				E82E67731DA07D1A00CFBDED /* image - nil - 1x1.png in Resources */,
 				E8FEDEA51DA7C08A007C756B /* waypoint - parking - 30x30@3x.png in Resources */,
+				E8157B2A211D6EAC00CCB63B /* gca-icon_logunarchived@2x.png in Resources */,
+				E8157ABE211D6EAC00CCB63B /* gca-icon_geocachemegaevent.png in Resources */,
 				E82E66C91DA07CBE00CFBDED /* cache - multi - 30x30.png in Resources */,
 				E864BBB2206627580053B62D /* KeyboardCoordinateOpenLocationCode.xib in Resources */,
+				E8157AE1211D6EAC00CCB63B /* gca-icon_loghidden@2x.png in Resources */,
+				E8157B31211D6EAC00CCB63B /* gca-icon_logarchived@3x.png in Resources */,
+				E8157B15211D6EAC00CCB63B /* gca-icon_geocachelocationless.png in Resources */,
 				E82E65E11DA079AE00CFBDED /* map - marked found - 9x9.png in Resources */,
 				E8B773771F94D7190060B415 /* menu icon - global night - 40x40.png in Resources */,
 				E82E65F91DA079E500CFBDED /* log - archived - 30x30.png in Resources */,
@@ -4908,6 +5492,8 @@
 				E82344561EECE05E00D2CDFD /* PersonalNoteTableViewCell~ipad.xib in Resources */,
 				E823419B1EECAF4F00D2CDFD /* EncryptionKeysExample.plist in Resources */,
 				E8FEDE851DA7AD67007C756B /* map - disabled - 15x15@3x.png in Resources */,
+				E8157AFF211D6EAC00CCB63B /* gca-icon_logenabled@2x.png in Resources */,
+				E8157AA9211D6EAC00CCB63B /* gca-icon_geocachegadget.png in Resources */,
 				E82E67621DA07D0200CFBDED /* attributes - 56.png in Resources */,
 				E82343D91EECDEE200D2CDFD /* WaypointHeaderTableViewCell.xib in Resources */,
 				E8FEDE651DA7A051007C756B /* ratings - favourites 20x30@3x.png in Resources */,
@@ -4916,6 +5502,7 @@
 				E822892A1F8A40CC00631380 /* MHTabBarIndicator.png in Resources */,
 				E82E67641DA07D0200CFBDED /* attributes - 58.png in Resources */,
 				E82E66E61DA07CBE00CFBDED /* cache - whereigo - 30x30.png in Resources */,
+				E8157ABD211D6EAC00CCB63B /* gca-icon_geocacheearthcache@3x.png in Resources */,
 				E8FEDED71DA8EEE9007C756B /* cache - burke-wills - 30x30@3x.png in Resources */,
 				E8FEDE5D1DA77F9D007C756B /* container size - small - 35x11@2x.png in Resources */,
 				E82E672C1DA07D0200CFBDED /* attributes - 01.png in Resources */,
@@ -4925,12 +5512,17 @@
 				E82E66061DA079E500CFBDED /* log - reviewernote - 30x30.png in Resources */,
 				E82E67491DA07D0200CFBDED /* attributes - 31.png in Resources */,
 				E82E663D1DA07A8700CFBDED /* icons - smiley - 30x30@3x.png in Resources */,
+				E8157B13211D6EAC00CCB63B /* gca-icon_geocacheunknownormystery.png in Resources */,
+				E8157B1B211D6EAC00CCB63B /* gca-icon_logdidnotfind@2x.png in Resources */,
 				E82E67411DA07D0200CFBDED /* attributes - 23.png in Resources */,
 				E82E663F1DA07A8700CFBDED /* icons - target - 30x30@2x.png in Resources */,
 				E8FEDE8B1DA7AD67007C756B /* map - highlight - 21x21@3x.png in Resources */,
 				E8FEDEDF1DA8EEE9007C756B /* cache - giga - 30x30@3x.png in Resources */,
+				E8157B17211D6EAC00CCB63B /* gca-icon_logretracted@2x.png in Resources */,
 				E82E673B1DA07D0200CFBDED /* attributes - 17.png in Resources */,
+				E8157AB0211D6EAC00CCB63B /* gca-icon_loghidden.png in Resources */,
 				E82289381F8A40DB00631380 /* rangethumb.png in Resources */,
+				E8157AD0211D6EAC00CCB63B /* gca-icon_geocachecito.png in Resources */,
 				E8FEDE801DA7AD67007C756B /* map - background - 35x42@2x.png in Resources */,
 				E82E674B1DA07D0200CFBDED /* attributes - 33.png in Resources */,
 				E82E67591DA07D0200CFBDED /* attributes - 47.png in Resources */,
@@ -4942,16 +5534,24 @@
 				E82E66651DA07C4900CFBDED /* container flag - marked found - 24x21.png in Resources */,
 				E82287151F8A2E1A00631380 /* GCTableViewCellRightImage~ipad.xib in Resources */,
 				E82343DD1EECDEE200D2CDFD /* WaypointLogsTableViewCell~ipad.xib in Resources */,
+				E8157AEA211D6EAC00CCB63B /* gca-icon_geocachegadget@3x.png in Resources */,
 				E82E673C1DA07D0200CFBDED /* attributes - 18.png in Resources */,
+				E8157AAC211D6EAC00CCB63B /* gca-icon_logretracted@3x.png in Resources */,
+				E8157B03211D6EAC00CCB63B /* gca-icon_geocacheaugmentedreality@3x.png in Resources */,
+				E8157AF5211D6EAC00CCB63B /* gca-icon_geocacheunknownormystery@3x.png in Resources */,
+				E8157B1F211D6EAC00CCB63B /* gca-icon_logretracted.png in Resources */,
 				E82E672F1DA07D0200CFBDED /* attributes - 04.png in Resources */,
 				E82289251F8A40CB00631380 /* MHTabBarActiveTab.png in Resources */,
 				E891DB8C211716A9009A4D52 /* cache - augmented reality - 30x30.png in Resources */,
 				E82E676A1DA07D0200CFBDED /* attributes - 64.png in Resources */,
 				E82E66E31DA07CBE00CFBDED /* cache - waymark - 30x30@2x.png in Resources */,
 				E82E67511DA07D0200CFBDED /* attributes - 39.png in Resources */,
+				E8157ACA211D6EAC00CCB63B /* gca-icon_logreview@3x.png in Resources */,
+				E8157B28211D6EAC00CCB63B /* gca-icon_logpublished.png in Resources */,
 				E8F570641B3F7255003F020C /* Images.xcassets in Resources */,
 				E82E66E11DA07CBE00CFBDED /* cache - virtual - 30x30@3x.png in Resources */,
 				E82287121F8A2E1A00631380 /* GCTableViewCellKeyValue~ipad.xib in Resources */,
+				E8157B2E211D6EAC00CCB63B /* gca-icon_logother@2x.png in Resources */,
 				E891DB8D211716A9009A4D52 /* cache - augmented reality - 30x30@3x.png in Resources */,
 				E8B773791F94D7190060B415 /* menu icon - gnss-on - 40x40.png in Resources */,
 				E822892B1F8A40CC00631380 /* MHTabBarIndicator.xcf in Resources */,
@@ -4959,14 +5559,21 @@
 				E82E65C91DA0797E00CFBDED /* ratings - star on 19x18.png in Resources */,
 				E82289111F8A40A800631380 /* SVProgressHUD.bundle in Resources */,
 				E8B7732B1F9479AD0060B415 /* menu icon - close - 15x15@2x.png in Resources */,
+				E8157B08211D6EAC00CCB63B /* gca-icon_geocacheephemeral.png in Resources */,
 				E8B773751F94D7190060B415 /* menu icon - follow me - 40x40.png in Resources */,
+				E8157ADA211D6EAC00CCB63B /* gca-icon_geocachelocationless@3x.png in Resources */,
+				E8157ABC211D6EAC00CCB63B /* gca-icon_logneedsmaintenance.png in Resources */,
 				E82E66D61DA07CBE00CFBDED /* cache - traditional - 30x30@2x.png in Resources */,
+				E8157B19211D6EAC00CCB63B /* gca-icon_geocachevirtual@3x.png in Resources */,
 				E8257F281EE41B8A0089C106 /* log - disabled - 30x30.png in Resources */,
+				E8157AEC211D6EAC00CCB63B /* gca-icon_logenabled@3x.png in Resources */,
 				E82344551EECE05E00D2CDFD /* PersonalNoteTableViewCell.xib in Resources */,
+				E8157AC6211D6EAC00CCB63B /* gca-icon_logneedsmaintenance@2x.png in Resources */,
 				E8FEDE531DA77F9D007C756B /* container size - notchosen - 35x11.png in Resources */,
 				E87ED17A1F84E74D00DE8E9B /* FilterDistanceTableViewCell.xib in Resources */,
 				E82E66D91DA07CBE00CFBDED /* cache - trigpoint - 30x30@2x.png in Resources */,
 				E8FEDED61DA8EEE9007C756B /* cache - burke-wills - 30x30@2x.png in Resources */,
+				E8157AF9211D6EAC00CCB63B /* gca-icon_logannouncement.png in Resources */,
 				E864BBBC206674400053B62D /* KeyboardCoordinateMGRS.xib in Resources */,
 				E87ED1701F8445C500DE8E9B /* FilterFavouritesTableViewCell.xib in Resources */,
 				E8F403E81DAF5B2600318CC6 /* cache - reverse - 30x30.png in Resources */,
@@ -4976,15 +5583,23 @@
 				E82E674E1DA07D0200CFBDED /* attributes - 36.png in Resources */,
 				E85DC6771F95CFD2007556D5 /* menu icon - local default - 40x40@2x.png in Resources */,
 				E82E667B1DA07C6F00CFBDED /* compass - airplane - airplane.png in Resources */,
+				E8157AFB211D6EAC00CCB63B /* gca-icon_logarchived@2x.png in Resources */,
+				E8157AA5211D6EAC00CCB63B /* gca-icon_geocachewebcam@2x.png in Resources */,
+				E8157AC8211D6EAC00CCB63B /* gca-icon_logadminreview@3x.png in Resources */,
 				E83C6F151EEE8B6C00E303F5 /* NoticeTableViewCell.xib in Resources */,
 				E82E66E41DA07CBE00CFBDED /* cache - waymark - 30x30@3x.png in Resources */,
 				E85DC6901F95D01E007556D5 /* menu icon - gnss-off - 40x40@3x.png in Resources */,
 				E87ED1741F84495800DE8E9B /* FilterDatesTableViewCell.xib in Resources */,
+				E8157B2B211D6EAC00CCB63B /* gca-icon_logwillattend@3x.png in Resources */,
 				E80AE5681FB3C4C7003EDB36 /* FilterPinsTableViewCell.xib in Resources */,
+				E8157AC0211D6EAC00CCB63B /* gca-icon_logdidnotfind.png in Resources */,
 				E82E675C1DA07D0200CFBDED /* attributes - 50.png in Resources */,
 				E82E66371DA07A8700CFBDED /* icons - sad - 30x30.png in Resources */,
+				E8157AFD211D6EAC00CCB63B /* gca-icon_geocachemegaevent@3x.png in Resources */,
 				E8FEDEA21DA7C08A007C756B /* waypoint - manually entered - 30x30@2x.png in Resources */,
+				E8157AB8211D6EAC00CCB63B /* gca-icon_logunarchived.png in Resources */,
 				E8FEDE611DA77F9D007C756B /* container size - unknown - 35x11@3x.png in Resources */,
+				E8157AED211D6EAC00CCB63B /* gca-icon_logattended@3x.png in Resources */,
 				E8FEDEDA1DA8EEE9007C756B /* cache - earth - 30x30@2x.png in Resources */,
 				E8FEDEA11DA7C08A007C756B /* waypoint - flag - 30x30@3x.png in Resources */,
 				E8B772FC1F9462250060B415 /* cache - gadget - 30x30@2x.png in Resources */,
@@ -5277,6 +5892,7 @@
 				E82288CC1F8A358700631380 /* NVHTarFile.m in Sources */,
 				E8B29D0D21156F2800F85543 /* MapBrandTemplate.m in Sources */,
 				E823442B1EECDFB300D2CDFD /* FilterDistanceTableViewCell.m in Sources */,
+				E8157A03211D496E00CCB63B /* ThemeImageGeocube.m in Sources */,
 				E82286F01F8A2CE300631380 /* WaypointManager.m in Sources */,
 				E864BBA32064EAE60053B62D /* KeyboardCoordinateDecimalDegreesCardinal.m in Sources */,
 				E82344BD1EECE0E800D2CDFD /* SettingsAccountsViewController.m in Sources */,
@@ -5287,6 +5903,7 @@
 				E82288AA1F8A356300631380 /* THLabel.m in Sources */,
 				E82286E31F8A2CE300631380 /* AudioFeedback.m in Sources */,
 				E82287FA1F8A344400631380 /* SWActionSheet.m in Sources */,
+				E8157A00211D494200CCB63B /* ThemeImageTemplate.m in Sources */,
 				E822869F1F8A2BD600631380 /* dbTrack.m in Sources */,
 				E82286BA1F8A2C8800631380 /* ImportGCA2JSON.m in Sources */,
 				E82288971F8A351400631380 /* KxIntroViewPage.m in Sources */,
@@ -5374,6 +5991,7 @@
 				E82287CE1F8A32C600631380 /* ProtocolTemplate.m in Sources */,
 				E823444C1EECE04B00D2CDFD /* NotesFieldnotesViewController.m in Sources */,
 				E864BBB7206667EB0053B62D /* KeyboardCoordinateUTM.m in Sources */,
+				E8157A06211D498200CCB63B /* ThemeImageGCA.m in Sources */,
 				E83B10A51EF4FDFA00F2C5FA /* LocationlessTemplateViewController.m in Sources */,
 				E82287CA1F8A32C600631380 /* ProtocolGCA2.m in Sources */,
 				E82287F61F8A344400631380 /* ActionSheetLocalePicker.m in Sources */,

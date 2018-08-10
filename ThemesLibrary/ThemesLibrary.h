@@ -22,8 +22,13 @@
 #import "ThemesLibrary/ThemeManager-enum.h"
 
 #import "ThemesLibrary/ThemeManager.h"
+
 #import "ThemesLibrary/ThemeStyleTemplate.h"
 #import "ThemesLibrary/ThemeStyleIOSNormalSize.h"
 #import "ThemesLibrary/ThemeStyleNightNormalSize.h"
 #import "ThemesLibrary/ThemeStyleIOSSmallSize.h"
 #import "ThemesLibrary/ThemeStyleNightSmallSize.h"
+
+#import "ThemesLibrary/ThemeImageTemplate.h"
+#import "ThemesLibrary/ThemeImageGCA.h"
+#import "ThemesLibrary/ThemeImageGeocube.h"

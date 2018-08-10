@@ -58,6 +58,7 @@ PROTO_N (NSInteger, mapKMLBorderSize);
 PROTO_N (NSInteger, mapCircleRingSize);
 PROTO_N (NSInteger, compassType);
 PROTO_N (NSInteger, themeStyleType);
+PROTO_N (NSInteger, themeImageType);
 PROTO_N (BOOL, soundDirection);
 PROTO_N (BOOL, soundDistance);
 PROTO_N (BOOL, keeptrackEnable);

@@ -25,3 +25,8 @@ typedef NS_ENUM(NSInteger, GCThemeStyleType) {
     THEME_STYLE_IOS_NORMALSIZE,
     THEME_STYLE_NIGHT_NORMALSIZE,
 };
+
+typedef NS_ENUM(NSInteger, GCThemeImageType) {
+    THEME_IMAGE_GEOCUBE = 0,
+    THEME_IMAGE_GCA,
+};

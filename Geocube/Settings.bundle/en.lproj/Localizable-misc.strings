@@ -18,6 +18,8 @@
 "thememanager-Default iOS theme, normal icons" = "Default iOS theme, normal icons";
 "thememanager-Geocube night theme, small icons" = "Geocube night theme, small icons";
 "thememanager-Geocube night theme, normal icons" = "Geocube night theme, normal icons";
+"thememanager-Default Geocube icons" = "Default Geocube icons";
+"thememanager-Geocaching Australia icons" = "Geocaching Australia icons";
 
 /* InfoViewer / InfoItem */
 "infoviewer-Downloads" = "Downloads";

@@ -268,7 +268,8 @@ enum sections {
     SECTION_DISTANCE_METRIC = 0,
     SECTION_DISTANCE_MAX,
 
-    SECTION_THEME_THEME = 0,
+    SECTION_THEME_STYLE = 0,
+    SECTION_THEME_IMAGES,
     SECTION_THEME_COMPASS,
     SECTION_THEME_ORIENTATIONS,
     SECTION_THEME_FONTS_SIZE_SMALLTEXT,
@@ -540,8 +541,10 @@ enum sections {
 
         case SECTION_THEME: {   // Theme
             switch (indexPath.row) {
-                case SECTION_THEME_THEME:
-                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Theme"), [[themeManager themeStyleNames] objectAtIndex:configManager.themeStyleType]);
+                case SECTION_THEME_STYLE:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Theme style"), [themeManager.themeStyleNames objectAtIndex:configManager.themeStyleType]);
+                case SECTION_THEME_IMAGES:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Theme images"), [themeManager.themeImageNames objectAtIndex:configManager.themeImageType]);
                 case SECTION_THEME_COMPASS:
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-Compass type"), [self.compassTypes objectAtIndex:configManager.compassType]);
                 case SECTION_THEME_ORIENTATIONS: {
@@ -1034,8 +1037,11 @@ SWITCH_UPDATE_RELOAD(updateServicesShowDeveloper, serviceShowDeveloper)
     switch (indexPath.section) {
         case SECTION_THEME:
             switch (indexPath.row) {
-                case SECTION_THEME_THEME:
-                    [self changeThemeTheme];
+                case SECTION_THEME_STYLE:
+                    [self changeThemeStyle];
+                    break;
+                case SECTION_THEME_IMAGES:
+                    [self changeThemeImage];
                     break;
                 case SECTION_THEME_COMPASS:
                     [self changeThemeCompass];
@@ -1781,16 +1787,34 @@ SWITCH_UPDATE_RELOAD(updateServicesShowDeveloper, serviceShowDeveloper)
 
 /* ********************************************************************************* */
 
-- (void)changeThemeTheme
+- (void)changeThemeStyle
 {
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_THEME_THEME inSection:SECTION_THEME]];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_THEME_STYLE inSection:SECTION_THEME]];
 
-    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select theme")
-                                            rows:[themeManager themeStyleNames]
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select style theme")
+                                            rows:themeManager.themeStyleNames
                                 initialSelection:configManager.themeStyleType
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                            [configManager themeStyleTypeUpdate:selectedIndex];
                                            [themeManager setThemeStyle:selectedIndex];
+                                           [self.tableView reloadData];
+                                           [self reloadMessage];
+                                       }
+                                     cancelBlock:nil
+                                          origin:cell.contentView
+     ];
+}
+
+- (void)changeThemeImage
+{
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_THEME_IMAGES inSection:SECTION_THEME]];
+
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select image theme")
+                                            rows:themeManager.themeImageNames
+                                initialSelection:configManager.themeImageType
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           [configManager themeImageTypeUpdate:selectedIndex];
+                                           [themeManager setThemeImage:selectedIndex];
                                            [self.tableView reloadData];
                                            [self reloadMessage];
                                        }

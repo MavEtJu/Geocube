@@ -238,6 +238,9 @@
 @class SideMenu;
 @class StatisticsTableViewCell;
 @class StatisticsViewController;
+@class ThemeImageGCA;
+@class ThemeImageGeocube;
+@class ThemeImageTemplate;
 @class ThemeManager;
 @class ThemeStyleIOSNormalSize;
 @class ThemeStyleIOSSmallSize;

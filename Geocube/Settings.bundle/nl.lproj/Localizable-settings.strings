@@ -126,7 +126,6 @@
 "settingsmainviewcontroller-Select Default Map" = "Selecteer standaard kaart";
 "settingsmainviewcontroller-Select External Maps" = "Selecteer externe kaart";
 "settingsmainviewcontroller-Select Orientations" = "Selecteer orientaties";
-"settingsmainviewcontroller-Select theme" = "Selecteer thema";
 "settingsmainviewcontroller-Show country as abbrevation" = "Gebruik afkorting voor land";
 "settingsmainviewcontroller-Show found in list" = "Laat Gevonden zien in de lijsten.";
 "settingsmainviewcontroller-Show state as abbrevation" = "Gebruik afkorting voor staat/provincie";
@@ -139,7 +138,6 @@
 "settingsmainviewcontroller-Sort waypoints default by..." = "Sorteer waypoints standaard als...";
 "settingsmainviewcontroller-Sounds" = "Geluiden";
 "settingsmainviewcontroller-Sync track data" = "Spoor punten";
-"settingsmainviewcontroller-Theme" = "Thema";
 "settingsmainviewcontroller-This value should be less than %0.1f." = "Deze waarde moet minder dan %0.1f zijn.";
 "settingsmainviewcontroller-This value should be less than %ld." = "Deze waarde moet minder dan %ld zijn.";
 "settingsmainviewcontroller-This value should be more than %0.1f." = "Deze waarde moet meer dan %0.1f zijn.";
@@ -268,4 +266,9 @@
 "settingsmainviewcontroller-OwnTracks Password" = "OwnTracks wachtwoord";
 "settingsmainviewcontroller-OwnTracks server password" = "OwnTracks server password";
 
+"settingsmainviewcontroller-Theme" = "Thema";
+"settingsmainviewcontroller-Select image theme" = "Selecteer icoon thema";
+"settingsmainviewcontroller-Select style theme" = "Selecteer stijl thema";
+"settingsmainviewcontroller-Theme images" = "Thema iconen";
+"settingsmainviewcontroller-Theme style" = "Thema stijl";
 

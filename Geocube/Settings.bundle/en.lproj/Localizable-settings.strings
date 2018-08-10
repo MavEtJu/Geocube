@@ -126,7 +126,6 @@
 "settingsmainviewcontroller-Select Default Map" = "Select Default Map";
 "settingsmainviewcontroller-Select External Maps" = "Select External Maps";
 "settingsmainviewcontroller-Select Orientations" = "Select Orientations";
-"settingsmainviewcontroller-Select theme" = "Select theme";
 "settingsmainviewcontroller-Show country as abbrevation" = "Show country as abbrevation";
 "settingsmainviewcontroller-Show found in list" = "Show found in list";
 "settingsmainviewcontroller-Show state as abbrevation" = "Show state as abbrevation";
@@ -139,7 +138,6 @@
 "settingsmainviewcontroller-Sort waypoints default by..." = "Sort waypoints default by...";
 "settingsmainviewcontroller-Sounds" = "Sounds";
 "settingsmainviewcontroller-Sync track data" = "Sync track data";
-"settingsmainviewcontroller-Theme" = "Theme";
 "settingsmainviewcontroller-This value should be less than %0.1f." = "This value should be less than %0.1f.";
 "settingsmainviewcontroller-This value should be less than %ld." = "This value should be less than %ld.";
 "settingsmainviewcontroller-This value should be more than %0.1f." = "This value should be more than %0.1f.";
@@ -266,3 +264,8 @@
 "settingsmainviewcontroller-OwnTracks Password" = "OwnTracks Password";
 "settingsmainviewcontroller-OwnTracks server password" = "OwnTracks server password";
 
+"settingsmainviewcontroller-Theme" = "Theme";
+"settingsmainviewcontroller-Select image theme" = "Select image theme";
+"settingsmainviewcontroller-Select style theme" = "Select style theme";
+"settingsmainviewcontroller-Theme images" = "Theme images";
+"settingsmainviewcontroller-Theme style" = "Theme style";
