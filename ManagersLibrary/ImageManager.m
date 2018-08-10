@@ -23,8 +23,8 @@
 
 @property (nonatomic, retain) NSMutableArray<id> *imgs;
 @property (nonatomic, retain) NSMutableArray<NSString *> *names;
-@property (nonatomic, retain) NSMutableDictionary *pinImages;
-@property (nonatomic, retain) NSMutableDictionary *typeImages;
+@property (nonatomic, retain) NSMutableDictionary<NSString *, UIImage *> *pinImages;
+@property (nonatomic, retain) NSMutableDictionary<NSString *, UIImage *> *typeImages;
 
 @end
 

@@ -21,7 +21,6 @@
 
 @interface MapGoogleOSM ()
 
-
 @end
 
 @implementation MapGoogleOSM

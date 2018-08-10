@@ -1,8 +1,8 @@
 #!/bin/sh
 
-MHFILES=$(find . -name '*.[mh]' | grep -Ev '(GeocubeTests|Pods|ContribLibrary)')
-MFILES=$(find . -name '*.m' | grep -Ev '(GeocubeTests|Pods|ContribLibrary)')
-HFILES=$(find . -name '*.h' | grep -Ev '(GeocubeTests|Pods|ContribLibrary)')
+MHFILES=$(find . -name '*.[mh]' | grep -Ev '(GC Encoder|GeocubeTests|Pods|ContribLibrary)')
+MFILES=$(find . -name '*.m' | grep -Ev '(GC Encoder|GeocubeTests|Pods|ContribLibrary)')
+HFILES=$(find . -name '*.h' | grep -Ev '(GC Encoder|GeocubeTests|Pods|ContribLibrary)')
 DBFILES=DatabaseLibrary/db*.m
 
 echo

@@ -28,7 +28,7 @@
 - (instancetype)init
 {
     self = [super init];
-    
+
     [self loadImages];
 
     return self;
@@ -125,7 +125,6 @@
             NSAssert1(FALSE, @"Unknown type: %@", type);
         }
     }];
-
 }
 
 @end
