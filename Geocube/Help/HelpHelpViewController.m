@@ -52,7 +52,7 @@ enum {
     self.contentView.delegate = self;
     self.view = self.contentView;
 
-    [self changeTheme];
+    [self changeThemeStyle];
 
     NSInteger y = 10;
     NSInteger width = applicationFrame.size.width;

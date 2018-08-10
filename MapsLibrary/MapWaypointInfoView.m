@@ -110,7 +110,7 @@
 
     self.ivContainer.image = [imageManager getType:wp];
     if (wp.flag_highlight == YES)
-        self.labelDescription.backgroundColor = currentTheme.labelHighlightBackgroundColor;
+        self.labelDescription.backgroundColor = currentStyleTheme.labelHighlightBackgroundColor;
     else
         self.labelDescription.backgroundColor = [UIColor clearColor];
 

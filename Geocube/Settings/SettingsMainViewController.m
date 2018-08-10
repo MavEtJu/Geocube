@@ -541,7 +541,7 @@ enum sections {
         case SECTION_THEME: {   // Theme
             switch (indexPath.row) {
                 case SECTION_THEME_THEME:
-                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Theme"), [[themeManager themeNames] objectAtIndex:configManager.themeType]);
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Theme"), [[themeManager themeStyleNames] objectAtIndex:configManager.themeStyleType]);
                 case SECTION_THEME_COMPASS:
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-Compass type"), [self.compassTypes objectAtIndex:configManager.compassType]);
                 case SECTION_THEME_ORIENTATIONS: {
@@ -1786,11 +1786,11 @@ SWITCH_UPDATE_RELOAD(updateServicesShowDeveloper, serviceShowDeveloper)
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_THEME_THEME inSection:SECTION_THEME]];
 
     [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select theme")
-                                            rows:[themeManager themeNames]
-                                initialSelection:configManager.themeType
+                                            rows:[themeManager themeStyleNames]
+                                initialSelection:configManager.themeStyleType
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                           [configManager themeTypeUpdate:selectedIndex];
-                                           [themeManager setTheme:selectedIndex];
+                                           [configManager themeStyleTypeUpdate:selectedIndex];
+                                           [themeManager setThemeStyle:selectedIndex];
                                            [self.tableView reloadData];
                                            [self reloadMessage];
                                        }

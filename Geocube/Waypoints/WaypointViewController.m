@@ -108,7 +108,7 @@ enum {
     self.waypoint = wp;
     self.headerCell = nil;
 
-    self.headerCellHeight = currentTheme.GCLabelNormalSizeFont.lineHeight + 3 * currentTheme.GCLabelSmallSizeFont.lineHeight;
+    self.headerCellHeight = currentStyleTheme.GCLabelNormalSizeFont.lineHeight + 3 * currentStyleTheme.GCLabelSmallSizeFont.lineHeight;
 
     [self reloadDataMainQueue];
 }
@@ -280,7 +280,7 @@ enum {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.userInteractionEnabled = YES;
 
-            UIColor *tc = currentTheme.labelTextColor;
+            UIColor *tc = currentStyleTheme.labelTextColor;
             switch (indexPath.row) {
 #ifdef TESTLOGJE
                 case WAYPOINT_DATA_LOGJE:
@@ -291,7 +291,7 @@ enum {
                 case WAYPOINT_DATA_DESCRIPTION:
                     cell.textLabel.text = _(@"waypointviewcontroller-Description");
                     if ([self.waypoint.gs_short_desc isEqualToString:@""] == YES && [self.waypoint.gs_long_desc isEqualToString:@""] == YES && [self.waypoint.description isEqualToString:@""] == YES) {
-                        tc = currentTheme.labelTextColorDisabled;
+                        tc = currentStyleTheme.labelTextColorDisabled;
                         cell.userInteractionEnabled = NO;
                     }
                     break;
@@ -299,7 +299,7 @@ enum {
                 case WAYPOINT_DATA_HINT:
                     cell.textLabel.text = _(@"waypointviewcontroller-Hint");
                     if (IS_EMPTY(self.waypoint.gs_hint) == YES || [self.waypoint.gs_hint isEqualToString:@" "] == YES) {
-                        tc = currentTheme.labelTextColorDisabled;
+                        tc = currentStyleTheme.labelTextColorDisabled;
                         cell.userInteractionEnabled = NO;
                     }
                     break;
@@ -335,7 +335,7 @@ enum {
 
                     NSInteger c = [self.waypoint hasFieldNotes];
                     if (c == 0) {
-                        cell.logs.textColor = currentTheme.labelTextColorDisabled;
+                        cell.logs.textColor = currentStyleTheme.labelTextColorDisabled;
                         cell.userInteractionEnabled = NO;
 
                     } else {
@@ -368,7 +368,7 @@ enum {
                     NSInteger c = [self.waypoint hasLogs];
                     if (c == 0) {
                         cell.logs.text = _(@"waypointviewcontroller-Logs");
-                        cell.logs.textColor = currentTheme.labelTextColorDisabled;
+                        cell.logs.textColor = currentStyleTheme.labelTextColorDisabled;
                         cell.userInteractionEnabled = NO;
                     } else {
                         cell.logs.text = [NSString stringWithFormat:@"%@ (%ld)", _(@"waypointviewcontroller-Logs"), (long)c];
@@ -394,7 +394,7 @@ enum {
                     NSInteger c = [self.waypoint hasAttributes];
                     if (c == 0) {
                         cell.textLabel.text = _(@"waypointviewcontroller-Attributes");
-                        tc = currentTheme.labelTextColorDisabled;
+                        tc = currentStyleTheme.labelTextColorDisabled;
                         cell.userInteractionEnabled = NO;
                     } else
                         cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", _(@"waypointviewcontroller-Attributes"), (long)c];
@@ -415,7 +415,7 @@ enum {
                     NSInteger c = [self.waypoint hasInventory];
                     if (c == 0) {
                         cell.textLabel.text = _(@"waypointviewcontroller-Inventory");
-                        tc = currentTheme.labelTextColorDisabled;
+                        tc = currentStyleTheme.labelTextColorDisabled;
                         cell.userInteractionEnabled = NO;
                     } else
                         cell.textLabel.text = [NSString stringWithFormat:@"%@ (%ld)", _(@"waypointviewcontroller-Inventory"), (long)c];

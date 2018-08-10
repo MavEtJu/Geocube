@@ -91,8 +91,8 @@
 - (void)changeTheme
 {
     [super changeTheme];
-    self.firstView.backgroundColor = [currentTheme viewControllerBackgroundColor];
-    self.sliderInterval.backgroundColor = [currentTheme viewControllerBackgroundColor];
+    self.firstView.backgroundColor = currentStyleTheme.viewControllerBackgroundColor;
+    self.sliderInterval.backgroundColor = currentStyleTheme.viewControllerBackgroundColor;
     [self.firstView.labelVolume changeTheme];
     [self.firstView.labelHelp changeTheme];
     [self.firstView.labelInterval changeTheme];

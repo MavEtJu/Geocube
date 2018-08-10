@@ -28,7 +28,7 @@
 - (void)changeTheme
 {
     [super changeTheme];
-    self.font = currentTheme.GCLabelNormalSizeFont;
+    self.font = currentStyleTheme.GCLabelNormalSizeFont;
 }
 
 @end

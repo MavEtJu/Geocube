@@ -117,7 +117,7 @@ enum {
 
     [self locationManagerUpdateLocation];
 
-    [self changeTheme];
+    [self changeThemeStyle];
 }
 
 - (void)calculateRects

@@ -52,7 +52,7 @@
 
     self.interval = configManager.keeptrackBeeperInterval;
 
-    [self changeTheme];
+    [self changeThemeStyle];
 }
 
 - (void)buttonTestPressed

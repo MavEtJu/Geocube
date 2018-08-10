@@ -36,8 +36,8 @@
 
 - (void)changeTheme
 {
-    [themeManager changeThemeArray:self.subviews];
-    self.backgroundColor = currentTheme.viewControllerBackgroundColor;
+    [themeManager changeThemeStyleArray:self.subviews];
+    self.backgroundColor = currentStyleTheme.viewControllerBackgroundColor;
 }
 
 @end

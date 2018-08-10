@@ -66,7 +66,7 @@
     [super viewDidLoad];
 
     [[[NSBundle mainBundle] loadNibNamed:@"CompassView" owner:self options:nil] objectAtIndex:0];
-    [self changeTheme];
+    [self changeThemeStyle];
 }
 
 - (void)viewWillAppear:(BOOL)animated

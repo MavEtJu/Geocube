@@ -47,7 +47,7 @@ static const NSInteger TagOffset = 1000;
 	CGRect rect = CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, self.tabBarHeight);
 	self.tabButtonsContainerView = [[UIView alloc] initWithFrame:rect];
 	self.tabButtonsContainerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    self.tabButtonsContainerView.backgroundColor = currentTheme.tabBarBackgroundColor;
+    self.tabButtonsContainerView.backgroundColor = currentStyleTheme.tabBarBackgroundColor;
 //    tabButtonsContainerView.backgroundColor = [UIColor redColor];
 	[self.view addSubview:self.tabButtonsContainerView];
 
@@ -75,9 +75,9 @@ static const NSInteger TagOffset = 1000;
     self.contentContainerView.frame = CGRectMake(0, self.tabButtonsContainerView.frame.size.height, self.contentContainerView.frame.size.width, self.view.frame.size.height - self.tabButtonsContainerView.frame.size.height);
 
     CGSize size = self.view.frame.size;
-    UIImage *imgMenu = currentTheme.menuLocalIcon;
+    UIImage *imgMenu = currentStyleTheme.menuLocalIcon;
     self.localMenuButton.frame = CGRectMake(size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
-    imgMenu = currentTheme.menuGlobalIcon;
+    imgMenu = currentStyleTheme.menuGlobalIcon;
     self.globalMenuButton.frame = CGRectMake(1, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
 
 	[self layoutTabButtons];
@@ -116,8 +116,8 @@ static const NSInteger TagOffset = 1000;
 		button.tag = TagOffset + index;
 		button.titleLabel.font = [UIFont systemFontOfSize:14];
 		button.titleLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
-        [button setBackgroundColor:currentTheme.tabBarBackgroundColor];
-        [button setTitleColor:currentTheme.tabBarForegroundColor forState:UIControlStateNormal];
+        [button setBackgroundColor:currentStyleTheme.tabBarBackgroundColor];
+        [button setTitleColor:currentStyleTheme.tabBarForegroundColor forState:UIControlStateNormal];
 
 		UIOffset offset = viewController.tabBarItem.titlePositionAdjustment;
 		button.titleEdgeInsets = UIEdgeInsetsMake(offset.vertical + 20, offset.horizontal, 0.0f, 0.0f);
@@ -383,9 +383,9 @@ static const NSInteger TagOffset = 1000;
 {
     // landscape
     if (self.view.bounds.size.width > self.view.bounds.size.height)
-        return currentTheme.tabBarHeightLandscape;
+        return currentStyleTheme.tabBarHeightLandscape;
     // portrait
-    return currentTheme.tabBarHeightPortrait;
+    return currentStyleTheme.tabBarHeightPortrait;
 }
 
 // ---------------- Added ----
@@ -407,9 +407,9 @@ static const NSInteger TagOffset = 1000;
     [_AppDelegate resizeControllers:size coordinator:coordinator];
 
     [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-                                     UIImage *imgMenu = currentTheme.menuLocalIcon;
+                                     UIImage *imgMenu = currentStyleTheme.menuLocalIcon;
                                      self.localMenuButton.frame = CGRectMake(size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
-                                     imgMenu = currentTheme.menuGlobalIcon;
+                                     imgMenu = currentStyleTheme.menuGlobalIcon;
                                      self.globalMenuButton.frame = CGRectMake(1, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
                                  }
                                  completion:nil
@@ -421,7 +421,7 @@ static const NSInteger TagOffset = 1000;
     [super viewWillAppear:animated];
     CGRect bounds = self.view.bounds;
     UIButton *b = self.localMenuButton;
-    UIImage *imgMenu = currentTheme.menuLocalIcon;
+    UIImage *imgMenu = currentStyleTheme.menuLocalIcon;
     b.frame = CGRectMake(bounds.size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
 
     // https://github.com/MavEtJu/Geocube/pull/1
@@ -446,7 +446,7 @@ static const NSInteger TagOffset = 1000;
 - (void)addMenus
 {
     /***** Global Menu ****/
-    UIImage *imgMenu = currentTheme.menuGlobalIcon;
+    UIImage *imgMenu = currentStyleTheme.menuGlobalIcon;
     UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
     b.frame = CGRectMake(2, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
     [b setImage:imgMenu forState:UIControlStateNormal];
@@ -458,7 +458,7 @@ static const NSInteger TagOffset = 1000;
     /***** Global Menu ****/
 
     /***** Local Menu ****/
-    imgMenu = currentTheme.menuLocalIcon;
+    imgMenu = currentStyleTheme.menuLocalIcon;
     b = [UIButton buttonWithType:UIButtonTypeCustom];
     b.frame = CGRectMake(self.view.bounds.size.width - 2 - imgMenu.size.width, self.tabBarHeight - imgMenu.size.height - 2, imgMenu.size.width, imgMenu.size.height);
     [b setImage:imgMenu forState:UIControlStateNormal];
@@ -470,16 +470,16 @@ static const NSInteger TagOffset = 1000;
     /***** Global Menu ****/
 }
 
-- (void)changeTheme
+- (void)changeThemeStyle
 {
 	NSArray *buttons = [self.tabButtonsContainerView subviews];
     for (UIButton *button in buttons) {
-        [button setBackgroundColor:currentTheme.tabBarBackgroundColor];
-        [button setTitleColor:currentTheme.tabBarForegroundColor forState:UIControlStateNormal];
+        [button setBackgroundColor:currentStyleTheme.tabBarBackgroundColor];
+        [button setTitleColor:currentStyleTheme.tabBarForegroundColor forState:UIControlStateNormal];
     }
-    self.tabButtonsContainerView.backgroundColor = currentTheme.tabBarBackgroundColor;
-    self.globalMenuButton.imageView.image = currentTheme.menuGlobalIcon;
-    self.localMenuButton.imageView.image = currentTheme.menuLocalIcon;
+    self.tabButtonsContainerView.backgroundColor = currentStyleTheme.tabBarBackgroundColor;
+    self.globalMenuButton.imageView.image = currentStyleTheme.menuGlobalIcon;
+    self.localMenuButton.imageView.image = currentStyleTheme.menuLocalIcon;
 }
 
 @end

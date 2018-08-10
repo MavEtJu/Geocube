@@ -125,7 +125,7 @@ enum {
     [self.view addSubview:self.labelDistance];
 
     [self viewWilltransitionToSize];
-    [self changeTheme];
+    [self changeThemeStyle];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -210,7 +210,7 @@ enum {
 
     // White background
     CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
-    CGContextSetFillColorWithColor(context, [currentTheme.imageBackgroundColor CGColor]);
+    CGContextSetFillColorWithColor(context, [currentStyleTheme.imageBackgroundColor CGColor]);
     CGContextFillRect(context, CGRectMake(5, 5, X - 10, Y - 10));
 
 #define MARGIN 10

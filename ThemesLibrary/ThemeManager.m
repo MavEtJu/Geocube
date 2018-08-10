@@ -21,12 +21,12 @@
 
 @interface ThemeManager ()
 
-@property (nonatomic) GCThemeType themeNr;
+@property (nonatomic) GCThemeStyleType themeStyleNr;
 
 @end
 
 // Current Theme
-ThemeTemplate *currentTheme;
+ThemeStyleTemplate *currentStyleTheme;
 ThemeManager *themeManager;
 
 @implementation ThemeManager
@@ -35,7 +35,7 @@ ThemeManager *themeManager;
 {
     self = [super init];
 
-    self.themeNames = @[
+    self.themeStyleNames = @[
                         _(@"thememanager-Default iOS theme, small icons"),
                         _(@"thememanager-Geocube night theme, small icons"),
                         _(@"thememanager-Default iOS theme, normal icons"),
@@ -45,48 +45,48 @@ ThemeManager *themeManager;
     return self;
 }
 
-- (GCThemeType)currentTheme
+- (GCThemeStyleType)currentThemeStyle
 {
-    return self.themeNr;
+    return self.themeStyleNr;
 }
 
-- (void)setTheme:(GCThemeType)nr
+- (void)setThemeStyle:(GCThemeStyleType)nr
 {
-    self.themeNr = nr;
+    self.themeStyleNr = nr;
     switch (nr) {
-        case THEME_IOS_SMALLSIZE:
-            currentTheme = [[ThemeIOSSmallSize alloc] init];
+        case THEME_STYLE_IOS_SMALLSIZE:
+            currentStyleTheme = [[ThemeStyleIOSSmallSize alloc] init];
             break;
-        case THEME_NIGHT_SMALLSIZE:
-            currentTheme = [[ThemeNightSmallSize alloc] init];
+        case THEME_STYLE_NIGHT_SMALLSIZE:
+            currentStyleTheme = [[ThemeStyleNightSmallSize alloc] init];
             break;
-        case THEME_IOS_NORMALSIZE:
-            currentTheme = [[ThemeIOSNormalSize alloc] init];
+        case THEME_STYLE_IOS_NORMALSIZE:
+            currentStyleTheme = [[ThemeStyleIOSNormalSize alloc] init];
             break;
-        case THEME_NIGHT_NORMALSIZE:
-            currentTheme = [[ThemeNightNormalSize alloc] init];
+        case THEME_STYLE_NIGHT_NORMALSIZE:
+            currentStyleTheme = [[ThemeStyleNightNormalSize alloc] init];
             break;
         default:
-            currentTheme = [[ThemeIOSNormalSize alloc] init];
+            currentStyleTheme = [[ThemeStyleIOSNormalSize alloc] init];
             break;
     }
 
     [_AppDelegate.tabBars enumerateObjectsUsingBlock:^(MHTabBarController * _Nonnull tb, NSUInteger tidx, BOOL * _Nonnull stop) {
-        [tb changeTheme];
+        [tb changeThemeStyle];
         [tb.viewControllers enumerateObjectsUsingBlock:^(UINavigationController * _Nonnull nvc, NSUInteger nvidx, BOOL * _Nonnull stop) {
             [nvc.viewControllers enumerateObjectsUsingBlock:^(GCViewController * _Nonnull vc, NSUInteger vcidx, BOOL * _Nonnull stop) {
                 NSLog(@"%ld %ld %ld", (unsigned long)tidx, (unsigned long)nvidx, (unsigned long)vcidx);
-                [vc changeTheme];
+                [vc changeThemeStyle];
             }];
         }];
     }];
 }
 
-- (void)changeTheme_:(UIView *)v
+- (void)changeThemeStyle_:(UIView *)v
 {
     //NSLog(@"%@", [v class]);
-    if ([v respondsToSelector:@selector(changeTheme)] == YES) {
-        [v performSelector:@selector(changeTheme)];
+    if ([v respondsToSelector:@selector(changeThemeStyle)] == YES) {
+        [v performSelector:@selector(changeThemeStyle)];
         return;
     }
 
@@ -101,20 +101,20 @@ ThemeManager *themeManager;
         NSLog(@"%@ - not changedTheme: %@", [self class], [v class]);
 }
 
-- (void)changeThemeViewController:(UIViewController *)v
+- (void)changeThemeStyleViewController:(UIViewController *)v
 {
-    [self changeTheme_:v.view];
+    [self changeThemeStyle_:v.view];
 }
 
-- (void)changeThemeView:(UIView *)v
+- (void)changeThemeStyleView:(UIView *)v
 {
-    [self changeTheme_:v];
+    [self changeThemeStyle_:v];
 }
 
-- (void)changeThemeArray:(NSArray<UIView *> *)vs
+- (void)changeThemeStyleArray:(NSArray<UIView *> *)vs
 {
     [vs enumerateObjectsUsingBlock:^(UIView * _Nonnull v, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self changeTheme_:v];
+        [self changeThemeStyle_:v];
     }];
 }
 

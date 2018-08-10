@@ -144,7 +144,7 @@
     [self.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         FilterButton *b = [self.buttons objectAtIndex:idx];
         [b setTitle:a.site forState:UIControlStateNormal];
-        [b setTitleColor:(a.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
+        [b setTitleColor:(a.selected ? currentStyleTheme.labelTextColor : currentStyleTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b sizeToFit];
     }];
 
@@ -201,7 +201,7 @@
 {
     dbAccount *a = [self.accounts objectAtIndex:b.index];
     a.selected = !a.selected;
-    [b setTitleColor:(a.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
+    [b setTitleColor:(a.selected ? currentStyleTheme.labelTextColor : currentStyleTheme.labelTextColorDisabled) forState:UIControlStateNormal];
     [self configSet:[NSString stringWithFormat:@"%@_%ld", FILTER, (long)a._id] value:[NSString stringWithFormat:@"%d", a.selected]];
     [self configUpdate];
 }

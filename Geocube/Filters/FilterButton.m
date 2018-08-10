@@ -42,7 +42,7 @@
 {
     [super changeTheme];
 
-    self.titleLabel.font = currentTheme.GCLabelNormalSizeFont;
+    self.titleLabel.font = currentStyleTheme.GCLabelNormalSizeFont;
 }
 
 @end

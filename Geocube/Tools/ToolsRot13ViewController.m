@@ -75,7 +75,7 @@
     self.buttonClear.userInteractionEnabled = YES;
     [self.view addSubview:self.buttonClear];
 
-    [self changeTheme];
+    [self changeThemeStyle];
 }
 
 - (void)calculateRects

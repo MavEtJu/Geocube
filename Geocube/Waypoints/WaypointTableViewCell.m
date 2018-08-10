@@ -84,7 +84,7 @@
         self.labelWhoWhen.text = [NSString stringWithFormat:_(@"waypointtableviewcell-by %@ on %@"), wp.gs_owner.name, [MyTools dateTimeString_YYYY_MM_DD:wp.wpt_date_placed_epoch]];
 
     if (wp.flag_highlight == YES)
-        self.labelDescription.backgroundColor = currentTheme.labelHighlightBackgroundColor;
+        self.labelDescription.backgroundColor = currentStyleTheme.labelHighlightBackgroundColor;
     else
         self.labelDescription.backgroundColor = [UIColor clearColor];
 

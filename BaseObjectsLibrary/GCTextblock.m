@@ -29,7 +29,7 @@
 {
     self = [super initWithFrame:frame];
 
-    self.font = currentTheme.GCTextblockFont;
+    self.font = currentStyleTheme.GCTextblockFont;
     self.numberOfLines = 0;
     [self changeTheme];
 
@@ -38,8 +38,8 @@
 
 - (void)changeTheme
 {
-    self.textColor = currentTheme.labelTextColor;
-    self.font = currentTheme.GCLabelNormalSizeFont;
+    self.textColor = currentStyleTheme.labelTextColor;
+    self.font = currentStyleTheme.GCLabelNormalSizeFont;
 
     // [themeManager changeTheme:self.subviews];
 }
@@ -47,9 +47,9 @@
 - (void)bold:(BOOL)onoff
 {
     if (onoff == YES)
-        self.font = [UIFont boldSystemFontOfSize:currentTheme.GCTextblockFont.pointSize];
+        self.font = [UIFont boldSystemFontOfSize:currentStyleTheme.GCTextblockFont.pointSize];
     else
-        self.font = [UIFont systemFontOfSize:currentTheme.GCTextblockFont.pointSize];
+        self.font = [UIFont systemFontOfSize:currentStyleTheme.GCTextblockFont.pointSize];
 }
 
 @end

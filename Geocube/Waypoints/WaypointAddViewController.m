@@ -106,7 +106,7 @@ enum {
 
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.userInteractionEnabled = YES;
-    cell.textLabel.textColor = currentTheme.labelTextColor;
+    cell.textLabel.textColor = currentStyleTheme.labelTextColor;
     switch (indexPath.row) {
         case cellCode:
             cell.textLabel.text = _(@"waypointaddviewcontroller-Waypoint code");
@@ -133,7 +133,7 @@ enum {
             cell.textLabel.text = _(@"waypointaddviewcontroller-Create this waypoint");
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             if (self.account == nil) {
-                cell.textLabel.textColor = currentTheme.labelTextColorDisabled;
+                cell.textLabel.textColor = currentStyleTheme.labelTextColorDisabled;
                 cell.userInteractionEnabled = NO;
             }
             break;

@@ -19,6 +19,23 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ThemeNightSmallSize : ThemeNightNormalSize
+@interface ThemeStyleTemplate ()
+
+@end
+
+@implementation ThemeStyleTemplate
+
+- (instancetype)init
+{
+    self = [super init];
+
+    UITableViewCell *tvc = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+    self.GCTextblockFont = [UIFont systemFontOfSize:tvc.textLabel.font.pointSize];
+
+    self.GCLabelNormalSizeFont = [UIFont systemFontOfSize:configManager.fontNormalTextSize];
+    self.GCLabelSmallSizeFont = [UIFont systemFontOfSize:configManager.fontSmallTextSize];
+
+    return self;
+}
 
 @end

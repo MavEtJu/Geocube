@@ -28,7 +28,7 @@
 - (void)showBezel:(UIViewController *)vc
 {
     MAINQUEUE(
-        [SVProgressHUD setDefaultStyle:currentTheme.svProgressHUDStyle];
+        [SVProgressHUD setDefaultStyle:currentStyleTheme.svProgressHUDStyle];
         [SVProgressHUD showWithStatus:@"Doing stuff"];
     )
 }
@@ -36,7 +36,7 @@
 - (void)setText:(NSString *)text
 {
     MAINQUEUE(
-        [SVProgressHUD setDefaultStyle:currentTheme.svProgressHUDStyle];
+        [SVProgressHUD setDefaultStyle:currentStyleTheme.svProgressHUDStyle];
         [SVProgressHUD showWithStatus:text];
     )
 }

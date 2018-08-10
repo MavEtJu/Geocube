@@ -174,7 +174,7 @@
     [self.icons enumerateObjectsUsingBlock:^(FilterTypeIcon * _Nonnull typeicon, NSUInteger idx, BOOL * _Nonnull stop) {
         FilterButton *b = [self.buttons objectAtIndex:idx];
         [b setTitle:typeicon.desc forState:UIControlStateNormal];
-        [b setTitleColor:(typeicon.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
+        [b setTitleColor:(typeicon.selected ? currentStyleTheme.labelTextColor : currentStyleTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b sizeToFit];
     }];
     [self.contentView sizeToFit];
@@ -230,7 +230,7 @@
 {
     FilterTypeIcon *c = [self.icons objectAtIndex:b.index];
     c.selected = !c.selected;
-    [b setTitleColor:(c.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
+    [b setTitleColor:(c.selected ? currentStyleTheme.labelTextColor : currentStyleTheme.labelTextColorDisabled) forState:UIControlStateNormal];
     [self configSet:[NSString stringWithFormat:@"%@_%ld", FILTER, (long)c.icon] value:[NSString stringWithFormat:@"%d", c.selected]];
     [self configUpdate];
 }

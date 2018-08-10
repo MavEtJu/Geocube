@@ -27,7 +27,7 @@
 
 - (void)changeTheme
 {
-    [themeManager changeThemeArray:[self subviews]];
+    [themeManager changeThemeStyleArray:[self subviews]];
 }
 
 @end

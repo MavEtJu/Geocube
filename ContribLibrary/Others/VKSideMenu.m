@@ -260,7 +260,7 @@
     }
 
     title.text      = item.title;
-    title.font      = currentTheme.GCLabelNormalSizeFont;
+    title.font      = currentStyleTheme.GCLabelNormalSizeFont;
     title.textColor = item.disabled == YES ? self.textDisabledColor : self.textColor;
     cell.userInteractionEnabled = !item.disabled;
 

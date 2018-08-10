@@ -36,11 +36,11 @@
 
 - (void)changeTheme
 {
-    self.onTintColor = currentTheme.switchOnTintColor;
-    self.tintColor = currentTheme.switchTintColor;
-    self.thumbTintColor = currentTheme.switchThumbTintColor;
+    self.onTintColor = currentStyleTheme.switchOnTintColor;
+    self.tintColor = currentStyleTheme.switchTintColor;
+    self.thumbTintColor = currentStyleTheme.switchThumbTintColor;
 
-    [themeManager changeThemeArray:self.subviews];
+    [themeManager changeThemeStyleArray:self.subviews];
 }
 
 @end

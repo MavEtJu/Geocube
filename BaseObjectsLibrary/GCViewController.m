@@ -43,7 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self changeTheme];
+    [self changeThemeStyle];
 }
 
 - (void)makeInfoView
@@ -75,9 +75,9 @@
     }
 }
 
-- (void)changeTheme
+- (void)changeThemeStyle
 {
-    self.view.backgroundColor = currentTheme.viewControllerBackgroundColor;
+    self.view.backgroundColor = currentStyleTheme.viewControllerBackgroundColor;
 
     for (UIView *v in self.view.subviews) {
         if ([v respondsToSelector:@selector(changeTheme)] == YES)

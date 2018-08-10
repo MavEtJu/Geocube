@@ -45,7 +45,7 @@
     self.runqueue = [[NSOperationQueue alloc] init];
     [self.runqueue addObserver:self forKeyPath:@"operations" options:0 context:nil];
 
-    [self changeTheme];
+    [self changeThemeStyle];
 }
 
 - (void)viewWillAppear:(BOOL)animated

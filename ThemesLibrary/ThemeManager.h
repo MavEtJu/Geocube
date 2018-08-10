@@ -21,16 +21,16 @@
 
 @interface ThemeManager : NSObject
 
-@property (nonatomic, retain) NSArray<NSString *> *themeNames;
-@property (nonatomic, retain) NSArray<NSString *> *themeSizes;
+@property (nonatomic, retain) NSArray<NSString *> *themeStyleNames;
+@property (nonatomic, retain) NSArray<NSString *> *themeStyleSizes;
 
-- (GCThemeType)currentTheme;
-- (void)setTheme:(GCThemeType)nr;
-- (void)changeThemeView:(UIView *)v;
-- (void)changeThemeViewController:(UIViewController *)v;
-- (void)changeThemeArray:(NSArray<UIView *> *)vs;
+- (GCThemeStyleType)currentThemeStyle;
+- (void)setThemeStyle:(GCThemeStyleType)nr;
+- (void)changeThemeStyleView:(UIView *)v;
+- (void)changeThemeStyleViewController:(UIViewController *)v;
+- (void)changeThemeStyleArray:(NSArray<UIView *> *)vs;
 
 @end
 
-extern ThemeTemplate *currentTheme;
+extern ThemeStyleTemplate *currentStyleTheme;
 extern ThemeManager *themeManager;

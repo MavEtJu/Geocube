@@ -71,8 +71,8 @@
     CHECK(@"map_kml_border_size", @"2")
 
     CHECK(@"compass_type", @"0")
-    NSString *s = [NSString stringWithFormat:@"%ld", (long)THEME_IOS_NORMALSIZE];
-    CHECK(@"theme_type", s)
+    NSString *s = [NSString stringWithFormat:@"%ld", (long)THEME_STYLE_IOS_NORMALSIZE];
+    CHECK(@"theme_style_type", s)
     s = [NSString stringWithFormat:@"%ld", (long)(UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown | UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight)];
     CHECK(@"orientations_allowed", s)
 
@@ -229,7 +229,7 @@
     LOAD_INTEGER(self.mapExternal, @"map_external");
     LOAD_VALUE  (self.mapBrandDefault, @"map_branddefault");
     LOAD_INTEGER(self.compassType, @"compass_type");
-    LOAD_INTEGER(self.themeType, @"theme_type");
+    LOAD_INTEGER(self.themeStyleType, @"theme_style_type");
     LOAD_INTEGER(self.orientationsAllowed, @"orientations_allowed");
     LOAD_BOOL   (self.soundDirection, @"sound_direction");
     LOAD_BOOL   (self.soundDistance, @"sound_distance");
@@ -486,7 +486,7 @@ UPDATE3(NSInteger, lastAddedGroup, @"lastadded_group")
 UPDATE3(NSInteger, lastImportSource, @"lastimport_source")
 UPDATE3(NSInteger, mapExternal, @"map_external")
 UPDATE3(NSInteger, compassType, @"compass_type")
-UPDATE3(NSInteger, themeType, @"theme_type")
+UPDATE3(NSInteger, themeStyleType, @"theme_style_type")
 UPDATE3(NSInteger, orientationsAllowed, @"orientations_allowed")
 UPDATE3(NSInteger, keeptrackDistanceDeltaMin, @"keeptrack_distancedelta_min")
 UPDATE3(NSInteger, keeptrackDistanceDeltaMax, @"keeptrack_distancedelta_max")

@@ -29,7 +29,7 @@
 {
     self = [super initWithFrame:frame];
 
-    self.font = currentTheme.GCLabelNormalSizeFont;
+    self.font = currentStyleTheme.GCLabelNormalSizeFont;
     [self changeTheme];
 
     return self;
@@ -37,15 +37,15 @@
 
 - (void)changeTheme
 {
-    self.textColor = currentTheme.labelTextColor;
+    self.textColor = currentStyleTheme.labelTextColor;
 }
 
 - (void)bold:(BOOL)onoff
 {
     if (onoff == YES)
-        self.font = [UIFont boldSystemFontOfSize:currentTheme.GCLabelNormalSizeFont.pointSize];
+        self.font = [UIFont boldSystemFontOfSize:currentStyleTheme.GCLabelNormalSizeFont.pointSize];
     else
-        self.font = [UIFont systemFontOfSize:currentTheme.GCLabelNormalSizeFont.pointSize];
+        self.font = [UIFont systemFontOfSize:currentStyleTheme.GCLabelNormalSizeFont.pointSize];
 }
 
 @end

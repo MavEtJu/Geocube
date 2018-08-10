@@ -214,7 +214,7 @@ enum {
                         c.imageView.image = [imageManager get:Image_NoImageFile];
                     if ([self.waypoint.account.remoteAPI supportsLoggingPhotos] == NO) {
                         c.userInteractionEnabled = NO;
-                        c.textLabel.textColor = currentTheme.labelTextColorDisabled;
+                        c.textLabel.textColor = currentStyleTheme.labelTextColorDisabled;
                     }
                     cell = c;
                     break;
@@ -235,7 +235,7 @@ enum {
 
                     if (supported == NO) {
                         c.userInteractionEnabled = NO;
-                        c.textLabel.textColor = currentTheme.labelTextColorDisabled;
+                        c.textLabel.textColor = currentStyleTheme.labelTextColorDisabled;
                     } else {
                         [c.optionSwitch addTarget:self action:@selector(updateFPSwitch:) forControlEvents:UIControlEventTouchUpInside];
                     }
@@ -248,7 +248,7 @@ enum {
                     c.keyLabel.text = _(@"waypointlogviewcontroller-Rating");
                     if ([self.waypoint.account.remoteAPI supportsLoggingRating] == NO) {
                         c.userInteractionEnabled = NO;
-                        c.keyLabel.textColor = currentTheme.labelTextColorDisabled;
+                        c.keyLabel.textColor = currentStyleTheme.labelTextColorDisabled;
                         c.valueLabel.text = @"";
                     } else {
                         NSRange r = self.waypoint.account.remoteAPI.supportsLoggingRatingRange;
@@ -266,9 +266,9 @@ enum {
                     c.textLabel.text = _(@"waypointlogviewcontroller-Trackables");
                     if ([self.waypoint.account.remoteAPI supportsLoggingTrackables] == NO) {
                         c.userInteractionEnabled = NO;
-                        c.textLabel.textColor = currentTheme.labelTextColorDisabled;
+                        c.textLabel.textColor = currentStyleTheme.labelTextColorDisabled;
                         c.detailTextLabel.text = _(@"waypointlogviewcontroller-(none)");
-                        c.detailTextLabel.textColor = currentTheme.labelTextColorDisabled;
+                        c.detailTextLabel.textColor = currentStyleTheme.labelTextColorDisabled;
                     } else {
                         __block NSInteger visited = 0;
                         __block NSInteger discovered = 0;
@@ -311,7 +311,7 @@ enum {
                     c.textLabel.text = _(@"waypointlogviewcontroller-Coordinates");
                     if ([self.waypoint.account.remoteAPI supportsLoggingCoordinates] == NO) {
                         c.userInteractionEnabled = NO;
-                        c.textLabel.textColor = currentTheme.labelTextColorDisabled;
+                        c.textLabel.textColor = currentStyleTheme.labelTextColorDisabled;
                         c.detailTextLabel.text = @"";
                     } else {
                         if (self.coordinates.latitude == 0 && self.coordinates.longitude == 0)
@@ -329,7 +329,7 @@ enum {
                     c.textLabel.text = _(@"waypointlogviewcontroller-Codeword");
                     if ([self.waypoint.account.remoteAPI supportsLoggingCodeword] == NO) {
                         c.userInteractionEnabled = NO;
-                        c.textLabel.textColor = currentTheme.labelTextColorDisabled;
+                        c.textLabel.textColor = currentStyleTheme.labelTextColorDisabled;
                         c.detailTextLabel.text = @"";
                     } else {
                         if (IS_EMPTY(self.codeword) == YES)
@@ -368,11 +368,11 @@ enum {
                     if (self.waypoint.account.canDoRemoteStuff == YES && self.upload == YES) {
                         cell.textLabel.text = _(@"waypointlogviewcontroller-Submit");
                         cell.userInteractionEnabled = (IS_EMPTY(self.note) == YES) ? NO : YES;
-                        cell.textLabel.textColor = cell.userInteractionEnabled == YES ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled;
+                        cell.textLabel.textColor = cell.userInteractionEnabled == YES ? currentStyleTheme.labelTextColor : currentStyleTheme.labelTextColorDisabled;
                     } else {
                         cell.textLabel.text = _(@"Save");
                         cell.userInteractionEnabled = YES;
-                        cell.textLabel.textColor = [currentTheme labelTextColor];
+                        cell.textLabel.textColor = currentStyleTheme.labelTextColor;
                     }
                     break;
             }

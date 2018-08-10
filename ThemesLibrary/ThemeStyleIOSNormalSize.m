@@ -19,43 +19,45 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ThemeNightNormalSize ()
+@interface ThemeStyleIOSNormalSize ()
 
 @end
 
-@implementation ThemeNightNormalSize
+@implementation ThemeStyleIOSNormalSize
 
 - (instancetype)init
 {
     self = [super init];
 
+    UISwitch *switch_ = [[UISwitch alloc] init];
+
+    UIColor *whiteColor = [UIColor whiteColor];
     UIColor *blackColor = [UIColor blackColor];
-    UIColor *lightTextColor = [UIColor lightTextColor];
-    UIColor *darkGrayColor = [UIColor darkGrayColor];
 
-    self.viewControllerBackgroundColor = blackColor;
+    self.viewControllerBackgroundColor = whiteColor;
 
-    self.labelTextColor = lightTextColor;
-    self.labelTextColorDisabled = darkGrayColor;
+    self.labelTextColor = blackColor;
+    self.labelTextColorDisabled = [UIColor lightGrayColor];
 
-    self.tableHeaderBackground = darkGrayColor;
-    self.tableHeaderTextColor = lightTextColor;
+    UITableViewHeaderFooterView *thfv = [[UITableViewHeaderFooterView alloc] init];
+    self.tableHeaderBackground = [UIColor colorWithRed:247/255.0 green:247/255.0 blue:247/255.0 alpha:1];
+    self.tableHeaderTextColor = thfv.textLabel.textColor;
 
-    self.imageBackgroundColor = lightTextColor;
+    self.imageBackgroundColor = whiteColor;
 
-    self.labelHighlightBackgroundColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.0 alpha:1];
+    self.labelHighlightBackgroundColor = [UIColor yellowColor];
 
-    self.tabBarBackgroundColor = [UIColor colorWithRed:0.10 green:0.10 blue:0.10 alpha:1];
-    self.tabBarForegroundColor = lightTextColor;
+    self.tabBarBackgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
+    self.tabBarForegroundColor = blackColor;
 
-    self.svProgressHUDStyle = SVProgressHUDStyleLight;
+    self.svProgressHUDStyle = SVProgressHUDStyleDark;
 
-    self.switchTintColor = [UIColor darkGrayColor];
-    self.switchOnTintColor = [UIColor darkGrayColor];
-    self.switchThumbTintColor = [UIColor lightGrayColor];
+    self.switchTintColor = switch_.tintColor;
+    self.switchOnTintColor = switch_.onTintColor;
+    self.switchThumbTintColor = switch_.thumbTintColor;
 
-    self.menuLocalIcon = [imageManager get:ImageIcon_LocalMenuNight_Normal];
-    self.menuGlobalIcon = [imageManager get:ImageIcon_GlobalMenuNight_Normal];
+    self.menuLocalIcon = [imageManager get:ImageIcon_LocalMenuDefault_Normal];
+    self.menuGlobalIcon = [imageManager get:ImageIcon_GlobalMenuDefault_Normal];
     self.menuCloseIcon = [imageManager get:ImageIcon_CloseButton_Normal];
 
     self.mapShowBoth = [imageManager get:ImageIcon_ShowBoth_Normal];
@@ -65,10 +67,6 @@
     self.mapSeeTarget = [imageManager get:ImageIcon_SeeTarget_Normal];
     self.mapGNSSOn = [imageManager get:ImageIcon_GNSSOn_Normal];
     self.mapGNSSOff = [imageManager get:ImageIcon_GNSSOff_Normal];
-
-    NSURL *styleUrl = [[NSBundle mainBundle] URLForResource:@"GoogleMapsNight" withExtension:@"json"];
-    NSError *error;
-    self.googleMapsStyle = [GMSMapStyle styleWithContentsOfFileURL:styleUrl error:&error];
 
     self.tabBarHeightPortrait = 58;
     self.tabBarHeightLandscape = 43;

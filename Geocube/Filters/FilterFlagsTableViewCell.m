@@ -162,7 +162,7 @@ typedef NS_ENUM(NSInteger, FlagType) {
 {
 #define VIEW(__type__, __config__) \
     [self.button ## __type__ setTitle:[self.values ## __type__ objectAtIndex:self.value ## __type__] forState:UIControlStateNormal]; \
-    [self.button ## __type__ setTitleColor:(self.value ## __type__ != 0 ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
+    [self.button ## __type__ setTitleColor:(self.value ## __type__ != 0 ? currentStyleTheme.labelTextColor : currentStyleTheme.labelTextColorDisabled) forState:UIControlStateNormal];
 
     VIEW(MarkedAsFound, @"markedfound");
     VIEW(MarkedAsDNF, @"markeddnf");

@@ -200,7 +200,7 @@
     [self.pins enumerateObjectsUsingBlock:^(dbPin * _Nonnull pin, NSUInteger idx, BOOL * _Nonnull stop) {
         FilterButton *b = [self.buttons objectAtIndex:idx];
         [b setTitle:pin.desc forState:UIControlStateNormal];
-        [b setTitleColor:(pin.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
+        [b setTitleColor:(pin.selected ? currentStyleTheme.labelTextColor : currentStyleTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b sizeToFit];
     }];
     [self.contentView sizeToFit];
@@ -256,7 +256,7 @@
 {
     dbPin *c = [self.pins objectAtIndex:b.index];
     c.selected = !c.selected;
-    [b setTitleColor:(c.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
+    [b setTitleColor:(c.selected ? currentStyleTheme.labelTextColor : currentStyleTheme.labelTextColorDisabled) forState:UIControlStateNormal];
     [self configSet:[NSString stringWithFormat:@"%@_%ld", FILTER, (long)c._id] value:[NSString stringWithFormat:@"%d", c.selected]];
     [self configUpdate];
 }

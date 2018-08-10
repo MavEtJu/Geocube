@@ -211,10 +211,10 @@ typedef NS_ENUM(NSInteger, TestResult) {
     if (a.canDoRemoteStuff == NO) {
         cell.labelStatus.text = @"Status: No remote API available";
         cell.userInteractionEnabled = NO;
-        cell.labelTest.textColor = currentTheme.labelTextColorDisabled;
+        cell.labelTest.textColor = currentStyleTheme.labelTextColorDisabled;
     } else {
         cell.userInteractionEnabled = YES;
-        cell.labelTest.textColor = currentTheme.labelTextColor;
+        cell.labelTest.textColor = currentStyleTheme.labelTextColor;
     }
 
 #define LABEL(__field__, __name__) \
@@ -226,7 +226,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
         switch ([[test objectForKey:__name__] integerValue]) { \
         case TESTRESULT_NA: \
             s = @"n/a"; \
-            color = currentTheme.labelTextColor; \
+            color = currentStyleTheme.labelTextColor; \
             break; \
         case TESTRESULT_FAILED: \
             s = @"Failed"; \
@@ -238,7 +238,7 @@ typedef NS_ENUM(NSInteger, TestResult) {
             break; \
         case TESTRESULT_NOTSUPPORTED: \
             s = @"Not supported"; \
-            color = currentTheme.labelTextColorDisabled; \
+            color = currentStyleTheme.labelTextColorDisabled; \
             break; \
         } \
         cell.__field__.text = [NSString stringWithFormat:@"%@: %@", __name__, s]; \

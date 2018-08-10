@@ -43,14 +43,14 @@
 
 - (void)changeTheme
 {
-    self.tableView.backgroundColor = currentTheme.viewControllerBackgroundColor;
+    self.tableView.backgroundColor = currentStyleTheme.viewControllerBackgroundColor;
 
-    [themeManager changeThemeArray:[self.tableView visibleCells]];
+    [themeManager changeThemeStyleArray:[self.tableView visibleCells]];
     for (UIView *v in [self.tableView subviews]) {
         if ([v isKindOfClass:[UITableViewHeaderFooterView class]] == YES) {
             UITableViewHeaderFooterView *tvhfv = (UITableViewHeaderFooterView *)v;
-            tvhfv.textLabel.backgroundColor = currentTheme.labelTextColor;
-            tvhfv.textLabel.textColor = currentTheme.viewControllerBackgroundColor;
+            tvhfv.textLabel.backgroundColor = currentStyleTheme.labelTextColor;
+            tvhfv.textLabel.textColor = currentStyleTheme.viewControllerBackgroundColor;
         }
     }
 
@@ -189,7 +189,7 @@
 
     UIView *headerView = [[UIView alloc] init];
     [headerView addSubview:myLabel];
-    headerView.backgroundColor = currentTheme.tableHeaderBackground;
+    headerView.backgroundColor = currentStyleTheme.tableHeaderBackground;
     [headerView sizeToFit];
 
     return headerView;
@@ -200,7 +200,7 @@
     NSString *s = [self tableView:tableView titleForHeaderInSection:section];
     if (IS_EMPTY(s) == YES)
         return 0;
-    return configManager.fontNormalTextSize - currentTheme.GCLabelNormalSizeFont.descender;
+    return configManager.fontNormalTextSize - currentStyleTheme.GCLabelNormalSizeFont.descender;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView

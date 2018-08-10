@@ -57,7 +57,7 @@ PROTO_N3(UIColor *, mapKMLBorderColour, NSString *);
 PROTO_N (NSInteger, mapKMLBorderSize);
 PROTO_N (NSInteger, mapCircleRingSize);
 PROTO_N (NSInteger, compassType);
-PROTO_N (NSInteger, themeType);
+PROTO_N (NSInteger, themeStyleType);
 PROTO_N (BOOL, soundDirection);
 PROTO_N (BOOL, soundDistance);
 PROTO_N (BOOL, keeptrackEnable);

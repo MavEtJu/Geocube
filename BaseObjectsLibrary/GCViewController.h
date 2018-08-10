@@ -28,7 +28,7 @@
 @property (assign, nonatomic) NSInteger numberOfItemsInRow;
 
 - (void)showCloseButton;
-- (void)changeTheme;
+- (void)changeThemeStyle;
 - (void)willClosePage;
 - (void)prepareCloseButton:(UIView *)view;
 - (void)temporaryHideCloseButton:(BOOL)show;

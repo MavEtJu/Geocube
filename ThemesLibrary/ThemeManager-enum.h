@@ -19,9 +19,9 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-typedef NS_ENUM(NSInteger, GCThemeType) {
-    THEME_IOS_SMALLSIZE = 0,
-    THEME_NIGHT_SMALLSIZE,
-    THEME_IOS_NORMALSIZE,
-    THEME_NIGHT_NORMALSIZE,
+typedef NS_ENUM(NSInteger, GCThemeStyleType) {
+    THEME_STYLE_IOS_SMALLSIZE = 0,
+    THEME_STYLE_NIGHT_SMALLSIZE,
+    THEME_STYLE_IOS_NORMALSIZE,
+    THEME_STYLE_NIGHT_NORMALSIZE,
 };

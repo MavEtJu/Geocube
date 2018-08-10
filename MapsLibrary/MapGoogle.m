@@ -55,7 +55,7 @@
     if (self.staticHistory == NO)
         self.mapView.myLocationEnabled = YES;
     self.mapView.delegate = self;
-    self.mapView.mapStyle = currentTheme.googleMapsStyle;
+    self.mapView.mapStyle = currentStyleTheme.googleMapsStyle;
 
     self.mapvc.view = self.mapView;
 

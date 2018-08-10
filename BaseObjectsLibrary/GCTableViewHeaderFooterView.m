@@ -42,9 +42,9 @@
 
 - (void)changeTheme
 {
-    self.contentView.backgroundColor = currentTheme.tableHeaderBackground;
-    self.textLabel.textColor = currentTheme.tableHeaderTextColor;
-    self.textLabel.backgroundColor = currentTheme.tableHeaderBackground;
+    self.contentView.backgroundColor = currentStyleTheme.tableHeaderBackground;
+    self.textLabel.textColor = currentStyleTheme.tableHeaderTextColor;
+    self.textLabel.backgroundColor = currentStyleTheme.tableHeaderBackground;
 }
 
 @end

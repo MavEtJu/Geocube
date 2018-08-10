@@ -42,13 +42,13 @@
 
 - (void)changeTheme
 {
-    self.textLabel.textColor = currentTheme.labelTextColor;
-    self.textLabel.font = currentTheme.GCLabelNormalSizeFont;
-    self.detailTextLabel.textColor = currentTheme.labelTextColor;
-    self.detailTextLabel.font = currentTheme.GCLabelSmallSizeFont;
+    self.textLabel.textColor = currentStyleTheme.labelTextColor;
+    self.textLabel.font = currentStyleTheme.GCLabelNormalSizeFont;
+    self.detailTextLabel.textColor = currentStyleTheme.labelTextColor;
+    self.detailTextLabel.font = currentStyleTheme.GCLabelSmallSizeFont;
     self.backgroundColor = [UIColor clearColor];
 
-    [themeManager changeThemeArray:self.subviews];
+    [themeManager changeThemeStyleArray:self.subviews];
 }
 
 - (void)calculateRects

@@ -19,7 +19,7 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ThemeTemplate : NSObject
+@interface ThemeStyleTemplate : NSObject
 
 @property (nonatomic, retain) UIColor *viewControllerBackgroundColor;
 

@@ -19,18 +19,18 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface ThemeNightSmallSize ()
+@interface ThemeStyleIOSSmallSize ()
 
 @end
 
-@implementation ThemeNightSmallSize
+@implementation ThemeStyleIOSSmallSize
 
 - (instancetype)init
 {
     self = [super init];
 
-    self.menuLocalIcon = [imageManager get:ImageIcon_LocalMenuNight_Small];
-    self.menuGlobalIcon = [imageManager get:ImageIcon_GlobalMenuNight_Small];
+    self.menuLocalIcon = [imageManager get:ImageIcon_LocalMenuDefault_Small];
+    self.menuGlobalIcon = [imageManager get:ImageIcon_GlobalMenuDefault_Small];
     self.menuCloseIcon = [imageManager get:ImageIcon_CloseButton_Small];
 
     self.mapShowBoth = [imageManager get:ImageIcon_ShowBoth_Small];

@@ -145,9 +145,9 @@
 
     self.useGNSS = LM.useGNSS;
     if (self.useGNSS == YES)
-        self.labelMapGNSS.image = currentTheme.mapGNSSOn;
+        self.labelMapGNSS.image = currentStyleTheme.mapGNSSOn;
     else
-        self.labelMapGNSS.image = currentTheme.mapGNSSOff;
+        self.labelMapGNSS.image = currentStyleTheme.mapGNSSOff;
 
     self.waypointsArray = nil;
 
@@ -197,9 +197,9 @@
     // Enable GNSS Menu?
     self.useGNSS = LM.useGNSS;
     if (self.useGNSS == YES)
-        self.labelMapGNSS.image = currentTheme.mapGNSSOn;
+        self.labelMapGNSS.image = currentStyleTheme.mapGNSSOn;
     else
-        self.labelMapGNSS.image = currentTheme.mapGNSSOff;
+        self.labelMapGNSS.image = currentStyleTheme.mapGNSSOff;
 
     // Enable Remove Target menu only if there is a target
     if (waypointManager.currentWaypoint == nil)
@@ -291,7 +291,7 @@
 
     self.distanceLabel.frame = CGRectMake(3, 3, 250, 20);
 
-    UIImage *img = currentTheme.mapFollowMe;
+    UIImage *img = currentStyleTheme.mapFollowMe;
     NSInteger imgwidth = img.size.width;
     NSInteger imgheight = img.size.height;
 
@@ -332,7 +332,7 @@
     self.labelMapGNSS.layer.borderWidth = 1;
     self.labelMapGNSS.layer.borderColor = [UIColor blackColor].CGColor;
     self.labelMapGNSS.userInteractionEnabled = YES;
-    self.labelMapGNSS.image = currentTheme.mapGNSSOn;
+    self.labelMapGNSS.image = currentStyleTheme.mapGNSSOn;
     [self.view addSubview:self.labelMapGNSS];
 
     [self.labelMapGNSS removeGestureRecognizer:self.tap];
@@ -350,7 +350,7 @@
     self.labelMapFollowMe.layer.borderColor = [UIColor blackColor].CGColor;
     [self.labelMapFollowMe addTarget:self action:@selector(chooseMapFollow:) forControlEvents:UIControlEventTouchDown];
     self.labelMapFollowMe.userInteractionEnabled = YES;
-    [self.labelMapFollowMe setImage:currentTheme.mapFollowMe forState:UIControlStateNormal];
+    [self.labelMapFollowMe setImage:currentStyleTheme.mapFollowMe forState:UIControlStateNormal];
     [self.view addSubview:self.labelMapFollowMe];
 
     self.labelMapShowBoth = [[UIButton alloc] initWithFrame:CGRectZero];
@@ -358,7 +358,7 @@
     self.labelMapShowBoth.layer.borderColor = [UIColor blackColor].CGColor;
     [self.labelMapShowBoth addTarget:self action:@selector(chooseMapFollow:) forControlEvents:UIControlEventTouchDown];
     self.labelMapShowBoth.userInteractionEnabled = YES;
-    [self.labelMapShowBoth setImage:currentTheme.mapShowBoth forState:UIControlStateNormal];
+    [self.labelMapShowBoth setImage:currentStyleTheme.mapShowBoth forState:UIControlStateNormal];
     [self.view addSubview:self.labelMapShowBoth];
 
     self.labelMapSeeTarget = [[UIButton alloc] initWithFrame:CGRectZero];
@@ -366,7 +366,7 @@
     self.labelMapSeeTarget.layer.borderColor = [UIColor blackColor].CGColor;
     [self.labelMapSeeTarget addTarget:self action:@selector(chooseMapFollow:) forControlEvents:UIControlEventTouchDown];
     self.labelMapSeeTarget.userInteractionEnabled = YES;
-    [self.labelMapSeeTarget setImage:currentTheme.mapSeeTarget forState:UIControlStateNormal];
+    [self.labelMapSeeTarget setImage:currentStyleTheme.mapSeeTarget forState:UIControlStateNormal];
     [self.view addSubview:self.labelMapSeeTarget];
 
     self.labelMapFindMe = [[UIButton alloc] initWithFrame:CGRectZero];
@@ -374,7 +374,7 @@
     self.labelMapFindMe.layer.borderColor = [UIColor blackColor].CGColor;
     [self.labelMapFindMe addTarget:self action:@selector(chooseMapFollow:) forControlEvents:UIControlEventTouchDown];
     self.labelMapFindMe.userInteractionEnabled = YES;
-    [self.labelMapFindMe setImage:currentTheme.mapFindMe forState:UIControlStateNormal];
+    [self.labelMapFindMe setImage:currentStyleTheme.mapFindMe forState:UIControlStateNormal];
     [self.view addSubview:self.labelMapFindMe];
 
     self.labelMapFindTarget = [[UIButton alloc] initWithFrame:CGRectZero];
@@ -382,7 +382,7 @@
     self.labelMapFindTarget.layer.borderColor = [UIColor blackColor].CGColor;
     [self.labelMapFindTarget addTarget:self action:@selector(chooseMapFollow:) forControlEvents:UIControlEventTouchDown];
     self.labelMapFindTarget.userInteractionEnabled = YES;
-    [self.labelMapFindTarget setImage:currentTheme.mapFindTarget forState:UIControlStateNormal];
+    [self.labelMapFindTarget setImage:currentStyleTheme.mapFindTarget forState:UIControlStateNormal];
     [self.view addSubview:self.labelMapFindTarget];
 
     [self updateMapButtons];
@@ -954,7 +954,7 @@
     self.useGNSS = NO;
     [LM useGNSS:NO coordinates:[self.map currentCenter]];
 
-    self.labelMapGNSS.image = currentTheme.mapGNSSOff;
+    self.labelMapGNSS.image = currentStyleTheme.mapGNSSOff;
 
     self.meLocation = [self.map currentCenter];
     self.followWhom = SHOW_NEITHER;
@@ -967,7 +967,7 @@
         self.useGNSS = YES;
         [LM useGNSS:YES coordinates:CLLocationCoordinate2DZero];
 
-        self.labelMapGNSS.image = currentTheme.mapGNSSOn;
+        self.labelMapGNSS.image = currentStyleTheme.mapGNSSOn;
 
         self.meLocation = LM.coords;
         self.followWhom = SHOW_NEITHER;
@@ -975,7 +975,7 @@
         self.useGNSS = NO;
         [LM useGNSS:NO coordinates:[self.map currentCenter]];
 
-        self.labelMapGNSS.image = currentTheme.mapGNSSOff;
+        self.labelMapGNSS.image = currentStyleTheme.mapGNSSOff;
 
         self.meLocation = [self.map currentCenter];
         self.followWhom = SHOW_FOLLOWME;

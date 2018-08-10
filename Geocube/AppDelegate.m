@@ -114,7 +114,7 @@
 
     // Initialize the theme - after configurationManager, imageLibrary
     themeManager = [[ThemeManager alloc] init];
-    [themeManager setTheme:configManager.themeType];
+    [themeManager setThemeStyle:configManager.themeStyleType];
 
     // Waypoint Manager - after configurationManager, LM, db, imageLibrary
     waypointManager = [[WaypointManager alloc] init];

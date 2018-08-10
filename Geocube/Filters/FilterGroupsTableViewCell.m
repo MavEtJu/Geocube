@@ -144,7 +144,7 @@
     [self.groups enumerateObjectsUsingBlock:^(dbGroup * _Nonnull g, NSUInteger idx, BOOL * _Nonnull stop) {
         FilterButton *b = [self.buttons objectAtIndex:idx];
         [b setTitle:g.name forState:UIControlStateNormal];
-        [b setTitleColor:(g.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
+        [b setTitleColor:(g.selected ? currentStyleTheme.labelTextColor : currentStyleTheme.labelTextColorDisabled) forState:UIControlStateNormal];
         [b sizeToFit];
     }];
 
@@ -201,7 +201,7 @@
 {
     dbGroup *g = [self.groups objectAtIndex:b.index];
     g.selected = !g.selected;
-    [b setTitleColor:(g.selected ? currentTheme.labelTextColor : currentTheme.labelTextColorDisabled) forState:UIControlStateNormal];
+    [b setTitleColor:(g.selected ? currentStyleTheme.labelTextColor : currentStyleTheme.labelTextColorDisabled) forState:UIControlStateNormal];
     [self configSet:[NSString stringWithFormat:@"%@_%ld", FILTER, (long)g._id] value:[NSString stringWithFormat:@"%d", g.selected]];
     [self configUpdate];
 }

@@ -21,10 +21,10 @@
 		E822861D1F8A285C00631380 /* MyClock.m in Sources */ = {isa = PBXBuildFile; fileRef = E82286121F8A285C00631380 /* MyClock.m */; };
 		E822861E1F8A285C00631380 /* MyTools.m in Sources */ = {isa = PBXBuildFile; fileRef = E82286141F8A285C00631380 /* MyTools.m */; };
 		E822861F1F8A285C00631380 /* SideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E82286171F8A285C00631380 /* SideMenu.m */; };
-		E822862C1F8A2B4600631380 /* ThemeIOSSmallSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E82286231F8A2B4600631380 /* ThemeIOSSmallSize.m */; };
+		E822862C1F8A2B4600631380 /* ThemeStyleIOSSmallSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E82286231F8A2B4600631380 /* ThemeStyleIOSSmallSize.m */; };
 		E822862D1F8A2B4600631380 /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E82286261F8A2B4600631380 /* ThemeManager.m */; };
-		E822862E1F8A2B4600631380 /* ThemeNightSmallSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E82286281F8A2B4600631380 /* ThemeNightSmallSize.m */; };
-		E822862F1F8A2B4600631380 /* ThemeTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E822862B1F8A2B4600631380 /* ThemeTemplate.m */; };
+		E822862E1F8A2B4600631380 /* ThemeStyleNightSmallSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E82286281F8A2B4600631380 /* ThemeStyleNightSmallSize.m */; };
+		E822862F1F8A2B4600631380 /* ThemeStyleTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E822862B1F8A2B4600631380 /* ThemeStyleTemplate.m */; };
 		E82286801F8A2BD600631380 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = E82286311F8A2BD500631380 /* Database.m */; };
 		E82286811F8A2BD600631380 /* DatabaseCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E82286331F8A2BD500631380 /* DatabaseCache.m */; };
 		E82286821F8A2BD600631380 /* dbAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = E82286371F8A2BD500631380 /* dbAccount.m */; };
@@ -608,8 +608,8 @@
 		E85BA88E1F544372008E708F /* KeepTrackBeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = E85BA88D1F544372008E708F /* KeepTrackBeeper.m */; };
 		E85BA8901F5449F5008E708F /* Beeper.wav in Resources */ = {isa = PBXBuildFile; fileRef = E85BA88F1F5449F5008E708F /* Beeper.wav */; };
 		E85DC6641F956143007556D5 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E85DC6631F956143007556D5 /* Launch Screen.storyboard */; };
-		E85DC6671F957D9B007556D5 /* ThemeIOSNormalSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DC6661F957D9B007556D5 /* ThemeIOSNormalSize.m */; };
-		E85DC66A1F957DB5007556D5 /* ThemeNightNormalSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DC6691F957DB5007556D5 /* ThemeNightNormalSize.m */; };
+		E85DC6671F957D9B007556D5 /* ThemeStyleIOSNormalSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DC6661F957D9B007556D5 /* ThemeStyleIOSNormalSize.m */; };
+		E85DC66A1F957DB5007556D5 /* ThemeStyleNightNormalSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E85DC6691F957DB5007556D5 /* ThemeStyleNightNormalSize.m */; };
 		E85DC6731F95CFD2007556D5 /* menu icon - global default - 40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E85DC66B1F95CFD2007556D5 /* menu icon - global default - 40x40@2x.png */; };
 		E85DC6741F95CFD2007556D5 /* menu icon - global default - 40x40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E85DC66C1F95CFD2007556D5 /* menu icon - global default - 40x40@3x.png */; };
 		E85DC6751F95CFD2007556D5 /* menu icon - global night - 40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E85DC66D1F95CFD2007556D5 /* menu icon - global night - 40x40@2x.png */; };
@@ -919,16 +919,16 @@
 		E82286161F8A285C00631380 /* SideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SideMenu.h; path = ToolsLibrary/SideMenu.h; sourceTree = "<group>"; };
 		E82286171F8A285C00631380 /* SideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SideMenu.m; path = ToolsLibrary/SideMenu.m; sourceTree = "<group>"; };
 		E82286181F8A285C00631380 /* ToolsLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToolsLibrary.h; path = ToolsLibrary/ToolsLibrary.h; sourceTree = "<group>"; };
-		E82286221F8A2B4600631380 /* ThemeIOSSmallSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeIOSSmallSize.h; path = ThemesLibrary/ThemeIOSSmallSize.h; sourceTree = "<group>"; };
-		E82286231F8A2B4600631380 /* ThemeIOSSmallSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeIOSSmallSize.m; path = ThemesLibrary/ThemeIOSSmallSize.m; sourceTree = "<group>"; };
+		E82286221F8A2B4600631380 /* ThemeStyleIOSSmallSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeStyleIOSSmallSize.h; path = ThemesLibrary/ThemeStyleIOSSmallSize.h; sourceTree = "<group>"; };
+		E82286231F8A2B4600631380 /* ThemeStyleIOSSmallSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeStyleIOSSmallSize.m; path = ThemesLibrary/ThemeStyleIOSSmallSize.m; sourceTree = "<group>"; };
 		E82286241F8A2B4600631380 /* ThemeManager-enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ThemeManager-enum.h"; path = "ThemesLibrary/ThemeManager-enum.h"; sourceTree = "<group>"; };
 		E82286251F8A2B4600631380 /* ThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeManager.h; path = ThemesLibrary/ThemeManager.h; sourceTree = "<group>"; };
 		E82286261F8A2B4600631380 /* ThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeManager.m; path = ThemesLibrary/ThemeManager.m; sourceTree = "<group>"; };
-		E82286271F8A2B4600631380 /* ThemeNightSmallSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeNightSmallSize.h; path = ThemesLibrary/ThemeNightSmallSize.h; sourceTree = "<group>"; };
-		E82286281F8A2B4600631380 /* ThemeNightSmallSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeNightSmallSize.m; path = ThemesLibrary/ThemeNightSmallSize.m; sourceTree = "<group>"; };
+		E82286271F8A2B4600631380 /* ThemeStyleNightSmallSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeStyleNightSmallSize.h; path = ThemesLibrary/ThemeStyleNightSmallSize.h; sourceTree = "<group>"; };
+		E82286281F8A2B4600631380 /* ThemeStyleNightSmallSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeStyleNightSmallSize.m; path = ThemesLibrary/ThemeStyleNightSmallSize.m; sourceTree = "<group>"; };
 		E82286291F8A2B4600631380 /* ThemesLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemesLibrary.h; path = ThemesLibrary/ThemesLibrary.h; sourceTree = "<group>"; };
-		E822862A1F8A2B4600631380 /* ThemeTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeTemplate.h; path = ThemesLibrary/ThemeTemplate.h; sourceTree = "<group>"; };
-		E822862B1F8A2B4600631380 /* ThemeTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeTemplate.m; path = ThemesLibrary/ThemeTemplate.m; sourceTree = "<group>"; };
+		E822862A1F8A2B4600631380 /* ThemeStyleTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeStyleTemplate.h; path = ThemesLibrary/ThemeStyleTemplate.h; sourceTree = "<group>"; };
+		E822862B1F8A2B4600631380 /* ThemeStyleTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeStyleTemplate.m; path = ThemesLibrary/ThemeStyleTemplate.m; sourceTree = "<group>"; };
 		E82286301F8A2BD500631380 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Database.h; path = DatabaseLibrary/Database.h; sourceTree = "<group>"; };
 		E82286311F8A2BD500631380 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Database.m; path = DatabaseLibrary/Database.m; sourceTree = "<group>"; };
 		E82286321F8A2BD500631380 /* DatabaseCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DatabaseCache.h; path = DatabaseLibrary/DatabaseCache.h; sourceTree = "<group>"; };
@@ -1870,10 +1870,10 @@
 		E85BA88D1F544372008E708F /* KeepTrackBeeper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeepTrackBeeper.m; path = KeepTrack/KeepTrackBeeper.m; sourceTree = "<group>"; };
 		E85BA88F1F5449F5008E708F /* Beeper.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beeper.wav; sourceTree = "<group>"; };
 		E85DC6631F956143007556D5 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		E85DC6651F957D9B007556D5 /* ThemeIOSNormalSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeIOSNormalSize.h; path = ThemesLibrary/ThemeIOSNormalSize.h; sourceTree = "<group>"; };
-		E85DC6661F957D9B007556D5 /* ThemeIOSNormalSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeIOSNormalSize.m; path = ThemesLibrary/ThemeIOSNormalSize.m; sourceTree = "<group>"; };
-		E85DC6681F957DB5007556D5 /* ThemeNightNormalSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeNightNormalSize.h; path = ThemesLibrary/ThemeNightNormalSize.h; sourceTree = "<group>"; };
-		E85DC6691F957DB5007556D5 /* ThemeNightNormalSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeNightNormalSize.m; path = ThemesLibrary/ThemeNightNormalSize.m; sourceTree = "<group>"; };
+		E85DC6651F957D9B007556D5 /* ThemeStyleIOSNormalSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeStyleIOSNormalSize.h; path = ThemesLibrary/ThemeStyleIOSNormalSize.h; sourceTree = "<group>"; };
+		E85DC6661F957D9B007556D5 /* ThemeStyleIOSNormalSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeStyleIOSNormalSize.m; path = ThemesLibrary/ThemeStyleIOSNormalSize.m; sourceTree = "<group>"; };
+		E85DC6681F957DB5007556D5 /* ThemeStyleNightNormalSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThemeStyleNightNormalSize.h; path = ThemesLibrary/ThemeStyleNightNormalSize.h; sourceTree = "<group>"; };
+		E85DC6691F957DB5007556D5 /* ThemeStyleNightNormalSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThemeStyleNightNormalSize.m; path = ThemesLibrary/ThemeStyleNightNormalSize.m; sourceTree = "<group>"; };
 		E85DC66B1F95CFD2007556D5 /* menu icon - global default - 40x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - global default - 40x40@2x.png"; path = "images/menu/menu icon - global default - 40x40@2x.png"; sourceTree = "<group>"; };
 		E85DC66C1F95CFD2007556D5 /* menu icon - global default - 40x40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - global default - 40x40@3x.png"; path = "images/menu/menu icon - global default - 40x40@3x.png"; sourceTree = "<group>"; };
 		E85DC66D1F95CFD2007556D5 /* menu icon - global night - 40x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu icon - global night - 40x40@2x.png"; path = "images/menu/menu icon - global night - 40x40@2x.png"; sourceTree = "<group>"; };
@@ -2535,16 +2535,16 @@
 				E82286251F8A2B4600631380 /* ThemeManager.h */,
 				E82286241F8A2B4600631380 /* ThemeManager-enum.h */,
 				E82286261F8A2B4600631380 /* ThemeManager.m */,
-				E822862A1F8A2B4600631380 /* ThemeTemplate.h */,
-				E822862B1F8A2B4600631380 /* ThemeTemplate.m */,
-				E85DC6651F957D9B007556D5 /* ThemeIOSNormalSize.h */,
-				E85DC6661F957D9B007556D5 /* ThemeIOSNormalSize.m */,
-				E82286221F8A2B4600631380 /* ThemeIOSSmallSize.h */,
-				E82286231F8A2B4600631380 /* ThemeIOSSmallSize.m */,
-				E85DC6681F957DB5007556D5 /* ThemeNightNormalSize.h */,
-				E85DC6691F957DB5007556D5 /* ThemeNightNormalSize.m */,
-				E82286271F8A2B4600631380 /* ThemeNightSmallSize.h */,
-				E82286281F8A2B4600631380 /* ThemeNightSmallSize.m */,
+				E822862A1F8A2B4600631380 /* ThemeStyleTemplate.h */,
+				E822862B1F8A2B4600631380 /* ThemeStyleTemplate.m */,
+				E85DC6651F957D9B007556D5 /* ThemeStyleIOSNormalSize.h */,
+				E85DC6661F957D9B007556D5 /* ThemeStyleIOSNormalSize.m */,
+				E82286221F8A2B4600631380 /* ThemeStyleIOSSmallSize.h */,
+				E82286231F8A2B4600631380 /* ThemeStyleIOSSmallSize.m */,
+				E85DC6681F957DB5007556D5 /* ThemeStyleNightNormalSize.h */,
+				E85DC6691F957DB5007556D5 /* ThemeStyleNightNormalSize.m */,
+				E82286271F8A2B4600631380 /* ThemeStyleNightSmallSize.h */,
+				E82286281F8A2B4600631380 /* ThemeStyleNightSmallSize.m */,
 			);
 			name = ThemesLibrary;
 			sourceTree = "<group>";
@@ -5079,7 +5079,7 @@
 				E82286841F8A2BD600631380 /* dbBookmark.m in Sources */,
 				E82289001F8A3EC900631380 /* zip.c in Sources */,
 				E82288A91F8A356300631380 /* Reachability.m in Sources */,
-				E822862E1F8A2B4600631380 /* ThemeNightSmallSize.m in Sources */,
+				E822862E1F8A2B4600631380 /* ThemeStyleNightSmallSize.m in Sources */,
 				E8B29D1021156F8800F85543 /* MapBrandGoogle.m in Sources */,
 				E82287391F8A2E7900631380 /* GCDictionaryObjects.m in Sources */,
 				E82344921EECE0AC00D2CDFD /* QueriesGGCWViewController.m in Sources */,
@@ -5206,7 +5206,7 @@
 				E80AE56D1FB42A07003EDB36 /* FilterTypeIconsTableViewCell.m in Sources */,
 				E82288BA1F8A357700631380 /* RNDecryptor.m in Sources */,
 				E83C6F011EECE67100E303F5 /* FileObject.m in Sources */,
-				E85DC66A1F957DB5007556D5 /* ThemeNightNormalSize.m in Sources */,
+				E85DC66A1F957DB5007556D5 /* ThemeStyleNightNormalSize.m in Sources */,
 				E82343C21EECDE8A00D2CDFD /* WaypointImagesViewController.m in Sources */,
 				E83B109F1EF4FCCC00F2C5FA /* LocationlessTableViewCell.m in Sources */,
 				E860CA051F81F84700C66AD8 /* FilterButton.m in Sources */,
@@ -5299,7 +5299,7 @@
 				E822876E1F8A2EC300631380 /* GCTextblock.m in Sources */,
 				E82344AF1EECE0D500D2CDFD /* ToolsGNSSViewController.m in Sources */,
 				E82288EC1F8A3E8500631380 /* GMUFeature.m in Sources */,
-				E822862F1F8A2B4600631380 /* ThemeTemplate.m in Sources */,
+				E822862F1F8A2B4600631380 /* ThemeStyleTemplate.m in Sources */,
 				E82343FB1EECDF4400D2CDFD /* WaypointWaypointsTableViewCell.m in Sources */,
 				E84B174E1F903E6C004CAE31 /* DeveloperRemoteAPIViewController.m in Sources */,
 				E82345271EECE14A00D2CDFD /* NoticeTableViewCell.m in Sources */,
@@ -5400,7 +5400,7 @@
 				E822869D1F8A2BD600631380 /* dbState.m in Sources */,
 				E82288FD1F8A3EC900631380 /* ioapi.c in Sources */,
 				E823444E1EECE04B00D2CDFD /* NotesPersonalNotesViewController.m in Sources */,
-				E822862C1F8A2B4600631380 /* ThemeIOSSmallSize.m in Sources */,
+				E822862C1F8A2B4600631380 /* ThemeStyleIOSSmallSize.m in Sources */,
 				E85BA88E1F544372008E708F /* KeepTrackBeeper.m in Sources */,
 				E82288761F8A34FB00631380 /* SimpleKMLContainer.m in Sources */,
 				E82287161F8A2E1A00631380 /* GCTableViewCellRightImageDisclosure.m in Sources */,
@@ -5433,7 +5433,7 @@
 				E82286BC1F8A2C8800631380 /* ImportGGCWJSON.m in Sources */,
 				E82345211EECE14A00D2CDFD /* HelpAboutViewController.m in Sources */,
 				E8CB8917205E7ACE00DD55DE /* LatLon2UTM.m in Sources */,
-				E85DC6671F957D9B007556D5 /* ThemeIOSNormalSize.m in Sources */,
+				E85DC6671F957D9B007556D5 /* ThemeStyleIOSNormalSize.m in Sources */,
 				E891DB812115C2B8009A4D52 /* MapGoogleThunderforest.m in Sources */,
 				E82287D11F8A32C600631380 /* RemoteAPILiveAPI.m in Sources */,
 				E82287701F8A2EC300631380 /* GCViewController.m in Sources */,
