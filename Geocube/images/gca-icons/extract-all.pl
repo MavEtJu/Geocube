@@ -3,7 +3,7 @@
 =comment
 
 
-1. Get the file https://geocaching.com.au/pics/icon.php
+1. Get the file https://geocaching.com.au/pics/icon.svg or https://geocaching.com.au/pics/gmapmarker.svg or 
 2. Rename it to gca-icons.svg
 3. Run ./extract.pl
 
@@ -33,12 +33,15 @@ $| = 1;
 my $onlyfile = "";
 $onlyfile = $ARGV[0] if ($#ARGV != -1);
 
+my $input = "gca-icons.svg";
+#$input = "gmapmarker.svg";
+
 my %symbols = ();
 my $parser = XML::Parser->new(
 		Handlers => {
 		    Start => \&handle_start_symbols,
 		});
-$parser->parsefile("gca-icons.svg");
+$parser->parsefile($input);
 
 sub handle_start_symbols {
 	my $expat = shift;
@@ -74,7 +77,7 @@ foreach my $cs (sort(keys(%symbols))) {
 			    End => \&handle_end_symbol,
 			});
 	$printsymbol = 0;
-	$parser->parsefile("gca-icons.svg");
+	$parser->parsefile($input);
 
 	close(FOUT);
 }
