@@ -35,8 +35,8 @@
 - (UIImage *)getPin:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF;
 - (UIImage *)getType:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF planned:(BOOL)planned;
 
-- (CGPoint)centerOffsetAppleMaps;
-- (CGPoint)groundAnchorGoogleMaps;
-- (CGPoint)infoWindowAnchorGoogleMaps;
+- (CGPoint)centerOffsetAppleMaps:(dbWaypoint *)wp;
+- (CGPoint)groundAnchorGoogleMaps:(dbWaypoint *)wp;
+- (CGPoint)infoWindowAnchorGoogleMaps:(dbWaypoint *)wp;
 
 @end

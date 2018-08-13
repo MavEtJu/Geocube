@@ -49,7 +49,6 @@
     [self loadImages:@"gca-icons.json"];
 }
 
-
 - (BOOL)createPinImages:(NSString *)pinWanted imageName:(NSString *)imageName pinName:(NSString *)pinName
 {
     if ([pinWanted isEqualToString:pinName] == NO)
@@ -148,35 +147,50 @@
 
 // ----------------------------------
 
-- (UIImage *)getPin:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF
+- (NSString *)getGCACode:(dbWaypoint *)wp
+{
+    __block BOOL owner = NO;
+    [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (a._id == wp.account._id && a.accountname._id == wp.gs_owner._id) {
+            *stop = YES;
+            owner = YES;
+        }
+    }];
+    NSString *code = [self getGCACode:wp.wpt_type.pin found:wp.logStatus disabled:(wp.gs_available == NO) archived:(wp.gs_archived == YES) highlight:wp.flag_highlight owner:owner markedFound:wp.flag_markedfound inProgress:wp.flag_inprogress markedDNF:wp.flag_dnf];
+    return code;
+
+}
+
+- (NSString *)getGCACode:(dbObject *)object found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF
 {
     NSString *code = nil;
-    UIImage *img = nil;
+
     if (archived == YES) {
-        code = [imageManager getCode:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
-        img = [self.pinImages valueForKey:code];
+        code = [imageManager getCode:object found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
 
     } else if (disabled == YES) {
-        code = [imageManager getCode:pin found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
-        img = [self.pinImages valueForKey:code];
+        code = [imageManager getCode:object found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
 
     } else if (owner == YES) {
-        code = [imageManager getCode:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO planned:NO];
-        img = [self.pinImages valueForKey:code];
+        code = [imageManager getCode:object found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO planned:NO];
 
     } else if (markedFound == YES || found == LOGSTATUS_FOUND) {
-        code = [imageManager getCode:pin found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
-        img = [self.pinImages valueForKey:code];
+        code = [imageManager getCode:object found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
 
     } else if (markedDNF == YES || found == LOGSTATUS_NOTFOUND) {
-        code = [imageManager getCode:pin found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
-        img = [self.pinImages valueForKey:code];
+        code = [imageManager getCode:object found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
 
     } else {
-        code = [imageManager getCode:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
-        img = [self.pinImages valueForKey:code];
-
+        code = [imageManager getCode:object found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
     }
+
+    return code;
+}
+
+- (UIImage *)getPin:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF
+{
+    NSString *code = [self getGCACode:pin found:found disabled:disabled archived:archived highlight:highlight owner:owner markedFound:markedFound inProgress:inProgress markedDNF:markedDNF];
+    UIImage *img = [self.pinImages valueForKey:code];
 
     // Fallback to default
     if (img == nil)
@@ -196,21 +210,33 @@
 
 // ----------------------------------
 
-- (CGPoint)centerOffsetAppleMaps
+- (CGPoint)centerOffsetAppleMaps:(dbWaypoint *)wp
 {
+    NSString *code = [self getGCACode:wp];
+    if ([self.pinImages valueForKey:code] == nil)
+        return [self.geocube centerOffsetAppleMaps:nil];
+
 #warning to be fixed
     return CGPointMake(0, 0);
     return CGPointMake(7, -17);
 }
 
-- (CGPoint)groundAnchorGoogleMaps
+- (CGPoint)groundAnchorGoogleMaps:(dbWaypoint *)wp
 {
+    NSString *code = [self getGCACode:wp];
+    if ([self.pinImages valueForKey:code] == nil)
+        return [self.geocube centerOffsetAppleMaps:nil];
+
 #warning to be fixed
     return CGPointMake(0 / 35.0, 0 / 42.0);
     return CGPointMake(11.0 / 35.0, 38.0 / 42.0);
 }
-- (CGPoint)infoWindowAnchorGoogleMaps
+- (CGPoint)infoWindowAnchorGoogleMaps:(dbWaypoint *)wp
 {
+    NSString *code = [self getGCACode:wp];
+    if ([self.pinImages valueForKey:code] == nil)
+        return [self.geocube centerOffsetAppleMaps:nil];
+
 #warning to be fixed
     return CGPointMake(0 / 35.0, 0 / 42.0);
     return CGPointMake(11.0 / 35.0, 3.0 / 42.0);

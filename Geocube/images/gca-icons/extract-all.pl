@@ -28,9 +28,9 @@ done
 
 for i in gmapmarker_*.svg; do
 	f=$(echo $i | sed -e 's/.svg$//');
-	${INKSCAPE} -z -w 90 -h 90 -e $(pwd)/gca-$f@3x.png $(pwd)/$f.svg
-	${INKSCAPE} -z -w 60 -h 60 -e $(pwd)/gca-$f@2x.png $(pwd)/$f.svg
-	${INKSCAPE} -z -w 30 -h 30 -e $(pwd)/gca-$f.png $(pwd)/$f.svg
+	${INKSCAPE} -z -w 180 -h 90 -e $(pwd)/gca-$f@3x.png $(pwd)/$f.svg
+	${INKSCAPE} -z -w 120 -h 60 -e $(pwd)/gca-$f@2x.png $(pwd)/$f.svg
+	${INKSCAPE} -z -w 60 -h 30 -e $(pwd)/gca-$f.png $(pwd)/$f.svg
 done
 
 =cut
