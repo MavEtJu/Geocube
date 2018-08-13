@@ -298,19 +298,19 @@
 
 - (UIImage *)getPin:(dbWaypoint *)wp
 {
-    return [currentImageTheme _getPin:wp];
+    return [currentImageTheme getPin:wp];
 }
 - (UIImage *)getType:(dbWaypoint *)wp
 {
-    return [currentImageTheme _getType:wp];
+    return [currentImageTheme getType:wp];
 }
 - (UIImage *)getPin:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF
 {
-    return [currentImageTheme _getPin:pin found:found disabled:disabled archived:archived highlight:highlight owner:owner markedFound:markedFound inProgress:inProgress markedDNF:markedDNF];
+    return [currentImageTheme getPin:pin found:found disabled:disabled archived:archived highlight:highlight owner:owner markedFound:markedFound inProgress:inProgress markedDNF:markedDNF];
 }
 - (UIImage *)getType:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF planned:(BOOL)planned
 {
-    return [currentImageTheme _getType:type found:found disabled:disabled archived:archived highlight:highlight owner:owner markedFound:markedFound inProgress:inProgress markedDNF:markedDNF planned:planned];
+    return [currentImageTheme getType:type found:found disabled:disabled archived:archived highlight:highlight owner:owner markedFound:markedFound inProgress:inProgress markedDNF:markedDNF planned:planned];
 }
 
 - (NSString *)getCode:(dbObject *)o found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF planned:(BOOL)planned

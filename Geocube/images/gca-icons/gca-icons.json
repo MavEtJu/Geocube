@@ -159,6 +159,63 @@
 			"image": "gca-icon_geocachewherigo"
 		}
 
+	],
+
+	"pins": [
+		{
+			"missing": [
+				"GroundspeakHQ",
+				"Maze",
+				"Waymark",
+
+				"gca-gmapmarker_k",
+				"gca-gmapmarker_a"
+			]
+
+		}, {
+			"pin": "Benchmark",
+			"image": "gca-gmapmarker_z"
+		}, {
+			"pin": "Earth Cache",
+			"image": "gca-gmapmarker_r"
+		}, {
+			"pin": "Event",
+			"image": "gca-gmapmarker_e"
+		}, {
+			"pin": "Letterbox Cache",
+			"image": "gca-gmapmarker_x"
+		}, {
+			"pin": "Locationless Cache",
+			"image": "gca-gmapmarker_l"
+		}, {
+			"pin": "Moveable Cache",
+			"image": "gca-gmapmarker_b"
+		}, {
+			"pin": "Multi Cache",
+			"image": "gca-gmapmarker_m"
+		}, {
+			"pin": "Mystery Cache",
+			"image": "gca-gmapmarker_u"
+		}, {
+			"pin": "Other Cache",
+			"image": "gca-gmapmarker_o"
+		}, {
+			"pin": "Locationless Cache",
+			"image": "gca-gmapmarker_l"
+		}, {
+			"pin": "Traditional Cache",
+			"image": "gca-gmapmarker_t"
+		}, {
+			"pin": "Virtual Cache",
+			"image": "gca-gmapmarker_v"
+		}, {
+			"pin": "Webcam Cache",
+			"image": "gca-gmapmarker_w"
+		}, {
+			"pin": "Wherigo Cache",
+			"image": "gca-gmapmarker_i"
+		}
+
 	]
 }
 

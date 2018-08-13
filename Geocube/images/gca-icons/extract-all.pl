@@ -3,23 +3,34 @@
 =comment
 
 
-1. Get the file https://geocaching.com.au/pics/icon.svg or https://geocaching.com.au/pics/gmapmarker.svg or 
-2. Rename it to gca-icons.svg
+1. Get the file https://geocaching.com.au/pics/icon.svg or https://geocaching.com.au/pics/gmapmarker.svg.
+2. Rename it to gca-icons.svg and gca-gmapmarkers.svg
 3. Run ./extract.pl
+
+./extract.pl gca-icons.svg
+./extract.pl gca-gmapmarkers.svg
 
 4. And convert:
 
+INKSCAPE=/Applications/Inkscape.app/Contents/Resources/bin/inkscape
 for i in icon_geocache*.svg; do
 	f=$(echo $i | sed -e 's/.svg$//');
-	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 90 -h 90 -e $(pwd)/gca-$f@3x.png $(pwd)/$f.svg
-	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 60 -h 60 -e $(pwd)/gca-$f@2x.png $(pwd)/$f.svg
-	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 30 -h 30 -e $(pwd)/gca-$f.png $(pwd)/$f.svg
+	${INKSCAPE} -z -w 90 -h 90 -e $(pwd)/gca-$f@3x.png $(pwd)/$f.svg
+	${INKSCAPE} -z -w 60 -h 60 -e $(pwd)/gca-$f@2x.png $(pwd)/$f.svg
+	${INKSCAPE} -z -w 30 -h 30 -e $(pwd)/gca-$f.png $(pwd)/$f.svg
 done
 for i in icon_log*.svg; do
 	f=$(echo $i | sed -e 's/.svg$//');
-	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 90 -h 90 -e $(pwd)/gca-$f@3x.png $(pwd)/$f.svg
-	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 60 -h 60 -e $(pwd)/gca-$f@2x.png $(pwd)/$f.svg
-	/Applications/Inkscape.app/Contents/Resources/bin/inkscape -z -w 30 -h 30 -e $(pwd)/gca-$f.png $(pwd)/$f.svg
+	${INKSCAPE} -z -w 90 -h 90 -e $(pwd)/gca-$f@3x.png $(pwd)/$f.svg
+	${INKSCAPE} -z -w 60 -h 60 -e $(pwd)/gca-$f@2x.png $(pwd)/$f.svg
+	${INKSCAPE} -z -w 30 -h 30 -e $(pwd)/gca-$f.png $(pwd)/$f.svg
+done
+
+for i in gmapmarker_*.svg; do
+	f=$(echo $i | sed -e 's/.svg$//');
+	${INKSCAPE} -z -w 90 -h 90 -e $(pwd)/gca-$f@3x.png $(pwd)/$f.svg
+	${INKSCAPE} -z -w 60 -h 60 -e $(pwd)/gca-$f@2x.png $(pwd)/$f.svg
+	${INKSCAPE} -z -w 30 -h 30 -e $(pwd)/gca-$f.png $(pwd)/$f.svg
 done
 
 =cut
@@ -30,11 +41,13 @@ use XML::Parser;
 use Data::Dumper;
 
 $| = 1;
+
+die("Usage: $0 <SVG file> [symbol]") if ($#ARGV < 0);
+
+my $input = shift(@ARGV);
 my $onlyfile = "";
 $onlyfile = $ARGV[0] if ($#ARGV != -1);
 
-my $input = "gca-icons.svg";
-#$input = "gmapmarker.svg";
 
 my %symbols = ();
 my $parser = XML::Parser->new(

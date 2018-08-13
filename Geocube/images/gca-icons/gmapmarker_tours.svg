@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+xmlns:svg="http://www.w3.org/2000/svg"
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns="http://www.w3.org/2000/svg"
+xmlns:cc="http://creativecommons.org/ns#"
+xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+>
+<path
+id="path5709"
+style="fill:#c89bff;fill-opacity:1;stroke:#000000;stroke-width:2.9629848;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+d="m 78.5185,37.8469 c 0,6.9954 -2.51028,14.3521 -6.23456,21.4236 -14.07406,20.1882 -31.85183,38.6844 -31.85183,38.6844 0,0 -20.45267,-17.8689 -33.53908,-39.0645 -3.27161,-6.6154 -5.41152,-13.6108 -5.41152,-20.6253 -0.0206,-19.6749 17.22221,-36.7835 38.49792,-36.7835 21.29629,0 38.53907,16.6713 38.53907,36.3653 z"
+/>
+<path
+style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+id="path5713"
+d="m 58.46847,66.9999 -18.51058,-14.8327 -18.57146,14.7564 8.3867,-22.1881 L 10,31.633 l 23.69385,1.1197 6.35099,-22.8543 6.2569,22.8802 23.69826,-1.0222 -19.82687,13.021 z"
+/>
+</svg>

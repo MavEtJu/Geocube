@@ -122,6 +122,11 @@ TABLENAME(@"pins")
     return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithId:_id]]] firstObject];
 }
 
++ (dbPin *)getByDescription:(NSString *)desc
+{
+    return [[self dbAllXXX:@"where description = ?" keys:@"s" values:@[desc]] firstObject];
+}
+
 @end
 
 /*

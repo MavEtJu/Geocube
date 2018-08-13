@@ -45,6 +45,7 @@
 }
 
 // -------------------------------------------------------------
+
 - (void)addpinhead:(NSInteger)index image:(UIImage *)img
 {
     NSString *name = [NSString stringWithFormat:@"pinhead: %ld", (long)index];
@@ -72,17 +73,13 @@
     [imageManager replaceInLibrary:out name:name index:index];
 }
 
-- (UIImage *)mergeXXX:(UIImage *)bottom top:(NSInteger)top
+- (UIImage *)mergeDNF:(UIImage *)bottom top:(NSInteger)top
 {
     return [self addImageToImage:bottom withImage2:[imageManager get:top] andRect:CGRectMake(6, 6, 13, 13)];
 }
-- (UIImage *)mergeDNF:(UIImage *)bottom top:(NSInteger)top
-{
-    return [self mergeXXX:bottom top:top];
-}
 - (UIImage *)mergeFound:(UIImage *)bottom top:(NSInteger)top
 {
-    return [self mergeXXX:bottom top:top];
+    return [self addImageToImage:bottom withImage2:[imageManager get:top] andRect:CGRectMake(6, 6, 13, 13)];
 }
 
 - (UIImage *)mergeHighlight:(UIImage *)bottom top:(NSInteger)top
@@ -107,61 +104,28 @@
     return [self addImageToImage:bottom withImage2:[imageManager get:top] andRect:CGRectMake(3, 3, 15, 15)];
 }
 
-- (UIImage *)mergeYYY:(UIImage *)bottom top:(NSInteger)top
+- (UIImage *)mergeDisabled:(UIImage *)bottom top:(NSInteger)top
 {
     return [self addImageToImage:bottom withImage2:[imageManager get:top] andRect:CGRectMake(3, 3, 15, 15)];
 }
-- (UIImage *)mergeDisabled:(UIImage *)bottom top:(NSInteger)top
-{
-    return [self mergeYYY:bottom top:top];
-}
 - (UIImage *)mergeArchived:(UIImage *)bottom top:(NSInteger)top
 {
-    return [self mergeYYY:bottom top:top];
-}
-
-- (UIImage *)addImageToImage:(UIImage *)img1 withImage2:(UIImage *)img2 andRect:(CGRect)cropRect
-{
-    CGSize size = img1.size;
-    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
-
-    CGPoint pointImg1 = CGPointMake(0, 0);
-    [img1 drawAtPoint:pointImg1];
-
-    CGPoint pointImg2 = cropRect.origin;
-    [img2 drawAtPoint:pointImg2];
-
-    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return result;
+    return [self addImageToImage:bottom withImage2:[imageManager get:top] andRect:CGRectMake(3, 3, 15, 15)];
 }
 
 // -----------------------------------------------------------
 
-- (UIImage *)_getPin:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF
+- (UIImage *)getPin:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF
 {
     NSString *s = [imageManager getCode:pin found:found disabled:disabled archived:archived highlight:highlight owner:owner markedFound:markedFound inProgress:inProgress markedDNF:markedDNF planned:NO];
     UIImage *img = [self.pinImages valueForKey:s];
     if (img == nil) {
-        NSLog(@"Creating pin %@s", s);
+        NSLog(@"Geocube: Creating pin %@s", s);
         img = [self getPinImage:pin found:found disabled:disabled archived:archived highlight:highlight owner:owner markedFound:markedFound inProgress:inProgress markedDNF:markedDNF];
         [self.pinImages setObject:img forKey:s];
     }
 
     return img;
-}
-
-- (UIImage *)_getPin:(dbWaypoint *)wp
-{
-    __block BOOL owner = NO;
-    [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (a._id == wp.account._id && a.accountname._id == wp.gs_owner._id) {
-            *stop = YES;
-            owner = YES;
-        }
-    }];
-
-    return [self _getPin:wp.wpt_type.pin found:wp.logStatus disabled:(wp.gs_available == NO) archived:(wp.gs_archived == YES) highlight:wp.flag_highlight owner:owner markedFound:wp.flag_markedfound inProgress:wp.flag_inprogress markedDNF:wp.flag_dnf];
 }
 
 - (UIImage *)getPinImage:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF
@@ -226,7 +190,7 @@
 
 // -----------------------------------------------------------
 
-- (UIImage *)_getType:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF planned:(BOOL)planned
+- (UIImage *)getType:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF planned:(BOOL)planned
 {
     NSString *s = [imageManager getCode:type found:found disabled:disabled archived:archived highlight:highlight owner:owner markedFound:markedFound inProgress:inProgress markedDNF:markedDNF planned:planned];
     UIImage *img = [self.typeImages valueForKey:s];
@@ -281,11 +245,6 @@
     return img;
 }
 
-- (UIImage *)_getType:(dbWaypoint *)wp
-{
-    return [self _getType:wp.wpt_type found:wp.logStatus disabled:(wp.gs_available == NO) archived:(wp.gs_archived == YES) highlight:wp.flag_highlight owner:[dbc accountIsOwner:wp] markedFound:wp.flag_markedfound inProgress:wp.flag_inprogress markedDNF:wp.flag_dnf planned:wp.flag_planned];
-}
-
 // ----------------------------------
 
 - (CGPoint)centerOffsetAppleMaps
@@ -301,6 +260,5 @@
 {
     return CGPointMake(11.0 / 35.0, 3.0 / 42.0);
 }
-
 
 @end

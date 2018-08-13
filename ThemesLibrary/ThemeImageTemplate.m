@@ -35,10 +35,8 @@
 }
 
 - NEEDS_OVERLOADING_VOID(loadImages)
-- NEEDS_OVERLOADING_UIIMAGE(_getType:(dbWaypoint *)wp)
-- NEEDS_OVERLOADING_UIIMAGE(_getPin:(dbWaypoint *)wp)
-- NEEDS_OVERLOADING_UIIMAGE(_getPin:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF)
-- NEEDS_OVERLOADING_UIIMAGE(_getType:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF planned:(BOOL)planned)
+- NEEDS_OVERLOADING_UIIMAGE(getPin:(dbPin *)pin found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF)
+- NEEDS_OVERLOADING_UIIMAGE(getType:(dbType *)type found:(NSInteger)found disabled:(BOOL)disabled archived:(BOOL)archived highlight:(BOOL)highlight owner:(BOOL)owner markedFound:(BOOL)markedFound inProgress:(BOOL)inProgress markedDNF:(BOOL)markedDNF planned:(BOOL)planned)
 
 - NEEDS_OVERLOADING_CGPOINT(centerOffsetAppleMaps)
 - NEEDS_OVERLOADING_CGPOINT(groundAnchorGoogleMaps)
@@ -133,6 +131,40 @@
             NSAssert1(FALSE, @"Unknown type: %@", type);
         }
     }];
+}
+
+- (UIImage *)getType:(dbWaypoint *)wp
+{
+    return [self getType:wp.wpt_type found:wp.logStatus disabled:(wp.gs_available == NO) archived:(wp.gs_archived == YES) highlight:wp.flag_highlight owner:[dbc accountIsOwner:wp] markedFound:wp.flag_markedfound inProgress:wp.flag_inprogress markedDNF:wp.flag_dnf planned:wp.flag_planned];
+}
+
+- (UIImage *)getPin:(dbWaypoint *)wp
+{
+    __block BOOL owner = NO;
+    [dbc.accounts enumerateObjectsUsingBlock:^(dbAccount * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (a._id == wp.account._id && a.accountname._id == wp.gs_owner._id) {
+            *stop = YES;
+            owner = YES;
+        }
+    }];
+
+    return [self getPin:wp.wpt_type.pin found:wp.logStatus disabled:(wp.gs_available == NO) archived:(wp.gs_archived == YES) highlight:wp.flag_highlight owner:owner markedFound:wp.flag_markedfound inProgress:wp.flag_inprogress markedDNF:wp.flag_dnf];
+}
+
+- (UIImage *)addImageToImage:(UIImage *)img1 withImage2:(UIImage *)img2 andRect:(CGRect)cropRect
+{
+    CGSize size = img1.size;
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+
+    CGPoint pointImg1 = CGPointMake(0, 0);
+    [img1 drawAtPoint:pointImg1];
+
+    CGPoint pointImg2 = cropRect.origin;
+    [img2 drawAtPoint:pointImg2];
+
+    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return result;
 }
 
 @end

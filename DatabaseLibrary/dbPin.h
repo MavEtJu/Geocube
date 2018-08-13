@@ -30,6 +30,7 @@
 @property (nonatomic        ) BOOL selected;
 
 + (NSArray<dbPin *> *)dbAll;
++ (dbPin *)getByDescription:(NSString *)desc;
 + (dbPin *)dbGet:(NSId)_id;
 - (void)dbUpdateRGB;
 
