@@ -37,6 +37,5 @@
 
 - (CGPoint)centerOffsetAppleMaps:(dbWaypoint *)wp;
 - (CGPoint)groundAnchorGoogleMaps:(dbWaypoint *)wp;
-- (CGPoint)infoWindowAnchorGoogleMaps:(dbWaypoint *)wp;
 
 @end

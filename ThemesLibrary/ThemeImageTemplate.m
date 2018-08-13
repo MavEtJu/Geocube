@@ -40,7 +40,6 @@
 
 - NEEDS_OVERLOADING_CGPOINT(centerOffsetAppleMaps:(dbWaypoint *)wp)
 - NEEDS_OVERLOADING_CGPOINT(groundAnchorGoogleMaps:(dbWaypoint *)wp)
-- NEEDS_OVERLOADING_CGPOINT(infoWindowAnchorGoogleMaps:(dbWaypoint *)wp)
 
 - (void)loadImages:(NSString *)jsonfile
 {

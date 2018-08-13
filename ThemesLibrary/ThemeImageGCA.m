@@ -216,9 +216,7 @@
     if ([self.pinImages valueForKey:code] == nil)
         return [self.geocube centerOffsetAppleMaps:nil];
 
-#warning to be fixed
-    return CGPointMake(0, 0);
-    return CGPointMake(7, -17);
+    return CGPointMake(0, -30);
 }
 
 - (CGPoint)groundAnchorGoogleMaps:(dbWaypoint *)wp
@@ -227,19 +225,7 @@
     if ([self.pinImages valueForKey:code] == nil)
         return [self.geocube centerOffsetAppleMaps:nil];
 
-#warning to be fixed
-    return CGPointMake(0 / 35.0, 0 / 42.0);
-    return CGPointMake(11.0 / 35.0, 38.0 / 42.0);
-}
-- (CGPoint)infoWindowAnchorGoogleMaps:(dbWaypoint *)wp
-{
-    NSString *code = [self getGCACode:wp];
-    if ([self.pinImages valueForKey:code] == nil)
-        return [self.geocube centerOffsetAppleMaps:nil];
-
-#warning to be fixed
-    return CGPointMake(0 / 35.0, 0 / 42.0);
-    return CGPointMake(11.0 / 35.0, 3.0 / 42.0);
+    return CGPointMake(30 / 60.0, 60 / 60.0);
 }
 
 @end

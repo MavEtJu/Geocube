@@ -256,9 +256,5 @@
 {
     return CGPointMake(11.0 / 35.0, 38.0 / 42.0);
 }
-- (CGPoint)infoWindowAnchorGoogleMaps:(dbWaypoint *)wp
-{
-    return CGPointMake(11.0 / 35.0, 3.0 / 42.0);
-}
 
 @end
