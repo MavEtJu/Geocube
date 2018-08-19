@@ -1116,6 +1116,9 @@
 		E8677465212137A900518AD0 /* gca-gmapmarker_v_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8677351212137A700518AD0 /* gca-gmapmarker_v_disabled@2x.png */; };
 		E8677466212137A900518AD0 /* gca-gmapmarker_x_gca.png in Resources */ = {isa = PBXBuildFile; fileRef = E8677352212137A700518AD0 /* gca-gmapmarker_x_gca.png */; };
 		E8677467212137A900518AD0 /* gca-gmapmarker_z_dnf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8677353212137A800518AD0 /* gca-gmapmarker_z_dnf@2x.png */; };
+		E867746D212988D300518AD0 /* gca-gmapmarker-highlighted@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E867746A212988D300518AD0 /* gca-gmapmarker-highlighted@3x.png */; };
+		E867746E212988D300518AD0 /* gca-gmapmarker-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E867746B212988D300518AD0 /* gca-gmapmarker-highlighted@2x.png */; };
+		E867746F212988D300518AD0 /* gca-gmapmarker-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = E867746C212988D300518AD0 /* gca-gmapmarker-highlighted.png */; };
 		E86A4A7120FE22B90043D130 /* MapsWithMeAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E86A4A6F20FE22B80043D130 /* MapsWithMeAPI.m */; };
 		E86C4AAF1E321822004526E2 /* CompassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86C4AAD1E321822004526E2 /* CompassViewController.m */; };
 		E86C4AB01E321822004526E2 /* CompassView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86C4AAE1E321822004526E2 /* CompassView.xib */; };
@@ -2818,6 +2821,9 @@
 		E8677351212137A700518AD0 /* gca-gmapmarker_v_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-gmapmarker_v_disabled@2x.png"; path = "images/gca-icons/gca-gmapmarker_v_disabled@2x.png"; sourceTree = "<group>"; };
 		E8677352212137A700518AD0 /* gca-gmapmarker_x_gca.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-gmapmarker_x_gca.png"; path = "images/gca-icons/gca-gmapmarker_x_gca.png"; sourceTree = "<group>"; };
 		E8677353212137A800518AD0 /* gca-gmapmarker_z_dnf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-gmapmarker_z_dnf@2x.png"; path = "images/gca-icons/gca-gmapmarker_z_dnf@2x.png"; sourceTree = "<group>"; };
+		E867746A212988D300518AD0 /* gca-gmapmarker-highlighted@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-gmapmarker-highlighted@3x.png"; path = "images/gca-icons/gca-gmapmarker-highlighted@3x.png"; sourceTree = "<group>"; };
+		E867746B212988D300518AD0 /* gca-gmapmarker-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-gmapmarker-highlighted@2x.png"; path = "images/gca-icons/gca-gmapmarker-highlighted@2x.png"; sourceTree = "<group>"; };
+		E867746C212988D300518AD0 /* gca-gmapmarker-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gca-gmapmarker-highlighted.png"; path = "images/gca-icons/gca-gmapmarker-highlighted.png"; sourceTree = "<group>"; };
 		E86A4A6F20FE22B80043D130 /* MapsWithMeAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapsWithMeAPI.m; path = ContribLibrary/MapsWithMeAPI/MapsWithMeAPI.m; sourceTree = "<group>"; };
 		E86A4A7020FE22B90043D130 /* MapsWithMeAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapsWithMeAPI.h; path = ContribLibrary/MapsWithMeAPI/MapsWithMeAPI.h; sourceTree = "<group>"; };
 		E86C4AAC1E321822004526E2 /* CompassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassViewController.h; sourceTree = "<group>"; };
@@ -3443,6 +3449,9 @@
 		E8157C1E211E4F8E00CCB63B /* map */ = {
 			isa = PBXGroup;
 			children = (
+				E867746C212988D300518AD0 /* gca-gmapmarker-highlighted.png */,
+				E867746B212988D300518AD0 /* gca-gmapmarker-highlighted@2x.png */,
+				E867746A212988D300518AD0 /* gca-gmapmarker-highlighted@3x.png */,
 				E86773012121379300518AD0 /* gca-gmapmarker_b_archived.png */,
 				E86772D02121378900518AD0 /* gca-gmapmarker_b_archived@2x.png */,
 				E86772692121377A00518AD0 /* gca-gmapmarker_b_archived@3x.png */,
@@ -6042,6 +6051,7 @@
 				E85DC6761F95CFD2007556D5 /* menu icon - global night - 40x40@3x.png in Resources */,
 				E86773DA212137A800518AD0 /* gca-gmapmarker_r_disabled.png in Resources */,
 				E82E65BB1DA0794600CFBDED /* waypoint - multi - 30x30.png in Resources */,
+				E867746D212988D300518AD0 /* gca-gmapmarker-highlighted@3x.png in Resources */,
 				E8157B20211D6EAC00CCB63B /* gca-icon_logcoordsupdated@2x.png in Resources */,
 				E8157AE8211D6EAC00CCB63B /* gca-icon_logphotographed@2x.png in Resources */,
 				E8B7737A1F94D7190060B415 /* menu icon - local default - 40x40.png in Resources */,
@@ -6433,6 +6443,7 @@
 				E8157BC6211D752B00CCB63B /* cache - beacon - 30x30@2x.png in Resources */,
 				E8157B12211D6EAC00CCB63B /* gca-icon_logmoved@3x.png in Resources */,
 				E8157B30211D6EAC00CCB63B /* gca-icon_geocachereverse@3x.png in Resources */,
+				E867746F212988D300518AD0 /* gca-gmapmarker-highlighted.png in Resources */,
 				E823449F1EECE0BD00D2CDFD /* StatisticsTableViewCell.xib in Resources */,
 				E8157C10211D754000CCB63B /* log - moved - 30x30.png in Resources */,
 				E8FEDE831DA7AD67007C756B /* map - cross dnf - 9x9@3x.png in Resources */,
@@ -6546,6 +6557,7 @@
 				E82287211F8A2E1A00631380 /* GCTableViewCellSwitch~ipad.xib in Resources */,
 				E867737A212137A800518AD0 /* gca-gmapmarker_b_owned@3x.png in Resources */,
 				E8157B18211D6EAC00CCB63B /* gca-icon_logannouncement@3x.png in Resources */,
+				E867746E212988D300518AD0 /* gca-gmapmarker-highlighted@2x.png in Resources */,
 				E82E67731DA07D1A00CFBDED /* image - nil - 1x1.png in Resources */,
 				E8FEDEA51DA7C08A007C756B /* waypoint - parking - 30x30@3x.png in Resources */,
 				E867744C212137A900518AD0 /* gca-gmapmarker_l_gca@2x.png in Resources */,

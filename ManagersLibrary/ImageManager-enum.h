@@ -170,6 +170,7 @@ typedef NS_ENUM(NSInteger, ImageNumber) {
 
     ImageLibraryImagesUnsorted = 700,
 
+    /* Geocube map icons */
     ImageMap_pin,
     ImageMap_dnf,
     ImageMap_found,
@@ -186,6 +187,10 @@ typedef NS_ENUM(NSInteger, ImageNumber) {
     ImageMap_pinOwner,
     ImageMap_pinOutlineDisabled,
     ImageMap_pinOutlineArchived,
+
+    /* Geocaching Australia map icons */
+    ImageMap_gcaMarkerHigherlighted,
+
     ImageContainerFlag_crossDNF,
     ImageContainerFlag_markedFound,
     ImageContainerFlag_inProgress,

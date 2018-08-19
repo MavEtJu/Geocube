@@ -49,7 +49,7 @@
     [self loadImages:@"gca-icons.json"];
 }
 
-- (BOOL)createPinImages:(NSString *)pinWanted imageName:(NSString *)imageName pinName:(NSString *)pinName
+- (BOOL)createPinImages:(NSString *)pinWanted imageName:(NSString *)imageName pinName:(NSString *)pinName inProgress:(BOOL)inProgress planned:(BOOL)planned highlight:(BOOL)highlight;
 {
     if ([pinWanted isEqualToString:pinName] == NO)
         return NO;
@@ -61,37 +61,49 @@
     // Normal icon
     img = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@_gca", [MyTools DataDistributionDirectory], imageName]];
     NSAssert(img != nil, @"img should be non-nil");
-    code = [imageManager getCode:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
+    if (highlight == YES)
+        img = [self addImageToImage:img withImage2:[imageManager get:ImageMap_gcaMarkerHigherlighted] andRect:CGRectMake(0, 0, img.size.width, img.size.height)];
+    code = [imageManager getCode:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:highlight owner:NO markedFound:NO inProgress:inProgress markedDNF:NO planned:planned];
     [self.pinImages setObject:img forKey:code];
 
     // Found icon
     img = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@_found", [MyTools DataDistributionDirectory], imageName]];
     NSAssert(img != nil, @"img should be non-nil");
-    code = [imageManager getCode:pin found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
+    if (highlight == YES)
+        img = [self addImageToImage:img withImage2:[imageManager get:ImageMap_gcaMarkerHigherlighted] andRect:CGRectMake(0, 0, img.size.width, img.size.height)];
+    code = [imageManager getCode:pin found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:highlight owner:NO markedFound:NO inProgress:inProgress markedDNF:NO planned:planned];
     [self.pinImages setObject:img forKey:code];
 
     // DNF icon
     img = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@_dnf", [MyTools DataDistributionDirectory], imageName]];
     NSAssert(img != nil, @"img should be non-nil");
-    code = [imageManager getCode:pin found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
+    if (highlight == YES)
+        img = [self addImageToImage:img withImage2:[imageManager get:ImageMap_gcaMarkerHigherlighted] andRect:CGRectMake(0, 0, img.size.width, img.size.height)];
+    code = [imageManager getCode:pin found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:highlight owner:NO markedFound:NO inProgress:inProgress markedDNF:NO planned:planned];
     [self.pinImages setObject:img forKey:code];
 
     // Disabled
     img = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@_disabled", [MyTools DataDistributionDirectory], imageName]];
     NSAssert(img != nil, @"img should be non-nil");
-    code = [imageManager getCode:pin found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
+    if (highlight == YES)
+        img = [self addImageToImage:img withImage2:[imageManager get:ImageMap_gcaMarkerHigherlighted] andRect:CGRectMake(0, 0, img.size.width, img.size.height)];
+    code = [imageManager getCode:pin found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:highlight owner:NO markedFound:NO inProgress:inProgress markedDNF:NO planned:planned];
     [self.pinImages setObject:img forKey:code];
 
     // Archived
     img = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@_archived", [MyTools DataDistributionDirectory], imageName]];
     NSAssert(img != nil, @"img should be non-nil");
-    code = [imageManager getCode:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
+    if (highlight == YES)
+        img = [self addImageToImage:img withImage2:[imageManager get:ImageMap_gcaMarkerHigherlighted] andRect:CGRectMake(0, 0, img.size.width, img.size.height)];
+    code = [imageManager getCode:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:highlight owner:NO markedFound:NO inProgress:inProgress markedDNF:NO planned:planned];
     [self.pinImages setObject:img forKey:code];
 
     // Owner
     img = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@_owned", [MyTools DataDistributionDirectory], imageName]];
     NSAssert(img != nil, @"img should be non-nil");
-    code = [imageManager getCode:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO planned:NO];
+    if (highlight == YES)
+        img = [self addImageToImage:img withImage2:[imageManager get:ImageMap_gcaMarkerHigherlighted] andRect:CGRectMake(0, 0, img.size.width, img.size.height)];
+    code = [imageManager getCode:pin found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:highlight owner:YES markedFound:NO inProgress:inProgress markedDNF:NO planned:planned];
     [self.pinImages setObject:img forKey:code];
 
     return YES;
@@ -109,7 +121,14 @@
         NSString *image = [dict objectForKey:@"image"];
 
 #define PIN(__pinname__) \
-    if ([self createPinImages:pin imageName:image pinName:__pinname__] == YES) \
+    if ([self createPinImages:pin imageName:image pinName:__pinname__ inProgress:NO planned:NO highlight:NO] == YES && \
+        [self createPinImages:pin imageName:image pinName:__pinname__ inProgress:NO planned:NO highlight:YES] == YES && \
+        [self createPinImages:pin imageName:image pinName:__pinname__ inProgress:NO planned:YES highlight:NO] == YES && \
+        [self createPinImages:pin imageName:image pinName:__pinname__ inProgress:NO planned:YES highlight:YES] == YES && \
+        [self createPinImages:pin imageName:image pinName:__pinname__ inProgress:YES planned:NO highlight:NO] == YES && \
+        [self createPinImages:pin imageName:image pinName:__pinname__ inProgress:YES planned:NO highlight:YES] == YES && \
+        [self createPinImages:pin imageName:image pinName:__pinname__ inProgress:YES planned:YES highlight:NO] == YES && \
+        [self createPinImages:pin imageName:image pinName:__pinname__ inProgress:YES planned:YES highlight:YES] == YES) \
         return;
 
         if (pin != nil && image != nil) {
@@ -166,22 +185,22 @@
     NSString *code = nil;
 
     if (archived == YES) {
-        code = [imageManager getCode:object found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
+        code = [imageManager getCode:object found:LOGSTATUS_NOTLOGGED disabled:NO archived:YES highlight:highlight owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
 
     } else if (disabled == YES) {
-        code = [imageManager getCode:object found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
+        code = [imageManager getCode:object found:LOGSTATUS_NOTLOGGED disabled:YES archived:NO highlight:highlight owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
 
     } else if (owner == YES) {
-        code = [imageManager getCode:object found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:YES markedFound:NO inProgress:NO markedDNF:NO planned:NO];
+        code = [imageManager getCode:object found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:highlight owner:YES markedFound:NO inProgress:NO markedDNF:NO planned:NO];
 
     } else if (markedFound == YES || found == LOGSTATUS_FOUND) {
-        code = [imageManager getCode:object found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
+        code = [imageManager getCode:object found:LOGSTATUS_FOUND disabled:NO archived:NO highlight:highlight owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
 
     } else if (markedDNF == YES || found == LOGSTATUS_NOTFOUND) {
-        code = [imageManager getCode:object found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
+        code = [imageManager getCode:object found:LOGSTATUS_NOTFOUND disabled:NO archived:NO highlight:highlight owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
 
     } else {
-        code = [imageManager getCode:object found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:NO owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
+        code = [imageManager getCode:object found:LOGSTATUS_NOTLOGGED disabled:NO archived:NO highlight:highlight owner:NO markedFound:NO inProgress:NO markedDNF:NO planned:NO];
     }
 
     return code;

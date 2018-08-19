@@ -150,6 +150,8 @@
     [self addToLibrary:@"container flag - owner - 24x24" index:ImageContainerFlag_owner];
     [self addToLibrary:@"container flag - planned - 24x21" index:ImageContainerFlag_planned];
 
+    [self addToLibrary:@"gca-gmapmarker-highlighted" index:ImageMap_gcaMarkerHigherlighted];
+
     [self addToLibrary:@"icons - smiley - 30x30" index:ImageIcon_Smiley];
     [self addToLibrary:@"icons - sad - 30x30" index:ImageIcon_Sad];
     [self addToLibrary:@"icons - dead - 30x30" index:ImageIcon_Dead];
