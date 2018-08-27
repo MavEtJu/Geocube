@@ -34,7 +34,6 @@
 @property (nonatomic, retain) dbWaypoint *wpSelected;
 
 @property (nonatomic, retain) GMUGeometryRenderer *KMLrenderer;
-@property (nonatomic, retain) NSMutableArray<GMUGeometryRenderer *> *KMLrenderers;
 
 @property (nonatomic, retain) GMSMarker *centeredAnnotation;
 

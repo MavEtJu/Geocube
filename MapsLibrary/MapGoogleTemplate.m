@@ -87,4 +87,11 @@
     [self mapViewDidLoad];
 }
 
+- (void)mapViewDidFinishTileRendering:(GMSMapView *)mapView
+{
+    [self.KMLrenderers enumerateObjectsUsingBlock:^(GMUGeometryRenderer * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj render];
+    }];
+}
+
 @end

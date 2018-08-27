@@ -22,5 +22,6 @@
 @interface MapGoogle : MapTemplate <GMSMapViewDelegate>
 
 @property (nonatomic, retain) GMSMapView *mapView;
+@property (nonatomic, retain) NSMutableArray<GMUGeometryRenderer *> *KMLrenderers;
 
 @end

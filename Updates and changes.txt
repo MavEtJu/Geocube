@@ -7,6 +7,8 @@ Version 2.6(x)
     be either "Geocube default" or "Geocaching Australia".
 
   Fixes:
+  - GoogleMaps backended maps show their KML files properly after
+    the tiles have been loaded.
 
 Version 2.5(39)
 
