@@ -20,6 +20,7 @@
  */
 
 #import "MapsLibrary/MapTemplateViewController-enum.h"
+#import "MapsLibrary/MapTemplate-enum.h"
 
 #import "MapsLibrary/MapTemplateViewController.h"
 #import "MapsLibrary/MapAllWPViewController.h"

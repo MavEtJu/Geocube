@@ -19,6 +19,8 @@
  * along with Geocube.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import "MapsLibrary/MapTemplate-enum.h"
+
 #define ASSERT_FINISHED \
     NSAssert(finished == YES, @"Not finished");
 #define ASSERT_SELF_FIELD_EXISTS(__field__) \

@@ -25,6 +25,7 @@
 @property (nonatomic, retain) NSArray<NSString *> *externalMapTypes;
 @property (nonatomic, retain) NSArray<NSString *> *mapBrandsCodes;
 @property (nonatomic, retain) NSArray<NSString *> *mapBrandsNames;
+@property (nonatomic, retain) NSArray<NSString *> *mapTileBackends;
 
 @property (nonatomic, retain) NSArray<NSString *> *orientationStrings;
 @property (nonatomic, retain) NSArray<NSNumber *> *orientationValues;
@@ -94,6 +95,10 @@ enum {
     }];
     self.mapBrandsCodes = codes;
     self.mapBrandsNames = names;
+    self.mapTileBackends = @[
+        _(@"settingsmainviewcontroller-Apple Maps"),
+        _(@"settingsmainviewcontroller-Google Maps"),
+        ];
 
     self.orientationStrings = @[
         _(@"settingsmainviewcontroller-Portrait"),
@@ -294,6 +299,7 @@ enum sections {
     SECTION_MAPS_MAPBOXKEY,
     SECTION_MAPS_THUNDERFORESTKEY,
     SECTION_MAPS_EXTERNALMAP,
+    SECTION_MAPS_TILEBACKEND,
     SECTION_MAPS_MAX,
 
     SECTION_MAPCOLOURS_TRACK = 0,
@@ -639,6 +645,9 @@ enum sections {
                     }];
                     CELL_SUBTITLE(_(@"settingsmainviewcontroller-External Maps"), name);
                 }
+
+                case SECTION_MAPS_TILEBACKEND:
+                    CELL_SUBTITLE(_(@"settingsmainviewcontroller-Tile Backend"), [self.mapTileBackends objectAtIndex:configManager.mapTileBackend]);
             }
             abort();
         }
@@ -1070,6 +1079,9 @@ SWITCH_UPDATE_RELOAD(updateServicesShowDeveloper, serviceShowDeveloper)
                     break;
                 case SECTION_MAPS_EXTERNALMAP:
                     [self changeAppsExternalMap];
+                    break;
+                case SECTION_MAPS_TILEBACKEND:
+                    [self changeTileBackend];
                     break;
             }
             break;
@@ -2394,6 +2406,22 @@ SWITCH_UPDATE_RELOAD(updateServicesShowDeveloper, serviceShowDeveloper)
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                            NSString *code = [self.mapBrandsCodes objectAtIndex:selectedIndex];
                                            [configManager mapBrandDefaultUpdate:code];
+                                           [self.tableView reloadData];
+                                       }
+                                     cancelBlock:nil
+                                          origin:cell.contentView
+     ];
+}
+
+- (void)changeTileBackend
+{
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:SECTION_MAPS_TILEBACKEND inSection:SECTION_MAPS]];
+
+    [ActionSheetStringPicker showPickerWithTitle:_(@"settingsmainviewcontroller-Select Tile Backend")
+                                            rows:self.mapTileBackends
+                                initialSelection:configManager.mapTileBackend
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           [configManager mapTileBackendUpdate:selectedIndex];
                                            [self.tableView reloadData];
                                        }
                                      cancelBlock:nil

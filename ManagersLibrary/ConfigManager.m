@@ -60,6 +60,7 @@
     CHECK(@"lastimport_source", @"0")
 
     CHECK(@"map_external", @"1")
+    CHECK(@"map_tilebackend", @"0")
     CHECK(@"map_branddefault", @"apple")
     CHECK(@"map_track_colour", @"00F0F0")
     CHECK(@"map_destination_colour", @"FF0000")
@@ -229,6 +230,7 @@
     LOAD_INTEGER(self.lastImportGroup, @"lastimport_group");
     LOAD_INTEGER(self.lastAddedGroup, @"lastadded_group");
     LOAD_INTEGER(self.mapExternal, @"map_external");
+    LOAD_INTEGER(self.mapTileBackend, @"map_tilebackend");
     LOAD_VALUE  (self.mapBrandDefault, @"map_branddefault");
     LOAD_INTEGER(self.compassType, @"compass_type");
     LOAD_INTEGER(self.themeStyleType, @"theme_style_type");
@@ -470,6 +472,7 @@ UPDATE3(BOOL, serviceShowDeveloper, @"service_showdeveloper")
 UPDATE3(BOOL, moveablesShowFound, @"moveables_showfound")
 UPDATE3(BOOL, ownTracksEnable, @"owntracks_enable")
 
+UPDATE4(MapTileBackend, NSInteger, mapTileBackend, @"map_tilebackend")
 UPDATE4(LM_ACCURACY, NSInteger, accuracyDynamicAccuracyNear, @"accuracy_dynamic_accuracy_near")
 UPDATE4(LM_ACCURACY, NSInteger, accuracyDynamicAccuracyMidrange, @"accuracy_dynamic_accuracy_midrange")
 UPDATE4(LM_ACCURACY, NSInteger, accuracyDynamicAccuracyFar, @"accuracy_dynamic_accuracy_far")

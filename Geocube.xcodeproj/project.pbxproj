@@ -2964,6 +2964,7 @@
 		E8CB89202063CCC400DD55DE /* KeyboardCoordinateDecimalDegreesSigned.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KeyboardCoordinateDecimalDegreesSigned.h; path = ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesSigned.h; sourceTree = "<group>"; };
 		E8CB89212063CCC400DD55DE /* KeyboardCoordinateDecimalDegreesSigned.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KeyboardCoordinateDecimalDegreesSigned.m; path = ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesSigned.m; sourceTree = "<group>"; };
 		E8CB89232063CCE900DD55DE /* KeyboardCoordinateDecimalDegreesSigned.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KeyboardCoordinateDecimalDegreesSigned.xib; path = ToolsLibrary/Keyboards/KeyboardCoordinateDecimalDegreesSigned.xib; sourceTree = "<group>"; };
+		E8D355AE21356DE100570215 /* MapTemplate-enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MapTemplate-enum.h"; path = "MapsLibrary/MapTemplate-enum.h"; sourceTree = "<group>"; };
 		E8D3AA08210043FC00EB55B6 /* WaypointEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WaypointEditViewController.h; path = Waypoints/WaypointEditViewController.h; sourceTree = "<group>"; };
 		E8D3AA09210043FC00EB55B6 /* WaypointEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = WaypointEditViewController.m; path = Waypoints/WaypointEditViewController.m; sourceTree = "<group>"; };
 		E8D3AA0C2100586100EB55B6 /* WaypointEditViewController-delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WaypointEditViewController-delegate.h"; path = "Waypoints/WaypointEditViewController-delegate.h"; sourceTree = "<group>"; };
@@ -4153,6 +4154,7 @@
 			isa = PBXGroup;
 			children = (
 				E82287891F8A30B700631380 /* MapTemplate.h */,
+				E8D355AE21356DE100570215 /* MapTemplate-enum.h */,
 				E822878A1F8A30B700631380 /* MapTemplate.m */,
 				E82287761F8A30B700631380 /* MapApple.h */,
 				E82287771F8A30B700631380 /* MapApple.m */,

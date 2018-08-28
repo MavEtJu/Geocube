@@ -47,6 +47,7 @@ PROTO_N (NSInteger, lastAddedGroup);
 
 PROTO_N (BOOL, distanceMetric);
 PROTO_N (NSInteger, mapExternal);
+PROTO_N (MapTileBackend, mapTileBackend);
 PROTO_NR(NSString *, mapBrandDefault);
 PROTO_N3(UIColor *, mapTrackColour, NSString *);
 PROTO_N3(UIColor *, mapDestinationColour, NSString *);

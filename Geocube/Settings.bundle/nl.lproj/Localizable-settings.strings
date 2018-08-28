@@ -272,3 +272,8 @@
 "settingsmainviewcontroller-Theme images" = "Thema iconen";
 "settingsmainviewcontroller-Theme style" = "Thema stijl";
 
+"settingsmainviewcontroller-Apple Maps" = "Apple Maps";
+"settingsmainviewcontroller-Google Maps" = "Google Maps";
+"settingsmainviewcontroller-Select Tile Backend" = "Selecteer Tile Backend";
+"settingsmainviewcontroller-Tile Backend" = "Tile Backend";
+
