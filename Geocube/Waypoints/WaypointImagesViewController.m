@@ -311,7 +311,7 @@ enum {
             cell.detailTextLabel.text = @"";
     }
 
-    cell.textLabel.text = img.name;
+    cell.textLabel.text = IS_EMPTY(img.name) == NO ? img.name : @" ";
     cell.userInteractionEnabled = YES;
 
     if ([img imageHasBeenDowloaded] == YES) {
