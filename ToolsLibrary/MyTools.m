@@ -634,6 +634,9 @@ TIME(dateTimeString_DD_MM_YYYY_dotspace, @"d. M. yyyy")
     CFDictionaryRef imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, (__bridge CFDictionaryRef)options);
     CFRelease(imageSource);
 
+    if (imageProperties == nil)
+        return nil;
+
     NSMutableDictionary *metadata = [NSMutableDictionary dictionaryWithDictionary:(__bridge NSDictionary *)imageProperties];
     CFRelease(imageProperties);
     return metadata;

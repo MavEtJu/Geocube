@@ -9,6 +9,8 @@ Version 2.6(x)
   Fixes:
   - GoogleMaps backended maps show their KML files properly after
     the tiles have been loaded.
+  - Sometimes when going to the images the app would crash. This
+    is fixed now.
 
 Version 2.5(39)
 
