@@ -688,7 +688,7 @@ TABLENAME(@"waypoints")
 - (NSInteger)hasFieldNotes
 {
     ASSERT_FINISHED;
-    return [[dbLog dbAllByWaypointLogged:self] count];
+    return [[dbLog dbAllByWaypointLoggedByMe:self] count];
 }
 
 - (NSInteger)hasImages

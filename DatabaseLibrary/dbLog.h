@@ -44,10 +44,10 @@
 + (NSMutableDictionary *)dbAllIdGCId;
 + (NSInteger)dbCountByWaypoint:(dbWaypoint *)wp;
 + (NSArray<dbLog *> *)dbAllByWaypoint:(dbWaypoint *)wp;
-+ (NSArray<dbLog *> *)dbAllByWaypointLogged:(dbWaypoint *)wp;
++ (NSArray<dbLog *> *)dbAllByWaypointLoggedByMe:(dbWaypoint *)wp;
 + (NSArray<dbLog *> *)dbAllByWaypointUnsubmitted:(dbWaypoint *)wp;
 + (NSArray<dbLog *> *)dbLast7ByWaypoint:(dbWaypoint *)wp;
-+ (NSArray<dbLog *> *)dbLast7ByWaypointLogged:(dbWaypoint *)wp;
++ (NSArray<dbLog *> *)dbLast7ByWaypointLoggedByMe:(dbWaypoint *)wp;
 - (void)dbUpdateWaypoint:(dbWaypoint *)wp;
 - (void)dbUpdateNote;
 + (NSInteger)dbCountByWaypointLogString:(dbWaypoint *)wp LogString:(NSString *)string;

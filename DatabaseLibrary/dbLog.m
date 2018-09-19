@@ -198,7 +198,7 @@ TABLENAME(@"logs")
     return [self dbAllXXX:@"where waypoint_id = ? order by datetime_epoch desc limit 7" keys:@"i" values:@[[NSNumber numberWithId:wp._id]]];
 }
 
-+ (NSArray<dbLog *> *)dbAllByWaypointLogged:(dbWaypoint *)wp
++ (NSArray<dbLog *> *)dbAllByWaypointLoggedByMe:(dbWaypoint *)wp
 {
     return [self dbAllXXX:@"where waypoint_id = ? and logger_id in (select id from names where id in (select accountname_id from accounts where accountname_id != 0)) order by datetime_epoch desc" keys:@"i" values:@[[NSNumber numberWithId:wp._id]]];
 }
@@ -208,7 +208,7 @@ TABLENAME(@"logs")
     return [self dbAllXXX:@"where waypoint_id = ? and needstobelogged = 1 and logger_id in (select id from names where id in (select accountname_id from accounts where accountname_id != 0)) order by datetime_epoch desc" keys:@"i" values:@[[NSNumber numberWithId:wp._id]]];
 }
 
-+ (NSArray<dbLog *> *)dbLast7ByWaypointLogged:(dbWaypoint *)wp
++ (NSArray<dbLog *> *)dbLast7ByWaypointLoggedByMe:(dbWaypoint *)wp
 {
     return [self dbAllXXX:@"where waypoint_id = ? and logger_id in (select id from names where id in (select accountname_id from accounts where accountname_id != 0)) order by datetime_epoch desc limit 7" keys:@"i" values:@[[NSNumber numberWithId:wp._id]]];
 }

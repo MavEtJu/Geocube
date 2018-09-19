@@ -339,7 +339,7 @@ enum {
                         cell.userInteractionEnabled = NO;
 
                     } else {
-                        NSArray<dbLog *> *logs = [dbLog dbLast7ByWaypointLogged:self.waypoint];
+                        NSArray<dbLog *> *logs = [dbLog dbLast7ByWaypointLoggedByMe:self.waypoint];
                         IMAGE(0);
                         IMAGE(1);
                         IMAGE(2);

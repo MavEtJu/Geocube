@@ -77,7 +77,7 @@ enum {
     self = [self init:wp];
 
     self.mineOnly = YES;
-    self.logs = [NSMutableArray arrayWithArray:[dbLog dbAllByWaypointLogged:self.waypoint]];
+    self.logs = [NSMutableArray arrayWithArray:[dbLog dbAllByWaypointLoggedByMe:self.waypoint]];
 
     return self;
 }
