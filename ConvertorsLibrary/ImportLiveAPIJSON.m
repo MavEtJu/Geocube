@@ -543,8 +543,8 @@
 
     // Waypoint object
     awp.wpt_name = [NSString stringWithFormat:@"CC%@", [wp.wpt_name substringFromIndex:2]];
-    awp.wpt_description = [NSString stringWithFormat:@"Correct Coordinates for %@", wp.wpt_name];
-    awp.wpt_urlname = [NSString stringWithFormat:@"%@ Correct Coordinates", wp.wpt_name];
+    awp.wpt_description = [NSString stringWithFormat:@"Corrected Coordinates for %@", wp.wpt_name];
+    awp.wpt_urlname = [NSString stringWithFormat:@"%@ Corrected Coordinates", wp.wpt_name];
 
     awp.wpt_latitude = 0;
     if ([[dict objectForKey:@"Latitude"] isKindOfClass:[NSNumber class]] == YES)
@@ -579,6 +579,7 @@
     }
 
     [self.delegate Import_WaypointProcessed:awp];
+    [opencageManager addForProcessing:awp];
 }
 
 - (void)parseAdditionalWaypoints:(NSArray<NSDictionary *> *)wps waypoint:(dbWaypoint *)wp
