@@ -5,6 +5,7 @@ Version 2.6(x)
   Features:
   - Add images themes, the log and the waypoint type images can now
     be either "Geocube default" or "Geocaching Australia".
+  - Support for Geocaching Australia Corrected Location feature.
 
   Fixes:
   - GoogleMaps backended maps show their KML files properly after

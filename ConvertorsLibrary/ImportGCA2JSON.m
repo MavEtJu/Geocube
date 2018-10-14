@@ -252,6 +252,45 @@
     [wp set_wpt_lat_str:[cs objectAtIndex:0]];
     [wp set_wpt_lon_str:[cs objectAtIndex:1]];
 
+    NSString *corrected_location;
+    DICT_NSSTRING_KEY(dict, corrected_location, @"corrected_location");
+    if ([corrected_location isEqualToString:location] == NO) {
+        dbWaypoint *ccwp = [[dbWaypoint alloc] init];
+
+        cs = [location componentsSeparatedByString:@"|"];
+
+        ccwp.wpt_name = [NSString stringWithFormat:@"CL%@", [wp.wpt_name substringFromIndex:2]];
+        ccwp.wpt_description = [NSString stringWithFormat:@"Corrected Location for %@", wp.wpt_name];
+        ccwp.wpt_urlname = [NSString stringWithFormat:@"%@ Corrected Location", wp.wpt_name];
+        ccwp.wpt_latitude = [[cs objectAtIndex:0] floatValue];
+        ccwp.wpt_longitude = [[cs objectAtIndex:1] floatValue];
+
+        ccwp.wpt_date_placed_epoch = ccwp.wpt_date_placed_epoch;
+
+        ccwp.wpt_type = dbc.typeManuallyEntered;
+        ccwp.wpt_symbol = dbc.symbolVirtualStage;
+
+        ccwp.account = self.account;
+        ccwp.date_lastimport_epoch = time(NULL);
+
+        [ccwp finish];
+        ccwp.dirty_logs = YES;
+
+        dbWaypoint *wpold = [dbWaypoint dbGetByName:ccwp.wpt_name];
+        if (wpold == nil) {
+            [ccwp dbCreate];
+            [self.group addWaypointToGroup:ccwp];
+            self.newWaypointsCount++;
+            [self.iiImport changeWaypointsNew:self.newWaypointsCount];
+        } else {
+            ccwp._id = wpold._id;
+            [ccwp dbUpdate];
+        }
+
+        [self.delegate Import_WaypointProcessed:ccwp];
+        [opencageManager addForProcessing:ccwp];
+    }
+
     wp.date_lastimport_epoch = time(NULL);
     [wp finish];
     wp.dirty_logs = YES;
