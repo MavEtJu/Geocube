@@ -717,10 +717,11 @@ TABLENAME(@"waypoints")
     NSString *currentSuffix, *currentPrefix, *otherPrefix;
     NSArray<NSString *> *GCCodes = @[
                          @"GA", // Geocaching Australia
+                         @"CL", // Geocaching Australia - corrected location
                          @"MY", // Geocube internal
                          @"TP", // Geocaching Australia Trigpoint
                          @"GC", // Groundspeak Geocaching.com
-                         @"CC", // Groundspeak Geocaching.com - correct coordinates
+                         @"CC", // Groundspeak Geocaching.com - corrected coordinates
                          @"VI", // Geocaching.su virtual
                          @"TR", // Geocaching.su traditional
                          @"MS", // Geocaching.su multistep
