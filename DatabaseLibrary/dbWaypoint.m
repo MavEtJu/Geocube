@@ -780,14 +780,19 @@ TABLENAME(@"waypoints")
     NSMutableString *s = [NSMutableString stringWithFormat:@""];
     if (self.gca_locality != nil && IS_EMPTY(self.gca_locality.name) == NO)
         [s appendFormat:@"%@", self.gca_locality.name];
-    if (self.gs_state != nil && IS_EMPTY(self.gs_state.code) == NO) {
-        if (IS_EMPTY(s) == NO)
-            [s appendFormat:@", "];
-        if (configManager.showStateAsAbbrevationIfLocalityExists == YES && self.gca_locality != nil)
+
+    if (self.gs_state != nil && [self.gs_state.name isEqualToString:@"None"] == NO) {
+        if (configManager.showStateAsAbbrevationIfLocalityExists == YES && self.gca_locality != nil) {
+            if (IS_EMPTY(s) == NO)
+                [s appendFormat:@", "];
             [s appendFormat:@"%@", self.gs_state.code];
-        else
+        } else {
+            if (IS_EMPTY(s) == NO)
+                [s appendFormat:@", "];
             [s appendFormat:@"%@", configManager.showStateAsAbbrevation == YES ? self.gs_state.code : self.gs_state.name];
+        }
     }
+
     if (self.gs_country != nil && IS_EMPTY(self.gs_country.name) == NO) {
         if (IS_EMPTY(s) == NO)
             [s appendFormat:@", "];
