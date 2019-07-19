@@ -12,6 +12,7 @@ Version 2.6(x)
     the tiles have been loaded.
   - Sometimes when going to the images the app would crash. This
     is fixed now.
+  - Google Maps updated to 3.2.0
 
 Version 2.5(39)
 
