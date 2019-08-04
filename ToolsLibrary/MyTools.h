@@ -65,6 +65,7 @@
 + (NSString *)niceCGPoint:(CGPoint)p;
 + (NSString *)niceCGRect:(CGRect)r;
 + (NSString *)niceCGSize:(CGSize)s;
++ (NSString *)niceUIEdgeInsets:(UIEdgeInsets)ei;
 + (NSString *)niceNumber:(NSInteger)i;
 + (NSString *)niceFileSize:(NSInteger)i;
 + (NSString *)niceTimeDifference:(NSInteger)i;

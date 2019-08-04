@@ -403,6 +403,11 @@ TIME(dateTimeString_DD_MM_YYYY_dotspace, @"d. M. yyyy")
     return [NSString stringWithFormat:@"(%0.0f x %0.0f)", s.width, s.height];
 }
 
++ (NSString *)niceUIEdgeInsets:(UIEdgeInsets)ei
+{
+    return [NSString stringWithFormat:@"(%0.0f, %0.0f)", ei.top, ei.bottom];
+}
+
 /// Returns the number as a nicely formatted string in percentage form
 + (NSString *)nicePercentage:(NSInteger)value total:(NSInteger)total;
 {
