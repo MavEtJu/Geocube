@@ -1227,6 +1227,7 @@
 		E8CB89222063CCC400DD55DE /* KeyboardCoordinateDecimalDegreesSigned.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB89212063CCC400DD55DE /* KeyboardCoordinateDecimalDegreesSigned.m */; };
 		E8CB89242063CCEA00DD55DE /* KeyboardCoordinateDecimalDegreesSigned.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8CB89232063CCE900DD55DE /* KeyboardCoordinateDecimalDegreesSigned.xib */; };
 		E8D3AA0A210043FC00EB55B6 /* WaypointEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D3AA09210043FC00EB55B6 /* WaypointEditViewController.m */; };
+		E8D4466822F66BA7007BCA85 /* GeocubeStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8D4466722F66BA7007BCA85 /* GeocubeStoryBoard.storyboard */; };
 		E8D49D2F1F00F9C1005EB7BE /* container size - nano - 35x11.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */; };
 		E8D49D301F00F9C1005EB7BE /* container size - nano - 35x11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */; };
 		E8D49D311F00F9C1005EB7BE /* container size - nano - 35x11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D49D2E1F00F9C1005EB7BE /* container size - nano - 35x11@3x.png */; };
@@ -1247,7 +1248,6 @@
 		E8F0007820AEF7C4003B5D47 /* OwnTracksManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F0007520AEF7C4003B5D47 /* OwnTracksManager.m */; };
 		E8F0007B20AEF95C003B5D47 /* dbOwnTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F0007A20AEF95C003B5D47 /* dbOwnTrack.m */; };
 		E8F570591B3F7255003F020C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F570581B3F7255003F020C /* main.m */; };
-		E8F570621B3F7255003F020C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8F570601B3F7255003F020C /* Main.storyboard */; };
 		E8F570641B3F7255003F020C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8F570631B3F7255003F020C /* Images.xcassets */; };
 		E8F570921B3F7CAE003F020C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F570911B3F7CAE003F020C /* libz.dylib */; };
 		E8F570AF1B3FE711003F020C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F570AE1B3FE711003F020C /* libsqlite3.dylib */; };
@@ -2968,6 +2968,7 @@
 		E8D3AA08210043FC00EB55B6 /* WaypointEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WaypointEditViewController.h; path = Waypoints/WaypointEditViewController.h; sourceTree = "<group>"; };
 		E8D3AA09210043FC00EB55B6 /* WaypointEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = WaypointEditViewController.m; path = Waypoints/WaypointEditViewController.m; sourceTree = "<group>"; };
 		E8D3AA0C2100586100EB55B6 /* WaypointEditViewController-delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WaypointEditViewController-delegate.h"; path = "Waypoints/WaypointEditViewController-delegate.h"; sourceTree = "<group>"; };
+		E8D4466722F66BA7007BCA85 /* GeocubeStoryBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GeocubeStoryBoard.storyboard; sourceTree = "<group>"; };
 		E8D49D2C1F00F9C1005EB7BE /* container size - nano - 35x11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11.png"; path = "images/containers/container size - nano - 35x11.png"; sourceTree = "<group>"; };
 		E8D49D2D1F00F9C1005EB7BE /* container size - nano - 35x11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11@2x.png"; path = "images/containers/container size - nano - 35x11@2x.png"; sourceTree = "<group>"; };
 		E8D49D2E1F00F9C1005EB7BE /* container size - nano - 35x11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "container size - nano - 35x11@3x.png"; path = "images/containers/container size - nano - 35x11@3x.png"; sourceTree = "<group>"; };
@@ -2997,7 +2998,6 @@
 		E8F570571B3F7255003F020C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8F570581B3F7255003F020C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E8F5705A1B3F7255003F020C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		E8F570611B3F7255003F020C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E8F570631B3F7255003F020C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E8F570911B3F7CAE003F020C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		E8F570AE1B3FE711003F020C /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -5711,8 +5711,8 @@
 				E87FE7951EFFD25F009FA65B /* Geocube-defines.h */,
 				E8F570BF1B400166003F020C /* Geocube-globals.h */,
 				E881CA4F1F6B9CC400A17060 /* Geocube.h */,
+				E8D4466722F66BA7007BCA85 /* GeocubeStoryBoard.storyboard */,
 				E8F570581B3F7255003F020C /* main.m */,
-				E8F570601B3F7255003F020C /* Main.storyboard */,
 				E8F570631B3F7255003F020C /* Images.xcassets */,
 				E8F5707C1B3F75D1003F020C /* Data files */,
 				E8BD82481B46A4CB0029CDC9 /* Images */,
@@ -6293,13 +6293,13 @@
 				E8157BBA211D752B00CCB63B /* cache - traditional - 30x30@2x.png in Resources */,
 				E86773CA212137A800518AD0 /* gca-gmapmarker_t_owned@2x.png in Resources */,
 				E8677369212137A800518AD0 /* gca-gmapmarker_l_disabled.png in Resources */,
+				E8D4466822F66BA7007BCA85 /* GeocubeStoryBoard.storyboard in Resources */,
 				E8157AAB211D6EAC00CCB63B /* gca-icon_logpublished@2x.png in Resources */,
 				E82E66361DA07A8700CFBDED /* icons - dead - 30x30@3x.png in Resources */,
 				E8157B23211D6EAC00CCB63B /* gca-icon_logneedsarchiving@3x.png in Resources */,
 				E8157AA4211D6EAC00CCB63B /* gca-icon_geocachebeacon@3x.png in Resources */,
 				E82E67661DA07D0200CFBDED /* attributes - 60.png in Resources */,
 				E82E67671DA07D0200CFBDED /* attributes - 61.png in Resources */,
-				E8F570621B3F7255003F020C /* Main.storyboard in Resources */,
 				E86773EE212137A900518AD0 /* gca-gmapmarker_v_found@2x.png in Resources */,
 				E85DC67A1F95CFD2007556D5 /* menu icon - local night - 40x40@3x.png in Resources */,
 				E8157AEB211D6EAC00CCB63B /* gca-icon_logoapi@2x.png in Resources */,
@@ -7217,17 +7217,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		E8F570601B3F7255003F020C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E8F570611B3F7255003F020C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E8F570741B3F7255003F020C /* Debug */ = {
