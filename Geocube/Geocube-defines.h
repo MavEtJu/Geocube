@@ -32,7 +32,7 @@
     NSAssert(__expression__, __message__)
 
 #define IS_IPAD \
-    (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 #define IS_EMPTY(__s__) \
     (__s__ == nil || [__s__ length] == 0)
 #define IS_NULL(__s__) \
