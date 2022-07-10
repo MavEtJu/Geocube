@@ -75,13 +75,18 @@ enum {
 
 - (void)importAirdropAttachment:(NSURL *)url
 {
-    NSArray<NSString *> *as = [url pathComponents];
+    NSError *error = nil;
+    NSMutableArray<NSString *> *as = [NSMutableArray arrayWithArray:[url pathComponents]];
     NSString *file = [as objectAtIndex:[as count] - 1];
 
-    NSString *fromFile = [NSString stringWithFormat:@"%@/Inbox/%@", [MyTools DocumentRoot], file];
+    [as removeObjectAtIndex:1];
+
+    NSString *fromFile = [as componentsJoinedByString:@"/"];
+    //NSString *fromFile = [NSString stringWithFormat:@"%@/Inbox/%@", [MyTools DocumentRoot], file];
     NSString *toFile = [NSString stringWithFormat:@"%@/%@", [MyTools FilesDir], file];
-    [fileManager removeItemAtPath:toFile error:nil];
-    [fileManager moveItemAtPath:fromFile toPath:toFile error:nil];
+    [fileManager removeItemAtPath:toFile error:&error];
+    if ([fileManager moveItemAtPath:fromFile toPath:toFile error:&error] == FALSE)
+        NSLog(@"moveItemAtPath: %@", error);
     NSLog(@"Importing from AirDrop or attachment: %@", file);
 
     [self.delegate IOSFileTransferRefreshFilelist];

@@ -80,6 +80,15 @@
 
     [self.runqueue addOperationWithBlock:^{
         FileObject *fo = [[FileObject alloc] init];
+        fo.filename = @"Document Root";
+        fo.isDir = YES;
+        fo.cwd = @"";
+        [self loadContentsOfDir:fo start:[MyTools DocumentRoot]];
+        [fos addObject:fo];
+    }];
+
+    [self.runqueue addOperationWithBlock:^{
+        FileObject *fo = [[FileObject alloc] init];
         fo.filename = @"KML";
         fo.isDir = YES;
         fo.cwd = @"";
